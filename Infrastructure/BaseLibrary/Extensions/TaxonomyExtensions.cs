@@ -47,7 +47,7 @@
             return new HashSet<string>(result);
         }
 
-        public static IEnumerable<string> ExtractUniqueHigherTaxa(this XmlNode context)
+        public static IEnumerable<string> ExtractUniqueNonParsedHigherTaxa(this XmlNode context)
         {
             var taxaNames = context.SelectNodes(".//tn[@type='higher'][not(tn-part)]")
                 .Cast<XmlNode>()
@@ -108,56 +108,20 @@
             return new HashSet<string>(xml.GetStringListOfUniqueXmlNodes(xpath, TaxPubXmlNamespaceManagerProvider.GetStatic()));
         }
 
-        public static IEnumerable<string> GetNonTaggedTaxa(this XmlDocument xml, Regex matchTaxa)
-        {
-            ////XmlNode clonedXml = xml.CloneNode(true);
-            ////clonedXml.SelectNodes("//tn|//tn-part|//tp:taxon-name|//tp:taxon-name-part", Config.TaxPubNamespceManager())
-            ////    .Cast<XmlNode>()
-            ////    .Select(node => node.ParentNode.RemoveChild(node));
-
-            IEnumerable<string> taxaMatchesInText = xml.InnerText.GetMatches(matchTaxa);
-            IEnumerable<string> result = from item in taxaMatchesInText
-                                         where xml.SelectNodes("//tn[contains(string(.),'" + item + "')]").Count == 0
-                                         select item;
-            return new HashSet<string>(result);
-
-            ////IEnumerable<string> result = clonedXml.GetMatchesInXmlText(matchTaxa, true);
-
-            ////return new HashSet<string>(result);
-        }
-
         public static Task PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)
         {
             return Task.Run(() =>
             {
-                List<string> uniqueHigherTaxaList = xmlDocument.ExtractUniqueHigherTaxa().ToList();
-                uniqueHigherTaxaList.Distinct();
-                uniqueHigherTaxaList.TrimExcess();
+                var uniqueHigherTaxaList = xmlDocument.ExtractUniqueNonParsedHigherTaxa()
+                    .Distinct()
+                    .OrderBy(s => s)
+                    .ToList();
 
-                if (uniqueHigherTaxaList.Count() > 0)
+                if (uniqueHigherTaxaList.Count > 0)
                 {
-                    uniqueHigherTaxaList.Sort();
-
-                    logger.Log("\nNon-parsed taxa:");
-                    uniqueHigherTaxaList
-                        .ForEach(taxon => logger?.Log("\t{0}", taxon));
-                    logger.Log();
+                    logger?.Log("\nNon-parsed taxa: {0}\n", string.Join("\n\t", uniqueHigherTaxaList));
                 }
             });
-        }
-
-        public static string RemoveTaxonNamePartTags(this string content)
-        {
-            string result = Regex.Replace(content, @"(?<=full-name=""([^<>""]+)""[^>]*>)[^<>]*(?=</)", "$1");
-            return Regex.Replace(result, "</?tn-part[^>]*>|</?tp:taxon-name-part[^>]*>", string.Empty);
-        }
-
-        public static void RemoveTaxonNamePartTags(this XmlDocument xmlDocument)
-        {
-            foreach (XmlNode taxonName in xmlDocument.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']", TaxPubXmlNamespaceManagerProvider.GetStatic()))
-            {
-                taxonName.InnerXml = taxonName.InnerXml.RemoveTaxonNamePartTags();
-            }
         }
 
         public static XmlNode ReplaceXmlNodeInnerTextByItsFullNameAttribute(this XmlNode node)

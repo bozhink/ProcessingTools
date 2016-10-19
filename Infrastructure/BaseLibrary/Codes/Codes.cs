@@ -11,13 +11,13 @@ namespace ProcessingTools.BaseLibrary
     using System.Text.RegularExpressions;
     using System.Xml;
 
-    using ProcessingTools.BaseLibrary.Providers;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Transformers;
 
     public class Codes : TaxPubDocument

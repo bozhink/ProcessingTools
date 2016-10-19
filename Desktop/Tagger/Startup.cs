@@ -1,47 +1,50 @@
 ﻿namespace ProcessingTools.Tagger
 {
     using System;
-    using System.Diagnostics;
+    using System.Configuration;
     using System.Threading.Tasks;
+
+    using Core;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Loggers;
 
-    public class Startup
+    public class Startup : IStartup
     {
         private readonly ILogger logger;
 
-        public Startup()
+        public Startup(ILogger logger)
         {
-            this.logger = new TextWriterLogger();
-        }
-
-        public static Startup Create()
-        {
-            return new Startup();
+            this.logger = logger;
         }
 
         public void Run(string[] args)
         {
-            Stopwatch mainTimer = new Stopwatch();
-            mainTimer.Start();
+            int timeSpanInMunutesValue = 0;
+            if (!int.TryParse(ConfigurationManager.AppSettings["MaximalTimeInMinutesToWaitTheMainThread"], out timeSpanInMunutesValue))
+            {
+                throw new SystemException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
+            }
 
-            this.RunAsync(args).Wait();
+            var ts = TimeSpan.FromMinutes(timeSpanInMunutesValue);
 
-            this.logger.Log(LogType.Info, "Main timer {0}.", mainTimer.Elapsed);
+            var succeeded = this.RunAsync(args).Wait(ts);
+            if (!succeeded)
+            {
+                this.logger.Log(LogType.Error, "The timeout interval elapsed.");
+            }
         }
 
-        public async Task RunAsync(string[] args)
+        private async Task RunAsync(string[] args)
         {
             try
             {
                 var settingsBuilder = new ProgramSettingsBuilder(this.logger, args);
                 var settings = settingsBuilder.Settings;
 
-                var singleFileProcessor = new SingleFileProcessor(settings, this.logger);
+                var singleFileProcessor = DI.Get<ISingleFileProcessor>();
 
-                await singleFileProcessor.Run();
+                await singleFileProcessor.Run(settings);
             }
             catch (Exception e)
             {

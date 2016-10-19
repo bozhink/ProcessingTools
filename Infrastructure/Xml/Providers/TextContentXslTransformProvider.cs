@@ -2,9 +2,11 @@
 {
     using System.Configuration;
 
+    using Contracts;
+    using Contracts.Providers;
+    using Factories;
+
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Factories;
 
     public class TextContentXslTransformProvider : XslTransformAbstractProvider, ITextContentXslTransformProvider
     {

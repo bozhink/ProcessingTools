@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Loggers.Extensions
 {
-    using Contracts;
+    using ProcessingTools.Contracts;
 
     public static class LoggerExtensions
     {

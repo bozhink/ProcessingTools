@@ -8,7 +8,7 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Layout.Processors.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
     [Description("Initial format.")]
     public class InitialFormatController : TaggerControllerFactory, IInitialFormatController

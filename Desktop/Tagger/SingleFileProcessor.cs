@@ -2,230 +2,60 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Diagnostics;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Contracts;
-    using Extensions;
-    using Ninject;
-    using ProcessingTools.BaseLibrary;
+
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
-    public class SingleFileProcessor : FileProcessor
+    public partial class SingleFileProcessor : ISingleFileProcessor
     {
-        private ConcurrentQueue<Task> tasks;
+        private readonly IDocumentNormalizer documentNormalizer;
+        private readonly ILogger logger;
 
+        private ConcurrentQueue<Task> tasks;
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
-
-        private ILogger logger;
         private ProgramSettings settings;
 
-        public SingleFileProcessor(ProgramSettings settings, ILogger logger)
+        public SingleFileProcessor(IDocumentNormalizer documentNormalizer, ILogger logger)
         {
-            this.tasks = new ConcurrentQueue<Task>();
-            this.settings = settings;
+            if (documentNormalizer == null)
+            {
+                throw new ArgumentNullException(nameof(documentNormalizer));
+            }
+
+            this.documentNormalizer = documentNormalizer;
             this.logger = logger;
+
+            this.tasks = new ConcurrentQueue<Task>();
             this.document = new TaxPubDocument();
         }
 
-        public override async Task Run()
+        public async Task Run(ProgramSettings settings)
         {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            this.settings = settings;
+
             try
             {
                 this.ConfigureFileProcessor();
 
                 this.SetUpConfigParameters();
 
-                this.ReadDocument();
+                await this.ReadDocument();
 
-                using (IKernel kernel = NinjectConfig.CreateKernel())
-                {
-                    if (this.settings.ZoobankCloneXml)
-                    {
-                        this.InvokeProcessor<IZooBankCloneXmlController>(kernel).Wait();
-                    }
-                    else if (this.settings.ZoobankCloneJson)
-                    {
-                        this.InvokeProcessor<IZooBankCloneJsonController>(kernel).Wait();
-                    }
-                    else if (this.settings.ZoobankGenerateRegistrationXml)
-                    {
-                        this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>(kernel).Wait();
-                    }
-                    else if (this.settings.QueryReplace)
-                    {
-                        this.InvokeProcessor<IQueryReplaceController>(kernel).Wait();
-                    }
-                    else
-                    {
-                        if (this.settings.RunXslTransform)
-                        {
-                            this.InvokeProcessor<IRunCustomXslTransformController>(kernel).Wait();
-                        }
-
-                        if (this.settings.InitialFormat)
-                        {
-                            this.InvokeProcessor<IInitialFormatController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseReferences)
-                        {
-                            this.InvokeProcessor<IParseReferencesController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagDoi || this.settings.TagWebLinks)
-                        {
-                            this.InvokeProcessor<ITagWebLinksController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ResolveMediaTypes)
-                        {
-                            this.InvokeProcessor<IResolveMediaTypesController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagTableFn)
-                        {
-                            this.InvokeProcessor<ITagTableFootnoteController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagCoordinates)
-                        {
-                            this.InvokeProcessor<ITagCoordinatesController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseCoordinates)
-                        {
-                            this.InvokeProcessor<IParseCoordinatesController>(kernel).Wait();
-                        }
-
-                        foreach (var controllerType in this.settings.CalledControllers)
-                        {
-                            this.InvokeProcessor(controllerType, kernel).Wait();
-                        }
-
-                        if (this.settings.TagEnvironmentTermsWithExtract)
-                        {
-                            this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(kernel).Wait();
-                        }
-
-                        // Tag envo terms using envornment database
-                        if (this.settings.TagEnvironmentTerms)
-                        {
-                            this.InvokeProcessor<ITagEnvironmentTermsController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagAbbreviations)
-                        {
-                            this.InvokeProcessor<ITagAbbreviationsController>(kernel).Wait();
-                        }
-
-                        // Tag institutions, institutional codes, and specimen codes
-                        if (this.settings.TagCodes)
-                        {
-                            this.InvokeProcessor<ITagCodesController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagLowerTaxa)
-                        {
-                            this.InvokeProcessor<ITagLowerTaxaController>(kernel).Wait();
-                        }
-
-                        if (this.settings.TagHigherTaxa)
-                        {
-                            this.InvokeProcessor<ITagHigherTaxaController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseLowerTaxa)
-                        {
-                            this.InvokeProcessor<IParseLowerTaxaController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseHigherTaxa)
-                        {
-                            this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseHigherWithAphia)
-                        {
-                            this.InvokeProcessor<IParseHigherTaxaWithAphiaController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseHigherWithCoL)
-                        {
-                            this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseHigherWithGbif)
-                        {
-                            this.InvokeProcessor<IParseHigherTaxaWithGbifController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseHigherBySuffix)
-                        {
-                            this.InvokeProcessor<IParseHigherTaxaBySuffixController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseHigherAboveGenus)
-                        {
-                            this.InvokeProcessor<IParseHigherTaxaAboveGenusController>(kernel).Wait();
-                        }
-
-                        // Main Tagging part of the program
-                        if (this.settings.ParseBySection)
-                        {
-                            foreach (XmlNode context in this.document.XmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
-                            {
-                                this.MainProcessing(context, kernel).Wait();
-                            }
-                        }
-                        else
-                        {
-                            this.MainProcessing(this.document.XmlDocument.DocumentElement, kernel).Wait();
-                        }
-
-                        if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
-                        {
-                            await this.InvokeProcessor<IExtractTaxaController>(kernel);
-                        }
-
-                        if (this.settings.ValidateTaxa)
-                        {
-                            this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaController>(kernel));
-                        }
-
-                        if (this.settings.UntagSplit)
-                        {
-                            this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>(kernel).Wait();
-                        }
-
-                        if (this.settings.FormatTreat)
-                        {
-                            this.InvokeProcessor<IFormatTreatmentsController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseTreatmentMetaWithAphia)
-                        {
-                            this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseTreatmentMetaWithGbif)
-                        {
-                            this.InvokeProcessor<IParseTreatmentMetaWithGbifController>(kernel).Wait();
-                        }
-
-                        if (this.settings.ParseTreatmentMetaWithCol)
-                        {
-                            this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>(kernel).Wait();
-                        }
-                    }
-                }
+                await this.ProcessDocument();
 
                 this.tasks.Enqueue(this.WriteOutputFile());
 
@@ -238,114 +68,217 @@
             }
         }
 
-        protected override Task InvokeProcessor(string message, Action action)
+        private async Task ProcessDocument()
         {
-            return Task.Run(() =>
+            if (this.settings.ZoobankCloneXml)
             {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                this.logger?.Log(message);
+                await this.InvokeProcessor<IZooBankCloneXmlController>();
+                return;
+            }
 
-                try
-                {
-                    action.Invoke();
-                }
-                catch (Exception e)
-                {
-                    this.logger?.Log(e, string.Empty);
-                }
-
-                this.PrintElapsedTime(timer);
-            });
-        }
-
-        protected async Task InvokeProcessor<TController>(IKernel kernel)
-            where TController : ITaggerController
-        {
-            await this.InvokeProcessor<TController>(this.document.XmlDocument.DocumentElement, kernel);
-        }
-
-        protected async Task InvokeProcessor<TController>(XmlNode context, IKernel kernel)
-            where TController : ITaggerController
-        {
-            var controller = kernel.Get<TController>();
-
-            string message = controller.GetDescriptionMessageForController();
-
-            await this.InvokeProcessor(
-                message,
-                () =>
-                {
-                    controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
-                });
-        }
-
-        protected async Task InvokeProcessor(Type controllerType, IKernel kernel)
-        {
-            // Do not wait validation controllers to return.
-            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(INotAwaitableController));
-            if (validationController != null)
+            if (this.settings.ZoobankCloneJson)
             {
-                // Validation controllers should not overwrite the content of this.document.XmlDocument,
-                // and here this content is copied in a new DOM object.
-                XmlDocument document = new XmlDocument
-                {
-                    PreserveWhitespace = true
-                };
+                await this.InvokeProcessor<IZooBankCloneJsonController>();
+                return;
+            }
 
-                document.LoadXml(this.document.Xml);
-                this.tasks.Enqueue(this.InvokeProcessor(controllerType, document.DocumentElement, kernel));
+            if (this.settings.ZoobankGenerateRegistrationXml)
+            {
+                await this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>();
+                return;
+            }
+
+            if (this.settings.QueryReplace)
+            {
+                await this.InvokeProcessor<IQueryReplaceController>();
+                return;
+            }
+
+            if (this.settings.RunXslTransform)
+            {
+                await this.InvokeProcessor<IRunCustomXslTransformController>();
+            }
+
+            if (this.settings.InitialFormat)
+            {
+                await this.InvokeProcessor<IInitialFormatController>();
+            }
+
+            if (this.settings.ParseReferences)
+            {
+                await this.InvokeProcessor<IParseReferencesController>();
+            }
+
+            if (this.settings.TagDoi || this.settings.TagWebLinks)
+            {
+                await this.InvokeProcessor<ITagWebLinksController>();
+            }
+
+            if (this.settings.ResolveMediaTypes)
+            {
+                await this.InvokeProcessor<IResolveMediaTypesController>();
+            }
+
+            if (this.settings.TagTableFn)
+            {
+                await this.InvokeProcessor<ITagTableFootnoteController>();
+            }
+
+            if (this.settings.TagCoordinates)
+            {
+                await this.InvokeProcessor<ITagCoordinatesController>();
+            }
+
+            if (this.settings.ParseCoordinates)
+            {
+                await this.InvokeProcessor<IParseCoordinatesController>();
+            }
+
+            foreach (var controllerType in this.settings.CalledControllers)
+            {
+                await this.InvokeProcessor(controllerType);
+            }
+
+            if (this.settings.TagEnvironmentTermsWithExtract)
+            {
+                await this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>();
+            }
+
+            // Tag envo terms using environment database
+            if (this.settings.TagEnvironmentTerms)
+            {
+                await this.InvokeProcessor<ITagEnvironmentTermsController>();
+            }
+
+            if (this.settings.TagAbbreviations)
+            {
+                await this.InvokeProcessor<ITagAbbreviationsController>();
+            }
+
+            // Tag institutions, institutional codes, and specimen codes
+            if (this.settings.TagCodes)
+            {
+                await this.InvokeProcessor<ITagCodesController>();
+            }
+
+            if (this.settings.TagLowerTaxa)
+            {
+                await this.InvokeProcessor<ITagLowerTaxaController>();
+            }
+
+            if (this.settings.TagHigherTaxa)
+            {
+                await this.InvokeProcessor<ITagHigherTaxaController>();
+            }
+
+            if (this.settings.ParseLowerTaxa)
+            {
+                await this.InvokeProcessor<IParseLowerTaxaController>();
+            }
+
+            if (this.settings.ParseHigherTaxa)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>();
+            }
+
+            if (this.settings.ParseHigherWithAphia)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithAphiaController>();
+            }
+
+            if (this.settings.ParseHigherWithCoL)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>();
+            }
+
+            if (this.settings.ParseHigherWithGbif)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaWithGbifController>();
+            }
+
+            if (this.settings.ParseHigherBySuffix)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaBySuffixController>();
+            }
+
+            if (this.settings.ParseHigherAboveGenus)
+            {
+                await this.InvokeProcessor<IParseHigherTaxaAboveGenusController>();
+            }
+
+            // Main Tagging part of the program
+            if (this.settings.ParseBySection)
+            {
+                foreach (XmlNode context in this.document.XmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
+                {
+                    await this.ContextProcessing(context);
+                }
             }
             else
             {
-                await this.InvokeProcessor(controllerType, this.document.XmlDocument.DocumentElement, kernel);
+                await this.ContextProcessing(this.document.XmlDocument.DocumentElement);
+            }
+
+            if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
+            {
+                await this.InvokeProcessor<IExtractTaxaController>();
+            }
+
+            if (this.settings.ValidateTaxa)
+            {
+                this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaController>());
+            }
+
+            if (this.settings.UntagSplit)
+            {
+                await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>();
+            }
+
+            if (this.settings.FormatTreat)
+            {
+                await this.InvokeProcessor<IFormatTreatmentsController>();
+            }
+
+            if (this.settings.ParseTreatmentMetaWithAphia)
+            {
+                await this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>();
+            }
+
+            if (this.settings.ParseTreatmentMetaWithGbif)
+            {
+                await this.InvokeProcessor<IParseTreatmentMetaWithGbifController>();
+            }
+
+            if (this.settings.ParseTreatmentMetaWithCol)
+            {
+                await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>();
+            }
+
+            return;
+        }
+
+        private async Task ContextProcessing(XmlNode context)
+        {
+            if (this.settings.TagFloats)
+            {
+                await this.InvokeProcessor<ITagFloatsController>(context);
+            }
+
+            if (this.settings.TagReferences)
+            {
+                await this.InvokeProcessor<ITagReferencesController>(context);
+            }
+
+            if (this.settings.ExpandLowerTaxa)
+            {
+                for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
+                {
+                    await this.InvokeProcessor<IExpandLowerTaxaController>(context);
+                }
             }
         }
 
-        protected async Task InvokeProcessor(Type controllerType, XmlNode context, IKernel kernel)
-        {
-            var controller = kernel.Get(controllerType) as ITaggerController;
-
-            string message = controller.GetDescriptionMessageForController();
-
-            await this.InvokeProcessor(
-                message,
-                () =>
-                {
-                    controller.Run(context, this.document.NamespaceManager, this.settings, this.logger).Wait();
-                });
-        }
-
-        private Task MainProcessing(XmlNode context, IKernel kernel)
-        {
-            return Task.Run(() =>
-            {
-                if (this.settings.TagFloats)
-                {
-                    this.InvokeProcessor<ITagFloatsController>(context, kernel).Wait();
-                }
-
-                if (this.settings.TagReferences)
-                {
-                    this.InvokeProcessor<ITagReferencesController>(context, kernel).Wait();
-                }
-
-                if (this.settings.ExpandLowerTaxa)
-                {
-                    for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
-                    {
-                        this.InvokeProcessor<IExpandLowerTaxaController>(context, kernel).Wait();
-                    }
-                }
-            });
-        }
-
-        private void PrintElapsedTime(Stopwatch timer)
-        {
-            this.logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
-        }
-
-        private void ReadDocument()
+        private async Task ReadDocument()
         {
             this.fileProcessor.Read(this.document);
 
@@ -360,7 +293,8 @@
                     break;
             }
 
-            this.document.Xml = this.document.Xml.NormalizeXmlToSystemXml();
+            this.document.SchemaType = this.settings.ArticleSchemaType;
+            await this.documentNormalizer.NormalizeToSystem(this.document);
         }
 
         private void SetUpConfigParameters()
@@ -385,15 +319,15 @@
                 queryFileName);
         }
 
-        private async Task WriteOutputFile()
-        {
-            await this.InvokeProcessor(
-                Messages.WriteOutputFileMessage,
-                () =>
-                {
-                    this.document.Xml = this.document.Xml.NormalizeXmlToCurrentXml(this.settings.ArticleSchemaType);
-                    this.fileProcessor.Write(this.document, null, null);
-                });
-        }
+        private Task WriteOutputFile() => InvokeProcessor(
+            Messages.WriteOutputFileMessage,
+            _ => this.documentNormalizer.NormalizeToDocumentSchema(this.document)
+                .ContinueWith(
+                    __ =>
+                    {
+                        __.Wait();
+                        this.fileProcessor.Write(this.document, null, null);
+                    }),
+                this.logger);
     }
 }

@@ -6,7 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Layout.Processors.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
     [TestFixture]
     public class InitialFormatControllerTests

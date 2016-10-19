@@ -1,32 +1,34 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Coordinates;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Coordinates;
 
     [Description("Parse coordinates.")]
     public class ParseCoordinatesController : TaggerControllerFactory, IParseCoordinatesController
     {
-        private readonly ILogger logger;
+        private ICoordinatesParser coordinatesParser;
 
-        public ParseCoordinatesController(IDocumentFactory documentFactory, ILogger logger)
+        public ParseCoordinatesController(IDocumentFactory documentFactory, ICoordinatesParser coordinatesParser)
             : base(documentFactory)
         {
-            this.logger = logger;
+            if (coordinatesParser == null)
+            {
+                throw new ArgumentNullException(nameof(coordinatesParser));
+            }
+
+            this.coordinatesParser = coordinatesParser;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new CoordinatesParser(document.Xml, this.logger);
-
-            await parser.Parse();
-
-            document.Xml = parser.Xml;
+            await this.coordinatesParser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

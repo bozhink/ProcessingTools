@@ -42,22 +42,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IGenericXslTransformer.cs" />
-    <Compile Include="Contracts\IModifiableXslTransformer.cs" />
-    <Compile Include="Contracts\IModifiableXslTransformProvider.cs" />
-    <Compile Include="Contracts\ITextContentXslTransformProvider.cs" />
-    <Compile Include="Contracts\IXmlTransformer.cs" />
+    <Compile Include="Contracts\Providers\ICodesRemoveNonCodeNodesXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IFormatNlmToSystemXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IFormatSystemToNlmXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IFormatTaxonTreatmentsXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\INlmInitialFormatXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IReferencesGetReferencesXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IReferencesTagTemplateXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\ISystemInitialFormatXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\ITaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
+    <Compile Include="Contracts\Transformers\IGenericXslTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IModifiableXslTransformer.cs" />
+    <Compile Include="Contracts\Providers\IModifiableXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\ITextContentXslTransformProvider.cs" />
+    <Compile Include="Contracts\Transformers\IXmlTransformer.cs" />
     <Compile Include="Contracts\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
-    <Compile Include="Contracts\IXmlContextWrapperProvider.cs" />
-    <Compile Include="Contracts\IXslTransformer.cs" />
-    <Compile Include="Contracts\IXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
+    <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
+    <Compile Include="Contracts\Providers\IXslTransformProvider.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
+    <Compile Include="Extensions\XmlNodeExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
     <Compile Include="Factories\XslTransformAbstractProvider.cs" />
+    <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
+    <Compile Include="Providers\FormatNlmToSystemXslTransformProvider.cs" />
+    <Compile Include="Providers\FormatSystemToNlmXslTransformProvider.cs" />
+    <Compile Include="Providers\FormatTaxonTreatmentsXslTransformProvider.cs" />
     <Compile Include="Providers\ModifiableXslTransformProvider.cs" />
+    <Compile Include="Providers\NlmInitialFormatXslTransformProvider.cs" />
+    <Compile Include="Providers\ReferencesGetReferencesXslTransformProvider.cs" />
+    <Compile Include="Providers\ReferencesTagTemplateXslTransformProvider.cs" />
+    <Compile Include="Providers\SystemInitialFormatXslTransformProvider.cs" />
+    <Compile Include="Providers\TaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="Transformers\GenericXslTransformer.cs" />
     <Compile Include="Transformers\ModifiableXslTransformer.cs" />
     <Compile Include="Transformers\XslTransformer.cs" />
@@ -70,11 +89,13 @@
     </Compile>
     <Compile Include="Serialization\SimpleXmlSerializer.cs" />
     <Compile Include="Transform\XQueryTransform.cs" />
-    <Compile Include="XmlContextWrapperProvider.cs" />
+    <Compile Include="Providers\XmlContextWrapperProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="XQuery\select_multi-rank-taxa.xq" />
+    <None Include="XQuery\taxonomic_ranks.xq" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -92,7 +113,109 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Xml\context-wrapper.xml" />
+    <Content Include="Xsl\codes.remove-non-code-nodes.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\copy.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\envo-items-to-tagreplace.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\expand-taxa-by-full-name.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Floats\format-tables.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\flora.extract-taxa.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\flora.extract.taxa-parts.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\flora.generate-template.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\taxa.distinct.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.inc.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.nlm-to-system.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.nlm.initial.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.system-to-nlm.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.system.initial.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\format.to-valid-nlm.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.taxon-treatments.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\geo\geo-json.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\get-taxa.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\InDesign\Idml\map.xsl" />
+    <Content Include="Xsl\ipni-query.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Materials\taxon-treatment.extract-materials.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\RankListClean.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\references.get.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\references.sort.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\references.tag-template.xsl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\regularize-treatment-sec.xsl" />
+    <Content Include="Xsl\resolve-families-in-checklist.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Special\gavin-laurens-tn.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Special\gavin-laurens.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Special\set-genus-in-paragraph.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy-parse-postprocess.xsl" />
+    <Content Include="Xsl\taxpub-to-html.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Xsl\text-content.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\WhiteListClean.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\zoobank-nlm.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -5,7 +5,7 @@
     using ProcessingTools.Nlm.Publishing.Constants;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot(NodeNames.NamedContent, Namespace = "", IsNullable = false)]
+    [XmlRoot(ElementNames.NamedContent, Namespace = "", IsNullable = false)]
     public abstract class NamedContentSerializableModel : SerializableModelWithXLinkTypeSimple
     {
         [XmlText]

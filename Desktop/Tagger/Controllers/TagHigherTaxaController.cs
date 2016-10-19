@@ -12,18 +12,21 @@
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
     [Description("Tag higher taxa.")]
     public class TagHigherTaxaController : TaggerControllerFactory, ITagHigherTaxaController
     {
         private readonly IBiotaxonomicBlackListIterableDataService service;
         private readonly IHigherTaxaDataMiner miner;
+        private readonly IDocumentNormalizer documentNormalizer;
         private readonly ILogger logger;
 
         public TagHigherTaxaController(
             IDocumentFactory documentFactory,
             IBiotaxonomicBlackListIterableDataService service,
             IHigherTaxaDataMiner miner,
+            IDocumentNormalizer documentNormalizer,
             ILogger logger)
             : base(documentFactory)
         {
@@ -37,8 +40,14 @@
                 throw new ArgumentNullException(nameof(miner));
             }
 
+            if (documentNormalizer == null)
+            {
+                throw new ArgumentNullException(nameof(documentNormalizer));
+            }
+
             this.service = service;
             this.miner = miner;
+            this.documentNormalizer = documentNormalizer;
             this.logger = logger;
         }
 
@@ -48,7 +57,8 @@
 
             await tagger.Tag();
 
-            document.Xml = tagger.Xml.NormalizeXmlToSystemXml();
+            document.Xml = tagger.Xml;
+            await this.documentNormalizer.NormalizeToSystem(document);
         }
     }
 }

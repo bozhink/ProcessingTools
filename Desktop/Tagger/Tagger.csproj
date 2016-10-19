@@ -158,6 +158,9 @@
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
+    <Compile Include="Core\DI.cs" />
+    <Compile Include="ISingleFileProcessor.cs" />
+    <Compile Include="IStartup.cs" />
     <Compile Include="Models\BiorepositoriesCollectionCodeSerializableModel.cs" />
     <Compile Include="Models\BiorepositoriesCollectionSerializableModel.cs" />
     <Compile Include="Models\BiorepositoriesInstitutionalCodeSerializableModel.cs" />
@@ -214,7 +217,6 @@
     <Compile Include="Factories\ParseTreatmentMetaControllerFactory.cs" />
     <Compile Include="Factories\StringTaggerControllerFactory.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />
-    <Compile Include="FileProcessor.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -241,6 +243,7 @@
     <Compile Include="Settings\NinjectHarvestersBindings.cs" />
     <Compile Include="Settings\NinjectServiceClientsBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
+    <Compile Include="SingleFileProcessorHelpers.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ProgramSettings.cs" />
     <Compile Include="SingleFileProcessor.cs">
@@ -467,6 +470,10 @@
     <ProjectReference Include="..\..\Services\Cache\Services.Cache\Services.Cache.csproj">
       <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
       <Name>Services.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Bio.Processors\Bio.Processors.csproj">
+      <Project>{104088bb-b91b-4cde-a201-72b9caa2d2e0}</Project>
+      <Name>Bio.Processors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Layout.Processors\Layout.Processors.csproj">
       <Project>{fc880066-d413-4e16-9f46-23acd5e30c2d}</Project>

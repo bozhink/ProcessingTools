@@ -5,7 +5,7 @@
     using ProcessingTools.Nlm.Publishing.Constants;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot(NodeNames.NamedContent, Namespace = "", IsNullable = false)]
+    [XmlRoot(ElementNames.NamedContent, Namespace = "", IsNullable = false)]
     public class BiorepositoriesCollectionSerializableModel : NamedContentSerializableModel
     {
         [XmlAttribute(AttributeNames.ContentType)]

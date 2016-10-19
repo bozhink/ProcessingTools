@@ -2,43 +2,44 @@
 {
     using System;
 
-    using Contracts;
+    using Contracts.Factories;
+    using Contracts.Transformers;
 
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Contracts.Transformers;
 
     public class InitialFormatTransformerFactory : IInitialFormatTransformerFactory
     {
-        private readonly IXslTransformer<INlmInitialFormatXslTransformProvider> nlmInitialFormatXslTransformer;
-        private readonly IXslTransformer<ISystemInitialFormatXslTransformProvider> systemInitialFormatXslTransformer;
+        private readonly INlmInitialFormatTransformer nlmInitialFormatTransformer;
+        private readonly ISystemInitialFormatTransformer systemInitialFormatTransformer;
 
         public InitialFormatTransformerFactory(
-            IXslTransformer<INlmInitialFormatXslTransformProvider> nlmInitialFormatXslTransformer,
-            IXslTransformer<ISystemInitialFormatXslTransformProvider> systemInitialFormatXslTransformer)
+            INlmInitialFormatTransformer nlmInitialFormatTransformer,
+            ISystemInitialFormatTransformer systemInitialFormatTransformer)
         {
-            if (nlmInitialFormatXslTransformer == null)
+            if (nlmInitialFormatTransformer == null)
             {
-                throw new ArgumentNullException(nameof(nlmInitialFormatXslTransformer));
+                throw new ArgumentNullException(nameof(nlmInitialFormatTransformer));
             }
 
-            if (systemInitialFormatXslTransformer == null)
+            if (systemInitialFormatTransformer == null)
             {
-                throw new ArgumentNullException(nameof(systemInitialFormatXslTransformer));
+                throw new ArgumentNullException(nameof(systemInitialFormatTransformer));
             }
 
-            this.nlmInitialFormatXslTransformer = nlmInitialFormatXslTransformer;
-            this.systemInitialFormatXslTransformer = systemInitialFormatXslTransformer;
+            this.nlmInitialFormatTransformer = nlmInitialFormatTransformer;
+            this.systemInitialFormatTransformer = systemInitialFormatTransformer;
         }
 
-        public IXslTransformer Create(SchemaType schemaType)
+        public IXmlTransformer Create(SchemaType schemaType)
         {
             switch (schemaType)
             {
                 case SchemaType.Nlm:
-                    return this.nlmInitialFormatXslTransformer;
+                    return this.nlmInitialFormatTransformer;
 
                 default:
-                    return this.systemInitialFormatXslTransformer;
+                    return this.systemInitialFormatTransformer;
             }
         }
     }

@@ -1,32 +1,34 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.Floats;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Tag floats.")]
     public class TagFloatsController : TaggerControllerFactory, ITagFloatsController
     {
-        private readonly ILogger logger;
+        private readonly IFloatsTagger tagger;
 
-        public TagFloatsController(IDocumentFactory documentFactory, ILogger logger)
+        public TagFloatsController(IDocumentFactory documentFactory, IFloatsTagger tagger)
             : base(documentFactory)
         {
-            this.logger = logger;
+            if (tagger == null)
+            {
+                throw new ArgumentNullException(nameof(tagger));
+            }
+
+            this.tagger = tagger;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var tagger = new FloatsTagger(document.Xml, this.logger);
-
-            await tagger.Tag();
-
-            document.Xml = tagger.Xml;
+            await this.tagger.Tag(document.XmlDocument.DocumentElement);
         }
     }
 }

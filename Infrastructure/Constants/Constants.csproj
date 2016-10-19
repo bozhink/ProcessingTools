@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Configuration\AppSettingsKeys.cs" />
     <Compile Include="Configuration\ConnectionStringsKeys.cs" />
+    <Compile Include="Media\MediaTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

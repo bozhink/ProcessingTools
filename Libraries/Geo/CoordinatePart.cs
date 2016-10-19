@@ -29,6 +29,8 @@
             this.type = CoordinatePartType.Undefined;
 
             this.numberDecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+
+            this.PartIsPresent = false;
         }
 
         public string CoordinatePartString
