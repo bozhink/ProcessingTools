@@ -62,13 +62,20 @@
 
                 base.Name = (value ?? string.Empty).Trim();
 
-                if (this.IsAbbreviated)
+                if (string.IsNullOrWhiteSpace(base.Name))
                 {
-                    this.Pattern = base.Name.TrimEnd('.');
+                    this.Pattern = "# Never match pattern";
                 }
                 else
                 {
-                    this.Pattern = base.Name;
+                    if (this.IsAbbreviated)
+                    {
+                        this.Pattern = base.Name.TrimEnd('.');
+                    }
+                    else
+                    {
+                        this.Pattern = base.Name;
+                    }
                 }
             }
         }
