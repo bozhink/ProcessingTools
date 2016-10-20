@@ -1,34 +1,37 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
     [Description("Parse treatment meta with GBIF.")]
-    public class ParseTreatmentMetaWithGbifController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithGbifController
+    public class ParseTreatmentMetaWithGbifController : TaggerControllerFactory, IParseTreatmentMetaWithGbifController
     {
-        private readonly IGbifTaxaClassificationResolverDataService service;
+        private readonly ITreatmentMetaParser<IGbifTaxaClassificationResolverDataService> parser;
 
         public ParseTreatmentMetaWithGbifController(
             IDocumentFactory documentFactory,
-            IGbifTaxaClassificationResolverDataService service,
-            ILogger logger)
-            : base(documentFactory, logger)
+            ITreatmentMetaParser<IGbifTaxaClassificationResolverDataService> parser)
+            : base(documentFactory)
         {
-            if (service == null)
+            if (parser == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(parser));
             }
 
-            this.service = service;
+            this.parser = parser;
         }
 
-        protected override ITaxaInformationResolverDataService<ITaxonClassification> Service => this.service;
+        protected override async Task Run(IDocument document, ProgramSettings settings)
+        {
+            await this.parser.Parse(document);
+        }
     }
 }

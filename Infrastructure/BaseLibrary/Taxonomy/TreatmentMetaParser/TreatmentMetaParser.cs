@@ -13,16 +13,17 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class TreatmentMetaParser : IDocumentParser
+    public class TreatmentMetaParser<TService> : ITreatmentMetaParser<TService>
+        where TService : ITaxaInformationResolverDataService<ITaxonClassification>
     {
         private const string SelectTreatmentGeneraXPathString = ".//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 
         private const string TreatmentMetaReplaceXPathTemplate = ".//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}' or string(tp:nomenclature/tn/tn-part[@type='genus']/@full-name)='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
 
-        private readonly ITaxaInformationResolverDataService<ITaxonClassification> service;
+        private readonly TService service;
         private readonly ILogger logger;
 
-        public TreatmentMetaParser(ITaxaInformationResolverDataService<ITaxonClassification> service, ILogger logger)
+        public TreatmentMetaParser(TService service, ILogger logger)
         {
             if (service == null)
             {

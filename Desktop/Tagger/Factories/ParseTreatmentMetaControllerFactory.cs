@@ -21,7 +21,7 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new TreatmentMetaParser(this.Service, this.logger);
+            var parser = new TreatmentMetaParser<ITaxaInformationResolverDataService<ITaxonClassification>>(this.Service, this.logger);
 
             await parser.Parse(document);
         }
