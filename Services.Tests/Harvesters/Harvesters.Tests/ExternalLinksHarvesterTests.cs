@@ -36,7 +36,7 @@
 
             Assert.AreEqual(10, items.Count, "Number of external links should be 10.");
 
-            var doiExternalLinks = items.Where(i => i.BaseAddress.Contains("dx.doi.org")).ToList();
+            var doiExternalLinks = items.Where(i => i.BaseAddress.Contains("doi.org")).ToList();
             Assert.AreEqual(9, doiExternalLinks.Count, "Number of DOI external links should be 9.");
         }
     }
