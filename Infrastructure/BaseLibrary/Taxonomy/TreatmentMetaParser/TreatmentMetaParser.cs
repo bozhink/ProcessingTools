@@ -18,19 +18,23 @@
 
     public class TreatmentMetaParser : TaxPubDocument, IParser
     {
-        private const string SelectTreatmentGeneraXPathString = "//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
+        private const string SelectTreatmentGeneraXPathString = ".//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 
-        private const string TreatmentMetaReplaceXPathTemplate = "//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}' or string(tp:nomenclature/tn/tn-part[@type='genus']/@full-name)='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
+        private const string TreatmentMetaReplaceXPathTemplate = ".//tp:taxon-treatment[string(tp:nomenclature/tn/tn-part[@type='genus'])='{0}' or string(tp:nomenclature/tn/tn-part[@type='genus']/@full-name)='{0}']/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='{1}']";
 
-        private ILogger logger;
-
-        private ITaxaInformationResolverDataService<ITaxonClassification> service;
+        private readonly ITaxaInformationResolverDataService<ITaxonClassification> service;
+        private readonly ILogger logger;
 
         public TreatmentMetaParser(ITaxaInformationResolverDataService<ITaxonClassification> service, string xml, ILogger logger)
             : base(xml)
         {
-            this.logger = logger;
+            if (service == null)
+            {
+                throw new ArgumentNullException(nameof(service));
+            }
+
             this.service = service;
+            this.logger = logger;
         }
 
         public async Task Parse()
@@ -109,7 +113,7 @@
 
                 default:
                     {
-                        this.logger?.Log(LogType.Warning, "Multiple for rank {0}:", rank);
+                        this.logger?.Log(LogType.Warning, "Multiple matches for rank {0}:", rank);
                         foreach (string taxonName in matchingHigherTaxa)
                         {
                             this.logger?.Log("{0}: {1}\t--\t{2}", genus, rank, taxonName);
