@@ -25,6 +25,11 @@
             this.db = contextProvider.Create();
         }
 
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: ArticlesManagment/Articles
         public async Task<ActionResult> Index()
         {

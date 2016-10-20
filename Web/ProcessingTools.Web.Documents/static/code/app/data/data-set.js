@@ -1,15 +1,11 @@
-﻿(function (window) {
+﻿(function () {
     'use strict';
+
     var app, data;
 
-    window.app = window.app || {};
-    app = window.app;
-
-    app.data = app.data || {};
-    data = app.data;
-
-    data.DataSet = function DataSet() {
-        var id = 0, dataSet = [];
+    function DataSet() {
+        var id = 0,
+            dataSet = [];
 
         function nextId() {
             id += 1;
@@ -27,13 +23,14 @@
                 throw 'Item to add should have function "getHash"';
             }
 
-            hash = item.getHash();
-
             len = dataSet.length;
-            for (i = 0; i < len; i += 1) {
-                currentItem = dataSet[i];
-                if (hash === currentItem.getHash()) {
-                    return;
+            if (len > 0) {
+                hash = item.getHash();
+                for (i = 0; i < len; i += 1) {
+                    currentItem = dataSet[i];
+                    if (hash === currentItem.getHash()) {
+                        return;
+                    }
                 }
             }
 
@@ -87,5 +84,17 @@
             remove: removeItem,
             removeAll: removeAll
         };
-    };
-}(window));
+    }
+
+    if (typeof module !== 'undefined') {
+        module.exports = DataSet;
+    } else {
+        window.app = window.app || {};
+        app = window.app;
+
+        app.data = app.data || {};
+        data = app.data;
+
+        data.DataSet = DataSet;
+    }
+}());

@@ -29,6 +29,12 @@
             this.contextProvider = contextProvider;
         }
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: /Data/Resources/Products
         [HttpGet]
         public async Task<ActionResult> Index()

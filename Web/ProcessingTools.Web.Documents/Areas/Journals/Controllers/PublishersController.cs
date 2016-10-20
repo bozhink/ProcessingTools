@@ -56,6 +56,12 @@
 
         private object UserId => User.Identity.GetUserId();
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: Journals/Publishers
         [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)

@@ -172,9 +172,12 @@ abbr {
     }
 }
 
-section {
+#article section {
     margin-top: 1.2em;
     margin-bottom: 1.2em;
+
+    border-left: 1px dashed lightgray;
+    padding-left: 10px;
 
     &.treatment-sec {
         padding-left: @treatment-sec-padding;
@@ -201,7 +204,7 @@ section {
     .small-label(attr(sec-type));
 }
 
-figure {
+figure, .table-wrap {
     border: 1px solid gray;
     border-radius: 3px;
     margin-top: 20px;

@@ -14,7 +14,7 @@
 
         public Startup()
         {
-            this.logger = new TextWriterLogger();
+            this.logger = new ConsoleLogger();
         }
 
         public static Startup Create()

@@ -23,6 +23,8 @@
 
         Task<Stream> GetStream(object userId, object articleId, object documentId);
 
-        Task<object> Update(object userId, object articleId, DocumentServiceModel document, string content);
+        Task<object> UpdateMeta(object userId, object articleId, DocumentServiceModel document);
+
+        Task<object> UpdateContent(object userId, object articleId, DocumentServiceModel document, string content);
     }
 }

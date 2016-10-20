@@ -37,6 +37,12 @@
 
         protected override string InstanceName => InstanceNames.ContentTypesControllerInstanceName;
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: /Data/Resources/ContentTypes
         [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)

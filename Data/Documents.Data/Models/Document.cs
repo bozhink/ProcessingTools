@@ -21,25 +21,38 @@
         [Key]
         public Guid Id { get; set; }
 
-        [MaxLength(ValidationConstants.MaximalLengthOfContentTypeString)]
-        public string ContentType { get; set; }
+        [MaxLength(ValidationConstants.MaximalLengthOfDocumentComment)]
+        public string Comment { get; set; }
 
         public long ContentLength { get; set; }
 
-        public long OriginalContentLength { get; set; }
+        [MaxLength(ValidationConstants.MaximalLengthOfContentTypeString)]
+        public string ContentType { get; set; }
+
+        [MaxLength(ValidationConstants.LengthOfDocumentFileExtension)]
+        public string FileExtension { get; set; }
 
         [Required]
         [Index(IsUnique = true)]
         [MinLength(ValidationConstants.LengthOfDocumentFileName)]
         [MaxLength(ValidationConstants.LengthOfDocumentFileName)]
+        public string FilePath { get; set; }
+
+        [Required]
+        [MaxLength(ValidationConstants.MaximalLengthOfDocumentOriginalFileName)]
         public string FileName { get; set; }
+
+        public long OriginalContentLength { get; set; }
+
+        [MaxLength(ValidationConstants.MaximalLengthOfContentTypeString)]
+        public string OriginalContentType { get; set; }
+
+        [MaxLength(ValidationConstants.LengthOfDocumentFileExtension)]
+        public string OriginalFileExtension { get; set; }
 
         [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfDocumentOriginalFileName)]
         public string OriginalFileName { get; set; }
-
-        [MaxLength(ValidationConstants.LengthOfDocumentFileExtension)]
-        public string FileExtension { get; set; }
 
         // TODO: ArticleId in Document
         [NotMapped]

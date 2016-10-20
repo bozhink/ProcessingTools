@@ -3,12 +3,6 @@
 <ul class="nav navbar-nav navbar-right">
     <li>
         @Html.ActionLink(
-            linkText: Resources.Strings.DefaultBackToListActionLinkTitle,
-            actionName: nameof(FilesController.Index),
-            controllerName: ControllerNames.FilesControllerName)
-    </li>
-    <li>
-        @Html.ActionLink(
             linkText: Resources.Strings.DefaultDownloadActionLinkTitle,
             actionName: nameof(FilesController.Download),
             controllerName: ControllerNames.FilesControllerName,
@@ -20,18 +14,5 @@
     </li>
     <li>
         <a id="save-button">@Resources.Strings.DefaultSaveActionLinkTitle</a>
-    </li>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Resources.Strings.HelpSubmenuTitle <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                @Html.ActionLink(
-                    linkText: Resources.Strings.HelpActionLinkTitle,
-                    actionName: nameof(DocumentsController.Help),
-                    controllerName: ControllerNames.DocumentsControllerName,
-                    routeValues: null,
-                    htmlAttributes: new { target = "_blank" })
-            </li>
-        </ul>
     </li>
 </ul>

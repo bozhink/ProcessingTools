@@ -31,12 +31,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\LoggerBase.cs" />
+    <Compile Include="Contracts\IConsoleLogger.cs" />
+    <Compile Include="Contracts\ILog4NetLogger.cs" />
+    <Compile Include="Contracts\ITextWriterLogger.cs" />
     <Compile Include="Extensions\LoggerExtensions.cs" />
+    <Compile Include="Loggers\ConsoleLogger.cs" />
+    <Compile Include="Loggers\Log4NetLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextWriterLogger.cs" />
+    <Compile Include="Loggers\TextWriterLogger.cs" />
     <Compile Include="Diagnostics\Tracer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +54,16 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="logger.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\create-log-table.mssql.sql" />
+    <Content Include="Scripts\create-log-table.sqlite.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

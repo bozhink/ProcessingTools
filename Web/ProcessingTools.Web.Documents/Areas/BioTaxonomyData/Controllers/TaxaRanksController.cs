@@ -29,6 +29,12 @@
             this.service = service;
         }
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: /Data/Bio/Taxonomy/TaxaRanks
         [HttpGet]
         public ActionResult Index()

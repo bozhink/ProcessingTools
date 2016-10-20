@@ -89,6 +89,38 @@
         window.htmlSelectionTagger.tagInXref(rid, 'bibr');
     }
 
+    function tagAppendicesCitation(event) {
+        var e = event || window.event,
+            rid = e.target.getAttribute('rid');
+        e.stopPropagation();
+        e.preventDefault();
+        window.htmlSelectionTagger.tagInXref(rid, 'app');
+    }
+
+    function tagSupplMaterialsCitation(event) {
+        var e = event || window.event,
+            rid = e.target.getAttribute('rid');
+        e.stopPropagation();
+        e.preventDefault();
+        window.htmlSelectionTagger.tagInXref(rid, 'supplementary-material');
+    }
+
+    function tagTablesCitation(event) {
+        var e = event || window.event,
+            rid = e.target.getAttribute('rid');
+        e.stopPropagation();
+        e.preventDefault();
+        window.htmlSelectionTagger.tagInXref(rid, 'table');
+    }
+
+    function tagFiguresCitation(event) {
+        var e = event || window.event,
+            rid = e.target.getAttribute('rid');
+        e.stopPropagation();
+        e.preventDefault();
+        window.htmlSelectionTagger.tagInXref(rid, 'fig');
+    }
+
     function getContentEventHandler(event) {
         var e = event || window.event;
         e.stopPropagation();
@@ -154,40 +186,142 @@
         window.htmlSelectionTagger.tagInMark(elementName);
     }
 
-    function tagBibliographicCitationEventHandler(event) {
-        var e = event || window.event,
-            $aside = $('#' + MAIN_ASIDE_ID),
-            $target = $(e.target),
+    // Manual tag menu event handlers
+    function createManualTagMenuEventHandlerFactory(menuName, callback) {
+        var $aside = $('#' + MAIN_ASIDE_ID),
             $supermenu = $('#supermenu'),
-            $menu = $('<menu>')
-                .addClass('manual-tag-menu')
-                .attr('id', 'menu-bibliographic-citations')
-                .attr('label', $target.text());
+            $menu;
+
+        // Remove notification
+        $('#manual-mode-notifier').remove();
+        $('<div>')
+            .addClass('mode-notifier')
+            .attr('id', 'manual-mode-notifier')
+            .text(menuName)
+            .appendTo($aside);
+
+        // Create menu
+        $('.manual-tag-menu').remove();
+        $menu = $('<menu>')
+            .addClass('manual-tag-menu')
+            .attr('id', 'menu-bibliographic-citations')
+            .attr('label', menuName);
+
+        // Populate the menu
+        callback($menu);
+
+        // Attach the menu to DOM
+        $menu.appendTo($supermenu);
+    }
+
+    function tagBibliographicCitationMenuClickEventHandler(event) {
+        var e = event || window.event,
+            $target = $(e.target);
 
         e.stopPropagation();
         e.preventDefault();
 
-        $('#manual-mode-notifier').remove();
-
-        $('<div>')
-            .addClass('mode-notifier')
-            .attr('id', 'manual-mode-notifier')
-            .text($target.text())
-            .appendTo($aside);
-
-        $('.ref').each(function (i, element) {
-            var $element = $(element);
-
-            $('<menuitem>')
-                .attr('id', 'ref-' + i)
-                .attr('rid', $element.attr('id'))
-                .attr('label', $element.text().trim())
-                .appendTo($menu);
+        createManualTagMenuEventHandlerFactory($target.text(), function ($menu) {
+            $('.ref').each(function (i, element) {
+                var $element = $(element);
+                $('<menuitem>')
+                    .addClass('mi-bibr')
+                    .attr('id', 'ref-' + i)
+                    .attr('rid', $element.attr('id'))
+                    .attr('label', $element.text().trim())
+                    .appendTo($menu);
+            });
         });
 
-        $menu.appendTo($supermenu);
+        return false;
+    }
 
-        $menu.on('click', tagBibliographicCitation);
+    function tagAppendicesCitationMenuClickEventHandler(event) {
+        var e = event || window.event,
+            $target = $(e.target);
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        createManualTagMenuEventHandlerFactory($target.text(), function ($menu) {
+            $('.app').each(function (i, element) {
+                var $element = $(element);
+                $('<menuitem>')
+                    .addClass('mi-app')
+                    .attr('id', 'app-' + i)
+                    .attr('rid', $element.attr('id'))
+                    .attr('label', $element.find('.title').text().trim())
+                    .appendTo($menu);
+            });
+        });
+
+        return false;
+    }
+
+    function tagSupplMaterialsCitationMenuClickEventHandler(event) {
+        var e = event || window.event,
+            $target = $(e.target);
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        createManualTagMenuEventHandlerFactory($target.text(), function ($menu) {
+            $('.supplementary-material').each(function (i, element) {
+                var $element = $(element);
+                $('<menuitem>')
+                    .addClass('mi-suppl-material')
+                    .attr('id', 'suppl-material-' + i)
+                    .attr('rid', $element.attr('id'))
+                    .attr('label', $element.find('.label').text().trim())
+                    .appendTo($menu);
+            });
+        });
+
+        return false;
+    }
+
+    function tagTablesCitationMenuClickEventHandler(event) {
+        var e = event || window.event,
+            $target = $(e.target);
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        createManualTagMenuEventHandlerFactory($target.text(), function ($menu) {
+            $('.table-wrap').each(function (i, element) {
+                var $element = $(element);
+                $('<menuitem>')
+                    .addClass('mi-tab')
+                    .attr('id', 'tab-' + i)
+                    .attr('rid', $element.attr('id'))
+                    .attr('label', $element.find('.label').text().trim())
+                    .appendTo($menu);
+            });
+        });
+
+        return false;
+    }
+
+    function tagFiguresCitationMenuClickEventHandler(event) {
+        var e = event || window.event,
+            $target = $(e.target);
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        createManualTagMenuEventHandlerFactory($target.text(), function ($menu) {
+            $('.fig').each(function (i, element) {
+                var $element = $(element);
+                $('<menuitem>')
+                    .addClass('mi-fig')
+                    .attr('id', 'fig-' + i)
+                    .attr('rid', $element.attr('id'))
+                    .attr('label', $element.find('.label').text().trim())
+                    .appendTo($menu);
+            });
+        });
+
+        return false;
     }
 
     function keyDownEventHandler(event) {
@@ -322,6 +456,13 @@
     }
 
     // Events registration
+    $('#supermenu')
+        .on('click', '.mi-bibr', tagBibliographicCitation)
+        .on('click', '.mi-app', tagAppendicesCitation)
+        .on('click', '.mi-suppl-material', tagSupplMaterialsCitation)
+        .on('click', '.mi-tab', tagTablesCitation)
+        .on('click', '.mi-fig', tagFiguresCitation);
+
     document
         .getElementById(SAVE_BUTTON_ID)
         .addEventListener('click', saveContentEventHandler, false);
@@ -355,7 +496,23 @@
 
     document
         .getElementById('tag-bibliographic-citations-menu-item')
-        .addEventListener('click', tagBibliographicCitationEventHandler, false);
+        .addEventListener('click', tagBibliographicCitationMenuClickEventHandler, false);
+
+    document
+        .getElementById('tag-appendices-citations-menu-item')
+        .addEventListener('click', tagAppendicesCitationMenuClickEventHandler, false);
+
+    document
+        .getElementById('tag-suppl-materials-citations-menu-item')
+        .addEventListener('click', tagSupplMaterialsCitationMenuClickEventHandler, false);
+
+    document
+        .getElementById('tag-tables-citations-menu-item')
+        .addEventListener('click', tagTablesCitationMenuClickEventHandler, false);
+
+    document
+        .getElementById('tag-figures-citations-menu-item')
+        .addEventListener('click', tagFiguresCitationMenuClickEventHandler, false);
 
     document
         .addEventListener('keydown', keyDownEventHandler, false);

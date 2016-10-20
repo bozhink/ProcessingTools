@@ -25,6 +25,8 @@
     [Authorize]
     public class FilesController : Controller
     {
+        private const string DocumentValidationBinding = nameof(FileDetailsViewModel.DocumentId) + "," + nameof(FileDetailsViewModel.FileName) + "," + nameof(FileDetailsViewModel.FileExtension) + "," + nameof(FileDetailsViewModel.ContentType) + "," + nameof(FileDetailsViewModel.Comment);
+
         private readonly IDocumentsDataService service;
 
         public FilesController(IDocumentsDataService service)
@@ -110,6 +112,54 @@
                 fileDownloadName: $"{document.FileName.Trim('.')}.{document.FileExtension.Trim('.')}");
         }
 
+        // GET: /Articles/Files/Edit/5
+        [HttpGet, ActionName(ActionNames.DeafultEditActionName)]
+        public async Task<ActionResult> Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                throw new InvalidIdException();
+            }
+
+            var userId = this.UserId;
+            var articleId = this.FakeArticleId;
+
+            var viewModel = await this.GetDetails(userId, articleId, id);
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(viewModel);
+        }
+
+        // POST: /Articles/Files/Edit/5
+        [HttpPost, ActionName(ActionNames.DeafultEditActionName)]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = DocumentValidationBinding)] FileDetailsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = this.UserId;
+                var articleId = this.FakeArticleId;
+
+                await this.service.UpdateMeta(
+                    userId,
+                    articleId,
+                    new DocumentServiceModel
+                    {
+                        Id = model.DocumentId,
+                        Comment = model.Comment,
+                        ContentType = model.ContentType,
+                        FileExtension = model.FileExtension,
+                        FileName = model.FileName
+                    });
+
+                this.Response.StatusCode = (int)HttpStatusCode.Redirect;
+                return this.RedirectToAction(nameof(this.Index));
+            }
+
+            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return this.View(model);
+        }
+
         // GET: /Articles/Files/Help
         [HttpGet]
         public ActionResult Help()
@@ -134,9 +184,12 @@
             var articleId = this.FakeArticleId;
 
             var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage))
-                .Select(d => new FileViewModel(articleId, d.Id)
+                .Select(d => new FileViewModel
                 {
+                    ArticleId = articleId.ToString(),
+                    DocumentId = d.Id.ToString(),
                     FileName = d.FileName,
+                    Comment = d.Comment,
                     DateCreated = d.DateCreated,
                     DateModified = d.DateModified
                 })
@@ -318,10 +371,13 @@
                 throw new EntityNotFoundException();
             }
 
-            var viewModel = new FileDetailsViewModel(articleId, id)
+            var viewModel = new FileDetailsViewModel
             {
+                ArticleId = articleId.ToString(),
+                DocumentId = document.Id.ToString(),
                 FileName = document.FileName,
                 FileExtension = document.FileExtension,
+                Comment = document.Comment,
                 ContentType = document.ContentType,
                 ContentLength = document.ContentLength,
                 DateCreated = document.DateCreated,

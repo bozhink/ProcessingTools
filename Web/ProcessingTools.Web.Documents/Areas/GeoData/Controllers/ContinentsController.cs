@@ -29,6 +29,12 @@
             this.service = service;
         }
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: GeoData/Continents/Create
         public ActionResult Create()
         {

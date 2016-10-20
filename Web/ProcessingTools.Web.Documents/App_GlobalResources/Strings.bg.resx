@@ -213,6 +213,9 @@
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Документът е запазен успешно</value>
   </data>
+  <data name="EditDocumentActionLinkTitle" xml:space="preserve">
+    <value>Редактиране на документа</value>
+  </data>
   <data name="ErrorPageHeading" xml:space="preserve">
     <value>Възникна грешка при обработка на заявката</value>
   </data>
@@ -308,6 +311,9 @@
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
     <value>Обектът не е намерен</value>
+  </data>
+  <data name="PreviewDocumentActionLinkTitle" xml:space="preserve">
+    <value>Преглед на документа</value>
   </data>
   <data name="PublishersActionLinkTitle" xml:space="preserve">
     <value>Издателства</value>

@@ -13,6 +13,8 @@
 
         public string Id { get; set; }
 
+        public string Comment { get; set; }
+
         public long ContentLength { get; set; }
 
         public string ContentType { get; set; }

@@ -63,7 +63,7 @@
         public void TestInitialize()
         {
             this.serviceMock = new Mock<IDocumentsDataService>();
-            this.serviceMock.Setup(s => s.Update(
+            this.serviceMock.Setup(s => s.UpdateContent(
                 It.IsAny<object>(),
                 It.IsAny<object>(),
                 It.IsAny<DocumentServiceModel>(),
@@ -630,7 +630,7 @@
                 result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [TestCase(InvalidContent, Description = @"XmlPresenter.SaveHtml with invalid xml content should throw AggregateException with inner XmlException", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -671,7 +671,7 @@
                 result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [Test(Description = @"XmlPresenter.SaveHtml with null articleId should throw AggregateException with inner ArgumentNullException with correct ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -718,7 +718,7 @@
                 result = presenter.SaveHtml(this.userId, null, this.document, ValidContent).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, null, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, null, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [Test(Description = @"XmlPresenter.SaveHtml with null document should throw AggregateException with inner ArgumentNullException with correct ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -765,7 +765,7 @@
                 result = presenter.SaveHtml(this.userId, this.articleId, null, ValidContent).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, null, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, null, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [Test(Description = @"XmlPresenter.SaveHtml with null userId should throw AggregateException with inner ArgumentNullException with correct ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -812,7 +812,7 @@
                 result = presenter.SaveHtml(null, this.articleId, this.document, ValidContent).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(null, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(null, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [TestCase(@"<p elem-name=""p"">1</p>", @"<?xml version=""1.0"" encoding=""utf-8""?><p>1</p>", Description = @"XmlPresenter.SaveHtml with valid html content should work", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -842,7 +842,7 @@
             var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
 
             // Assert
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
         }
 
         [TestCase(@"<p>1</p>", Description = @"XmlPresenter.SaveHtml with valid html content ""<p>1</p>"" should throw AggregateException with inner XmlException", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -890,7 +890,7 @@
             });
 
             // Assert
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [TestCase(@"<p elem-name=""p"">&nbsp;</p>", @"<?xml version=""1.0"" encoding=""utf-8""?><p> </p>", Description = @"XmlPresenter.SaveHtml with valid html content with &nbsp; should work", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -918,7 +918,7 @@
             var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
 
             // Assert
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
         }
 
         #endregion SaveHtmlTests
@@ -973,7 +973,7 @@
                 result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [TestCase(InvalidContent, Description = @"XmlPresenter.SaveXml with invalid xml content should throw AggregateException with inner XmlException", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -1014,7 +1014,7 @@
                 result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [Test(Description = @"XmlPresenter.SaveXml with null articleId should throw AggregateException with inner ArgumentNullException with correct ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -1061,7 +1061,7 @@
                 result = presenter.SaveXml(this.userId, null, this.document, ValidContent).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, null, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, null, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [Test(Description = @"XmlPresenter.SaveXml with null document should throw AggregateException with inner ArgumentNullException with correct ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -1108,7 +1108,7 @@
                 result = presenter.SaveXml(this.userId, this.articleId, null, ValidContent).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, null, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, null, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [Test(Description = @"XmlPresenter.SaveXml with null userId should throw AggregateException with inner ArgumentNullException with correct ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -1155,7 +1155,7 @@
                 result = presenter.SaveXml(null, this.articleId, this.document, ValidContent).Result.ToString();
             });
 
-            this.serviceMock.Verify(s => s.Update(null, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(null, this.articleId, this.document, result), Times.Never, ServiceUpdateShouldNotBeInvokedMessage);
         }
 
         [TestCase(@"<p elem-name=""p"">1</p>", @"<p elem-name=""p"">1</p>", Description = @"XmlPresenter.SaveXml with valid xml content should work", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -1185,7 +1185,7 @@
             var result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result;
 
             // Assert
-            this.serviceMock.Verify(s => s.Update(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
+            this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
         }
 
         #endregion SaveXmlTests

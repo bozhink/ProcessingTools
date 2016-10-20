@@ -14,7 +14,7 @@
 
     public class Startup
     {
-        private static ILogger logger = new TextWriterLogger();
+        private static ILogger logger = new ConsoleLogger();
 
         public static void Main(string[] args)
         {

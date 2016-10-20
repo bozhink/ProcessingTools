@@ -79,8 +79,8 @@
             bundles.Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
                 .Include(
                     "~/bower_components/bootstrap/dist/css/bootstrap.css",
-                    "~/static/styles/site.min.css",
-                    "~/static/styles/tooltips.min.css"));
+                    "~/static/build/css/site.css",
+                    "~/static/build/css/tooltips.css"));
 
             bundles.Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
@@ -110,7 +110,7 @@
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
-                    "~/static/styles/document-edit.min.css"));
+                    "~/static/build/css/document-edit.css"));
 
             // Document Preview
             bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
@@ -126,8 +126,8 @@
             bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
-                    "~/static/styles/toolbox.min.css",
-                    "~/static/styles/document-preview.min.css"));
+                    "~/static/build/css/toolbox.css",
+                    "~/static/build/css/document-preview.css"));
 
             // Address List
             bundles.Add(new ScriptBundle(BundleNames.AddressListScriptBundleName)
@@ -136,7 +136,7 @@
 
             bundles.Add(new StyleBundle(BundleNames.AddressListStyleBundleName)
                 .Include(
-                    "~/static/styles/address-list.min.css"));
+                    "~/static/build/css/address-list.css"));
 
             // Taxa Ranks
             bundles.Add(new ScriptBundle(BundleNames.TaxaRanksScriptBundleName)
@@ -150,7 +150,7 @@
 
             bundles.Add(new StyleBundle(BundleNames.TaxaRanksStyleBundleName)
                 .Include(
-                    "~/static/styles/biotaxonomic-lists.min.css"));
+                    "~/static/build/css/biotaxonomic-lists.css"));
 
             // Biotaxonomic Black List
             bundles.Add(new ScriptBundle(BundleNames.BiotaxonomicBlackListScriptBundleName)
@@ -164,7 +164,7 @@
 
             bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
                 .Include(
-                    "~/static/styles/biotaxonomic-lists.min.css"));
+                    "~/static/build/css/biotaxonomic-lists.css"));
 
             ////BundleTable.EnableOptimizations = true;
         }

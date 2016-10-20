@@ -7,6 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Manage;
 
     [Authorize]
@@ -73,7 +74,14 @@
             }
         }
 
+        [HttpGet]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: /Manage/Index
+        [HttpGet]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -135,6 +143,7 @@
         }
 
         // GET: /Manage/AddPhoneNumber
+        [HttpGet]
         public ActionResult AddPhoneNumber()
         {
             return this.View();
@@ -210,6 +219,7 @@
         }
 
         // GET: /Manage/VerifyPhoneNumber
+        [HttpGet]
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await this.UserManager.GenerateChangePhoneNumberTokenAsync(
@@ -217,7 +227,7 @@
                 phoneNumber);
 
             // Send an SMS through the SMS provider to verify the phone number
-            return phoneNumber == null ? this.View("Error") : this.View(new VerifyPhoneNumberViewModel
+            return phoneNumber == null ? this.View(ViewNames.ErrorViewName) : this.View(new VerifyPhoneNumberViewModel
             {
                 PhoneNumber = phoneNumber
             });
@@ -296,6 +306,7 @@
         }
 
         // GET: /Manage/ChangePassword
+        [HttpGet]
         public ActionResult ChangePassword()
         {
             return this.View();
@@ -340,6 +351,7 @@
         }
 
         // GET: /Manage/SetPassword
+        [HttpGet]
         public ActionResult SetPassword()
         {
             return this.View();
@@ -383,6 +395,7 @@
         }
 
         // GET: /Manage/ManageLogins
+        [HttpGet]
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -392,7 +405,7 @@
             var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             var userLogins = await this.UserManager.GetLoginsAsync(User.Identity.GetUserId());
@@ -421,6 +434,7 @@
         }
 
         // GET: /Manage/LinkLoginCallback
+        [HttpGet]
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync(

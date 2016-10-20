@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Account;
 
     [Authorize]
@@ -60,7 +61,15 @@
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Help()
+        {
+            return this.View();
+        }
+
         // GET: /Account/Login
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -112,13 +121,14 @@
         }
 
         // GET: /Account/VerifyCode
+        [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
             if (!await this.SignInManager.HasBeenVerifiedAsync())
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             return this.View(new VerifyCodeViewModel
@@ -166,6 +176,7 @@
         }
 
         // GET: /Account/Register
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -211,19 +222,21 @@
         }
 
         // GET: /Account/ConfirmEmail
+        [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             var result = await this.UserManager.ConfirmEmailAsync(userId, code);
-            return this.View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return this.View(result.Succeeded ? "ConfirmEmail" : ViewNames.ErrorViewName);
         }
 
         // GET: /Account/ForgotPassword
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -258,6 +271,7 @@
         }
 
         // GET: /Account/ForgotPasswordConfirmation
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
@@ -265,10 +279,11 @@
         }
 
         // GET: /Account/ResetPassword
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? this.View("Error") : this.View();
+            return code == null ? this.View(ViewNames.ErrorViewName) : this.View();
         }
 
         // POST: /Account/ResetPassword
@@ -300,6 +315,7 @@
         }
 
         // GET: /Account/ResetPasswordConfirmation
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
@@ -322,13 +338,14 @@
         }
 
         // GET: /Account/SendCode
+        [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await this.SignInManager.GetVerifiedUserIdAsync();
             if (userId == null)
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             var userFactors = await this.UserManager.GetValidTwoFactorProvidersAsync(userId);
@@ -361,7 +378,7 @@
             // Generate the token and send it
             if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
-                return this.View("Error");
+                return this.View(ViewNames.ErrorViewName);
             }
 
             return this.RedirectToAction(
@@ -375,6 +392,7 @@
         }
 
         // GET: /Account/ExternalLoginCallback
+        [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -471,6 +489,7 @@
         }
 
         // GET: /Account/ExternalLoginFailure
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {

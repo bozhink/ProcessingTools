@@ -23,7 +23,7 @@
         </span>
         <span class="item">
             @Html.ActionLink(
-                linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                linkText: Resources.Strings.PreviewDocumentActionLinkTitle,
                 actionName: nameof(DocumentsController.Preview),
                 controllerName: ControllerNames.DocumentsControllerName,
                 routeValues: new { id = Model.DocumentId },
@@ -31,9 +31,16 @@
         </span>
         <span class="item">
             @Html.ActionLink(
-                linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                linkText: Resources.Strings.EditDocumentActionLinkTitle,
                 actionName: nameof(DocumentsController.Edit),
                 controllerName: ControllerNames.DocumentsControllerName,
+                routeValues: new { id = Model.DocumentId },
+                htmlAttributes: null)
+        </span>
+        <span class="item">
+            @Html.ActionLink(
+                linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                actionName: nameof(FilesController.Edit),
                 routeValues: new { id = Model.DocumentId },
                 htmlAttributes: null)
         </span>

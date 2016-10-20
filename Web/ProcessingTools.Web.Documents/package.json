@@ -2,16 +2,38 @@
   "name": "processing-tools.web.documents",
   "version": "0.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha static/code/tests/",
+    "test-kitten": "mocha -R nyan static/code/tests/",
+    "watch": "gulp watch",
+    "build": "gulp build",
+    "continuous-build": "gulp continuous-build"
   },
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bozhink/ProcessingTools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bozhink/ProcessingTools/issues"
+  },
   "dependencies": {
+    "monaco-editor": "^0.6.1"
+  },
+  "devDependencies": {
     "babel-eslint": "^6.1.2",
+    "chai": "^3.5.0",
     "eslint": "^3.5.0",
     "eslint-plugin-react": "^6.2.2",
-    "monaco-editor": "^0.6.1"
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-less": "^3.1.0",
+    "gulp-mocha": "^3.0.1",
+    "jquery": "^3.1.1",
+    "jsdom": "^9.6.0",
+    "mocha": "^3.1.0",
+    "sinon": "^1.17.6"
   }
 }

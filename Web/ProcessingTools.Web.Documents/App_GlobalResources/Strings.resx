@@ -213,6 +213,9 @@
   <data name="DocumentSavedSuccessfullyResponseMessage" xml:space="preserve">
     <value>Document saved successfully</value>
   </data>
+  <data name="EditDocumentActionLinkTitle" xml:space="preserve">
+    <value>Edit Document</value>
+  </data>
   <data name="ErrorPageHeading" xml:space="preserve">
     <value>An error occurred while processing your request</value>
   </data>
@@ -308,6 +311,9 @@
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
     <value>Not Found</value>
+  </data>
+  <data name="PreviewDocumentActionLinkTitle" xml:space="preserve">
+    <value>Preview Document</value>
   </data>
   <data name="PublishersActionLinkTitle" xml:space="preserve">
     <value>Publishers</value>

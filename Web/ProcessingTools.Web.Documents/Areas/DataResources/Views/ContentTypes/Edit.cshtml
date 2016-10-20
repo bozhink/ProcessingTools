@@ -4,8 +4,6 @@
     ViewBag.Title = Resources.Strings.DeafultEditPageTitle;
 }
 
-<header>
-    <h2>@Resources.Strings.DeafultEditPageHeading</h2>
-</header>
-
+@Html.Partial(ViewNames.EditHeaderPartialViewName)
 @Html.Partial(ViewNames.EditPartialViewName)
+@Html.Partial(ViewNames.EditFooterPartialViewName)

@@ -118,7 +118,7 @@
             var xmlContent = await this.formatHtmlToXmlXslTransformer.Transform(xmlDocument);
             xmlDocument.LoadXml(xmlContent);
 
-            var result = await this.service.Update(userId, articleId, document, xmlDocument.OuterXml);
+            var result = await this.service.UpdateContent(userId, articleId, document, xmlDocument.OuterXml);
 
             return result;
         }
@@ -152,7 +152,7 @@
 
             xmlDocument.LoadXml(content);
 
-            var result = await this.service.Update(userId, articleId, document, xmlDocument.OuterXml);
+            var result = await this.service.UpdateContent(userId, articleId, document, xmlDocument.OuterXml);
 
             return result;
         }

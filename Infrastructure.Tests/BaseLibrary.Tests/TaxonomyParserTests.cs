@@ -12,7 +12,7 @@
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            logger = new TextWriterLogger();
+            logger = new ConsoleLogger();
         }
     }
 }

@@ -1,21 +1,28 @@
 ﻿namespace ProcessingTools.Web.Documents
 {
     using System;
+    using System.Configuration;
+    using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
+    using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.Google;
+    using Microsoft.Owin.Security.Twitter;
     using Owin;
     using ProcessingTools.Api.Data;
     using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Web.Documents.Contracts;
 
     public partial class Startup
     {
+        private readonly ICertificateValidatorFactory certificateValidatorFactory = (ICertificateValidatorFactory)DependencyResolver.Current.GetService(typeof(ICertificateValidatorFactory));
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Configure the db context, user manager and signin manager to use a single instance per request
+            // Configure the db context, user manager and sign-in manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
@@ -51,9 +58,17 @@
             ////    clientId: "",
             ////    clientSecret: "");
 
-            ////app.UseTwitterAuthentication(
-            ////   consumerKey: "",
-            ////   consumerSecret: "");
+            string twitterConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
+            string twitterConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+            if (!string.IsNullOrWhiteSpace(twitterConsumerKey) && !string.IsNullOrWhiteSpace(twitterConsumerSecret))
+            {
+                app.UseTwitterAuthentication(new TwitterAuthenticationOptions
+                {
+                    ConsumerKey = twitterConsumerKey,
+                    ConsumerSecret = twitterConsumerSecret,
+                    BackchannelCertificateValidator = this.certificateValidatorFactory.Create()
+                });
+            }
 
             ////app.UseFacebookAuthentication(
             ////   appId: "",

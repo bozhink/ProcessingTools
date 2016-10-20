@@ -339,10 +339,12 @@
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherCreateViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherDetailsViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
+    <Compile Include="Contracts\ICertificateValidatorFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Factories\CertificateValidatorFactory.cs" />
     <Compile Include="Factories\MvcControllerWithExceptionHandling.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -366,6 +368,8 @@
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Error\ActionMetaViewModel.cs" />
     <Compile Include="ViewModels\Error\ErrorMetaViewModel.cs" />
+    <Compile Include="ViewModels\IMetaViewModel.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -374,6 +378,8 @@
     <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\MetaViewModel.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -391,6 +397,7 @@
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
     <Content Include="Areas\Articles\Views\Documents\Preview.cshtml" />
+    <Content Include="gulpfile.js" />
     <Content Include="static\code\app\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
     <Content Include="static\code\app\data\data-set.js" />
     <Content Include="static\code\app\models\data\bio\taxonomy\black-list-item.js" />
@@ -416,48 +423,7 @@
     <Content Include="static\code\app\configurations\toastr-config.js" />
     <Content Include="static\code\custom\toolbox-event-handlers.js" />
     <Content Include="static\code\app\services\documents\document-content-data.js" />
-    <Content Include="static\styles\address-list.css">
-      <DependentUpon>address-list.less</DependentUpon>
-    </Content>
-    <Content Include="static\styles\address-list.min.css">
-      <DependentUpon>address-list.css</DependentUpon>
-    </Content>
-    <Content Include="static\styles\biotaxonomic-lists.css">
-      <DependentUpon>biotaxonomic-lists.less</DependentUpon>
-    </Content>
-    <Content Include="static\styles\biotaxonomic-lists.min.css">
-      <DependentUpon>biotaxonomic-lists.css</DependentUpon>
-    </Content>
-    <Content Include="static\styles\document-edit.css">
-      <DependentUpon>document-edit.less</DependentUpon>
-    </Content>
-    <Content Include="static\styles\document-edit.min.css">
-      <DependentUpon>document-edit.css</DependentUpon>
-    </Content>
-    <Content Include="static\styles\document-preview.css">
-      <DependentUpon>document-preview.less</DependentUpon>
-    </Content>
-    <Content Include="static\styles\document-preview.min.css">
-      <DependentUpon>document-preview.css</DependentUpon>
-    </Content>
-    <Content Include="static\styles\site.css">
-      <DependentUpon>site.less</DependentUpon>
-    </Content>
-    <Content Include="static\styles\site.min.css">
-      <DependentUpon>site.css</DependentUpon>
-    </Content>
-    <Content Include="static\styles\toolbox.css">
-      <DependentUpon>toolbox.less</DependentUpon>
-    </Content>
-    <Content Include="static\styles\toolbox.min.css">
-      <DependentUpon>toolbox.css</DependentUpon>
-    </Content>
-    <Content Include="static\styles\tooltips.css">
-      <DependentUpon>tooltips.less</DependentUpon>
-    </Content>
-    <Content Include="static\styles\tooltips.min.css">
-      <DependentUpon>tooltips.css</DependentUpon>
-    </Content>
+    <Content Include="static\code\tests\data-set-tests.js" />
     <Content Include="Views\Shared\Errors\NoFilesSelected.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidOrEmptyFiles.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidId.cshtml" />
@@ -515,6 +481,8 @@
     <Content Include="Views\Shared\_DeleteHeader.cshtml" />
     <Content Include="Areas\DataResources\Views\ContentTypes\_Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Documents\Help.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\_Edit.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -578,7 +546,9 @@
     <Content Include="Views\Shared\_DetailsFooter.cshtml" />
     <Content Include="Views\Shared\_BackToListFooter.cshtml" />
     <Content Include="static\styles\biotaxonomic-lists.less" />
-    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <Content Include="Views\Shared\Help.cshtml" />
+    <Content Include="Views\Shared\_EditHeader.cshtml" />
+    <Content Include="Views\Shared\_EditFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
