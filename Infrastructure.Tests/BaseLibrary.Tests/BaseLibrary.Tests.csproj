@@ -75,7 +75,6 @@
     <Compile Include="TaxonomyParserTests.cs" />
     <Compile Include="SimpleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Taxonomy\Models\TaxonNamePartTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">

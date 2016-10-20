@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProcessingTools.Bio.Taxonomy.Processors")]
+[assembly: AssemblyTitle("ProcessingTools.Bio.Taxonomy.Processors.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProcessingTools.Bio.Taxonomy.Processors")]
+[assembly: AssemblyProduct("ProcessingTools.Bio.Taxonomy.Processors.Tests")]
 [assembly: AssemblyCopyright("Copyright © 2016 Bozhin Karaivanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b8e7a642-ca04-470b-8a1f-767a7ee282fd")]
+[assembly: Guid("a3ec2e2f-ccf9-4662-b5ca-dec4eab93494")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,5 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.0.0.1")]
 [assembly: AssemblyFileVersion("0.0.0.1")]
-
-[assembly: InternalsVisibleTo("ProcessingTools.Bio.Taxonomy.Processors.Tests")]

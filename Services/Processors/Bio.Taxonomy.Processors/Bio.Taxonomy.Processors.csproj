@@ -43,6 +43,7 @@
     <Compile Include="Contracts\Parsers\IExpander.cs" />
     <Compile Include="Contracts\Parsers\IHigherTaxaParserWithDataService.cs" />
     <Compile Include="Contracts\Parsers\ILowerTaxaParser.cs" />
+    <Compile Include="Contracts\Parsers\ITreatmentMetaParser.cs" />
     <Compile Include="Contracts\Taggers\IHigherTaxaTagger.cs" />
     <Compile Include="Contracts\Taggers\ILowerTaxaTagger.cs" />
     <Compile Include="Models\Parsers\IMinimalTaxonName.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Processors\Parsers\Expander.cs" />
     <Compile Include="Processors\Parsers\HigherTaxaParserWithDataService.cs" />
     <Compile Include="Processors\Parsers\LowerTaxaParser.cs" />
+    <Compile Include="Processors\Parsers\TreatmentMetaParser.cs" />
     <Compile Include="Processors\Taggers\HigherTaxaTagger.cs" />
     <Compile Include="Processors\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

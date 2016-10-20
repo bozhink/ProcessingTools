@@ -1,21 +1,20 @@
-﻿namespace ProcessingTools.BaseLibrary.Tests.Taxonomy.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProcessingTools.Bio.Taxonomy.Processors.Tests.Models.Parsers
 {
     using System.Xml;
 
     using NUnit.Framework;
+    using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
 
-    using ProcessingTools.BaseLibrary.Taxonomy.Models;
 
     [TestFixture]
     public class TaxonNamePartTests
     {
-        [Test]
-        public void TaxonNamePart_WithDefaultConstructor_ShouldReturnValidObject()
-        {
-            var taxonNamePart = new TaxonNamePart();
-            Assert.IsNotNull(taxonNamePart, "Object should not be null.");
-        }
-
         [TestCase(
             @"<tn-part type=""order"" full-name=""Coleoptera"">Coleoptera</tn-part>",
             "order",

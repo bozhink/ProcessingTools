@@ -1,10 +1,11 @@
-﻿namespace ProcessingTools.BaseLibrary.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Parsers
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Models;
+    using Contracts.Parsers;
+    using Models.Parsers;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;

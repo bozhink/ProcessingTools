@@ -78,13 +78,9 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
-    <Compile Include="Taxonomy\Models\TaxonName.cs" />
-    <Compile Include="Taxonomy\Models\TaxonNamePart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Codes\Codes.cs" />
     <Compile Include="Codes\SpecimenCode.cs" />
-    <Compile Include="Taxonomy\TreatmentMetaParser\ITreatmentMetaParser.cs" />
-    <Compile Include="Taxonomy\TreatmentMetaParser\TreatmentMetaParser.cs" />
     <Compile Include="StringTagger.cs" />
     <Compile Include="XmlSerializableObjectTagger.cs" />
     <Compile Include="ZooBank\Cloner\ZoobankJsonCloner.cs" />
