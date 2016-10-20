@@ -40,7 +40,7 @@
     <xsl:param name="type" />
     <xsl:choose>
       <xsl:when test="$type = 'doi'">
-        <xsl:text>http://dx.doi.org</xsl:text>
+        <xsl:text>https://doi.org</xsl:text>
       </xsl:when>
       <xsl:when test="$type = 'gen'">
         <xsl:text>http://www.ncbi.nlm.nih.gov/nuccore</xsl:text>

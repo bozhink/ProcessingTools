@@ -34,7 +34,7 @@
       <xsl:variable name="content" select="normalize-space(.)" />
       <xsl:choose>
         <xsl:when test="$type = 'doi'">
-          <xsl:text>http://dx.doi.org/</xsl:text>
+          <xsl:text>https://doi.org/</xsl:text>
           <xsl:value-of select="$content" />
         </xsl:when>
         <xsl:when test="$type = 'gen'">
