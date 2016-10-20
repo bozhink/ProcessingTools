@@ -2,9 +2,7 @@
 {
     using System;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using Models;
 
@@ -14,9 +12,8 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.DocumentProvider;
 
-    public class TreatmentMetaParser : TaxPubDocument, IParser
+    public class TreatmentMetaParser : IDocumentParser
     {
         private const string SelectTreatmentGeneraXPathString = ".//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 
@@ -25,8 +22,7 @@
         private readonly ITaxaInformationResolverDataService<ITaxonClassification> service;
         private readonly ILogger logger;
 
-        public TreatmentMetaParser(ITaxaInformationResolverDataService<ITaxonClassification> service, string xml, ILogger logger)
-            : base(xml)
+        public TreatmentMetaParser(ITaxaInformationResolverDataService<ITaxonClassification> service, ILogger logger)
         {
             if (service == null)
             {
@@ -37,10 +33,14 @@
             this.logger = logger;
         }
 
-        public async Task Parse()
+        public async Task<object> Parse(IDocument document)
         {
-            var genusList = this.XmlDocument.SelectNodes(SelectTreatmentGeneraXPathString, this.NamespaceManager)
-                .Cast<XmlNode>()
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            var genusList = document.SelectNodes(SelectTreatmentGeneraXPathString)
                 .Select(node => new TaxonNamePart(node))
                 .Select(t => t.FullName)
                 .Where(t => !string.IsNullOrWhiteSpace(t))
@@ -57,26 +57,20 @@
                 {
                     var classification = response.Where(r => r.Classification.Single(c => c.Rank == TaxonRankType.Genus).ScientificName == genus);
 
-                    this.ReplaceTreatmentMetaClassificationItem(classification, genus, TaxonRankType.Kingdom);
-
-                    this.ReplaceTreatmentMetaClassificationItem(classification, genus, TaxonRankType.Order);
-
-                    this.ReplaceTreatmentMetaClassificationItem(classification, genus, TaxonRankType.Family);
+                    this.ReplaceTreatmentMetaClassificationItem(document, classification, genus, TaxonRankType.Kingdom);
+                    this.ReplaceTreatmentMetaClassificationItem(document, classification, genus, TaxonRankType.Order);
+                    this.ReplaceTreatmentMetaClassificationItem(document, classification, genus, TaxonRankType.Family);
                 }
                 catch (Exception e)
                 {
                     this.logger?.Log(e);
                 }
             }
+
+            return true;
         }
 
-        private Expression<Func<ITaxonClassification, string>> GetSelectorForTaxonRank(TaxonRankType rank)
-        {
-            Expression<Func<ITaxonClassification, string>> result = c => c.Classification.SingleOrDefault(x => x.Rank == rank).ScientificName;
-            return result;
-        }
-
-        private void ReplaceTreatmentMetaClassificationItem(IQueryable<ITaxonClassification> classification, string genus, TaxonRankType rank)
+        private void ReplaceTreatmentMetaClassificationItem(IDocument document, IQueryable<ITaxonClassification> classification, string genus, TaxonRankType rank)
         {
             if (classification == null)
             {
@@ -84,12 +78,11 @@
             }
 
             var matchingHigherTaxa = classification
-                .Select(this.GetSelectorForTaxonRank(rank))
+                .Select(c => c.Classification.SingleOrDefault(x => x.Rank == rank).ScientificName)
                 .Distinct()
                 .ToList();
 
-            int higherTaxaCount = matchingHigherTaxa.Count();
-
+            var higherTaxaCount = matchingHigherTaxa.Count();
             switch (higherTaxaCount)
             {
                 case 0:
@@ -103,10 +96,12 @@
                         this.logger?.Log("{0}: {1}\t--\t{2}", genus, rank, taxonName);
 
                         string xpath = string.Format(TreatmentMetaReplaceXPathTemplate, genus, rank.MapTaxonRankTypeToTaxonRankString());
-                        foreach (XmlNode node in this.XmlDocument.SelectNodes(xpath, this.NamespaceManager))
-                        {
-                            node.InnerText = taxonName;
-                        }
+                        document.SelectNodes(xpath)
+                            .AsParallel()
+                            .ForAll(node =>
+                            {
+                                node.InnerText = taxonName;
+                            });
                     }
 
                     break;

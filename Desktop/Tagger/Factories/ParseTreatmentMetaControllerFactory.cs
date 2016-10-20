@@ -21,11 +21,9 @@
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
         {
-            var parser = new TreatmentMetaParser(this.Service, document.Xml, this.logger);
+            var parser = new TreatmentMetaParser(this.Service, this.logger);
 
-            await parser.Parse();
-
-            document.Xml = parser.Xml;
+            await parser.Parse(document);
         }
     }
 }
