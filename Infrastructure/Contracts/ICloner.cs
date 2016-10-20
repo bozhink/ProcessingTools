@@ -2,8 +2,8 @@
 {
     using System.Threading.Tasks;
 
-    public interface ICloner
+    public interface ICloner<TContext, TContent, TResult>
     {
-        Task Clone();
+        Task<TResult> Clone(TContext context, TContent content);
     }
 }

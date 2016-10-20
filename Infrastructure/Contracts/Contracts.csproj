@@ -51,6 +51,7 @@
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IDefinable.cs" />
+    <Compile Include="IDocumentCloner.cs" />
     <Compile Include="IDocumentFactory.cs" />
     <Compile Include="IDocumentFormatter.cs" />
     <Compile Include="IDocumentParser.cs" />

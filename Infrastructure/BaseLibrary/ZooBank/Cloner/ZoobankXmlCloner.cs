@@ -1,102 +1,68 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
-
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class ZoobankXmlCloner : ZoobankCloner
+    public class ZoobankXmlCloner : IDocumentCloner
     {
-        private XmlDocument nlmDocument;
-        private ILogger logger;
+        private readonly IDocumentFactory documentFactory;
+        private readonly ILogger logger;
 
-        public ZoobankXmlCloner(string xmlContent, ILogger logger)
-            : base(xmlContent)
+        public ZoobankXmlCloner(IDocumentFactory documentFactory, ILogger logger)
         {
+            if (documentFactory == null)
+            {
+                throw new ArgumentNullException(nameof(documentFactory));
+            }
+
             this.logger = logger;
-            this.Init();
         }
 
-        public ZoobankXmlCloner(string nlmXmlContent, string xmlContent, ILogger logger)
-            : base(xmlContent)
+        public Task<object> Clone(IDocument document, string content)
         {
-            this.logger = logger;
-            this.Init();
-            this.NlmXml = nlmXmlContent;
-        }
-
-        public string NlmXml
-        {
-            get
+            if (document == null)
             {
-                return this.NlmXmlDocument.OuterXml;
+                throw new ArgumentNullException(nameof(document));
             }
 
-            set
+            if (string.IsNullOrWhiteSpace(content))
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException(nameof(this.NlmXml));
-                }
-
-                try
-                {
-                    this.NlmXmlDocument.LoadXml(value);
-                }
-                catch
-                {
-                    throw;
-                }
-            }
-        }
-
-        public XmlDocument NlmXmlDocument
-        {
-            get
-            {
-                return this.nlmDocument;
+                throw new ArgumentNullException(nameof(content));
             }
 
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(this.NlmXmlDocument));
-                }
+            var nlmDocument = this.documentFactory.Create(content);
 
-                this.nlmDocument = value;
-            }
-        }
-
-        public override Task Clone()
-        {
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
-                this.CloneTaxonomicActsLsid();
-                this.CloneArticleLsid();
-                this.CloneAuthorsLsid();
+                this.CloneTaxonomicActsLsid(document, nlmDocument);
+                this.CloneArticleLsid(document, nlmDocument);
+                this.CloneAuthorsLsid(document, nlmDocument);
+
+                return true;
             });
         }
 
-        private void CloneArticleLsid()
+        private void CloneArticleLsid(IDocument targetDocument, IDocument sourceDocument)
         {
             this.logger?.Log("Reference:");
             try
             {
-                XmlNodeList nlmArticleSelfUriList = this.NlmXmlDocument.SelectNodes(ArticleZooBankSelfUriXPath, this.NamespaceManager);
-                int nlmArticleSelfUriListCount = nlmArticleSelfUriList.Count;
+                var sourceArticleSelfUriList = sourceDocument.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
+                int sourceArticleSelfUriListCount = sourceArticleSelfUriList.Count();
 
-                XmlNodeList xmlArticleSelfUriList = this.XmlDocument.SelectNodes(ArticleZooBankSelfUriXPath, this.NamespaceManager);
-                int xmlArticleSelfUriListCount = xmlArticleSelfUriList.Count;
+                var targetArticleSelfUriList = targetDocument.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
+                int targetArticleSelfUriListCount = targetArticleSelfUriList.Count();
 
-                if (nlmArticleSelfUriListCount == xmlArticleSelfUriListCount)
+                if (sourceArticleSelfUriListCount == targetArticleSelfUriListCount)
                 {
-                    for (int i = 0; i < xmlArticleSelfUriListCount; ++i)
+                    for (int i = 0; i < targetArticleSelfUriListCount; ++i)
                     {
-                        xmlArticleSelfUriList[i].InnerXml = nlmArticleSelfUriList[i].InnerXml;
-                        this.logger?.Log(xmlArticleSelfUriList[i].InnerXml);
+                        targetArticleSelfUriList.ElementAt(i).InnerXml = sourceArticleSelfUriList.ElementAt(i).InnerXml;
+                        this.logger?.Log(targetArticleSelfUriList.ElementAt(i).InnerXml);
                     }
 
                     this.logger?.Log();
@@ -112,23 +78,23 @@
             }
         }
 
-        private void CloneAuthorsLsid()
+        private void CloneAuthorsLsid(IDocument targetDocument, IDocument sourceDocument)
         {
             this.logger?.Log("Author(s):");
             try
             {
-                XmlNodeList xmlContributorList = this.XmlDocument.SelectNodes(ContributorZooBankUriXPath, this.NamespaceManager);
-                int xmlContributorListCount = xmlContributorList.Count;
+                var sourceContributorList = sourceDocument.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
+                int sourceContributorListCount = sourceContributorList.Count();
 
-                XmlNodeList nlmContributorList = this.NlmXmlDocument.SelectNodes(ContributorZooBankUriXPath, this.NamespaceManager);
-                int nlmContributorListCount = nlmContributorList.Count;
+                var targetContributorList = targetDocument.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
+                int targetContributorListCount = targetContributorList.Count();
 
-                if (nlmContributorListCount == xmlContributorListCount)
+                if (sourceContributorListCount == targetContributorListCount)
                 {
-                    for (int i = 0; i < xmlContributorListCount; ++i)
+                    for (int i = 0; i < targetContributorListCount; ++i)
                     {
-                        xmlContributorList[i].InnerXml = nlmContributorList[i].InnerXml;
-                        this.logger?.Log(xmlContributorList[i].InnerXml);
+                        targetContributorList.ElementAt(i).InnerXml = sourceContributorList.ElementAt(i).InnerXml;
+                        this.logger?.Log(targetContributorList.ElementAt(i).InnerXml);
                     }
 
                     this.logger?.Log();
@@ -144,35 +110,35 @@
             }
         }
 
-        private void CloneTaxonomicActsLsid()
+        private void CloneTaxonomicActsLsid(IDocument targetDocument, IDocument sourceDocument)
         {
             this.logger?.Log("Taxonomic acts:");
             try
             {
-                XmlNodeList nlmNomenclaturesList = this.NlmXmlDocument.SelectNodes(NomenclatureXPath, this.NamespaceManager);
-                int nlmNomenclaturesListCount = nlmNomenclaturesList.Count;
+                var sourceNomenclaturesList = sourceDocument.SelectNodes(XPathConstants.NomenclatureXPath);
+                int sourceNomenclaturesListCount = sourceNomenclaturesList.Count();
 
-                XmlNodeList xmlNomenclaturesList = this.XmlDocument.SelectNodes(NomenclatureXPath, this.NamespaceManager);
-                int xmlNomenclaturesListCount = xmlNomenclaturesList.Count;
+                var targetNomenclaturesList = targetDocument.SelectNodes(XPathConstants.NomenclatureXPath);
+                int targetNomenclaturesListCount = targetNomenclaturesList.Count();
 
-                if (nlmNomenclaturesListCount == xmlNomenclaturesListCount)
+                if (sourceNomenclaturesListCount == targetNomenclaturesListCount)
                 {
-                    for (int i = 0; i < xmlNomenclaturesListCount; ++i)
+                    for (int i = 0; i < targetNomenclaturesListCount; ++i)
                     {
-                        XmlNodeList xmlObjecIdList = xmlNomenclaturesList[i].SelectNodes(ZooBankObjectIdXPath, this.NamespaceManager);
-                        int xmlObjectIdListCount = xmlObjecIdList.Count;
+                        var targetObjecIdList = targetNomenclaturesList.ElementAt(i).SelectNodes(XPathConstants.ZooBankObjectIdXPath);
+                        int targetObjectIdListCount = targetObjecIdList.Count;
 
-                        if (xmlObjectIdListCount > 0)
+                        if (targetObjectIdListCount > 0)
                         {
-                            XmlNodeList nlmObjecIdList = nlmNomenclaturesList[i].SelectNodes(ZooBankObjectIdXPath, this.NamespaceManager);
-                            int nlmObjectIdListCount = nlmObjecIdList.Count;
+                            var sourceObjecIdList = sourceNomenclaturesList.ElementAt(i).SelectNodes(XPathConstants.ZooBankObjectIdXPath);
+                            int sourceObjectIdListCount = sourceObjecIdList.Count;
 
-                            if (xmlObjectIdListCount == nlmObjectIdListCount)
+                            if (targetObjectIdListCount == sourceObjectIdListCount)
                             {
-                                for (int j = 0; j < xmlObjectIdListCount; ++j)
+                                for (int j = 0; j < targetObjectIdListCount; ++j)
                                 {
-                                    xmlObjecIdList[j].InnerXml = nlmObjecIdList[j].InnerXml;
-                                    this.logger?.Log(xmlObjecIdList[j].InnerXml);
+                                    targetObjecIdList[j].InnerXml = sourceObjecIdList[j].InnerXml;
+                                    this.logger?.Log(targetObjecIdList[j].InnerXml);
                                 }
                             }
                             else
@@ -193,14 +159,6 @@
             {
                 this.logger?.Log(e, string.Empty);
             }
-        }
-
-        private void Init()
-        {
-            this.nlmDocument = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
         }
     }
 }
