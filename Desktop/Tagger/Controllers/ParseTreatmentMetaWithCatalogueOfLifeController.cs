@@ -1,34 +1,37 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System;
+    using System.Threading.Tasks;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
     [Description("Parse treatment meta with CoL.")]
-    public class ParseTreatmentMetaWithCatalogueOfLifeController : ParseTreatmentMetaControllerFactory, IParseTreatmentMetaWithCatalogueOfLifeController
+    public class ParseTreatmentMetaWithCatalogueOfLifeController : TaggerControllerFactory, IParseTreatmentMetaWithCatalogueOfLifeController
     {
-        private readonly ICatalogueOfLifeTaxaClassificationResolverDataService service;
+        private readonly ITreatmentMetaParser<ICatalogueOfLifeTaxaClassificationResolverDataService> parser;
 
         public ParseTreatmentMetaWithCatalogueOfLifeController(
             IDocumentFactory documentFactory,
-            ICatalogueOfLifeTaxaClassificationResolverDataService service,
-            ILogger logger)
-            : base(documentFactory, logger)
+            ITreatmentMetaParser<ICatalogueOfLifeTaxaClassificationResolverDataService> parser)
+            : base(documentFactory)
         {
-            if (service == null)
+            if (parser == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(parser));
             }
 
-            this.service = service;
+            this.parser = parser;
         }
 
-        protected override ITaxaInformationResolverDataService<ITaxonClassification> Service => this.service;
+        protected override async Task Run(IDocument document, ProgramSettings settings)
+        {
+            await this.parser.Parse(document);
+        }
     }
 }

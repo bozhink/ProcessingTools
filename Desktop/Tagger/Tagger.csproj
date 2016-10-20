@@ -214,7 +214,6 @@
     <Compile Include="Controllers\ZooBankGenerateRegistrationXmlController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Factories\ParseHigherTaxaControllerFactory.cs" />
-    <Compile Include="Factories\ParseTreatmentMetaControllerFactory.cs" />
     <Compile Include="Factories\StringTaggerControllerFactory.cs" />
     <Compile Include="Factories\TaggerControllerFactory.cs" />
     <Compile Include="Messages.Designer.cs">

@@ -1,12 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Tests.UnitTests
 {
-    using System;
-    using System.Xml;
     using Controllers;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.BaseLibrary.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using System;
+    using System.Xml;
 
     [TestFixture]
     public class ParseTreatmentMetaWithCatalogueOfLifeControllerTests
@@ -22,6 +23,7 @@
         private ILogger logger;
         private IDocumentFactory documentFactory;
         private ICatalogueOfLifeTaxaClassificationResolverDataService service;
+        private ITreatmentMetaParser<ICatalogueOfLifeTaxaClassificationResolverDataService> parser;
 
         [SetUp]
         public void Init()
@@ -40,13 +42,16 @@
 
             var serviceMock = new Mock<ICatalogueOfLifeTaxaClassificationResolverDataService>();
             this.service = serviceMock.Object;
+
+            var parserMock = new Mock<ITreatmentMetaParser<ICatalogueOfLifeTaxaClassificationResolverDataService>>();
+            this.parser = parserMock.Object;
         }
 
         [Test]
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -58,7 +63,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, null, this.logger);
+                    var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, null);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -69,13 +74,13 @@
         {
             try
             {
-                var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, null, this.logger);
+                var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, null);
             }
             catch (Exception e)
             {
                 Assert.AreEqual(typeof(ArgumentNullException), e.GetType(), CallShouldThrowSystemArgumentNullExceptionMessage);
 
-                Assert.AreEqual("service", ((ArgumentNullException)e).ParamName, @"ParamName should be ""service"".");
+                Assert.AreEqual("parser", ((ArgumentNullException)e).ParamName, @"ParamName should be ""parser"".");
             }
         }
 
@@ -83,7 +88,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 
@@ -98,7 +103,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -109,7 +114,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -120,7 +125,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -131,7 +136,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -142,7 +147,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -153,7 +158,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -164,7 +169,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -175,7 +180,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -186,7 +191,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             try
             {
@@ -207,7 +212,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -218,7 +223,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -229,7 +234,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -240,7 +245,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -251,7 +256,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             try
             {
@@ -272,7 +277,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -283,7 +288,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -294,7 +299,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             try
             {
@@ -315,7 +320,7 @@
         [Timeout(500)]
         public void ParseTreatmentMetaWithCatalogueOfLifeController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.service, this.logger);
+            var controller = new ParseTreatmentMetaWithCatalogueOfLifeController(this.documentFactory, this.parser);
 
             string initialContent = this.document.OuterXml;
 
