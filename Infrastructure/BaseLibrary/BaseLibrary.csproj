@@ -76,12 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Codes\ISpecimenCode.cs" />
     <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Codes\Codes.cs" />
-    <Compile Include="Codes\SpecimenCode.cs" />
     <Compile Include="StringTagger.cs" />
     <Compile Include="XmlSerializableObjectTagger.cs" />
   </ItemGroup>

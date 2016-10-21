@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.Bio.Processors.Models.Codes
 {
     public class SpecimenCode : ISpecimenCode
     {

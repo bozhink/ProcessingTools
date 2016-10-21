@@ -4,7 +4,7 @@ specimen_code -> @institutionalCode
 <institutional_code description="Australian National Insect Collection, CSIRO, Canberra City, Australia" attribute1="http://grbio.org/institution/queensland-museum">ANIC</institutional_code>
 */
 
-namespace ProcessingTools.BaseLibrary
+namespace ProcessingTools.Bio.Processors.Codes
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +12,8 @@ namespace ProcessingTools.BaseLibrary
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+
+    using Models.Codes;
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
@@ -21,7 +23,7 @@ namespace ProcessingTools.BaseLibrary
     using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Transformers;
 
-    public class Codes
+    public class CodesTagger
     {
         private const string InstitutionalCodeTagName = "institutional_code";
         private const string InstitutionTagName = "institution";
@@ -121,7 +123,7 @@ namespace ProcessingTools.BaseLibrary
             @"ZUTC",
         };
 
-        public Codes(ILogger logger)
+        public CodesTagger(ILogger logger)
         {
             this.logger = logger;
         }
