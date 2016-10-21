@@ -1,52 +1,64 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Xml.Extensions;
 
-    public class StringTagger : TaxPubDocument, ITagger
+    public class StringTagger
     {
-        private string contentNodesXPathTemplate;
-        private XmlNamespaceManager namespaceManager;
-        private XmlElement tagModel;
-        private XmlDocumentFragment bufferXml;
-        private IQueryable<string> data;
-        private ILogger logger;
+        private readonly ILogger logger;
 
-        public StringTagger(string xml, IQueryable<string> data, XmlElement tagModel, string contentNodesXPathTemplate, XmlNamespaceManager namespaceManager, ILogger logger)
-            : base(xml)
+        public StringTagger(ILogger logger)
         {
-            this.data = data;
-            this.tagModel = tagModel;
-            this.contentNodesXPathTemplate = contentNodesXPathTemplate;
-            this.namespaceManager = namespaceManager;
             this.logger = logger;
-
-            this.bufferXml = this.XmlDocument.CreateDocumentFragment();
         }
 
-        public async Task Tag()
+        public async Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPathTemplate)
         {
-            await this.data.ToList()
-                .Select(this.XmlEncode)
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            if (tagModel == null)
+            {
+                throw new ArgumentNullException(nameof(tagModel));
+            }
+
+            if (string.IsNullOrWhiteSpace(contentNodesXPathTemplate))
+            {
+                throw new ArgumentNullException(nameof(contentNodesXPathTemplate));
+            }
+
+            await data.ToList()
+                .Select(d => this.XmlEncode(document, d))
                 .OrderByDescending(i => i.Length)
                 .TagContentInDocument(
-                    this.tagModel,
-                    this.contentNodesXPathTemplate,
-                    this,
+                    tagModel,
+                    contentNodesXPathTemplate,
+                    document,
                     false,
                     true,
                     this.logger);
+
+            return true;
         }
 
-        private string XmlEncode(string text)
+        private string XmlEncode(IDocument document, string text)
         {
-            this.bufferXml.InnerText = text;
-            return this.bufferXml.InnerXml;
+            var bufferXml = document.XmlDocument.CreateDocumentFragment();
+            bufferXml.InnerText = text;
+            return bufferXml.InnerXml;
         }
     }
 }

@@ -11,6 +11,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Xml.Extensions;
+    using DocumentProvider.Factories;
 
     public abstract class StringTaggerControllerFactory : ITaggerController
     {
@@ -35,26 +36,22 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            XmlDocument document = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
+            // TODO: DI
+            var documentFactory = new TaxPubDocumentFactory();
 
             try
             {
-                document.LoadXml(Resources.ContextWrapper);
-                document.DocumentElement.InnerXml = context.InnerXml;
+                var document = documentFactory.Create(Resources.ContextWrapper);
+                document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
 
-                var textContent = document.GetTextContent();
+                var textContent = document.XmlDocument.GetTextContent();
                 var data = await this.Miner.Mine(textContent);
 
-                var tagger = new StringTagger(document.OuterXml, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate, namespaceManager, logger);
+                var tagger = new StringTagger(logger);
 
-                await tagger.Tag();
+                await tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate);
 
-                document.LoadXml(tagger.Xml);
-
-                context.InnerXml = document.DocumentElement.InnerXml;
+                context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
             catch (Exception e)
             {
