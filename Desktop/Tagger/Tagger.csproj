@@ -300,6 +300,10 @@
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
+      <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
+      <Name>Serialization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
       <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
       <Name>Bio.Data.Miners</Name>
