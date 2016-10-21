@@ -7,6 +7,7 @@
     using NUnit.Framework;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     [TestFixture]
     public class TagQuantitiesControllerTests
@@ -22,6 +23,8 @@
         private ILogger logger;
 
         private IQuantitiesDataMiner miner;
+        private IDocumentFactory documentFactory;
+        private IStringTagger tagger;
 
         [SetUp]
         public void Init()
@@ -37,13 +40,19 @@
 
             var minerMock = new Mock<IQuantitiesDataMiner>();
             this.miner = minerMock.Object;
+
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            this.documentFactory = documentFactoryMock.Object;
+
+            var taggerMock = new Mock<IStringTagger>();
+            this.tagger = taggerMock.Object;
         }
 
         [Test]
         [Timeout(500)]
         public void TagQuantitiesController_WithDefaultCnstructor_ShouldReturnValidObject()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.IsNotNull(controller, "Controller should not be null.");
         }
@@ -55,7 +64,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var controller = new TagQuantitiesController(null);
+                    var controller = new TagQuantitiesController(null, this.documentFactory, this.tagger);
                 },
                 CallShouldThrowSystemArgumentNullExceptionMessage);
         }
@@ -66,7 +75,7 @@
         {
             try
             {
-                var controller = new TagQuantitiesController(null);
+                var controller = new TagQuantitiesController(null, this.documentFactory, this.tagger);
             }
             catch (Exception e)
             {
@@ -80,7 +89,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithValidParameters_ShouldWork()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             string initialContent = this.document.OuterXml;
 
@@ -95,7 +104,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
@@ -106,7 +115,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, this.logger).Wait(),
@@ -117,7 +126,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
@@ -128,7 +137,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
@@ -139,7 +148,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, this.logger).Wait(),
@@ -150,7 +159,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, this.settings, null).Wait(),
@@ -161,7 +170,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, this.namespaceManager, null, null).Wait(),
@@ -172,7 +181,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(null, null, null, null).Wait(),
@@ -183,7 +192,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             try
             {
@@ -204,7 +213,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
@@ -215,7 +224,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
@@ -226,7 +235,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
@@ -237,7 +246,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
@@ -248,7 +257,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             try
             {
@@ -269,7 +278,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
@@ -280,7 +289,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
                 () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
@@ -291,7 +300,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             try
             {
@@ -312,7 +321,7 @@
         [Timeout(500)]
         public void TagQuantitiesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new TagQuantitiesController(this.miner);
+            var controller = new TagQuantitiesController(this.miner, this.documentFactory, this.tagger);
 
             string initialContent = this.document.OuterXml;
 

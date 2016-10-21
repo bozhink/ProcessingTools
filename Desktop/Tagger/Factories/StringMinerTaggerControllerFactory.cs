@@ -40,8 +40,6 @@
             this.tagger = tagger;
         }
 
-        protected IStringDataMiner Miner => this.miner;
-
         protected abstract XmlElement TagModel { get; }
 
         public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
@@ -68,7 +66,7 @@
                 document.SchemaType = settings.ArticleSchemaType;
 
                 var textContent = document.XmlDocument.GetTextContent();
-                var data = await this.Miner.Mine(textContent);
+                var data = await this.miner.Mine(textContent);
 
                 await this.tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate);
 
