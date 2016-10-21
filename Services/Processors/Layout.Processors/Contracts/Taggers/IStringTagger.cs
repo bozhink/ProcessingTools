@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.Layout.Processors.Contracts.Taggers
 {
-    using ProcessingTools.Contracts;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
+
+    using ProcessingTools.Contracts;
 
     public interface IStringTagger
     {
