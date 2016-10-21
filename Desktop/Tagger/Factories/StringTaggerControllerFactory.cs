@@ -43,6 +43,7 @@
             {
                 var document = documentFactory.Create(Resources.ContextWrapper);
                 document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
+                document.SchemaType = settings.ArticleSchemaType;
 
                 var textContent = document.XmlDocument.GetTextContent();
                 var data = await this.Miner.Mine(textContent);
