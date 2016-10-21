@@ -1,13 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Tests.UnitTests
 {
+    using System;
+    using System.Xml;
     using Controllers;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
-    using System;
-    using System.Xml;
 
     [TestFixture]
     public class ParseTreatmentMetaWithCatalogueOfLifeControllerTests

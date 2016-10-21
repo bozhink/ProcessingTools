@@ -1,68 +1,45 @@
 ﻿namespace ProcessingTools.BaseLibrary.ZooBank
 {
     using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
-    using System.Xml;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
-    using ProcessingTools.Common;
+    using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
 
-    public class ZoobankJsonCloner : ZoobankCloner
+    public class ZoobankJsonCloner : IGenericDocumentCloner<ZooBankRegistration>
     {
-        private string jsonString;
+        private readonly ILogger logger;
 
-        private ILogger logger;
-
-        public ZoobankJsonCloner(string xmlContent, ILogger logger)
-            : base(xmlContent)
+        public ZoobankJsonCloner(ILogger logger)
         {
             this.logger = logger;
-            this.JsonString = null;
         }
 
-        public ZoobankJsonCloner(string jsonString, string xmlContent, ILogger logger)
-            : base(xmlContent)
+        public Task<object> Clone(IDocument target, ZooBankRegistration source)
         {
-            this.logger = logger;
-            this.JsonString = jsonString;
-        }
-
-        public string JsonString
-        {
-            get
+            if (target == null)
             {
-                return this.jsonString;
+                throw new ArgumentNullException(nameof(target));
             }
 
-            set
+            if (source == null)
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException(nameof(this.JsonString));
-                }
-
-                this.jsonString = value;
+                throw new ArgumentNullException(nameof(source));
             }
-        }
 
-        public override Task Clone()
-        {
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
-                ZooBankRegistration zoobankRegistration = this.GetZoobankRegistrationObject();
-                this.ProcessArticleLsid(zoobankRegistration);
-                this.ProcessTaxonomicActsLsid(zoobankRegistration);
+                this.ProcessArticleLsid(target, source);
+                this.ProcessTaxonomicActsLsid(target, source);
+
+                return true;
             });
         }
 
         private string GetNomenclatureTaxonObjectIdXPath(NomenclaturalAct nomenclaturalAct)
         {
-            const string XPathFormat = "//tp:taxon-treatment/tp:nomenclature/tn[string(../tp:taxon-status)='{0}']{1}/object-id[@content-type='zoobank']";
+            const string XPathFormat = ".//tp:taxon-treatment/tp:nomenclature/tn[string(../tp:taxon-status)='{0}']{1}/object-id[@content-type='zoobank']";
             switch (nomenclaturalAct.RankGroup.ToLower())
             {
                 case "family":
@@ -79,54 +56,26 @@
             }
         }
 
-        private ZooBankRegistration GetZoobankRegistrationObject()
+        private void ProcessArticleLsid(IDocument target, ZooBankRegistration source)
         {
-            List<ZooBankRegistration> zoobankRegistrationList = null;
-            using (var stream = new MemoryStream(Defaults.DefaultEncoding.GetBytes(this.JsonString)))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(List<ZooBankRegistration>));
-                zoobankRegistrationList = (List<ZooBankRegistration>)serializer.ReadObject(stream);
-            }
-
-            ZooBankRegistration zoobankRegistration = null;
-
-            if (zoobankRegistrationList.Count < 1)
-            {
-                throw new ApplicationException("No valid ZooBank registration records in JSON file");
-            }
-            else
-            {
-                if (zoobankRegistrationList.Count > 1)
-                {
-                    this.logger?.Log(LogType.Warning, "More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
-                }
-
-                zoobankRegistration = zoobankRegistrationList[0];
-            }
-
-            return zoobankRegistration;
-        }
-
-        private void ProcessArticleLsid(ZooBankRegistration zoobankRegistration)
-        {
-            string articleLsid = ZooBankPrefix + zoobankRegistration.ReferenceUuid;
-            XmlNode selfUri = this.XmlDocument.SelectSingleNode(ArticleZooBankSelfUriXPath, this.NamespaceManager);
-            if (selfUri == null)
+            string articleLsid = UrlConstants.ZooBankPrefix + source.ReferenceUuid.Trim();
+            var selfUriNode = target.SelectSingleNode(XPathConstants.ArticleZooBankSelfUriXPath);
+            if (selfUriNode == null)
             {
                 throw new ApplicationException("article-meta/self-uri/@content-type='zoobank' is missing.");
             }
 
-            selfUri.InnerText = articleLsid;
+            selfUriNode.InnerText = articleLsid;
         }
 
-        private void ProcessTaxonomicActsLsid(ZooBankRegistration zoobankRegistration)
+        private void ProcessTaxonomicActsLsid(IDocument target, ZooBankRegistration source)
         {
-            int numberOfNomenclaturalActs = zoobankRegistration.NomenclaturalActs.Count;
+            int numberOfNomenclaturalActs = source.NomenclaturalActs.Count;
             int numberOfNewNomenclaturalActs = 0;
 
-            foreach (NomenclaturalAct nomenclaturalAct in zoobankRegistration.NomenclaturalActs)
+            foreach (var nomenclaturalAct in source.NomenclaturalActs)
             {
-                this.ResolveEmptyParentNames(zoobankRegistration, nomenclaturalAct);
+                this.ResolveEmptyParentNames(source, nomenclaturalAct);
 
                 this.logger?.Log(
                     "\n\n{0}{1}{2} {3}",
@@ -138,10 +87,10 @@
                 string xpath = this.GetNomenclatureTaxonObjectIdXPath(nomenclaturalAct);
                 if (xpath != null)
                 {
-                    XmlNode objectId = this.XmlDocument.SelectSingleNode(xpath, this.NamespaceManager);
-                    if (objectId != null)
+                    var objectIdNode = target.SelectSingleNode(xpath);
+                    if (objectIdNode != null)
                     {
-                        objectId.InnerText = ZoobankCloner.ZooBankPrefix + nomenclaturalAct.TnuUuid;
+                        objectIdNode.InnerText = UrlConstants.ZooBankPrefix + nomenclaturalAct.TnuUuid.Trim();
                         numberOfNewNomenclaturalActs++;
 
                         this.logger?.Log(

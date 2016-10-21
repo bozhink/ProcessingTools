@@ -52,7 +52,6 @@
 
                 try
                 {
-
                     var taxonNames = this.GetContextTaxonVectorModel(context);
 
                     this.PrintContextVectorModel(taxonNames);
@@ -559,7 +558,7 @@
             return new HashSet<string>(result);
         }
 
-        public IEnumerable<string> GetListOfShortenedTaxa(XmlNode node)
+        private IEnumerable<string> GetListOfShortenedTaxa(XmlNode node)
         {
             if (node == null)
             {

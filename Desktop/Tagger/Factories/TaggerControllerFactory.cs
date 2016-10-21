@@ -5,6 +5,7 @@
     using System.Xml;
 
     using Contracts;
+
     using ProcessingTools.Contracts;
 
     public abstract class TaggerControllerFactory : ITaggerController
@@ -20,6 +21,8 @@
 
             this.documentFactory = documentFactory;
         }
+
+        protected IDocumentFactory DocumentFactory => this.documentFactory;
 
         public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
         {

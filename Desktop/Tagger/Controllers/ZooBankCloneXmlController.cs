@@ -31,24 +31,28 @@
             {
                 throw new ApplicationException("Output file name should be set.");
             }
-            
+
             if (numberOfFileNames < 3)
             {
                 throw new ApplicationException("The file path to xml-file-to-clone should be set.");
             }
 
             string outputFileName = settings.FileNames.ElementAt(1);
-            string xmlToCloneFileName = settings.FileNames.ElementAt(2);
+            string sourceFileName = settings.FileNames.ElementAt(2);
 
-            var nlmDocument = new TaxPubDocument();
-            var fileProcessorNlm = new XmlFileProcessor(xmlToCloneFileName, outputFileName);
-            fileProcessorNlm.Read(nlmDocument);
+            var sourceDocument = this.ReadSourceDocument(outputFileName, sourceFileName);
 
-            var cloner = new ZoobankXmlCloner(nlmDocument.Xml, document.Xml, this.logger);
+            var cloner = new ZoobankXmlCloner(this.logger);
 
-            await cloner.Clone();
+            await cloner.Clone(document, sourceDocument);
+        }
 
-            document.Xml = cloner.Xml;
+        private IDocument ReadSourceDocument(string outputFileName, string sourceFileName)
+        {
+            var sourceDocument = this.DocumentFactory.Create();
+            var fileProcessorNlm = new XmlFileProcessor(sourceFileName, outputFileName);
+            fileProcessorNlm.Read(sourceDocument);
+            return sourceDocument;
         }
     }
 }

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProcessingTools.Bio.Taxonomy.Processors.Tests.Models.Parsers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Tests.Models.Parsers
 {
     using System.Xml;
-
     using NUnit.Framework;
     using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
-
 
     [TestFixture]
     public class TaxonNamePartTests

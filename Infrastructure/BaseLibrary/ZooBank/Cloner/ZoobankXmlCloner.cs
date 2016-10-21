@@ -7,62 +7,58 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class ZoobankXmlCloner : IDocumentCloner
+    public class ZoobankXmlCloner : IDocumentToDocumentCloner
     {
-        private readonly IDocumentFactory documentFactory;
         private readonly ILogger logger;
 
-        public ZoobankXmlCloner(IDocumentFactory documentFactory, ILogger logger)
+        public ZoobankXmlCloner(ILogger logger)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
             this.logger = logger;
         }
 
-        public Task<object> Clone(IDocument document, string content)
+        public Task<object> Clone(IDocument target, IDocument source)
         {
-            if (document == null)
+            if (target == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(target));
             }
 
-            if (string.IsNullOrWhiteSpace(content))
+            if (source == null)
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(source));
             }
-
-            var nlmDocument = this.documentFactory.Create(content);
 
             return Task.Run<object>(() =>
             {
-                this.CloneTaxonomicActsLsid(document, nlmDocument);
-                this.CloneArticleLsid(document, nlmDocument);
-                this.CloneAuthorsLsid(document, nlmDocument);
+                this.CloneTaxonomicActsLsid(target, source);
+                this.CloneArticleLsid(target, source);
+                this.CloneAuthorsLsid(target, source);
 
                 return true;
             });
         }
 
-        private void CloneArticleLsid(IDocument targetDocument, IDocument sourceDocument)
+        private void CloneArticleLsid(IDocument target, IDocument source)
         {
             this.logger?.Log("Reference:");
             try
             {
-                var sourceArticleSelfUriList = sourceDocument.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
+                var sourceArticleSelfUriList = source.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
                 int sourceArticleSelfUriListCount = sourceArticleSelfUriList.Count();
 
-                var targetArticleSelfUriList = targetDocument.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
+                var targetArticleSelfUriList = target.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
                 int targetArticleSelfUriListCount = targetArticleSelfUriList.Count();
 
                 if (sourceArticleSelfUriListCount == targetArticleSelfUriListCount)
                 {
                     for (int i = 0; i < targetArticleSelfUriListCount; ++i)
                     {
-                        targetArticleSelfUriList.ElementAt(i).InnerXml = sourceArticleSelfUriList.ElementAt(i).InnerXml;
-                        this.logger?.Log(targetArticleSelfUriList.ElementAt(i).InnerXml);
+                        var sourceSelfUriNode = sourceArticleSelfUriList.ElementAt(i);
+                        var targetSelfUriNode = targetArticleSelfUriList.ElementAt(i);
+
+                        targetSelfUriNode.InnerText = sourceSelfUriNode.InnerText.Trim();
+
+                        this.logger?.Log(targetSelfUriNode.InnerText);
                     }
 
                     this.logger?.Log();
@@ -78,23 +74,27 @@
             }
         }
 
-        private void CloneAuthorsLsid(IDocument targetDocument, IDocument sourceDocument)
+        private void CloneAuthorsLsid(IDocument target, IDocument source)
         {
             this.logger?.Log("Author(s):");
             try
             {
-                var sourceContributorList = sourceDocument.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
-                int sourceContributorListCount = sourceContributorList.Count();
+                var sourceContributorUriList = source.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
+                int sourceContributorUriListCount = sourceContributorUriList.Count();
 
-                var targetContributorList = targetDocument.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
-                int targetContributorListCount = targetContributorList.Count();
+                var targetContributorUriList = target.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
+                int targetContributorUriListCount = targetContributorUriList.Count();
 
-                if (sourceContributorListCount == targetContributorListCount)
+                if (sourceContributorUriListCount == targetContributorUriListCount)
                 {
-                    for (int i = 0; i < targetContributorListCount; ++i)
+                    for (int i = 0; i < targetContributorUriListCount; ++i)
                     {
-                        targetContributorList.ElementAt(i).InnerXml = sourceContributorList.ElementAt(i).InnerXml;
-                        this.logger?.Log(targetContributorList.ElementAt(i).InnerXml);
+                        var sourceContributorUriNode = sourceContributorUriList.ElementAt(i);
+                        var targetContributorUriNode = targetContributorUriList.ElementAt(i);
+
+                        targetContributorUriNode.InnerText = sourceContributorUriNode.InnerText.Trim();
+
+                        this.logger?.Log(targetContributorUriNode.InnerText);
                     }
 
                     this.logger?.Log();
@@ -110,34 +110,39 @@
             }
         }
 
-        private void CloneTaxonomicActsLsid(IDocument targetDocument, IDocument sourceDocument)
+        private void CloneTaxonomicActsLsid(IDocument target, IDocument source)
         {
             this.logger?.Log("Taxonomic acts:");
             try
             {
-                var sourceNomenclaturesList = sourceDocument.SelectNodes(XPathConstants.NomenclatureXPath);
+                var sourceNomenclaturesList = source.SelectNodes(XPathConstants.NomenclatureXPath);
                 int sourceNomenclaturesListCount = sourceNomenclaturesList.Count();
 
-                var targetNomenclaturesList = targetDocument.SelectNodes(XPathConstants.NomenclatureXPath);
+                var targetNomenclaturesList = target.SelectNodes(XPathConstants.NomenclatureXPath);
                 int targetNomenclaturesListCount = targetNomenclaturesList.Count();
 
                 if (sourceNomenclaturesListCount == targetNomenclaturesListCount)
                 {
                     for (int i = 0; i < targetNomenclaturesListCount; ++i)
                     {
-                        var targetObjecIdList = targetNomenclaturesList.ElementAt(i).SelectNodes(XPathConstants.ZooBankObjectIdXPath);
+                        var targetNomenclatureNode = targetNomenclaturesList.ElementAt(i);
+
+                        var targetObjecIdList = targetNomenclatureNode.SelectNodes(XPathConstants.ZooBankObjectIdXPath);
                         int targetObjectIdListCount = targetObjecIdList.Count;
 
                         if (targetObjectIdListCount > 0)
                         {
-                            var sourceObjecIdList = sourceNomenclaturesList.ElementAt(i).SelectNodes(XPathConstants.ZooBankObjectIdXPath);
+                            var sourceNomenclatureNode = sourceNomenclaturesList.ElementAt(i);
+
+                            var sourceObjecIdList = sourceNomenclatureNode.SelectNodes(XPathConstants.ZooBankObjectIdXPath);
                             int sourceObjectIdListCount = sourceObjecIdList.Count;
 
                             if (targetObjectIdListCount == sourceObjectIdListCount)
                             {
                                 for (int j = 0; j < targetObjectIdListCount; ++j)
                                 {
-                                    targetObjecIdList[j].InnerXml = sourceObjecIdList[j].InnerXml;
+                                    targetObjecIdList[j].InnerText = sourceObjecIdList[j].InnerText.Trim();
+
                                     this.logger?.Log(targetObjecIdList[j].InnerXml);
                                 }
                             }

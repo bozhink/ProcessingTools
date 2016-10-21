@@ -51,12 +51,13 @@
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IDefinable.cs" />
-    <Compile Include="IDocumentCloner.cs" />
     <Compile Include="IDocumentFactory.cs" />
     <Compile Include="IDocumentFormatter.cs" />
     <Compile Include="IDocumentParser.cs" />
     <Compile Include="IDocumentProcessor.cs" />
     <Compile Include="IDocumentTagger.cs" />
+    <Compile Include="IDocumentToDocumentCloner.cs" />
+    <Compile Include="IGenericDocumentCloner.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />
     <Compile Include="IGenericProvider.cs" />
