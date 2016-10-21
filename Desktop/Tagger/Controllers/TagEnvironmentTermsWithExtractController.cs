@@ -12,6 +12,7 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Tag envo terms using EXTRACT.")]
@@ -47,11 +48,9 @@
                     Identifier = string.Join("|", t.Identifiers)
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(new XmlSerializer<EnvoExtractHcmrSerializableModel>(), this.logger);
 
-            await tagger.Tag();
-
-            document.Xml = tagger.Xml;
+            await tagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, false, true);
         }
     }
 }

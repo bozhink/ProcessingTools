@@ -13,6 +13,7 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Tag web links and DOI.")]
@@ -47,11 +48,9 @@
                     Value = i.Content
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel>(new XmlSerializer<ExternalLinkSerializableModel>(), this.logger);
 
-            await tagger.Tag();
-
-            document.Xml = tagger.Xml;
+            await tagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, data, XPath, false, true);
         }
     }
 }

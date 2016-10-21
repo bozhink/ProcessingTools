@@ -12,6 +12,7 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Tag envo terms using local database.")]
@@ -54,11 +55,9 @@
                     VerbatimTerm = t.Content
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(document.Xml, data, XPath, document.NamespaceManager, false, true, this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoTermSerializableModel>(new XmlSerializer<EnvoTermSerializableModel>(), this.logger);
 
-            await tagger.Tag();
-
-            document.Xml = tagger.Xml;
+            await tagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, data, XPath, false, true);
         }
     }
 }

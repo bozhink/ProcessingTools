@@ -67,16 +67,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Factories\XmlSerializableObjectTaggerFactory.cs" />
     <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,104 +93,22 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Strings\Strings.csproj">
-      <Project>{b705edf9-0593-4312-af43-5c205a4441b9}</Project>
-      <Name>Strings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
-      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
-      <Name>Bio.Data.Miners</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Harvesters\Bio.Harvesters\Bio.Harvesters.csproj">
-      <Project>{12d8dd48-a053-45ce-94b8-f1182ee28ef8}</Project>
-      <Name>Bio.Harvesters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
-      <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
-      <Name>Geo.Harvesters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Harvesters\Harvesters.Common\Harvesters.Common.csproj">
-      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
-      <Name>Harvesters.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
-      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
-      <Name>Harvesters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
-      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
-      <Name>Bio.Taxonomy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
-      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
-      <Name>Geo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
-      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
-      <Name>Nlm.Publishing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
-      <Project>{E15F875B-A919-4E95-ABEA-2273FA53A0B9}</Project>
-      <Name>Bio.ServiceClient.MaterialsParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
-      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
-      <Name>Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Constants\Constants.csproj">
-      <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
-      <Name>Constants</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocumentProvider\DocumentProvider.csproj">
-      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
-      <Name>DocumentProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Extensions\Extensions.csproj">
-      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Loggers\Loggers.csproj">
-      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
-      <Name>Loggers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
-      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
-      <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
-      <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
-      <Name>Bio.Taxonomy.Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\MediaType.Services.Data\MediaType.Services.Data.csproj">
-      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
-      <Name>MediaType.Services.Data</Name>
+    <ProjectReference Include="..\Serialization\Serialization.csproj">
+      <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
+      <Name>Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Factories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

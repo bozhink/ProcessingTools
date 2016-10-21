@@ -10,8 +10,8 @@
     public class XmlSerializer<T> : IXmlSerializer<T>
     {
         private readonly XmlSerializer serializer;
-        private XmlSerializerNamespaces xmlns;
         private XmlDocument bufferXml;
+        private XmlSerializerNamespaces xmlns;
 
         public XmlSerializer()
         {
@@ -22,7 +22,6 @@
             {
                 PreserveWhitespace = true
             };
-
         }
 
         public Task<XmlNode> Serialize(T @object)
@@ -33,6 +32,21 @@
             }
 
             return Task.Run(() => this.SerializeSync(@object));
+        }
+
+        public void SetNamespaces(XmlNamespaceManager namespaceManager)
+        {
+            if (namespaceManager == null)
+            {
+                throw new ArgumentNullException(nameof(namespaceManager));
+            }
+
+            this.xmlns = new XmlSerializerNamespaces();
+            var ns = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.All);
+            foreach (var prefix in ns.Keys)
+            {
+                this.xmlns.Add(prefix, ns[prefix]);
+            }
         }
 
         private XmlNode SerializeSync(T @object)
@@ -58,21 +72,6 @@
             }
 
             return this.bufferXml.DocumentElement.CloneNode(true);
-        }
-
-        public void SetNamespaces(XmlNamespaceManager namespaceManager)
-        {
-            if (namespaceManager == null)
-            {
-                throw new ArgumentNullException(nameof(namespaceManager));
-            }
-
-            this.xmlns = new XmlSerializerNamespaces();
-            var ns = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.All);
-            foreach (var prefix in ns.Keys)
-            {
-                this.xmlns.Add(prefix, ns[prefix]);
-            }
         }
     }
 }

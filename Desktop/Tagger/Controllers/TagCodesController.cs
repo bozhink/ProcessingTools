@@ -13,6 +13,7 @@
     using ProcessingTools.BaseLibrary;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
 
     [Description("Tag codes.")]
@@ -69,11 +70,10 @@
                 Value = i.InstitutionalCode
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel>(document.OuterXml, institutionalCodes, XPath, namespaceManager, true, true, this.logger);
+            // TODO: DI
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionalCodeSerializableModel>(), this.logger);
 
-            await tagger.Tag();
-
-            document.LoadXml(tagger.Xml);
+            await tagger.Tag(document.DocumentElement, namespaceManager, institutionalCodes, XPath, true, true);
         }
 
         private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
@@ -84,11 +84,10 @@
                 Value = i.NameOfInstitution
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel>(document.OuterXml, institutions, XPath, namespaceManager, true, true, this.logger);
+            // TODO: DI
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionSerializableModel>(), this.logger);
 
-            await tagger.Tag();
-
-            document.LoadXml(tagger.Xml);
+            await tagger.Tag(document.DocumentElement, namespaceManager, institutions, XPath, true, true);
         }
 
         private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, string textContent)
@@ -108,11 +107,10 @@
                 XLinkTitle = c.CollectionName
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel>(document.OuterXml, collectionCodes, XPath, namespaceManager, true, true, this.logger);
+            // TODO: DI
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel>(new XmlSerializer<BiorepositoriesCollectionCodeSerializableModel>(), this.logger);
 
-            await tagger.Tag();
-
-            document.LoadXml(tagger.Xml);
+            await tagger.Tag(document.DocumentElement, namespaceManager, collectionCodes, XPath, true, true);
         }
 
         private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesCollection> data)
@@ -123,11 +121,10 @@
                 Value = c.CollectionName
             });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel>(document.OuterXml, collections, XPath, namespaceManager, true, true, this.logger);
+            // TODO: DI
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel>(new XmlSerializer<BiorepositoriesCollectionSerializableModel>(), this.logger);
 
-            await tagger.Tag();
-
-            document.LoadXml(tagger.Xml);
+            await tagger.Tag(document.DocumentElement, namespaceManager, collections, XPath, true, true);
         }
     }
 }
