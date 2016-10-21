@@ -1,36 +1,29 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
     using System.Xml;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Constants.Content;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Nlm.Publishing.Constants;
 
     [Description("Tag products.")]
-    public class TagProductsController : StringTaggerControllerFactory, ITagProductsController
+    public class TagProductsController : StringMinerTaggerControllerFactory, ITagProductsController
     {
-        private readonly IProductsDataMiner miner;
         private readonly XmlElement tagModel;
 
-        public TagProductsController(IProductsDataMiner miner)
+        public TagProductsController(IProductsDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
+            : base(miner, documentFactory, tagger)
         {
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            this.miner = miner;
-
-            XmlDocument document = new XmlDocument();
-            this.tagModel = document.CreateElement("named-content");
-            this.tagModel.SetAttribute("content-type", "product");
+            var document = new XmlDocument();
+            this.tagModel = document.CreateElement(ElementNames.NamedContent);
+            this.tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.ProductContentType);
         }
-
-        protected override IStringDataMiner Miner => this.miner;
 
         protected override XmlElement TagModel => this.tagModel;
     }

@@ -1,36 +1,29 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
     using System.Xml;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Constants.Content;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Geo.Data.Miners.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Nlm.Publishing.Constants;
 
     [Description("Tag geo epithets.")]
-    public class TagGeoEpithetsController : StringTaggerControllerFactory, ITagGeoEpithetsController
+    public class TagGeoEpithetsController : StringMinerTaggerControllerFactory, ITagGeoEpithetsController
     {
-        private readonly IGeoEpithetsDataMiner miner;
         private readonly XmlElement tagModel;
 
-        public TagGeoEpithetsController(IGeoEpithetsDataMiner miner)
+        public TagGeoEpithetsController(IGeoEpithetsDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
+            : base(miner, documentFactory, tagger)
         {
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            this.miner = miner;
-
             XmlDocument document = new XmlDocument();
-            this.tagModel = document.CreateElement("named-content");
-            this.tagModel.SetAttribute("content-type", "geo epithet");
+            this.tagModel = document.CreateElement(ElementNames.NamedContent);
+            this.tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.GeoEpithetContentType);
         }
-
-        protected override IStringDataMiner Miner => this.miner;
 
         protected override XmlElement TagModel => this.tagModel;
     }

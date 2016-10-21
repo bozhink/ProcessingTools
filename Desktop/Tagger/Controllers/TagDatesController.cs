@@ -1,36 +1,29 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
     using System.Xml;
 
     using Contracts;
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Constants.Content;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Nlm.Publishing.Constants;
 
     [Description("Tag dates.")]
-    public class TagDatesController : StringTaggerControllerFactory, ITagDatesController
+    public class TagDatesController : StringMinerTaggerControllerFactory, ITagDatesController
     {
-        private readonly IDatesDataMiner miner;
         private readonly XmlElement tagModel;
 
-        public TagDatesController(IDatesDataMiner miner)
+        public TagDatesController(IDatesDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
+            : base(miner, documentFactory, tagger)
         {
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            this.miner = miner;
-
             XmlDocument document = new XmlDocument();
-            this.tagModel = document.CreateElement("named-content");
-            this.tagModel.SetAttribute("content-type", "date");
+            this.tagModel = document.CreateElement(ElementNames.NamedContent);
+            this.tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.DateContentType);
         }
-
-        protected override IStringDataMiner Miner => this.miner;
 
         protected override XmlElement TagModel => this.tagModel;
     }

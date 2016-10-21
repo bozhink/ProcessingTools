@@ -9,13 +9,38 @@
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
-    using ProcessingTools.DocumentProvider.Factories;
-    using ProcessingTools.Layout.Processors.Taggers;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Xml.Extensions;
 
-    public abstract class StringTaggerControllerFactory : ITaggerController
+    public abstract class StringMinerTaggerControllerFactory : ITaggerController
     {
-        protected abstract IStringDataMiner Miner { get; }
+        private readonly IStringDataMiner miner;
+        private readonly IDocumentFactory documentFactory;
+        private readonly IStringTagger tagger;
+
+        public StringMinerTaggerControllerFactory(IStringDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
+        {
+            if (miner == null)
+            {
+                throw new ArgumentNullException(nameof(miner));
+            }
+
+            if (documentFactory == null)
+            {
+                throw new ArgumentNullException(nameof(documentFactory));
+            }
+
+            if (tagger == null)
+            {
+                throw new ArgumentNullException(nameof(tagger));
+            }
+
+            this.miner = miner;
+            this.documentFactory = documentFactory;
+            this.tagger = tagger;
+        }
+
+        protected IStringDataMiner Miner => this.miner;
 
         protected abstract XmlElement TagModel { get; }
 
@@ -36,21 +61,16 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            // TODO: DI
-            var documentFactory = new TaxPubDocumentFactory();
-
             try
             {
-                var document = documentFactory.Create(Resources.ContextWrapper);
+                var document = this.documentFactory.Create(Resources.ContextWrapper);
                 document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
                 document.SchemaType = settings.ArticleSchemaType;
 
                 var textContent = document.XmlDocument.GetTextContent();
                 var data = await this.Miner.Mine(textContent);
 
-                var tagger = new StringTagger(logger);
-
-                await tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate);
+                await this.tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate);
 
                 context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }

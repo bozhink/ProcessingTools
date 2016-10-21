@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
     using System.Xml;
 
     using Contracts;
@@ -8,29 +7,23 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Data.Miners.Contracts;
-    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Constants.Content;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Nlm.Publishing.Constants;
 
     [Description("Tag morphological epithets.")]
-    public class TagMorphologicalEpithetsController : StringTaggerControllerFactory, ITagMorphologicalEpithetsController
+    public class TagMorphologicalEpithetsController : StringMinerTaggerControllerFactory, ITagMorphologicalEpithetsController
     {
-        private readonly IMorphologicalEpithetsDataMiner miner;
         private readonly XmlElement tagModel;
 
-        public TagMorphologicalEpithetsController(IMorphologicalEpithetsDataMiner miner)
+        public TagMorphologicalEpithetsController(IMorphologicalEpithetsDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
+            : base(miner, documentFactory, tagger)
         {
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            this.miner = miner;
-
-            XmlDocument document = new XmlDocument();
-            this.tagModel = document.CreateElement("named-content");
-            this.tagModel.SetAttribute("content-type", "morphological epithet");
+            var document = new XmlDocument();
+            this.tagModel = document.CreateElement(ElementNames.NamedContent);
+            this.tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.MorphologicalEpithetContentType);
         }
-
-        protected override IStringDataMiner Miner => this.miner;
 
         protected override XmlElement TagModel => this.tagModel;
     }
