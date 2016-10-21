@@ -14,21 +14,20 @@ namespace ProcessingTools.Bio.Processors.Codes
     using System.Xml;
 
     using Contracts.Codes;
+    using Contracts.Transformers;
     using Models.Codes;
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Extensions;
-    using ProcessingTools.Xml.Providers;
-    using ProcessingTools.Xml.Transformers;
 
     public class CodesTagger : ICodesTagger
     {
         private const string InstitutionalCodeTagName = "institutional_code";
         private const string InstitutionTagName = "institution";
         private const string SpecimenCodeTagName = "specimen_code";
+
         /*
          * ANSP 22529
          * B 10 0154930
@@ -66,10 +65,11 @@ namespace ProcessingTools.Bio.Processors.Codes
          * ZUPV/EHU 188
          */
 
+        private readonly ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer;
         private readonly ILogger logger;
 
         private string[] codePrefixes = new string[]
-                {
+        {
             @"ALP",
             @"AMNH",
             @"ANSP",
@@ -124,8 +124,14 @@ namespace ProcessingTools.Bio.Processors.Codes
             @"ZUTC",
         };
 
-        public CodesTagger(ILogger logger)
+        public CodesTagger(ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer, ILogger logger)
         {
+            if (codesRemoveNonCodeNodesTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(codesRemoveNonCodeNodesTransformer));
+            }
+
+            this.codesRemoveNonCodeNodesTransformer = codesRemoveNonCodeNodesTransformer;
             this.logger = logger;
         }
 
@@ -158,7 +164,7 @@ namespace ProcessingTools.Bio.Processors.Codes
 
             const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
 
-            var potentialSpecimenCodes = this.ExtractPotentialSpecimenCodes(document, CodePattern);
+            var potentialSpecimenCodes = await this.ExtractPotentialSpecimenCodes(document, CodePattern);
 
             this.logger?.Log("\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
             foreach (string word in potentialSpecimenCodes)
@@ -176,7 +182,7 @@ namespace ProcessingTools.Bio.Processors.Codes
             await this.GuessSequentalSpecimenCodes(document, tagModel, XPathConstants.SelectContentNodesXPathTemplate);
         }
 
-        private IEnumerable<string> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)
+        private async Task<IEnumerable<string>> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)
         {
             XmlDocument cleanedXmlDocument = new XmlDocument();
             cleanedXmlDocument.PreserveWhitespace = true;
@@ -186,11 +192,8 @@ namespace ProcessingTools.Bio.Processors.Codes
                 @"(?<=</xref>)\s*:\s*" + codePattern,
                 string.Empty);
 
-            // TODO: DI
-            var transformer = new XslTransformer(new CodesRemoveNonCodeNodesXslTransformProvider(new XslTransformCache()));
-
-            // TODO: async, DI
-            cleanedXmlDocument.LoadXml(transformer.Transform(cleanedXmlDocument).Result);
+            var cleanedContent = await this.codesRemoveNonCodeNodesTransformer.Transform(cleanedXmlDocument);
+            cleanedXmlDocument.LoadXml(cleanedContent);
 
             Regex matchCodePattern = new Regex(codePattern);
             return cleanedXmlDocument.InnerText.GetMatches(matchCodePattern);
