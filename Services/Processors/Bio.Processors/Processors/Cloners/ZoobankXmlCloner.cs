@@ -1,13 +1,16 @@
-﻿namespace ProcessingTools.BaseLibrary.ZooBank
+﻿namespace ProcessingTools.Bio.Processors.Cloners
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using Contracts.Cloners;
+
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class ZoobankXmlCloner : IDocumentToDocumentCloner
+    public class ZoobankXmlCloner : IZoobankXmlCloner
     {
         private readonly ILogger logger;
 

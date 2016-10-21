@@ -37,10 +37,12 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Cloners\IZoobankJsonCloner.cs" />
+    <Compile Include="Contracts\Cloners\IZoobankXmlCloner.cs" />
     <Compile Include="Contracts\Materials\ITreatmentMaterialsParser.cs" />
     <Compile Include="Contracts\Transformers\IFormatTaxonTreatmentsTransformer.cs" />
     <Compile Include="Contracts\Transformers\ITaxonTreatmentExtractMaterialsTransformer.cs" />
     <Compile Include="Processors\Cloners\ZoobankJsonCloner.cs" />
+    <Compile Include="Processors\Cloners\ZoobankXmlCloner.cs" />
     <Compile Include="Processors\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformers\FormatTaxonTreatmentsTransformer.cs" />

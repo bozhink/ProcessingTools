@@ -8,19 +8,24 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.ZooBank;
+    using ProcessingTools.Bio.Processors.Contracts.Cloners;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
 
     [Description("Clone ZooBank xml.")]
     public class ZooBankCloneXmlController : TaggerControllerFactory, IZooBankCloneXmlController
     {
-        private readonly ILogger logger;
+        private readonly IZoobankXmlCloner cloner;
 
-        public ZooBankCloneXmlController(IDocumentFactory documentFactory, ILogger logger)
+        public ZooBankCloneXmlController(IDocumentFactory documentFactory, IZoobankXmlCloner cloner)
             : base(documentFactory)
         {
-            this.logger = logger;
+            if (cloner == null)
+            {
+                throw new ArgumentNullException(nameof(cloner));
+            }
+
+            this.cloner = cloner;
         }
 
         protected override async Task Run(IDocument document, ProgramSettings settings)
@@ -39,12 +44,9 @@
 
             string outputFileName = settings.FileNames.ElementAt(1);
             string sourceFileName = settings.FileNames.ElementAt(2);
-
             var sourceDocument = this.ReadSourceDocument(outputFileName, sourceFileName);
 
-            var cloner = new ZoobankXmlCloner(this.logger);
-
-            await cloner.Clone(document, sourceDocument);
+            await this.cloner.Clone(document, sourceDocument);
         }
 
         private IDocument ReadSourceDocument(string outputFileName, string sourceFileName)
