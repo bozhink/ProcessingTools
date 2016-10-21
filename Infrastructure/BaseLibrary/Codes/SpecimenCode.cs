@@ -1,19 +1,7 @@
 ﻿namespace ProcessingTools.BaseLibrary
 {
-    public class SpecimenCode
+    public class SpecimenCode : ISpecimenCode
     {
-        private string prefix;
-        private string code;
-        private string fullString;
-        private string type;
-
-        public SpecimenCode()
-        {
-            this.Prefix = null;
-            this.Code = null;
-            this.FullString = null;
-        }
-
         public SpecimenCode(string prefix, string type, string code = null, string fullString = null)
         {
             this.Prefix = prefix;
@@ -22,56 +10,12 @@
             this.FullString = fullString;
         }
 
-        public string Prefix
-        {
-            get
-            {
-                return this.prefix;
-            }
+        public string Prefix { get; set; }
 
-            set
-            {
-                this.prefix = value;
-            }
-        }
+        public string Type { get; set; }
 
-        public string Type
-        {
-            get
-            {
-                return this.type;
-            }
+        public string Code { get; set; }
 
-            set
-            {
-                this.type = value;
-            }
-        }
-
-        public string Code
-        {
-            get
-            {
-                return this.code;
-            }
-
-            set
-            {
-                this.code = value;
-            }
-        }
-
-        public string FullString
-        {
-            get
-            {
-                return this.fullString;
-            }
-
-            set
-            {
-                this.fullString = value;
-            }
-        }
+        public string FullString { get; set; }
     }
 }
