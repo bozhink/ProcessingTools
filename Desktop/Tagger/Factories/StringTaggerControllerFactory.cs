@@ -6,12 +6,12 @@
 
     using Contracts;
 
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.DocumentProvider.Factories;
+    using ProcessingTools.Layout.Processors.Taggers;
     using ProcessingTools.Xml.Extensions;
-    using DocumentProvider.Factories;
 
     public abstract class StringTaggerControllerFactory : ITaggerController
     {

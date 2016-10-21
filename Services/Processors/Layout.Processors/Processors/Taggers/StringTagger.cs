@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary
+﻿namespace ProcessingTools.Layout.Processors.Taggers
 {
     using System;
     using System.Collections.Generic;
@@ -6,10 +6,12 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts.Taggers;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Xml.Extensions;
 
-    public class StringTagger
+    public class StringTagger : IStringTagger
     {
         private readonly ILogger logger;
 
