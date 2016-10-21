@@ -1,13 +1,15 @@
-﻿namespace ProcessingTools.BaseLibrary.ZooBank
+﻿namespace ProcessingTools.Bio.Processors.Cloners
 {
     using System;
     using System.Threading.Tasks;
+
+    using Contracts.Cloners;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
 
-    public class ZoobankJsonCloner : IGenericDocumentCloner<ZooBankRegistration>
+    public class ZoobankJsonCloner : IZoobankJsonCloner
     {
         private readonly ILogger logger;
 

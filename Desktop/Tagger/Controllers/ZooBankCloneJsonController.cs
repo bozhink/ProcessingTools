@@ -11,7 +11,7 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.BaseLibrary.ZooBank;
+    using ProcessingTools.Bio.Processors.Contracts.Cloners;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
@@ -19,11 +19,18 @@
     [Description("Clone ZooBank json.")]
     public class ZooBankCloneJsonController : TaggerControllerFactory, IZooBankCloneJsonController
     {
+        private readonly IZoobankJsonCloner cloner;
         private readonly ILogger logger;
 
-        public ZooBankCloneJsonController(IDocumentFactory documentFactory, ILogger logger)
+        public ZooBankCloneJsonController(IDocumentFactory documentFactory, IZoobankJsonCloner cloner, ILogger logger)
             : base(documentFactory)
         {
+            if (cloner == null)
+            {
+                throw new ArgumentNullException(nameof(cloner));
+            }
+
+            this.cloner = cloner;
             this.logger = logger;
         }
 
@@ -44,8 +51,7 @@
             string sourceFileName = settings.FileNames.ElementAt(2);
             var source = this.GetZoobankRegistrationObject(sourceFileName);
 
-            var cloner = new ZoobankJsonCloner(this.logger);
-            await cloner.Clone(document, source);
+            await this.cloner.Clone(document, source);
         }
 
         private ZooBankRegistration GetZoobankRegistrationObject(string sourceFileName)
