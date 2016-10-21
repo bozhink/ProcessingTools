@@ -13,6 +13,7 @@ namespace ProcessingTools.Bio.Processors.Codes
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts.Codes;
     using Models.Codes;
 
     using ProcessingTools.Common.Constants;
@@ -23,7 +24,7 @@ namespace ProcessingTools.Bio.Processors.Codes
     using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Transformers;
 
-    public class CodesTagger
+    public class CodesTagger : ICodesTagger
     {
         private const string InstitutionalCodeTagName = "institutional_code";
         private const string InstitutionTagName = "institution";
