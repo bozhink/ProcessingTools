@@ -10,19 +10,21 @@
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Taggers;
+    using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
 
-    public class EnvironmentTermsTagger : IEnvironmentTermsTagger
+    public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
     {
         private const string XPath = "./*";
 
-        private readonly IEnvoTermsDataMiner miner;
-        private readonly ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger;
+        private readonly IExtractHcmrDataMiner miner;
+        private readonly ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger;
         private readonly ILogger logger;
 
-        public EnvironmentTermsTagger(
-            IEnvoTermsDataMiner miner,
-            ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger,
+        public EnvironmentTermsWithExtractTagger(
+            IExtractHcmrDataMiner miner,
+            ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger,
             ILogger logger)
         {
             if (miner == null)
@@ -42,28 +44,18 @@
 
         public async Task<object> Tag(IDocument document)
         {
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
             var textContent = document.XmlDocument.GetTextContent();
             var data = (await this.miner.Mine(textContent))
-                .Select(t => new EnvoTermResponseModel
-                {
-                    EntityId = t.EntityId,
-                    EnvoId = t.EnvoId,
-                    Content = t.Content
-                })
-                .Select(t => new EnvoTermSerializableModel
+                .Select(t => new EnvoExtractHcmrSerializableModel
                 {
                     Value = t.Content,
-                    EnvoId = t.EnvoId,
-                    Id = t.EntityId,
-                    VerbatimTerm = t.Content
+                    Type = string.Join("|", t.Types),
+                    Identifier = string.Join("|", t.Identifiers)
                 });
 
-            await this.contentTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, data, XPath, false, true);
+            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(new XmlSerializer<EnvoExtractHcmrSerializableModel>(), this.logger);
+
+            await tagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, false, true);
 
             return true;
         }

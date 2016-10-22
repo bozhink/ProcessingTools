@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Models
+﻿namespace ProcessingTools.Bio.Processors.Models.Taggers
 {
     using System.Xml.Serialization;
 
@@ -6,13 +6,13 @@
     [XmlRoot("envo", Namespace = "", IsNullable = false)]
     public class EnvoExtractHcmrSerializableModel
     {
-        [XmlText]
-        public string Value { get; set; }
+        [XmlAttribute("identifier1")]
+        public string Identifier { get; set; }
 
         [XmlAttribute("type1")]
         public string Type { get; set; }
 
-        [XmlAttribute("identifier1")]
-        public string Identifier { get; set; }
+        [XmlText]
+        public string Value { get; set; }
     }
 }

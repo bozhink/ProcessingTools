@@ -39,7 +39,8 @@
     <Compile Include="Contracts\Cloners\IZoobankJsonCloner.cs" />
     <Compile Include="Contracts\Cloners\IZoobankXmlCloner.cs" />
     <Compile Include="Contracts\Materials\ITreatmentMaterialsParser.cs" />
-    <Compile Include="Contracts\Taggers\EnvoTermSerializableModel.cs" />
+    <Compile Include="Contracts\Taggers\IEnvironmentTermsWithExtractTagger.cs" />
+    <Compile Include="Models\Taggers\EnvoTermSerializableModel.cs" />
     <Compile Include="Contracts\Taggers\IEnvironmentTermsTagger.cs" />
     <Compile Include="Contracts\Transformers\ICodesRemoveNonCodeNodesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IFormatTaxonTreatmentsTransformer.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="Contracts\Codes\ICodesTagger.cs" />
     <Compile Include="Processors\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Processors\Taggers\EnvironmentTermsTagger.cs" />
+    <Compile Include="Processors\Taggers\EnvironmentTermsWithExtractTagger.cs" />
+    <Compile Include="Models\Taggers\EnvoExtractHcmrSerializableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformers\CodesRemoveNonCodeNodesTransformer.cs" />
     <Compile Include="Transformers\FormatTaxonTreatmentsTransformer.cs" />
