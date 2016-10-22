@@ -38,6 +38,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Coordinates\ICoordinatesParser.cs" />
+    <Compile Include="Contracts\ExternalLinks\IExternalLinksTagger.cs" />
     <Compile Include="Contracts\IDocumentXslProcessor.cs" />
     <Compile Include="Contracts\Floats\IFloatsTagger.cs" />
     <Compile Include="Contracts\Floats\IMediaTypesResolver.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
+    <Compile Include="Models\ExternalLinks\ExternalLinkSerializableModel.cs" />
     <Compile Include="Models\Floats\IFloatObject.cs" />
     <Compile Include="Models\Floats\IMediaType.cs" />
     <Compile Include="Models\Floats\AppendixFloatObject.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
     <Compile Include="Processors\DocumentXslProcessor.cs" />
+    <Compile Include="Processors\ExternalLinks\ExternalLinksTagger.cs" />
     <Compile Include="Processors\Floats\FloatsTagger.cs" />
     <Compile Include="Processors\Floats\MediaTypesResolver.cs" />
     <Compile Include="Processors\Floats\TableFootNotesTagger.cs" />
@@ -82,6 +85,10 @@
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Attributes\Attributes.csproj">
+      <Project>{1F0EDC77-2CAD-46F5-80DE-8AF619B7E41D}</Project>
+      <Name>Attributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>
@@ -110,6 +117,14 @@
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
+      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
+      <Name>Data.Miners.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
+      <Project>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</Project>
+      <Name>Data.Miners</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\MediaType.Services.Data\MediaType.Services.Data.csproj">
       <Project>{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}</Project>
       <Name>MediaType.Services.Data</Name>
@@ -121,6 +136,10 @@
     <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
       <Name>Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Layout.Processors\Layout.Processors.csproj">
+      <Project>{FC880066-D413-4E16-9F46-23ACD5E30C2D}</Project>
+      <Name>Layout.Processors</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

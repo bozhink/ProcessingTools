@@ -44,6 +44,11 @@
 
         public async Task<object> Tag(IDocument document)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
             var textContent = document.XmlDocument.GetTextContent();
             var data = (await this.miner.Mine(textContent))
                 .Select(t => new EnvoExtractHcmrSerializableModel

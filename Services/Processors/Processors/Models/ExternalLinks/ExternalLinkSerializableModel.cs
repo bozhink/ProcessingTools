@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Models
+﻿namespace ProcessingTools.Processors.Models.ExternalLinks
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;

@@ -222,7 +222,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ExternalLinkSerializableModel.cs" />
     <Compile Include="Models\NamedContentSerializableModel.cs" />
     <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Program.cs" />
