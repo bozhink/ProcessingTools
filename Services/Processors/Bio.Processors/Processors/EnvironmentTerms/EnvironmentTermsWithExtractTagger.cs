@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Bio.Processors.Taggers
+﻿namespace ProcessingTools.Bio.Processors.EnvironmentTerms
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Contracts.Taggers;
-    using Models.Taggers;
+    using Contracts.EnvironmentTerms;
+    using Models.EnvironmentTerms;
 
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;

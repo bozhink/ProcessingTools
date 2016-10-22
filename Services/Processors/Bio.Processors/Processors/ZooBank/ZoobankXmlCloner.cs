@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Bio.Processors.Cloners
+﻿namespace ProcessingTools.Bio.Processors.ZooBank
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Contracts.Cloners;
+    using Contracts.ZooBank;
 
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;

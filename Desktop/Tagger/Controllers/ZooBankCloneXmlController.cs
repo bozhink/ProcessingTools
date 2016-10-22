@@ -8,7 +8,7 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Processors.Contracts.Cloners;
+    using ProcessingTools.Bio.Processors.Contracts.ZooBank;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
 

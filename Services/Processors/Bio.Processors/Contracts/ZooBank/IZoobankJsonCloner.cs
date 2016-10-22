@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Processors.Contracts.Cloners
+﻿namespace ProcessingTools.Bio.Processors.Contracts.ZooBank
 {
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;

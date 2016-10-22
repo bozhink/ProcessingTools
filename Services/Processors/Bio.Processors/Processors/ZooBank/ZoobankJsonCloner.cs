@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Bio.Processors.Cloners
+﻿namespace ProcessingTools.Bio.Processors.ZooBank
 {
     using System;
     using System.Threading.Tasks;
 
-    using Contracts.Cloners;
+    using Contracts.ZooBank;
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Common.Constants;

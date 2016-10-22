@@ -5,7 +5,7 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Processors.Contracts.Cloners;
+    using ProcessingTools.Bio.Processors.Contracts.ZooBank;
     using ProcessingTools.Contracts;
 
     [TestFixture]

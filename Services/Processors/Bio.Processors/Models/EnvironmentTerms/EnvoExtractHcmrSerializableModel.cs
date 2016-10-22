@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Processors.Models.Taggers
+﻿namespace ProcessingTools.Bio.Processors.Models.EnvironmentTerms
 {
     using System.Xml.Serialization;
 

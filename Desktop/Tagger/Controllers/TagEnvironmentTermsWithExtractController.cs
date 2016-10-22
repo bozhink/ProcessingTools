@@ -7,7 +7,7 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Processors.Contracts.Taggers;
+    using ProcessingTools.Bio.Processors.Contracts.EnvironmentTerms;
     using ProcessingTools.Contracts;
 
     [Description("Tag envo terms using EXTRACT.")]

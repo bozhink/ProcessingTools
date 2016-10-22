@@ -5,7 +5,7 @@
     using Controllers;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Processors.Contracts.Taggers;
+    using ProcessingTools.Bio.Processors.Contracts.EnvironmentTerms;
     using ProcessingTools.Contracts;
 
     [TestFixture]

@@ -11,7 +11,7 @@
     using Factories;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Processors.Contracts.Cloners;
+    using ProcessingTools.Bio.Processors.Contracts.ZooBank;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
