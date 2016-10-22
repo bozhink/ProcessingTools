@@ -6,17 +6,64 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
     using ProcessingTools.Contracts;
 
     // TODO: remove this class
     public static class ContentTagger
     {
-        public static string GetReplacementOfTagNode(this XmlElement item)
+        public static async Task Tag(this IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, ILogger logger, params XmlElement[] items)
         {
-            XmlElement replacementNode = (XmlElement)item.CloneNode(true);
-            replacementNode.InnerText = "$1";
-            return replacementNode.OuterXml;
+            if (nodeList == null || nodeList.Count() < 1)
+            {
+                return;
+            }
+
+            if (items == null || items.Length < 1)
+            {
+                return;
+            }
+
+            string caseSensitiveness = caseSensitive ? string.Empty : "(?i)";
+
+            foreach (var node in nodeList)
+            {
+                foreach (var item in items)
+                {
+                    string replace = node.InnerXml;
+                    string textToTag = item.InnerXml;
+
+                    bool firstCharIsSpecial = Regex.IsMatch(textToTag, @"\A\W");
+                    string startWordBound = firstCharIsSpecial ? string.Empty : @"\b";
+                    string regexPatternPrefix = "(?<!<[^>]+)" + startWordBound + "(" + caseSensitiveness;
+
+                    bool lastCharIsSpecial = Regex.IsMatch(textToTag, @"\W\Z");
+                    string endWordBound = lastCharIsSpecial ? string.Empty : @"\b";
+                    string regexPatternSuffix = ")" + endWordBound + "(?![^<>]*>)";
+
+                    string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
+                    Regex textToTagRegex = new Regex(regexPatternPrefix + textToTagEscaped + regexPatternSuffix);
+
+                    string replacement = GetReplacementOfTagNode(item);
+
+                    if (textToTagRegex.Matches(node.InnerText).Count == textToTagRegex.Matches(node.InnerXml).Count)
+                    {
+                        replace = textToTagRegex.Replace(replace, replacement);
+                    }
+                    else
+                    {
+                        string textToTagPattern = startWordBound + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + endWordBound;
+                        if (!minimalTextSelect)
+                        {
+                            textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
+                        }
+
+                        Regex textToTagPatternRegex = new Regex(regexPatternPrefix + textToTagPattern + regexPatternSuffix);
+                        replace = textToTagPatternRegex.Replace(replace, replacement);
+                    }
+
+                    await node.SafeReplaceInnerXml(replace, logger);
+                }
+            }
         }
 
         public static async Task TagContentInDocument(
@@ -99,59 +146,11 @@
             return nodeList.Tag(caseSensitive, minimalTextSelect, logger, item);
         }
 
-        public static async Task Tag(this IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, ILogger logger, params XmlElement[] items)
+        private static string GetReplacementOfTagNode(XmlElement item)
         {
-            if (nodeList == null || nodeList.Count() < 1)
-            {
-                return;
-            }
-
-            if (items == null || items.Length < 1)
-            {
-                return;
-            }
-
-            string caseSensitiveness = caseSensitive ? string.Empty : "(?i)";
-
-            foreach (var node in nodeList)
-            {
-                foreach (var item in items)
-                {
-                    string replace = node.InnerXml;
-                    string textToTag = item.InnerXml;
-
-                    bool firstCharIsSpecial = Regex.IsMatch(textToTag, @"\A\W");
-                    string startWordBound = firstCharIsSpecial ? string.Empty : @"\b";
-                    string regexPatternPrefix = "(?<!<[^>]+)" + startWordBound + "(" + caseSensitiveness;
-
-                    bool lastCharIsSpecial = Regex.IsMatch(textToTag, @"\W\Z");
-                    string endWordBound = lastCharIsSpecial ? string.Empty : @"\b";
-                    string regexPatternSuffix = ")" + endWordBound + "(?![^<>]*>)";
-
-                    string textToTagEscaped = Regex.Replace(Regex.Escape(textToTag), "'", "\\W");
-                    Regex textToTagRegex = new Regex(regexPatternPrefix + textToTagEscaped + regexPatternSuffix);
-
-                    string replacement = item.GetReplacementOfTagNode();
-
-                    if (textToTagRegex.Matches(node.InnerText).Count == textToTagRegex.Matches(node.InnerXml).Count)
-                    {
-                        replace = textToTagRegex.Replace(replace, replacement);
-                    }
-                    else
-                    {
-                        string textToTagPattern = startWordBound + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + endWordBound;
-                        if (!minimalTextSelect)
-                        {
-                            textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
-                        }
-
-                        Regex textToTagPatternRegex = new Regex(regexPatternPrefix + textToTagPattern + regexPatternSuffix);
-                        replace = textToTagPatternRegex.Replace(replace, replacement);
-                    }
-
-                    await node.SafeReplaceInnerXml(replace, logger);
-                }
-            }
+            XmlElement replacementNode = (XmlElement)item.CloneNode(true);
+            replacementNode.InnerText = "$1";
+            return replacementNode.OuterXml;
         }
     }
 }

@@ -22,7 +22,6 @@
         private IDocumentFactory documentFactory;
         private IEnvironmentTermsWithExtractTagger tagger;
         private ILogger logger;
-        private object miner;
 
         [SetUp]
         public void Init()

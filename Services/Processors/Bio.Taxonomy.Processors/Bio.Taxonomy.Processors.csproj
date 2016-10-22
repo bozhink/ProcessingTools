@@ -110,6 +110,10 @@
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Layout.Processors\Layout.Processors.csproj">
+      <Project>{FC880066-D413-4E16-9F46-23ACD5E30C2D}</Project>
+      <Name>Layout.Processors</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

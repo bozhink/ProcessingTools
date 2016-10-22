@@ -12,6 +12,7 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Xml.Extensions;
 
     public class HigherTaxaTagger : TaxaTagger, IHigherTaxaTagger
@@ -19,9 +20,14 @@
         private const string HigherTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//*[@object_id='95'][{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
 
         private readonly IHigherTaxaDataMiner miner;
+        private readonly IStringTagger contentTagger;
         private readonly ILogger logger;
 
-        public HigherTaxaTagger(IHigherTaxaDataMiner miner, IBiotaxonomicBlackListIterableDataService service, ILogger logger)
+        public HigherTaxaTagger(
+            IHigherTaxaDataMiner miner,
+            IBiotaxonomicBlackListIterableDataService service,
+            IStringTagger contentTagger,
+            ILogger logger)
             : base(service)
         {
             if (miner == null)
@@ -29,7 +35,13 @@
                 throw new ArgumentNullException(nameof(miner));
             }
 
+            if (contentTagger == null)
+            {
+                throw new ArgumentNullException(nameof(contentTagger));
+            }
+
             this.miner = miner;
+            this.contentTagger = contentTagger;
             this.logger = logger;
         }
 
@@ -49,13 +61,8 @@
             var taxaNames = await this.ClearFakeTaxaNames(document, plausibleTaxaNames);
 
             var tagModel = this.CreateNewTaxonNameXmlElement(document, TaxonType.Higher);
-            await taxaNames.TagContentInDocument(
-                tagModel,
-                HigherTaxaXPathTemplate,
-                document,
-                false,
-                true,
-                this.logger);
+
+            await this.contentTagger.Tag(document, taxaNames, tagModel, HigherTaxaXPathTemplate);
 
             return true;
         }
