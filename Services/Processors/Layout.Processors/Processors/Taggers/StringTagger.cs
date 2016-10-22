@@ -9,15 +9,19 @@
     using Contracts.Taggers;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Extensions;
 
     public class StringTagger : IStringTagger
     {
-        private readonly ILogger logger;
+        private readonly IContentTagger contentTagger;
 
-        public StringTagger(ILogger logger)
+        public StringTagger(IContentTagger contentTagger)
         {
-            this.logger = logger;
+            if (contentTagger == null)
+            {
+                throw new ArgumentNullException(nameof(contentTagger));
+            }
+
+            this.contentTagger = contentTagger;
         }
 
         public async Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPathTemplate)
@@ -42,16 +46,18 @@
                 throw new ArgumentNullException(nameof(contentNodesXPathTemplate));
             }
 
-            await data.ToList()
+            var itemsToTag = data.ToList()
                 .Select(d => this.XmlEncode(document, d))
                 .OrderByDescending(i => i.Length)
-                .TagContentInDocument(
-                    tagModel,
-                    contentNodesXPathTemplate,
-                    document,
-                    false,
-                    true,
-                    this.logger);
+                .ToList();
+
+            await this.contentTagger.TagContentInDocument(
+                itemsToTag,
+                tagModel,
+                contentNodesXPathTemplate,
+                document,
+                caseSensitive: false,
+                minimalTextSelect: true);
 
             return true;
         }

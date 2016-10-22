@@ -15,6 +15,7 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Xml.Extensions;
 
     public class LowerTaxaTagger : TaxaTagger, ILowerTaxaTagger
@@ -30,11 +31,21 @@
 
         private const string ItalicXPath = "//i[not(tn)]|//italic[not(tn)]|//Italic[not(tn)]";
 
+        private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
 
-        public LowerTaxaTagger(IBiotaxonomicBlackListIterableDataService service, ILogger logger)
+        public LowerTaxaTagger(
+            IBiotaxonomicBlackListIterableDataService service,
+            IContentTagger contentTagger,
+            ILogger logger)
             : base(service)
         {
+            if (contentTagger == null)
+            {
+                throw new ArgumentNullException(nameof(contentTagger));
+            }
+
+            this.contentTagger = contentTagger;
             this.logger = logger;
         }
 
@@ -348,13 +359,13 @@
             {
                 try
                 {
-                    await item.TagContentInDocument(
+                    await this.contentTagger.TagContentInDocument(
+                        item, 
                         tagModel,
                         LowerTaxaXPathTemplate,
                         document,
                         true,
-                        true,
-                        this.logger);
+                        true);
                 }
                 catch (Exception e)
                 {

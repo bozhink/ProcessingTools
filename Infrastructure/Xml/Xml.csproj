@@ -61,7 +61,6 @@
     <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
     <Compile Include="Contracts\Providers\IXslTransformProvider.cs" />
-    <Compile Include="Extensions\ContentTagger.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />

@@ -8,24 +8,29 @@
 
     using Contracts.Taggers;
 
-    using ProcessingTools.Contracts;
     using ProcessingTools.Serialization.Contracts;
-    using ProcessingTools.Xml.Extensions;
 
     public class SimpleXmlSerializableObjectTagger<T> : ISimpleXmlSerializableObjectTagger<T>
     {
         private readonly IXmlSerializer<T> serializer;
-        private readonly ILogger logger;
+        private readonly IContentTagger contentTagger;
 
-        public SimpleXmlSerializableObjectTagger(IXmlSerializer<T> serializer, ILogger logger)
+        public SimpleXmlSerializableObjectTagger(
+            IXmlSerializer<T> serializer,
+            IContentTagger contentTagger)
         {
             if (serializer == null)
             {
                 throw new ArgumentNullException(nameof(serializer));
             }
 
+            if (contentTagger == null)
+            {
+                throw new ArgumentNullException(nameof(contentTagger));
+            }
+
             this.serializer = serializer;
-            this.logger = logger;
+            this.contentTagger = contentTagger;
         }
 
         public async Task<object> Tag(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> data, string contentNodesXPath, bool caseSensitive, bool minimalTextSelect)
@@ -59,12 +64,13 @@
                 .Select(x => this.serializer.Serialize(x).Result)
                 .Cast<XmlElement>()
                 .OrderByDescending(i => i.InnerText.Length)
-                .ToList();
+                .ToArray();
 
-            foreach (var item in items)
-            {
-                await item.TagContentInDocument(nodeList, caseSensitive, minimalTextSelect, this.logger);
-            }
+            await this.contentTagger.TagContentInDocument(
+                nodeList: nodeList,
+                caseSensitive: caseSensitive,
+                minimalTextSelect: minimalTextSelect,
+                items: items);
 
             return true;
         }

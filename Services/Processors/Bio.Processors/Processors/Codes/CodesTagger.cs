@@ -20,6 +20,7 @@ namespace ProcessingTools.Bio.Processors.Codes
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Xml.Extensions;
 
     public class CodesTagger : ICodesTagger
@@ -66,6 +67,7 @@ namespace ProcessingTools.Bio.Processors.Codes
          */
 
         private readonly ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer;
+        private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
 
         private string[] codePrefixes = new string[]
@@ -124,14 +126,23 @@ namespace ProcessingTools.Bio.Processors.Codes
             @"ZUTC",
         };
 
-        public CodesTagger(ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer, ILogger logger)
+        public CodesTagger(
+            ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer,
+            IContentTagger contentTagger,
+            ILogger logger)
         {
             if (codesRemoveNonCodeNodesTransformer == null)
             {
                 throw new ArgumentNullException(nameof(codesRemoveNonCodeNodesTransformer));
             }
 
+            if (contentTagger == null)
+            {
+                throw new ArgumentNullException(nameof(contentTagger));
+            }
+
             this.codesRemoveNonCodeNodesTransformer = codesRemoveNonCodeNodesTransformer;
+            this.contentTagger = contentTagger;
             this.logger = logger;
         }
 
@@ -360,7 +371,7 @@ namespace ProcessingTools.Bio.Processors.Codes
                 codeElement.SetAttribute("prefix", specimenCode.Prefix);
                 codeElement.SetAttribute("type", specimenCode.Type);
 
-                await specimenCode.Code.TagContentInDocument(codeElement, xpathTemplate, document, true, false, this.logger);
+                await this.contentTagger.TagContentInDocument(specimenCode.Code, codeElement, xpathTemplate, document, true, false);
             }
 
             /*

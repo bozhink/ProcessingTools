@@ -56,6 +56,8 @@
     <Compile Include="Processors\Normalizers\SystemXmlNormalizer.cs" />
     <Compile Include="Contracts\Taggers\IStringTagger.cs" />
     <Compile Include="Contracts\Taggers\ISimpleXmlSerializableObjectTagger.cs" />
+    <Compile Include="Processors\Taggers\ContentTagger.cs" />
+    <Compile Include="Contracts\Taggers\IContentTagger.cs" />
     <Compile Include="Processors\Taggers\SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Processors\Taggers\StringTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

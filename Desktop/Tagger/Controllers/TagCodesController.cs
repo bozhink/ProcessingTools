@@ -71,7 +71,7 @@
             });
 
             // TODO: DI
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionalCodeSerializableModel>(), this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionalCodeSerializableModel>(), new ContentTagger(this.logger));
 
             await tagger.Tag(document.DocumentElement, namespaceManager, institutionalCodes, XPath, true, true);
         }
@@ -85,7 +85,7 @@
             });
 
             // TODO: DI
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionSerializableModel>(), this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionSerializableModel>(), new ContentTagger(this.logger));
 
             await tagger.Tag(document.DocumentElement, namespaceManager, institutions, XPath, true, true);
         }
@@ -108,7 +108,7 @@
             });
 
             // TODO: DI
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel>(new XmlSerializer<BiorepositoriesCollectionCodeSerializableModel>(), this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel>(new XmlSerializer<BiorepositoriesCollectionCodeSerializableModel>(), new ContentTagger(this.logger));
 
             await tagger.Tag(document.DocumentElement, namespaceManager, collectionCodes, XPath, true, true);
         }
@@ -122,7 +122,7 @@
             });
 
             // TODO: DI
-            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel>(new XmlSerializer<BiorepositoriesCollectionSerializableModel>(), this.logger);
+            var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel>(new XmlSerializer<BiorepositoriesCollectionSerializableModel>(), new ContentTagger(this.logger));
 
             await tagger.Tag(document.DocumentElement, namespaceManager, collections, XPath, true, true);
         }

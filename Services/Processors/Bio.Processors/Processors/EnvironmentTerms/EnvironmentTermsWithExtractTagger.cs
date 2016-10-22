@@ -10,8 +10,6 @@
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Taggers;
-    using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
 
     public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
@@ -20,12 +18,10 @@
 
         private readonly IExtractHcmrDataMiner miner;
         private readonly ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger;
-        private readonly ILogger logger;
 
         public EnvironmentTermsWithExtractTagger(
             IExtractHcmrDataMiner miner,
-            ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger,
-            ILogger logger)
+            ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger)
         {
             if (miner == null)
             {
@@ -39,7 +35,6 @@
 
             this.miner = miner;
             this.contentTagger = contentTagger;
-            this.logger = logger;
         }
 
         public async Task<object> Tag(IDocument document)
@@ -58,9 +53,7 @@
                     Identifier = string.Join("|", t.Identifiers)
                 });
 
-            var tagger = new SimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel>(new XmlSerializer<EnvoExtractHcmrSerializableModel>(), this.logger);
-
-            await tagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, false, true);
+            await this.contentTagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, false, true);
 
             return true;
         }
