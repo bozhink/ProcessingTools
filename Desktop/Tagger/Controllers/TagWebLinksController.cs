@@ -10,9 +10,9 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Attributes.Extensions;
-    using ProcessingTools.BaseLibrary;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Layout.Processors.Taggers;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
 

@@ -55,6 +55,7 @@
     <Compile Include="Processors\Normalizers\NlmXmlNormalizer.cs" />
     <Compile Include="Processors\Normalizers\SystemXmlNormalizer.cs" />
     <Compile Include="Contracts\Taggers\IStringTagger.cs" />
+    <Compile Include="Processors\Taggers\SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Processors\Taggers\StringTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformers\FormatToSystemTransformer.cs" />
@@ -79,6 +80,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
+      <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
+      <Name>Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
