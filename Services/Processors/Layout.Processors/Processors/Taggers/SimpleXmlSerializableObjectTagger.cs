@@ -6,11 +6,13 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts.Taggers;
+
     using ProcessingTools.Contracts;
     using ProcessingTools.Serialization.Contracts;
     using ProcessingTools.Xml.Extensions;
 
-    public class SimpleXmlSerializableObjectTagger<T>
+    public class SimpleXmlSerializableObjectTagger<T> : ISimpleXmlSerializableObjectTagger<T>
     {
         private readonly IXmlSerializer<T> serializer;
         private readonly ILogger logger;

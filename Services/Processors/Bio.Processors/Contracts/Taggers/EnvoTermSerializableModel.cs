@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Models
+﻿namespace ProcessingTools.Bio.Processors.Contracts.Taggers
 {
     using System.Xml.Serialization;
 
@@ -6,14 +6,14 @@
     [XmlRoot("envo", Namespace = "", IsNullable = false)]
     public class EnvoTermSerializableModel
     {
-        [XmlText]
-        public string Value { get; set; }
+        [XmlAttribute("EnvoID")]
+        public string EnvoId { get; set; }
 
         [XmlAttribute("ID")]
         public string Id { get; set; }
 
-        [XmlAttribute("EnvoID")]
-        public string EnvoId { get; set; }
+        [XmlText]
+        public string Value { get; set; }
 
         [XmlAttribute("VerbatimTerm")]
         public string VerbatimTerm { get; set; }

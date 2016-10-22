@@ -1,8 +1,10 @@
-﻿namespace ProcessingTools.Tagger.Models
+﻿namespace ProcessingTools.Bio.Processors.Models.Taggers
 {
-    public class EnvoTermResponseModel
+    internal class EnvoTermResponseModel
     {
         private string envoId;
+
+        public string Content { get; set; }
 
         public string EntityId { get; set; }
 
@@ -18,7 +20,5 @@
                 this.envoId = "ENVO_" + value?.Substring(5);
             }
         }
-
-        public string Content { get; set; }
     }
 }
