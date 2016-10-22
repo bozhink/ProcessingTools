@@ -67,12 +67,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
-    <Compile Include="SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,23 +88,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Serialization\Serialization.csproj">
-      <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
-      <Name>Serialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xml\Xml.csproj">
-      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
-      <Name>Xml</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

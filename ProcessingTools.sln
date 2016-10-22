@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLibrary", "Infrastructure\BaseLibrary\BaseLibrary.csproj", "{25195D4B-EBD2-487F-84A6-C2CD8850450D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BDE55FC4-E7D2-416D-A220-164CA99BD63B} = {BDE55FC4-E7D2-416D-A220-164CA99BD63B}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configurator", "Infrastructure\Configurator\Configurator.csproj", "{BDE55FC4-E7D2-416D-A220-164CA99BD63B}"
@@ -361,14 +356,6 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Debug|x64.ActiveCfg = Debug|x64
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Debug|x64.Build.0 = Debug|x64
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Release|x64.ActiveCfg = Release|x64
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D}.Release|x64.Build.0 = Release|x64
 		{553469FF-345B-4BCD-AACA-3D447B23D80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{553469FF-345B-4BCD-AACA-3D447B23D80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{553469FF-345B-4BCD-AACA-3D447B23D80A}.Debug|x64.ActiveCfg = Debug|x64
@@ -1518,7 +1505,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{25195D4B-EBD2-487F-84A6-C2CD8850450D} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{553469FF-345B-4BCD-AACA-3D447B23D80A} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{BDE55FC4-E7D2-416D-A220-164CA99BD63B} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{337C1A6C-C0A7-4C44-938E-35D87757EF7B} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
