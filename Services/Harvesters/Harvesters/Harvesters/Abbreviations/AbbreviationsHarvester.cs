@@ -1,41 +1,46 @@
 ﻿namespace ProcessingTools.Harvesters.Abbreviations
 {
+    using System;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Abstracts;
     using Contracts.Abbreviations;
+    using Contracts.Transformers;
     using Models.Abbreviations;
 
     using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Contracts.Serialization;
 
     public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {
-        private const string AbbreviationsXQueryFilePathKey = "AbbreviationsXQueryFilePath";
+        private readonly IXmlTransformDeserializer<IGetAbbreviationsTransformer> transformer;
 
-        private string abbreviationsXQueryFileName;
-
-        public AbbreviationsHarvester(IXmlContextWrapperProvider contextWrapperProvider)
+        public AbbreviationsHarvester(
+            IXmlContextWrapperProvider contextWrapperProvider,
+            IXmlTransformDeserializer<IGetAbbreviationsTransformer> transformer)
             : base(contextWrapperProvider)
         {
-            // TODO: ConfigurationManager
-            this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePathKey];
+            if (transformer == null)
+            {
+                throw new ArgumentNullException(nameof(transformer));
+            }
+
+            this.transformer = transformer;
         }
 
         protected override async Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
-            var items = await document.DeserializeXQueryTransformOutput<AbbreviationsXmlModel>(this.abbreviationsXQueryFileName);
+            var items = await this.transformer.Deserialize<AbbreviationsXmlModel>(document.OuterXml);
 
             if (items?.Abbreviations == null)
             {
                 return null;
             }
 
-            var result = new HashSet<IAbbreviationModel>(items?.Abbreviations);
+            var result = new HashSet<IAbbreviationModel>(items.Abbreviations);
 
             return result.AsQueryable();
         }

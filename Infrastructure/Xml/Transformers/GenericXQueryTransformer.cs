@@ -113,6 +113,7 @@
             var stream = new MemoryStream();
             var writer = XmlWriter.Create(stream);
             this.TransformNode(node)?.WriteTo(writer);
+            writer.Flush();
 
             return stream;
         }

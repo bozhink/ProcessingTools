@@ -6,7 +6,12 @@
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Harvesters.Abbreviations;
+    using ProcessingTools.Harvesters.Contracts.Transformers;
+    using ProcessingTools.Harvesters.Transformers;
+    using ProcessingTools.Serialization.Serializers;
+    using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Providers;
+    using ProcessingTools.Xml.Serialization;
 
     [TestClass]
     public class AbbreviationsHarvesterIntegrationTests
@@ -28,7 +33,12 @@
 
             var contextWrapperProvider = new XmlContextWrapperProvider();
 
-            var harvester = new AbbreviationsHarvester(contextWrapperProvider);
+            var deserializer = new XmlDeserializer();
+            var xqueryCache = new XQueryTransformCache();
+            var transformProvider = new GetAbbreviationsXQueryTransformProvider(xqueryCache);
+            var transformer = new XmlTransformDeserializer<IGetAbbreviationsTransformer>(new GetAbbreviationsTransformer(transformProvider), deserializer);
+
+            var harvester = new AbbreviationsHarvester(contextWrapperProvider, transformer);
 
             // Act
             var abbreviations = harvester.Harvest(document.DocumentElement).Result?.ToList();
