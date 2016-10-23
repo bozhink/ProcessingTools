@@ -4,11 +4,11 @@
 
     using Contracts;
     using Contracts.Providers;
-    using Factories;
+    using Abstracts;
 
     using ProcessingTools.Constants.Configuration;
 
-    public class CodesRemoveNonCodeNodesXslTransformProvider : XslTransformAbstractProvider, ICodesRemoveNonCodeNodesXslTransformProvider
+    public class CodesRemoveNonCodeNodesXslTransformProvider : AbstractXslTransformProvider, ICodesRemoveNonCodeNodesXslTransformProvider
     {
         public CodesRemoveNonCodeNodesXslTransformProvider(IXslTransformCache cache)
             : base(cache)

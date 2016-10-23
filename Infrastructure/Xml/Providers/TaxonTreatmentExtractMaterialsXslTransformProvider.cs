@@ -4,11 +4,11 @@
 
     using Contracts;
     using Contracts.Providers;
-    using Factories;
+    using Abstracts;
 
     using ProcessingTools.Constants.Configuration;
 
-    public class TaxonTreatmentExtractMaterialsXslTransformProvider : XslTransformAbstractProvider, ITaxonTreatmentExtractMaterialsXslTransformProvider
+    public class TaxonTreatmentExtractMaterialsXslTransformProvider : AbstractXslTransformProvider, ITaxonTreatmentExtractMaterialsXslTransformProvider
     {
         public TaxonTreatmentExtractMaterialsXslTransformProvider(IXslTransformCache cache)
             : base(cache)

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Factories
+﻿namespace ProcessingTools.Xml.Abstracts
 {
     using System;
     using System.Xml.Xsl;
@@ -6,11 +6,11 @@
     using Contracts;
     using Contracts.Providers;
 
-    public abstract class XslTransformAbstractProvider : IXslTransformProvider
+    public abstract class AbstractXslTransformProvider : IXslTransformProvider
     {
         private readonly IXslTransformCache cache;
 
-        public XslTransformAbstractProvider(IXslTransformCache cache)
+        public AbstractXslTransformProvider(IXslTransformCache cache)
         {
             if (cache == null)
             {

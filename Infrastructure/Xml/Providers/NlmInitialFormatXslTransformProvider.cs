@@ -4,11 +4,11 @@
 
     using Contracts;
     using Contracts.Providers;
-    using Factories;
+    using Abstracts;
 
     using ProcessingTools.Constants.Configuration;
 
-    public class NlmInitialFormatXslTransformProvider : XslTransformAbstractProvider, INlmInitialFormatXslTransformProvider
+    public class NlmInitialFormatXslTransformProvider : AbstractXslTransformProvider, INlmInitialFormatXslTransformProvider
     {
         public NlmInitialFormatXslTransformProvider(IXslTransformCache cache)
             : base(cache)

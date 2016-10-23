@@ -6,9 +6,9 @@
 
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Factories;
+    using ProcessingTools.Xml.Abstracts;
 
-    public class ZoobankNlmXslTransformProvider : XslTransformAbstractProvider, IZoobankNlmXslTransformProvider
+    public class ZoobankNlmXslTransformProvider : AbstractXslTransformProvider, IZoobankNlmXslTransformProvider
     {
         public ZoobankNlmXslTransformProvider(IXslTransformCache cache)
             : base(cache)

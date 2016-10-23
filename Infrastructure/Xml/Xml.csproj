@@ -68,7 +68,7 @@
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
     <Compile Include="Extensions\XQueryTransformExtensions.cs" />
     <Compile Include="Extensions\XslTransformExtensions.cs" />
-    <Compile Include="Factories\XslTransformAbstractProvider.cs" />
+    <Compile Include="Abstracts\AbstractXslTransformProvider.cs" />
     <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
     <Compile Include="Providers\GetExternalLinksXslTransformProvider.cs" />
     <Compile Include="Providers\FormatNlmToSystemXslTransformProvider.cs" />

@@ -4,11 +4,11 @@
 
     using Contracts;
     using Contracts.Providers;
-    using Factories;
+    using Abstracts;
 
     using ProcessingTools.Constants.Configuration;
 
-    public class FormatTaxonTreatmentsXslTransformProvider : XslTransformAbstractProvider, IFormatTaxonTreatmentsXslTransformProvider
+    public class FormatTaxonTreatmentsXslTransformProvider : AbstractXslTransformProvider, IFormatTaxonTreatmentsXslTransformProvider
     {
         public FormatTaxonTreatmentsXslTransformProvider(IXslTransformCache cache)
             : base(cache)

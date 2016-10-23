@@ -4,11 +4,11 @@
 
     using Contracts;
     using Contracts.Providers;
-    using Factories;
+    using Abstracts;
 
     using ProcessingTools.Constants.Configuration;
 
-    public class GetExternalLinksXslTransformProvider : XslTransformAbstractProvider, IGetExternalLinksXslTransformProvider
+    public class GetExternalLinksXslTransformProvider : AbstractXslTransformProvider, IGetExternalLinksXslTransformProvider
     {
         public GetExternalLinksXslTransformProvider(IXslTransformCache cache)
             : base(cache)

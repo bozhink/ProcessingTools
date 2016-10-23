@@ -6,9 +6,9 @@
 
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Xml.Contracts;
-    using ProcessingTools.Xml.Factories;
+    using ProcessingTools.Xml.Abstracts;
 
-    public class FormatHtmlToXmlXslTransformProvider : XslTransformAbstractProvider, IFormatHtmlToXmlXslTransformProvider
+    public class FormatHtmlToXmlXslTransformProvider : AbstractXslTransformProvider, IFormatHtmlToXmlXslTransformProvider
     {
         public FormatHtmlToXmlXslTransformProvider(IXslTransformCache cache)
             : base(cache)

@@ -4,11 +4,11 @@
 
     using Contracts;
     using Contracts.Providers;
-    using Factories;
+    using Abstracts;
 
     using ProcessingTools.Constants.Configuration;
 
-    public class ReferencesTagTemplateXslTransformProvider : XslTransformAbstractProvider, IReferencesTagTemplateXslTransformProvider
+    public class ReferencesTagTemplateXslTransformProvider : AbstractXslTransformProvider, IReferencesTagTemplateXslTransformProvider
     {
         public ReferencesTagTemplateXslTransformProvider(IXslTransformCache cache)
             : base(cache)

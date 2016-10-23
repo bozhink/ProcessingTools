@@ -5,9 +5,9 @@
 
     using Contracts;
     using Contracts.Providers;
-    using Factories;
+    using Abstracts;
 
-    public class ModifiableXslTransformProvider : XslTransformAbstractProvider, IModifiableXslTransformProvider
+    public class ModifiableXslTransformProvider : AbstractXslTransformProvider, IModifiableXslTransformProvider
     {
         private string xslFilePath;
 
