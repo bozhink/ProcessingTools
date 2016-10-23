@@ -38,8 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IGenericXmlDeserializer.cs" />
+    <Compile Include="Contracts\IGenericXmlSerializer.cs" />
     <Compile Include="Contracts\IXmlDeserializer.cs" />
-    <Compile Include="Contracts\IXmlSerializer.cs" />
     <Compile Include="Csv\ColumnIndexToPropertyNameMapping.cs" />
     <Compile Include="Csv\CsvColumnAttribute.cs" />
     <Compile Include="Csv\CsvObjectAttribute.cs" />
@@ -49,8 +50,9 @@
     <Compile Include="Csv\TableMapper.cs" />
     <Compile Include="MappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializers\GenericXmlDeserializer.cs" />
+    <Compile Include="Serializers\GenericXmlSerializer.cs" />
     <Compile Include="Serializers\XmlDeserializer.cs" />
-    <Compile Include="Serializers\XmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Extensions\Extensions.csproj">

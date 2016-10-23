@@ -6,22 +6,27 @@
     using System.Xml.Serialization;
     using Contracts;
 
-    public class XmlDeserializer : IXmlDeserializer
+    public class XmlDeserializer<T> : IXmlDeserializer<T>
     {
-        public Task<T> Deserialize<T>(Stream stream)
+        private readonly XmlSerializer serializer;
+
+        public XmlDeserializer()
+        {
+            this.serializer = new XmlSerializer(typeof(T));
+        }
+
+        public Task<T> Deserialize(Stream stream)
         {
             if (stream == null)
             {
                 throw new ArgumentNullException(nameof(stream));
             }
 
-            var serializer = new XmlSerializer(typeof(T));
-
             return Task.Run(() =>
             {
                 stream.Position = 0;
 
-                var result = serializer.Deserialize(stream);
+                var result = this.serializer.Deserialize(stream);
                 return (T)result;
             });
         }

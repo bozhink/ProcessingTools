@@ -8,13 +8,13 @@
 
     using ProcessingTools.Serialization.Contracts;
 
-    public class XmlTransformDeserializer<TTransformer, TResult> : IXmlTransformDeserializer<TTransformer, TResult>
+    public class XmlTransformDeserializer<TTransformer> : IXmlTransformDeserializer<TTransformer>
         where TTransformer : IXmlTransformer
     {
         private readonly TTransformer transformer;
-        private readonly IXmlDeserializer<TResult> deserializer;
+        private readonly IXmlDeserializer deserializer;
 
-        public XmlTransformDeserializer(TTransformer transformer, IXmlDeserializer<TResult> deserializer)
+        public XmlTransformDeserializer(TTransformer transformer, IXmlDeserializer deserializer)
         {
             if (transformer == null)
             {
@@ -30,11 +30,11 @@
             this.deserializer = deserializer;
         }
 
-        public async Task<TResult> Deserialize(string xml)
+        public async Task<T> Deserialize<T>(string xml)
         {
             var stream = this.transformer.TransformToStream(xml);
 
-            var result = await this.deserializer.Deserialize(stream);
+            var result = await this.deserializer.Deserialize<T>(stream);
 
             stream.Close();
             stream.Dispose();

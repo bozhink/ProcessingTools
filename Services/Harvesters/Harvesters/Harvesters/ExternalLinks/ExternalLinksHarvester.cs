@@ -1,32 +1,38 @@
 ﻿namespace ProcessingTools.Harvesters.ExternalLinks
 {
-    using System.Configuration;
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Abstracts;
     using Contracts.ExternalLinks;
+    using Contracts.Transformers;
     using Models.ExternalLinks;
 
     using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Contracts.Serialization;
 
     public class ExternalLinksHarvester : AbstractGenericQueryableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
-        private const string ExternalLinksXslFilePathKey = "ExternalLinksXslFilePath";
+        private readonly IXmlTransformDeserializer<IGetExternalLinksTransformer> transformer;
 
-        private string externalLinksXslFileName;
-
-        public ExternalLinksHarvester(IXmlContextWrapperProvider contextWrapperProvider)
+        public ExternalLinksHarvester(
+            IXmlContextWrapperProvider contextWrapperProvider,
+            IXmlTransformDeserializer<IGetExternalLinksTransformer> transformer)
             : base(contextWrapperProvider)
         {
-            this.externalLinksXslFileName = ConfigurationManager.AppSettings[ExternalLinksXslFilePathKey];
+            if (transformer == null)
+            {
+                throw new ArgumentNullException(nameof(transformer));
+            }
+
+            this.transformer = transformer;
         }
 
         protected override async Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
         {
-            var items = await document.DeserializeXslTransformOutput<ExternalLinksModel>(this.externalLinksXslFileName);
+            var items = await this.transformer.Deserialize<ExternalLinksModel>(document.OuterXml);
 
             return items.ExternalLinks?.AsQueryable();
         }

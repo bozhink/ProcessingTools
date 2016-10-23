@@ -3,8 +3,8 @@
     using System.IO;
     using System.Threading.Tasks;
 
-    public interface IXmlDeserializer
+    public interface IXmlDeserializer<T>
     {
-        Task<T> Deserialize<T>(Stream stream);
+        Task<T> Deserialize(Stream stream);
     }
 }

@@ -3,9 +3,9 @@
     using System.Threading.Tasks;
     using Transformers;
 
-    public interface IXmlTransformDeserializer<TTransformer, TResult>
+    public interface IXmlTransformDeserializer<TTransformer>
         where TTransformer : IXmlTransformer
     {
-        Task<TResult> Deserialize(string xml);
+        Task<T> Deserialize<T>(string xml);
     }
 }

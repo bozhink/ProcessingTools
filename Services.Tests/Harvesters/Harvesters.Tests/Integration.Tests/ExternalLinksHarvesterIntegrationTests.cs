@@ -5,8 +5,13 @@
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Harvesters.Contracts.Transformers;
     using ProcessingTools.Harvesters.ExternalLinks;
+    using ProcessingTools.Harvesters.Transformers;
+    using ProcessingTools.Serialization.Serializers;
+    using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Providers;
+    using ProcessingTools.Xml.Serialization;
 
     [TestClass]
     public class ExternalLinksHarvesterIntegrationTests
@@ -29,7 +34,12 @@
 
             var contextWrapperProvider = new XmlContextWrapperProvider();
 
-            var harvester = new ExternalLinksHarvester(contextWrapperProvider);
+            var deserializer = new XmlDeserializer();
+            var xslCache = new XslTransformCache();
+            var transformProvider = new GetExternalLinksXslTransformProvider(xslCache);
+            var transformer = new XmlTransformDeserializer<IGetExternalLinksTransformer>(new GetExternalLinksTransformer(transformProvider), deserializer);
+
+            var harvester = new ExternalLinksHarvester(contextWrapperProvider, transformer);
 
             // Act
             var externalLinks = harvester.Harvest(document.DocumentElement).Result?.ToList();
