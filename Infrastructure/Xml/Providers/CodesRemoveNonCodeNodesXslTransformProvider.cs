@@ -2,9 +2,9 @@
 {
     using System.Configuration;
 
+    using Abstracts;
     using Contracts.Cache;
     using Contracts.Providers;
-    using Abstracts;
 
     using ProcessingTools.Constants.Configuration;
 

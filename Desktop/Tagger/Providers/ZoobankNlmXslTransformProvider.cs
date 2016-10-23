@@ -5,8 +5,8 @@
     using Contracts;
 
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Xml.Contracts.Cache;
     using ProcessingTools.Xml.Abstracts;
+    using ProcessingTools.Xml.Contracts.Cache;
 
     // TODO: move to Xml
     public class ZoobankNlmXslTransformProvider : AbstractXslTransformProvider, IZoobankNlmXslTransformProvider

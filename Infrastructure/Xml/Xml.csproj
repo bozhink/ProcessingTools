@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\AbstractGenericTransformCache.cs" />
     <Compile Include="Assembly.cs" />
+    <Compile Include="Cache\XQueryTransformCache.cs" />
     <Compile Include="Contracts\Cache\IGenericTransformCache.cs" />
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Providers\ICodesRemoveNonCodeNodesXslTransformProvider.cs" />

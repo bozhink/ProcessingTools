@@ -3,9 +3,9 @@
     using System;
     using System.IO;
 
+    using Abstracts;
     using Contracts.Cache;
     using Contracts.Providers;
-    using Abstracts;
 
     public class ModifiableXslTransformProvider : AbstractXslTransformProvider, IModifiableXslTransformProvider
     {
