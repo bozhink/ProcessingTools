@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IGenericTransformCache.cs" />
-    <Compile Include="Contracts\IXQueryTransformCache.cs" />
+    <Compile Include="Contracts\Cache\IGenericTransformCache.cs" />
+    <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Providers\ICodesRemoveNonCodeNodesXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IGetExternalLinksXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IFormatNlmToSystemXslTransformProvider.cs" />
@@ -60,7 +60,7 @@
     <Compile Include="Contracts\Providers\IModifiableXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\ITextContentXslTransformProvider.cs" />
     <Compile Include="Contracts\Transformers\IXmlTransformer.cs" />
-    <Compile Include="Contracts\IXslTransformCache.cs" />
+    <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
     <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />

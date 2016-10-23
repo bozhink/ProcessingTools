@@ -5,9 +5,10 @@
     using Contracts;
 
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Xml.Contracts;
+    using ProcessingTools.Xml.Contracts.Cache;
     using ProcessingTools.Xml.Abstracts;
 
+    // TODO: move to Xml
     public class FormatHtmlToXmlXslTransformProvider : AbstractXslTransformProvider, IFormatHtmlToXmlXslTransformProvider
     {
         public FormatHtmlToXmlXslTransformProvider(IXslTransformCache cache)

@@ -2,7 +2,7 @@
 {
     using System.Configuration;
 
-    using Contracts;
+    using Contracts.Cache;
     using Contracts.Providers;
     using Abstracts;
 

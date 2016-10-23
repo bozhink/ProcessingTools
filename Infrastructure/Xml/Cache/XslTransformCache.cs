@@ -3,7 +3,7 @@
     using System.Collections.Concurrent;
     using System.Xml.Xsl;
 
-    using Contracts;
+    using Contracts.Cache;
 
     public class XslTransformCache : IXslTransformCache
     {

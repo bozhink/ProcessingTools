@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Contracts
+﻿namespace ProcessingTools.Xml.Contracts.Cache
 {
     using System.Xml.Xsl;
 
