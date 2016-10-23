@@ -1,27 +1,27 @@
-﻿namespace ProcessingTools.Harvesters.Common.Factories
-{
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
+﻿//namespace ProcessingTools.Harvesters.Common.Factories
+//{
+//    using System.Linq;
+//    using System.Threading.Tasks;
+//    using System.Xml;
 
-    using Contracts;
+//    using Contracts;
 
-    public abstract class GenericHarvesterFactory<T> : IHarvester<T>
-    {
-        public Task<IQueryable<T>> Harvest(XmlNode context)
-        {
-            XmlDocument document = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
+//    public abstract class GenericHarvesterFactory<T> : IHarvester<T>
+//    {
+//        public Task<IQueryable<T>> Harvest(XmlNode context)
+//        {
+//            XmlDocument document = new XmlDocument
+//            {
+//                PreserveWhitespace = true
+//            };
 
-            document.LoadXml(Resources.ContextWrapper);
+//            document.LoadXml(Resources.ContextWrapper);
 
-            document.DocumentElement.InnerXml = context.InnerXml;
+//            document.DocumentElement.InnerXml = context.InnerXml;
 
-            return this.Run(document);
-        }
+//            return this.Run(document);
+//        }
 
-        protected abstract Task<IQueryable<T>> Run(XmlDocument document);
-    }
-}
+//        protected abstract Task<IQueryable<T>> Run(XmlDocument document);
+//    }
+//}

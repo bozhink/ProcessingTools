@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Models
+﻿namespace ProcessingTools.Harvesters.Models.ExternalLinks
 {
     using System;
     using System.ComponentModel;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Models.Contracts
+﻿namespace ProcessingTools.Harvesters.Models.Abbreviations
 {
     public interface IAbbreviationModel
     {

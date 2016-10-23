@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Models
+﻿namespace ProcessingTools.Harvesters.Models.ExternalLinks
 {
     using System;
     using System.ComponentModel;
@@ -10,7 +10,7 @@
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = Namespaces.ExternalLinksNamespace)]
     [XmlRoot(ElementName = "external-link", Namespace = Namespaces.ExternalLinksNamespace, IsNullable = false)]
-    public class ExternalLinkModel
+    public class ExternalLinkModel : IExternalLinkModel
     {
         [XmlAttribute("base-address")]
         public string BaseAddress { get; set; }

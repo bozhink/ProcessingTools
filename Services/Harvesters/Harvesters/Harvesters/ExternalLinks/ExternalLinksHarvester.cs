@@ -1,28 +1,30 @@
-﻿namespace ProcessingTools.Harvesters
+﻿namespace ProcessingTools.Harvesters.ExternalLinks
 {
     using System.Configuration;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
-    using Models;
+    using Abstracts;
+    using Contracts.ExternalLinks;
+    using Models.ExternalLinks;
 
-    using ProcessingTools.Harvesters.Common.Factories;
+    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Extensions;
 
-    public class ExternalLinksHarvester : GenericHarvesterFactory<ExternalLinkModel>, IExternalLinksHarvester
+    public class ExternalLinksHarvester : AbstractGenericQueryableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
         private const string ExternalLinksXslFilePathKey = "ExternalLinksXslFilePath";
 
         private string externalLinksXslFileName;
 
-        public ExternalLinksHarvester()
+        public ExternalLinksHarvester(IXmlContextWrapperProvider contextWrapperProvider)
+            : base(contextWrapperProvider)
         {
             this.externalLinksXslFileName = ConfigurationManager.AppSettings[ExternalLinksXslFilePathKey];
         }
 
-        protected override async Task<IQueryable<ExternalLinkModel>> Run(XmlDocument document)
+        protected override async Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
         {
             var items = await document.DeserializeXslTransformOutput<ExternalLinksModel>(this.externalLinksXslFileName);
 

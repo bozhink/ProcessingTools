@@ -10,7 +10,7 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Harvesters.Contracts;
+    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
 

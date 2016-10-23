@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Models
+﻿namespace ProcessingTools.Harvesters.Models.Abbreviations
 {
     using System;
     using System.ComponentModel;

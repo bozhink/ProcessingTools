@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters
+﻿namespace ProcessingTools.Harvesters.Abbreviations
 {
     using System.Collections.Generic;
     using System.Configuration;
@@ -6,20 +6,21 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
-    using Models;
-    using Models.Contracts;
+    using Abstracts;
+    using Contracts.Abbreviations;
+    using Models.Abbreviations;
 
-    using ProcessingTools.Harvesters.Common.Factories;
+    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Extensions;
 
-    public class AbbreviationsHarvester : GenericHarvesterFactory<IAbbreviationModel>, IAbbreviationsHarvester
+    public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {
         private const string AbbreviationsXQueryFilePathKey = "AbbreviationsXQueryFilePath";
 
         private string abbreviationsXQueryFileName;
 
-        public AbbreviationsHarvester()
+        public AbbreviationsHarvester(IXmlContextWrapperProvider contextWrapperProvider)
+            : base(contextWrapperProvider)
         {
             // TODO: ConfigurationManager
             this.abbreviationsXQueryFileName = ConfigurationManager.AppSettings[AbbreviationsXQueryFilePathKey];

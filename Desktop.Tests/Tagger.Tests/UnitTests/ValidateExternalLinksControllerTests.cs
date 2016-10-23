@@ -6,7 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Harvesters.Contracts;
+    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Services.Validation.Contracts;
 
     [TestFixture]

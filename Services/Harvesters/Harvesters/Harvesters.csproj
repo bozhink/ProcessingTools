@@ -37,21 +37,22 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\AbstractGenericQueryableXmlHarvester.cs" />
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IAbbreviationsHarvester.cs" />
-    <Compile Include="Contracts\IExternalLinksHarvester.cs" />
-    <Compile Include="Harvesters\AbbreviationsHarvester.cs" />
-    <Compile Include="Harvesters\ExternalLinksHarvester.cs" />
-    <Compile Include="Models\AbbreviationXmlModel.cs" />
-    <Compile Include="Models\AbbreviationsXmlModel.cs" />
-    <Compile Include="Models\ExternalLinkModel.cs" />
-    <Compile Include="Models\ExternalLinksModel.cs" />
-    <Compile Include="Models\Contracts\IAbbreviationModel.cs" />
+    <Compile Include="Contracts\Abbreviations\IAbbreviationsHarvester.cs" />
+    <Compile Include="Contracts\ExternalLinks\IExternalLinksHarvester.cs" />
+    <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
+    <Compile Include="Harvesters\ExternalLinks\ExternalLinksHarvester.cs" />
+    <Compile Include="Models\Abbreviations\AbbreviationXmlModel.cs" />
+    <Compile Include="Models\Abbreviations\AbbreviationsXmlModel.cs" />
+    <Compile Include="Models\ExternalLinks\ExternalLinkModel.cs" />
+    <Compile Include="Models\ExternalLinks\ExternalLinksModel.cs" />
+    <Compile Include="Models\Abbreviations\IAbbreviationModel.cs" />
+    <Compile Include="Models\ExternalLinks\IExternalLinkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="HarvestersClassDiagram.cd" />
     <None Include="XQuery\abbrev.xq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -64,13 +65,13 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
-      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
-      <Name>Harvesters.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +79,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

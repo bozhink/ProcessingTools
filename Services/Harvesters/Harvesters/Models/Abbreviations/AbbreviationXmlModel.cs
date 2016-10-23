@@ -1,10 +1,9 @@
-﻿namespace ProcessingTools.Harvesters.Models
+﻿namespace ProcessingTools.Harvesters.Models.Abbreviations
 {
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
 
-    using Contracts;
     using ProcessingTools.Common.Constants;
 
     [Serializable]

@@ -10,7 +10,7 @@
     using Models.Abbreviations;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Harvesters.Contracts;
+    using ProcessingTools.Harvesters.Contracts.Abbreviations;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Extensions;
 
