@@ -37,12 +37,6 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Harvesters.Common\Harvesters.Common.csproj">
-      <Project>{e95aa4ec-c0f8-4db4-b9c5-c2aec671f484}</Project>
-      <Name>Harvesters.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
