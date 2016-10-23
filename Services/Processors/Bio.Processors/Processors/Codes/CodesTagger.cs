@@ -20,6 +20,7 @@ namespace ProcessingTools.Bio.Processors.Codes
     using ProcessingTools.Common.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Xml.Extensions;
 
@@ -67,6 +68,7 @@ namespace ProcessingTools.Bio.Processors.Codes
          */
 
         private readonly ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer;
+        private readonly ITextContentHarvester contentHarvester;
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
 
@@ -128,6 +130,7 @@ namespace ProcessingTools.Bio.Processors.Codes
 
         public CodesTagger(
             ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer,
+            ITextContentHarvester contentHarvester,
             IContentTagger contentTagger,
             ILogger logger)
         {
@@ -136,12 +139,18 @@ namespace ProcessingTools.Bio.Processors.Codes
                 throw new ArgumentNullException(nameof(codesRemoveNonCodeNodesTransformer));
             }
 
+            if (contentHarvester == null)
+            {
+                throw new ArgumentNullException(nameof(contentHarvester));
+            }
+
             if (contentTagger == null)
             {
                 throw new ArgumentNullException(nameof(contentTagger));
             }
 
             this.codesRemoveNonCodeNodesTransformer = codesRemoveNonCodeNodesTransformer;
+            this.contentHarvester = contentHarvester;
             this.contentTagger = contentTagger;
             this.logger = logger;
         }
@@ -156,7 +165,7 @@ namespace ProcessingTools.Bio.Processors.Codes
             var knownSpecimenCodes = new List<ISpecimenCode>();
 
             knownSpecimenCodes.AddRange(this.GetJanzenCodes(document));
-            knownSpecimenCodes.AddRange(this.GetPrefixNumericCodes(document));
+            knownSpecimenCodes.AddRange(await this.GetPrefixNumericCodes(document));
 
             knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
@@ -275,10 +284,10 @@ namespace ProcessingTools.Bio.Processors.Codes
             return new HashSet<ISpecimenCode>(result);
         }
 
-        private IEnumerable<ISpecimenCode> GetPrefixNumericCodes(IDocument document)
+        private async Task<IEnumerable<ISpecimenCode>> GetPrefixNumericCodes(IDocument document)
         {
             var prefixNumericSpecimenCodes = new List<ISpecimenCode>();
-            string textContent = document.XmlDocument.GetTextContent();
+            string textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
 
             for (int i = 0, length = this.codePrefixes.Length; i < length; ++i)
             {
