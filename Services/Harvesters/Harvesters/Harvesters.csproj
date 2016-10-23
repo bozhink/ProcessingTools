@@ -41,6 +41,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Abbreviations\IAbbreviationsHarvester.cs" />
     <Compile Include="Contracts\ExternalLinks\IExternalLinksHarvester.cs" />
+    <Compile Include="Contracts\Transformers\IGetAbbreviationsTransformer.cs" />
     <Compile Include="Contracts\Transformers\IGetExternalLinksTransformer.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\ExternalLinks\ExternalLinksHarvester.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Models\Abbreviations\IAbbreviationModel.cs" />
     <Compile Include="Models\ExternalLinks\IExternalLinkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transformers\GetAbbreviationsTransformer.cs" />
     <Compile Include="Transformers\GetExternalLinksTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
