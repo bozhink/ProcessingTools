@@ -8,9 +8,9 @@
 
     using ProcessingTools.Constants.Configuration;
 
-    public class ExternalLinksXslTransformProvider : XslTransformAbstractProvider, IExternalLinksXslTransformProvider
+    public class GetExternalLinksXslTransformProvider : XslTransformAbstractProvider, IGetExternalLinksXslTransformProvider
     {
-        public ExternalLinksXslTransformProvider(IXslTransformCache cache)
+        public GetExternalLinksXslTransformProvider(IXslTransformCache cache)
             : base(cache)
         {
         }
