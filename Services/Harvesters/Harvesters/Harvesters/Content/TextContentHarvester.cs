@@ -29,7 +29,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var content = await transformer.Transform(context);
+            var content = await this.transformer.Transform(context);
             content = Regex.Replace(content, @"(?<=\n)\s+", string.Empty);
 
             return content;
