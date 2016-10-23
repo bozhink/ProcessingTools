@@ -45,6 +45,7 @@
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
     <Compile Include="Harvesters\IHarvester.cs" />
     <Compile Include="Harvesters\IQueryableHarvester.cs" />
+    <Compile Include="Harvesters\IStringQueryableXmlHarvester.cs" />
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="ICommentable.cs" />
     <Compile Include="IContentTypable.cs" />
