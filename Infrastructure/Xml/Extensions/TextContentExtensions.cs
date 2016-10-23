@@ -9,6 +9,7 @@
 
     public static class TextContentExtensions
     {
+        // TODO: To be replaced with TextContentHarvester
         public static string GetTextContent(this XmlDocument xmlDocument)
         {
             // TODO: DI

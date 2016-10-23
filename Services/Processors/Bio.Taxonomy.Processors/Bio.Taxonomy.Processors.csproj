@@ -106,6 +106,10 @@
       <Project>{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
+      <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>
+      <Name>Harvesters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
