@@ -9,23 +9,30 @@
 
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Xml.Extensions;
 
     public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
     {
         private const string XPath = "./*";
 
         private readonly IExtractHcmrDataMiner miner;
+        private readonly ITextContentHarvester contentHarvester;
         private readonly ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger;
 
         public EnvironmentTermsWithExtractTagger(
             IExtractHcmrDataMiner miner,
+            ITextContentHarvester contentHarvester,
             ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger)
         {
             if (miner == null)
             {
                 throw new ArgumentNullException(nameof(miner));
+            }
+
+            if (contentHarvester == null)
+            {
+                throw new ArgumentNullException(nameof(contentHarvester));
             }
 
             if (contentTagger == null)
@@ -34,6 +41,7 @@
             }
 
             this.miner = miner;
+            this.contentHarvester = contentHarvester;
             this.contentTagger = contentTagger;
         }
 
@@ -44,7 +52,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var textContent = document.XmlDocument.GetTextContent();
+            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
                 .Select(t => new EnvoExtractHcmrSerializableModel
                 {
