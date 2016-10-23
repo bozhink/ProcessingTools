@@ -10,19 +10,21 @@
     using ProcessingTools.Attributes.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Xml.Extensions;
 
     public class ExternalLinksTagger : IExternalLinksTagger
     {
         private const string XPath = "./*";
 
         private readonly INlmExternalLinksDataMiner miner;
+        private readonly ITextContentHarvester contentHarvester;
         private readonly ISimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel> contentTagger;
         private readonly ILogger logger;
 
         public ExternalLinksTagger(
             INlmExternalLinksDataMiner miner,
+            ITextContentHarvester contentHarvester,
             ISimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel> contentTagger,
             ILogger logger)
         {
@@ -31,12 +33,18 @@
                 throw new ArgumentNullException(nameof(miner));
             }
 
+            if (contentHarvester == null)
+            {
+                throw new ArgumentNullException(nameof(contentHarvester));
+            }
+
             if (contentTagger == null)
             {
                 throw new ArgumentNullException(nameof(contentTagger));
             }
 
             this.miner = miner;
+            this.contentHarvester = contentHarvester;
             this.contentTagger = contentTagger;
             this.logger = logger;
         }
@@ -48,7 +56,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var textContent = document.XmlDocument.GetTextContent();
+            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
                 .Select(i => new ExternalLinkSerializableModel
                 {
