@@ -9,19 +9,19 @@
     {
         private static readonly ConcurrentDictionary<string, XslCompiledTransform> XslCompiledTransformObjects = new ConcurrentDictionary<string, XslCompiledTransform>();
 
-        public XslCompiledTransform this[string xslFileName]
+        public XslCompiledTransform this[string fileName]
         {
             get
             {
-                var transform = XslCompiledTransformObjects.GetOrAdd(xslFileName, this.GetXslCompiledTransform);
+                var transform = XslCompiledTransformObjects.GetOrAdd(fileName, this.GetXslCompiledTransform);
                 return transform;
             }
         }
 
-        public bool Remove(string xslFileName)
+        public bool Remove(string fileName)
         {
             XslCompiledTransform value = null;
-            var result = XslCompiledTransformObjects.TryRemove(xslFileName, out value);
+            var result = XslCompiledTransformObjects.TryRemove(fileName, out value);
             return result;
         }
 

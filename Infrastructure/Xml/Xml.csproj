@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IGenericTransformCache.cs" />
+    <Compile Include="Contracts\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Providers\ICodesRemoveNonCodeNodesXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IGetExternalLinksXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IFormatNlmToSystemXslTransformProvider.cs" />

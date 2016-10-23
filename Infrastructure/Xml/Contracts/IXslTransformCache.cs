@@ -2,12 +2,7 @@
 {
     using System.Xml.Xsl;
 
-    public interface IXslTransformCache
+    public interface IXslTransformCache : IGenericTransformCache<XslCompiledTransform>
     {
-        XslCompiledTransform this[string xslFileName] { get; }
-
-        bool Remove(string xslFileName);
-
-        bool RemoveAll();
     }
 }
