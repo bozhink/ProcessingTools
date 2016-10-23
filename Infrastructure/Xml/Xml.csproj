@@ -90,6 +90,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\IXQueryTransform.cs" />
     <Compile Include="Transform\XQueryTransform.cs" />
     <Compile Include="Providers\XmlContextWrapperProvider.cs" />
   </ItemGroup>

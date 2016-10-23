@@ -4,7 +4,9 @@
     using System.Xml;
     using Saxon.Api;
 
-    public class XQueryTransform
+    using Contracts;
+
+    public class XQueryTransform : IXQueryTransform
     {
         private Processor processor;
         private XQueryCompiler compiler;
