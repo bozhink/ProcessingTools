@@ -23,7 +23,7 @@
             return await document.OuterXml.DeserializeXslTransformOutput<T>(xslFileName);
         }
 
-        public static async Task<T> DeserializeXslTransformOutput<T>(this string xml, string xslFileName)
+        private static async Task<T> DeserializeXslTransformOutput<T>(this string xml, string xslFileName)
             where T : class
         {
             if (string.IsNullOrWhiteSpace(xml))
@@ -40,7 +40,7 @@
             return result;
         }
 
-        public static async Task<T> DeserializeXslTransformOutput<T>(this XmlReader reader, string xslFileName)
+        private static async Task<T> DeserializeXslTransformOutput<T>(this XmlReader reader, string xslFileName)
             where T : class
         {
             if (reader == null)
@@ -84,7 +84,7 @@
             }
         }
 
-        public static Task<T> DeserializeXslTransformOutput<T>(this XmlReader reader, XslCompiledTransform xslTransform)
+        private static Task<T> DeserializeXslTransformOutput<T>(this XmlReader reader, XslCompiledTransform xslTransform)
             where T : class
         {
             if (reader == null)

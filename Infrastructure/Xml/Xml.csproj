@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Providers\ICodesRemoveNonCodeNodesXslTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IExternalLinksXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IFormatNlmToSystemXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IFormatSystemToNlmXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IFormatTaxonTreatmentsXslTransformProvider.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Extensions\XslTransformExtensions.cs" />
     <Compile Include="Factories\XslTransformAbstractProvider.cs" />
     <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
+    <Compile Include="Providers\ExternalLinksXslTransformProvider.cs" />
     <Compile Include="Providers\FormatNlmToSystemXslTransformProvider.cs" />
     <Compile Include="Providers\FormatSystemToNlmXslTransformProvider.cs" />
     <Compile Include="Providers\FormatTaxonTreatmentsXslTransformProvider.cs" />
