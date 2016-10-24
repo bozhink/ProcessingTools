@@ -5,7 +5,6 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-
     using ProcessingTools.Common;
 
     public static class XmlDocumentExtensions
@@ -74,19 +73,6 @@
         public static XmlNode RemoveXmlNodes(this XmlNode node, string xpath)
         {
             node.SelectNodes(xpath).RemoveXmlNodes();
-            return node;
-        }
-
-        /// <summary>
-        /// Removes XmlNode objects from the DOM object.
-        /// </summary>
-        /// <param name="node">XmlNode object in which will be selected by XPath XmlNode objects to be removed.</param>
-        /// <param name="xpath">XPath string to select XmlNode objects winch will be removed.</param>
-        /// <param name="namespaceManager">XmlNamespaceManager object required in SelectNodes method.</param>
-        /// <returns>The input XmlNode objects with removed XmlNode objects. This return is needed to enable chaining.</returns>
-        public static XmlNode RemoveXmlNodes(this XmlNode node, string xpath, XmlNamespaceManager namespaceManager)
-        {
-            node.SelectNodes(xpath, namespaceManager).RemoveXmlNodes();
             return node;
         }
 
