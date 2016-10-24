@@ -51,7 +51,10 @@
                 }
                 else
                 {
-                    result = nodeList.GetStringListOfUniqueXmlNodes().ToList();
+                    result = nodeList.Cast<XmlNode>()
+                        .Select(c => c.InnerXml)
+                        .Distinct()
+                        .ToList();
                 }
             }
 

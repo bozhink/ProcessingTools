@@ -553,7 +553,7 @@
                     return taxonNameElement;
                 })
                 .ToList<XmlNode>()
-                .GetStringListOfUniqueXmlNodes();
+                .Select(c => c.InnerXml);
 
             return new HashSet<string>(result);
         }
@@ -566,7 +566,10 @@
             }
 
             string xpath = $"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][{XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})!='']";
-            var result = node.GetStringListOfUniqueXmlNodes(xpath);
+
+            var result = node.SelectNodes(xpath)
+                .Cast<XmlNode>()
+                .Select(c => c.InnerXml);
 
             return new HashSet<string>(result);
         }
