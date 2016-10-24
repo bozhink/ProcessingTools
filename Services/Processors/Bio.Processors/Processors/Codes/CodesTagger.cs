@@ -22,6 +22,7 @@ namespace ProcessingTools.Bio.Processors.Codes
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Xml.Extensions;
 
     public class CodesTagger : ICodesTagger
@@ -382,14 +383,20 @@ namespace ProcessingTools.Bio.Processors.Codes
                 codeElement.SetAttribute("prefix", specimenCode.Prefix);
                 codeElement.SetAttribute("type", specimenCode.Type);
 
-                await this.contentTagger.TagContentInDocument(specimenCode.Code, codeElement, xpathTemplate, document, true, false);
+                var settings = new ContentTaggerSettings
+                {
+                    CaseSensitive = true,
+                    MinimalTextSelect = false
+                };
+
+                await this.contentTagger.TagContentInDocument(specimenCode.Code, codeElement, xpathTemplate, document, settings);
             }
 
             /*
              * Here we might have nested <specimen_code> which probably is due to mistaken codes.
              */
             {
-                string nestedSpecimenCodesXpath = string.Format("//{0}[{0}]", tagModel.Name);
+                string nestedSpecimenCodesXpath = string.Format(".//{0}[{0}]", tagModel.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in document.SelectNodes(nestedSpecimenCodesXpath))
                 {
                     this.logger?.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);

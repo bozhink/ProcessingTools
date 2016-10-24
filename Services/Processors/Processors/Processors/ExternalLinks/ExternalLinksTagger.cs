@@ -12,6 +12,7 @@
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
 
     public class ExternalLinksTagger : IExternalLinksTagger
     {
@@ -64,7 +65,13 @@
                     Value = i.Content
                 });
 
-            await this.contentTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, data, XPath, false, true);
+            var settings = new ContentTaggerSettings
+            {
+                CaseSensitive = false,
+                MinimalTextSelect = true
+            };
+
+            await this.contentTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, data, XPath, settings);
 
             return true;
         }

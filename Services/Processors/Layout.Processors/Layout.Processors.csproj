@@ -50,6 +50,8 @@
     <Compile Include="Contracts\Transformers\ISystemInitialFormatTransformer.cs" />
     <Compile Include="Factories\InitialFormatTransformerFactory.cs" />
     <Compile Include="Factories\NormalizationTransformerFactory.cs" />
+    <Compile Include="Models\Taggers\ContentTaggerSettings.cs" />
+    <Compile Include="Models\Taggers\IContentTaggerSettings.cs" />
     <Compile Include="Processors\Formatters\DocumentInitialFormatter.cs" />
     <Compile Include="Processors\Normalizers\DocumentNormalizer.cs" />
     <Compile Include="Processors\Normalizers\NlmXmlNormalizer.cs" />

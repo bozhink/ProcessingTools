@@ -12,6 +12,7 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Layout.Processors.Taggers;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Extensions;
@@ -73,7 +74,13 @@
             // TODO: DI
             var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionalCodeSerializableModel>(), new ContentTagger(this.logger));
 
-            await tagger.Tag(document.DocumentElement, namespaceManager, institutionalCodes, XPath, true, true);
+            var settings = new ContentTaggerSettings
+            {
+                CaseSensitive = true,
+                MinimalTextSelect = true
+            };
+
+            await tagger.Tag(document.DocumentElement, namespaceManager, institutionalCodes, XPath, settings);
         }
 
         private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesInstitution> data)
@@ -87,7 +94,13 @@
             // TODO: DI
             var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel>(new XmlSerializer<BiorepositoriesInstitutionSerializableModel>(), new ContentTagger(this.logger));
 
-            await tagger.Tag(document.DocumentElement, namespaceManager, institutions, XPath, true, true);
+            var settings = new ContentTaggerSettings
+            {
+                CaseSensitive = true,
+                MinimalTextSelect = true
+            };
+
+            await tagger.Tag(document.DocumentElement, namespaceManager, institutions, XPath, settings);
         }
 
         private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, string textContent)
@@ -110,7 +123,13 @@
             // TODO: DI
             var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel>(new XmlSerializer<BiorepositoriesCollectionCodeSerializableModel>(), new ContentTagger(this.logger));
 
-            await tagger.Tag(document.DocumentElement, namespaceManager, collectionCodes, XPath, true, true);
+            var settings = new ContentTaggerSettings
+            {
+                CaseSensitive = true,
+                MinimalTextSelect = true
+            };
+
+            await tagger.Tag(document.DocumentElement, namespaceManager, collectionCodes, XPath, settings);
         }
 
         private async Task TagCollections(XmlDocument document, XmlNamespaceManager namespaceManager, IQueryable<Bio.Data.Miners.Models.BiorepositoriesCollection> data)
@@ -121,10 +140,16 @@
                 Value = c.CollectionName
             });
 
+            var settings = new ContentTaggerSettings
+            {
+                CaseSensitive = true,
+                MinimalTextSelect = true
+            };
+
             // TODO: DI
             var tagger = new SimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel>(new XmlSerializer<BiorepositoriesCollectionSerializableModel>(), new ContentTagger(this.logger));
 
-            await tagger.Tag(document.DocumentElement, namespaceManager, collections, XPath, true, true);
+            await tagger.Tag(document.DocumentElement, namespaceManager, collections, XPath, settings);
         }
     }
 }

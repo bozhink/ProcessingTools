@@ -8,11 +8,11 @@
     using System.Xml;
 
     using Contracts.Taggers;
+    using Models.Taggers;
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Xml.Extensions;
 
-    // TODO: xpathTemplate should be changed to user Linq
     public class ContentTagger : IContentTagger
     {
         private readonly ILogger logger;
@@ -27,14 +27,13 @@
             XmlElement tagModel,
             string xpath,
             IDocument document,
-            bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            IContentTaggerSettings settings)
         {
             foreach (string textToTag in textToTagList)
             {
                 try
                 {
-                    await this.TagContentInDocument(textToTag, tagModel, xpath, document, caseSensitive, minimalTextSelect);
+                    await this.TagContentInDocument(textToTag, tagModel, xpath, document, settings);
                 }
                 catch (Exception e)
                 {
@@ -48,16 +47,15 @@
             XmlElement tagModel,
             string xpath,
             IDocument document,
-            bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            IContentTaggerSettings settings)
         {
             XmlElement item = (XmlElement)tagModel.CloneNode(true);
             item.InnerText = textToTag;
 
-            await this.TagContentInDocument(item, xpath, document, caseSensitive, minimalTextSelect);
+            await this.TagContentInDocument(item, xpath, document, settings);
         }
 
-        public async Task TagContentInDocument(IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, params XmlElement[] items)
+        public async Task TagContentInDocument(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items)
         {
             if (nodeList == null || nodeList.Count() < 1)
             {
@@ -69,7 +67,7 @@
                 return;
             }
 
-            string caseSensitiveness = caseSensitive ? string.Empty : "(?i)";
+            string caseSensitiveness = settings.CaseSensitive ? string.Empty : "(?i)";
 
             foreach (var node in nodeList)
             {
@@ -98,7 +96,7 @@
                     else
                     {
                         string textToTagPattern = startWordBound + Regex.Replace(textToTagEscaped, @"([^\\])(?!\Z)", "$1(?:<[^>]*>)*") + endWordBound;
-                        if (!minimalTextSelect)
+                        if (!settings.MinimalTextSelect)
                         {
                             textToTagPattern = @"(?:<[\w\!][^>]*>)*" + textToTagPattern + @"(?:<[\/\!][^>]*>)*";
                         }
@@ -125,21 +123,19 @@
         /// <param name="item">XmlElement to be set in the XmlDocument.</param>
         /// <param name="xpath">XPath string.</param>
         /// <param name="document">IDocument object to be tagged.</param>
-        /// <param name="caseSensitive">Should be the search case sensitive?</param>
-        /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
+        /// <param name="settings">Tagging settings.</param>
         /// <returns></returns>
         private async Task TagContentInDocument(
             XmlElement item,
             string xpath,
             IDocument document,
-            bool caseSensitive = true,
-            bool minimalTextSelect = false)
+            IContentTaggerSettings settings)
         {
             var nodeList = document.SelectNodes(xpath)
                 .AsEnumerable()
-                .Where(this.GetMatchNodePredicate(item.InnerText, caseSensitive));
+                .Where(this.GetMatchNodePredicate(item.InnerText, settings.CaseSensitive));
 
-            await this.TagContentInDocument(nodeList, caseSensitive, minimalTextSelect, item);
+            await this.TagContentInDocument(nodeList, settings, item);
         }
 
         private Func<XmlNode, bool> GetMatchNodePredicate(string value, bool caseSensitive)

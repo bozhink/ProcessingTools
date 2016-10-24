@@ -8,6 +8,6 @@
 
     public interface IStringTagger
     {
-        Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPathTemplate);
+        Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPath);
     }
 }

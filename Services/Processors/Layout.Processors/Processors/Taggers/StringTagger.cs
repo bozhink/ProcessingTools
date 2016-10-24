@@ -7,6 +7,7 @@
     using System.Xml;
 
     using Contracts.Taggers;
+    using Models.Taggers;
 
     using ProcessingTools.Contracts;
 
@@ -24,7 +25,7 @@
             this.contentTagger = contentTagger;
         }
 
-        public async Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPathTemplate)
+        public async Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPath)
         {
             if (document == null)
             {
@@ -41,9 +42,9 @@
                 throw new ArgumentNullException(nameof(tagModel));
             }
 
-            if (string.IsNullOrWhiteSpace(contentNodesXPathTemplate))
+            if (string.IsNullOrWhiteSpace(contentNodesXPath))
             {
-                throw new ArgumentNullException(nameof(contentNodesXPathTemplate));
+                throw new ArgumentNullException(nameof(contentNodesXPath));
             }
 
             var itemsToTag = data.ToList()
@@ -51,13 +52,13 @@
                 .OrderByDescending(i => i.Length)
                 .ToList();
 
-            await this.contentTagger.TagContentInDocument(
-                itemsToTag,
-                tagModel,
-                contentNodesXPathTemplate,
-                document,
-                caseSensitive: false,
-                minimalTextSelect: true);
+            var settings = new ContentTaggerSettings
+            {
+                CaseSensitive = false,
+                MinimalTextSelect = true
+            };
+
+            await this.contentTagger.TagContentInDocument(itemsToTag, tagModel, contentNodesXPath, document, settings);
 
             return true;
         }

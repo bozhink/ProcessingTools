@@ -11,6 +11,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
 
     public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
     {
@@ -61,7 +62,13 @@
                     Identifier = string.Join("|", t.Identifiers)
                 });
 
-            await this.contentTagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, false, true);
+            var settings = new ContentTaggerSettings
+            {
+                CaseSensitive = false,
+                MinimalTextSelect = true
+            };
+
+            await this.contentTagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, settings);
 
             return true;
         }

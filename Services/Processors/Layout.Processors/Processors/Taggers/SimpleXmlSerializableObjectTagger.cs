@@ -7,6 +7,7 @@
     using System.Xml;
 
     using Contracts.Taggers;
+    using Models.Taggers;
 
     using ProcessingTools.Serialization.Contracts;
 
@@ -33,7 +34,7 @@
             this.contentTagger = contentTagger;
         }
 
-        public async Task<object> Tag(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> data, string contentNodesXPath, bool caseSensitive, bool minimalTextSelect)
+        public async Task<object> Tag(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> data, string contentNodesXPath, IContentTaggerSettings settings)
         {
             if (context == null)
             {
@@ -55,6 +56,11 @@
                 throw new ArgumentNullException(nameof(contentNodesXPath));
             }
 
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             this.serializer.SetNamespaces(namespaceManager);
 
             var nodeList = context.SelectNodes(contentNodesXPath, namespaceManager)
@@ -66,11 +72,7 @@
                 .OrderByDescending(i => i.InnerText.Length)
                 .ToArray();
 
-            await this.contentTagger.TagContentInDocument(
-                nodeList: nodeList,
-                caseSensitive: caseSensitive,
-                minimalTextSelect: minimalTextSelect,
-                items: items);
+            await this.contentTagger.TagContentInDocument(nodeList, settings, items);
 
             return true;
         }

@@ -16,6 +16,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Xml.Extensions;
 
     public class LowerTaxaTagger : TaxaTagger, ILowerTaxaTagger
@@ -26,7 +27,7 @@
 
         private const string StructureXPathTemplate = ".//p|.//title|.//article-meta/title-group|.//label|.//license-p|.//li|.//th|.//td|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
 
-        private const string LowerTaxaXPathTemplate = ".//p|.//td|.//th|.//li|.//article-title|.//title|.//label|.//ref|.//kwd|.//tp:nomenclature-citation|.//*[@object_id='95']|.//*[@object_id='90']|.//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']";
+        private const string LowerTaxaXPath = ".//p|.//td|.//th|.//li|.//article-title|.//title|.//label|.//ref|.//kwd|.//tp:nomenclature-citation|.//*[@object_id='95']|.//*[@object_id='90']|.//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']";
 
         private const string ItalicXPath = ".//i[not(tn)]|.//italic[not(tn)]|.//Italic[not(tn)]";
 
@@ -358,13 +359,13 @@
             {
                 try
                 {
-                    await this.contentTagger.TagContentInDocument(
-                        item, 
-                        tagModel,
-                        LowerTaxaXPathTemplate,
-                        document,
-                        true,
-                        true);
+                    var settings = new ContentTaggerSettings
+                    {
+                        CaseSensitive = true,
+                        MinimalTextSelect = true
+                    };
+
+                    await this.contentTagger.TagContentInDocument(item, tagModel, LowerTaxaXPath, document, settings);
                 }
                 catch (Exception e)
                 {
