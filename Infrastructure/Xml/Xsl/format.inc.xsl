@@ -397,12 +397,12 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="size[not(@units)]">
+  <xsl:template match="size[string(@units)='']">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
       <xsl:attribute name="units">
         <xsl:choose>
-          <xsl:when test="contains(string(.), 'pp')">
+          <xsl:when test="contains(string(.), 'pp') or contains(string(.), 'Pp') or contains(string(.), 'PP')">
             <xsl:text>page</xsl:text>
           </xsl:when>
           <xsl:otherwise>
