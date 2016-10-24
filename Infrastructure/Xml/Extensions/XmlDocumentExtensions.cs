@@ -5,7 +5,6 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using System.Xml.Serialization;
 
     using ProcessingTools.Common;
 
@@ -147,31 +146,6 @@
             catch
             {
             }
-        }
-
-        /// <summary>
-        /// Gets XmlReader object from a XmlNode.
-        /// </summary>
-        /// <param name="node">XmlNode object to be wrapped in XmlReader.</param>
-        /// <returns>XmlReader object for the input XmlNode.</returns>
-        public static XmlReader ToXmlReader(this XmlNode node)
-        {
-            XmlReader reader = new XmlNodeReader(node);
-            return reader;
-        }
-
-        /// <summary>
-        /// Deserializes XmlDocument object to Serializable object of type T.
-        /// </summary>
-        /// <typeparam name="T">Serializable object type as output type.</typeparam>
-        /// <param name="document">XmlDocument object to be deserialized.</param>
-        /// <returns>Deserialized serializable object of type T.</returns>
-        public static T Deserialize<T>(this XmlDocument document)
-            where T : class
-        {
-            var serializer = new XmlSerializer(typeof(T));
-            T result = (T)serializer.Deserialize(document.ToXmlReader());
-            return result;
         }
 
         /// <summary>
