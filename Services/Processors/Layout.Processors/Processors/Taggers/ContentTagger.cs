@@ -22,13 +22,33 @@
             this.logger = logger;
         }
 
-        public async Task TagContentInDocument(
-            IEnumerable<string> textToTagList,
-            XmlElement tagModel,
-            string xpath,
-            IDocument document,
-            IContentTaggerSettings settings)
+        public async Task TagContentInDocument(IEnumerable<string> textToTagList, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
         {
+            if (textToTagList == null)
+            {
+                throw new ArgumentNullException(nameof(textToTagList));
+            }
+
+            if (tagModel == null)
+            {
+                throw new ArgumentNullException(nameof(tagModel));
+            }
+
+            if (string.IsNullOrWhiteSpace(xpath))
+            {
+                throw new ArgumentNullException(nameof(xpath));
+            }
+
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             foreach (string textToTag in textToTagList)
             {
                 try
@@ -42,13 +62,33 @@
             }
         }
 
-        public async Task TagContentInDocument(
-            string textToTag,
-            XmlElement tagModel,
-            string xpath,
-            IDocument document,
-            IContentTaggerSettings settings)
+        public async Task TagContentInDocument(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
         {
+            if (string.IsNullOrWhiteSpace(textToTag))
+            {
+                throw new ArgumentNullException(nameof(textToTag));
+            }
+
+            if (tagModel == null)
+            {
+                throw new ArgumentNullException(nameof(tagModel));
+            }
+
+            if (string.IsNullOrWhiteSpace(xpath))
+            {
+                throw new ArgumentNullException(nameof(xpath));
+            }
+
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             XmlElement item = (XmlElement)tagModel.CloneNode(true);
             item.InnerText = textToTag;
 
@@ -60,6 +100,11 @@
             if (nodeList == null || nodeList.Count() < 1)
             {
                 return;
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
             }
 
             if (items == null || items.Length < 1)
