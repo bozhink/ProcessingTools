@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Xml.Serialization;
 
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants.Schema;
 
     [Serializable]
     [DesignerCategory("code")]

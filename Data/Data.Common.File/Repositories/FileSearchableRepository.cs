@@ -7,9 +7,9 @@
 
     using Contracts;
 
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Types;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.File.Contracts;
 
     public class FileSearchableRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileSearchableRepository<TEntity>

@@ -5,8 +5,8 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Types;
+    using ProcessingTools.Constants;
 
     public interface ISearchableRepository<T> : IRepository<T>
     {

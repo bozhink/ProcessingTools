@@ -8,8 +8,8 @@
     using Contracts;
 
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Models.Contracts;
     using ProcessingTools.Extensions;
 

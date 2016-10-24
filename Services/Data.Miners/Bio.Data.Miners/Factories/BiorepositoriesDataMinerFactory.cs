@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
 
     using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants;
 
     public abstract class BiorepositoriesDataMinerFactory<TModel, TServiceModel>
         where TServiceModel : class

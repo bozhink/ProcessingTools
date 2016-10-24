@@ -12,8 +12,8 @@
 
     using Microsoft.AspNet.Identity;
 
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Extensions;

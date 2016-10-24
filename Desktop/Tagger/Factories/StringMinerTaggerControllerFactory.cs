@@ -6,7 +6,7 @@
 
     using Contracts;
 
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Common.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;

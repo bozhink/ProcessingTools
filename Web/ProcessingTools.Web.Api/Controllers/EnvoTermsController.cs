@@ -8,7 +8,7 @@
     using Models.EnvoTerms;
 
     using ProcessingTools.Bio.Environments.Services.Data.Contracts;
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants;
 
     public class EnvoTermsController : ApiController
     {

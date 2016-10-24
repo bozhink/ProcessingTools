@@ -72,6 +72,10 @@
       <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>

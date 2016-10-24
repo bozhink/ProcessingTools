@@ -9,8 +9,8 @@
     using Elasticsearch.Contracts;
     using Nest;
 
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Expressions.Contracts;
     using ProcessingTools.Data.Common.Models.Contracts;
 

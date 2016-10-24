@@ -6,7 +6,7 @@
 
     using Contracts.ZooBank;
 
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 

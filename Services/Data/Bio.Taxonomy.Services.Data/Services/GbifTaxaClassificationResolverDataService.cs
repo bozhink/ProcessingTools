@@ -15,7 +15,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants;
 
     public class GbifTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationResolverDataService
     {

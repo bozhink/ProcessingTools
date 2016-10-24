@@ -434,6 +434,10 @@
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj">
       <Project>{b48536c1-3eb5-41a1-b9e0-66f03f3882f9}</Project>
       <Name>Geo.Harvesters</Name>

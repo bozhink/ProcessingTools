@@ -11,8 +11,8 @@
     using Models;
 
     using ProcessingTools.Common;
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Repositories.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
     using ProcessingTools.Documents.Data.Models;

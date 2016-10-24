@@ -8,7 +8,7 @@
 
     using Contracts;
 
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;

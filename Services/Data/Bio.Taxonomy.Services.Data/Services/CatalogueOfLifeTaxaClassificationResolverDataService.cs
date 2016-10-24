@@ -16,7 +16,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
     using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants;
 
     public class CatalogueOfLifeTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolverDataService
     {

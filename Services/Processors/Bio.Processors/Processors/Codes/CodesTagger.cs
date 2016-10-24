@@ -17,7 +17,7 @@ namespace ProcessingTools.Bio.Processors.Codes
     using Contracts.Transformers;
     using Models.Codes;
 
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Content;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Common.Constants
+﻿namespace ProcessingTools.Constants.Schema
 {
     public sealed class XPathConstants
     {

@@ -7,9 +7,11 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+
     using Microsoft.AspNet.Identity.Owin;
-    using ProcessingTools.Common.Constants;
+
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants;
     using ProcessingTools.Documents.Data;
     using ProcessingTools.Documents.Data.Models;
     using ProcessingTools.Documents.Services.Data.Contracts;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Common.Constants
+﻿namespace ProcessingTools.Constants
 {
     public sealed class Assemblies
     {

@@ -7,9 +7,9 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Types;
+    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Repositories.Contracts;
 
     public abstract class RepositoryMultiDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>

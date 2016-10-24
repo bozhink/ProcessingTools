@@ -8,9 +8,9 @@
 
     using Contracts;
 
-    using ProcessingTools.Common.Constants;
     using ProcessingTools.Common.Types;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
     public abstract class EntitySearchableRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IDisposable

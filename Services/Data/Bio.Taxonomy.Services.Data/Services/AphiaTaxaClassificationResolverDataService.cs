@@ -14,7 +14,7 @@
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
     using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Common.Constants;
+    using ProcessingTools.Constants;
 
     public class AphiaTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationResolverDataService
     {
