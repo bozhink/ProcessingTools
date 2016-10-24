@@ -25,7 +25,7 @@
         public async Task TagContentInDocument(
             IEnumerable<string> textToTagList,
             XmlElement tagModel,
-            string xpathTemplate,
+            string xpath,
             IDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false)
@@ -34,7 +34,7 @@
             {
                 try
                 {
-                    await this.TagContentInDocument(textToTag, tagModel, xpathTemplate, document, caseSensitive, minimalTextSelect);
+                    await this.TagContentInDocument(textToTag, tagModel, xpath, document, caseSensitive, minimalTextSelect);
                 }
                 catch (Exception e)
                 {
@@ -46,7 +46,7 @@
         public async Task TagContentInDocument(
             string textToTag,
             XmlElement tagModel,
-            string xpathTemplate,
+            string xpath,
             IDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false)
@@ -54,7 +54,7 @@
             XmlElement item = (XmlElement)tagModel.CloneNode(true);
             item.InnerText = textToTag;
 
-            await this.TagContentInDocument(item, xpathTemplate, document, caseSensitive, minimalTextSelect);
+            await this.TagContentInDocument(item, xpath, document, caseSensitive, minimalTextSelect);
         }
 
         public async Task TagContentInDocument(IEnumerable<XmlNode> nodeList, bool caseSensitive, bool minimalTextSelect, params XmlElement[] items)
@@ -123,22 +123,35 @@
         /// Tags plain text string (no regex) in XmlDocument.
         /// </summary>
         /// <param name="item">XmlElement to be set in the XmlDocument.</param>
-        /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
+        /// <param name="xpath">XPath string.</param>
         /// <param name="document">IDocument object to be tagged.</param>
         /// <param name="caseSensitive">Should be the search case sensitive?</param>
         /// <param name="minimalTextSelect">Select minimal text or extend to surrounding tags.</param>
         /// <returns></returns>
         private async Task TagContentInDocument(
             XmlElement item,
-            string xpathTemplate,
+            string xpath,
             IDocument document,
             bool caseSensitive = true,
             bool minimalTextSelect = false)
         {
-            string xpath = string.Format(xpathTemplate, $"contains(string(.),'{item.InnerText}')");
-            var nodeList = document.SelectNodes(xpath);
+            var nodeList = document.SelectNodes(xpath)
+                .AsEnumerable()
+                .Where(this.GetMatchNodePredicate(item.InnerText, caseSensitive));
 
             await this.TagContentInDocument(nodeList, caseSensitive, minimalTextSelect, item);
+        }
+
+        private Func<XmlNode, bool> GetMatchNodePredicate(string value, bool caseSensitive)
+        {
+            if (caseSensitive)
+            {
+                return x => x.InnerText.Contains(value);
+            }
+            else
+            {
+                return x => x.InnerText.ToLower().Contains(value.ToLower());
+            }
         }
     }
 }

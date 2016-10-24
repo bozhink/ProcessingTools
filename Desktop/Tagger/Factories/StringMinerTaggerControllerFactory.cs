@@ -68,7 +68,7 @@
                 var textContent = document.XmlDocument.GetTextContent();
                 var data = await this.miner.Mine(textContent);
 
-                await this.tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPathTemplate);
+                await this.tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPath);
 
                 context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }

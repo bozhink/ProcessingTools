@@ -24,12 +24,11 @@
         private const string InfragenericRankSubpattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";
         private const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|mod|sp|var|subvar|subsp|sbsp|subspec|subspecies|ssp|race|rassa|fo?|forma?|st|r|sf|cf|gr|n\.?\s*sp|nr|(?:sp(?:\.\s*|\s+))?(?:near|aff)|prope|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?(?:\s*[γβɑ])?(?:\s*\bn(?:ova?)?\b\.?)?|×|\?)";
 
-        private const string StructureXPathTemplate = "//p[{0}]|//title[{0}]|//article-meta/title-group[{0}]|//label[{0}]|//license-p[{0}]|//li[{0}]|//th[{0}]|//td[{0}]|//mixed-citation[{0}]|//element-citation[{0}]|//nlm-citation[{0}]|//tp:nomenclature-citation[{0}]";
+        private const string StructureXPathTemplate = ".//p|.//title|.//article-meta/title-group|.//label|.//license-p|.//li|.//th|.//td|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
 
-        // private const string LowerTaxaXPathTemplate = "//i[{0}]|//italic[{0}]|//Italic[{0}]";
-        private const string LowerTaxaXPathTemplate = "//p[{0}]|//td[{0}]|//th[{0}]|//li[{0}]|//article-title[{0}]|//title[{0}]|//label[{0}]|//ref[{0}]|//kwd[{0}]|//tp:nomenclature-citation[{0}]|//*[@object_id='95'][{0}]|//*[@object_id='90'][{0}]|//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48'][{0}]";
+        private const string LowerTaxaXPathTemplate = ".//p|.//td|.//th|.//li|.//article-title|.//title|.//label|.//ref|.//kwd|.//tp:nomenclature-citation|.//*[@object_id='95']|.//*[@object_id='90']|.//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']";
 
-        private const string ItalicXPath = "//i[not(tn)]|//italic[not(tn)]|//Italic[not(tn)]";
+        private const string ItalicXPath = ".//i[not(tn)]|.//italic[not(tn)]|.//Italic[not(tn)]";
 
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
@@ -81,7 +80,7 @@
                 "$1‘$2’ $4$3");
 
             this.AdvancedTagLowerTaxa(document, string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
-            ////this.Xml = this.TagInfraspecificTaxa(this.Xml);
+            //// this.Xml = this.TagInfraspecificTaxa(this.Xml);
         }
 
         private void TagDirectTaxonomicMatches(IDocument document, IEnumerable<string> taxonomicNames)
@@ -115,7 +114,7 @@
 
         private IEnumerable<string> GetKnownLowerTaxa(IDocument document)
         {
-            var result = document.SelectNodes("//tn[@type='lower']")
+            var result = document.SelectNodes(".//tn[@type='lower']")
                 .Select(x => x.InnerText)
                 .ToArray();
 
@@ -129,7 +128,7 @@
                 .AsParallel()
                 .ForAll(this.TagInfrarankTaxaSync);
 
-            document.SelectNodes("//value[.//tn[@type='lower']]")
+            document.SelectNodes(".//value[.//tn[@type='lower']]")
                 .AsParallel()
                 .ForAll(this.TagInfrarankTaxaSync);
         }
@@ -322,9 +321,9 @@
 
         private async Task DeepTag(IDocument document)
         {
-            var knownLowerTaxaNamesXml = new HashSet<string>(document.SelectNodes("//tn[@type='lower']").Select(x => x.InnerXml));
+            var knownLowerTaxaNamesXml = new HashSet<string>(document.SelectNodes(".//tn[@type='lower']").Select(x => x.InnerXml));
 
-            //////string clearUselessTaxonNamePartsSubpattern = string.Join(
+            ////// string clearUselessTaxonNamePartsSubpattern = string.Join(
             //////    "|",
             //////    SpeciesPartsPrefixesResolver
             //////        .SpeciesPartsRanks
@@ -339,7 +338,7 @@
                 .Distinct()
                 .ToList();
 
-            taxa.AddRange(document.SelectNodes("//treatment//species_name/fields | //checklist_taxon/fields")
+            taxa.AddRange(document.SelectNodes(".//treatment//species_name/fields | .//checklist_taxon/fields")
                 .Select(this.GetSystemTaxonNameString)
                 .Where(t => !string.IsNullOrWhiteSpace(t))
                 .Distinct()
