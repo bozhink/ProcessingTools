@@ -54,15 +54,6 @@
         }
 
         /// <summary>
-        /// Removes XmlNode object from the DOM object.
-        /// </summary>
-        /// <param name="node">XmlNode object to be removed.</param>
-        public static void RemoveXmlNodes(this XmlNode node)
-        {
-            node.ParentNode.RemoveChild(node);
-        }
-
-        /// <summary>
         /// Removes XmlNode objects from the DOM object.
         /// </summary>
         /// <param name="nodeList">List of XmlNode objects to be removed.</param>
@@ -70,7 +61,7 @@
         {
             foreach (XmlNode node in nodeList)
             {
-                node.RemoveXmlNodes();
+                node.ParentNode.RemoveChild(node);
             }
         }
 
