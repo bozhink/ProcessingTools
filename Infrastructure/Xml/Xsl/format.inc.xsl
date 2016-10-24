@@ -23,6 +23,53 @@
 
   <xsl:template match="article_figs_and_tables[not(*)]" />
 
+  <!-- Clear double-format tags -->
+  <!-- Italics -->
+  <xsl:template match="i//i | i//em | i//italic | i//Italic">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="em//i | em//em | em//italic | em//Italic">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="italic//i | italic//em | italic//italic | italic//Italic">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="Italic//i | Italic//em | Italic//italic | Italic//Italic">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <!-- Bolds -->
+  <xsl:template match="b//b | b//strong | b//bold | b//Bold">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="strong//b | strong//strong | strong//bold | strong//Bold">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="bold//b | bold//strong | bold//bold | bold//Bold">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="Bold//b | Bold//strong | Bold//bold | Bold//Bold">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <!-- Remove empty format tags-->
+  <!-- Italics -->
+  <xsl:template match="i[not(node())] | em[not(node())] | italic[not(node())] | Italic[not(node())]" />
+
+  <!-- Bolds -->
+  <xsl:template match="b[not(node())] | strong[not(node())] | bold[not(node())] | Bold[not(node())]" />
+
+  <!-- Text-lines -->
+  <xsl:template match="u[not(node())] | underline[not(node())] | overline[not(node())] | s[not(node())] | strike[not(node())]" />
+
+  <!---->
+
   <xsl:template match="named-content">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
