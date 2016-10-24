@@ -11,6 +11,8 @@
 
   <xsl:template match="@class | @title | @href | @elem-name | @target | *[@xlink:type]/@type"></xsl:template>
 
+  <xsl:template match="ul/@type | ol/@type"></xsl:template>
+
   <xsl:template match="*[not(@elem-name)]">
     <xsl:apply-templates />
   </xsl:template>
