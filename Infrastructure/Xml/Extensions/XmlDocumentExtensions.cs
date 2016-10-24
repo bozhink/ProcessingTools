@@ -5,45 +5,12 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using System.Xml.Linq;
     using System.Xml.Serialization;
 
     using ProcessingTools.Common;
 
     public static class XmlDocumentExtensions
     {
-        /// <summary>
-        /// Converts XmlDocument to XDocument.
-        /// Original source: <see cref="http://stackoverflow.com/questions/1508572/converting-xdocument-to-xmldocument-and-vice-versa"/>
-        /// </summary>
-        /// <param name="xmlDocument">XmlDocument instance to be converted.</param>
-        /// <returns></returns>
-        public static XDocument XmlToXDocument(this XmlDocument xmlDocument)
-        {
-            using (XmlNodeReader nodeReader = new XmlNodeReader(xmlDocument))
-            {
-                nodeReader.MoveToContent();
-                return XDocument.Load(nodeReader);
-            }
-        }
-
-        /// <summary>
-        /// Converts XDocument to XmlDocument.
-        /// Original source: <see cref="http://stackoverflow.com/questions/1508572/converting-xdocument-to-xmldocument-and-vice-versa"/>
-        /// </summary>
-        /// <param name="document">XDocument instance to be converted.</param>
-        /// <returns></returns>
-        public static XmlDocument XToXmlDocument(this XDocument document)
-        {
-            XmlDocument xmlDocument = new XmlDocument();
-            using (XmlReader xmlReader = document.CreateReader())
-            {
-                xmlDocument.Load(xmlReader);
-            }
-
-            return xmlDocument;
-        }
-
         public static XmlDocument ToXmlDocument(this string document)
         {
             XmlDocument result = new XmlDocument
