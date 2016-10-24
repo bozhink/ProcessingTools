@@ -397,7 +397,7 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="size[string(@units)='']">
+  <xsl:template match="size[normalize-space(@units)='']">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
       <xsl:attribute name="units">
@@ -408,6 +408,31 @@
           <xsl:otherwise>
             <!-- Unknown units type -->
             <xsl:text></xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="date-in-citation[normalize-space(@content-type)='']">
+    <xsl:variable name="content">
+      <xsl:call-template name="to-lower-case">
+        <xsl:with-param name="string" select="string(.)" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="content-type">
+        <xsl:choose>
+          <xsl:when test="contains($content, 'update')">
+            <xsl:text>update-date</xsl:text>
+          </xsl:when>
+          <xsl:when test="contains($content, 'publish') or contains($content, 'publication')">
+            <xsl:text>publish-date</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>access-date</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
@@ -452,5 +477,10 @@
       <xsl:value-of select="$prefix" />
       <xsl:value-of select="generate-id()" />
     </xsl:attribute>
+  </xsl:template>
+
+  <xsl:template name="to-lower-case">
+    <xsl:param name="string" />
+    <xsl:value-of select="translate($string, 'QWERTYUIOPASDFGHJKLZXCVBNM', 'qwertyuiopasdfghjklzxcvbnm')" />
   </xsl:template>
 </xsl:stylesheet>
