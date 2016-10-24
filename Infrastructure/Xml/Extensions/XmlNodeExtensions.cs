@@ -116,12 +116,6 @@
             return document;
         }
 
-        public static IEnumerable<string> GetStringListOfUniqueXmlNodeContent(this IEnumerable xmlNodeList)
-        {
-            var result = xmlNodeList.Cast<XmlNode>().Select(c => c.InnerText);
-            return new HashSet<string>(result);
-        }
-
         public static IEnumerable<string> GetStringListOfUniqueXmlNodes(this XmlNode xml, string xpath)
         {
             XmlNodeList nodeList = xml.SelectNodes(xpath);

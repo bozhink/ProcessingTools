@@ -261,9 +261,11 @@ namespace ProcessingTools.Bio.Processors.Codes
         {
             var result = new List<ISpecimenCode>();
 
-            var institutionalCodesXmlNodes = document.SelectNodes(".//institutional_code");
+            var institutionalCodes = document.SelectNodes(".//institutional_code")
+                .Select(c => c.InnerText)
+                .Distinct()
+                .ToList();
 
-            var institutionalCodes = institutionalCodesXmlNodes.GetStringListOfUniqueXmlNodeContent();
             foreach (string institutionalCode in institutionalCodes)
             {
                 /*
