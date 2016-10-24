@@ -12,27 +12,133 @@
 
   <xsl:template match="/">
     <e:external-links>
-      <xsl:for-each select="//ext-link">
-        <xsl:variable name="base-address">
-          <xsl:call-template name="get-base-address">
-            <xsl:with-param name="uri" select="@xlink:href" />
-            <xsl:with-param name="type" select="@ext-link-type" />
-          </xsl:call-template>
-        </xsl:variable>
-
-        <xsl:variable name="uri">
-          <xsl:call-template name="get-uri">
-            <xsl:with-param name="uri" select="@xlink:href" />
-            <xsl:with-param name="type" select="@ext-link-type" />
-            <xsl:with-param name="base-address" select="$base-address" />
-          </xsl:call-template>
-        </xsl:variable>
-
-        <e:external-link base-address="{$base-address}" uri="{$uri}">
-          <xsl:value-of select="string(.)" />
-        </e:external-link>
-      </xsl:for-each>
+      <xsl:call-template name="harvest-ext-link" />
+      <xsl:call-template name="harvest-a" />
+      <xsl:call-template name="harvest-url" />
+      <xsl:call-template name="harvest-doi" />
     </e:external-links>
+  </xsl:template>
+
+  <xsl:template name="harvest-ext-link">
+    <xsl:for-each select="//ext-link">
+      <xsl:variable name="base-address">
+        <xsl:call-template name="get-base-address">
+          <xsl:with-param name="uri" select="@xlink:href" />
+          <xsl:with-param name="type" select="@ext-link-type" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="uri">
+        <xsl:call-template name="get-uri">
+          <xsl:with-param name="uri" select="@xlink:href" />
+          <xsl:with-param name="type" select="@ext-link-type" />
+          <xsl:with-param name="base-address" select="$base-address" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <e:external-link base-address="{$base-address}" uri="{$uri}">
+        <xsl:value-of select="string(.)" />
+      </e:external-link>
+
+      <xsl:call-template name="print">
+        <xsl:with-param name="base-address" select="$base-address" />
+        <xsl:with-param name="uri" select="$uri" />
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="harvest-a">
+    <xsl:for-each select="//a">
+      <xsl:variable name="base-address">
+        <xsl:call-template name="get-base-address">
+          <xsl:with-param name="uri" select="@href" />
+          <xsl:with-param name="type" select="'uri'" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="uri">
+        <xsl:call-template name="get-uri">
+          <xsl:with-param name="uri" select="@href" />
+          <xsl:with-param name="type" select="'uri'" />
+          <xsl:with-param name="base-address" select="$base-address" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <e:external-link base-address="{$base-address}" uri="{$uri}">
+        <xsl:value-of select="string(.)" />
+      </e:external-link>
+
+      <xsl:call-template name="print">
+        <xsl:with-param name="base-address" select="$base-address" />
+        <xsl:with-param name="uri" select="$uri" />
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="harvest-url">
+    <xsl:for-each select="//url | //homepage">
+      <xsl:variable name="base-address">
+        <xsl:call-template name="get-base-address">
+          <xsl:with-param name="uri" select="normalize-space(.)" />
+          <xsl:with-param name="type" select="'uri'" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="uri">
+        <xsl:call-template name="get-uri">
+          <xsl:with-param name="uri" select="normalize-space(.)" />
+          <xsl:with-param name="type" select="'uri'" />
+          <xsl:with-param name="base-address" select="$base-address" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <e:external-link base-address="{$base-address}" uri="{$uri}">
+        <xsl:value-of select="string(.)" />
+      </e:external-link>
+
+      <xsl:call-template name="print">
+        <xsl:with-param name="base-address" select="$base-address" />
+        <xsl:with-param name="uri" select="$uri" />
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="harvest-doi">
+    <xsl:for-each select="//doi">
+      <xsl:variable name="base-address">
+        <xsl:call-template name="get-base-address">
+          <xsl:with-param name="uri" select="normalize-space(.)" />
+          <xsl:with-param name="type" select="'doi'" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:variable name="uri">
+        <xsl:call-template name="get-uri">
+          <xsl:with-param name="uri" select="normalize-space(.)" />
+          <xsl:with-param name="type" select="'doi'" />
+          <xsl:with-param name="base-address" select="$base-address" />
+        </xsl:call-template>
+      </xsl:variable>
+
+      <e:external-link base-address="{$base-address}" uri="{$uri}">
+        <xsl:value-of select="string(.)" />
+      </e:external-link>
+
+      <xsl:call-template name="print">
+        <xsl:with-param name="base-address" select="$base-address" />
+        <xsl:with-param name="uri" select="$uri" />
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template name="print">
+    <xsl:param name="base-address" />
+    <xsl:param name="uri" />
+    <xsl:message terminate="no">
+      <xsl:value-of select="$base-address" />
+      <xsl:text>/</xsl:text>
+      <xsl:value-of select="$uri" />
+    </xsl:message>
   </xsl:template>
 
   <xsl:template name="get-base-address">
