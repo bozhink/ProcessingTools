@@ -33,7 +33,7 @@
 
         protected override async Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
-            var items = await this.transformer.Deserialize<AbbreviationsXmlModel>(document.OuterXml);
+            var items = await this.transformer.Deserialize<AbbreviationsXmlModel>(document.DocumentElement);
 
             if (items?.Abbreviations == null)
             {
