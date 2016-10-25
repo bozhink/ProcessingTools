@@ -3,9 +3,9 @@
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
 
-    using ProcessingTools.Data.Common.Models.Contracts;
+    using ProcessingTools.Contracts;
 
-    public class InstitutionLabel : IStringIdEntity
+    public class InstitutionLabel : IStringIdentifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
