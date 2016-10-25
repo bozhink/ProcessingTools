@@ -160,6 +160,7 @@
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
     <Compile Include="Core\DI.cs" />
+    <Compile Include="IProgramSettings.cs" />
     <Compile Include="ISingleFileProcessor.cs" />
     <Compile Include="IStartup.cs" />
     <Compile Include="Models\BiorepositoriesCollectionCodeSerializableModel.cs" />

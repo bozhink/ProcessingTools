@@ -5,7 +5,7 @@
 
     using ProcessingTools.Contracts.Types;
 
-    public class ProgramSettings
+    public class ProgramSettings : IProgramSettings
     {
         private SchemaType articleSchemaType;
         private bool articleSchemaTypeStyleIsLockedForModification;
