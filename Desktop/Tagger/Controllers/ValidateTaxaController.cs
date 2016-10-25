@@ -35,7 +35,7 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             var scientificNames = document.XmlDocument.ExtractTaxa(true)
                 .Select(s => new TaxonNameServiceModel

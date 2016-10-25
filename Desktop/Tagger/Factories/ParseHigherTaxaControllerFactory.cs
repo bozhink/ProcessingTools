@@ -21,7 +21,7 @@
 
         protected abstract IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser { get; }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             await this.Parser.Parse(document.XmlDocument.DocumentElement);
             await document.XmlDocument.PrintNonParsedTaxa(this.logger);

@@ -26,7 +26,7 @@
             this.formatter = formatter;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             await this.formatter.Format(document);
         }

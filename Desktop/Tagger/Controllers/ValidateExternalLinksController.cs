@@ -43,7 +43,7 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             var externalLinks = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
 

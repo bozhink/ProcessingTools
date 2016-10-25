@@ -26,7 +26,7 @@
             this.coordinatesParser = coordinatesParser;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             await this.coordinatesParser.Parse(document.XmlDocument.DocumentElement);
         }

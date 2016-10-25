@@ -28,7 +28,7 @@
             this.tagger = tagger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             await this.tagger.Tag(document);
         }

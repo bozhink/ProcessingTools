@@ -29,7 +29,7 @@
             this.parser = parser;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             await this.parser.Parse(document);
         }

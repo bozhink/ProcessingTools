@@ -24,7 +24,7 @@
 
         protected IDocumentFactory DocumentFactory => this.documentFactory;
 
-        public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, IProgramSettings settings, ILogger logger)
         {
             if (context == null)
             {
@@ -57,6 +57,6 @@
             }
         }
 
-        protected abstract Task Run(IDocument document, ProgramSettings settings);
+        protected abstract Task Run(IDocument document, IProgramSettings settings);
     }
 }

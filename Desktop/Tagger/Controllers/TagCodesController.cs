@@ -47,7 +47,7 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             var textContent = document.XmlDocument.GetTextContent();
             await this.TagInstitutions(document.XmlDocument, document.NamespaceManager, textContent);

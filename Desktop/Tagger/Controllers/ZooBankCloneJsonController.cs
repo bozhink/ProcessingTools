@@ -34,7 +34,7 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             int numberOfFileNames = settings.FileNames.Count();
 

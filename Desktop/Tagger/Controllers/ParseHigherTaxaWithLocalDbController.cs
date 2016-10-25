@@ -34,7 +34,7 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             await this.parser.Parse(document.XmlDocument);
             await document.XmlDocument.PrintNonParsedTaxa(this.logger);

@@ -26,7 +26,7 @@
             this.tagger = tagger;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             this.tagger.ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath;
             await this.tagger.Tag(document.XmlDocument.DocumentElement);

@@ -26,7 +26,7 @@
             this.provider = provider;
         }
 
-        protected override Task Run(IDocument document, ProgramSettings settings)
+        protected override Task Run(IDocument document, IProgramSettings settings)
         {
             return Task.Run(() =>
             {

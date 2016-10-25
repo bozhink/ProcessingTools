@@ -37,7 +37,7 @@
             this.documentNormalizer = documentNormalizer;
         }
 
-        protected override async Task Run(IDocument document, ProgramSettings settings)
+        protected override async Task Run(IDocument document, IProgramSettings settings)
         {
             await this.tagger.Tag(document);
             await this.documentNormalizer.NormalizeToSystem(document);

@@ -18,7 +18,7 @@
         {
         }
 
-        protected override Task Run(IDocument document, ProgramSettings settings) => Task.Run(() => this.RunSync(document));
+        protected override Task Run(IDocument document, IProgramSettings settings) => Task.Run(() => this.RunSync(document));
 
         // TODO: implement with XSLT
         private void RunSync(IDocument document)

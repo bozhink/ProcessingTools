@@ -42,7 +42,7 @@
 
         protected abstract XmlElement TagModel { get; }
 
-        public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, ProgramSettings settings, ILogger logger)
+        public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, IProgramSettings settings, ILogger logger)
         {
             if (context == null)
             {
