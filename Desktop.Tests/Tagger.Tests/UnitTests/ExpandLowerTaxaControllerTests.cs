@@ -7,20 +7,24 @@
     using NUnit.Framework;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Tests.Library;
 
-    [TestFixture]
+    [TestFixture(TestOf = typeof(ExpandLowerTaxaController))]
     public class ExpandLowerTaxaControllerTests
     {
         private const string CallShouldThrowSystemAggregateExceptionMessage = "Call should throw System.AggregateException.";
         private const string InnerExceptionShouldBeArgumentNullExceptionMessage = "InnerException should be System.ArgumentNullException.";
         private const string ContentShouldBeUnchangedMessage = "Content should be unchanged.";
 
+        private const string DocumentFactoryFieldName = "documentFactory";
+        private const string ParserFieldName = "parser";
+        private const string ContextParameterName = "context";
+
+        private static readonly Type ExpandLowerTaxaControllerType = typeof(ExpandLowerTaxaController);
+
         private XmlDocument document;
         private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
-        private ILogger logger;
-        private IDocumentFactory documentFactory;
-        private IExpander parser;
 
         [SetUp]
         public void Init()
@@ -30,138 +34,217 @@
 
             this.namespaceManager = new XmlNamespaceManager(this.document.NameTable);
             this.settings = new ProgramSettings();
+        }
 
-            var loggerMock = new Mock<ILogger>();
-            this.logger = loggerMock.Object;
-
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExpandLowerTaxaController), Description = "ExpandLowerTaxaController with valid parameters in constructor should return correctly initialized object.")]
+        [Timeout(500)]
+        public void ExpandLowerTaxaController_WithValidParametersInConstructor_ShouldReturnCorrectlyInitializedObject()
+        {
+            // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
-            this.documentFactory = documentFactoryMock.Object;
+            var documentFactory = documentFactoryMock.Object;
 
             var parserMock = new Mock<IExpander>();
-            this.parser = parserMock.Object;
+            var parser = parserMock.Object;
+
+            // Act
+            var controller = new ExpandLowerTaxaController(documentFactory, parser);
+
+            // Asset
+            Assert.IsNotNull(controller);
+
+            var documentFactoryField = PrivateField.GetInstanceField(
+                ExpandLowerTaxaControllerType.BaseType,
+                controller,
+                DocumentFactoryFieldName);
+            Assert.IsNotNull(documentFactoryField);
+            Assert.AreSame(documentFactory, documentFactoryField);
+
+            var parserField = PrivateField.GetInstanceField(
+                ExpandLowerTaxaControllerType,
+                controller,
+                ParserFieldName);
+            Assert.IsNotNull(parserField);
+            Assert.AreSame(parser, parserField);
         }
 
-        [Test]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExpandLowerTaxaController), Description = "ExpandLowerTaxaController with valid parameters in constructor should work.")]
         [Timeout(500)]
-        public void ExpandLowerTaxaController_WithDefaultCnstructor_ShouldReturnValidObject()
+        public void ExpandLowerTaxaController_WithValidParametersInConstructor_ShouldWork()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.IsNotNull(controller, "Controller should not be null.");
-        }
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
-        [Test]
-        [Timeout(500)]
-        public void ExpandLowerTaxaController_RunWithValidParameters_ShouldWork()
-        {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
-
+            // Act
             string initialContent = this.document.OuterXml;
 
-            controller.Run(this.document.DocumentElement, this.namespaceManager, this.settings, this.logger).Wait();
+            controller.Run(this.document.DocumentElement, this.namespaceManager, this.settings, loggerMock.Object).Wait();
 
             string finalContent = this.document.OuterXml;
 
+            // Assert
             Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
 
-        [Test]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExpandLowerTaxaController), Description = "ExpandLowerTaxaController run with null context and valid other parameters should throw async ArgumentNullException with correct ParamName.")]
         [Timeout(500)]
-        public void ExpandLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ExpandLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, this.namespaceManager, this.settings, loggerMock.Object);
+            });
+
+            Assert.AreEqual(ContextParameterName, exception.ParamName);
         }
 
-        [Test]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExpandLowerTaxaController), Description = "ExpandLowerTaxaController run with null context and null namespaceManager and valid other parameters should throw async ArgumentNullException.")]
         [Timeout(500)]
-        public void ExpandLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
+        public void ExpandLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndValidOtherParameters_ShouldThrowArgumentNullException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, this.settings, this.logger).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, null, this.settings, loggerMock.Object);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, this.namespaceManager, null, loggerMock.Object);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, this.namespaceManager, this.settings, null);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, null, this.logger).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, null, null, loggerMock.Object);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, this.settings, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, null, this.settings, null);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, null, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, this.namespaceManager, null, null);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, null, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(null, null, null, null);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullContextAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
             try
             {
-                controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait();
+                controller.Run(null, this.namespaceManager, this.settings, loggerMock.Object).Wait();
             }
             catch (Exception e)
             {
@@ -178,55 +261,87 @@
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(this.document.DocumentElement, null, this.settings, loggerMock.Object);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(this.document.DocumentElement, null, null, loggerMock.Object);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(this.document.DocumentElement, null, this.settings, null);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(this.document.DocumentElement, null, null, null);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
             try
             {
-                controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait();
+                controller.Run(this.document.DocumentElement, null, this.settings, loggerMock.Object).Wait();
             }
             catch (Exception e)
             {
@@ -243,33 +358,52 @@
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(this.document.DocumentElement, this.namespaceManager, null, loggerMock.Object);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
 
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return controller.Run(this.document.DocumentElement, this.namespaceManager, null, null);
+            });
         }
 
         [Test]
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var loggerMock = new Mock<ILogger>();
 
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
+
+            // Act + Assert
             try
             {
-                controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait();
+                controller.Run(this.document.DocumentElement, this.namespaceManager, null, loggerMock.Object).Wait();
             }
             catch (Exception e)
             {
@@ -286,8 +420,12 @@
         [Timeout(500)]
         public void ExpandLowerTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
         {
-            var controller = new ExpandLowerTaxaController(this.documentFactory, this.parser);
+            // Arrange
+            var documentFactoryMock = new Mock<IDocumentFactory>();
+            var parserMock = new Mock<IExpander>();
+            var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
+            // Act + Assert
             string initialContent = this.document.OuterXml;
 
             controller.Run(this.document.DocumentElement, this.namespaceManager, this.settings, null).Wait();
