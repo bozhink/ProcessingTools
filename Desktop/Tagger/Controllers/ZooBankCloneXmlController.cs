@@ -51,6 +51,7 @@
 
         private IDocument ReadSourceDocument(string outputFileName, string sourceFileName)
         {
+            // TODO: DI
             var sourceDocument = this.DocumentFactory.Create();
             var fileProcessorNlm = new XmlFileProcessor(sourceFileName, outputFileName);
             fileProcessorNlm.Read(sourceDocument);

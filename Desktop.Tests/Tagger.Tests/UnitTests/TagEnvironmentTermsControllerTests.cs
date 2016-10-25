@@ -87,7 +87,7 @@
 
             string initialContent = this.document.OuterXml;
 
-            controller.Run(this.document.DocumentElement, this.namespaceManager, this.settings, this.logger).Wait();
+            controller.Run(this.document.DocumentElement, this.settings).Wait();
 
             string finalContent = this.document.OuterXml;
 
@@ -101,7 +101,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait(),
+                () => controller.Run(null, this.settings).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -112,7 +112,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, this.settings, this.logger).Wait(),
+                () => controller.Run(null, this.settings).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -123,7 +123,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, null, this.logger).Wait(),
+                () => controller.Run(null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -134,7 +134,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, this.settings, null).Wait(),
+                () => controller.Run(null, this.settings).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -145,7 +145,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, null, this.logger).Wait(),
+                () => controller.Run(null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -156,7 +156,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, this.settings, null).Wait(),
+                () => controller.Run(null, this.settings).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -167,7 +167,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, this.namespaceManager, null, null).Wait(),
+                () => controller.Run(null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -178,7 +178,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(null, null, null, null).Wait(),
+                () => controller.Run(null, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -190,7 +190,7 @@
 
             try
             {
-                controller.Run(null, this.namespaceManager, this.settings, this.logger).Wait();
+                controller.Run(null, this.settings).Wait();
             }
             catch (Exception e)
             {
@@ -210,7 +210,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait(),
+                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -221,7 +221,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, null, this.logger).Wait(),
+                () => controller.Run(this.document.DocumentElement, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -232,7 +232,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, this.settings, null).Wait(),
+                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -243,7 +243,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null, null, null).Wait(),
+                () => controller.Run(this.document.DocumentElement, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -255,7 +255,7 @@
 
             try
             {
-                controller.Run(this.document.DocumentElement, null, this.settings, this.logger).Wait();
+                controller.Run(this.document.DocumentElement, this.settings).Wait();
             }
             catch (Exception e)
             {
@@ -275,7 +275,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait(),
+                () => controller.Run(this.document.DocumentElement, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -286,7 +286,7 @@
             var controller = new TagEnvironmentTermsController(this.documentFactory, this.tagger);
 
             Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.namespaceManager, null, null).Wait(),
+                () => controller.Run(this.document.DocumentElement, null).Wait(),
                 CallShouldThrowSystemAggregateExceptionMessage);
         }
 
@@ -298,7 +298,7 @@
 
             try
             {
-                controller.Run(this.document.DocumentElement, this.namespaceManager, null, this.logger).Wait();
+                controller.Run(this.document.DocumentElement, null).Wait();
             }
             catch (Exception e)
             {
@@ -319,7 +319,7 @@
 
             string initialContent = this.document.OuterXml;
 
-            controller.Run(this.document.DocumentElement, this.namespaceManager, this.settings, null).Wait();
+            controller.Run(this.document.DocumentElement, this.settings).Wait();
 
             string finalContent = this.document.OuterXml;
 

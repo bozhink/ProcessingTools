@@ -23,7 +23,6 @@
         private static readonly Type ExpandLowerTaxaControllerType = typeof(ExpandLowerTaxaController);
 
         private XmlDocument document;
-        private XmlNamespaceManager namespaceManager;
         private ProgramSettings settings;
 
         [SetUp]
@@ -32,7 +31,6 @@
             this.document = new XmlDocument();
             this.document.LoadXml("<root />");
 
-            this.namespaceManager = new XmlNamespaceManager(this.document.NameTable);
             this.settings = new ProgramSettings();
         }
 
@@ -75,14 +73,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act
             string initialContent = this.document.OuterXml;
 
-            controller.Run(this.document.DocumentElement, this.namespaceManager, this.settings, loggerMock.Object).Wait();
+            controller.Run(this.document.DocumentElement, this.settings).Wait();
 
             string finalContent = this.document.OuterXml;
 
@@ -97,14 +94,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, this.namespaceManager, this.settings, loggerMock.Object);
+                return controller.Run(null, this.settings);
             });
 
             Assert.AreEqual(ContextParameterName, exception.ParamName);
@@ -117,14 +113,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, null, this.settings, loggerMock.Object);
+                return controller.Run(null, this.settings);
             });
         }
 
@@ -135,14 +130,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, this.namespaceManager, null, loggerMock.Object);
+                return controller.Run(null, null);
             });
         }
 
@@ -159,7 +153,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, this.namespaceManager, this.settings, null);
+                return controller.Run(null, this.settings);
             });
         }
 
@@ -170,14 +164,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, null, null, loggerMock.Object);
+                return controller.Run(null, null);
             });
         }
 
@@ -193,7 +186,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, null, this.settings, null);
+                return controller.Run(null, this.settings);
             });
         }
 
@@ -210,7 +203,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, this.namespaceManager, null, null);
+                return controller.Run(null, null);
             });
         }
 
@@ -226,7 +219,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(null, null, null, null);
+                return controller.Run(null, null);
             });
         }
 
@@ -237,14 +230,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             try
             {
-                controller.Run(null, this.namespaceManager, this.settings, loggerMock.Object).Wait();
+                controller.Run(null, this.settings).Wait();
             }
             catch (Exception e)
             {
@@ -264,14 +256,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(this.document.DocumentElement, null, this.settings, loggerMock.Object);
+                return controller.Run(this.document.DocumentElement, this.settings);
             });
         }
 
@@ -282,14 +273,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(this.document.DocumentElement, null, null, loggerMock.Object);
+                return controller.Run(this.document.DocumentElement, null);
             });
         }
 
@@ -306,7 +296,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(this.document.DocumentElement, null, this.settings, null);
+                return controller.Run(this.document.DocumentElement, this.settings);
             });
         }
 
@@ -323,7 +313,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(this.document.DocumentElement, null, null, null);
+                return controller.Run(this.document.DocumentElement, null);
             });
         }
 
@@ -334,14 +324,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             try
             {
-                controller.Run(this.document.DocumentElement, null, this.settings, loggerMock.Object).Wait();
+                controller.Run(this.document.DocumentElement, this.settings).Wait();
             }
             catch (Exception e)
             {
@@ -361,14 +350,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(this.document.DocumentElement, this.namespaceManager, null, loggerMock.Object);
+                return controller.Run(this.document.DocumentElement, null);
             });
         }
 
@@ -385,7 +373,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return controller.Run(this.document.DocumentElement, this.namespaceManager, null, null);
+                return controller.Run(this.document.DocumentElement, null);
             });
         }
 
@@ -396,14 +384,13 @@
             // Arrange
             var documentFactoryMock = new Mock<IDocumentFactory>();
             var parserMock = new Mock<IExpander>();
-            var loggerMock = new Mock<ILogger>();
 
             var controller = new ExpandLowerTaxaController(documentFactoryMock.Object, parserMock.Object);
 
             // Act + Assert
             try
             {
-                controller.Run(this.document.DocumentElement, this.namespaceManager, null, loggerMock.Object).Wait();
+                controller.Run(this.document.DocumentElement, null).Wait();
             }
             catch (Exception e)
             {
@@ -428,7 +415,7 @@
             // Act + Assert
             string initialContent = this.document.OuterXml;
 
-            controller.Run(this.document.DocumentElement, this.namespaceManager, this.settings, null).Wait();
+            controller.Run(this.document.DocumentElement, this.settings).Wait();
 
             string finalContent = this.document.OuterXml;
 

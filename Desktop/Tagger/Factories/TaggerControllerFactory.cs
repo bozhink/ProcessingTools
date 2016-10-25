@@ -24,16 +24,11 @@
 
         protected IDocumentFactory DocumentFactory => this.documentFactory;
 
-        public async Task Run(XmlNode context, XmlNamespaceManager namespaceManager, IProgramSettings settings, ILogger logger)
+        public async Task Run(XmlNode context, IProgramSettings settings)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
-            }
-
-            if (namespaceManager == null)
-            {
-                throw new ArgumentNullException(nameof(namespaceManager));
             }
 
             if (settings == null)
@@ -41,20 +36,13 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            try
-            {
-                var document = this.documentFactory.Create(Resources.ContextWrapper);
-                document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
-                document.SchemaType = settings.ArticleSchemaType;
+            var document = this.documentFactory.Create(Resources.ContextWrapper);
+            document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
+            document.SchemaType = settings.ArticleSchemaType;
 
-                await this.Run(document, settings);
+            await this.Run(document, settings);
 
-                context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
-            }
-            catch (Exception e)
-            {
-                logger?.Log(e, string.Empty);
-            }
+            context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
         }
 
         protected abstract Task Run(IDocument document, IProgramSettings settings);

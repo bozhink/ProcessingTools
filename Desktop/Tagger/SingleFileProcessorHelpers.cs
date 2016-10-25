@@ -25,6 +25,14 @@
             {
                 await action.Invoke(null);
             }
+            catch (AggregateException e)
+            {
+                foreach (var exception in e.InnerExceptions)
+                {
+                    logger?.Log(exception, string.Empty);
+                    logger?.Log();
+                }
+            }
             catch (Exception e)
             {
                 logger?.Log(e, string.Empty);
@@ -53,7 +61,7 @@
 
             await InvokeProcessor(
                 message,
-                _ => controller.Run(context, this.document.NamespaceManager, this.settings, this.logger),
+                _ => controller.Run(context, this.settings),
                 this.logger);
         }
 
@@ -87,7 +95,7 @@
 
             await InvokeProcessor(
                 message,
-                _ => controller.Run(context, this.document.NamespaceManager, this.settings, this.logger),
+                _ => controller.Run(context, this.settings),
                 this.logger);
         }
     }
