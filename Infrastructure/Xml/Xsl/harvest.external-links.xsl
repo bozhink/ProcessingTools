@@ -76,7 +76,7 @@
   </xsl:template>
 
   <xsl:template name="harvest-url">
-    <xsl:for-each select="//url | //homepage">
+    <xsl:for-each select="//url[normalize-space(.)!=''] | //homepage[normalize-space(.)!='']">
       <xsl:variable name="base-address">
         <xsl:call-template name="get-base-address">
           <xsl:with-param name="uri" select="normalize-space(.)" />
@@ -104,7 +104,7 @@
   </xsl:template>
 
   <xsl:template name="harvest-doi">
-    <xsl:for-each select="//doi">
+    <xsl:for-each select="//doi[normalize-space(.)!='']">
       <xsl:variable name="base-address">
         <xsl:call-template name="get-base-address">
           <xsl:with-param name="uri" select="normalize-space(.)" />
