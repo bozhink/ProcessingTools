@@ -207,71 +207,6 @@
 
         [Test]
         [Timeout(500)]
-        public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.documentFactory, this.parser, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.documentFactory, this.parser, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.documentFactory, this.parser, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.documentFactory, this.parser, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
-        {
-            var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.documentFactory, this.parser, this.logger);
-
-            try
-            {
-                controller.Run(this.document.DocumentElement, this.settings).Wait();
-            }
-            catch (Exception e)
-            {
-                Assert.AreEqual(typeof(AggregateException), e.GetType(), CallShouldThrowSystemAggregateExceptionMessage);
-
-                Exception innerException = e.InnerException;
-                Assert.AreEqual(typeof(ArgumentNullException), innerException.GetType(), InnerExceptionShouldBeArgumentNullExceptionMessage);
-
-                Assert.AreEqual("namespaceManager", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""namespaceManager"".");
-            }
-        }
-
-        [Test]
-        [Timeout(500)]
         public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.documentFactory, this.parser, this.logger);
@@ -311,21 +246,6 @@
 
                 Assert.AreEqual("settings", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""settings"".");
             }
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void ParseHigherTaxaWithCatalogueOfLifeController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
-        {
-            var controller = new ParseHigherTaxaWithCatalogueOfLifeController(this.documentFactory, this.parser, this.logger);
-
-            string initialContent = this.document.OuterXml;
-
-            controller.Run(this.document.DocumentElement, this.settings).Wait();
-
-            string finalContent = this.document.OuterXml;
-
-            Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
     }
 }

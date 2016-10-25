@@ -176,71 +176,6 @@
 
         [Test]
         [Timeout(500)]
-        public void QueryReplaceController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new QueryReplaceController(this.documentFactory, this.queryReplacer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void QueryReplaceController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new QueryReplaceController(this.documentFactory, this.queryReplacer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void QueryReplaceController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new QueryReplaceController(this.documentFactory, this.queryReplacer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void QueryReplaceController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new QueryReplaceController(this.documentFactory, this.queryReplacer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void QueryReplaceController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
-        {
-            var controller = new QueryReplaceController(this.documentFactory, this.queryReplacer);
-
-            try
-            {
-                controller.Run(this.document.DocumentElement, this.settings).Wait();
-            }
-            catch (Exception e)
-            {
-                Assert.AreEqual(typeof(AggregateException), e.GetType(), CallShouldThrowSystemAggregateExceptionMessage);
-
-                Exception innerException = e.InnerException;
-                Assert.AreEqual(typeof(ArgumentNullException), innerException.GetType(), InnerExceptionShouldBeArgumentNullExceptionMessage);
-
-                Assert.AreEqual("namespaceManager", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""namespaceManager"".");
-            }
-        }
-
-        [Test]
-        [Timeout(500)]
         public void QueryReplaceController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new QueryReplaceController(this.documentFactory, this.queryReplacer);
@@ -280,21 +215,6 @@
 
                 Assert.AreEqual("settings", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""settings"".");
             }
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void QueryReplaceController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
-        {
-            var controller = new QueryReplaceController(this.documentFactory, this.queryReplacer);
-
-            string initialContent = this.document.OuterXml;
-
-            controller.Run(this.document.DocumentElement, this.settings).Wait();
-
-            string finalContent = this.document.OuterXml;
-
-            Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
     }
 }

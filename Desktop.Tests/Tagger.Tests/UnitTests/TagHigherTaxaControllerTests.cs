@@ -181,71 +181,6 @@
 
         [Test]
         [Timeout(500)]
-        public void TagHigherTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagHigherTaxaController(this.documentFactory, this.tagger, this.documentNormalizer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagHigherTaxaController(this.documentFactory, this.tagger, this.documentNormalizer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagHigherTaxaController(this.documentFactory, this.tagger, this.documentNormalizer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagHigherTaxaController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagHigherTaxaController(this.documentFactory, this.tagger, this.documentNormalizer);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagHigherTaxaController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
-        {
-            var controller = new TagHigherTaxaController(this.documentFactory, this.tagger, this.documentNormalizer);
-
-            try
-            {
-                controller.Run(this.document.DocumentElement, this.settings).Wait();
-            }
-            catch (Exception e)
-            {
-                Assert.AreEqual(typeof(AggregateException), e.GetType(), CallShouldThrowSystemAggregateExceptionMessage);
-
-                Exception innerException = e.InnerException;
-                Assert.AreEqual(typeof(ArgumentNullException), innerException.GetType(), InnerExceptionShouldBeArgumentNullExceptionMessage);
-
-                Assert.AreEqual("namespaceManager", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""namespaceManager"".");
-            }
-        }
-
-        [Test]
-        [Timeout(500)]
         public void TagHigherTaxaController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagHigherTaxaController(this.documentFactory, this.tagger, this.documentNormalizer);
@@ -285,21 +220,6 @@
 
                 Assert.AreEqual("settings", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""settings"".");
             }
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagHigherTaxaController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
-        {
-            var controller = new TagHigherTaxaController(this.documentFactory, this.tagger, this.documentNormalizer);
-
-            string initialContent = this.document.OuterXml;
-
-            controller.Run(this.document.DocumentElement, this.settings).Wait();
-
-            string finalContent = this.document.OuterXml;
-
-            Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
     }
 }

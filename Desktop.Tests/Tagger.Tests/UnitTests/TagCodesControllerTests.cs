@@ -237,71 +237,6 @@
 
         [Test]
         [Timeout(500)]
-        public void TagCodesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagCodesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagCodesController_RunWithNullNamespaceManagerAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, this.settings).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagCodesController_RunWithNullNamespaceManagerAndNullProgramSettingsAndNullLoggerAndValidOtherParameters_ShouldThrowAggregateException()
-        {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
-
-            Assert.Throws<AggregateException>(
-                () => controller.Run(this.document.DocumentElement, null).Wait(),
-                CallShouldThrowSystemAggregateExceptionMessage);
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagCodesController_RunWithNullNamespaceManagerAndValidOtherParameters_ShouldThrowAggregateExceptionWithInnerArgumentNullException()
-        {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
-
-            try
-            {
-                controller.Run(this.document.DocumentElement, this.settings).Wait();
-            }
-            catch (Exception e)
-            {
-                Assert.AreEqual(typeof(AggregateException), e.GetType(), CallShouldThrowSystemAggregateExceptionMessage);
-
-                Exception innerException = e.InnerException;
-                Assert.AreEqual(typeof(ArgumentNullException), innerException.GetType(), InnerExceptionShouldBeArgumentNullExceptionMessage);
-
-                Assert.AreEqual("namespaceManager", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""namespaceManager"".");
-            }
-        }
-
-        [Test]
-        [Timeout(500)]
         public void TagCodesController_RunWithNullProgramSettingsAndValidOtherParameters_ShouldThrowAggregateException()
         {
             var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
@@ -341,21 +276,6 @@
 
                 Assert.AreEqual("settings", ((ArgumentNullException)innerException).ParamName, @"ParamName should be ""settings"".");
             }
-        }
-
-        [Test]
-        [Timeout(500)]
-        public void TagCodesController_RunWithNullLoggerAndValidOtherParameters_ShouldWork()
-        {
-            var controller = new TagCodesController(this.documentFactory, this.institutionsMiner, this.collectionsMiner, this.logger);
-
-            string initialContent = this.document.OuterXml;
-
-            controller.Run(this.document.DocumentElement, this.settings).Wait();
-
-            string finalContent = this.document.OuterXml;
-
-            Assert.AreEqual(initialContent, finalContent, ContentShouldBeUnchangedMessage);
         }
     }
 }
