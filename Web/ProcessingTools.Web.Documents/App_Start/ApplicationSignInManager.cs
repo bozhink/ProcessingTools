@@ -5,7 +5,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security;
-    using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Users.Data.Entity.Models;
 
     // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<User, string>

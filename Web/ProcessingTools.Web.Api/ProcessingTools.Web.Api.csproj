@@ -398,9 +398,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
+    <ProjectReference Include="..\..\Data\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
-      <Name>Api.Data</Name>
+      <Name>Users.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Data.Common\Bio.Data.Common.csproj">
       <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>

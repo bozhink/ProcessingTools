@@ -16,7 +16,7 @@
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
 
-    using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Api.Models.Account;
     using ProcessingTools.Web.Api.Providers;
     using ProcessingTools.Web.Api.Results;
