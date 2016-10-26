@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IFullTextSearchableRepository<T> : IRepository<T>
     {
