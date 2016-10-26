@@ -185,6 +185,7 @@
     <Content Include="Xsl\format.to-valid-nlm.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Xsl\Format\format.clear-table-styles.xsl" />
     <Content Include="Xsl\Format\format.taxon-treatments.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

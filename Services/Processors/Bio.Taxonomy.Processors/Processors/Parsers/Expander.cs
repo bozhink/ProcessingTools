@@ -60,7 +60,7 @@
                     this.StableExpand(taxonNames);
                     this.ImportModifiedItems(context, taxonNames);
 
-                    this.StableExpand(context);
+                    //// this.StableExpand(context);
                     this.ForceExactSpeciesMatchExpand(context);
                 }
                 catch (Exception e)
