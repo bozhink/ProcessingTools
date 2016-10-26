@@ -65,11 +65,13 @@
             this.biotaxonomicBlackListIterableRepositoryProvider = biotaxonomicBlackListIterableRepositoryProvider;
         }
 
-        public async Task Seed()
+        public async Task<object> Seed()
         {
             await this.SeedTaxonRankTypeCollection();
             await this.SeedTaxonRankCollection();
             await this.SeedBlackListCollection();
+
+            return true;
         }
 
         private async Task SeedTaxonRankCollection()

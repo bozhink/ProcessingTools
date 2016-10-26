@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Seed.Contracts
 {
-    using ProcessingTools.Data.Common.Contracts;
+    using ProcessingTools.Contracts.Data;
 
     public interface IDataSeeder : IDatabaseSeeder
     {

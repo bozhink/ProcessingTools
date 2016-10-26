@@ -58,7 +58,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
-        public async Task Seed()
+        public async Task<object> Seed()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
@@ -72,6 +72,8 @@
             {
                 throw new AggregateException(this.exceptions);
             }
+
+            return true;
         }
 
         private async Task SeedTaxaRanks(string fileName)
