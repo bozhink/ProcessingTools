@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using Expressions.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IUpdatableRepository<T> : IRepository<T>
     {

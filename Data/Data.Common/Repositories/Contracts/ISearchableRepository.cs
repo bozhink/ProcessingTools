@@ -7,6 +7,7 @@
 
     using ProcessingTools.Common.Types;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public interface ISearchableRepository<T> : IRepository<T>
     {
