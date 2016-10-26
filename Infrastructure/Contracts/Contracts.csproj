@@ -41,6 +41,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IDatabaseInitializer.cs" />
+    <Compile Include="Data\IDatabaseProvider.cs" />
+    <Compile Include="Data\IDatabaseSeeder.cs" />
     <Compile Include="Harvesters\IGenericQueryableXmlHarvester.cs" />
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
     <Compile Include="Harvesters\IHarvester.cs" />
