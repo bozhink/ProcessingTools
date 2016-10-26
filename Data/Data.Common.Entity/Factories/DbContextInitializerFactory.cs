@@ -20,7 +20,7 @@
             this.contextProvider = contextProvider;
         }
 
-        public async Task Initialize()
+        public async Task<object> Initialize()
         {
             this.SetInitializer();
 
@@ -30,6 +30,8 @@
                 context.Database.Initialize(true);
                 await context.SaveChangesAsync();
             }
+
+            return true;
         }
 
         protected abstract void SetInitializer();
