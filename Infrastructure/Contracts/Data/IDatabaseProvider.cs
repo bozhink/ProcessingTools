@@ -2,6 +2,6 @@
 {
     public interface IDatabaseProvider<T>
     {
-        T Database { get; }
+        T Create();
     }
 }
