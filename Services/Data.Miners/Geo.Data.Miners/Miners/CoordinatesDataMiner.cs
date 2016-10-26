@@ -70,13 +70,6 @@
 
                 return await this.content.GetMatchesAsync(new Regex(Pattern));
             }
-
-            public async Task<IEnumerable<string>> GetDecimalNumberLatitudeLongitudeCoordinates()
-            {
-                const string Pattern = @"(?<latitude>(?:\b[–—−-]\W?|\b)[0-9]?[0-9]\b[\s\.]{1,3}[0-9]+)[^\w\.]{1,5}(?<longitude>(?:\b[–—−-]\W?|\b)(?:[0-1][0-8]|[0-9])?[0-9]\b[\s\.]{1,3}[0-9]+)";
-
-                return await this.content.GetMatchesAsync(new Regex(Pattern));
-            }
         }
     }
 }
