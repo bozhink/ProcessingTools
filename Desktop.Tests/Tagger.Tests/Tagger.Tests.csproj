@@ -48,56 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTests\ExpandLowerTaxaControllerTests.cs" />
-    <Compile Include="UnitTests\ExtractTaxaControllerTests.cs" />
-    <Compile Include="UnitTests\FormatTreatmentsControllerTests.cs" />
-    <Compile Include="UnitTests\InitialFormatControllerTests.cs" />
-    <Compile Include="UnitTests\ParseCoordinatesControllerTests.cs" />
-    <Compile Include="UnitTests\ParseHigherTaxaAboveGenusControllerTests.cs" />
-    <Compile Include="UnitTests\ParseHigherTaxaBySuffixControllerTests.cs" />
-    <Compile Include="UnitTests\ParseHigherTaxaWithAphiaControllerTests.cs" />
-    <Compile Include="UnitTests\ParseHigherTaxaWithCatalogueOfLifeControllerTests.cs" />
-    <Compile Include="UnitTests\ParseHigherTaxaWithGbifControllerTests.cs" />
-    <Compile Include="UnitTests\ParseHigherTaxaWithLocalDbControllerTests.cs" />
-    <Compile Include="UnitTests\ParseLowerTaxaControllerTests.cs" />
-    <Compile Include="UnitTests\ParseReferencesControllerTests.cs" />
-    <Compile Include="UnitTests\ParseTreatmentMaterialsControllerTests.cs" />
-    <Compile Include="UnitTests\ParseTreatmentMetaWithAphiaControllerTests.cs" />
-    <Compile Include="UnitTests\ParseTreatmentMetaWithCatalogueOfLifeControllerTests.cs" />
-    <Compile Include="UnitTests\ParseTreatmentMetaWithGbifControllerTests.cs" />
     <Compile Include="UnitTests\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\QueryReplaceControllerTests.cs" />
-    <Compile Include="UnitTests\RemoveAllTaxonNamePartTagsControllerTests.cs" />
-    <Compile Include="UnitTests\ResolveMediaTypesControllerTests.cs" />
-    <Compile Include="UnitTests\RunCustomXslTransformControllerTests.cs" />
-    <Compile Include="UnitTests\TagAbbreviationsControllerTests.cs" />
-    <Compile Include="UnitTests\TagAltitudesControllerTests.cs" />
-    <Compile Include="UnitTests\TagCodesControllerTests.cs" />
-    <Compile Include="UnitTests\TagCoordinatesControllerTests.cs" />
-    <Compile Include="UnitTests\TagDatesControllerTests.cs" />
-    <Compile Include="UnitTests\TagEnvironmentTermsControllerTests.cs" />
-    <Compile Include="UnitTests\TagEnvironmentTermsWithExtractControllerTests.cs" />
-    <Compile Include="UnitTests\TagFloatsControllerTests.cs" />
-    <Compile Include="UnitTests\TagGeoEpithetsControllerTests.cs" />
-    <Compile Include="UnitTests\TagGeographicDeviationsControllerTests.cs" />
-    <Compile Include="UnitTests\TagGeoNamesControllerTests.cs" />
-    <Compile Include="UnitTests\TagHigherTaxaControllerTests.cs" />
-    <Compile Include="UnitTests\TagInstitutionsControllerTests.cs" />
-    <Compile Include="UnitTests\TagLowerTaxaControllerTests.cs" />
-    <Compile Include="UnitTests\TagMorphologicalEpithetsControllerTests.cs" />
-    <Compile Include="UnitTests\TagProductsControllerTests.cs" />
-    <Compile Include="UnitTests\TagQuantitiesControllerTests.cs" />
-    <Compile Include="UnitTests\TagReferencesControllerTests.cs" />
-    <Compile Include="UnitTests\TagTableFootnoteControllerTests.cs" />
-    <Compile Include="UnitTests\TagTypeStatusControllerTests.cs" />
-    <Compile Include="UnitTests\TagWebLinksControllerTests.cs" />
-    <Compile Include="UnitTests\TestControllerTests.cs" />
-    <Compile Include="UnitTests\ValidateExternalLinksControllerTests.cs" />
-    <Compile Include="UnitTests\ValidateTaxaControllerTests.cs" />
-    <Compile Include="UnitTests\ZooBankCloneJsonControllerTests.cs" />
-    <Compile Include="UnitTests\ZooBankCloneXmlControllerTests.cs" />
-    <Compile Include="UnitTests\ZooBankGenerateRegistrationXmlControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
