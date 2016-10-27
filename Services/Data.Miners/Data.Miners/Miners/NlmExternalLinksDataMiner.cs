@@ -9,6 +9,7 @@
     using Contracts;
     using Models;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Nlm.Publishing.Types;
 
     public class NlmExternalLinksDataMiner : INlmExternalLinksDataMiner
@@ -30,10 +31,6 @@
 
         private const string PmcidPattern = @"(?i)\bpmc\W?\d+|(?i)(?<=\bpmcid\W?)\d+";
 
-        public NlmExternalLinksDataMiner()
-        {
-        }
-
         public async Task<IQueryable<NlmExternalLink>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
@@ -43,11 +40,11 @@
 
             var internalMiner = new InternalMiner(content);
 
-            var doiItems = await internalMiner.MineDoi();
-            var uriItems = await internalMiner.MineUri();
-            var ftpItems = await internalMiner.MineFtp();
-            var pmidItems = await internalMiner.MinePmid();
-            var pmcidItems = await internalMiner.MinePmcid();
+            var doiItems = await internalMiner.MineDoi().ToArrayAsync();
+            var uriItems = await internalMiner.MineUri().ToArrayAsync();
+            var ftpItems = await internalMiner.MineFtp().ToArrayAsync();
+            var pmidItems = await internalMiner.MinePmid().ToArrayAsync();
+            var pmcidItems = await internalMiner.MinePmcid().ToArrayAsync();
 
             var items = new List<NlmExternalLink>();
             items.AddRange(pmcidItems);
@@ -69,52 +66,75 @@
                 this.content = content;
             }
 
-            public async Task<IEnumerable<NlmExternalLink>> MineUri()
+            public IEnumerable<NlmExternalLink> MineUri()
             {
-                var matches = await this.content.GetMatchesAsync(new Regex(HttpPattern));
-                return matches.Select(item => new NlmExternalLink
+                var matches = this.content.GetMatches(new Regex(HttpPattern));
+                return matches.Select(item =>
                 {
-                    Content = item,
-                    Type = ExternalLinkType.Uri
+                    const string MatchDoiPrefixPattern = @"\A(?<prefix>https?://(?:dx\.)?doi.org/)(?<value>10\.\d{4,5}/.+)\Z";
+
+                    var matchDoiPrefix = Regex.Match(item, MatchDoiPrefixPattern);
+                    if (matchDoiPrefix.Success)
+                    {
+                        return new NlmExternalLink
+                        {
+                            Content = item,
+                            Href = matchDoiPrefix.Groups["value"].Value,
+                            Type = ExternalLinkType.Doi
+                        };
+                    }
+                    else
+                    {
+                        return new NlmExternalLink
+                        {
+                            Content = item,
+                            Href = item,
+                            Type = ExternalLinkType.Uri
+                        };
+                    }
                 });
             }
 
-            public async Task<IEnumerable<NlmExternalLink>> MineFtp()
+            public IEnumerable<NlmExternalLink> MineFtp()
             {
-                var matches = await this.content.GetMatchesAsync(new Regex(FtpPattern));
+                var matches = this.content.GetMatches(new Regex(FtpPattern));
                 return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
+                    Href = item,
                     Type = ExternalLinkType.Ftp
                 });
             }
 
-            public async Task<IEnumerable<NlmExternalLink>> MineDoi()
+            public IEnumerable<NlmExternalLink> MineDoi()
             {
-                var matches = await this.content.GetMatchesAsync(new Regex(DoiPattern));
+                var matches = this.content.GetMatches(new Regex(DoiPattern));
                 return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
+                    Href = item,
                     Type = ExternalLinkType.Doi
                 });
             }
 
-            public async Task<IEnumerable<NlmExternalLink>> MinePmid()
+            public IEnumerable<NlmExternalLink> MinePmid()
             {
-                var matches = await this.content.GetMatchesAsync(new Regex(PmidPattern));
+                var matches = this.content.GetMatches(new Regex(PmidPattern));
                 return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
+                    Href = item,
                     Type = ExternalLinkType.Pmid
                 });
             }
 
-            public async Task<IEnumerable<NlmExternalLink>> MinePmcid()
+            public IEnumerable<NlmExternalLink> MinePmcid()
             {
-                var matches = await this.content.GetMatchesAsync(new Regex(PmcidPattern));
+                var matches = this.content.GetMatches(new Regex(PmcidPattern));
                 return matches.Select(item => new NlmExternalLink
                 {
                     Content = item,
+                    Href = item,
                     Type = ExternalLinkType.Pmcid
                 });
             }

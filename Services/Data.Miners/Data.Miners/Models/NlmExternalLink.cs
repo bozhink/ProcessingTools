@@ -6,6 +6,8 @@
     {
         public string Content { get; set; }
 
+        public string Href { get; set; }
+
         public ExternalLinkType Type { get; set; }
     }
 }

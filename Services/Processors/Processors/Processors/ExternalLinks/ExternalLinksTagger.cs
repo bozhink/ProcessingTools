@@ -61,6 +61,7 @@
             var data = (await this.miner.Mine(textContent))
                 .Select(i => new ExternalLinkSerializableModel
                 {
+                    Href = i.Href,
                     ExternalLinkType = i.Type.GetValue(),
                     Value = i.Content
                 });
