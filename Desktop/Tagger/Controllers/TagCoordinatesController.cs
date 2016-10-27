@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Xml;
 
     using Contracts;
@@ -7,22 +8,22 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Geo.Data.Miners.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     [Description("Tag coordinates.")]
     public class TagCoordinatesController : StringMinerTaggerControllerFactory, ITagCoordinatesController
     {
-        private readonly XmlElement tagModel;
-
-        public TagCoordinatesController(ICoordinatesDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
-            : base(miner, documentFactory, tagger)
+        public TagCoordinatesController(ICoordinatesDataMiner miner, IStringTagger tagger)
+            : base(miner, tagger)
         {
-            XmlDocument document = new XmlDocument();
-            this.tagModel = document.CreateElement(ElementNames.GeoCoordinateElementName);
         }
 
-        protected override XmlElement TagModel => this.tagModel;
+        protected override Func<XmlDocument, XmlElement> BuildTagModel => document =>
+        {
+            var tagModel = document.CreateElement(ElementNames.GeoCoordinateElementName);
+
+            return tagModel;
+        };
     }
 }

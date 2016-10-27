@@ -15,19 +15,13 @@
     public abstract class StringMinerTaggerControllerFactory : ITaggerController
     {
         private readonly IStringDataMiner miner;
-        private readonly IDocumentFactory documentFactory;
         private readonly IStringTagger tagger;
 
-        public StringMinerTaggerControllerFactory(IStringDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
+        public StringMinerTaggerControllerFactory(IStringDataMiner miner, IStringTagger tagger)
         {
             if (miner == null)
             {
                 throw new ArgumentNullException(nameof(miner));
-            }
-
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
             }
 
             if (tagger == null)
@@ -36,11 +30,10 @@
             }
 
             this.miner = miner;
-            this.documentFactory = documentFactory;
             this.tagger = tagger;
         }
 
-        protected abstract XmlElement TagModel { get; }
+        protected abstract Func<XmlDocument, XmlElement> BuildTagModel { get; }
 
         public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
@@ -54,12 +47,16 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            var tagModel = this.BuildTagModel(document.XmlDocument);
+
             var textContent = document.XmlDocument.GetTextContent();
             var data = await this.miner.Mine(textContent);
 
-            await this.tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPath);
+            await this.tagger.Tag(document, data, tagModel, XPathConstants.SelectContentNodesXPath);
 
             return true;
         }
+
+
     }
 }

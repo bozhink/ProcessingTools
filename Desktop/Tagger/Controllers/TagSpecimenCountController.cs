@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Xml;
 
     using Contracts;
@@ -8,23 +9,23 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Constants.Content;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Nlm.Publishing.Constants;
 
     [Description("Tag specimen count.")]
     public class TagSpecimenCountController : StringMinerTaggerControllerFactory, ITagSpecimenCountController
     {
-        private readonly XmlElement tagModel;
-
-        public TagSpecimenCountController(ISpecimenCountDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
-            : base(miner, documentFactory, tagger)
+        public TagSpecimenCountController(ISpecimenCountDataMiner miner, IStringTagger tagger)
+            : base(miner, tagger)
         {
-            var document = new XmlDocument();
-            this.tagModel = document.CreateElement(ElementNames.NamedContent);
-            this.tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.SpecimenCountContentType);
         }
 
-        protected override XmlElement TagModel => this.tagModel;
+        protected override Func<XmlDocument, XmlElement> BuildTagModel => document =>
+        {
+            var tagModel = document.CreateElement(ElementNames.NamedContent);
+            tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.SpecimenCountContentType);
+
+            return tagModel;
+        };
     }
 }

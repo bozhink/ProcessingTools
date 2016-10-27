@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Xml;
 
     using Contracts;
@@ -7,7 +8,6 @@
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Constants.Content;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Nlm.Publishing.Constants;
@@ -15,16 +15,17 @@
     [Description("Tag institutions.")]
     public class TagInstitutionsController : StringMinerTaggerControllerFactory, ITagInstitutionsController
     {
-        private readonly XmlElement tagModel;
-
-        public TagInstitutionsController(IInstitutionsDataMiner miner, IDocumentFactory documentFactory, IStringTagger tagger)
-            : base(miner, documentFactory, tagger)
+        public TagInstitutionsController(IInstitutionsDataMiner miner, IStringTagger tagger)
+            : base(miner, tagger)
         {
-            var document = new XmlDocument();
-            this.tagModel = document.CreateElement(ElementNames.NamedContent);
-            this.tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.InstitutionContentType);
         }
 
-        protected override XmlElement TagModel => this.tagModel;
+        protected override Func<XmlDocument, XmlElement> BuildTagModel => document =>
+        {
+            var tagModel = document.CreateElement(ElementNames.NamedContent);
+            tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.InstitutionContentType);
+
+            return tagModel;
+        };
     }
 }
