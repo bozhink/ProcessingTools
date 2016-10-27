@@ -37,39 +37,52 @@
             this.logger = logger;
         }
 
-        public async Task<object> Parse(XmlNode context)
+        public Task<object> Parse(XmlNode context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
-                this.EnsureFullNameAttributeToTaxonNamePartElements(context);
+                // Parse references
+                const string ReferencesXPath = ".//ref|.//reference";
+                context.SelectNodes(ReferencesXPath)
+                    .Cast<XmlNode>()
+                    .AsParallel()
+                    .ForAll(n => this.ParseSync(n));
 
-                this.AddIdAndPositionAttributesToTaxonNameElements(context);
-
-                try
-                {
-                    var taxonNames = this.GetContextTaxonVectorModel(context);
-
-                    this.PrintContextVectorModel(taxonNames);
-
-                    this.UniqueGenusMatchExpand(taxonNames);
-                    this.StableExpand(taxonNames);
-                    this.ImportModifiedItems(context, taxonNames);
-
-                    //// this.StableExpand(context);
-                    this.ForceExactSpeciesMatchExpand(context);
-                }
-                catch (Exception e)
-                {
-                    this.logger?.Log(e, string.Empty);
-                }
-
-                this.RemoveIdAndPositionAttributesToTaxonNameElements(context);
+                // Parse the whole context
+                return this.ParseSync(context);
             });
+        }
+
+        private object ParseSync(XmlNode context)
+        {
+            this.EnsureFullNameAttributeToTaxonNamePartElements(context);
+
+            this.AddIdAndPositionAttributesToTaxonNameElements(context);
+
+            try
+            {
+                var taxonNames = this.GetContextTaxonVectorModel(context);
+
+                this.PrintContextVectorModel(taxonNames);
+
+                this.UniqueGenusMatchExpand(taxonNames);
+                this.StableExpand(taxonNames);
+                this.ImportModifiedItems(context, taxonNames);
+
+                //// this.StableExpand(context);
+                this.ForceExactSpeciesMatchExpand(context);
+            }
+            catch (Exception e)
+            {
+                this.logger?.Log(e, string.Empty);
+            }
+
+            this.RemoveIdAndPositionAttributesToTaxonNameElements(context);
 
             return true;
         }
