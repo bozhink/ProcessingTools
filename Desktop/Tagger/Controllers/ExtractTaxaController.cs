@@ -4,25 +4,23 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
 
-    public class ExtractTaxaController : TaggerControllerFactory, IExtractTaxaController
+    public class ExtractTaxaController : IExtractTaxaController
     {
         private readonly ILogger logger;
 
-        public ExtractTaxaController(IDocumentFactory documentFactory, ILogger logger)
-            : base(documentFactory)
+        public ExtractTaxaController(ILogger logger)
         {
             this.logger = logger;
         }
 
-        protected override Task Run(IDocument document, IProgramSettings settings)
+        public Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 if (settings.ExtractTaxa)
                 {
@@ -32,7 +30,8 @@
                         .OrderBy(i => i)
                         .ToList()
                         .ForEach(t => this.logger?.Log(t));
-                    return;
+
+                    return true;
                 }
 
                 if (settings.ExtractLowerTaxa)
@@ -54,6 +53,8 @@
                         .ToList()
                         .ForEach(t => this.logger?.Log(t));
                 }
+
+                return true;
             });
         }
     }

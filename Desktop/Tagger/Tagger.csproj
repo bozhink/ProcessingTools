@@ -108,7 +108,6 @@
     <Compile Include="Contracts\IParseHigherTaxaBySuffixController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithAphiaController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithCatalogueOfLifeController.cs" />
-    <Compile Include="Contracts\IParseHigherTaxaWithDataServiceGenericController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithGbifController.cs" />
     <Compile Include="Contracts\IParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Contracts\IParseLowerTaxaController.cs" />
@@ -175,7 +174,6 @@
     <Compile Include="Controllers\ParseHigherTaxaBySuffixController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithAphiaController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithCatalogueOfLifeController.cs" />
-    <Compile Include="Controllers\ParseHigherTaxaWithDataServiceGenericController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithGbifController.cs" />
     <Compile Include="Controllers\ParseHigherTaxaWithLocalDbController.cs" />
     <Compile Include="Controllers\ParseLowerTaxaController.cs" />
@@ -217,7 +215,6 @@
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Factories\ParseHigherTaxaControllerFactory.cs" />
     <Compile Include="Factories\StringMinerTaggerControllerFactory.cs" />
-    <Compile Include="Factories\TaggerControllerFactory.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

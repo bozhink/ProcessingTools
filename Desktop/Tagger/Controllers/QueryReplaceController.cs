@@ -5,19 +5,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
 
     [Description("Query replace.")]
-    public class QueryReplaceController : TaggerControllerFactory, IQueryReplaceController
+    public class QueryReplaceController : IQueryReplaceController
     {
         private readonly IQueryReplacer queryReplacer;
 
-        public QueryReplaceController(IDocumentFactory documentFactory, IQueryReplacer queryReplacer)
-            : base(documentFactory)
+        public QueryReplaceController(IQueryReplacer queryReplacer)
         {
             if (queryReplacer == null)
             {
@@ -27,10 +25,19 @@
             this.queryReplacer = queryReplacer;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            int numberOfFileNames = settings.FileNames.Count();
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
 
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            int numberOfFileNames = settings.FileNames.Count();
             if (numberOfFileNames < 3)
             {
                 throw new ApplicationException("The query file name should be set.");
@@ -41,6 +48,8 @@
             var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName);
 
             document.Xml = processedContent;
+
+            return true;
         }
     }
 }

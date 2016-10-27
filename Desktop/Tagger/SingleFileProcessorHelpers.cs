@@ -57,12 +57,7 @@
         {
             var controller = DI.Get<TController>();
 
-            string message = controller.GetDescriptionMessageForController();
-
-            await InvokeProcessor(
-                message,
-                _ => controller.Run(context, this.settings),
-                this.logger);
+            await this.InvokeController(controller, context);
         }
 
         private async Task InvokeProcessor(Type controllerType)
@@ -91,12 +86,23 @@
         {
             var controller = DI.Get(controllerType) as ITaggerController;
 
+            await this.InvokeController(controller, context);
+        }
+
+        private async Task InvokeController(ITaggerController controller, XmlNode context)
+        {
             string message = controller.GetDescriptionMessageForController();
+
+            var document = this.documentFactory.Create(Resources.ContextWrapper);
+            document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
+            document.SchemaType = settings.ArticleSchemaType;
 
             await InvokeProcessor(
                 message,
-                _ => controller.Run(context, this.settings),
+                _ => controller.Run(document, this.settings),
                 this.logger);
+
+            context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
         }
     }
 }

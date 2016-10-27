@@ -16,6 +16,7 @@
 
     public partial class SingleFileProcessor : ISingleFileProcessor
     {
+        private readonly IDocumentFactory documentFactory;
         private readonly IDocumentNormalizer documentNormalizer;
         private readonly ILogger logger;
 
@@ -24,13 +25,22 @@
         private TaxPubDocument document;
         private ProgramSettings settings;
 
-        public SingleFileProcessor(IDocumentNormalizer documentNormalizer, ILogger logger)
+        public SingleFileProcessor(
+            IDocumentFactory documentFactory,
+            IDocumentNormalizer documentNormalizer,
+            ILogger logger)
         {
+            if (documentFactory == null)
+            {
+                throw new ArgumentNullException(nameof(documentFactory));
+            }
+
             if (documentNormalizer == null)
             {
                 throw new ArgumentNullException(nameof(documentNormalizer));
             }
 
+            this.documentFactory = documentFactory;
             this.documentNormalizer = documentNormalizer;
             this.logger = logger;
 

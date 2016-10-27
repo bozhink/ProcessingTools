@@ -4,19 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
     using ProcessingTools.Contracts;
 
     [Description("Format treatments.")]
-    public class FormatTreatmentsController : TaggerControllerFactory, IFormatTreatmentsController
+    public class FormatTreatmentsController : IFormatTreatmentsController
     {
         private readonly ITreatmentFormatter formatter;
 
-        public FormatTreatmentsController(IDocumentFactory documentFactory, ITreatmentFormatter formatter)
-            : base(documentFactory)
+        public FormatTreatmentsController(ITreatmentFormatter formatter)
         {
             if (formatter == null)
             {
@@ -26,9 +24,19 @@
             this.formatter = formatter;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.formatter.Format(document);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.formatter.Format(document);
         }
     }
 }

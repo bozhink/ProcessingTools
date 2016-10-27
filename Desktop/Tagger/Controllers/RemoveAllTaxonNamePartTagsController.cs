@@ -1,32 +1,42 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
+    using System;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
 
     [Description("Remove all taxon-name-part tags.")]
-    public class RemoveAllTaxonNamePartTagsController : TaggerControllerFactory, IRemoveAllTaxonNamePartTagsController
+    public class RemoveAllTaxonNamePartTagsController : IRemoveAllTaxonNamePartTagsController
     {
-        public RemoveAllTaxonNamePartTagsController(IDocumentFactory documentFactory)
-            : base(documentFactory)
+        public Task<object> Run(IDocument document, IProgramSettings settings)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return Task.Run(() => this.RunSync(document));
         }
 
-        protected override Task Run(IDocument document, IProgramSettings settings) => Task.Run(() => this.RunSync(document));
-
         // TODO: implement with XSLT
-        private void RunSync(IDocument document)
+        private object RunSync(IDocument document)
         {
             foreach (XmlNode node in document.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']"))
             {
                 node.InnerXml = this.RemoveTaxonNamePartTags(node.InnerXml);
             }
+
+            return true;
         }
 
         private string RemoveTaxonNamePartTags(string content)

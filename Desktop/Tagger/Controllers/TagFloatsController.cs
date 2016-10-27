@@ -4,19 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Tag floats.")]
-    public class TagFloatsController : TaggerControllerFactory, ITagFloatsController
+    public class TagFloatsController : ITagFloatsController
     {
         private readonly IFloatsTagger tagger;
 
-        public TagFloatsController(IDocumentFactory documentFactory, IFloatsTagger tagger)
-            : base(documentFactory)
+        public TagFloatsController(IFloatsTagger tagger)
         {
             if (tagger == null)
             {
@@ -26,9 +24,19 @@
             this.tagger = tagger;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.tagger.Tag(document.XmlDocument.DocumentElement);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.tagger.Tag(document.XmlDocument.DocumentElement);
         }
     }
 }

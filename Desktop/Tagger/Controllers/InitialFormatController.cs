@@ -4,19 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
     [Description("Initial format.")]
-    public class InitialFormatController : TaggerControllerFactory, IInitialFormatController
+    public class InitialFormatController : IInitialFormatController
     {
         private readonly IDocumentInitialFormatter formatter;
 
-        public InitialFormatController(IDocumentFactory documentFactory, IDocumentInitialFormatter formatter)
-            : base(documentFactory)
+        public InitialFormatController(IDocumentInitialFormatter formatter)
         {
             if (formatter == null)
             {
@@ -26,9 +24,19 @@
             this.formatter = formatter;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.formatter.Format(document);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.formatter.Format(document);
         }
     }
 }

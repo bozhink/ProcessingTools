@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using Contracts;
+    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -9,13 +10,12 @@
     using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa using Aphia.")]
-    public class ParseHigherTaxaWithAphiaController : ParseHigherTaxaWithDataServiceGenericController<IAphiaTaxaRankResolverDataService>, IParseHigherTaxaWithAphiaController
+    public class ParseHigherTaxaWithAphiaController : ParseHigherTaxaControllerFactory<IAphiaTaxaRankResolverDataService>, IParseHigherTaxaWithAphiaController
     {
         public ParseHigherTaxaWithAphiaController(
-            IDocumentFactory documentFactory,
             IHigherTaxaParserWithDataService<IAphiaTaxaRankResolverDataService, ITaxonRank> parser,
             ILogger logger)
-            : base(documentFactory, parser, logger)
+            : base(parser, logger)
         {
         }
     }

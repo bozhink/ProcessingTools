@@ -5,19 +5,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
 
     [Description("Custom XSL transform.")]
-    public class RunCustomXslTransformController : TaggerControllerFactory, IRunCustomXslTransformController
+    public class RunCustomXslTransformController : IRunCustomXslTransformController
     {
         private readonly IDocumentXslProcessor processor;
 
-        public RunCustomXslTransformController(IDocumentFactory documentFactory, IDocumentXslProcessor processor)
-            : base(documentFactory)
+        public RunCustomXslTransformController(IDocumentXslProcessor processor)
         {
             if (processor == null)
             {
@@ -27,10 +25,19 @@
             this.processor = processor;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            int numberOfFileNames = settings.FileNames.Count();
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
 
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            int numberOfFileNames = settings.FileNames.Count();
             if (numberOfFileNames < 3)
             {
                 throw new ApplicationException("The name of the XSLT file should be set.");
@@ -39,6 +46,8 @@
             this.processor.XslFilePath = settings.FileNames.ElementAt(2);
 
             await this.processor.Process(document);
+
+            return true;
         }
     }
 }

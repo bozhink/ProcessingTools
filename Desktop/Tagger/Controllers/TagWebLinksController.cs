@@ -4,21 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.ExternalLinks;
 
     [Description("Tag web links and DOI.")]
-    public class TagWebLinksController : TaggerControllerFactory, ITagWebLinksController
+    public class TagWebLinksController : ITagWebLinksController
     {
         private readonly IExternalLinksTagger tagger;
 
-        public TagWebLinksController(
-            IDocumentFactory documentFactory,
-            IExternalLinksTagger tagger)
-            : base(documentFactory)
+        public TagWebLinksController(IExternalLinksTagger tagger)
         {
             if (tagger == null)
             {
@@ -28,9 +24,19 @@
             this.tagger = tagger;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.tagger.Tag(document);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.tagger.Tag(document);
         }
     }
 }

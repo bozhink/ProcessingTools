@@ -4,33 +4,39 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Abbreviations;
 
     [Description("Tag abbreviations.")]
-    public class TagAbbreviationsController : TaggerControllerFactory, ITagAbbreviationsController
+    public class TagAbbreviationsController : ITagAbbreviationsController
     {
-        private readonly IAbbreviationsTagger abbreviationsTagger;
+        private readonly IAbbreviationsTagger tagger;
 
-        public TagAbbreviationsController(
-            IDocumentFactory documentFactory,
-            IAbbreviationsTagger abbreviationsTagger)
-            : base(documentFactory)
+        public TagAbbreviationsController(IAbbreviationsTagger tagger)
         {
-            if (abbreviationsTagger == null)
+            if (tagger == null)
             {
-                throw new ArgumentNullException(nameof(abbreviationsTagger));
+                throw new ArgumentNullException(nameof(tagger));
             }
 
-            this.abbreviationsTagger = abbreviationsTagger;
+            this.tagger = tagger;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.abbreviationsTagger.Tag(document.XmlDocument);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.tagger.Tag(document.XmlDocument);
         }
     }
 }

@@ -42,11 +42,11 @@
 
         protected abstract XmlElement TagModel { get; }
 
-        public async Task Run(XmlNode context, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            if (context == null)
+            if (document == null)
             {
-                throw new ArgumentNullException(nameof(context));
+                throw new ArgumentNullException(nameof(document));
             }
 
             if (settings == null)
@@ -54,16 +54,12 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            var document = this.documentFactory.Create(Resources.ContextWrapper);
-            document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
-            document.SchemaType = settings.ArticleSchemaType;
-
             var textContent = document.XmlDocument.GetTextContent();
             var data = await this.miner.Mine(textContent);
 
             await this.tagger.Tag(document, data, this.TagModel, XPathConstants.SelectContentNodesXPath);
 
-            context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
+            return true;
         }
     }
 }

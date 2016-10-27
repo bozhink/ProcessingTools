@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
@@ -12,16 +11,12 @@
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
     [Description("Tag higher taxa.")]
-    public class TagHigherTaxaController : TaggerControllerFactory, ITagHigherTaxaController
+    public class TagHigherTaxaController : ITagHigherTaxaController
     {
         private readonly IHigherTaxaTagger tagger;
         private readonly IDocumentNormalizer documentNormalizer;
 
-        public TagHigherTaxaController(
-            IDocumentFactory documentFactory,
-            IHigherTaxaTagger tagger,
-            IDocumentNormalizer documentNormalizer)
-            : base(documentFactory)
+        public TagHigherTaxaController(IHigherTaxaTagger tagger, IDocumentNormalizer documentNormalizer)
         {
             if (tagger == null)
             {
@@ -37,10 +32,22 @@
             this.documentNormalizer = documentNormalizer;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.tagger.Tag(document);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            var result = await this.tagger.Tag(document);
             await this.documentNormalizer.NormalizeToSystem(document);
+
+            return result;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using Contracts;
+    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -9,13 +10,12 @@
     using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa by suffix.")]
-    public class ParseHigherTaxaBySuffixController : ParseHigherTaxaWithDataServiceGenericController<ISuffixHigherTaxaRankResolverDataService>, IParseHigherTaxaBySuffixController
+    public class ParseHigherTaxaBySuffixController : ParseHigherTaxaControllerFactory<ISuffixHigherTaxaRankResolverDataService>, IParseHigherTaxaBySuffixController
     {
         public ParseHigherTaxaBySuffixController(
-            IDocumentFactory documentFactory,
             IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank> parser,
             ILogger logger)
-            : base(documentFactory, parser, logger)
+            : base(parser, logger)
         {
         }
     }

@@ -4,19 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Contracts;
 
     [Description("Parse lower taxa.")]
-    public class ParseLowerTaxaController : TaggerControllerFactory, IParseLowerTaxaController
+    public class ParseLowerTaxaController : IParseLowerTaxaController
     {
         private readonly ILowerTaxaParser parser;
 
-        public ParseLowerTaxaController(IDocumentFactory documentFactory, ILowerTaxaParser parser)
-            : base(documentFactory)
+        public ParseLowerTaxaController(ILowerTaxaParser parser)
         {
             if (parser == null)
             {
@@ -26,9 +24,19 @@
             this.parser = parser;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.parser.Parse(document.XmlDocument.DocumentElement);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

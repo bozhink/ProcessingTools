@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
@@ -12,14 +11,11 @@
     using ProcessingTools.Contracts;
 
     [Description("Parse treatment meta with Aphia.")]
-    public class ParseTreatmentMetaWithAphiaController : TaggerControllerFactory, IParseTreatmentMetaWithAphiaController
+    public class ParseTreatmentMetaWithAphiaController : IParseTreatmentMetaWithAphiaController
     {
         private readonly ITreatmentMetaParser<IAphiaTaxaClassificationResolverDataService> parser;
 
-        public ParseTreatmentMetaWithAphiaController(
-            IDocumentFactory documentFactory,
-            ITreatmentMetaParser<IAphiaTaxaClassificationResolverDataService> parser)
-            : base(documentFactory)
+        public ParseTreatmentMetaWithAphiaController(ITreatmentMetaParser<IAphiaTaxaClassificationResolverDataService> parser)
         {
             if (parser == null)
             {
@@ -29,9 +25,19 @@
             this.parser = parser;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.parser.Parse(document);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.parser.Parse(document);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using Contracts;
+    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -9,13 +10,12 @@
     using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa using GBIF.")]
-    public class ParseHigherTaxaWithGbifController : ParseHigherTaxaWithDataServiceGenericController<IGbifTaxaRankResolverDataService>, IParseHigherTaxaWithGbifController
+    public class ParseHigherTaxaWithGbifController : ParseHigherTaxaControllerFactory<IGbifTaxaRankResolverDataService>, IParseHigherTaxaWithGbifController
     {
         public ParseHigherTaxaWithGbifController(
-            IDocumentFactory documentFactory,
             IHigherTaxaParserWithDataService<IGbifTaxaRankResolverDataService, ITaxonRank> parser,
             ILogger logger)
-            : base(documentFactory, parser, logger)
+            : base(parser, logger)
         {
         }
     }

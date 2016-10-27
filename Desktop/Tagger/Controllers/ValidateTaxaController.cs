@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Extensions;
@@ -15,16 +14,14 @@
     using ProcessingTools.Services.Validation.Models;
 
     [Description("Taxa validation using Global Names Resolver.")]
-    public class ValidateTaxaController : TaggerControllerFactory, IValidateTaxaController
+    public class ValidateTaxaController : IValidateTaxaController
     {
         private readonly ITaxaValidationService service;
         private readonly ILogger logger;
 
         public ValidateTaxaController(
-            IDocumentFactory documentFactory,
             ITaxaValidationService service,
             ILogger logger)
-            : base(documentFactory)
         {
             if (service == null)
             {
@@ -35,8 +32,18 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             var scientificNames = document.XmlDocument.ExtractTaxa(true)
                 .Select(s => new TaxonNameServiceModel
                 {
@@ -46,7 +53,7 @@
             if (scientificNames == null || scientificNames.Length < 1)
             {
                 this.logger?.Log(LogType.Warning, "No taxa found.");
-                return;
+                return false;
             }
 
             var result = await this.service.Validate(scientificNames);
@@ -56,6 +63,8 @@
                 .OrderBy(i => i);
 
             this.logger?.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
+
+            return true;
         }
     }
 }

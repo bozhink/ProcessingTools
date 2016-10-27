@@ -4,19 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.References;
 
     [Description("Parse references.")]
-    public class ParseReferencesController : TaggerControllerFactory, IParseReferencesController
+    public class ParseReferencesController : IParseReferencesController
     {
         private readonly IReferencesParser parser;
 
-        public ParseReferencesController(IDocumentFactory documentFactory, IReferencesParser parser)
-            : base(documentFactory)
+        public ParseReferencesController(IReferencesParser parser)
         {
             if (parser == null)
             {
@@ -26,9 +24,19 @@
             this.parser = parser;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.parser.Parse(document.XmlDocument.DocumentElement);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

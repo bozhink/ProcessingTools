@@ -6,7 +6,6 @@
     using System.Xml;
 
     using Contracts;
-    using Factories;
     using Models;
 
     using ProcessingTools.Attributes;
@@ -18,7 +17,7 @@
     using ProcessingTools.Xml.Extensions;
 
     [Description("Tag codes.")]
-    public class TagCodesController : TaggerControllerFactory, ITagCodesController
+    public class TagCodesController : ITagCodesController
     {
         private const string XPath = "/*";
         private readonly IBiorepositoriesInstitutionsDataMiner institutionsMiner;
@@ -26,11 +25,9 @@
         private readonly ILogger logger;
 
         public TagCodesController(
-            IDocumentFactory documentFactory,
             IBiorepositoriesInstitutionsDataMiner institutionsMiner,
             IBiorepositoriesCollectionsDataMiner collectionsMiner,
             ILogger logger)
-            : base(documentFactory)
         {
             if (institutionsMiner == null)
             {
@@ -47,11 +44,23 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             var textContent = document.XmlDocument.GetTextContent();
             await this.TagInstitutions(document.XmlDocument, document.NamespaceManager, textContent);
             ////await this.TagCollections(document, namespaceManager, logger, textContent);
+
+            return true;
         }
 
         private async Task TagInstitutions(XmlDocument document, XmlNamespaceManager namespaceManager, string textContent)

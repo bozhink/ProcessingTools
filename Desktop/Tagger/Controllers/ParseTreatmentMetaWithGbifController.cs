@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
@@ -12,14 +11,11 @@
     using ProcessingTools.Contracts;
 
     [Description("Parse treatment meta with GBIF.")]
-    public class ParseTreatmentMetaWithGbifController : TaggerControllerFactory, IParseTreatmentMetaWithGbifController
+    public class ParseTreatmentMetaWithGbifController : IParseTreatmentMetaWithGbifController
     {
         private readonly ITreatmentMetaParser<IGbifTaxaClassificationResolverDataService> parser;
 
-        public ParseTreatmentMetaWithGbifController(
-            IDocumentFactory documentFactory,
-            ITreatmentMetaParser<IGbifTaxaClassificationResolverDataService> parser)
-            : base(documentFactory)
+        public ParseTreatmentMetaWithGbifController(ITreatmentMetaParser<IGbifTaxaClassificationResolverDataService> parser)
         {
             if (parser == null)
             {
@@ -29,9 +25,19 @@
             this.parser = parser;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.parser.Parse(document);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return await this.parser.Parse(document);
         }
     }
 }

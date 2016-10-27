@@ -1,6 +1,9 @@
 ﻿namespace ProcessingTools.Tagger.Factories
 {
+    using System;
     using System.Threading.Tasks;
+
+    using Contracts;
 
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
@@ -8,23 +11,41 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
-    public abstract class ParseHigherTaxaControllerFactory<TService> : TaggerControllerFactory
+    public abstract class ParseHigherTaxaControllerFactory<TService> : ITaggerController
         where TService : ITaxonRankResolverDataService
     {
+        private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
         private readonly ILogger logger;
 
-        public ParseHigherTaxaControllerFactory(IDocumentFactory documentFactory, ILogger logger)
-            : base(documentFactory)
+        public ParseHigherTaxaControllerFactory(
+            IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
+            ILogger logger)
         {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            this.parser = parser;
             this.logger = logger;
         }
 
-        protected abstract IHigherTaxaParserWithDataService<TService, ITaxonRank> Parser { get; }
-
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            await this.Parser.Parse(document.XmlDocument.DocumentElement);
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            var result = await this.parser.Parse(document.XmlDocument.DocumentElement);
             await document.XmlDocument.PrintNonParsedTaxa(this.logger);
+
+            return result;
         }
     }
 }

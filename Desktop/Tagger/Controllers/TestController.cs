@@ -4,19 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Special.Processors.Contracts;
 
     [Description("Test.")]
-    public class TestController : TaggerControllerFactory, ITestController
+    public class TestController : ITestController
     {
         private readonly ITestFeaturesProvider provider;
 
-        public TestController(IDocumentFactory documentFactory, ITestFeaturesProvider provider)
-            : base(documentFactory)
+        public TestController(ITestFeaturesProvider provider)
         {
             if (provider == null)
             {
@@ -26,11 +24,22 @@
             this.provider = provider;
         }
 
-        protected override Task Run(IDocument document, IProgramSettings settings)
+        public Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            return Task.Run(() =>
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            return Task.Run<object>(() =>
             {
                 this.provider.RenumerateFootNotes(document);
+                return true;
             });
         }
     }

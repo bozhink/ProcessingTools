@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
@@ -15,18 +14,16 @@
     using ProcessingTools.Services.Validation.Models;
 
     [Description("Validate external links.")]
-    public class ValidateExternalLinksController : TaggerControllerFactory, IValidateExternalLinksController
+    public class ValidateExternalLinksController : IValidateExternalLinksController
     {
         private readonly IExternalLinksHarvester harvester;
         private readonly IUrlValidationService service;
         private readonly ILogger logger;
 
         public ValidateExternalLinksController(
-            IDocumentFactory documentFactory,
             IExternalLinksHarvester harvester,
             IUrlValidationService service,
             ILogger logger)
-            : base(documentFactory)
         {
             if (harvester == null)
             {
@@ -43,14 +40,24 @@
             this.logger = logger;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             var externalLinks = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
 
             if (externalLinks == null)
             {
                 this.logger?.Log(LogType.Info, "No external links are found.");
-                return;
+                return false;
             }
 
             var linksToValidate = externalLinks.Select(e => new UrlServiceModel
@@ -67,6 +74,8 @@
                 .OrderBy(i => i);
 
             this.logger?.Log("Non-valid external links:\n|\t{0}\n", string.Join("\n|\t", nonValidItems));
+
+            return true;
         }
     }
 }

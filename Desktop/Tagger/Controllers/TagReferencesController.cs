@@ -4,19 +4,17 @@
     using System.Threading.Tasks;
 
     using Contracts;
-    using Factories;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.References;
 
     [Description("Tag references.")]
-    public class TagReferencesController : TaggerControllerFactory, ITagReferencesController
+    public class TagReferencesController : ITagReferencesController
     {
         private readonly IReferencesTagger tagger;
 
-        public TagReferencesController(IDocumentFactory documentFactory, IReferencesTagger tagger)
-            : base(documentFactory)
+        public TagReferencesController(IReferencesTagger tagger)
         {
             if (tagger == null)
             {
@@ -26,10 +24,20 @@
             this.tagger = tagger;
         }
 
-        protected override async Task Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             this.tagger.ReferencesGetReferencesXmlPath = settings.ReferencesGetReferencesXmlPath;
-            await this.tagger.Tag(document.XmlDocument.DocumentElement);
+            return await this.tagger.Tag(document.XmlDocument.DocumentElement);
         }
     }
 }
