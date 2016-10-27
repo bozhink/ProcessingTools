@@ -155,6 +155,7 @@
     <Compile Include="Contracts\IZoobankNlmXslTransformProvider.cs" />
     <Compile Include="ControllerInfoProvider.cs" />
     <Compile Include="Controllers\Generics\GenericDocumentTaggerController.cs" />
+    <Compile Include="Controllers\Generics\GenericXmlContextTaggerController.cs" />
     <Compile Include="Controllers\ParseTreatmentMaterialsController.cs" />
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
