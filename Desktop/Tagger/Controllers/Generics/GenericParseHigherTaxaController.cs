@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Factories
+﻿namespace ProcessingTools.Tagger.Controllers.Generics
 {
     using System;
     using System.Threading.Tasks;
@@ -11,13 +11,13 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
 
-    public abstract class ParseHigherTaxaControllerFactory<TService> : ITaggerController
+    public class GenericParseHigherTaxaController<TService> : ITaggerController
         where TService : ITaxonRankResolverDataService
     {
         private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
         private readonly ILogger logger;
 
-        public ParseHigherTaxaControllerFactory(
+        public GenericParseHigherTaxaController(
             IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
             ILogger logger)
         {

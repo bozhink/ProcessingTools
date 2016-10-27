@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using Contracts;
-    using Factories;
+    using Generics;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts;
 
     [Description("Make higher taxa of type 'above-genus'.")]
-    public class ParseHigherTaxaAboveGenusController : ParseHigherTaxaControllerFactory<IAboveGenusTaxaRankResolverDataService>, IParseHigherTaxaAboveGenusController
+    public class ParseHigherTaxaAboveGenusController : GenericParseHigherTaxaController<IAboveGenusTaxaRankResolverDataService>, IParseHigherTaxaAboveGenusController
     {
         public ParseHigherTaxaAboveGenusController(
             IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolverDataService, ITaxonRank> parser,

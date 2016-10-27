@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using Contracts;
-    using Factories;
+    using Generics;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts;
 
     [Description("Parse higher taxa using CoL.")]
-    public class ParseHigherTaxaWithCatalogueOfLifeController : ParseHigherTaxaControllerFactory<ICatalogueOfLifeTaxaRankResolverDataService>, IParseHigherTaxaWithCatalogueOfLifeController
+    public class ParseHigherTaxaWithCatalogueOfLifeController : GenericParseHigherTaxaController<ICatalogueOfLifeTaxaRankResolverDataService>, IParseHigherTaxaWithCatalogueOfLifeController
     {
         public ParseHigherTaxaWithCatalogueOfLifeController(
             IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolverDataService, ITaxonRank> parser,
