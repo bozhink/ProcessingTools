@@ -46,63 +46,53 @@
             logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
         }
 
-        private async Task InvokeProcessor<TController>()
-            where TController : ITaggerController
-        {
-            await this.InvokeProcessor<TController>(this.document.XmlDocument.DocumentElement);
-        }
-
         private async Task InvokeProcessor<TController>(XmlNode context)
             where TController : ITaggerController
         {
-            var controller = DI.Get<TController>();
-
-            await this.InvokeController(controller, context);
-        }
-
-        private async Task InvokeProcessor(Type controllerType)
-        {
-            // Do not wait validation controllers to return.
-            var validationController = controllerType.GetInterfaces()?.FirstOrDefault(t => t == typeof(INotAwaitableController));
-            if (validationController != null)
-            {
-                // Validation controllers should not overwrite the content of this.document.XmlDocument,
-                // and here this content is copied in a new DOM object.
-                XmlDocument document = new XmlDocument
-                {
-                    PreserveWhitespace = true
-                };
-
-                document.LoadXml(this.document.Xml);
-                this.tasks.Enqueue(this.InvokeProcessor(controllerType, document.DocumentElement));
-            }
-            else
-            {
-                await this.InvokeProcessor(controllerType, this.document.XmlDocument.DocumentElement);
-            }
+            await this.InvokeProcessor(typeof(TController), context);
         }
 
         private async Task InvokeProcessor(Type controllerType, XmlNode context)
         {
             var controller = DI.Get(controllerType) as ITaggerController;
+            var document = this.WrapContextInDocument(context);
 
-            await this.InvokeController(controller, context);
+            var isValidationController = controllerType.GetInterfaces().Count(t => t == typeof(INotAwaitableController)) > 0;
+            if (isValidationController)
+            {
+                // Validation controllers should not overwrite the content of this.document.XmlDocument,
+                // and here this content is copied in a new DOM object.
+                
+                var task = this.InvokeController(controller, document);
+                this.tasks.Enqueue(task);
+            }
+            else
+            {
+                await this.InvokeController(controller, document);
+                context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
+            }
         }
 
-        private async Task InvokeController(ITaggerController controller, XmlNode context)
+        private async Task InvokeController(ITaggerController controller, IDocument document)
         {
+            if (controller == null)
+            {
+                throw new ArgumentNullException(nameof(controller), $"Controller of type {controller.GetType().FullName} is invalid.");
+            }
+
             string message = controller.GetDescriptionMessageForController();
-
-            var document = this.documentFactory.Create(Resources.ContextWrapper);
-            document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
-            document.SchemaType = this.settings.ArticleSchemaType;
-
             await InvokeProcessor(
                 message,
                 _ => controller.Run(document, this.settings),
                 this.logger);
+        }
 
-            context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
+        private IDocument WrapContextInDocument(XmlNode context)
+        {
+            var document = this.documentFactory.Create(Resources.ContextWrapper);
+            document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
+            document.SchemaType = this.settings.ArticleSchemaType;
+            return document;
         }
     }
 }
