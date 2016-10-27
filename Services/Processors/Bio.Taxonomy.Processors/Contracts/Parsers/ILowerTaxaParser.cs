@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface ILowerTaxaParser : IGenericXmlContextParser<object>
+    public interface ILowerTaxaParser : IXmlContextParser
     {
     }
 }

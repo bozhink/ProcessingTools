@@ -1,23 +1,23 @@
 ﻿namespace ProcessingTools.Tagger.Controllers.Generics
 {
-    using Contracts;
-    using ProcessingTools.Contracts;
     using System;
     using System.Threading.Tasks;
+    using Contracts;
+    using ProcessingTools.Contracts;
 
-    public class GenericDocumentTaggerController<TTagger> : ITaggerController
-        where TTagger : IDocumentTagger
+    public class GenericXmlContextParserController<TParser> : ITaggerController
+        where TParser : IXmlContextParser
     {
-        private readonly TTagger tagger;
+        private readonly TParser parser;
 
-        public GenericDocumentTaggerController(TTagger tagger)
+        public GenericXmlContextParserController(TParser parser)
         {
-            if (tagger == null)
+            if (parser == null)
             {
-                throw new ArgumentNullException(nameof(tagger));
+                throw new ArgumentNullException(nameof(parser));
             }
 
-            this.tagger = tagger;
+            this.parser = parser;
         }
 
         public async Task<object> Run(IDocument document, IProgramSettings settings)
@@ -32,7 +32,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return await this.tagger.Tag(document);
+            return await this.parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }

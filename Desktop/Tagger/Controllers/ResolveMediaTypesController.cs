@@ -1,42 +1,17 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
-    using System.Threading.Tasks;
-
     using Contracts;
+    using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Resolve media-types.")]
-    public class ResolveMediaTypesController : IResolveMediaTypesController
+    public class ResolveMediaTypesController : GenericXmlContextParserController<IMediaTypesResolver>, IResolveMediaTypesController
     {
-        private readonly IMediaTypesResolver parser;
-
         public ResolveMediaTypesController(IMediaTypesResolver parser)
+            : base(parser)
         {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
-
-            this.parser = parser;
-        }
-
-        public async Task<object> Run(IDocument document, IProgramSettings settings)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
-            return await this.parser.Parse(document.XmlDocument.DocumentElement);
         }
     }
 }
