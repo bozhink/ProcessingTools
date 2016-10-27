@@ -198,6 +198,7 @@
     <Content Include="Xsl\harvest.external-links.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Xsl\Harvesters\harvest.references-to-json.xsl" />
     <Content Include="Xsl\InDesign\Idml\map.xsl" />
     <Content Include="Xsl\ipni-query.xsl">
       <SubType>Designer</SubType>
