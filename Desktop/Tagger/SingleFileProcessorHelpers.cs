@@ -95,7 +95,7 @@
 
             var document = this.documentFactory.Create(Resources.ContextWrapper);
             document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
-            document.SchemaType = settings.ArticleSchemaType;
+            document.SchemaType = this.settings.ArticleSchemaType;
 
             await InvokeProcessor(
                 message,

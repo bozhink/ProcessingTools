@@ -15,7 +15,6 @@
     [Description("Tag type status.")]
     public class TagTypeStatusController : StringMinerTaggerControllerFactory, ITagTypeStatusController
     {
-
         public TagTypeStatusController(ITypeStatusDataMiner miner, IStringTagger tagger)
             : base(miner, tagger)
         {
