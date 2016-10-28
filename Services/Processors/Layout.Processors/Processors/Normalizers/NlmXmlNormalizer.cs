@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Layout.Processors.Processors.Normalizers
+﻿namespace ProcessingTools.Layout.Processors.Normalizers
 {
     using Abstracts.Normalizers;
     using Contracts.Normalizers;

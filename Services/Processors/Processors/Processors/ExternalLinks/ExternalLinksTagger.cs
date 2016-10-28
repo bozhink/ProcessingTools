@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Processors.ExternalLinks
+﻿namespace ProcessingTools.Processors.ExternalLinks
 {
     using System;
     using System.Linq;

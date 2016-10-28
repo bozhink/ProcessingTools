@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Tagger.Controllers.Generics
 {
-    using Contracts;
-    using ProcessingTools.Contracts;
     using System;
     using System.Threading.Tasks;
+    using Contracts;
+    using ProcessingTools.Contracts;
 
     public class GenericDocumentTaggerController<TTagger> : ITaggerController
         where TTagger : IDocumentTagger

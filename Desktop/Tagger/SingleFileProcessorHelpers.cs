@@ -62,7 +62,6 @@
             {
                 // Validation controllers should not overwrite the content of this.document.XmlDocument,
                 // and here this content is copied in a new DOM object.
-                
                 var task = this.InvokeController(controller, document);
                 this.tasks.Enqueue(task);
             }
