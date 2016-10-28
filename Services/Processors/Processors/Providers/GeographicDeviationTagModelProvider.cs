@@ -6,12 +6,12 @@
     using ProcessingTools.Constants.Content;
     using ProcessingTools.Nlm.Publishing.Constants;
 
-    public class GeoEpithetTagModelProvider : IGeoEpithetTagModelProvider
+    public class GeographicDeviationTagModelProvider : IGeographicDeviationTagModelProvider
     {
         public Func<XmlDocument, XmlElement> TagModel => document =>
         {
             var tagModel = document.CreateElement(ElementNames.NamedContent);
-            tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.GeoEpithetContentType);
+            tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.GeographicDeviationContentType);
 
             return tagModel;
         };

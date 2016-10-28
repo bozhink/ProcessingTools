@@ -1,31 +1,17 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
-    using System.Xml;
-
     using Contracts;
-    using Factories;
+    using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Constants.Content;
-    using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Nlm.Publishing.Constants;
+    using ProcessingTools.Processors.Contracts.Geo;
 
     [Description("Tag geographic deviations.")]
-    public class TagGeographicDeviationsController : StringMinerTaggerControllerFactory, ITagGeographicDeviationsController
+    public class TagGeographicDeviationsController : GenericDocumentTaggerController<IGeographicDeviationsTagger>, ITagGeographicDeviationsController
     {
-        public TagGeographicDeviationsController(IGeographicDeviationsDataMiner miner, IStringTagger tagger)
-            : base(miner, tagger)
+        public TagGeographicDeviationsController(IGeographicDeviationsTagger tagger)
+            : base(tagger)
         {
         }
-
-        protected override Func<XmlDocument, XmlElement> BuildTagModel => document =>
-        {
-            var tagModel = document.CreateElement(ElementNames.NamedContent);
-            tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.GeographicDeviationContentType);
-
-            return tagModel;
-        };
     }
 }
