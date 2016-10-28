@@ -60,6 +60,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
+            // TODO: evaluator
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
             var data = await this.miner.Mine(textContent);
 
