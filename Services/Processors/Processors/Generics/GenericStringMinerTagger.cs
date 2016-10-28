@@ -1,8 +1,9 @@
-﻿namespace ProcessingTools.Processors.Abstracts
+﻿namespace ProcessingTools.Processors.Generics
 {
     using System;
     using System.Threading.Tasks;
-    using System.Xml;
+
+    using Contracts.Providers;
 
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
@@ -10,13 +11,15 @@
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Xml.Extensions;
 
-    public abstract class StringMinerTagger<TMiner> : IDocumentTagger
-         where TMiner : IStringDataMiner
+    public class GenericStringMinerTagger<TMiner, TTagModelProvider> : IDocumentTagger
+        where TMiner : IStringDataMiner
+        where TTagModelProvider : IXmlTagModelProvider
     {
         private readonly TMiner miner;
         private readonly IStringTagger tagger;
+        private readonly TTagModelProvider tagModelProvider;
 
-        public StringMinerTagger(TMiner miner, IStringTagger tagger)
+        public GenericStringMinerTagger(TMiner miner, IStringTagger tagger, TTagModelProvider tagModelProvider)
         {
             if (miner == null)
             {
@@ -28,11 +31,15 @@
                 throw new ArgumentNullException(nameof(tagger));
             }
 
+            if (tagModelProvider == null)
+            {
+                throw new ArgumentNullException(nameof(tagModelProvider));
+            }
+
             this.miner = miner;
             this.tagger = tagger;
+            this.tagModelProvider = tagModelProvider;
         }
-
-        protected abstract Func<XmlDocument, XmlElement> BuildTagModel { get; }
 
         public async Task<object> Tag(IDocument document)
         {
@@ -41,7 +48,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var tagModel = this.BuildTagModel(document.XmlDocument);
+            var tagModel = this.tagModelProvider.TagModel(document.XmlDocument);
 
             var textContent = document.XmlDocument.GetTextContent();
             var data = await this.miner.Mine(textContent);

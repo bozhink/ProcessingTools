@@ -35,7 +35,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\StringMinerTagger.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Coordinates\ICoordinatesParser.cs" />
@@ -50,6 +49,7 @@
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
     <Compile Include="Contracts\Transformers\IReferencesGetReferencesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
+    <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinkSerializableModel.cs" />
