@@ -1,31 +1,17 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
-    using System.Xml;
-
     using Contracts;
-    using Factories;
+    using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Constants.Content;
-    using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Nlm.Publishing.Constants;
+    using ProcessingTools.Processors.Contracts.Quantities;
 
     [Description("Tag quantities.")]
-    public class TagQuantitiesController : StringMinerTaggerControllerFactory, ITagQuantitiesController
+    public class TagQuantitiesController : GenericDocumentTaggerController<IQuantitiesTagger>, ITagQuantitiesController
     {
-        public TagQuantitiesController(IQuantitiesDataMiner miner, IStringTagger tagger)
-            : base(miner, tagger)
+        public TagQuantitiesController(IQuantitiesTagger tagger)
+            : base(tagger)
         {
         }
-
-        protected override Func<XmlDocument, XmlElement> BuildTagModel => document =>
-        {
-            var tagModel = document.CreateElement(ElementNames.NamedContent);
-            tagModel.SetAttribute(AttributeNames.ContentType, ContentTypeConstants.QuantityContentType);
-
-            return tagModel;
-        };
     }
 }
