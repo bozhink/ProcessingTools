@@ -44,6 +44,7 @@
     <Compile Include="Contracts\Geo\IAltitudesTagger.cs" />
     <Compile Include="Contracts\Geo\IGeoEpithetsTagger.cs" />
     <Compile Include="Contracts\Geo\IGeographicDeviationsTagger.cs" />
+    <Compile Include="Contracts\Geo\IGeoNamesTagger.cs" />
     <Compile Include="Contracts\IDocumentXslProcessor.cs" />
     <Compile Include="Contracts\Floats\IFloatsTagger.cs" />
     <Compile Include="Contracts\Floats\IMediaTypesResolver.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Contracts\Providers\IDateTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IGeoEpithetTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IGeographicDeviationTagModelProvider.cs" />
+    <Compile Include="Contracts\Providers\IGeoNameTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IXmlTagModelProvider.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Processors\Geo\AltitudesTagger.cs" />
     <Compile Include="Processors\Geo\GeoEpithetsTagger.cs" />
     <Compile Include="Processors\Geo\GeographicDeviationsTagger.cs" />
+    <Compile Include="Processors\Geo\GeoNamesTagger.cs" />
     <Compile Include="Processors\QueryReplacer.cs" />
     <Compile Include="Processors\References\ReferencesParser.cs" />
     <Compile Include="Processors\References\ReferencesTagger.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Providers\DateTagModelProvider.cs" />
     <Compile Include="Providers\GeoEpithetTagModelProvider.cs" />
     <Compile Include="Providers\GeographicDeviationTagModelProvider.cs" />
+    <Compile Include="Providers\GeoNameTagModelProvider.cs" />
     <Compile Include="Transformers\ReferencesGetReferencesTransformer.cs" />
     <Compile Include="Transformers\ReferencesTagTemplateTransformer.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
