@@ -45,6 +45,7 @@
     <Compile Include="Contracts\Floats\IMediaTypesResolver.cs" />
     <Compile Include="Contracts\IQueryReplacer.cs" />
     <Compile Include="Contracts\Floats\ITableFootNotesTagger.cs" />
+    <Compile Include="Contracts\Providers\IXmlTagModelProvider.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
     <Compile Include="Contracts\Transformers\IReferencesGetReferencesTransformer.cs" />
