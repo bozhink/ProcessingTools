@@ -41,6 +41,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Contracts\Bio\ISpecimenCountTagger.cs" />
+    <Compile Include="Contracts\Bio\ITypeStatusTagger.cs" />
     <Compile Include="Contracts\Coordinates\ICoordinatesParser.cs" />
     <Compile Include="Contracts\Coordinates\ICoordinatesTagger.cs" />
     <Compile Include="Contracts\Dates\IDatesTagger.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Contracts\Providers\IProductTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IQuantityTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\ISpecimenCountTagModelProvider.cs" />
+    <Compile Include="Contracts\Providers\ITypeStatusTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IXmlTagModelProvider.cs" />
     <Compile Include="Contracts\Quantities\IQuantitiesTagger.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
+    <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesTagger.cs" />
     <Compile Include="Processors\Dates\DatesTagger.cs" />
@@ -130,6 +133,7 @@
     <Compile Include="Providers\ProductTagModelProvider.cs" />
     <Compile Include="Providers\QuantityTagModelProvider.cs" />
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
+    <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
     <Compile Include="Transformers\ReferencesGetReferencesTransformer.cs" />
     <Compile Include="Transformers\ReferencesTagTemplateTransformer.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
