@@ -44,11 +44,13 @@
     <Compile Include="Contracts\Floats\IMediaTypesResolver.cs" />
     <Compile Include="Contracts\IQueryReplacer.cs" />
     <Compile Include="Contracts\Floats\ITableFootNotesTagger.cs" />
+    <Compile Include="Contracts\IGenericStringDataMinerEvaluator.cs" />
     <Compile Include="Contracts\Providers\IXmlTagModelProvider.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
     <Compile Include="Contracts\Transformers\IReferencesGetReferencesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
+    <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
