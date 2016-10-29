@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Abbreviations\IAbbreviationsTagger.cs" />
+    <Compile Include="Contracts\Bio\Codes\ICodesTagger.cs" />
     <Compile Include="Contracts\Bio\IMorphologicalEpithetsTagger.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -77,6 +78,7 @@
     <Compile Include="Contracts\Quantities\IQuantitiesTagger.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
+    <Compile Include="Contracts\Transformers\ICodesRemoveNonCodeNodesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IReferencesGetReferencesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
     <Compile Include="Contracts\Transformers\IZooBankRegistrationXmlTransformer.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
+    <Compile Include="Models\Bio\Codes\ISpecimenCode.cs" />
+    <Compile Include="Models\Bio\Codes\SpecimenCode.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinkSerializableModel.cs" />
     <Compile Include="Models\Floats\IFloatObject.cs" />
     <Compile Include="Models\Floats\IMediaType.cs" />
@@ -104,6 +108,7 @@
     <Compile Include="Models\References\IReferenceTemplateItem.cs" />
     <Compile Include="Models\References\ReferenceTemplateItem.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
+    <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
@@ -141,6 +146,7 @@
     <Compile Include="Providers\QuantityTagModelProvider.cs" />
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
+    <Compile Include="Transformers\CodesRemoveNonCodeNodesTransformer.cs" />
     <Compile Include="Transformers\ReferencesGetReferencesTransformer.cs" />
     <Compile Include="Transformers\ReferencesTagTemplateTransformer.cs" />
     <Compile Include="Transformers\ZooBankRegistrationXmlTransformer.cs" />

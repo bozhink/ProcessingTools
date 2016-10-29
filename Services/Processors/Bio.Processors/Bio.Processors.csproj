@@ -40,20 +40,14 @@
     <Compile Include="Contracts\EnvironmentTerms\IEnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Models\EnvironmentTerms\EnvoTermSerializableModel.cs" />
     <Compile Include="Contracts\EnvironmentTerms\IEnvironmentTermsTagger.cs" />
-    <Compile Include="Contracts\Transformers\ICodesRemoveNonCodeNodesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IFormatTaxonTreatmentsTransformer.cs" />
     <Compile Include="Contracts\Transformers\ITaxonTreatmentExtractMaterialsTransformer.cs" />
-    <Compile Include="Models\Codes\ISpecimenCode.cs" />
-    <Compile Include="Models\Codes\SpecimenCode.cs" />
     <Compile Include="Models\EnvironmentTerms\EnvoTermResponseModel.cs" />
-    <Compile Include="Processors\Codes\CodesTagger.cs" />
-    <Compile Include="Contracts\Codes\ICodesTagger.cs" />
     <Compile Include="Processors\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Processors\EnvironmentTerms\EnvironmentTermsTagger.cs" />
     <Compile Include="Processors\EnvironmentTerms\EnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Models\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transformers\CodesRemoveNonCodeNodesTransformer.cs" />
     <Compile Include="Transformers\FormatTaxonTreatmentsTransformer.cs" />
     <Compile Include="Transformers\TaxonTreatmentExtractMaterialsTransformer.cs" />
   </ItemGroup>
