@@ -154,6 +154,7 @@
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
     <Compile Include="Contracts\IZoobankNlmXslTransformProvider.cs" />
     <Compile Include="ControllerInfoProvider.cs" />
+    <Compile Include="Controllers\Generics\GenericDocumentFormatterController.cs" />
     <Compile Include="Controllers\Generics\GenericDocumentParserController.cs" />
     <Compile Include="Controllers\Generics\GenericDocumentTaggerController.cs" />
     <Compile Include="Controllers\Generics\GenericXmlContextParserController.cs" />
