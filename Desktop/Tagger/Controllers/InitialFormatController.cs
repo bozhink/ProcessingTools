@@ -1,42 +1,17 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
-    using System.Threading.Tasks;
-
     using Contracts;
+    using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
     [Description("Initial format.")]
-    public class InitialFormatController : IInitialFormatController
+    public class InitialFormatController : GenericDocumentFormatterController<IDocumentInitialFormatter>, IInitialFormatController
     {
-        private readonly IDocumentInitialFormatter formatter;
-
         public InitialFormatController(IDocumentInitialFormatter formatter)
+            : base(formatter)
         {
-            if (formatter == null)
-            {
-                throw new ArgumentNullException(nameof(formatter));
-            }
-
-            this.formatter = formatter;
-        }
-
-        public async Task<object> Run(IDocument document, IProgramSettings settings)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
-            return await this.formatter.Format(document);
         }
     }
 }
