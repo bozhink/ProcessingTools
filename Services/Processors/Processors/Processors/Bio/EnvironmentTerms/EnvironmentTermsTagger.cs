@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.EnvironmentTerms
+﻿namespace ProcessingTools.Processors.Bio.EnvironmentTerms
 {
     using System;
     using System.Linq;

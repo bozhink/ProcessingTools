@@ -87,6 +87,7 @@
     <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
     <Compile Include="Contracts\Transformers\ITaxonTreatmentExtractMaterialsTransformer.cs" />
     <Compile Include="Contracts\Transformers\IZooBankRegistrationXmlTransformer.cs" />
+    <Compile Include="Contracts\Validation\ITaxaValidator.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Processors\QueryReplacer.cs" />
     <Compile Include="Processors\References\ReferencesParser.cs" />
     <Compile Include="Processors\References\ReferencesTagger.cs" />
+    <Compile Include="Processors\Validation\TaxaValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AltitudeTagModelProvider.cs" />
     <Compile Include="Providers\CoordinateTagModelProvider.cs" />
@@ -190,6 +192,10 @@
       <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
       <Name>Xml</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{B2A9C868-B6FF-4F68-9B40-E9B8511F2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Libraries\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
@@ -229,6 +235,10 @@
     <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
       <Name>Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Validation\Services.Validation\Services.Validation.csproj">
+      <Project>{AA7AB2A8-DAC5-4F5C-8838-0FDC4D22E66C}</Project>
+      <Name>Services.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Layout.Processors\Layout.Processors.csproj">
       <Project>{FC880066-D413-4E16-9F46-23ACD5E30C2D}</Project>
