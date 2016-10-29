@@ -7,7 +7,7 @@
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
 
-    using Contracts;
+    using Contracts.Controllers;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;

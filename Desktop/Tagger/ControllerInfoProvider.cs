@@ -6,6 +6,7 @@
     using System.Text.RegularExpressions;
 
     using Contracts;
+    using Contracts.Controllers;
     using Extensions;
     using Models;
 

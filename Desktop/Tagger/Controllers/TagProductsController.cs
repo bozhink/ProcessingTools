@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using Contracts;
+    using Contracts.Controllers;
     using Generics;
 
     using ProcessingTools.Attributes;

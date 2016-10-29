@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Contracts;
+    using Contracts.Controllers;
 
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Extensions;
