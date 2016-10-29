@@ -452,10 +452,6 @@
       <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
       <Name>Services.Cache</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Processors\Bio.Processors\Bio.Processors.csproj">
-      <Project>{104088bb-b91b-4cde-a201-72b9caa2d2e0}</Project>
-      <Name>Bio.Processors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Bio.Taxonomy.Processors\Bio.Taxonomy.Processors.csproj">
       <Project>{b8e7a642-ca04-470b-8a1f-767a7ee282fd}</Project>
       <Name>Bio.Taxonomy.Processors</Name>
