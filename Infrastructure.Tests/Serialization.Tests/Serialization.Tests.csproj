@@ -37,6 +37,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -57,7 +60,9 @@
     <Compile Include="Csv\Models\NameYearDescriptionSampleCsvObject.cs" />
     <Compile Include="Csv\Models\NameYearDescriptionSampleObject.cs" />
     <Compile Include="Csv\Models\PersonCsvObject.cs" />
+    <Compile Include="Models\ExternalLinkSerializableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">

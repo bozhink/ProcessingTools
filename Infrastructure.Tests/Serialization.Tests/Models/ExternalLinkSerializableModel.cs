@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Tests.Models
+﻿namespace ProcessingTools.Serialization.Tests.Models
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;

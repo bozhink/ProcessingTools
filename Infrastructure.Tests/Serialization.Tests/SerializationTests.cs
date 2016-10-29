@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.BaseLibrary.Tests
+﻿namespace ProcessingTools.Serialization.Tests
 {
     using System.IO;
     using System.Text;
