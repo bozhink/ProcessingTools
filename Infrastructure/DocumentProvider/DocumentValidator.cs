@@ -10,29 +10,17 @@
 
     using ProcessingTools.Contracts;
 
-    public class DocumentValidator : IValidator
+    public class DocumentValidator : IDocumentValidator
     {
         private const string TaxPubDtdPathKey = "TaxPubDtdPath";
         private readonly string taxPubDtdPath;
+        private readonly ILogger logger;
 
-        private ILogger logger;
-        private IDocument document;
-
-        public DocumentValidator(IDocument document)
-            : this(document, null)
+        public DocumentValidator(ILogger logger)
         {
-        }
-
-        public DocumentValidator(IDocument document, ILogger logger)
-        {
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
-            this.document = document;
             this.logger = logger;
 
+            // TODO: AppSettingsReader
             var appSettingsReader = new AppSettingsReader();
             try
             {
@@ -50,14 +38,21 @@
             }
         }
 
-        public async Task Validate()
+        public async Task<object> Validate(IDocument document)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
             string fileName = Path.GetTempFileName() + ".xml";
             this.logger?.Log(fileName);
 
-            await this.WriteXmlFileWithDoctype(fileName);
+            await this.WriteXmlFileWithDoctype(document, fileName);
 
             await this.ReadXmlFileWithDtdValidation(fileName);
+
+            return true;
         }
 
         private async Task ReadXmlFileWithDtdValidation(string fileName)
@@ -75,6 +70,7 @@
                 ValidationType = ValidationType.DTD,
                 ValidationFlags = XmlSchemaValidationFlags.ReportValidationWarnings
             };
+
             readerSettings.ValidationEventHandler += new ValidationEventHandler(this.ValidationCallBack);
 
             var reader = XmlReader.Create(fileName, readerSettings);
@@ -85,7 +81,7 @@
             reader.Close();
         }
 
-        private async Task WriteXmlFileWithDoctype(string fileName)
+        private async Task WriteXmlFileWithDoctype(IDocument document, string fileName)
         {
             var writerSettings = new XmlWriterSettings
             {
@@ -113,7 +109,7 @@
                 this.taxPubDtdPath,
                 null);
 
-            this.document.XmlDocument.DocumentElement.WriteTo(writer);
+            document.XmlDocument.DocumentElement.WriteTo(writer);
             await writer.FlushAsync();
             writer.Close();
         }

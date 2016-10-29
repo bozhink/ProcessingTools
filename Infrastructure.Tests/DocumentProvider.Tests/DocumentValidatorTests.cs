@@ -12,9 +12,9 @@
             var document = new TaxPubDocument();
             document.Xml = "<article><front></front></article>";
 
-            var validator = new DocumentValidator(document);
+            var validator = new DocumentValidator(null);
 
-            validator.Validate().Wait();
+            validator.Validate(document).Wait();
         }
     }
 }

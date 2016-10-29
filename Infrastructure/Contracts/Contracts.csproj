@@ -63,6 +63,7 @@
     <Compile Include="IDocumentProcessor.cs" />
     <Compile Include="IDocumentTagger.cs" />
     <Compile Include="IDocumentToDocumentCloner.cs" />
+    <Compile Include="IDocumentValidator.cs" />
     <Compile Include="IGenericDocumentCloner.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />

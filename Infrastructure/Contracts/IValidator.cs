@@ -2,8 +2,8 @@
 {
     using System.Threading.Tasks;
 
-    public interface IValidator
+    public interface IValidator<TContext, TResult>
     {
-        Task Validate();
+        Task<TResult> Validate(TContext context);
     }
 }
