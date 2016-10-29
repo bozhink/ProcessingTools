@@ -38,6 +38,8 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Bio\Codes\ICodesTagger.cs" />
+    <Compile Include="Contracts\Bio\Codes\ICollectionCodesTagger.cs" />
+    <Compile Include="Contracts\Bio\Codes\IInstitutionalCodesTagger.cs" />
     <Compile Include="Contracts\Bio\EnvironmentTerms\IEnvironmentTermsTagger.cs" />
     <Compile Include="Contracts\Bio\EnvironmentTerms\IEnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Contracts\Bio\IMorphologicalEpithetsTagger.cs">
@@ -93,6 +95,10 @@
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
+    <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionCodeSerializableModel.cs" />
+    <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionSerializableModel.cs" />
+    <Compile Include="Models\Bio\Codes\BiorepositoriesInstitutionalCodeSerializableModel.cs" />
+    <Compile Include="Models\Bio\Codes\BiorepositoriesInstitutionSerializableModel.cs" />
     <Compile Include="Models\Bio\Codes\ISpecimenCode.cs" />
     <Compile Include="Models\Bio\Codes\SpecimenCode.cs" />
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
@@ -115,10 +121,14 @@
     <Compile Include="Models\Floats\TableBoxFloatObject.cs" />
     <Compile Include="Models\Floats\TableFloatObject.cs" />
     <Compile Include="Models\Floats\TextBoxFloatObject.cs" />
+    <Compile Include="Models\NamedContentSerializableModel.cs" />
     <Compile Include="Models\References\IReferenceTemplateItem.cs" />
     <Compile Include="Models\References\ReferenceTemplateItem.cs" />
+    <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
+    <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />
+    <Compile Include="Processors\Bio\Codes\InstitutionalCodesTagger.cs" />
     <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsTagger.cs" />
     <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />
@@ -189,6 +199,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
+      <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
+      <Name>Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>

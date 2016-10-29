@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Controllers
 {
-    public interface IZooBankCloneXmlController : ITagCodesController
+    public interface IZooBankCloneXmlController : ITagInstitutionalCodesController
     {
     }
 }

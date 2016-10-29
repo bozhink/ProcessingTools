@@ -168,7 +168,7 @@
             // Tag institutions, institutional codes, and specimen codes
             if (this.settings.TagCodes)
             {
-                await this.InvokeProcessor<ITagCodesController>(context);
+                await this.InvokeProcessor<ITagInstitutionalCodesController>(context);
             }
 
             if (this.settings.TagLowerTaxa)

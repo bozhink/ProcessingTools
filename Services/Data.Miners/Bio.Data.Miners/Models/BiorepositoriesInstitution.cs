@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Data.Miners.Models
 {
-    public class BiorepositoriesInstitution
+    public class BiorepositoriesInstitution : IBiorepositoriesInstitution
     {
         public string InstitutionalCode { get; set; }
 
