@@ -170,10 +170,6 @@
     <Compile Include="IProgramSettings.cs" />
     <Compile Include="ISingleFileProcessor.cs" />
     <Compile Include="IStartup.cs" />
-    <Compile Include="Models\BiorepositoriesCollectionCodeSerializableModel.cs" />
-    <Compile Include="Models\BiorepositoriesCollectionSerializableModel.cs" />
-    <Compile Include="Models\BiorepositoriesInstitutionalCodeSerializableModel.cs" />
-    <Compile Include="Models\BiorepositoriesInstitutionSerializableModel.cs" />
     <Compile Include="Models\ControllerInfo.cs" />
     <Compile Include="Controllers\ExpandLowerTaxaController.cs" />
     <Compile Include="Controllers\ExtractTaxaController.cs" />
@@ -227,8 +223,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\NamedContentSerializableModel.cs" />
-    <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -253,7 +247,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="app.manifest" />
-    <None Include="ClassDiagram.cd" />
     <None Include="Graph.dgml" />
     <None Include="packages.config" />
   </ItemGroup>
