@@ -30,74 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\EnvironmentTerms\IEnvironmentTermsWithExtractTagger.cs" />
-    <Compile Include="Models\EnvironmentTerms\EnvoTermSerializableModel.cs" />
-    <Compile Include="Contracts\EnvironmentTerms\IEnvironmentTermsTagger.cs" />
-    <Compile Include="Models\EnvironmentTerms\EnvoTermResponseModel.cs" />
-    <Compile Include="Processors\EnvironmentTerms\EnvironmentTermsTagger.cs" />
-    <Compile Include="Processors\EnvironmentTerms\EnvironmentTermsWithExtractTagger.cs" />
-    <Compile Include="Models\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
-      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
-      <Name>Constants</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
-      <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
-      <Name>Serialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
-      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
-      <Name>Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
-      <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
-      <Name>Bio.ServiceClient.MaterialsParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
-      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
-      <Project>{529760C1-9FA0-4187-B20C-B878A1D58774}</Project>
-      <Name>Bio.Data.Miners</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
-      <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>
-      <Name>Harvesters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Layout.Processors\Layout.Processors.csproj">
-      <Project>{fc880066-d413-4e16-9f46-23acd5e30c2d}</Project>
-      <Name>Layout.Processors</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Transformers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

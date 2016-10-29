@@ -40,13 +40,6 @@
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Bio.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(ProcessingTools.Bio.Taxonomy.Processors.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

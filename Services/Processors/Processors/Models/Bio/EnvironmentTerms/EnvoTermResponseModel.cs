@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Processors.Models.EnvironmentTerms
+﻿namespace ProcessingTools.Processors.Models.Bio.EnvironmentTerms
 {
     internal class EnvoTermResponseModel
     {

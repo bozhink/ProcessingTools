@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Processors.Contracts.EnvironmentTerms;
+    using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
 
     [Description("Tag envo terms using local database.")]
     public class TagEnvironmentTermsController : GenericDocumentTaggerController<IEnvironmentTermsTagger>, ITagEnvironmentTermsController

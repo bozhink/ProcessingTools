@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Materials
+﻿namespace ProcessingTools.Processors.Bio.Materials
 {
     using System;
     using System.Linq;

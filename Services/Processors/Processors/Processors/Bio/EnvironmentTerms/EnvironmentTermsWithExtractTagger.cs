@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Bio.Processors.EnvironmentTerms
+﻿namespace ProcessingTools.Processors.Processors.Bio.EnvironmentTerms
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Contracts.EnvironmentTerms;
-    using Models.EnvironmentTerms;
+    using Contracts.Bio.EnvironmentTerms;
+    using Models.Bio.EnvironmentTerms;
 
     using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
@@ -13,20 +13,18 @@
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
 
-    public class EnvironmentTermsTagger : IEnvironmentTermsTagger
+    public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
     {
         private const string XPath = "./*";
 
-        private readonly IEnvoTermsDataMiner miner;
+        private readonly IExtractHcmrDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
-        private readonly ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger;
-        private readonly ILogger logger;
+        private readonly ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger;
 
-        public EnvironmentTermsTagger(
-            IEnvoTermsDataMiner miner,
+        public EnvironmentTermsWithExtractTagger(
+            IExtractHcmrDataMiner miner,
             ITextContentHarvester contentHarvester,
-            ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger,
-            ILogger logger)
+            ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger)
         {
             if (miner == null)
             {
@@ -46,7 +44,6 @@
             this.miner = miner;
             this.contentHarvester = contentHarvester;
             this.contentTagger = contentTagger;
-            this.logger = logger;
         }
 
         public async Task<object> Tag(IDocument document)
@@ -58,18 +55,11 @@
 
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
-                .Select(t => new EnvoTermResponseModel
-                {
-                    EntityId = t.EntityId,
-                    EnvoId = t.EnvoId,
-                    Content = t.Content
-                })
-                .Select(t => new EnvoTermSerializableModel
+                .Select(t => new EnvoExtractHcmrSerializableModel
                 {
                     Value = t.Content,
-                    EnvoId = t.EnvoId,
-                    Id = t.EntityId,
-                    VerbatimTerm = t.Content
+                    Type = string.Join("|", t.Types),
+                    Identifier = string.Join("|", t.Identifiers)
                 });
 
             var settings = new ContentTaggerSettings
@@ -78,9 +68,10 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, data, XPath, settings);
+            await this.contentTagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, settings);
 
             return true;
         }
     }
 }
+

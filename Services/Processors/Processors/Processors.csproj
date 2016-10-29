@@ -38,6 +38,8 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Bio\Codes\ICodesTagger.cs" />
+    <Compile Include="Contracts\Bio\EnvironmentTerms\IEnvironmentTermsTagger.cs" />
+    <Compile Include="Contracts\Bio\EnvironmentTerms\IEnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Contracts\Bio\IMorphologicalEpithetsTagger.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -91,6 +93,9 @@
     <Compile Include="Models\Abbreviations\IAbbreviation.cs" />
     <Compile Include="Models\Bio\Codes\ISpecimenCode.cs" />
     <Compile Include="Models\Bio\Codes\SpecimenCode.cs" />
+    <Compile Include="Models\Bio\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
+    <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermResponseModel.cs" />
+    <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermSerializableModel.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinkSerializableModel.cs" />
     <Compile Include="Models\Floats\IFloatObject.cs" />
     <Compile Include="Models\Floats\IMediaType.cs" />
@@ -112,6 +117,8 @@
     <Compile Include="Models\References\ReferenceTemplateItem.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
+    <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsTagger.cs" />
+    <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
