@@ -36,8 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ZooBank\IZoobankJsonCloner.cs" />
-    <Compile Include="Contracts\ZooBank\IZoobankXmlCloner.cs" />
     <Compile Include="Contracts\Materials\ITreatmentMaterialsParser.cs" />
     <Compile Include="Contracts\EnvironmentTerms\IEnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Models\EnvironmentTerms\EnvoTermSerializableModel.cs" />
@@ -48,8 +46,6 @@
     <Compile Include="Models\Codes\ISpecimenCode.cs" />
     <Compile Include="Models\Codes\SpecimenCode.cs" />
     <Compile Include="Models\EnvironmentTerms\EnvoTermResponseModel.cs" />
-    <Compile Include="Processors\ZooBank\ZoobankJsonCloner.cs" />
-    <Compile Include="Processors\ZooBank\ZoobankXmlCloner.cs" />
     <Compile Include="Processors\Codes\CodesTagger.cs" />
     <Compile Include="Contracts\Codes\ICodesTagger.cs" />
     <Compile Include="Processors\Materials\TreatmentMaterialsParser.cs" />

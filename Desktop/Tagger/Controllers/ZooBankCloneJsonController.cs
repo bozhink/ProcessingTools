@@ -10,10 +10,10 @@
     using Contracts;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Processors.Contracts.ZooBank;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [Description("Clone ZooBank JSON.")]
     public class ZooBankCloneJsonController : IZooBankCloneJsonController

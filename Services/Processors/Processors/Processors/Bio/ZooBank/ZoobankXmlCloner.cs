@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Bio.Processors.ZooBank
+﻿namespace ProcessingTools.Processors.Bio.ZooBank
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Contracts.ZooBank;
+    using Contracts.Bio.ZooBank;
 
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;

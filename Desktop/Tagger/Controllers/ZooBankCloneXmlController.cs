@@ -7,9 +7,9 @@
     using Contracts;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Processors.Contracts.ZooBank;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [Description("Clone ZooBank xml.")]
     public class ZooBankCloneXmlController : IZooBankCloneXmlController

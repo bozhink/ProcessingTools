@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Processors.Contracts.ZooBank
+﻿namespace ProcessingTools.Processors.Contracts.Bio.ZooBank
 {
     using ProcessingTools.Contracts;
 
