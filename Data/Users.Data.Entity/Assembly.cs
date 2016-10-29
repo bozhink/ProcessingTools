@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Elasticsearch
+﻿namespace ProcessingTools.Users.Data.Entity
 {
     public enum Assembly
     {

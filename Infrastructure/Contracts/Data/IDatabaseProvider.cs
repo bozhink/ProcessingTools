@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Contracts
+﻿namespace ProcessingTools.Contracts.Data
 {
     public interface IDatabaseProvider<T>
     {

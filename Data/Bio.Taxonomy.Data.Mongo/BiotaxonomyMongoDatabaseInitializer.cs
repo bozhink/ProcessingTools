@@ -22,11 +22,13 @@
             this.db = provider.Create();
         }
 
-        public async Task Initialize()
+        public async Task<object> Initialize()
         {
             await this.CreateIndicesToTaxonRankCollection();
             await this.CreateIndicesToTaxonRankTypesCollection();
             await this.CreateIndicesToBlackListCollection();
+
+            return true;
         }
 
         private async Task<object> CreateIndicesToTaxonRankCollection()

@@ -7,8 +7,8 @@
     <ProjectGuid>{E1F82B1B-2F74-402B-B936-EB819625B033}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Api.Data</RootNamespace>
-    <AssemblyName>ProcessingTools.Api.Data</AssemblyName>
+    <RootNamespace>ProcessingTools.Users.Data.Entity</RootNamespace>
+    <AssemblyName>ProcessingTools.Users.Data.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -51,7 +51,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="UsersDbContext.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />

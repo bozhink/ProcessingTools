@@ -7,7 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Account;
 
@@ -73,7 +73,7 @@
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            this.ViewBag.ReturnUrl = returnUrl;
             return this.View();
         }
 

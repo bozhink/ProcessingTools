@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Data.Common.Contracts
+﻿namespace ProcessingTools.Contracts.Data
 {
     using System.Threading.Tasks;
 
     public interface IDatabaseInitializer
     {
-        Task Initialize();
+        Task<object> Initialize();
     }
 }

@@ -10,11 +10,11 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Data.Common.Models.Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
     public abstract class BiorepositoriesDataServiceFactory<TDbModel, TServiceModel> : IBiorepositoriesDataService<TServiceModel>
-        where TDbModel : class, IStringIdEntity
+        where TDbModel : class, IStringIdentifiable
         where TServiceModel : class
     {
         private readonly IBiorepositoriesRepositoryProvider<TDbModel> repositoryProvider;

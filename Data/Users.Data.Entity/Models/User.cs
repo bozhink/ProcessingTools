@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Api.Data.Models
+﻿namespace ProcessingTools.Users.Data.Entity.Models
 {
     using System.Security.Claims;
     using System.Threading.Tasks;

@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using Models.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     /// <summary>
     /// Generic repository.

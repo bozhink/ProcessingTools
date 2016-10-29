@@ -11,8 +11,8 @@
     using Microsoft.Owin.Security.Google;
     using Microsoft.Owin.Security.Twitter;
     using Owin;
-    using ProcessingTools.Api.Data;
-    using ProcessingTools.Api.Data.Models;
+    using ProcessingTools.Users.Data.Entity;
+    using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Documents.Contracts;
 
     public partial class Startup
@@ -23,7 +23,7 @@
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and sign-in manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(UsersDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

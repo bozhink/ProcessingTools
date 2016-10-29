@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Contracts
+﻿namespace ProcessingTools.Contracts.Data
 {
     using System.Threading.Tasks;
 
@@ -11,7 +11,7 @@
         /// <summary>
         /// Populates the database context with initial data (seed).
         /// </summary>
-        /// <returns>Awaitable Task.</returns>
-        Task Seed();
+        /// <returns>Custom response.</returns>
+        Task<object> Seed();
     }
 }

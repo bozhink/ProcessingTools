@@ -603,9 +603,9 @@
       <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
       <Name>Geo.Data.Miners</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Api.Data\Api.Data.csproj">
+    <ProjectReference Include="..\..\Data\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
-      <Name>Api.Data</Name>
+      <Name>Users.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
