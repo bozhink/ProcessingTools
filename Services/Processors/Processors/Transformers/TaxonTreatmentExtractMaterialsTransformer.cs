@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Processors.Transformers
+﻿namespace ProcessingTools.Processors.Transformers
 {
     using Contracts.Transformers;
 

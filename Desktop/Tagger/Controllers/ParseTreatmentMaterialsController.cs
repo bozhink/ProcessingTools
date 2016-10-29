@@ -3,7 +3,7 @@
     using Contracts;
     using Generics;
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Processors.Contracts.Materials;
+    using ProcessingTools.Processors.Contracts.Bio.Materials;
 
     [Description("Parse treatment materials.")]
     public class ParseTreatmentMaterialsController : GenericDocumentParserController<ITreatmentMaterialsParser>, IParseTreatmentMaterialsController

@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="Contracts\Bio\ISpecimenCountTagger.cs" />
     <Compile Include="Contracts\Bio\ITypeStatusTagger.cs" />
+    <Compile Include="Contracts\Bio\Materials\ITreatmentMaterialsParser.cs" />
     <Compile Include="Contracts\Bio\ZooBank\IZoobankJsonCloner.cs" />
     <Compile Include="Contracts\Bio\ZooBank\IZooBankRegistrationXmlGenerator.cs" />
     <Compile Include="Contracts\Bio\ZooBank\IZoobankXmlCloner.cs" />
@@ -79,8 +80,10 @@
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
     <Compile Include="Contracts\Transformers\ICodesRemoveNonCodeNodesTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IFormatTaxonTreatmentsTransformer.cs" />
     <Compile Include="Contracts\Transformers\IReferencesGetReferencesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
+    <Compile Include="Contracts\Transformers\ITaxonTreatmentExtractMaterialsTransformer.cs" />
     <Compile Include="Contracts\Transformers\IZooBankRegistrationXmlTransformer.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="Models\References\ReferenceTemplateItem.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
+    <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
@@ -147,8 +151,10 @@
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
     <Compile Include="Transformers\CodesRemoveNonCodeNodesTransformer.cs" />
+    <Compile Include="Transformers\FormatTaxonTreatmentsTransformer.cs" />
     <Compile Include="Transformers\ReferencesGetReferencesTransformer.cs" />
     <Compile Include="Transformers\ReferencesTagTemplateTransformer.cs" />
+    <Compile Include="Transformers\TaxonTreatmentExtractMaterialsTransformer.cs" />
     <Compile Include="Transformers\ZooBankRegistrationXmlTransformer.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>
@@ -184,6 +190,10 @@
     <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
+      <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
+      <Name>Bio.ServiceClient.MaterialsParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
       <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>
