@@ -451,4 +451,3 @@ namespace ProcessingTools.Processors.Bio.Codes
         }
     }
 }
-
