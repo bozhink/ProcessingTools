@@ -69,7 +69,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Coordinates\get-coordinates.ps1" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Coordinates\get-coordinates-out.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
