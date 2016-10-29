@@ -156,6 +156,7 @@
     <Compile Include="Controllers\Generics\GenericDocumentFormatterController.cs" />
     <Compile Include="Controllers\Generics\GenericDocumentParserController.cs" />
     <Compile Include="Controllers\Generics\GenericDocumentTaggerController.cs" />
+    <Compile Include="Controllers\Generics\GenericDocumentTaggerWithNormalizationController.cs" />
     <Compile Include="Controllers\Generics\GenericXmlContextParserController.cs" />
     <Compile Include="Controllers\Generics\GenericXmlContextTaggerController.cs" />
     <Compile Include="Controllers\ParseTreatmentMaterialsController.cs" />
