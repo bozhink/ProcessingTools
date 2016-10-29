@@ -249,6 +249,7 @@
     <None Include="app.manifest" />
     <None Include="Graph.dgml" />
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
