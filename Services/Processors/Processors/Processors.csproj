@@ -42,6 +42,7 @@
     </Compile>
     <Compile Include="Contracts\Bio\ISpecimenCountTagger.cs" />
     <Compile Include="Contracts\Bio\ITypeStatusTagger.cs" />
+    <Compile Include="Contracts\Bio\ZooBank\IZooBankRegistrationXmlGenerator.cs" />
     <Compile Include="Contracts\Coordinates\ICoordinatesParser.cs" />
     <Compile Include="Contracts\Coordinates\ICoordinatesTagger.cs" />
     <Compile Include="Contracts\Dates\IDatesTagger.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
     <Compile Include="Contracts\Transformers\IReferencesGetReferencesTransformer.cs" />
     <Compile Include="Contracts\Transformers\IReferencesTagTemplateTransformer.cs" />
+    <Compile Include="Contracts\Transformers\IZooBankRegistrationXmlTransformer.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
+    <Compile Include="Processors\Bio\ZooBank\ZooBankRegistrationXmlGenerator.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesTagger.cs" />
     <Compile Include="Processors\Dates\DatesTagger.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
     <Compile Include="Transformers\ReferencesGetReferencesTransformer.cs" />
     <Compile Include="Transformers\ReferencesTagTemplateTransformer.cs" />
+    <Compile Include="Transformers\ZooBankRegistrationXmlTransformer.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,10 +207,7 @@
   <ItemGroup>
     <Content Include="Xml\query-replacer-sample-query.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\Bio\ZooBank\" />
-    <Folder Include="Processors\Bio\ZooBank\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Xsd\query-replacer.xsd">
       <SubType>Designer</SubType>

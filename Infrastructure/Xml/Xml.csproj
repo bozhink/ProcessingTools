@@ -59,6 +59,7 @@
     <Compile Include="Contracts\Providers\ISystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\ITaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IXQueryTransformProvider.cs" />
+    <Compile Include="Contracts\Providers\IZooBankRegistrationXmlXslTransformProvider.cs" />
     <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
     <Compile Include="Contracts\Transformers\IGenericXQueryTransformer.cs" />
     <Compile Include="Contracts\Transformers\IGenericXslTransformer.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Providers\ReferencesTagTemplateXslTransformProvider.cs" />
     <Compile Include="Providers\SystemInitialFormatXslTransformProvider.cs" />
     <Compile Include="Providers\TaxonTreatmentExtractMaterialsXslTransformProvider.cs" />
+    <Compile Include="Providers\ZooBankRegistrationXmlXslTransformProvider.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\GenericXQueryTransformer.cs" />
     <Compile Include="Transformers\GenericXslTransformer.cs" />

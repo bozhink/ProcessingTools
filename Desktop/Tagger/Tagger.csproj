@@ -152,7 +152,6 @@
     <Compile Include="Contracts\IZooBankCloneJsonController.cs" />
     <Compile Include="Contracts\IZooBankCloneXmlController.cs" />
     <Compile Include="Contracts\IZooBankGenerateRegistrationXmlController.cs" />
-    <Compile Include="Contracts\IZoobankNlmXslTransformProvider.cs" />
     <Compile Include="ControllerInfoProvider.cs" />
     <Compile Include="Controllers\Generics\GenericDocumentFormatterController.cs" />
     <Compile Include="Controllers\Generics\GenericDocumentParserController.cs" />
@@ -227,7 +226,6 @@
     <Compile Include="Models\NamedContentSerializableModel.cs" />
     <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Providers\ZoobankNlmXslTransformProvider.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
