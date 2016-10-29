@@ -58,6 +58,7 @@
     <Compile Include="IDefinable.cs" />
     <Compile Include="IDocumentFactory.cs" />
     <Compile Include="IDocumentFormatter.cs" />
+    <Compile Include="IDocumentGenerator.cs" />
     <Compile Include="IDocumentParser.cs" />
     <Compile Include="IDocumentProcessor.cs" />
     <Compile Include="IDocumentTagger.cs" />

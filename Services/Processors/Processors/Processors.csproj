@@ -203,7 +203,10 @@
   <ItemGroup>
     <Content Include="Xml\query-replacer-sample-query.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Contracts\Bio\ZooBank\" />
+    <Folder Include="Processors\Bio\ZooBank\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Xsd\query-replacer.xsd">
       <SubType>Designer</SubType>

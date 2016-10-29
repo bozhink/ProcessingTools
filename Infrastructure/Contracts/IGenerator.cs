@@ -2,8 +2,8 @@
 {
     using System.Threading.Tasks;
 
-    public interface IGenerator
+    public interface IGenerator<TContext, TResult>
     {
-        Task Generate();
+        Task<TResult> Generate(TContext context);
     }
 }
