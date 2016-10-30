@@ -8,10 +8,10 @@
 
     using Contracts;
 
-    using ProcessingTools.Common.Types;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Enumerations;
 
     public abstract class EntitySearchableRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IDisposable
         where TContext : DbContext

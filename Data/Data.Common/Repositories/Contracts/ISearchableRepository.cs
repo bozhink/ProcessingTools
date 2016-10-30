@@ -5,9 +5,9 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    using ProcessingTools.Common.Types;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Enumerations;
 
     public interface ISearchableRepository<T> : IRepository<T>
     {

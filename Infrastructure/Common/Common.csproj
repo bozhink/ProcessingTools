@@ -54,7 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Contracts\IRandomProvider.cs" />
     <Compile Include="Providers\RandomProvider.cs" />
-    <Compile Include="Types\SortOrder.cs" />
     <Compile Include="Validation\DummyValidator.cs" />
     <Compile Include="Validation\ValidationHelpers.cs" />
   </ItemGroup>

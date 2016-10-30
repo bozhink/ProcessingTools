@@ -9,6 +9,7 @@
     using ProcessingTools.Data.Common.Mongo.Repositories;
     using ProcessingTools.Data.Common.Mongo.Tests.Fakes;
     using ProcessingTools.Data.Common.Mongo.Tests.Models;
+    using ProcessingTools.Enumerations;
 
     [TestClass]
     public class MongoGenericRepositoryTests
@@ -65,7 +66,7 @@
 
             repository.Add(book).Wait();
 
-            var books = repository.Find(b => true, b => b.Id, ProcessingTools.Common.Types.SortOrder.Ascending, 0, 1).Result.ToList();
+            var books = repository.Find(b => true, b => b.Id, SortOrder.Ascending, 0, 1).Result.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 

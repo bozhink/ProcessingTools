@@ -8,9 +8,9 @@
     using System.Threading.Tasks;
 
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Types;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Enumerations;
 
     public abstract class RepositoryMultiDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
     {

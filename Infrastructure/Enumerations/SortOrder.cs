@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Common.Types
+﻿namespace ProcessingTools.Enumerations
 {
     public enum SortOrder
     {

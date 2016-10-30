@@ -13,7 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
-    using ProcessingTools.Common.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
     public class TaxonRankDataService : ITaxonRankDataService

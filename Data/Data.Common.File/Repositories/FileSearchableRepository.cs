@@ -7,10 +7,10 @@
 
     using Contracts;
 
-    using ProcessingTools.Common.Types;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.File.Contracts;
+    using ProcessingTools.Enumerations;
 
     public class FileSearchableRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileSearchableRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
