@@ -53,6 +53,7 @@
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IIterableRepository.cs" />
     <Compile Include="Data\Repositories\IIterableRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IKeyValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IQueryableRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
     <Compile Include="Data\Repositories\IRepositoryProvider.cs" />
