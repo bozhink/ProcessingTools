@@ -10,7 +10,7 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Extensions;
 
     public abstract class MvcDataServiceFactory<TMinimalServiceModel, TServiceModel, TDetailsServiceModel, TDbModel> : IMvcDataService<TMinimalServiceModel, TServiceModel, TDetailsServiceModel>

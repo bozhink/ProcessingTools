@@ -10,7 +10,7 @@
     using ProcessingTools.Bio.Data.Contracts;
     using ProcessingTools.Bio.Data.Repositories;
     using ProcessingTools.Bio.Data.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     [TestClass]
     public class BioDataRepositoryProviderTests

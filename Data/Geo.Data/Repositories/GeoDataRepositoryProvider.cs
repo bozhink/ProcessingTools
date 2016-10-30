@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Data.Repositories
 {
     using System;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Geo.Data.Contracts;
     using ProcessingTools.Geo.Data.Repositories.Contracts;
 

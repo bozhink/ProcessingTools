@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
     public interface ICrudRepositoryProvider<T> : IRepositoryProvider<ICrudRepository<T>>
     {

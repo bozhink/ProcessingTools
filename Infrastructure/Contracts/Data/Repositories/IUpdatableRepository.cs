@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Expressions;
 
     public interface IUpdatableRepository<T> : IRepository<T>

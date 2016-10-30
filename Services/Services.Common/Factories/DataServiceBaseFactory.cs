@@ -7,7 +7,7 @@
     using Contracts;
 
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Extensions;
 
     public abstract class DataServiceBaseFactory<TDbModel, TServiceModel> : IDataServiceBase<TServiceModel>

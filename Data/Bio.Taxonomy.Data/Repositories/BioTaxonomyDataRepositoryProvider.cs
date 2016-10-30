@@ -3,7 +3,7 @@
     using System;
     using Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class BioTaxonomyDataRepositoryProvider<T> : IBioTaxonomyDataRepositoryProvider<T>
         where T : class

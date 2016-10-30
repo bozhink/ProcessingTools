@@ -6,7 +6,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
     using ProcessingTools.Configurator;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class XmlTaxonRankSearchableRepositoryProvider : IXmlTaxonRankSearchableRepositoryProvider
     {

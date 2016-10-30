@@ -11,7 +11,7 @@
     using ProcessingTools.Bio.Environments.Data.Contracts;
     using ProcessingTools.Bio.Environments.Data.Repositories;
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     [TestClass]
     public class BioEnvironmentsRepositoryTests

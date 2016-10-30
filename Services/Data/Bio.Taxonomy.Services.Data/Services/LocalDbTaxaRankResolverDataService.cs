@@ -13,7 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Extensions;
 
     public class LocalDbTaxaRankResolverDataService : ILocalDbTaxaRankResolverDataService

@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IIterableRepository<T> : IRepository<T>
     {

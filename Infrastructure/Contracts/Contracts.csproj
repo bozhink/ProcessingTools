@@ -44,9 +44,21 @@
     <Compile Include="Data\IDatabaseInitializer.cs" />
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
+    <Compile Include="Data\Repositories\ICountableCrudRepository.cs" />
+    <Compile Include="Data\Repositories\ICountableRepository.cs" />
+    <Compile Include="Data\Repositories\ICrudRepository.cs" />
+    <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IIterableRepository.cs" />
+    <Compile Include="Data\Repositories\IIterableRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IQueryableRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
+    <Compile Include="Data\Repositories\IRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\ISearchableRepository.cs" />
+    <Compile Include="Data\Repositories\ISearchableRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IUpdatableRepository.cs" />
     <Compile Include="Expressions\IUpdateCommand.cs" />
     <Compile Include="Expressions\IUpdateExpression.cs" />
     <Compile Include="Harvesters\IGenericQueryableXmlHarvester.cs" />
@@ -117,7 +129,16 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

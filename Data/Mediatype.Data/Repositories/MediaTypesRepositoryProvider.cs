@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.MediaType.Data.Repositories
 {
     using System;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.MediaType.Data.Contracts;
     using ProcessingTools.MediaType.Data.Repositories.Contracts;
 

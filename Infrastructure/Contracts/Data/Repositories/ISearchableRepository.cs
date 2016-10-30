@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
     using System;
     using System.Linq;
@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
 
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Enumerations;
 
     public interface ISearchableRepository<T> : IRepository<T>

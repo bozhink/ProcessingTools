@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories
 {
     using System;
-
     using Contracts;
-
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class MongoBiotaxonomicBlackListIterableRepositoryProvider : IMongoBiotaxonomicBlackListIterableRepositoryProvider
     {

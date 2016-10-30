@@ -3,7 +3,7 @@
     using System;
     using ProcessingTools.Bio.Environments.Data.Contracts;
     using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class BioEnvironmentsRepositoryProvider<T> : IBioEnvironmentsRepositoryProvider<T>
         where T : class

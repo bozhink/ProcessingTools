@@ -4,7 +4,7 @@
 
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class BiorepositoriesRepositoryProvider<T> : IBiorepositoriesRepositoryProvider<T>
         where T : class

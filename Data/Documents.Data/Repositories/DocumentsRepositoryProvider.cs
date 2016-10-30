@@ -3,7 +3,7 @@
     using System;
 
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Documents.Data.Contracts;
     using ProcessingTools.Documents.Data.Repositories.Contracts;
 

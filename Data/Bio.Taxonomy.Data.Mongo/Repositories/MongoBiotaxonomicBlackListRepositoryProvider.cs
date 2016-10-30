@@ -6,7 +6,7 @@
 
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class MongoBiotaxonomicBlackListRepositoryProvider : IMongoBiotaxonomicBlackListRepositoryProvider
     {

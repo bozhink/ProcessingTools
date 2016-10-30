@@ -1,7 +1,5 @@
-﻿namespace ProcessingTools.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
-    using ProcessingTools.Contracts.Data.Repositories;
-
     public interface IGenericRepository<T> : ICountableCrudRepository<T>, ISearchableRepository<T>, IRepository<T>
     {
     }
