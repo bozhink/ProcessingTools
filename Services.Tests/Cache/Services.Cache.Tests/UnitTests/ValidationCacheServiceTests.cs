@@ -8,7 +8,7 @@
     using Models;
     using Moq;
     using ProcessingTools.Cache.Data.Repositories.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     [TestClass]
     public class ValidationCacheServiceTests

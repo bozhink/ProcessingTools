@@ -14,7 +14,7 @@
     using Models;
     using Models.Contracts;
 
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts;
 
     public class UrlValidationService : ValidationServiceFactory<UrlServiceModel, UrlServiceModel>, IUrlValidationService

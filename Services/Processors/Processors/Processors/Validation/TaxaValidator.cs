@@ -3,12 +3,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts.Validation;
-
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
 

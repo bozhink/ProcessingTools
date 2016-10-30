@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Services.Cache.Models
 {
     using System;
-
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public class ValidationCacheServiceModel : IIntegerIdentifiable
     {

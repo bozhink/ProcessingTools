@@ -2,13 +2,12 @@
 {
     using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
     using ProcessingTools.Cache.Data;
     using ProcessingTools.Cache.Data.Repositories;
     using ProcessingTools.Cache.Data.Repositories.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     [TestClass]
     public class ValidationCacheServiceTests
@@ -231,7 +230,7 @@
             var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
 
-            // Here we delete the item from the database, because added item’s Id might not be equal to 
+            // Here we delete the item from the database, because added item’s Id might not be equal to
             // the Id of the corresponding entity in the database.
             service.Delete(key, itemAfterAddition).Wait();
 
@@ -276,7 +275,7 @@
             var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
 
-            // Here we delete the item from the database, because added item’s Id might not be equal to 
+            // Here we delete the item from the database, because added item’s Id might not be equal to
             // the Id of the corresponding entity in the database.
             service.Delete(key, itemAfterAddition.Id).Wait();
 
@@ -379,7 +378,7 @@
             Assert.AreEqual(ValidationStatus.Valid, itemAfterAddition.Status, StatusShouldMatchMessage);
             Assert.AreEqual(content, itemAfterAddition.Content, ContentShouldMatchMessage);
 
-            // Here we update the item from the database, because added item’s Id might not be equal to 
+            // Here we update the item from the database, because added item’s Id might not be equal to
             // the Id of the corresponding entity in the database.
             itemAfterAddition.Status = ValidationStatus.Invalid;
             service.Update(key, itemAfterAddition).Wait();

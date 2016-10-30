@@ -1,14 +1,11 @@
 ﻿namespace ProcessingTools.Services.Validation.Tests.UnitTests
 {
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using Models;
     using Moq;
-
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts;
 
     // TODO: add more tests

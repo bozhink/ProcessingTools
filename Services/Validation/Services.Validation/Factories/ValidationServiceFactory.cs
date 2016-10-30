@@ -10,7 +10,7 @@
     using Models;
     using Models.Contracts;
 
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts;
     using ProcessingTools.Services.Cache.Models;
 

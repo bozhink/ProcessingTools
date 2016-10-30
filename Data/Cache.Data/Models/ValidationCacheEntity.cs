@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Cache.Data.Models
 {
     using System;
-
-    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Data.Common.Models.Contracts;
+    using ProcessingTools.Enumerations;
 
     public class ValidationCacheEntity : IEntity
     {

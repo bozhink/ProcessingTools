@@ -2,12 +2,11 @@
 {
     using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
     using ProcessingTools.Cache.Data;
     using ProcessingTools.Cache.Data.Repositories;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache;
     using ProcessingTools.Services.Cache.Contracts;
 

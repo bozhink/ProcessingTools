@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Types
+﻿namespace ProcessingTools.Enumerations
 {
     /// <summary>
     /// Represents validation status code returned by a ValidationService.

@@ -2,7 +2,7 @@
 {
     using System;
     using Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public class ValidationServiceModel<T> : IValidationServiceModel<T>
     {
