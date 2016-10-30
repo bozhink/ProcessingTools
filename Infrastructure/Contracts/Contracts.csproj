@@ -45,6 +45,7 @@
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
+    <Compile Include="Data\Repositories\IQueryableRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
     <Compile Include="Harvesters\IGenericQueryableXmlHarvester.cs" />
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
