@@ -17,9 +17,9 @@
             this.data = new Dictionary<string, HashSet<ValidationCacheEntity>>();
         }
 
-        public Task Add(string context, ValidationCacheEntity entity)
+        public Task<object> Add(string context, ValidationCacheEntity entity)
         {
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 if (!this.data.ContainsKey(context))
                 {
@@ -38,49 +38,47 @@
 
                 entity.Id = maxId + 1;
                 this.data[context].Add(entity);
+
+                return entity;
             });
         }
 
-        public Task<IQueryable<ValidationCacheEntity>> All(string context)
+        public IEnumerable<ValidationCacheEntity> All(string context)
         {
-            return Task.Run(() =>
+            if (!this.data.ContainsKey(context))
             {
-                if (!this.data.ContainsKey(context))
-                {
-                    this.data.Add(context, new HashSet<ValidationCacheEntity>());
-                }
+                this.data.Add(context, new HashSet<ValidationCacheEntity>());
+            }
 
-                return this.data[context].AsQueryable();
-            });
+            return this.data[context];
         }
 
-        public Task<IQueryable<ValidationCacheEntity>> All(string context, int skip, int take)
+        public IEnumerable<ValidationCacheEntity> All(string context, int skip, int take)
         {
-            return Task.Run(() =>
+            if (!this.data.ContainsKey(context))
             {
-                if (!this.data.ContainsKey(context))
-                {
-                    this.data.Add(context, new HashSet<ValidationCacheEntity>());
-                }
+                this.data.Add(context, new HashSet<ValidationCacheEntity>());
+            }
 
-                return this.data[context].OrderBy(i => i.Id).Skip(skip).Take(take).AsQueryable();
-            });
+            return this.data[context].OrderBy(i => i.Id).Skip(skip).Take(take);
         }
 
-        public Task Delete(string context)
+        public Task<object> Delete(string context)
         {
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 if (this.data.ContainsKey(context))
                 {
                     this.data.Remove(context);
                 }
+
+                return true;
             });
         }
 
-        public Task Delete(string context, ValidationCacheEntity entity)
+        public Task<object> Delete(string context, ValidationCacheEntity entity)
         {
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 if (!this.data.ContainsKey(context))
                 {
@@ -88,10 +86,27 @@
                 }
 
                 this.data[context].RemoveWhere(i => i.Id == entity.Id && i.LastUpdate == entity.LastUpdate && i.Status == entity.Status && i.Content == entity.Content);
+
+                return true;
             });
         }
 
-        public Task Delete(string context, int id)
+        public Task<object> Delete(string context, object id)
+        {
+            return Task.Run<object>(() =>
+            {
+                if (!this.data.ContainsKey(context))
+                {
+                    this.data.Add(context, new HashSet<ValidationCacheEntity>());
+                }
+
+                this.data[context].RemoveWhere(i => i.Id == (int)id);
+
+                return true;
+            });
+        }
+
+        public Task<ValidationCacheEntity> Get(string context, object id)
         {
             return Task.Run(() =>
             {
@@ -100,26 +115,13 @@
                     this.data.Add(context, new HashSet<ValidationCacheEntity>());
                 }
 
-                this.data[context].RemoveWhere(i => i.Id == id);
+                return this.data[context].FirstOrDefault(i => i.Id == (int)id);
             });
         }
 
-        public Task<ValidationCacheEntity> Get(string context, int id)
+        public Task<object> Update(string context, ValidationCacheEntity entity)
         {
-            return Task.Run(() =>
-            {
-                if (!this.data.ContainsKey(context))
-                {
-                    this.data.Add(context, new HashSet<ValidationCacheEntity>());
-                }
-
-                return this.data[context].FirstOrDefault(i => i.Id == id);
-            });
-        }
-
-        public Task Update(string context, ValidationCacheEntity entity)
-        {
-            return Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 if (!this.data.ContainsKey(context))
                 {
@@ -134,12 +136,14 @@
                         i.LastUpdate = entity.LastUpdate;
                         i.Status = entity.Status;
                     });
+
+                return true;
             });
         }
 
-        public Task<int> SaveChanges(string context)
+        public Task<long> SaveChanges(string context)
         {
-            return Task.FromResult(0);
+            return Task.FromResult(0L);
         }
 
         public void Dispose()

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Tests.Models
 {
     using System;
-    using ProcessingTools.Data.Common.Models.Contracts;
+    using ProcessingTools.Contracts;
 
     public class Tweet : IEntity
     {

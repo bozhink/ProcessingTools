@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.Services.Cache.Contracts
 {
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
 
-    public interface ICacheService<TContext, TId, TServiceModel>
-        where TServiceModel : IGenericIdentifiable<TId>
+    public interface ICacheService<TContext, TServiceModel>
+        where TServiceModel : IEntity
     {
-        Task<IQueryable<TServiceModel>> All(TContext context);
+        IEnumerable<TServiceModel> All(TContext context);
 
-        Task<TServiceModel> Get(TContext context, TId id);
+        Task<TServiceModel> Get(TContext context, object id);
 
         Task Add(TContext context, TServiceModel model);
 
@@ -17,7 +17,7 @@
 
         Task Delete(TContext context);
 
-        Task Delete(TContext context, TId id);
+        Task Delete(TContext context, object id);
 
         Task Delete(TContext context, TServiceModel model);
     }

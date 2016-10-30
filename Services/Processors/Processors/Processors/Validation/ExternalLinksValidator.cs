@@ -8,10 +8,10 @@
 
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
-    using ProcessingTools.Enumerations;
 
     public class ExternalLinksValidator : IExternalLinksValidator
     {

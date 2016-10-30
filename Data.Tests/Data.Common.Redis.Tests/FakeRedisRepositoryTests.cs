@@ -15,7 +15,7 @@
         public void FakeRedisRepository_WithDefaultConstructor_ShouldReturnValidObject()
         {
             var repository = new FakeRedisRepository();
-            Assert.IsNotNull(repository, "Repository schould not be null.");
+            Assert.IsNotNull(repository, "Repository should not be null.");
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@
             string key = Guid.NewGuid().ToString();
 
             var repository = new FakeRedisRepository();
-            Assert.IsNotNull(repository, "Repository schould not be null.");
+            Assert.IsNotNull(repository, "Repository should not be null.");
 
             repository.Delete(key).Wait();
             repository.SaveChanges(key).Wait();
@@ -42,7 +42,7 @@
             repository.Add(key, entity).Wait();
             repository.SaveChanges(key).Wait();
 
-            var items = repository.All(key).Result.ToList();
+            var items = repository.All(key).ToList();
 
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
@@ -50,12 +50,12 @@
 
             Assert.AreEqual(1, item.Id, "item.Id should be 1.");
             Assert.AreEqual(now.ToLongTimeString(), item.LastUpdate.ToLongTimeString(), "item.LastUpdate should match.");
-            Assert.AreEqual(value, item.Value, "item.Value schould match.");
+            Assert.AreEqual(value, item.Value, "item.Value should match.");
 
             repository.Delete(key, entity).Wait();
             repository.SaveChanges(key).Wait();
 
-            Assert.AreEqual(0, repository.All(key).Result.ToList().Count, "Number of items after deletion should be 0.");
+            Assert.AreEqual(0, repository.All(key).ToList().Count, "Number of items after deletion should be 0.");
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@
             string key = Guid.NewGuid().ToString();
 
             var repository = new FakeRedisRepository();
-            Assert.IsNotNull(repository, "Repository schould not be null.");
+            Assert.IsNotNull(repository, "Repository should not be null.");
 
             repository.Delete(key).Wait();
             repository.SaveChanges(key).Wait();
@@ -83,7 +83,7 @@
 
             Assert.IsTrue(entity.Id > 0, "entity.Id should be grater than 0.");
 
-            var items = repository.All(key).Result.ToList();
+            var items = repository.All(key).ToList();
             repository.SaveChanges(key).Wait();
 
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
@@ -92,12 +92,12 @@
 
             Assert.AreEqual(1, item.Id, "item.Id should be 1.");
             Assert.AreEqual(now.ToLongTimeString(), item.LastUpdate.ToLongTimeString(), "item.LastUpdate should match.");
-            Assert.AreEqual(value, item.Value, "item.Value schould match.");
+            Assert.AreEqual(value, item.Value, "item.Value should match.");
 
             repository.Delete(key, entity.Id).Wait();
             repository.SaveChanges(key).Wait();
 
-            Assert.AreEqual(0, repository.All(key).Result.ToList().Count, "Number of items after deletion should be 0.");
+            Assert.AreEqual(0, repository.All(key).ToList().Count, "Number of items after deletion should be 0.");
         }
 
         [TestMethod]
@@ -108,7 +108,7 @@
             const int NumberOfItems = 100;
 
             var repository = new FakeRedisRepository();
-            Assert.IsNotNull(repository, "Repository schould not be null.");
+            Assert.IsNotNull(repository, "Repository should not be null.");
 
             string key = Guid.NewGuid().ToString();
 
@@ -129,7 +129,7 @@
                 repository.SaveChanges(key).Wait();
             }
 
-            var items = repository.All(key).Result.ToList();
+            var items = repository.All(key).ToList();
             Assert.AreEqual(NumberOfItems, items.Count, $"Number of items should be {NumberOfItems}.");
 
             repository.Delete(key);

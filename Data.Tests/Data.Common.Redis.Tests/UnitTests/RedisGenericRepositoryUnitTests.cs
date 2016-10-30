@@ -163,7 +163,7 @@
 
             Assert.AreEqual(1, this.tweet.Id, "Id of inserted object should be 1.");
 
-            var items = repository.All(FakeContextKey).Result.ToList();
+            var items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
             var firstItem = items.FirstOrDefault();
@@ -191,10 +191,10 @@
 
                 Assert.AreEqual(i + 1, tweet.Id, $"Id of inserted object should be {i + 1}.");
 
-                var items = repository.All(FakeContextKey).Result.ToList();
+                var items = repository.All(FakeContextKey).ToList();
                 Assert.AreEqual(i + 1, items.Count, $"Number of items should be {i + 1}.");
 
-                var lastItem = repository.All(FakeContextKey, i, 1).Result.FirstOrDefault();
+                var lastItem = repository.All(FakeContextKey, i, 1).FirstOrDefault();
                 Assert.AreEqual(tweet.Id, lastItem.Id, "Id should match.");
                 Assert.AreEqual(tweet.PostedOn.ToString(), lastItem.PostedOn.ToString(), "PostedOn should match.");
                 Assert.AreEqual(tweet.Content, lastItem.Content, "Content should match.");
@@ -207,7 +207,7 @@
         public void RedisGenericRepository_AllWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All(null).Wait();
+            repository.All(null);
         }
 
         [TestMethod]
@@ -217,7 +217,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All(null).Wait();
+                repository.All(null);
             }
             catch (ArgumentNullException e)
             {
@@ -231,7 +231,7 @@
         public void RedisGenericRepository_AllWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All(string.Empty).Wait();
+            repository.All(string.Empty);
         }
 
         [TestMethod]
@@ -241,7 +241,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All(string.Empty).Wait();
+                repository.All(string.Empty);
             }
             catch (ArgumentNullException e)
             {
@@ -255,7 +255,7 @@
         public void RedisGenericRepository_AllWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All("     ").Wait();
+            repository.All("     ");
         }
 
         [TestMethod]
@@ -265,7 +265,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All("     ").Wait();
+                repository.All("     ");
             }
             catch (ArgumentNullException e)
             {
@@ -279,7 +279,7 @@
         public void RedisGenericRepository_AllSkipTakeWithNullContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All(null, 0, 1).Wait();
+            repository.All(null, 0, 1);
         }
 
         [TestMethod]
@@ -289,7 +289,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All(null, 0, 1).Wait();
+                repository.All(null, 0, 1);
             }
             catch (ArgumentNullException e)
             {
@@ -303,7 +303,7 @@
         public void RedisGenericRepository_AllSkipTakeWithEmptyContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All(string.Empty, 0, 1).Wait();
+            repository.All(string.Empty, 0, 1);
         }
 
         [TestMethod]
@@ -313,7 +313,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All(string.Empty, 0, 1).Wait();
+                repository.All(string.Empty, 0, 1);
             }
             catch (ArgumentNullException e)
             {
@@ -327,7 +327,7 @@
         public void RedisGenericRepository_AllSkipTakeWithWhitespaceContext_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All("     ", 0, 1).Wait();
+            repository.All("     ", 0, 1);
         }
 
         [TestMethod]
@@ -337,7 +337,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All("     ", 0, 1).Wait();
+                repository.All("     ", 0, 1);
             }
             catch (ArgumentNullException e)
             {
@@ -351,7 +351,7 @@
         public void RedisGenericRepository_AllSkipTakeWithInvalidSkip_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All(FakeContextKey, -1, 1).Wait();
+            repository.All(FakeContextKey, -1, 1);
         }
 
         [TestMethod]
@@ -361,7 +361,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All(FakeContextKey, -1, 1).Wait();
+                repository.All(FakeContextKey, -1, 1);
             }
             catch (ArgumentException e)
             {
@@ -375,7 +375,7 @@
         public void RedisGenericRepository_AllSkipTakeWithInvalidTake_ShouldThrow()
         {
             var repository = new RedisGenericRepository<Tweet>(this.provider);
-            repository.All(FakeContextKey, 0, 0).Wait();
+            repository.All(FakeContextKey, 0, 0);
         }
 
         [TestMethod]
@@ -385,7 +385,7 @@
             try
             {
                 var repository = new RedisGenericRepository<Tweet>(this.provider);
-                repository.All(FakeContextKey, 0, 0).Wait();
+                repository.All(FakeContextKey, 0, 0);
             }
             catch (ArgumentException e)
             {
@@ -477,7 +477,7 @@
 
             Assert.AreEqual(1, this.tweet.Id, "Id of inserted object should be 1.");
 
-            var items = repository.All(FakeContextKey).Result.ToList();
+            var items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
             var firstItem = items.FirstOrDefault();
@@ -487,7 +487,7 @@
 
             repository.Delete(FakeContextKey).Wait();
 
-            items = repository.All(FakeContextKey).Result.ToList();
+            items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(0, items.Count, "Number of items after deletion of context should be 0.");
         }
 
@@ -599,7 +599,7 @@
 
             Assert.AreEqual(1, this.tweet.Id, "Id of inserted object should be 1.");
 
-            var items = repository.All(FakeContextKey).Result.ToList();
+            var items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
             var firstItem = items.FirstOrDefault();
@@ -609,7 +609,7 @@
 
             repository.Delete(FakeContextKey, this.tweet).Wait();
 
-            items = repository.All(FakeContextKey).Result.ToList();
+            items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(0, items.Count, "Number of items after deletion of context should be 0.");
         }
 
@@ -632,11 +632,11 @@
 
                 Assert.AreEqual(1, tweet.Id, $"Id of inserted object should be {1}.");
 
-                var items = repository.All(FakeContextKey).Result.ToList();
+                var items = repository.All(FakeContextKey).ToList();
                 Assert.AreEqual(1, items.Count, $"Number of items should be {1}.");
 
                 repository.Delete(FakeContextKey, tweet).Wait();
-                items = repository.All(FakeContextKey).Result.ToList();
+                items = repository.All(FakeContextKey).ToList();
                 Assert.AreEqual(0, items.Count, $"Number of items should be {0}.");
 
                 Assert.AreEqual(0, items.Where(e => e.Id == tweet.Id).Count(), $"Number of items with Id = {tweet.Id} should be 0.");
@@ -727,7 +727,7 @@
 
             Assert.AreEqual(1, this.tweet.Id, "Id of inserted object should be 1.");
 
-            var items = repository.All(FakeContextKey).Result.ToList();
+            var items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
             var firstItem = items.FirstOrDefault();
@@ -737,7 +737,7 @@
 
             repository.Delete(FakeContextKey, this.tweet.Id).Wait();
 
-            items = repository.All(FakeContextKey).Result.ToList();
+            items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(0, items.Count, "Number of items after deletion of context should be 0.");
         }
 
@@ -760,7 +760,7 @@
 
                 Assert.AreEqual(i + 1, tweet.Id, $"Id of inserted object should be {i + 1}.");
 
-                var items = repository.All(FakeContextKey).Result.ToList();
+                var items = repository.All(FakeContextKey).ToList();
                 Assert.AreEqual(i + 1, items.Count, $"Number of items should be {i + 1}.");
             }
 
@@ -768,7 +768,7 @@
             {
                 int id = i + 1;
                 repository.Delete(FakeContextKey, id).Wait();
-                var items = repository.All(FakeContextKey).Result.ToList();
+                var items = repository.All(FakeContextKey).ToList();
                 Assert.AreEqual(NumberOfItemsToAdd - i - 1, items.Count, $"Number of items after deletion should be {NumberOfItemsToAdd - i - 1}.");
 
                 Assert.AreEqual(0, items.Where(e => e.Id == id).Count(), $"Number of items with Id = {id} should be 0.");
@@ -855,11 +855,11 @@
 
             // Create the context if it does not exist.
             this.tweet.Id = 0;
-            repository.Add(FakeContextKey, this.tweet).Wait();
+            var addResult = repository.Add(FakeContextKey, this.tweet).Result;
 
             Assert.AreEqual(1, this.tweet.Id, "Id of inserted object should be 1.");
 
-            var items = repository.All(FakeContextKey).Result.ToList();
+            var items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(1, items.Count, "Number of items should be 1.");
 
             var firstItem = items.FirstOrDefault();
@@ -869,7 +869,7 @@
 
             var result = repository.Get(FakeContextKey, this.tweet.Id).Result;
 
-            items = repository.All(FakeContextKey).Result.ToList();
+            items = repository.All(FakeContextKey).ToList();
             Assert.AreEqual(1, items.Count, "Number of items after get of context should be 1.");
 
             Assert.AreEqual(this.tweet.Id, result.Id, "Id should match.");
@@ -896,7 +896,7 @@
 
                 Assert.AreEqual(i + 1, tweet.Id, $"Id of inserted object should be {i + 1}.");
 
-                var items = repository.All(FakeContextKey).Result.ToList();
+                var items = repository.All(FakeContextKey).ToList();
                 Assert.AreEqual(i + 1, items.Count, $"Number of items should be {i + 1}.");
             }
 
@@ -904,7 +904,7 @@
             {
                 int id = i + 1;
                 var tweet = repository.Get(FakeContextKey, id).Result;
-                var items = repository.All(FakeContextKey).Result.ToList();
+                var items = repository.All(FakeContextKey).ToList();
                 Assert.AreEqual(NumberOfItemsToAdd, items.Count, $"Number of items after deletion should be {NumberOfItemsToAdd}.");
 
                 Assert.AreEqual(1, items.Where(e => e.Id == id).Count(), $"Number of items with Id = {id} should be 0.");

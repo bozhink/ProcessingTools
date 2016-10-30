@@ -11,6 +11,7 @@
     using Models.Contracts;
 
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Services.Cache.Contracts;
     using ProcessingTools.Services.Cache.Models;
 
@@ -132,9 +133,9 @@
 
             try
             {
-                var lastCachedItem = (await this.cacheService.All(context))
+                var lastCachedItem = await this.cacheService.All(context)
                     .OrderByDescending(i => i.LastUpdate)
-                    .FirstOrDefault();
+                    .FirstOrDefaultAsync();
 
                 if (lastCachedItem == null || lastCachedItem.Status != ValidationStatus.Valid)
                 {

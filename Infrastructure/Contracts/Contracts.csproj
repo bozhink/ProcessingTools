@@ -49,6 +49,7 @@
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericContextRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IIterableRepository.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="IDocumentTagger.cs" />
     <Compile Include="IDocumentToDocumentCloner.cs" />
     <Compile Include="IDocumentValidator.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="IGenericDocumentCloner.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />

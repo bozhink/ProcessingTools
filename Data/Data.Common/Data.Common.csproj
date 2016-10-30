@@ -47,8 +47,6 @@
     <Compile Include="Models\Contracts\IGenericEntity.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Contracts\IGenericContextRepository.cs" />
-    <Compile Include="Repositories\Contracts\ISimpleGenericContextRepository.cs" />
     <Compile Include="Seed\SimpleRepositorySeeder.cs" />
   </ItemGroup>
   <ItemGroup>

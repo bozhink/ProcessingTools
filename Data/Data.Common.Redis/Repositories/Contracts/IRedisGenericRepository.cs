@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Repositories.Contracts
 {
-    using ProcessingTools.Data.Common.Models.Contracts;
-    using ProcessingTools.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IRedisGenericRepository<TEntity> : ISimpleGenericContextRepository<TEntity>
+    public interface IRedisGenericRepository<TEntity> : IGenericContextRepository<string, TEntity>
         where TEntity : IEntity
     {
     }

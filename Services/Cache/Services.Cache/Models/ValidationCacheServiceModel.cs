@@ -4,7 +4,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
-    public class ValidationCacheServiceModel : IIntegerIdentifiable
+    public class ValidationCacheServiceModel : IEntity
     {
         public int Id { get; set; }
 

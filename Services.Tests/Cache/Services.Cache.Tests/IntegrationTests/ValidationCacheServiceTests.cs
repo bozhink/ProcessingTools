@@ -59,7 +59,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             int id = Random.Next();
             var now = DateTime.Now;
@@ -75,11 +75,11 @@
             service.Add(key, item).Wait();
             Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
 
             Assert.AreEqual(initialNumberOfItems + 1, numberOfItemsAfterAddition, NumberOfItemsAfterAdditionMessage);
 
-            var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterAddition = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
             Assert.AreEqual(numberOfItemsAfterAddition, itemAfterAddition.Id, IdShouldHaveMaximalValueMessage);
             Assert.AreEqual(ValidationStatus.Undefined, itemAfterAddition.Status, StatusShouldMatchMessage);
@@ -96,7 +96,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             int id = Random.Next();
             var now = DateTime.Now;
@@ -112,11 +112,11 @@
             service.Add(key, item).Wait();
             Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
 
             Assert.AreEqual(initialNumberOfItems + 1, numberOfItemsAfterAddition, NumberOfItemsAfterAdditionMessage);
 
-            var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterAddition = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
             Assert.AreEqual(numberOfItemsAfterAddition, itemAfterAddition.Id, IdShouldHaveMaximalValueMessage);
             Assert.AreEqual(ValidationStatus.Valid, itemAfterAddition.Status, StatusShouldMatchMessage);
@@ -133,7 +133,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             int id = Random.Next();
             var now = DateTime.Now;
@@ -149,11 +149,11 @@
             service.Add(key, item).Wait();
             Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
 
             Assert.AreEqual(initialNumberOfItems + 1, numberOfItemsAfterAddition, NumberOfItemsAfterAdditionMessage);
 
-            var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterAddition = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
             Assert.AreEqual(numberOfItemsAfterAddition, itemAfterAddition.Id, IdShouldHaveMaximalValueMessage);
             Assert.AreEqual(ValidationStatus.Invalid, itemAfterAddition.Status, StatusShouldMatchMessage);
@@ -171,7 +171,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             for (int i = 0; i < NumberOfItems; ++i)
             {
@@ -191,7 +191,7 @@
                 Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
             }
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
 
             Assert.AreEqual(initialNumberOfItems + NumberOfItems, numberOfItemsAfterAddition, $"Number of items after addition should be incremented by {NumberOfItems}.");
         }
@@ -206,7 +206,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             int id = Random.Next();
             var now = DateTime.Now;
@@ -223,21 +223,21 @@
 
             Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
 
             Assert.AreEqual(initialNumberOfItems + 1, numberOfItemsAfterAddition, NumberOfItemsAfterAdditionMessage);
 
-            var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterAddition = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
 
             // Here we delete the item from the database, because added item’s Id might not be equal to
             // the Id of the corresponding entity in the database.
             service.Delete(key, itemAfterAddition).Wait();
 
-            int numberOfItemsAfterDeletion = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterDeletion = service.All(key).Count();
             Assert.AreEqual(initialNumberOfItems, numberOfItemsAfterDeletion, NumberOfItemsAfterDeletionMessage);
 
-            var itemAfterDeletion = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterDeletion = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNull(itemAfterDeletion, ItemShouldBeNullMessage);
         }
 
@@ -251,7 +251,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             int id = Random.Next();
             var now = DateTime.Now;
@@ -268,21 +268,21 @@
 
             Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
 
             Assert.AreEqual(initialNumberOfItems + 1, numberOfItemsAfterAddition, NumberOfItemsAfterAdditionMessage);
 
-            var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterAddition = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
 
             // Here we delete the item from the database, because added item’s Id might not be equal to
             // the Id of the corresponding entity in the database.
             service.Delete(key, itemAfterAddition.Id).Wait();
 
-            int numberOfItemsAfterDeletion = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterDeletion = service.All(key).Count();
             Assert.AreEqual(initialNumberOfItems, numberOfItemsAfterDeletion, NumberOfItemsAfterDeletionMessage);
 
-            var itemAfterDeletion = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterDeletion = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNull(itemAfterDeletion, ItemShouldBeNullMessage);
         }
 
@@ -296,7 +296,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             int id = Random.Next();
             var now = DateTime.Now;
@@ -312,19 +312,19 @@
             service.Add(key, item).Wait();
             Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
 
             Assert.AreEqual(initialNumberOfItems + 1, numberOfItemsAfterAddition, NumberOfItemsAfterAdditionMessage);
 
-            var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterAddition = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
 
             service.Delete(key).Wait();
 
-            int numberOfItemsAfterDeletion = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterDeletion = service.All(key).Count();
             Assert.AreEqual(0, numberOfItemsAfterDeletion, "Number of items after deletion should be equal to 0.");
 
-            var itemAfterDeletion = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterDeletion = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNull(itemAfterDeletion, ItemShouldBeNullMessage);
         }
 
@@ -340,7 +340,7 @@
 
             service.Delete(key).Wait();
 
-            int numberOfItemsAfterDeletion = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterDeletion = service.All(key).Count();
             Assert.AreEqual(0, numberOfItemsAfterDeletion, "Number of items after deletion should be equal to 0.");
         }
 
@@ -354,7 +354,7 @@
             var service = new ValidationCacheService(this.repository);
             Assert.IsNotNull(service, ServiceShouldNotBeNullMessage);
 
-            int initialNumberOfItems = service.All(key).Result.ToList().Count;
+            int initialNumberOfItems = service.All(key).Count();
 
             int id = Random.Next();
             var now = DateTime.Now;
@@ -370,10 +370,10 @@
             service.Add(key, item).Wait();
             Assert.AreEqual(id, item.Id, IdShouldBeUnchagedMessage);
 
-            int numberOfItemsAfterAddition = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterAddition = service.All(key).Count();
             Assert.AreEqual(initialNumberOfItems + 1, numberOfItemsAfterAddition, NumberOfItemsAfterAdditionMessage);
 
-            var itemAfterAddition = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterAddition = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterAddition, AddedItemShouldBeValidObjectMessage);
             Assert.AreEqual(ValidationStatus.Valid, itemAfterAddition.Status, StatusShouldMatchMessage);
             Assert.AreEqual(content, itemAfterAddition.Content, ContentShouldMatchMessage);
@@ -383,10 +383,10 @@
             itemAfterAddition.Status = ValidationStatus.Invalid;
             service.Update(key, itemAfterAddition).Wait();
 
-            int numberOfItemsAfterUpdate = service.All(key).Result.ToList().Count;
+            int numberOfItemsAfterUpdate = service.All(key).Count();
             Assert.AreEqual(numberOfItemsAfterAddition, numberOfItemsAfterUpdate, "Number of items after update should be equal to the number of items after addition.");
 
-            var itemAfterUpdate = service.All(key).Result.FirstOrDefault(i => i.Content == content);
+            var itemAfterUpdate = service.All(key).FirstOrDefault(i => i.Content == content);
             Assert.IsNotNull(itemAfterUpdate, "Item should not be null.");
             Assert.AreEqual(itemAfterAddition.Id, itemAfterUpdate.Id, IdShouldBeUnchagedMessage);
             Assert.AreEqual(ValidationStatus.Invalid, itemAfterUpdate.Status, StatusShouldMatchMessage);
