@@ -6,7 +6,7 @@
     using ProcessingTools.Cache.Data.Models;
     using ProcessingTools.Cache.Data.Repositories.Contracts;
 
-    public class ValidationCacheService : SimpleCacheService<ValidationCacheEntity, ValidationCacheServiceModel>, IValidationCacheService
+    public class ValidationCacheService : GenericCacheService<string, int, ValidationCacheEntity, ValidationCacheServiceModel>, IValidationCacheService
     {
         public ValidationCacheService(IValidationCacheDataRepository repository)
             : base(repository)

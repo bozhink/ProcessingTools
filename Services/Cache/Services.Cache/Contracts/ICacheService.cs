@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Services.Cache.Contracts
 {
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
 
     public interface ICacheService<TContext, TId, TServiceModel>
         where TServiceModel : IGenericIdentifiable<TId>

@@ -2,7 +2,7 @@
 {
     using Models;
 
-    public interface IValidationCacheService : ISimpleCacheService<ValidationCacheServiceModel>
+    public interface IValidationCacheService : ICacheService<string, int, ValidationCacheServiceModel>
     {
     }
 }
