@@ -6,8 +6,8 @@
 
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Data.Common.Expressions.Contracts;
     using ProcessingTools.Data.Common.File.Contracts;
 
     public abstract class FileCrudRepository<TContext, ITaxonRankEntity> : FileSearchableRepository<TContext, ITaxonRankEntity>, IFileCrudRepository<ITaxonRankEntity>

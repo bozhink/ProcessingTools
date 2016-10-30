@@ -9,9 +9,9 @@
     using Contracts;
 
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public abstract class EntityCrudRepository<TContext, TDbModel, TEntity> : EntitySearchableRepository<TContext, TDbModel, TEntity>, IEntityCrudRepository<TEntity>, IDisposable
         where TContext : DbContext

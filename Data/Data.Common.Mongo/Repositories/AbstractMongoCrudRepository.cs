@@ -10,7 +10,7 @@
     using MongoDB.Driver;
 
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Data.Common.Expressions.Contracts;
+    using ProcessingTools.Contracts.Expressions;
 
     public abstract class MongoCrudRepository<TDbModel, TEntity> : MongoSearchableRepository<TDbModel, TEntity>, IMongoCrudRepository<TEntity>
         where TEntity : class

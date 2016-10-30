@@ -37,8 +37,6 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Constants\ConnectionConstants.cs" />
-    <Compile Include="Expressions\Contracts\IUpdateCommand.cs" />
-    <Compile Include="Expressions\Contracts\IUpdateExpression.cs" />
     <Compile Include="Expressions\Contracts\IUpdater.cs" />
     <Compile Include="Expressions\ExpressionBuilder.cs" />
     <Compile Include="Expressions\UpdateCommand.cs" />

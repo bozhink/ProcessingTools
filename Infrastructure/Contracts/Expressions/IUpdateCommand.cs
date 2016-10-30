@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Expressions.Contracts
+﻿namespace ProcessingTools.Contracts.Expressions
 {
     public interface IUpdateCommand
     {

@@ -5,6 +5,8 @@
 
     using Contracts;
 
+    using ProcessingTools.Contracts.Expressions;
+
     public class Updater<T> : IUpdater<T>
     {
         private readonly IUpdateExpression<T> updateExpression;

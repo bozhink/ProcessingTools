@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Expressions.Contracts
+﻿namespace ProcessingTools.Contracts.Expressions
 {
     using System;
     using System.Collections.Generic;

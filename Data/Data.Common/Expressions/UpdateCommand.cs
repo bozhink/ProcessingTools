@@ -2,6 +2,8 @@
 {
     using Contracts;
 
+    using ProcessingTools.Contracts.Expressions;
+
     public sealed class UpdateCommand : IUpdateCommand
     {
         public string FieldName { get; set; }

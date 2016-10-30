@@ -6,8 +6,8 @@
     using Moq;
     using NUnit.Framework;
 
+    using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Data.Common.Expressions.Contracts;
     using ProcessingTools.Data.Common.Tests.Fakes.Models.Contracts;
 
     [TestFixture]

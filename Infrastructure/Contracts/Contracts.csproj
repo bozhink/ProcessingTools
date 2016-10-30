@@ -47,6 +47,8 @@
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
     <Compile Include="Data\Repositories\IQueryableRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
+    <Compile Include="Expressions\IUpdateCommand.cs" />
+    <Compile Include="Expressions\IUpdateExpression.cs" />
     <Compile Include="Harvesters\IGenericQueryableXmlHarvester.cs" />
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
     <Compile Include="Harvesters\IHarvester.cs" />
