@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IContextDataService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Contracts\IDataServiceBase.cs" />
     <Compile Include="Contracts\IIterableDataService.cs" />

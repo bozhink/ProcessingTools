@@ -5,8 +5,8 @@
 
     using Models.Contracts;
 
-    public interface IValidationService<TServiceModel>
+    public interface IValidationService<T>
     {
-        Task<IEnumerable<IValidationServiceModel<TServiceModel>>> Validate(params TServiceModel[] items);
+        Task<IEnumerable<IValidationServiceModel<T>>> Validate(params T[] items);
     }
 }
