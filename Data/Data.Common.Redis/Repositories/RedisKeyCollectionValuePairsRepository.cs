@@ -1,16 +1,20 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Repositories
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Repositories;
-    using ProcessingTools.Exceptions;
+    using ServiceStack.Redis;
+    using ServiceStack.Text;
 
-    public class RedisKeyValuePairsRepository<T> : IRedisKeyValuePairsRepository<T>
+    public class RedisKeyCollectionValuePairsRepository<T> : IRedisKeyCollectionValuePairsRepository<T>
     {
         private readonly IRedisClientProvider provider;
+        private readonly IStringSerializer serializer;
 
-        public RedisKeyValuePairsRepository(IRedisClientProvider provider)
+        public RedisKeyCollectionValuePairsRepository(IRedisClientProvider provider)
         {
             if (provider == null)
             {
@@ -18,7 +22,12 @@
             }
 
             this.provider = provider;
+            this.serializer = new JsonStringSerializer();
         }
+
+        private Func<string, T> Deserialize => s => this.serializer.DeserializeFromString<T>(s);
+
+        private Func<T, string> Serialize => e => this.serializer.SerializeToString(e);
 
         public virtual Task<object> Add(string key, T value)
         {
@@ -36,35 +45,26 @@
             {
                 using (var client = this.provider.Create())
                 {
-                    if (client.ContainsKey(key))
-                    {
-                        throw new KeyExistsException();
-                    }
+                    var list = client.Lists[key];
+                    this.AddValueToList(list, value);
 
-                    return client.Add(key, value);
+                    return true;
                 }
             });
         }
 
-        public virtual Task<T> Get(string key)
+        public virtual IEnumerable<T> GetAll(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return Task.Run(() =>
+            using (var client = this.provider.Create())
             {
-                using (var client = this.provider.Create())
-                {
-                    if (!client.ContainsKey(key))
-                    {
-                        throw new KeyNotFoundException();
-                    }
-
-                    return client.Get<T>(key);
-                }
-            });
+                var list = client.Lists[key];
+                return list.Select(this.Deserialize);
+            }
         }
 
         public virtual Task<object> Remove(string key)
@@ -88,6 +88,30 @@
             });
         }
 
+        public virtual Task<object> Remove(string key, T value)
+        {
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            return Task.Run<object>(() =>
+            {
+                using (var client = this.provider.Create())
+                {
+                    var list = client.Lists[key];
+                    var result = this.RemoveValueFromList(list, value);
+
+                    return result;
+                }
+            });
+        }
+
         public virtual Task<long> SaveChanges() => Task.Run(() =>
         {
             using (var client = this.provider.Create())
@@ -97,51 +121,8 @@
             }
         });
 
-        public virtual Task<object> Update(string key, T value)
-        {
-            if (string.IsNullOrWhiteSpace(key))
-            {
-                throw new ArgumentNullException(nameof(key));
-            }
+        private void AddValueToList(IRedisList list, T value) => list.Add(this.Serialize(value));
 
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            return Task.Run<object>(() =>
-            {
-                using (var client = this.provider.Create())
-                {
-                    if (!client.ContainsKey(key))
-                    {
-                        throw new KeyNotFoundException();
-                    }
-
-                    return client.Replace(key, value);
-                }
-            });
-        }
-
-        public virtual Task<object> Upsert(string key, T value)
-        {
-            if (string.IsNullOrWhiteSpace(key))
-            {
-                throw new ArgumentNullException(nameof(key));
-            }
-
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            return Task.Run<object>(() =>
-            {
-                using (var client = this.provider.Create())
-                {
-                    return client.Set(key, value);
-                }
-            });
-        }
+        private bool RemoveValueFromList(IRedisList list, T value) => list.Remove(this.Serialize(value));
     }
 }
