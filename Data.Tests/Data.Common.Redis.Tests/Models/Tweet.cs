@@ -3,7 +3,7 @@
     using System;
     using ProcessingTools.Contracts;
 
-    public class Tweet : IEntity
+    public class Tweet : IEntity, ITweet
     {
         public Tweet()
         {

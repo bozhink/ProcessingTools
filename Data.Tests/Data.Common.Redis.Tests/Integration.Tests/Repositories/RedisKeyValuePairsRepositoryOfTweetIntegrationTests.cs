@@ -16,9 +16,9 @@
         {
             // Arrange
             var clientProvider = new RedisClientProvider();
-            var repository = new RedisKeyValuePairsRepository<Tweet>(clientProvider);
 
             // Act + Assert
+            var repository = new RedisKeyValuePairsRepository<Tweet>(clientProvider);
             Assert.IsNotNull(repository);
 
             var providerField = PrivateField.GetInstanceField<RedisKeyValuePairsRepository<Tweet>>(repository, Constants.ProviderFieldName);

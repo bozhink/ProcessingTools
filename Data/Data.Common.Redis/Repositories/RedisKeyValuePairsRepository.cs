@@ -78,6 +78,11 @@
             {
                 using (var client = this.provider.Create())
                 {
+                    if (!client.ContainsKey(key))
+                    {
+                        return true;
+                    }
+
                     return client.Remove(key);
                 }
             });
