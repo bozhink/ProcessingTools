@@ -3,13 +3,11 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Expressions;
 
-    public interface IUpdatableRepository<T> : IRepository<T>
+    public interface IUpdatableRepository<T> : IRepository<T>, ISavabaleRepository
     {
         Task<object> Add(T entity);
 
         Task<object> Delete(object id);
-
-        Task<long> SaveChanges();
 
         Task<object> Update(T entity);
 

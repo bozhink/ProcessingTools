@@ -7,7 +7,7 @@
     /// </summary>
     /// <typeparam name="TKey">Type of the key-objects.</typeparam>
     /// <typeparam name="TValue">Type of value-objects.</typeparam>
-    public interface IKeyValuePairsRepository<TKey, TValue> : IRepository<TValue>
+    public interface IKeyValuePairsRepository<TKey, TValue> : IRepository<TValue>, ISavabaleRepository
     {
         /// <summary>
         /// Adds a new key-value pair to the data repository.
