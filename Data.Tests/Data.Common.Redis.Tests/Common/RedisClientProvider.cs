@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Tests.Fakes
+﻿namespace ProcessingTools.Data.Common.Redis.Tests.Common
 {
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Redis;
 
-    public class RedisClientProvider : IRedisClientProvider
+    internal class RedisClientProvider : IRedisClientProvider
     {
         public IRedisClient Create()
         {

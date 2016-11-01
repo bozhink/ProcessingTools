@@ -44,6 +44,10 @@
       <HintPath>..\..\packages\Moq.4.5.21\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ServiceStack.Common, Version=4.0.62.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceStack.Common.4.0.62\lib\net40\ServiceStack.Common.dll</HintPath>
       <Private>True</Private>
@@ -75,13 +79,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\RedisClientProvider.cs" />
     <Compile Include="FakeRedisRepositoryTests.cs" />
     <Compile Include="Fakes\FakeIRedisList.cs" />
     <Compile Include="Fakes\Models\Contracts\ISimpleTimeRecordModel.cs" />
     <Compile Include="Fakes\Models\SimpleTimeRecordModel.cs" />
-    <Compile Include="Fakes\RedisClientProvider.cs" />
     <Compile Include="Fakes\Repositories\FakeMockedRedisRepository.cs" />
     <Compile Include="Fakes\Repositories\FakeRedisRepository.cs" />
+    <Compile Include="Integration.Tests\Repositories\RedisKeyValuePairsRepositoryOfTweetIntegrationTests.cs" />
     <Compile Include="Mocks\RedisClientProviderMock.cs" />
     <Compile Include="Models\Tweet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,11 +102,16 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Tests.Library\Tests.Library.csproj">
+      <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
+      <Name>Tests.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

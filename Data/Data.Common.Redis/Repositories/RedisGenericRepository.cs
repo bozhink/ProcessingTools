@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Extensions.Linq;
     using ServiceStack.Redis;
     using ServiceStack.Text;

@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Tests.Fakes.Repositories
 {
+    using Common;
     using Models;
     using ProcessingTools.Data.Common.Redis.Repositories;
 

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Repositories.Contracts
+﻿namespace ProcessingTools.Data.Common.Redis.Contracts.Repositories
 {
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
