@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Tests.Unit.Tests.Repositories
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Common;
     using Models;
@@ -15,7 +17,7 @@
     public class RedisKeyCollectionValuePairsRepositoryOfTweetUnitTests
     {
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Add valid key and valid value should work.")]
-        //[Timeout(1000)]
+        [Timeout(1000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_AddValidNonPresentKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -119,6 +121,71 @@
             clientProviderMock.Verify(p => p.Create(), Times.Never);
         }
 
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet GetAll valid key and empty list should return empty IEnumerable.")]
+        [Timeout(1000)]
+        public void RedisKeyCollectionValuePairsRepositoryOfTweet_GetAllValidKeyAndEmptyList_ShouldReturnEmptyIEnumerable()
+        {
+            // Arrange
+            string key = "some key";
+
+            var list = new List<string>();
+
+            var listMock = new Mock<IRedisList>();
+            listMock.Setup(l => l.GetEnumerator())
+                .Returns(list.GetEnumerator());
+
+            var clientMock = new Mock<IRedisClient>();
+            clientMock
+                .Setup(c => c.Lists[It.IsAny<string>()])
+                .Returns(listMock.Object);
+
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+            clientProviderMock
+                .Setup(p => p.Create())
+                .Returns(clientMock.Object);
+
+            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(clientProviderMock.Object);
+
+            // Act
+            var result = repository.GetAll(key);
+
+            // Act + Asset
+            listMock.Verify(l => l.GetEnumerator(), Times.Never);
+
+            Assert.That(result.Count(), Is.EqualTo(0));
+            listMock.Verify(l => l.GetEnumerator(), Times.Once);
+
+            result.ToList();
+            listMock.Verify(l => l.GetEnumerator(), Times.Exactly(2));
+
+            clientProviderMock.Verify(p => p.Create(), Times.Once);
+            clientMock.Verify(c => c.Lists[key], Times.Once);
+            clientMock.Verify(c => c.Dispose(), Times.Once);
+        }
+
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet GetAll with invalid key should throw ArgumentNullException with correct ParamName.")]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("         ")]
+        [Timeout(300)]
+        public void RedisKeyCollectionValuePairsRepositoryOfTweet_GetAllWithInvalidKey_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
+        {
+            // Arrange
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+
+            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(clientProviderMock.Object);
+
+            // Act + Assert
+            var exception = Assert.Throws<ArgumentNullException>(() =>
+            {
+                repository.GetAll(key);
+            });
+
+            Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
+
+            clientProviderMock.Verify(p => p.Create(), Times.Never);
+        }
+
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid non-present key should work.")]
         [Timeout(1000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidNonPresentKey_ShouldWork()
@@ -148,6 +215,44 @@
             clientMock.Verify(c => c.ContainsKey(key), Times.Once);
             clientMock.Verify(c => c.Remove(key), Times.Never);
             clientMock.Verify(c => c.Dispose(), Times.Once);
+        }
+
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid key and valid value should work.")]
+        [Timeout(1000)]
+        public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidNonPresentKeyAndValidValue_ShouldWork()
+        {
+            // Arrange
+            string key = "some key";
+
+            // JsonStringSerializer does not work with mock? var valueMock = new Mock<ITweet>();
+            var value = new Tweet();
+
+            var listMock = new Mock<IRedisList>();
+            listMock.Setup(l => l.Remove(It.IsAny<string>()))
+                .Returns(true);
+
+            var clientMock = new Mock<IRedisClient>();
+            clientMock
+                .Setup(c => c.Lists[It.IsAny<string>()])
+                .Returns(listMock.Object);
+
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+            clientProviderMock
+                .Setup(p => p.Create())
+                .Returns(clientMock.Object);
+
+            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(clientProviderMock.Object);
+
+            // Act
+            var result = await repository.Remove(key, value);
+
+            //// Asset
+            Assert.That(result, Is.EqualTo(true));
+
+            clientProviderMock.Verify(p => p.Create(), Times.Once);
+            clientMock.Verify(c => c.Lists[key], Times.Once);
+            clientMock.Verify(c => c.Dispose(), Times.Once);
+            listMock.Verify(l => l.Remove(It.IsAny<string>()), Times.Once);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid yet-present key should work.")]
@@ -203,6 +308,75 @@
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
+
+            clientProviderMock.Verify(p => p.Create(), Times.Never);
+        }
+
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove with invalid key and null value should throw ArgumentNullException.")]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("         ")]
+        [Timeout(300)]
+        public void RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKeyAndNullValue_ShouldThrowArgumentNullException(string key)
+        {
+            // Arrange
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+
+            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(clientProviderMock.Object);
+
+            // Act + Assert
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return repository.Remove(key, null);
+            });
+
+            clientProviderMock.Verify(p => p.Create(), Times.Never);
+        }
+
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove with invalid key and valid value should throw ArgumentNullException with correct ParamName.")]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("         ")]
+        [Timeout(300)]
+        public void RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
+        {
+            // Arrange
+            var valueMock = new Mock<ITweet>();
+            var value = valueMock.Object;
+
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+
+            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(clientProviderMock.Object);
+
+            // Act + Assert
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return repository.Remove(key, value);
+            });
+
+            Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
+
+            clientProviderMock.Verify(p => p.Create(), Times.Never);
+        }
+
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove with valid key and null value should throw ArgumentNullException with correct ParamName.")]
+        [Timeout(300)]
+        public void RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveWithValidKeyAndNullValue_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        {
+            // Arrange
+            string key = "some key";
+
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+
+            var repository = new RedisKeyCollectionValuePairsRepository<ITweet>(clientProviderMock.Object);
+
+            // Act + Assert
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return repository.Remove(key, null);
+            });
+
+            Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
 
             clientProviderMock.Verify(p => p.Create(), Times.Never);
         }
