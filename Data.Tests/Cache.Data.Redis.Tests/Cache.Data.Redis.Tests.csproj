@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\RedisClientProvider.cs" />
+    <Compile Include="Integration.Tests\Repositories\RedisKeyCollectionValuePairsRepositoryOfTweetIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.Tests\Repositories\RedisKeyCollectionValuePairsRepositoryOfTweetUnitTests.cs" />
   </ItemGroup>
@@ -95,9 +96,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integration.Tests\Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
