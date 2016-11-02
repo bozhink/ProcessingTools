@@ -50,6 +50,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\Repositories\AbstractSavableRedisRepository.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IRedisClientProvider.cs" />
     <Compile Include="Contracts\Repositories\IRedisKeyCollectionValuePairsRepository.cs" />

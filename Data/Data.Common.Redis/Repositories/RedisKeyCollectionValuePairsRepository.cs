@@ -4,24 +4,19 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Abstracts.Repositories;
     using Contracts;
     using Contracts.Repositories;
     using ServiceStack.Redis;
     using ServiceStack.Text;
 
-    public class RedisKeyCollectionValuePairsRepository<T> : IRedisKeyCollectionValuePairsRepository<T>
+    public class RedisKeyCollectionValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyCollectionValuePairsRepository<T>
     {
-        private readonly IRedisClientProvider provider;
         private readonly IStringSerializer serializer;
 
         public RedisKeyCollectionValuePairsRepository(IRedisClientProvider provider)
+            : base(provider)
         {
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
-
-            this.provider = provider;
             this.serializer = new JsonStringSerializer();
         }
 
@@ -43,7 +38,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     var list = client.Lists[key];
                     this.AddValueToList(list, value);
@@ -60,7 +55,7 @@
                 throw new ArgumentNullException(nameof(key));
             }
 
-            using (var client = this.provider.Create())
+            using (var client = this.ClientProvider.Create())
             {
                 var list = client.Lists[key];
                 return list.Select(this.Deserialize);
@@ -76,7 +71,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     if (!client.ContainsKey(key))
                     {
@@ -102,7 +97,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     var list = client.Lists[key];
                     var result = this.RemoveValueFromList(list, value);
@@ -111,15 +106,6 @@
                 }
             });
         }
-
-        public virtual Task<long> SaveChanges() => Task.Run(() =>
-        {
-            using (var client = this.provider.Create())
-            {
-                client.SaveAsync();
-                return 0L;
-            }
-        });
 
         private void AddValueToList(IRedisList list, T value) => list.Add(this.Serialize(value));
 

@@ -87,6 +87,7 @@
     <Compile Include="Fakes\Models\SimpleTimeRecordModel.cs" />
     <Compile Include="Fakes\Repositories\FakeMockedRedisRepository.cs" />
     <Compile Include="Fakes\Repositories\FakeRedisRepository.cs" />
+    <Compile Include="Integration.Tests\Repositories\RedisKeyCollectionValuePairsRepositoryOfTweetIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Repositories\RedisKeyValuePairsRepositoryOfTweetIntegrationTests.cs" />
     <Compile Include="Mocks\RedisClientProviderMock.cs" />
     <Compile Include="Models\ITweet.cs" />

@@ -652,7 +652,7 @@
                 var repository = new RedisKeyValuePairsRepository<ITweet>(null);
             });
 
-            Assert.AreEqual(Constants.ProviderFieldName, exception.ParamName);
+            Assert.AreEqual(Constants.ClientProviderFieldName, exception.ParamName);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet with valid client provider in constructor should be initialized correctly.")]
@@ -667,7 +667,10 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProvider);
             Assert.IsNotNull(repository);
 
-            var providerField = PrivateField.GetInstanceField<RedisKeyValuePairsRepository<ITweet>>(repository, Constants.ProviderFieldName);
+            var providerField = PrivateField.GetInstanceField(
+                typeof(RedisKeyValuePairsRepository<ITweet>).BaseType,
+                repository,
+                Constants.ClientProviderFieldName);
             Assert.AreSame(clientProvider, providerField);
         }
     }

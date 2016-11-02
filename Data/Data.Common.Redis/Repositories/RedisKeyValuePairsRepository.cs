@@ -2,22 +2,16 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Abstracts.Repositories;
     using Contracts;
     using Contracts.Repositories;
     using ProcessingTools.Exceptions;
 
-    public class RedisKeyValuePairsRepository<T> : IRedisKeyValuePairsRepository<T>
+    public class RedisKeyValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyValuePairsRepository<T>
     {
-        private readonly IRedisClientProvider provider;
-
         public RedisKeyValuePairsRepository(IRedisClientProvider provider)
+            : base(provider)
         {
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
-
-            this.provider = provider;
         }
 
         public virtual Task<object> Add(string key, T value)
@@ -34,7 +28,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     if (client.ContainsKey(key))
                     {
@@ -55,7 +49,7 @@
 
             return Task.Run(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     if (!client.ContainsKey(key))
                     {
@@ -76,7 +70,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     if (!client.ContainsKey(key))
                     {
@@ -87,15 +81,6 @@
                 }
             });
         }
-
-        public virtual Task<long> SaveChanges() => Task.Run(() =>
-        {
-            using (var client = this.provider.Create())
-            {
-                client.SaveAsync();
-                return 0L;
-            }
-        });
 
         public virtual Task<object> Update(string key, T value)
         {
@@ -111,7 +96,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     if (!client.ContainsKey(key))
                     {
@@ -137,7 +122,7 @@
 
             return Task.Run<object>(() =>
             {
-                using (var client = this.provider.Create())
+                using (var client = this.ClientProvider.Create())
                 {
                     return client.Set(key, value);
                 }
