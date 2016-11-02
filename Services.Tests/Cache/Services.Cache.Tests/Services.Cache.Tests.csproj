@@ -44,6 +44,10 @@
       <HintPath>..\..\..\packages\Moq.4.5.21\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -59,9 +63,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit.Tests\Validation\ValidationCacheServiceUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Cache.Data.Common\Cache.Data.Common.csproj">
+      <Project>{3E8D029C-3052-414B-A746-164D1C6F8670}</Project>
+      <Name>Cache.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8CF0E103-E770-45C3-A671-F6AD43F2CC3B}</Project>
       <Name>Data.Common.Redis</Name>
@@ -78,6 +88,10 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Tests.Library\Tests.Library.csproj">
+      <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
+      <Name>Tests.Library</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Cache\Services.Cache\Services.Cache.csproj">
       <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
       <Name>Services.Cache</Name>
@@ -89,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Integration.Tests\Validation\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

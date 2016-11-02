@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Tests.Common
+﻿namespace ProcessingTools.Services.Cache.Tests.Common
 {
     internal static class Constants
     {
-        public const string ClientProviderFieldName = "clientProvider";
+        public const string RepositoryParamName = "repository";
         public const string KeyParamName = "key";
         public const string ValueParamName = "value";
     }
