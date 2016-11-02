@@ -62,10 +62,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\Cache.Data\Cache.Data.csproj">
-      <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
-      <Name>Cache.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8CF0E103-E770-45C3-A671-F6AD43F2CC3B}</Project>
       <Name>Data.Common.Redis</Name>
