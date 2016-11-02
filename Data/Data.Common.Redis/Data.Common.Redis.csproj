@@ -57,9 +57,7 @@
     <Compile Include="Contracts\Repositories\IRedisKeyCollectionValuePairsRepository.cs" />
     <Compile Include="Contracts\Repositories\IRedisKeyValuePairsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Contracts\Repositories\IRedisGenericRepository.cs" />
     <Compile Include="RedisClientProvider.cs" />
-    <Compile Include="Repositories\RedisGenericRepository.cs" />
     <Compile Include="Repositories\RedisKeyCollectionValuePairsRepository.cs" />
     <Compile Include="Repositories\RedisKeyValuePairsRepository.cs" />
   </ItemGroup>
