@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Repositories\IRedisValidationCacheDataRepository.cs" />
     <Compile Include="Models\ValidationCacheEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
