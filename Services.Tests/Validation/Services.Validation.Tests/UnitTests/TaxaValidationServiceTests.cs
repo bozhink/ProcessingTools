@@ -6,7 +6,7 @@
     using Moq;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts;
+    using ProcessingTools.Services.Cache.Contracts.Validation;
 
     // TODO: add more tests
     [TestClass]

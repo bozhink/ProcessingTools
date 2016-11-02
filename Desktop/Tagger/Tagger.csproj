@@ -277,6 +277,14 @@
       <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
       <Name>Bio.Taxonomy.Data.Mongo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Cache.Data.Common\Cache.Data.Common.csproj">
+      <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
+      <Name>Cache.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Cache.Data.Redis\Cache.Data.Redis.csproj">
+      <Project>{9fafd7d9-7917-484e-b08e-b6d0c1bb02c6}</Project>
+      <Name>Cache.Data.Redis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
@@ -324,10 +332,6 @@
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
       <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
       <Name>Bio.Taxonomy.Data.Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Cache.Data\Cache.Data.csproj">
-      <Project>{8cccbf65-46dd-4ddb-a849-f91353fba8db}</Project>
-      <Name>Cache.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>

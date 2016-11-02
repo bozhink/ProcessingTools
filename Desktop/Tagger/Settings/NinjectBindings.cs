@@ -84,6 +84,9 @@
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
                 .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>();
+
+            this.Bind<ProcessingTools.Cache.Data.Common.Contracts.Repositories.IValidationCacheDataRepository>()
+                .To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
         }
     }
 }

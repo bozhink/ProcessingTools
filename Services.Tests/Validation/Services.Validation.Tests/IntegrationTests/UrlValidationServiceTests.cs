@@ -4,11 +4,11 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
-    using ProcessingTools.Cache.Data;
-    using ProcessingTools.Cache.Data.Repositories;
+    using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache;
-    using ProcessingTools.Services.Cache.Contracts;
+    using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Cache.Validation;
 
     [TestClass]
     public class UrlValidationServiceTests
@@ -18,7 +18,7 @@
         [TestInitialize]
         public void Initialize()
         {
-            var repository = new ValidationCacheDataRepository(new RedisClientProvider());
+            var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
             this.cacheService = new ValidationCacheService(repository);
         }
 

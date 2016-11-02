@@ -19,7 +19,7 @@
 
             this.Bind(b =>
             {
-                b.From(Cache.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Cache.Data.Redis.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -69,6 +69,13 @@
             this.Bind(b =>
             {
                 b.From(MediaType.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(Data.Common.Redis.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

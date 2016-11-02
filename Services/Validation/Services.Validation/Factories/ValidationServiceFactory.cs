@@ -12,8 +12,8 @@
 
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Services.Cache.Contracts;
-    using ProcessingTools.Services.Cache.Models;
+    using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Cache.Models.Validation;
 
     public abstract class ValidationServiceFactory<TValidatedObject, TItemToCheck> : IValidationService<TValidatedObject>
     {
@@ -133,7 +133,7 @@
 
             try
             {
-                var lastCachedItem = await this.cacheService.All(context)
+                var lastCachedItem = await this.cacheService.GetAll(context)
                     .OrderByDescending(i => i.LastUpdate)
                     .FirstOrDefaultAsync();
 

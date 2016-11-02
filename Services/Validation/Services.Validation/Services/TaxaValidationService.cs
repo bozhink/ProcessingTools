@@ -16,7 +16,7 @@
 
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts;
+    using ProcessingTools.Services.Cache.Contracts.Validation;
 
     public class TaxaValidationService : ValidationServiceFactory<TaxonNameServiceModel, string>, ITaxaValidationService
     {

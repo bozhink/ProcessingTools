@@ -1,13 +1,10 @@
-﻿namespace ProcessingTools.Services.Cache.Models
+﻿namespace ProcessingTools.Services.Cache.Models.Validation
 {
     using System;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
-    public class ValidationCacheServiceModel : IEntity
+    public class ValidationCacheServiceModel : IValidationCacheServiceModel
     {
-        public int Id { get; set; }
-
         public string Content { get; set; }
 
         public DateTime LastUpdate { get; set; }

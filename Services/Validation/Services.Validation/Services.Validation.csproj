@@ -52,6 +52,10 @@
     <Compile Include="Services\UrlValidationService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Cache.Data.Common\Cache.Data.Common.csproj">
+      <Project>{3E8D029C-3052-414B-A746-164D1C6F8670}</Project>
+      <Name>Cache.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
