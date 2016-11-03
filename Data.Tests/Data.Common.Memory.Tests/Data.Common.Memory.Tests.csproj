@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Integration.Tests\MemoryKeyValueDataStoreIntegrationTests.cs" />
     <Compile Include="Models\IKeyModel.cs" />
     <Compile Include="Models\IValueModel.cs" />
     <Compile Include="Models\KeyModel.cs" />
@@ -63,9 +64,7 @@
       <Name>Contracts</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integration.Tests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
