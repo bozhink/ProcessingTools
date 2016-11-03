@@ -1,12 +1,13 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Abstracts.Repositories
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
     using ServiceStack.Redis;
 
-    public abstract class AbstractSavableRedisRepository : ISavabaleRepository
+    public abstract class AbstractSavableRedisRepository : IKeyListableRepository<string>, ISavabaleRepository
     {
         private readonly IRedisClientProvider clientProvider;
 
@@ -18,6 +19,17 @@
             }
 
             this.clientProvider = clientProvider;
+        }
+
+        public IEnumerable<string> Keys
+        {
+            get
+            {
+                using (var client = this.ClientProvider.Create())
+                {
+                    return client.GetAllKeys();
+                }
+            }
         }
 
         protected IRedisClientProvider ClientProvider => this.clientProvider;

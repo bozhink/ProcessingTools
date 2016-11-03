@@ -63,9 +63,9 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\RedisClientProvider.cs" />
-    <Compile Include="Integration.Tests\Repositories\RedisKeyCollectionValuePairsRepositoryOfTweetIntegrationTests.cs" />
+    <Compile Include="Integration.Tests\Repositories\RedisValidationCacheDataRepositoryIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.Tests\Repositories\RedisKeyCollectionValuePairsRepositoryOfTweetUnitTests.cs" />
+    <Compile Include="Unit.Tests\Repositories\RedisValidationCacheDataRepositoryUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Cache.Data.Common\Cache.Data.Common.csproj">

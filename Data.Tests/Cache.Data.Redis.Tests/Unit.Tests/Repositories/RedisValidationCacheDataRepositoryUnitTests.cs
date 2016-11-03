@@ -186,6 +186,36 @@
             clientProviderMock.Verify(p => p.Create(), Times.Never);
         }
 
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Get Keys should work.")]
+        [Timeout(1000)]
+        public void RedisValidationCacheDataRepository_GetKeys_ShouldWork()
+        {
+            // Arrange
+            var listOfKeys = new List<string>();
+
+            var clientMock = new Mock<IRedisClient>();
+            clientMock
+                .Setup(c => c.GetAllKeys())
+                .Returns(listOfKeys);
+
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+            clientProviderMock
+                .Setup(p => p.Create())
+                .Returns(clientMock.Object);
+
+            var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
+
+            // Act
+            var keys = repository.Keys;
+
+            // Assert
+            Assert.AreSame(listOfKeys, keys);
+
+            clientProviderMock.Verify(p => p.Create(), Times.Once);
+            clientMock.Verify(c => c.GetAllKeys(), Times.Once);
+            clientMock.Verify(c => c.Dispose(), Times.Once);
+        }
+
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Remove valid non-present key should work.")]
         [Timeout(1000)]
         public async Task RedisValidationCacheDataRepository_RemoveValidNonPresentKey_ShouldWork()

@@ -10,6 +10,14 @@
     {
         private static readonly ConcurrentDictionary<string, ICollection<T>> DataStore = new ConcurrentDictionary<string, ICollection<T>>();
 
+        public IEnumerable<string> Keys
+        {
+            get
+            {
+                return DataStore.Keys;
+            }
+        }
+
         public Task<object> Add(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))

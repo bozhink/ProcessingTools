@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Tests.Unit.Tests.Repositories
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Common;
     using Models;
@@ -155,6 +156,36 @@
             clientProviderMock.Verify(p => p.Create(), Times.Never);
         }
 
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Get Keys should work.")]
+        [Timeout(1000)]
+        public void RedisKeyValuePairsRepositoryOfTweet_GetKeys_ShouldWork()
+        {
+            // Arrange
+            var listOfKeys = new List<string>();
+
+            var clientMock = new Mock<IRedisClient>();
+            clientMock
+                .Setup(c => c.GetAllKeys())
+                .Returns(listOfKeys);
+
+            var clientProviderMock = new Mock<IRedisClientProvider>();
+            clientProviderMock
+                .Setup(p => p.Create())
+                .Returns(clientMock.Object);
+
+            var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
+
+            // Act
+            var keys = repository.Keys;
+
+            // Assert
+            Assert.AreSame(listOfKeys, keys);
+
+            clientProviderMock.Verify(p => p.Create(), Times.Once);
+            clientMock.Verify(c => c.GetAllKeys(), Times.Once);
+            clientMock.Verify(c => c.Dispose(), Times.Once);
+        }
+
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Get valid non-present key should throw KeyExistsException.")]
         [Timeout(1000)]
         public void RedisKeyValuePairsRepositoryOfTweet_GetValidNonPresentKey_ShouldThowKeyExistsException()
@@ -175,7 +206,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<KeyNotFoundException>(() =>
+            var exception = Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
             {
                 return repository.Get(key);
             });
@@ -382,7 +413,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<KeyNotFoundException>(() =>
+            var exception = Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
             {
                 return repository.Update(key, value);
             });
