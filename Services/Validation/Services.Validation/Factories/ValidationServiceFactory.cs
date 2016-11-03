@@ -133,9 +133,7 @@
 
             try
             {
-                var lastCachedItem = await this.cacheService.GetAll(context)
-                    .OrderByDescending(i => i.LastUpdate)
-                    .FirstOrDefaultAsync();
+                var lastCachedItem = await this.cacheService.Get(context);
 
                 if (lastCachedItem == null || lastCachedItem.Status != ValidationStatus.Valid)
                 {

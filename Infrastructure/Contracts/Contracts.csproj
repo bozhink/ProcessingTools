@@ -81,6 +81,7 @@
     <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
+    <Compile Include="IDateTimeProvider.cs" />
     <Compile Include="IDefinable.cs" />
     <Compile Include="IDocumentFactory.cs" />
     <Compile Include="IDocumentFormatter.cs" />

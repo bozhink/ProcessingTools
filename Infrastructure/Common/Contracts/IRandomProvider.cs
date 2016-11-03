@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Common.Providers.Contracts
+﻿namespace ProcessingTools.Common.Contracts
 {
     public interface IRandomProvider
     {

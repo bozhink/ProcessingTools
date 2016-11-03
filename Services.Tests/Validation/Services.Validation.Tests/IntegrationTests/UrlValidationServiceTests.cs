@@ -5,6 +5,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Common.Providers;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Validation;
@@ -19,7 +20,8 @@
         public void Initialize()
         {
             var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
-            this.cacheService = new ValidationCacheService(repository);
+            var dateTimeProvider = new DateTimeProvider();
+            this.cacheService = new ValidationCacheService(repository, dateTimeProvider);
         }
 
         [TestMethod]

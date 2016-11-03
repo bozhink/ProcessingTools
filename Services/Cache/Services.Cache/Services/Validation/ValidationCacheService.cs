@@ -1,32 +1,44 @@
 ﻿namespace ProcessingTools.Services.Cache.Validation
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
     using Contracts.Validation;
     using Models.Validation;
+    using ProcessingTools.Cache.Data.Common.Contracts.Models;
     using ProcessingTools.Cache.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions.Linq;
 
     public class ValidationCacheService : IValidationCacheService
     {
         private readonly IValidationCacheDataRepository repository;
+        private readonly IDateTimeProvider dateTimeProvider;
         private readonly IMapper mapper;
 
-        public ValidationCacheService(IValidationCacheDataRepository repository)
+        public ValidationCacheService(IValidationCacheDataRepository repository, IDateTimeProvider dateTimeProvider)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(dateTimeProvider));
+            }
+
             this.repository = repository;
+            this.dateTimeProvider = dateTimeProvider;
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IValidationCacheServiceModel, ValidationCacheServiceModel>();
                 c.CreateMap<ValidationCacheServiceModel, IValidationCacheServiceModel>();
+
+                c.CreateMap<IValidationCacheEntity, ValidationCacheServiceModel>();
+                c.CreateMap<ValidationCacheServiceModel, IValidationCacheEntity>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
@@ -44,33 +56,30 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            return this.repository.Add(key, value);
+            var entity = this.mapper.Map<ValidationCacheServiceModel>(value);
+            entity.LastUpdate = this.dateTimeProvider.Now;
+
+            return this.repository.Add(key, entity);
         }
 
-        public IEnumerable<IValidationCacheServiceModel> GetAll(string key)
+        public async Task<IValidationCacheServiceModel> Get(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return this.repository.GetAll(key)
-                .Select(v => this.mapper.Map<ValidationCacheServiceModel>(v));
-        }
-
-        public Task<object> Remove(string key, IValidationCacheServiceModel value)
-        {
-            if (string.IsNullOrWhiteSpace(key))
+            var query = this.repository.GetAll(key);
+            if (query == null)
             {
-                throw new ArgumentNullException(nameof(key));
+                return null;
             }
 
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
+            var entity = await query.OrderByDescending(e => e.LastUpdate)
+                .Select(v => this.mapper.Map<ValidationCacheServiceModel>(v))
+                .FirstOrDefaultAsync();
 
-            return this.repository.Remove(key, value);
+            return entity;
         }
     }
 }

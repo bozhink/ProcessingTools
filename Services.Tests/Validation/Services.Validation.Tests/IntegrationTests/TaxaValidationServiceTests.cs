@@ -7,6 +7,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Common.Providers;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net.Factories;
@@ -24,7 +25,8 @@
         public void Initialize()
         {
             var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
-            this.cacheService = new ValidationCacheService(repository);
+            var dateTimeProvider = new DateTimeProvider();
+            this.cacheService = new ValidationCacheService(repository, dateTimeProvider);
             this.requester = new GlobalNamesResolverDataRequester(new NetConnectorFactory());
         }
 

@@ -87,6 +87,9 @@
 
             this.Bind<ProcessingTools.Cache.Data.Common.Contracts.Repositories.IValidationCacheDataRepository>()
                 .To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
+
+            this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
+                .To<ProcessingTools.Common.Providers.DateTimeProvider>();
         }
     }
 }
