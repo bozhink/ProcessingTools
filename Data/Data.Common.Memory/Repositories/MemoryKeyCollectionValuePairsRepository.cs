@@ -1,22 +1,26 @@
 ﻿namespace ProcessingTools.Data.Common.Memory.Repositories
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Contracts;
     using Contracts.Repositories;
 
     public class MemoryKeyCollectionValuePairsRepository<T> : IMemoryKeyCollectionValuePairsRepository<T>
     {
-        private static readonly ConcurrentDictionary<string, ICollection<T>> DataStore = new ConcurrentDictionary<string, ICollection<T>>();
+        private readonly IMemoryKeyValueDataStore<string, ICollection<T>> dataStore;
 
-        public IEnumerable<string> Keys
+        public MemoryKeyCollectionValuePairsRepository(IMemoryKeyValueDataStore<string, ICollection<T>> dataStore)
         {
-            get
+            if (dataStore == null)
             {
-                return DataStore.Keys;
+                throw new ArgumentNullException(nameof(dataStore));
             }
+
+            this.dataStore = dataStore;
         }
+
+        public IEnumerable<string> Keys => this.dataStore.Keys;
 
         public Task<object> Add(string key, T value)
         {
@@ -32,7 +36,7 @@
 
             return Task.Run<object>(() =>
             {
-                var result = DataStore.AddOrUpdate(
+                var result = this.dataStore.AddOrUpdate(
                     key,
                     k =>
                     {
@@ -57,9 +61,7 @@
                 throw new ArgumentNullException(nameof(key));
             }
 
-            ICollection<T> result = null;
-            DataStore.TryGetValue(key, out result);
-            return result;
+            return this.dataStore[key];
         }
 
         public Task<object> Remove(string key)
@@ -71,10 +73,7 @@
 
             return Task.Run<object>(() =>
             {
-                ICollection<T> collection = null;
-                var result = DataStore.TryRemove(key, out collection);
-
-                return result;
+                return this.dataStore.Remove(key);
             });
         }
 
@@ -92,7 +91,7 @@
 
             return Task.Run<object>(() =>
             {
-                DataStore.AddOrUpdate(
+                this.dataStore.AddOrUpdate(
                     key,
                     k => new HashSet<T>(),
                     (k, c) =>

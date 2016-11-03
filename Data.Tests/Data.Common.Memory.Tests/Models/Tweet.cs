@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Tests.Models
+﻿namespace ProcessingTools.Data.Common.Memory.Tests.Models
 {
     using System;
 
