@@ -1,16 +1,8 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Files
 {
-    using System.IO;
-    using System.Threading.Tasks;
+    using IO;
 
-    public interface IStreamingFileContentDataService
+    public interface IStreamingFileContentDataService : IStreamFileContentReader, IStreamFileContentWriter
     {
-        StreamReader GetReader(object id);
-
-        Stream ReadToStream(object id);
-
-        Task<object> Write(object id, Stream stream);
-
-        Task<object> Write(object id, StreamWriter streamWriter);
     }
 }

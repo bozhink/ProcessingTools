@@ -7,6 +7,6 @@
     {
         IFileMetadata Get(object id);
 
-        Task<object> Update(object id, IFileMetadata data);
+        Task<object> Update(object id, IFileMetadata metadata);
     }
 }

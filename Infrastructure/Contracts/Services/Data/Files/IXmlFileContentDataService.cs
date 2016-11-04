@@ -1,16 +1,8 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Files
 {
-    using System.Threading.Tasks;
-    using System.Xml;
+    using IO;
 
-    public interface IXmlFileContentDataService
+    public interface IXmlFileContentDataService : IXmlFileContentReader, IXmlFileContentWriter
     {
-        XmlReaderSettings ReaderSettings { get; set; }
-
-        XmlWriterSettings WriterSettings { get; set; }
-
-        XmlReader GetReader(object id);
-
-        Task<object> Write(object id, XmlWriter writer);
     }
 }

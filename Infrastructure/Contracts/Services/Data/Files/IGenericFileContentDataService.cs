@@ -1,11 +1,8 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Files
 {
-    using System.Threading.Tasks;
+    using IO;
 
-    public interface IGenericFileContentDataService<TContent>
+    public interface IGenericFileContentDataService<TContent> : IGenericFileContentReader<TContent>, IGenericFileContentWriter<TContent>
     {
-        Task<TContent> Read(object id);
-
-        Task<object> Write(object id, TContent content);
     }
 }
