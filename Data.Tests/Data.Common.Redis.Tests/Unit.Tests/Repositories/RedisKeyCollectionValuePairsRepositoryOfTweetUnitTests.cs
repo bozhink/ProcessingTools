@@ -249,7 +249,7 @@
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid key and valid value should work.")]
         [Timeout(1000)]
-        public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidNonPresentKeyAndValidValue_ShouldWork()
+        public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidKeyAndValidValue_ShouldWork()
         {
             // Arrange
             string key = "some key";

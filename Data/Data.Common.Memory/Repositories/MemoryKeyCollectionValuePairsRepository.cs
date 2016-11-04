@@ -8,9 +8,9 @@
 
     public class MemoryKeyCollectionValuePairsRepository<T> : IMemoryKeyCollectionValuePairsRepository<T>
     {
-        private readonly IMemoryKeyValueDataStore<string, ICollection<T>> dataStore;
+        private readonly IMemoryStringKeyCollectionValueDataStore<T> dataStore;
 
-        public MemoryKeyCollectionValuePairsRepository(IMemoryKeyValueDataStore<string, ICollection<T>> dataStore)
+        public MemoryKeyCollectionValuePairsRepository(IMemoryStringKeyCollectionValueDataStore<T> dataStore)
         {
             if (dataStore == null)
             {
