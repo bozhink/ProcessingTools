@@ -140,7 +140,6 @@
             var result = repository.GetAll(key);
 
             // Act + Asset
-
             Assert.That(result.Count(), Is.EqualTo(0));
 
             dataStoreMock.Verify(s => s[It.IsAny<string>()], Times.Once);
