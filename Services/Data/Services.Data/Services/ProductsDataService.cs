@@ -2,17 +2,15 @@
 {
     using System;
     using System.Linq.Expressions;
-
     using Contracts;
     using Models;
-
-    using ProcessingTools.Data.Models;
-    using ProcessingTools.Data.Repositories.Contracts;
+    using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Services.Common.Factories;
 
     public class ProductsDataService : SimpleDataServiceWithRepositoryFactory<Product, ProductServiceModel>, IProductsDataService
     {
-        public ProductsDataService(IDataRepository<Product> repository)
+        public ProductsDataService(IDataResourcesRepository<Product> repository)
             : base(repository)
         {
         }

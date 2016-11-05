@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface IInstitutionEntity : INameableGuidIdentifiable, IEntityWithSources
+    public interface IInstitutionEntity : INameableIntegerIdentifiable, IEntityWithSources
     {
     }
 }

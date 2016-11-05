@@ -1,9 +1,7 @@
 ﻿namespace ProcessingTools.DataResources.Data.Entity.Models
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
     using ProcessingTools.DataResources.Data.Common.Constants;
     using ProcessingTools.DataResources.Data.Common.Models.Contracts;
 
@@ -12,7 +10,7 @@
         private string name;
 
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Index(IsUnique = true)]

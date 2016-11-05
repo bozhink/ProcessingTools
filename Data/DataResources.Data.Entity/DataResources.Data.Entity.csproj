@@ -46,6 +46,8 @@
     <Compile Include="Contracts\IDataResourcesDatabaseInitializer.cs" />
     <Compile Include="Contracts\IDataResourcesDbContextFactory.cs" />
     <Compile Include="Contracts\IDataResourcesDbContextProvider.cs" />
+    <Compile Include="Contracts\Repositories\IDataResourcesRepository.cs" />
+    <Compile Include="Contracts\Repositories\IDataResourcesRepositoryProvider.cs" />
     <Compile Include="Initializers\DataResourcesDatabaseInitializer.cs" />
     <Compile Include="DataResourcesDbContext.cs" />
     <Compile Include="Providers\DataResourcesDbContextProvider.cs" />
@@ -58,6 +60,8 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SourceId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DataResourcesRepository.cs" />
+    <Compile Include="Repositories\DataResourcesRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">

@@ -2,17 +2,15 @@
 {
     using System;
     using System.Linq.Expressions;
-
     using Contracts;
     using Models;
-
-    using ProcessingTools.Data.Models;
-    using ProcessingTools.Data.Repositories.Contracts;
+    using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Services.Common.Factories;
 
     public class InstitutionsDataService : SimpleDataServiceWithRepositoryFactory<Institution, InstitutionServiceModel>, IInstitutionsDataService
     {
-        public InstitutionsDataService(IDataRepository<Institution> repository)
+        public InstitutionsDataService(IDataResourcesRepository<Institution> repository)
             : base(repository)
         {
         }

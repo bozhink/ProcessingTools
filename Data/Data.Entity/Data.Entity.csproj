@@ -55,10 +55,6 @@
     <Compile Include="Models\Institution.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Contracts\IDataRepository.cs" />
-    <Compile Include="Repositories\Contracts\IDataRepositoryProvider.cs" />
-    <Compile Include="Repositories\DataRepository.cs" />
-    <Compile Include="Repositories\DataRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

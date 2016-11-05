@@ -92,8 +92,6 @@
         {
             if (ModelState.IsValid)
             {
-                model.Id = Guid.NewGuid();
-
                 using (var db = this.contextProvider.Create())
                 {
                     db.Products.Add(model);
