@@ -1,10 +1,8 @@
 ﻿namespace ProcessingTools.Documents.Data.Repositories
 {
     using System;
-
     using Contracts;
-
-    using ProcessingTools.Documents.Data.Contracts;
+    using Contracts.Repositories;
 
     public class EntityPublishersRepositoryProvider : IEntityPublishersRepositoryProvider
     {

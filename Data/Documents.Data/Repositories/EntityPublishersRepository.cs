@@ -5,13 +5,11 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
+    using Contracts.Repositories;
     using Models;
-
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Documents.Data.Common.Contracts.Models;
-    using ProcessingTools.Documents.Data.Contracts;
 
     public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisherEntity>, IEntityPublishersRepository
     {

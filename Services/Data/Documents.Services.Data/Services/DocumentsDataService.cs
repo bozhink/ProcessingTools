@@ -15,8 +15,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Models;
-    using ProcessingTools.Documents.Data.Repositories.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.FileSystem.Contracts;
 
