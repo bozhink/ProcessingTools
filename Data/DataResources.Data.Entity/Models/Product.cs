@@ -9,12 +9,25 @@
 
     public class Product : EntityWithSources, IProductEntity
     {
+        private string name;
+
         [Key]
         public Guid Id { get; set; }
 
         [Required]
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.ProductNameMaximalLength)]
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = value.Trim(' ', ',', ';', ':', '/', '\\');
+            }
+        }
     }
 }
