@@ -129,7 +129,9 @@
     <Compile Include="Services\Data\Files\IGenericFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IGenericFilesDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
+    <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
     <Compile Include="Services\Data\Files\IXmlFileContentDataService.cs" />
+    <Compile Include="Services\Data\Files\IXmlFilesDataService.cs" />
     <Compile Include="Services\Data\Models\Files\IFileMetadata.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />

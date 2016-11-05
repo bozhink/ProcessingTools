@@ -7,6 +7,6 @@
     {
         XmlWriterSettings WriterSettings { get; set; }
 
-        Task<object> Write(object id, XmlWriter writer);
+        Task<object> Write(object id, XmlReader reader);
     }
 }
