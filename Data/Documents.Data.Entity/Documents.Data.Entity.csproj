@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDocumentsDataInitializer.cs" />
+    <Compile Include="Contracts\IDocumentsDbContext.cs" />
     <Compile Include="Contracts\IDocumentsDbContextFactory.cs" />
     <Compile Include="Contracts\IDocumentsDbContextProvider.cs" />
     <Compile Include="Contracts\Repositories\IEntityFilesRepository.cs" />
