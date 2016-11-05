@@ -9,12 +9,25 @@
 
     public class Institution : EntityWithSources, IInstitutionEntity
     {
+        private string name;
+
         [Key]
         public Guid Id { get; set; }
 
         [Required]
         [Index(IsUnique = true)]
         [MaxLength(ValidationConstants.InstitutionNameMaximalLength)]
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = value.Trim(' ', ',', ';', ':', '/', '\\');
+            }
+        }
     }
 }
