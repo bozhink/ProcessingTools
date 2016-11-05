@@ -5,8 +5,8 @@
     using Contracts;
     using Models;
 
-    using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Bio.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Services.Common.Factories;
 
     public class TypeStatusDataService : SimpleDataServiceWithRepositoryFactory<TypeStatus, TypeStatusServiceModel>, ITypeStatusDataService

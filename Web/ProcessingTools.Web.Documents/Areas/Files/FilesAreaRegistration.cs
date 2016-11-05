@@ -12,8 +12,11 @@
             context.MapRoute(
                 "Files_default",
                 "Files/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                new
+                {
+                    action = "Index",
+                    id = UrlParameter.Optional
+                });
         }
     }
 }

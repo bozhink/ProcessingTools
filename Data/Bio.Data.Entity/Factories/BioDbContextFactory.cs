@@ -2,7 +2,7 @@
 {
     using System;
     using Contracts;
-    using ProcessingTools.Bio.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     public class BioDbContextFactory : IBioDbContextFactory
     {
@@ -10,7 +10,7 @@
 
         public BioDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.BioDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.BioDatabaseConnectionKey;
         }
 
         public string ConnectionString

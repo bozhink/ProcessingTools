@@ -1,15 +1,14 @@
 ﻿namespace ProcessingTools.Documents.Data.Repositories
 {
     using System;
-    using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Common.Contracts.Models;
-    using Models;
-    using Contracts;
-    using ProcessingTools.Data.Common.Entity.Repositories;
-    using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Contracts;
     using System.Data.Entity;
+    using System.Threading.Tasks;
+    using Common.Contracts.Models;
+    using Contracts;
+    using Contracts.Repositories;
+    using Models;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Common.Entity.Repositories;
 
     // TODO
     public class EntityFilesRepository : EntityRepository<DocumentsDbContext, File>, IEntityFilesRepository
