@@ -46,13 +46,17 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFileContentDataService.cs" />
+    <Compile Include="Contracts\Files\IStreamingSystemFilesDataService.cs" />
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
+    <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
+    <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />
@@ -89,9 +93,7 @@
       <Name>Services.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Files\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

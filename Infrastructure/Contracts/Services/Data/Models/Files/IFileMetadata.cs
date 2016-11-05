@@ -8,6 +8,6 @@
 
         string FileName { get; }
 
-        string FullPath { get; }
+        string FullName { get; }
     }
 }
