@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Geo.Data
+﻿namespace ProcessingTools.Geo.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-
     using Models;
 
     public class GeoDbContext : DbContext

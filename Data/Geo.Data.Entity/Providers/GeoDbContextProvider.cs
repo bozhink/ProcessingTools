@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data
+﻿namespace ProcessingTools.Geo.Data.Entity.Providers
 {
     using System;
     using Contracts;

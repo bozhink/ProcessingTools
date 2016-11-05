@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Contracts
+﻿namespace ProcessingTools.Geo.Data.Entity.Contracts
 {
     using System.Data.Entity.Infrastructure;
 

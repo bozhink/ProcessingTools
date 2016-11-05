@@ -4,14 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
     using Models.Countries;
     using Models.Countries.Contracts;
-
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo.Data.Models;
-    using ProcessingTools.Geo.Data.Repositories.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Geo.Data.Entity.Models;
 
     public class CountriesDataService : ICountriesDataService
     {

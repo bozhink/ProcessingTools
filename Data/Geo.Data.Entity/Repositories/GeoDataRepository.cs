@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Geo.Data.Repositories
+﻿namespace ProcessingTools.Geo.Data.Entity.Repositories
 {
+    using Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories;
-    using ProcessingTools.Geo.Data.Contracts;
-    using ProcessingTools.Geo.Data.Repositories.Contracts;
 
     public class GeoDataRepository<T> : EntityGenericRepository<GeoDbContext, T>, IGeoDataRepository<T>
         where T : class

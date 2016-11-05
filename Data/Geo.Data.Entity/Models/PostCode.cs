@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Models
+﻿namespace ProcessingTools.Geo.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;

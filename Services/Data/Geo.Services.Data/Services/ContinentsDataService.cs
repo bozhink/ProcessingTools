@@ -10,8 +10,8 @@
 
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo.Data.Models;
-    using ProcessingTools.Geo.Data.Repositories.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Services.Common.Factories;
 
     public class ContinentsDataService : DataServiceFactory<Continent, ContinentServiceModel>, IContinentsDataService

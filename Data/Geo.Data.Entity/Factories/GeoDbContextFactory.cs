@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Geo.Data.Factories
+﻿namespace ProcessingTools.Geo.Data.Entity.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Geo.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     public class GeoDbContextFactory : IGeoDbContextFactory
     {
@@ -10,7 +10,7 @@
 
         public GeoDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.GeoDatabseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.GeoDatabseConnectionKey;
         }
 
         public string ConnectionString

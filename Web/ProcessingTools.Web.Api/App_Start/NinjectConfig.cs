@@ -46,7 +46,7 @@
 
             kernel.Bind(b =>
             {
-                b.From(Geo.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

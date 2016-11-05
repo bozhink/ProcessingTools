@@ -1,20 +1,15 @@
-namespace ProcessingTools.Geo.Data.Migrations
+namespace ProcessingTools.Geo.Data.Entity.Migrations
 {
     using System.Data.Entity.Migrations;
-    using ProcessingTools.Geo.Data.Common.Constants;
 
-    public sealed class Configuration : DbMigrationsConfiguration<GeoDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<GeoDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.ContextKey = ConnectionConstants.ContextKey;
-
-#if DEBUG
-            this.AutomaticMigrationDataLossAllowed = true;
-#else
             this.AutomaticMigrationDataLossAllowed = false;
-#endif
+            this.ContextType = typeof(GeoDbContext);
+            this.ContextKey = this.ContextType.FullName;
         }
 
         protected override void Seed(GeoDbContext context)

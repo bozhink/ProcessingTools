@@ -10,8 +10,8 @@
     using Models.Cities.Contracts;
 
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo.Data.Models;
-    using ProcessingTools.Geo.Data.Repositories.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Geo.Data.Entity.Models;
 
     public class CitiesDataService : ICitiesDataService
     {

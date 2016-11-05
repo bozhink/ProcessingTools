@@ -2,10 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-
     using Contracts;
-
-    using ProcessingTools.Geo.Data.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Contracts;
     using ProcessingTools.Geo.Data.Seed.Contracts;
 
     public class GeoDbSeeder : IGeoDbSeeder

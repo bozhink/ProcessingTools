@@ -10,8 +10,9 @@
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.Geo.Data.Contracts;
-    using ProcessingTools.Geo.Data.Models;
+    using ProcessingTools.Geo.Data.Entity;
+    using ProcessingTools.Geo.Data.Entity.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Models;
 
     public class GeoDataSeeder : IGeoDataSeeder
     {
