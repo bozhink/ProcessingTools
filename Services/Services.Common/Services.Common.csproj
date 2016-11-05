@@ -53,7 +53,6 @@
     <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactoryBase.cs" />
     <Compile Include="Factories\SimpleDataServiceWithRepositoryFactory.cs" />
-    <Compile Include="Factories\SimpleDataServiceWithRepositoryProviderFactory.cs" />
     <Compile Include="Models\Contracts\IAddableServiceModel.cs" />
     <Compile Include="Models\Contracts\IDetailedServiceModel.cs" />
     <Compile Include="Models\Contracts\IListableServiceModel.cs" />
