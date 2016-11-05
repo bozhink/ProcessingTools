@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDataResourcesDatabaseInitializer.cs" />
+    <Compile Include="Contracts\IDataResourcesDbContext.cs" />
     <Compile Include="Contracts\IDataResourcesDbContextFactory.cs" />
     <Compile Include="Contracts\IDataResourcesDbContextProvider.cs" />
     <Compile Include="Contracts\Repositories\IDataResourcesRepository.cs" />
