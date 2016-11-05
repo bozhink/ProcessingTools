@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IBioTaxonomyDbContext.cs" />
     <Compile Include="Initializers\BioTaxonomyDataInitializer.cs" />
     <Compile Include="Contracts\IBioTaxonomyDataInitializer.cs" />
     <Compile Include="Contracts\IBioTaxonomyDbContextFactory.cs" />
