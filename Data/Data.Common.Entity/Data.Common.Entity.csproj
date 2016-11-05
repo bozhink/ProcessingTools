@@ -63,6 +63,7 @@
     <Compile Include="Repositories\Contracts\IEntityCrudRepository.cs" />
     <Compile Include="Repositories\AbstractEntitySearchableRepository.cs" />
     <Compile Include="Repositories\EntitySearchableRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Seed\DbContextSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
