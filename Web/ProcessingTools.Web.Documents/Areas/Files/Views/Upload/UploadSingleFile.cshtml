@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Upload Single File";
+}
+
+<h2>Upload Single File</h2>
+
+@using (Html.BeginForm(nameof(UploadController.UploadSingleFile), ControllerNames.UploadControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="file" name="file" class="btn btn-default btn-file" placeholder="Select file" />
+        <input type="submit" name="Submit" id="submit" value="Upload" class="btn btn-default" />
+        <input type="reset" name="Reset" id="reset" value="Reset" class="btn btn-default" />
+    </div>
+}

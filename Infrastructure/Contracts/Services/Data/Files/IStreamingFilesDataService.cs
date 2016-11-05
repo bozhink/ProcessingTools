@@ -9,10 +9,12 @@
     {
         Task<IFileMetadata> Create(IFileMetadata metadata, Stream stream);
 
+        Task<bool> Delete(object id);
+
+        Task<IFileMetadata> GetMetadata(object id);
+
         Task<IFileMetadata> Update(object id, Stream stream);
 
         Task<IFileMetadata> Update(IFileMetadata metadata, Stream stream);
-
-        Task<bool> Delete(object id);
     }
 }

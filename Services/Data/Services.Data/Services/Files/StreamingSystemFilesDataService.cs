@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Services.Files
+﻿namespace ProcessingTools.Services.Data.Files
 {
     using System;
     using System.IO;
@@ -46,6 +46,22 @@
             });
         }
 
+        public Task<IFileMetadata> GetMetadata(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            string fileName = id.ToString();
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new FileNameIsNullOrWhitespaceException();
+            }
+
+            return Task.FromResult(this.GetSystemFileMetadata(fileName));
+        }
+
         public StreamReader GetReader(object id) => this.fileContentDataService.GetReader(id);
 
         public Stream ReadToStream(object id) => this.fileContentDataService.ReadToStream(id);
@@ -89,13 +105,13 @@
             var fileInfo = new FileInfo(fullName);
 
             string contentType = MimeMapping.GetMimeMapping(fileInfo.FullName);
-            string user = File.GetAccessControl(fileInfo.FullName).GetOwner(typeof(IPrincipal)).ToString();
+            string user = File.GetAccessControl(fileInfo.FullName).GetOwner(typeof(NTAccount)).ToString();
 
             return new FileMetadataServiceModel
             {
                 Id = fileInfo.FullName,
-                FileExtension = fileInfo.Extension,
-                FileName = fileInfo.Name,
+                FileExtension = fileInfo.Extension.Trim('.'),
+                FileName = Path.GetFileNameWithoutExtension(fileInfo.Name).Trim('.'),
                 FullName = fileInfo.FullName,
                 ContentLength = fileInfo.Length,
                 ContentType = contentType,

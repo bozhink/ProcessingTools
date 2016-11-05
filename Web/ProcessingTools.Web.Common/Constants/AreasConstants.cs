@@ -2,11 +2,12 @@
 {
     public static class AreasConstants
     {
-        public const string DefaultAreaName = "";
         public const string ArticlesAreaName = "Articles";
-        public const string JournalsAreaName = "Journals";
         public const string BioTaxonomyDataAreaName = "BioTaxonomyData";
         public const string DataResourcesAreaName = "DataResources";
+        public const string DefaultAreaName = "";
+        public const string FilesAreaName = "Files";
         public const string GeoDataAreaName = "GeoData";
+        public const string JournalsAreaName = "Journals";
     }
 }

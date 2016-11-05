@@ -317,6 +317,11 @@
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeDetailsViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeEditViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeIndexViewModel.cs" />
+    <Compile Include="Areas\Files\Controllers\MetadataController.cs" />
+    <Compile Include="Areas\Files\Controllers\UploadController.cs" />
+    <Compile Include="Areas\Files\FilesAreaRegistration.cs" />
+    <Compile Include="Areas\Files\Models\FileMetadataModel.cs" />
+    <Compile Include="Areas\Files\ViewModels\Metadata\FileMetadataViewModel.cs" />
     <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
     <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentSynonymViewModel.cs" />
@@ -483,6 +488,13 @@
     <Content Include="Areas\Articles\Views\Documents\Help.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Files\_Edit.cshtml" />
+    <Content Include="Areas\Files\Views\web.config" />
+    <Content Include="Areas\Files\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Files\Views\Upload\Index.cshtml" />
+    <Content Include="Areas\Files\Views\Upload\UploadSingleFile.cshtml" />
+    <Content Include="Areas\Files\Views\Upload\UploadMultipleFiles.cshtml" />
+    <Content Include="Areas\Files\Views\Metadata\Index.cshtml" />
+    <Content Include="Areas\Files\Views\Metadata\Details.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -559,6 +571,7 @@
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
     <Folder Include="Areas\DataResources\Models\ContentTypes\" />
     <Folder Include="Areas\DataResources\Views\Shared\" />
+    <Folder Include="Areas\Files\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
