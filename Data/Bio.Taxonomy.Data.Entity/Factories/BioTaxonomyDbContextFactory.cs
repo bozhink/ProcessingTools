@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Factories
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Entity.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     public class BioTaxonomyDbContextFactory : IBioTaxonomyDbContextFactory
     {
@@ -10,7 +10,7 @@
 
         public BioTaxonomyDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.BioTaxonomyDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.BioTaxonomyDatabaseConnectionKey;
         }
 
         public string ConnectionString

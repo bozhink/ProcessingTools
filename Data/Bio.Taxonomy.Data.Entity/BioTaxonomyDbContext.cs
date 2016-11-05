@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-
     using Models;
 
     public class BioTaxonomyDbContext : DbContext

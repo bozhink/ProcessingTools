@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Repositories
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Entity.Repositories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public class BioTaxonomyDataRepositoryProvider<T> : IBioTaxonomyDataRepositoryProvider<T>

@@ -1,10 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Seed
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Entity.Initializers
 {
     using System.Data.Entity;
-
     using Contracts;
     using Migrations;
-
     using ProcessingTools.Data.Common.Entity.Factories;
 
     public class BioTaxonomyDataInitializer : DbContextInitializerFactory<BioTaxonomyDbContext>, IBioTaxonomyDataInitializer

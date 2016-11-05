@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Models
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;

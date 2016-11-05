@@ -34,7 +34,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ConnectionConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Constants\XmlModelsConstants.cs" />
     <Compile Include="Models\BlackListEntityEqualityComparer.cs" />

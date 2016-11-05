@@ -125,7 +125,7 @@
 
             this.Bind(b =>
             {
-                b.From(Bio.Taxonomy.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Bio.Taxonomy.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
