@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Models
+﻿namespace ProcessingTools.MediaType.Data.Entity.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

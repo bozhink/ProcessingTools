@@ -36,7 +36,7 @@
             // MediaType.Data
             this.Bind(b =>
             {
-                b.From(MediaType.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(MediaType.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

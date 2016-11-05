@@ -8,14 +8,11 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
     using Models;
-
     using Newtonsoft.Json;
-
-    using ProcessingTools.MediaType.Data.Contracts;
-    using ProcessingTools.MediaType.Data.Models;
+    using ProcessingTools.MediaType.Data.Entity.Contracts;
+    using ProcessingTools.MediaType.Data.Entity.Models;
 
     public class MediaTypeDataSeeder : IMediaTypeDataSeeder
     {

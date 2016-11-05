@@ -3,13 +3,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
     using Factories;
     using Models;
-
-    using ProcessingTools.MediaType.Data.Models;
-    using ProcessingTools.MediaType.Data.Repositories.Contracts;
+    using ProcessingTools.MediaType.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.MediaType.Data.Entity.Models;
 
     public class MediaTypeDataService : MediaTypeDataServiceBase, IMediaTypeDataService
     {

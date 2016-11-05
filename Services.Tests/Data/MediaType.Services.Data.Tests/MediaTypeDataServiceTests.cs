@@ -4,12 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-
-    using ProcessingTools.MediaType.Data.Models;
-    using ProcessingTools.MediaType.Data.Repositories.Contracts;
+    using ProcessingTools.MediaType.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.MediaType.Data.Entity.Models;
 
     [TestClass]
     public class MediaTypeDataServiceTests

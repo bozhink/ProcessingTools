@@ -5,7 +5,7 @@
 
     using Contracts;
 
-    using ProcessingTools.MediaType.Data.Contracts;
+    using ProcessingTools.MediaType.Data.Entity.Contracts;
     using ProcessingTools.MediaType.Data.Seed.Contracts;
 
     public class MediaTypesDbSeeder : IMediaTypesDbSeeder

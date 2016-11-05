@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.MediaType.Data.Factories
+﻿namespace ProcessingTools.MediaType.Data.Entity.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.MediaType.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     public class MediatypesDbContextFactory : IMediatypesDbContextFactory
     {
@@ -10,7 +10,7 @@
 
         public MediatypesDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.MediatypesDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.MediatypesDatabaseConnectionKey;
         }
 
         public string ConnectionString

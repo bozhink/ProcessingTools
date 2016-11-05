@@ -7,8 +7,8 @@
     <ProjectGuid>{5796C109-8D2E-4CA9-962C-FC1D5263A57C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.MediaType.Data</RootNamespace>
-    <AssemblyName>ProcessingTools.MediaType.Data</AssemblyName>
+    <RootNamespace>ProcessingTools.MediaType.Data.Entity</RootNamespace>
+    <AssemblyName>ProcessingTools.MediaType.Data.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -48,7 +48,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IMediaTypeDataInitializer.cs" />
     <Compile Include="Contracts\IMediatypesDbContextFactory.cs" />
-    <Compile Include="MediaTypeDataInitializer.cs" />
+    <Compile Include="Initializers\MediaTypeDataInitializer.cs" />
     <Compile Include="Factories\MediatypesDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MediatypesDbContext.cs" />
@@ -58,9 +58,9 @@
     <Compile Include="Models\MimeTypePair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\IMediaTypesDbContextProvider.cs" />
-    <Compile Include="Repositories\Contracts\IMediaTypesRepository.cs" />
-    <Compile Include="Repositories\Contracts\IMediaTypesRepositoryProvider.cs" />
-    <Compile Include="MediaTypesDbContextProvider.cs" />
+    <Compile Include="Contracts\Repositories\IMediaTypesRepository.cs" />
+    <Compile Include="Contracts\Repositories\IMediaTypesRepositoryProvider.cs" />
+    <Compile Include="Providers\MediaTypesDbContextProvider.cs" />
     <Compile Include="Repositories\MediaTypesRepository.cs" />
     <Compile Include="Repositories\MediaTypesRepositoryProvider.cs" />
   </ItemGroup>
@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
@@ -76,10 +80,6 @@
     <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaType.Data.Common\MediaType.Data.Common.csproj">
       <Project>{de0b92aa-03bc-46fd-90b6-decd1b163cdb}</Project>

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Contracts
+﻿namespace ProcessingTools.MediaType.Data.Entity.Contracts
 {
     using System.Data.Entity.Infrastructure;
 

@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.MediaType.Data
+﻿namespace ProcessingTools.MediaType.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-
     using Models;
 
     public class MediaTypesDbContext : DbContext

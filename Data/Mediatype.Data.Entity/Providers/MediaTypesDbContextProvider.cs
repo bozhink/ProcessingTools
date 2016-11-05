@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data
+﻿namespace ProcessingTools.MediaType.Data.Entity.Providers
 {
     using System;
     using Contracts;
