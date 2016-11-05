@@ -1,14 +1,15 @@
 namespace ProcessingTools.DataResources.Data.Entity.Migrations
 {
     using System.Data.Entity.Migrations;
-    using ProcessingTools.DataResources.Data.Common.Constants;
 
     public sealed class Configuration : DbMigrationsConfiguration<DataResourcesDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.ContextKey = ConnectionConstants.ContextKey;
+            this.AutomaticMigrationDataLossAllowed = false;
+            this.ContextType = typeof(DataResourcesDbContext);
+            this.ContextKey = this.ContextType.FullName;
         }
 
         protected override void Seed(DataResourcesDbContext context)

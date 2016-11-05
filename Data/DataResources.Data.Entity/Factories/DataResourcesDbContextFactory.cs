@@ -2,7 +2,7 @@
 {
     using System;
     using Contracts;
-    using ProcessingTools.DataResources.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     public class DataResourcesDbContextFactory : IDataResourcesDbContextFactory
     {
@@ -10,7 +10,7 @@
 
         public DataResourcesDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.DataResourcesDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.DataResourcesDatabaseConnectionKey;
         }
 
         public string ConnectionString

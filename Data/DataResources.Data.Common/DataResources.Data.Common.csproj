@@ -34,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Constants\ConnectionConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Models\Contracts\IAbbreviationEntity.cs" />
     <Compile Include="Models\Contracts\IContentTypeEntity.cs" />

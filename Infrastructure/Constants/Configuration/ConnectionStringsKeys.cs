@@ -12,5 +12,6 @@
         public const string GeoDatabseConnectionKey = "GeoDatabseConnection";
         public const string MediatypesDatabaseConnectionKey = "MediatypesDatabaseConnection";
         public const string RedisConnectionStringKey = "RedisConnectionString";
+        public const string DataResourcesDatabaseConnectionKey = "DataResourcesDatabaseConnection";
     }
 }

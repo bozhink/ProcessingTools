@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity
+﻿namespace ProcessingTools.DataResources.Data.Entity.Providers
 {
     using System;
     using Contracts;

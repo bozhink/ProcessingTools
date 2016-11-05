@@ -1,10 +1,8 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity
+﻿namespace ProcessingTools.DataResources.Data.Entity.Initializers
 {
     using System.Data.Entity;
-
     using Contracts;
     using Migrations;
-
     using ProcessingTools.Data.Common.Entity.Factories;
 
     public class DataResourcesDatabaseInitializer : DbContextInitializerFactory<DataResourcesDbContext>, IDataResourcesDatabaseInitializer
