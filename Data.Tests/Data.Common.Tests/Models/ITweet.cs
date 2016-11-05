@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Tests.Fakes.Models.Contracts
+﻿namespace ProcessingTools.Data.Common.Tests.Models
 {
     using System;
 

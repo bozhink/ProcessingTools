@@ -4,7 +4,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
     using ProcessingTools.Data.Common.Extensions;
-    using ProcessingTools.Data.Common.Models;
 
     [TestClass]
     public class ModelExtensionsTests

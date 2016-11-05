@@ -69,8 +69,9 @@
     <Compile Include="Expressions\ExpressionBuilderTests.cs" />
     <Compile Include="Expressions\UpdateExpressionTests.cs" />
     <Compile Include="Expressions\UpdaterTests.cs" />
-    <Compile Include="Fakes\Models\Contracts\ITweet.cs" />
+    <Compile Include="Models\ITweet.cs" />
     <Compile Include="ModelExtensionsTests.cs" />
+    <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\ModelWithAttributeIdProperty.cs" />
     <Compile Include="Models\ModelWithComplexIdProperty.cs" />
     <Compile Include="Models\ModelWithIdProperty.cs" />

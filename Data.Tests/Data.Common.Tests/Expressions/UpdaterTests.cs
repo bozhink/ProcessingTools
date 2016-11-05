@@ -2,13 +2,11 @@
 {
     using System;
     using System.Linq;
-
+    using Models;
     using Moq;
     using NUnit.Framework;
-
     using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Data.Common.Tests.Fakes.Models.Contracts;
 
     [TestFixture]
     public class UpdaterTests
