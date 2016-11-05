@@ -13,13 +13,5 @@
         string FileName { get; }
 
         string FullName { get; }
-
-        long OriginalContentLength { get; }
-
-        string OriginalContentType { get; }
-
-        string OriginalFileExtension { get; }
-
-        string OriginalFileName { get; }
     }
 }

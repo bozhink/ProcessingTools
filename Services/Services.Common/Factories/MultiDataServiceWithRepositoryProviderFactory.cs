@@ -13,9 +13,9 @@
 
     public abstract class MultiDataServiceWithRepositoryProviderFactory<TDbModel, TServiceModel> : RepositoryMultiDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
-        private readonly IGenericRepositoryProvider<TDbModel> repositoryProvider;
+        private readonly ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider;
 
-        public MultiDataServiceWithRepositoryProviderFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
+        public MultiDataServiceWithRepositoryProviderFactory(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {

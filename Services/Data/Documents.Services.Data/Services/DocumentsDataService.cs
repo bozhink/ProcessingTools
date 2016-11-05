@@ -151,7 +151,7 @@
                 throw new ArgumentNullException(nameof(inputStream));
             }
 
-            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ValidationConstants.LengthOfDocumentFileName);
+            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ValidationConstants.MaximalLengthOfFullFileName);
 
             var entity = new Document
             {
@@ -345,7 +345,7 @@
             return entity;
         }
 
-        private async Task<Document> GetEntity(object userId, object articleId, object documentId, IGenericRepository<Document> repository)
+        private async Task<Document> GetEntity(object userId, object articleId, object documentId, ISearchableCountableCrudRepository<Document> repository)
         {
             var entity = (await repository.All())
                 .Where(d => d.CreatedByUser == userId.ToString())

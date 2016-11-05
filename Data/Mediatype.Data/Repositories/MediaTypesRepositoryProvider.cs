@@ -20,7 +20,7 @@
             this.contextProvider = contextProvider;
         }
 
-        public IGenericRepository<T> Create()
+        public ISearchableCountableCrudRepository<T> Create()
         {
             return new MediaTypesRepository<T>(this.contextProvider);
         }

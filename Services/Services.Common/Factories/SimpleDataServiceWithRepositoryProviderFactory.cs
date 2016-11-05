@@ -12,9 +12,9 @@
 
     public abstract class SimpleDataServiceWithRepositoryProviderFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
-        private readonly IGenericRepositoryProvider<TDbModel> repositoryProvider;
+        private readonly ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider;
 
-        public SimpleDataServiceWithRepositoryProviderFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
+        public SimpleDataServiceWithRepositoryProviderFactory(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {

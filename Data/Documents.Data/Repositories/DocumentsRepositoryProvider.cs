@@ -21,7 +21,7 @@
             this.contextProvider = contextProvider;
         }
 
-        public IGenericRepository<T> Create()
+        public ISearchableCountableCrudRepository<T> Create()
         {
             return new DocumentsRepository<T>(this.contextProvider);
         }

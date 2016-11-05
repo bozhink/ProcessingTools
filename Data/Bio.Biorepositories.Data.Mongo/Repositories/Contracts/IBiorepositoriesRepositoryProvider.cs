@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IBiorepositoriesRepositoryProvider<T> : IGenericRepositoryProvider<T>
+    public interface IBiorepositoriesRepositoryProvider<T> : ISearchableCountableCrudRepositoryProvider<T>
         where T : class
     {
     }

@@ -20,7 +20,7 @@
 
         protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
 
-        public override async Task<IQueryable<TServiceModel>> All(IGenericRepository<TDbModel> repository)
+        public override async Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository)
         {
             if (repository == null)
             {
@@ -35,7 +35,7 @@
             return result;
         }
 
-        public override async Task<IQueryable<TServiceModel>> Query(IGenericRepository<TDbModel> repository, int skip, int take)
+        public override async Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take)
         {
             if (repository == null)
             {
@@ -60,7 +60,7 @@
             return result;
         }
 
-        public override async Task<IQueryable<TServiceModel>> Get(IGenericRepository<TDbModel> repository, params object[] ids)
+        public override async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
         {
             if (repository == null)
             {

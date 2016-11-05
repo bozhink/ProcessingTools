@@ -28,6 +28,8 @@
 
         public IDbSet<Document> Documents { get; set; }
 
+        public IDbSet<File> Files { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add<PluralizingTableNameConvention>();

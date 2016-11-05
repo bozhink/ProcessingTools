@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IMediaTypesRepositoryProvider<T> : IGenericRepositoryProvider<T>
+    public interface IMediaTypesRepositoryProvider<T> : ISearchableCountableCrudRepositoryProvider<T>
         where T : class
     {
     }

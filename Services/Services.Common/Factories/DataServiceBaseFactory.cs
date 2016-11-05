@@ -14,7 +14,7 @@
         where TDbModel : class
         where TServiceModel : class
     {
-        public DataServiceBaseFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
+        public DataServiceBaseFactory(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -27,7 +27,7 @@
             this.MapServiceToDataModelFunc = this.MapServiceToDataModel.Compile();
         }
 
-        protected IGenericRepositoryProvider<TDbModel> RepositoryProvider { get; private set; }
+        protected ISearchableCountableCrudRepositoryProvider<TDbModel> RepositoryProvider { get; private set; }
 
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDataToServiceModel { get; }
 

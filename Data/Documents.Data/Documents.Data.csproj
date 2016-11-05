@@ -47,6 +47,7 @@
     <Compile Include="Contracts\IDocumentsDataInitializer.cs" />
     <Compile Include="Contracts\IDocumentsDbContextFactory.cs" />
     <Compile Include="Contracts\IDocumentsDbContextProvider.cs" />
+    <Compile Include="Contracts\Repositories\IEntityFilesRepository.cs" />
     <Compile Include="DocumentsDataInitializer.cs" />
     <Compile Include="DocumentsDbContext.cs" />
     <Compile Include="Factories\DocumentsDbContextFactory.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\Institution.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\Publisher.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Repositories\DocumentsRepository.cs" />
     <Compile Include="Repositories\DocumentsRepositoryProvider.cs" />
     <Compile Include="Repositories\EntityAddressableRepository.cs" />
+    <Compile Include="Repositories\EntityFilesRepository.cs" />
     <Compile Include="Repositories\EntityPublishersRepository.cs" />
     <Compile Include="Repositories\EntityPublishersRepositoryProvider.cs" />
   </ItemGroup>

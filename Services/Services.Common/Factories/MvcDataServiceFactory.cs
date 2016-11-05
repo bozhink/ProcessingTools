@@ -19,9 +19,9 @@
         where TDetailsServiceModel : class
         where TDbModel : class, IModelWithUserInformation
     {
-        private readonly IGenericRepositoryProvider<TDbModel> repositoryProvider;
+        private readonly ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider;
 
-        public MvcDataServiceFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
+        public MvcDataServiceFactory(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -33,7 +33,7 @@
 
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
 
-        protected IGenericRepositoryProvider<TDbModel> RepositoryProvider => this.repositoryProvider;
+        protected ISearchableCountableCrudRepositoryProvider<TDbModel> RepositoryProvider => this.repositoryProvider;
 
         public abstract Task<object> Add(object userId, TMinimalServiceModel model);
 

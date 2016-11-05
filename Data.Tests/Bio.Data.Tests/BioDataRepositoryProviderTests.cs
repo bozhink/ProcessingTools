@@ -43,8 +43,8 @@
 
             Assert.IsInstanceOfType(
                 repositoryProvider,
-                typeof(IGenericRepositoryProvider<Tweet>),
-                $"RepositoryProvider should be a valid {nameof(IGenericRepositoryProvider<Tweet>)} object.");
+                typeof(ISearchableCountableCrudRepositoryProvider<Tweet>),
+                $"RepositoryProvider should be a valid {nameof(ISearchableCountableCrudRepositoryProvider<Tweet>)} object.");
         }
 
         [TestMethod]
@@ -83,8 +83,8 @@
 
             Assert.IsInstanceOfType(
                 repository,
-                typeof(IGenericRepository<Tweet>),
-                $"Repository should be a valid {nameof(IGenericRepository<Tweet>)} object.");
+                typeof(ISearchableCountableCrudRepository<Tweet>),
+                $"Repository should be a valid {nameof(ISearchableCountableCrudRepository<Tweet>)} object.");
         }
     }
 }

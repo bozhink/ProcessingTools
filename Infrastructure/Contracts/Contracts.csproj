@@ -49,8 +49,8 @@
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
-    <Compile Include="Data\Repositories\IGenericRepository.cs" />
-    <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\ISearchableCountableCrudRepository.cs" />
+    <Compile Include="Data\Repositories\ISearchableCountableCrudRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IIterableRepository.cs" />
     <Compile Include="Data\Repositories\IIterableRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IKeyCollectionValuePairsRepository.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="IGenericXmlContextTagger.cs" />
     <Compile Include="IGuidIdentifiable.cs" />
     <Compile Include="IGenericIdentifiable.cs" />
+    <Compile Include="IGuidProvider.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="IIntegerIdentifiable.cs" />
     <Compile Include="IModelWithUserInformation.cs" />

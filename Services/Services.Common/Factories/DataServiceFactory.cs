@@ -12,7 +12,7 @@
         where TDbModel : class
         where TServiceModel : class
     {
-        public DataServiceFactory(IGenericRepositoryProvider<TDbModel> repositoryProvider)
+        public DataServiceFactory(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
             : base(repositoryProvider)
         {
         }

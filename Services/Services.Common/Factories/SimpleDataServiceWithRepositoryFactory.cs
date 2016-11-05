@@ -10,9 +10,9 @@
 
     public abstract class SimpleDataServiceWithRepositoryFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
-        private readonly IGenericRepository<TDbModel> repository;
+        private readonly ISearchableCountableCrudRepository<TDbModel> repository;
 
-        public SimpleDataServiceWithRepositoryFactory(IGenericRepository<TDbModel> repository)
+        public SimpleDataServiceWithRepositoryFactory(ISearchableCountableCrudRepository<TDbModel> repository)
         {
             if (repository == null)
             {

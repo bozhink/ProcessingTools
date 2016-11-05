@@ -11,7 +11,7 @@
 
     public abstract class RepositoryDataServiceFactoryBase<TDbModel, TServiceModel> : IRepositoryDataService<TDbModel, TServiceModel>
     {
-        public virtual async Task<object> Add(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Add(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
@@ -33,9 +33,9 @@
             return await repository.SaveChanges();
         }
 
-        public abstract Task<IQueryable<TServiceModel>> All(IGenericRepository<TDbModel> repository);
+        public abstract Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository);
 
-        public virtual async Task<object> Delete(IGenericRepository<TDbModel> repository, params object[] ids)
+        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
         {
             if (repository == null)
             {
@@ -55,7 +55,7 @@
             return await repository.SaveChanges();
         }
 
-        public virtual async Task<object> Delete(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
@@ -77,11 +77,11 @@
             return await repository.SaveChanges();
         }
 
-        public abstract Task<IQueryable<TServiceModel>> Get(IGenericRepository<TDbModel> repository, params object[] ids);
+        public abstract Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids);
 
-        public abstract Task<IQueryable<TServiceModel>> Query(IGenericRepository<TDbModel> repository, int skip, int take);
+        public abstract Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take);
 
-        public virtual async Task<object> Update(IGenericRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Update(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {

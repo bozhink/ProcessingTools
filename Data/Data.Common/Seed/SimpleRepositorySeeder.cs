@@ -11,9 +11,9 @@
     {
         private const int NumberOfItemsToInsertBeforeRepositoryReset = 100;
 
-        private readonly IGenericRepositoryProvider<TEntity> repositoryProvider;
+        private readonly ISearchableCountableCrudRepositoryProvider<TEntity> repositoryProvider;
 
-        public SimpleRepositorySeeder(IGenericRepositoryProvider<TEntity> repositoryProvider)
+        public SimpleRepositorySeeder(ISearchableCountableCrudRepositoryProvider<TEntity> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
