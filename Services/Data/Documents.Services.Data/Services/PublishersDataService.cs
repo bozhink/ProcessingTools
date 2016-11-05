@@ -14,7 +14,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Documents.Data.Common.Contracts.Models;
-    using ProcessingTools.Documents.Data.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Extensions;
 
     public class PublishersDataService : IPublishersDataService

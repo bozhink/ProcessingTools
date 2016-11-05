@@ -9,8 +9,8 @@
     using Models.Journals;
 
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Documents.Data.Contracts.Repositories;
-    using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Common.Factories;
 

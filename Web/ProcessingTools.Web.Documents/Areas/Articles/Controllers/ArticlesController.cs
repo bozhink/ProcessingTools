@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using ProcessingTools.Documents.Data;
-    using ProcessingTools.Documents.Data.Contracts;
-    using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Documents.Data.Entity;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Models;
 
     [Authorize]
     public class ArticlesController : Controller

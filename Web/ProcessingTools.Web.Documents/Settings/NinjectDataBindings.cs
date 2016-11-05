@@ -68,7 +68,7 @@
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Documents.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Documents.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

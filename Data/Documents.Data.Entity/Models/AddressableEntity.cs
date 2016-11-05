@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Data.Models
+﻿namespace ProcessingTools.Documents.Data.Entity.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;

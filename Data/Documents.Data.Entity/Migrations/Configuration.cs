@@ -1,19 +1,15 @@
-namespace ProcessingTools.Documents.Data.Migrations
+namespace ProcessingTools.Documents.Data.Entity.Migrations
 {
     using System.Data.Entity.Migrations;
-    using ProcessingTools.Documents.Data.Common.Constants;
 
-    public sealed class Configuration : DbMigrationsConfiguration<DocumentsDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DocumentsDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.ContextKey = ConnectionConstants.ContextKey;
-#if DEBUG
-            this.AutomaticMigrationDataLossAllowed = true;
-#else
             this.AutomaticMigrationDataLossAllowed = false;
-#endif
+            this.ContextType = typeof(DocumentsDbContext);
+            this.ContextKey = this.ContextType.FullName;
         }
 
         protected override void Seed(DocumentsDbContext context)

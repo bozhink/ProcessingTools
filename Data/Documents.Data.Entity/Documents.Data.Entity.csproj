@@ -7,8 +7,8 @@
     <ProjectGuid>{21813087-5B64-4279-B352-977E722E795A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Documents.Data</RootNamespace>
-    <AssemblyName>ProcessingTools.Documents.Data</AssemblyName>
+    <RootNamespace>ProcessingTools.Documents.Data.Entity</RootNamespace>
+    <AssemblyName>ProcessingTools.Documents.Data.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -48,10 +48,10 @@
     <Compile Include="Contracts\IDocumentsDbContextFactory.cs" />
     <Compile Include="Contracts\IDocumentsDbContextProvider.cs" />
     <Compile Include="Contracts\Repositories\IEntityFilesRepository.cs" />
-    <Compile Include="DocumentsDataInitializer.cs" />
+    <Compile Include="Initializers\DocumentsDataInitializer.cs" />
     <Compile Include="DocumentsDbContext.cs" />
     <Compile Include="Factories\DocumentsDbContextFactory.cs" />
-    <Compile Include="DocumentsDbContextProvider.cs" />
+    <Compile Include="Providers\DocumentsDbContextProvider.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressableEntity.cs" />
@@ -84,6 +84,10 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
@@ -91,10 +95,6 @@
     <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Documents.Data.Common\Documents.Data.Common.csproj">
       <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>

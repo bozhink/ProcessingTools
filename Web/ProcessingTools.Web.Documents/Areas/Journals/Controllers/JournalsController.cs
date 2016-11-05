@@ -12,8 +12,9 @@
 
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Documents.Data;
-    using ProcessingTools.Documents.Data.Models;
+    using ProcessingTools.Documents.Data.Entity;
+    using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Documents.Data.Entity.Providers;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models.Journals;
     using ProcessingTools.Web.Common.Constants;
@@ -25,7 +26,7 @@
         private readonly IJournalsDataService journalsDataService;
         private readonly IPublishersDataService publishersDataService;
 
-        private readonly DocumentsDbContext db = new DocumentsDbContextProvider(new ProcessingTools.Documents.Data.Factories.DocumentsDbContextFactory()).Create();
+        private readonly DocumentsDbContext db = new DocumentsDbContextProvider(new ProcessingTools.Documents.Data.Entity.Factories.DocumentsDbContextFactory()).Create();
 
         public JournalsController(IJournalsDataService journalsDataService, IPublishersDataService publishersDataService)
         {

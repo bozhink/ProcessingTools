@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Data.Repositories
+﻿namespace ProcessingTools.Documents.Data.Entity.Repositories
 {
     using System;
     using System.Data.Entity;
@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Documents.Data.Common.Contracts.Models;
     using ProcessingTools.Documents.Data.Common.Contracts.Repositories;
-    using ProcessingTools.Documents.Data.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityCrudRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
         where TEntity : class, IAddressableEntity

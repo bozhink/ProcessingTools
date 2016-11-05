@@ -34,7 +34,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ConnectionConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Contracts\Models\IAddressableEntity.cs" />
     <Compile Include="Contracts\Models\IAddressEntity.cs" />

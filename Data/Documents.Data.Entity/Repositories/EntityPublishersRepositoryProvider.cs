@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Data.Repositories
+﻿namespace ProcessingTools.Documents.Data.Entity.Repositories
 {
     using System;
     using Contracts;

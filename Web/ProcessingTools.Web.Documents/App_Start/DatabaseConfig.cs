@@ -11,8 +11,9 @@
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.Users.Data.Entity.UsersDbContext, ProcessingTools.Users.Data.Entity.Migrations.Configuration>());
 
-            Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ProcessingTools.Documents.Data.DocumentsDbContext, ProcessingTools.Documents.Data.Migrations.Configuration>());
+            await DependencyResolver.Current
+                .GetService<ProcessingTools.Documents.Data.Entity.Contracts.IDocumentsDataInitializer>()
+                .Initialize();
 
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.Geo.Data.GeoDbContext, ProcessingTools.Geo.Data.Migrations.Configuration>());

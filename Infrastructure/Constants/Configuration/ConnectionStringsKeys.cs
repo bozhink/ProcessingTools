@@ -8,6 +8,7 @@
         public const string BioTaxonomyDatabaseConnectionKey = "BioTaxonomyDatabaseConnection";
         public const string BiotaxonomyMongoConnectionKey = "BiotaxonomyMongoConnection";
         public const string DataDatabseConnectionKey = "DataDatabseConnection";
+        public const string DocumentsDatabaseConnectionKey = "DocumentsDatabaseConnection";
         public const string GeoDatabseConnectionKey = "GeoDatabseConnection";
         public const string MediatypesDatabaseConnectionKey = "MediatypesDatabaseConnection";
         public const string RedisConnectionStringKey = "RedisConnectionString";

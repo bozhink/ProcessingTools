@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Documents.Data
+﻿namespace ProcessingTools.Documents.Data.Entity.Initializers
 {
     using System.Data.Entity;
 
     using Contracts;
 
     using ProcessingTools.Data.Common.Entity.Factories;
-    using ProcessingTools.Documents.Data.Migrations;
+    using ProcessingTools.Documents.Data.Entity.Migrations;
 
     public class DocumentsDataInitializer : DbContextInitializerFactory<DocumentsDbContext>, IDocumentsDataInitializer
     {

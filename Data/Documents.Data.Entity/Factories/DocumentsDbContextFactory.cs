@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Documents.Data.Factories
+﻿namespace ProcessingTools.Documents.Data.Entity.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     public class DocumentsDbContextFactory : IDocumentsDbContextFactory
     {
@@ -10,7 +10,7 @@
 
         public DocumentsDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.DocumentsDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.DocumentsDatabaseConnectionKey;
         }
 
         public string ConnectionString
