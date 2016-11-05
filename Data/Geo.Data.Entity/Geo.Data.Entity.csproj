@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IGeoDataInitializer.cs" />
+    <Compile Include="Contracts\IGeoDbContext.cs" />
     <Compile Include="Contracts\IGeoDbContextFactory.cs" />
     <Compile Include="Initializers\GeoDataInitializer.cs" />
     <Compile Include="GeoDbContext.cs" />
