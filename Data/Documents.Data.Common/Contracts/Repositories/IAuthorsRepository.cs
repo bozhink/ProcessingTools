@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.Documents.Data.Common.Repositories.Contracts
+﻿namespace ProcessingTools.Documents.Data.Common.Contracts.Repositories
 {
     using System.Threading.Tasks;
-    using Models.Contracts;
+    using Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IAuthorsRepository : ICrudRepository<IAuthorEntity>

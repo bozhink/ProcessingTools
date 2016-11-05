@@ -8,7 +8,7 @@
     using ProcessingTools.Common.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Common.Constants;
-    using ProcessingTools.Documents.Data.Common.Models.Contracts;
+    using ProcessingTools.Documents.Data.Common.Contracts.Models;
 
     public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliationEntity
     {

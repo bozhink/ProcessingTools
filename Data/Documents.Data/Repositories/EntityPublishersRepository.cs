@@ -9,9 +9,8 @@
     using Contracts;
     using Models;
 
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Documents.Data.Common.Models.Contracts;
+    using ProcessingTools.Documents.Data.Common.Contracts.Models;
     using ProcessingTools.Documents.Data.Contracts;
 
     public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisherEntity>, IEntityPublishersRepository

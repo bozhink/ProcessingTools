@@ -9,8 +9,8 @@
 
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Entity.Repositories;
-    using ProcessingTools.Documents.Data.Common.Models.Contracts;
-    using ProcessingTools.Documents.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Documents.Data.Common.Contracts.Models;
+    using ProcessingTools.Documents.Data.Common.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Contracts;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityCrudRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository

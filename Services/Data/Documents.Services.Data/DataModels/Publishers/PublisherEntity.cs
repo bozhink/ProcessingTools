@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using ProcessingTools.Common.Models;
-    using ProcessingTools.Documents.Data.Common.Models.Contracts;
+    using ProcessingTools.Documents.Data.Common.Contracts.Models;
 
     public class PublisherEntity : ModelWithUserInformation, IPublisherEntity
     {

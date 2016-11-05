@@ -13,7 +13,7 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Documents.Data.Common.Models.Contracts;
+    using ProcessingTools.Documents.Data.Common.Contracts.Models;
     using ProcessingTools.Documents.Data.Repositories.Contracts;
     using ProcessingTools.Extensions;
 

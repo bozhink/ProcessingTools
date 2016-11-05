@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Data.Common.Models.Contracts
+﻿namespace ProcessingTools.Documents.Data.Common.Contracts.Models
 {
     using ProcessingTools.Contracts;
 
