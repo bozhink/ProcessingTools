@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Bio.Data.Repositories
+﻿namespace ProcessingTools.Bio.Data.Entity.Repositories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Bio.Data.Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public class BioDataRepositoryProvider<T> : IBioDataRepositoryProvider<T>

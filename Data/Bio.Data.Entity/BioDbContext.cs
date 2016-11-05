@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Bio.Data
+﻿namespace ProcessingTools.Bio.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-
     using Models;
 
     public class BioDbContext : DbContext

@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.Bio.Data.Repositories
+﻿namespace ProcessingTools.Bio.Data.Entity.Repositories
 {
-    using ProcessingTools.Bio.Data.Contracts;
-    using ProcessingTools.Bio.Data.Repositories.Contracts;
+    using Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories;
 
     public class BioDataRepository<T> : EntityGenericRepository<BioDbContext, T>, IBioDataRepository<T>

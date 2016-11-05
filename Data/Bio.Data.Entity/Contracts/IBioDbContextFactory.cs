@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Contracts
+﻿namespace ProcessingTools.Bio.Data.Entity.Contracts
 {
     using System.Data.Entity.Infrastructure;
 

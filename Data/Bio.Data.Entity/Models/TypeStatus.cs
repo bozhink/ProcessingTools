@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Bio.Data.Models
+﻿namespace ProcessingTools.Bio.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
     using ProcessingTools.Bio.Data.Common.Constants;
 
     public class TypeStatus

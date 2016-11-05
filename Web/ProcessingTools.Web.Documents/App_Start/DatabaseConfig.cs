@@ -16,7 +16,7 @@
                 new MigrateDatabaseToLatestVersion<ProcessingTools.Geo.Data.GeoDbContext, ProcessingTools.Geo.Data.Migrations.Configuration>());
 
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Data.BioDbContext, ProcessingTools.Bio.Data.Migrations.Configuration>());
+                new MigrateDatabaseToLatestVersion<ProcessingTools.Bio.Data.Entity.BioDbContext, ProcessingTools.Bio.Data.Entity.Migrations.Configuration>());
 
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.DataResources.Data.Entity.DataResourcesDbContext, ProcessingTools.DataResources.Data.Entity.Migrations.Configuration>());

@@ -9,9 +9,9 @@
 
     using Contracts;
 
-    using ProcessingTools.Bio.Data;
-    using ProcessingTools.Bio.Data.Contracts;
-    using ProcessingTools.Bio.Data.Models;
+    using ProcessingTools.Bio.Data.Entity;
+    using ProcessingTools.Bio.Data.Entity.Contracts;
+    using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioDataSeeder : IBioDataSeeder

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data
+﻿namespace ProcessingTools.Bio.Data.Entity
 {
     public enum Assembly
     {

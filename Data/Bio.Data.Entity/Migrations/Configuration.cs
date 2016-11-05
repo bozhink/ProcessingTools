@@ -1,4 +1,4 @@
-namespace ProcessingTools.Bio.Data.Migrations
+namespace ProcessingTools.Bio.Data.Entity.Migrations
 {
     using System.Data.Entity.Migrations;
     using ProcessingTools.Bio.Data.Common.Constants;
