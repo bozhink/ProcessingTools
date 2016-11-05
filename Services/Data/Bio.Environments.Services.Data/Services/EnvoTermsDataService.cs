@@ -7,8 +7,8 @@
     using Contracts;
     using Models;
 
-    using ProcessingTools.Bio.Environments.Data.Models;
-    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Bio.Environments.Data.Entity.Models;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
 

@@ -39,7 +39,7 @@
 
             kernel.Bind(b =>
             {
-                b.From(Bio.Environments.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

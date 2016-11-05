@@ -1,14 +1,15 @@
-namespace ProcessingTools.Bio.Environments.Data.Migrations
+namespace ProcessingTools.Bio.Environments.Data.Entity.Migrations
 {
     using System.Data.Entity.Migrations;
-    using ProcessingTools.Bio.Environments.Data.Common.Constants;
 
-    public sealed class Configuration : DbMigrationsConfiguration<BioEnvironmentsDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BioEnvironmentsDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.ContextKey = ConnectionConstants.ContextKey;
+            this.AutomaticMigrationDataLossAllowed = false;
+            this.ContextType = typeof(BioEnvironmentsDbContext);
+            this.ContextKey = this.ContextType.FullName;
         }
 
         protected override void Seed(BioEnvironmentsDbContext context)

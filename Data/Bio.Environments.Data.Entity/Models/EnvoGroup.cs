@@ -1,9 +1,8 @@
-﻿namespace ProcessingTools.Bio.Environments.Data.Models
+﻿namespace ProcessingTools.Bio.Environments.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Bio.Environments.Data.Common.Constants;
 
-    // TODO: This is not well-defined model.
     public class EnvoGroup
     {
         [Key]

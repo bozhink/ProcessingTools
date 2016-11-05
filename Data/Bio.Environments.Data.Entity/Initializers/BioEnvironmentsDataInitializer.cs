@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Environments.Data.Seed
+﻿namespace ProcessingTools.Bio.Environments.Data.Entity.Initializers
 {
     using System.Data.Entity;
 

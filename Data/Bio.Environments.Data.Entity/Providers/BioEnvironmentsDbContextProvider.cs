@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Environments.Data
+﻿namespace ProcessingTools.Bio.Environments.Data.Entity.Providers
 {
     using System;
     using Contracts;

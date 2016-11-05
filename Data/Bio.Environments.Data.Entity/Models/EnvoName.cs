@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Environments.Data.Models
+﻿namespace ProcessingTools.Bio.Environments.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Bio.Environments.Data.Common.Constants;

@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Bio.Environments.Data.Factories
+﻿namespace ProcessingTools.Bio.Environments.Data.Entity.Factories
 {
     using System;
     using Contracts;
-    using ProcessingTools.Bio.Environments.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     public class BioEnvironmentsDbContextFactory : IBioEnvironmentsDbContextFactory
     {
@@ -10,7 +10,7 @@
 
         public BioEnvironmentsDbContextFactory()
         {
-            this.ConnectionString = ConnectionConstants.BioEnvironmentsDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.BioEnvironmentsDatabaseConnectionKey;
         }
 
         public string ConnectionString

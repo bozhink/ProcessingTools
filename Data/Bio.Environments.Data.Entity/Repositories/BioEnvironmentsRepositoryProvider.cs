@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Bio.Environments.Data.Repositories
+﻿namespace ProcessingTools.Bio.Environments.Data.Entity.Repositories
 {
     using System;
-    using ProcessingTools.Bio.Environments.Data.Contracts;
-    using ProcessingTools.Bio.Environments.Data.Repositories.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public class BioEnvironmentsRepositoryProvider<T> : IBioEnvironmentsRepositoryProvider<T>

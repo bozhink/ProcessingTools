@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Environments.Data
+﻿namespace ProcessingTools.Bio.Environments.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;

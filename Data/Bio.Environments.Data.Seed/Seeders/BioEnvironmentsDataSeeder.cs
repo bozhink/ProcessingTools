@@ -11,8 +11,8 @@
 
     using Contracts;
 
-    using ProcessingTools.Bio.Environments.Data.Contracts;
-    using ProcessingTools.Bio.Environments.Data.Models;
+    using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Entity.Models;
 
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {
