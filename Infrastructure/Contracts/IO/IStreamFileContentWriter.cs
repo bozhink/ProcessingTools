@@ -7,6 +7,6 @@
     {
         Task<object> Write(object id, Stream stream);
 
-        Task<object> Write(object id, StreamWriter streamWriter);
+        Task<object> Write(object id, StreamReader streamReader);
     }
 }
