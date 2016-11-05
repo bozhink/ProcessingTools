@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.DbSeeder.Contracts
 {
-    public interface IDataDbSeeder : IDbSeeder
+    public interface IDataResourcesDataDbSeeder : IDbSeeder
     {
     }
 }

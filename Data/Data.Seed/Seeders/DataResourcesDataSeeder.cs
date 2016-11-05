@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Seed
+﻿namespace ProcessingTools.DataResources.Data.Seed
 {
     using System;
     using System.Collections.Concurrent;
@@ -6,27 +6,26 @@
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Data.Models;
+    using ProcessingTools.DataResources.Data.Entity;
+    using ProcessingTools.DataResources.Data.Entity.Contracts;
+    using ProcessingTools.DataResources.Data.Entity.Models;
 
-    public class DataSeeder : IDataSeeder
+    public class DataResourcesDataSeeder : IDataResourcesDataSeeder
     {
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string ProductsSeedFileNameKey = "ProductsSeedFileName";
         private const string InstitutionsSeedFileNameKey = "InstitutionsSeedFileName";
 
-        private readonly IDataDbContextProvider contextProvider;
+        private readonly IDataResourcesDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private DbContextSeeder<DataDbContext> seeder;
+        private DbContextSeeder<DataResourcesDbContext> seeder;
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public DataSeeder(IDataDbContextProvider contextProvider)
+        public DataResourcesDataSeeder(IDataResourcesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -34,7 +33,7 @@
             }
 
             this.contextProvider = contextProvider;
-            this.seeder = new DbContextSeeder<DataDbContext>(this.contextProvider);
+            this.seeder = new DbContextSeeder<DataResourcesDbContext>(this.contextProvider);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
             this.exceptions = new ConcurrentQueue<Exception>();
