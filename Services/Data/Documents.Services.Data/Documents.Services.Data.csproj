@@ -99,7 +99,7 @@
       <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>
       <Name>Documents.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Documents.Data\Documents.Data.Entity.csproj">
+    <ProjectReference Include="..\..\..\Data\Documents.Data.Entity\Documents.Data.Entity.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
       <Name>Documents.Data.Entity</Name>
     </ProjectReference>

@@ -74,7 +74,7 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MediaType.Data\MediaType.Data.Entity.csproj">
+    <ProjectReference Include="..\MediaType.Data.Entity\MediaType.Data.Entity.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data.Entity</Name>
     </ProjectReference>

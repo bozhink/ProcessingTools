@@ -58,7 +58,7 @@
     <Compile Include="Services\TypeStatusDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\Bio.Data\Bio.Data.Entity.csproj">
+    <ProjectReference Include="..\..\..\Data\Bio.Data.Entity\Bio.Data.Entity.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data.Entity</Name>
     </ProjectReference>

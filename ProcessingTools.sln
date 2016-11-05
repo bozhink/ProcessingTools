@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentProvider", "Infrast
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{ACA18A73-7650-47C2-A581-FCDB652F4AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Entity", "Data\MediaType.Data\MediaType.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Entity", "Data\MediaType.Data.Entity\MediaType.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common", "Data\Data.Common\Data.Common.csproj", "{8DE48EB2-2387-4D85-A78C-773A300881D5}"
 EndProject
@@ -63,13 +63,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy", "Libraries\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NlmArchiveConsoleManager", "Desktop\NlmArchiveConsoleManager\NlmArchiveConsoleManager.csproj", "{44BF1EF0-8900-4AC8-8F89-4526AF34DBF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Entity", "Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.Entity.csproj", "{6EA0B244-B449-442A-8F88-262FFB0B5B00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Entity", "Data\Bio.Taxonomy.Data.Entity\Bio.Taxonomy.Data.Entity.csproj", "{6EA0B244-B449-442A-8F88-262FFB0B5B00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Entity", "Data\Geo.Data\Geo.Data.Entity.csproj", "{91A87E76-6AE4-4E63-9689-B129DB752BD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Entity", "Data\Geo.Data.Entity\Geo.Data.Entity.csproj", "{91A87E76-6AE4-4E63-9689-B129DB752BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Entity", "Data\Bio.Data\Bio.Data.Entity.csproj", "{715850DD-6FFB-45C6-B858-8D8E86C772D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Entity", "Data\Bio.Data.Entity\Bio.Data.Entity.csproj", "{715850DD-6FFB-45C6-B858-8D8E86C772D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Entity", "Data\Data\Data.Entity.csproj", "{76671110-74C8-4E34-BB83-F75F0D42CBBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Entity", "Data\Data.Entity\Data.Entity.csproj", "{76671110-74C8-4E34-BB83-F75F0D42CBBD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Harvesters", "Harvesters", "{5FC3176F-B6DA-4309-A7DE-496D7A3481F8}"
 EndProject
@@ -81,7 +81,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Harvesters", "Services\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Harvesters", "Services\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj", "{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Data.Entity", "Data\Bio.Environments.Data\Bio.Environments.Data.Entity.csproj", "{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Data.Entity", "Data\Bio.Environments.Data.Entity\Bio.Environments.Data.Entity.csproj", "{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Services.Data", "Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj", "{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}"
 EndProject
@@ -193,7 +193,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Tests", "Data.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Mongo.Tests", "Data.Tests\Data.Common.Mongo.Tests\Data.Common.Mongo.Tests.csproj", "{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data.Entity", "Data\Documents.Data\Documents.Data.Entity.csproj", "{21813087-5B64-4279-B352-977E722E795A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data.Entity", "Data\Documents.Data.Entity\Documents.Data.Entity.csproj", "{21813087-5B64-4279-B352-977E722E795A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Documents", "Web\ProcessingTools.Web.Documents\ProcessingTools.Web.Documents.csproj", "{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}"
 EndProject

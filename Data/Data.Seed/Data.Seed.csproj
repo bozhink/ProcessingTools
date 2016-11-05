@@ -80,7 +80,7 @@
       <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\Data.Entity.csproj">
+    <ProjectReference Include="..\Data.Entity\Data.Entity.csproj">
       <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
       <Name>Data.Entity</Name>
     </ProjectReference>

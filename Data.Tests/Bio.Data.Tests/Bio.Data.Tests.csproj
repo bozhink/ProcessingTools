@@ -85,7 +85,7 @@
       <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
       <Name>Bio.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Data.Entity\Bio.Data.Entity.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data.Entity</Name>
     </ProjectReference>

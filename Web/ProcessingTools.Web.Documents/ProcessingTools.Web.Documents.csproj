@@ -628,7 +628,7 @@
       <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
       <Name>Bio.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data\Bio.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Data.Entity\Bio.Data.Entity.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data.Entity</Name>
     </ProjectReference>
@@ -636,7 +636,7 @@
       <Project>{4a738613-242b-4d81-a6de-6c6e12bd7351}</Project>
       <Name>Bio.Environments.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data\Bio.Environments.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Entity\Bio.Environments.Data.Entity.csproj">
       <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
       <Name>Bio.Environments.Data.Entity</Name>
     </ProjectReference>
@@ -648,7 +648,7 @@
       <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
       <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Entity\Bio.Taxonomy.Data.Entity.csproj">
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
       <Name>Bio.Taxonomy.Data.Entity</Name>
     </ProjectReference>
@@ -668,7 +668,7 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Data\Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Data.Entity\Data.Entity.csproj">
       <Project>{76671110-74c8-4e34-bb83-f75f0d42cbbd}</Project>
       <Name>Data.Entity</Name>
     </ProjectReference>
@@ -676,7 +676,7 @@
       <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>
       <Name>Documents.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Documents.Data\Documents.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Documents.Data.Entity\Documents.Data.Entity.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
       <Name>Documents.Data.Entity</Name>
     </ProjectReference>
@@ -684,7 +684,7 @@
       <Project>{ab947ca0-8619-48c6-87d5-e01556f17f18}</Project>
       <Name>Geo.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Geo.Data\Geo.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Geo.Data.Entity\Geo.Data.Entity.csproj">
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
       <Name>Geo.Data.Entity</Name>
     </ProjectReference>
@@ -692,7 +692,7 @@
       <Project>{de0b92aa-03bc-46fd-90b6-decd1b163cdb}</Project>
       <Name>MediaType.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\MediaType.Data\MediaType.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\MediaType.Data.Entity\MediaType.Data.Entity.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>MediaType.Data.Entity</Name>
     </ProjectReference>
