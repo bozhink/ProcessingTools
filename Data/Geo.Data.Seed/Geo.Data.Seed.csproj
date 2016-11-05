@@ -66,9 +66,9 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Geo.Data\Geo.Data.csproj">
+    <ProjectReference Include="..\Geo.Data\Geo.Data.Entity.csproj">
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
-      <Name>Geo.Data</Name>
+      <Name>Geo.Data.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

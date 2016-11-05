@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentProvider", "Infrast
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{ACA18A73-7650-47C2-A581-FCDB652F4AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data", "Data\MediaType.Data\MediaType.Data.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Entity", "Data\MediaType.Data\MediaType.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common", "Data\Data.Common\Data.Common.csproj", "{8DE48EB2-2387-4D85-A78C-773A300881D5}"
 EndProject
@@ -63,13 +63,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy", "Libraries\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NlmArchiveConsoleManager", "Desktop\NlmArchiveConsoleManager\NlmArchiveConsoleManager.csproj", "{44BF1EF0-8900-4AC8-8F89-4526AF34DBF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data", "Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj", "{6EA0B244-B449-442A-8F88-262FFB0B5B00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Entity", "Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.Entity.csproj", "{6EA0B244-B449-442A-8F88-262FFB0B5B00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data", "Data\Geo.Data\Geo.Data.csproj", "{91A87E76-6AE4-4E63-9689-B129DB752BD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Entity", "Data\Geo.Data\Geo.Data.Entity.csproj", "{91A87E76-6AE4-4E63-9689-B129DB752BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data", "Data\Bio.Data\Bio.Data.csproj", "{715850DD-6FFB-45C6-B858-8D8E86C772D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Data.Entity", "Data\Bio.Data\Bio.Data.Entity.csproj", "{715850DD-6FFB-45C6-B858-8D8E86C772D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data\Data.csproj", "{76671110-74C8-4E34-BB83-F75F0D42CBBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Entity", "Data\Data\Data.Entity.csproj", "{76671110-74C8-4E34-BB83-F75F0D42CBBD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Harvesters", "Harvesters", "{5FC3176F-B6DA-4309-A7DE-496D7A3481F8}"
 EndProject
@@ -81,7 +81,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Harvesters", "Services\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Harvesters", "Services\Harvesters\Geo.Harvesters\Geo.Harvesters.csproj", "{B48536C1-3EB5-41A1-B9E0-66F03F3882F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Data", "Data\Bio.Environments.Data\Bio.Environments.Data.csproj", "{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Data.Entity", "Data\Bio.Environments.Data\Bio.Environments.Data.Entity.csproj", "{EE9F14F1-26A0-4885-9ED4-DAFF6D9275A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Environments.Services.Data", "Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj", "{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}"
 EndProject
@@ -175,8 +175,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbSeeder", "Desktop\DbSeede
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests", "ServiceClients.Tests\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests.csproj", "{4707CF90-BA41-48C1-9578-879AEE4E2F6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itis.Data", "Data\Itis.Data\Itis.Data.csproj", "{6556440C-9210-4E14-B5C0-F311692FA666}"
-EndProject
 Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Scripts", "Desktop\Scripts\Scripts.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Cache", "Services\Cache\Services.Cache\Services.Cache.csproj", "{5BD3C5FE-1E74-439D-BE32-D37BF6F25D66}"
@@ -195,7 +193,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Tests", "Data.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Mongo.Tests", "Data.Tests\Data.Common.Mongo.Tests\Data.Common.Mongo.Tests.csproj", "{CCA4F5DA-0B25-4AEC-9A22-6E13F6B1DBEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data", "Data\Documents.Data\Documents.Data.csproj", "{21813087-5B64-4279-B352-977E722E795A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data.Entity", "Data\Documents.Data\Documents.Data.Entity.csproj", "{21813087-5B64-4279-B352-977E722E795A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Documents", "Web\ProcessingTools.Web.Documents\ProcessingTools.Web.Documents.csproj", "{FA115D3F-A49B-4C44-89DD-4E5C1186EFAA}"
 EndProject
@@ -904,14 +902,6 @@ Global
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E}.Release|x64.ActiveCfg = Release|Any CPU
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E}.Release|x64.Build.0 = Release|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Debug|x64.Build.0 = Debug|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Release|x64.ActiveCfg = Release|Any CPU
-		{6556440C-9210-4E14-B5C0-F311692FA666}.Release|x64.Build.0 = Release|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1597,7 +1587,6 @@ Global
 		{2511DEBD-E702-4CBB-AC09-151DCF1B4CFD} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
 		{A2274DFB-1408-48B0-B31D-EF1FE3613CDF} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{4707CF90-BA41-48C1-9578-879AEE4E2F6E} = {94AD9BBF-248C-4466-B390-B956A26ABD63}
-		{6556440C-9210-4E14-B5C0-F311692FA666} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{5BD3C5FE-1E74-439D-BE32-D37BF6F25D66} = {D69C6CC7-5FB3-4F42-9221-33B2584653B3}
 		{8CF0E103-E770-45C3-A671-F6AD43F2CC3B} = {F44B7FBC-A422-4966-837D-D52DF317F82E}

@@ -60,9 +60,9 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Bio.Environments.Data\Bio.Environments.Data.csproj">
+    <ProjectReference Include="..\..\..\Data\Bio.Environments.Data\Bio.Environments.Data.Entity.csproj">
       <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
-      <Name>Bio.Environments.Data</Name>
+      <Name>Bio.Environments.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>

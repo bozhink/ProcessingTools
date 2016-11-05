@@ -102,9 +102,9 @@
       <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
       <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.csproj">
+    <ProjectReference Include="..\..\..\Data\Bio.Taxonomy.Data\Bio.Taxonomy.Data.Entity.csproj">
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
-      <Name>Bio.Taxonomy.Data</Name>
+      <Name>Bio.Taxonomy.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
