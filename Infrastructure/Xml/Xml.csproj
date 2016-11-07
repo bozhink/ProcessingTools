@@ -147,6 +147,9 @@
     <Content Include="Xsl\envo-items-to-tagreplace.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Xsl\expand-genus-in-paragraph.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Xsl\expand-taxa-by-full-name.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

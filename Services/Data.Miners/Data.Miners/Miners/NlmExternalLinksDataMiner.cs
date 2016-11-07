@@ -88,7 +88,7 @@
                         return new NlmExternalLink
                         {
                             Content = item,
-                            Href = item,
+                            Href = (item.IndexOf("://") < 0 ? "http://" : string.Empty) + item.Trim(),
                             Type = ExternalLinkType.Uri
                         };
                     }
