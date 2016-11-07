@@ -398,6 +398,161 @@
             tagLinkEventHandler(e);
             return false;
         }
+
+        // Bibliography
+        if (e.altKey) {
+            // Alt + 1
+            if (e.which === 49) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('article-title');
+                return false;
+            }
+
+            // Alt + 2
+            if (e.which === 50) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('chapter-title');
+                return false;
+            }
+
+            // Alt + 3
+            if (e.which === 51) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('trans-title');
+                return false;
+            }
+
+            // Alt + 4
+            if (e.which === 52) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('source');
+                return false;
+            }
+
+            // Alt + 5
+            if (e.which === 53) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('trans-source');
+                return false;
+            }
+
+            // Alt + 6
+            if (e.which === 54) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('publisher-name');
+                return false;
+            }
+
+            // Alt + 7
+            if (e.which === 55) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('publisher-loc');
+                return false;
+            }
+
+            // Alt + 8
+            if (e.which === 56) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('comment');
+                return false;
+            }
+
+            // Alt + 9
+            if (e.which === 57) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('person-group');
+                return false;
+            }
+
+            // Alt + 0
+            if (e.which === 48) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('institution');
+                return false;
+            }
+
+            // Alt + f1
+            if (e.which === 112) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('volume');
+                return false;
+            }
+
+            // Alt + f2
+            if (e.which === 113) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('issue');
+                return false;
+            }
+
+            // Alt + f3
+            if (e.which === 114) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('fpage');
+                return false;
+            }
+
+            // Alt + f4
+            if (e.which === 115) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('lpage');
+                return false;
+            }
+
+            // Alt + f5
+            if (e.which === 116) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('size');
+                return false;
+            }
+
+            // Alt + f6
+            if (e.which === 117) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('elocation-id');
+                return false;
+            }
+
+            // Alt + f7
+            if (e.which === 118) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('year');
+                return false;
+            }
+
+            // Alt + f8
+            if (e.which === 119) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('edition');
+                return false;
+            }
+
+            // Alt + f9
+            if (e.which === 120) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMark('series');
+                return false;
+            }
+        }
     }
 
     function mouseoverXrefEventLstener(event) {
