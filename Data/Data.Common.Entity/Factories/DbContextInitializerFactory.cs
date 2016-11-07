@@ -22,14 +22,16 @@
 
         public async Task<object> Initialize()
         {
-            this.SetInitializer();
-
             using (var context = this.contextProvider.Create())
             {
-                context.Database.CreateIfNotExists();
-                context.Database.Initialize(true);
-                await context.SaveChangesAsync();
+                if (context.Database.CreateIfNotExists())
+                {
+                    // context.Database.Initialize(true);
+                    await context.SaveChangesAsync();
+                }
             }
+
+            this.SetInitializer();
 
             return true;
         }
