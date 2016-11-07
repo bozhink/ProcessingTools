@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Tagger
+﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Collections.Generic;
-
+    using Contracts;
     using ProcessingTools.Contracts.Types;
 
     public class ProgramSettings : IProgramSettings

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger
+﻿namespace ProcessingTools.Tagger.Contracts
 {
     public interface IStartup
     {

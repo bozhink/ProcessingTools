@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Tagger
+﻿namespace ProcessingTools.Tagger.Contracts
 {
     using System.Threading.Tasks;
 
     public interface ISingleFileProcessor
     {
-        Task Run(ProgramSettings settings);
+        Task Run(IProgramSettings settings);
     }
 }

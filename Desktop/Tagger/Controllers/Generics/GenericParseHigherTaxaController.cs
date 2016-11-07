@@ -2,9 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-
+    using Contracts;
     using Contracts.Controllers;
-
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;

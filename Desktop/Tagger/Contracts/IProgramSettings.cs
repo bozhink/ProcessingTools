@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger
+﻿namespace ProcessingTools.Tagger.Contracts
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
 
     public interface IProgramSettings
     {
-        SchemaType ArticleSchemaType { get; }
+        SchemaType ArticleSchemaType { get; set; }
 
         ICollection<Type> CalledControllers { get; }
 
@@ -54,7 +54,7 @@
 
         bool QueryReplace { get; }
 
-        string ReferencesGetReferencesXmlPath { get; }
+        string ReferencesGetReferencesXmlPath { get; set; }
 
         bool ResolveMediaTypes { get; }
 

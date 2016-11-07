@@ -2,6 +2,7 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Tagger.Core;
 
     [TestClass]
     public class ProgramSettingsTests

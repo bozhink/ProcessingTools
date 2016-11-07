@@ -3,9 +3,8 @@
     using System;
     using System.Configuration;
     using System.Threading.Tasks;
-
+    using Contracts;
     using Core;
-
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 

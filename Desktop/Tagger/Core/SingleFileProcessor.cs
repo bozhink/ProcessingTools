@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger
+﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Collections.Concurrent;
@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts;
     using Contracts.Controllers;
 
     using ProcessingTools.Constants;
@@ -23,7 +24,7 @@
         private ConcurrentQueue<Task> tasks;
         private XmlFileProcessor fileProcessor;
         private TaxPubDocument document;
-        private ProgramSettings settings;
+        private IProgramSettings settings;
 
         public SingleFileProcessor(
             IDocumentFactory documentFactory,
@@ -48,7 +49,7 @@
             this.document = new TaxPubDocument();
         }
 
-        public async Task Run(ProgramSettings settings)
+        public async Task Run(IProgramSettings settings)
         {
             if (settings == null)
             {

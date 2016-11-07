@@ -4,9 +4,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
+    using Contracts;
     using Contracts.Controllers;
-
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
 

@@ -2,7 +2,9 @@
 {
     using System;
     using System.Diagnostics;
+    using Contracts;
     using Core;
+    using Ninject;
 
     public static class Program
     {
@@ -17,7 +19,7 @@
                 {
                     DI.Kernel = kernel;
 
-                    var startup = DI.Get<IStartup>();
+                    var startup = kernel.Get<IStartup>();
                     startup.Run(args);
                 }
             }

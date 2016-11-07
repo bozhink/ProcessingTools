@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Contracts;
     using Contracts.Controllers;
     using ProcessingTools.Contracts;
 

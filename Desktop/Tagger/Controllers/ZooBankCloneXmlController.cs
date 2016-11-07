@@ -3,9 +3,8 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using Contracts;
     using Contracts.Controllers;
-
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider;

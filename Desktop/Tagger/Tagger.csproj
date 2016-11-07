@@ -167,9 +167,9 @@
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
     <Compile Include="Core\DI.cs" />
-    <Compile Include="IProgramSettings.cs" />
-    <Compile Include="ISingleFileProcessor.cs" />
-    <Compile Include="IStartup.cs" />
+    <Compile Include="Contracts\IProgramSettings.cs" />
+    <Compile Include="Contracts\ISingleFileProcessor.cs" />
+    <Compile Include="Contracts\IStartup.cs" />
     <Compile Include="Models\ControllerInfo.cs" />
     <Compile Include="Controllers\ExpandLowerTaxaController.cs" />
     <Compile Include="Controllers\ExtractTaxaController.cs" />
@@ -230,17 +230,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings\NinjectBindings.cs" />
-    <Compile Include="ProgramSettingsBuilder.cs" />
+    <Compile Include="Core\ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\NinjectDataBindings.cs" />
     <Compile Include="Settings\NinjectDataMinersBindings.cs" />
     <Compile Include="Settings\NinjectHarvestersBindings.cs" />
     <Compile Include="Settings\NinjectServiceClientsBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
-    <Compile Include="SingleFileProcessorHelpers.cs" />
+    <Compile Include="Core\SingleFileProcessorHelpers.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ProgramSettings.cs" />
-    <Compile Include="SingleFileProcessor.cs">
+    <Compile Include="Core\ProgramSettings.cs" />
+    <Compile Include="Core\SingleFileProcessor.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
   </ItemGroup>
