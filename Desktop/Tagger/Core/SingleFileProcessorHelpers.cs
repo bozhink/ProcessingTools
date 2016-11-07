@@ -54,7 +54,7 @@
 
         private async Task InvokeProcessor(Type controllerType, XmlNode context)
         {
-            var controller = DI.Get(controllerType) as ITaggerController;
+            var controller = this.controllerFactory(controllerType);
             var document = this.WrapContextInDocument(context);
 
             var isValidationController = controllerType.GetInterfaces().Count(t => t == typeof(INotAwaitableController)) > 0;

@@ -1,7 +1,11 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
+    using System;
+    using Contracts.Controllers;
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
+    using System.IO;
+    using System.Linq;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -90,6 +94,10 @@
 
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
                 .To<ProcessingTools.Common.Providers.DateTimeProvider>();
+
+            this.Bind<Func<Type, ITaggerController>>()
+                .ToMethod(context => Program.ControllerFactory)
+                .InSingletonScope();
         }
     }
 }

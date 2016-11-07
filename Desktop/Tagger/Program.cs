@@ -3,11 +3,14 @@
     using System;
     using System.Diagnostics;
     using Contracts;
+    using Contracts.Controllers;
     using Core;
     using Ninject;
 
     public static class Program
     {
+        internal static Func<Type, ITaggerController> ControllerFactory { get; private set; } = null;
+
         public static void Main(string[] args)
         {
             Stopwatch mainTimer = new Stopwatch();
@@ -17,10 +20,14 @@
             {
                 using (var kernel = NinjectConfig.CreateKernel())
                 {
+                    ControllerFactory = t => (ITaggerController)kernel.Get(t);
+
                     DI.Kernel = kernel;
 
                     var startup = kernel.Get<IStartup>();
                     startup.Run(args);
+
+                    ControllerFactory = null;
                 }
             }
             catch (Exception e)

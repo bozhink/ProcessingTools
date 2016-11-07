@@ -20,6 +20,7 @@
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentNormalizer documentNormalizer;
         private readonly ILogger logger;
+        private readonly Func<Type, ITaggerController> controllerFactory;
 
         private ConcurrentQueue<Task> tasks;
         private XmlFileProcessor fileProcessor;
@@ -29,6 +30,7 @@
         public SingleFileProcessor(
             IDocumentFactory documentFactory,
             IDocumentNormalizer documentNormalizer,
+            Func<Type, ITaggerController> controllerFactory,
             ILogger logger)
         {
             if (documentFactory == null)
@@ -41,8 +43,14 @@
                 throw new ArgumentNullException(nameof(documentNormalizer));
             }
 
+            if (controllerFactory == null)
+            {
+                throw new ArgumentNullException(nameof(controllerFactory));
+            }
+
             this.documentFactory = documentFactory;
             this.documentNormalizer = documentNormalizer;
+            this.controllerFactory = controllerFactory;
             this.logger = logger;
 
             this.tasks = new ConcurrentQueue<Task>();
