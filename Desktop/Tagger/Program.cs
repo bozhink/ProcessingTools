@@ -22,8 +22,6 @@
                 {
                     ControllerFactory = t => (ITaggerController)kernel.Get(t);
 
-                    DI.Kernel = kernel;
-
                     var startup = kernel.Get<IStartup>();
                     startup.Run(args);
 

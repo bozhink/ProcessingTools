@@ -10,10 +10,17 @@
 
     public class Startup : IStartup
     {
+        private ISingleFileProcessor fileProcessor;
         private readonly ILogger logger;
 
-        public Startup(ILogger logger)
+        public Startup(ISingleFileProcessor fileProcessor, ILogger logger)
         {
+            if (fileProcessor == null)
+            {
+                throw new ArgumentNullException(nameof(fileProcessor));
+            }
+
+            this.fileProcessor = fileProcessor;
             this.logger = logger;
         }
 
@@ -41,9 +48,7 @@
                 var settingsBuilder = new ProgramSettingsBuilder(this.logger, args);
                 var settings = settingsBuilder.Settings;
 
-                var singleFileProcessor = DI.Get<ISingleFileProcessor>();
-
-                await singleFileProcessor.Run(settings);
+                await this.fileProcessor.Run(settings);
             }
             catch (Exception e)
             {
