@@ -140,7 +140,7 @@
             var repository = this.provider.Create();
 
             var query = await repository.Find(
-                t => t.Name.Contains(name),
+                t => t.Name.ToLower().Contains(name.ToLower()),
                 t => t.Name,
                 SortOrder.Ascending);
 
