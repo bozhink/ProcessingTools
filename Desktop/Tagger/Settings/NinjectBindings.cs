@@ -2,10 +2,9 @@
 {
     using System;
     using Contracts.Controllers;
+    using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
-    using System.IO;
-    using System.Linq;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -96,7 +95,7 @@
                 .To<ProcessingTools.Common.Providers.DateTimeProvider>();
 
             this.Bind<Func<Type, ITaggerController>>()
-                .ToMethod(context => Program.ControllerFactory)
+                .ToMethod(context => t => (ITaggerController)context.Kernel.Get(t))
                 .InSingletonScope();
         }
     }
