@@ -36,6 +36,8 @@
     <Compile Include="FileNameIsNullOrWhitespaceException.cs" />
     <Compile Include="KeyExistsException.cs" />
     <Compile Include="KeyNotFoundException.cs" />
+    <Compile Include="MaximalLengthOfFileNameExceededException.cs" />
+    <Compile Include="MaximalNumberOfIterationsExceededException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StreamCannotBeReadException.cs" />
   </ItemGroup>
