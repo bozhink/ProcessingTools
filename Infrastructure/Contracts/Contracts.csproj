@@ -118,8 +118,6 @@
     <Compile Include="INameableStringIdentifiable.cs" />
     <Compile Include="INormalizer.cs" />
     <Compile Include="IObjectIdentifiable.cs" />
-    <Compile Include="IO\IStreamFileContentReader.cs" />
-    <Compile Include="IO\IStreamFileContentWriter.cs" />
     <Compile Include="IPerson.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IProvider.cs" />
