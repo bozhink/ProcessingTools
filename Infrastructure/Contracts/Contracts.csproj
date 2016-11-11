@@ -67,6 +67,7 @@
     <Compile Include="Data\Repositories\IUpdatableRepository.cs" />
     <Compile Include="Expressions\IUpdateCommand.cs" />
     <Compile Include="Expressions\IUpdateExpression.cs" />
+    <Compile Include="Files\Generators\IFileNameGenerator.cs" />
     <Compile Include="Files\IO\IFileReader.cs" />
     <Compile Include="Files\IO\IFileWriter.cs" />
     <Compile Include="Files\IO\ITextFileReader.cs" />
