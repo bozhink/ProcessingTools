@@ -18,33 +18,7 @@
         private XmlReaderSettings readerSettings;
         private XmlWriterSettings writerSettings;
 
-        public XmlFileProcessor()
-            : this(null, null, null)
-        {
-        }
-
-        public XmlFileProcessor(ILogger logger)
-            : this(null, null, logger)
-        {
-        }
-
-        public XmlFileProcessor(string inputFileName)
-            : this(inputFileName, null, null)
-        {
-        }
-
-        public XmlFileProcessor(string inputFileName, ILogger logger)
-            : this(inputFileName, null, logger)
-        {
-        }
-
-        public XmlFileProcessor(string inputFileName, string outputFileName)
-            : this(inputFileName, outputFileName, null)
-        {
-        }
-
         public XmlFileProcessor(string inputFileName, string outputFileName, ILogger logger)
-            : base()
         {
             this.logger = logger;
             this.InputFileName = inputFileName;
@@ -212,11 +186,7 @@
 
         public void Write(IDocument document, XmlDocumentType documentType, XmlWriterSettings writerSettings = null)
         {
-            XmlWriterSettings settings = this.writerSettings;
-            if (writerSettings != null)
-            {
-                settings = writerSettings;
-            }
+            XmlWriterSettings settings = writerSettings ?? this.writerSettings;
 
             XmlWriter writer = XmlWriter.Create(this.OutputFileName, settings);
             if (documentType != null)

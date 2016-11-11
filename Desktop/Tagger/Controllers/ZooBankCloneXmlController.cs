@@ -66,7 +66,7 @@
         {
             // TODO: DI
             var sourceDocument = this.documentFactory.Create();
-            var fileProcessorNlm = new XmlFileProcessor(sourceFileName, outputFileName);
+            var fileProcessorNlm = new XmlFileProcessor(sourceFileName, outputFileName, null);
             fileProcessorNlm.Read(sourceDocument);
             return sourceDocument;
         }

@@ -69,7 +69,7 @@
                 this.logger?.Log(this.FileName);
 
                 var document = new TaxPubDocument(Encoding.UTF8);
-                var xmlFileProcessor = new XmlFileProcessor(this.FileName, this.logger);
+                var xmlFileProcessor = new XmlFileProcessor(this.FileName, null, this.logger);
                 xmlFileProcessor.Read(document);
 
                 if (document.XmlDocument.DocumentElement.Name != "article")
