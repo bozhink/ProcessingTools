@@ -67,6 +67,12 @@
     <Compile Include="Data\Repositories\IUpdatableRepository.cs" />
     <Compile Include="Expressions\IUpdateCommand.cs" />
     <Compile Include="Expressions\IUpdateExpression.cs" />
+    <Compile Include="Files\IO\IFileReader.cs" />
+    <Compile Include="Files\IO\IFileWriter.cs" />
+    <Compile Include="Files\IO\ITextFileReader.cs" />
+    <Compile Include="Files\IO\ITextFileWriter.cs" />
+    <Compile Include="Files\IO\IXmlFileReader.cs" />
+    <Compile Include="Files\IO\IXmlFileWriter.cs" />
     <Compile Include="Harvesters\IGenericQueryableXmlHarvester.cs" />
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
     <Compile Include="Harvesters\IHarvester.cs" />
