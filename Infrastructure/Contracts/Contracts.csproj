@@ -118,12 +118,8 @@
     <Compile Include="INameableStringIdentifiable.cs" />
     <Compile Include="INormalizer.cs" />
     <Compile Include="IObjectIdentifiable.cs" />
-    <Compile Include="IO\IGenericFileContentReader.cs" />
-    <Compile Include="IO\IGenericFileContentWriter.cs" />
     <Compile Include="IO\IStreamFileContentReader.cs" />
     <Compile Include="IO\IStreamFileContentWriter.cs" />
-    <Compile Include="IO\IXmlFileContentReader.cs" />
-    <Compile Include="IO\IXmlFileContentWriter.cs" />
     <Compile Include="IPerson.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IProvider.cs" />
@@ -133,13 +129,8 @@
     <Compile Include="IXmlContextNormalizer.cs" />
     <Compile Include="IXmlContextParser.cs" />
     <Compile Include="IXmlContextTagger.cs" />
-    <Compile Include="Services\Data\Files\IFileMetadataDataService.cs" />
-    <Compile Include="Services\Data\Files\IGenericFileContentDataService.cs" />
-    <Compile Include="Services\Data\Files\IGenericFilesDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
-    <Compile Include="Services\Data\Files\IXmlFileContentDataService.cs" />
-    <Compile Include="Services\Data\Files\IXmlFilesDataService.cs" />
     <Compile Include="Services\Data\Models\Files\IFileMetadata.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
