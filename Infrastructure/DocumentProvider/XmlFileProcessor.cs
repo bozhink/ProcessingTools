@@ -8,7 +8,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class XmlFileProcessor
+    public class XmlFileProcessor : IXmlFileProcessor
     {
         private string inputFileName;
         private string outputFileName;

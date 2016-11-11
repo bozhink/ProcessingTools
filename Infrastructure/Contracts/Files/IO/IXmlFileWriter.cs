@@ -7,6 +7,8 @@
     {
         XmlWriterSettings WriterSettings { get; set; }
 
-        Task<object> Write(string fullName, XmlReader reader);
+        Task<object> Write(string fullName, XmlReader reader, XmlDocumentType documentType = null);
+
+        Task<object> Write(string fullName, XmlDocument document, XmlDocumentType documentType = null);
     }
 }

@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    public interface ITextFileReader : IFileReader
+    public interface ITextFileReader
     {
         Task<string> ReadAllText(string fullName);
     }

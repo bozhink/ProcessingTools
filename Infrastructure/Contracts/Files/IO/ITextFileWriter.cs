@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    public interface ITextFileWriter : IFileWriter
+    public interface ITextFileWriter
     {
         Task<object> Write(string fullName, string text);
     }
