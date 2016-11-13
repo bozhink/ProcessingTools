@@ -14,25 +14,32 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+    using ProcessingTools.Services.Data.Contracts.Files;
 
     public partial class SingleFileProcessor : ISingleFileProcessor
     {
+        private readonly IXmlFileContentDataService filesManager;
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentNormalizer documentNormalizer;
         private readonly ILogger logger;
         private readonly Func<Type, ITaggerController> controllerFactory;
 
         private ConcurrentQueue<Task> tasks;
-        private XmlFileProcessor fileProcessor;
-        private TaxPubDocument document;
+        private IDocument document;
         private IProgramSettings settings;
 
         public SingleFileProcessor(
+            IXmlFileContentDataService filesManager,
             IDocumentFactory documentFactory,
             IDocumentNormalizer documentNormalizer,
             Func<Type, ITaggerController> controllerFactory,
             ILogger logger)
         {
+            if (filesManager == null)
+            {
+                throw new ArgumentNullException(nameof(filesManager));
+            }
+
             if (documentFactory == null)
             {
                 throw new ArgumentNullException(nameof(documentFactory));
@@ -48,13 +55,13 @@
                 throw new ArgumentNullException(nameof(controllerFactory));
             }
 
+            this.filesManager = filesManager;
             this.documentFactory = documentFactory;
             this.documentNormalizer = documentNormalizer;
             this.controllerFactory = controllerFactory;
             this.logger = logger;
 
             this.tasks = new ConcurrentQueue<Task>();
-            this.document = new TaxPubDocument();
         }
 
         public async Task Run(IProgramSettings settings)
@@ -299,7 +306,8 @@
 
         private async Task ReadDocument()
         {
-            this.fileProcessor.Read(this.document);
+            var document = await this.filesManager.ReadXmlFile(this.InputFileName);
+            this.document = this.documentFactory.Create(document.OuterXml);
 
             switch (this.document.XmlDocument.DocumentElement.Name)
             {
@@ -318,24 +326,28 @@
 
         private void SetUpConfigParameters()
         {
-            this.settings.ReferencesGetReferencesXmlPath = $"{this.fileProcessor.OutputFileName}-references.xml";
+            this.settings.ReferencesGetReferencesXmlPath = $"{this.OutputFileName}-references.xml";
         }
+
+        private string InputFileName { get; set; }
+
+        private string OutputFileName { get; set; }
+
+        private string QueryFileName { get; set; }
 
         private void ConfigureFileProcessor()
         {
             int numberOfFileNames = this.settings.FileNames.Count();
 
-            string inputFileName = numberOfFileNames > 0 ? this.settings.FileNames.ElementAt(0) : string.Empty;
-            string outputFileName = numberOfFileNames > 1 ? this.settings.FileNames.ElementAt(1) : string.Empty;
-            string queryFileName = numberOfFileNames > 2 ? this.settings.FileNames.ElementAt(2) : string.Empty;
-
-            this.fileProcessor = new XmlFileProcessor(inputFileName, outputFileName, this.logger);
+            this.InputFileName = numberOfFileNames > 0 ? this.settings.FileNames.ElementAt(0) : string.Empty;
+            this.OutputFileName = numberOfFileNames > 1 ? this.settings.FileNames.ElementAt(1) : this.InputFileName;
+            this.QueryFileName = numberOfFileNames > 2 ? this.settings.FileNames.ElementAt(2) : string.Empty;
 
             this.logger?.Log(
                 Messages.InputOutputFileNamesMessageFormat,
-                this.fileProcessor.InputFileName,
-                this.fileProcessor.OutputFileName,
-                queryFileName);
+                this.InputFileName,
+                this.OutputFileName,
+                this.QueryFileName);
         }
 
         private Task WriteOutputFile() => InvokeProcessor(
@@ -345,7 +357,9 @@
                     __ =>
                     {
                         __.Wait();
-                        this.fileProcessor.Write(this.document, null, null);
+                        var o = this.filesManager.WriteXmlFile(this.OutputFileName, this.document.XmlDocument, null, this.OutputFileName == this.InputFileName).Result;
+
+                        Console.WriteLine(o);
                     }),
                 this.logger);
     }

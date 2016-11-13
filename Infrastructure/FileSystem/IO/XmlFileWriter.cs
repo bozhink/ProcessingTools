@@ -12,7 +12,7 @@
         {
             this.WriterSettings = new XmlWriterSettings()
             {
-                Async = false,
+                Async = true,
                 Encoding = Defaults.DefaultEncoding,
                 Indent = false,
                 IndentChars = " ",

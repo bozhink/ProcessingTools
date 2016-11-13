@@ -100,7 +100,7 @@
                     true);
             }
 
-            await this.writer.Write(fullName: fullName, document: document, documentType: documentType);
+            await this.writer.Write(fullName: outputFileFullName, document: document, documentType: documentType);
 
             return outputFileFullName;
         }

@@ -97,6 +97,16 @@
             this.Bind<Func<Type, ITaggerController>>()
                 .ToMethod(context => t => (ITaggerController)context.Kernel.Get(t))
                 .InSingletonScope();
+
+            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+                .To<ProcessingTools.FileSystem.IO.XmlFileReader>();
+
+            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
+                .To<ProcessingTools.FileSystem.IO.XmlFileWriter>();
+
+            this.Bind<ProcessingTools.Contracts.Files.Generators.IFileNameGenerator>()
+                .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
+                .InSingletonScope();
         }
     }
 }

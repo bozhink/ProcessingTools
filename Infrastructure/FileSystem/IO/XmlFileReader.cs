@@ -11,6 +11,7 @@
         {
             this.ReaderSettings = new XmlReaderSettings()
             {
+                Async = true,
                 IgnoreComments = false,
                 IgnoreProcessingInstructions = false,
                 IgnoreWhitespace = false,
