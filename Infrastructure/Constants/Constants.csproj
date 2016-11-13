@@ -38,6 +38,7 @@
     <Compile Include="Configuration\AppSettingsKeys.cs" />
     <Compile Include="Configuration\ConnectionStringsKeys.cs" />
     <Compile Include="Content\ContentTypeConstants.cs" />
+    <Compile Include="FileConstants.cs" />
     <Compile Include="Media\MediaTypes.cs" />
     <Compile Include="ModelValidationConstants.cs" />
     <Compile Include="PagingConstants.cs" />
