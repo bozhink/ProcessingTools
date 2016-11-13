@@ -5,6 +5,7 @@
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
+    using Ninject.Extensions.Interception.Infrastructure.Language;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -99,7 +100,9 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileReader>();
+                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+                .Intercept()
+                .With<ProcessingTools.Tagger.Interceptors.ReadXmlFileWellFormReqularizeInterceptor>();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>();
@@ -107,6 +110,9 @@
             this.Bind<ProcessingTools.Contracts.Files.Generators.IFileNameGenerator>()
                 .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
                 .InSingletonScope();
+
+            this.Bind<ProcessingTools.Tagger.Contracts.IFileProcessor>()
+                .To<ProcessingTools.Tagger.Core.SingleFileProcessor>();
         }
     }
 }

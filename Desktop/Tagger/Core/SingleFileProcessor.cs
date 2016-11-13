@@ -13,12 +13,14 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Contracts.Files.Generators;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Services.Data.Contracts.Files;
 
-    public partial class SingleFileProcessor : ISingleFileProcessor
+    public partial class SingleFileProcessor : IFileProcessor
     {
         private readonly IXmlFileContentDataService filesManager;
+        private readonly IFileNameGenerator fileNameGenerator;
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentNormalizer documentNormalizer;
         private readonly ILogger logger;
@@ -30,6 +32,7 @@
 
         public SingleFileProcessor(
             IXmlFileContentDataService filesManager,
+            IFileNameGenerator fileNameGenerator,
             IDocumentFactory documentFactory,
             IDocumentNormalizer documentNormalizer,
             Func<Type, ITaggerController> controllerFactory,
@@ -38,6 +41,11 @@
             if (filesManager == null)
             {
                 throw new ArgumentNullException(nameof(filesManager));
+            }
+
+            if (fileNameGenerator == null)
+            {
+                throw new ArgumentNullException(nameof(fileNameGenerator));
             }
 
             if (documentFactory == null)
@@ -56,6 +64,7 @@
             }
 
             this.filesManager = filesManager;
+            this.fileNameGenerator = fileNameGenerator;
             this.documentFactory = documentFactory;
             this.documentNormalizer = documentNormalizer;
             this.controllerFactory = controllerFactory;
@@ -75,7 +84,7 @@
 
             try
             {
-                this.ConfigureFileProcessor();
+                await this.ConfigureFileProcessor();
 
                 this.SetUpConfigParameters();
 
@@ -329,19 +338,33 @@
             this.settings.ReferencesGetReferencesXmlPath = $"{this.OutputFileName}-references.xml";
         }
 
-        private string InputFileName { get; set; }
+        public string InputFileName { get; set; }
 
-        private string OutputFileName { get; set; }
+        public string OutputFileName { get; set; }
 
-        private string QueryFileName { get; set; }
+        public string QueryFileName { get; set; }
 
-        private void ConfigureFileProcessor()
+        private async Task ConfigureFileProcessor()
         {
             int numberOfFileNames = this.settings.FileNames.Count();
 
-            this.InputFileName = numberOfFileNames > 0 ? this.settings.FileNames.ElementAt(0) : string.Empty;
-            this.OutputFileName = numberOfFileNames > 1 ? this.settings.FileNames.ElementAt(1) : this.InputFileName;
-            this.QueryFileName = numberOfFileNames > 2 ? this.settings.FileNames.ElementAt(2) : string.Empty;
+            if (numberOfFileNames < 1)
+            {
+                throw new InvalidOperationException("The name of the input file is required");
+            }
+
+            this.InputFileName = this.settings.FileNames.ElementAt(0);
+
+            this.OutputFileName = numberOfFileNames > 1 ?
+                this.settings.FileNames.ElementAt(1) :
+                await this.fileNameGenerator.Generate(
+                    this.InputFileName,
+                    FileConstants.MaximalLengthOfGeneratedNewFileName,
+                    true);
+
+            this.QueryFileName = numberOfFileNames > 2 ?
+                this.settings.FileNames.ElementAt(2) :
+                string.Empty;
 
             this.logger?.Log(
                 Messages.InputOutputFileNamesMessageFormat,
@@ -357,9 +380,7 @@
                     __ =>
                     {
                         __.Wait();
-                        var o = this.filesManager.WriteXmlFile(this.OutputFileName, this.document.XmlDocument, null, this.OutputFileName == this.InputFileName).Result;
-
-                        Console.WriteLine(o);
+                        var o = this.filesManager.WriteXmlFile(this.OutputFileName, this.document.XmlDocument).Result;
                     }),
                 this.logger);
     }
