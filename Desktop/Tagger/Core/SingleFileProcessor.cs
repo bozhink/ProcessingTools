@@ -5,30 +5,26 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts;
     using Contracts.Controllers;
-
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.DocumentProvider;
     using ProcessingTools.Contracts.Files.Generators;
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Services.Data.Contracts.Files;
 
     public partial class SingleFileProcessor : IFileProcessor
     {
-        private readonly IXmlFileContentDataService filesManager;
-        private readonly IFileNameGenerator fileNameGenerator;
+        private readonly Func<Type, ITaggerController> controllerFactory;
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IFileNameGenerator fileNameGenerator;
+        private readonly IXmlFileContentDataService filesManager;
         private readonly ILogger logger;
-        private readonly Func<Type, ITaggerController> controllerFactory;
-
-        private ConcurrentQueue<Task> tasks;
         private IDocument document;
         private IProgramSettings settings;
+        private ConcurrentQueue<Task> tasks;
 
         public SingleFileProcessor(
             IXmlFileContentDataService filesManager,
@@ -73,6 +69,12 @@
             this.tasks = new ConcurrentQueue<Task>();
         }
 
+        public string InputFileName { get; set; }
+
+        public string OutputFileName { get; set; }
+
+        public string QueryFileName { get; set; }
+
         public async Task Run(IProgramSettings settings)
         {
             if (settings == null)
@@ -100,6 +102,56 @@
             {
                 this.logger?.Log(e, string.Empty);
                 throw;
+            }
+        }
+
+        private async Task ConfigureFileProcessor()
+        {
+            int numberOfFileNames = this.settings.FileNames.Count();
+
+            if (numberOfFileNames < 1)
+            {
+                throw new InvalidOperationException("The name of the input file is required");
+            }
+
+            this.InputFileName = this.settings.FileNames.ElementAt(0);
+
+            this.OutputFileName = numberOfFileNames > 1 ?
+                this.settings.FileNames.ElementAt(1) :
+                await this.fileNameGenerator.Generate(
+                    this.InputFileName,
+                    FileConstants.MaximalLengthOfGeneratedNewFileName,
+                    true);
+
+            this.QueryFileName = numberOfFileNames > 2 ?
+                this.settings.FileNames.ElementAt(2) :
+                string.Empty;
+
+            this.logger?.Log(
+                Messages.InputOutputFileNamesMessageFormat,
+                this.InputFileName,
+                this.OutputFileName,
+                this.QueryFileName);
+        }
+
+        private async Task ContextProcessing(XmlNode context)
+        {
+            if (this.settings.TagFloats)
+            {
+                await this.InvokeProcessor<ITagFloatsController>(context);
+            }
+
+            if (this.settings.TagReferences)
+            {
+                await this.InvokeProcessor<ITagReferencesController>(context);
+            }
+
+            if (this.settings.ExpandLowerTaxa)
+            {
+                for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
+                {
+                    await this.InvokeProcessor<IExpandLowerTaxaController>(context);
+                }
             }
         }
 
@@ -292,27 +344,6 @@
             return;
         }
 
-        private async Task ContextProcessing(XmlNode context)
-        {
-            if (this.settings.TagFloats)
-            {
-                await this.InvokeProcessor<ITagFloatsController>(context);
-            }
-
-            if (this.settings.TagReferences)
-            {
-                await this.InvokeProcessor<ITagReferencesController>(context);
-            }
-
-            if (this.settings.ExpandLowerTaxa)
-            {
-                for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
-                {
-                    await this.InvokeProcessor<IExpandLowerTaxaController>(context);
-                }
-            }
-        }
-
         private async Task ReadDocument()
         {
             var document = await this.filesManager.ReadXmlFile(this.InputFileName);
@@ -336,41 +367,6 @@
         private void SetUpConfigParameters()
         {
             this.settings.ReferencesGetReferencesXmlPath = $"{this.OutputFileName}-references.xml";
-        }
-
-        public string InputFileName { get; set; }
-
-        public string OutputFileName { get; set; }
-
-        public string QueryFileName { get; set; }
-
-        private async Task ConfigureFileProcessor()
-        {
-            int numberOfFileNames = this.settings.FileNames.Count();
-
-            if (numberOfFileNames < 1)
-            {
-                throw new InvalidOperationException("The name of the input file is required");
-            }
-
-            this.InputFileName = this.settings.FileNames.ElementAt(0);
-
-            this.OutputFileName = numberOfFileNames > 1 ?
-                this.settings.FileNames.ElementAt(1) :
-                await this.fileNameGenerator.Generate(
-                    this.InputFileName,
-                    FileConstants.MaximalLengthOfGeneratedNewFileName,
-                    true);
-
-            this.QueryFileName = numberOfFileNames > 2 ?
-                this.settings.FileNames.ElementAt(2) :
-                string.Empty;
-
-            this.logger?.Log(
-                Messages.InputOutputFileNamesMessageFormat,
-                this.InputFileName,
-                this.OutputFileName,
-                this.QueryFileName);
         }
 
         private Task WriteOutputFile() => InvokeProcessor(

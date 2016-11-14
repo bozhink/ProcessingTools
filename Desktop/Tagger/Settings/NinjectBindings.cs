@@ -4,8 +4,8 @@
     using Contracts.Controllers;
     using Ninject;
     using Ninject.Extensions.Conventions;
-    using Ninject.Modules;
     using Ninject.Extensions.Interception.Infrastructure.Language;
+    using Ninject.Modules;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -102,7 +102,7 @@
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
                 .Intercept()
-                .With<ProcessingTools.Tagger.Interceptors.ReadXmlFileWellFormReqularizeInterceptor>();
+                .With<ProcessingTools.Interceptors.ReadBrokenXmlFileToValidXmlInterceptor>();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>();

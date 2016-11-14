@@ -10,7 +10,7 @@
 
     public class Startup : IStartup
     {
-        private IFileProcessor fileProcessor;
+        private readonly IFileProcessor fileProcessor;
         private readonly ILogger logger;
 
         public Startup(IFileProcessor fileProcessor, ILogger logger)

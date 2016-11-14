@@ -49,13 +49,27 @@
                     PreserveWhitespace = true
                 };
 
-                using (var reader = this.GetReader(fullName))
+                var reader = this.GetReader(fullName);
+                try
                 {
                     document.Load(reader);
-                    reader.Close();
+                    return document;
                 }
-
-                return document;
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    try
+                    {
+                        reader.Close();
+                        reader.Dispose();
+                    }
+                    catch
+                    {
+                    }
+                }
             });
         }
     }

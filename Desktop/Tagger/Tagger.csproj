@@ -185,7 +185,6 @@
     <Compile Include="Contracts\IProgramSettings.cs" />
     <Compile Include="Contracts\IFileProcessor.cs" />
     <Compile Include="Contracts\IStartup.cs" />
-    <Compile Include="Interceptors\ReadXmlFileWellFormReqularizeInterceptor.cs" />
     <Compile Include="Models\ControllerInfo.cs" />
     <Compile Include="Controllers\ExpandLowerTaxaController.cs" />
     <Compile Include="Controllers\ExtractTaxaController.cs" />
@@ -312,6 +311,10 @@
     <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
       <Name>FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Interceptors\Interceptors.csproj">
+      <Project>{ef204549-80d1-4665-8cfe-8e57c5c88ee6}</Project>
+      <Name>Interceptors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>

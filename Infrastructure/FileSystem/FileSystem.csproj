@@ -41,7 +41,6 @@
     <Compile Include="Contracts\Generators\ISequentialFileNameGenerator.cs" />
     <Compile Include="Contracts\IXmlFileReaderWriter.cs" />
     <Compile Include="Generators\SequentialFileNameGenerator.cs" />
-    <Compile Include="IO\TextToXmlFileReader.cs" />
     <Compile Include="IO\XmlFileReader.cs" />
     <Compile Include="IO\XmlFileWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
