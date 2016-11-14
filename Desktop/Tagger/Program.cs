@@ -4,6 +4,7 @@
     using System.Diagnostics;
     using Contracts;
     using Ninject;
+    using Settings;
 
     public static class Program
     {

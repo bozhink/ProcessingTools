@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.Tagger
+﻿namespace ProcessingTools.Tagger.Settings
 {
     using System.Reflection;
-
     using Ninject;
 
     public static class NinjectConfig
