@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface IXmlDeserializer<T> : IGenericDeserializer<T>
+    public interface IDataContractJsonDeserializer : IDeserializer
     {
     }
 }

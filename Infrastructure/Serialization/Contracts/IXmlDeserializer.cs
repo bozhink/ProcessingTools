@@ -1,10 +1,8 @@
 ﻿namespace ProcessingTools.Serialization.Contracts
 {
-    using System.IO;
-    using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
 
-    public interface IXmlDeserializer
+    public interface IXmlDeserializer : IDeserializer
     {
-        Task<T> Deserialize<T>(Stream stream);
     }
 }

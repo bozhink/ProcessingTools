@@ -32,12 +32,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\IDataContractJsonDeserializer.cs" />
+    <Compile Include="Contracts\IGenericDataContractJsonDeserializer.cs" />
     <Compile Include="Contracts\IGenericXmlDeserializer.cs" />
     <Compile Include="Contracts\IGenericXmlSerializer.cs" />
     <Compile Include="Contracts\IXmlDeserializer.cs" />
@@ -50,11 +53,17 @@
     <Compile Include="Csv\TableMapper.cs" />
     <Compile Include="MappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializers\DataContractJsonDeserializer.cs" />
+    <Compile Include="Serializers\GenericDataContractJsonDeserializer.cs" />
     <Compile Include="Serializers\GenericXmlDeserializer.cs" />
     <Compile Include="Serializers\GenericXmlSerializer.cs" />
     <Compile Include="Serializers\XmlDeserializer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Extensions\Extensions.csproj">
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
