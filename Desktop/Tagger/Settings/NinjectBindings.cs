@@ -101,8 +101,10 @@
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
-                .Intercept()
-                .With<ProcessingTools.Interceptors.ReadBrokenXmlFileToValidXmlInterceptor>();
+                .WhenInjectedInto<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>();
+            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+                .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
+                .WhenInjectedInto<ProcessingTools.Services.Data.Files.XmlFileContentDataService>();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>();

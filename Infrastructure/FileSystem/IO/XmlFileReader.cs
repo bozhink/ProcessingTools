@@ -55,9 +55,9 @@
                     document.Load(reader);
                     return document;
                 }
-                catch (Exception e)
+                catch
                 {
-                    throw e;
+                    throw;
                 }
                 finally
                 {
