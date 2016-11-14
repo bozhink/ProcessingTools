@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AsyncExceptionHandlingInterceptor.cs" />
     <Compile Include="ExceptionLoggingInterceptor.cs" />
+    <Compile Include="FileExistsRaiseWarningInterceptor.cs" />
     <Compile Include="LogExceptionAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,6 +6,7 @@
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
+    using ProcessingTools.Interceptors;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -107,7 +108,9 @@
                 .WhenInjectedInto<ProcessingTools.Services.Data.Files.XmlFileContentDataService>();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileWriter>();
+                .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
+                .Intercept()
+                .With<FileExistsRaiseWarningInterceptor>();
 
             this.Bind<ProcessingTools.Contracts.Files.Generators.IFileNameGenerator>()
                 .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
