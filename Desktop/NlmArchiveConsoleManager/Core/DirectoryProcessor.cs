@@ -7,10 +7,11 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
+    using Contracts.Core;
     using Contracts.Models;
     using ProcessingTools.Contracts;
 
-    public class DirectoryProcessor
+    public class DirectoryProcessor : IDirectoryProcessor
     {
         private string direcoryName;
         private IJournal journal;
@@ -23,7 +24,7 @@
             this.logger = logger;
         }
 
-        public string DirectoryName
+        private string DirectoryName
         {
             get
             {
@@ -59,7 +60,10 @@
                 {
                     var files = Directory.GetFiles(Directory.GetCurrentDirectory());
 
-                    var xmlFiles = files.Where(f => Path.GetExtension(f).TrimStart('.') == "xml" && !Regex.IsMatch(Path.GetFileNameWithoutExtension(f), @"\-s\d+\Z"));
+                    var xmlFiles = files
+                        .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == "xml" &&
+                                    !Regex.IsMatch(Path.GetFileNameWithoutExtension(f), @"\-s\d+\Z"))
+                        .ToArray();
 
                     Parallel.ForEach(
                         xmlFiles,

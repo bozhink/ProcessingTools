@@ -9,13 +9,14 @@
     using System.Threading.Tasks;
     using System.Xml;
 
+    using Contracts.Core;
     using Contracts.Models;
     using DocumentProvider;
     using Models;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class FileProcessor
+    public class FileProcessor : IFileProcessor
     {
         private const string SelectHrefXPath = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
 
@@ -33,7 +34,7 @@
             this.externalFiles = new HashSet<string>();
         }
 
-        public string FileName
+        private string FileName
         {
             get
             {

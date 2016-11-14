@@ -5,7 +5,9 @@
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
+    using Contracts.Core;
     using ProcessingTools.Interceptors;
+    using Ninject.Extensions.Factory;
 
     public class NinjectBindings : NinjectModule
     {
@@ -18,6 +20,10 @@
                 .BindDefaultInterface();
             });
 
+            this.Bind<ProcessingTools.Contracts.ILogger>()
+                .To<ProcessingTools.Loggers.ConsoleLogger>()
+                .InSingletonScope();
+
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>();
 
@@ -28,6 +34,18 @@
 
             this.Bind<ProcessingTools.Contracts.Files.Generators.IFileNameGenerator>()
                 .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Contracts.IDeserializer>()
+                .To<ProcessingTools.Serialization.Serializers.DataContractJsonDeserializer>()
+                .InSingletonScope();
+
+            this.Bind<IDirectoryProcessor>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<IFileProcessor>()
+                .ToFactory()
                 .InSingletonScope();
         }
     }
