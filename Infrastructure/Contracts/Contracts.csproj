@@ -99,6 +99,7 @@
     <Compile Include="IDocumentTagger.cs" />
     <Compile Include="IDocumentToDocumentCloner.cs" />
     <Compile Include="IDocumentValidator.cs" />
+    <Compile Include="IExceptionHandler.cs" />
     <Compile Include="IGenericDocumentCloner.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="IPerson.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IProvider.cs" />
+    <Compile Include="ISandbox.cs" />
     <Compile Include="ISimpleProcessor.cs" />
     <Compile Include="IStringIdentifiable.cs" />
     <Compile Include="ITransformer.cs" />

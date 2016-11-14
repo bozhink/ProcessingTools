@@ -7,63 +7,18 @@ namespace ProcessingTools.Interceptors
     using System.Reflection;
     using System.Threading.Tasks;
     using Ninject.Extensions.Interception;
+    using ProcessingTools.Contracts;
 
     public class AsyncExceptionHandlingInterceptor : IInterceptor
     {
-        private static readonly MethodInfo handleAsyncMethodInfo = typeof(AsyncExceptionHandlingInterceptor)
+        private static readonly MethodInfo HandleAsyncMethodInfo = typeof(AsyncExceptionHandlingInterceptor)
             .GetMethod(nameof(HandleAsyncWithResult), BindingFlags.Instance | BindingFlags.NonPublic);
 
-        private readonly IExceptionHandler _handler;
+        private readonly IExceptionHandler handler;
 
         public AsyncExceptionHandlingInterceptor(IExceptionHandler handler)
         {
-            _handler = handler;
-        }
-
-        public void Intercept(IInvocation invocation)
-        {
-            var delegateType = GetDelegateType(invocation);
-            if (delegateType == MethodType.Synchronous)
-            {
-                _handler.HandleExceptions(() => invocation.Proceed());
-            }
-            if (delegateType == MethodType.AsyncAction)
-            {
-                invocation.Proceed();
-                invocation.ReturnValue = HandleAsync((Task)invocation.ReturnValue);
-            }
-            if (delegateType == MethodType.AsyncFunction)
-            {
-                invocation.Proceed();
-                ExecuteHandleAsyncWithResultUsingReflection(invocation);
-            }
-        }
-
-        private void ExecuteHandleAsyncWithResultUsingReflection(IInvocation invocation)
-        {
-            var resultType = invocation.Request.Method.ReturnType.GetGenericArguments()[0];
-            var mi = handleAsyncMethodInfo.MakeGenericMethod(resultType);
-            invocation.ReturnValue = mi.Invoke(this, new[] { invocation.ReturnValue });
-        }
-
-        private async Task HandleAsync(Task task)
-        {
-            await _handler.HandleExceptions(async () => await task);
-        }
-
-        private async Task<T> HandleAsyncWithResult<T>(Task<T> task)
-        {
-            return await _handler.HandleExceptions(async () => await task);
-        }
-
-        private MethodType GetDelegateType(IInvocation invocation)
-        {
-            var returnType = invocation.Request.Method.ReturnType;
-            if (returnType == typeof(Task))
-                return MethodType.AsyncAction;
-            if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>))
-                return MethodType.AsyncFunction;
-            return MethodType.Synchronous;
+            this.handler = handler;
         }
 
         private enum MethodType
@@ -73,11 +28,61 @@ namespace ProcessingTools.Interceptors
             AsyncFunction
         }
 
-        public interface IExceptionHandler
+        public void Intercept(IInvocation invocation)
         {
-            Task HandleExceptions(Action p);
+            var delegateType = this.GetDelegateType(invocation.Request.Method);
+            switch (delegateType)
+            {
+                case MethodType.Synchronous:
+                    this.handler.HandleExceptions(() => invocation.Proceed());
+                    break;
 
-            Task<T> HandleExceptions<T>(Func<Task<T>> p);
+                case MethodType.AsyncAction:
+                    invocation.Proceed();
+                    invocation.ReturnValue = this.HandleAsync((Task)invocation.ReturnValue);
+                    break;
+
+                case MethodType.AsyncFunction:
+                    invocation.Proceed();
+                    this.ExecuteHandleAsyncWithResultUsingReflection(invocation);
+                    break;
+
+                default:
+                    throw new NotImplementedException($"{nameof(MethodType)}.{delegateType.ToString()} is not implemented");
+            }
+        }
+
+        private void ExecuteHandleAsyncWithResultUsingReflection(IInvocation invocation)
+        {
+            var resultType = invocation.Request.Method.ReturnType.GetGenericArguments()[0];
+            var method = HandleAsyncMethodInfo.MakeGenericMethod(resultType);
+            invocation.ReturnValue = method.Invoke(this, new[] { invocation.ReturnValue });
+        }
+
+        private MethodType GetDelegateType(MethodInfo method)
+        {
+            var returnType = method.ReturnType;
+            if (returnType == typeof(Task))
+            {
+                return MethodType.AsyncAction;
+            }
+
+            if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>))
+            {
+                return MethodType.AsyncFunction;
+            }
+
+            return MethodType.Synchronous;
+        }
+
+        private async Task HandleAsync(Task task)
+        {
+            await this.handler.HandleExceptions(async () => await task);
+        }
+
+        private async Task<T> HandleAsyncWithResult<T>(Task<T> task)
+        {
+            return await this.handler.HandleExceptions(async () => await task);
         }
     }
 }
