@@ -91,6 +91,7 @@
     <Compile Include="IDateTimeProvider.cs" />
     <Compile Include="IDefinable.cs" />
     <Compile Include="IDescribable.cs" />
+    <Compile Include="IDeserializer.cs" />
     <Compile Include="IDocumentFactory.cs" />
     <Compile Include="IDocumentFormatter.cs" />
     <Compile Include="IDocumentGenerator.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="IDocumentToDocumentCloner.cs" />
     <Compile Include="IDocumentValidator.cs" />
     <Compile Include="IExceptionHandler.cs" />
+    <Compile Include="IGenericDeserializer.cs" />
     <Compile Include="IGenericDocumentCloner.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
     <Compile Include="IGenericFactory.cs" />
