@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.Collections.Concurrent;
@@ -7,19 +7,14 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    using Contracts;
+    using Contracts.Models;
     using ProcessingTools.Contracts;
 
-    public class DirectoryProcessor : ISimpleProcessor
+    public class DirectoryProcessor
     {
         private string direcoryName;
         private IJournal journal;
         private ILogger logger;
-
-        public DirectoryProcessor(string direcoryName, IJournal journal)
-            : this(direcoryName, journal, null)
-        {
-        }
 
         public DirectoryProcessor(string direcoryName, IJournal journal, ILogger logger)
         {

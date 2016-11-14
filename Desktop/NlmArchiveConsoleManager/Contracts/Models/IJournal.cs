@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Contracts
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Contracts.Models
 {
     public interface IJournal
     {

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
 {
     using System.Collections.Generic;
-    using Contracts;
+    using Contracts.Models;
 
     public class Article : IArticle
     {

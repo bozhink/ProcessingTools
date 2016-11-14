@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Settings
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.Reflection;
     using Ninject;

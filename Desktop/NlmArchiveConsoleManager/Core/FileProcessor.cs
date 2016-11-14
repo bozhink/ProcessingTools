@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Core
 {
     using System;
     using System.Collections.Generic;
@@ -9,13 +9,13 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Contracts;
+    using Contracts.Models;
     using DocumentProvider;
     using Models;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
-    public class FileProcessor : ISimpleProcessor
+    public class FileProcessor
     {
         private const string SelectHrefXPath = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
 
@@ -24,11 +24,6 @@
         private string fileName;
         private string fileNameWithoutExtension;
         private ICollection<string> externalFiles;
-
-        public FileProcessor(string fileName, IJournal journal)
-            : this(fileName, journal, null)
-        {
-        }
 
         public FileProcessor(string fileName, IJournal journal, ILogger logger)
         {

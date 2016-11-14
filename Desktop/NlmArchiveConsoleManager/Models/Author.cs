@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
 {
-    using Contracts;
+    using Contracts.Models;
 
     public class Author : IAuthor
     {
