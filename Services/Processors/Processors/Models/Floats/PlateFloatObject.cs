@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "plate";
 
-        public string ResultantReferenceType => AttributeValues.Figure;
+        public string ResultantReferenceType => AttributeValues.RefTypeFigure;
 
         public string Description => "Plate";
     }

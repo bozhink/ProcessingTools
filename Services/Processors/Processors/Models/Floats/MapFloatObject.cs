@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "map";
 
-        public string ResultantReferenceType => AttributeValues.Figure;
+        public string ResultantReferenceType => AttributeValues.RefTypeFigure;
 
         public string Description => "Map";
     }

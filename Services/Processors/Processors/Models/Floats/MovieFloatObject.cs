@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "movie";
 
-        public string ResultantReferenceType => AttributeValues.Figure;
+        public string ResultantReferenceType => AttributeValues.RefTypeFigure;
 
         public string Description => "Movie";
     }

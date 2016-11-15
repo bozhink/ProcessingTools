@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "boxed-text";
 
-        public string ResultantReferenceType => AttributeValues.TextBox;
+        public string ResultantReferenceType => AttributeValues.RefTypeTextBox;
 
         public string Description => "Box";
     }

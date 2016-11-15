@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "supplementary-material";
 
-        public string ResultantReferenceType => AttributeValues.SupplementaryMaterial;
+        public string ResultantReferenceType => AttributeValues.RefTypeSupplementaryMaterial;
 
         public string Description => "Supplementary material";
     }

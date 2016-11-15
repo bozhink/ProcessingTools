@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "app";
 
-        public string ResultantReferenceType => AttributeValues.Appendix;
+        public string ResultantReferenceType => AttributeValues.RefTypeAppendix;
 
         public string Description => "Appendix";
     }

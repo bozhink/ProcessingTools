@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "table";
 
-        public string ResultantReferenceType => AttributeValues.Table;
+        public string ResultantReferenceType => AttributeValues.RefTypeTable;
 
         public string Description => "Box";
     }

@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "table-appendix";
 
-        public string ResultantReferenceType => AttributeValues.Table;
+        public string ResultantReferenceType => AttributeValues.RefTypeTable;
 
         public string Description => "Table Appendix";
     }

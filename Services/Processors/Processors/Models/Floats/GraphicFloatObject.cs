@@ -18,7 +18,7 @@
 
         public string InternalReferenceType => "graphic";
 
-        public string ResultantReferenceType => AttributeValues.Figure;
+        public string ResultantReferenceType => AttributeValues.RefTypeFigure;
 
         public string Description => "Graphic";
     }
