@@ -67,7 +67,7 @@
                 var xmlFileProcessor = new XmlFileProcessor(this.FileName, null, this.logger);
                 xmlFileProcessor.Read(document);
 
-                if (document.XmlDocument.DocumentElement.Name != ElementNames.ArticleElementName)
+                if (document.XmlDocument.DocumentElement.Name != ElementNames.Article)
                 {
                     throw new ApplicationException($"'{this.fileName}' is not a NLM xml file.");
                 }
@@ -97,7 +97,7 @@
 
                 this.MoveXmlFile(fileNameReplacementPrefix);
 
-                var taxpubDtd = document.XmlDocument.CreateDocumentType(ElementNames.ArticleElementName, DocumentTypes.TaxPubPublicId, DocumentTypes.TaxPubSystemId, null);
+                var taxpubDtd = document.XmlDocument.CreateDocumentType(ElementNames.Article, DocumentTypes.TaxPubPublicId, DocumentTypes.TaxPubSystemId, null);
 
                 xmlFileProcessor.Write(document, taxpubDtd);
             });

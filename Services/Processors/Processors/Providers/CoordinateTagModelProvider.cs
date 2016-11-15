@@ -9,7 +9,7 @@
     {
         public Func<XmlDocument, XmlElement> TagModel => document =>
         {
-            var tagModel = document.CreateElement(ElementNames.GeoCoordinateElementName);
+            var tagModel = document.CreateElement(ElementNames.GeoCoordinate);
 
             return tagModel;
         };

@@ -93,15 +93,15 @@
                 PreserveWhitespace = true
             };
 
-            var body = document.CreateElement(ElementNames.BodyElementName);
+            var body = document.CreateElement(ElementNames.Body);
             foreach (var line in File.ReadLines(fullName.ToString()))
             {
-                var paragraph = document.CreateElement(ElementNames.ParagraphElementName);
+                var paragraph = document.CreateElement(ElementNames.Paragraph);
                 paragraph.InnerText = line;
                 body.AppendChild(paragraph);
             }
 
-            var documentElement = document.CreateElement(ElementNames.ArticleElementName);
+            var documentElement = document.CreateElement(ElementNames.Article);
             documentElement.AppendChild(body);
 
             document.AppendChild(documentElement);
