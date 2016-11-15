@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.Reflection;
-    using Contracts.Core;
+    using Contracts.Factories;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
@@ -32,19 +32,15 @@
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.Files.Generators.IFileNameGenerator>()
-                .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
-                .InSingletonScope();
-
             this.Bind<ProcessingTools.Contracts.IDeserializer>()
                 .To<ProcessingTools.Serialization.Serializers.DataContractJsonDeserializer>()
                 .InSingletonScope();
 
-            this.Bind<IDirectoryProcessor>()
+            this.Bind<IDirectoryProcessorFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<IFileProcessor>()
+            this.Bind<IFileProcessorFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }

@@ -6,22 +6,31 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
     using Contracts.Core;
+    using Contracts.Factories;
     using Contracts.Models;
-    using ProcessingTools.Contracts;
 
     public class DirectoryProcessor : IDirectoryProcessor
     {
+        private readonly IFileProcessorFactory fileProcessorFactory;
+        private readonly IJournal journal;
         private string direcoryName;
-        private IJournal journal;
-        private ILogger logger;
 
-        public DirectoryProcessor(string direcoryName, IJournal journal, ILogger logger)
+        public DirectoryProcessor(string direcoryName, IJournal journal, IFileProcessorFactory fileProcessorFactory)
         {
+            if (journal == null)
+            {
+                throw new ArgumentNullException(nameof(journal));
+            }
+
+            if (fileProcessorFactory == null)
+            {
+                throw new ArgumentNullException(nameof(fileProcessorFactory));
+            }
+
             this.DirectoryName = direcoryName;
             this.journal = journal;
-            this.logger = logger;
+            this.fileProcessorFactory = fileProcessorFactory;
         }
 
         private string DirectoryName
@@ -49,6 +58,8 @@
 
         public Task Process()
         {
+            var matchSupplementaryMaterial = new Regex(@"\-s\d+\Z");
+
             return Task.Run(() =>
             {
                 var exceptions = new ConcurrentQueue<Exception>();
@@ -57,30 +68,26 @@
 
                 Directory.SetCurrentDirectory(this.DirectoryName);
 
-                {
-                    var files = Directory.GetFiles(Directory.GetCurrentDirectory());
+                var xmlFiles = Directory.GetFiles(Directory.GetCurrentDirectory())
+                    .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == "xml" &&
+                                !matchSupplementaryMaterial.IsMatch(Path.GetFileNameWithoutExtension(f)))
+                    .ToArray();
 
-                    var xmlFiles = files
-                        .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == "xml" &&
-                                    !Regex.IsMatch(Path.GetFileNameWithoutExtension(f), @"\-s\d+\Z"))
-                        .ToArray();
-
-                    Parallel.ForEach(
-                        xmlFiles,
-                        (fileName, state) =>
+                Parallel.ForEach(
+                    xmlFiles,
+                    (fileName, state) =>
+                    {
+                        try
                         {
-                            try
-                            {
-                                var fileProcessor = new FileProcessor(fileName, journal, logger);
-                                fileProcessor.Process().Wait();
-                            }
-                            catch (Exception e)
-                            {
-                                exceptions.Enqueue(e);
-                                ////state.Break();
-                            }
-                        });
-                }
+                            var fileProcessor = this.fileProcessorFactory.CreateFileProcessor(fileName, journal);
+                            fileProcessor.Process().Wait();
+                        }
+                        catch (Exception e)
+                        {
+                            exceptions.Enqueue(e);
+                            ////state.Break();
+                        }
+                    });
 
                 Directory.SetCurrentDirectory(initialDirectory);
 
