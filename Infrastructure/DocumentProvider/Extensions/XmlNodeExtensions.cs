@@ -2,8 +2,7 @@
 {
     using System;
     using System.Xml;
-
-    using ProcessingTools.Nlm.Publishing.Constants;
+    using ProcessingTools.Constants.Schema;
 
     public static class XmlNodeExtensions
     {

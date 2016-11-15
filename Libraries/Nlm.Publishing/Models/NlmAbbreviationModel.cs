@@ -2,7 +2,7 @@
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
-    using Constants;
+    using ProcessingTools.Constants.Schema;
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = ElementNames.Abbrev, Namespace = "", IsNullable = false)]

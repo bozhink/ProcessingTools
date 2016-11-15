@@ -6,15 +6,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts.Floats;
     using Models.Floats;
-
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.MediaType.Services.Data.Contracts;
-    using ProcessingTools.Nlm.Publishing.Constants;
     using ProcessingTools.Xml.Extensions;
 
     public class MediaTypesResolver : IMediaTypesResolver

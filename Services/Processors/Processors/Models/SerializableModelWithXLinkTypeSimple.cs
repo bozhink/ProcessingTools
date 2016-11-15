@@ -2,7 +2,7 @@
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
-    using ProcessingTools.Nlm.Publishing.Constants;
+    using ProcessingTools.Constants.Schema;
 
     public class SerializableModelWithXLinkTypeSimple
     {

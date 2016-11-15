@@ -4,11 +4,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts.Floats;
-
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Nlm.Publishing.Constants;
 
     public class TableFootNotesTagger : ITableFootNotesTagger
     {
@@ -77,7 +75,7 @@
         private void WrapCitationInXref(string id, XmlNode footnoteCitation)
         {
             var xref = footnoteCitation.OwnerDocument.CreateElement(ElementNames.XRef);
-            xref.SetAttribute(AttributeNames.RefType, RefTypeAttributeValues.TableFootnote);
+            xref.SetAttribute(AttributeNames.RefType, AttributeValues.TableFootnote);
             xref.SetAttribute(AttributeNames.RId, id);
             xref.InnerXml = footnoteCitation.OuterXml;
 

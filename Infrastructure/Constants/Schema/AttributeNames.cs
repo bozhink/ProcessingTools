@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Nlm.Publishing.Constants
+﻿namespace ProcessingTools.Constants.Schema
 {
-    public static class AttributeNames
+    public sealed class AttributeNames
     {
         public const string Id = "id";
         public const string RId = "rid";

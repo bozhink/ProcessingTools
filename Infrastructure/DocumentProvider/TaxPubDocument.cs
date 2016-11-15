@@ -4,10 +4,9 @@
     using System.Linq;
     using System.Text;
     using System.Xml;
-
     using Contracts;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Nlm.Publishing.Constants;
 
     public class TaxPubDocument : ITaxPubDocument
     {

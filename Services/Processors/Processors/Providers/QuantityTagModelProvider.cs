@@ -4,7 +4,7 @@
     using System.Xml;
     using Contracts.Providers;
     using ProcessingTools.Constants.Content;
-    using ProcessingTools.Nlm.Publishing.Constants;
+    using ProcessingTools.Constants.Schema;
 
     public class QuantityTagModelProvider : IQuantityTagModelProvider
     {

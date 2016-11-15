@@ -5,13 +5,11 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts.Formatters;
-
     using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Nlm.Publishing.Constants;
     using ProcessingTools.Xml.Extensions;
 
     public class TreatmentFormatter : ITreatmentFormatter
@@ -130,15 +128,15 @@
                         string.Empty,
                         "$1",
                         string.Empty,
-                        TaxPubElementNames.TaxonStatus,
+                        ElementNames.TaxonStatus,
                         Namespaces.TaxPubNamespacePrefix,
                         Namespaces.TaxPubNamespaceUri);
 
-                    var statusNode = authorityStatusNode.SelectSingleNode($"{Namespaces.TaxPubNamespacePrefix}:{TaxPubElementNames.TaxonStatus}", document.NamespaceManager);
+                    var statusNode = authorityStatusNode.SelectSingleNode($"{Namespaces.TaxPubNamespacePrefix}:{ElementNames.TaxonStatus}", document.NamespaceManager);
                     if (statusNode == null)
                     {
                         var authorityNode = authorityStatusNode.OwnerDocument
-                            .CreateElement(Namespaces.TaxPubNamespacePrefix, TaxPubElementNames.TaxonAuthority, Namespaces.TaxPubNamespaceUri);
+                            .CreateElement(Namespaces.TaxPubNamespacePrefix, ElementNames.TaxonAuthority, Namespaces.TaxPubNamespaceUri);
                         authorityNode.InnerXml = authorityStatusNode.InnerXml;
                         authorityStatusNode.InnerXml = authorityNode.OuterXml;
                     }
@@ -150,7 +148,7 @@
                             string.Empty,
                             "$1",
                             string.Empty,
-                            TaxPubElementNames.TaxonAuthority,
+                            ElementNames.TaxonAuthority,
                             Namespaces.TaxPubNamespacePrefix,
                             Namespaces.TaxPubNamespaceUri);
                     }

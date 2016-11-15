@@ -2,17 +2,18 @@
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
+    using ProcessingTools.Constants.Schema;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot(ProcessingTools.Nlm.Publishing.Constants.ElementNames.NamedContent, Namespace = "", IsNullable = false)]
+    [XmlRoot(ElementNames.NamedContent, Namespace = "", IsNullable = false)]
     public class BiorepositoriesCollectionCodeSerializableModel : NamedContentSerializableModel
     {
-        [XmlAttribute(ProcessingTools.Nlm.Publishing.Constants.AttributeNames.ContentType)]
+        [XmlAttribute(AttributeNames.ContentType)]
         public override string ContentType
         {
             get
             {
-                return ProcessingTools.Constants.Schema.AttributeValues.BiorepositoriesCollectionCodeContentType;
+                return AttributeValues.BiorepositoriesCollectionCodeContentType;
             }
 
             set
@@ -20,7 +21,7 @@
             }
         }
 
-        [XmlAttribute(ProcessingTools.Nlm.Publishing.Constants.AttributeNames.XLinkTitle, Form = XmlSchemaForm.Qualified, Namespace = ProcessingTools.Nlm.Publishing.Constants.Namespaces.XlinkNamespaceUri)]
+        [XmlAttribute(AttributeNames.XLinkTitle, Form = XmlSchemaForm.Qualified, Namespace = Namespaces.XlinkNamespaceUri)]
         public string XLinkTitle { get; set; }
     }
 }

@@ -3,9 +3,8 @@
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
-
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Nlm.Publishing.Constants;
     using ProcessingTools.Xml.Extensions;
 
     internal class Abbreviation : IAbbreviation

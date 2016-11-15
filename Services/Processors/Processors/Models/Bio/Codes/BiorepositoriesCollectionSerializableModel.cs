@@ -1,17 +1,18 @@
 ﻿namespace ProcessingTools.Processors.Models.Bio.Codes
 {
     using System.Xml.Serialization;
+    using ProcessingTools.Constants.Schema;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot(ProcessingTools.Nlm.Publishing.Constants.ElementNames.NamedContent, Namespace = "", IsNullable = false)]
+    [XmlRoot(ElementNames.NamedContent, Namespace = "", IsNullable = false)]
     public class BiorepositoriesCollectionSerializableModel : NamedContentSerializableModel
     {
-        [XmlAttribute(ProcessingTools.Nlm.Publishing.Constants.AttributeNames.ContentType)]
+        [XmlAttribute(AttributeNames.ContentType)]
         public override string ContentType
         {
             get
             {
-                return ProcessingTools.Constants.Schema.AttributeValues.BiorepositoriesCollectionContentType;
+                return AttributeValues.BiorepositoriesCollectionContentType;
             }
 
             set
