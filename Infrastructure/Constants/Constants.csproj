@@ -45,6 +45,7 @@
     <Compile Include="ProcessingConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\AttributeValues.cs" />
+    <Compile Include="Schema\DocumentTypes.cs" />
     <Compile Include="Schema\ElementNames.cs" />
     <Compile Include="Schema\Namespaces.cs" />
     <Compile Include="Schema\XPathConstants.cs" />

@@ -13,15 +13,14 @@
     using Contracts.Models;
     using DocumentProvider;
     using Models;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
 
     public class FileProcessor : IFileProcessor
     {
-        private const string SelectHrefXPath = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
-
-        private ILogger logger;
-        private IJournal journal;
+        private readonly ILogger logger;
+        private readonly IJournal journal;
         private string fileName;
         private string fileNameWithoutExtension;
         private ICollection<string> externalFiles;
@@ -68,19 +67,19 @@
                 var xmlFileProcessor = new XmlFileProcessor(this.FileName, null, this.logger);
                 xmlFileProcessor.Read(document);
 
-                if (document.XmlDocument.DocumentElement.Name != "article")
+                if (document.XmlDocument.DocumentElement.Name != ElementNames.ArticleElementName)
                 {
                     throw new ApplicationException($"'{this.fileName}' is not a NLM xml file.");
                 }
 
                 var article = new Article
                 {
-                    Doi = document.XmlDocument.SelectSingleNode("/article/front/article-meta/article-id[@pub-id-type='doi']")?.InnerText,
-                    Volume = document.XmlDocument.SelectSingleNode("/article/front/article-meta/volume")?.InnerText,
-                    Issue = document.XmlDocument.SelectSingleNode("/article/front/article-meta/issue")?.InnerText,
-                    FirstPage = document.XmlDocument.SelectSingleNode("/article/front/article-meta/fpage")?.InnerText,
-                    LastPage = document.XmlDocument.SelectSingleNode("/article/front/article-meta/lpage")?.InnerText,
-                    Id = document.XmlDocument.SelectSingleNode("/article/front/article-meta/elocation-id")?.InnerText,
+                    Doi = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleIdOfTypeDoiXPath)?.InnerText,
+                    Volume = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaVolumeXPath)?.InnerText,
+                    Issue = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaIssueXPath)?.InnerText,
+                    FirstPage = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaFirstPageXPath)?.InnerText,
+                    LastPage = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaLastPageXPath)?.InnerText,
+                    Id = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaElocationIdXPath)?.InnerText
                 };
 
                 string fileNameReplacementPrefix = string.Format(
@@ -98,7 +97,7 @@
 
                 this.MoveXmlFile(fileNameReplacementPrefix);
 
-                XmlDocumentType taxpubDtd = document.XmlDocument.CreateDocumentType("article", "-//TaxonX//DTD Taxonomic Treatment Publishing DTD v0 20100105//EN", "tax-treatment-NS0.dtd", null);
+                var taxpubDtd = document.XmlDocument.CreateDocumentType(ElementNames.ArticleElementName, DocumentTypes.TaxPubPublicId, DocumentTypes.TaxPubSystemId, null);
 
                 xmlFileProcessor.Write(document, taxpubDtd);
             });
@@ -136,7 +135,7 @@
         {
             // Get external files references.
             this.externalFiles = new HashSet<string>(document.XmlDocument
-                .SelectNodes(SelectHrefXPath, document.NamespaceManager)
+                .SelectNodes(XPathConstants.XLinkHrefXPath, document.NamespaceManager)
                 .Cast<XmlAttribute>()
                 .Select(h => h.InnerText));
 
@@ -161,7 +160,7 @@
         // Replace references in the xml document.
         private void UpdateContentInDocument(TaxPubDocument document, HashSet<FileReplacementModel> referencesNamesReplacements)
         {
-            foreach (XmlAttribute hrefAttribute in document.XmlDocument.SelectNodes(SelectHrefXPath, document.NamespaceManager))
+            foreach (XmlAttribute hrefAttribute in document.XmlDocument.SelectNodes(XPathConstants.XLinkHrefXPath, document.NamespaceManager))
             {
                 string content = hrefAttribute.InnerText;
 

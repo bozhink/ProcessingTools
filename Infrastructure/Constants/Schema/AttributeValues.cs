@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Schema
 {
-    public static class AttributeValues
+    public sealed class AttributeValues
     {
         public const string BiorepositoriesInstitutionContentType = "institution";
         public const string BiorepositoriesCollectionCodeContentType = "dwc:collectionCode";
