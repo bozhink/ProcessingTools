@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants
 {
-    public static class FileConstants
+    public sealed class FileConstants
     {
         public const int MaximalLengthOfGeneratedNewFileName = 50;
     }

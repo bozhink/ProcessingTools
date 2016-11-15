@@ -10,6 +10,7 @@
     using Contracts.Floats;
     using Models.Floats;
 
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.MediaType.Services.Data.Contracts;
@@ -39,7 +40,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            XmlNodeList mediaElements = context.SelectNodes(XPathValues.MediaElementXPath);
+            XmlNodeList mediaElements = context.SelectNodes(XPathConstants.MediaElementXPath);
 
             if (mediaElements.Count < 1)
             {

@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Constants.Media
 {
-    public static class MediaTypes
+    public sealed class MediaTypes
     {
-        public const string DefaultMimeType = "application";
         public const string DefaultMimeSubtype = "octet-stream";
+        public const string DefaultMimeType = "application";
     }
 }
