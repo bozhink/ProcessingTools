@@ -46,10 +46,10 @@
             this.logger?.Log("Reference:");
             try
             {
-                var sourceArticleSelfUriList = source.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
+                var sourceArticleSelfUriList = source.SelectNodes(XPathStrings.ArticleZooBankSelfUri);
                 int sourceArticleSelfUriListCount = sourceArticleSelfUriList.Count();
 
-                var targetArticleSelfUriList = target.SelectNodes(XPathConstants.ArticleZooBankSelfUriXPath);
+                var targetArticleSelfUriList = target.SelectNodes(XPathStrings.ArticleZooBankSelfUri);
                 int targetArticleSelfUriListCount = targetArticleSelfUriList.Count();
 
                 if (sourceArticleSelfUriListCount == targetArticleSelfUriListCount)
@@ -82,10 +82,10 @@
             this.logger?.Log("Author(s):");
             try
             {
-                var sourceContributorUriList = source.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
+                var sourceContributorUriList = source.SelectNodes(XPathStrings.ContributorZooBankUri);
                 int sourceContributorUriListCount = sourceContributorUriList.Count();
 
-                var targetContributorUriList = target.SelectNodes(XPathConstants.ContributorZooBankUriXPath);
+                var targetContributorUriList = target.SelectNodes(XPathStrings.ContributorZooBankUri);
                 int targetContributorUriListCount = targetContributorUriList.Count();
 
                 if (sourceContributorUriListCount == targetContributorUriListCount)
@@ -118,10 +118,10 @@
             this.logger?.Log("Taxonomic acts:");
             try
             {
-                var sourceNomenclaturesList = source.SelectNodes(XPathConstants.NomenclatureXPath);
+                var sourceNomenclaturesList = source.SelectNodes(XPathStrings.TaxonTreatmentNomenclature);
                 int sourceNomenclaturesListCount = sourceNomenclaturesList.Count();
 
-                var targetNomenclaturesList = target.SelectNodes(XPathConstants.NomenclatureXPath);
+                var targetNomenclaturesList = target.SelectNodes(XPathStrings.TaxonTreatmentNomenclature);
                 int targetNomenclaturesListCount = targetNomenclaturesList.Count();
 
                 if (sourceNomenclaturesListCount == targetNomenclaturesListCount)
@@ -130,14 +130,14 @@
                     {
                         var targetNomenclatureNode = targetNomenclaturesList.ElementAt(i);
 
-                        var targetObjecIdList = targetNomenclatureNode.SelectNodes(XPathConstants.ZooBankObjectIdXPath);
+                        var targetObjecIdList = targetNomenclatureNode.SelectNodes(XPathStrings.ObjectIdOfTypeZooBank);
                         int targetObjectIdListCount = targetObjecIdList.Count;
 
                         if (targetObjectIdListCount > 0)
                         {
                             var sourceNomenclatureNode = sourceNomenclaturesList.ElementAt(i);
 
-                            var sourceObjecIdList = sourceNomenclatureNode.SelectNodes(XPathConstants.ZooBankObjectIdXPath);
+                            var sourceObjecIdList = sourceNomenclatureNode.SelectNodes(XPathStrings.ObjectIdOfTypeZooBank);
                             int sourceObjectIdListCount = sourceObjecIdList.Count;
 
                             if (targetObjectIdListCount == sourceObjectIdListCount)

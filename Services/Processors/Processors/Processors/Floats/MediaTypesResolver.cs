@@ -37,7 +37,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            XmlNodeList mediaElements = context.SelectNodes(XPathConstants.MediaElementXPath);
+            XmlNodeList mediaElements = context.SelectNodes(XPathStrings.MediaElement);
 
             if (mediaElements.Count < 1)
             {

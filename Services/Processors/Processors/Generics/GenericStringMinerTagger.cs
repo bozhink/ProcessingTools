@@ -55,7 +55,7 @@
 
             var data = await this.evaluator.Evaluate(document);
 
-            return await this.tagger.Tag(document, data, tagModel, XPathConstants.SelectContentNodesXPath);
+            return await this.tagger.Tag(document, data, tagModel, XPathStrings.ContentNodes);
         }
     }
 }

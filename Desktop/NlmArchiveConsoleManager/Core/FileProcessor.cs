@@ -74,12 +74,12 @@
 
                 var article = new Article
                 {
-                    Doi = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleIdOfTypeDoiXPath)?.InnerText,
-                    Volume = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaVolumeXPath)?.InnerText,
-                    Issue = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaIssueXPath)?.InnerText,
-                    FirstPage = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaFirstPageXPath)?.InnerText,
-                    LastPage = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaLastPageXPath)?.InnerText,
-                    Id = document.XmlDocument.SelectSingleNode(XPathConstants.ArticleMetaElocationIdXPath)?.InnerText
+                    Doi = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText,
+                    Volume = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaVolume)?.InnerText,
+                    Issue = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaIssue)?.InnerText,
+                    FirstPage = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaFirstPage)?.InnerText,
+                    LastPage = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaLastPage)?.InnerText,
+                    Id = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaElocationId)?.InnerText
                 };
 
                 string fileNameReplacementPrefix = string.Format(
@@ -135,7 +135,7 @@
         {
             // Get external files references.
             this.externalFiles = new HashSet<string>(document.XmlDocument
-                .SelectNodes(XPathConstants.XLinkHrefXPath, document.NamespaceManager)
+                .SelectNodes(XPathStrings.XLinkHref, document.NamespaceManager)
                 .Cast<XmlAttribute>()
                 .Select(h => h.InnerText));
 
@@ -160,7 +160,7 @@
         // Replace references in the xml document.
         private void UpdateContentInDocument(TaxPubDocument document, HashSet<FileReplacementModel> referencesNamesReplacements)
         {
-            foreach (XmlAttribute hrefAttribute in document.XmlDocument.SelectNodes(XPathConstants.XLinkHrefXPath, document.NamespaceManager))
+            foreach (XmlAttribute hrefAttribute in document.XmlDocument.SelectNodes(XPathStrings.XLinkHref, document.NamespaceManager))
             {
                 string content = hrefAttribute.InnerText;
 

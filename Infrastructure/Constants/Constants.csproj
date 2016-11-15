@@ -49,7 +49,7 @@
     <Compile Include="Schema\DocumentTypes.cs" />
     <Compile Include="Schema\ElementNames.cs" />
     <Compile Include="Schema\Namespaces.cs" />
-    <Compile Include="Schema\XPathConstants.cs" />
+    <Compile Include="Schema\XPathStrings.cs" />
     <Compile Include="Uri\UrlConstants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

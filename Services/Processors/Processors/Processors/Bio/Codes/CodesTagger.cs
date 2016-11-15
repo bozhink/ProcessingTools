@@ -172,8 +172,8 @@ namespace ProcessingTools.Processors.Bio.Codes
 
             var tagModel = this.GetTagModel(document);
 
-            await this.ReplaceSpecimenCodesInXml(document, XPathConstants.SelectContentNodesXPath, knownSpecimenCodes, tagModel);
-            await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathConstants.SelectContentNodesXPath, tagModel);
+            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, knownSpecimenCodes, tagModel);
+            await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathStrings.ContentNodes, tagModel);
         }
 
         public async Task TagSpecimenCodes(IDocument document)
@@ -199,8 +199,8 @@ namespace ProcessingTools.Processors.Bio.Codes
 
             var tagModel = this.GetTagModel(document);
 
-            await this.ReplaceSpecimenCodesInXml(document, XPathConstants.SelectContentNodesXPath, plausibleSpecimenCodes, tagModel);
-            await this.GuessSequentalSpecimenCodes(document, tagModel, XPathConstants.SelectContentNodesXPath);
+            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, plausibleSpecimenCodes, tagModel);
+            await this.GuessSequentalSpecimenCodes(document, tagModel, XPathStrings.ContentNodes);
         }
 
         private async Task<IEnumerable<string>> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)

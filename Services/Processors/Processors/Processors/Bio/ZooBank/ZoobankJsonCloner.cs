@@ -62,7 +62,7 @@
         private void ProcessArticleLsid(IDocument target, ZooBankRegistration source)
         {
             string articleLsid = UrlConstants.ZooBankPrefix + source.ReferenceUuid.Trim();
-            var selfUriNode = target.SelectSingleNode(XPathConstants.ArticleZooBankSelfUriXPath);
+            var selfUriNode = target.SelectSingleNode(XPathStrings.ArticleZooBankSelfUri);
             if (selfUriNode == null)
             {
                 throw new ApplicationException("article-meta/self-uri/@content-type='zoobank' is missing.");
