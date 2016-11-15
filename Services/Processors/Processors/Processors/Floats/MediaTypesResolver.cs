@@ -59,8 +59,8 @@
                 var mediatype = this.GetMediaTypeOfFileName(mediatypes, fileName);
 
                 mediaNode
-                    .SetOrUpdateAttribute(AttributeNames.MimeTypeAttributeName, mediatype.MimeType)
-                    .SetOrUpdateAttribute(AttributeNames.MimeSubtypeAttributeName, mediatype.MimeSubtype);
+                    .SetOrUpdateAttribute(AttributeNames.MimeType, mediatype.MimeType)
+                    .SetOrUpdateAttribute(AttributeNames.MimeSubtype, mediatype.MimeSubtype);
             }
 
             return true;
@@ -84,7 +84,7 @@
 
         private string GetFileName(XmlNode mediaNode)
         {
-            return mediaNode.Attributes[AttributeNames.FileNameAttributeName]?.InnerText;
+            return mediaNode.Attributes[AttributeNames.XLinkHrefFullAttributeName]?.InnerText;
         }
 
         private IMediaType GetMediaTypeOfFileName(IEnumerable<IMediaType> mediatypes, string fileName)

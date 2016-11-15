@@ -76,7 +76,7 @@
         {
             var xref = footnoteCitation.OwnerDocument.CreateElement(ElementNames.XRef);
             xref.SetAttribute(AttributeNames.RefType, AttributeValues.RefTypeTableFootnote);
-            xref.SetAttribute(AttributeNames.RId, id);
+            xref.SetAttribute(AttributeNames.ReferenceId, id);
             xref.InnerXml = footnoteCitation.OuterXml;
 
             footnoteCitation.ParentNode.ReplaceChild(xref, footnoteCitation);
