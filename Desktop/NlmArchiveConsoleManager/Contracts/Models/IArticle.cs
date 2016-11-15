@@ -4,20 +4,20 @@
 
     public interface IArticle
     {
-        string Id { get; set; }
+        string Doi { get; }
 
-        string Doi { get; set; }
+        string FirstPage { get; }
 
-        string Title { get; set; }
+        string Id { get; }
 
-        string Volume { get; set; }
+        string Issue { get; }
 
-        string Issue { get; set; }
+        string LastPage { get; }
 
-        string FirstPage { get; set; }
+        string Title { get; }
 
-        string LastPage { get; set; }
+        string Volume { get; }
 
-        ICollection<IAuthor> Authors { get; set; }
+        ICollection<IAuthor> Authors { get; }
     }
 }

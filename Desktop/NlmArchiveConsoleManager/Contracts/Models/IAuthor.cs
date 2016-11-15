@@ -2,12 +2,12 @@
 {
     public interface IAuthor
     {
-        string Surname { get; set; }
+        string GivenNames { get; }
 
-        string GivenNames { get; set; }
+        string Prefix { get; }
 
-        string Prefix { get; set; }
+        string Suffix { get; }
 
-        string Suffix { get; set; }
+        string Surname { get; }
     }
 }

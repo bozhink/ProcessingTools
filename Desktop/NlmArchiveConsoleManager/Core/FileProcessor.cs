@@ -4,33 +4,62 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts.Core;
     using Contracts.Models;
-    using DocumentProvider;
+    using Contracts.Services;
     using Models;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Data.Contracts.Files;
 
     public class FileProcessor : IFileProcessor
     {
-        private readonly ILogger logger;
+        private readonly IArticleMetaHarvester articleMetaHarvester;
+        private readonly IDocumentFactory documentFactory;
+        private readonly IXmlFileContentDataService fileManager;
         private readonly IJournal journal;
+        private readonly ILogger logger;
         private string fileName;
         private string fileNameWithoutExtension;
-        private ICollection<string> externalFiles;
 
-        public FileProcessor(string fileName, IJournal journal, ILogger logger)
+        public FileProcessor(
+            string fileName,
+            IJournal journal,
+            IDocumentFactory documentFactory,
+            IXmlFileContentDataService fileManager,
+            IArticleMetaHarvester articleMetaHarvester,
+            ILogger logger)
         {
+            if (journal == null)
+            {
+                throw new ArgumentNullException(nameof(journal));
+            }
+
+            if (documentFactory == null)
+            {
+                throw new ArgumentNullException(nameof(documentFactory));
+            }
+
+            if (fileManager == null)
+            {
+                throw new ArgumentNullException(nameof(fileManager));
+            }
+
+            if (articleMetaHarvester == null)
+            {
+                throw new ArgumentNullException(nameof(articleMetaHarvester));
+            }
+
             this.FileName = fileName;
-            this.logger = logger;
             this.journal = journal;
-            this.externalFiles = new HashSet<string>();
+            this.documentFactory = documentFactory;
+            this.fileManager = fileManager;
+            this.articleMetaHarvester = articleMetaHarvester;
+            this.logger = logger;
         }
 
         private string FileName
@@ -57,56 +86,79 @@
             }
         }
 
-        public Task Process()
+        public async Task Process()
         {
-            return Task.Run(() =>
+            var document = await this.ReadDocument();
+            if (document.XmlDocument.DocumentElement.Name != ElementNames.Article)
             {
-                this.logger?.Log(this.FileName);
+                throw new ApplicationException($"'{this.fileName}' is not a NLM xml file.");
+            }
 
-                var document = new TaxPubDocument(Encoding.UTF8);
-                var xmlFileProcessor = new XmlFileProcessor(this.FileName, null, this.logger);
-                xmlFileProcessor.Read(document);
+            string fileNameReplacementPrefix = await this.ComposeFileNameReplacementPrefix(document);
+            this.logger?.Log("{0} / {1}", this.FileName, fileNameReplacementPrefix);
 
-                if (document.XmlDocument.DocumentElement.Name != ElementNames.Article)
+            this.ProcessExternalFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
+            this.MoveXmlFile(fileNameReplacementPrefix);
+
+            var outputFileName = $"{fileNameReplacementPrefix}.xml";
+            await this.WriteDocument(document, outputFileName);
+        }
+
+        private async Task<string> ComposeFileNameReplacementPrefix(IDocument document)
+        {
+            var articleMeta = await this.articleMetaHarvester.Harvest(document);
+
+            string fileNameReplacementPrefix = string.Format(
+                this.journal.FileNamePattern,
+                articleMeta.Volume?.ConvertTo<int>(),
+                articleMeta.Issue?.ConvertTo<int>(),
+                articleMeta.Id,
+                articleMeta.FirstPage?.ConvertTo<int>());
+
+            return fileNameReplacementPrefix;
+        }
+
+        // Move external files to the new destinations.
+        private void MoveExternalFiles(IEnumerable<IFileReplacementModel> referencesNamesReplacements)
+        {
+            Parallel.ForEach(
+                referencesNamesReplacements,
+                (reference) =>
+            {
+                try
                 {
-                    throw new ApplicationException($"'{this.fileName}' is not a NLM xml file.");
+                    // File names here are supposed to be (1) relative or (2) web links
+                    if (reference.Source == reference.OriginalFileName)
+                    {
+                        // (1) Relative local file names
+                        File.Move(reference.Source, reference.Destination);
+                    }
+                    else
+                    {
+                        // (2) Web links, etc.
+                        File.Copy(reference.Source, reference.Destination);
+
+                        try
+                        {
+                            File.Delete(reference.Source);
+                        }
+                        catch (Exception e)
+                        {
+                            this.logger?.Log(e);
+                        }
+                    }
                 }
-
-                var article = new Article
+                catch (Exception ex)
                 {
-                    Doi = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText,
-                    Volume = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaVolume)?.InnerText,
-                    Issue = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaIssue)?.InnerText,
-                    FirstPage = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaFirstPage)?.InnerText,
-                    LastPage = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaLastPage)?.InnerText,
-                    Id = document.XmlDocument.SelectSingleNode(XPathStrings.ArticleMetaElocationId)?.InnerText
-                };
-
-                string fileNameReplacementPrefix = string.Format(
-                    this.journal.FileNamePattern,
-                    article.Volume?.ConvertTo<int>(),
-                    article.Issue?.ConvertTo<int>(),
-                    article.Id,
-                    article.FirstPage?.ConvertTo<int>());
-
-                this.logger?.Log(fileNameReplacementPrefix);
-
-                xmlFileProcessor.OutputFileName = $"{fileNameReplacementPrefix}.xml";
-
-                this.ProcessExternalFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
-
-                this.MoveXmlFile(fileNameReplacementPrefix);
-
-                var taxpubDtd = document.XmlDocument.CreateDocumentType(ElementNames.Article, DocumentTypes.TaxPubPublicId, DocumentTypes.TaxPubSystemId, null);
-
-                xmlFileProcessor.Write(document, taxpubDtd);
+                    this.logger?.Log(ex);
+                }
             });
         }
 
         // Move other files with name FileName and different extensions to corresponding destination.
         private void MoveXmlFile(string fileNameReplacementPrefix)
         {
-            var filesToMove = new HashSet<FileReplacementModel>(Directory
+            var filesToMove = new HashSet<IFileReplacementModel>(Directory
                 .GetFiles(Directory.GetCurrentDirectory())
                 .Where(f => Path.GetFileNameWithoutExtension(f) == this.fileNameWithoutExtension)
                 .Select(f => new FileReplacementModel
@@ -131,16 +183,15 @@
                 });
         }
 
-        private void ProcessExternalFiles(TaxPubDocument document, string orginalPrefix, string fileNameReplacementPrefix)
+        private void ProcessExternalFiles(IDocument document, string orginalPrefix, string fileNameReplacementPrefix)
         {
             // Get external files references.
-            this.externalFiles = new HashSet<string>(document.XmlDocument
-                .SelectNodes(XPathStrings.XLinkHref, document.NamespaceManager)
+            var externalFiles = new HashSet<string>(document.SelectNodes(XPathStrings.XLinkHref)
                 .Cast<XmlAttribute>()
                 .Select(h => h.InnerText));
 
             var matchXmlFileName = new Regex($"\\A{Regex.Escape(orginalPrefix)}");
-            var referencesNamesReplacements = new HashSet<FileReplacementModel>(this.externalFiles
+            var referencesNamesReplacements = new HashSet<IFileReplacementModel>(externalFiles
                 .Select(f =>
                 {
                     string externalFileName = Path.GetFileName(f);
@@ -157,10 +208,17 @@
             this.UpdateContentInDocument(document, referencesNamesReplacements);
         }
 
-        // Replace references in the xml document.
-        private void UpdateContentInDocument(TaxPubDocument document, HashSet<FileReplacementModel> referencesNamesReplacements)
+        private async Task<IDocument> ReadDocument()
         {
-            foreach (XmlAttribute hrefAttribute in document.XmlDocument.SelectNodes(XPathStrings.XLinkHref, document.NamespaceManager))
+            var xml = await this.fileManager.ReadXmlFile(this.FileName);
+            var document = this.documentFactory.Create(xml.DocumentElement.OuterXml);
+            return document;
+        }
+
+        // Replace references in the xml document.
+        private void UpdateContentInDocument(IDocument document, IEnumerable<IFileReplacementModel> referencesNamesReplacements)
+        {
+            foreach (XmlAttribute hrefAttribute in document.SelectNodes(XPathStrings.XLinkHref))
             {
                 string content = hrefAttribute.InnerText;
 
@@ -170,38 +228,15 @@
             }
         }
 
-        // Move external files to the new destinations.
-        private void MoveExternalFiles(HashSet<FileReplacementModel> referencesNamesReplacements)
+        private async Task<object> WriteDocument(IDocument document, string outputFileName)
         {
-            Parallel.ForEach(
-                referencesNamesReplacements,
-                (reference) =>
-            {
-                try
-                {
-                    if (reference.Source == reference.OriginalFileName)
-                    {
-                        File.Move(reference.Source, reference.Destination);
-                    }
-                    else
-                    {
-                        File.Copy(reference.Source, reference.Destination);
+            var taxpubDtd = document.XmlDocument.CreateDocumentType(
+                ElementNames.Article,
+                DocumentTypes.TaxPubPublicId,
+                DocumentTypes.TaxPubSystemId,
+                null);
 
-                        try
-                        {
-                            File.Delete(reference.Source);
-                        }
-                        catch (Exception e)
-                        {
-                            this.logger?.Log(e);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    this.logger?.Log(ex);
-                }
-            });
+            return await this.fileManager.WriteXmlFile(outputFileName, document.XmlDocument, taxpubDtd);
         }
     }
 }

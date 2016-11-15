@@ -42,35 +42,32 @@
                 throw new ArgumentNullException(nameof(fullName));
             }
 
-            return Task.Run(() =>
+            var document = new XmlDocument
             {
-                var document = new XmlDocument
-                {
-                    PreserveWhitespace = true
-                };
+                PreserveWhitespace = true
+            };
 
-                var reader = this.GetReader(fullName);
+            var reader = this.GetReader(fullName);
+            try
+            {
+                document.Load(reader);
+                return Task.FromResult(document);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
                 try
                 {
-                    document.Load(reader);
-                    return document;
+                    reader.Close();
+                    reader.Dispose();
                 }
                 catch
                 {
-                    throw;
                 }
-                finally
-                {
-                    try
-                    {
-                        reader.Close();
-                        reader.Dispose();
-                    }
-                    catch
-                    {
-                    }
-                }
-            });
+            }
         }
     }
 }

@@ -73,7 +73,10 @@
                 this.logger?.Log(directoryName);
 
                 var direcoryProcessor = this.directoryProcessorFactory.CreateDirectoryProcessor(directoryName, journal);
-                await direcoryProcessor.Process();
+
+                // Processing of each should be executed strictly sequential
+                // due to the changes of the current location.
+                direcoryProcessor.Process().Wait();
             }
         }
     }

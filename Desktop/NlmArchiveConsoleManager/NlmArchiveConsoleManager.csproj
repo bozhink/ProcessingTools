@@ -75,6 +75,7 @@
     <Compile Include="Contracts\Models\IArticle.cs" />
     <Compile Include="Contracts\Models\IAuthor.cs" />
     <Compile Include="Contracts\Models\IJournal.cs" />
+    <Compile Include="Contracts\Services\IArticleMetaHarvester.cs" />
     <Compile Include="Contracts\Services\IJournalsMetaDataService.cs" />
     <Compile Include="Contracts\Settings\IApplicationSettings.cs" />
     <Compile Include="Core\DirectoryProcessor.cs" />
@@ -86,11 +87,13 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\FileReplacementModel.cs" />
+    <Compile Include="Contracts\Models\IFileReplacementModel.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\JournalDataContract.cs" />
     <Compile Include="PowerShellScriptInvoker.cs" />
     <Compile Include="PowerShellScriptParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ArticleMetaHarvester.cs" />
     <Compile Include="Services\JournalsMetaDataService.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
@@ -139,9 +142,7 @@
       <Name>Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

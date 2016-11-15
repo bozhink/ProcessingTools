@@ -2,21 +2,21 @@
 {
     public interface IJournal
     {
-        string JournalId { get; set; }
-
-        string JournalTitle { get; set; }
-
-        string AbbreviatedJournalTitle { get; set; }
-
-        string IssnPPub { get; set; }
-
-        string IssnEPub { get; set; }
-
-        string PublisherName { get; set; }
+        string AbbreviatedJournalTitle { get; }
 
         /// <summary>
-        /// Structure must be: {0} = volume, {1} = issue, {2} = id, {3} = first page.
+        /// Pattern: {0} = volume, {1} = issue, {2} = id, {3} = first page.
         /// </summary>
-        string FileNamePattern { get; set; }
+        string FileNamePattern { get; }
+
+        string IssnEPub { get; }
+
+        string IssnPPub { get; }
+
+        string JournalId { get; }
+
+        string JournalTitle { get; }
+
+        string PublisherName { get; }
     }
 }

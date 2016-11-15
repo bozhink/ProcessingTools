@@ -20,15 +20,21 @@
                 .BindDefaultInterface();
             });
 
+            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
+                .InSingletonScope();
+
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ProcessingTools.Loggers.ConsoleLogger>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileReader>();
+                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+                .WhenInjectedInto<ProcessingTools.Services.Data.Files.XmlFileContentDataService>();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
+                .WhenInjectedInto<ProcessingTools.Services.Data.Files.XmlFileContentDataService>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 

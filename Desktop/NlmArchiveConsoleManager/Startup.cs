@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager
 {
     using System;
+    using System.Diagnostics;
     using Contracts.Core;
     using Ninject;
     using Settings;
@@ -9,6 +10,9 @@
     {
         public static void Main(string[] args)
         {
+            var timer = new Stopwatch();
+            timer.Start();
+
             try
             {
                 using (var kernel = NinjectConfig.CreateKernel())
@@ -23,6 +27,8 @@
                 Console.WriteLine(e.ToString());
                 Console.ResetColor();
             }
+
+            Console.WriteLine("Elapsed time: {0}", timer.Elapsed);
         }
     }
 }
