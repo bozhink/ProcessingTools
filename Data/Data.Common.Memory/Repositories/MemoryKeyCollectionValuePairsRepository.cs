@@ -34,24 +34,21 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            return Task.Run<object>(() =>
-            {
-                var result = this.dataStore.AddOrUpdate(
-                    key,
-                    k =>
-                    {
-                        var collection = new HashSet<T>();
-                        collection.Add(value);
-                        return collection;
-                    },
-                    (k, l) =>
-                    {
-                        l.Add(value);
-                        return l;
-                    });
+            var result = this.dataStore.AddOrUpdate(
+                key,
+                k =>
+                {
+                    var collection = new HashSet<T>();
+                    collection.Add(value);
+                    return collection;
+                },
+                (k, l) =>
+                {
+                    l.Add(value);
+                    return l;
+                });
 
-                return result;
-            });
+            return Task.FromResult<object>(result);
         }
 
         public IEnumerable<T> GetAll(string key)
@@ -71,10 +68,7 @@
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return Task.Run<object>(() =>
-            {
-                return this.dataStore.Remove(key);
-            });
+            return Task.FromResult<object>(this.dataStore.Remove(key));
         }
 
         public Task<object> Remove(string key, T value)
@@ -89,19 +83,16 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            return Task.Run<object>(() =>
-            {
-                this.dataStore.AddOrUpdate(
-                    key,
-                    k => new HashSet<T>(),
-                    (k, c) =>
-                    {
-                        c.Remove(value);
-                        return c;
-                    });
+            this.dataStore.AddOrUpdate(
+                key,
+                k => new HashSet<T>(),
+                (k, c) =>
+                {
+                    c.Remove(value);
+                    return c;
+                });
 
-                return true;
-            });
+            return Task.FromResult<object>(true);
         }
 
         public Task<long> SaveChanges() => Task.FromResult(0L);

@@ -24,7 +24,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return Task.Run(() => this.RunSync(document));
+            return Task.FromResult(this.RunSync(document));
         }
 
         // TODO: implement with XSLT

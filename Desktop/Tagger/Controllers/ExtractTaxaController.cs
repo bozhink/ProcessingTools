@@ -19,42 +19,39 @@
 
         public Task<object> Run(IDocument document, IProgramSettings settings)
         {
-            return Task.Run<object>(() =>
+            if (settings.ExtractTaxa)
             {
-                if (settings.ExtractTaxa)
-                {
-                    this.logger?.Log(Messages.ExtractAllTaxaMessage);
-                    document.XmlDocument
-                        .ExtractTaxa(true)
-                        .OrderBy(i => i)
-                        .ToList()
-                        .ForEach(t => this.logger?.Log(t));
+                this.logger?.Log(Messages.ExtractAllTaxaMessage);
+                document.XmlDocument
+                    .ExtractTaxa(true)
+                    .OrderBy(i => i)
+                    .ToList()
+                    .ForEach(t => this.logger?.Log(t));
 
-                    return true;
-                }
+                return Task.FromResult<object>(true);
+            }
 
-                if (settings.ExtractLowerTaxa)
-                {
-                    this.logger?.Log(Messages.ExtractLowerTaxaMessage);
-                    document.XmlDocument
-                        .ExtractTaxa(true, TaxonType.Lower)
-                        .OrderBy(i => i)
-                        .ToList()
-                        .ForEach(t => this.logger?.Log(t));
-                }
+            if (settings.ExtractLowerTaxa)
+            {
+                this.logger?.Log(Messages.ExtractLowerTaxaMessage);
+                document.XmlDocument
+                    .ExtractTaxa(true, TaxonType.Lower)
+                    .OrderBy(i => i)
+                    .ToList()
+                    .ForEach(t => this.logger?.Log(t));
+            }
 
-                if (settings.ExtractHigherTaxa)
-                {
-                    this.logger?.Log(Messages.ExtractHigherTaxaMessage);
-                    document.XmlDocument
-                        .ExtractTaxa(true, TaxonType.Higher)
-                        .OrderBy(i => i)
-                        .ToList()
-                        .ForEach(t => this.logger?.Log(t));
-                }
+            if (settings.ExtractHigherTaxa)
+            {
+                this.logger?.Log(Messages.ExtractHigherTaxaMessage);
+                document.XmlDocument
+                    .ExtractTaxa(true, TaxonType.Higher)
+                    .OrderBy(i => i)
+                    .ToList()
+                    .ForEach(t => this.logger?.Log(t));
+            }
 
-                return true;
-            });
+            return Task.FromResult<object>(true);
         }
     }
 }

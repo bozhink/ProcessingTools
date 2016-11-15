@@ -1199,16 +1199,13 @@
 
         protected override Task<string> ResolveMediaType(string fileExtension)
         {
-            return Task.Run(() =>
+            string mediaType = null;
+            if (mimeTypes.TryGetValue(fileExtension, out mediaType))
             {
-                string mediaType = null;
-                if (mimeTypes.TryGetValue(fileExtension, out mediaType))
-                {
-                    return mediaType;
-                }
+                return Task.FromResult(mediaType);
+            }
 
-                return null;
-            });
+            return Task.FromResult<string>(null);
         }
     }
 }

@@ -35,11 +35,8 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return Task.Run<object>(() =>
-            {
-                this.provider.RenumerateFootNotes(document);
-                return true;
-            });
+            this.provider.RenumerateFootNotes(document);
+            return Task.FromResult<object>(true);
         }
     }
 }

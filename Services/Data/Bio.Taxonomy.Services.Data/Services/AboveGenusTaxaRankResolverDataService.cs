@@ -12,7 +12,7 @@
 
     public class AboveGenusTaxaRankResolverDataService : IAboveGenusTaxaRankResolverDataService
     {
-        public Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames) => Task.Run(() =>
+        public Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
             var result = new HashSet<ITaxonRank>(scientificNames
                 .Select(s => new TaxonRankServiceModel
@@ -21,7 +21,7 @@
                     Rank = TaxonRankType.AboveGenus
                 }));
 
-            return result.AsQueryable();
-        });
+            return Task.FromResult(result.AsQueryable());
+        }
     }
 }
