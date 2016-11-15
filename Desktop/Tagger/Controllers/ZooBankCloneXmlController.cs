@@ -7,16 +7,17 @@
     using Contracts.Controllers;
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.DocumentProvider;
+    using ProcessingTools.Contracts.Files.IO;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [Description("Clone ZooBank xml.")]
     public class ZooBankCloneXmlController : IZooBankCloneXmlController
     {
-        private readonly IDocumentFactory documentFactory;
         private readonly IZoobankXmlCloner cloner;
+        private readonly IDocumentFactory documentFactory;
+        private readonly IXmlFileReader fileReader;
 
-        public ZooBankCloneXmlController(IDocumentFactory documentFactory, IZoobankXmlCloner cloner)
+        public ZooBankCloneXmlController(IDocumentFactory documentFactory, IZoobankXmlCloner cloner, IXmlFileReader fileReader)
         {
             if (documentFactory == null)
             {
@@ -28,8 +29,14 @@
                 throw new ArgumentNullException(nameof(cloner));
             }
 
+            if (fileReader == null)
+            {
+                throw new ArgumentNullException(nameof(fileReader));
+            }
+
             this.documentFactory = documentFactory;
             this.cloner = cloner;
+            this.fileReader = fileReader;
         }
 
         public async Task<object> Run(IDocument document, IProgramSettings settings)
@@ -55,20 +62,17 @@
                 throw new ApplicationException("The file path to xml-file-to-clone should be set.");
             }
 
-            string outputFileName = settings.FileNames.ElementAt(1);
             string sourceFileName = settings.FileNames.ElementAt(2);
-            var sourceDocument = this.ReadSourceDocument(outputFileName, sourceFileName);
+            var sourceDocument = await this.ReadSourceDocument(sourceFileName);
 
             return await this.cloner.Clone(document, sourceDocument);
         }
 
-        private IDocument ReadSourceDocument(string outputFileName, string sourceFileName)
+        private async Task<IDocument> ReadSourceDocument(string sourceFileName)
         {
-            // TODO: DI
-            var sourceDocument = this.documentFactory.Create();
-            var fileProcessorNlm = new XmlFileProcessor(sourceFileName, outputFileName, null);
-            fileProcessorNlm.Read(sourceDocument);
-            return sourceDocument;
+            var xml = await this.fileReader.ReadXml(sourceFileName);
+            var document = this.documentFactory.Create(xml.OuterXml);
+            return document;
         }
     }
 }
