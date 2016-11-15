@@ -13,5 +13,8 @@
         public const string XLinkHrefFullAttributeName = "xlink:href";
         public const string XLinkTitle = "title";
         public const string XLinkType = "type";
+        public const string Position = "position";
+        public const string Type = "type";
+        public const string FullName = "full-name";
     }
 }

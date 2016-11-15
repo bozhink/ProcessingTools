@@ -3,10 +3,9 @@
     using System;
     using System.Linq;
     using System.Xml;
-
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
 
     internal class TaxonName : ITaxonName
     {
@@ -19,9 +18,9 @@
                 throw new ArgumentNullException(nameof(node));
             }
 
-            this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
+            this.Id = node.Attributes[AttributeNames.Id]?.InnerText ?? string.Empty;
 
-            var typeAttribute = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName];
+            var typeAttribute = node.Attributes[AttributeNames.Type];
             if (typeAttribute != null)
             {
                 this.Type = typeAttribute.InnerText.MapTaxonTypeStringToTaxonType();
@@ -31,7 +30,7 @@
                 this.Type = TaxonType.Undefined;
             }
 
-            var positionAttribute = node.Attributes[XmlInternalSchemaConstants.PositionAttributeName];
+            var positionAttribute = node.Attributes[AttributeNames.Position];
             long position = PositionDefaultValue;
             if (positionAttribute != null && long.TryParse(positionAttribute.InnerText, out position))
             {
@@ -42,7 +41,7 @@
                 this.Position = PositionDefaultValue;
             }
 
-            var parts = node.SelectNodes(XmlInternalSchemaConstants.TaxonNamePartElementName)
+            var parts = node.SelectNodes(ElementNames.TaxonNamePart)
                 .Cast<XmlNode>()
                 .Select(n => new TaxonNamePart(n))
                 .ToArray<ITaxonNamePart>();

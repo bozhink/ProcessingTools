@@ -3,10 +3,9 @@
     using System;
     using System.Linq.Expressions;
     using System.Xml;
-
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
 
     internal class TaxonNamePart : MinimalTaxonNamePart, ITaxonNamePart
     {
@@ -17,11 +16,11 @@
                 throw new ArgumentNullException(nameof(node));
             }
 
-            this.Id = node.Attributes[XmlInternalSchemaConstants.IdAttributeName]?.InnerText ?? string.Empty;
+            this.Id = node.Attributes[AttributeNames.Id]?.InnerText ?? string.Empty;
 
             this.Name = node.InnerText;
 
-            var typeAttribute = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName];
+            var typeAttribute = node.Attributes[AttributeNames.Type];
             if (typeAttribute != null)
             {
                 this.Rank = typeAttribute.InnerText.ToSpeciesPartType();
@@ -31,7 +30,7 @@
                 this.Rank = SpeciesPartType.Undefined;
             }
 
-            this.FullName = node.Attributes[XmlInternalSchemaConstants.FullNameAttributeName]?.InnerText;
+            this.FullName = node.Attributes[AttributeNames.FullName]?.InnerText;
         }
 
         public string Id { get; set; }

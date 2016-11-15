@@ -37,23 +37,6 @@
             this.logger = logger;
         }
 
-        public async Task Run(params string[] args)
-        {
-            IJournal journal = await this.journalsMetaService.GetJournalMeta();
-
-            var directories = args.Select(this.SelectDirectoryName)
-                .Where(d => !string.IsNullOrWhiteSpace(d))
-                .ToArray();
-
-            foreach (var directoryName in directories)
-            {
-                this.logger?.Log(directoryName);
-
-                var direcoryProcessor = this.directoryProcessorFactory.CreateDirectoryProcessor(directoryName, journal);
-                await direcoryProcessor.Process();
-            }
-        }
-
         private Func<string, string> SelectDirectoryName => x =>
         {
             if (Directory.Exists(x))
@@ -76,5 +59,22 @@
                 return null;
             }
         };
+
+        public async Task Run(params string[] args)
+        {
+            IJournal journal = await this.journalsMetaService.GetJournalMeta();
+
+            var directories = args.Select(this.SelectDirectoryName)
+                .Where(d => !string.IsNullOrWhiteSpace(d))
+                .ToArray();
+
+            foreach (var directoryName in directories)
+            {
+                this.logger?.Log(directoryName);
+
+                var direcoryProcessor = this.directoryProcessorFactory.CreateDirectoryProcessor(directoryName, journal);
+                await direcoryProcessor.Process();
+            }
+        }
     }
 }

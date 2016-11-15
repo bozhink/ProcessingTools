@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts.Formatters;
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
@@ -58,7 +57,7 @@
 
         private void FormatNomenclatureCitations(IDocument document)
         {
-            string firstNotWhitespaceNodeInCommentElementXPath = $"{ElementNames.Comment}/node()[normalize-space()!=''][position()=1][name()='{XmlInternalSchemaConstants.TaxonNameElementName}']";
+            string firstNotWhitespaceNodeInCommentElementXPath = $"{ElementNames.Comment}/node()[normalize-space()!=''][position()=1][name()='{ElementNames.TaxonName}']";
             string xpath = $"//tp:nomenclature-citation[count({ElementNames.Comment}) = count(*)][normalize-space({ElementNames.Comment}) = normalize-space(.)][{firstNotWhitespaceNodeInCommentElementXPath}]";
 
             document.SelectNodes(xpath)
@@ -162,7 +161,7 @@
 
         private void FormatObjectIdInNomenclature(XmlNode nomenclature)
         {
-            XmlElement taxonName = nomenclature[XmlInternalSchemaConstants.TaxonNameElementName];
+            XmlElement taxonName = nomenclature[ElementNames.TaxonName];
             if (taxonName != null && nomenclature[ElementNames.ObjectId] != null)
             {
                 foreach (XmlNode objectId in nomenclature.SelectNodes(ElementNames.ObjectId))

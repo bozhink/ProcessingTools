@@ -2,8 +2,9 @@
 {
     using System;
     using System.Linq;
-    using Constants;
-    using Types;
+    using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
 
     public static class TypesExtensions
     {
@@ -32,13 +33,13 @@
             string typeLowerCase = type.ToLower();
             switch (typeLowerCase)
             {
-                case XmlInternalSchemaConstants.AnyTaxonTypeValue:
+                case AttributeValues.TaxonTypeAny:
                     return TaxonType.Any;
 
-                case XmlInternalSchemaConstants.LowerTaxonTypeValue:
+                case AttributeValues.TaxonTypeLower:
                     return TaxonType.Lower;
 
-                case XmlInternalSchemaConstants.HigherTaxonTypeValue:
+                case AttributeValues.TaxonTypeHigher:
                     return TaxonType.Higher;
 
                 default:

@@ -12,7 +12,7 @@
 
         public GenericDataContractJsonDeserializer()
         {
-            serializer = new DataContractJsonSerializer(typeof(T));
+            this.serializer = new DataContractJsonSerializer(typeof(T));
         }
 
         public Task<T> Deserialize(Stream stream)

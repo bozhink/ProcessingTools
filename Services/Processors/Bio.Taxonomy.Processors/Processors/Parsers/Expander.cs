@@ -9,14 +9,12 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Comparers;
     using Contracts.Parsers;
     using Models.Parsers;
-
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
@@ -26,11 +24,11 @@
     {
         private readonly ILogger logger;
 
+        private readonly Expression<Func<ITaxonNamePart, bool>> matchResolvedGenera = p => (p.Rank == SpeciesPartType.Genus) && (p.IsResolved || !p.IsAbbreviated);
+        private readonly Expression<Func<ITaxonNamePart, bool>> matchUnResolvedGenera = p => (p.Rank == SpeciesPartType.Genus) && (p.IsAbbreviated && !p.IsResolved);
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsAbbreviatedAndNotResolved = p => p.IsAbbreviated && !p.IsResolved;
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsResolvedOrNotAbbreviated = p => p.IsResolved || !p.IsAbbreviated;
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsWithMeaningfullRank = p => p.Rank != SpeciesPartType.Undefined;
-        private readonly Expression<Func<ITaxonNamePart, bool>> matchResolvedGenera = p => (p.Rank == SpeciesPartType.Genus) && (p.IsResolved || !p.IsAbbreviated);
-        private readonly Expression<Func<ITaxonNamePart, bool>> matchUnResolvedGenera = p => (p.Rank == SpeciesPartType.Genus) && (p.IsAbbreviated && !p.IsResolved);
 
         public Expander(ILogger logger)
         {
@@ -56,6 +54,250 @@
                 // Parse the whole context
                 return this.ParseSync(context);
             });
+        }
+
+        private void AddIdAndPositionAttributesToTaxonNameElements(XmlNode context)
+        {
+            long counter = 1L;
+
+            {
+                var taxonNameElements = context.SelectNodes(XPathStrings.LowerTaxonNames)
+                    .Cast<XmlElement>();
+
+                foreach (var taxonNameElement in taxonNameElements)
+                {
+                    taxonNameElement.SetAttribute(
+                        AttributeNames.Id,
+                        AttributeValues.TaxonNameIdPrefix + counter);
+                    taxonNameElement.SetAttribute(
+                        AttributeNames.Position,
+                        counter.ToString());
+                    ++counter;
+                }
+            }
+
+            {
+                var taxonNamePartElements = context.SelectNodes(XPathStrings.TaxonNamePartsOfLowerTaxonNames)
+                    .Cast<XmlElement>();
+
+                foreach (var taxonNamePartElement in taxonNamePartElements)
+                {
+                    taxonNamePartElement.SetAttribute(
+                        AttributeNames.Id,
+                        AttributeValues.TaxonNamePartIdPrefix + counter);
+                    ++counter;
+                }
+            }
+        }
+
+        private void EnsureFullNameAttributeToTaxonNamePartElements(XmlNode context)
+        {
+            context.SelectNodes($"{XPathStrings.TaxonNamePartsOfLowerTaxonNames}[not(@{AttributeNames.FullName})]")
+                .Cast<XmlElement>()
+                .AsParallel()
+                .ForAll(n =>
+                {
+                    var rank = n.GetAttribute(AttributeNames.Type).ToSpeciesPartType();
+                    if (rank == SpeciesPartType.Undefined)
+                    {
+                        if (n.HasAttribute(AttributeNames.FullName))
+                        {
+                            n.RemoveAttribute(AttributeNames.FullName);
+                        }
+                    }
+                    else
+                    {
+                        if (!n.HasAttribute(AttributeNames.FullName))
+                        {
+                            string content = n.InnerText;
+                            if (string.IsNullOrWhiteSpace(content) || content.Contains("."))
+                            {
+                                n.SetAttribute(AttributeNames.FullName, string.Empty);
+                            }
+                            else
+                            {
+                                n.SetAttribute(AttributeNames.FullName, content);
+                            }
+                        }
+                    }
+                });
+        }
+
+        private void ForceExactSpeciesMatchExpand(XmlNode context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            string nodeListOfSpeciesInShortenedTaxaNameXPath = $"{XPathStrings.LowerTaxonNames}[normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})!=''][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus})=''][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus}/@full-name)='']/{XPathStrings.TaxonNamePartOfTypeSpecies}";
+
+            var speciesUniq = context.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
+                .Cast<XmlNode>()
+                .Select(n => n.InnerText)
+                .Distinct()
+                .ToList();
+
+            speciesUniq.ForEach(s => this.logger?.Log(s));
+
+            IDictionary<string, string[]> speciesGenusPairs = new Dictionary<string, string[]>();
+
+            foreach (string species in speciesUniq)
+            {
+                var genera = context.SelectNodes($"{XPathStrings.LowerTaxonNames}[normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})='{species}'][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus})!='' or normalize-space({XPathStrings.TaxonNamePartOfTypeGenus}/@full-name)!='']/{XPathStrings.TaxonNamePartOfTypeGenus}")
+                    .Cast<XmlElement>()
+                    .Select(g =>
+                    {
+                        if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.')) && g.Attributes[AttributeNames.FullName] != null)
+                        {
+                            return g.Attributes[AttributeNames.FullName].InnerText;
+                        }
+                        else
+                        {
+                            return g.InnerText;
+                        }
+                    })
+                    .Distinct()
+                    .ToList();
+
+                speciesGenusPairs.Add(species, genera.ToArray());
+            }
+
+            foreach (string species in speciesGenusPairs.Keys)
+            {
+                this.logger?.Log(species);
+
+                switch (speciesGenusPairs[species].Length)
+                {
+                    case 0:
+                        this.logger?.Log(LogType.Warning, "No matches.");
+                        break;
+
+                    case 1:
+                        string genus = speciesGenusPairs[species].FirstOrDefault();
+                        this.logger?.Log(genus);
+
+                        context.SelectNodes($"{XPathStrings.LowerTaxonNames}[normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})='{species}'][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus})=''][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus}/@full-name)='']/{XPathStrings.TaxonNamePartOfTypeGenus}")
+                            .Cast<XmlElement>()
+                            .AsParallel()
+                            .ForAll(t =>
+                            {
+                                var fullNameAttribute = t.Attributes[AttributeNames.FullName];
+                                if (fullNameAttribute == null)
+                                {
+                                    t.SetAttribute(AttributeNames.FullName, genus);
+                                }
+                                else
+                                {
+                                    fullNameAttribute.InnerText = genus;
+                                }
+                            });
+
+                        break;
+
+                    default:
+                        this.logger?.Log(LogType.Warning, "Multiple matches:");
+                        speciesGenusPairs[species].ToList().ForEach(g => this.logger?.Log("--> {0}", g));
+                        break;
+                }
+
+                this.logger?.Log();
+            }
+        }
+
+        private IQueryable<ITaxonName> GetContextTaxonVectorModel(XmlNode context)
+        {
+            var taxa = context.SelectNodes(XPathStrings.LowerTaxonNames)
+                .Cast<XmlNode>()
+                .Select(t => new TaxonName(t))
+                .ToArray();
+
+            return taxa.AsQueryable();
+        }
+
+        private IEnumerable<string> GetListOfNonShortenedTaxa(XmlNode node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            var document = node.OwnerDocument();
+
+            string xpath = $"{XPathStrings.LowerTaxonNames}[not(tn-part[@full-name=''])][{XPathStrings.TaxonNamePartOfTypeGenus}]";
+            var result = node.SelectNodes(xpath)
+                .Cast<XmlNode>()
+                .Select(currentNode =>
+                {
+                    XmlElement taxonNameElement = document.CreateElement(ElementNames.TaxonName);
+                    foreach (XmlNode innerNode in currentNode.SelectNodes(".//*"))
+                    {
+                        XmlElement taxonNamePartElement = document.CreateElement(ElementNames.TaxonNamePart);
+
+                        // Copy only *type* attributes
+                        foreach (XmlAttribute attribute in innerNode.Attributes)
+                        {
+                            if (attribute.Name.Contains(AttributeNames.Type))
+                            {
+                                XmlAttribute typeAttribute = document.CreateAttribute(attribute.Name);
+                                typeAttribute.InnerText = attribute.InnerText;
+                                taxonNamePartElement.Attributes.Append(typeAttribute);
+                            }
+                        }
+
+                        // Gets the value of the @full-name attribute if present or the content of the node
+                        var fullNameAttribute = innerNode.Attributes[AttributeNames.FullName];
+                        if (fullNameAttribute != null && !string.IsNullOrWhiteSpace(fullNameAttribute.InnerText))
+                        {
+                            taxonNamePartElement.InnerText = fullNameAttribute.InnerText;
+                        }
+                        else
+                        {
+                            taxonNamePartElement.InnerText = innerNode.InnerText;
+                        }
+
+                        taxonNameElement.AppendChild(taxonNamePartElement);
+                    }
+
+                    return taxonNameElement;
+                })
+                .ToList<XmlNode>()
+                .Select(c => c.InnerXml);
+
+            return new HashSet<string>(result);
+        }
+
+        private IEnumerable<string> GetListOfShortenedTaxa(XmlNode node)
+        {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
+            string xpath = $"{XPathStrings.LowerTaxonNames}[tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][{XPathStrings.TaxonNamePartOfTypeGenus}][normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})!='']";
+
+            var result = node.SelectNodes(xpath)
+                .Cast<XmlNode>()
+                .Select(c => c.InnerXml);
+
+            return new HashSet<string>(result);
+        }
+
+        private void ImportModifiedItems(XmlNode context, IQueryable<ITaxonName> taxonNames)
+        {
+            var modifiedTaxonNameParts = taxonNames
+                .Where(tn => tn.Parts.Any(p => p.IsModified))
+                .SelectMany(tn => tn.Parts.Where(p => p.IsModified))
+                .ToArray();
+
+            modifiedTaxonNameParts.AsParallel()
+                .ForAll(p =>
+                {
+                    var xpath = $".//{ElementNames.TaxonNamePart}[@{AttributeNames.Id}='{p.Id}']";
+
+                    var taxonNamePartElement = context.SelectSingleNode(xpath) as XmlElement;
+                    taxonNamePartElement.SetAttribute(AttributeNames.FullName, p.FullName);
+                });
         }
 
         private object ParseSync(XmlNode context)
@@ -87,90 +329,55 @@
             return true;
         }
 
-        private void EnsureFullNameAttributeToTaxonNamePartElements(XmlNode context)
+        private void PrintContextVectorModel(IQueryable<ITaxonName> taxonNames)
         {
-            context.SelectNodes($"{XmlInternalSchemaConstants.SelectTaxonNamePartsOfLowerTaxonNamesXPath}[not(@{XmlInternalSchemaConstants.FullNameAttributeName})]")
-                .Cast<XmlElement>()
-                .AsParallel()
-                .ForAll(n =>
-                {
-                    var rank = n.GetAttribute(XmlInternalSchemaConstants.TypeAttributeName).ToSpeciesPartType();
-                    if (rank == SpeciesPartType.Undefined)
-                    {
-                        if (n.HasAttribute(XmlInternalSchemaConstants.FullNameAttributeName))
-                        {
-                            n.RemoveAttribute(XmlInternalSchemaConstants.FullNameAttributeName);
-                        }
-                    }
-                    else
-                    {
-                        if (!n.HasAttribute(XmlInternalSchemaConstants.FullNameAttributeName))
-                        {
-                            string content = n.InnerText;
-                            if (string.IsNullOrWhiteSpace(content) || content.Contains("."))
-                            {
-                                n.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, string.Empty);
-                            }
-                            else
-                            {
-                                n.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, content);
-                            }
-                        }
-                    }
-                });
+            this.logger?.Log();
+
+            foreach (var taxonName in taxonNames.OrderBy(t => t.Position))
+            {
+                this.logger?.Log(taxonName);
+            }
+
+            this.logger?.Log();
         }
 
-        private void AddIdAndPositionAttributesToTaxonNameElements(XmlNode context)
+        private void PrintMethodMessage(string name)
         {
-            long counter = 1L;
+            this.logger?.Log("\n\n#\n##\n### {0} will be executed...\n##\n#\n", name);
+        }
 
-            {
-                var taxonNameElements = context.SelectNodes(XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath)
-                    .Cast<XmlElement>();
+        private void PrintNextShortened(Species sp)
+        {
+            this.logger?.Log("\nNext shortened taxon:\t{0}", sp.ToString());
+        }
 
-                foreach (var taxonNameElement in taxonNameElements)
-                {
-                    taxonNameElement.SetAttribute(
-                        XmlInternalSchemaConstants.IdAttributeName,
-                        XmlInternalSchemaConstants.TaxonNameIdPrefix + counter);
-                    taxonNameElement.SetAttribute(
-                        XmlInternalSchemaConstants.PositionAttributeName,
-                        counter.ToString());
-                    ++counter;
-                }
-            }
+        private void PrintSubstitutionMessage(Species original, Species substitution)
+        {
+            this.logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.ToString(), substitution.ToString());
+        }
 
-            {
-                var taxonNamePartElements = context.SelectNodes(XmlInternalSchemaConstants.SelectTaxonNamePartsOfLowerTaxonNamesXPath)
-                    .Cast<XmlElement>();
-
-                foreach (var taxonNamePartElement in taxonNamePartElements)
-                {
-                    taxonNamePartElement.SetAttribute(
-                        XmlInternalSchemaConstants.IdAttributeName,
-                        XmlInternalSchemaConstants.TaxonNamePartIdPrefix + counter);
-                    ++counter;
-                }
-            }
+        private void PrintSubstitutionMessageFail(Species original, Species substitution)
+        {
+            this.logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.ToString(), substitution.ToString());
         }
 
         private void RemoveIdAndPositionAttributesToTaxonNameElements(XmlNode context)
         {
-            context.SelectNodes(XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath)
+            context.SelectNodes(XPathStrings.LowerTaxonNames)
                 .Cast<XmlElement>()
                 .AsParallel()
                 .ForAll(n =>
                 {
-                    n.RemoveAttribute(XmlInternalSchemaConstants.IdAttributeName);
-                    n.RemoveAttribute(XmlInternalSchemaConstants.PositionAttributeName);
+                    n.RemoveAttribute(AttributeNames.Id);
+                    n.RemoveAttribute(AttributeNames.Position);
                 });
 
-            context.SelectNodes(XmlInternalSchemaConstants.SelectTaxonNamePartsOfLowerTaxonNamesXPath)
+            context.SelectNodes(XPathStrings.TaxonNamePartsOfLowerTaxonNames)
                 .Cast<XmlElement>()
                 .AsParallel()
                 .ForAll(n =>
                 {
-                    n.RemoveAttribute(XmlInternalSchemaConstants.IdAttributeName);
+                    n.RemoveAttribute(AttributeNames.Id);
                 });
         }
 
@@ -376,215 +583,6 @@
             {
                 this.logger?.Log(message);
             }
-        }
-
-        private IQueryable<ITaxonName> GetContextTaxonVectorModel(XmlNode context)
-        {
-            var taxa = context.SelectNodes(XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath)
-                .Cast<XmlNode>()
-                .Select(t => new TaxonName(t))
-                .ToArray();
-
-            return taxa.AsQueryable();
-        }
-
-        private void ImportModifiedItems(XmlNode context, IQueryable<ITaxonName> taxonNames)
-        {
-            var modifiedTaxonNameParts = taxonNames
-                .Where(tn => tn.Parts.Any(p => p.IsModified))
-                .SelectMany(tn => tn.Parts.Where(p => p.IsModified))
-                .ToArray();
-
-            modifiedTaxonNameParts.AsParallel()
-                .ForAll(p =>
-                {
-                    var xpath = $".//{XmlInternalSchemaConstants.TaxonNamePartElementName}[@{XmlInternalSchemaConstants.IdAttributeName}='{p.Id}']";
-
-                    var taxonNamePartElement = context.SelectSingleNode(xpath) as XmlElement;
-                    taxonNamePartElement.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, p.FullName);
-                });
-        }
-
-        private void ForceExactSpeciesMatchExpand(XmlNode context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            string nodeListOfSpeciesInShortenedTaxaNameXPath = $"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})!=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath})=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}/@full-name)='']/{XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath}";
-
-            var speciesUniq = context.SelectNodes(nodeListOfSpeciesInShortenedTaxaNameXPath)
-                .Cast<XmlNode>()
-                .Select(n => n.InnerText)
-                .Distinct()
-                .ToList();
-
-            speciesUniq.ForEach(s => this.logger?.Log(s));
-
-            IDictionary<string, string[]> speciesGenusPairs = new Dictionary<string, string[]>();
-
-            foreach (string species in speciesUniq)
-            {
-                var genera = context.SelectNodes($"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})='{species}'][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath})!='' or normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}/@full-name)!='']/{XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}")
-                    .Cast<XmlElement>()
-                    .Select(g =>
-                    {
-                        if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.')) && g.Attributes[XmlInternalSchemaConstants.FullNameAttributeName] != null)
-                        {
-                            return g.Attributes[XmlInternalSchemaConstants.FullNameAttributeName].InnerText;
-                        }
-                        else
-                        {
-                            return g.InnerText;
-                        }
-                    })
-                    .Distinct()
-                    .ToList();
-
-                speciesGenusPairs.Add(species, genera.ToArray());
-            }
-
-            foreach (string species in speciesGenusPairs.Keys)
-            {
-                this.logger?.Log(species);
-
-                switch (speciesGenusPairs[species].Length)
-                {
-                    case 0:
-                        this.logger?.Log(LogType.Warning, "No matches.");
-                        break;
-
-                    case 1:
-                        string genus = speciesGenusPairs[species].FirstOrDefault();
-                        this.logger?.Log(genus);
-
-                        context.SelectNodes($"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})='{species}'][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath})=''][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}/@full-name)='']/{XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}")
-                            .Cast<XmlElement>()
-                            .AsParallel()
-                            .ForAll(t =>
-                            {
-                                var fullNameAttribute = t.Attributes[XmlInternalSchemaConstants.FullNameAttributeName];
-                                if (fullNameAttribute == null)
-                                {
-                                    t.SetAttribute(XmlInternalSchemaConstants.FullNameAttributeName, genus);
-                                }
-                                else
-                                {
-                                    fullNameAttribute.InnerText = genus;
-                                }
-                            });
-
-                        break;
-
-                    default:
-                        this.logger?.Log(LogType.Warning, "Multiple matches:");
-                        speciesGenusPairs[species].ToList().ForEach(g => this.logger?.Log("--> {0}", g));
-                        break;
-                }
-
-                this.logger?.Log();
-            }
-        }
-
-        private void PrintContextVectorModel(IQueryable<ITaxonName> taxonNames)
-        {
-            this.logger?.Log();
-
-            foreach (var taxonName in taxonNames.OrderBy(t => t.Position))
-            {
-                this.logger?.Log(taxonName);
-            }
-
-            this.logger?.Log();
-        }
-
-        private void PrintMethodMessage(string name)
-        {
-            this.logger?.Log("\n\n#\n##\n### {0} will be executed...\n##\n#\n", name);
-        }
-
-        private void PrintNextShortened(Species sp)
-        {
-            this.logger?.Log("\nNext shortened taxon:\t{0}", sp.ToString());
-        }
-
-        private void PrintSubstitutionMessage(Species original, Species substitution)
-        {
-            this.logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.ToString(), substitution.ToString());
-        }
-
-        private void PrintSubstitutionMessageFail(Species original, Species substitution)
-        {
-            this.logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.ToString(), substitution.ToString());
-        }
-
-        private IEnumerable<string> GetListOfNonShortenedTaxa(XmlNode node)
-        {
-            if (node == null)
-            {
-                throw new ArgumentNullException(nameof(node));
-            }
-
-            var document = node.OwnerDocument();
-
-            string xpath = $"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[not(tn-part[@full-name=''])][{XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}]";
-            var result = node.SelectNodes(xpath)
-                .Cast<XmlNode>()
-                .Select(currentNode =>
-                {
-                    XmlElement taxonNameElement = document.CreateElement(XmlInternalSchemaConstants.TaxonNameElementName);
-                    foreach (XmlNode innerNode in currentNode.SelectNodes(".//*"))
-                    {
-                        XmlElement taxonNamePartElement = document.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
-
-                        // Copy only *type* attributes
-                        foreach (XmlAttribute attribute in innerNode.Attributes)
-                        {
-                            if (attribute.Name.Contains(XmlInternalSchemaConstants.TypeAttributeName))
-                            {
-                                XmlAttribute typeAttribute = document.CreateAttribute(attribute.Name);
-                                typeAttribute.InnerText = attribute.InnerText;
-                                taxonNamePartElement.Attributes.Append(typeAttribute);
-                            }
-                        }
-
-                        // Gets the value of the @full-name attribute if present or the content of the node
-                        var fullNameAttribute = innerNode.Attributes[XmlInternalSchemaConstants.FullNameAttributeName];
-                        if (fullNameAttribute != null && !string.IsNullOrWhiteSpace(fullNameAttribute.InnerText))
-                        {
-                            taxonNamePartElement.InnerText = fullNameAttribute.InnerText;
-                        }
-                        else
-                        {
-                            taxonNamePartElement.InnerText = innerNode.InnerText;
-                        }
-
-                        taxonNameElement.AppendChild(taxonNamePartElement);
-                    }
-
-                    return taxonNameElement;
-                })
-                .ToList<XmlNode>()
-                .Select(c => c.InnerXml);
-
-            return new HashSet<string>(result);
-        }
-
-        private IEnumerable<string> GetListOfShortenedTaxa(XmlNode node)
-        {
-            if (node == null)
-            {
-                throw new ArgumentNullException(nameof(node));
-            }
-
-            string xpath = $"{XmlInternalSchemaConstants.SelectLowerTaxonNamesXPath}[tn-part[@full-name[normalize-space(.)='']][normalize-space(.)!='']][{XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath}][normalize-space({XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath})!='']";
-
-            var result = node.SelectNodes(xpath)
-                .Cast<XmlNode>()
-                .Select(c => c.InnerXml);
-
-            return new HashSet<string>(result);
         }
     }
 }

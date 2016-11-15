@@ -6,10 +6,9 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Strings.Extensions;
 
@@ -53,8 +52,8 @@
 
         protected XmlElement CreateNewTaxonNameXmlElement(IDocument document, TaxonType type)
         {
-            XmlElement tn = document.XmlDocument.CreateElement(XmlInternalSchemaConstants.TaxonNameElementName);
-            tn.SetAttribute(XmlInternalSchemaConstants.TypeAttributeName, type.ToString().ToLower());
+            XmlElement tn = document.XmlDocument.CreateElement(ElementNames.TaxonName);
+            tn.SetAttribute(AttributeNames.Type, type.ToString().ToLower());
             return tn;
         }
 

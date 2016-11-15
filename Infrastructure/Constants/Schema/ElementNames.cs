@@ -18,5 +18,8 @@
         public const string TaxonStatus = "taxon-status";
         public const string Title = "title";
         public const string XRef = "xref";
+
+        public const string TaxonName = "tn";
+        public const string TaxonNamePart = "tn-part";
     }
 }

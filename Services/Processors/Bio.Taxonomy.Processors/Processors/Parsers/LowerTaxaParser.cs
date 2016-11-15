@@ -6,15 +6,13 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Comparers;
     using Contracts.Parsers;
     using Models.Parsers;
-
     using ProcessingTools.Bio.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
@@ -346,7 +344,7 @@
                 .AsParallel()
                 .ForAll(lowerTaxonNamePart =>
                 {
-                    XmlAttribute fullNameAttribute = document.CreateAttribute(XmlInternalSchemaConstants.FullNameAttributeName);
+                    XmlAttribute fullNameAttribute = document.CreateAttribute(AttributeNames.FullName);
 
                     string lowerTaxonNamePartText = lowerTaxonNamePart.InnerText.Trim();
                     if (string.IsNullOrWhiteSpace(lowerTaxonNamePartText) || lowerTaxonNamePartText.Contains('.'))
@@ -379,12 +377,12 @@
                         var speciesNode = lowerTaxon.SelectSingleNode(".//tn-part[@type='species']");
                         if (speciesNode == null)
                         {
-                            XmlElement speciesElement = document.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
+                            XmlElement speciesElement = document.CreateElement(ElementNames.TaxonNamePart);
                             speciesElement.SetAttribute(
-                                XmlInternalSchemaConstants.TypeAttributeName,
+                                AttributeNames.Type,
                                 TaxonRankType.Species.MapTaxonRankTypeToTaxonRankString());
                             speciesElement.SetAttribute(
-                                XmlInternalSchemaConstants.FullNameAttributeName,
+                                AttributeNames.FullName,
                                 string.Empty);
 
                             lowerTaxon.PrependChild(speciesElement);
@@ -392,12 +390,12 @@
 
                         // Add genus tag
                         {
-                            XmlElement genusElement = document.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
+                            XmlElement genusElement = document.CreateElement(ElementNames.TaxonNamePart);
                             genusElement.SetAttribute(
-                                XmlInternalSchemaConstants.TypeAttributeName,
+                                AttributeNames.Type,
                                 TaxonRankType.Genus.MapTaxonRankTypeToTaxonRankString());
                             genusElement.SetAttribute(
-                                XmlInternalSchemaConstants.FullNameAttributeName,
+                                AttributeNames.FullName,
                                 string.Empty);
 
                             lowerTaxon.PrependChild(genusElement);
@@ -526,10 +524,10 @@
                 .ToList();
 
             // Process single-word-taxon-names tagged with type genus.
-            this.UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(SingleWordTaxonNameXPathFormat, XmlInternalSchemaConstants.TaxonNamePartOfTypeGenusXPath), listOfNonSingleWordTaxonNameParts);
+            this.UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(SingleWordTaxonNameXPathFormat, XPathStrings.TaxonNamePartOfTypeGenus), listOfNonSingleWordTaxonNameParts);
 
             // Process single-word-taxon-names tagged with type species.
-            this.UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(SingleWordTaxonNameXPathFormat, XmlInternalSchemaConstants.TaxonNamePartOfTypeSpeciesXPath), listOfNonSingleWordTaxonNameParts);
+            this.UpdateSingleWordTaxonNamePartOfTypeRanks(context, string.Format(SingleWordTaxonNameXPathFormat, XPathStrings.TaxonNamePartOfTypeSpecies), listOfNonSingleWordTaxonNameParts);
         }
 
         private void RemoveWrappingItalics(XmlNode context)
@@ -557,10 +555,10 @@
                         var match = matches.First();
                         if (match.Rank != taxonNamePart.Rank)
                         {
-                            XmlAttribute rankAttribute = node.Attributes[XmlInternalSchemaConstants.TypeAttributeName];
+                            XmlAttribute rankAttribute = node.Attributes[AttributeNames.Type];
                             if (rankAttribute == null)
                             {
-                                rankAttribute = document.CreateAttribute(XmlInternalSchemaConstants.TypeAttributeName);
+                                rankAttribute = document.CreateAttribute(AttributeNames.Type);
                                 node.Attributes.Append(rankAttribute);
                             }
 

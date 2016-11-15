@@ -5,14 +5,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts.Parsers;
     using Models.Parsers;
-
-    using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Strings.Extensions;
@@ -121,8 +119,8 @@
                 .AsParallel()
                 .ForAll(tn =>
                 {
-                    XmlElement taxonNamePart = tn.OwnerDocument.CreateElement(XmlInternalSchemaConstants.TaxonNamePartElementName);
-                    taxonNamePart.SetAttribute(XmlInternalSchemaConstants.TypeAttributeName, rank);
+                    XmlElement taxonNamePart = tn.OwnerDocument.CreateElement(ElementNames.TaxonNamePart);
+                    taxonNamePart.SetAttribute(AttributeNames.Type, rank);
                     taxonNamePart.InnerXml = tn.InnerXml;
                     tn.InnerXml = taxonNamePart.OuterXml;
                 });
