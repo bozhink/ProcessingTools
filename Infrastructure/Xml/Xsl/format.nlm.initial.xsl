@@ -404,6 +404,30 @@
     <xsl:apply-templates />
   </xsl:template>
 
+  <xsl:template match="tgroup/colspec"></xsl:template>
+
+  <xsl:template match="tgroup">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="table//row">
+    <tr>
+      <xsl:apply-templates />
+    </tr>
+  </xsl:template>
+
+  <xsl:template match="thead/row/entry">
+    <th>
+      <xsl:apply-templates />
+    </th>
+  </xsl:template>
+
+  <xsl:template match="tbody/row/entry">
+    <td>
+      <xsl:apply-templates />
+    </td>
+  </xsl:template>
+
   <xsl:template match="ref/text()[name()=''][normalize-space()='']"></xsl:template>
 
   <xsl:template match="label[count(text()) = count(node())] | title[count(text()) = count(node())] | p[local-name(..)!='td' and local-name(..)!='th'][count(text()) = count(node())] | license-p[count(text()) = count(node())] | li[count(text()) = count(node())] | attrib[count(text()) = count(node())] | element-citation[count(text()) = count(node())] | nlm-citation[count(text()) = count(node())] | mixed-citation[count(text()) = count(node())] | xref-group[count(text()) = count(node())] | kwd[count(text()) = count(node())] | tp:nomenclature-citation[count(text()) = count(node())] | article-title[count(text()) = count(node())]">
