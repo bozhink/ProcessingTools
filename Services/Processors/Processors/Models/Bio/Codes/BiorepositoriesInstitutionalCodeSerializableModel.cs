@@ -1,18 +1,19 @@
 ﻿namespace ProcessingTools.Processors.Models.Bio.Codes
 {
     using System.Xml.Serialization;
+    using ProcessingTools.Constants.Schema;
 
     [XmlType(AnonymousType = true)]
-    [XmlRoot("institutional_code", Namespace = "", IsNullable = false)]
+    [XmlRoot(ElementNames.InstitutionalCode, Namespace = "", IsNullable = false)]
     public class BiorepositoriesInstitutionalCodeSerializableModel
     {
-        [XmlText]
-        public string Value { get; set; }
-
-        [XmlAttribute("description")]
+        [XmlAttribute(AttributeNames.Description)]
         public string Description { get; set; }
 
-        [XmlAttribute("url")]
+        [XmlAttribute(AttributeNames.Url)]
         public string Url { get; set; }
+
+        [XmlText]
+        public string Value { get; set; }
     }
 }
