@@ -19,7 +19,7 @@ namespace ProcessingTools.Data.Miners
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
-        public async Task<IQueryable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -36,7 +36,7 @@ namespace ProcessingTools.Data.Miners
 
             var result = new HashSet<string>(items);
 
-            return result.AsQueryable();
+            return result;
         }
 
         private class InternalMiner

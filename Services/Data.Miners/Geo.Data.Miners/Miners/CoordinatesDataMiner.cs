@@ -12,7 +12,7 @@
 
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {
-        public async Task<IQueryable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string content)
         {
             var internalMiner = new InternalMiner(Regex.Replace(content, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°"));
 
@@ -26,7 +26,7 @@
                 (await items).AsParallel().ForAll(item => result.Enqueue(item));
             }
 
-            return new HashSet<string>(result).AsQueryable();
+            return new HashSet<string>(result);
         }
 
         private class InternalMiner

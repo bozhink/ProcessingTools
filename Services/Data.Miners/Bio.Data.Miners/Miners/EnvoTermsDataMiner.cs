@@ -24,7 +24,7 @@
             this.service = service;
         }
 
-        public async Task<IQueryable<EnvoTerm>> Mine(string content)
+        public async Task<IEnumerable<EnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -44,7 +44,7 @@
                 .Where(t => text.Contains(t.Content.ToLower()));
 
             var result = new HashSet<EnvoTerm>(terms);
-            return result.AsQueryable();
+            return result;
         }
     }
 }

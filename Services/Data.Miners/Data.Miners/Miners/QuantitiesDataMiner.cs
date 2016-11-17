@@ -31,7 +31,7 @@ namespace ProcessingTools.Data.Miners
 
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
-        public async Task<IQueryable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -43,7 +43,7 @@ namespace ProcessingTools.Data.Miners
             var items = await content.GetMatchesAsync(new Regex(Pattern));
             var result = new HashSet<string>(items);
 
-            return result.AsQueryable();
+            return result;
         }
     }
 }

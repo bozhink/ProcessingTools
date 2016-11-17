@@ -34,7 +34,7 @@
             Url = x.Url
         };
 
-        public async Task<IQueryable<BiorepositoriesInstitution>> Mine(string content)
+        public async Task<IEnumerable<BiorepositoriesInstitution>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -48,7 +48,7 @@
             await this.GetMatches(this.service, matches, filter);
 
             var result = new HashSet<BiorepositoriesInstitution>(matches);
-            return result.AsQueryable();
+            return result;
         }
     }
 }

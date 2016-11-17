@@ -28,7 +28,7 @@
             this.service = service;
         }
 
-        public async Task<IQueryable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -43,7 +43,7 @@
             matches.AddRange(await this.MatchWithWhiteList(words));
 
             var result = new HashSet<string>(matches);
-            return result.AsQueryable();
+            return result;
         }
 
         private async Task<IEnumerable<string>> MatchWithWhiteList(IEnumerable<string> words)

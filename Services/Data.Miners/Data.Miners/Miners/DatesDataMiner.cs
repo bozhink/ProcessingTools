@@ -26,7 +26,7 @@ namespace ProcessingTools.Data.Miners
 
     public class DatesDataMiner : IDatesDataMiner
     {
-        public Task<IQueryable<string>> Mine(string content)
+        public Task<IEnumerable<string>> Mine(string content)
         {
             return Task.Run(() =>
             {
@@ -49,7 +49,7 @@ namespace ProcessingTools.Data.Miners
                 Task.WaitAll(tasks.ToArray());
 
                 var result = new HashSet<string>(internalMiner.Items);
-                return result.AsQueryable();
+                return result.AsEnumerable<string>();
             });
         }
 

@@ -31,7 +31,7 @@
 
         private const string PmcidPattern = @"(?i)\bpmc\W?\d+|(?i)(?<=\bpmcid\W?)\d+";
 
-        public async Task<IQueryable<NlmExternalLink>> Mine(string content)
+        public async Task<IEnumerable<NlmExternalLink>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -54,7 +54,7 @@
             items.AddRange(doiItems);
 
             var result = new HashSet<NlmExternalLink>(items);
-            return result.AsQueryable();
+            return result;
         }
 
         private class InternalMiner

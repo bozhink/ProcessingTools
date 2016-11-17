@@ -24,7 +24,7 @@
             this.requester = requester;
         }
 
-        public async Task<IQueryable<ExtractHcmrEnvoTerm>> Mine(string content)
+        public async Task<IEnumerable<ExtractHcmrEnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -46,7 +46,7 @@
                     Identifiers = i.Entities?.Select(e => e.Identifier)?.ToArray()
                 }));
 
-            return result.AsQueryable();
+            return result;
         }
     }
 }
