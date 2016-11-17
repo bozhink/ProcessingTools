@@ -36,6 +36,8 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IBiorepositoriesCollectionsDataMiner.cs" />
+    <Compile Include="Contracts\Models\SpecimenCodes\ISpecimenCode.cs" />
+    <Compile Include="Contracts\SpecimenCodes\ISpecimenCodesByPatternDataMiner.cs" />
     <Compile Include="Contracts\ITypeStatusDataMiner.cs" />
     <Compile Include="Factories\BiorepositoriesDataMinerFactory.cs" />
     <Compile Include="Miners\BiorepositoriesCollectionsDataMiner.cs" />
@@ -46,7 +48,7 @@
     <Compile Include="Contracts\IHigherTaxaDataMiner.cs" />
     <Compile Include="Contracts\IInstitutionalCodesDataMiner.cs" />
     <Compile Include="Contracts\IMorphologicalEpithetsDataMiner.cs" />
-    <Compile Include="Contracts\ISpecimenCodesDataMiner.cs" />
+    <Compile Include="Contracts\SpecimenCodes\ISpecimenCodesDataMiner.cs" />
     <Compile Include="Contracts\ISpecimenCountDataMiner.cs" />
     <Compile Include="Miners\EnvoTermsDataMiner.cs" />
     <Compile Include="Miners\ExtractHcmrDataMiner.cs" />

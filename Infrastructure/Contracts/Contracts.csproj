@@ -82,6 +82,7 @@
     <Compile Include="Harvesters\IStringQueryableXmlHarvester.cs" />
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="ICommentable.cs" />
+    <Compile Include="IContent.cs" />
     <Compile Include="IContentTypable.cs" />
     <Compile Include="IContextFormatter.cs" />
     <Compile Include="IContextParser.cs" />

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Miners.Contracts
+﻿namespace ProcessingTools.Bio.Data.Miners.Contracts.SpecimenCodes
 {
     using ProcessingTools.Data.Miners.Common.Contracts;
 
