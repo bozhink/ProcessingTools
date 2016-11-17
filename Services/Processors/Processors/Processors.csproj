@@ -40,6 +40,7 @@
     <Compile Include="Contracts\Bio\Codes\ICodesTagger.cs" />
     <Compile Include="Contracts\Bio\Codes\ICollectionCodesTagger.cs" />
     <Compile Include="Contracts\Bio\Codes\IInstitutionalCodesTagger.cs" />
+    <Compile Include="Contracts\Bio\Codes\ISpecimenCodesByPatternTagger.cs" />
     <Compile Include="Contracts\Bio\EnvironmentTerms\IEnvironmentTermsTagger.cs" />
     <Compile Include="Contracts\Bio\EnvironmentTerms\IEnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Contracts\Bio\IMorphologicalEpithetsTagger.cs">
@@ -101,6 +102,7 @@
     <Compile Include="Models\Bio\Codes\BiorepositoriesInstitutionSerializableModel.cs" />
     <Compile Include="Models\Bio\Codes\ISpecimenCode.cs" />
     <Compile Include="Models\Bio\Codes\SpecimenCode.cs" />
+    <Compile Include="Models\Bio\Codes\SpecimenCodeSerializableModel.cs" />
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermSerializableModel.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\InstitutionalCodesTagger.cs" />
+    <Compile Include="Processors\Bio\Codes\SpecimenCodesByPatternTagger.cs" />
     <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsTagger.cs" />
     <Compile Include="Processors\Bio\EnvironmentTerms\EnvironmentTermsWithExtractTagger.cs" />
     <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />

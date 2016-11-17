@@ -15,6 +15,7 @@
         public const string MediaElement = ".//media";
         public const string ObjectIdOfTypeIpni = ".//object-id[@content-type='ipni']";
         public const string ObjectIdOfTypeZooBank = ".//object-id[@content-type='zoobank']";
+        public const string RootNodesOfContext = "./*";
         public const string SpecimenCodesContentNodes = "//p|//li|//th|//td|//title|//tp:nomenclature-citation";
         public const string TaxonNamePartOfTypeGenus = "tn-part[@type='genus']";
         public const string TaxonNamePartOfTypeSpecies = "tn-part[@type='species']";

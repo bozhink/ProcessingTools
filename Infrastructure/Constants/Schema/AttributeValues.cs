@@ -14,6 +14,7 @@
         public const string RefTypeTable = "table";
         public const string RefTypeTableFootnote = "table-fn";
         public const string RefTypeTextBox = "boxed-text";
+        public const string SpecimenCode = "specimen code";
         public const string TaxonNameIdPrefix = "TN";
         public const string TaxonNamePartIdPrefix = "TNP";
         public const string TaxonTypeAny = "any";
