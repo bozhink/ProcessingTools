@@ -53,6 +53,8 @@
     <Compile Include="Miners\EnvoTermsDataMiner.cs" />
     <Compile Include="Miners\ExtractHcmrDataMiner.cs" />
     <Compile Include="Miners\HigherTaxaDataMiner.cs" />
+    <Compile Include="Miners\SpecimenCodes\SpecimenCodesByPatternDataMiner.cs" />
+    <Compile Include="Models\SpecimenCodes\SpecimenCodeResponseModel.cs" />
     <Compile Include="Miners\TypeStatusDataMiner.cs" />
     <Compile Include="Models\BiorepositoriesCollection.cs" />
     <Compile Include="Models\BiorepositoriesInstitution.cs" />
