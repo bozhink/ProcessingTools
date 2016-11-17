@@ -78,7 +78,18 @@
           <xsl:text>NC</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:apply-templates select="node()" />
+      <xsl:choose>
+        <xsl:when test="@xlink:title='BOLD BIN' and not(ext-link)">
+          <ext-link
+            ext-link-type="uri"
+            xlink:href="http://www.boldsystems.org/index.php/Public_BarcodeCluster?clusteruri={normalize-space(.)}">
+            <xsl:apply-templates select="node()" />
+          </ext-link>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="node()" />
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:element>
   </xsl:template>
 
@@ -136,7 +147,7 @@
     <xsl:value-of select="." />
   </xsl:template>
 
-  <xsl:template match="a//a|a//ext-link|a//xref|xref//xref|xref//a|xref//ext-link">
+  <xsl:template match="a//a|a//ext-link|a//xref|xref//xref|xref//a|xref//ext-link|ext-link//ext-link">
     <xsl:apply-templates />
   </xsl:template>
 
@@ -264,7 +275,7 @@
 
   <!-- ext-link model -->
 
-  <xsl:template match="ext-link">
+  <xsl:template match="ext-link[not(ancestor::ext-link)]">
     <xsl:element name="{name()}">
       <xsl:attribute name="xlink:type">
         <xsl:text>simple</xsl:text>

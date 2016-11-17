@@ -18,7 +18,16 @@
         {
             this.patterns = new Dictionary<string, string>
             {
-                { @"\bBOLD:[A-Z]{3,3}[0-9]{4,4}\b", "BOLD BIN" }
+                { @"\bBOLD:[A-Z]{3,3}[0-9]{4,4}\b", "BOLD BIN" },
+                { @"\bCAM[0-9]{4,4}\b", "" },
+                { @"\bMIC[0-9]{6,6}\b", "" },
+                { @"\b(?i:CNC)[A-Z0-9][0-9]{4,5}\b", "http://grbio.org/cool/y2kv-9w3k" },
+                { @"\bCNC\s+Type\s+[A-Z0-9][0-9]{4,5}\b", "http://grbio.org/cool/y2kv-9w3k" },
+                { @"\bCNCHYM[0-9]{5,5}\b", "" },
+                { @"\bHYM[0-9]{8,8}\b", "" },
+                { @"\bCPWH-[0-9]{4,4}\b", "" },
+                { @"\bGOU[0-9]{4,4}\b", "" },
+                { @"\bWMIC[0-9]{4,4}\b", "" }
             };
         }
 

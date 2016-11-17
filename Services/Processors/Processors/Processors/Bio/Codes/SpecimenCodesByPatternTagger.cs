@@ -56,7 +56,8 @@
 
             var specimenCodes = data.Select(s => new SpecimenCodeSerializableModel
             {
-                SpecificUse = s.ContentType,
+                Title = s.ContentType.IndexOf("http") == 0 ? null : s.ContentType,
+                Href = s.ContentType.IndexOf("http") == 0 ? s.ContentType : null,
                 Value = s.Content
             });
 

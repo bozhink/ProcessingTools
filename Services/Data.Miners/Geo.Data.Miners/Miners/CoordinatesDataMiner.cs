@@ -22,8 +22,9 @@
                 .ToList();
             foreach (var method in methods)
             {
-                var items = (Task<IEnumerable<string>>)method.Invoke(internalMiner, null);
-                (await items).AsParallel().ForAll(item => result.Enqueue(item));
+                var items = await (Task<IEnumerable<string>>)method.Invoke(internalMiner, null);
+                items.AsParallel()
+                    .ForAll(item => result.Enqueue(item.Trim(' ', ';', ',', ':')));
             }
 
             return new HashSet<string>(result);
@@ -66,7 +67,7 @@
 
             public async Task<IEnumerable<string>> GetDecimalNumberCoordinates()
             {
-                const string Pattern = @"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{3,6}\b)\s*[;,]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{3,6}\b))";
+                const string Pattern = @"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b)\s*[;,\s]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b))";
 
                 return await this.content.GetMatchesAsync(new Regex(Pattern));
             }

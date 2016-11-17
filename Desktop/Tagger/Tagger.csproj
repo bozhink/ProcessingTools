@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Controllers\ITagCollectionCodesController.cs" />
+    <Compile Include="Contracts\Controllers\ITagSpecimenCodesController.cs" />
     <Compile Include="Contracts\IControllerInfo.cs" />
     <Compile Include="Contracts\Controllers\IExpandLowerTaxaController.cs" />
     <Compile Include="Contracts\Controllers\IExtractTaxaController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Controllers\Generics\GenericXmlContextTaggerController.cs" />
     <Compile Include="Controllers\ParseTreatmentMaterialsController.cs" />
     <Compile Include="Controllers\TagCollectionCodesController.cs" />
+    <Compile Include="Controllers\TagSpecimenCodesController.cs" />
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
