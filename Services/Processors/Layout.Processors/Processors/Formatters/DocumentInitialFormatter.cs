@@ -127,7 +127,7 @@
             this.ProcessInlineElementWhiteSpaces(document, "//sup");
             this.ProcessInlineElementWhiteSpaces(document, "//sub");
             this.ProcessInlineElementWhiteSpaces(document, "//monospace");
-            this.ProcessInlineElementWhiteSpaces(document, "//source | //issue-title | //year | //month | //day | //volume | //fpage | //lpage");
+            this.ProcessInlineElementWhiteSpaces(document, "//article-title[ancestor::ref] | //source | //issue-title | //year | //month | //day | //volume | //fpage | //lpage");
         }
 
         private void FormatPageBreaks(IDocument document)
@@ -290,7 +290,7 @@
 
         private void TrimBlockElements(IDocument document)
         {
-            this.ProcessBlockElementWhiteSpaces(document, "//title | //label | //article-title | //p[name(..)!='def'] | //license-p | //xref-group");
+            this.ProcessBlockElementWhiteSpaces(document, "//title | //label | //article-title[count(ancestor::ref) = 0] | //p[count(ancestor::p) + count(ancestor::title) + count(ancestor::label) = 0] | //license-p | //xref-group");
             this.ProcessBlockElementWhiteSpaces(document, "//mixed-citation | //element-citation");
             this.ProcessBlockElementWhiteSpaces(document, "//tp:nomenclature-citation");
             this.ProcessBlockElementWhiteSpaces(document, "//kwd");
