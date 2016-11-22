@@ -35,7 +35,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Contracts\Models\SpecimenCodes\ISpecimenCodeMiningModel.cs" />
+    <Compile Include="Contracts\Repositories\SpecimenCodes\IIterableSpecimenCodesMiningRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

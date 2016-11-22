@@ -123,12 +123,14 @@
     <Compile Include="INameableStringIdentifiable.cs" />
     <Compile Include="INormalizer.cs" />
     <Compile Include="IObjectIdentifiable.cs" />
+    <Compile Include="IPatternHoldable.cs" />
     <Compile Include="IPerson.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IProvider.cs" />
     <Compile Include="ISandbox.cs" />
     <Compile Include="IStringIdentifiable.cs" />
     <Compile Include="ITransformer.cs" />
+    <Compile Include="IUrlLinkable.cs" />
     <Compile Include="IXmlContextNormalizer.cs" />
     <Compile Include="IXmlContextParser.cs" />
     <Compile Include="IXmlContextTagger.cs" />
