@@ -70,6 +70,10 @@
 
   <!---->
 
+  <xsl:template match="named-content[@content-type='voucher code']//named-content[@content-type='voucher code']">
+    <xsl:apply-templates />
+  </xsl:template>
+  
   <xsl:template match="named-content">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
