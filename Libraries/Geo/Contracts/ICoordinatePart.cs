@@ -1,12 +1,16 @@
 ﻿namespace ProcessingTools.Geo.Contracts
 {
+    using Types;
+
     public interface ICoordinatePart
     {
         string CoordinatePartString { get; set; }
 
+        double DecimalValue { get; set; }
+
         bool PartIsPresent { get; set; }
 
-        string Type { get; }
+        CoordinatePartType Type { get; set; }
 
         string Value { get; }
 

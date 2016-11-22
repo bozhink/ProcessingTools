@@ -12,12 +12,12 @@
         {
             get
             {
-                return content;
+                return this.content;
             }
 
             set
             {
-                content = value;
+                this.content = value;
                 this.hashCode = (this.content + this.contentType).GetHashCode();
             }
         }
@@ -26,12 +26,12 @@
         {
             get
             {
-                return contentType;
+                return this.contentType;
             }
 
             set
             {
-                contentType = value;
+                this.contentType = value;
                 this.hashCode = (this.content + this.contentType).GetHashCode();
             }
         }

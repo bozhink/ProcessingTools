@@ -10,24 +10,21 @@
 
     public class CoordinatePart : ICoordinatePart
     {
-        private const string DotSignAsDecimalSeparator = ".";
         private const string CoordinatePartDecimalFormat = "f6";
+        private const string DotSignAsDecimalSeparator = ".";
         private readonly string numberDecimalSeparator;
 
         private string coordinatePartString;
         private int decimalCoordinatePartSign;
-        private double decimalCoordinatePartValue;
-        private CoordinatePartType type;
-
         private ILogger logger;
 
         public CoordinatePart(ILogger logger)
         {
             this.logger = logger;
             this.decimalCoordinatePartSign = 1;
-            this.decimalCoordinatePartValue = 0.0;
+            this.DecimalValue = 0.0;
             this.coordinatePartString = string.Empty;
-            this.type = CoordinatePartType.Undefined;
+            this.Type = CoordinatePartType.Undefined;
 
             this.numberDecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
@@ -47,23 +44,19 @@
             }
         }
 
+        public double DecimalValue { get; set; }
+
         public bool PartIsPresent { get; set; }
+
+        public CoordinatePartType Type { get; set; }
 
         public string Value
         {
             get
             {
-                return this.decimalCoordinatePartValue
+                return this.DecimalValue
                     .ToString(CoordinatePartDecimalFormat)
                     .Replace(this.numberDecimalSeparator, DotSignAsDecimalSeparator);
-            }
-        }
-
-        public string Type
-        {
-            get
-            {
-                return this.type.ToString();
             }
         }
 
@@ -100,7 +93,7 @@
             }
             finally
             {
-                this.decimalCoordinatePartValue = this.decimalCoordinatePartSign * coordinatePartUnsignedValue;
+                this.DecimalValue = this.decimalCoordinatePartSign * coordinatePartUnsignedValue;
             }
         }
 
@@ -114,15 +107,15 @@
             bool hasO = this.coordinatePartString.Contains("O");
             if ((hasN || hasS) && !(hasE || hasW || hasO))
             {
-                this.type = CoordinatePartType.Latitude;
+                this.Type = CoordinatePartType.Latitude;
             }
             else if (!(hasN || hasS) && (hasE || hasW || hasO))
             {
-                this.type = CoordinatePartType.Longitude;
+                this.Type = CoordinatePartType.Longitude;
             }
             else
             {
-                this.type = CoordinatePartType.Undefined;
+                this.Type = CoordinatePartType.Undefined;
             }
 
             // There is a linguistic problem: O = Ost (German) = East, and O = Oeste (Spanish) = West

@@ -22,7 +22,8 @@
                 .ToList();
             foreach (var method in methods)
             {
-                var items = await (Task<IEnumerable<string>>)method.Invoke(internalMiner, null);
+                var task = (Task<IEnumerable<string>>)method.Invoke(internalMiner, null);
+                var items = await task;
                 items.AsParallel()
                     .ForAll(item => result.Enqueue(item.Trim(' ', ';', ',', ':')));
             }

@@ -1,10 +1,16 @@
 ﻿namespace ProcessingTools.Geo
 {
     using System;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using Contracts;
+    using GeoAPI.CoordinateSystems;
+    using GeoAPI.CoordinateSystems.Transformations;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
+    using ProjNet.CoordinateSystems;
+    using ProjNet.CoordinateSystems.Transformations;
+    using Types;
 
     public class Coordinate2DParser
     {
@@ -12,6 +18,9 @@
 
         private const string LatitudeTypeValue = AttributeNames.Latitude;
         private const string LongitudeTypeValue = AttributeNames.Longitude;
+        private const string UtmZoneValue = "zone";
+        private const string UtmEastingValue = "easting";
+        private const string UtmNorthingValue = "northing";
 
         // TODO: Error on 34.47325°, 132.10362°
         private const string CoordinateParsePattern = @"\A\W*?(\-?\d+[\.,\s]{1,3}\d+(?=\W*\s\W*\-?\d+[\.,\s]{1,3}\d+)|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SNWOE]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W+?((?<=\-?\d+[\.,\s]{1,3}\d+\W*\s\W*?)\-?\d+[\.,\s]{1,3}\d+|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W*?\Z";
@@ -24,19 +33,45 @@
 
         private const string MatchLatitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
+        private const string MatchUTMWGS84CoordinatePattern = @"\A(?:UTM\s*WGS84:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\Z";
+        private const string MatchDecimalDecimalCoordinatePattern = @"\A(?<latitude>\W?\d+\.\d+\W?)[,\s]+(?<longitude>\W?\d+\.\d+\W?)\Z";
+
         public static void ParseCoordinateString(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
         {
             string coordinateText = SimplifyCoordinateString(coordinateString);
 
             try
             {
+                // UTM WGS84: 33T 455.4683
+                Match matchUTMWGS84Coordinate = Regex.Match(coordinateString, MatchUTMWGS84CoordinatePattern);
+
                 // 29.5423°, -86.1926°
-                Regex matchDecimalDecimalCoordinateRegex = new Regex(@"\A(?<latitude>\W?\d+\.\d+\W?)[,\s]+(?<longitude>\W?\d+\.\d+\W?)\Z");
-                if (matchDecimalDecimalCoordinateRegex.IsMatch(coordinateText))
+                Match matchDecimalDecimalCoordinate = Regex.Match(coordinateText, MatchDecimalDecimalCoordinatePattern);
+
+                if (matchUTMWGS84Coordinate.Success)
                 {
-                    Match matchDecimalDecimalCoordinate = matchDecimalDecimalCoordinateRegex.Match(coordinateText);
-                    var latitudeString = matchDecimalDecimalCoordinate.Groups[AttributeNames.Latitude].Value.Trim();
-                    var longitudeString = matchDecimalDecimalCoordinate.Groups[AttributeNames.Longitude].Value.Trim();
+                    // Add tailing zeros
+                    var utmEastingString = matchUTMWGS84Coordinate.Groups[UtmEastingValue].Value.Trim() + "0000000";
+                    var utmNorthingString = matchUTMWGS84Coordinate.Groups[UtmNorthingValue].Value.Trim() + "0000000";
+
+                    var utmZone = matchUTMWGS84Coordinate.Groups[UtmZoneValue].Value.Trim();
+                    var utmEasting = double.Parse(utmEastingString.Substring(0, 6));
+                    var utmNorthing = double.Parse(utmNorthingString.Substring(0, 7));
+
+                    var point = UTM2DecimalTransform(utmEasting, utmNorthing, utmZone);
+
+                    latitude.DecimalValue = point[0];
+                    latitude.Type = CoordinatePartType.Latitude;
+                    latitude.PartIsPresent = true;
+
+                    longitude.DecimalValue = point[1];
+                    longitude.Type = CoordinatePartType.Longitude;
+                    longitude.PartIsPresent = true;
+                }
+                else if (matchDecimalDecimalCoordinate.Success)
+                {
+                    var latitudeString = matchDecimalDecimalCoordinate.Groups[LatitudeTypeValue].Value.Trim();
+                    var longitudeString = matchDecimalDecimalCoordinate.Groups[LongitudeTypeValue].Value.Trim();
 
                     ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
                         latitudeString,
@@ -212,6 +247,32 @@
                 .RegexReplace(@"\W*°[^\w,]+|W+°[^\w,]*", "°"); //// 22.14158°’S, 166.67993 °E
 
             return coordinateText;
+        }
+
+        private static double[] UTM2DecimalTransform(double utmEasting, double utmNorthing, string utmZone)
+        {
+            bool isNorthHemisphere = utmZone[utmZone.Length - 1] >= 'N';
+            var zone = int.Parse(utmZone.Substring(0, utmZone.Length - 1));
+
+            ICoordinateSystem gcsWGS84 = GeographicCoordinateSystem.WGS84;
+            IProjectedCoordinateSystem pcsUTM = ProjectedCoordinateSystem.WGS84_UTM(zone, isNorthHemisphere);
+
+            var coordinateTransformationFactory = new CoordinateTransformationFactory();
+            var transformation = coordinateTransformationFactory.CreateFromCoordinateSystems(gcsWGS84, pcsUTM);
+
+            try
+            {
+                IMathTransform inversedTransform = transformation.MathTransform.Inverse();
+
+                double[] point = inversedTransform.Transform(new double[] { utmEasting, utmNorthing });
+
+                return point.Reverse().ToArray();
+            }
+            catch (NotImplementedException e)
+            {
+                var message = $"Transformation of coordinate UTM WGS84: {utmZone} {utmEasting} {utmNorthing} is not implemented";
+                throw new NotImplementedException(message, e);
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Models.Bio.Codes
 {
-    using ProcessingTools.Constants.Schema;
     using System.Xml.Serialization;
+    using ProcessingTools.Constants.Schema;
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementNames.NamedContent, Namespace = "", IsNullable = false)]

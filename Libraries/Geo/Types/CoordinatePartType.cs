@@ -2,8 +2,8 @@
 {
     public enum CoordinatePartType
     {
-        Latitude,
-        Longitude,
-        Undefined
+        Undefined = 0,
+        Latitude = 1,
+        Longitude = 2
     }
 }
