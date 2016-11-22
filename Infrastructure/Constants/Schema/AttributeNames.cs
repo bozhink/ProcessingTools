@@ -7,6 +7,8 @@
         public const string ExtLinkType = "ext-link-type";
         public const string FullName = "full-name";
         public const string Id = "id";
+        public const string Latitude = "latitude";
+        public const string Longitude = "longitude";
         public const string MimeSubtype = "mime-subtype";
         public const string MimeType = "mimetype";
         public const string Position = "position";

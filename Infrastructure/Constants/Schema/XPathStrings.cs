@@ -11,12 +11,16 @@
         public const string ArticleZooBankSelfUri = ".//article-meta/self-uri[@content-type='zoobank']";
         public const string ContentNodes = ".//p|.//title|.//license-p|.//li|.//th|.//td|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
         public const string ContributorZooBankUri = ".//article-meta/contrib-group/contrib/uri[@content-type='zoobank']";
+        public const string CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes = ".//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)='']";
+        public const string CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes = ".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']";
+        public const string CoordinateWithEmptyLatitudeOrLongitude = ".//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']";
         public const string LowerTaxonNames = ".//tn[@type='lower']";
         public const string MediaElement = ".//media";
         public const string ObjectIdOfTypeIpni = ".//object-id[@content-type='ipni']";
         public const string ObjectIdOfTypeZooBank = ".//object-id[@content-type='zoobank']";
         public const string RootNodesOfContext = "./*";
         public const string SpecimenCodesContentNodes = "//p|//li|//th|//td|//title|//tp:nomenclature-citation";
+        public const string TableRowWithCoordinatePartsWichCanBeMerged = ".//tr[count(" + CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1][count(" + CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1]";
         public const string TaxonNamePartOfTypeGenus = "tn-part[@type='genus']";
         public const string TaxonNamePartOfTypeSpecies = "tn-part[@type='species']";
         public const string TaxonNamePartsOfLowerTaxonNames = LowerTaxonNames + "/" + ElementNames.TaxonNamePart;
