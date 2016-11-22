@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text.RegularExpressions;
+    using Contracts;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
 
@@ -23,7 +24,7 @@
 
         private const string MatchLatitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
-        public static void ParseCoordinateString(string coordinateString, string coordinateType, CoordinatePart latitude, CoordinatePart longitude)
+        public static void ParseCoordinateString(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
         {
             string coordinateText = SimplifyCoordinateString(coordinateString);
 
@@ -84,7 +85,7 @@
             }
         }
 
-        private static void ParseGeneralTypeCoordinate(string coordinateText, CoordinatePart latitude, CoordinatePart longitude)
+        private static void ParseGeneralTypeCoordinate(string coordinateText, ICoordinatePart latitude, ICoordinatePart longitude)
         {
             var coordinate = new Coordinate();
 
@@ -98,7 +99,7 @@
             ParseCoordinateObject(latitude, longitude, coordinate);
         }
 
-        private static void DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(Coordinate coordinate, string leftPart, string rightPart)
+        private static void DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(ICoordinate coordinate, string leftPart, string rightPart)
         {
             if ((leftPart.Contains("N") || leftPart.Contains("S")) &&
                 (rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O")))
@@ -136,8 +137,8 @@
         private static void ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
             string latitudeString,
             string longitudeString,
-            CoordinatePart latitude,
-            CoordinatePart longitude)
+            ICoordinatePart latitude,
+            ICoordinatePart longitude)
         {
             var coordinate = new Coordinate
             {
@@ -148,7 +149,7 @@
             ParseCoordinateObject(latitude, longitude, coordinate);
         }
 
-        private static void ParseCoordinateObject(CoordinatePart latitude, CoordinatePart longitude, Coordinate coordinate)
+        private static void ParseCoordinateObject(ICoordinatePart latitude, ICoordinatePart longitude, Coordinate coordinate)
         {
             ParseSinglePartTypeCoordinate(
                 coordinate.Latitude,
@@ -161,17 +162,17 @@
                 LongitudeMatchPattern);
         }
 
-        private static void ParseLongitudeTypeCoordinate(string coordinateText, CoordinatePart longitude)
+        private static void ParseLongitudeTypeCoordinate(string coordinateText, ICoordinatePart longitude)
         {
             ParseSinglePartTypeCoordinate(coordinateText, longitude, MatchLongitudePartPattern);
         }
 
-        private static void ParseLatitudeTypeCoordinate(string coordinateText, CoordinatePart latitude)
+        private static void ParseLatitudeTypeCoordinate(string coordinateText, ICoordinatePart latitude)
         {
             ParseSinglePartTypeCoordinate(coordinateText, latitude, MatchLatitudePartPattern);
         }
 
-        private static void ParseSinglePartTypeCoordinate(string coordinateText, CoordinatePart coordinatePart, string matchPartPattern)
+        private static void ParseSinglePartTypeCoordinate(string coordinateText, ICoordinatePart coordinatePart, string matchPartPattern)
         {
             Match matchPart = Regex.Match(coordinateText, matchPartPattern);
 

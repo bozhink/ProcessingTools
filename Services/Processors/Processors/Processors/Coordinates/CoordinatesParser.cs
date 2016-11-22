@@ -9,6 +9,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Geo;
+    using ProcessingTools.Geo.Contracts;
     using ProcessingTools.Xml.Extensions;
 
     public class CoordinatesParser : ICoordinatesParser
@@ -86,7 +87,7 @@
             this.SetCoordinatePartAttribute(coordinateNode, longitude, AttributeNames.Longitude);
         }
 
-        private void SetCoordinatePartAttribute(XmlNode coordinate, CoordinatePart coordinatePart, string attributeName)
+        private void SetCoordinatePartAttribute(XmlNode coordinate, ICoordinatePart coordinatePart, string attributeName)
         {
             if (coordinatePart.PartIsPresent)
             {

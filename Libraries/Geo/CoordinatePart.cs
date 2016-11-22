@@ -3,12 +3,12 @@
     using System;
     using System.Globalization;
     using System.Text.RegularExpressions;
-
+    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using Types;
 
-    public class CoordinatePart
+    public class CoordinatePart : ICoordinatePart
     {
         private const string DotSignAsDecimalSeparator = ".";
         private const string CoordinatePartDecimalFormat = "f6";
