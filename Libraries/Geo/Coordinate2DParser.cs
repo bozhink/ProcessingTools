@@ -1,18 +1,13 @@
 ﻿namespace ProcessingTools.Geo
 {
     using System;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using Contracts;
-    using GeoAPI.CoordinateSystems;
-    using GeoAPI.CoordinateSystems.Transformations;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
-    using ProjNet.CoordinateSystems;
-    using ProjNet.CoordinateSystems.Transformations;
     using Types;
 
-    public class Coordinate2DParser
+    public class Coordinate2DParser : ICoordinate2DParser
     {
         private const string RepeatedDirectionsErrorMessage = "Repeated directions in the coordinate string.";
 
@@ -36,9 +31,21 @@
         private const string MatchUTMWGS84CoordinatePattern = @"\A(?:UTM\s*WGS84:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\Z";
         private const string MatchDecimalDecimalCoordinatePattern = @"\A(?<latitude>\W?\d+\.\d+\W?)[,\s]+(?<longitude>\W?\d+\.\d+\W?)\Z";
 
-        public static void ParseCoordinateString(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
+        private readonly IUtmCoordianesTransformer utmCoordianesTransformer;
+
+        public Coordinate2DParser(IUtmCoordianesTransformer utmCoordianesTransformer)
         {
-            string coordinateText = SimplifyCoordinateString(coordinateString);
+            if (utmCoordianesTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(utmCoordianesTransformer));
+            }
+
+            this.utmCoordianesTransformer = utmCoordianesTransformer;
+        }
+
+        public void ParseCoordinateString(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
+        {
+            string coordinateText = this.SimplifyCoordinateString(coordinateString);
 
             try
             {
@@ -58,7 +65,7 @@
                     var utmEasting = double.Parse(utmEastingString.Substring(0, 6));
                     var utmNorthing = double.Parse(utmNorthingString.Substring(0, 7));
 
-                    var point = UTM2DecimalTransform(utmEasting, utmNorthing, utmZone);
+                    var point = this.utmCoordianesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
 
                     latitude.DecimalValue = point[0];
                     latitude.Type = CoordinatePartType.Latitude;
@@ -73,7 +80,7 @@
                     var latitudeString = matchDecimalDecimalCoordinate.Groups[LatitudeTypeValue].Value.Trim();
                     var longitudeString = matchDecimalDecimalCoordinate.Groups[LongitudeTypeValue].Value.Trim();
 
-                    ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
+                    this.ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
                         latitudeString,
                         longitudeString,
                         latitude,
@@ -95,15 +102,15 @@
 
                     if (string.IsNullOrWhiteSpace(coordinateType))
                     {
-                        ParseGeneralTypeCoordinate(coordinateText, latitude, longitude);
+                        this.ParseGeneralTypeCoordinate(coordinateText, latitude, longitude);
                     }
                     else if (coordinateType == LatitudeTypeValue)
                     {
-                        ParseLatitudeTypeCoordinate(coordinateText, latitude);
+                        this.ParseLatitudeTypeCoordinate(coordinateText, latitude);
                     }
                     else if (coordinateType == LongitudeTypeValue)
                     {
-                        ParseLongitudeTypeCoordinate(coordinateText, longitude);
+                        this.ParseLongitudeTypeCoordinate(coordinateText, longitude);
                     }
                 }
             }
@@ -112,7 +119,7 @@
                 var latitudeString = Regex.Replace(coordinateText, @"\A.*([NS])\W?(\d{1,3})\W{1,3}(\d{1,3})\W{1,3}(\d{1,3}).*\Z", "$1$2 $3 $4");
                 var longitudeString = Regex.Replace(coordinateText, @"\A.*([EW])\W?(\d{1,3})\W{1,3}(\d{1,3})\W{1,3}(\d{1,3}).*\Z", "$1$2 $3 $4");
 
-                ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
+                this.ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
                     latitudeString,
                     longitudeString,
                     latitude,
@@ -120,7 +127,7 @@
             }
         }
 
-        private static void ParseGeneralTypeCoordinate(string coordinateText, ICoordinatePart latitude, ICoordinatePart longitude)
+        private void ParseGeneralTypeCoordinate(string coordinateText, ICoordinatePart latitude, ICoordinatePart longitude)
         {
             var coordinate = new Coordinate();
 
@@ -128,13 +135,13 @@
                 string leftPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$1");
                 string rightPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$16");
 
-                DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(coordinate, leftPart, rightPart);
+                this.DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(coordinate, leftPart, rightPart);
             }
 
-            ParseCoordinateObject(latitude, longitude, coordinate);
+            this.ParseCoordinateObject(latitude, longitude, coordinate);
         }
 
-        private static void DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(ICoordinate coordinate, string leftPart, string rightPart)
+        private void DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(ICoordinate coordinate, string leftPart, string rightPart)
         {
             if ((leftPart.Contains("N") || leftPart.Contains("S")) &&
                 (rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O")))
@@ -169,7 +176,7 @@
             }
         }
 
-        private static void ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
+        private void ProcessCoordinateNodeWithDeterminedLatitudeAndLongitudeStringParts(
             string latitudeString,
             string longitudeString,
             ICoordinatePart latitude,
@@ -181,33 +188,33 @@
                 Longitude = longitudeString
             };
 
-            ParseCoordinateObject(latitude, longitude, coordinate);
+            this.ParseCoordinateObject(latitude, longitude, coordinate);
         }
 
-        private static void ParseCoordinateObject(ICoordinatePart latitude, ICoordinatePart longitude, Coordinate coordinate)
+        private void ParseCoordinateObject(ICoordinatePart latitude, ICoordinatePart longitude, Coordinate coordinate)
         {
-            ParseSinglePartTypeCoordinate(
+            this.ParseSinglePartTypeCoordinate(
                 coordinate.Latitude,
                 latitude,
                 LatitudeMatchPattern);
 
-            ParseSinglePartTypeCoordinate(
+            this.ParseSinglePartTypeCoordinate(
                 coordinate.Longitude,
                 longitude,
                 LongitudeMatchPattern);
         }
 
-        private static void ParseLongitudeTypeCoordinate(string coordinateText, ICoordinatePart longitude)
+        private void ParseLongitudeTypeCoordinate(string coordinateText, ICoordinatePart longitude)
         {
-            ParseSinglePartTypeCoordinate(coordinateText, longitude, MatchLongitudePartPattern);
+            this.ParseSinglePartTypeCoordinate(coordinateText, longitude, MatchLongitudePartPattern);
         }
 
-        private static void ParseLatitudeTypeCoordinate(string coordinateText, ICoordinatePart latitude)
+        private void ParseLatitudeTypeCoordinate(string coordinateText, ICoordinatePart latitude)
         {
-            ParseSinglePartTypeCoordinate(coordinateText, latitude, MatchLatitudePartPattern);
+            this.ParseSinglePartTypeCoordinate(coordinateText, latitude, MatchLatitudePartPattern);
         }
 
-        private static void ParseSinglePartTypeCoordinate(string coordinateText, ICoordinatePart coordinatePart, string matchPartPattern)
+        private void ParseSinglePartTypeCoordinate(string coordinateText, ICoordinatePart coordinatePart, string matchPartPattern)
         {
             Match matchPart = Regex.Match(coordinateText, matchPartPattern);
 
@@ -228,7 +235,7 @@
             }
         }
 
-        private static string SimplifyCoordinateString(string coordinateString)
+        private string SimplifyCoordinateString(string coordinateString)
         {
             string coordinateText = coordinateString
                 .RegexReplace("[–—−-]", "-")
@@ -247,32 +254,6 @@
                 .RegexReplace(@"\W*°[^\w,]+|W+°[^\w,]*", "°"); //// 22.14158°’S, 166.67993 °E
 
             return coordinateText;
-        }
-
-        private static double[] UTM2DecimalTransform(double utmEasting, double utmNorthing, string utmZone)
-        {
-            bool isNorthHemisphere = utmZone[utmZone.Length - 1] >= 'N';
-            var zone = int.Parse(utmZone.Substring(0, utmZone.Length - 1));
-
-            ICoordinateSystem gcsWGS84 = GeographicCoordinateSystem.WGS84;
-            IProjectedCoordinateSystem pcsUTM = ProjectedCoordinateSystem.WGS84_UTM(zone, isNorthHemisphere);
-
-            var coordinateTransformationFactory = new CoordinateTransformationFactory();
-            var transformation = coordinateTransformationFactory.CreateFromCoordinateSystems(gcsWGS84, pcsUTM);
-
-            try
-            {
-                IMathTransform inversedTransform = transformation.MathTransform.Inverse();
-
-                double[] point = inversedTransform.Transform(new double[] { utmEasting, utmNorthing });
-
-                return point.Reverse().ToArray();
-            }
-            catch (NotImplementedException e)
-            {
-                var message = $"Transformation of coordinate UTM WGS84: {utmZone} {utmEasting} {utmNorthing} is not implemented";
-                throw new NotImplementedException(message, e);
-            }
         }
     }
 }

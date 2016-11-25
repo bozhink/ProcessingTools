@@ -54,6 +54,7 @@
     <Compile Include="CoordinatePart.cs" />
     <Compile Include="Contracts\ICoordinatePart.cs" />
     <Compile Include="Contracts\IUtmCoordianesTransformer.cs" />
+    <Compile Include="Contracts\ICoordinate2DParser.cs" />
     <Compile Include="Models\Json\GeoJson\GeoJsonCoordinateReferenceSystem.cs" />
     <Compile Include="Models\Json\GeoJson\GeoJsonCoordinateReferenceSystemProperties.cs" />
     <Compile Include="Models\Json\GeoJson\GeoJsonFeature.cs" />

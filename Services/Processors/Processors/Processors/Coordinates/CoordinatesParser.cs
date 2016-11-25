@@ -16,10 +16,17 @@
     {
         private const string CurrentCoordinateWillNotBeProcessedErrorMessage = "Current coordinate will not be processed!";
 
+        private readonly ICoordinate2DParser coordinate2DParser;
         private readonly ILogger logger;
 
-        public CoordinatesParser(ILogger logger)
+        public CoordinatesParser(ICoordinate2DParser coordinate2DParser, ILogger logger)
         {
+            if (coordinate2DParser == null)
+            {
+                throw new ArgumentNullException(nameof(coordinate2DParser));
+            }
+
+            this.coordinate2DParser = coordinate2DParser;
             this.logger = logger;
         }
 
@@ -79,7 +86,7 @@
             string coordinateNodeInnerText = coordinateNode.InnerText;
             string coordinateType = coordinateNode.Attributes[AttributeNames.Type]?.InnerText;
 
-            Coordinate2DParser.ParseCoordinateString(coordinateNodeInnerText, coordinateType, latitude, longitude);
+            this.coordinate2DParser.ParseCoordinateString(coordinateNodeInnerText, coordinateType, latitude, longitude);
 
             this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
 
