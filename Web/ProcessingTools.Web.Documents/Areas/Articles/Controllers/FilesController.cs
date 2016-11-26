@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
+﻿using Strings = Resources.Strings;
+
+namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
     using System.Collections.Concurrent;
@@ -277,7 +279,7 @@
                 filterContext.Result = this.NoFilesSelectedErrorView(
                     InstanceNames.FilesControllerInstanceName,
                     filterContext.Exception.Message,
-                    Resources.Strings.DefaultUploadNewFileActionLinkTitle);
+                    Strings.DefaultUploadNewFileActionLinkTitle);
             }
             else if (filterContext.Exception is InvalidOrEmptyFilesException)
             {

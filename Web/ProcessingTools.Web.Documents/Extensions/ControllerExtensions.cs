@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Web.Documents.Extensions
+﻿using Strings = Resources.Strings;
+
+namespace ProcessingTools.Web.Documents.Extensions
 {
     using System;
     using System.Net;
@@ -143,7 +145,7 @@
                 sourceAction,
                 new ActionMetaViewModel
                 {
-                    ActionLinkText = Resources.Strings.DefaultBackToListActionLinkTitle,
+                    ActionLinkText = Strings.DefaultBackToListActionLinkTitle,
                     ActionName = ActionNames.DeafultIndexActionName,
                     ControllerName = sourceAction.ControllerName,
                     AreaName = sourceAction.AreaName
@@ -176,7 +178,7 @@
                 },
                 new ActionMetaViewModel
                 {
-                    ActionLinkText = Resources.Strings.DefaultBackToListActionLinkTitle,
+                    ActionLinkText = Strings.DefaultBackToListActionLinkTitle,
                     ActionName = ActionNames.DeafultIndexActionName,
                     ControllerName = controllerName,
                     AreaName = areaName

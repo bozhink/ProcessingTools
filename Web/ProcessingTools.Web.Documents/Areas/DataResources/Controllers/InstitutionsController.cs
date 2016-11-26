@@ -17,9 +17,9 @@
     {
         private const string InstitutionValidationBinding = nameof(Institution.Id) + "," + nameof(Institution.Name);
 
-        private readonly IDataResourcesDbContextProvider contextProvider;
+        private readonly IResourcesDbContextProvider contextProvider;
 
-        public InstitutionsController(IDataResourcesDbContextProvider contextProvider)
+        public InstitutionsController(IResourcesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {

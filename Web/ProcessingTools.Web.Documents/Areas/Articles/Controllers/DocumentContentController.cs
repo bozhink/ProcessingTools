@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
+﻿using Strings = Resources.Strings;
+
+namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
     using System.Net;

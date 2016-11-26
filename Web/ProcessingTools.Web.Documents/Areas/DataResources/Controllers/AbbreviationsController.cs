@@ -20,9 +20,9 @@
             nameof(Abbreviation.Definition) + "," +
             nameof(Abbreviation.ContentTypeId);
 
-        private readonly IDataResourcesDbContextProvider contextProvider;
+        private readonly IResourcesDbContextProvider contextProvider;
 
-        public AbbreviationsController(IDataResourcesDbContextProvider contextProvider)
+        public AbbreviationsController(IResourcesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {

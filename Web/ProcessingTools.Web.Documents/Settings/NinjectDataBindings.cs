@@ -12,49 +12,49 @@
         {
             this.Bind(b =>
             {
-                b.From(Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(Bio.Biorepositories.Data.Mongo.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Bio.Biorepositories.Data.Mongo.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(Bio.Taxonomy.Data.Xml.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Bio.Taxonomy.Data.Xml.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(Resources.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Resources.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(MediaType.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.MediaType.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

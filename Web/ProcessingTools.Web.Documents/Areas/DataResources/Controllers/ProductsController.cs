@@ -17,9 +17,9 @@
     {
         private const string ProductValidationBinding = nameof(Product.Id) + "," + nameof(Product.Name);
 
-        private readonly IDataResourcesDbContextProvider contextProvider;
+        private readonly IResourcesDbContextProvider contextProvider;
 
-        public ProductsController(IDataResourcesDbContextProvider contextProvider)
+        public ProductsController(IResourcesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {

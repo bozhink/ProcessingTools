@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
+﻿using Strings = Resources.Strings;
+
+namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
 {
     using System;
     using System.Data.Entity;
@@ -92,19 +94,19 @@
             }
             catch (InvalidPageNumberException e)
             {
-                return this.InvalidPageNumberErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
+                return this.InvalidPageNumberErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Strings.DefaultBackToListActionLinkTitle);
             }
             catch (InvalidItemsPerPageException e)
             {
-                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultBackToListActionLinkTitle);
+                return this.InvalidNumberOfItemsPerPageErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Strings.DefaultBackToListActionLinkTitle);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Strings.DefaultIndexActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultIndexActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Strings.DefaultIndexActionLinkTitle);
             }
         }
 
@@ -113,7 +115,7 @@
         {
             if (id == null)
             {
-                return this.InvalidIdErrorView(InstanceNames.JournalsControllerInstanceName, string.Empty, Resources.Strings.DefaultDetailsActionLinkTitle);
+                return this.InvalidIdErrorView(InstanceNames.JournalsControllerInstanceName, string.Empty, Strings.DefaultDetailsActionLinkTitle);
             }
 
             try
@@ -135,15 +137,15 @@
             }
             catch (EntityNotFoundException e)
             {
-                return this.DefaultNotFoundView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
+                return this.DefaultNotFoundView(InstanceNames.JournalsControllerInstanceName, e.Message, Strings.DefaultDetailsActionLinkTitle);
             }
             catch (ArgumentException e)
             {
-                return this.BadRequestErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
+                return this.BadRequestErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Strings.DefaultDetailsActionLinkTitle);
             }
             catch (Exception e)
             {
-                return this.DefaultErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Resources.Strings.DefaultDetailsActionLinkTitle);
+                return this.DefaultErrorView(InstanceNames.JournalsControllerInstanceName, e.Message, Strings.DefaultDetailsActionLinkTitle);
             }
         }
 

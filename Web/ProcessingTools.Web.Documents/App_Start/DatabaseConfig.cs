@@ -24,7 +24,7 @@
                 .Initialize();
 
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ProcessingTools.Resources.Data.Entity.DataResourcesDbContext, ProcessingTools.Resources.Data.Entity.Migrations.Configuration>());
+                new MigrateDatabaseToLatestVersion<ProcessingTools.Resources.Data.Entity.ResourcesDbContext, ProcessingTools.Resources.Data.Entity.Migrations.Configuration>());
         }
     }
 }
