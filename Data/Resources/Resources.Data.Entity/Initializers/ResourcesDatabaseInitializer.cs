@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Data.Entity.Initializers
+﻿namespace ProcessingTools.DataResources.Data.Entity.Initializers
 {
     using System.Data.Entity;
     using Contracts;

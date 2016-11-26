@@ -40,7 +40,7 @@
 
             this.Bind(b =>
             {
-                b.From(Resources.Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(DataResources.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

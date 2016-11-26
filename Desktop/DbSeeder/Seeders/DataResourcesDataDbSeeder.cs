@@ -5,8 +5,8 @@
 
     using Contracts;
 
-    using ProcessingTools.Resources.Data.Entity.Contracts;
-    using ProcessingTools.Resources.Data.Seed.Contracts;
+    using ProcessingTools.DataResources.Data.Entity.Contracts;
+    using ProcessingTools.DataResources.Data.Seed.Contracts;
 
     public class DataResourcesDataDbSeeder : IDataResourcesDataDbSeeder
     {

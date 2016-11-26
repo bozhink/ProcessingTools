@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Data.Seed.Contracts
+﻿namespace ProcessingTools.DataResources.Data.Seed.Contracts
 {
     using ProcessingTools.Contracts.Data;
 

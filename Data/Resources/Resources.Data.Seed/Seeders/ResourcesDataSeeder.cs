@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Data.Seed
+﻿namespace ProcessingTools.DataResources.Data.Seed
 {
     using System;
     using System.Collections.Concurrent;
@@ -8,9 +8,9 @@
     using System.Threading.Tasks;
     using Contracts;
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.Resources.Data.Entity;
-    using ProcessingTools.Resources.Data.Entity.Contracts;
-    using ProcessingTools.Resources.Data.Entity.Models;
+    using ProcessingTools.DataResources.Data.Entity;
+    using ProcessingTools.DataResources.Data.Entity.Contracts;
+    using ProcessingTools.DataResources.Data.Entity.Models;
 
     public class ResourcesDataSeeder : IResourcesDataSeeder
     {

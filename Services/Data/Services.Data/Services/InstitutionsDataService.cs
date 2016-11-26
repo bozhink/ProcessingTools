@@ -4,8 +4,8 @@
     using System.Linq.Expressions;
     using Contracts;
     using Models;
-    using ProcessingTools.Resources.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.Resources.Data.Entity.Models;
+    using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Services.Common.Factories;
 
     public class InstitutionsDataService : SimpleDataServiceWithRepositoryFactory<Institution, InstitutionServiceModel>, IInstitutionsDataService

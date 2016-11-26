@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Services.Data.Models
+﻿namespace ProcessingTools.DataResources.Services.Data.Models
 {
     using Contracts;
 

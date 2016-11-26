@@ -7,8 +7,8 @@
     <ProjectGuid>{AD202EF1-F5F1-4D85-9CEA-EA13EE71D5D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Resources.Data.Common</RootNamespace>
-    <AssemblyName>ProcessingTools.Resources.Data.Common</AssemblyName>
+    <RootNamespace>ProcessingTools.DataResources.Data.Common</RootNamespace>
+    <AssemblyName>ProcessingTools.DataResources.Data.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

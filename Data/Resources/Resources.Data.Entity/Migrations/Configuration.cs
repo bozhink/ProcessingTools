@@ -1,4 +1,4 @@
-namespace ProcessingTools.Resources.Data.Entity.Migrations
+namespace ProcessingTools.DataResources.Data.Entity.Migrations
 {
     using System.Data.Entity.Migrations;
 

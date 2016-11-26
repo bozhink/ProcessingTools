@@ -18,7 +18,7 @@ namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
 
-    using Resources;
+    using ProcessingTools.DataResources;
 
     [Authorize]
     public class DocumentContentController : Controller

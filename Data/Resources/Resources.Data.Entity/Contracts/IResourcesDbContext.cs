@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Data.Entity.Contracts
+﻿namespace ProcessingTools.DataResources.Data.Entity.Contracts
 {
     using System.Data.Entity;
     using Models;

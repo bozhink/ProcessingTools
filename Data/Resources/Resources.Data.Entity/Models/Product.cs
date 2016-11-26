@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Resources.Data.Entity.Models
+﻿namespace ProcessingTools.DataResources.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Resources.Data.Common.Constants;
-    using ProcessingTools.Resources.Data.Common.Contracts.Models;
+    using ProcessingTools.DataResources.Data.Common.Constants;
+    using ProcessingTools.DataResources.Data.Common.Contracts.Models;
 
     public class Product : EntityWithSources, IProductEntity
     {

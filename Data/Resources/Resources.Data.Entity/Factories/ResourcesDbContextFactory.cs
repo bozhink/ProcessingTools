@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Data.Entity.Factories
+﻿namespace ProcessingTools.DataResources.Data.Entity.Factories
 {
     using System;
     using Contracts;

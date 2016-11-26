@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.DataResources.Data.Common.Contracts.Models
 {
     public interface ISourceIdEntity
     {

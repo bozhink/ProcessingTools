@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Resources.Data.Entity
+﻿namespace ProcessingTools.DataResources.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
