@@ -300,11 +300,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Data.Entity", "Data\U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common", "Data\Common\Data.Common\Data.Common.csproj", "{8DE48EB2-2387-4D85-A78C-773A300881D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResources.Data.Common", "Data\Resources\Resources.Data.Common\DataResources.Data.Common.csproj", "{AD202EF1-F5F1-4D85-9CEA-EA13EE71D5D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResources.Data.Common", "Data\Resources\DataResources.Data.Common\DataResources.Data.Common.csproj", "{AD202EF1-F5F1-4D85-9CEA-EA13EE71D5D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResources.Data.Entity", "Data\Resources\Resources.Data.Entity\DataResources.Data.Entity.csproj", "{A8E46D02-EE55-40D3-AB35-7568B9A2E713}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResources.Data.Entity", "Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj", "{A8E46D02-EE55-40D3-AB35-7568B9A2E713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResources.Data.Seed", "Data\Resources\Resources.Data.Seed\DataResources.Data.Seed.csproj", "{F1202A6D-F30A-4F76-A7C5-69C6E84285A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResources.Data.Seed", "Data\Resources\DataResources.Data.Seed\DataResources.Data.Seed.csproj", "{F1202A6D-F30A-4F76-A7C5-69C6E84285A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data.Common", "Data\Documents\Documents.Data.Common\Documents.Data.Common.csproj", "{886CD5EA-A0BD-41C1-A583-797265011223}"
 EndProject

@@ -148,11 +148,11 @@
       <Project>{d284eedf-76af-4bd1-a10d-cefe39ff59d0}</Project>
       <Name>MediaType.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Resources\Resources.Data.Entity\DataResources.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Resources\Resources.Data.Seed\DataResources.Data.Seed.csproj">
+    <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Seed\DataResources.Data.Seed.csproj">
       <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
       <Name>DataResources.Data.Seed</Name>
     </ProjectReference>
