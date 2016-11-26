@@ -36,14 +36,14 @@
             // MediaType.Data
             this.Bind(b =>
             {
-                b.From(MediaType.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                b.From(Mediatypes.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(MediaType.Data.Seed.Assembly.Assembly.GetType().Assembly)
+                b.From(Mediatypes.Data.Seed.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

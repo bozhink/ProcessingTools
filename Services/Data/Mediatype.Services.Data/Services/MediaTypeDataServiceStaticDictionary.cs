@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data
+﻿namespace ProcessingTools.Mediatypes.Services.Data
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

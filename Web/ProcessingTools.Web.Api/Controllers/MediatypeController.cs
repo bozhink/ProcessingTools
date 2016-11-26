@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using MediaType.Services.Data.Contracts;
+    using Mediatypes.Services.Data.Contracts;
     using Models.MediaTypes;
 
     public class MediaTypeController : ApiController

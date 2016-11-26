@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Contracts
+﻿namespace ProcessingTools.Mediatypes.Services.Data.Contracts
 {
     using System.Linq;
     using System.Threading.Tasks;

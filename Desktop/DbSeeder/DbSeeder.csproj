@@ -140,13 +140,13 @@
       <Project>{7b811a1e-88ed-4bd6-a9e4-34b10e0d0fca}</Project>
       <Name>Geo.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Entity\MediaType.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Entity\Mediatypes.Data.Entity.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
-      <Name>MediaType.Data.Entity</Name>
+      <Name>Mediatypes.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Seed\MediaType.Data.Seed.csproj">
+    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Seed\Mediatypes.Data.Seed.csproj">
       <Project>{d284eedf-76af-4bd1-a10d-cefe39ff59d0}</Project>
-      <Name>MediaType.Data.Seed</Name>
+      <Name>Mediatypes.Data.Seed</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Models
+﻿namespace ProcessingTools.Mediatypes.Services.Data.Models
 {
     public class MediaTypeServiceModel
     {

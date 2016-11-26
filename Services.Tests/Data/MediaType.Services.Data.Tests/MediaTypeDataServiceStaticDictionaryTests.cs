@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Tests
+﻿namespace ProcessingTools.Mediatypes.Services.Data.Tests
 {
     using System;
     using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity
+﻿namespace ProcessingTools.Mediatypes.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
@@ -6,20 +6,20 @@
     using Models;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class MediaTypesDbContext : DbContext, IMediaTypesDbContext
+    public class MediatypesDbContext : DbContext, IMediatypesDbContext
     {
-        public MediaTypesDbContext(string connectionString)
+        public MediatypesDbContext(string connectionString)
             : base(connectionString)
         {
         }
 
         public IDbSet<FileExtension> FileExtensions { get; set; }
 
-        public IDbSet<MimeType> MimeTypes { get; set; }
+        public IDbSet<Mimetype> Mimetypes { get; set; }
 
-        public IDbSet<MimeSubtype> MimeSubtypes { get; set; }
+        public IDbSet<Mimesubtype> Mimesubtypes { get; set; }
 
-        public IDbSet<MimeTypePair> MimeTypePairs { get; set; }
+        public IDbSet<MimetypePair> MimetypePairs { get; set; }
 
         IDbSet<T> IDbContext.Set<T>() => this.Set<T>();
 

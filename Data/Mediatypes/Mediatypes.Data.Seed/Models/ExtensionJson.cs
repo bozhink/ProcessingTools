@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Seed.Models
+﻿namespace ProcessingTools.Mediatypes.Data.Seed.Models
 {
     using Newtonsoft.Json;
 
@@ -7,11 +7,11 @@
         [JsonProperty("extension")]
         public string Extension { get; set; }
 
-        [JsonProperty("mimeType")]
-        public string MimeType { get; set; }
+        [JsonProperty("mimetype")]
+        public string Mimetype { get; set; }
 
-        [JsonProperty("mimeSubtype")]
-        public string MimeSubtype { get; set; }
+        [JsonProperty("mimesubtype")]
+        public string Mimesubtype { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

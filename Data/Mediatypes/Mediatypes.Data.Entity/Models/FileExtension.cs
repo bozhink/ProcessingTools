@@ -1,17 +1,17 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Models
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.MediaType.Data.Common.Constants;
+    using ProcessingTools.Mediatypes.Data.Common.Constants;
 
     public class FileExtension
     {
-        private ICollection<MimeTypePair> mimeTypePairs;
+        private ICollection<MimetypePair> mimeTypePairs;
 
         public FileExtension()
         {
-            this.mimeTypePairs = new HashSet<MimeTypePair>();
+            this.mimeTypePairs = new HashSet<MimetypePair>();
         }
 
         [Key]
@@ -25,7 +25,7 @@
         [MaxLength(ValidationConstants.MaximalLengthOfFileExtensionDescription)]
         public string Description { get; set; }
 
-        public virtual ICollection<MimeTypePair> MimeTypePairs
+        public virtual ICollection<MimetypePair> MimeTypePairs
         {
             get
             {

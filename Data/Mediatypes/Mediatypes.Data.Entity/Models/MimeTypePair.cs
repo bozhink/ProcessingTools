@@ -1,13 +1,13 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Models
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class MimeTypePair
+    public class MimetypePair
     {
         private ICollection<FileExtension> fileExtensions;
 
-        public MimeTypePair()
+        public MimetypePair()
         {
             this.fileExtensions = new HashSet<FileExtension>();
         }
@@ -17,11 +17,11 @@
 
         public virtual int MimeTypeId { get; set; }
 
-        public virtual MimeType MimeType { get; set; }
+        public virtual Mimetype MimeType { get; set; }
 
         public virtual int MimeSubtypeId { get; set; }
 
-        public virtual MimeSubtype MimeSubtype { get; set; }
+        public virtual Mimesubtype MimeSubtype { get; set; }
 
         public virtual ICollection<FileExtension> FileExtensions
         {

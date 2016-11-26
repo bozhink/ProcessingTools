@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Tests
+﻿namespace ProcessingTools.Mediatypes.Services.Data.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.MediaType.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.MediaType.Data.Entity.Models;
+    using ProcessingTools.Mediatypes.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Mediatypes.Data.Entity.Models;
 
     [TestClass]
     public class MediaTypeDataServiceTests
@@ -16,7 +16,7 @@
         [Timeout(5000)]
         public void MediaTypeDataService_WithDefaultConstructor_ShouldReturnValidObject()
         {
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             Assert.IsNotNull(service, "Object should not be null.");
         }
@@ -26,7 +26,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataService_WithNullFileExtension_ShouldThrowAggregateException()
         {
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             var type = service.GetMediaType(null).Result;
         }
@@ -37,7 +37,7 @@
         {
             try
             {
-                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
                 var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
                 var type = service.GetMediaType(null).Result;
             }
@@ -56,7 +56,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataService_WithEmptyFileExtension_ShouldThrowArgumentNullException()
         {
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             var type = service.GetMediaType(@"
                                             ").Result;
@@ -68,7 +68,7 @@
         {
             try
             {
-                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
                 var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
                 var type = service.GetMediaType(@"
                                             ").Result;
@@ -88,7 +88,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataService_WithDotFileExtension_ShouldThrowAggregateException()
         {
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             var type = service.GetMediaType(".").Result;
         }
@@ -99,7 +99,7 @@
         {
             try
             {
-                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
                 var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
                 var type = service.GetMediaType(".").Result;
             }
@@ -118,7 +118,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataService_WithDotEmptyFileExtension_ShouldThrowAggregateException()
         {
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
             var type = service.GetMediaType(@"
                         .   .. ").Result;
@@ -130,7 +130,7 @@
         {
             try
             {
-                var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+                var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
                 var service = new MediaTypeDataService(fileExtensionsRepositoryMock.Object);
                 var type = service.GetMediaType(@"
                         .   .. ").Result;
@@ -153,7 +153,7 @@
             const string MimeType = "text";
             const string MimeSubtype = "plain";
 
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
                 .Returns(() => Task.FromResult(new List<FileExtension>
@@ -161,15 +161,15 @@
                     new FileExtension
                     {
                         Name = FileExtension,
-                        MimeTypePairs = new List<MimeTypePair>
+                        MimeTypePairs = new List<MimetypePair>
                         {
-                            new MimeTypePair
+                            new MimetypePair
                             {
-                                MimeType = new MimeType
+                                MimeType = new Mimetype
                                 {
                                     Name = MimeType
                                 },
-                                MimeSubtype = new MimeSubtype
+                                MimeSubtype = new Mimesubtype
                                 {
                                     Name = MimeSubtype
                                 }
@@ -204,7 +204,7 @@
             const string MimeType = "text";
             const string MimeSubtype = "plain";
 
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
                 .Returns(() => Task.FromResult(new List<FileExtension>
@@ -212,15 +212,15 @@
                     new FileExtension
                     {
                         Name = FileExtension.TrimStart('.'),
-                        MimeTypePairs = new List<MimeTypePair>
+                        MimeTypePairs = new List<MimetypePair>
                         {
-                            new MimeTypePair
+                            new MimetypePair
                             {
-                                MimeType = new MimeType
+                                MimeType = new Mimetype
                                 {
                                     Name = MimeType
                                 },
-                                MimeSubtype = new MimeSubtype
+                                MimeSubtype = new Mimesubtype
                                 {
                                     Name = MimeSubtype
                                 }
@@ -255,7 +255,7 @@
             const string MimeType = "unknown";
             const string MimeSubtype = "unknown";
 
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
                 .Returns(() => Task.FromResult(new List<FileExtension>().AsQueryable()));
@@ -276,7 +276,7 @@
             const string MimeType = "unknown";
             const string MimeSubtype = "unknown";
 
-            var fileExtensionsRepositoryMock = new Mock<IMediaTypesRepository<FileExtension>>();
+            var fileExtensionsRepositoryMock = new Mock<IMediatypesRepository<FileExtension>>();
             fileExtensionsRepositoryMock
                 .Setup(f => f.All())
                 .Returns(() => Task.FromResult(new List<FileExtension>()
@@ -284,15 +284,15 @@
                     new FileExtension
                     {
                         Name = "txt",
-                        MimeTypePairs = new List<MimeTypePair>()
+                        MimeTypePairs = new List<MimetypePair>()
                         {
-                            new MimeTypePair
+                            new MimetypePair
                             {
-                                MimeType = new MimeType
+                                MimeType = new Mimetype
                                 {
                                     Name = "text"
                                 },
-                                MimeSubtype = new MimeSubtype
+                                MimeSubtype = new Mimesubtype
                                 {
                                     Name = "plain"
                                 }

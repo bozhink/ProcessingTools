@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data.Factories
+﻿namespace ProcessingTools.Mediatypes.Services.Data.Factories
 {
     using System;
     using System.Collections.Generic;

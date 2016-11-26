@@ -414,9 +414,9 @@
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
       <Name>Geo.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Entity\MediaType.Data.Entity.csproj">
+    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Entity\Mediatypes.Data.Entity.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
-      <Name>MediaType.Data.Entity</Name>
+      <Name>Mediatypes.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>

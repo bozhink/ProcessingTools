@@ -5,15 +5,15 @@
 
     using Contracts;
 
-    using ProcessingTools.MediaType.Data.Entity.Contracts;
-    using ProcessingTools.MediaType.Data.Seed.Contracts;
+    using ProcessingTools.Mediatypes.Data.Entity.Contracts;
+    using ProcessingTools.Mediatypes.Data.Seed.Contracts;
 
     public class MediaTypesDbSeeder : IMediaTypesDbSeeder
     {
-        private readonly IMediaTypeDataInitializer initializer;
-        private readonly IMediaTypeDataSeeder seeder;
+        private readonly IMediatypesDataInitializer initializer;
+        private readonly IMediatypesDataSeeder seeder;
 
-        public MediaTypesDbSeeder(IMediaTypeDataInitializer initializer, IMediaTypeDataSeeder seeder)
+        public MediaTypesDbSeeder(IMediatypesDataInitializer initializer, IMediatypesDataSeeder seeder)
         {
             if (initializer == null)
             {

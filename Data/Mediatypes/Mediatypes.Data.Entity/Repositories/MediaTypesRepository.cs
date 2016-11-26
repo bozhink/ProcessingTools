@@ -1,13 +1,13 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Repositories
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Repositories
 {
     using Contracts;
     using Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories;
 
-    public class MediaTypesRepository<T> : EntityGenericRepository<MediaTypesDbContext, T>, IMediaTypesRepository<T>
+    public class MediatypesRepository<T> : EntityGenericRepository<MediatypesDbContext, T>, IMediatypesRepository<T>
         where T : class
     {
-        public MediaTypesRepository(IMediaTypesDbContextProvider contextProvider)
+        public MediatypesRepository(IMediatypesDbContextProvider contextProvider)
             : base(contextProvider)
         {
         }

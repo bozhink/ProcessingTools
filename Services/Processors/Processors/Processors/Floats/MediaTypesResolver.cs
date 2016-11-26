@@ -11,7 +11,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.MediaType.Services.Data.Contracts;
+    using ProcessingTools.Mediatypes.Services.Data.Contracts;
     using ProcessingTools.Xml.Extensions;
 
     public class MediaTypesResolver : IMediaTypesResolver

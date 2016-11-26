@@ -62,9 +62,9 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Mediatypes\Mediatypes.Data.Entity\MediaType.Data.Entity.csproj">
+    <ProjectReference Include="..\..\..\Data\Mediatypes\Mediatypes.Data.Entity\Mediatypes.Data.Entity.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
-      <Name>MediaType.Data.Entity</Name>
+      <Name>Mediatypes.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>

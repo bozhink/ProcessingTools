@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Seed
+﻿namespace ProcessingTools.Mediatypes.Data.Seed
 {
     public enum Assembly
     {

@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Repositories
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Repositories
 {
     using System;
     using Contracts;
     using Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public class MediaTypesRepositoryProvider<T> : IMediaTypesRepositoryProvider<T>
+    public class MediatypesRepositoryProvider<T> : IMediatypesRepositoryProvider<T>
         where T : class
     {
-        private readonly IMediaTypesDbContextProvider contextProvider;
+        private readonly IMediatypesDbContextProvider contextProvider;
 
-        public MediaTypesRepositoryProvider(IMediaTypesDbContextProvider contextProvider)
+        public MediatypesRepositoryProvider(IMediatypesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -22,7 +22,7 @@
 
         public ISearchableCountableCrudRepository<T> Create()
         {
-            return new MediaTypesRepository<T>(this.contextProvider);
+            return new MediatypesRepository<T>(this.contextProvider);
         }
     }
 }

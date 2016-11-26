@@ -342,11 +342,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Xml", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Seed", "Data\Bio\Bio.Taxonomy.Data.Seed\Bio.Taxonomy.Data.Seed.csproj", "{2FA391D3-D129-4799-98F4-0969D27B1B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Common", "Data\Mediatypes\Mediatypes.Data.Common\MediaType.Data.Common.csproj", "{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Common", "Data\Mediatypes\Mediatypes.Data.Common\Mediatypes.Data.Common.csproj", "{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Entity", "Data\Mediatypes\Mediatypes.Data.Entity\MediaType.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Entity", "Data\Mediatypes\Mediatypes.Data.Entity\Mediatypes.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Seed", "Data\Mediatypes\Mediatypes.Data.Seed\MediaType.Data.Seed.csproj", "{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Seed", "Data\Mediatypes\Mediatypes.Data.Seed\Mediatypes.Data.Seed.csproj", "{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,8 +7,8 @@
     <ProjectGuid>{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.MediaType.Data.Common</RootNamespace>
-    <AssemblyName>ProcessingTools.MediaType.Data.Common</AssemblyName>
+    <RootNamespace>ProcessingTools.Mediatypes.Data.Common</RootNamespace>
+    <AssemblyName>ProcessingTools.Mediatypes.Data.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

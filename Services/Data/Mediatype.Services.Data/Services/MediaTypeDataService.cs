@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Services.Data
+﻿namespace ProcessingTools.Mediatypes.Services.Data
 {
     using System;
     using System.Linq;
@@ -6,14 +6,14 @@
     using Contracts;
     using Factories;
     using Models;
-    using ProcessingTools.MediaType.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.MediaType.Data.Entity.Models;
+    using ProcessingTools.Mediatypes.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Mediatypes.Data.Entity.Models;
 
     public class MediaTypeDataService : MediaTypeDataServiceBase, IMediaTypeDataService
     {
-        private IMediaTypesRepository<FileExtension> repository;
+        private IMediatypesRepository<FileExtension> repository;
 
-        public MediaTypeDataService(IMediaTypesRepository<FileExtension> repository)
+        public MediaTypeDataService(IMediatypesRepository<FileExtension> repository)
         {
             if (repository == null)
             {
@@ -49,7 +49,7 @@
             }
 
             return pairs
-                .Select<MimeTypePair, MediaTypeServiceModel>(p => new MediaTypeServiceModel
+                .Select<MimetypePair, MediaTypeServiceModel>(p => new MediaTypeServiceModel
                 {
                     FileExtension = fileExtensionResult.Name,
                     MimeType = p.MimeType.Name,

@@ -1,18 +1,18 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Models
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.MediaType.Data.Common.Constants;
+    using ProcessingTools.Mediatypes.Data.Common.Constants;
 
-    public class MimeType
+    public class Mimetype
     {
         private string name;
-        private ICollection<MimeTypePair> mimeTypePairs;
+        private ICollection<MimetypePair> mimeTypePairs;
 
-        public MimeType()
+        public Mimetype()
         {
-            this.mimeTypePairs = new HashSet<MimeTypePair>();
+            this.mimeTypePairs = new HashSet<MimetypePair>();
         }
 
         [Key]
@@ -34,7 +34,7 @@
             }
         }
 
-        public virtual ICollection<MimeTypePair> MimeTypePairs
+        public virtual ICollection<MimetypePair> MimeTypePairs
         {
             get
             {

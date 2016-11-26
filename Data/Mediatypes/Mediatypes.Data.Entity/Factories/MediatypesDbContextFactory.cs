@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Factories
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Factories
 {
     using System;
     using Contracts;
@@ -31,9 +31,9 @@
             }
         }
 
-        public MediaTypesDbContext Create()
+        public MediatypesDbContext Create()
         {
-            return new MediaTypesDbContext(this.ConnectionString);
+            return new MediatypesDbContext(this.ConnectionString);
         }
     }
 }

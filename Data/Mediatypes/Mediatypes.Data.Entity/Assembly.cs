@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity
+﻿namespace ProcessingTools.Mediatypes.Data.Entity
 {
     public enum Assembly
     {

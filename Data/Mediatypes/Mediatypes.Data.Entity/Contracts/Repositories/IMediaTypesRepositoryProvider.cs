@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Contracts.Repositories
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Contracts.Repositories
 {
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IMediaTypesRepositoryProvider<T> : ISearchableCountableCrudRepositoryProvider<T>
+    public interface IMediatypesRepositoryProvider<T> : ISearchableCountableCrudRepositoryProvider<T>
         where T : class
     {
     }

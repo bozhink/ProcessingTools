@@ -1,17 +1,17 @@
-﻿namespace ProcessingTools.MediaType.Data.Entity.Contracts
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Contracts
 {
     using System.Data.Entity;
     using Models;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public interface IMediaTypesDbContext : IDbContext
+    public interface IMediatypesDbContext : IDbContext
     {
         IDbSet<FileExtension> FileExtensions { get; set; }
 
-        IDbSet<MimeType> MimeTypes { get; set; }
+        IDbSet<Mimetype> Mimetypes { get; set; }
 
-        IDbSet<MimeSubtype> MimeSubtypes { get; set; }
+        IDbSet<Mimesubtype> Mimesubtypes { get; set; }
 
-        IDbSet<MimeTypePair> MimeTypePairs { get; set; }
+        IDbSet<MimetypePair> MimetypePairs { get; set; }
     }
 }

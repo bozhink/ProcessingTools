@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public interface IMediatypesDbContextProvider : IDbContextProvider<MediatypesDbContext>
+    public interface IMediatypesDataInitializer : IDbContextInitializer<MediatypesDbContext>
     {
     }
 }
