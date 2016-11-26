@@ -5,15 +5,15 @@
 
     using Contracts;
 
-    using ProcessingTools.DataResources.Data.Entity.Contracts;
-    using ProcessingTools.DataResources.Data.Seed.Contracts;
+    using ProcessingTools.Resources.Data.Entity.Contracts;
+    using ProcessingTools.Resources.Data.Seed.Contracts;
 
     public class DataResourcesDataDbSeeder : IDataResourcesDataDbSeeder
     {
-        private readonly IDataResourcesDatabaseInitializer initializer;
-        private readonly IDataResourcesDataSeeder seeder;
+        private readonly IResourcesDatabaseInitializer initializer;
+        private readonly IResourcesDataSeeder seeder;
 
-        public DataResourcesDataDbSeeder(IDataResourcesDatabaseInitializer initializer, IDataResourcesDataSeeder seeder)
+        public DataResourcesDataDbSeeder(IResourcesDatabaseInitializer initializer, IResourcesDataSeeder seeder)
         {
             if (initializer == null)
             {

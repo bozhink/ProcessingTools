@@ -84,6 +84,78 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
+      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
+      <Name>Bio.Biorepositories.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Seed\Bio.Biorepositories.Data.Seed.csproj">
+      <Project>{dda1c4f8-aa95-4fee-9e85-d7d0bea6fac3}</Project>
+      <Name>Bio.Biorepositories.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Data.Entity\Bio.Data.Entity.csproj">
+      <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
+      <Name>Bio.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Data.Seed\Bio.Data.Seed.csproj">
+      <Project>{5fc8546a-eaaa-4173-9201-fd4a91cdecfc}</Project>
+      <Name>Bio.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Environments.Data.Entity\Bio.Environments.Data.Entity.csproj">
+      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
+      <Name>Bio.Environments.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Environments.Data.Seed\Bio.Environments.Data.Seed.csproj">
+      <Project>{7f622ff2-5190-4765-a604-46abda36472d}</Project>
+      <Name>Bio.Environments.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
+      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
+      <Name>Bio.Taxonomy.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Entity\Bio.Taxonomy.Data.Entity.csproj">
+      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
+      <Name>Bio.Taxonomy.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
+      <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
+      <Name>Bio.Taxonomy.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Seed\Bio.Taxonomy.Data.Seed.csproj">
+      <Project>{2fa391d3-d129-4799-98f4-0969d27b1b11}</Project>
+      <Name>Bio.Taxonomy.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
+      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
+      <Name>Bio.Taxonomy.Data.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo\Geo.Data.Entity\Geo.Data.Entity.csproj">
+      <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
+      <Name>Geo.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo\Geo.Data.Seed\Geo.Data.Seed.csproj">
+      <Project>{7b811a1e-88ed-4bd6-a9e4-34b10e0d0fca}</Project>
+      <Name>Geo.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Entity\MediaType.Data.Entity.csproj">
+      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
+      <Name>MediaType.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Seed\MediaType.Data.Seed.csproj">
+      <Project>{d284eedf-76af-4bd1-a10d-cefe39ff59d0}</Project>
+      <Name>MediaType.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Resources\Resources.Data.Entity\Resources.Data.Entity.csproj">
+      <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
+      <Name>Resources.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Resources\Resources.Data.Seed\Resources.Data.Seed.csproj">
+      <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
+      <Name>Resources.Data.Seed</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
