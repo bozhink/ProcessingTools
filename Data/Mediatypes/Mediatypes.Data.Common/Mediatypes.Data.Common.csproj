@@ -35,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Contracts\Models\IMediatype.cs" />
+    <Compile Include="Contracts\Repositories\IMediatypesRepository.cs" />
+    <Compile Include="Models\Mediatype.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
