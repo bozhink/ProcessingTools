@@ -64,43 +64,31 @@
     <Compile Include="Seeders\BiotaxonomyMongoDatabaseSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
-      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
-      <Name>Bio.Taxonomy.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
-      <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
-      <Name>Bio.Taxonomy.Data.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
       <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
       <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Entity\Bio.Taxonomy.Data.Entity.csproj">
-      <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
-      <Name>Bio.Taxonomy.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
+    <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.Common.Mongo\Data.Common.Mongo.csproj">
+    <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
       <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
       <Name>Data.Common.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
+    <ProjectReference Include="..\..\Resources\Data.Common\Data.Common.csproj">
       <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>

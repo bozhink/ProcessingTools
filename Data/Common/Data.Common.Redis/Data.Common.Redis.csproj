@@ -32,19 +32,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ServiceStack.Common, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Common.4.5.4\lib\net45\ServiceStack.Common.dll</HintPath>
+      <HintPath>..\..\..\packages\ServiceStack.Common.4.5.4\lib\net45\ServiceStack.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Interfaces.4.5.4\lib\portable-wp80+sl5+net45+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>..\..\..\packages\ServiceStack.Interfaces.4.5.4\lib\portable-wp80+sl5+net45+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Redis, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Redis.4.5.4\lib\net45\ServiceStack.Redis.dll</HintPath>
+      <HintPath>..\..\..\packages\ServiceStack.Redis.4.5.4\lib\net45\ServiceStack.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Text, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Text.4.5.4\lib\net45\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\..\packages\ServiceStack.Text.4.5.4\lib\net45\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -62,19 +62,19 @@
     <Compile Include="Repositories\RedisKeyValuePairsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Exceptions\Exceptions.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Exceptions\Exceptions.csproj">
       <Project>{8c506ee8-1c2e-4684-a081-2de56bf70fe9}</Project>
       <Name>Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>

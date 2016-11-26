@@ -75,21 +75,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common.Entity\Data.Common.Entity.csproj">
-      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
-      <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geo.Data.Common\Geo.Data.Common.csproj">
-      <Project>{ab947ca0-8619-48c6-87d5-e01556f17f18}</Project>
-      <Name>Geo.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

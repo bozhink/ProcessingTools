@@ -70,11 +70,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.Common.Mongo\Data.Common.Mongo.csproj">
+    <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
       <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
       <Name>Data.Common.Mongo</Name>
     </ProjectReference>

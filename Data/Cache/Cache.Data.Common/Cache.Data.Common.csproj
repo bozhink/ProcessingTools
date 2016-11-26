@@ -38,11 +38,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Enumerations\Enumerations.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
       <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>

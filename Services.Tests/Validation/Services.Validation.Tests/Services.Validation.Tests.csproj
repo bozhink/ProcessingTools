@@ -65,22 +65,6 @@
     <Compile Include="IntegrationTests\UrlValidationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\Cache.Data.Common\Cache.Data.Common.csproj">
-      <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
-      <Name>Cache.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Cache.Data.Redis\Cache.Data.Redis.csproj">
-      <Project>{9fafd7d9-7917-484e-b08e-b6d0c1bb02c6}</Project>
-      <Name>Cache.Data.Redis</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
-      <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
-      <Name>Data.Common.Redis</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>

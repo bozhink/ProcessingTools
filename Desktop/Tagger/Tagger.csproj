@@ -286,22 +286,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
-      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
-      <Name>Bio.Taxonomy.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
-      <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
-      <Name>Bio.Taxonomy.Data.Mongo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Cache.Data.Common\Cache.Data.Common.csproj">
-      <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
-      <Name>Cache.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Cache.Data.Redis\Cache.Data.Redis.csproj">
-      <Project>{9fafd7d9-7917-484e-b08e-b6d0c1bb02c6}</Project>
-      <Name>Cache.Data.Redis</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
@@ -337,46 +321,6 @@
     <ProjectReference Include="..\..\Services\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
       <Project>{50f0bb7b-c232-40f2-9dad-eff639b3e78a}</Project>
       <Name>Geo.Data.Miners</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
-      <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
-      <Name>Bio.Biorepositories.Data.Mongo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data.Common\Bio.Data.Common.csproj">
-      <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
-      <Name>Bio.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Data.Entity\Bio.Data.Entity.csproj">
-      <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
-      <Name>Bio.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Data.Entity\Bio.Environments.Data.Entity.csproj">
-      <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
-      <Name>Bio.Environments.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Data.Xml\Bio.Taxonomy.Data.Xml.csproj">
-      <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
-      <Name>Bio.Taxonomy.Data.Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Data.Common.Entity\Data.Common.Entity.csproj">
-      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
-      <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Data.Common.Redis\Data.Common.Redis.csproj">
-      <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
-      <Name>Data.Common.Redis</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Geo.Data.Entity\Geo.Data.Entity.csproj">
-      <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
-      <Name>Geo.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\MediaType.Data.Entity\MediaType.Data.Entity.csproj">
-      <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
-      <Name>MediaType.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>

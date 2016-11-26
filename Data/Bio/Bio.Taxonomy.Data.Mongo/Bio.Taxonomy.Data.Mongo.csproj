@@ -77,23 +77,19 @@
     <Content Include="Queries\get-taxa-with-named-ranks.js" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
       <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
       <Name>Bio.Taxonomy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
-      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
-      <Name>Bio.Taxonomy.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common.Mongo\Data.Common.Mongo.csproj">
+    <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
       <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
       <Name>Data.Common.Mongo</Name>
     </ProjectReference>
