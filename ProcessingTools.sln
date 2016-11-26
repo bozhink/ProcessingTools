@@ -167,15 +167,15 @@ Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Scripts", "Desktop\Scripts\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Cache", "Services\Cache\Services.Cache\Services.Cache.csproj", "{5BD3C5FE-1E74-439D-BE32-D37BF6F25D66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Redis", "Data\Data.Common.Redis\Data.Common.Redis.csproj", "{8CF0E103-E770-45C3-A671-F6AD43F2CC3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Redis", "Data\Common\Data.Common.Redis\Data.Common.Redis.csproj", "{8CF0E103-E770-45C3-A671-F6AD43F2CC3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Redis.Tests", "Data.Tests\Data.Common.Redis.Tests\Data.Common.Redis.Tests.csproj", "{339777F3-E3C7-4201-B9A3-569D2A1E2071}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Cache.Tests", "Services.Tests\Cache\Services.Cache.Tests\Services.Cache.Tests.csproj", "{6CB5A1A7-CACD-4910-AA53-03B349961FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Entity", "Data\Data.Common.Entity\Data.Common.Entity.csproj", "{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Entity", "Data\Common\Data.Common.Entity\Data.Common.Entity.csproj", "{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Mongo", "Data\Data.Common.Mongo\Data.Common.Mongo.csproj", "{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Mongo", "Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj", "{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Tests", "Data.Tests\Data.Common.Tests\Data.Common.Tests.csproj", "{2979A34C-78A8-43C6-83C0-CF294DD8157E}"
 EndProject
@@ -280,7 +280,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.File", "Data\Data.Common.File\Data.Common.File.csproj", "{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.File", "Data\Common\Data.Common.File\Data.Common.File.csproj", "{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Startup", "Desktop\Documents.Startup\Documents.Startup.csproj", "{C2C1A824-E8F6-46AE-AA99-7D0C38921431}"
 EndProject
@@ -330,7 +330,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache.Data.Redis", "Data\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache.Data.Redis.Tests", "Data.Tests\Cache.Data.Redis.Tests\Cache.Data.Redis.Tests.csproj", "{21228A7C-5E15-4F23-9699-E90D1AE1967A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Memory", "Data\Data.Common.Memory\Data.Common.Memory.csproj", "{A9004EDD-7EA6-4AAB-926F-C4B32ACD0154}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Memory", "Data\Common\Data.Common.Memory\Data.Common.Memory.csproj", "{A9004EDD-7EA6-4AAB-926F-C4B32ACD0154}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Memory.Tests", "Data.Tests\Data.Common.Memory.Tests\Data.Common.Memory.Tests.csproj", "{D020F512-3F57-4D3B-A6FB-49176064BCF5}"
 EndProject
