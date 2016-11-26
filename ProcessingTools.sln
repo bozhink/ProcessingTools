@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentProvider", "Infrast
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{ACA18A73-7650-47C2-A581-FCDB652F4AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Entity", "Data\MediaType.Data.Entity\MediaType.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Entity", "Data\Mediatypes\Mediatypes.Data.Entity\MediaType.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common", "Data\Resources\Data.Common\Data.Common.csproj", "{8DE48EB2-2387-4D85-A78C-773A300881D5}"
 EndProject
@@ -219,11 +219,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documents.Data.Seed", "Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Seed", "Data\Geo\Geo.Data.Seed\Geo.Data.Seed.csproj", "{7B811A1E-88ED-4BD6-A9E4-34B10E0D0FCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Seed", "Data\MediaType.Data.Seed\MediaType.Data.Seed.csproj", "{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Seed", "Data\Mediatypes\Mediatypes.Data.Seed\MediaType.Data.Seed.csproj", "{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Data.Common", "Data\Geo\Geo.Data.Common\Geo.Data.Common.csproj", "{AB947CA0-8619-48C6-87D5-E01556F17F18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Common", "Data\MediaType.Data.Common\MediaType.Data.Common.csproj", "{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Data.Common", "Data\Mediatypes\Mediatypes.Data.Common\MediaType.Data.Common.csproj", "{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Data.Common", "Data\Bio\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj", "{827CC531-1B71-4DF2-B657-5E6EC5BD080F}"
 EndProject
