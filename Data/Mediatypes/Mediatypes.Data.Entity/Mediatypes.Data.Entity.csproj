@@ -60,10 +60,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\IMediatypesDbContextProvider.cs" />
     <Compile Include="Contracts\Repositories\IMediatypesRepository.cs" />
-    <Compile Include="Contracts\Repositories\IMediatypesRepositoryProvider.cs" />
     <Compile Include="Providers\MediaTypesDbContextProvider.cs" />
     <Compile Include="Repositories\MediatypesRepository.cs" />
-    <Compile Include="Repositories\MediatypesRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
