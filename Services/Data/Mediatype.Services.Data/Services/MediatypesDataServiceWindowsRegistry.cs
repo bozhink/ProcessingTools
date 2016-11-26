@@ -7,7 +7,7 @@
 
     using Microsoft.Win32;
 
-    public class MediaTypeDataServiceWindowsRegistry : MediaTypeDataServiceFactory, IMediaTypeDataService
+    public class MediatypesDataServiceWindowsRegistry : MediatypesDataServiceFactory, IMediatypesDataService
     {
         protected override Task<string> ResolveMediaType(string fileExtension)
         {

@@ -5,9 +5,9 @@
 
     using Models;
 
-    public abstract class MediaTypeDataServiceFactory : MediaTypeDataServiceBase
+    public abstract class MediatypesDataServiceFactory : MediatypesDataServiceBase
     {
-        public override async Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension)
+        public override async Task<IQueryable<MediatypeServiceModel>> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
@@ -18,12 +18,12 @@
             }
             catch
             {
-                mediaType = MediaTypeDataServiceBase.DefaultMediaTypeOnException;
+                mediaType = MediatypesDataServiceBase.DefaultMediaTypeOnException;
             }
 
             if (string.IsNullOrWhiteSpace(mediaType))
             {
-                mediaType = MediaTypeDataServiceBase.DefaultMediaType;
+                mediaType = MediatypesDataServiceBase.DefaultMediaType;
             }
 
             return this.GetSingleStringMediaTypeResultAsQueryable(extension, mediaType);

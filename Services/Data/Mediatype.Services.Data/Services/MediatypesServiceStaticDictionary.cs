@@ -6,7 +6,7 @@
     using Contracts;
     using Factories;
 
-    public class MediaTypeDataServiceStaticDictionary : MediaTypeDataServiceFactory, IMediaTypeDataService
+    public class MediatypesServiceStaticDictionary : MediatypesDataServiceFactory, IMediatypesDataService
     {
         private static Dictionary<string, string> mimeTypes = new Dictionary<string, string>
         {

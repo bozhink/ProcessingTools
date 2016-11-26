@@ -12,7 +12,7 @@
         [Timeout(500)]
         public void MediaTypeDataServiceStaticDictionary_WithDefaultConstructor_ShouldReturnValidObject()
         {
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             Assert.IsNotNull(service, "Object should not be null.");
         }
 
@@ -24,12 +24,12 @@
             const string MimeType = "text";
             const string MimeSubtype = "plain";
 
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
-            Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
-            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype should match.");
+            Assert.AreEqual(MimeType, type.Mimetype, "MimeType should match.");
+            Assert.AreEqual(MimeSubtype, type.Mimesubtype, "MimeSubtype should match.");
         }
 
         [TestMethod]
@@ -40,12 +40,12 @@
             const string MimeType = "text";
             const string MimeSubtype = "plain";
 
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension.TrimStart('.'), type.FileExtension, "FileExtension should match.");
-            Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
-            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype should match.");
+            Assert.AreEqual(MimeType, type.Mimetype, "MimeType should match.");
+            Assert.AreEqual(MimeSubtype, type.Mimesubtype, "MimeSubtype should match.");
         }
 
         [TestMethod]
@@ -56,12 +56,12 @@
             const string MimeType = "unknown";
             const string MimeSubtype = "unknown";
 
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             var type = service.GetMediaType(FileExtension).Result.FirstOrDefault();
 
             Assert.AreEqual(FileExtension, type.FileExtension, "FileExtension should match.");
-            Assert.AreEqual(MimeType, type.MimeType, "MimeType should match.");
-            Assert.AreEqual(MimeSubtype, type.MimeSubtype, "MimeSubtype should match.");
+            Assert.AreEqual(MimeType, type.Mimetype, "MimeType should match.");
+            Assert.AreEqual(MimeSubtype, type.Mimesubtype, "MimeSubtype should match.");
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataServiceWindowsRegistry_WithNullFileExtension_ShouldThrowAggregateException()
         {
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             var type = service.GetMediaType(null).Result;
         }
 
@@ -79,7 +79,7 @@
         {
             try
             {
-                var service = new MediaTypeDataServiceStaticDictionary();
+                var service = new MediatypesServiceStaticDictionary();
                 var type = service.GetMediaType(null).Result;
             }
             catch (AggregateException e)
@@ -97,7 +97,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataServiceWindowsRegistry_WithEmptyFileExtension_ShouldThrowAggregateException()
         {
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             var type = service.GetMediaType(@"   
                                             ").Result;
         }
@@ -108,7 +108,7 @@
         {
             try
             {
-                var service = new MediaTypeDataServiceStaticDictionary();
+                var service = new MediatypesServiceStaticDictionary();
                 var type = service.GetMediaType(@"   
                                             ").Result;
             }
@@ -127,7 +127,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataServiceWindowsRegistry_WithDotFileExtension_ShouldThrowAggregateException()
         {
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             var type = service.GetMediaType(".").Result;
         }
 
@@ -137,7 +137,7 @@
         {
             try
             {
-                var service = new MediaTypeDataServiceStaticDictionary();
+                var service = new MediatypesServiceStaticDictionary();
                 var type = service.GetMediaType(".").Result;
             }
             catch (AggregateException e)
@@ -155,7 +155,7 @@
         [ExpectedException(typeof(AggregateException))]
         public void MediaTypeDataServiceWindowsRegistry_WithDotEmptyFileExtension_ShouldThrowAggregateException()
         {
-            var service = new MediaTypeDataServiceStaticDictionary();
+            var service = new MediatypesServiceStaticDictionary();
             var type = service.GetMediaType(@"  
                         .   .. ").Result;
         }
@@ -166,7 +166,7 @@
         {
             try
             {
-                var service = new MediaTypeDataServiceStaticDictionary();
+                var service = new MediatypesServiceStaticDictionary();
                 var type = service.GetMediaType(@"  
                         .   .. ").Result;
             }

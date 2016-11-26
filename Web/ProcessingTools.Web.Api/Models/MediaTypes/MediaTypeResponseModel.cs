@@ -3,7 +3,7 @@
     using Mappings.Contracts;
     using Mediatypes.Services.Data.Models;
 
-    public class MediaTypeResponseModel : IMapFrom<MediaTypeServiceModel>
+    public class MediaTypeResponseModel : IMapFrom<MediatypeServiceModel>
     {
         public string FileExtension { get; set; }
 

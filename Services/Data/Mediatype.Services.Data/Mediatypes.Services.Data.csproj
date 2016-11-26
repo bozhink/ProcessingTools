@@ -7,8 +7,8 @@
     <ProjectGuid>{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.MediaType.Services.Data</RootNamespace>
-    <AssemblyName>ProcessingTools.MediaType.Services.Data</AssemblyName>
+    <RootNamespace>ProcessingTools.Mediatypes.Services.Data</RootNamespace>
+    <AssemblyName>ProcessingTools.Mediatypes.Services.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -44,13 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IMediaTypeDataService.cs" />
-    <Compile Include="Factories\MediaTypeDataServiceBase.cs" />
-    <Compile Include="Factories\MediaTypeDataServiceFactory.cs" />
-    <Compile Include="Services\MediaTypeDataServiceStaticDictionary.cs" />
-    <Compile Include="Services\MediaTypeDataService.cs" />
-    <Compile Include="Services\MediaTypeDataServiceWindowsRegistry.cs" />
-    <Compile Include="Models\MediaTypeServiceModel.cs" />
+    <Compile Include="Contracts\IMediatypesDataService.cs" />
+    <Compile Include="Factories\MediatypesDataServiceBase.cs" />
+    <Compile Include="Factories\MediatypesDataServiceFactory.cs" />
+    <Compile Include="Services\MediatypesServiceStaticDictionary.cs" />
+    <Compile Include="Services\MediatypesDataService.cs" />
+    <Compile Include="Services\MediatypesDataServiceWindowsRegistry.cs" />
+    <Compile Include="Models\MediatypeServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

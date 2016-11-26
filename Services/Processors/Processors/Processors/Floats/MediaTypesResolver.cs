@@ -17,9 +17,9 @@
     public class MediaTypesResolver : IMediaTypesResolver
     {
         private readonly ILogger logger;
-        private readonly IMediaTypeDataService service;
+        private readonly IMediatypesDataService service;
 
-        public MediaTypesResolver(IMediaTypeDataService service, ILogger logger)
+        public MediaTypesResolver(IMediatypesDataService service, ILogger logger)
         {
             if (service == null)
             {
@@ -119,8 +119,8 @@
             if (response != null)
             {
                 result.FileExtension = response.FileExtension;
-                result.MimeType = response.MimeType;
-                result.MimeSubtype = response.MimeSubtype;
+                result.MimeType = response.Mimetype;
+                result.MimeSubtype = response.Mimesubtype;
             }
 
             return result;

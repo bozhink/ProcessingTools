@@ -5,8 +5,8 @@
 
     using Models;
 
-    public interface IMediaTypeDataService
+    public interface IMediatypesDataService
     {
-        Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension);
+        Task<IQueryable<MediatypeServiceModel>> GetMediaType(string fileExtension);
     }
 }

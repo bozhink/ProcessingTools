@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{21C98DC0-B35C-414E-BC02-D90AF3494DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Services.Data", "Services\Data\MediaType.Services.Data\MediaType.Services.Data.csproj", "{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Services.Data", "Services\Data\MediaType.Services.Data\Mediatypes.Services.Data.csproj", "{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Infrastructure\Common\Common.csproj", "{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}"
 EndProject

@@ -9,11 +9,11 @@
     using ProcessingTools.Mediatypes.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
 
-    public class MediaTypeDataService : MediaTypeDataServiceBase, IMediaTypeDataService
+    public class MediatypesDataService : MediatypesDataServiceBase, IMediatypesDataService
     {
         private IMediatypesRepository<FileExtension> repository;
 
-        public MediaTypeDataService(IMediatypesRepository<FileExtension> repository)
+        public MediatypesDataService(IMediatypesRepository<FileExtension> repository)
         {
             if (repository == null)
             {
@@ -23,7 +23,7 @@
             this.repository = repository;
         }
 
-        public override async Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension)
+        public override async Task<IQueryable<MediatypeServiceModel>> GetMediaType(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
@@ -45,15 +45,15 @@
             {
                 return this.GetSingleStringMediaTypeResultAsQueryable(
                     fileExtension,
-                    MediaTypeDataServiceBase.DefaultMediaType);
+                    MediatypesDataServiceBase.DefaultMediaType);
             }
 
             return pairs
-                .Select<MimetypePair, MediaTypeServiceModel>(p => new MediaTypeServiceModel
+                .Select<MimetypePair, MediatypeServiceModel>(p => new MediatypeServiceModel
                 {
                     FileExtension = fileExtensionResult.Name,
-                    MimeType = p.MimeType.Name,
-                    MimeSubtype = p.MimeSubtype.Name
+                    Mimetype = p.MimeType.Name,
+                    Mimesubtype = p.MimeSubtype.Name
                 });
         }
     }

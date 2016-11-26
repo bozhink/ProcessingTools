@@ -494,9 +494,9 @@
       <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
       <Name>Geo.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\MediaType.Services.Data\MediaType.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\Data\MediaType.Services.Data\Mediatypes.Services.Data.csproj">
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
-      <Name>MediaType.Services.Data</Name>
+      <Name>Mediatypes.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>

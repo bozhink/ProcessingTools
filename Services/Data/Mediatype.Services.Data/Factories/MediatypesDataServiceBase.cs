@@ -8,12 +8,12 @@
     using Contracts;
     using Models;
 
-    public abstract class MediaTypeDataServiceBase : IMediaTypeDataService
+    public abstract class MediatypesDataServiceBase : IMediatypesDataService
     {
         protected const string DefaultMediaType = "unknown/unknown";
         protected const string DefaultMediaTypeOnException = "application/octet-stream";
 
-        public abstract Task<IQueryable<MediaTypeServiceModel>> GetMediaType(string fileExtension);
+        public abstract Task<IQueryable<MediatypeServiceModel>> GetMediaType(string fileExtension);
 
         protected string GetValidFileExtension(string fileExtension)
         {
@@ -26,16 +26,16 @@
             return extension;
         }
 
-        protected IQueryable<MediaTypeServiceModel> GetSingleStringMediaTypeResultAsQueryable(string extension, string mediaType)
+        protected IQueryable<MediatypeServiceModel> GetSingleStringMediaTypeResultAsQueryable(string extension, string mediaType)
         {
-            var result = new Queue<MediaTypeServiceModel>();
+            var result = new Queue<MediatypeServiceModel>();
 
             int slashIndex = mediaType.IndexOf('/');
-            result.Enqueue(new MediaTypeServiceModel
+            result.Enqueue(new MediatypeServiceModel
             {
                 FileExtension = extension,
-                MimeType = mediaType.Substring(0, slashIndex),
-                MimeSubtype = mediaType.Substring(slashIndex + 1)
+                Mimetype = mediaType.Substring(0, slashIndex),
+                Mimesubtype = mediaType.Substring(slashIndex + 1)
             });
 
             return result.AsQueryable();

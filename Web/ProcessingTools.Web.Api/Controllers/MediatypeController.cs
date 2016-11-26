@@ -10,9 +10,9 @@
 
     public class MediaTypeController : ApiController
     {
-        private IMediaTypeDataService mediatypeDataService;
+        private IMediatypesDataService mediatypeDataService;
 
-        public MediaTypeController(IMediaTypeDataService mediatypeService)
+        public MediaTypeController(IMediatypesDataService mediatypeService)
         {
             if (mediatypeService == null)
             {

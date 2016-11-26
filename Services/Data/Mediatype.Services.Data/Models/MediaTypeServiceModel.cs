@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Mediatypes.Services.Data.Models
 {
-    public class MediaTypeServiceModel
+    public class MediatypeServiceModel
     {
         public string FileExtension { get; set; }
 
-        public string MimeType { get; set; }
+        public string Mimetype { get; set; }
 
-        public string MimeSubtype { get; set; }
+        public string Mimesubtype { get; set; }
     }
 }
