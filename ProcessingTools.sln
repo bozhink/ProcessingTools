@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{21C98DC0-B35C-414E-BC02-D90AF3494DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Services.Data", "Services\Data\MediaType.Services.Data\Mediatypes.Services.Data.csproj", "{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Services.Data", "Services\Data\Mediatypes.Services.Data\Mediatypes.Services.Data.csproj", "{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Infrastructure\Common\Common.csproj", "{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}"
 EndProject
@@ -107,7 +107,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Services.Data.Tests", "Services.Tests\Data\Bio.Taxonomy.Services.Data.Tests\Bio.Taxonomy.Services.Data.Tests.csproj", "{4FE65E47-27ED-4308-B677-00FBB5B349D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaType.Services.Data.Tests", "Services.Tests\Data\MediaType.Services.Data.Tests\MediaType.Services.Data.Tests.csproj", "{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Services.Data.Tests", "Services.Tests\Data\Mediatypes.Services.Data.Tests\Mediatypes.Services.Data.Tests.csproj", "{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Desktop.Tests\Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
 EndProject

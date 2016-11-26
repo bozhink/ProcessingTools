@@ -10,7 +10,7 @@
     using ProcessingTools.Mediatypes.Data.Entity.Models;
 
     [TestClass]
-    public class MediaTypeDataServiceTests
+    public class MediatypesDataServiceTests
     {
         [TestMethod]
         [Timeout(5000)]

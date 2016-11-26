@@ -6,8 +6,8 @@
     <ProjectGuid>{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.MediaType.Services.Data.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.MediaType.Services.Data.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Mediatypes.Services.Data.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Mediatypes.Services.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -61,9 +61,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MediaTypeDataServiceTests.cs" />
-    <Compile Include="MediaTypeDataServiceWindowsRegistryTests.cs" />
-    <Compile Include="MediaTypeDataServiceStaticDictionaryTests.cs" />
+    <Compile Include="MediatypesDataServiceTests.cs" />
+    <Compile Include="MediatypesDataServiceWindowsRegistryTests.cs" />
+    <Compile Include="MediatypesDataServiceStaticDictionaryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +79,7 @@
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Services\Data\MediaType.Services.Data\Mediatypes.Services.Data.csproj">
+    <ProjectReference Include="..\..\..\Services\Data\Mediatypes.Services.Data\Mediatypes.Services.Data.csproj">
       <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
       <Name>Mediatypes.Services.Data</Name>
     </ProjectReference>
