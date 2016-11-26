@@ -12,7 +12,6 @@
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Data.Common.Mongo.Factories;
     using ProcessingTools.Extensions;
