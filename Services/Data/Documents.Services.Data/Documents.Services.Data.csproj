@@ -83,6 +83,22 @@
     <Compile Include="Services\XmlPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Common\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Documents\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>
+      <Name>Documents.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Documents\Documents.Data.Entity\Documents.Data.Entity.csproj">
+      <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
+      <Name>Documents.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>

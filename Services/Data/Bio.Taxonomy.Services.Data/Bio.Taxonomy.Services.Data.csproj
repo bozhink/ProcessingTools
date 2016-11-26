@@ -86,6 +86,10 @@
     <Compile Include="Services\TaxonRankDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Bio\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
+      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
+      <Name>Bio.Taxonomy.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>

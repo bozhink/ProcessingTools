@@ -4,13 +4,13 @@
     using System.Linq.Expressions;
     using Contracts;
     using Models;
-    using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.Resources.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Resources.Data.Entity.Models;
     using ProcessingTools.Services.Common.Factories;
 
     public class ProductsDataService : SimpleDataServiceWithRepositoryFactory<Product, ProductServiceModel>, IProductsDataService
     {
-        public ProductsDataService(IDataResourcesRepository<Product> repository)
+        public ProductsDataService(IResourcesRepository<Product> repository)
             : base(repository)
         {
         }

@@ -58,6 +58,14 @@
     <Compile Include="Services\TypeStatusDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Bio\Bio.Data.Entity\Bio.Data.Entity.csproj">
+      <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
+      <Name>Bio.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>

@@ -16,9 +16,9 @@
 
     public class ContentTypesDataService : IContentTypesDataService
     {
-        private readonly IDataResourcesDbContextProvider contextProvider;
+        private readonly IResourcesDbContextProvider contextProvider;
 
-        public ContentTypesDataService(IDataResourcesDbContextProvider contextProvider)
+        public ContentTypesDataService(IResourcesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
