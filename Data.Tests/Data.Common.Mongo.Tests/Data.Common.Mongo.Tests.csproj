@@ -70,6 +70,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
+      <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
+      <Name>Data.Common.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
       <Name>Common</Name>
