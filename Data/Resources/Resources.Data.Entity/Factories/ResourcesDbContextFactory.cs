@@ -1,14 +1,14 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity.Factories
+﻿namespace ProcessingTools.Resources.Data.Entity.Factories
 {
     using System;
     using Contracts;
     using ProcessingTools.Constants.Configuration;
 
-    public class DataResourcesDbContextFactory : IDataResourcesDbContextFactory
+    public class ResourcesDbContextFactory : IResourcesDbContextFactory
     {
         private string connectionString;
 
-        public DataResourcesDbContextFactory()
+        public ResourcesDbContextFactory()
         {
             this.ConnectionString = ConnectionStringsKeys.DataResourcesDatabaseConnectionKey;
         }
@@ -31,9 +31,9 @@
             }
         }
 
-        public DataResourcesDbContext Create()
+        public ResourcesDbContext Create()
         {
-            return new DataResourcesDbContext(this.ConnectionString);
+            return new ResourcesDbContext(this.ConnectionString);
         }
     }
 }

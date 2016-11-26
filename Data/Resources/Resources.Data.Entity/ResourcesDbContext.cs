@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity
+﻿namespace ProcessingTools.Resources.Data.Entity
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
@@ -6,9 +6,9 @@
     using Models;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class DataResourcesDbContext : DbContext, IDataResourcesDbContext
+    public class ResourcesDbContext : DbContext, IResourcesDbContext
     {
-        public DataResourcesDbContext(string connectionString)
+        public ResourcesDbContext(string connectionString)
             : base(connectionString)
         {
         }

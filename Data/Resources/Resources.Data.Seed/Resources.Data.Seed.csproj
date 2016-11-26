@@ -7,8 +7,8 @@
     <ProjectGuid>{F1202A6D-F30A-4F76-A7C5-69C6E84285A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.DataResources.Data.Seed</RootNamespace>
-    <AssemblyName>ProcessingTools.DataResources.Data.Seed</AssemblyName>
+    <RootNamespace>ProcessingTools.Resources.Data.Seed</RootNamespace>
+    <AssemblyName>ProcessingTools.Resources.Data.Seed</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -45,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IDataResourcesDataSeeder.cs" />
+    <Compile Include="Contracts\IResourcesDataSeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seeders\DataResourcesDataSeeder.cs" />
+    <Compile Include="Seeders\ResourcesDataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -76,9 +76,9 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Resources.Data.Entity\DataResources.Data.Entity.csproj">
+    <ProjectReference Include="..\Resources.Data.Entity\Resources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
-      <Name>DataResources.Data.Entity</Name>
+      <Name>Resources.Data.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

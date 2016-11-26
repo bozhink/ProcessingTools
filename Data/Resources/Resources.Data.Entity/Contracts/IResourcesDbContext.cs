@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity.Contracts
+﻿namespace ProcessingTools.Resources.Data.Entity.Contracts
 {
     using System.Data.Entity;
     using Models;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public interface IDataResourcesDbContext : IDbContext
+    public interface IResourcesDbContext : IDbContext
     {
         IDbSet<Abbreviation> Abbreviations { get; set; }
 

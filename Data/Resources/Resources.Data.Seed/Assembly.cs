@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Data.Seed
+﻿namespace ProcessingTools.Resources.Data.Seed
 {
     public enum Assembly
     {

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity
+﻿namespace ProcessingTools.Resources.Data.Entity
 {
     public enum Assembly
     {

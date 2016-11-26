@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProcessingTools.DataResources.Data.Entity")]
+[assembly: AssemblyTitle("ProcessingTools.Resources.Data.Entity")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProcessingTools.DataResources.Data.Entity")]
+[assembly: AssemblyProduct("ProcessingTools.Resources.Data.Entity")]
 [assembly: AssemblyCopyright("Copyright © 2016 Bozhin Karaivanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

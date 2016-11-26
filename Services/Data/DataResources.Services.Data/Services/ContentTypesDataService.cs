@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Services.Data
+﻿namespace ProcessingTools.Resources.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -11,8 +11,8 @@
     using Models.Contracts;
 
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.DataResources.Data.Entity.Contracts;
-    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.Resources.Data.Entity.Contracts;
+    using ProcessingTools.Resources.Data.Entity.Models;
 
     public class ContentTypesDataService : IContentTypesDataService
     {

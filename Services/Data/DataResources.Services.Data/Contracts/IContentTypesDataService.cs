@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Services.Data.Contracts
+﻿namespace ProcessingTools.Resources.Services.Data.Contracts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity.Repositories
+﻿namespace ProcessingTools.Resources.Data.Entity.Repositories
 {
     using System;
     using Contracts;
     using Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public class DataResourcesRepositoryProvider<T> : IDataResourcesRepositoryProvider<T>
+    public class ResourcesRepositoryProvider<T> : IResourcesRepositoryProvider<T>
         where T : class
     {
-        private readonly IDataResourcesDbContextProvider contextProvider;
+        private readonly IResourcesDbContextProvider contextProvider;
 
-        public DataResourcesRepositoryProvider(IDataResourcesDbContextProvider contextProvider)
+        public ResourcesRepositoryProvider(IResourcesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -22,7 +22,7 @@
 
         public ISearchableCountableCrudRepository<T> Create()
         {
-            return new DataResourcesRepository<T>(this.contextProvider);
+            return new ResourcesRepository<T>(this.contextProvider);
         }
     }
 }

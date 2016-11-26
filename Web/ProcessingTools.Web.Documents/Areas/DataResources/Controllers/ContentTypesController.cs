@@ -9,8 +9,8 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Constants;
-    using ProcessingTools.DataResources.Services.Data.Contracts;
-    using ProcessingTools.DataResources.Services.Data.Models;
+    using ProcessingTools.Resources.Services.Data.Contracts;
+    using ProcessingTools.Resources.Services.Data.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Common.ViewModels;

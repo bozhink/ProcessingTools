@@ -1,10 +1,9 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity.Models
+﻿namespace ProcessingTools.Resources.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
-    using ProcessingTools.DataResources.Data.Common.Constants;
-    using ProcessingTools.DataResources.Data.Common.Models.Contracts;
+    using ProcessingTools.Resources.Data.Common.Constants;
+    using ProcessingTools.Resources.Data.Common.Contracts.Models;
 
     public class SourceId : ISourceIdEntity
     {

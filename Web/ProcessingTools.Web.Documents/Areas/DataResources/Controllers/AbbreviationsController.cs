@@ -7,8 +7,8 @@
     using System.Web.Mvc;
 
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.DataResources.Data.Entity.Contracts;
-    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.Resources.Data.Entity.Contracts;
+    using ProcessingTools.Resources.Data.Entity.Models;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Extensions;
 

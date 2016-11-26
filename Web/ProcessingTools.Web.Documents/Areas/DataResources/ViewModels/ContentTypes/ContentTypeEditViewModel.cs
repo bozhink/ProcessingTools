@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using Contracts;
-    using ProcessingTools.DataResources.Data.Common.Constants;
+    using ProcessingTools.Resources.Data.Common.Constants;
 
     public class ContentTypeEditViewModel : ContentTypeIndexViewModel, IContentTypeEditViewModel
     {

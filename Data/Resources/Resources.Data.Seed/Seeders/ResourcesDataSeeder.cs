@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Data.Seed
+﻿namespace ProcessingTools.Resources.Data.Seed
 {
     using System;
     using System.Collections.Concurrent;
@@ -8,24 +8,24 @@
     using System.Threading.Tasks;
     using Contracts;
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.DataResources.Data.Entity;
-    using ProcessingTools.DataResources.Data.Entity.Contracts;
-    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.Resources.Data.Entity;
+    using ProcessingTools.Resources.Data.Entity.Contracts;
+    using ProcessingTools.Resources.Data.Entity.Models;
 
-    public class DataResourcesDataSeeder : IDataResourcesDataSeeder
+    public class ResourcesDataSeeder : IResourcesDataSeeder
     {
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string ProductsSeedFileNameKey = "ProductsSeedFileName";
         private const string InstitutionsSeedFileNameKey = "InstitutionsSeedFileName";
 
-        private readonly IDataResourcesDbContextProvider contextProvider;
+        private readonly IResourcesDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
-        private DbContextSeeder<DataResourcesDbContext> seeder;
+        private DbContextSeeder<ResourcesDbContext> seeder;
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public DataResourcesDataSeeder(IDataResourcesDbContextProvider contextProvider)
+        public ResourcesDataSeeder(IResourcesDbContextProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -33,7 +33,7 @@
             }
 
             this.contextProvider = contextProvider;
-            this.seeder = new DbContextSeeder<DataResourcesDbContext>(this.contextProvider);
+            this.seeder = new DbContextSeeder<ResourcesDbContext>(this.contextProvider);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
             this.exceptions = new ConcurrentQueue<Exception>();

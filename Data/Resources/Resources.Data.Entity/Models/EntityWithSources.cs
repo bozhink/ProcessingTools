@@ -1,10 +1,9 @@
-﻿namespace ProcessingTools.DataResources.Data.Entity.Models
+﻿namespace ProcessingTools.Resources.Data.Entity.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-
-    using ProcessingTools.DataResources.Data.Common.Models.Contracts;
+    using ProcessingTools.Resources.Data.Common.Contracts.Models;
 
     public abstract class EntityWithSources : IEntityWithSources
     {

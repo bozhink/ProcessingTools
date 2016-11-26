@@ -7,8 +7,8 @@
     <ProjectGuid>{A8E46D02-EE55-40D3-AB35-7568B9A2E713}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.DataResources.Data.Entity</RootNamespace>
-    <AssemblyName>ProcessingTools.DataResources.Data.Entity</AssemblyName>
+    <RootNamespace>ProcessingTools.Resources.Data.Entity</RootNamespace>
+    <AssemblyName>ProcessingTools.Resources.Data.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,16 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IDataResourcesDatabaseInitializer.cs" />
-    <Compile Include="Contracts\IDataResourcesDbContext.cs" />
-    <Compile Include="Contracts\IDataResourcesDbContextFactory.cs" />
-    <Compile Include="Contracts\IDataResourcesDbContextProvider.cs" />
-    <Compile Include="Contracts\Repositories\IDataResourcesRepository.cs" />
-    <Compile Include="Contracts\Repositories\IDataResourcesRepositoryProvider.cs" />
-    <Compile Include="Initializers\DataResourcesDatabaseInitializer.cs" />
-    <Compile Include="DataResourcesDbContext.cs" />
-    <Compile Include="Providers\DataResourcesDbContextProvider.cs" />
-    <Compile Include="Factories\DataResourcesDbContextFactory.cs" />
+    <Compile Include="Contracts\IResourcesDatabaseInitializer.cs" />
+    <Compile Include="Contracts\IResourcesDbContext.cs" />
+    <Compile Include="Contracts\IResourcesDbContextFactory.cs" />
+    <Compile Include="Contracts\IResourcesDbContextProvider.cs" />
+    <Compile Include="Contracts\Repositories\IResourcesRepository.cs" />
+    <Compile Include="Contracts\Repositories\IResourcesRepositoryProvider.cs" />
+    <Compile Include="Initializers\ResourcesDatabaseInitializer.cs" />
+    <Compile Include="ResourcesDbContext.cs" />
+    <Compile Include="Providers\ResourcesDbContextProvider.cs" />
+    <Compile Include="Factories\ResourcesDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abbreviation.cs" />
     <Compile Include="Models\ContentType.cs" />
@@ -61,8 +61,8 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SourceId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DataResourcesRepository.cs" />
-    <Compile Include="Repositories\DataResourcesRepositoryProvider.cs" />
+    <Compile Include="Repositories\ResourcesRepository.cs" />
+    <Compile Include="Repositories\ResourcesRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
@@ -77,9 +77,9 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Resources.Data.Common\DataResources.Data.Common.csproj">
+    <ProjectReference Include="..\Resources.Data.Common\Resources.Data.Common.csproj">
       <Project>{ad202ef1-f5f1-4d85-9cea-ea13ee71d5d6}</Project>
-      <Name>DataResources.Data.Common</Name>
+      <Name>Resources.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
