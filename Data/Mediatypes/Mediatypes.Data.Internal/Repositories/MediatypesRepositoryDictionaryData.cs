@@ -1,14 +1,11 @@
-﻿namespace ProcessingTools.Mediatypes.Services.Data
+﻿namespace ProcessingTools.Mediatypes.Data.Internal.Repositories
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
-    using Contracts;
-    using Factories;
-
-    public class MediatypesServiceStaticDictionary : MediatypesDataServiceFactory, IMediatypesDataService
+    public partial class MediatypesRepositoryDictionary : IMediatypesRepository
     {
-        private static Dictionary<string, string> mimeTypes = new Dictionary<string, string>
+        private readonly Dictionary<string, string> mimetypes = new Dictionary<string, string>
         {
             { "123", "application/vnd.lotus-1-2-3" },
             { "323", "text/h323" },
@@ -1196,16 +1193,5 @@
             { "zirz", "application/vnd.zul" },
             { "zmm", "application/vnd.handheld-entertainment+xml" }
         };
-
-        protected override Task<string> ResolveMediaType(string fileExtension)
-        {
-            string mediaType = null;
-            if (mimeTypes.TryGetValue(fileExtension, out mediaType))
-            {
-                return Task.FromResult(mediaType);
-            }
-
-            return Task.FromResult<string>(null);
-        }
     }
 }

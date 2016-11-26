@@ -1,19 +1,25 @@
 ﻿namespace ProcessingTools.Mediatypes.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
-    using Factories;
+    using Contracts.Models;
     using Models;
-    using ProcessingTools.Mediatypes.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.Mediatypes.Data.Entity.Models;
+    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
-    public class MediatypesDataService : MediatypesDataServiceBase, IMediatypesDataService
+    // TODO: dispose repository
+    public class MediatypesDataService : IMediatypesDataService
     {
-        private IMediatypesRepository<FileExtension> repository;
+        private const string DefaultMimetype = "unknown";
+        private const string DefaultMimesubtype = "unknown";
+        private const string DefaultMimetypeOnException = "application";
+        private const string DefaultMimesubtypeOnException = "octet-stream";
 
-        public MediatypesDataService(IMediatypesRepository<FileExtension> repository)
+        private readonly IMediatypesRepository repository;
+
+        public MediatypesDataService(IMediatypesRepository repository)
         {
             if (repository == null)
             {
@@ -23,38 +29,56 @@
             this.repository = repository;
         }
 
-        public override async Task<IQueryable<MediatypeServiceModel>> GetMediaType(string fileExtension)
+        public async Task<IEnumerable<IMediatypeServiceModel>> ResolveMediatype(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
-            FileExtension fileExtensionResult;
             try
             {
-                fileExtensionResult = (await this.repository.All())
-                    .FirstOrDefault(e => e.Name == extension);
-            }
-            catch (ArgumentNullException)
-            {
-                // FirstOrDefault throws because the IRepository returns empty IQueryable.
-                fileExtensionResult = null;
-            }
+                var response = await this.repository.GetByFileExtension(extension);
 
-            var pairs = fileExtensionResult?.MimeTypePairs?.AsQueryable();
-
-            if (pairs == null)
-            {
-                return this.GetSingleStringMediaTypeResultAsQueryable(
-                    fileExtension,
-                    MediatypesDataServiceBase.DefaultMediaType);
-            }
-
-            return pairs
-                .Select<MimetypePair, MediatypeServiceModel>(p => new MediatypeServiceModel
+                if (response == null)
                 {
-                    FileExtension = fileExtensionResult.Name,
-                    Mimetype = p.MimeType.Name,
-                    Mimesubtype = p.MimeSubtype.Name
-                });
+                    return this.GetStaticResult(extension, DefaultMimetype, DefaultMimesubtype);
+                }
+                else
+                {
+                    return response.Select(e => new MediatypeServiceModel
+                    {
+                        FileExtension = e.FileExtension,
+                        Mimetype = e.Mimetype,
+                        Mimesubtype = e.Mimesubtype
+                    });
+                }
+            }
+            catch
+            {
+                return this.GetStaticResult(extension, DefaultMimetypeOnException, DefaultMimesubtypeOnException);
+            }
+        }
+
+        private string GetValidFileExtension(string fileExtension)
+        {
+            string extension = fileExtension?.TrimStart('.', ' ', '\n', '\r');
+            if (string.IsNullOrWhiteSpace(extension))
+            {
+                throw new ArgumentNullException(nameof(fileExtension));
+            }
+
+            return extension;
+        }
+
+        private IEnumerable<IMediatypeServiceModel> GetStaticResult(string extension, string mimetype, string mimesubtype)
+        {
+            var result = new IMediatypeServiceModel[1];
+            result[0] = new MediatypeServiceModel
+            {
+                FileExtension = extension,
+                Mimetype = mimetype,
+                Mimesubtype = mimesubtype
+            };
+
+            return result;
         }
     }
 }

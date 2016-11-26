@@ -24,7 +24,7 @@
 
         public async Task<IHttpActionResult> Get(string id)
         {
-            var result = (await this.mediatypeDataService.GetMediaType(id))?.Select(AutoMapperConfig.Mapper.Map<MediaTypeResponseModel>).ToList();
+            var result = (await this.mediatypeDataService.ResolveMediatype(id))?.Select(AutoMapperConfig.Mapper.Map<MediaTypeResponseModel>).ToList();
 
             if (result == null)
             {

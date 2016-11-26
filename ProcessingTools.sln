@@ -107,8 +107,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.Services.Data.Tests", "Services.Tests\Data\Bio.Taxonomy.Services.Data.Tests\Bio.Taxonomy.Services.Data.Tests.csproj", "{4FE65E47-27ED-4308-B677-00FBB5B349D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Services.Data.Tests", "Services.Tests\Data\Mediatypes.Services.Data.Tests\Mediatypes.Services.Data.Tests.csproj", "{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Desktop.Tests\Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api.Tests", "Web.Tests\ProcessingTools.Web.Api.Tests\ProcessingTools.Web.Api.Tests.csproj", "{7F7CB56C-67AC-49A0-98B3-709F6100FAE0}"
@@ -347,6 +345,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Entity", "Data\Mediatypes\Mediatypes.Data.Entity\Mediatypes.Data.Entity.csproj", "{5796C109-8D2E-4CA9-962C-FC1D5263A57C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Seed", "Data\Mediatypes\Mediatypes.Data.Seed\Mediatypes.Data.Seed.csproj", "{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Internal", "Data\Mediatypes\Mediatypes.Data.Internal\Mediatypes.Data.Internal.csproj", "{D1AD6D3A-46DC-4490-850A-86465B4AFB13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -644,14 +644,6 @@ Global
 		{4FE65E47-27ED-4308-B677-00FBB5B349D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FE65E47-27ED-4308-B677-00FBB5B349D0}.Release|x64.ActiveCfg = Release|Any CPU
 		{4FE65E47-27ED-4308-B677-00FBB5B349D0}.Release|x64.Build.0 = Release|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Debug|x64.Build.0 = Debug|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Release|x64.ActiveCfg = Release|Any CPU
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D}.Release|x64.Build.0 = Release|Any CPU
 		{44DF19EE-8FCB-4298-95BC-381F180C1037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44DF19EE-8FCB-4298-95BC-381F180C1037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44DF19EE-8FCB-4298-95BC-381F180C1037}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1436,6 +1428,14 @@ Global
 		{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}.Release|x64.ActiveCfg = Release|Any CPU
 		{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0}.Release|x64.Build.0 = Release|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Debug|x64.Build.0 = Debug|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Release|x64.ActiveCfg = Release|Any CPU
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1479,7 +1479,6 @@ Global
 		{5F66D8B5-5C01-44EF-9AE9-AC04E2503B60} = {94AD9BBF-248C-4466-B390-B956A26ABD63}
 		{B5D2C63F-70A3-4662-A0EA-B6D3822FD7E3} = {94AD9BBF-248C-4466-B390-B956A26ABD63}
 		{4FE65E47-27ED-4308-B677-00FBB5B349D0} = {1939D374-F0BC-47AE-9F2D-F5C736A40E50}
-		{C1AB3C3C-A4D0-4C4B-8A54-E1683657880D} = {1939D374-F0BC-47AE-9F2D-F5C736A40E50}
 		{44DF19EE-8FCB-4298-95BC-381F180C1037} = {1E79B9F1-0090-481F-8AAC-C9C580704061}
 		{7F7CB56C-67AC-49A0-98B3-709F6100FAE0} = {51421CB2-377E-4BEF-855D-7665332A722A}
 		{0F968970-6C68-4932-849F-7EB791AEFEED} = {2F0C6A00-97F3-4679-8363-E0DA1D332091}
@@ -1596,6 +1595,7 @@ Global
 		{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB} = {1EE1058C-9F30-4EA7-A371-8778B7752109}
 		{5796C109-8D2E-4CA9-962C-FC1D5263A57C} = {1EE1058C-9F30-4EA7-A371-8778B7752109}
 		{D284EEDF-76AF-4BD1-A10D-CEFE39FF59D0} = {1EE1058C-9F30-4EA7-A371-8778B7752109}
+		{D1AD6D3A-46DC-4490-850A-86465B4AFB13} = {1EE1058C-9F30-4EA7-A371-8778B7752109}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

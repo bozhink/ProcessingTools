@@ -113,7 +113,7 @@
                 FileExtension = extension
             };
 
-            var response = (await this.service.GetMediaType(extension))
+            var response = (await this.service.ResolveMediatype(extension))
                 .FirstOrDefault();
 
             if (response != null)

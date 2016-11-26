@@ -15,13 +15,13 @@
         [Key]
         public int Id { get; set; }
 
-        public virtual int MimeTypeId { get; set; }
+        public virtual int MimetypeId { get; set; }
 
-        public virtual Mimetype MimeType { get; set; }
+        public virtual Mimetype Mimetype { get; set; }
 
-        public virtual int MimeSubtypeId { get; set; }
+        public virtual int MimesubtypeId { get; set; }
 
-        public virtual Mimesubtype MimeSubtype { get; set; }
+        public virtual Mimesubtype Mimesubtype { get; set; }
 
         public virtual ICollection<FileExtension> FileExtensions
         {

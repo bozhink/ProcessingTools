@@ -94,7 +94,7 @@
 
                         var pairs = new HashSet<MimetypePair>(extensionData.Select(d =>
                             mimeTypePairs.FirstOrDefault(p =>
-                                (p.MimeType.Name == d.Mimetype) && (p.MimeSubtype.Name == d.Mimesubtype))));
+                                (p.Mimetype.Name == d.Mimetype) && (p.Mimesubtype.Name == d.Mimesubtype))));
 
                         foreach (var pair in pairs)
                         {
@@ -124,8 +124,8 @@
                     var mediaTypesPairs = mediatypesJson
                         .Select(p => new MimetypePair
                         {
-                            MimeType = mimeTypes.FirstOrDefault(m => m.Name == p.Mimetype),
-                            MimeSubtype = mimeSubtypes.FirstOrDefault(s => s.Name == p.Mimesubtype)
+                            Mimetype = mimeTypes.FirstOrDefault(m => m.Name == p.Mimetype),
+                            Mimesubtype = mimeSubtypes.FirstOrDefault(s => s.Name == p.Mimesubtype)
                         })
                         .ToArray();
 
