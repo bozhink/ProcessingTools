@@ -55,7 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Core\IEngine.cs" />
-    <Compile Include="Contracts\Core\ISeederTypesProvider.cs" />
+    <Compile Include="Contracts\Providers\ICommandNamesProvider.cs" />
+    <Compile Include="Core\LogReporter.cs" />
+    <Compile Include="Core\SeedCommandRunner.cs" />
+    <Compile Include="Providers\CommandNamesProvider.cs" />
+    <Compile Include="Providers\HelpProvider.cs" />
+    <Compile Include="Providers\SeederTypesProvider.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
     <Compile Include="Contracts\Seeders\IBioDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IBioEnvironmentsDbSeeder.cs" />
@@ -161,6 +166,10 @@
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
+      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
+      <Name>Loggers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

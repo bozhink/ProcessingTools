@@ -1,8 +1,17 @@
 ﻿namespace ProcessingTools.DbSeeder.Settings
 {
+    using System;
     using System.Reflection;
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
+
+    using ProcessingTools.Contracts;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
+    using ProcessingTools.DbSeeder.Contracts.Providers;
+    using ProcessingTools.DbSeeder.Core;
+    using ProcessingTools.DbSeeder.Providers;
+    using ProcessingTools.Loggers;
+    using Ninject;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.
@@ -18,8 +27,35 @@
                     .BindDefaultInterface();
             });
 
-            // Geo.Data
-            this.Bind(b =>
+            this.Bind<ITypesProvider>()
+                .To<SeederTypesProvider>()
+                .InSingletonScope();
+
+            this.Bind<Func<Type, IDbSeeder>>()
+                .ToMethod(context => t => (IDbSeeder)context.Kernel.Get(t))
+                .InSingletonScope();
+
+            this.Bind<ILogger>()
+                .To<ConsoleLogger>()
+                .InSingletonScope();
+
+            this.Bind<IReporter>()
+                .To<LogReporter>()
+                .InSingletonScope();
+
+            this.Bind<IHelpProvider>()
+                .To<HelpProvider>()
+                .InSingletonScope();
+
+            this.Bind<ICommandNamesProvider>()
+                .To<CommandNamesProvider>()
+                .InSingletonScope();
+
+            this.Bind<ICommandRunner>()
+                .To<SeedCommandRunner>();
+
+               // Geo.Data
+               this.Bind(b =>
             {
                 b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()

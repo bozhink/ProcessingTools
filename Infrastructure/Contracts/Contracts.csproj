@@ -81,6 +81,7 @@
     <Compile Include="Harvesters\IQueryableHarvester.cs" />
     <Compile Include="Harvesters\IStringQueryableXmlHarvester.cs" />
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
+    <Compile Include="ICommandRunner.cs" />
     <Compile Include="ICommentable.cs" />
     <Compile Include="IContent.cs" />
     <Compile Include="IContentTypable.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="IGuidIdentifiable.cs" />
     <Compile Include="IGenericIdentifiable.cs" />
     <Compile Include="IGuidProvider.cs" />
+    <Compile Include="IHelpProvider.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="IIntegerIdentifiable.cs" />
     <Compile Include="IModelWithUserInformation.cs" />
@@ -127,9 +129,11 @@
     <Compile Include="IPerson.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IProvider.cs" />
+    <Compile Include="IReporter.cs" />
     <Compile Include="ISandbox.cs" />
     <Compile Include="IStringIdentifiable.cs" />
     <Compile Include="ITransformer.cs" />
+    <Compile Include="ITypesProvider.cs" />
     <Compile Include="IUrlLinkable.cs" />
     <Compile Include="IXmlContextNormalizer.cs" />
     <Compile Include="IXmlContextParser.cs" />
