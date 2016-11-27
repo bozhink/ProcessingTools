@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    using Contracts;
+    using Contracts.Seeders;
 
     using ProcessingTools.DataResources.Data.Entity.Contracts;
     using ProcessingTools.DataResources.Data.Seed.Contracts;

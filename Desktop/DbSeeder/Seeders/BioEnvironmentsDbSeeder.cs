@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    using Contracts;
+    using Contracts.Seeders;
 
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
     using ProcessingTools.Bio.Environments.Data.Seed.Contracts;

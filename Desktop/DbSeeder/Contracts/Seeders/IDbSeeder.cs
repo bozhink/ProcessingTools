@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DbSeeder.Contracts
+﻿namespace ProcessingTools.DbSeeder.Contracts.Seeders
 {
     using System.Threading.Tasks;
 

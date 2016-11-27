@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DbSeeder
+﻿namespace ProcessingTools.DbSeeder.Settings
 {
     using System.Reflection;
     using Ninject;

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts;
+    using Contracts.Seeders;
     using ProcessingTools.Geo.Data.Entity.Contracts;
     using ProcessingTools.Geo.Data.Seed.Contracts;
 

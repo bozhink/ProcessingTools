@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DbSeeder
+﻿namespace ProcessingTools.DbSeeder.Core
 {
     using System;
     using System.Collections.Concurrent;
@@ -6,15 +6,17 @@
     using System.Reflection;
     using System.Threading.Tasks;
 
-    using Contracts;
+    using Contracts.Core;
+    using Contracts.Seeders;
+    using Settings;
 
     using Ninject;
 
-    internal class Runner
+    public class Engine : IEngine
     {
         private readonly string defaultSeederInterfaceName = typeof(IDbSeeder).FullName;
 
-        public async Task Run()
+        public async Task Run(string[] args)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var seederTypes = assembly.GetTypes()
