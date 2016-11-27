@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories
 {
-    using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Models;
 
     public interface IMediatypesRepository
     {

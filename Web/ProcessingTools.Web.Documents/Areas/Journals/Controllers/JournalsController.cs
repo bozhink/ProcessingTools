@@ -1,6 +1,4 @@
-﻿using Strings = Resources.Strings;
-
-namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
 {
     using System;
     using System.Data.Entity;
@@ -9,9 +7,7 @@ namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-
     using Microsoft.AspNet.Identity.Owin;
-
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Documents.Data.Entity;
@@ -22,6 +18,7 @@ namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Journals;
     using ProcessingTools.Web.Documents.Extensions;
+    using Strings = Resources.Strings;
 
     public class JournalsController : Controller
     {

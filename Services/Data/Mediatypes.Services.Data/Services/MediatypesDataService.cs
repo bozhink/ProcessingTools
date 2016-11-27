@@ -7,8 +7,8 @@
     using Contracts;
     using Contracts.Models;
     using Models;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
     using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
     // TODO: dispose repository
     public class MediatypesDataService : IMediatypesDataService

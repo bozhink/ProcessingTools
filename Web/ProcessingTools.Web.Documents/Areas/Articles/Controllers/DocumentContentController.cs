@@ -1,15 +1,11 @@
-﻿using Strings = Resources.Strings;
-
-namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Xml;
-
     using Microsoft.AspNet.Identity;
-
     using ProcessingTools.Common;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
@@ -17,8 +13,7 @@ namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
-
-    using ProcessingTools.DataResources;
+    using Strings = Resources.Strings;
 
     [Authorize]
     public class DocumentContentController : Controller

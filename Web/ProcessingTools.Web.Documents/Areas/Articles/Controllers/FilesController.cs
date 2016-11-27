@@ -1,6 +1,4 @@
-﻿using Strings = Resources.Strings;
-
-namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
     using System.Collections.Concurrent;
@@ -11,9 +9,7 @@ namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-
     using Microsoft.AspNet.Identity;
-
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Documents.Services.Data.Contracts;
@@ -23,6 +19,7 @@ namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
+    using Strings = Resources.Strings;
 
     [Authorize]
     public class FilesController : Controller

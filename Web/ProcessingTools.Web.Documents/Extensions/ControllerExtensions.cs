@@ -1,6 +1,4 @@
-﻿using Strings = Resources.Strings;
-
-namespace ProcessingTools.Web.Documents.Extensions
+﻿namespace ProcessingTools.Web.Documents.Extensions
 {
     using System;
     using System.Net;
@@ -8,13 +6,12 @@ namespace ProcessingTools.Web.Documents.Extensions
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
-
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Error;
+    using Strings = Resources.Strings;
 
     public static class ControllerExtensions
     {
