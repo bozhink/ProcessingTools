@@ -1,38 +1,15 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using System;
-    using System.Threading.Tasks;
-
+    using Abstractions.Seeders;
     using Contracts.Seeders;
-
     using ProcessingTools.Bio.Taxonomy.Data.Entity.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
 
-    public class TaxonomyDbSeeder : ITaxonomyDbSeeder
+    public class TaxonomyDbSeeder : GenericDbSeeder<IBioTaxonomyDataInitializer, IBioTaxonomyDataSeeder>, ITaxonomyDbSeeder
     {
-        private readonly IBioTaxonomyDataInitializer initializer;
-        private readonly IBioTaxonomyDataSeeder seeder;
-
         public TaxonomyDbSeeder(IBioTaxonomyDataInitializer initializer, IBioTaxonomyDataSeeder seeder)
+            : base(initializer, seeder)
         {
-            if (initializer == null)
-            {
-                throw new ArgumentNullException(nameof(initializer));
-            }
-
-            if (seeder == null)
-            {
-                throw new ArgumentNullException(nameof(seeder));
-            }
-
-            this.initializer = initializer;
-            this.seeder = seeder;
-        }
-
-        public async Task Seed()
-        {
-            await this.initializer.Initialize();
-            await this.seeder.Seed();
         }
     }
 }

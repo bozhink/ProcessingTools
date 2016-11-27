@@ -70,6 +70,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\Seeders\GenericDbSeeder.cs" />
     <Compile Include="Contracts\Core\IEngine.cs" />
     <Compile Include="Contracts\Providers\ICommandNamesProvider.cs" />
     <Compile Include="Core\LogReporter.cs" />
@@ -83,9 +84,9 @@
     <Compile Include="Contracts\Seeders\IBioEnvironmentsDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IBiorepositoriesDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IBiotaxonomyMongoDbSeeder.cs" />
-    <Compile Include="Contracts\Seeders\IDataResourcesDataDbSeeder.cs" />
+    <Compile Include="Contracts\Seeders\IDataResourcesDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IDbSeeder.cs" />
-    <Compile Include="Contracts\Seeders\IMediaTypesDbSeeder.cs" />
+    <Compile Include="Contracts\Seeders\IMediatypesDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\ITaxonomyDbSeeder.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,10 +95,10 @@
     <Compile Include="Seeders\BioEnvironmentsDbSeeder.cs" />
     <Compile Include="Seeders\BiorepositoriesDbSeeder.cs" />
     <Compile Include="Seeders\BiotaxonomyMongoDbSeeder.cs" />
-    <Compile Include="Seeders\DataResourcesDataDbSeeder.cs" />
+    <Compile Include="Seeders\DataResourcesDbSeeder.cs" />
     <Compile Include="Seeders\GeoDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IGeoDbSeeder.cs" />
-    <Compile Include="Seeders\MediaTypesDbSeeder.cs" />
+    <Compile Include="Seeders\MediatypesDbSeeder.cs" />
     <Compile Include="Seeders\TaxonomyDbSeeder.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
   </ItemGroup>

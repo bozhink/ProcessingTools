@@ -1,38 +1,15 @@
 ﻿namespace ProcessingTools.DbSeeder.Seeders
 {
-    using System;
-    using System.Threading.Tasks;
-
+    using Abstractions.Seeders;
     using Contracts.Seeders;
-
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;
 
-    public class MediaTypesDbSeeder : IMediaTypesDbSeeder
+    public class MediatypesDbSeeder : GenericDbSeeder<IMediatypesDataInitializer, IMediatypesDataSeeder>, IMediatypesDbSeeder
     {
-        private readonly IMediatypesDataInitializer initializer;
-        private readonly IMediatypesDataSeeder seeder;
-
-        public MediaTypesDbSeeder(IMediatypesDataInitializer initializer, IMediatypesDataSeeder seeder)
+        public MediatypesDbSeeder(IMediatypesDataInitializer initializer, IMediatypesDataSeeder seeder)
+            : base(initializer, seeder)
         {
-            if (initializer == null)
-            {
-                throw new ArgumentNullException(nameof(initializer));
-            }
-
-            if (seeder == null)
-            {
-                throw new ArgumentNullException(nameof(seeder));
-            }
-
-            this.initializer = initializer;
-            this.seeder = seeder;
-        }
-
-        public async Task Seed()
-        {
-            await this.initializer.Initialize();
-            await this.seeder.Seed();
         }
     }
 }

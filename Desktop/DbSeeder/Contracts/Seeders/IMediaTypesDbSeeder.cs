@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.DbSeeder.Contracts.Seeders
 {
-    public interface IMediaTypesDbSeeder : IDbSeeder
+    public interface IMediatypesDbSeeder : IDbSeeder
     {
     }
 }
