@@ -98,7 +98,7 @@
 
                         foreach (var pair in pairs)
                         {
-                            extension.MimeTypePairs.Add(pair);
+                            extension.MimetypePairs.Add(pair);
                         }
                     }
 

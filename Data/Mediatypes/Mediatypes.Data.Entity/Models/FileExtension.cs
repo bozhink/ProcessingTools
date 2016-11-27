@@ -7,11 +7,11 @@
 
     public class FileExtension
     {
-        private ICollection<MimetypePair> mimeTypePairs;
+        private ICollection<MimetypePair> mimetypePairs;
 
         public FileExtension()
         {
-            this.mimeTypePairs = new HashSet<MimetypePair>();
+            this.mimetypePairs = new HashSet<MimetypePair>();
         }
 
         [Key]
@@ -25,16 +25,16 @@
         [MaxLength(ValidationConstants.MaximalLengthOfFileExtensionDescription)]
         public string Description { get; set; }
 
-        public virtual ICollection<MimetypePair> MimeTypePairs
+        public virtual ICollection<MimetypePair> MimetypePairs
         {
             get
             {
-                return this.mimeTypePairs;
+                return this.mimetypePairs;
             }
 
             set
             {
-                this.mimeTypePairs = value;
+                this.mimetypePairs = value;
             }
         }
     }

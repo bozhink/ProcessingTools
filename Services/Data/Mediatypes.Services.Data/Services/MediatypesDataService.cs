@@ -8,6 +8,7 @@
     using Contracts.Models;
     using Models;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Extensions.Linq;
 
     // TODO: dispose repository
     public class MediatypesDataService : IMediatypesDataService
@@ -35,9 +36,9 @@
 
             try
             {
-                var response = await this.repository.GetByFileExtension(extension);
+                var response = await this.repository.GetByFileExtension(extension).ToListAsync();
 
-                if (response == null)
+                if (response == null || response.Count < 1)
                 {
                     return this.GetStaticResult(extension, DefaultMimetype, DefaultMimesubtype);
                 }
