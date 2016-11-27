@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.DbSeeder.Core
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
-    using System.Linq;
 
     internal class SeedCommandRunner : ICommandRunner
     {
@@ -50,9 +50,9 @@
             {
                 throw new Exception($"Invalid command '{commandName}'");
             }
-            else if (matchedNames.Length > 1 && matchedNames.Count(n => n.ToLower() == name.ToLower()) > 1)
+            else if (matchedNames.Length > 1 && matchedNames.Count(n => n.ToLower() == name.ToLower()) != 1)
             {
-                throw new Exception($"Ambiguous command. Possible matches: {string.Join(", ", matchedNames)}");
+                throw new Exception($"Ambiguous command '{commandName}'. Possible matches: {string.Join(", ", matchedNames)}");
             }
             else
             {

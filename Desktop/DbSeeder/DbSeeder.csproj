@@ -57,6 +57,7 @@
     <Compile Include="Contracts\Core\IEngine.cs" />
     <Compile Include="Contracts\Providers\ICommandNamesProvider.cs" />
     <Compile Include="Core\LogReporter.cs" />
+    <Compile Include="Core\Sandbox.cs" />
     <Compile Include="Core\SeedCommandRunner.cs" />
     <Compile Include="Providers\CommandNamesProvider.cs" />
     <Compile Include="Providers\HelpProvider.cs" />

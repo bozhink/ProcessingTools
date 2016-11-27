@@ -2,16 +2,15 @@
 {
     using System;
     using System.Reflection;
+    using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
-
     using ProcessingTools.Contracts;
-    using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.DbSeeder.Contracts.Providers;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Loggers;
-    using Ninject;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.
@@ -54,13 +53,16 @@
             this.Bind<ICommandRunner>()
                 .To<SeedCommandRunner>();
 
-               // Geo.Data
-               this.Bind(b =>
-            {
-                b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
+            this.Bind<ISandbox>()
+                .To<Sandbox>();
+
+            // Geo.Data
+            this.Bind(b =>
+         {
+             b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+         });
 
             this.Bind(b =>
             {
