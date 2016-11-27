@@ -4,12 +4,14 @@
     using System.Reflection;
     using Ninject;
     using Ninject.Extensions.Conventions;
+    using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
+    using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers;
 
     /// <summary>
@@ -51,7 +53,9 @@
                 .InSingletonScope();
 
             this.Bind<ICommandRunner>()
-                .To<SeedCommandRunner>();
+                .To<SeedCommandRunner>()
+                .Intercept()
+                .With<CommantRunnerTimeLoggingInterceptor>();
 
             this.Bind<ISandbox>()
                 .To<Sandbox>();

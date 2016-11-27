@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncExceptionHandlingInterceptor.cs" />
+    <Compile Include="CommantRunnerTimeLoggingInterceptor.cs" />
     <Compile Include="ExceptionLoggingInterceptor.cs" />
     <Compile Include="FileExistsRaiseWarningInterceptor.cs" />
     <Compile Include="LogExceptionAttribute.cs" />
