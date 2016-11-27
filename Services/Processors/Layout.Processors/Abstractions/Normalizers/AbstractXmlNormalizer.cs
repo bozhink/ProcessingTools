@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Layout.Processors.Abstracts.Normalizers
+﻿namespace ProcessingTools.Layout.Processors.Abstractions.Normalizers
 {
     using System;
     using System.Threading.Tasks;

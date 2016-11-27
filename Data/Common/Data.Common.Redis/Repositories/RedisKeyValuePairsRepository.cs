@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Abstracts.Repositories;
+    using Abstractions.Repositories;
     using Contracts;
     using Contracts.Repositories;
     using ProcessingTools.Exceptions;

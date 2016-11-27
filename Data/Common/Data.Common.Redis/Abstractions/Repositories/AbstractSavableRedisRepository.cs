@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Abstracts.Repositories
+﻿namespace ProcessingTools.Data.Common.Redis.Abstractions.Repositories
 {
     using System;
     using System.Collections.Generic;

@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Abstracts.Taggers;
+    using Abstractions.Taggers;
     using Contracts.Taggers;
 
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;

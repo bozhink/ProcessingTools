@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Abstracts.Taggers;
+    using Abstractions.Taggers;
     using Contracts.Taggers;
 
     using ProcessingTools.Bio.Data.Miners.Contracts;

@@ -35,7 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\Normalizers\AbstractXmlNormalizer.cs" />
+    <Compile Include="Abstractions\Normalizers\AbstractXmlNormalizer.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Factories\INormalizationTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\ITransformerFactory.cs" />

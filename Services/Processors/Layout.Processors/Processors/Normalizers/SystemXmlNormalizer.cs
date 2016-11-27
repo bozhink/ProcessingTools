@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Layout.Processors.Normalizers
 {
-    using Abstracts.Normalizers;
+    using Abstractions.Normalizers;
     using Contracts.Normalizers;
     using Contracts.Transformers;
 

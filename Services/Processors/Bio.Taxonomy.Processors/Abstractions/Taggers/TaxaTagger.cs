@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Abstracts.Taggers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Abstractions.Taggers
 {
     using System;
     using System.Collections.Generic;

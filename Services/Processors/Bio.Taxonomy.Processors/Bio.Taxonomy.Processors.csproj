@@ -35,7 +35,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\Taggers\TaxaTagger.cs" />
+    <Compile Include="Abstractions\Taggers\TaxaTagger.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Comparers\TaxonNameContentEqualityComparer.cs" />
     <Compile Include="Comparers\TaxonNamePartContentEqualityComparer.cs" />

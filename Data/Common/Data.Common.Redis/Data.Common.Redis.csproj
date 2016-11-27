@@ -51,7 +51,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\Repositories\AbstractSavableRedisRepository.cs" />
+    <Compile Include="Abstractions\Repositories\AbstractSavableRedisRepository.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IRedisClientProvider.cs" />
     <Compile Include="Contracts\Repositories\IRedisKeyCollectionValuePairsRepository.cs" />
