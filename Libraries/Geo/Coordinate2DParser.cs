@@ -29,6 +29,7 @@
         private const string MatchLatitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
         private const string MatchUTMWGS84CoordinatePattern = @"\A(?:UTM\s*WGS84:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\Z";
+        private const string MatchUTMED50CoordinatePattern = @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7}N)\W+(?<easting>[0-9]{2,7}E)\Z";
         private const string MatchDecimalDecimalCoordinatePattern = @"\A(?<latitude>\W?\d+\.\d+\W?)[,\s]+(?<longitude>\W?\d+\.\d+\W?)\Z";
 
         private readonly IUtmCoordianesTransformer utmCoordianesTransformer;
@@ -52,28 +53,19 @@
                 // UTM WGS84: 33T 455.4683
                 Match matchUTMWGS84Coordinate = Regex.Match(coordinateString, MatchUTMWGS84CoordinatePattern);
 
+                // UTM ED50: 33T 4498003N; 674582E
+                Match matchUTMED50Coordinate = Regex.Match(coordinateString, MatchUTMED50CoordinatePattern);
+
                 // 29.5423°, -86.1926°
                 Match matchDecimalDecimalCoordinate = Regex.Match(coordinateText, MatchDecimalDecimalCoordinatePattern);
 
                 if (matchUTMWGS84Coordinate.Success)
                 {
-                    // Add tailing zeros
-                    var utmEastingString = matchUTMWGS84Coordinate.Groups[UtmEastingValue].Value.Trim() + "0000000";
-                    var utmNorthingString = matchUTMWGS84Coordinate.Groups[UtmNorthingValue].Value.Trim() + "0000000";
-
-                    var utmZone = matchUTMWGS84Coordinate.Groups[UtmZoneValue].Value.Trim();
-                    var utmEasting = double.Parse(utmEastingString.Substring(0, 6));
-                    var utmNorthing = double.Parse(utmNorthingString.Substring(0, 7));
-
-                    var point = this.utmCoordianesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
-
-                    latitude.DecimalValue = point[0];
-                    latitude.Type = CoordinatePartType.Latitude;
-                    latitude.PartIsPresent = true;
-
-                    longitude.DecimalValue = point[1];
-                    longitude.Type = CoordinatePartType.Longitude;
-                    longitude.PartIsPresent = true;
+                    this.ProcessUTMCoorsinate(latitude, longitude, matchUTMWGS84Coordinate);
+                }
+                else if (matchUTMED50Coordinate.Success)
+                {
+                    this.ProcessUTMCoorsinate(latitude, longitude, matchUTMED50Coordinate);
                 }
                 else if (matchDecimalDecimalCoordinate.Success)
                 {
@@ -125,6 +117,28 @@
                     latitude,
                     longitude);
             }
+        }
+
+        private void ProcessUTMCoorsinate(ICoordinatePart latitude, ICoordinatePart longitude, Match matchUTMCoordinate)
+        {
+
+            // Add tailing zeros
+            var utmEastingString = matchUTMCoordinate.Groups[UtmEastingValue].Value.Trim() + "0000000";
+            var utmNorthingString = matchUTMCoordinate.Groups[UtmNorthingValue].Value.Trim() + "0000000";
+
+            var utmZone = matchUTMCoordinate.Groups[UtmZoneValue].Value.Trim();
+            var utmEasting = double.Parse(utmEastingString.Substring(0, 6));
+            var utmNorthing = double.Parse(utmNorthingString.Substring(0, 7));
+
+            var point = this.utmCoordianesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
+
+            latitude.DecimalValue = point[0];
+            latitude.Type = CoordinatePartType.Latitude;
+            latitude.PartIsPresent = true;
+
+            longitude.DecimalValue = point[1];
+            longitude.Type = CoordinatePartType.Longitude;
+            longitude.PartIsPresent = true;
         }
 
         private void ParseGeneralTypeCoordinate(string coordinateText, ICoordinatePart latitude, ICoordinatePart longitude)
