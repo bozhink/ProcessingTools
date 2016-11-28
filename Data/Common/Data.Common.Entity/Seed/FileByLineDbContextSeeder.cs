@@ -3,27 +3,26 @@
     using System;
     using System.Collections.Concurrent;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using System.IO;
     using System.Text;
     using System.Threading.Tasks;
 
-    using Contracts;
-
-    public class DbContextSeeder<TContext>
+    public class FileByLineDbContextSeeder<TContext>
         where TContext : DbContext
     {
         private const int NumberOfItemsToResetContext = 100;
 
-        private readonly IDbContextProvider<TContext> contextProvider;
+        private readonly IDbContextFactory<TContext> contextFactory;
 
-        public DbContextSeeder(IDbContextProvider<TContext> contextProvider)
+        public FileByLineDbContextSeeder(IDbContextFactory<TContext> contextFactory)
         {
-            if (contextProvider == null)
+            if (contextFactory == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(contextFactory));
             }
 
-            this.contextProvider = contextProvider;
+            this.contextFactory = contextFactory;
         }
 
         /// <summary>
@@ -62,7 +61,7 @@
             {
                 int localNumberOfImportedObjects = 0;
 
-                var context = this.contextProvider.Create();
+                var context = this.contextFactory.Create();
 
                 string line = stream.ReadLine();
                 for (int i = 0; line != null; ++i, line = stream.ReadLine())
@@ -84,7 +83,7 @@
                         }
 
                         context.Dispose();
-                        context = this.contextProvider.Create();
+                        context = this.contextFactory.Create();
                     }
                 }
 

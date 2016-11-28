@@ -22,22 +22,22 @@
         private const string CountryCodesSeedFileNameKey = "CountryCodesSeedFileName";
         private const string ContinentsCodesSeedFileNameKey = "ContinentsCodesSeedFileName";
 
-        private readonly IGeoDbContextProvider contextProvider;
+        private readonly IGeoDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
-        private DbContextSeeder<GeoDbContext> seeder;
+        private FileByLineDbContextSeeder<GeoDbContext> seeder;
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public GeoDataSeeder(IGeoDbContextProvider contextProvider)
+        public GeoDataSeeder(IGeoDbContextFactory contextFactory)
         {
-            if (contextProvider == null)
+            if (contextFactory == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(contextFactory));
             }
 
-            this.contextProvider = contextProvider;
-            this.seeder = new DbContextSeeder<GeoDbContext>(this.contextProvider);
+            this.contextFactory = contextFactory;
+            this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
             this.exceptions = new ConcurrentQueue<Exception>();

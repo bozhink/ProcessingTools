@@ -25,18 +25,21 @@
 
         private readonly IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider;
         private readonly IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider;
-        private readonly IBioTaxonomyDbContextProvider contextProvider;
+        private readonly IBioTaxonomyDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
-        private DbContextSeeder<BioTaxonomyDbContext> seeder;
+        private FileByLineDbContextSeeder<BioTaxonomyDbContext> seeder;
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public BioTaxonomyDataSeeder(IBioTaxonomyDbContextProvider contextProvider, IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider, IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider)
+        public BioTaxonomyDataSeeder(
+            IBioTaxonomyDbContextFactory contextFactory,
+            IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider,
+            IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider)
         {
-            if (contextProvider == null)
+            if (contextFactory == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(contextFactory));
             }
 
             if (taxonomicRepositoryProvider == null)
@@ -49,10 +52,10 @@
                 throw new ArgumentNullException(nameof(blackListRepositoryProvider));
             }
 
-            this.contextProvider = contextProvider;
+            this.contextFactory = contextFactory;
             this.taxonomicRepositoryProvider = taxonomicRepositoryProvider;
             this.blackListRepositoryProvider = blackListRepositoryProvider;
-            this.seeder = new DbContextSeeder<BioTaxonomyDbContext>(this.contextProvider);
+            this.seeder = new FileByLineDbContextSeeder<BioTaxonomyDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -101,7 +104,7 @@
                     .Select(r => r.MapTaxonRankTypeToTaxonRankString())
                     .ToList());
 
-                using (var context = this.contextProvider.Create())
+                using (var context = this.contextFactory.Create())
                 {
                     foreach (var rank in ranks)
                     {
@@ -138,7 +141,7 @@
             {
                 var repository = this.taxonomicRepositoryProvider.Create();
 
-                var context = this.contextProvider.Create();
+                var context = this.contextFactory.Create();
 
                 for (int i = 0; true; ++i)
                 {
@@ -167,7 +170,7 @@
 
                         await context.SaveChangesAsync();
                         context.Dispose();
-                        context = this.contextProvider.Create();
+                        context = this.contextFactory.Create();
                     }
                     catch (Exception e)
                     {
@@ -191,7 +194,7 @@
             {
                 var repository = this.blackListRepositoryProvider.Create();
 
-                var context = this.contextProvider.Create();
+                var context = this.contextFactory.Create();
 
                 for (int i = 0; true; ++i)
                 {
@@ -216,7 +219,7 @@
 
                         await context.SaveChangesAsync();
                         context.Dispose();
-                        context = this.contextProvider.Create();
+                        context = this.contextFactory.Create();
                     }
                     catch (Exception e)
                     {

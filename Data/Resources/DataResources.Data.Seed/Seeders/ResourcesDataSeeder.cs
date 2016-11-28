@@ -18,22 +18,22 @@
         private const string ProductsSeedFileNameKey = "ProductsSeedFileName";
         private const string InstitutionsSeedFileNameKey = "InstitutionsSeedFileName";
 
-        private readonly IResourcesDbContextProvider contextProvider;
+        private readonly IResourcesDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
-        private DbContextSeeder<ResourcesDbContext> seeder;
+        private FileByLineDbContextSeeder<ResourcesDbContext> seeder;
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public ResourcesDataSeeder(IResourcesDbContextProvider contextProvider)
+        public ResourcesDataSeeder(IResourcesDbContextFactory contextFactory)
         {
-            if (contextProvider == null)
+            if (contextFactory == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(contextFactory));
             }
 
-            this.contextProvider = contextProvider;
-            this.seeder = new DbContextSeeder<ResourcesDbContext>(this.contextProvider);
+            this.contextFactory = contextFactory;
+            this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
             this.exceptions = new ConcurrentQueue<Exception>();

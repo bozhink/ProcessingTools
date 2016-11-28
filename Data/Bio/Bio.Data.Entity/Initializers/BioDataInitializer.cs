@@ -3,12 +3,12 @@
     using System.Data.Entity;
     using Contracts;
     using Migrations;
-    using ProcessingTools.Data.Common.Entity.Factories;
+    using ProcessingTools.Data.Common.Entity.Abstractions;
 
-    public class BioDataInitializer : DbContextInitializerFactory<BioDbContext>, IBioDataInitializer
+    public class BioDataInitializer : GenericDbContextInitializer<BioDbContext>, IBioDataInitializer
     {
-        public BioDataInitializer(IBioDbContextProvider contextProvider)
-            : base(contextProvider)
+        public BioDataInitializer(IBioDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
 

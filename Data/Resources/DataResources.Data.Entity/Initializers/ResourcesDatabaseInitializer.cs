@@ -3,12 +3,12 @@
     using System.Data.Entity;
     using Contracts;
     using Migrations;
-    using ProcessingTools.Data.Common.Entity.Factories;
+    using ProcessingTools.Data.Common.Entity.Abstractions;
 
-    public class ResourcesDatabaseInitializer : DbContextInitializerFactory<ResourcesDbContext>, IResourcesDatabaseInitializer
+    public class ResourcesDatabaseInitializer : GenericDbContextInitializer<ResourcesDbContext>, IResourcesDatabaseInitializer
     {
-        public ResourcesDatabaseInitializer(IResourcesDbContextProvider contextProvider)
-            : base(contextProvider)
+        public ResourcesDatabaseInitializer(IResourcesDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
 

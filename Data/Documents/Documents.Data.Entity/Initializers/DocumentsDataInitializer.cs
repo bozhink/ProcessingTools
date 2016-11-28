@@ -1,16 +1,14 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity.Initializers
 {
     using System.Data.Entity;
-
     using Contracts;
+    using Migrations;
+    using ProcessingTools.Data.Common.Entity.Abstractions;
 
-    using ProcessingTools.Data.Common.Entity.Factories;
-    using ProcessingTools.Documents.Data.Entity.Migrations;
-
-    public class DocumentsDataInitializer : DbContextInitializerFactory<DocumentsDbContext>, IDocumentsDataInitializer
+    public class DocumentsDataInitializer : GenericDbContextInitializer<DocumentsDbContext>, IDocumentsDataInitializer
     {
-        public DocumentsDataInitializer(IDocumentsDbContextProvider contextProvider)
-            : base(contextProvider)
+        public DocumentsDataInitializer(IDocumentsDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
 

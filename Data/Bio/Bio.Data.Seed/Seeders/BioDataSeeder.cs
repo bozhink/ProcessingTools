@@ -20,22 +20,22 @@
         private const string MorphologicalEpithetsFileNameKey = "MorphologicalEpithetsFileName";
         private const string TypeStatusesFileNameKey = "TypeStatusesFileName";
 
-        private readonly IBioDbContextProvider contextProvider;
+        private readonly IBioDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
-        private DbContextSeeder<BioDbContext> seeder;
+        private FileByLineDbContextSeeder<BioDbContext> seeder;
         private string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public BioDataSeeder(IBioDbContextProvider contextProvider)
+        public BioDataSeeder(IBioDbContextFactory contextFactory)
         {
-            if (contextProvider == null)
+            if (contextFactory == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(contextFactory));
             }
 
-            this.contextProvider = contextProvider;
-            this.seeder = new DbContextSeeder<BioDbContext>(this.contextProvider);
+            this.contextFactory = contextFactory;
+            this.seeder = new FileByLineDbContextSeeder<BioDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
             this.exceptions = new ConcurrentQueue<Exception>();

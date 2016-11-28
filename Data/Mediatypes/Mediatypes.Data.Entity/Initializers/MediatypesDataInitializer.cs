@@ -3,12 +3,12 @@
     using System.Data.Entity;
     using Contracts;
     using Migrations;
-    using ProcessingTools.Data.Common.Entity.Factories;
+    using ProcessingTools.Data.Common.Entity.Abstractions;
 
-    public class MediatypesDataInitializer : DbContextInitializerFactory<MediatypesDbContext>, IMediatypesDataInitializer
+    public class MediatypesDataInitializer : GenericDbContextInitializer<MediatypesDbContext>, IMediatypesDataInitializer
     {
-        public MediatypesDataInitializer(IMediatypesDbContextProvider contextProvider)
-            : base(contextProvider)
+        public MediatypesDataInitializer(IMediatypesDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
 

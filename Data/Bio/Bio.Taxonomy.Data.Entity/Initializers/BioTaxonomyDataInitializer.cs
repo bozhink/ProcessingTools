@@ -3,12 +3,12 @@
     using System.Data.Entity;
     using Contracts;
     using Migrations;
-    using ProcessingTools.Data.Common.Entity.Factories;
+    using ProcessingTools.Data.Common.Entity.Abstractions;
 
-    public class BioTaxonomyDataInitializer : DbContextInitializerFactory<BioTaxonomyDbContext>, IBioTaxonomyDataInitializer
+    public class BioTaxonomyDataInitializer : GenericDbContextInitializer<BioTaxonomyDbContext>, IBioTaxonomyDataInitializer
     {
-        public BioTaxonomyDataInitializer(IBioTaxonomyDbContextProvider contextProvider)
-            : base(contextProvider)
+        public BioTaxonomyDataInitializer(IBioTaxonomyDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
 

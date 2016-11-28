@@ -3,12 +3,12 @@
     using System.Data.Entity;
     using Contracts;
     using Migrations;
-    using ProcessingTools.Data.Common.Entity.Factories;
+    using ProcessingTools.Data.Common.Entity.Abstractions;
 
-    public class GeoDataInitializer : DbContextInitializerFactory<GeoDbContext>, IGeoDataInitializer
+    public class GeoDataInitializer : GenericDbContextInitializer<GeoDbContext>, IGeoDataInitializer
     {
-        public GeoDataInitializer(IGeoDbContextProvider contextProvider)
-            : base(contextProvider)
+        public GeoDataInitializer(IGeoDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
 
