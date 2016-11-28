@@ -252,6 +252,7 @@
     <Compile Include="Settings\NinjectDataBindings.cs" />
     <Compile Include="Settings\NinjectDataMinersBindings.cs" />
     <Compile Include="Settings\NinjectHarvestersBindings.cs" />
+    <Compile Include="Settings\NinjectMediatypesDataBindings.cs" />
     <Compile Include="Settings\NinjectServiceClientsBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
     <Compile Include="Core\SingleFileProcessorHelpers.cs" />

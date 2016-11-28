@@ -118,6 +118,12 @@
 
             this.Bind<ProcessingTools.Tagger.Contracts.IFileProcessor>()
                 .To<ProcessingTools.Tagger.Core.SingleFileProcessor>();
+
+            this.Bind<ProcessingTools.Geo.Contracts.ICoordinate2DParser>()
+                .To<ProcessingTools.Geo.Coordinate2DParser>();
+
+            this.Bind<ProcessingTools.Geo.Contracts.IUtmCoordianesTransformer>()
+                .To<ProcessingTools.Geo.UtmCoordianesTransformer>();
         }
     }
 }
