@@ -335,7 +335,7 @@
             var taxa = knownLowerTaxaNamesXml
                 .Select(t => t.RegexReplace(@"<(sensu)[^>/]*>.*?</\1>|<((?:basionym-)?authority)[^>/]*>.*?</\2>|<(infraspecific-rank)[^>/]*>.*?</\3>|\bcf\b\.|\bvar\b\.", string.Empty))
                 .Select(t => t.RegexReplace(@"<[^>]*>", string.Empty).RegexReplace(@"[\s\d\?]+\-?", " "))
-                .Select(t => t.RegexReplace(@"[^\w\.]+", " "))
+                .Select(t => t.RegexReplace(@"[^\w\.]+", " ").Trim())
                 .Distinct()
                 .ToList();
 
