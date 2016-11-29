@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Geo
 {
     using System;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using Contracts;
     using ProcessingTools.Constants.Schema;
@@ -28,8 +29,6 @@
 
         private const string MatchLatitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
-        private const string MatchUTMWGS84CoordinatePattern = @"\A(?:UTM\s*WGS84:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\Z";
-        private const string MatchUTMED50CoordinatePattern = @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7}N)\W+(?<easting>[0-9]{2,7}E)\Z";
         private const string MatchDecimalDecimalCoordinatePattern = @"\A(?<latitude>\W?\d+\.\d+\W?)[,\s]+(?<longitude>\W?\d+\.\d+\W?)\Z";
 
         private readonly IUtmCoordianesTransformer utmCoordianesTransformer;
@@ -50,24 +49,31 @@
 
             try
             {
-                // UTM WGS84: 33T 455.4683
-                Match matchUTMWGS84Coordinate = Regex.Match(coordinateString, MatchUTMWGS84CoordinatePattern);
+                var integerUtmCoordinatesMatchPatterns = new string[]
+                {
+                    // UTM WGS84: 33T 455.4683
+                    @"\A(?:UTM\s*WGS84:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\Z",
 
-                // UTM ED50: 33T 4498003N; 674582E
-                Match matchUTMED50Coordinate = Regex.Match(coordinateString, MatchUTMED50CoordinatePattern);
+                    // UTM ED50: 33T 4498003N; 674582E
+                    @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7})N\W+(?<easting>[0-9]{2,7})E\Z",
+
+                    // UTM ED50: 33T 674582E; 4498003N
+                    @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\Z"
+                };
+
+                var integerUtmCoordinatesMatches = integerUtmCoordinatesMatchPatterns.Select(p => Regex.Match(coordinateString, p));
+                foreach (var match in integerUtmCoordinatesMatches)
+                {
+                    if (this.ProcessIntegerUTMCoordinate(match, latitude, longitude))
+                    {
+                        return;
+                    }
+                }
 
                 // 29.5423°, -86.1926°
                 Match matchDecimalDecimalCoordinate = Regex.Match(coordinateText, MatchDecimalDecimalCoordinatePattern);
 
-                if (matchUTMWGS84Coordinate.Success)
-                {
-                    this.ProcessUTMCoorsinate(latitude, longitude, matchUTMWGS84Coordinate);
-                }
-                else if (matchUTMED50Coordinate.Success)
-                {
-                    this.ProcessUTMCoorsinate(latitude, longitude, matchUTMED50Coordinate);
-                }
-                else if (matchDecimalDecimalCoordinate.Success)
+                if (matchDecimalDecimalCoordinate.Success)
                 {
                     var latitudeString = matchDecimalDecimalCoordinate.Groups[LatitudeTypeValue].Value.Trim();
                     var longitudeString = matchDecimalDecimalCoordinate.Groups[LongitudeTypeValue].Value.Trim();
@@ -119,26 +125,41 @@
             }
         }
 
-        private void ProcessUTMCoorsinate(ICoordinatePart latitude, ICoordinatePart longitude, Match matchUTMCoordinate)
+        /// <summary>
+        /// Here is supposed that easting and northing are integers, e.g. 33T 4498003N; 674582E, but not 33T 4498003.123N; 674582.3542E
+        /// </summary>
+        /// <param name="utmCoordinatesMatch">Regex.Match object to match the coordinate parts. Should have named groups "zone", "easting", and "northing".</param>
+        /// <param name="latitude">ICoordinatePart object for the latitude coordinate part.</param>
+        /// <param name="longitude">ICoordinatePart object for the longitude coordinate part.</param>
+        /// <returns>The Success value of the <paramref name="utmCoordinatesMatch"/> match.</returns>
+        private bool ProcessIntegerUTMCoordinate(Match utmCoordinatesMatch, ICoordinatePart latitude, ICoordinatePart longitude)
         {
+            var success = utmCoordinatesMatch.Success;
 
-            // Add tailing zeros
-            var utmEastingString = matchUTMCoordinate.Groups[UtmEastingValue].Value.Trim() + "0000000";
-            var utmNorthingString = matchUTMCoordinate.Groups[UtmNorthingValue].Value.Trim() + "0000000";
+            if (success)
+            {
+                // Add tailing zeros
+                var utmEastingString = utmCoordinatesMatch.Groups[UtmEastingValue].Value.Trim().PadRight(6, '0');
+                var utmNorthingString = utmCoordinatesMatch.Groups[UtmNorthingValue].Value.Trim().PadRight(7, '0');
 
-            var utmZone = matchUTMCoordinate.Groups[UtmZoneValue].Value.Trim();
-            var utmEasting = double.Parse(utmEastingString.Substring(0, 6));
-            var utmNorthing = double.Parse(utmNorthingString.Substring(0, 7));
+                Console.WriteLine("{0}E, {1}N", utmEastingString, utmNorthingString);
 
-            var point = this.utmCoordianesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
+                var utmZone = utmCoordinatesMatch.Groups[UtmZoneValue].Value.Trim();
+                var utmEasting = double.Parse(utmEastingString);
+                var utmNorthing = double.Parse(utmNorthingString);
 
-            latitude.DecimalValue = point[0];
-            latitude.Type = CoordinatePartType.Latitude;
-            latitude.PartIsPresent = true;
+                var point = this.utmCoordianesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
 
-            longitude.DecimalValue = point[1];
-            longitude.Type = CoordinatePartType.Longitude;
-            longitude.PartIsPresent = true;
+                latitude.DecimalValue = point[0];
+                latitude.Type = CoordinatePartType.Latitude;
+                latitude.PartIsPresent = true;
+
+                longitude.DecimalValue = point[1];
+                longitude.Type = CoordinatePartType.Longitude;
+                longitude.PartIsPresent = true;
+            }
+
+            return success;
         }
 
         private void ParseGeneralTypeCoordinate(string coordinateText, ICoordinatePart latitude, ICoordinatePart longitude)
