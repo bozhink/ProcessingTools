@@ -18,13 +18,13 @@
     {
         private const string XPath = "./*";
 
-        private readonly INlmExternalLinksDataMiner miner;
+        private readonly IExternalLinksDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
         private readonly ISimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel> contentTagger;
         private readonly ILogger logger;
 
         public ExternalLinksTagger(
-            INlmExternalLinksDataMiner miner,
+            IExternalLinksDataMiner miner,
             ITextContentHarvester contentHarvester,
             ISimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel> contentTagger,
             ILogger logger)

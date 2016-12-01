@@ -40,14 +40,14 @@
     <Compile Include="Contracts\Miners\IDatesDataMiner.cs" />
     <Compile Include="Contracts\Miners\IGeographicDeviationsDataMiner.cs" />
     <Compile Include="Contracts\Miners\IInstitutionsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\INlmExternalLinksDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IExternalLinksDataMiner.cs" />
     <Compile Include="Contracts\Miners\IProductsDataMiner.cs" />
     <Compile Include="Contracts\Miners\IQuantitiesDataMiner.cs" />
     <Compile Include="Miners\DatesDataMiner.cs" />
     <Compile Include="Miners\GeographicDeviationsDataMiner.cs" />
     <Compile Include="Miners\InstitutionsDataMiner.cs" />
     <Compile Include="Models\ExternalLink.cs" />
-    <Compile Include="Miners\NlmExternalLinksDataMiner.cs" />
+    <Compile Include="Miners\ExternalLinksDataMiner.cs" />
     <Compile Include="Miners\ProductsDataMiner.cs" />
     <Compile Include="Contracts\Models\IExternalLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

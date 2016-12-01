@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Data.Miners.Common.Contracts;
 
-    public interface INlmExternalLinksDataMiner : IDataMiner<IExternalLink>
+    public interface IExternalLinksDataMiner : IDataMiner<IExternalLink>
     {
     }
 }
