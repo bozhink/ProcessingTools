@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -14,7 +15,15 @@
 
     public class ExternalLinksDataMiner : IExternalLinksDataMiner
     {
-        private const string UriPatternSuffix = @"(?=(?:&gt;|>)?\]?[,;\.]*[\)\s]+(?:[\.;\)]+\s)?|[\.;\)]+$|$)";
+        private const string UriPatternSuffix = @"(?=(?:&gt;|>)?(?:[,;:\.\)\]]+)?(?:\s|$)|$)";
+
+        private const string MatchUrlDoiPrefixPattern = @"\A(?<prefix>https?://(?:dx\.)?doi.org/)(?<value>10\.\d{4,5}/.+)\Z";
+
+        private const string DoiPattern = @"(?i)(?<=\bdoi\W{0,3})\d+\S+" + UriPatternSuffix + @"|" +
+            @"10\.\d{4,5}/\S+" + UriPatternSuffix;
+
+        private const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternSuffix;
+
         private const string IPAddressPattern = @"\b(?:(?:(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3,3}(?:0?0?[0-9]|0?[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))\b(?:(?::\d+)?/)?";
 
         private const string HttpPattern = @"(?i)https?://(?:www)?\S+?" + UriPatternSuffix + @"|" +
@@ -22,14 +31,8 @@
             IPAddressPattern + @"(?:\D\S*)" + UriPatternSuffix + @"|" +
             @"[A-Za-z0-9][A-Za-z0-9@~&:\.\-_]*\.(?:com|org|net|edu)\b\S*?" + UriPatternSuffix;
 
-        private const string FtpPattern = @"(?i)s?ftp://(?:www)?\S+?" + UriPatternSuffix;
-
-        private const string DoiPattern = @"(?i)(?<=\bdoi\W{0,3})\d+\S+" + UriPatternSuffix + @"|" +
-            @"10\.\d{4,5}/\S+" + UriPatternSuffix;
-
-        private const string PmidPattern = @"(?i)(?<=\bpmid\W?)\d+";
-
         private const string PmcidPattern = @"(?i)\bpmc\W?\d+|(?i)(?<=\bpmcid\W?)\d+";
+        private const string PmidPattern = @"(?i)(?<=\bpmid\W?)\d+";
 
         public async Task<IEnumerable<IExternalLink>> Mine(string content)
         {
@@ -38,106 +41,69 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
-            var internalMiner = new InternalMiner(content);
+            var patterns = new Dictionary<string, ExternalLinkType>()
+            {
+                { HttpPattern, ExternalLinkType.Uri },
+                { FtpPattern, ExternalLinkType.Ftp },
+                { DoiPattern, ExternalLinkType.Doi },
+                { PmidPattern, ExternalLinkType.Pmid },
+                { PmcidPattern, ExternalLinkType.Pmcid }
+            };
 
-            var doiItems = await internalMiner.MineDoi().ToArrayAsync();
-            var uriItems = await internalMiner.MineUri().ToArrayAsync();
-            var ftpItems = await internalMiner.MineFtp().ToArrayAsync();
-            var pmidItems = await internalMiner.MinePmid().ToArrayAsync();
-            var pmcidItems = await internalMiner.MinePmcid().ToArrayAsync();
+            var data = await this.ExtractData(content, patterns).ToListAsync();
 
-            var items = new List<ExternalLink>();
-            items.AddRange(pmcidItems);
-            items.AddRange(pmidItems);
-            items.AddRange(ftpItems);
-            items.AddRange(uriItems);
-            items.AddRange(doiItems);
+            this.DataCleansing(data);
 
-            var result = new HashSet<ExternalLink>(items);
+            var result = new HashSet<IExternalLink>(data);
             return result;
         }
 
-        private class InternalMiner
+        private void DataCleansing(IEnumerable<ExternalLink> data)
         {
-            private string content;
-
-            public InternalMiner(string content)
+            var matchDoiPrefixRegex = new Regex(MatchUrlDoiPrefixPattern);
+            foreach (var item in data)
             {
-                this.content = content;
-            }
-
-            public IEnumerable<ExternalLink> MineUri()
-            {
-                var matches = this.content.GetMatches(new Regex(HttpPattern));
-                return matches.Select(item =>
+                var matchDoiPrefix = Regex.Match(item.Href, MatchUrlDoiPrefixPattern);
+                if (matchDoiPrefix.Success)
                 {
-                    const string MatchDoiPrefixPattern = @"\A(?<prefix>https?://(?:dx\.)?doi.org/)(?<value>10\.\d{4,5}/.+)\Z";
+                    item.Href = matchDoiPrefix.Groups["value"].Value.Trim();
+                    item.Type = ExternalLinkType.Doi;
+                }
 
-                    var matchDoiPrefix = Regex.Match(item, MatchDoiPrefixPattern);
-                    if (matchDoiPrefix.Success)
-                    {
-                        return new ExternalLink
+                bool hasProtocolPrefix = item.Href.IndexOf("://") >= 0;
+                bool hasPureUrnStructure = item.Href.IndexOf("urn:") == 0;
+                if ((item.Type == ExternalLinkType.Uri) && !hasProtocolPrefix && !hasPureUrnStructure)
+                {
+                    item.Href = "http://" + item.Href.Trim();
+                }
+            }
+        }
+
+        private IEnumerable<ExternalLink> ExtractData(string content, IDictionary<string, ExternalLinkType> patterns)
+        {
+            var data = new ConcurrentBag<ExternalLink>();
+
+            patterns.Keys
+                .AsParallel()
+                .ForAll((key) =>
+                {
+                    content.GetMatches(new Regex(key))
+                        .Select(m => m.Trim())
+                        .Distinct()
+                        .Select(item => new ExternalLink
                         {
                             Content = item,
-                            Href = matchDoiPrefix.Groups["value"].Value,
-                            Type = ExternalLinkType.Doi
-                        };
-                    }
-                    else
-                    {
-                        return new ExternalLink
+                            Href = item,
+                            Type = patterns[key]
+                        })
+                        .ToList()
+                        .ForEach(e =>
                         {
-                            Content = item,
-                            Href = (item.IndexOf("://") < 0 ? "http://" : string.Empty) + item.Trim(),
-                            Type = ExternalLinkType.Uri
-                        };
-                    }
+                            data.Add(e);
+                        });
                 });
-            }
 
-            public IEnumerable<ExternalLink> MineFtp()
-            {
-                var matches = this.content.GetMatches(new Regex(FtpPattern));
-                return matches.Select(item => new ExternalLink
-                {
-                    Content = item,
-                    Href = item,
-                    Type = ExternalLinkType.Ftp
-                });
-            }
-
-            public IEnumerable<ExternalLink> MineDoi()
-            {
-                var matches = this.content.GetMatches(new Regex(DoiPattern));
-                return matches.Select(item => new ExternalLink
-                {
-                    Content = item,
-                    Href = item,
-                    Type = ExternalLinkType.Doi
-                });
-            }
-
-            public IEnumerable<ExternalLink> MinePmid()
-            {
-                var matches = this.content.GetMatches(new Regex(PmidPattern));
-                return matches.Select(item => new ExternalLink
-                {
-                    Content = item,
-                    Href = item,
-                    Type = ExternalLinkType.Pmid
-                });
-            }
-
-            public IEnumerable<ExternalLink> MinePmcid()
-            {
-                var matches = this.content.GetMatches(new Regex(PmcidPattern));
-                return matches.Select(item => new ExternalLink
-                {
-                    Content = item,
-                    Href = item,
-                    Type = ExternalLinkType.Pmcid
-                });
-            }
+            return data;
         }
     }
 }
