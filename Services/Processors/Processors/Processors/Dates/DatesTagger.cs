@@ -4,7 +4,7 @@
     using Contracts.Dates;
     using Contracts.Providers;
     using Generics;
-    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class DatesTagger : GenericStringMinerTagger<IDatesDataMiner, IDateTagModelProvider>, IDatesTagger

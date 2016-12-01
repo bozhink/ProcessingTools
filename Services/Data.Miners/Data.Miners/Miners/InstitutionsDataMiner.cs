@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Miners
 {
-    using Contracts;
+    using Contracts.Miners;
     using ProcessingTools.Data.Miners.Common;
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Services.Data.Models;

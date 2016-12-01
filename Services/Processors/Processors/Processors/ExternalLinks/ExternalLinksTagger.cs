@@ -9,7 +9,7 @@
 
     using ProcessingTools.Attributes.Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;

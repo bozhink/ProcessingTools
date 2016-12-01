@@ -4,7 +4,7 @@
     using Contracts.Geo;
     using Contracts.Providers;
     using Generics;
-    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class AltitudesTagger : GenericStringMinerTagger<IAltitudesDataMiner, IAltitudeTagModelProvider>, IAltitudesTagger

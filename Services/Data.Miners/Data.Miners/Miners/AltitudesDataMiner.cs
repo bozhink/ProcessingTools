@@ -8,11 +8,9 @@ namespace ProcessingTools.Data.Miners
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
-    using Contracts;
+    using Contracts.Miners;
     using ProcessingTools.Extensions;
 
     public class AltitudesDataMiner : IAltitudesDataMiner

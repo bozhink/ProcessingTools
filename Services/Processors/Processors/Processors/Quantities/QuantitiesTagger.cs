@@ -4,7 +4,7 @@
     using Contracts.Providers;
     using Contracts.Quantities;
     using Generics;
-    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class QuantitiesTagger : GenericStringMinerTagger<IQuantitiesDataMiner, IQuantityTagModelProvider>, IQuantitiesTagger

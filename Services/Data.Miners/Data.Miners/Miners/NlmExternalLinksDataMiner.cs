@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
-    using Contracts;
+    using Contracts.Miners;
+    using Contracts.Models;
     using Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
@@ -31,7 +31,7 @@
 
         private const string PmcidPattern = @"(?i)\bpmc\W?\d+|(?i)(?<=\bpmcid\W?)\d+";
 
-        public async Task<IEnumerable<NlmExternalLink>> Mine(string content)
+        public async Task<IEnumerable<IExternalLink>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {
@@ -46,14 +46,14 @@
             var pmidItems = await internalMiner.MinePmid().ToArrayAsync();
             var pmcidItems = await internalMiner.MinePmcid().ToArrayAsync();
 
-            var items = new List<NlmExternalLink>();
+            var items = new List<ExternalLink>();
             items.AddRange(pmcidItems);
             items.AddRange(pmidItems);
             items.AddRange(ftpItems);
             items.AddRange(uriItems);
             items.AddRange(doiItems);
 
-            var result = new HashSet<NlmExternalLink>(items);
+            var result = new HashSet<ExternalLink>(items);
             return result;
         }
 
@@ -66,7 +66,7 @@
                 this.content = content;
             }
 
-            public IEnumerable<NlmExternalLink> MineUri()
+            public IEnumerable<ExternalLink> MineUri()
             {
                 var matches = this.content.GetMatches(new Regex(HttpPattern));
                 return matches.Select(item =>
@@ -76,7 +76,7 @@
                     var matchDoiPrefix = Regex.Match(item, MatchDoiPrefixPattern);
                     if (matchDoiPrefix.Success)
                     {
-                        return new NlmExternalLink
+                        return new ExternalLink
                         {
                             Content = item,
                             Href = matchDoiPrefix.Groups["value"].Value,
@@ -85,7 +85,7 @@
                     }
                     else
                     {
-                        return new NlmExternalLink
+                        return new ExternalLink
                         {
                             Content = item,
                             Href = (item.IndexOf("://") < 0 ? "http://" : string.Empty) + item.Trim(),
@@ -95,10 +95,10 @@
                 });
             }
 
-            public IEnumerable<NlmExternalLink> MineFtp()
+            public IEnumerable<ExternalLink> MineFtp()
             {
                 var matches = this.content.GetMatches(new Regex(FtpPattern));
-                return matches.Select(item => new NlmExternalLink
+                return matches.Select(item => new ExternalLink
                 {
                     Content = item,
                     Href = item,
@@ -106,10 +106,10 @@
                 });
             }
 
-            public IEnumerable<NlmExternalLink> MineDoi()
+            public IEnumerable<ExternalLink> MineDoi()
             {
                 var matches = this.content.GetMatches(new Regex(DoiPattern));
-                return matches.Select(item => new NlmExternalLink
+                return matches.Select(item => new ExternalLink
                 {
                     Content = item,
                     Href = item,
@@ -117,10 +117,10 @@
                 });
             }
 
-            public IEnumerable<NlmExternalLink> MinePmid()
+            public IEnumerable<ExternalLink> MinePmid()
             {
                 var matches = this.content.GetMatches(new Regex(PmidPattern));
-                return matches.Select(item => new NlmExternalLink
+                return matches.Select(item => new ExternalLink
                 {
                     Content = item,
                     Href = item,
@@ -128,10 +128,10 @@
                 });
             }
 
-            public IEnumerable<NlmExternalLink> MinePmcid()
+            public IEnumerable<ExternalLink> MinePmcid()
             {
                 var matches = this.content.GetMatches(new Regex(PmcidPattern));
-                return matches.Select(item => new NlmExternalLink
+                return matches.Select(item => new ExternalLink
                 {
                     Content = item,
                     Href = item,

@@ -4,7 +4,7 @@
     using Contracts.Institutions;
     using Contracts.Providers;
     using Generics;
-    using ProcessingTools.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class InstitutionsTagger : GenericStringMinerTagger<IInstitutionsDataMiner, IInstitutionTagModelProvider>, IInstitutionsTagger

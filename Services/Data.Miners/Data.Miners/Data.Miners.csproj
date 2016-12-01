@@ -36,19 +36,20 @@
   <ItemGroup>
     <Compile Include="Miners\AltitudesDataMiner.cs" />
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IAltitudesDataMiner.cs" />
-    <Compile Include="Contracts\IDatesDataMiner.cs" />
-    <Compile Include="Contracts\IGeographicDeviationsDataMiner.cs" />
-    <Compile Include="Contracts\IInstitutionsDataMiner.cs" />
-    <Compile Include="Contracts\INlmExternalLinksDataMiner.cs" />
-    <Compile Include="Contracts\IProductsDataMiner.cs" />
-    <Compile Include="Contracts\IQuantitiesDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IAltitudesDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IDatesDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IGeographicDeviationsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IInstitutionsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\INlmExternalLinksDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IProductsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IQuantitiesDataMiner.cs" />
     <Compile Include="Miners\DatesDataMiner.cs" />
     <Compile Include="Miners\GeographicDeviationsDataMiner.cs" />
     <Compile Include="Miners\InstitutionsDataMiner.cs" />
-    <Compile Include="Models\NlmExternalLink.cs" />
+    <Compile Include="Models\ExternalLink.cs" />
     <Compile Include="Miners\NlmExternalLinksDataMiner.cs" />
     <Compile Include="Miners\ProductsDataMiner.cs" />
+    <Compile Include="Contracts\Models\IExternalLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Miners\QuantitiesDataMiner.cs" />
   </ItemGroup>
