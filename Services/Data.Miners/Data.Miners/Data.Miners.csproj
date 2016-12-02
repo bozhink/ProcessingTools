@@ -85,7 +85,10 @@
     <Compile Include="Miners\ProductsDataMiner.cs" />
     <Compile Include="Contracts\Models\IExternalLink.cs" />
     <Compile Include="Models\ExtractHcmrEnvoTerm.cs" />
-    <Compile Include="Models\IBiorepositoriesInstitution.cs" />
+    <Compile Include="Contracts\Models\IBiorepositoriesCollection.cs" />
+    <Compile Include="Contracts\Models\IBiorepositoriesInstitution.cs" />
+    <Compile Include="Contracts\Models\IEnvoTerm.cs" />
+    <Compile Include="Contracts\Models\IExtractHcmrEnvoTerm.cs" />
     <Compile Include="Models\SpecimenCodes\SpecimenCodeResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Miners\QuantitiesDataMiner.cs" />

@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Data.Miners.Models
 {
-    public class ExtractHcmrEnvoTerm
+    using Contracts.Models;
+
+    public class ExtractHcmrEnvoTerm : IExtractHcmrEnvoTerm
     {
         public string Content { get; set; }
 

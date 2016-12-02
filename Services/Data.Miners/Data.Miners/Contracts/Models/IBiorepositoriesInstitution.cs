@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Miners.Models
+﻿namespace ProcessingTools.Data.Miners.Contracts.Models
 {
     public interface IBiorepositoriesInstitution
     {

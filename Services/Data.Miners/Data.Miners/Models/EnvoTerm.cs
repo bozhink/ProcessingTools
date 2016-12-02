@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Data.Miners.Models
 {
-    public class EnvoTerm
+    using Contracts.Models;
+
+    public class EnvoTerm : IEnvoTerm
     {
         public string EntityId { get; set; }
 

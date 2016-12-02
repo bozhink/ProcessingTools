@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Data.Miners.Models
 {
-    public class BiorepositoriesCollection
+    using Contracts.Models;
+
+    public class BiorepositoriesCollection : IBiorepositoriesCollection
     {
         public string CollectionCode { get; set; }
 
