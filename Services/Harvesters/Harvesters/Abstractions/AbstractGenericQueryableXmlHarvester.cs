@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Abstracts
+﻿namespace ProcessingTools.Harvesters.Abstractions
 {
     using System;
     using System.Linq;

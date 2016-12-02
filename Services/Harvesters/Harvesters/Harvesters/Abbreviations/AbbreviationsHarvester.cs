@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Xml;
 
-    using Abstracts;
+    using Abstractions;
     using Contracts.Abbreviations;
     using Contracts.Transformers;
     using Models.Abbreviations;
