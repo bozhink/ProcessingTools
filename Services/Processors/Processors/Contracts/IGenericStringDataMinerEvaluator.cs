@@ -2,9 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Data.Miners.Contracts;
 
     public interface IGenericStringDataMinerEvaluator<TMiner>
         where TMiner : IStringDataMiner

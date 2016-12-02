@@ -8,7 +8,7 @@
 
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class GenericStringMinerTagger<TMiner, TTagModelProvider> : IDocumentTagger

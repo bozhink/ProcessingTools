@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Miners.Common.Contracts
+﻿namespace ProcessingTools.Data.Miners.Contracts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

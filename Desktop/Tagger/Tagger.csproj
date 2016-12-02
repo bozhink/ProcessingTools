@@ -387,10 +387,6 @@
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
       <Name>Serialization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>

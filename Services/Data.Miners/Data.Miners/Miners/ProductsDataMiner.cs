@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners
 {
     using Contracts.Miners;
-    using ProcessingTools.Data.Miners.Common;
+    using Generics;
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Services.Data.Models;
 

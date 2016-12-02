@@ -1,13 +1,11 @@
-﻿namespace ProcessingTools.Data.Miners.Common
+﻿namespace ProcessingTools.Data.Miners.Generics
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;

@@ -35,6 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\BiorepositoriesDataMinerBase.cs" />
+    <Compile Include="Contracts\IDataMiner.cs" />
+    <Compile Include="Contracts\IStringDataMiner.cs" />
     <Compile Include="Contracts\Miners\IBiorepositoriesCollectionsDataMiner.cs" />
     <Compile Include="Contracts\Miners\IBiorepositoriesInstitutionsDataMiner.cs" />
     <Compile Include="Contracts\Miners\IEnvoTermsDataMiner.cs" />
@@ -47,6 +49,7 @@
     <Compile Include="Contracts\Miners\SpecimenCodes\ISpecimenCodesByPatternDataMiner.cs" />
     <Compile Include="Contracts\Miners\SpecimenCodes\ISpecimenCodesDataMiner.cs" />
     <Compile Include="Contracts\Models\SpecimenCodes\ISpecimenCode.cs" />
+    <Compile Include="Generics\SimpleServiceStringDataMiner.cs" />
     <Compile Include="Miners\AltitudesDataMiner.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Miners\IAltitudesDataMiner.cs" />
@@ -143,10 +146,6 @@
     <ProjectReference Include="..\..\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

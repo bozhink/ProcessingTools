@@ -3,11 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Common.Contracts;
+    using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Harvesters.Contracts.Content;
 
     public class GenericStringDataMinerEvaluator<TMiner> : IGenericStringDataMinerEvaluator<TMiner>

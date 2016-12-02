@@ -648,10 +648,6 @@
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>

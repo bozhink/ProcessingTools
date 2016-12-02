@@ -98,10 +98,6 @@
       <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
       <Name>Strings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
-      <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
-      <Name>Data.Miners.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</Project>
       <Name>Data.Miners</Name>

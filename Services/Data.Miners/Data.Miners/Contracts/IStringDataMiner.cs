@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Miners.Common.Contracts
+﻿namespace ProcessingTools.Data.Miners.Contracts
 {
     public interface IStringDataMiner : IDataMiner<string>
     {
