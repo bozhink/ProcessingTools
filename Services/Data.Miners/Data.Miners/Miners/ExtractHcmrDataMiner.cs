@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts.Miners;
+    using Contracts.Models;
     using Models;
     using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Contracts;
 
@@ -22,7 +23,7 @@
             this.requester = requester;
         }
 
-        public async Task<IEnumerable<ExtractHcmrEnvoTerm>> Mine(string content)
+        public async Task<IEnumerable<IExtractHcmrEnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts.Miners;
+    using Contracts.Models;
     using Models;
     using ProcessingTools.Bio.Environments.Services.Data.Contracts;
 
@@ -22,7 +23,7 @@
             this.service = service;
         }
 
-        public async Task<IEnumerable<EnvoTerm>> Mine(string content)
+        public async Task<IEnumerable<IEnvoTerm>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

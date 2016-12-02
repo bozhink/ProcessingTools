@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Data.Miners.Contracts.Miners
 {
-    using ProcessingTools.Data.Miners.Models;
+    using Models;
 
-    public interface IExtractHcmrDataMiner : IDataMiner<ExtractHcmrEnvoTerm>
+    public interface IExtractHcmrDataMiner : IDataMiner<IExtractHcmrEnvoTerm>
     {
     }
 }

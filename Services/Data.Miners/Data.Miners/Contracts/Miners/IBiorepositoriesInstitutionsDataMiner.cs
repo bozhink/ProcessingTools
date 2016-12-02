@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Data.Miners.Contracts.Miners
 {
-    using ProcessingTools.Data.Miners.Models;
+    using Models;
 
-    public interface IBiorepositoriesInstitutionsDataMiner : IDataMiner<BiorepositoriesInstitution>
+    public interface IBiorepositoriesInstitutionsDataMiner : IDataMiner<IBiorepositoriesInstitution>
     {
     }
 }

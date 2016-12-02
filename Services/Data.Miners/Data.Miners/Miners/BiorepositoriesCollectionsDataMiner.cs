@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Abstractions;
     using Contracts.Miners;
+    using Contracts.Models;
     using Models;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
@@ -15,7 +16,9 @@
         private readonly IBiorepositoriesInstitutionalCollectionsDataService institutionalCollectionsDataService;
         private readonly IBiorepositoriesPersonalCollectionsDataService personalCollectionsDataService;
 
-        public BiorepositoriesCollectionsDataMiner(IBiorepositoriesInstitutionalCollectionsDataService institutionalCollectionsDataService, IBiorepositoriesPersonalCollectionsDataService personalCollectionsDataService)
+        public BiorepositoriesCollectionsDataMiner(
+            IBiorepositoriesInstitutionalCollectionsDataService institutionalCollectionsDataService,
+            IBiorepositoriesPersonalCollectionsDataService personalCollectionsDataService)
         {
             if (institutionalCollectionsDataService == null)
             {
@@ -38,7 +41,7 @@
             Url = x.Url
         };
 
-        public async Task<IEnumerable<BiorepositoriesCollection>> Mine(string content)
+        public async Task<IEnumerable<IBiorepositoriesCollection>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

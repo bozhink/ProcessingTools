@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Abstractions;
     using Contracts.Miners;
+    using Contracts.Models;
     using Models;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
@@ -31,7 +32,7 @@
             Url = x.Url
         };
 
-        public async Task<IEnumerable<BiorepositoriesInstitution>> Mine(string content)
+        public async Task<IEnumerable<IBiorepositoriesInstitution>> Mine(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

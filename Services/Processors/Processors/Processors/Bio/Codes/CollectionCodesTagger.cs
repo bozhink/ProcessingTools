@@ -8,7 +8,7 @@
     using Models.Bio.Codes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners;
-    using ProcessingTools.Data.Miners.Models;
+    using ProcessingTools.Data.Miners.Contracts.Models;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
@@ -72,7 +72,7 @@
 
         private async Task TagCollectionCodes(
             IDocument document,
-            IEnumerable<BiorepositoriesCollection> data)
+            IEnumerable<IBiorepositoriesCollection> data)
         {
             var collectionCodes = data.Select(c => new BiorepositoriesCollectionCodeSerializableModel
             {
@@ -92,7 +92,7 @@
 
         private async Task TagCollections(
             IDocument document,
-            IEnumerable<BiorepositoriesCollection> data)
+            IEnumerable<IBiorepositoriesCollection> data)
         {
             var collections = data.Select(c => new BiorepositoriesCollectionSerializableModel
             {
