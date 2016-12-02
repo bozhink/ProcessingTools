@@ -3,12 +3,10 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts.Bio.EnvironmentTerms;
     using Models.Bio.EnvironmentTerms;
-
-    using ProcessingTools.Bio.Data.Miners.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;

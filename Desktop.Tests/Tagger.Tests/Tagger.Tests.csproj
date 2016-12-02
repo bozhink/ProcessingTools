@@ -60,10 +60,6 @@
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
       <Name>Tests.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
-      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
-      <Name>Bio.Data.Miners</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>

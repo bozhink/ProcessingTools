@@ -235,10 +235,6 @@
       <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>
       <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Bio.Data.Miners\Bio.Data.Miners.csproj">
-      <Project>{529760c1-9fa0-4187-b20c-b878a1d58774}</Project>
-      <Name>Bio.Data.Miners</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data.Miners\Data.Miners.Common\Data.Miners.Common.csproj">
       <Project>{d6bea2bc-ebb9-4bab-80c9-719631773576}</Project>
       <Name>Data.Miners.Common</Name>

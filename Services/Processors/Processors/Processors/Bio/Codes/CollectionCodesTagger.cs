@@ -4,13 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts.Bio.Codes;
     using Models.Bio.Codes;
-
-    using ProcessingTools.Bio.Data.Miners.Contracts;
-    using ProcessingTools.Bio.Data.Miners.Models;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
+    using ProcessingTools.Data.Miners.Models;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;

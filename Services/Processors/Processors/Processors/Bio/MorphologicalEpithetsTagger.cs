@@ -4,7 +4,7 @@
     using Contracts.Bio;
     using Contracts.Providers;
     using Generics;
-    using ProcessingTools.Bio.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class MorphologicalEpithetsTagger : GenericStringMinerTagger<IMorphologicalEpithetsDataMiner, IMorphologicalEpithetTagModelProvider>, IMorphologicalEpithetsTagger

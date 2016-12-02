@@ -34,6 +34,19 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\BiorepositoriesDataMinerBase.cs" />
+    <Compile Include="Contracts\Miners\IBiorepositoriesCollectionsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IBiorepositoriesInstitutionsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IEnvoTermsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IExtractHcmrDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IHigherTaxaDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IInstitutionalCodesDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IMorphologicalEpithetsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\ISpecimenCountDataMiner.cs" />
+    <Compile Include="Contracts\Miners\ITypeStatusDataMiner.cs" />
+    <Compile Include="Contracts\Miners\SpecimenCodes\ISpecimenCodesByPatternDataMiner.cs" />
+    <Compile Include="Contracts\Miners\SpecimenCodes\ISpecimenCodesDataMiner.cs" />
+    <Compile Include="Contracts\Models\SpecimenCodes\ISpecimenCode.cs" />
     <Compile Include="Miners\AltitudesDataMiner.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Miners\IAltitudesDataMiner.cs" />
@@ -43,17 +56,36 @@
     <Compile Include="Contracts\Miners\IExternalLinksDataMiner.cs" />
     <Compile Include="Contracts\Miners\IProductsDataMiner.cs" />
     <Compile Include="Contracts\Miners\IQuantitiesDataMiner.cs" />
+    <Compile Include="Miners\BiorepositoriesCollectionsDataMiner.cs" />
+    <Compile Include="Miners\BiorepositoriesInstitutionsDataMiner.cs" />
     <Compile Include="Miners\DatesDataMiner.cs" />
+    <Compile Include="Miners\EnvoTermsDataMiner.cs" />
+    <Compile Include="Miners\ExtractHcmrDataMiner.cs" />
     <Compile Include="Miners\GeographicDeviationsDataMiner.cs" />
+    <Compile Include="Miners\HigherTaxaDataMiner.cs" />
     <Compile Include="Miners\InstitutionsDataMiner.cs" />
+    <Compile Include="Miners\MorphologicalEpithetsDataMiner.cs" />
+    <Compile Include="Miners\SpecimenCodes\SpecimenCodesByPatternDataMiner.cs" />
+    <Compile Include="Miners\SpecimenCountDataMiner.cs" />
+    <Compile Include="Miners\TypeStatusDataMiner.cs" />
+    <Compile Include="Models\BiorepositoriesCollection.cs" />
+    <Compile Include="Models\BiorepositoriesInstitution.cs" />
+    <Compile Include="Models\EnvoTerm.cs" />
     <Compile Include="Models\ExternalLink.cs" />
     <Compile Include="Miners\ExternalLinksDataMiner.cs" />
     <Compile Include="Miners\ProductsDataMiner.cs" />
     <Compile Include="Contracts\Models\IExternalLink.cs" />
+    <Compile Include="Models\ExtractHcmrEnvoTerm.cs" />
+    <Compile Include="Models\IBiorepositoriesInstitution.cs" />
+    <Compile Include="Models\SpecimenCodes\SpecimenCodeResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Miners\QuantitiesDataMiner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
@@ -62,9 +94,37 @@
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{B2A9C868-B6FF-4F68-9B40-E9B8511F2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Strings\Strings.csproj">
+      <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
+      <Name>Strings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
+      <Project>{E78C97C4-837F-4C72-8751-970AA744D3A8}</Project>
+      <Name>Bio.ServiceClient.ExtractHcmr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Biorepositories.Services.Data\Bio.Biorepositories.Services.Data.csproj">
+      <Project>{B22DD52C-95D5-47D3-B48C-0EC692AB8051}</Project>
+      <Name>Bio.Biorepositories.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
+      <Project>{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}</Project>
+      <Name>Bio.Environments.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Services.Data\Bio.Services.Data.csproj">
+      <Project>{F80D5E4C-DC41-48C6-99C1-43387B0D1BAF}</Project>
+      <Name>Bio.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
+      <Project>{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}</Project>
+      <Name>Bio.Taxonomy.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
@@ -79,6 +139,7 @@
       <Name>Data.Miners.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

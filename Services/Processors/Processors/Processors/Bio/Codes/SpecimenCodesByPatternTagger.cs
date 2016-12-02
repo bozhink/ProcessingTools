@@ -5,9 +5,9 @@
     using System.Threading.Tasks;
     using Contracts.Bio.Codes;
     using Models.Bio.Codes;
-    using ProcessingTools.Bio.Data.Miners.Contracts.SpecimenCodes;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners.SpecimenCodes;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
