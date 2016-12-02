@@ -7,11 +7,14 @@
 namespace ProcessingTools.Data.Miners
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Contracts.Miners;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
 
     public class AltitudesDataMiner : IAltitudesDataMiner
     {
@@ -24,52 +27,36 @@ namespace ProcessingTools.Data.Miners
                 throw new ArgumentNullException(nameof(content));
             }
 
-            var internalMiner = new InternalMiner(content);
-            var distanceAltitude = await internalMiner.MineDistenceAltitude();
-            var altitudeDistance = await internalMiner.MineAltitudeDistence();
+            var patterns = new string[]
+            {
+                DistancePattern + @"\W{0,4}(?i)(?:a\W*s\W*l|a\W*l\W*t)[^\w<>]?",
+                @"(?:(?i)a\W*l\W*t(?:[^\w<>]{0,3}c\W*a)?)[^\w<>]{0,5}" + DistancePattern
+            };
 
-            var items = new List<string>();
-            items.AddRange(distanceAltitude);
-            items.AddRange(altitudeDistance);
+            var data = await this.ExtractData(content, patterns).ToListAsync();
 
-            var result = new HashSet<string>(items);
-
+            var result = new HashSet<string>(data);
             return result;
         }
 
-        private class InternalMiner
+        private IEnumerable<string> ExtractData(string content, IEnumerable<string> patterns)
         {
-            private string content;
+            var data = new ConcurrentBag<string>();
 
-            public InternalMiner(string content)
-            {
-                this.content = content;
-            }
+            patterns
+                .AsParallel()
+                .ForAll((pattern) =>
+                {
+                    content.GetMatches(new Regex(pattern))
+                        .Select(m => m.Trim())
+                        .ToList()
+                        .ForEach(s =>
+                        {
+                            data.Add(s);
+                        });
+                });
 
-            /// <summary>
-            /// Extracts altitudes of type distance + altitude suffix.
-            /// </summary>
-            /// <returns>IEnumerable of matches items.</returns>
-            /// <example>510–650 m a.s.l.</example>
-            /// <example>58 m alt.</example>
-            public async Task<IEnumerable<string>> MineDistenceAltitude()
-            {
-                const string Pattern = DistancePattern + @"\W{0,4}(?i)(?:a\W*s\W*l|a\W*l\W*t)[^\w<>]?";
-
-                return await this.content.GetMatchesAsync(new Regex(Pattern));
-            }
-
-            /// <summary>
-            /// Extracts altitudes of type altitude prefix + distance.
-            /// </summary>
-            /// <returns>IEnumerable of matches items.</returns>
-            /// <example>alt. ca. 271 m</example>
-            public async Task<IEnumerable<string>> MineAltitudeDistence()
-            {
-                const string Pattern = @"(?:(?i)a\W*l\W*t(?:[^\w<>]{0,3}c\W*a)?)[^\w<>]{0,5}" + DistancePattern;
-
-                return await this.content.GetMatchesAsync(new Regex(Pattern));
-            }
+            return data;
         }
     }
 }
