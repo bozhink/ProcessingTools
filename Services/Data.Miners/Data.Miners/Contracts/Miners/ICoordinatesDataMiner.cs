@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Miners.Contracts
+﻿namespace ProcessingTools.Data.Miners.Contracts.Miners
 {
     using ProcessingTools.Data.Miners.Common.Contracts;
 

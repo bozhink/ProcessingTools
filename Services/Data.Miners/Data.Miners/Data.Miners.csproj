@@ -58,11 +58,17 @@
     <Compile Include="Contracts\Miners\IQuantitiesDataMiner.cs" />
     <Compile Include="Miners\BiorepositoriesCollectionsDataMiner.cs" />
     <Compile Include="Miners\BiorepositoriesInstitutionsDataMiner.cs" />
+    <Compile Include="Miners\CoordinatesDataMiner.cs" />
     <Compile Include="Miners\DatesDataMiner.cs" />
     <Compile Include="Miners\EnvoTermsDataMiner.cs" />
     <Compile Include="Miners\ExtractHcmrDataMiner.cs" />
+    <Compile Include="Miners\GeoEpithetsDataMiner.cs" />
     <Compile Include="Miners\GeographicDeviationsDataMiner.cs" />
+    <Compile Include="Miners\GeoNamesDataMiner.cs" />
     <Compile Include="Miners\HigherTaxaDataMiner.cs" />
+    <Compile Include="Contracts\Miners\ICoordinatesDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IGeoEpithetsDataMiner.cs" />
+    <Compile Include="Contracts\Miners\IGeoNamesDataMiner.cs" />
     <Compile Include="Miners\InstitutionsDataMiner.cs" />
     <Compile Include="Miners\MorphologicalEpithetsDataMiner.cs" />
     <Compile Include="Miners\SpecimenCodes\SpecimenCodesByPatternDataMiner.cs" />
@@ -125,6 +131,10 @@
     <ProjectReference Include="..\..\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
       <Project>{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Geo.Services.Data\Geo.Services.Data.csproj">
+      <Project>{C9AFD557-6559-4059-9287-65CA567F57EB}</Project>
+      <Name>Geo.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>

@@ -4,7 +4,7 @@
     using Contracts.Coordinates;
     using Contracts.Providers;
     using Generics;
-    using ProcessingTools.Geo.Data.Miners.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class CoordinatesTagger : GenericStringMinerTagger<ICoordinatesDataMiner, ICoordinateTagModelProvider>, ICoordinatesTagger

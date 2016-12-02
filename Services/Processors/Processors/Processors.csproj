@@ -243,10 +243,6 @@
       <Project>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</Project>
       <Name>Data.Miners</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Geo.Data.Miners\Geo.Data.Miners.csproj">
-      <Project>{50F0BB7B-C232-40F2-9DAD-EFF639B3E78A}</Project>
-      <Name>Geo.Data.Miners</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Mediatypes.Services.Data\Mediatypes.Services.Data.csproj">
       <Project>{FECB0D1B-C56D-47B4-AAFB-06336D7CD1B7}</Project>
       <Name>Mediatypes.Services.Data</Name>

@@ -12,13 +12,6 @@
         {
             this.Bind(b =>
             {
-                b.From(Geo.Data.Miners.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(Data.Miners.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Miners
+﻿namespace ProcessingTools.Data.Miners
 {
     using System;
     using System.Collections.Concurrent;
@@ -6,8 +6,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
-    using Contracts;
+    using Contracts.Miners;
     using ProcessingTools.Extensions;
 
     public class CoordinatesDataMiner : ICoordinatesDataMiner

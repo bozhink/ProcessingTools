@@ -1,20 +1,20 @@
-﻿namespace ProcessingTools.Geo.Data.Miners.Tests
+﻿namespace ProcessingTools.Data.Miners.Tests
 {
     using System.Linq;
+    using NUnit.Framework;
+    using ProcessingTools.Data.Miners;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    [TestClass]
+    [TestFixture]
     public class CoordinatesDataMinerTests
     {
-        [TestMethod]
+        [Test]
         public void CoordinatesDataMiner_WithDefaultConstructor_ShouldReturnValidObject()
         {
             var miner = new CoordinatesDataMiner();
             Assert.IsNotNull(miner, "Miner should not be null.");
         }
 
-        [TestMethod]
+        [Test]
         public void CoordinatesDataMiner_WithDecimalDegDirectionCoordiantes_ShouldWork()
         {
             string content = "24°03.008N, 105°43.147E";
