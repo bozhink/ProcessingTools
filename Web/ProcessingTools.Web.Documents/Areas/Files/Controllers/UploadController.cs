@@ -9,8 +9,8 @@
     using Microsoft.AspNet.Identity;
     using Models;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Models.Files;
     using ProcessingTools.Contracts.Services.Data.Files;
-    using ProcessingTools.Contracts.Services.Data.Models.Files;
 
     [Authorize]
     public class UploadController : Controller

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Files.ViewModels.Metadata
 {
     using System;
-    using ProcessingTools.Contracts.Services.Data.Models.Files;
+    using ProcessingTools.Contracts.Models.Files;
 
     public class FileMetadataViewModel : IFileMetadata
     {

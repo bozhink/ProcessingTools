@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Models.Files
+﻿namespace ProcessingTools.Contracts.Models.Files
 {
     public interface IFileMetadata : IObjectIdentifiable, IDescribable, IContentTypable, IModelWithUserInformation
     {
