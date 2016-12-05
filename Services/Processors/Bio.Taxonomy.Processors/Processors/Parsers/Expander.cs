@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Bio.Taxonomy.Extensions;
-using ProcessingTools.Bio.Taxonomy.Processors.Comparers;
-using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
-using ProcessingTools.Bio.Taxonomy.Types;
-using ProcessingTools.Constants.Schema;
-using ProcessingTools.Contracts;
-using ProcessingTools.Contracts.Types;
-using ProcessingTools.Extensions;
-using ProcessingTools.Xml.Extensions;
-
-namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Processors.Comparers;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
+    using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
+    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Xml.Extensions;
+
     public class Expander : IExpander
     {
         private readonly ILogger logger;

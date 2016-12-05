@@ -1,9 +1,8 @@
-﻿using ProcessingTools.Services.Data.Services.Files;
-
-namespace ProcessingTools.Web.Documents.Settings
+﻿namespace ProcessingTools.Web.Documents.Settings
 {
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
+    using ProcessingTools.Services.Data.Services.Files;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.

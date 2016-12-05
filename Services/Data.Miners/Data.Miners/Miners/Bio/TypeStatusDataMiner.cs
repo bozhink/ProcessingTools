@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Services.Data.Contracts;
-using ProcessingTools.Constants;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-using ProcessingTools.Extensions;
-
-namespace ProcessingTools.Data.Miners.Miners.Bio
+﻿namespace ProcessingTools.Data.Miners.Miners.Bio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Services.Data.Contracts;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+    using ProcessingTools.Extensions;
+
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {
         private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;

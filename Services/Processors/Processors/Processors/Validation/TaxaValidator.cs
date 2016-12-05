@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Extensions;
-using ProcessingTools.Contracts;
-using ProcessingTools.Contracts.Types;
-using ProcessingTools.Enumerations;
-using ProcessingTools.Processors.Contracts.Validation;
-using ProcessingTools.Services.Validation.Contracts;
-using ProcessingTools.Services.Validation.Models;
-
-namespace ProcessingTools.Processors.Processors.Validation
+﻿namespace ProcessingTools.Processors.Processors.Validation
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Validation;
+    using ProcessingTools.Services.Validation.Contracts;
+    using ProcessingTools.Services.Validation.Models;
+
     public class TaxaValidator : ITaxaValidator
     {
         private readonly ITaxaValidationService service;

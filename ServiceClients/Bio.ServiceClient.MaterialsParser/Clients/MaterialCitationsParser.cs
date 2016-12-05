@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
-using ProcessingTools.Common;
-using ProcessingTools.Net.Factories.Contracts;
-
-namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients
+﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
+    using ProcessingTools.Common;
+    using ProcessingTools.Net.Factories.Contracts;
+
     public class MaterialCitationsParser : IMaterialCitationsParser
     {
         private const string BaseAddress = "http://plazi2.cs.umb.edu";

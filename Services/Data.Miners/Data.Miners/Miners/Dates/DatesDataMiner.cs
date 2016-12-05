@@ -12,17 +12,17 @@
  30Aug1923
 */
 
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Miners.Contracts.Miners.Dates;
-using ProcessingTools.Extensions;
-
 namespace ProcessingTools.Data.Miners.Miners.Dates
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Dates;
+    using ProcessingTools.Extensions;
+
     public class DatesDataMiner : IDatesDataMiner
     {
         public Task<IEnumerable<string>> Mine(string content)

@@ -4,25 +4,25 @@ specimen_code -> @institutionalCode
 <institutional_code description="Australian National Insect Collection, CSIRO, Canberra City, Australia" attribute1="http://grbio.org/institution/queensland-museum">ANIC</institutional_code>
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Constants.Schema;
-using ProcessingTools.Contracts;
-using ProcessingTools.Extensions;
-using ProcessingTools.Harvesters.Contracts.Content;
-using ProcessingTools.Layout.Processors.Contracts.Taggers;
-using ProcessingTools.Layout.Processors.Models.Taggers;
-using ProcessingTools.Processors.Contracts.Bio.Codes;
-using ProcessingTools.Processors.Contracts.Transformers;
-using ProcessingTools.Processors.Models.Bio.Codes;
-using ProcessingTools.Xml.Extensions;
-
 namespace ProcessingTools.Processors.Processors.Bio.Codes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Contracts.Transformers;
+    using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Xml.Extensions;
+
     public class CodesTagger : ICodesTagger
     {
         private const string InstitutionalCodeTagName = "institutional_code";

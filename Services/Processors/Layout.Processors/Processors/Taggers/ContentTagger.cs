@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Contracts;
-using ProcessingTools.Layout.Processors.Contracts.Taggers;
-using ProcessingTools.Layout.Processors.Models.Taggers;
-using ProcessingTools.Xml.Extensions;
-
-namespace ProcessingTools.Layout.Processors.Processors.Taggers
+﻿namespace ProcessingTools.Layout.Processors.Processors.Taggers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Xml.Extensions;
+
     public class ContentTagger : IContentTagger
     {
         private readonly ILogger logger;

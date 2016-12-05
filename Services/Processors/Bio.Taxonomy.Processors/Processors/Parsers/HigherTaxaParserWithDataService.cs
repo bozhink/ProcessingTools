@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Bio.Taxonomy.Contracts;
-using ProcessingTools.Bio.Taxonomy.Extensions;
-using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-using ProcessingTools.Constants.Schema;
-using ProcessingTools.Contracts;
-using ProcessingTools.Contracts.Types;
-using ProcessingTools.Strings.Extensions;
-
-namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
+    using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Strings.Extensions;
+
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
         where TService : ITaxonRankResolverDataService
         where T : ITaxonRank

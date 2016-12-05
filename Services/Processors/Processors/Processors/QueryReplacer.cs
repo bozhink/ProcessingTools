@@ -1,11 +1,11 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Processors.Contracts;
-
-namespace ProcessingTools.Processors.Processors
+﻿namespace ProcessingTools.Processors.Processors
 {
+    using System;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Processors.Contracts;
+
     public class QueryReplacer : IQueryReplacer
     {
         public Task<string> Replace(string content, string queryFilePath) => Task.Run(() =>

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Constants;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
-using ProcessingTools.Strings.Extensions;
-
-namespace ProcessingTools.Data.Miners.Miners.Bio.Taxonomy
+﻿namespace ProcessingTools.Data.Miners.Miners.Bio.Taxonomy
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
+    using ProcessingTools.Strings.Extensions;
+
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);

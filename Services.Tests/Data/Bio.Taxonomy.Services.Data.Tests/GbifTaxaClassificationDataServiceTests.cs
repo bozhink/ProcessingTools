@@ -1,12 +1,9 @@
-﻿using ProcessingTools.Bio.Taxonomy.Services.Data.Services;
-
-namespace ProcessingTools.Bio.Taxonomy.Services.Data.Tests
+﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Tests
 {
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Services;
     using ProcessingTools.Net.Factories;
 
     [TestClass]

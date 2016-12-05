@@ -1,8 +1,8 @@
-﻿using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
-using ProcessingTools.Nlm.Publishing.Types;
-
-namespace ProcessingTools.Data.Miners.Models.ExternalLinks
+﻿namespace ProcessingTools.Data.Miners.Models.ExternalLinks
 {
+    using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
+    using ProcessingTools.Nlm.Publishing.Types;
+
     public class ExternalLink : IExternalLink
     {
         public string Content { get; set; }

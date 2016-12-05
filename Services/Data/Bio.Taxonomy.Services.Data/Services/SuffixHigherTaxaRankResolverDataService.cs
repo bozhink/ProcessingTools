@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Contracts;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
-using ProcessingTools.Bio.Taxonomy.Types;
-
-namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
+﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+    using ProcessingTools.Bio.Taxonomy.Types;
+
     public class SuffixHigherTaxaRankResolverDataService : ISuffixHigherTaxaRankResolverDataService
     {
         private IDictionary<string, TaxonRankType> rankPerSuffix;

@@ -1,14 +1,11 @@
-﻿using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
-
-namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.IntegrationTests
+﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.IntegrationTests
 {
     using System.Configuration;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
     using ProcessingTools.Net.Factories;
 
     [TestClass]

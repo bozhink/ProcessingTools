@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
-
-namespace ProcessingTools.Harvesters.Tests.Integration.Tests
+﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
 {
     using System;
     using System.Configuration;
@@ -8,6 +6,7 @@ namespace ProcessingTools.Harvesters.Tests.Integration.Tests
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Harvesters.Contracts.Transformers;
+    using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
     using ProcessingTools.Harvesters.Transformers;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;

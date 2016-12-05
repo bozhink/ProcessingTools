@@ -1,17 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Contracts;
-using ProcessingTools.Bio.Taxonomy.Extensions;
-using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-using ProcessingTools.Bio.Taxonomy.Types;
-using ProcessingTools.Contracts;
-using ProcessingTools.Contracts.Types;
-
-namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
+    using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
+
     public class TreatmentMetaParser<TService> : ITreatmentMetaParser<TService>
         where TService : ITaxaInformationResolverDataService<ITaxonClassification>
     {

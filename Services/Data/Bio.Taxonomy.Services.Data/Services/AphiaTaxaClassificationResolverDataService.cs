@@ -1,19 +1,19 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Contracts;
-using ProcessingTools.Bio.Taxonomy.Extensions;
-using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Factories;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
-using ProcessingTools.Bio.Taxonomy.Types;
-using ProcessingTools.Constants;
-
-namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
+﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
 {
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Factories;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants;
+
     public class AphiaTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IAphiaTaxaClassificationResolverDataService
     {
         protected override void Delay()

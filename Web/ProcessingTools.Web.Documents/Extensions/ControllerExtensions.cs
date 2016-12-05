@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Web.Documents.App_GlobalResources;
-
-namespace ProcessingTools.Web.Documents.Extensions
+﻿namespace ProcessingTools.Web.Documents.Extensions
 {
     using System;
     using System.Net;
@@ -13,7 +11,7 @@ namespace ProcessingTools.Web.Documents.Extensions
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Error;
-    using Strings = Strings;
+    using Strings = ProcessingTools.Web.Documents.App_GlobalResources.Strings;
 
     public static class ControllerExtensions
     {

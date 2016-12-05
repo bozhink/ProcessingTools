@@ -1,16 +1,15 @@
-﻿using ProcessingTools.Loggers.Loggers;
-using ProcessingTools.Services.Data.Services.Files;
-
-namespace ProcessingTools.NlmArchiveConsoleManager.Settings
+﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.IO;
     using System.Reflection;
-    using Contracts.Factories;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Interceptors;
+    using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
+    using ProcessingTools.Services.Data.Services.Files;
 
     public class NinjectBindings : NinjectModule
     {

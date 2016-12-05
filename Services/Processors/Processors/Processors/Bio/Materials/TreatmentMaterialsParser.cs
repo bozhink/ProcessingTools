@@ -1,14 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
-using ProcessingTools.Contracts;
-using ProcessingTools.Processors.Contracts.Bio.Materials;
-using ProcessingTools.Processors.Contracts.Transformers;
-
-namespace ProcessingTools.Processors.Processors.Bio.Materials
+﻿namespace ProcessingTools.Processors.Processors.Bio.Materials
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Materials;
+    using ProcessingTools.Processors.Contracts.Transformers;
+
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
         private readonly IMaterialCitationsParser materialCitationsParser;

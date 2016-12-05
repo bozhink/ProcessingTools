@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Common.Validation;
-using ProcessingTools.DataResources.Data.Entity.Contracts;
-using ProcessingTools.DataResources.Data.Entity.Models;
-using ProcessingTools.DataResources.Services.Data.Contracts;
-using ProcessingTools.DataResources.Services.Data.Models;
-using ProcessingTools.DataResources.Services.Data.Models.Contracts;
-
-namespace ProcessingTools.DataResources.Services.Data.Services
+﻿namespace ProcessingTools.DataResources.Services.Data.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Common.Validation;
+    using ProcessingTools.DataResources.Data.Entity.Contracts;
+    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.DataResources.Services.Data.Contracts;
+    using ProcessingTools.DataResources.Services.Data.Models;
+    using ProcessingTools.DataResources.Services.Data.Models.Contracts;
+
     public class ContentTypesDataService : IContentTypesDataService
     {
         private readonly IResourcesDbContextProvider contextProvider;

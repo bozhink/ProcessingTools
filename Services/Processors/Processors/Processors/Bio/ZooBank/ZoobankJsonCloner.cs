@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
-using ProcessingTools.Constants.Schema;
-using ProcessingTools.Constants.Uri;
-using ProcessingTools.Contracts;
-using ProcessingTools.Processors.Contracts.Bio.ZooBank;
-
-namespace ProcessingTools.Processors.Processors.Bio.ZooBank
+﻿namespace ProcessingTools.Processors.Processors.Bio.ZooBank
 {
+    using System;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Constants.Uri;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+
     public class ZoobankJsonCloner : IZoobankJsonCloner
     {
         private readonly ILogger logger;

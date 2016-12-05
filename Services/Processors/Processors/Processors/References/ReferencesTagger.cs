@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
-using ProcessingTools.Contracts;
-using ProcessingTools.Processors.Contracts.References;
-using ProcessingTools.Processors.Contracts.Transformers;
-using ProcessingTools.Processors.Models.References;
-
-namespace ProcessingTools.Processors.Processors.References
+﻿namespace ProcessingTools.Processors.Processors.References
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using System.Xml.Linq;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.References;
+    using ProcessingTools.Processors.Contracts.Transformers;
+    using ProcessingTools.Processors.Models.References;
+
     public class ReferencesTagger : IReferencesTagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;

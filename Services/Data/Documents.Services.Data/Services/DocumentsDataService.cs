@@ -1,23 +1,23 @@
-﻿using System;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Common;
-using ProcessingTools.Common.Exceptions;
-using ProcessingTools.Constants;
-using ProcessingTools.Contracts.Data.Repositories;
-using ProcessingTools.Documents.Data.Common.Constants;
-using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
-using ProcessingTools.Documents.Data.Entity.Models;
-using ProcessingTools.Documents.Services.Data.Contracts;
-using ProcessingTools.Documents.Services.Data.Models;
-using ProcessingTools.Extensions;
-using ProcessingTools.FileSystem.Contracts;
-
-namespace ProcessingTools.Documents.Services.Data.Services
+﻿namespace ProcessingTools.Documents.Services.Data.Services
 {
+    using System;
+    using System.Configuration;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Common;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.FileSystem.Contracts;
+
     public class DocumentsDataService : IDocumentsDataService
     {
         private const string DefaultDataFilesDirectoryKey = "DefaultDataFilesDirectory";

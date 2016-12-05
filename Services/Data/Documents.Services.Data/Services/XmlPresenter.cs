@@ -1,16 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Documents.Services.Data.Contracts;
-using ProcessingTools.Documents.Services.Data.Models;
-using ProcessingTools.Documents.Services.Data.Providers;
-using ProcessingTools.Extensions;
-using ProcessingTools.Xml.Cache;
-using ProcessingTools.Xml.Contracts.Transformers;
-using ProcessingTools.Xml.Transformers;
-
-namespace ProcessingTools.Documents.Services.Data.Services
+﻿namespace ProcessingTools.Documents.Services.Data.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Documents.Services.Data.Providers;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Xml.Cache;
+    using ProcessingTools.Xml.Contracts.Transformers;
+    using ProcessingTools.Xml.Transformers;
+
     public class XmlPresenter : IXmlPresenter
     {
         private readonly IDocumentsDataService service;

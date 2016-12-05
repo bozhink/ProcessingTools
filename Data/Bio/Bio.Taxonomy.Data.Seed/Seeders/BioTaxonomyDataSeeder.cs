@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Data.Entity;
-using ProcessingTools.Bio.Taxonomy.Data.Entity.Contracts;
-using ProcessingTools.Bio.Taxonomy.Data.Entity.Models;
-using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
-using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
-using ProcessingTools.Bio.Taxonomy.Extensions;
-using ProcessingTools.Data.Common.Entity.Seed;
-
-namespace ProcessingTools.Bio.Taxonomy.Data.Seed.Seeders
+﻿namespace ProcessingTools.Bio.Taxonomy.Data.Seed.Seeders
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Data.Entity;
+    using ProcessingTools.Bio.Taxonomy.Data.Entity.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Entity.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Data.Common.Entity.Seed;
+
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder
     {
         private const int NumberOfItemsToImportAtOnce = 100;

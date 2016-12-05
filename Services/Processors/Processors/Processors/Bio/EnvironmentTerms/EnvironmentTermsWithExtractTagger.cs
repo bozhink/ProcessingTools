@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Contracts;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
-using ProcessingTools.Harvesters.Contracts.Content;
-using ProcessingTools.Layout.Processors.Contracts.Taggers;
-using ProcessingTools.Layout.Processors.Models.Taggers;
-using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
-using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
-
-namespace ProcessingTools.Processors.Processors.Bio.EnvironmentTerms
+﻿namespace ProcessingTools.Processors.Processors.Bio.EnvironmentTerms
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
+    using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
+
     public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
     {
         private const string XPath = "./*";

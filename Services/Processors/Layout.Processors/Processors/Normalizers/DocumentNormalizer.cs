@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using ProcessingTools.Contracts;
-using ProcessingTools.Contracts.Types;
-using ProcessingTools.Layout.Processors.Contracts.Factories;
-using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-
-namespace ProcessingTools.Layout.Processors.Processors.Normalizers
+﻿namespace ProcessingTools.Layout.Processors.Processors.Normalizers
 {
+    using System;
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Layout.Processors.Contracts.Factories;
+    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+
     public class DocumentNormalizer : IDocumentNormalizer
     {
         private readonly INormalizationTransformerFactory transformerFactory;

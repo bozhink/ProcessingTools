@@ -1,15 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Security.Principal;
-using System.Threading.Tasks;
-using System.Web;
-using ProcessingTools.Contracts.Models.Files;
-using ProcessingTools.Exceptions;
-using ProcessingTools.Services.Data.Contracts.Files;
-using ProcessingTools.Services.Data.Models.Files;
-
-namespace ProcessingTools.Services.Data.Services.Files
+﻿namespace ProcessingTools.Services.Data.Services.Files
 {
+    using System;
+    using System.IO;
+    using System.Security.Principal;
+    using System.Threading.Tasks;
+    using System.Web;
+    using ProcessingTools.Contracts.Models.Files;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Services.Data.Models.Files;
+
     public class StreamingSystemFilesDataService : IStreamingSystemFilesDataService
     {
         private readonly IStreamingSystemFileContentDataService fileContentDataService;

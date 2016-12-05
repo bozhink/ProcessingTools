@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Contracts;
-using ProcessingTools.Layout.Processors.Contracts.Taggers;
-using ProcessingTools.Layout.Processors.Models.Taggers;
-
-namespace ProcessingTools.Layout.Processors.Processors.Taggers
+﻿namespace ProcessingTools.Layout.Processors.Processors.Taggers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
+
     public class StringTagger : IStringTagger
     {
         private readonly IContentTagger contentTagger;

@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
-using ProcessingTools.Enumerations;
-using ProcessingTools.Services.Cache.Contracts.Validation;
-using ProcessingTools.Services.Validation.Constants;
-using ProcessingTools.Services.Validation.Contracts;
-using ProcessingTools.Services.Validation.Factories;
-using ProcessingTools.Services.Validation.Models;
-using ProcessingTools.Services.Validation.Models.Contracts;
-
-namespace ProcessingTools.Services.Validation.Services
+﻿namespace ProcessingTools.Services.Validation.Services
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Validation.Constants;
+    using ProcessingTools.Services.Validation.Contracts;
+    using ProcessingTools.Services.Validation.Factories;
+    using ProcessingTools.Services.Validation.Models;
+    using ProcessingTools.Services.Validation.Models.Contracts;
+
     public class TaxaValidationService : ValidationServiceFactory<TaxonNameServiceModel, string>, ITaxaValidationService
     {
         private const int MaximalNumberOfItemsToSendAtOnce = 100;

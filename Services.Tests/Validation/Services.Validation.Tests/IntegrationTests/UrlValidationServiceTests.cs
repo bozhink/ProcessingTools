@@ -1,7 +1,4 @@
-﻿using ProcessingTools.Services.Cache.Services.Validation;
-using ProcessingTools.Services.Validation.Services;
-
-namespace ProcessingTools.Services.Validation.Tests.IntegrationTests
+﻿namespace ProcessingTools.Services.Validation.Tests.IntegrationTests
 {
     using System;
     using System.Linq;
@@ -12,6 +9,8 @@ namespace ProcessingTools.Services.Validation.Tests.IntegrationTests
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Cache.Services.Validation;
+    using ProcessingTools.Services.Validation.Services;
 
     [TestClass]
     public class UrlValidationServiceTests

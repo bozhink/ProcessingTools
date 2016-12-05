@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Contracts;
-using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
-using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
-using ProcessingTools.Common.Exceptions;
-using ProcessingTools.Contracts.Data.Repositories;
-using ProcessingTools.Extensions;
-
-namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
+﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Extensions;
+
     public class LocalDbTaxaRankResolverDataService : ILocalDbTaxaRankResolverDataService
     {
         private readonly ITaxonRankSearchableRepositoryProvider repositoryProvider;

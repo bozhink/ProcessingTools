@@ -1,15 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
-using ProcessingTools.Bio.Environments.Data.Entity.Models;
-using ProcessingTools.Bio.Environments.Services.Data.Contracts;
-using ProcessingTools.Bio.Environments.Services.Data.Models;
-using ProcessingTools.Common.Exceptions;
-using ProcessingTools.Constants;
-
-namespace ProcessingTools.Bio.Environments.Services.Data.Services
+﻿namespace ProcessingTools.Bio.Environments.Services.Data.Services
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Bio.Environments.Data.Entity.Models;
+    using ProcessingTools.Bio.Environments.Services.Data.Contracts;
+    using ProcessingTools.Bio.Environments.Services.Data.Models;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants;
+
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
         private IBioEnvironmentsRepository<EnvoName> repository;

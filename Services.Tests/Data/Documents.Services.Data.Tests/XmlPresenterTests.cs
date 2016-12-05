@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Documents.Services.Data.Services;
-
-namespace ProcessingTools.Documents.Services.Data.Tests
+﻿namespace ProcessingTools.Documents.Services.Data.Tests
 {
     using System;
     using System.IO;
@@ -8,11 +6,11 @@ namespace ProcessingTools.Documents.Services.Data.Tests
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts;
     using Models;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Documents.Services.Data.Services;
 
     [TestFixture(Category = "Unit tests", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
     public class XmlPresenterTests

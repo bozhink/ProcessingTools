@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
-using ProcessingTools.Extensions;
-
-namespace ProcessingTools.Data.Miners.Miners.Geo
+﻿namespace ProcessingTools.Data.Miners.Miners.Geo
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
+    using ProcessingTools.Extensions;
+
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {
         public async Task<IEnumerable<string>> Mine(string content)

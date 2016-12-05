@@ -1,14 +1,11 @@
-﻿using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
-
-namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.UnitTests
+﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.UnitTests
 {
     using System;
     using System.Linq;
     using System.Text;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-
+    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
     using ProcessingTools.Net.Factories.Contracts;
 
     [TestClass]
@@ -134,7 +131,7 @@ namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.UnitTests
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
             var result = parser.Invoke(@"
-     
+
 ").Result;
         }
 

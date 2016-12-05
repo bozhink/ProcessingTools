@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
-using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
-using ProcessingTools.Data.Miners.Models.ExternalLinks;
-using ProcessingTools.Extensions;
-using ProcessingTools.Extensions.Linq;
-using ProcessingTools.Nlm.Publishing.Types;
-
-namespace ProcessingTools.Data.Miners.Miners.ExternalLinks
+﻿namespace ProcessingTools.Data.Miners.Miners.ExternalLinks
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
+    using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
+    using ProcessingTools.Data.Miners.Models.ExternalLinks;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Nlm.Publishing.Types;
+
     public class ExternalLinksDataMiner : IExternalLinksDataMiner
     {
         private const string UriPatternSuffix = @"(?=(?:&gt;|>)?(?:[,;:\.\)\]]+)?(?:\s|$)|$)";

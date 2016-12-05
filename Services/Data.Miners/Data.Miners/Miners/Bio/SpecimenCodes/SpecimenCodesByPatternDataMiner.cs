@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
-using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
-using ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes;
-using ProcessingTools.Extensions;
-using ProcessingTools.Extensions.Linq;
-
-namespace ProcessingTools.Data.Miners.Miners.Bio.SpecimenCodes
+﻿namespace ProcessingTools.Data.Miners.Miners.Bio.SpecimenCodes
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
+    using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
+    using ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
+
     public class SpecimenCodesByPatternDataMiner : ISpecimenCodesByPatternDataMiner
     {
         private readonly IDictionary<string, string> patterns;

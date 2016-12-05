@@ -18,15 +18,15 @@
  * 2.2–2.6 mm
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Miners.Contracts.Miners.Quantities;
-using ProcessingTools.Extensions;
-
 namespace ProcessingTools.Data.Miners.Miners.Quantities
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Quantities;
+    using ProcessingTools.Extensions;
+
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
         public async Task<IEnumerable<string>> Mine(string content)

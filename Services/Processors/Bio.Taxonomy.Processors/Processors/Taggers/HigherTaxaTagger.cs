@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Taxonomy.Processors.Abstractions.Taggers;
-using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
-using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-using ProcessingTools.Bio.Taxonomy.Types;
-using ProcessingTools.Contracts;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
-using ProcessingTools.Harvesters.Contracts.Content;
-using ProcessingTools.Layout.Processors.Contracts.Taggers;
-
-namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Taxonomy.Processors.Abstractions.Taggers;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
+    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+
     public class HigherTaxaTagger : TaxaTagger, IHigherTaxaTagger
     {
         private const string HigherTaxaXPath = ".//p|.//td|.//th|.//li|.//article-title|.//title|.//label|.//ref|.//kwd|.//tp:nomenclature-citation|.//*[@object_id='95']|.//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']";

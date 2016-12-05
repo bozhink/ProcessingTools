@@ -4,18 +4,18 @@
  * Elevation: 2900
  */
 
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
-using ProcessingTools.Extensions;
-using ProcessingTools.Extensions.Linq;
-
 namespace ProcessingTools.Data.Miners.Miners.Geo
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
+
     public class AltitudesDataMiner : IAltitudesDataMiner
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";

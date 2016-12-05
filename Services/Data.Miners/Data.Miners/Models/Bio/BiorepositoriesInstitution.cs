@@ -1,7 +1,7 @@
-﻿using ProcessingTools.Data.Miners.Contracts.Models.Bio;
-
-namespace ProcessingTools.Data.Miners.Models.Bio
+﻿namespace ProcessingTools.Data.Miners.Models.Bio
 {
+    using ProcessingTools.Data.Miners.Contracts.Models.Bio;
+
     public class BiorepositoriesInstitution : IBiorepositoriesInstitution
     {
         public string InstitutionalCode { get; set; }

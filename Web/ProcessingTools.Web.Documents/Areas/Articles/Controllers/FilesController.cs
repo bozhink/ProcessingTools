@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Web.Documents.App_GlobalResources;
-
-namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
     using System.Collections.Concurrent;
@@ -21,7 +19,7 @@ namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
-    using Strings = Strings;
+    using Strings = ProcessingTools.Web.Documents.App_GlobalResources.Strings;
 
     [Authorize]
     public class FilesController : Controller

@@ -1,7 +1,7 @@
-﻿using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
-
-namespace ProcessingTools.Data.Miners.Models.Bio.Environments
+﻿namespace ProcessingTools.Data.Miners.Models.Bio.Environments
 {
+    using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
+
     public class EnvoTerm : IEnvoTerm
     {
         public string EntityId { get; set; }

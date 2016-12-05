@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using ProcessingTools.Contracts.Types;
-using ProcessingTools.Loggers.Base;
-using ProcessingTools.Loggers.Contracts;
-using ProcessingTools.Loggers.Diagnostics;
-
-namespace ProcessingTools.Loggers.Loggers
+﻿namespace ProcessingTools.Loggers.Loggers
 {
+    using System;
+    using System.IO;
+    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Loggers.Base;
+    using ProcessingTools.Loggers.Contracts;
+    using ProcessingTools.Loggers.Diagnostics;
+
     public class TextWriterLogger : LoggerBase, ITextWriterLogger
     {
         private TextWriter textWriter;

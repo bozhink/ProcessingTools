@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity.Migrations;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Common.Entity.Seed;
-using ProcessingTools.Geo.Data.Entity;
-using ProcessingTools.Geo.Data.Entity.Contracts;
-using ProcessingTools.Geo.Data.Entity.Models;
-using ProcessingTools.Geo.Data.Seed.Contracts;
-
-namespace ProcessingTools.Geo.Data.Seed.Seeders
+﻿namespace ProcessingTools.Geo.Data.Seed.Seeders
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data.Entity.Migrations;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Common.Entity.Seed;
+    using ProcessingTools.Geo.Data.Entity;
+    using ProcessingTools.Geo.Data.Entity.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Models;
+    using ProcessingTools.Geo.Data.Seed.Contracts;
+
     public class GeoDataSeeder : IGeoDataSeeder
     {
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";

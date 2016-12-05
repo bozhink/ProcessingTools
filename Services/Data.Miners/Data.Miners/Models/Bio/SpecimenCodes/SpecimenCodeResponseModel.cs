@@ -1,7 +1,7 @@
-﻿using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
-
-namespace ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes
+﻿namespace ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes
 {
+    using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
+
     internal class SpecimenCodeResponseModel : ISpecimenCode
     {
         private string content;

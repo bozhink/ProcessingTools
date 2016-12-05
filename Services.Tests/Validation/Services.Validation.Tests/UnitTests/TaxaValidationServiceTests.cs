@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Services.Validation.Services;
-
-namespace ProcessingTools.Services.Validation.Tests.UnitTests
+﻿namespace ProcessingTools.Services.Validation.Tests.UnitTests
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,6 +7,7 @@ namespace ProcessingTools.Services.Validation.Tests.UnitTests
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Validation.Services;
 
     // TODO: add more tests
     [TestClass]

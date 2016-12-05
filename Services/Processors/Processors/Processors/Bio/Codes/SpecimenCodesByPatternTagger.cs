@@ -1,17 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Constants.Schema;
-using ProcessingTools.Contracts;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
-using ProcessingTools.Harvesters.Contracts.Content;
-using ProcessingTools.Layout.Processors.Contracts.Taggers;
-using ProcessingTools.Layout.Processors.Models.Taggers;
-using ProcessingTools.Processors.Contracts.Bio.Codes;
-using ProcessingTools.Processors.Models.Bio.Codes;
-
-namespace ProcessingTools.Processors.Processors.Bio.Codes
+﻿namespace ProcessingTools.Processors.Processors.Bio.Codes
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models.Bio.Codes;
+
     public class SpecimenCodesByPatternTagger : ISpecimenCodesByPatternTagger
     {
         private readonly ITextContentHarvester contentHarvester;

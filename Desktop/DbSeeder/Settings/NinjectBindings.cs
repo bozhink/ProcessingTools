@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Loggers.Loggers;
-
-namespace ProcessingTools.DbSeeder.Settings
+﻿namespace ProcessingTools.DbSeeder.Settings
 {
     using System;
     using System.Reflection;
@@ -14,6 +12,7 @@ namespace ProcessingTools.DbSeeder.Settings
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Interceptors;
+    using ProcessingTools.Loggers.Loggers;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.

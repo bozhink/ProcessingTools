@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Constants.Schema;
-using ProcessingTools.Contracts;
-using ProcessingTools.Processors.Contracts.Floats;
-
-namespace ProcessingTools.Processors.Processors.Floats
+﻿namespace ProcessingTools.Processors.Processors.Floats
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Floats;
+
     public class TableFootNotesTagger : ITableFootNotesTagger
     {
         private readonly ILogger logger;

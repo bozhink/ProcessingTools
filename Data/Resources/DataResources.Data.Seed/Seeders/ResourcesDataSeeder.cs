@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity.Migrations;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Common.Entity.Seed;
-using ProcessingTools.DataResources.Data.Entity;
-using ProcessingTools.DataResources.Data.Entity.Contracts;
-using ProcessingTools.DataResources.Data.Entity.Models;
-using ProcessingTools.DataResources.Data.Seed.Contracts;
-
-namespace ProcessingTools.DataResources.Data.Seed.Seeders
+﻿namespace ProcessingTools.DataResources.Data.Seed.Seeders
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data.Entity.Migrations;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Common.Entity.Seed;
+    using ProcessingTools.DataResources.Data.Entity;
+    using ProcessingTools.DataResources.Data.Entity.Contracts;
+    using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.DataResources.Data.Seed.Contracts;
+
     public class ResourcesDataSeeder : IResourcesDataSeeder
     {
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";

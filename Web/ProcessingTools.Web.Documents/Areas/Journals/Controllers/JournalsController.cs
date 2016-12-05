@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Web.Documents.App_GlobalResources;
-
-namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
 {
     using System;
     using System.Data.Entity;
@@ -20,7 +18,7 @@ namespace ProcessingTools.Web.Documents.Areas.Journals.Controllers
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Journals;
     using ProcessingTools.Web.Documents.Extensions;
-    using Strings = Strings;
+    using Strings = ProcessingTools.Web.Documents.App_GlobalResources.Strings;
 
     public class JournalsController : Controller
     {

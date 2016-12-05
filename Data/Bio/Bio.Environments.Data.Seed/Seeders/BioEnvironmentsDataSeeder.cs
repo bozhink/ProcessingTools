@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity.Migrations;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
-using ProcessingTools.Bio.Environments.Data.Entity.Models;
-using ProcessingTools.Bio.Environments.Data.Seed.Contracts;
-
-namespace ProcessingTools.Bio.Environments.Data.Seed.Seeders
+﻿namespace ProcessingTools.Bio.Environments.Data.Seed.Seeders
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data.Entity.Migrations;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
+    using ProcessingTools.Bio.Environments.Data.Entity.Models;
+    using ProcessingTools.Bio.Environments.Data.Seed.Contracts;
+
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";

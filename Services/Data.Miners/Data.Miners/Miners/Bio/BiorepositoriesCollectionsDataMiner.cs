@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
-using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
-using ProcessingTools.Data.Miners.Abstractions;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-using ProcessingTools.Data.Miners.Contracts.Models.Bio;
-using ProcessingTools.Data.Miners.Models.Bio;
-
-namespace ProcessingTools.Data.Miners.Miners.Bio
+﻿namespace ProcessingTools.Data.Miners.Miners.Bio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
+    using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
+    using ProcessingTools.Data.Miners.Abstractions;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+    using ProcessingTools.Data.Miners.Contracts.Models.Bio;
+    using ProcessingTools.Data.Miners.Models.Bio;
+
     public class BiorepositoriesCollectionsDataMiner : BiorepositoriesDataMinerBase<BiorepositoriesCollection, BiorepositoriesCollectionServiceModel>, IBiorepositoriesCollectionsDataMiner
     {
         private readonly IBiorepositoriesInstitutionalCollectionsDataService institutionalCollectionsDataService;

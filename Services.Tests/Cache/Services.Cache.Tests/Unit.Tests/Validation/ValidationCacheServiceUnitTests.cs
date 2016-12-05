@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Services.Cache.Services.Validation;
-
-namespace ProcessingTools.Services.Cache.Tests.Unit.Tests.Validation
+﻿namespace ProcessingTools.Services.Cache.Tests.Unit.Tests.Validation
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +10,7 @@ namespace ProcessingTools.Services.Cache.Tests.Unit.Tests.Validation
     using ProcessingTools.Cache.Data.Common.Contracts.Repositories;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Cache.Models.Validation;
+    using ProcessingTools.Services.Cache.Services.Validation;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit", TestOf = typeof(ValidationCacheService))]

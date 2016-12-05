@@ -1,6 +1,4 @@
-﻿using ProcessingTools.Web.Documents.App_GlobalResources;
-
-namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
     using System.Net;
@@ -15,7 +13,7 @@ namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
-    using Strings = Strings;
+    using Strings = ProcessingTools.Web.Documents.App_GlobalResources.Strings;
 
     [Authorize]
     public class DocumentContentController : Controller

@@ -11,15 +11,15 @@
  * 1 larva
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-using ProcessingTools.Extensions;
-
 namespace ProcessingTools.Data.Miners.Miners.Bio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+    using ProcessingTools.Extensions;
+
     public class SpecimenCountDataMiner : ISpecimenCountDataMiner
     {
         private const string RangeOfItemsSubPattern = @"(?:\d+(?:\s*[–—−‒-]?\s*))+";

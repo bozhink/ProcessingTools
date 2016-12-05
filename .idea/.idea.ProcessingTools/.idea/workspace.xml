@@ -1,156 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e60c6659-da7e-42e5-ac67-927f54161b48" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data.Tests/Bio.Biorepositories.Data.Seed.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data.Tests/Bio.Biorepositories.Data.Seed.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data.Tests/Bio.Taxonomy.Data.Xml.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data.Tests/Bio.Taxonomy.Data.Xml.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data.Tests/Cache.Data.Redis.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data.Tests/Cache.Data.Redis.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Mongo.Tests/IntegrtionTests/MongoGenericRepositoryTests.cs" afterPath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Mongo.Tests/IntegrtionTests/MongoGenericRepositoryTests.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Mongo.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Mongo.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Redis.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Redis.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data.Tests/Data.Common.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Mongo/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Mongo/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Seed/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Seed/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Data.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Data.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Data.Seed/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Data.Seed/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Entity/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Entity/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Seed/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Seed/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Mongo/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Mongo/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Xml/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Xml/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Cache/Cache.Data.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Cache/Cache.Data.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Cache/Cache.Data.Redis/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Cache/Cache.Data.Redis/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common.Entity/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common.Entity/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common.File/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common.File/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common.Memory/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common.Memory/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common.Mongo/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common.Mongo/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common.Redis/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common.Redis/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common/Expressions/ExpressionBuilder.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common/Expressions/ExpressionBuilder.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common/Expressions/UpdateCommand.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common/Expressions/UpdateCommand.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common/Expressions/UpdateExpression.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common/Expressions/UpdateExpression.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Common/Data.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Common/Data.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Documents/Documents.Data.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Documents/Documents.Data.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Documents/Documents.Data.Entity/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Documents/Documents.Data.Entity/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Geo/Geo.Data.Seed/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Geo/Geo.Data.Seed/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Common/Contracts/Repositories/IMediatypesRepository.cs" afterPath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Common/Contracts/Repositories/IMediatypesRepository.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Internal/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Internal/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Seed/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Seed/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Resources/DataResources.Data.Entity/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Resources/DataResources.Data.Entity/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Users/Users.Data.Entity/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Data/Users/Users.Data.Entity/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop.Tests/NlmArchiveConsoleManager.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Desktop.Tests/NlmArchiveConsoleManager.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/DbSeeder/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Desktop/DbSeeder/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/DbSeeder/Settings/NinjectBindings.cs" afterPath="$PROJECT_DIR$/../../Desktop/DbSeeder/Settings/NinjectBindings.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/Documents.Startup/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Desktop/Documents.Startup/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/NlmArchiveConsoleManager/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Desktop/NlmArchiveConsoleManager/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/Tagger.ListsManager/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Desktop/Tagger.ListsManager/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/Tagger/Core/SingleFileProcessorHelpers.cs" afterPath="$PROJECT_DIR$/../../Desktop/Tagger/Core/SingleFileProcessorHelpers.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/Tagger/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Desktop/Tagger/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/Configuration.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/Configuration.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/Configurator.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/Configurator.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/DocumentProvider.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/DocumentProvider.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/Extensions.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/Extensions.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/Loggers.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/Loggers.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/Net.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/Net.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/ProcessingTools.TestWebApiServer/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/ProcessingTools.TestWebApiServer/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure.Tests/Serialization.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure.Tests/Serialization.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Attributes/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Attributes/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Configuration/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Configuration/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Contracts/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Contracts/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/DocumentProvider/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/DocumentProvider/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Enumerations/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Enumerations/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Exceptions/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Exceptions/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Extensions/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Extensions/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/FileSystem/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/FileSystem/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Interceptors/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Interceptors/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Loggers/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Loggers/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Mappings/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Mappings/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Net/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Net/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Serialization/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Serialization/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Xml/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Xml/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries.Tests/Bio.Taxonomy.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries.Tests/Bio.Taxonomy.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries.Tests/Geo.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries.Tests/Geo.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries.Tests/Nlm.Publishing.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries.Tests/Nlm.Publishing.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries.Tests/Strings.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries.Tests/Strings.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries/Bio.Taxonomy/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries/Bio.Taxonomy/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries/Geo/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries/Geo/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries/Nlm.Publishing/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries/Nlm.Publishing/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries/Strings/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries/Strings/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries/Tests.Library/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Libraries/Tests.Library/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.ExtractHcmr.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.ExtractHcmr.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Aphia.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Aphia.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Gbif.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Gbif.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests/GlobalNamesResolverXmlModelsTests.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests/GlobalNamesResolverXmlModelsTests.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Data.ServiceClient.Mendeley.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Data.ServiceClient.Mendeley.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.ServiceClient.ExtractHcmr/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.ServiceClient.ExtractHcmr/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.ServiceClient.MaterialsParser/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.ServiceClient.MaterialsParser/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Aphia/AphiaNameService.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Aphia/AphiaNameService.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Aphia/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Aphia/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.CatalogueOfLife/Models/Result.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.CatalogueOfLife/Models/Result.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.CatalogueOfLife/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.CatalogueOfLife/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Gbif/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Gbif/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.GlobalNamesResolver/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.GlobalNamesResolver/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.PaleobiologyDatabase/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.PaleobiologyDatabase/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.UBio/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.UBio/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.ZooBank/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.ZooBank/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Data.ServiceClient.Mendeley/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Data.ServiceClient.Mendeley/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Cache/Services.Cache.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Cache/Services.Cache.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/CoordinatesDataMinerTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/CoordinatesDataMinerTests.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data/Documents.Services.Data.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data/Documents.Services.Data.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Processors/Bio.Taxonomy.Processors.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Processors/Bio.Taxonomy.Processors.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Cache/Services.Cache/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Cache/Services.Cache/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IEnvoTermsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IEnvoTermsDataMiner.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IExtractHcmrDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IExtractHcmrDataMiner.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesCollectionsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesCollectionsDataMiner.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesInstitutionsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesInstitutionsDataMiner.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ExternalLinks/IExternalLinksDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ExternalLinks/IExternalLinksDataMiner.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Environments.Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Environments.Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Contracts/ILocalDbTaxaRankResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Contracts/ILocalDbTaxaRankResolverDataService.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Contracts/ISuffixHigherTaxaRankResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Contracts/ISuffixHigherTaxaRankResolverDataService.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/DataResources.Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/DataResources.Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Services.Data/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Services.Data/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/CollectionCodesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/CollectionCodesTagger.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Services.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Services.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Factories/ValidationServiceFactory.cs" afterPath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Factories/ValidationServiceFactory.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web.Tests/ProcessingTools.Web.Api.Tests/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Web.Tests/ProcessingTools.Web.Api.Tests/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/AddExternalLoginBindingModel.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/AddExternalLoginBindingModel.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/ChangePasswordBindingModel.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/ChangePasswordBindingModel.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/RegisterBindingModel.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/RegisterBindingModel.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/RegisterExternalBindingModel.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/RegisterExternalBindingModel.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/RemoveLoginBindingModel.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/RemoveLoginBindingModel.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/SetPasswordBindingModel.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Models/Account/SetPasswordBindingModel.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Api/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Common/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Common/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/App_Start/Startup.Auth.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/App_Start/Startup.Auth.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Create.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Create.cshtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Delete.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Delete.cshtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Details.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Details.cshtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Edit.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Edit.cshtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Index.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Index.cshtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Details.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Details.cshtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Properties/AssemblyInfo.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidNumberOfItemsPerPage.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidNumberOfItemsPerPage.cshtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_LoginPartial.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_LoginPartial.cshtml" />
-    </list>
+    <list default="true" id="e60c6659-da7e-42e5-ac67-927f54161b48" name="Default" comment="" />
     <ignored path="ProcessingTools.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -169,7 +20,21 @@
     <favorites_list name="ProcessingTools" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="IExternalLinksDataMiner.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ExternalLinks/IExternalLinksDataMiner.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="49" selection-start-line="0" selection-start-column="48" selection-end-line="0" selection-end-column="49" />
+              <folding>
+                <marker date="1480944876492" expanded="true" signature="135:224" ph="{...}" />
+                <marker date="1480944876492" expanded="true" signature="210:222" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -208,21 +73,10 @@
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>XML</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>General</id>
-          </State>
-        </selected-state>
-      </profile-state>
+      <profile-state />
+    </entry>
+    <entry key="Project Default copy">
+      <profile-state />
     </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -457,6 +311,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected=".NET Project.Default">
     <configuration default="true" type="DotNetProject" factoryName=".NET Project">
@@ -490,6 +345,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e60c6659-da7e-42e5-ac67-927f54161b48" name="Default" comment="" />
@@ -497,12 +355,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1480928965601</updated>
-      <workItem from="1480928967306" duration="3960000" />
+      <workItem from="1480928967306" duration="4486000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3960000" />
+    <option name="totallyTimeSpent" value="4486000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -520,22 +378,23 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.50208336" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UnitTesting" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.49791667" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -859,17 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ExternalLinks/IExternalLinksDataMiner.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <marker date="1480944876492" expanded="true" signature="135:224" ph="{...}" />
-            <marker date="1480944876492" expanded="true" signature="210:222" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IAltitudesDataMiner.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -877,6 +725,17 @@
           <folding>
             <marker date="1480942694861" expanded="true" signature="58:134" ph="{...}" />
             <marker date="1480942694861" expanded="true" signature="120:132" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ExternalLinks/IExternalLinksDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="49" selection-start-line="0" selection-start-column="48" selection-end-line="0" selection-end-column="49" />
+          <folding>
+            <marker date="1480944876492" expanded="true" signature="135:224" ph="{...}" />
+            <marker date="1480944876492" expanded="true" signature="210:222" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProcessingTools.Contracts;
-using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-using ProcessingTools.Data.Miners.Contracts.Models.Bio;
-using ProcessingTools.Harvesters.Contracts.Content;
-using ProcessingTools.Layout.Processors.Contracts.Taggers;
-using ProcessingTools.Layout.Processors.Models.Taggers;
-using ProcessingTools.Processors.Contracts.Bio.Codes;
-using ProcessingTools.Processors.Models.Bio.Codes;
-
-namespace ProcessingTools.Processors.Processors.Bio.Codes
+﻿namespace ProcessingTools.Processors.Processors.Bio.Codes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+    using ProcessingTools.Data.Miners.Contracts.Models.Bio;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models.Bio.Codes;
+
     public class InstitutionalCodesTagger : IInstitutionalCodesTagger
     {
         private const string XPath = "./*";

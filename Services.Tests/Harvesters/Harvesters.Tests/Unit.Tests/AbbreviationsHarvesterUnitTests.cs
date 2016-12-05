@@ -1,11 +1,10 @@
-﻿using ProcessingTools.Harvesters.Harvesters.Abbreviations;
-
-namespace ProcessingTools.Harvesters.Tests.Unit.Tests
+﻿namespace ProcessingTools.Harvesters.Tests.Unit.Tests
 {
     using System;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Harvesters.Contracts.Transformers;
+    using ProcessingTools.Harvesters.Harvesters.Abbreviations;
     using ProcessingTools.Tests.Library;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using ProcessingTools.Contracts;
-using ProcessingTools.Processors.Contracts.References;
-
-namespace ProcessingTools.Processors.Processors.References
+﻿namespace ProcessingTools.Processors.Processors.References
 {
+    using System;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.References;
+
     public class ReferencesParser : IReferencesParser
     {
         private ILogger logger;
@@ -111,7 +111,7 @@ namespace ProcessingTools.Processors.Processors.References
                 /*
                  * Reference citation with role without volume, only pages
                  * /<fake_tag>(.*?)\s*In:([^\.]+)\s*\((Ed|ed|Ed.|ed.|Eds|eds|Eds.|eds.)\)\s*\.?(.*?\.)\s*(.*?)\s*[:,]\s*(\d+)\s*[-–](\d+)(\s*\.?\s*)<\/fake_tag>/umis
-                 * 
+                 *
                  */
                 node.InnerXml = Regex.Replace(
                     node.InnerXml,
