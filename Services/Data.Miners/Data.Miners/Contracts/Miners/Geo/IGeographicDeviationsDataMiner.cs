@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Data.Miners.Contracts.Miners
+﻿namespace ProcessingTools.Data.Miners.Contracts.Miners.Geo
 {
     public interface IGeographicDeviationsDataMiner : IStringDataMiner
     {

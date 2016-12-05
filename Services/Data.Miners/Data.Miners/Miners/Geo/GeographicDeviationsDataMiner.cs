@@ -4,17 +4,15 @@
  * 24 km W
  */
 
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
+using ProcessingTools.Extensions;
 
-namespace ProcessingTools.Data.Miners
+namespace ProcessingTools.Data.Miners.Miners.Geo
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using Contracts.Miners;
-    using ProcessingTools.Extensions;
-
     public class GeographicDeviationsDataMiner : IGeographicDeviationsDataMiner
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
