@@ -11,22 +11,22 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Mediatypes.Services.Data.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Mediatypes;
     using ProcessingTools.Xml.Extensions;
 
-    public class MediaTypesResolver : IMediaTypesResolver
+    public class MediatypesParser : IMediatypesParser
     {
+        private readonly IMediatypesResolver mediatypesResolver;
         private readonly ILogger logger;
-        private readonly IMediatypesResolver service;
 
-        public MediaTypesResolver(IMediatypesResolver service, ILogger logger)
+        public MediatypesParser(IMediatypesResolver mediatypesResolver, ILogger logger)
         {
-            if (service == null)
+            if (mediatypesResolver == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(mediatypesResolver));
             }
 
-            this.service = service;
+            this.mediatypesResolver = mediatypesResolver;
             this.logger = logger;
         }
 
@@ -113,7 +113,7 @@
                 FileExtension = extension
             };
 
-            var response = (await this.service.ResolveMediatype(extension))
+            var response = (await this.mediatypesResolver.ResolveMediatype(extension))
                 .FirstOrDefault();
 
             if (response != null)

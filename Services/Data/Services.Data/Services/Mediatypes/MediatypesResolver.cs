@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.Mediatypes.Services.Data
+﻿namespace ProcessingTools.Services.Data.Mediatypes
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Models;
-    using Models;
+    using Contracts.Mediatypes;
+    using Models.Mediatypes;
+    using ProcessingTools.Contracts.Models.Mediatypes;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
@@ -30,7 +30,7 @@
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<IMediatypeServiceModel>> ResolveMediatype(string fileExtension)
+        public async Task<IEnumerable<IMediatype>> ResolveMediatype(string fileExtension)
         {
             string extension = this.GetValidFileExtension(fileExtension);
 
@@ -69,9 +69,9 @@
             return extension;
         }
 
-        private IEnumerable<IMediatypeServiceModel> GetStaticResult(string extension, string mimetype, string mimesubtype)
+        private IEnumerable<IMediatype> GetStaticResult(string extension, string mimetype, string mimesubtype)
         {
-            var result = new IMediatypeServiceModel[1];
+            var result = new IMediatype[1];
             result[0] = new MediatypeServiceModel
             {
                 FileExtension = extension,

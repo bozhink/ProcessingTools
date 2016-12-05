@@ -4,27 +4,26 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-
-    using Mediatypes.Services.Data.Contracts;
-    using Models.MediaTypes;
+    using ProcessingTools.Services.Data.Contracts.Mediatypes;
+    using ProcessingTools.Web.Api.Models.MediaTypes;
 
     public class MediaTypeController : ApiController
     {
-        private IMediatypesResolver mediatypeDataService;
+        private IMediatypesResolver mediatypesResolver;
 
-        public MediaTypeController(IMediatypesResolver mediatypeService)
+        public MediaTypeController(IMediatypesResolver mediatypesResolver)
         {
-            if (mediatypeService == null)
+            if (mediatypesResolver == null)
             {
-                throw new ArgumentNullException(nameof(mediatypeService));
+                throw new ArgumentNullException(nameof(mediatypesResolver));
             }
 
-            this.mediatypeDataService = mediatypeService;
+            this.mediatypesResolver = mediatypesResolver;
         }
 
         public async Task<IHttpActionResult> Get(string id)
         {
-            var result = (await this.mediatypeDataService.ResolveMediatype(id))?.Select(AutoMapperConfig.Mapper.Map<MediaTypeResponseModel>).ToList();
+            var result = (await this.mediatypesResolver.ResolveMediatype(id))?.Select(AutoMapperConfig.Mapper.Map<MediaTypeResponseModel>).ToList();
 
             if (result == null)
             {

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface IMediaTypesResolver : IXmlContextParser
+    public interface IMediatypesParser : IXmlContextParser
     {
     }
 }

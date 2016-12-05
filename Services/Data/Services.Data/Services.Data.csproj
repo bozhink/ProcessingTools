@@ -56,13 +56,16 @@
     <Compile Include="Contracts\Files\IXmlFileContentDataService.cs" />
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
+    <Compile Include="Contracts\Mediatypes\IMediatypesResolver.cs" />
     <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
+    <Compile Include="Models\Mediatypes\MediatypeServiceModel.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\Files\XmlFileContentDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />
+    <Compile Include="Services\Mediatypes\MediatypesResolver.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +73,10 @@
     <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Mediatypes\Mediatypes.Data.Common\Mediatypes.Data.Common.csproj">
+      <Project>{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}</Project>
+      <Name>Mediatypes.Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
@@ -90,6 +97,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\Exceptions\Exceptions.csproj">
       <Project>{8c506ee8-1c2e-4684-a081-2de56bf70fe9}</Project>
       <Name>Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
+      <Name>Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>

@@ -80,10 +80,6 @@
       <Project>{cdee4bda-695d-471c-ae50-2d4ca4b2fe69}</Project>
       <Name>Bio.Taxonomy.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Mediatypes.Services.Data\Mediatypes.Services.Data.csproj">
-      <Project>{fecb0d1b-c56d-47b4-aafb-06336d7cd1b7}</Project>
-      <Name>Mediatypes.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Bio.Taxonomy.Processors\Bio.Taxonomy.Processors.csproj">
       <Project>{b8e7a642-ca04-470b-8a1f-767a7ee282fd}</Project>
       <Name>Bio.Taxonomy.Processors</Name>

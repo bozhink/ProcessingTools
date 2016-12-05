@@ -74,13 +74,6 @@
 
             kernel.Bind(b =>
             {
-                b.From(Mediatypes.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
                 b.From(Bio.Environments.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

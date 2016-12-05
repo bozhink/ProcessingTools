@@ -47,13 +47,6 @@
 
             this.Bind(b =>
             {
-                b.From(Mediatypes.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
