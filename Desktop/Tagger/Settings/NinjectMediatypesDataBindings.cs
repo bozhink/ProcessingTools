@@ -1,16 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using System.Configuration;
-    using Ninject.Extensions.Conventions;
     using Ninject.Modules;
+    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
     using ProcessingTools.Mediatypes.Data.Entity;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Factories;
     using ProcessingTools.Mediatypes.Data.Entity.Providers;
     using ProcessingTools.Mediatypes.Data.Entity.Repositories;
-    using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
-
 
     public class NinjectMediatypesDataBindings : NinjectModule
     {
@@ -29,6 +26,9 @@
             this.Bind<IMediatypesDbContextProvider>()
                 .To<MediatypesDbContextProvider>()
                 .InSingletonScope();
+
+            this.Bind<ISearchableMediatypesRepository>()
+                .To<MediatypesRepository>();
 
             this.Bind<IMediatypesRepository>()
                 .To<MediatypesRepository>();

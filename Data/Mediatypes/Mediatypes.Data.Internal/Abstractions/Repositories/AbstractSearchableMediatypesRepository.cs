@@ -2,15 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Models;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
     using ProcessingTools.Mediatypes.Data.Common.Models;
 
-    public abstract class AbstractMediatypesRepository : IMediatypesRepository
+    public abstract class AbstractSearchableMediatypesRepository : ISearchableMediatypesRepository
     {
-        public Task<object> Add(IMediatype mediatype) => Task.FromResult<object>(false);
-
         public IEnumerable<IMediatype> GetByFileExtension(string fileExtension)
         {
             if (string.IsNullOrEmpty(fileExtension))
@@ -23,12 +20,6 @@
             var result = this.MapStringToMediatypes(fileExtension, mediatype);
             return result;
         }
-
-        public Task<object> Remove(string fileExtension) => Task.FromResult<object>(false);
-
-        public Task<long> SaveChanges() => Task.FromResult(0L);
-
-        public Task<object> UpdateDescription(string fileExtension, string description) => Task.FromResult<object>(false);
 
         protected abstract string GetMediatype(string fileExtension);
 

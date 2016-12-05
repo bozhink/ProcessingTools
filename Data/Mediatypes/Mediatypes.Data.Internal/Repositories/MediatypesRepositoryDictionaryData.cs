@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
-    public partial class MediatypesRepositoryDictionary : IMediatypesRepository
+    public partial class MediatypesRepositoryDictionary : ISearchableMediatypesRepository
     {
         private readonly Dictionary<string, string> mimetypes = new Dictionary<string, string>
         {

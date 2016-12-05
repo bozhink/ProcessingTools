@@ -3,7 +3,7 @@
     using Abstractions.Repositories;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
-    public partial class MediatypesRepositoryDictionary : AbstractMediatypesRepository, IMediatypesRepository
+    public partial class MediatypesRepositoryDictionary : AbstractSearchableMediatypesRepository, ISearchableMediatypesRepository
     {
         protected override string GetMediatype(string fileExtension)
         {

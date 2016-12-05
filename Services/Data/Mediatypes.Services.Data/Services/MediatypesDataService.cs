@@ -18,9 +18,9 @@
         private const string DefaultMimetypeOnException = "application";
         private const string DefaultMimesubtypeOnException = "octet-stream";
 
-        private readonly IMediatypesRepository repository;
+        private readonly ISearchableMediatypesRepository repository;
 
-        public MediatypesDataService(IMediatypesRepository repository)
+        public MediatypesDataService(ISearchableMediatypesRepository repository)
         {
             if (repository == null)
             {

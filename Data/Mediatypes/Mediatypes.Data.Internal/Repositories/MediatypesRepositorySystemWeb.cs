@@ -4,7 +4,7 @@
     using Abstractions.Repositories;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
-    public class MediatypesRepositorySystemWeb : AbstractMediatypesRepository, IMediatypesRepository
+    public class MediatypesRepositorySystemWeb : AbstractSearchableMediatypesRepository, ISearchableMediatypesRepository
     {
         protected override string GetMediatype(string fileExtension)
         {

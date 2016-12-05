@@ -8,8 +8,6 @@
     {
         Task<object> Add(IMediatype mediatype);
 
-        IEnumerable<IMediatype> GetByFileExtension(string fileExtension);
-
         Task<object> Remove(string fileExtension);
 
         Task<object> UpdateDescription(string fileExtension, string description);

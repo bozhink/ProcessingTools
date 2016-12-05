@@ -34,7 +34,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Repositories\AbstractMediatypesRepository.cs" />
+    <Compile Include="Abstractions\Repositories\AbstractSearchableMediatypesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MediatypesRepositoryDictionary.cs" />
     <Compile Include="Repositories\MediatypesRepositoryDictionaryData.cs" />

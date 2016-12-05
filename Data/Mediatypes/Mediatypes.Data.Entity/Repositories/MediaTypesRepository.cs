@@ -11,7 +11,7 @@
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
     using ProcessingTools.Mediatypes.Data.Common.Models;
 
-    public class MediatypesRepository : IMediatypesRepository, IDisposable
+    public class MediatypesRepository : IMediatypesRepository, ISearchableMediatypesRepository, IDisposable
     {
         private readonly IMediatypesDbContext db;
 

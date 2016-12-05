@@ -4,7 +4,7 @@
     using Microsoft.Win32;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
-    public class MediatypesRepositoryWindowsRegistry : AbstractMediatypesRepository, IMediatypesRepository
+    public class MediatypesRepositoryWindowsRegistry : AbstractSearchableMediatypesRepository, ISearchableMediatypesRepository
     {
         protected override string GetMediatype(string fileExtension)
         {
