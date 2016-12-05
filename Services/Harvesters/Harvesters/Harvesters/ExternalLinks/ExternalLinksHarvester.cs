@@ -1,18 +1,16 @@
-﻿namespace ProcessingTools.Harvesters.ExternalLinks
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Harvesters.Abstractions;
+using ProcessingTools.Harvesters.Contracts.ExternalLinks;
+using ProcessingTools.Harvesters.Contracts.Transformers;
+using ProcessingTools.Harvesters.Models.ExternalLinks;
+using ProcessingTools.Xml.Contracts.Providers;
+using ProcessingTools.Xml.Contracts.Serialization;
+
+namespace ProcessingTools.Harvesters.Harvesters.ExternalLinks
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using Abstractions;
-    using Contracts.ExternalLinks;
-    using Contracts.Transformers;
-    using Models.ExternalLinks;
-
-    using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Contracts.Serialization;
-
     public class ExternalLinksHarvester : AbstractGenericQueryableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
         private readonly IXmlTransformDeserializer<IGetExternalLinksTransformer> transformer;

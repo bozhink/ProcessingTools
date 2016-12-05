@@ -1,15 +1,13 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data
+﻿using System;
+using System.Linq.Expressions;
+using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
+using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
+using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
+using ProcessingTools.Bio.Biorepositories.Services.Data.Factories;
+using ProcessingTools.Bio.Biorepositories.Services.Data.Models;
+
+namespace ProcessingTools.Bio.Biorepositories.Services.Data.Services
 {
-    using System;
-    using System.Linq.Expressions;
-
-    using Contracts;
-    using Factories;
-    using Models;
-
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
-
     public class BiorepositoriesInstitutionsDataService : BiorepositoriesDataServiceFactory<Institution, BiorepositoriesInstitutionServiceModel>, IBiorepositoriesInstitutionsDataService
     {
         public BiorepositoriesInstitutionsDataService(IBiorepositoriesRepositoryProvider<Institution> repositoryProvider)

@@ -1,15 +1,13 @@
-﻿namespace ProcessingTools.Processors.Bio.ZooBank
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using ProcessingTools.Constants.Schema;
+using ProcessingTools.Contracts;
+using ProcessingTools.Contracts.Types;
+using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+
+namespace ProcessingTools.Processors.Processors.Bio.ZooBank
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Contracts.Bio.ZooBank;
-
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-
     public class ZoobankXmlCloner : IZoobankXmlCloner
     {
         private readonly ILogger logger;

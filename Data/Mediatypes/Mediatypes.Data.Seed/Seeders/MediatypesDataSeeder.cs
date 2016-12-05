@@ -1,19 +1,19 @@
-﻿namespace ProcessingTools.Mediatypes.Data.Seed
-{
-    using System;
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Data.Entity.Migrations;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Contracts;
-    using Models;
-    using Newtonsoft.Json;
-    using ProcessingTools.Mediatypes.Data.Entity.Contracts;
-    using ProcessingTools.Mediatypes.Data.Entity.Models;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Entity.Migrations;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using ProcessingTools.Mediatypes.Data.Entity.Contracts;
+using ProcessingTools.Mediatypes.Data.Entity.Models;
+using ProcessingTools.Mediatypes.Data.Seed.Contracts;
+using ProcessingTools.Mediatypes.Data.Seed.Models;
 
+namespace ProcessingTools.Mediatypes.Data.Seed.Seeders
+{
     public class MediatypesDataSeeder : IMediatypesDataSeeder
     {
         private const string MediaTypeDataJsonFilePathKey = "MediaTypeDataJsonFilePath";

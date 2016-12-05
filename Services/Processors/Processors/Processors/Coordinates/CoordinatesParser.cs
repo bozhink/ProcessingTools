@@ -1,17 +1,17 @@
-﻿namespace ProcessingTools.Processors.Coordinates
-{
-    using System;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using Contracts.Coordinates;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Geo;
-    using ProcessingTools.Geo.Contracts;
-    using ProcessingTools.Xml.Extensions;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Constants.Schema;
+using ProcessingTools.Contracts;
+using ProcessingTools.Contracts.Types;
+using ProcessingTools.Geo;
+using ProcessingTools.Geo.Contracts;
+using ProcessingTools.Processors.Contracts.Coordinates;
+using ProcessingTools.Xml.Extensions;
 
+namespace ProcessingTools.Processors.Processors.Coordinates
+{
     public class CoordinatesParser : ICoordinatesParser
     {
         private const string CurrentCoordinateWillNotBeProcessedErrorMessage = "Current coordinate will not be processed!";

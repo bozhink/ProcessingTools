@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Services.Validation.Tests.UnitTests
+﻿using ProcessingTools.Services.Validation.Services;
+
+namespace ProcessingTools.Services.Validation.Tests.UnitTests
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

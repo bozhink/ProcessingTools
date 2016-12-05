@@ -1,4 +1,7 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
+﻿using ProcessingTools.Loggers.Loggers;
+using ProcessingTools.Services.Data.Services.Files;
+
+namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
     using System.IO;
     using System.Reflection;
@@ -25,16 +28,16 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ProcessingTools.Loggers.ConsoleLogger>()
+                .To<ConsoleLogger>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
-                .WhenInjectedInto<ProcessingTools.Services.Data.Files.XmlFileContentDataService>();
+                .WhenInjectedInto<XmlFileContentDataService>();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
-                .WhenInjectedInto<ProcessingTools.Services.Data.Files.XmlFileContentDataService>()
+                .WhenInjectedInto<XmlFileContentDataService>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 

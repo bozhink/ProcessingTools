@@ -1,19 +1,17 @@
-﻿namespace ProcessingTools.Processors.ExternalLinks
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using ProcessingTools.Attributes.Extensions;
+using ProcessingTools.Contracts;
+using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
+using ProcessingTools.Harvesters.Contracts.Content;
+using ProcessingTools.Layout.Processors.Contracts.Taggers;
+using ProcessingTools.Layout.Processors.Models.Taggers;
+using ProcessingTools.Processors.Contracts.ExternalLinks;
+using ProcessingTools.Processors.Models.ExternalLinks;
+
+namespace ProcessingTools.Processors.Processors.ExternalLinks
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Contracts.ExternalLinks;
-    using Models.ExternalLinks;
-
-    using ProcessingTools.Attributes.Extensions;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Contracts.Miners;
-    using ProcessingTools.Harvesters.Contracts.Content;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
-
     public class ExternalLinksTagger : IExternalLinksTagger
     {
         private const string XPath = "./*";

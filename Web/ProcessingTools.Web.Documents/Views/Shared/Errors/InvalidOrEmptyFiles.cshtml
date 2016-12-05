@@ -1,13 +1,14 @@
-﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.InvalidOrEmptyFilePageTitle;
+    ViewBag.Title = Strings.InvalidOrEmptyFilePageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3>@Resources.Strings.InvalidOrEmptyFilePageHeading</h3>
+<h3>@Strings.InvalidOrEmptyFilePageHeading</h3>
 
 <ol>
     @foreach (string fileName in this.ViewBag.InvalidFiles)
@@ -16,7 +17,7 @@
     }
 </ol>
 
-<p>@Resources.Strings.GoBackAndTryAgainMessage</p>
+<p>@Strings.GoBackAndTryAgainMessage</p>
 <p>
     @Html.ActionLink(
         Model.SourceAction.ActionLinkText,

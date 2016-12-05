@@ -1,4 +1,7 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Codes
+﻿using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+using ProcessingTools.Data.Miners.Contracts.Models.Bio;
+
+namespace ProcessingTools.Processors.Processors.Bio.Codes
 {
     using System;
     using System.Collections.Generic;

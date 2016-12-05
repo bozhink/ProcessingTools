@@ -1,11 +1,12 @@
-﻿@model ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.ContentTypeCreateViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.ContentTypeCreateViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultCreatePageTitle;
+    ViewBag.Title = Strings.DeafultCreatePageTitle;
 }
 
 <header>
-    <h2>@Resources.Strings.DeafultCreatePageHeading</h2>
+    <h2>@Strings.DeafultCreatePageHeading</h2>
 </header>
 
 @Html.Partial(ViewNames.EditPartialViewName)

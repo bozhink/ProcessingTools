@@ -1,17 +1,18 @@
-﻿@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.FileViewModel>
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files.FileViewModel>
 
 @{
-    ViewBag.Title = Resources.Strings.ListOfFilesPageTitle;
+    ViewBag.Title = Strings.ListOfFilesPageTitle;
 }
 
 <header>
     <h2>
-        @Resources.Strings.ListOfFilesPageHeading
+        @Strings.ListOfFilesPageHeading
     </h2>
 
     <p>
         @Html.ActionLink(
-            linkText: Resources.Strings.DefaultUploadNewFileActionLinkTitle,
+            linkText: Strings.DefaultUploadNewFileActionLinkTitle,
             actionName: nameof(FilesController.Upload),
             routeValues: null,
             htmlAttributes: new { id = "upload-file-link" })
@@ -66,7 +67,7 @@
                             <span class="separated-items">
                                 <span class="item">
                                     @Html.ActionLink(
-                                        linkText: Resources.Strings.PreviewDocumentActionLinkTitle,
+                                        linkText: Strings.PreviewDocumentActionLinkTitle,
                                         actionName: nameof(DocumentsController.Preview),
                                         controllerName: ControllerNames.DocumentsControllerName,
                                         routeValues: new { id = item.DocumentId },
@@ -74,7 +75,7 @@
                                 </span>
                                 <span class="item">
                                     @Html.ActionLink(
-                                        linkText: Resources.Strings.EditDocumentActionLinkTitle,
+                                        linkText: Strings.EditDocumentActionLinkTitle,
                                         actionName: nameof(DocumentsController.Edit),
                                         controllerName: ControllerNames.DocumentsControllerName,
                                         routeValues: new { id = item.DocumentId },
@@ -85,25 +86,25 @@
                             <span class="separated-items">
                                 <span class="item">
                                     @Html.ActionLink(
-                                        linkText: Resources.Strings.DefaultDetailsActionLinkTitle,
+                                        linkText: Strings.DefaultDetailsActionLinkTitle,
                                         actionName: nameof(FilesController.Details),
                                         routeValues: new { id = item.DocumentId })
                                 </span>
                                 <span class="item">
                                     @Html.ActionLink(
-                                        linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                                        linkText: Strings.DefaultEditActionLinkTitle,
                                         actionName: nameof(FilesController.Edit),
                                         routeValues: new { id = item.DocumentId })
                                 </span>
                                 <span class="item">
                                     @Html.ActionLink(
-                                        linkText: Resources.Strings.DefaultDeleteActionLinkTitle,
+                                        linkText: Strings.DefaultDeleteActionLinkTitle,
                                         actionName: nameof(FilesController.Delete),
                                         routeValues: new { id = item.DocumentId })
                                 </span>
                                 <span class="item">
                                     @Html.ActionLink(
-                                        linkText: Resources.Strings.DefaultDownloadActionLinkTitle,
+                                        linkText: Strings.DefaultDownloadActionLinkTitle,
                                         actionName: nameof(FilesController.Download),
                                         routeValues: new { id = item.DocumentId })
                                 </span>

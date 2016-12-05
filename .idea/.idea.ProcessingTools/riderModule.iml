@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Mongo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Seed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Seed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Seed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Mongo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Cache/Cache.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Cache/Cache.Data.Redis" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.File" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Memory" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Mongo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Redis" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Documents/Documents.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Documents/Documents.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Seed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Internal" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Seed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Seed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data/Users/Users.Data.Entity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data.Tests/Bio.Biorepositories.Data.Seed.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data.Tests/Bio.Taxonomy.Data.Xml.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data.Tests/Cache.Data.Redis.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Memory.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Mongo.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Redis.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop/DbSeeder" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop/Documents.Startup" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop/NlmArchiveConsoleManager" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop/Scripts" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop/Tagger" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop/Tagger.ListsManager" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop.Tests/NlmArchiveConsoleManager.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Desktop.Tests/Tagger.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Grant.sql" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Attributes" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Configuration" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Configurator" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Constants" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Contracts" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/DocumentProvider" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Enumerations" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Exceptions" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Extensions" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/FileSystem" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Interceptors" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Loggers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Mappings" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Net" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Serialization" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure/Xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Configuration.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Configurator.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/DocumentProvider.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Extensions.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Loggers.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Net.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/ProcessingTools.TestWebApiServer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Serialization.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries/Bio.Taxonomy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries/Geo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries/Nlm.Publishing" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries/Strings" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries/Tests.Library" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Bio.Taxonomy.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Geo.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Nlm.Publishing.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Strings.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Desktop.Analyzers.1.1.0/analyzers/dotnet/cs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.AnalyzerPowerPack.1.1.0/analyzers/dotnet/cs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/csc.exe" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/csc.exe.config" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/csc.rsp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/csi.exe" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/csi.rsp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.Build.Tasks.CodeAnalysis.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.CodeAnalysis.CSharp.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.CodeAnalysis.CSharp.Scripting.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.CodeAnalysis.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.CodeAnalysis.Scripting.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.CodeAnalysis.VisualBasic.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.CSharp.Core.targets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.DiaSymReader.Native.amd64.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.DiaSymReader.Native.x86.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/Microsoft.VisualBasic.Core.targets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/System.AppContext.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/System.Collections.Immutable.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/System.Diagnostics.StackTrace.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/System.IO.FileSystem.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/System.IO.FileSystem.Primitives.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/System.Reflection.Metadata.dll" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/vbc.exe" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/vbc.exe.config" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/vbc.rsp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/VBCSCompiler.exe" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/Microsoft.Net.Compilers.1.3.2/tools/VBCSCompiler.exe.config" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/System.Runtime.Analyzers.1.1.0/analyzers/dotnet/cs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/System.Runtime.InteropServices.Analyzers.1.1.0/analyzers/dotnet/cs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../packages/System.Security.Cryptography.Hashing.Algorithms.Analyzers.1.1.0/analyzers/dotnet/cs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.ServiceClient.ExtractHcmr" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.ServiceClient.MaterialsParser" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Aphia" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.CatalogueOfLife" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Gbif" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.GlobalNamesResolver" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.PaleobiologyDatabase" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.UBio" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.ZooBank" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients/Data.ServiceClient.Mendeley" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.ExtractHcmr.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Aphia.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Gbif.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Data.ServiceClient.Mendeley.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Cache/Services.Cache" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Environments.Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/DataResources.Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/Documents.Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/Geo.Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data/Services.Data" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Data.Miners/Data.Miners" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Harvesters/Harvesters" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Processors/Bio.Taxonomy.Processors" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Processors/Layout.Processors" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Processors/Processors" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Processors/Special.Processors" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Services.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services/Validation/Services.Validation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services.Tests/Cache/Services.Cache.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services.Tests/Data/Documents.Services.Data.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services.Tests/Processors/Bio.Taxonomy.Processors.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Services.Tests/Validation/Services.Validation.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../WE-Palette.css" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Api" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Common" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Documents" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Web.Tests/ProcessingTools.Web.Api.Tests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../WebEssentials2015-Settings.json" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Bio.Biorepositories.Data.Seed.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Bio.Biorepositories.Data.Seed.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Bio.Taxonomy.Data.Xml.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Bio.Taxonomy.Data.Xml.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Cache.Data.Redis.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Cache.Data.Redis.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Memory.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Memory.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Mongo.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Mongo.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Redis.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Redis.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data.Tests/Data.Common.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Mongo/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Mongo/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Seed/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Biorepositories.Data.Seed/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Seed/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Data.Seed/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Seed/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Environments.Data.Seed/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Mongo/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Mongo/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Xml/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Xml/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Cache/Cache.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Cache/Cache.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Cache/Cache.Data.Redis/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Cache/Cache.Data.Redis/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.File/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.File/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Memory/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Memory/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Mongo/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Mongo/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Redis/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common.Redis/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Common/Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Documents/Documents.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Documents/Documents.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Documents/Documents.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Documents/Documents.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Seed/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Geo/Geo.Data.Seed/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Internal/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Internal/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Seed/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Mediatypes/Mediatypes.Data.Seed/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Seed/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Resources/DataResources.Data.Seed/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Users/Users.Data.Entity/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Data/Users/Users.Data.Entity/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop.Tests/NlmArchiveConsoleManager.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop.Tests/NlmArchiveConsoleManager.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop.Tests/Tagger.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop.Tests/Tagger.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/DbSeeder/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/DbSeeder/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Documents.Startup/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Documents.Startup/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/NlmArchiveConsoleManager/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/NlmArchiveConsoleManager/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Scripts/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Scripts/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Tagger.ListsManager/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Tagger.ListsManager/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Tagger/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Desktop/Tagger/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Configuration.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Configuration.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Configurator.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Configurator.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/DocumentProvider.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/DocumentProvider.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Extensions.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Extensions.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Loggers.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Loggers.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Net.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Net.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/ProcessingTools.TestWebApiServer/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/ProcessingTools.TestWebApiServer/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Serialization.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure.Tests/Serialization.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Attributes/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Attributes/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Configuration/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Configuration/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Configurator/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Configurator/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Constants/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Constants/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Contracts/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Contracts/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/DocumentProvider/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/DocumentProvider/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Enumerations/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Enumerations/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Exceptions/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Exceptions/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Extensions/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Extensions/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/FileSystem/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/FileSystem/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Interceptors/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Interceptors/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Loggers/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Loggers/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Mappings/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Mappings/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Net/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Net/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Serialization/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Serialization/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Xml/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Infrastructure/Xml/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Bio.Taxonomy.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Bio.Taxonomy.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Geo.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Geo.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Nlm.Publishing.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Nlm.Publishing.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Strings.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries.Tests/Strings.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Bio.Taxonomy/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Bio.Taxonomy/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Geo/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Geo/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Nlm.Publishing/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Nlm.Publishing/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Strings/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Strings/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Tests.Library/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Libraries/Tests.Library/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.ExtractHcmr.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.ExtractHcmr.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Aphia.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Aphia.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Gbif.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.Gbif.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Data.ServiceClient.Mendeley.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients.Tests/Data.ServiceClient.Mendeley.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.ServiceClient.ExtractHcmr/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.ServiceClient.ExtractHcmr/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.ServiceClient.MaterialsParser/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.ServiceClient.MaterialsParser/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Aphia/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Aphia/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.CatalogueOfLife/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.CatalogueOfLife/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Gbif/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.Gbif/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.GlobalNamesResolver/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.GlobalNamesResolver/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.PaleobiologyDatabase/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.PaleobiologyDatabase/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.UBio/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.UBio/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.ZooBank/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Bio.Taxonomy.ServiceClient.ZooBank/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Data.ServiceClient.Mendeley/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ServiceClients/Data.ServiceClient.Mendeley/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Cache/Services.Cache.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Cache/Services.Cache.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Data/Documents.Services.Data.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Data/Documents.Services.Data.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Processors/Bio.Taxonomy.Processors.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Processors/Bio.Taxonomy.Processors.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Cache/Services.Cache/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Cache/Services.Cache/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data.Miners/Data.Miners/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data.Miners/Data.Miners/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Environments.Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Environments.Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/DataResources.Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/DataResources.Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Documents.Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Documents.Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Geo.Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Geo.Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Services.Data/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Data/Services.Data/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Harvesters/Harvesters/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Harvesters/Harvesters/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Layout.Processors/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Layout.Processors/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Processors/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Processors/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Special.Processors/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Processors/Special.Processors/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Services.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Services.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Validation/Services.Validation/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Services/Validation/Services.Validation/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web.Tests/ProcessingTools.Web.Api.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web.Tests/ProcessingTools.Web.Api.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Api/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Api/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Common/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Common/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Documents/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Web/ProcessingTools.Web.Documents/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

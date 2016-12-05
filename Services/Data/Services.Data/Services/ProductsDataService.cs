@@ -1,13 +1,13 @@
-﻿namespace ProcessingTools.Services.Data
-{
-    using System;
-    using System.Linq.Expressions;
-    using Contracts;
-    using Models;
-    using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.DataResources.Data.Entity.Models;
-    using ProcessingTools.Services.Common.Factories;
+﻿using System;
+using System.Linq.Expressions;
+using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
+using ProcessingTools.DataResources.Data.Entity.Models;
+using ProcessingTools.Services.Common.Factories;
+using ProcessingTools.Services.Data.Contracts;
+using ProcessingTools.Services.Data.Models;
 
+namespace ProcessingTools.Services.Data.Services
+{
     public class ProductsDataService : SimpleDataServiceWithRepositoryFactory<Product, ProductServiceModel>, IProductsDataService
     {
         public ProductsDataService(IResourcesRepository<Product> repository)

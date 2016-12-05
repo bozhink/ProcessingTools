@@ -1,19 +1,17 @@
-﻿namespace ProcessingTools.Documents.Services.Data
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using ProcessingTools.Common.Exceptions;
+using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+using ProcessingTools.Documents.Data.Entity.Models;
+using ProcessingTools.Documents.Services.Data.Contracts;
+using ProcessingTools.Documents.Services.Data.Models.Journals;
+using ProcessingTools.Extensions;
+using ProcessingTools.Services.Common.Factories;
+
+namespace ProcessingTools.Documents.Services.Data.Services
 {
-    using System;
-    using System.Linq;
-    using System.Linq.Expressions;
-    using System.Threading.Tasks;
-
-    using Contracts;
-    using Models.Journals;
-
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.Documents.Data.Entity.Models;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Common.Factories;
-
     public class JournalsDataService : MvcDataServiceFactory<JournalMinimalServiceModel, JournalServiceModel, JournalDetailsServiceModel, Journal>, IJournalsDataService
     {
         public JournalsDataService(IDocumentsRepositoryProvider<Journal> repositoryProvider)

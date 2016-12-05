@@ -1,15 +1,16 @@
 ﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.App_GlobalResources
 @using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
 @using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
 
 @model DetailedContinentViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultCreatePageTitle;
+    ViewBag.Title = Strings.DeafultCreatePageTitle;
 }
 
 <h2>
-    @Resources.Strings.DeafultCreatePageHeading
+    @Strings.DeafultCreatePageHeading
 </h2>
 
 @using (Html.BeginForm()) 
@@ -37,7 +38,7 @@
 }
 
 <div>
-    @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
+    @Html.ActionLink(Strings.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
 </div>
 
 @section Scripts {

@@ -1,11 +1,12 @@
-﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
+﻿using ProcessingTools.Harvesters.Harvesters.Abbreviations;
+
+namespace ProcessingTools.Harvesters.Tests.Integration.Tests
 {
     using System;
     using System.Configuration;
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Contracts.Transformers;
     using ProcessingTools.Harvesters.Transformers;
     using ProcessingTools.Serialization.Serializers;

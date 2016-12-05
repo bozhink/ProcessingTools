@@ -1,19 +1,17 @@
-﻿namespace ProcessingTools.Processors.Abbreviations
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Contracts;
+using ProcessingTools.Harvesters.Contracts.Abbreviations;
+using ProcessingTools.Processors.Contracts.Abbreviations;
+using ProcessingTools.Processors.Models.Abbreviations;
+using ProcessingTools.Xml.Contracts.Providers;
+using ProcessingTools.Xml.Extensions;
+
+namespace ProcessingTools.Processors.Processors.Abbreviations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using Contracts.Abbreviations;
-    using Models.Abbreviations;
-
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Harvesters.Contracts.Abbreviations;
-    using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Extensions;
-
     public class AbbreviationsTagger : IAbbreviationsTagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[contains(string(.),string('{0}'))]";

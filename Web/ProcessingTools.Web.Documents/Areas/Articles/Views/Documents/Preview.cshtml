@@ -1,7 +1,8 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts.IDocumentIdViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts.IDocumentIdViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultPreviewPageTitle;
+    ViewBag.Title = Strings.DeafultPreviewPageTitle;
 }
 
 @section Styles {
@@ -19,7 +20,7 @@
                 <span class="icon-bar"></span>
             </button>
             @Html.ActionLink(
-                linkText: Resources.Strings.DefaultPreviewActionLinkTitle,
+                linkText: Strings.DefaultPreviewActionLinkTitle,
                 actionName: nameof(DocumentsController.Preview),
                 routeValues: new { id = Model.DocumentId },
                 htmlAttributes: new { @class = "navbar-brand" })
@@ -29,7 +30,7 @@
             <ul class="nav navbar-nav">
                 <li>
                     @Html.ActionLink(
-                        linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                        linkText: Strings.DefaultEditActionLinkTitle,
                         actionName: nameof(DocumentsController.Edit),
                         routeValues: new { id = Model.DocumentId },
                         htmlAttributes: new { target = "_blank" })
@@ -70,13 +71,13 @@
 
 <aside style="display: none;">
     @Html.ActionLink(
-        linkText: Resources.Strings.DefaultRefreshActionLinkTitle,
+        linkText: Strings.DefaultRefreshActionLinkTitle,
         actionName: nameof(DocumentContentController.GetHtml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.DocumentId },
         htmlAttributes: new { id = "get-link" })
     @Html.ActionLink(
-        linkText: Resources.Strings.DefaultSaveActionLinkTitle,
+        linkText: Strings.DefaultSaveActionLinkTitle,
         actionName: nameof(DocumentContentController.SaveHtml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.DocumentId },

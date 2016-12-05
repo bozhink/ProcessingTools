@@ -1,15 +1,15 @@
-﻿namespace ProcessingTools.Services.Data.Mediatypes
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Contracts.Mediatypes;
-    using Models.Mediatypes;
-    using ProcessingTools.Contracts.Models.Mediatypes;
-    using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts.Models.Mediatypes;
+using ProcessingTools.Extensions.Linq;
+using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
+using ProcessingTools.Services.Data.Contracts.Mediatypes;
+using ProcessingTools.Services.Data.Models.Mediatypes;
 
+namespace ProcessingTools.Services.Data.Services.Mediatypes
+{
     // TODO: dispose repository
     public class MediatypesResolver : IMediatypesResolver
     {

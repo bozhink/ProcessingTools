@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Web.Documents.Settings
+﻿using ProcessingTools.Services.Data.Services.Files;
+
+namespace ProcessingTools.Web.Documents.Settings
 {
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
@@ -41,7 +43,7 @@
                 .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListRepositoryProvider>();
 
             this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
-                .To<ProcessingTools.Services.Data.Files.StreamingSystemFilesDataService>();
+                .To<StreamingSystemFilesDataService>();
         }
     }
 }

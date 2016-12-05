@@ -1,4 +1,5 @@
-﻿@using ProcessingTools.Web.Documents.Controllers
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@using ProcessingTools.Web.Documents.Controllers
 
 <!DOCTYPE html>
 <html>
@@ -27,17 +28,17 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink(Resources.Strings.HomeActionLinkTitle, ActionNames.DeafultIndexActionName, routeValues: null, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink(Strings.HomeActionLinkTitle, ActionNames.DeafultIndexActionName, routeValues: null, htmlAttributes: null)</li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink(Resources.Strings.ArticlesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.ArticlesController.Index), ControllerNames.ArticlesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
-                                    <li>@Html.ActionLink(Resources.Strings.FilesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.FilesController.Index), ControllerNames.FilesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Strings.ArticlesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.ArticlesController.Index), ControllerNames.ArticlesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Strings.FilesActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Articles.Controllers.FilesController.Index), ControllerNames.FilesControllerName, routeValues: new { area = AreasConstants.ArticlesAreaName }, htmlAttributes: null)</li>
                                     <li role="separator" class="divider"></li>
-                                    <li>@Html.ActionLink(Resources.Strings.JournalActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.JournalsController.Index), ControllerNames.JournalsControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
-                                    <li>@Html.ActionLink(Resources.Strings.PublishersActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.PublishersController.Index), ControllerNames.PublishersControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Strings.JournalActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.JournalsController.Index), ControllerNames.JournalsControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink(Strings.PublishersActionLinkTitle, nameof(ProcessingTools.Web.Documents.Areas.Journals.Controllers.PublishersController.Index), ControllerNames.PublishersControllerName, routeValues: new { area = AreasConstants.JournalsAreaName }, htmlAttributes: null)</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -49,12 +50,12 @@
                             </li>
                         }
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Resources.Strings.HelpActionLinkTitle <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Strings.HelpActionLinkTitle <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink(Resources.Strings.HelpActionLinkTitle, ActionNames.DeafulHelpActionName, routeValues: null, htmlAttributes: new { target = "_blank" })</li>
+                                <li>@Html.ActionLink(Strings.HelpActionLinkTitle, ActionNames.DeafulHelpActionName, routeValues: null, htmlAttributes: new { target = "_blank" })</li>
                                 <li role="separator" class="divider"></li>
-                                <li>@Html.ActionLink(Resources.Strings.ContactActionLinkTitle, nameof(HomeController.Contact), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
-                                <li>@Html.ActionLink(Resources.Strings.AboutActionLinkTitle, nameof(HomeController.About), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                                <li>@Html.ActionLink(Strings.ContactActionLinkTitle, nameof(HomeController.Contact), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
+                                <li>@Html.ActionLink(Strings.AboutActionLinkTitle, nameof(HomeController.About), ControllerNames.HomeControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: null)</li>
                             </ul>
                         </li>
                     </ul>

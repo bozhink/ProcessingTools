@@ -1,15 +1,16 @@
-﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.NoFilesSelectedPageTitle;
+    ViewBag.Title = Strings.NoFilesSelectedPageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3>@Resources.Strings.NoFilesSelectedPageHeading</h3>
+<h3>@Strings.NoFilesSelectedPageHeading</h3>
 
-<p>@Resources.Strings.GoBackAndTryAgainMessage</p>
+<p>@Strings.GoBackAndTryAgainMessage</p>
 <p>
     @Html.ActionLink(
         linkText: Model.SourceAction.ActionLinkText,

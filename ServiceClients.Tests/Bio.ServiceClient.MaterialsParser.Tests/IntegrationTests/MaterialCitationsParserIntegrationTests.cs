@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.IntegrationTests
+﻿using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
+
+namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.IntegrationTests
 {
     using System.Configuration;
     using System.Text;

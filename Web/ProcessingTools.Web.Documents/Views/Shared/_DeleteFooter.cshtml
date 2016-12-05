@@ -1,4 +1,5 @@
-﻿<footer>
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+<footer>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -9,7 +10,7 @@
             </span>
             <span class="item">
                 @Html.ActionLink(
-                    linkText: Resources.Strings.DefaultBackToListActionLinkTitle,
+                    linkText: Strings.DefaultBackToListActionLinkTitle,
                     actionName: ActionNames.DeafultIndexActionName)
             </span>
         </div>

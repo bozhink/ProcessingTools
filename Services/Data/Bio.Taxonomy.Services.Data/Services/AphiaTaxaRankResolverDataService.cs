@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
-{
-    using Contracts;
-    using Factories;
+﻿using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+using ProcessingTools.Bio.Taxonomy.Services.Data.Factories;
 
+namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
+{
     public class AphiaTaxaRankResolverDataService : TaxaRankResolverOverTaxaClassificationResolverDataServiceFactory, IAphiaTaxaRankResolverDataService
     {
         public AphiaTaxaRankResolverDataService(IAphiaTaxaClassificationResolverDataService service)

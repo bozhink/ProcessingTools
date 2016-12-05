@@ -1,13 +1,14 @@
-﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.InvalidPageNumberPageTitle;
+    ViewBag.Title = Strings.InvalidPageNumberPageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3>@Resources.Strings.InvalidPageNumberPageHeading</h3>
+<h3>@Strings.InvalidPageNumberPageHeading</h3>
 
 <p>
     @Model.SourceAction.Message
@@ -15,7 +16,7 @@
 
 <hr />
 
-<p>@Resources.Strings.GoBackAndTryAgainMessage</p>
+<p>@Strings.GoBackAndTryAgainMessage</p>
 <p>
     @Html.ActionLink(
         Model.SourceAction.ActionLinkText,

@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.Processors.Products
-{
-    using Contracts;
-    using Contracts.Products;
-    using Contracts.Providers;
-    using Generics;
-    using ProcessingTools.Data.Miners.Contracts.Miners;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+﻿using ProcessingTools.Data.Miners.Contracts.Miners.Products;
+using ProcessingTools.Layout.Processors.Contracts.Taggers;
+using ProcessingTools.Processors.Contracts;
+using ProcessingTools.Processors.Contracts.Products;
+using ProcessingTools.Processors.Contracts.Providers;
+using ProcessingTools.Processors.Generics;
 
+namespace ProcessingTools.Processors.Processors.Products
+{
     public class ProductsTagger : GenericStringMinerTagger<IProductsDataMiner, IProductTagModelProvider>, IProductsTagger
     {
         public ProductsTagger(IGenericStringDataMinerEvaluator<IProductsDataMiner> evaluator, IStringTagger tagger, IProductTagModelProvider tagModelProvider)

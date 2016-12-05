@@ -1,12 +1,13 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherDetailsViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherDetailsViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultEditPageTitle;
+    ViewBag.Title = Strings.DeafultEditPageTitle;
 }
 
 <header>
     <h2>
-        @Resources.Strings.DeafultEditPageHeading
+        @Strings.DeafultEditPageHeading
     </h2>
 </header>
 
@@ -87,7 +88,7 @@
 <footer>
     <nav class="separated-items">
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
+            @Html.ActionLink(Strings.DefaultBackToListActionLinkTitle, nameof(PublishersController.Index))
         </span>
     </nav>
 </footer>

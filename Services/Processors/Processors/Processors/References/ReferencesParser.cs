@@ -1,14 +1,12 @@
-﻿namespace ProcessingTools.Processors.References
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Contracts;
+using ProcessingTools.Processors.Contracts.References;
+
+namespace ProcessingTools.Processors.Processors.References
 {
-    using System;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using Contracts.References;
-
-    using ProcessingTools.Contracts;
-
     public class ReferencesParser : IReferencesParser
     {
         private ILogger logger;

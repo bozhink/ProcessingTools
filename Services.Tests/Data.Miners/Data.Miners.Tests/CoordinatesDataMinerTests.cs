@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Data.Miners.Tests
+﻿using ProcessingTools.Data.Miners.Miners.Geo;
+
+namespace ProcessingTools.Data.Miners.Tests
 {
     using System.Linq;
     using NUnit.Framework;

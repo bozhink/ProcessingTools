@@ -1,19 +1,19 @@
-﻿namespace ProcessingTools.Processors.Floats
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using Contracts.Floats;
-    using Models.Floats;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Services.Data.Contracts.Mediatypes;
-    using ProcessingTools.Xml.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Constants.Schema;
+using ProcessingTools.Contracts;
+using ProcessingTools.Contracts.Types;
+using ProcessingTools.Processors.Contracts.Floats;
+using ProcessingTools.Processors.Models.Floats;
+using ProcessingTools.Services.Data.Contracts.Mediatypes;
+using ProcessingTools.Xml.Extensions;
 
+namespace ProcessingTools.Processors.Processors.Floats
+{
     public class MediatypesParser : IMediatypesParser
     {
         private readonly IMediatypesResolver mediatypesResolver;

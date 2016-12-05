@@ -1,15 +1,13 @@
-﻿namespace ProcessingTools.Special.Processors
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml;
+using ProcessingTools.Contracts;
+using ProcessingTools.Special.Processors.Contracts;
+
+namespace ProcessingTools.Special.Processors.Processors
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Xml;
-
-    using Contracts;
-
-    using ProcessingTools.Contracts;
-
     public class TestFeaturesProvider : ITestFeaturesProvider
     {
         public void ExtractSystemChecklistAuthority(IDocument document)

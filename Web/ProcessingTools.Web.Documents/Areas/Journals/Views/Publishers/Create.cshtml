@@ -1,7 +1,8 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherCreateViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.Areas.Journals.ViewModels.Publishers.PublisherCreateViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultCreatePageTitle;
+    ViewBag.Title = Strings.DeafultCreatePageTitle;
 }
 
 @Styles.Render(BundleNames.AddressListStyleBundleName)
@@ -11,7 +12,7 @@
 
 <header>
     <h2>
-        @Resources.Strings.DeafultCreatePageHeading
+        @Strings.DeafultCreatePageHeading
     </h2>
 </header>
 

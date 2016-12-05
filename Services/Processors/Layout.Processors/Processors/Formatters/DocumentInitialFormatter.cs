@@ -1,17 +1,15 @@
-﻿namespace ProcessingTools.Layout.Processors.Formatters
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts;
+using ProcessingTools.Extensions;
+using ProcessingTools.Layout.Processors.Contracts.Factories;
+using ProcessingTools.Layout.Processors.Contracts.Formatters;
+using ProcessingTools.Xml.Extensions;
+
+namespace ProcessingTools.Layout.Processors.Processors.Formatters
 {
-    using System;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-
-    using Contracts.Factories;
-    using Contracts.Formatters;
-
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Xml.Extensions;
-
     public class DocumentInitialFormatter : IDocumentInitialFormatter
     {
         private const int NumberOfPostFormattingIterations = 3;

@@ -1,22 +1,21 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Parsers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using Comparers;
-    using Contracts.Parsers;
-    using Models.Parsers;
-    using ProcessingTools.Bio.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Xml.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Bio.Taxonomy.Extensions;
+using ProcessingTools.Bio.Taxonomy.Processors.Comparers;
+using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
+using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
+using ProcessingTools.Bio.Taxonomy.Types;
+using ProcessingTools.Constants.Schema;
+using ProcessingTools.Contracts;
+using ProcessingTools.Extensions;
+using ProcessingTools.Xml.Extensions;
 
+namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
+{
     public class LowerTaxaParser : ILowerTaxaParser
     {
         private const string InfraRank = "infraspecific-rank";

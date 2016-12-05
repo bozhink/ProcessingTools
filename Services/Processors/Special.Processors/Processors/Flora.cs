@@ -1,15 +1,13 @@
-﻿namespace ProcessingTools.Special.Processors
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml;
+using ProcessingTools.Contracts;
+using ProcessingTools.Extensions;
+using ProcessingTools.Special.Processors.Contracts;
+
+namespace ProcessingTools.Special.Processors.Processors
 {
-    using System;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Xml;
-
-    using Contracts;
-
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
-
     public class Flora : IFlora
     {
         private const string InfraspecificPattern = "\\b([Vv]ar\\.|[Ss]ubsp\\.|([Ss]ub)?[Ss]ect\\.|[Aa]ff\\.|[Cc]f\\.|[Ff]orma)";

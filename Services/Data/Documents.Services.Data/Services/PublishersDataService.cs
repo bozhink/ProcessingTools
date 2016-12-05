@@ -1,22 +1,20 @@
-﻿namespace ProcessingTools.Documents.Services.Data
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ProcessingTools.Common.Exceptions;
+using ProcessingTools.Constants;
+using ProcessingTools.Data.Common.Expressions;
+using ProcessingTools.Documents.Data.Common.Contracts.Models;
+using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+using ProcessingTools.Documents.Services.Data.Contracts;
+using ProcessingTools.Documents.Services.Data.DataModels.Publishers;
+using ProcessingTools.Documents.Services.Data.Models.Publishers;
+using ProcessingTools.Documents.Services.Data.Models.Publishers.Contracts;
+using ProcessingTools.Extensions;
+
+namespace ProcessingTools.Documents.Services.Data.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Contracts;
-    using DataModels.Publishers;
-    using Models.Publishers;
-    using Models.Publishers.Contracts;
-
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
-    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.Extensions;
-
     public class PublishersDataService : IPublishersDataService
     {
         // TODO: Change to IPublishersRepositoryProvider

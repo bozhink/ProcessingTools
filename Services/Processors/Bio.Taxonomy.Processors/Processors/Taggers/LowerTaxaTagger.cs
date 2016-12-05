@@ -1,24 +1,22 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Taggers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Bio.Taxonomy.Processors.Abstractions.Taggers;
+using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
+using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+using ProcessingTools.Bio.Taxonomy.Types;
+using ProcessingTools.Contracts;
+using ProcessingTools.Extensions;
+using ProcessingTools.Layout.Processors.Contracts.Taggers;
+using ProcessingTools.Layout.Processors.Models.Taggers;
+using ProcessingTools.Xml.Extensions;
+
+namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using Abstractions.Taggers;
-    using Contracts.Taggers;
-
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Xml.Extensions;
-
     public class LowerTaxaTagger : TaxaTagger, ILowerTaxaTagger
     {
         private const string SensuSubpattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";

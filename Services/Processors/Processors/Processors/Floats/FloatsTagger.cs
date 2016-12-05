@@ -1,20 +1,20 @@
-﻿namespace ProcessingTools.Processors.Floats
-{
-    using System;
-    using System.Collections;
-    using System.Collections.Concurrent;
-    using System.Linq;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using Contracts.Floats;
-    using Models.Floats;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
-    using Types;
+﻿using System;
+using System.Collections;
+using System.Collections.Concurrent;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Constants.Schema;
+using ProcessingTools.Contracts;
+using ProcessingTools.Extensions;
+using ProcessingTools.Processors.Contracts.Floats;
+using ProcessingTools.Processors.Models.Floats;
+using ProcessingTools.Processors.Types;
 
+namespace ProcessingTools.Processors.Processors.Floats
+{
     public class FloatsTagger : IFloatsTagger
     {
         private const int MaxNumberOfPunctuationSigns = 10;

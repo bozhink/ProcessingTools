@@ -1,10 +1,11 @@
-﻿@{
-    ViewBag.Title = Resources.Strings.HelpPageTitle;
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@{
+    ViewBag.Title = Strings.HelpPageTitle;
 }
 
 <header>
     <h2>
-        @Resources.Strings.HelpPageHeading
+        @Strings.HelpPageHeading
     </h2>
 </header>
 
@@ -37,6 +38,6 @@
 
 <footer>
     <p>
-        @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+        @Html.ActionLink(Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
     </p>
 </footer>

@@ -1,10 +1,11 @@
-﻿@{
-    ViewBag.Title = Resources.Strings.DeafultUploadPageTitle;
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@{
+    ViewBag.Title = Strings.DeafultUploadPageTitle;
 }
 
 <header>
     <h2>
-        @Resources.Strings.DeafultUploadPageHeading
+        @Strings.DeafultUploadPageHeading
     </h2>
 </header>
 
@@ -33,7 +34,7 @@
 <footer>
     <nav class="separated-items">
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
+            @Html.ActionLink(Strings.DefaultBackToListActionLinkTitle, nameof(FilesController.Index))
         </span>
     </nav>
 </footer>

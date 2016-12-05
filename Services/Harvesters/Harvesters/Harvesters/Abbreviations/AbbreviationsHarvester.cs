@@ -1,19 +1,17 @@
-﻿namespace ProcessingTools.Harvesters.Abbreviations
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Harvesters.Abstractions;
+using ProcessingTools.Harvesters.Contracts.Abbreviations;
+using ProcessingTools.Harvesters.Contracts.Transformers;
+using ProcessingTools.Harvesters.Models.Abbreviations;
+using ProcessingTools.Xml.Contracts.Providers;
+using ProcessingTools.Xml.Contracts.Serialization;
+
+namespace ProcessingTools.Harvesters.Harvesters.Abbreviations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using Abstractions;
-    using Contracts.Abbreviations;
-    using Contracts.Transformers;
-    using Models.Abbreviations;
-
-    using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Contracts.Serialization;
-
     public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {
         private readonly IXmlTransformDeserializer<IGetAbbreviationsTransformer> transformer;

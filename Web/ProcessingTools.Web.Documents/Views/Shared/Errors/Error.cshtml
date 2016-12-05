@@ -1,13 +1,14 @@
-﻿@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.ErrorPageTitle;
+    ViewBag.Title = Strings.ErrorPageTitle;
 }
 
 <h2 class="text-danger">
     @(Model?.ToString() ?? "Error")
 </h2>
-<h3>@Resources.Strings.ErrorPageHeading</h3>
+<h3>@Strings.ErrorPageHeading</h3>
 
 @if (Model != null)
 {

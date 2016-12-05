@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Tests
+﻿using ProcessingTools.Bio.Taxonomy.Services.Data.Services;
+
+namespace ProcessingTools.Bio.Taxonomy.Services.Data.Tests
 {
     using System.Linq;
 

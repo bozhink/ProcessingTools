@@ -1,18 +1,16 @@
-﻿namespace ProcessingTools.Processors.Validation
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts;
+using ProcessingTools.Contracts.Types;
+using ProcessingTools.Enumerations;
+using ProcessingTools.Harvesters.Contracts.ExternalLinks;
+using ProcessingTools.Processors.Contracts.Validation;
+using ProcessingTools.Services.Validation.Contracts;
+using ProcessingTools.Services.Validation.Models;
+
+namespace ProcessingTools.Processors.Processors.Validation
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Contracts.Validation;
-
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
-    using ProcessingTools.Services.Validation.Contracts;
-    using ProcessingTools.Services.Validation.Models;
-
     public class ExternalLinksValidator : IExternalLinksValidator
     {
         private readonly IExternalLinksHarvester harvester;

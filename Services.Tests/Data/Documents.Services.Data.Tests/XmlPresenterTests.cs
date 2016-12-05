@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Documents.Services.Data.Tests
+﻿using ProcessingTools.Documents.Services.Data.Services;
+
+namespace ProcessingTools.Documents.Services.Data.Tests
 {
     using System;
     using System.IO;

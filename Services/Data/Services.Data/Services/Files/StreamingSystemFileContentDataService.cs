@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Services.Data.Files
-{
-    using System;
-    using System.IO;
-    using System.Threading.Tasks;
-    using Contracts.Files;
-    using ProcessingTools.Exceptions;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using ProcessingTools.Exceptions;
+using ProcessingTools.Services.Data.Contracts.Files;
 
+namespace ProcessingTools.Services.Data.Services.Files
+{
     public class StreamingSystemFileContentDataService : IStreamingSystemFileContentDataService
     {
         public StreamReader GetReader(object id)

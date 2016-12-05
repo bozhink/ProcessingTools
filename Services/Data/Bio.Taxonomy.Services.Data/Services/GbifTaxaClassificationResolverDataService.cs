@@ -1,22 +1,20 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data
+﻿using System;
+using System.Collections.Concurrent;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using ProcessingTools.Bio.Taxonomy.Contracts;
+using ProcessingTools.Bio.Taxonomy.Extensions;
+using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
+using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
+using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+using ProcessingTools.Bio.Taxonomy.Services.Data.Factories;
+using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+using ProcessingTools.Bio.Taxonomy.Types;
+using ProcessingTools.Constants;
+
+namespace ProcessingTools.Bio.Taxonomy.Services.Data.Services
 {
-    using System;
-    using System.Collections.Concurrent;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-
-    using Contracts;
-    using Factories;
-    using Models;
-
-    using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Constants;
-
     public class GbifTaxaClassificationResolverDataService : TaxaInformationResolverDataServiceFactory<ITaxonClassification>, IGbifTaxaClassificationResolverDataService
     {
         private IGbifApiV09DataRequester requester;

@@ -1,22 +1,20 @@
-﻿namespace ProcessingTools.Services.Validation
+﻿using System;
+using System.Collections.Concurrent;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using ProcessingTools.Enumerations;
+using ProcessingTools.Services.Cache.Contracts.Validation;
+using ProcessingTools.Services.Validation.Comparers;
+using ProcessingTools.Services.Validation.Constants;
+using ProcessingTools.Services.Validation.Contracts;
+using ProcessingTools.Services.Validation.Factories;
+using ProcessingTools.Services.Validation.Models;
+using ProcessingTools.Services.Validation.Models.Contracts;
+
+namespace ProcessingTools.Services.Validation.Services
 {
-    using System;
-    using System.Collections.Concurrent;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-
-    using Comparers;
-    using Constants;
-    using Contracts;
-    using Factories;
-    using Models;
-    using Models.Contracts;
-
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Validation;
-
     public class UrlValidationService : ValidationServiceFactory<UrlServiceModel, UrlServiceModel>, IUrlValidationService
     {
         public UrlValidationService(IValidationCacheService cacheService)

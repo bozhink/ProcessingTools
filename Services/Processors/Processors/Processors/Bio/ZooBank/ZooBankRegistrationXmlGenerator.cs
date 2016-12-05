@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Processors.Bio.ZooBank
-{
-    using System;
-    using System.Threading.Tasks;
-    using Contracts.Bio.ZooBank;
-    using Contracts.Transformers;
-    using ProcessingTools.Contracts;
+﻿using System;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts;
+using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+using ProcessingTools.Processors.Contracts.Transformers;
 
+namespace ProcessingTools.Processors.Processors.Bio.ZooBank
+{
     public class ZooBankRegistrationXmlGenerator : IZooBankRegistrationXmlGenerator
     {
         private readonly IZooBankRegistrationXmlTransformer transformer;

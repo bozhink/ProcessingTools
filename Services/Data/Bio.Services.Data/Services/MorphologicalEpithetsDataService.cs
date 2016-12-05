@@ -1,15 +1,13 @@
-﻿namespace ProcessingTools.Bio.Services.Data
+﻿using System;
+using System.Linq.Expressions;
+using ProcessingTools.Bio.Data.Entity.Contracts.Repositories;
+using ProcessingTools.Bio.Data.Entity.Models;
+using ProcessingTools.Bio.Services.Data.Contracts;
+using ProcessingTools.Bio.Services.Data.Models;
+using ProcessingTools.Services.Common.Factories;
+
+namespace ProcessingTools.Bio.Services.Data.Services
 {
-    using System;
-    using System.Linq.Expressions;
-
-    using Contracts;
-    using Models;
-
-    using ProcessingTools.Bio.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.Bio.Data.Entity.Models;
-    using ProcessingTools.Services.Common.Factories;
-
     public class MorphologicalEpithetsDataService : SimpleDataServiceWithRepositoryFactory<MorphologicalEpithet, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataService
     {
         public MorphologicalEpithetsDataService(IBioDataRepository<MorphologicalEpithet> repository)

@@ -1,13 +1,13 @@
-﻿[assembly: log4net.Config.XmlConfigurator(ConfigFile = "logger.config", Watch = true)]
+﻿using System.Reflection;
+using log4net;
+using ProcessingTools.Contracts.Types;
+using ProcessingTools.Loggers.Base;
+using ProcessingTools.Loggers.Contracts;
 
-namespace ProcessingTools.Loggers
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "logger.config", Watch = true)]
+
+namespace ProcessingTools.Loggers.Loggers
 {
-    using System.Reflection;
-    using Base;
-    using Contracts;
-    using log4net;
-    using ProcessingTools.Contracts.Types;
-
     public class Log4NetLogger : LoggerBase, ILog4NetLogger
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

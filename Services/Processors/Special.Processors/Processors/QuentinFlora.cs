@@ -1,15 +1,13 @@
-﻿namespace ProcessingTools.Special.Processors
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Contracts;
+using ProcessingTools.Extensions;
+using ProcessingTools.Special.Processors.Contracts;
+
+namespace ProcessingTools.Special.Processors.Processors
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using Contracts;
-
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
-
     public class QuentinFlora : IDocumentFormatter, IQuentinFlora
     {
         private Action<XmlNode> ClearWhitespacingAction => n =>

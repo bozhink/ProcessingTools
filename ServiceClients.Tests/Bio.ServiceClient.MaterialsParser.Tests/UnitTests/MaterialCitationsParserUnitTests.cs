@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.UnitTests
+﻿using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
+
+namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.UnitTests
 {
     using System;
     using System.Linq;

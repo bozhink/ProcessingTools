@@ -1,18 +1,19 @@
-﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts.IDocumentIdViewModel
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents.Contracts.IDocumentIdViewModel
 
 <ul class="nav navbar-nav navbar-right">
     <li>
         @Html.ActionLink(
-            linkText: Resources.Strings.DefaultDownloadActionLinkTitle,
+            linkText: Strings.DefaultDownloadActionLinkTitle,
             actionName: nameof(FilesController.Download),
             controllerName: ControllerNames.FilesControllerName,
             routeValues: new { id = Model.DocumentId },
             htmlAttributes: null)
     </li>
     <li>
-        <a id="refresh-button">@Resources.Strings.DefaultRefreshActionLinkTitle</a>
+        <a id="refresh-button">@Strings.DefaultRefreshActionLinkTitle</a>
     </li>
     <li>
-        <a id="save-button">@Resources.Strings.DefaultSaveActionLinkTitle</a>
+        <a id="save-button">@Strings.DefaultSaveActionLinkTitle</a>
     </li>
 </ul>

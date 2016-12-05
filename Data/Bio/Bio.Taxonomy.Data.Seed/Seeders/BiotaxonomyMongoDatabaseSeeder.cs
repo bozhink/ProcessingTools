@@ -1,21 +1,18 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Seed
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using MongoDB.Driver;
+using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
+using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
+using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
+using ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories.Contracts;
+using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
+using ProcessingTools.Bio.Taxonomy.Types;
+using ProcessingTools.Data.Common.Mongo.Factories;
+using ProcessingTools.Extensions;
+
+namespace ProcessingTools.Bio.Taxonomy.Data.Seed.Seeders
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Contracts;
-
-    using MongoDB.Driver;
-
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
-    using ProcessingTools.Data.Common.Mongo.Factories;
-    using ProcessingTools.Extensions;
-
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder
     {
         private readonly IBiotaxonomyMongoDatabaseProvider biotaxonomyMongoDatabaseProvider;

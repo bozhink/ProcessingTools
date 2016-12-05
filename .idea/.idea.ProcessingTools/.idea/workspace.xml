@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e60c6659-da7e-42e5-ac67-927f54161b48" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/riderModule.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../config/applicationhost.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IEnvoTermsDataMiner.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IExtractHcmrDataMiner.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesCollectionsDataMiner.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesInstitutionsDataMiner.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/SpecimenCodes/ISpecimenCodesByPatternDataMiner.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ExternalLinks/IExternalLinksDataMiner.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/Bio/SpecimenCodes/ISpecimenCode.cs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IBiorepositoriesCollectionsDataMiner.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IBiorepositoriesInstitutionsDataMiner.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IEnvoTermsDataMiner.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IExternalLinksDataMiner.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IExtractHcmrDataMiner.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/SpecimenCodes/ISpecimenCodesByPatternDataMiner.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/SpecimenCodes/ISpecimenCode.cs" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IAltitudesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IAltitudesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ICoordinatesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/ICoordinatesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IDatesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Dates/IDatesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IGeoEpithetsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeoEpithetsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IGeoNamesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeoNamesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IGeographicDeviationsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeographicDeviationsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IHigherTaxaDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Taxonomy/IHigherTaxaDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IInstitutionalCodesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IInstitutionalCodesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IInstitutionsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Institutions/IInstitutionsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IMorphologicalEpithetsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IMorphologicalEpithetsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IProductsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Products/IProductsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/IQuantitiesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Quantities/IQuantitiesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ISpecimenCountDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/ISpecimenCountDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/ITypeStatusDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/ITypeStatusDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/SpecimenCodes/ISpecimenCodesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/SpecimenCodes/ISpecimenCodesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/IBiorepositoriesCollection.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/Bio/IBiorepositoriesCollection.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/IBiorepositoriesInstitution.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/Bio/IBiorepositoriesInstitution.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/IEnvoTerm.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/Bio/Environments/IEnvoTerm.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/IExternalLink.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/ExternalLinks/IExternalLink.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/IExtractHcmrEnvoTerm.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Models/Bio/Environments/IExtractHcmrEnvoTerm.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/AltitudesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Geo/AltitudesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/BiorepositoriesCollectionsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/BiorepositoriesCollectionsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/BiorepositoriesInstitutionsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/BiorepositoriesInstitutionsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/CoordinatesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Geo/CoordinatesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/DatesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Dates/DatesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/EnvoTermsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/Environments/EnvoTermsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/ExternalLinksDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/ExternalLinks/ExternalLinksDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/ExtractHcmrDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/Environments/ExtractHcmrDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/GeoEpithetsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Geo/GeoEpithetsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/GeoNamesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Geo/GeoNamesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/GeographicDeviationsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Geo/GeographicDeviationsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/HigherTaxaDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/Taxonomy/HigherTaxaDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/InstitutionsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Institutions/InstitutionsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/MorphologicalEpithetsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/MorphologicalEpithetsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/ProductsDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Products/ProductsDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/QuantitiesDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Quantities/QuantitiesDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/SpecimenCodes/SpecimenCodesByPatternDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/SpecimenCodes/SpecimenCodesByPatternDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/SpecimenCountDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/SpecimenCountDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/TypeStatusDataMiner.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/TypeStatusDataMiner.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/BiorepositoriesCollection.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/Bio/BiorepositoriesCollection.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/BiorepositoriesInstitution.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/Bio/BiorepositoriesInstitution.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/EnvoTerm.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/Bio/Environments/EnvoTerm.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/ExternalLink.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/ExternalLinks/ExternalLink.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/ExtractHcmrEnvoTerm.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/Bio/Environments/ExtractHcmrEnvoTerm.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/SpecimenCodes/SpecimenCodeResponseModel.cs" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Models/Bio/SpecimenCodes/SpecimenCodeResponseModel.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Data.Seed/Seeders/BioDataSeeder.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Data.Seed/Seeders/BioDataSeeder.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Seed/Seeders/BioEnvironmentsDataSeeder.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Environments.Data.Seed/Seeders/BioEnvironmentsDataSeeder.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/Seeders/BioTaxonomyDataSeeder.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/Seeders/BioTaxonomyDataSeeder.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/Seeders/BiotaxonomyMongoDatabaseSeeder.cs" afterPath="$PROJECT_DIR$/../../Data/Bio/Bio.Taxonomy.Data.Seed/Seeders/BiotaxonomyMongoDatabaseSeeder.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Geo/Geo.Data.Seed/Seeders/GeoDataSeeder.cs" afterPath="$PROJECT_DIR$/../../Data/Geo/Geo.Data.Seed/Seeders/GeoDataSeeder.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Seed/Seeders/MediatypesDataSeeder.cs" afterPath="$PROJECT_DIR$/../../Data/Mediatypes/Mediatypes.Data.Seed/Seeders/MediatypesDataSeeder.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Data/Resources/DataResources.Data.Seed/Seeders/ResourcesDataSeeder.cs" afterPath="$PROJECT_DIR$/../../Data/Resources/DataResources.Data.Seed/Seeders/ResourcesDataSeeder.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/DbSeeder/Settings/NinjectBindings.cs" afterPath="$PROJECT_DIR$/../../Desktop/DbSeeder/Settings/NinjectBindings.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/NlmArchiveConsoleManager/Settings/NinjectBindings.cs" afterPath="$PROJECT_DIR$/../../Desktop/NlmArchiveConsoleManager/Settings/NinjectBindings.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Desktop/Tagger/Settings/NinjectBindings.cs" afterPath="$PROJECT_DIR$/../../Desktop/Tagger/Settings/NinjectBindings.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Loggers/Loggers/ConsoleLogger.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Loggers/Loggers/ConsoleLogger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Loggers/Loggers/Log4NetLogger.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Loggers/Loggers/Log4NetLogger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Loggers/Loggers/TextWriterLogger.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Loggers/Loggers/TextWriterLogger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Serialization/Csv/ColumnIndexToPropertyNameMapping.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Serialization/Csv/ColumnIndexToPropertyNameMapping.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Infrastructure/Serialization/MappingExtensions.cs" afterPath="$PROJECT_DIR$/../../Infrastructure/Serialization/MappingExtensions.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/IntegrationTests/MaterialCitationsParserIntegrationTests.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/IntegrationTests/MaterialCitationsParserIntegrationTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/UnitTests/MaterialCitationsParserUnitTests.cs" afterPath="$PROJECT_DIR$/../../ServiceClients.Tests/Bio.ServiceClient.MaterialsParser.Tests/UnitTests/MaterialCitationsParserUnitTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Bio.ServiceClient.MaterialsParser/Clients/MaterialCitationsParser.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Bio.ServiceClient.MaterialsParser/Clients/MaterialCitationsParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ServiceClients/Data.ServiceClient.Mendeley/Clients/MendeleyDataRequester.cs" afterPath="$PROJECT_DIR$/../../ServiceClients/Data.ServiceClient.Mendeley/Clients/MendeleyDataRequester.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Cache/Services.Cache.Tests/Unit.Tests/Validation/ValidationCacheServiceUnitTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Cache/Services.Cache.Tests/Unit.Tests/Validation/ValidationCacheServiceUnitTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/CoordinatesDataMinerTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data.Miners/Data.Miners.Tests/CoordinatesDataMinerTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/CatalogueOfLifeTaxaClassificationDataServiceTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/CatalogueOfLifeTaxaClassificationDataServiceTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/GbifTaxaClassificationDataServiceTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data/Bio.Taxonomy.Services.Data.Tests/GbifTaxaClassificationDataServiceTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Data/Documents.Services.Data.Tests/XmlPresenterTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Data/Documents.Services.Data.Tests/XmlPresenterTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Integration.Tests/AbbreviationsHarvesterIntegrationTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Integration.Tests/AbbreviationsHarvesterIntegrationTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Integration.Tests/ExternalLinksHarvesterIntegrationTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Integration.Tests/ExternalLinksHarvesterIntegrationTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Unit.Tests/AbbreviationsHarvesterUnitTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Unit.Tests/AbbreviationsHarvesterUnitTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Unit.Tests/ExternalLinksHarvesterUnitTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Harvesters/Harvesters.Tests/Unit.Tests/ExternalLinksHarvesterUnitTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/IntegrationTests/TaxaValidationServiceTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/IntegrationTests/TaxaValidationServiceTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/IntegrationTests/UrlValidationServiceTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/IntegrationTests/UrlValidationServiceTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/UnitTests/TaxaValidationServiceTests.cs" afterPath="$PROJECT_DIR$/../../Services.Tests/Validation/Services.Validation.Tests/UnitTests/TaxaValidationServiceTests.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Cache/Services.Cache/Services/Validation/ValidationCacheService.cs" afterPath="$PROJECT_DIR$/../../Services/Cache/Services.Cache/Services/Validation/ValidationCacheService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Data.Miners.csproj" afterPath="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Data.Miners.csproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/Services/BiorepositoriesInstitutionalCollectionsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/Services/BiorepositoriesInstitutionalCollectionsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/Services/BiorepositoriesInstitutionsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Biorepositories.Services.Data/Services/BiorepositoriesInstitutionsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Environments.Services.Data/Services/EnvoTermsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Environments.Services.Data/Services/EnvoTermsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Services.Data/Services/MorphologicalEpithetsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Services.Data/Services/MorphologicalEpithetsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Services.Data/Services/TypeStatusDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Services.Data/Services/TypeStatusDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/AboveGenusTaxaRankResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/AboveGenusTaxaRankResolverDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/AphiaTaxaClassificationResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/AphiaTaxaClassificationResolverDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/AphiaTaxaRankResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/AphiaTaxaRankResolverDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/BiotaxonomicBlackListDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/BiotaxonomicBlackListDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/BiotaxonomicBlackListIterableDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/BiotaxonomicBlackListIterableDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/CatalogueOfLifeTaxaClassificationResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/CatalogueOfLifeTaxaClassificationResolverDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/GbifTaxaClassificationResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/GbifTaxaClassificationResolverDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/LocalDbTaxaRankResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/LocalDbTaxaRankResolverDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/SuffixHigherTaxaRankResolverDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/SuffixHigherTaxaRankResolverDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/TaxonRankDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Bio.Taxonomy.Services.Data/Services/TaxonRankDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/DataResources.Services.Data/Services/ContentTypesDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/DataResources.Services.Data/Services/ContentTypesDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/DocumentsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/DocumentsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/JournalsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/JournalsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/PublishersDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/PublishersDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/XmlPresenter.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Documents.Services.Data/Services/XmlPresenter.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Services/CountriesDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Services/CountriesDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Services/GeoEpithetsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Services/GeoEpithetsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Services/GeoNamesDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Geo.Services.Data/Services/GeoNamesDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Files/StreamingSystemFileContentDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Files/StreamingSystemFileContentDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Files/StreamingSystemFilesDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Files/StreamingSystemFilesDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Files/XmlFileContentDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Files/XmlFileContentDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/InstitutionsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/InstitutionsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Mediatypes/MediatypesResolver.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/Mediatypes/MediatypesResolver.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/ProductsDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Data/Services.Data/Services/ProductsDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Harvesters/Abbreviations/AbbreviationsHarvester.cs" afterPath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Harvesters/Abbreviations/AbbreviationsHarvester.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Harvesters/Content/TextContentHarvester.cs" afterPath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Harvesters/Content/TextContentHarvester.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Harvesters/ExternalLinks/ExternalLinksHarvester.cs" afterPath="$PROJECT_DIR$/../../Services/Harvesters/Harvesters/Harvesters/ExternalLinks/ExternalLinksHarvester.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Formatters/TreatmentFormatter.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Formatters/TreatmentFormatter.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/Expander.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/Expander.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/HigherTaxaParserWithDataService.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/HigherTaxaParserWithDataService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/LowerTaxaParser.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/LowerTaxaParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/TreatmentMetaParser.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Parsers/TreatmentMetaParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Taggers/HigherTaxaTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Taggers/HigherTaxaTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Taggers/LowerTaxaTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Bio.Taxonomy.Processors/Processors/Taggers/LowerTaxaTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Formatters/DocumentInitialFormatter.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Formatters/DocumentInitialFormatter.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Normalizers/DocumentNormalizer.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Normalizers/DocumentNormalizer.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Normalizers/NlmXmlNormalizer.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Normalizers/NlmXmlNormalizer.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Normalizers/SystemXmlNormalizer.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Normalizers/SystemXmlNormalizer.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Taggers/ContentTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Taggers/ContentTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Taggers/SimpleXmlSerializableObjectTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Taggers/SimpleXmlSerializableObjectTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Taggers/StringTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Layout.Processors/Processors/Taggers/StringTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Abbreviations/AbbreviationsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Abbreviations/AbbreviationsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/CodesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/CodesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/CollectionCodesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/CollectionCodesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/InstitutionalCodesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/InstitutionalCodesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/SpecimenCodesByPatternTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Codes/SpecimenCodesByPatternTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/EnvironmentTerms/EnvironmentTermsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/EnvironmentTerms/EnvironmentTermsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/EnvironmentTerms/EnvironmentTermsWithExtractTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/EnvironmentTerms/EnvironmentTermsWithExtractTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Materials/TreatmentMaterialsParser.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/Materials/TreatmentMaterialsParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/MorphologicalEpithetsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/MorphologicalEpithetsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/SpecimenCountTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/SpecimenCountTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/TypeStatusTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/TypeStatusTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/ZooBank/ZooBankRegistrationXmlGenerator.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/ZooBank/ZooBankRegistrationXmlGenerator.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/ZooBank/ZoobankJsonCloner.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/ZooBank/ZoobankJsonCloner.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/ZooBank/ZoobankXmlCloner.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Bio/ZooBank/ZoobankXmlCloner.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Coordinates/CoordinatesParser.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Coordinates/CoordinatesParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Coordinates/CoordinatesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Coordinates/CoordinatesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Dates/DatesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Dates/DatesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/DocumentXslProcessor.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/DocumentXslProcessor.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/ExternalLinks/ExternalLinksTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/ExternalLinks/ExternalLinksTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Floats/FloatsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Floats/FloatsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Floats/MediatypesParser.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Floats/MediatypesParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Floats/TableFootNotesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Floats/TableFootNotesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/AltitudesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/AltitudesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/GeoEpithetsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/GeoEpithetsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/GeoNamesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/GeoNamesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/GeographicDeviationsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Geo/GeographicDeviationsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Institutions/InstitutionsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Institutions/InstitutionsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Products/ProductsTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Products/ProductsTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Quantities/QuantitiesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Quantities/QuantitiesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/QueryReplacer.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/QueryReplacer.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/References/ReferencesParser.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/References/ReferencesParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/References/ReferencesTagger.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/References/ReferencesTagger.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Validation/ExternalLinksValidator.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Validation/ExternalLinksValidator.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Validation/TaxaValidator.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Processors/Processors/Validation/TaxaValidator.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Processors/Flora.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Processors/Flora.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Processors/QuentinFlora.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Processors/QuentinFlora.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Processors/TestFeaturesProvider.cs" afterPath="$PROJECT_DIR$/../../Services/Processors/Special.Processors/Processors/TestFeaturesProvider.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Services/TaxaValidationService.cs" afterPath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Services/TaxaValidationService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Services/UrlValidationService.cs" afterPath="$PROJECT_DIR$/../../Services/Validation/Services.Validation/Services/UrlValidationService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/App_GlobalResources/Strings.Designer.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/App_GlobalResources/Strings.Designer.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Controllers/DocumentContentController.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Controllers/DocumentContentController.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Controllers/FilesController.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Controllers/FilesController.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/Edit.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/Edit.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/Help.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/Help.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/Preview.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/Preview.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/_HelpSubmenu.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Documents/_HelpSubmenu.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Delete.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Delete.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Details.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Details.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Edit.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Edit.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Help.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Help.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Index.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Index.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Upload.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Articles/Views/Files/Upload.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Create.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Create.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Delete.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Delete.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Details.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Details.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Edit.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Edit.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Index.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/DataResources/Views/ContentTypes/Index.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Create.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Create.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Delete.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Delete.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Details.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Details.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Edit.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Edit.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Index.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/GeoData/Views/Continents/Index.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Controllers/JournalsController.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Controllers/JournalsController.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Create.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Create.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Delete.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Delete.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Details.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Details.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Edit.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Edit.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Index.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Areas/Journals/Views/Publishers/Index.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Extensions/ControllerExtensions.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Extensions/ControllerExtensions.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Settings/NinjectBindings.cs" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Settings/NinjectBindings.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/BadRequest.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/BadRequest.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/Error.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/Error.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidAction.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidAction.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidId.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidId.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidNumberOfItemsPerPage.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidNumberOfItemsPerPage.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidOrEmptyFiles.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidOrEmptyFiles.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidPageNumber.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidPageNumber.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidUserId.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/InvalidUserId.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/NoFilesSelected.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/NoFilesSelected.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/NotFound.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Errors/NotFound.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Help.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/Help.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_BackToListFooter.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_BackToListFooter.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DeleteFooter.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DeleteFooter.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DeleteHeader.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DeleteHeader.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DetailsFooter.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DetailsFooter.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DetailsHeader.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_DetailsHeader.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_EditFooter.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_EditFooter.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_EditHeader.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_EditHeader.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_Layout.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_Layout.cshtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_LoginPartial.cshtml" afterPath="$PROJECT_DIR$/../../Web/ProcessingTools.Web.Documents/Views/Shared/_LoginPartial.cshtml" />
+    </list>
+    <ignored path="ProcessingTools.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="ProcessingTools" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Abstractions/BiorepositoriesDataMinerBase.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IAltitudesDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeoEpithetsDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeographicDeviationsDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeoNamesDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/ICoordinatesDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/SpecimenCodes/ISpecimenCodesByPatternDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/SpecimenCodes/ISpecimenCodesDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IEnvoTermsDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IExtractHcmrDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Taxonomy/IHigherTaxaDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/ISpecimenCountDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/ITypeStatusDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IMorphologicalEpithetsDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesCollectionsDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesInstitutionsDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IInstitutionalCodesDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Dates/IDatesDataMiner.cs" />
+        <option value="$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Institutions/IInstitutionsDataMiner.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>XML</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>General</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProcessingTools (128 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProcessingTools (128 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProcessingTools (128 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProcessingTools (128 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProcessingTools (128 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Contracts" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProcessingTools (128 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data.Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Contracts" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Miners" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration default="true" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue=".NET Project.Default" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e60c6659-da7e-42e5-ac67-927f54161b48" name="Default" comment="" />
+      <created>1480928965601</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1480928965601</updated>
+      <workItem from="1480928967306" duration="3512000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3512000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.50208336" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UnitTesting" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.49791667" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../Services/Services.Common/Contracts/IDataService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <marker date="1473249660937" expanded="true" signature="51:255" ph="{...}" />
+            <marker date="1473249660937" expanded="true" signature="64:110" ph="..." />
+            <marker date="1473249660937" expanded="true" signature="194:253" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Services.Common/Assembly.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1462454678155" expanded="true" signature="41:99" ph="{...}" />
+            <marker date="1462454678155" expanded="true" signature="68:97" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/IDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding>
+            <marker date="1480687905196" expanded="true" signature="47:222" ph="{...}" />
+            <marker date="1480687905196" expanded="true" signature="60:121" ph="..." />
+            <marker date="1480687905196" expanded="true" signature="157:220" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Abstractions/BiorepositoriesDataMinerBase.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+          <folding>
+            <marker date="1480686045928" expanded="true" signature="50:1182" ph="{...}" />
+            <marker date="1480686045928" expanded="true" signature="63:273" ph="..." />
+            <marker date="1480686045928" expanded="true" signature="417:1180" ph="{...}" />
+            <marker date="1480686045928" expanded="true" signature="744:1174" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeoEpithetsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding>
+            <marker date="1480942777430" expanded="true" signature="58:136" ph="{...}" />
+            <marker date="1480942777430" expanded="true" signature="122:134" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeographicDeviationsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+          <folding>
+            <marker date="1480942777347" expanded="true" signature="58:145" ph="{...}" />
+            <marker date="1480942777347" expanded="true" signature="131:143" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IGeoNamesDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1480942777390" expanded="true" signature="58:133" ph="{...}" />
+            <marker date="1480942777390" expanded="true" signature="119:131" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/ICoordinatesDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1480942833446" expanded="true" signature="58:136" ph="{...}" />
+            <marker date="1480942833446" expanded="true" signature="122:134" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/SpecimenCodes/ISpecimenCodesDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <folding>
+            <marker date="1480942941257" expanded="true" signature="72:152" ph="{...}" />
+            <marker date="1480942941257" expanded="true" signature="138:150" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IEnvoTermsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+          <folding>
+            <marker date="1480943966718" expanded="true" signature="193:274" ph="{...}" />
+            <marker date="1480943966718" expanded="true" signature="260:272" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Environments/IExtractHcmrDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding>
+            <marker date="1480943966718" expanded="true" signature="193:287" ph="{...}" />
+            <marker date="1480943966718" expanded="true" signature="273:285" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/SpecimenCodes/ISpecimenCodesByPatternDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <marker date="1480943966715" expanded="true" signature="143:241" ph="{...}" />
+            <marker date="1480943966715" expanded="true" signature="227:239" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Geo/IAltitudesDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1480942694861" expanded="true" signature="58:134" ph="{...}" />
+            <marker date="1480942694861" expanded="true" signature="120:132" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/ISpecimenCountDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="43" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
+          <folding>
+            <marker date="1480943063913" expanded="true" signature="58:138" ph="{...}" />
+            <marker date="1480943063913" expanded="true" signature="124:136" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/ITypeStatusDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+          <folding>
+            <marker date="1480943064438" expanded="true" signature="58:135" ph="{...}" />
+            <marker date="1480943064438" expanded="true" signature="121:133" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/Taxonomy/IHigherTaxaDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1480943069118" expanded="true" signature="67:144" ph="{...}" />
+            <marker date="1480943069118" expanded="true" signature="130:142" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Dates/IDatesDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1480943230415" expanded="true" signature="60:132" ph="{...}" />
+            <marker date="1480943230415" expanded="true" signature="118:130" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IInstitutionalCodesDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1480943231730" expanded="true" signature="58:143" ph="{...}" />
+            <marker date="1480943231730" expanded="true" signature="129:141" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesInstitutionsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding>
+            <marker date="1480943966717" expanded="true" signature="167:284" ph="{...}" />
+            <marker date="1480943966717" expanded="true" signature="270:282" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IBiorepositoriesCollectionsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <folding>
+            <marker date="1480943966715" expanded="true" signature="167:282" ph="{...}" />
+            <marker date="1480943966715" expanded="true" signature="268:280" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Bio/IMorphologicalEpithetsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding>
+            <marker date="1480943234143" expanded="true" signature="58:146" ph="{...}" />
+            <marker date="1480943234143" expanded="true" signature="132:144" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Institutions/IInstitutionsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1480943396824" expanded="true" signature="67:146" ph="{...}" />
+            <marker date="1480943396824" expanded="true" signature="132:144" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Products/IProductsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="30" />
+          <folding>
+            <marker date="1480943396865" expanded="true" signature="63:138" ph="{...}" />
+            <marker date="1480943396865" expanded="true" signature="124:136" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Contracts/Miners/Quantities/IQuantitiesDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="32" />
+          <folding>
+            <marker date="1480943396785" expanded="true" signature="65:142" ph="{...}" />
+            <marker date="1480943396785" expanded="true" signature="128:140" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Properties/AssemblyInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1480579354472" expanded="true" signature="6:62" ph="..." />
+            <marker date="1480579354472" expanded="true" signature="64:250" ph="/* General Information about an assembly is controlled through the following ... */" />
+            <marker date="1480579354472" expanded="true" signature="608:816" ph="/* Setting ComVisible to false makes the types in this assembly not visible ... */" />
+            <marker date="1480579354472" expanded="true" signature="991:1316" ph="/* Version information for an assembly consists of the following four values: ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Assembly.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <marker date="1480579340784" expanded="true" signature="37:95" ph="{...}" />
+            <marker date="1480579340784" expanded="true" signature="64:93" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/BiorepositoriesInstitutionsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1480943966691" expanded="true" signature="504:2041" ph="{...}" />
+            <marker date="1480943966691" expanded="true" signature="107:465" ph="..." />
+            <marker date="1480943966691" expanded="true" signature="696:2039" ph="{...}" />
+            <marker date="1480943966691" expanded="true" signature="878:1062" ph="{...}" />
+            <marker date="1480943966691" expanded="true" signature="1219:1360" ph="{...}" />
+            <marker date="1480943966691" expanded="true" signature="1451:2033" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Services/Data.Miners/Data.Miners/Miners/Bio/BiorepositoriesCollectionsDataMiner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1480943966690" expanded="true" signature="504:2784" ph="{...}" />
+            <marker date="1480943966690" expanded="true" signature="107:465" ph="..." />
+            <marker date="1480943966690" expanded="true" signature="692:2782" ph="{...}" />
+            <marker date="1480943966690" expanded="true" signature="1161:1713" ph="{...}" />
+            <marker date="1480943966690" expanded="true" signature="1867:1996" ph="{...}" />
+            <marker date="1480943966690" expanded="true" signature="2086:2776" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

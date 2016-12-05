@@ -1,4 +1,7 @@
-﻿namespace ProcessingTools.Tagger.Settings
+﻿using ProcessingTools.Loggers.Loggers;
+using ProcessingTools.Services.Data.Services.Files;
+
+namespace ProcessingTools.Tagger.Settings
 {
     using System;
     using Contracts.Controllers;
@@ -73,7 +76,7 @@
 
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ProcessingTools.Loggers.ConsoleLogger>();
+                .To<ConsoleLogger>();
 
             this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankSearchableRepositoryProvider>()
                 .To<Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankSearchableRepositoryProvider>();
@@ -105,7 +108,7 @@
                 .WhenInjectedInto<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>();
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
-                .WhenInjectedInto<ProcessingTools.Services.Data.Files.XmlFileContentDataService>();
+                .WhenInjectedInto<XmlFileContentDataService>();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()

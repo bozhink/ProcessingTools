@@ -1,13 +1,11 @@
-﻿namespace ProcessingTools.Processors
+﻿using System;
+using System.Threading.Tasks;
+using ProcessingTools.Contracts;
+using ProcessingTools.Processors.Contracts;
+using ProcessingTools.Xml.Contracts.Transformers;
+
+namespace ProcessingTools.Processors.Processors
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using Contracts;
-
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Contracts.Transformers;
-
     public class DocumentXslProcessor : IDocumentXslProcessor
     {
         private readonly IModifiableXslTransformer transformer;

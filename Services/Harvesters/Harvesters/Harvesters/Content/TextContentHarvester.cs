@@ -1,13 +1,12 @@
-﻿namespace ProcessingTools.Harvesters.Content
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Harvesters.Contracts.Content;
+using ProcessingTools.Harvesters.Contracts.Transformers;
+
+namespace ProcessingTools.Harvesters.Harvesters.Content
 {
-    using System;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using Contracts.Content;
-    using Contracts.Transformers;
-
     public class TextContentHarvester : ITextContentHarvester
     {
         private readonly IGetTextContentTransformer transformer;

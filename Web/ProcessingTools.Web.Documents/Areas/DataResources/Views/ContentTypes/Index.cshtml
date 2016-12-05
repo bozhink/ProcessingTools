@@ -1,15 +1,16 @@
-﻿@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts.IContentTypeIndexViewModel>
+﻿@using ProcessingTools.Web.Documents.App_GlobalResources
+@model ProcessingTools.Web.Common.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Documents.Areas.DataResources.ViewModels.ContentTypes.Contracts.IContentTypeIndexViewModel>
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultIndexPageTitle;
+    ViewBag.Title = Strings.DeafultIndexPageTitle;
 }
 
 <header>
-    <h2>@Resources.Strings.DeafultIndexPageHeading</h2>
+    <h2>@Strings.DeafultIndexPageHeading</h2>
 
     <p>
         @Html.ActionLink(
-            linkText: Resources.Strings.DefaultCreateActionLinkTitle,
+            linkText: Strings.DefaultCreateActionLinkTitle,
             actionName: nameof(ContentTypesController.Create))
     </p>
 </header>
@@ -37,19 +38,19 @@
                     <td class="separated-items">
                         <span class="item">
                             @Html.ActionLink(
-                                linkText: Resources.Strings.DefaultEditActionLinkTitle,
+                                linkText: Strings.DefaultEditActionLinkTitle,
                                 actionName: nameof(ContentTypesController.Edit),
                                 routeValues: new { id = id })
                         </span>
                         <span class="item">
                             @Html.ActionLink(
-                                linkText: Resources.Strings.DefaultDetailsActionLinkTitle,
+                                linkText: Strings.DefaultDetailsActionLinkTitle,
                                 actionName: nameof(ContentTypesController.Details),
                                 routeValues: new { id = id })
                         </span>
                         <span class="item">
                             @Html.ActionLink(
-                                linkText: Resources.Strings.DefaultDeleteActionLinkTitle,
+                                linkText: Strings.DefaultDeleteActionLinkTitle,
                                 actionName: nameof(ContentTypesController.Delete),
                                 routeValues: new { id = id })
                         </span>

@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Loggers
-{
-    using System;
-    using Contracts;
-    using ProcessingTools.Contracts.Types;
+﻿using System;
+using ProcessingTools.Contracts.Types;
+using ProcessingTools.Loggers.Contracts;
 
+namespace ProcessingTools.Loggers.Loggers
+{
     public class ConsoleLogger : TextWriterLogger, IConsoleLogger
     {
         public ConsoleLogger()

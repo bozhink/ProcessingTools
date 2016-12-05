@@ -1,15 +1,16 @@
 ﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.App_GlobalResources
 @using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
 @using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
 
 @model ContinentViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultDeletePageTitle;
+    ViewBag.Title = Strings.DeafultDeletePageTitle;
 }
 
 <h2>
-    @Resources.Strings.DeafultDeletePageHeading
+    @Strings.DeafultDeletePageHeading
 </h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -36,7 +37,7 @@
                 <input type="submit" value="Delete" class="btn btn-default" />
             </span>
             <span class="item">
-                @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
+                @Html.ActionLink(Strings.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
             </span>
         </div>
     }

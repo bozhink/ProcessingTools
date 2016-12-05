@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Services.Data.Files
-{
-    using System;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using Contracts.Files;
-    using ProcessingTools.Contracts.Files.IO;
+﻿using System;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Contracts.Files.IO;
+using ProcessingTools.Services.Data.Contracts.Files;
 
+namespace ProcessingTools.Services.Data.Services.Files
+{
     public class XmlFileContentDataService : IXmlFileContentDataService
     {
         private readonly IXmlFileReader reader;

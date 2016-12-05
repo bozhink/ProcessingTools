@@ -1,13 +1,13 @@
-﻿namespace ProcessingTools.Data.ServiceClient.Mendeley
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading.Tasks;
-    using Contracts;
-    using Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using ProcessingTools.Data.ServiceClient.Mendeley.Contracts;
+using ProcessingTools.Data.ServiceClient.Mendeley.Models;
 
+namespace ProcessingTools.Data.ServiceClient.Mendeley.Clients
+{
     public class MendeleyDataRequester : IMendeleyDataRequester
     {
         private const string MendeleyApiBaseAddress = "https://api.mendeley.com";

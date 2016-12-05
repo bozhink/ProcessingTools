@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using ProcessingTools.Web.Documents.App_GlobalResources
 @using ProcessingTools.Web.Documents.Controllers
 
 @if (Request.IsAuthenticated)
@@ -11,14 +12,14 @@
             <li>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", nameof(ManageController.Index), ControllerNames.ManageControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { title = "Manage" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Strings.LogoutActionLinkTitle</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Strings.LogoutActionLinkTitle</a></li>
         </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink(Resources.Strings.RegisterActionLinkTitle, nameof(AccountController.Register), ControllerNames.AccountControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink(Resources.Strings.LoginActionLinkTitle, nameof(AccountController.Login), ControllerNames.AccountControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink(Strings.RegisterActionLinkTitle, nameof(AccountController.Register), ControllerNames.AccountControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(Strings.LoginActionLinkTitle, nameof(AccountController.Login), ControllerNames.AccountControllerName, routeValues: new { area = AreasConstants.DefaultAreaName }, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

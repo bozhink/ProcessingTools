@@ -1,16 +1,16 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Formatters
-{
-    using System;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using Contracts.Formatters;
-    using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Xml.Extensions;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
+using ProcessingTools.Constants.Schema;
+using ProcessingTools.Contracts;
+using ProcessingTools.Extensions;
+using ProcessingTools.Xml.Extensions;
 
+namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Formatters
+{
     public class TreatmentFormatter : ITreatmentFormatter
     {
         private const string TaxonAuthorityStatusNodeName = "AuthorityStatus";

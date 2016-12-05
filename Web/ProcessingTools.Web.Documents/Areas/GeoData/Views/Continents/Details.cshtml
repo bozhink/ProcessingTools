@@ -1,15 +1,16 @@
 ﻿@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.App_GlobalResources
 @using ProcessingTools.Web.Documents.Areas.GeoData.Controllers
 @using ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
 
 @model DetailedContinentViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.DeafultDetailsPageTitle;
+    ViewBag.Title = Strings.DeafultDetailsPageTitle;
 }
 
 <h2>
-    @Resources.Strings.DeafultDetailsPageHeading
+    @Strings.DeafultDetailsPageHeading
 </h2>
 
 <div>
@@ -58,12 +59,12 @@
         @if (User.Identity.IsAuthenticated)
         {
             <span class="item">
-                @Html.ActionLink(Resources.Strings.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = Model.Id })
+                @Html.ActionLink(Strings.DefaultEditActionLinkTitle, nameof(ContinentsController.Edit), new { id = Model.Id })
             </span>
         }
 
         <span class="item">
-            @Html.ActionLink(Resources.Strings.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
+            @Html.ActionLink(Strings.DefaultBackToListActionLinkTitle, nameof(ContinentsController.Index))
         </span>
     </nav>
 </footer>

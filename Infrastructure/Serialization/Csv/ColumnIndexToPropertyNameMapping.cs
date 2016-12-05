@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.Serialization
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace ProcessingTools.Serialization.Csv
+{
     /// <summary>
     /// This general class handles mapping columns to object’s properties.
     /// </summary>

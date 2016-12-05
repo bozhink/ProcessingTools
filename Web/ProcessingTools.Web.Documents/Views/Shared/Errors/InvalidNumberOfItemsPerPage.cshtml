@@ -1,15 +1,16 @@
 ﻿@using ProcessingTools.Common.Constants
+@using ProcessingTools.Web.Documents.App_GlobalResources
 
 @model ProcessingTools.Web.Documents.ViewModels.Error.ErrorMetaViewModel
 
 @{
-    ViewBag.Title = Resources.Strings.InvalidNumberOfItemsPerPagePageTitle;
+    ViewBag.Title = Strings.InvalidNumberOfItemsPerPagePageTitle;
 }
 
 <h2 class="text-danger">
     @Model.ToString()
 </h2>
-<h3>@Resources.Strings.InvalidNumberOfItemsPerPagePageHeading</h3>
+<h3>@Strings.InvalidNumberOfItemsPerPagePageHeading</h3>
 
 <p>
     @Model.SourceAction.Message
@@ -17,9 +18,9 @@
 
 <hr />
 
-<p>@string.Format(Resources.Strings.InvalidNumberOfItemsPerPageMessageFormat, 1, @PagingConstants.MaximalItemsPerPageAllowed)</p>
+<p>@string.Format(Strings.InvalidNumberOfItemsPerPageMessageFormat, 1, @PagingConstants.MaximalItemsPerPageAllowed)</p>
 
-<p>@Resources.Strings.GoBackAndTryAgainMessage</p>
+<p>@Strings.GoBackAndTryAgainMessage</p>
 <p>
     @Html.ActionLink(
         Model.SourceAction.ActionLinkText,

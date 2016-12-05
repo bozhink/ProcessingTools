@@ -1,4 +1,6 @@
-﻿namespace ProcessingTools.DbSeeder.Settings
+﻿using ProcessingTools.Loggers.Loggers;
+
+namespace ProcessingTools.DbSeeder.Settings
 {
     using System;
     using System.Reflection;

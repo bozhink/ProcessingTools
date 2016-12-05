@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.Processors.Quantities
-{
-    using Contracts;
-    using Contracts.Providers;
-    using Contracts.Quantities;
-    using Generics;
-    using ProcessingTools.Data.Miners.Contracts.Miners;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+﻿using ProcessingTools.Data.Miners.Contracts.Miners.Quantities;
+using ProcessingTools.Layout.Processors.Contracts.Taggers;
+using ProcessingTools.Processors.Contracts;
+using ProcessingTools.Processors.Contracts.Providers;
+using ProcessingTools.Processors.Contracts.Quantities;
+using ProcessingTools.Processors.Generics;
 
+namespace ProcessingTools.Processors.Processors.Quantities
+{
     public class QuantitiesTagger : GenericStringMinerTagger<IQuantitiesDataMiner, IQuantityTagModelProvider>, IQuantitiesTagger
     {
         public QuantitiesTagger(IGenericStringDataMinerEvaluator<IQuantitiesDataMiner> evaluator, IStringTagger tagger, IQuantityTagModelProvider tagModelProvider)
