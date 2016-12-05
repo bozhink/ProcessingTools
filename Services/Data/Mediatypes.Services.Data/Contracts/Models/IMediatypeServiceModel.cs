@@ -2,10 +2,10 @@
 {
     public interface IMediatypeServiceModel
     {
-        string FileExtension { get; set; }
+        string FileExtension { get; }
 
-        string Mimesubtype { get; set; }
+        string Mimesubtype { get; }
 
-        string Mimetype { get; set; }
+        string Mimetype { get; }
     }
 }
