@@ -11,7 +11,6 @@
     using Models.Contracts;
 
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Services.Cache.Contracts.Validation;
     using ProcessingTools.Services.Cache.Models.Validation;
 

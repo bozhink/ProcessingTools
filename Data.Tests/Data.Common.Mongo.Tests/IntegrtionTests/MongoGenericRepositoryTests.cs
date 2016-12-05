@@ -4,8 +4,6 @@
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using MongoDB.Driver;
-
     using ProcessingTools.Data.Common.Mongo.Repositories;
     using ProcessingTools.Data.Common.Mongo.Tests.Fakes;
     using ProcessingTools.Data.Common.Mongo.Tests.Models;

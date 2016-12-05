@@ -1,7 +1,5 @@
 ﻿namespace ProcessingTools.Data.Common.Expressions
 {
-    using Contracts;
-
     using ProcessingTools.Contracts.Expressions;
 
     public static class ExpressionBuilder<T>

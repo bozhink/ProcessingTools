@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Models;
 

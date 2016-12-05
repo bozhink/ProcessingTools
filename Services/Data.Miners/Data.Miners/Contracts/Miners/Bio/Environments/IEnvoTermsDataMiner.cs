@@ -1,5 +1,4 @@
-﻿using ProcessingTools.Data.Miners.Contracts.Models;
-using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
+﻿using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
 
 namespace ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments
 {

@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Tests
 {
     using System.IO;
-    using System.Linq;
     using System.Xml.Serialization;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;

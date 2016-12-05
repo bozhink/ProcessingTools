@@ -7,7 +7,6 @@
     using System.Xml;
 
     using Contracts.Controllers;
-    using Core;
     using Extensions;
 
     using ProcessingTools.Contracts;

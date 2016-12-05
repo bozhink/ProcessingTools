@@ -14,7 +14,6 @@ namespace ProcessingTools.DbSeeder.Settings
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Interceptors;
-    using ProcessingTools.Loggers;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.

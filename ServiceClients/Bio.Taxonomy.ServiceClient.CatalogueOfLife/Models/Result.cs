@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models
 {
     using System;
-    using System.Xml;
     using System.Xml.Serialization;
 
     [Serializable]

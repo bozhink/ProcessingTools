@@ -3,9 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq.Expressions;
-
-    using Contracts;
-
     using ProcessingTools.Contracts.Expressions;
 
     public class UpdateExpression<T> : IUpdateExpression<T>

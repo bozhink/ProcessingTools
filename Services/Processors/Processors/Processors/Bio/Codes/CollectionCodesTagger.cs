@@ -10,8 +10,6 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using Contracts.Bio.Codes;
     using Models.Bio.Codes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Contracts.Miners;
-    using ProcessingTools.Data.Miners.Contracts.Models;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;

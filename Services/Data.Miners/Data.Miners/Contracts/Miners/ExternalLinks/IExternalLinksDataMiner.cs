@@ -1,5 +1,4 @@
-﻿using ProcessingTools.Data.Miners.Contracts.Models;
-using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
+﻿using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
 
 namespace ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks
 {

@@ -4,7 +4,6 @@ namespace ProcessingTools.Data.Miners.Tests
 {
     using System.Linq;
     using NUnit.Framework;
-    using ProcessingTools.Data.Miners;
 
     [TestFixture]
     public class CoordinatesDataMinerTests

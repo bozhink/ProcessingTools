@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Web.Api.Models.Account
 {
     using System.ComponentModel.DataAnnotations;
-    using Newtonsoft.Json;
 
     public class ChangePasswordBindingModel
     {
