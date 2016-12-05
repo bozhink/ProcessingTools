@@ -31,12 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\Repositories\AbstractMediatypesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MediatypesRepositoryDictionary.cs" />
     <Compile Include="Repositories\MediatypesRepositoryDictionaryData.cs" />
+    <Compile Include="Repositories\MediatypesRepositorySystemWeb.cs" />
     <Compile Include="Repositories\MediatypesRepositoryWindowsRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
