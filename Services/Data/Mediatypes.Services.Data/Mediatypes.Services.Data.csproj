@@ -36,9 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IMediatypesDataService.cs" />
+    <Compile Include="Contracts\IMediatypesResolver.cs" />
     <Compile Include="Contracts\Models\IMediatypeServiceModel.cs" />
-    <Compile Include="Services\MediatypesDataService.cs" />
+    <Compile Include="Services\MediatypesResolver.cs" />
     <Compile Include="Models\MediatypeServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

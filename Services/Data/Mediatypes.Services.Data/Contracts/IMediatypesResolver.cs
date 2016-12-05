@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using Models;
 
-    public interface IMediatypesDataService
+    public interface IMediatypesResolver
     {
         Task<IEnumerable<IMediatypeServiceModel>> ResolveMediatype(string fileExtension);
     }

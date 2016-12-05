@@ -17,9 +17,9 @@
     public class MediaTypesResolver : IMediaTypesResolver
     {
         private readonly ILogger logger;
-        private readonly IMediatypesDataService service;
+        private readonly IMediatypesResolver service;
 
-        public MediaTypesResolver(IMediatypesDataService service, ILogger logger)
+        public MediaTypesResolver(IMediatypesResolver service, ILogger logger)
         {
             if (service == null)
             {

@@ -11,7 +11,7 @@
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
     // TODO: dispose repository
-    public class MediatypesDataService : IMediatypesDataService
+    public class MediatypesResolver : IMediatypesResolver
     {
         private const string DefaultMimetype = "unknown";
         private const string DefaultMimesubtype = "unknown";
@@ -20,7 +20,7 @@
 
         private readonly ISearchableMediatypesRepository repository;
 
-        public MediatypesDataService(ISearchableMediatypesRepository repository)
+        public MediatypesResolver(ISearchableMediatypesRepository repository)
         {
             if (repository == null)
             {
