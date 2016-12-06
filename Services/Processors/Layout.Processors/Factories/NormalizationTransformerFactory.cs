@@ -2,31 +2,21 @@
 {
     using System;
     using Contracts.Factories;
-    using Contracts.Transformers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
     public class NormalizationTransformerFactory : INormalizationTransformerFactory
     {
-        private readonly IFormatToSystemTransformer formatToSystemTransformer;
-        private readonly IFormatToNlmTransformer formatToNlmTransformer;
+        private readonly IFormatTransformersFactory transformersFactory;
 
-        public NormalizationTransformerFactory(
-            IFormatToSystemTransformer formatToSystemTransformer,
-            IFormatToNlmTransformer formatToNlmTransformer)
+        public NormalizationTransformerFactory(IFormatTransformersFactory transformersFactory)
         {
-            if (formatToSystemTransformer == null)
+            if (transformersFactory == null)
             {
-                throw new ArgumentNullException(nameof(formatToSystemTransformer));
+                throw new ArgumentNullException(nameof(transformersFactory));
             }
 
-            if (formatToNlmTransformer == null)
-            {
-                throw new ArgumentNullException(nameof(formatToNlmTransformer));
-            }
-
-            this.formatToSystemTransformer = formatToSystemTransformer;
-            this.formatToNlmTransformer = formatToNlmTransformer;
+            this.transformersFactory = transformersFactory;
         }
 
         public IXmlTransformer Create(SchemaType schemaType)
@@ -34,10 +24,10 @@
             switch (schemaType)
             {
                 case SchemaType.Nlm:
-                    return this.formatToNlmTransformer;
+                    return this.transformersFactory.GetFormatToNlmTransformer();
 
                 default:
-                    return this.formatToSystemTransformer;
+                    return this.transformersFactory.GetFormatToSystemTransformer();
             }
         }
     }

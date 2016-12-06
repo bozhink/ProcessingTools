@@ -10,8 +10,12 @@
     public class NinjectXmlBindings : NinjectModule
     {
         private const string CodesRemoveNonCodeNodesTransformerName = "CodesRemoveNonCodeNodesTransformer";
+        private const string FormatToNlmTransformerName = "FormatToNlmTransformer";
+        private const string FormatToSystemTransformerName = "FormatToSystemTransformer";
+        private const string NlmInitialFormatTransformerName = "NlmInitialFormatTransformer";
         private const string ReferencesGetReferencesTransformerName = "ReferencesGetReferencesTransformer";
         private const string ReferencesTagTemplateTransformerName = "ReferencesTagTemplateTransformer";
+        private const string SystemInitialFormatTransformerName = "SystemInitialFormatTransformer";
         private const string TaxonTreatmentExtractMaterialsTransformerName = "TaxonTreatmentExtractMaterialsTransformer";
         private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
         private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
@@ -55,6 +59,30 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.ZooBankRegistrationNlmXslFileNameKey]);
 
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(FormatToNlmTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatSystemToNlmXslPathKey]);
+
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(FormatToSystemTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatNlmToSystemXslPathKey]);
+
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(NlmInitialFormatTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.NlmInitialFormatXslPathKey]);
+
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(SystemInitialFormatTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.SystemInitialFormatXslPathKey]);
+
             // Factories
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IReferencesTransformersFactory>()
                 .ToFactory()
@@ -69,6 +97,10 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IRegistrationTransformersFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Layout.Processors.Contracts.Factories.IFormatTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }

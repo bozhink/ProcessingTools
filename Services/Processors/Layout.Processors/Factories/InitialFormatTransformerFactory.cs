@@ -2,31 +2,21 @@
 {
     using System;
     using Contracts.Factories;
-    using Contracts.Transformers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
     public class InitialFormatTransformerFactory : IInitialFormatTransformerFactory
     {
-        private readonly INlmInitialFormatTransformer nlmInitialFormatTransformer;
-        private readonly ISystemInitialFormatTransformer systemInitialFormatTransformer;
+        private readonly IFormatTransformersFactory transformersFactory;
 
-        public InitialFormatTransformerFactory(
-            INlmInitialFormatTransformer nlmInitialFormatTransformer,
-            ISystemInitialFormatTransformer systemInitialFormatTransformer)
+        public InitialFormatTransformerFactory(IFormatTransformersFactory transformersFactory)
         {
-            if (nlmInitialFormatTransformer == null)
+            if (transformersFactory == null)
             {
-                throw new ArgumentNullException(nameof(nlmInitialFormatTransformer));
+                throw new ArgumentNullException(nameof(transformersFactory));
             }
 
-            if (systemInitialFormatTransformer == null)
-            {
-                throw new ArgumentNullException(nameof(systemInitialFormatTransformer));
-            }
-
-            this.nlmInitialFormatTransformer = nlmInitialFormatTransformer;
-            this.systemInitialFormatTransformer = systemInitialFormatTransformer;
+            this.transformersFactory = transformersFactory;
         }
 
         public IXmlTransformer Create(SchemaType schemaType)
@@ -34,10 +24,10 @@
             switch (schemaType)
             {
                 case SchemaType.Nlm:
-                    return this.nlmInitialFormatTransformer;
+                    return this.transformersFactory.GetNlmInitialFormatTransformer();
 
                 default:
-                    return this.systemInitialFormatTransformer;
+                    return this.transformersFactory.GetSystemInitialFormatTransformer();
             }
         }
     }
