@@ -4,20 +4,20 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
-    using ProcessingTools.Processors.Contracts.Transformers;
+    using ProcessingTools.Processors.Contracts.Factories;
 
     public class ZooBankRegistrationXmlGenerator : IZooBankRegistrationXmlGenerator
     {
-        private readonly IZooBankRegistrationXmlTransformer transformer;
+        private readonly IRegistrationTransformersFactory transformerFactory;
 
-        public ZooBankRegistrationXmlGenerator(IZooBankRegistrationXmlTransformer transformer)
+        public ZooBankRegistrationXmlGenerator(IRegistrationTransformersFactory transformerFactory)
         {
-            if (transformer == null)
+            if (transformerFactory == null)
             {
-                throw new ArgumentNullException(nameof(transformer));
+                throw new ArgumentNullException(nameof(transformerFactory));
             }
 
-            this.transformer = transformer;
+            this.transformerFactory = transformerFactory;
         }
 
         public async Task<object> Generate(IDocument document)
@@ -27,7 +27,10 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var content = await this.transformer.Transform(document.Xml);
+            var content = await this.transformerFactory
+                .GetZooBankRegistrationTransformer()
+                .Transform(document.Xml);
+
             document.Xml = content;
 
             return true;

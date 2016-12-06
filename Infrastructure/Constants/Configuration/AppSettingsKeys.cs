@@ -20,6 +20,6 @@
         public const string SystemInitialFormatXslPathKey = "SystemInitialFormatXslPath";
         public const string TaxonTreatmentExtractMaterialsXslPathKey = "TaxonTreatmentExtractMaterialsXslPath";
         public const string TextContentXslFileNameKey = "TextContentXslFileName";
-        public const string ZoobankNlmXslPathKey = "ZoobankNlmXslPath";
+        public const string ZooBankRegistrationNlmXslFileNameKey = "ZoobankNlmXslPath";
     }
 }

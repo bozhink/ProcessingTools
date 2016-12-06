@@ -15,6 +15,6 @@
         {
         }
 
-        protected override string XslFileName => ConfigurationManager.AppSettings[AppSettingsKeys.ZoobankNlmXslPathKey];
+        protected override string XslFileName => ConfigurationManager.AppSettings[AppSettingsKeys.ZooBankRegistrationNlmXslFileNameKey];
     }
 }

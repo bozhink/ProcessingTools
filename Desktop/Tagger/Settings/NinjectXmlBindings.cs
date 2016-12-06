@@ -9,11 +9,12 @@
 
     public class NinjectXmlBindings : NinjectModule
     {
-        private const string ReferencesTagTemplateTransformerName = "ReferencesTagTemplateTransformer";
-        private const string ReferencesGetReferencesTransformerName = "ReferencesGetReferencesTransformer";
         private const string CodesRemoveNonCodeNodesTransformerName = "CodesRemoveNonCodeNodesTransformer";
-        private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
+        private const string ReferencesGetReferencesTransformerName = "ReferencesGetReferencesTransformer";
+        private const string ReferencesTagTemplateTransformerName = "ReferencesTagTemplateTransformer";
         private const string TaxonTreatmentExtractMaterialsTransformerName = "TaxonTreatmentExtractMaterialsTransformer";
+        private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
+        private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
 
         public override void Load()
         {
@@ -48,6 +49,12 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.TaxonTreatmentExtractMaterialsXslPathKey]);
 
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(ZooBankRegistrationTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.ZooBankRegistrationNlmXslFileNameKey]);
+
             // Factories
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IReferencesTransformersFactory>()
                 .ToFactory()
@@ -58,6 +65,10 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Processors.Contracts.Factories.Bio.ITaxonTreatmentsTransformersFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Processors.Contracts.Factories.IRegistrationTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }
