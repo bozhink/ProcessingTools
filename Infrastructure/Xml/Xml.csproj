@@ -72,7 +72,6 @@
     <Compile Include="Contracts\Transformers\IXQueryTransformer.cs" />
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
     <Compile Include="Contracts\Providers\IXslTransformProvider.cs" />
-    <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
     <Compile Include="Abstractions\AbstractXslTransformProvider.cs" />
     <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
