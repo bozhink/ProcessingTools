@@ -4,34 +4,23 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Xml.Contracts.Transformers;
+    using ProcessingTools.Xml.Contracts.Factories;
 
     public class DocumentXslProcessor : IDocumentXslProcessor
     {
-        private readonly IModifiableXslTransformer transformer;
+        private readonly IXslTransformerFactory factory;
 
-        public DocumentXslProcessor(IModifiableXslTransformer transformer)
+        public DocumentXslProcessor(IXslTransformerFactory factory)
         {
-            if (transformer == null)
+            if (factory == null)
             {
-                throw new ArgumentNullException(nameof(transformer));
+                throw new ArgumentNullException(nameof(factory));
             }
 
-            this.transformer = transformer;
+            this.factory = factory;
         }
 
-        public string XslFilePath
-        {
-            get
-            {
-                return this.transformer.XslFilePath;
-            }
-
-            set
-            {
-                this.transformer.XslFilePath = value;
-            }
-        }
+        public string XslFilePath { get; set; }
 
         public async Task Process(IDocument context)
         {
@@ -40,7 +29,10 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var content = await this.transformer.Transform(context.Xml);
+            var content = await this.factory
+                .CreateTransformer(this.XslFilePath)
+                .Transform(context.Xml);
+
             context.Xml = content;
         }
     }

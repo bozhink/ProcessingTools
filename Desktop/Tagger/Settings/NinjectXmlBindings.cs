@@ -103,6 +103,10 @@
             this.Bind<ProcessingTools.Layout.Processors.Contracts.Factories.IFormatTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
+
+            this.Bind<ProcessingTools.Xml.Contracts.Factories.IXslTransformerFactory>()
+                .ToFactory()
+                .InSingletonScope();
         }
     }
 }
