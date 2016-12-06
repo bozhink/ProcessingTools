@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Layout.Processors.Factories
 {
     using System;
-
     using Contracts.Factories;
     using Contracts.Transformers;
-
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Xml.Contracts.Transformers;
 
     public class NormalizationTransformerFactory : INormalizationTransformerFactory
     {

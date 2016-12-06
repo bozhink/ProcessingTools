@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Transformers
 {
-    using ProcessingTools.Xml.Contracts.Transformers;
+    using ProcessingTools.Contracts;
 
     public interface IGetExternalLinksTransformer : IXmlTransformer
     {

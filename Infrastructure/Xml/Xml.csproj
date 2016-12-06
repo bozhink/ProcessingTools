@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\AbstractGenericTransformCache.cs" />
-    <Compile Include="Abstracts\AbstractXQueryTransformProvider.cs" />
+    <Compile Include="Abstractions\AbstractGenericTransformCache.cs" />
+    <Compile Include="Abstractions\AbstractXQueryTransformProvider.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Cache\XQueryTransformCache.cs" />
     <Compile Include="Contracts\Cache\IGenericTransformCache.cs" />
@@ -66,7 +66,6 @@
     <Compile Include="Contracts\Transformers\IModifiableXslTransformer.cs" />
     <Compile Include="Contracts\Providers\IModifiableXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\ITextContentXslTransformProvider.cs" />
-    <Compile Include="Contracts\Transformers\IXmlTransformer.cs" />
     <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
     <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
@@ -75,7 +74,7 @@
     <Compile Include="Contracts\Providers\IXslTransformProvider.cs" />
     <Compile Include="Extensions\TextContentExtensions.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
-    <Compile Include="Abstracts\AbstractXslTransformProvider.cs" />
+    <Compile Include="Abstractions\AbstractXslTransformProvider.cs" />
     <Compile Include="Providers\CodesRemoveNonCodeNodesXslTransformProvider.cs" />
     <Compile Include="Providers\GetAbbreviationsXQueryTransformProvider.cs" />
     <Compile Include="Providers\GetExternalLinksXslTransformProvider.cs" />

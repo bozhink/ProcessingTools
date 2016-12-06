@@ -5,7 +5,6 @@
     using System.Xml;
 
     using ProcessingTools.Contracts;
-    using ProcessingTools.Xml.Contracts.Transformers;
 
     public abstract class AbstractXmlNormalizer : IXmlContextNormalizer
     {

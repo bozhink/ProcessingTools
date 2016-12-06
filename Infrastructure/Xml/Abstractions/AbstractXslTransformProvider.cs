@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Xml.Abstracts
+﻿namespace ProcessingTools.Xml.Abstractions
 {
     using System;
     using System.Xml.Xsl;
-
     using Contracts.Cache;
     using Contracts.Providers;
 

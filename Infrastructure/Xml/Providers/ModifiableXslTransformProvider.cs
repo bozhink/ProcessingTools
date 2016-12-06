@@ -3,7 +3,7 @@
     using System;
     using System.IO;
 
-    using Abstracts;
+    using Abstractions;
     using Contracts.Cache;
     using Contracts.Providers;
 

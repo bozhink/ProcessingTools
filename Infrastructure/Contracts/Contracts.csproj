@@ -140,6 +140,7 @@
     <Compile Include="IXmlContextNormalizer.cs" />
     <Compile Include="IXmlContextParser.cs" />
     <Compile Include="IXmlContextTagger.cs" />
+    <Compile Include="IXmlTransformer.cs" />
     <Compile Include="Models\Files\IFileMetadata.cs" />
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />

@@ -3,10 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts.Serialization;
-    using Contracts.Transformers;
-
+    using ProcessingTools.Contracts;
     using ProcessingTools.Serialization.Contracts;
 
     public class XmlTransformDeserializer<TTransformer> : IXmlTransformDeserializer<TTransformer>

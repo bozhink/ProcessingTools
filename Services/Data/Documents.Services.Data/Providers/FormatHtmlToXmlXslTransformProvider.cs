@@ -5,7 +5,7 @@
     using Contracts;
 
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Xml.Abstracts;
+    using ProcessingTools.Xml.Abstractions;
     using ProcessingTools.Xml.Contracts.Cache;
 
     // TODO: move to Xml

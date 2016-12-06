@@ -3,7 +3,7 @@
     using System.Collections.Concurrent;
     using System.IO;
 
-    using Abstracts;
+    using Abstractions;
     using Contracts;
     using Contracts.Cache;
     using Transform;

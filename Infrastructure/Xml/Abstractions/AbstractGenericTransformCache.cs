@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Abstracts
+﻿namespace ProcessingTools.Xml.Abstractions
 {
     using System.Collections.Concurrent;
     using Contracts.Cache;

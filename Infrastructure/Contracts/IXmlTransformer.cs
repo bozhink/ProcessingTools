@@ -1,10 +1,8 @@
-﻿namespace ProcessingTools.Xml.Contracts.Transformers
+﻿namespace ProcessingTools.Contracts
 {
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
-
-    using ProcessingTools.Contracts;
 
     public interface IXmlTransformer : ITransformer
     {
