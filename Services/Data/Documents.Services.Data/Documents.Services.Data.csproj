@@ -46,8 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IFormatHtmlToXmlXslTransformProvider.cs" />
-    <Compile Include="Contracts\IFormatXmlToHtmlXslTransformProvider.cs" />
+    <Compile Include="Contracts\Factories\IDocumentsFormatTransformersFactory.cs" />
     <Compile Include="Contracts\IJournalsDataService.cs" />
     <Compile Include="Contracts\IPublishersDataService.cs" />
     <Compile Include="Contracts\IDocumentsDataService.cs" />
@@ -75,8 +74,6 @@
     <Compile Include="Models\Publishers\PublisherSimpleServiceModel.cs" />
     <Compile Include="Models\Publishers\PublisherListableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\FormatHtmlToXmlXslTransformProvider.cs" />
-    <Compile Include="Providers\FormatXmlToHtmlXslTransformProvider.cs" />
     <Compile Include="Services\JournalsDataService.cs" />
     <Compile Include="Services\PublishersDataService.cs" />
     <Compile Include="Services\DocumentsDataService.cs" />
@@ -132,9 +129,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Xsl\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

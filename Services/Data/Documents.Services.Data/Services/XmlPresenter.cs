@@ -4,31 +4,29 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Documents.Services.Data.Contracts.Factories;
     using ProcessingTools.Documents.Services.Data.Models;
-    using ProcessingTools.Documents.Services.Data.Providers;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Contracts.Transformers;
-    using ProcessingTools.Xml.Transformers;
 
     public class XmlPresenter : IXmlPresenter
     {
         private readonly IDocumentsDataService service;
+        private readonly IDocumentsFormatTransformersFactory transformersFactory;
 
-        // TODO: DI
-        private readonly IXslTransformer<IFormatXmlToHtmlXslTransformProvider> formatXmlToHtmlXslTransformer = new XslTransformer<IFormatXmlToHtmlXslTransformProvider>(new FormatXmlToHtmlXslTransformProvider(new XslTransformCache()));
-
-        // TODO: DI
-        private readonly IXslTransformer<IFormatHtmlToXmlXslTransformProvider> formatHtmlToXmlXslTransformer = new XslTransformer<IFormatHtmlToXmlXslTransformProvider>(new FormatHtmlToXmlXslTransformProvider(new XslTransformCache()));
-
-        public XmlPresenter(IDocumentsDataService service)
+        public XmlPresenter(IDocumentsDataService service, IDocumentsFormatTransformersFactory transformersFactory)
         {
             if (service == null)
             {
                 throw new ArgumentNullException(nameof(service));
             }
 
+            if (transformersFactory == null)
+            {
+                throw new ArgumentNullException(nameof(transformersFactory));
+            }
+
             this.service = service;
+            this.transformersFactory = transformersFactory;
         }
 
         public async Task<string> GetHtml(object userId, object articleId, object documentId)
@@ -49,7 +47,10 @@
             }
 
             var reader = await this.service.GetReader(userId, articleId, documentId);
-            var content = await this.formatXmlToHtmlXslTransformer.Transform(reader, true);
+            var content = await this.transformersFactory
+                .GetFormatXmlToHtmlTransformer()
+                .Transform(reader, true);
+
             return content;
         }
 
@@ -112,7 +113,10 @@
 
             xmlDocument.LoadXml(content.Replace("&nbsp;", " "));
 
-            var xmlContent = await this.formatHtmlToXmlXslTransformer.Transform(xmlDocument);
+            var xmlContent = await this.transformersFactory
+                .GetFormatHtmlToXmlTransformer()
+                .Transform(xmlDocument);
+
             xmlDocument.LoadXml(xmlContent);
 
             var result = await this.service.UpdateContent(userId, articleId, document, xmlDocument.OuterXml);

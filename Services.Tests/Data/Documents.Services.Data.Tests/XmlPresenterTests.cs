@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Tests
 {
     using System;
+    using System.Configuration;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -11,8 +12,12 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Documents.Services.Data.Services;
+    using ProcessingTools.Documents.Services.Data.Contracts.Factories;
+    using Xml.Transformers;
+    using Xml.Cache;
+    using Constants.Configuration;
 
-    [TestFixture(Category = "Unit tests", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
+    [TestFixture(Category = "Integration tests", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
     public class XmlPresenterTests
     {
         private const string ServiceParamName = "service";
@@ -59,6 +64,8 @@
         private object articleId;
         private object documentId;
 
+        private Mock<IDocumentsFormatTransformersFactory> transformersFactoryMock;
+
         [SetUp]
         public void TestInitialize()
         {
@@ -92,6 +99,18 @@
 
             this.service = this.serviceMock.Object;
 
+            var xslCache = new XslTransformCache();
+            var htmlToXmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFilePathKey], xslCache);
+            var xmlToHtmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFilePathKey], xslCache);
+
+            this.transformersFactoryMock = new Mock<IDocumentsFormatTransformersFactory>();
+            this.transformersFactoryMock
+                .Setup(f => f.GetFormatHtmlToXmlTransformer())
+                .Returns(htmlToXmlTransformer);
+            this.transformersFactoryMock
+                .Setup(f => f.GetFormatXmlToHtmlTransformer())
+                .Returns(xmlToHtmlTransformer);
+
             this.userId = Guid.NewGuid();
             this.articleId = Guid.NewGuid();
             this.documentId = Guid.NewGuid();
@@ -99,12 +118,13 @@
             this.document = new DocumentServiceModel();
         }
 
+        // TODO: test factory
         [Test(Description = @"XmlPresenter.ctor with null service should throw ArgumentNullException with correct ParamName", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         public void XmlPresenter_Constructor_WithNullService_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var presenter = new XmlPresenter(null);
+                var presenter = new XmlPresenter(null, transformersFactoryMock.Object);
             });
 
             Assert.AreEqual(
@@ -116,14 +136,14 @@
         [Test(Description = @"XmlPresenter.ctor with valid service should not throw", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         public void XmlPresenter_Constructor_WithValidService_ShouldNotThow()
         {
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
             Assert.IsNotNull(presenter, ObjectShouldNotBeNullMessage);
         }
 
         [Test(Description = @"XmlPresenter.ctor with valid service should correctly initialize service field", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         public void XmlPresenter_Constructor_WithValidService_ShouldCorrectlyInitializeServiceField()
         {
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             string fieldName = nameof(this.service);
 
@@ -141,7 +161,7 @@
         public void XmlPresenter_GetHtml_WithNullArticleId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -171,7 +191,7 @@
         public void XmlPresenter_GetHtml_WithNullArticleId_ShouldNotInvokeServiceGetReader()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             Assert.Throws<AggregateException>(() =>
@@ -187,7 +207,7 @@
         public void XmlPresenter_GetHtml_WithNullDocumentId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -217,7 +237,7 @@
         public void XmlPresenter_GetHtml_WithNullDocumentId_ShouldNotInvokeServiceGetReader()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             Assert.Throws<AggregateException>(() =>
@@ -233,7 +253,7 @@
         public void XmlPresenter_GetHtml_WithNullUserId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -263,7 +283,7 @@
         public void XmlPresenter_GetHtml_WithNullUserId_ShouldNotInvokeServiceGetReader()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             Assert.Throws<AggregateException>(() =>
@@ -279,7 +299,7 @@
         public void XmlPresenter_GetHtml_WithValidParameters_ShouldInvokeServiceGetReaderExactlyOnce()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetHtml(this.userId, this.articleId, this.documentId).Result;
@@ -293,7 +313,7 @@
         public void XmlPresenter_GetHtml_WithValidParameters_ShouldReturnNonEmptyContent()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetHtml(this.userId, this.articleId, this.documentId).Result;
@@ -307,7 +327,7 @@
         public void XmlPresenter_GetHtml_WithValidParameters_ShouldReturnValidXmlContent()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetHtml(this.userId, this.articleId, this.documentId).Result;
@@ -324,7 +344,7 @@
         public void XmlPresenter_GetHtml_WithValidParameters_ShouldReturnXmlWithValidDocumentElement()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetHtml(this.userId, this.articleId, this.documentId).Result;
@@ -341,7 +361,7 @@
         public void XmlPresenter_GetHtml_WithValidParameters_ShouldReturnXmlWithNonNullElemNameAttribute()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetHtml(this.userId, this.articleId, this.documentId).Result;
@@ -360,7 +380,7 @@
         public void XmlPresenter_GetHtml_WithValidParameters_ShouldReturnXmlWithArticleElemName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetHtml(this.userId, this.articleId, this.documentId).Result;
@@ -383,7 +403,7 @@
         public void XmlPresenter_GetXml_WithNullArticleId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -413,7 +433,7 @@
         public void XmlPresenter_GetXml_WithNullArticleId_ShouldNotInvokeServiceGetReader()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             Assert.Throws<AggregateException>(() =>
@@ -429,7 +449,7 @@
         public void XmlPresenter_GetXml_WithNullDocumentId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -459,7 +479,7 @@
         public void XmlPresenter_GetXml_WithNullDocumentId_ShouldNotInvokeServiceGetReader()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             Assert.Throws<AggregateException>(() =>
@@ -475,7 +495,7 @@
         public void XmlPresenter_GetXml_WithNullUserId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -505,7 +525,7 @@
         public void XmlPresenter_GetXml_WithNullUserId_ShouldNotInvokeServiceGetReader()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             Assert.Throws<AggregateException>(() =>
@@ -521,7 +541,7 @@
         public void XmlPresenter_GetXml_WithValidParameters_ShouldInvokeServiceGetReaderExactlyOnce()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetXml(this.userId, this.articleId, this.documentId).Result;
@@ -535,7 +555,7 @@
         public void XmlPresenter_GetXml_WithValidParameters_ShouldReturnNonEmptyContent()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetXml(this.userId, this.articleId, this.documentId).Result;
@@ -549,7 +569,7 @@
         public void XmlPresenter_GetXml_WithValidParameters_ShouldReturnValidXmlContent()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetXml(this.userId, this.articleId, this.documentId).Result;
@@ -566,7 +586,7 @@
         public void XmlPresenter_GetXml_WithValidParameters_ShouldReturnXmlWithValidDocumentElement()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.GetXml(this.userId, this.articleId, this.documentId).Result;
@@ -589,7 +609,7 @@
         public void XmlPresenter_SaveHtml_WithEmptyContent_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -621,7 +641,7 @@
         public void XmlPresenter_SaveHtml_WithEmptyContent_ShouldNotInvokeServiceUpdate(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -638,7 +658,7 @@
         public void XmlPresenter_SaveHtml_WithInvalidXmlContent_ShouldThrowAggregateExceptionWithXmlException(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -662,7 +682,7 @@
         public void XmlPresenter_SaveHtml_WithInvalidXmlContent_ShouldNotInvokeServiceUpdate(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -679,7 +699,7 @@
         public void XmlPresenter_SaveHtml_WithNullArticleId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -709,7 +729,7 @@
         public void XmlPresenter_SaveHtml_WithNullArticleId_ShouldNotInvokeServiceUpdate()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -726,7 +746,7 @@
         public void XmlPresenter_SaveHtml_WithNullDocument_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -756,7 +776,7 @@
         public void XmlPresenter_SaveHtml_WithNullDocument_ShouldNotInvokeServiceUpdate()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -773,7 +793,7 @@
         public void XmlPresenter_SaveHtml_WithNullUserId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -803,7 +823,7 @@
         public void XmlPresenter_SaveHtml_WithNullUserId_ShouldNotInvokeServiceUpdate()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -821,7 +841,7 @@
         public void XmlPresenter_SaveHtml_WithValidHtmlContent_ShouldWork(string content, string expectedResult)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
@@ -836,7 +856,7 @@
         public void XmlPresenter_SaveHtml_WithValidHtmlContent_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
@@ -853,7 +873,7 @@
         public void XmlPresenter_SaveHtml_WithIncorrectlyProcessibleValidHtmlContent_ShouldThrowAggregateExceptionWithXmlException(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -880,7 +900,7 @@
         public void XmlPresenter_SaveHtml_WithIncorrectlyProcessibleValidHtmlContent_ShouldNotInvokeServiceUpdate(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             string result = null;
@@ -898,7 +918,7 @@
         public void XmlPresenter_SaveHtml_WithValidHtmlContentWithNbsp_ShouldWork(string content, string expectedResult)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
@@ -912,7 +932,7 @@
         public void XmlPresenter_SaveHtml_WithValidHtmlContentWithNbsp_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
@@ -932,7 +952,7 @@
         public void XmlPresenter_SaveXml_WithEmptyContent_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -964,7 +984,7 @@
         public void XmlPresenter_SaveXml_WithEmptyContent_ShouldNotInvokeServiceUpdate(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -981,7 +1001,7 @@
         public void XmlPresenter_SaveXml_WithInvalidXmlContent_ShouldThrowAggregateExceptionWithXmlException(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -1005,7 +1025,7 @@
         public void XmlPresenter_SaveXml_WithInvalidXmlContent_ShouldNotInvokeServiceUpdate(string content)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -1022,7 +1042,7 @@
         public void XmlPresenter_SaveXml_WithNullArticleId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -1052,7 +1072,7 @@
         public void XmlPresenter_SaveXml_WithNullArticleId_ShouldNotInvokeServiceUpdate()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -1069,7 +1089,7 @@
         public void XmlPresenter_SaveXml_WithNullDocument_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -1099,7 +1119,7 @@
         public void XmlPresenter_SaveXml_WithNullDocument_ShouldNotInvokeServiceUpdate()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -1116,7 +1136,7 @@
         public void XmlPresenter_SaveXml_WithNullUserId_ShouldThrowAggregateExceptionWithArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             var exception = Assert.Throws<AggregateException>(() =>
@@ -1146,7 +1166,7 @@
         public void XmlPresenter_SaveXml_WithNullUserId_ShouldNotInvokeServiceUpdate()
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act + Assert
             string result = null;
@@ -1164,7 +1184,7 @@
         public void XmlPresenter_SaveXml_WithValidHtmlContent_ShouldWork(string content, string expectedResult)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result;
@@ -1179,7 +1199,7 @@
         public void XmlPresenter_SaveXml_WithValidHtmlContent_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
         {
             // Arrange
-            var presenter = new XmlPresenter(this.service);
+            var presenter = new XmlPresenter(this.service, transformersFactoryMock.Object);
 
             // Act
             var result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result;

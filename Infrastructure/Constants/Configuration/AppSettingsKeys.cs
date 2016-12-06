@@ -8,6 +8,7 @@
         public const string ClientSettingsProviderKey = "ClientSettingsProvider";
         public const string CodesRemoveNonCodeNodesXslPathKey = "CodesRemoveNonCodeNodesXslPath";
         public const string ConfigJsonFilePathKey = "ConfigJsonFilePath";
+        public const string DefaultDataFilesDirectoryKey = "DefaultDataFilesDirectory";
         public const string ExternalLinksXslFilePathKey = "ExternalLinksXslFilePath";
         public const string FormatHtmlToXmlXslFilePathKey = "FormatHtmlToXmlXslFilePath";
         public const string FormatNlmToSystemXslPathKey = "FormatNlmToSystemXslPath";

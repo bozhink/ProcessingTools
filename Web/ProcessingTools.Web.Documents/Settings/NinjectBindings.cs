@@ -32,6 +32,13 @@
                     .BindDefaultInterface();
             });
 
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.Xml.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
             this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankRepositoryProvider>()
                 .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankRepositoryProvider>();
 

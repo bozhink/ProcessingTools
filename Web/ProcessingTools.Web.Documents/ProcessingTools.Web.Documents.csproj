@@ -54,6 +54,10 @@
       <HintPath>..\..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
@@ -101,6 +105,18 @@
     </Reference>
     <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.Interception.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.Interception.DynamicProxy.3.2.0.0\lib\net45-full\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Extensions.NamedScope, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -361,6 +377,7 @@
     <Compile Include="Settings\NinjectDataMinersBindings.cs" />
     <Compile Include="Settings\NinjectHarvestersBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
+    <Compile Include="Settings\NinjectXmlBindings.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
@@ -719,6 +736,18 @@
     <ProjectReference Include="..\..\Services\Cache\Services.Cache\Services.Cache.csproj">
       <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
       <Name>Services.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Bio.Taxonomy.Processors\Bio.Taxonomy.Processors.csproj">
+      <Project>{b8e7a642-ca04-470b-8a1f-767a7ee282fd}</Project>
+      <Name>Bio.Taxonomy.Processors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Layout.Processors\Layout.Processors.csproj">
+      <Project>{fc880066-d413-4e16-9f46-23acd5e30c2d}</Project>
+      <Name>Layout.Processors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Processors\Processors.csproj">
+      <Project>{237d4caf-98a4-4c86-91a6-46ae3e27e965}</Project>
+      <Name>Processors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
       <Project>{826165F0-F7FD-486F-B302-FCF7350C0888}</Project>

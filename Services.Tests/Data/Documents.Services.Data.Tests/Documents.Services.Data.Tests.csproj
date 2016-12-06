@@ -70,6 +70,18 @@
     <Compile Include="XmlPresenterTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
+      <Name>Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Data\Documents.Services.Data\Documents.Services.Data.csproj">
       <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
       <Name>Documents.Services.Data</Name>
