@@ -19,7 +19,7 @@
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
-    using Strings = ProcessingTools.Web.Documents.App_GlobalResources.Strings;
+    using Strings = Resources.Strings;
 
     [Authorize]
     public class FilesController : Controller

@@ -119,6 +119,7 @@
   </resheader>
   <data name="AboutActionLinkTitle" xml:space="preserve">
     <value>About</value>
+    <comment>Deault title for the About link</comment>
   </data>
   <data name="ArticlesActionLinkTitle" xml:space="preserve">
     <value>Articles</value>

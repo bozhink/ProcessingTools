@@ -13,7 +13,7 @@
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
-    using Strings = ProcessingTools.Web.Documents.App_GlobalResources.Strings;
+    using Strings = Resources.Strings;
 
     [Authorize]
     public class DocumentContentController : Controller
