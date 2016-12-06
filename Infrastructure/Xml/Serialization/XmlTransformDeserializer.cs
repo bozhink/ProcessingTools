@@ -7,36 +7,33 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Serialization.Contracts;
 
-    public class XmlTransformDeserializer<TTransformer> : IXmlTransformDeserializer<TTransformer>
-        where TTransformer : IXmlTransformer
+    public class XmlTransformDeserializer : IXmlTransformDeserializer
     {
-        private readonly TTransformer transformer;
         private readonly IXmlDeserializer deserializer;
 
-        public XmlTransformDeserializer(TTransformer transformer, IXmlDeserializer deserializer)
+        public XmlTransformDeserializer(IXmlDeserializer deserializer)
+        {
+            if (deserializer == null)
+            {
+                throw new ArgumentNullException(nameof(deserializer));
+            }
+
+            this.deserializer = deserializer;
+        }
+
+        public async Task<T> Deserialize<T>(IXmlTransformer transformer, string xml)
         {
             if (transformer == null)
             {
                 throw new ArgumentNullException(nameof(transformer));
             }
 
-            if (deserializer == null)
-            {
-                throw new ArgumentNullException(nameof(deserializer));
-            }
-
-            this.transformer = transformer;
-            this.deserializer = deserializer;
-        }
-
-        public async Task<T> Deserialize<T>(string xml)
-        {
             if (string.IsNullOrWhiteSpace(xml))
             {
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            var stream = this.transformer.TransformToStream(xml);
+            var stream = transformer.TransformToStream(xml);
 
             var result = await this.deserializer.Deserialize<T>(stream);
 
@@ -46,14 +43,19 @@
             return result;
         }
 
-        public async Task<T> Deserialize<T>(XmlNode node)
+        public async Task<T> Deserialize<T>(IXmlTransformer transformer, XmlNode node)
         {
+            if (transformer == null)
+            {
+                throw new ArgumentNullException(nameof(transformer));
+            }
+
             if (node == null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            var stream = this.transformer.TransformToStream(node);
+            var stream = transformer.TransformToStream(node);
 
             var result = await this.deserializer.Deserialize<T>(stream);
 

@@ -14,24 +14,32 @@
 
     public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {
-        private readonly IXmlTransformDeserializer<IGetAbbreviationsTransformer> transformer;
+        private readonly IXmlTransformDeserializer serializer;
+        private readonly IGetAbbreviationsTransformer transformer;
 
         public AbbreviationsHarvester(
             IXmlContextWrapperProvider contextWrapperProvider,
-            IXmlTransformDeserializer<IGetAbbreviationsTransformer> transformer)
+            IXmlTransformDeserializer serializer,
+            IGetAbbreviationsTransformer transformer)
             : base(contextWrapperProvider)
         {
+            if (serializer == null)
+            {
+                throw new ArgumentNullException(nameof(serializer));
+            }
+
             if (transformer == null)
             {
                 throw new ArgumentNullException(nameof(transformer));
             }
 
+            this.serializer = serializer;
             this.transformer = transformer;
         }
 
         protected override async Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
-            var items = await this.transformer.Deserialize<AbbreviationsXmlModel>(document.DocumentElement);
+            var items = await this.serializer.Deserialize<AbbreviationsXmlModel>(this.transformer, document.DocumentElement);
 
             if (items?.Abbreviations == null)
             {

@@ -13,24 +13,32 @@
 
     public class ExternalLinksHarvester : AbstractGenericQueryableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
-        private readonly IXmlTransformDeserializer<IGetExternalLinksTransformer> transformer;
+        private readonly IXmlTransformDeserializer serializer;
+        private readonly IGetExternalLinksTransformer transformer;
 
         public ExternalLinksHarvester(
             IXmlContextWrapperProvider contextWrapperProvider,
-            IXmlTransformDeserializer<IGetExternalLinksTransformer> transformer)
+            IXmlTransformDeserializer serializer,
+            IGetExternalLinksTransformer transformer)
             : base(contextWrapperProvider)
         {
+            if (serializer == null)
+            {
+                throw new ArgumentNullException(nameof(serializer));
+            }
+
             if (transformer == null)
             {
                 throw new ArgumentNullException(nameof(transformer));
             }
 
+            this.serializer = serializer;
             this.transformer = transformer;
         }
 
         protected override async Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
         {
-            var items = await this.transformer.Deserialize<ExternalLinksModel>(document.OuterXml);
+            var items = await this.serializer.Deserialize<ExternalLinksModel>(this.transformer, document.OuterXml);
 
             return items.ExternalLinks?.AsQueryable();
         }

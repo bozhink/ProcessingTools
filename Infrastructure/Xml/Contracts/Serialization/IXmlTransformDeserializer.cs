@@ -4,11 +4,10 @@
     using System.Xml;
     using ProcessingTools.Contracts;
 
-    public interface IXmlTransformDeserializer<TTransformer>
-        where TTransformer : IXmlTransformer
+    public interface IXmlTransformDeserializer
     {
-        Task<T> Deserialize<T>(string xml);
+        Task<T> Deserialize<T>(IXmlTransformer transformer, string xml);
 
-        Task<T> Deserialize<T>(XmlNode node);
+        Task<T> Deserialize<T>(IXmlTransformer transformer, XmlNode node);
     }
 }

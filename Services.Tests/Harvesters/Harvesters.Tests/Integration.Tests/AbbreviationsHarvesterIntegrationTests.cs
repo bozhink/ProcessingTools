@@ -34,11 +34,12 @@
             var contextWrapperProvider = new XmlContextWrapperProvider();
 
             var deserializer = new XmlDeserializer();
+            var serializer = new XmlTransformDeserializer(deserializer);
             var xqueryCache = new XQueryTransformCache();
             var transformProvider = new GetAbbreviationsXQueryTransformProvider(xqueryCache);
-            var transformer = new XmlTransformDeserializer<IGetAbbreviationsTransformer>(new GetAbbreviationsTransformer(transformProvider), deserializer);
+            var transformer = new GetAbbreviationsTransformer(transformProvider);
 
-            var harvester = new AbbreviationsHarvester(contextWrapperProvider, transformer);
+            var harvester = new AbbreviationsHarvester(contextWrapperProvider, serializer, transformer);
 
             // Act
             var abbreviations = harvester.Harvest(document.DocumentElement).Result?.ToList();

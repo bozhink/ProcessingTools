@@ -35,11 +35,12 @@
             var contextWrapperProvider = new XmlContextWrapperProvider();
 
             var deserializer = new XmlDeserializer();
+            var serializer = new XmlTransformDeserializer(deserializer);
             var xslCache = new XslTransformCache();
             var transformProvider = new GetExternalLinksXslTransformProvider(xslCache);
-            var transformer = new XmlTransformDeserializer<IGetExternalLinksTransformer>(new GetExternalLinksTransformer(transformProvider), deserializer);
+            var transformer = new GetExternalLinksTransformer(transformProvider);
 
-            var harvester = new ExternalLinksHarvester(contextWrapperProvider, transformer);
+            var harvester = new ExternalLinksHarvester(contextWrapperProvider, serializer, transformer);
 
             // Act
             var externalLinks = harvester.Harvest(document.DocumentElement).Result?.ToList();
