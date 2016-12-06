@@ -8,35 +8,25 @@
     using System.Xml;
     using System.Xml.Linq;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Factories;
     using ProcessingTools.Processors.Contracts.References;
-    using ProcessingTools.Processors.Contracts.Transformers;
     using ProcessingTools.Processors.Models.References;
 
     public class ReferencesTagger : IReferencesTagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
-        private readonly IReferencesTagTemplateTransformer referencesTagTemplateTransformer;
-        private readonly IReferencesGetReferencesTransformer referencesGetReferencesTransformer;
+        private readonly IReferencesTransformersFactory transformersFactory;
         private readonly ILogger logger;
 
-        public ReferencesTagger(
-            IReferencesTagTemplateTransformer referencesTagTemplateTransformer,
-            IReferencesGetReferencesTransformer referencesGetReferencesTransformer,
-            ILogger logger)
+        public ReferencesTagger(IReferencesTransformersFactory transformersFactory, ILogger logger)
         {
-            if (referencesTagTemplateTransformer == null)
+            if (transformersFactory == null)
             {
-                throw new ArgumentNullException(nameof(referencesTagTemplateTransformer));
+                throw new ArgumentNullException(nameof(transformersFactory));
             }
 
-            if (referencesGetReferencesTransformer == null)
-            {
-                throw new ArgumentNullException(nameof(referencesGetReferencesTransformer));
-            }
-
-            this.referencesTagTemplateTransformer = referencesTagTemplateTransformer;
-            this.referencesGetReferencesTransformer = referencesGetReferencesTransformer;
+            this.transformersFactory = transformersFactory;
             this.logger = logger;
         }
 
@@ -186,7 +176,10 @@
 
         private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates(XmlNode context)
         {
-            var text = await this.referencesTagTemplateTransformer.Transform(context);
+            var text = await this.transformersFactory
+                .GetReferencesTagTemplateTransformer()
+                .Transform(context);
+
             var referencesTemplatesXml = XDocument.Parse(text);
 
             var referencesTemplates = referencesTemplatesXml.Descendants("reference")
@@ -211,7 +204,10 @@
                 return;
             }
 
-            var text = await this.referencesGetReferencesTransformer.Transform(context);
+            var text = await this.transformersFactory
+                .GetReferencesGetReferencesTransformer()
+                .Transform(context);
+
             var referencesList = XDocument.Parse(text);
 
             referencesList.Save(this.ReferencesGetReferencesXmlPath);

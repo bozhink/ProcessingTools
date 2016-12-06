@@ -1,7 +1,4 @@
-﻿using ProcessingTools.Loggers.Loggers;
-using ProcessingTools.Services.Data.Services.Files;
-
-namespace ProcessingTools.Tagger.Settings
+﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
     using Contracts.Controllers;
@@ -10,6 +7,8 @@ namespace ProcessingTools.Tagger.Settings
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Interceptors;
+    using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Services.Data.Services.Files;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.

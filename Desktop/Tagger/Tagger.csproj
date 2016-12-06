@@ -256,6 +256,7 @@
     <Compile Include="Settings\NinjectServiceClientsBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
     <Compile Include="Core\SingleFileProcessorHelpers.cs" />
+    <Compile Include="Settings\NinjectXmlBindings.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Core\ProgramSettings.cs" />
     <Compile Include="Core\SingleFileProcessor.cs">
