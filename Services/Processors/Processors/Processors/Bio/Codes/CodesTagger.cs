@@ -19,7 +19,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
-    using ProcessingTools.Processors.Contracts.Transformers;
+    using ProcessingTools.Processors.Contracts.Factories.Bio;
     using ProcessingTools.Processors.Models.Bio.Codes;
     using ProcessingTools.Xml.Extensions;
 
@@ -66,7 +66,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
          * ZUPV/EHU 188
          */
 
-        private readonly ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer;
+        private readonly ICodesTransformerFactory transformerFactory;
         private readonly ITextContentHarvester contentHarvester;
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
@@ -128,14 +128,14 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         };
 
         public CodesTagger(
-            ICodesRemoveNonCodeNodesTransformer codesRemoveNonCodeNodesTransformer,
+            ICodesTransformerFactory transformerFactory,
             ITextContentHarvester contentHarvester,
             IContentTagger contentTagger,
             ILogger logger)
         {
-            if (codesRemoveNonCodeNodesTransformer == null)
+            if (transformerFactory == null)
             {
-                throw new ArgumentNullException(nameof(codesRemoveNonCodeNodesTransformer));
+                throw new ArgumentNullException(nameof(transformerFactory));
             }
 
             if (contentHarvester == null)
@@ -148,7 +148,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                 throw new ArgumentNullException(nameof(contentTagger));
             }
 
-            this.codesRemoveNonCodeNodesTransformer = codesRemoveNonCodeNodesTransformer;
+            this.transformerFactory = transformerFactory;
             this.contentHarvester = contentHarvester;
             this.contentTagger = contentTagger;
             this.logger = logger;
@@ -211,7 +211,10 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                 @"(?<=</xref>)\s*:\s*" + codePattern,
                 string.Empty);
 
-            var cleanedContent = await this.codesRemoveNonCodeNodesTransformer.Transform(cleanedXmlDocument);
+            var cleanedContent = await this.transformerFactory
+                .GetCodesRemoveNonCodeNodesTransformer()
+                .Transform(cleanedXmlDocument);
+
             cleanedXmlDocument.LoadXml(cleanedContent);
 
             Regex matchCodePattern = new Regex(codePattern);

@@ -11,9 +11,11 @@
     {
         private const string ReferencesTagTemplateTransformerName = "ReferencesTagTemplateTransformer";
         private const string ReferencesGetReferencesTransformerName = "ReferencesGetReferencesTransformer";
+        private const string CodesRemoveNonCodeNodesTransformerName = "CodesRemoveNonCodeNodesTransformer";
 
         public override void Load()
         {
+            // Transformers
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(ReferencesTagTemplateTransformerName)
                 .WithConstructorArgument(
@@ -26,7 +28,18 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.ReferencesGetReferencesXslPathKey]);
 
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(CodesRemoveNonCodeNodesTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.CodesRemoveNonCodeNodesXslPathKey]);
+
+            // Factories
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IReferencesTransformersFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Processors.Contracts.Factories.Bio.ICodesTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }
