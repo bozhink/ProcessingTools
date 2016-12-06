@@ -56,7 +56,8 @@
     <Compile Include="Contracts\Coordinates\ICoordinatesTagger.cs" />
     <Compile Include="Contracts\Dates\IDatesTagger.cs" />
     <Compile Include="Contracts\ExternalLinks\IExternalLinksTagger.cs" />
-    <Compile Include="Contracts\Factories\Bio\ICodesTransformerFactory.cs" />
+    <Compile Include="Contracts\Factories\Bio\ICodesTransformersFactory.cs" />
+    <Compile Include="Contracts\Factories\Bio\ITaxonTreatmentsTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\IReferencesTransformersFactory.cs" />
     <Compile Include="Contracts\Geo\IAltitudesTagger.cs" />
     <Compile Include="Contracts\Geo\IGeoEpithetsTagger.cs" />
@@ -86,8 +87,6 @@
     <Compile Include="Contracts\Quantities\IQuantitiesTagger.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
-    <Compile Include="Contracts\Transformers\IFormatTaxonTreatmentsTransformer.cs" />
-    <Compile Include="Contracts\Transformers\ITaxonTreatmentExtractMaterialsTransformer.cs" />
     <Compile Include="Contracts\Transformers\IZooBankRegistrationXmlTransformer.cs" />
     <Compile Include="Contracts\Validation\IExternalLinksValidator.cs" />
     <Compile Include="Contracts\Validation\ITaxaValidator.cs" />
@@ -173,8 +172,6 @@
     <Compile Include="Providers\QuantityTagModelProvider.cs" />
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
-    <Compile Include="Transformers\FormatTaxonTreatmentsTransformer.cs" />
-    <Compile Include="Transformers\TaxonTreatmentExtractMaterialsTransformer.cs" />
     <Compile Include="Transformers\ZooBankRegistrationXmlTransformer.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>

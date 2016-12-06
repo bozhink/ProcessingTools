@@ -12,6 +12,8 @@
         private const string ReferencesTagTemplateTransformerName = "ReferencesTagTemplateTransformer";
         private const string ReferencesGetReferencesTransformerName = "ReferencesGetReferencesTransformer";
         private const string CodesRemoveNonCodeNodesTransformerName = "CodesRemoveNonCodeNodesTransformer";
+        private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
+        private const string TaxonTreatmentExtractMaterialsTransformerName = "TaxonTreatmentExtractMaterialsTransformer";
 
         public override void Load()
         {
@@ -34,12 +36,28 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.CodesRemoveNonCodeNodesXslPathKey]);
 
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(TaxonTreatmentFormatTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatTaxonTreatmentsXslPathKey]);
+
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(TaxonTreatmentExtractMaterialsTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.TaxonTreatmentExtractMaterialsXslPathKey]);
+
             // Factories
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IReferencesTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Processors.Contracts.Factories.Bio.ICodesTransformerFactory>()
+            this.Bind<ProcessingTools.Processors.Contracts.Factories.Bio.ICodesTransformersFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Processors.Contracts.Factories.Bio.ITaxonTreatmentsTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }

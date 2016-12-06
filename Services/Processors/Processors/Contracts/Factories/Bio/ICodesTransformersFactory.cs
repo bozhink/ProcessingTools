@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
 
-    public interface ICodesTransformerFactory
+    public interface ICodesTransformersFactory
     {
         IXmlTransformer GetCodesRemoveNonCodeNodesTransformer();
     }

@@ -7,37 +7,29 @@
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Materials;
-    using ProcessingTools.Processors.Contracts.Transformers;
+    using ProcessingTools.Processors.Contracts.Factories.Bio;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
         private readonly IMaterialCitationsParser materialCitationsParser;
-        private readonly ITaxonTreatmentExtractMaterialsTransformer taxonTreatmentExtractMaterialsTransformer;
-        private readonly IFormatTaxonTreatmentsTransformer formatTaxonTreatmentsTransformer;
+        private readonly ITaxonTreatmentsTransformersFactory transformersFactory;
 
         public TreatmentMaterialsParser(
             IMaterialCitationsParser materialCitationsParser,
-            ITaxonTreatmentExtractMaterialsTransformer taxonTreatmentExtractMaterialsTransformer,
-            IFormatTaxonTreatmentsTransformer formatTaxonTreatmentsTransformer)
+            ITaxonTreatmentsTransformersFactory transformersFactory)
         {
             if (materialCitationsParser == null)
             {
                 throw new ArgumentNullException(nameof(materialCitationsParser));
             }
 
-            if (taxonTreatmentExtractMaterialsTransformer == null)
+            if (transformersFactory == null)
             {
-                throw new ArgumentNullException(nameof(taxonTreatmentExtractMaterialsTransformer));
-            }
-
-            if (formatTaxonTreatmentsTransformer == null)
-            {
-                throw new ArgumentNullException(nameof(formatTaxonTreatmentsTransformer));
+                throw new ArgumentNullException(nameof(transformersFactory));
             }
 
             this.materialCitationsParser = materialCitationsParser;
-            this.taxonTreatmentExtractMaterialsTransformer = taxonTreatmentExtractMaterialsTransformer;
-            this.formatTaxonTreatmentsTransformer = formatTaxonTreatmentsTransformer;
+            this.transformersFactory = transformersFactory;
         }
 
         public async Task<object> Parse(IDocument document)
@@ -88,14 +80,20 @@
                 PreserveWhitespace = true
             };
 
-            var text = await this.taxonTreatmentExtractMaterialsTransformer.Transform(document);
+            var text = await this.transformersFactory
+                .GetTaxonTreatmentExtractMaterialsTransformer()
+                .Transform(document);
+
             queryDocument.LoadXml(text);
             return queryDocument;
         }
 
         private async Task FormatTaxonTreatments(XmlDocument document)
         {
-            var text = await this.formatTaxonTreatmentsTransformer.Transform(document);
+            var text = await this.transformersFactory
+                .GetTaxonTreatmentFormatTransformer()
+                .Transform(document);
+
             document.LoadXml(text);
         }
     }

@@ -66,7 +66,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
          * ZUPV/EHU 188
          */
 
-        private readonly ICodesTransformerFactory transformerFactory;
+        private readonly ICodesTransformersFactory transformerFactory;
         private readonly ITextContentHarvester contentHarvester;
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
@@ -128,7 +128,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         };
 
         public CodesTagger(
-            ICodesTransformerFactory transformerFactory,
+            ICodesTransformersFactory transformerFactory,
             ITextContentHarvester contentHarvester,
             IContentTagger contentTagger,
             ILogger logger)
