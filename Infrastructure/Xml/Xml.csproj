@@ -48,7 +48,6 @@
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Factories\IXQueryTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
-    <Compile Include="Contracts\Providers\IXQueryTransformProvider.cs" />
     <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
     <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
@@ -70,7 +69,6 @@
     <Compile Include="Providers\XmlContextWrapperProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="XQuery\abbrev.xq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
