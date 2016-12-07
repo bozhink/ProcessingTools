@@ -5,13 +5,15 @@
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Harvesters.Contracts.Transformers;
+    using Moq;
+    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Harvesters.Contracts.Factories;
     using ProcessingTools.Harvesters.Harvesters.Abbreviations;
-    using ProcessingTools.Harvesters.Transformers;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Serialization;
+    using ProcessingTools.Xml.Transformers;
 
     [TestClass]
     public class AbbreviationsHarvesterIntegrationTests
@@ -35,11 +37,17 @@
 
             var deserializer = new XmlDeserializer();
             var serializer = new XmlTransformDeserializer(deserializer);
-            var xqueryCache = new XQueryTransformCache();
-            var transformProvider = new GetAbbreviationsXQueryTransformProvider(xqueryCache);
-            var transformer = new GetAbbreviationsTransformer(transformProvider);
 
-            var harvester = new AbbreviationsHarvester(contextWrapperProvider, serializer, transformer);
+            var xqueryCache = new XQueryTransformCache();
+            var transformer = new XQueryTransformer(
+                ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFilePathKey],
+                xqueryCache);
+            var transformersFactoryMock = new Mock<IAbbreviationsTransformersFactory>();
+            transformersFactoryMock
+                .Setup(f => f.GetAbbreviationsTransformer())
+                .Returns(transformer);
+
+            var harvester = new AbbreviationsHarvester(contextWrapperProvider, serializer, transformersFactoryMock.Object);
 
             // Act
             var abbreviations = harvester.Harvest(document.DocumentElement).Result?.ToList();

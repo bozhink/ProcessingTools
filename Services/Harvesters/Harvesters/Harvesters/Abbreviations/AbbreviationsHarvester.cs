@@ -7,7 +7,7 @@
     using System.Xml;
     using ProcessingTools.Harvesters.Abstractions;
     using ProcessingTools.Harvesters.Contracts.Abbreviations;
-    using ProcessingTools.Harvesters.Contracts.Transformers;
+    using ProcessingTools.Harvesters.Contracts.Factories;
     using ProcessingTools.Harvesters.Models.Abbreviations;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
@@ -15,12 +15,12 @@
     public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {
         private readonly IXmlTransformDeserializer serializer;
-        private readonly IGetAbbreviationsTransformer transformer;
+        private readonly IAbbreviationsTransformersFactory transformersFactory;
 
         public AbbreviationsHarvester(
             IXmlContextWrapperProvider contextWrapperProvider,
             IXmlTransformDeserializer serializer,
-            IGetAbbreviationsTransformer transformer)
+            IAbbreviationsTransformersFactory transformersFactory)
             : base(contextWrapperProvider)
         {
             if (serializer == null)
@@ -28,18 +28,19 @@
                 throw new ArgumentNullException(nameof(serializer));
             }
 
-            if (transformer == null)
+            if (transformersFactory == null)
             {
-                throw new ArgumentNullException(nameof(transformer));
+                throw new ArgumentNullException(nameof(transformersFactory));
             }
 
             this.serializer = serializer;
-            this.transformer = transformer;
+            this.transformersFactory = transformersFactory;
         }
 
         protected override async Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
         {
-            var items = await this.serializer.Deserialize<AbbreviationsXmlModel>(this.transformer, document.DocumentElement);
+            var transformer = this.transformersFactory.GetAbbreviationsTransformer();
+            var items = await this.serializer.Deserialize<AbbreviationsXmlModel>(transformer, document.DocumentElement);
 
             if (items?.Abbreviations == null)
             {

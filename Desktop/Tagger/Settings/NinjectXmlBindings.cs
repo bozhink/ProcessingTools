@@ -9,7 +9,9 @@
 
     public class NinjectXmlBindings : NinjectModule
     {
+        private const string AbbreviationsTransformerName = "AbbreviationsTransformer";
         private const string CodesRemoveNonCodeNodesTransformerName = "CodesRemoveNonCodeNodesTransformer";
+        private const string ExternalLinksTransformerName = "ExternalLinksTransformer";
         private const string FormatToNlmTransformerName = "FormatToNlmTransformer";
         private const string FormatToSystemTransformerName = "FormatToSystemTransformer";
         private const string NlmInitialFormatTransformerName = "NlmInitialFormatTransformer";
@@ -18,9 +20,8 @@
         private const string SystemInitialFormatTransformerName = "SystemInitialFormatTransformer";
         private const string TaxonTreatmentExtractMaterialsTransformerName = "TaxonTreatmentExtractMaterialsTransformer";
         private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
-        private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
-        private const string ExternalLinksTransformerName = "ExternalLinksTransformer";
         private const string TextContentTransformerName = "TextContentTransformer";
+        private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
 
         public override void Load()
         {
@@ -97,8 +98,18 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.TextContentXslFileNameKey]);
 
+            this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
+                .Named(AbbreviationsTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFilePathKey]);
+
             // Factories
             this.Bind<ProcessingTools.Xml.Contracts.Factories.IXslTransformerFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Xml.Contracts.Factories.IXQueryTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
