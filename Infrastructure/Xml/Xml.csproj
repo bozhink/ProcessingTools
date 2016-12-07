@@ -47,6 +47,7 @@
     <Compile Include="Cache\XQueryTransformCache.cs" />
     <Compile Include="Contracts\Cache\IGenericTransformCache.cs" />
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
+    <Compile Include="Contracts\Factories\IXQueryTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
     <Compile Include="Contracts\Providers\IGetAbbreviationsXQueryTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IXQueryTransformProvider.cs" />
