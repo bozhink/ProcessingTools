@@ -49,7 +49,6 @@
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
     <Compile Include="Contracts\Providers\IGetAbbreviationsXQueryTransformProvider.cs" />
-    <Compile Include="Contracts\Providers\IGetExternalLinksXslTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IXQueryTransformProvider.cs" />
     <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
     <Compile Include="Contracts\Transformers\IGenericXQueryTransformer.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
     <Compile Include="Abstractions\AbstractXslTransformProvider.cs" />
     <Compile Include="Providers\GetAbbreviationsXQueryTransformProvider.cs" />
-    <Compile Include="Providers\GetExternalLinksXslTransformProvider.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\GenericXQueryTransformer.cs" />
     <Compile Include="Transformers\GenericXslTransformer.cs" />
