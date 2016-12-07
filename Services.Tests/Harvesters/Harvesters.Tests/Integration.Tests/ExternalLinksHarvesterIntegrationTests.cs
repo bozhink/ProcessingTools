@@ -5,13 +5,15 @@
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Harvesters.Contracts.Transformers;
+    using Moq;
+    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Harvesters.Contracts.Factories;
     using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
-    using ProcessingTools.Harvesters.Transformers;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Serialization;
+    using ProcessingTools.Xml.Transformers;
 
     [TestClass]
     public class ExternalLinksHarvesterIntegrationTests
@@ -36,11 +38,17 @@
 
             var deserializer = new XmlDeserializer();
             var serializer = new XmlTransformDeserializer(deserializer);
-            var xslCache = new XslTransformCache();
-            var transformProvider = new GetExternalLinksXslTransformProvider(xslCache);
-            var transformer = new GetExternalLinksTransformer(transformProvider);
 
-            var harvester = new ExternalLinksHarvester(contextWrapperProvider, serializer, transformer);
+            var xslCache = new XslTransformCache();
+            var transformer = new XslTransformer(
+                ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFilePathKey],
+                xslCache);
+            var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
+            transformersFactoryMock
+                .Setup(f => f.GetExternalLinksTransformer())
+                .Returns(transformer);
+
+            var harvester = new ExternalLinksHarvester(contextWrapperProvider, serializer, transformersFactoryMock.Object);
 
             // Act
             var externalLinks = harvester.Harvest(document.DocumentElement).Result?.ToList();

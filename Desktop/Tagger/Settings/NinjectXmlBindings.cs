@@ -19,6 +19,7 @@
         private const string TaxonTreatmentExtractMaterialsTransformerName = "TaxonTreatmentExtractMaterialsTransformer";
         private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
         private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
+        private const string ExternalLinksTransformerName = "ExternalLinksTransformer";
 
         public override void Load()
         {
@@ -83,7 +84,17 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.SystemInitialFormatXslPathKey]);
 
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(ExternalLinksTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFilePathKey]);
+
             // Factories
+            this.Bind<ProcessingTools.Xml.Contracts.Factories.IXslTransformerFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IReferencesTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
@@ -104,7 +115,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Xml.Contracts.Factories.IXslTransformerFactory>()
+            this.Bind<ProcessingTools.Harvesters.Contracts.Factories.IExternalLinksTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }

@@ -6,7 +6,7 @@
     using System.Xml;
     using ProcessingTools.Harvesters.Abstractions;
     using ProcessingTools.Harvesters.Contracts.ExternalLinks;
-    using ProcessingTools.Harvesters.Contracts.Transformers;
+    using ProcessingTools.Harvesters.Contracts.Factories;
     using ProcessingTools.Harvesters.Models.ExternalLinks;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
@@ -14,12 +14,12 @@
     public class ExternalLinksHarvester : AbstractGenericQueryableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
         private readonly IXmlTransformDeserializer serializer;
-        private readonly IGetExternalLinksTransformer transformer;
+        private readonly IExternalLinksTransformersFactory transformersFactory;
 
         public ExternalLinksHarvester(
             IXmlContextWrapperProvider contextWrapperProvider,
             IXmlTransformDeserializer serializer,
-            IGetExternalLinksTransformer transformer)
+            IExternalLinksTransformersFactory transformersFactory)
             : base(contextWrapperProvider)
         {
             if (serializer == null)
@@ -27,18 +27,19 @@
                 throw new ArgumentNullException(nameof(serializer));
             }
 
-            if (transformer == null)
+            if (transformersFactory == null)
             {
-                throw new ArgumentNullException(nameof(transformer));
+                throw new ArgumentNullException(nameof(transformersFactory));
             }
 
             this.serializer = serializer;
-            this.transformer = transformer;
+            this.transformersFactory = transformersFactory;
         }
 
         protected override async Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
         {
-            var items = await this.serializer.Deserialize<ExternalLinksModel>(this.transformer, document.OuterXml);
+            var transformer = this.transformersFactory.GetExternalLinksTransformer();
+            var items = await this.serializer.Deserialize<ExternalLinksModel>(transformer, document.OuterXml);
 
             return items.ExternalLinks?.AsQueryable();
         }
