@@ -42,26 +42,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\AbstractGenericTransformCache.cs" />
-    <Compile Include="Abstractions\AbstractXQueryTransformProvider.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Cache\XQueryTransformCache.cs" />
     <Compile Include="Contracts\Cache\IGenericTransformCache.cs" />
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Factories\IXQueryTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
-    <Compile Include="Contracts\Providers\IGetAbbreviationsXQueryTransformProvider.cs" />
     <Compile Include="Contracts\Providers\IXQueryTransformProvider.cs" />
     <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
-    <Compile Include="Contracts\Transformers\IGenericXQueryTransformer.cs" />
     <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
     <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
     <Compile Include="Contracts\Transformers\IXQueryTransformer.cs" />
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
-    <Compile Include="Providers\GetAbbreviationsXQueryTransformProvider.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
-    <Compile Include="Transformers\GenericXQueryTransformer.cs" />
     <Compile Include="Transformers\XQueryTransformer.cs" />
     <Compile Include="Transformers\XslTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
