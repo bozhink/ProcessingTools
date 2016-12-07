@@ -5,20 +5,20 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Harvesters.Contracts.Content;
-    using ProcessingTools.Harvesters.Contracts.Transformers;
+    using ProcessingTools.Harvesters.Contracts.Factories;
 
     public class TextContentHarvester : ITextContentHarvester
     {
-        private readonly IGetTextContentTransformer transformer;
+        private readonly ITextContentTransformersFactory transformersFactory;
 
-        public TextContentHarvester(IGetTextContentTransformer transformer)
+        public TextContentHarvester(ITextContentTransformersFactory transformersFactory)
         {
-            if (transformer == null)
+            if (transformersFactory == null)
             {
-                throw new ArgumentNullException(nameof(transformer));
+                throw new ArgumentNullException(nameof(transformersFactory));
             }
 
-            this.transformer = transformer;
+            this.transformersFactory = transformersFactory;
         }
 
         public async Task<string> Harvest(XmlNode context)
@@ -28,7 +28,9 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var content = await this.transformer.Transform(context);
+            var content = await this.transformersFactory
+                .GetTextContentTransformer()
+                .Transform(context);
             content = Regex.Replace(content, @"(?<=\n)\s+", string.Empty);
 
             return content;

@@ -42,8 +42,8 @@
     <Compile Include="Contracts\Content\ITextContentHarvester.cs" />
     <Compile Include="Contracts\ExternalLinks\IExternalLinksHarvester.cs" />
     <Compile Include="Contracts\Factories\IExternalLinksTransformersFactory.cs" />
+    <Compile Include="Contracts\Factories\ITextContentTransformersFactory.cs" />
     <Compile Include="Contracts\Transformers\IGetAbbreviationsTransformer.cs" />
-    <Compile Include="Contracts\Transformers\IGetTextContentTransformer.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\Content\TextContentHarvester.cs" />
     <Compile Include="Harvesters\ExternalLinks\ExternalLinksHarvester.cs" />
@@ -55,7 +55,6 @@
     <Compile Include="Models\ExternalLinks\IExternalLinkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformers\GetAbbreviationsTransformer.cs" />
-    <Compile Include="Transformers\GetTextContentTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
