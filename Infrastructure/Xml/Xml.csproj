@@ -60,7 +60,6 @@
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
     <Compile Include="Contracts\Providers\IXslTransformProvider.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
-    <Compile Include="Abstractions\AbstractXslTransformProvider.cs" />
     <Compile Include="Providers\GetAbbreviationsXQueryTransformProvider.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\GenericXQueryTransformer.cs" />
