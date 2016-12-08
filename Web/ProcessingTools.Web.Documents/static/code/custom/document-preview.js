@@ -324,83 +324,122 @@
         return false;
     }
 
+    function setElementInEditModeEventHandler(event) {
+        var e = event || window.event,
+            $target = $(e.target),
+            name = $target.prop('nodeName').toLowerCase();
+
+        if (name === 'p' || name === 'td' || name === 'th') {
+            e.stopPropagation();
+            e.preventDefault();
+            $target
+                .attr('contenteditable', '')
+                .addClass('in-edit');
+        }
+    }
+
+    function unsetElementInEditModeEventHandler(event) {
+        var e = event || window.event,
+            $target = $(e.target),
+            name = $target.prop('nodeName').toLowerCase();
+
+        if (name === 'p' || name === 'td' || name === 'th') {
+            e.stopPropagation();
+            e.preventDefault();
+            $target
+                .removeAttr('contenteditable')
+                .removeClass('in-edit');
+        }
+    }
+
+    function unsetAllInEditModeEventHandler(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        e.preventDefault();
+        $('.in-edit')
+            .removeAttr('contenteditable')
+            .removeClass('in-edit');
+    }
+
     function keyDownEventHandler(event) {
         var e = event || window.event;
 
-        // Ctrl + Delete
-        if (e.ctrlKey && e.which === 46) {
-            e.stopPropagation();
-            e.preventDefault();
-            window.htmlSelectionTagger.clearTagsInSelection();
-            return false;
-        }
+        if (e.ctrlKey) {
 
-        // Ctrl + B
-        if (e.ctrlKey && e.which === 66) {
-            e.stopPropagation();
-            e.preventDefault();
-            window.htmlSelectionTagger.tagInBold();
-            return false;
-        }
+            // Ctrl + Delete
+            if (e.which === 46) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.clearTagsInSelection();
+                return false;
+            }
 
-        // Ctrl + I
-        if (e.ctrlKey && e.which === 73) {
-            e.stopPropagation();
-            e.preventDefault();
-            window.htmlSelectionTagger.tagInItalic();
-            return false;
-        }
+            // Ctrl + B
+            if (e.which === 66) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInBold();
+                return false;
+            }
 
-        // Ctrl + U
-        if (e.ctrlKey && e.which === 85) {
-            e.stopPropagation();
-            e.preventDefault();
-            window.htmlSelectionTagger.tagInUnderline();
-            return false;
-        }
+            // Ctrl + I
+            if (e.which === 73) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInItalic();
+                return false;
+            }
 
-        // Ctrl + M
-        if (e.ctrlKey && e.which === 77) {
-            e.stopPropagation();
-            e.preventDefault();
-            window.htmlSelectionTagger.tagInMonospace();
-            return false;
-        }
+            // Ctrl + U
+            if (e.which === 85) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInUnderline();
+                return false;
+            }
 
-        // Alt + A -> abbrev
-        if (e.altKey && e.which === 65) {
-            e.stopPropagation();
-            e.preventDefault();
-            tagAbbrevEventHandler(e);
-            return false;
-        }
+            // Ctrl + M
+            if (e.which === 77) {
+                e.stopPropagation();
+                e.preventDefault();
+                window.htmlSelectionTagger.tagInMonospace();
+                return false;
+            }
+        } else if (e.altKey) {
 
-        // Alt + D -> def/p
-        if (e.altKey && e.which === 68) {
-            e.stopPropagation();
-            e.preventDefault();
-            tagAbbrevDefEventHandler(e);
-            return false;
-        }
+            // Alt + A -> abbrev
+            if (e.which === 65) {
+                e.stopPropagation();
+                e.preventDefault();
+                tagAbbrevEventHandler(e);
+                return false;
+            }
 
-        // Alt + C -> coordinates
-        if (e.altKey && e.which === 67) {
-            e.stopPropagation();
-            e.preventDefault();
-            tagCoordinateEventHandler(e);
-            return false;
-        }
+            // Alt + D -> def/p
+            if (e.which === 68) {
+                e.stopPropagation();
+                e.preventDefault();
+                tagAbbrevDefEventHandler(e);
+                return false;
+            }
 
-        // Alt + E -> ext-link
-        if (e.altKey && e.which === 69) {
-            e.stopPropagation();
-            e.preventDefault();
-            tagLinkEventHandler(e);
-            return false;
-        }
+            // Alt + C -> coordinates
+            if (e.which === 67) {
+                e.stopPropagation();
+                e.preventDefault();
+                tagCoordinateEventHandler(e);
+                return false;
+            }
 
-        // Bibliography
-        if (e.altKey) {
+            // Alt + E -> ext-link
+            if (e.which === 69) {
+                e.stopPropagation();
+                e.preventDefault();
+                tagLinkEventHandler(e);
+                return false;
+            }
+
+            // Bibliography
             // Alt + 1
             if (e.which === 49) {
                 e.stopPropagation();
@@ -552,6 +591,13 @@
                 window.htmlSelectionTagger.tagInMark('series');
                 return false;
             }
+        } else {
+
+            // Escape
+            if (e.which === 27) {
+                unsetAllInEditModeEventHandler(e);
+                return false;
+            }
         }
     }
 
@@ -609,6 +655,10 @@
         e.preventDefault();
         window.coordinatesToolboxes.genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
     }
+
+    $('#article')
+        .on('dblclick', 'p,td,th', setElementInEditModeEventHandler)
+        .on('blur', 'p,td,th', unsetElementInEditModeEventHandler);
 
     // Events registration
     $('#supermenu')

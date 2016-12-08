@@ -19,6 +19,24 @@ body {
     padding-bottom: 70px;
 }
 
+p, td, th {
+    &:hover {
+        box-shadow: 0px 0px 10px rgba(88, 179, 240, 0.70);
+    }
+}
+
+.in-edit() {
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.70);
+}
+
+.in-edit {
+    .in-edit();
+
+    &:hover {
+        .in-edit();
+    }
+}
+
 .small-label(@content: '') {
     &:hover {
         position: relative;

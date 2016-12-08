@@ -9,7 +9,7 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="@class | @title | @href | @elem-name | @target | *[@xlink:type]/@type"></xsl:template>
+  <xsl:template match="@class | @title | @href | @elem-name | @target | @contenteditable | *[@xlink:type]/@type"></xsl:template>
 
   <xsl:template match="ul/@type | ol/@type"></xsl:template>
 

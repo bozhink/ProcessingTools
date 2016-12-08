@@ -111,7 +111,9 @@
                 PreserveWhitespace = true
             };
 
-            xmlDocument.LoadXml(content.Replace("&nbsp;", " "));
+            xmlDocument.LoadXml(content
+                .Replace("&nbsp;", " ")
+                .Replace("<br>", @"<span elem-name=""break""></span>"));
 
             var xmlContent = await this.transformersFactory
                 .GetFormatHtmlToXmlTransformer()
