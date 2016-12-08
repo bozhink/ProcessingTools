@@ -8,6 +8,7 @@
 .browse.VC.db*
 .vs/
 .vscode/
+.idea/
 
 App_Data/
 
