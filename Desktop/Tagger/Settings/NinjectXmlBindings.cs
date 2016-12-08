@@ -101,7 +101,7 @@
             this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
                 .Named(AbbreviationsTransformerName)
                 .WithConstructorArgument(
-                    ParameterNames.XslFileName,
+                    ParameterNames.XQueyFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFilePathKey]);
 
             // Factories
@@ -138,6 +138,10 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Harvesters.Contracts.Factories.ITextContentTransformersFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Harvesters.Contracts.Factories.IAbbreviationsTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }
