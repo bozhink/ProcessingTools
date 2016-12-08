@@ -516,12 +516,12 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="static\styles\document-preview.less" />
-    <Content Include="static\styles\toolbox.less" />
+    <Content Include="static\less\document-preview.less" />
+    <Content Include="static\less\toolbox.less" />
     <Content Include="package.json" />
-    <Content Include="static\styles\site.less" />
-    <Content Include="static\styles\tooltips.less" />
-    <Content Include="static\styles\document-edit.less" />
+    <Content Include="static\less\site.less" />
+    <Content Include="static\less\tooltips.less" />
+    <Content Include="static\less\document-edit.less" />
     <Content Include="JSLintNet.json" />
     <Content Include="static\templates\coordinates-map.handlebars" />
     <Content Include="static\code\custom\document-preview.js" />
@@ -570,15 +570,17 @@
     <Content Include="Settings.StyleCop" />
     <Content Include="static\templates\coordinates-toolbox.handlebars" />
     <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
-    <Content Include="static\styles\address-list.less" />
+    <Content Include="static\less\address-list.less" />
     <Content Include="Views\Shared\_DetailsHeader.cshtml" />
     <Content Include="Views\Shared\_DetailsFooter.cshtml" />
     <Content Include="Views\Shared\_BackToListFooter.cshtml" />
-    <Content Include="static\styles\biotaxonomic-lists.less" />
+    <Content Include="static\less\biotaxonomic-lists.less" />
     <Content Include="Views\Shared\Help.cshtml" />
     <Content Include="Views\Shared\_EditHeader.cshtml" />
     <Content Include="Views\Shared\_EditFooter.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
+    <Content Include="static\less\inc\colors.less" />
+    <Content Include="static\less\inc\constants.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

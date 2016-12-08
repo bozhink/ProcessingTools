@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha');
 
 gulp.task('less', function () {
-    gulp.src('./static/styles/**/*.less')
+    gulp.src('./static/less/**/*.less')
         .pipe(less())
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(gulp.dest('./static/build/css'))
