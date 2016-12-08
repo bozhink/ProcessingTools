@@ -6,6 +6,10 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 var gulp = require('gulp'),
     less = less = require('gulp-less'),
     cleanCSS = require('gulp-clean-css'),
+    browserify = require('gulp-browserify'),
+    uglify = require('gulp-uglify'),
+    minifier = require('gulp-uglify/minifier'),
+    pump = require('pump'),
     mocha = require('gulp-mocha');
 
 gulp.task('less', function () {
@@ -16,6 +20,26 @@ gulp.task('less', function () {
         .on('error', function () {
             this.emit('end');
         });
+});
+
+gulp.task('browserify', function () {
+    return gulp.src('./static/code/**/*.js')
+      .pipe(browserify())
+      .pipe(gulp.dest('./static/build/js'));
+});
+
+gulp.task('compress', function (done) {
+    var options = {
+        preserveComments: 'license'
+    };
+
+    pump([
+        gulp.src('./static/code/**/*.js'),
+        //minifier(options, uglifyjs),
+        uglify(),
+        gulp.dest('./static/build/js')
+    ],
+    done);
 });
 
 gulp.task('build', ['less']);

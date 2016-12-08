@@ -24,16 +24,20 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
+    "browserify": "^13.1.1",
     "chai": "^3.5.0",
     "eslint": "^3.5.0",
     "eslint-plugin-react": "^6.2.2",
     "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-clean-css": "^2.0.13",
     "gulp-less": "^3.1.0",
     "gulp-mocha": "^3.0.1",
+    "gulp-uglify": "^2.0.0",
     "jquery": "^3.1.1",
     "jsdom": "^9.6.0",
     "mocha": "^3.1.0",
+    "pump": "^1.0.1",
     "sinon": "^1.17.6"
   }
 }
