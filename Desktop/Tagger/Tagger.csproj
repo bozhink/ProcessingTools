@@ -179,6 +179,7 @@
     <Compile Include="Controllers\Generics\GenericXmlContextParserController.cs" />
     <Compile Include="Controllers\Generics\GenericXmlContextTaggerController.cs" />
     <Compile Include="Controllers\ParseTreatmentMaterialsController.cs" />
+    <Compile Include="Controllers\RunCustomXQueryTransformController.cs" />
     <Compile Include="Controllers\TagCollectionCodesController.cs" />
     <Compile Include="Controllers\TagSpecimenCodesController.cs" />
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
