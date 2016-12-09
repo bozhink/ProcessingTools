@@ -22,6 +22,7 @@
         private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
         private const string TextContentTransformerName = "TextContentTransformer";
         private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
+        private const string RemoveTaxonNamePartsTransformerName = "RemoveTaxonNamePartsTransformer";
 
         public override void Load()
         {
@@ -98,6 +99,12 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.TextContentXslFileName]);
 
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(RemoveTaxonNamePartsTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.RemoveTaxonNamePartsXslPath]);
+
             this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
                 .Named(AbbreviationsTransformerName)
                 .WithConstructorArgument(
@@ -138,6 +145,10 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Harvesters.Contracts.Factories.ITextContentTransformersFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Bio.Taxonomy.Processors.Contracts.Factories.IBioTaxonomyTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 

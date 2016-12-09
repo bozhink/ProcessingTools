@@ -1,47 +1,16 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
-    using System;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using Contracts;
     using Contracts.Controllers;
+    using Generics;
     using ProcessingTools.Attributes;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
 
     [Description("Remove all taxon-name-part tags.")]
-    public class RemoveAllTaxonNamePartTagsController : IRemoveAllTaxonNamePartTagsController
+    public class RemoveAllTaxonNamePartTagsController : GenericDocumentFormatterController<ITaxonNamePartsRemover>, IRemoveAllTaxonNamePartTagsController
     {
-        public Task<object> Run(IDocument document, IProgramSettings settings)
+        public RemoveAllTaxonNamePartTagsController(ITaxonNamePartsRemover formatter)
+            : base(formatter)
         {
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
-            return Task.FromResult(this.RunSync(document));
-        }
-
-        // TODO: implement with XSLT
-        private object RunSync(IDocument document)
-        {
-            foreach (XmlNode node in document.SelectNodes("//tn[name(..)!='tp:nomenclature']|//tp:taxon-name[name(..)!='tp:nomenclature']"))
-            {
-                node.InnerXml = this.RemoveTaxonNamePartTags(node.InnerXml);
-            }
-
-            return true;
-        }
-
-        private string RemoveTaxonNamePartTags(string content)
-        {
-            string result = Regex.Replace(content, @"(?<=full-name=""([^<>""]+)""[^>]*>)[^<>]*(?=</)", "$1");
-            return Regex.Replace(result, "</?tn-part[^>]*>|</?tp:taxon-name-part[^>]*>", string.Empty);
         }
     }
 }

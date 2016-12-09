@@ -196,7 +196,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Xsl\taxonomy\regularize-treatment-sec.xsl" />
-    <Content Include="Xsl\taxonomy\remove-taxon-name-parts.xsl" />
+    <Content Include="Xsl\taxonomy\remove-taxon-name-parts.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Xsl\taxonomy\resolve-families-in-checklist.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
