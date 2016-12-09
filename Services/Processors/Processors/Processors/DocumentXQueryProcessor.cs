@@ -6,11 +6,11 @@
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Xml.Contracts.Factories;
 
-    public class DocumentXslProcessor : IDocumentXslProcessor
+    public class DocumentXQueryProcessor : IDocumentXQueryProcessor
     {
-        private readonly IXslTransformerFactory factory;
+        private readonly IXQueryTransformerFactory factory;
 
-        public DocumentXslProcessor(IXslTransformerFactory factory)
+        public DocumentXQueryProcessor(IXQueryTransformerFactory factory)
         {
             if (factory == null)
             {
@@ -20,7 +20,7 @@
             this.factory = factory;
         }
 
-        public string XslFileFullName { get; set; }
+        public string XQueryFileFullName { get; set; }
 
         public async Task Process(IDocument context)
         {
@@ -30,7 +30,7 @@
             }
 
             var content = await this.factory
-                .CreateTransformer(xslFileName: this.XslFileFullName)
+                .CreateTransformer(xqueryFileName: this.XQueryFileFullName)
                 .Transform(context.Xml);
 
             context.Xml = content;
