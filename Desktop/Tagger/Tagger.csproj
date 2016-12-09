@@ -115,6 +115,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Controllers\IRunCustomXQueryTransformController.cs" />
     <Compile Include="Contracts\Controllers\ITagCollectionCodesController.cs" />
     <Compile Include="Contracts\Controllers\ITagSpecimenCodesController.cs" />
     <Compile Include="Contracts\IControllerInfo.cs" />
