@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="XQuery\abbrev.xq">
+    <None Include="XQuery\harvesters\abbrev.xq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="XQuery\select_multi-rank-taxa.xq" />
@@ -108,111 +108,112 @@
     <Content Include="Xsl\envo-items-to-tagreplace.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\expand-genus-in-paragraph.xsl">
+    <Content Include="Xsl\taxonomy\expand-genus-in-paragraph.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\expand-taxa-by-full-name.xsl">
+    <Content Include="Xsl\taxonomy\expand-taxa-by-full-name.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Floats\format-tables.xsl">
+    <Content Include="Xsl\floats\format-tables.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Flora\flora.extract-taxa.xsl">
+    <Content Include="Xsl\flora\flora.extract-taxa.xsl">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Flora\flora.extract.taxa-parts.xsl">
+    <Content Include="Xsl\flora\flora.extract.taxa-parts.xsl">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Flora\flora.generate-template.xsl">
+    <Content Include="Xsl\flora\flora.generate-template.xsl">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Flora\taxa.distinct.xsl">
+    <Content Include="Xsl\flora\taxa.distinct.xsl">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.html-to-xml.xsl">
+    <Content Include="Xsl\format\format.html-to-xml.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.inc.xsl">
+    <Content Include="Xsl\format\format.inc.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.nlm-to-system.xsl">
+    <Content Include="Xsl\format\format.nlm-to-system.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.nlm.initial.xsl">
+    <Content Include="Xsl\format\format.nlm.initial.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.system-to-nlm.xsl">
+    <Content Include="Xsl\format\format.system-to-nlm.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.system.initial.xsl">
+    <Content Include="Xsl\format\format.system.initial.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.to-valid-nlm.xsl">
+    <Content Include="Xsl\format\format.to-valid-nlm.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.xml-to-html.inc.xsl">
+    <Content Include="Xsl\format\format.xml-to-html.inc.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.xml-to-html.xsl">
+    <Content Include="Xsl\format\format.xml-to-html.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Format\format.clear-table-styles.xsl" />
-    <Content Include="Xsl\Format\format.taxon-treatments.xsl">
+    <Content Include="Xsl\format\format.clear-table-styles.xsl" />
+    <Content Include="Xsl\format\format.taxon-treatments.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Xsl\geo\geo-json.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\get-taxa.xsl">
+    <Content Include="Xsl\taxonomy\get-taxa.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\harvest.external-links.xsl">
+    <Content Include="Xsl\harvesters\harvest.external-links.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Harvesters\harvest.references-to-json.xsl" />
+    <Content Include="Xsl\harvesters\harvest.references-to-json.xsl" />
     <Content Include="Xsl\InDesign\Idml\map.xsl" />
     <Content Include="Xsl\ipni-query.xsl">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Materials\taxon-treatment.extract-materials.xsl">
+    <Content Include="Xsl\materials\taxon-treatment.extract-materials.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Xsl\RankListClean.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\references.get.xsl">
+    <Content Include="Xsl\references\references.get.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\references.sort.xsl">
+    <Content Include="Xsl\references\references.sort.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\references.tag-template.xsl">
+    <Content Include="Xsl\references\references.tag-template.xsl">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\regularize-treatment-sec.xsl" />
-    <Content Include="Xsl\resolve-families-in-checklist.xsl">
+    <Content Include="Xsl\taxonomy\regularize-treatment-sec.xsl" />
+    <Content Include="Xsl\taxonomy\remove-taxon-name-parts.xsl" />
+    <Content Include="Xsl\taxonomy\resolve-families-in-checklist.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Special\gavin-laurens-tn.xsl">
+    <Content Include="Xsl\special\gavin-laurens-tn.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Special\gavin-laurens.xsl">
+    <Content Include="Xsl\special\gavin-laurens.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\Special\set-genus-in-paragraph.xsl">
+    <Content Include="Xsl\special\set-genus-in-paragraph.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\taxonomy-parse-postprocess.xsl" />
-    <Content Include="Xsl\taxpub-to-html.xsl">
+    <Content Include="Xsl\taxonomy\taxonomy-parse-postprocess.xsl" />
+    <Content Include="Xsl\format\taxpub-to-html.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\text-content.xsl">
+    <Content Include="Xsl\harvesters\text-content.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Xsl\WhiteListClean.xsl">
