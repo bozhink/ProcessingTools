@@ -36,13 +36,13 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            int numberOfFileNames = settings.FileNames.Count();
+            int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 3)
             {
                 throw new ApplicationException("The name of the XSLT file should be set.");
             }
 
-            this.processor.XslFileFullName = settings.FileNames.ElementAt(2);
+            this.processor.XslFileFullName = settings.FileNames[2];
 
             await this.processor.Process(document);
 

@@ -36,13 +36,13 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            int numberOfFileNames = settings.FileNames.Count();
+            int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 3)
             {
                 throw new ApplicationException("The query file name should be set.");
             }
 
-            string queryFileName = settings.FileNames.ElementAt(2);
+            string queryFileName = settings.FileNames[2];
 
             var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName);
 

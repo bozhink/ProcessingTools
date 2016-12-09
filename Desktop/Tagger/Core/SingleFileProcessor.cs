@@ -107,24 +107,24 @@
 
         private async Task ConfigureFileProcessor()
         {
-            int numberOfFileNames = this.settings.FileNames.Count();
+            int numberOfFileNames = this.settings.FileNames.Count;
 
             if (numberOfFileNames < 1)
             {
                 throw new InvalidOperationException("The name of the input file is required");
             }
 
-            this.InputFileName = this.settings.FileNames.ElementAt(0);
+            this.InputFileName = this.settings.FileNames[0];
 
             this.OutputFileName = numberOfFileNames > 1 ?
-                this.settings.FileNames.ElementAt(1) :
+                this.settings.FileNames[1] :
                 await this.fileNameGenerator.Generate(
                     this.InputFileName,
                     FileConstants.MaximalLengthOfGeneratedNewFileName,
                     true);
 
             this.QueryFileName = numberOfFileNames > 2 ?
-                this.settings.FileNames.ElementAt(2) :
+                this.settings.FileNames[2] :
                 string.Empty;
 
             this.logger?.Log(

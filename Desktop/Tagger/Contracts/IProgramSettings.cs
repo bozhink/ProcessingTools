@@ -18,7 +18,7 @@
 
         bool ExtractTaxa { get; }
 
-        ICollection<string> FileNames { get; }
+        IList<string> FileNames { get; }
 
         bool FormatTreat { get; }
 

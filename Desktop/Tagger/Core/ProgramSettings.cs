@@ -80,7 +80,7 @@
             }
         }
 
-        public ICollection<string> FileNames { get; set; }
+        public IList<string> FileNames { get; set; }
 
         public ICollection<Type> CalledControllers { get; set; }
 
