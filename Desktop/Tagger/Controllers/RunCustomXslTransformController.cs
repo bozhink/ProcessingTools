@@ -42,7 +42,7 @@
                 throw new ApplicationException("The name of the XSLT file should be set.");
             }
 
-            this.processor.XslFilePath = settings.FileNames.ElementAt(2);
+            this.processor.XslFileFullName = settings.FileNames.ElementAt(2);
 
             await this.processor.Process(document);
 

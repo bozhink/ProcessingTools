@@ -4,6 +4,6 @@
 
     public interface IDocumentXslProcessor : IDocumentProcessor
     {
-        string XslFilePath { get; set; }
+        string XslFileFullName { get; set; }
     }
 }

@@ -20,7 +20,7 @@
             this.factory = factory;
         }
 
-        public string XslFilePath { get; set; }
+        public string XslFileFullName { get; set; }
 
         public async Task Process(IDocument context)
         {
@@ -30,7 +30,7 @@
             }
 
             var content = await this.factory
-                .CreateTransformer(this.XslFilePath)
+                .CreateTransformer(this.XslFileFullName)
                 .Transform(context.Xml);
 
             context.Xml = content;
