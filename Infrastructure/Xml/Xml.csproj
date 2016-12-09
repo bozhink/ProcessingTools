@@ -133,31 +133,31 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.html-to-xml.xsl">
+    <Content Include="Xsl\Format\format.html-to-xml.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.inc.xsl">
+    <Content Include="Xsl\Format\format.inc.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.nlm-to-system.xsl">
+    <Content Include="Xsl\Format\format.nlm-to-system.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.nlm.initial.xsl">
+    <Content Include="Xsl\Format\format.nlm.initial.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.system-to-nlm.xsl">
+    <Content Include="Xsl\Format\format.system-to-nlm.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.system.initial.xsl">
+    <Content Include="Xsl\Format\format.system.initial.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.to-valid-nlm.xsl">
+    <Content Include="Xsl\Format\format.to-valid-nlm.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.xml-to-html.inc.xsl">
+    <Content Include="Xsl\Format\format.xml-to-html.inc.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\format.xml-to-html.xsl">
+    <Content Include="Xsl\Format\format.xml-to-html.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Xsl\Format\format.clear-table-styles.xsl" />

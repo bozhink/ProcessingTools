@@ -8,8 +8,8 @@
   xmlns:tp="http://www.plazi.org/taxpub"
   exclude-result-prefixes="xs">
 
-  <xsl:include href="geo/geo-json.xsl" />
-  <xsl:include href="Floats/format-tables.xsl" />
+  <xsl:include href="../geo/geo-json.xsl" />
+  <xsl:include href="../Floats/format-tables.xsl" />
 
   <xsl:variable name="invalid-tag-name" select="'INVALID-TAG'" />
 
