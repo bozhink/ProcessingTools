@@ -40,7 +40,7 @@
 
             var xqueryCache = new XQueryTransformCache();
             var transformer = new XQueryTransformer(
-                ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFilePathKey],
+                ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFilePath],
                 xqueryCache);
             var transformersFactoryMock = new Mock<IAbbreviationsTransformersFactory>();
             transformersFactoryMock

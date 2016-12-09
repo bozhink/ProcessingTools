@@ -41,7 +41,7 @@
 
             var xslCache = new XslTransformCache();
             var transformer = new XslTransformer(
-                ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFilePathKey],
+                ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFilePath],
                 xslCache);
             var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
             transformersFactoryMock

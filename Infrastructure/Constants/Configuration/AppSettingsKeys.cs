@@ -2,25 +2,26 @@
 {
     public sealed class AppSettingsKeys
     {
-        public const string AbbreviationsXQueryFilePathKey = "AbbreviationsXQueryFilePath";
-        public const string BiorepositoriesMongoDabaseNameKey = "BiorepositoriesMongoDabaseName";
-        public const string BiotaxonomyMongoDabaseNameKey = "BiotaxonomyMongoDabaseName";
-        public const string ClientSettingsProviderKey = "ClientSettingsProvider";
-        public const string CodesRemoveNonCodeNodesXslPathKey = "CodesRemoveNonCodeNodesXslPath";
-        public const string ConfigJsonFilePathKey = "ConfigJsonFilePath";
-        public const string DefaultDataFilesDirectoryKey = "DefaultDataFilesDirectory";
-        public const string ExternalLinksXslFilePathKey = "ExternalLinksXslFilePath";
-        public const string FormatHtmlToXmlXslFilePathKey = "FormatHtmlToXmlXslFilePath";
-        public const string FormatNlmToSystemXslPathKey = "FormatNlmToSystemXslPath";
-        public const string FormatSystemToNlmXslPathKey = "FormatSystemToNlmXslPath";
-        public const string FormatTaxonTreatmentsXslPathKey = "FormatTaxonTreatmentsXslPath";
-        public const string FormatXmlToHtmlXslFilePathKey = "FormatXmlToHtmlXslFilePath";
-        public const string NlmInitialFormatXslPathKey = "NlmInitialFormatXslPath";
-        public const string ReferencesGetReferencesXslPathKey = "ReferencesGetReferencesXslPath";
-        public const string ReferencesTagTemplateXslPathKey = "ReferencesTagTemplateXslPath";
-        public const string SystemInitialFormatXslPathKey = "SystemInitialFormatXslPath";
-        public const string TaxonTreatmentExtractMaterialsXslPathKey = "TaxonTreatmentExtractMaterialsXslPath";
-        public const string TextContentXslFileNameKey = "TextContentXslFileName";
-        public const string ZooBankRegistrationNlmXslFileNameKey = "ZoobankNlmXslPath";
+        public const string AbbreviationsXQueryFilePath = "AbbreviationsXQueryFilePath";
+        public const string BiorepositoriesMongoDabaseName = "BiorepositoriesMongoDabaseName";
+        public const string BiotaxonomyMongoDabaseName = "BiotaxonomyMongoDabaseName";
+        public const string ClientSettingsProvider = "ClientSettingsProvider";
+        public const string CodesRemoveNonCodeNodesXslPath = "CodesRemoveNonCodeNodesXslPath";
+        public const string ConfigJsonFilePath = "ConfigJsonFilePath";
+        public const string DefaultDataFilesDirectory = "DefaultDataFilesDirectory";
+        public const string ExternalLinksXslFilePath = "ExternalLinksXslFilePath";
+        public const string FormatHtmlToXmlXslFilePath = "FormatHtmlToXmlXslFilePath";
+        public const string FormatNlmToSystemXslPath = "FormatNlmToSystemXslPath";
+        public const string FormatSystemToNlmXslPath = "FormatSystemToNlmXslPath";
+        public const string FormatTaxonTreatmentsXslPath = "FormatTaxonTreatmentsXslPath";
+        public const string FormatXmlToHtmlXslFilePath = "FormatXmlToHtmlXslFilePath";
+        public const string NlmInitialFormatXslPath = "NlmInitialFormatXslPath";
+        public const string ReferencesGetReferencesXslPath = "ReferencesGetReferencesXslPath";
+        public const string ReferencesTagTemplateXslPath = "ReferencesTagTemplateXslPath";
+        public const string RemoveTaxonNamePartsXslPath = "RemoveTaxonNamePartsXslPath";
+        public const string SystemInitialFormatXslPath = "SystemInitialFormatXslPath";
+        public const string TaxonTreatmentExtractMaterialsXslPath = "TaxonTreatmentExtractMaterialsXslPath";
+        public const string TextContentXslFileName = "TextContentXslFileName";
+        public const string ZooBankRegistrationNlmXslFileName = "ZoobankNlmXslPath";
     }
 }
