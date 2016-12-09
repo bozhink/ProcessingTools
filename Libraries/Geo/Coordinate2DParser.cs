@@ -29,7 +29,6 @@
 
         private const string MatchLatitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
-
         private readonly IUtmCoordianesTransformer utmCoordianesTransformer;
 
         public Coordinate2DParser(IUtmCoordianesTransformer utmCoordianesTransformer)

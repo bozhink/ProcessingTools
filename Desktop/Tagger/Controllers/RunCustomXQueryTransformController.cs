@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Controllers;
@@ -9,6 +8,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
 
+    [Description("Custom XQuery transform.")]
     public class RunCustomXQueryTransformController : IRunCustomXQueryTransformController
     {
         private readonly IDocumentXQueryProcessor processor;
