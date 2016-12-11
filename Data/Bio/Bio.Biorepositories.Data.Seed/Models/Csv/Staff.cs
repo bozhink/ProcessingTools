@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
     using ProcessingTools.Attributes;
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
     using ProcessingTools.Serialization.Csv;
 
     [FileName("grbio_staff.csv")]
     [CsvObject]
-    public class Staff
+    public class Staff : IStaff
     {
         [CsvColumn("Additional Affiliations")]
         public string AdditionalAffiliations { get; set; }

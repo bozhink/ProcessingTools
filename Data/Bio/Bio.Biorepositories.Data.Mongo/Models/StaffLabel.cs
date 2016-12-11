@@ -2,10 +2,10 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
     using ProcessingTools.Contracts;
 
-    public class StaffLabel : IStringIdentifiable
+    public class StaffLabel : IStringIdentifiable, IStaffLabel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

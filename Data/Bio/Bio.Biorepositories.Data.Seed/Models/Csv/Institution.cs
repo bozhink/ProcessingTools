@@ -1,12 +1,13 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Enumerations;
     using ProcessingTools.Serialization.Csv;
 
     [FileName("grbio_institutions.csv")]
     [CsvObject]
-    public class Institution
+    public class Institution : IInstitution
     {
         private string institutionCode;
 

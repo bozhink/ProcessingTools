@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Models
+﻿namespace ProcessingTools.Bio.Biorepositories.Data.Common.Enumerations
 {
     public enum IndexHerbariorumRecordType
     {
