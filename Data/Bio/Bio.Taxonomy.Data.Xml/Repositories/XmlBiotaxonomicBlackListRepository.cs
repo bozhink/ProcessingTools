@@ -10,7 +10,7 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlBiotaxonomicBlackListRepository : FileCrudRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository
+    public class XmlBiotaxonomicBlackListRepository : FileGenericRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository
     {
         public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider, IConfig config)
             : base(contextProvider)

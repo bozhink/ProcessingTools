@@ -4,22 +4,62 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Validation;
+    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
 
-    public abstract class FileGenericRepository<TContext, ITaxonRankEntity> : FileCrudRepository<TContext, ITaxonRankEntity>, IFileGenericRepository<ITaxonRankEntity>
-        where TContext : IFileDbContext<ITaxonRankEntity>
-        where ITaxonRankEntity : class
+    public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>, IFileCrudRepository<TEntity>
+        where TContext : IFileDbContext<TEntity>
+        where TEntity : class
     {
-        public FileGenericRepository(IFileDbContextProvider<TContext, ITaxonRankEntity> contextProvider)
+        public FileGenericRepository(IFileDbContextProvider<TContext, TEntity> contextProvider)
             : base(contextProvider)
         {
         }
 
+        public virtual Task<object> Add(TEntity entity)
+        {
+            DummyValidator.ValidateEntity(entity);
+            return this.Context.Add(entity);
+        }
+
         public virtual Task<long> Count() => Task.FromResult(this.Context.DataSet.LongCount());
 
-        public virtual Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter) => Task.FromResult(this.Context.DataSet.LongCount(filter));
+        public virtual Task<long> Count(Expression<Func<TEntity, bool>> filter) => Task.FromResult(this.Context.DataSet.LongCount(filter));
+
+        public virtual Task<object> Delete(object id)
+        {
+            DummyValidator.ValidateId(id);
+            return this.Context.Delete(id);
+        }
+
+        public abstract Task<long> SaveChanges();
+
+        public virtual Task<object> Update(TEntity entity)
+        {
+            DummyValidator.ValidateEntity(entity);
+            return this.Context.Update(entity);
+        }
+
+        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        {
+            DummyValidator.ValidateId(id);
+            DummyValidator.ValidateUpdate(update);
+
+            var entity = await this.Get(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
+            // TODO : Updater
+            var updater = new Updater<TEntity>(update);
+            await updater.Invoke(entity);
+
+            return await this.Context.Update(entity);
+        }
     }
 }
