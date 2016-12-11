@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Services.Data.Contracts
 {
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface ITaxaInformationResolverDataService<T>
     {
-        Task<IQueryable<T>> Resolve(params string[] scientificNames);
+        Task<IEnumerable<T>> Resolve(params string[] scientificNames);
     }
 }

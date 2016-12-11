@@ -5,12 +5,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
 
     public abstract class TaxaInformationResolverDataServiceFactory<TServiceModel> : ITaxaInformationResolverDataService<TServiceModel>
     {
-        public Task<IQueryable<TServiceModel>> Resolve(params string[] scientificNames)
+        public async Task<IEnumerable<TServiceModel>> Resolve(params string[] scientificNames)
         {
             var queue = new ConcurrentQueue<TServiceModel>();
             var exceptions = new ConcurrentQueue<Exception>();
@@ -38,7 +37,7 @@
 
             var result = new HashSet<TServiceModel>(queue);
 
-            return Task.FromResult(result.AsQueryable());
+            return await Task.FromResult(result);
         }
 
         protected abstract void Delay();

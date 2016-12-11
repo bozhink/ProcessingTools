@@ -1,9 +1,11 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
+    using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class NinjectBiotaxonomyDataBindings : NinjectModule
     {
@@ -27,6 +29,34 @@
 
             this.Bind<IBiotaxonomicBlackListRepositoryProvider>()
                 .To<XmlBiotaxonomicBlackListRepositoryProvider>();
+
+            this.Bind<ITaxonRankSearchableRepository>()
+                .To<XmlTaxonRankSearchableRepository>();
+
+            this.Bind<ITaxonRankRepository>()
+                .To<XmlTaxonRankRepository>();
+
+            this.Bind<IBiotaxonomicBlackListIterableRepository>()
+                .To<XmlBiotaxonomicBlackListIterableRepository>();
+
+            this.Bind<IBiotaxonomicBlackListRepository>()
+                .To<XmlBiotaxonomicBlackListRepository>();
+
+            this.Bind<IRepositoryFactory<ITaxonRankSearchableRepository>>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<IRepositoryFactory<IBiotaxonomicBlackListIterableRepository>>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<IRepositoryFactory<IBiotaxonomicBlackListRepository>>()
+                .ToFactory()
+                .InSingletonScope();
         }
     }
 }
