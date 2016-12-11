@@ -11,7 +11,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Entity.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Entity.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Seed;

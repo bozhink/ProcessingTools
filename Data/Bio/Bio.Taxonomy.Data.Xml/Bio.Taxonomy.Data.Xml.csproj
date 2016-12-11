@@ -50,10 +50,10 @@
     <Compile Include="Models\TaxonXmlModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\ITaxaContextProvider.cs" />
-    <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListIterableRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlTaxonRankRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlTaxonRankSearchableRepository.cs" />
+    <Compile Include="Contracts\Repositories\IXmlBiotaxonomicBlackListIterableRepository.cs" />
+    <Compile Include="Contracts\Repositories\IXmlBiotaxonomicBlackListRepository.cs" />
+    <Compile Include="Contracts\Repositories\IXmlTaxonRankRepository.cs" />
+    <Compile Include="Contracts\Repositories\IXmlTaxonRankSearchableRepository.cs" />
     <Compile Include="Repositories\XmlBiotaxonomicBlackListRepository.cs" />
     <Compile Include="TaxaContextProvider.cs" />
     <Compile Include="Repositories\XmlTaxonRankRepository.cs" />
