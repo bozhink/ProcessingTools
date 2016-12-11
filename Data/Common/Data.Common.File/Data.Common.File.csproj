@@ -41,7 +41,6 @@
     <Compile Include="Repositories\Contracts\IFileRepository.cs" />
     <Compile Include="Repositories\Contracts\IFileSearchableRepository.cs" />
     <Compile Include="Repositories\Contracts\IFileIterableRepository.cs" />
-    <Compile Include="Repositories\FileIterableRepository.cs" />
     <Compile Include="Repositories\FileRepository.cs" />
     <Compile Include="Repositories\AbstractFileGenericRepository.cs" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.File.Repositories
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
@@ -10,7 +11,7 @@
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Enumerations;
 
-    public class FileRepository<TContext, TEntity> : IFileRepository<TEntity>, IFileSearchableRepository<TEntity>
+    public class FileRepository<TContext, TEntity> : IFileRepository<TEntity>, IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
     {
         public FileRepository(IFileDbContextProvider<TContext, TEntity> contextProvider)
@@ -22,6 +23,8 @@
 
             this.Context = contextProvider.Create();
         }
+
+        public virtual IEnumerable<TEntity> Entities => this.Context.DataSet;
 
         protected virtual TContext Context { get; private set; }
 
