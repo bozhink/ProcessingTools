@@ -46,7 +46,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="Attributes\CollectionNameAttribute.cs" />
     <Compile Include="Constants\ConfigurationConstants.cs" />
     <Compile Include="Contracts\IMongoDatabaseProvider.cs" />
