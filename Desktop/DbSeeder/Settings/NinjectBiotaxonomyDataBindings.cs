@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Settings
+﻿namespace ProcessingTools.DbSeeder.Settings
 {
     using Ninject.Extensions.Factory;
     using Ninject.Modules;

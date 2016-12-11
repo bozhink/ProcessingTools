@@ -13,6 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder
@@ -22,7 +23,7 @@
         private const string RanksDataFileNameKey = "RanksDataFileName";
 
         private readonly IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider;
-        private readonly IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider;
+        private readonly IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory;
         private readonly IBioTaxonomyDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
@@ -32,7 +33,7 @@
 
         public BioTaxonomyDataSeeder(
             IBioTaxonomyDbContextFactory contextFactory,
-            IXmlTaxonRankRepositoryProvider taxonomicRepositoryProvider,
+            IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory,
             IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider)
         {
             if (contextFactory == null)
@@ -40,9 +41,9 @@
                 throw new ArgumentNullException(nameof(contextFactory));
             }
 
-            if (taxonomicRepositoryProvider == null)
+            if (taxonomicRepositoryFactory == null)
             {
-                throw new ArgumentNullException(nameof(taxonomicRepositoryProvider));
+                throw new ArgumentNullException(nameof(taxonomicRepositoryFactory));
             }
 
             if (blackListRepositoryProvider == null)
@@ -51,7 +52,7 @@
             }
 
             this.contextFactory = contextFactory;
-            this.taxonomicRepositoryProvider = taxonomicRepositoryProvider;
+            this.taxonomicRepositoryFactory = taxonomicRepositoryFactory;
             this.blackListRepositoryProvider = blackListRepositoryProvider;
             this.seeder = new FileByLineDbContextSeeder<BioTaxonomyDbContext>(this.contextFactory);
 
@@ -96,7 +97,7 @@
                         });
                     });
 
-                var repository = this.taxonomicRepositoryProvider.Create();
+                var repository = this.taxonomicRepositoryFactory.Create();
                 var ranks = new HashSet<string>((await repository.All())
                     .SelectMany(t => t.Ranks)
                     .Select(r => r.MapTaxonRankTypeToTaxonRankString())
@@ -137,7 +138,7 @@
         {
             try
             {
-                var repository = this.taxonomicRepositoryProvider.Create();
+                var repository = this.taxonomicRepositoryFactory.Create();
 
                 var context = this.contextFactory.Create();
 

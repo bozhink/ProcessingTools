@@ -9,5 +9,7 @@
         Task Execute(Action<TRepository> action);
 
         Task Execute(Func<TRepository, Task> function);
+
+        Task<T> Execute<T>(Func<TRepository, Task<T>> function);
     }
 }

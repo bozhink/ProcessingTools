@@ -41,6 +41,27 @@
             });
         }
 
+        public Task<T> Execute<T>(Func<TRepository, Task<T>> function)
+        {
+            if (function == null)
+            {
+                throw new ArgumentNullException(nameof(function));
+            }
+
+            return Task.Run(() =>
+            {
+                var repository = this.repositoryFactory.Create();
+                try
+                {
+                    return function.Invoke(repository).Result;
+                }
+                finally
+                {
+                    repository.TryDispose();
+                }
+            });
+        }
+
         public Task Execute(Action<TRepository> action)
         {
             if (action == null)

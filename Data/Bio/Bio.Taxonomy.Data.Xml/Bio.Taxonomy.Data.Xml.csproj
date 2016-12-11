@@ -55,7 +55,6 @@
     <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IXmlTaxonRankRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlTaxonRankRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IXmlTaxonRankSearchableRepository.cs" />
     <Compile Include="Repositories\XmlBiotaxonomicBlackListIterableRepository.cs" />
     <Compile Include="Repositories\XmlBiotaxonomicBlackListIterableRepositoryProvider.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="Repositories\XmlTaxonRankSearchableRepository.cs" />
     <Compile Include="TaxaContextProvider.cs" />
     <Compile Include="Repositories\XmlTaxonRankRepository.cs" />
-    <Compile Include="Repositories\XmlTaxonRankRepositoryProvider.cs" />
     <Compile Include="TaxaContext.cs" />
     <Compile Include="XmlBiotaxonomicBlackListContext.cs" />
     <Compile Include="XmlBiotaxonomicBlackListContextProvider.cs" />

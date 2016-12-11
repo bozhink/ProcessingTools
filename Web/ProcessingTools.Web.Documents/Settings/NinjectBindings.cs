@@ -42,15 +42,6 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories.ITaxonRankRepositoryProvider>()
-                .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankRepositoryProvider>();
-
-            this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories.IBiotaxonomicBlackListIterableRepositoryProvider>()
-                .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListIterableRepositoryProvider>();
-
-            this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories.IBiotaxonomicBlackListRepositoryProvider>()
-                .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListRepositoryProvider>();
-
             this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
         }
