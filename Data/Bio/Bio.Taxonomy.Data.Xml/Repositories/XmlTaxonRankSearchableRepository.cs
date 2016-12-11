@@ -9,7 +9,7 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlTaxonRankSearchableRepository : FileSearchableRepository<ITaxaContext, ITaxonRankEntity>, IXmlTaxonRankSearchableRepository
+    public class XmlTaxonRankSearchableRepository : FileRepository<ITaxaContext, ITaxonRankEntity>, IXmlTaxonRankSearchableRepository
     {
         public XmlTaxonRankSearchableRepository(ITaxaContextProvider contextProvider, IConfig config)
             : base(contextProvider)

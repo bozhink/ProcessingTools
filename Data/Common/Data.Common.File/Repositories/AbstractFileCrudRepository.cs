@@ -10,7 +10,7 @@
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
 
-    public abstract class FileCrudRepository<TContext, ITaxonRankEntity> : FileSearchableRepository<TContext, ITaxonRankEntity>, IFileCrudRepository<ITaxonRankEntity>
+    public abstract class FileCrudRepository<TContext, ITaxonRankEntity> : FileRepository<TContext, ITaxonRankEntity>, IFileCrudRepository<ITaxonRankEntity>
         where TContext : IFileDbContext<ITaxonRankEntity>
         where ITaxonRankEntity : class
     {
