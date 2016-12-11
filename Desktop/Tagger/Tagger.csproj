@@ -347,6 +347,10 @@
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Common\Data.Common\Data.Common.csproj">
+      <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo\Geo.Data.Common\Geo.Data.Common.csproj">
       <Project>{ab947ca0-8619-48c6-87d5-e01556f17f18}</Project>
       <Name>Geo.Data.Common</Name>

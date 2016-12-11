@@ -34,10 +34,6 @@
                 {
                     function.Invoke(repository).Wait();
                 }
-                catch (Exception e)
-                {
-                    throw e;
-                }
                 finally
                 {
                     repository.TryDispose();
@@ -58,10 +54,6 @@
                 try
                 {
                     action.Invoke(repository);
-                }
-                catch (Exception e)
-                {
-                    throw e;
                 }
                 finally
                 {

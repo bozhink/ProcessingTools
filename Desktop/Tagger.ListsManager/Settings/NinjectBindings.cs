@@ -17,6 +17,9 @@
                  .BindDefaultInterface();
             });
 
+            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
+                .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
+
             this.Bind(b =>
             {
                 b.From(Bio.Taxonomy.Data.Xml.Assembly.Assembly.GetType().Assembly)

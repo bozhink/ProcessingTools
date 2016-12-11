@@ -185,6 +185,10 @@
       <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
       <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Common\Data.Common\Data.Common.csproj">
+      <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
