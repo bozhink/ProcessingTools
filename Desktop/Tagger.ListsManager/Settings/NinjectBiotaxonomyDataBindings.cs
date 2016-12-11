@@ -19,7 +19,7 @@
                 .InSingletonScope();
 
             this.Bind<ITaxonRankSearchableRepository>()
-                .To<XmlTaxonRankSearchableRepository>();
+                .To<XmlTaxonRankRepository>();
 
             this.Bind<ITaxonRankRepository>()
                 .To<XmlTaxonRankRepository>();

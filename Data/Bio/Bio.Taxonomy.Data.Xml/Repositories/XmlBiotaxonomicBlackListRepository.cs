@@ -2,9 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Configurator;
