@@ -6,8 +6,8 @@
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts.Data.Repositories;
