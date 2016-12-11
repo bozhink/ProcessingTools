@@ -5,11 +5,11 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Data.Common.File.Contracts;
 
     public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>, IFileCrudRepository<TEntity>
         where TContext : IFileDbContext<TEntity>

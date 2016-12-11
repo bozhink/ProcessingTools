@@ -6,9 +6,9 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Constants;
-    using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Enumerations;
 
     public class FileRepository<TContext, TEntity> : IFileRepository<TEntity>, IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
