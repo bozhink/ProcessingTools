@@ -7,28 +7,27 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class BiotaxonomicBlackListDataService : IBiotaxonomicBlackListDataService
     {
-        private readonly IBiotaxonomicBlackListRepositoryProvider provider;
+        private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
 
-        public BiotaxonomicBlackListDataService(IBiotaxonomicBlackListRepositoryProvider provider)
+        public BiotaxonomicBlackListDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
-            if (provider == null)
+            if (repositoryProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(repositoryProvider));
             }
 
-            this.provider = provider;
+            this.repositoryProvider = repositoryProvider;
         }
 
         public async Task<object> Add(params string[] items)
         {
             var validItems = this.ValidateInputItems(items);
 
-            var repository = this.provider.Create();
-
+            return await this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validItems.Select(s => new BlackListEntity
                 {
@@ -38,21 +37,17 @@
                 .ToArray();
 
                 await Task.WhenAll(tasks);
-            }
 
-            var result = await repository.SaveChanges();
-
-            repository.TryDispose();
-
-            return result;
+                var result = await repository.SaveChanges();
+                return result;
+            });
         }
 
         public async Task<object> Delete(params string[] items)
         {
             var validItems = this.ValidateInputItems(items);
 
-            var repository = this.provider.Create();
-
+            return await this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validItems.Select(s => new BlackListEntity
                 {
@@ -62,13 +57,10 @@
                 .ToArray();
 
                 await Task.WhenAll(tasks);
-            }
 
-            var result = await repository.SaveChanges();
-
-            repository.TryDispose();
-
-            return result;
+                var result = await repository.SaveChanges();
+                return result;
+            });
         }
 
         private IEnumerable<string> ValidateInputItems(params string[] items)

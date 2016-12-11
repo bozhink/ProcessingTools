@@ -43,7 +43,6 @@
     <Compile Include="Contracts\Repositories\IBiotaxonomicBlackListIterableRepository.cs" />
     <Compile Include="Contracts\Repositories\IBiotaxonomicBlackListIterableRepositoryProvider.cs" />
     <Compile Include="Contracts\Repositories\IBiotaxonomicBlackListRepository.cs" />
-    <Compile Include="Contracts\Repositories\IBiotaxonomicBlackListRepositoryProvider.cs" />
     <Compile Include="Contracts\Repositories\ITaxonRankRepository.cs" />
     <Compile Include="Contracts\Repositories\ITaxonRankSearchableRepository.cs" />
   </ItemGroup>

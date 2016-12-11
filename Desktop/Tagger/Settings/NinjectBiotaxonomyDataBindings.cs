@@ -21,9 +21,6 @@
             this.Bind<IBiotaxonomicBlackListIterableRepositoryProvider>()
                 .To<XmlBiotaxonomicBlackListIterableRepositoryProvider>();
 
-            this.Bind<IBiotaxonomicBlackListRepositoryProvider>()
-                .To<XmlBiotaxonomicBlackListRepositoryProvider>();
-
             this.Bind<ITaxonRankSearchableRepository>()
                 .To<XmlTaxonRankSearchableRepository>();
 
