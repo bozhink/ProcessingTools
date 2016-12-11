@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using Contracts.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.File.Repositories;

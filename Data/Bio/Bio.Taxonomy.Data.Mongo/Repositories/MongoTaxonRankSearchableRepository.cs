@@ -2,7 +2,7 @@
 {
     using Contracts.Repositories;
     using Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 

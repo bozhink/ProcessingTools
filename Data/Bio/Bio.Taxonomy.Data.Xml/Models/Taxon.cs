@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Models
 {
     using System.Collections.Generic;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Types;
 
     public class Taxon : ITaxonRankEntity

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
 
     public class BlackListEntity : IBlackListEntity
     {
