@@ -18,9 +18,6 @@
                 })
                 .InSingletonScope();
 
-            this.Bind<IBiotaxonomicBlackListIterableRepositoryProvider>()
-                .To<XmlBiotaxonomicBlackListIterableRepositoryProvider>();
-
             this.Bind<ITaxonRankSearchableRepository>()
                 .To<XmlTaxonRankSearchableRepository>();
 

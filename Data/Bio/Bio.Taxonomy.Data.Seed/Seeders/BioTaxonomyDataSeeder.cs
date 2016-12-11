@@ -22,7 +22,7 @@
         private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
         private const string RanksDataFileNameKey = "RanksDataFileName";
 
-        private readonly IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider;
+        private readonly IRepositoryFactory<IXmlBiotaxonomicBlackListIterableRepository> blackListRepositoryFactory;
         private readonly IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory;
         private readonly IBioTaxonomyDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
@@ -34,7 +34,7 @@
         public BioTaxonomyDataSeeder(
             IBioTaxonomyDbContextFactory contextFactory,
             IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory,
-            IXmlBiotaxonomicBlackListIterableRepositoryProvider blackListRepositoryProvider)
+            IRepositoryFactory<IXmlBiotaxonomicBlackListIterableRepository> blackListRepositoryFactory)
         {
             if (contextFactory == null)
             {
@@ -46,14 +46,14 @@
                 throw new ArgumentNullException(nameof(taxonomicRepositoryFactory));
             }
 
-            if (blackListRepositoryProvider == null)
+            if (blackListRepositoryFactory == null)
             {
-                throw new ArgumentNullException(nameof(blackListRepositoryProvider));
+                throw new ArgumentNullException(nameof(blackListRepositoryFactory));
             }
 
             this.contextFactory = contextFactory;
             this.taxonomicRepositoryFactory = taxonomicRepositoryFactory;
-            this.blackListRepositoryProvider = blackListRepositoryProvider;
+            this.blackListRepositoryFactory = blackListRepositoryFactory;
             this.seeder = new FileByLineDbContextSeeder<BioTaxonomyDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
@@ -191,7 +191,7 @@
         {
             try
             {
-                var repository = this.blackListRepositoryProvider.Create();
+                var repository = this.blackListRepositoryFactory.Create();
 
                 var context = this.contextFactory.Create();
 

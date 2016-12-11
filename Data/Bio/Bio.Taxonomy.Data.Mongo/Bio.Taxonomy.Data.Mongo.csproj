@@ -57,12 +57,10 @@
     <Compile Include="Models\MongoTaxonRankTypeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Contracts\IMongoBiotaxonomicBlackListIterableRepository.cs" />
-    <Compile Include="Repositories\Contracts\IMongoBiotaxonomicBlackListIterableRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IMongoBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankRepository.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankSearchableRepository.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListIterableRepository.cs" />
-    <Compile Include="Repositories\MongoBiotaxonomicBlackListIterableRepositoryProvider.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankSearchableRepository.cs" />
