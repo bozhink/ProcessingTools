@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories.Contracts;

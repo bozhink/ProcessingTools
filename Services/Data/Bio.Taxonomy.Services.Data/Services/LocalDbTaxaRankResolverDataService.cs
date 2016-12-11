@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
     using ProcessingTools.Common.Exceptions;
