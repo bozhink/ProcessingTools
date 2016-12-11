@@ -15,20 +15,8 @@
         Task<IQueryable<T>> Find(
             Expression<Func<T, bool>> filter);
 
-        Task<IQueryable<Tout>> Find<Tout>(
-            Expression<Func<T, bool>> filter,
-            Expression<Func<T, Tout>> projection);
-
         Task<IQueryable<T>> Find(
             Expression<Func<T, bool>> filter,
-            Expression<Func<T, object>> sort,
-            SortOrder sortOrder = SortOrder.Ascending,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect);
-
-        Task<IQueryable<Tout>> Find<Tout>(
-            Expression<Func<T, bool>> filter,
-            Expression<Func<T, Tout>> projection,
             Expression<Func<T, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
             int skip = 0,

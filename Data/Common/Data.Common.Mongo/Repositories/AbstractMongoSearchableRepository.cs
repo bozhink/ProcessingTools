@@ -37,17 +37,6 @@
             return query;
         });
 
-        public virtual Task<IQueryable<Tout>> Find<Tout>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, Tout>> projection) => Task.Run(() =>
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateProjection(projection);
-
-            var query = this.Collection.AsQueryable().Where(filter).Select(projection);
-            return query;
-        });
-
         public virtual Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
@@ -79,24 +68,6 @@
             query = query.Skip(skip).Take(take);
             return query;
         });
-
-        public virtual async Task<IQueryable<T>> Find<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection,
-            Expression<Func<TEntity, object>> sort,
-            SortOrder sortOrder = SortOrder.Ascending,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateSort(sort);
-            DummyValidator.ValidateProjection(projection);
-            DummyValidator.ValidateSkip(skip);
-            DummyValidator.ValidateTake(take);
-
-            return (await this.Find(filter, sort, sortOrder, skip, take))
-                .Select(projection);
-        }
 
         public virtual Task<TEntity> FindFirst(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
