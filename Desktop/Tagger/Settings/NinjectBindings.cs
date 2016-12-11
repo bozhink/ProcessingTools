@@ -77,18 +77,6 @@
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ConsoleLogger>();
 
-            this.Bind<Bio.Taxonomy.Data.Common.Contracts.Repositories.ITaxonRankSearchableRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankSearchableRepositoryProvider>();
-
-            this.Bind<Bio.Taxonomy.Data.Common.Contracts.Repositories.ITaxonRankRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankRepositoryProvider>();
-
-            this.Bind<Bio.Taxonomy.Data.Common.Contracts.Repositories.IBiotaxonomicBlackListIterableRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListIterableRepositoryProvider>();
-
-            this.Bind<Bio.Taxonomy.Data.Common.Contracts.Repositories.IBiotaxonomicBlackListRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListRepositoryProvider>();
-
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
                 .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>();
 
