@@ -63,7 +63,6 @@
     <Compile Include="Repositories\Contracts\IMongoTaxonRankRepository.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankRepositoryProvider.cs" />
     <Compile Include="Repositories\Contracts\IMongoTaxonRankSearchableRepository.cs" />
-    <Compile Include="Repositories\Contracts\IMongoTaxonRankSearchableRepositoryProvider.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListIterableRepository.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListIterableRepositoryProvider.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListRepository.cs" />
@@ -71,7 +70,6 @@
     <Compile Include="Repositories\MongoTaxonRankRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankRepositoryProvider.cs" />
     <Compile Include="Repositories\MongoTaxonRankSearchableRepository.cs" />
-    <Compile Include="Repositories\MongoTaxonRankSearchableRepositoryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Queries\get-taxa-with-named-ranks.js" />

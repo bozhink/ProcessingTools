@@ -18,9 +18,6 @@
                 })
                 .InSingletonScope();
 
-            this.Bind<ITaxonRankSearchableRepositoryProvider>()
-                .To<XmlTaxonRankSearchableRepositoryProvider>();
-
             this.Bind<ITaxonRankRepositoryProvider>()
                 .To<XmlTaxonRankRepositoryProvider>();
 
