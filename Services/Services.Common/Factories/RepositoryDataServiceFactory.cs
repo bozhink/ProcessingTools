@@ -51,12 +51,14 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = (await repository.Find(x => true, this.SortExpression, SortOrder.Ascending, skip, take))
+            var result = await repository.Query
+                .OrderBy(this.SortExpression)
+                .Skip(skip)
+                .Take(take)
                 .Select(this.MapDbModelToServiceModel)
-                .ToList()
-                .AsQueryable();
+                .ToListAsync();
 
-            return result;
+            return result.AsQueryable();
         }
 
         public override async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)

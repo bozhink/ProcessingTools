@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
     using System;
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
@@ -9,10 +9,10 @@
 
     public interface ISearchableRepository<T> : IRepository<T>, IQueryableRepository<T>
     {
-        Task<IQueryable<T>> Find(
+        Task<IEnumerable<T>> Find(
             Expression<Func<T, bool>> filter);
 
-        Task<IQueryable<T>> Find(
+        Task<IEnumerable<T>> Find(
             Expression<Func<T, bool>> filter,
             Expression<Func<T, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,

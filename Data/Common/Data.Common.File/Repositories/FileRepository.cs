@@ -31,17 +31,19 @@
 
         protected virtual TContext Context { get; private set; }
 
-        public virtual Task<IQueryable<TEntity>> Find(
+        // TODO
+        public virtual Task<IEnumerable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
             {
                 DummyValidator.ValidateFilter(filter);
 
                 var query = this.Context.DataSet;
                 query = query.Where(filter);
-                return query;
+                return query.AsEnumerable();
             });
 
-        public virtual Task<IQueryable<TEntity>> Find(
+        // TODO
+        public virtual Task<IEnumerable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter,
             Expression<Func<TEntity, object>> sort,
             SortOrder sortOrder = SortOrder.Ascending,
@@ -70,8 +72,7 @@
                 }
 
                 query = query.Skip(skip).Take(take);
-
-                return query;
+                return query.AsEnumerable();
             });
 
         public virtual Task<TEntity> FindFirst(
