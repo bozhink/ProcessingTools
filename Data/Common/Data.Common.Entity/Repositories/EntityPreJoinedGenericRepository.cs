@@ -6,10 +6,8 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
     using Models.Contracts;
-
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
@@ -26,36 +24,35 @@
             this.prejoinFields = entity.PreJoinFieldNames?.ToArray();
         }
 
-        public override Task<IQueryable<TEntity>> All()
+        public override IQueryable<TEntity> Query
         {
-            var query = this.DbSet.AsQueryable();
-
-            if (this.prejoinFields != null)
+            get
             {
-                foreach (var fieldName in this.prejoinFields)
-                {
-                    query = query.Include(fieldName);
-                }
-            }
+                var query = this.DbSet.AsQueryable();
 
-            return Task.FromResult(query);
+                if (this.prejoinFields != null)
+                {
+                    foreach (var fieldName in this.prejoinFields)
+                    {
+                        query = query.Include(fieldName);
+                    }
+                }
+
+                return query;
+            }
         }
 
         public override async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
         {
             DummyValidator.ValidateFilter(filter);
-
-            var query = await this.All();
-            return await query.FirstOrDefaultAsync(filter);
+            return await this.Query.FirstOrDefaultAsync(filter);
         }
 
         public override async Task<T> FindFirst<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
         {
             DummyValidator.ValidateFilter(filter);
             DummyValidator.ValidateProjection(projection);
-
-            var query = await this.All();
-            return await query.Where(filter).Select(projection).FirstOrDefaultAsync();
+            return await this.Query.Where(filter).Select(projection).FirstOrDefaultAsync();
         }
     }
 }

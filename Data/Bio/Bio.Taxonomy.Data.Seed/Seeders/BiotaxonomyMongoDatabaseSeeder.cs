@@ -77,9 +77,9 @@
             var mongoTaxonRankRepository = this.mongoTaxonRankRepositoryFactory.Create();
 
             var repository = this.taxonRankRepositoryFactory.Create();
-            var entities = await repository.All();
+            var query = repository.Query;
 
-            foreach (var entity in entities)
+            foreach (var entity in query)
             {
                 await mongoTaxonRankRepository.Add(entity);
             }

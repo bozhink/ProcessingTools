@@ -5,9 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Entity.Contracts;
@@ -23,7 +21,7 @@
         {
         }
 
-        public virtual Task<IQueryable<TEntity>> All() => Task.FromResult(this.DbSet.AsQueryable<TEntity>());
+        public virtual IQueryable<TEntity> Query => this.DbSet.AsQueryable<TEntity>();
 
         public virtual Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>

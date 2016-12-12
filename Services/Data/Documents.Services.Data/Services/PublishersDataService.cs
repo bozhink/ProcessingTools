@@ -14,6 +14,7 @@
     using ProcessingTools.Documents.Services.Data.Models.Publishers;
     using ProcessingTools.Documents.Services.Data.Models.Publishers.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
 
     public class PublishersDataService : IPublishersDataService
     {
@@ -78,13 +79,13 @@
         {
             var repository = this.repositoryProvider.Create();
 
-            var result = (await repository.All())
+            var result = await repository.Query
                 .Select(e => new PublisherListableServiceModel
                 {
                     Id = e.Id,
                     Name = e.Name
                 })
-                .ToList();
+                .ToListAsync();
 
             repository.TryDispose();
 
@@ -105,7 +106,7 @@
 
             var repository = this.repositoryProvider.Create();
 
-            var models = (await repository.All())
+            var models = await repository.Query
                 .OrderByDescending(d => d.DateModified)
                 .Skip(pageNumber * itemsPerPage)
                 .Take(itemsPerPage)
@@ -119,7 +120,7 @@
                     DateCreated = e.DateCreated,
                     DateModified = e.DateModified
                 })
-                .ToList();
+                .ToListAsync();
 
             repository.TryDispose();
 

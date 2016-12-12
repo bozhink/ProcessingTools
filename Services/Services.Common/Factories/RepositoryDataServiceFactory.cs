@@ -6,11 +6,11 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions.Linq;
 
     public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
     {
@@ -27,12 +27,11 @@
                 throw new ArgumentNullException(nameof(repository));
             }
 
-            var result = (await repository.All())
+            var result = await repository.Query
                 .Select(this.MapDbModelToServiceModel)
-                .ToList()
-                .AsQueryable();
+                .ToListAsync();
 
-            return result;
+            return result.AsQueryable();
         }
 
         public override async Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take)

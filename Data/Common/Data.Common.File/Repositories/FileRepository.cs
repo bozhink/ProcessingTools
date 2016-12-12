@@ -27,9 +27,9 @@
 
         public virtual IEnumerable<TEntity> Entities => this.Context.DataSet;
 
-        protected virtual TContext Context { get; private set; }
+        public virtual IQueryable<TEntity> Query => this.Context.DataSet;
 
-        public Task<IQueryable<TEntity>> All() => Task.FromResult(this.Context.DataSet);
+        protected virtual TContext Context { get; private set; }
 
         public virtual Task<IQueryable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>

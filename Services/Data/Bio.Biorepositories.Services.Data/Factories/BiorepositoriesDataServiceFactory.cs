@@ -4,14 +4,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
 
     public abstract class BiorepositoriesDataServiceFactory<TDbModel, TServiceModel> : IBiorepositoriesDataService<TServiceModel>
         where TDbModel : class, IStringIdentifiable
@@ -47,13 +46,13 @@
 
             var repository = this.repositoryProvider.Create();
 
-            var result = (await repository.All())
+            var result = await repository.Query
                 .Where(this.Filter)
                 .OrderBy(i => i.Id)
                 .Skip(skip)
                 .Take(take)
                 .Select(this.Project)
-                .ToList();
+                .ToListAsync();
 
             repository.TryDispose();
 

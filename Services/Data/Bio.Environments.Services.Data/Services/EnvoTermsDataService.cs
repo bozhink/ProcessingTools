@@ -9,6 +9,7 @@
     using ProcessingTools.Bio.Environments.Services.Data.Models;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
+    using ProcessingTools.Extensions.Linq;
 
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
@@ -26,7 +27,7 @@
 
         public async Task<IQueryable<EnvoTermServiceModel>> All()
         {
-            var result = (await this.repository.All())
+            var result = await this.repository.Query
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
                 .Select(n => new EnvoTermServiceModel
@@ -34,9 +35,10 @@
                     EntityId = n.EnvoEntityId,
                     Content = n.Content,
                     EnvoId = n.EnvoEntity.EnvoId
-                });
+                })
+                .ToListAsync();
 
-            return result;
+            return result.AsQueryable();
         }
 
         public async Task<IQueryable<EnvoTermServiceModel>> Get(int skip, int take)
@@ -51,7 +53,7 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = (await this.repository.All())
+            var result = await this.repository.Query
                 .Where(n => !n.Content.Contains("ENVO"))
                 .OrderByDescending(n => n.Content.Length)
                 .Skip(skip)
@@ -61,9 +63,10 @@
                     EntityId = n.EnvoEntityId,
                     Content = n.Content,
                     EnvoId = n.EnvoEntity.EnvoId
-                });
+                })
+                .ToListAsync();
 
-            return result;
+            return result.AsQueryable();
         }
     }
 }

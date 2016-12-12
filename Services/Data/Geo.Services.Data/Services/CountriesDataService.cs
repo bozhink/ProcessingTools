@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Contracts;
@@ -29,13 +30,13 @@
         {
             var repository = this.repositoryProvider.Create();
 
-            var result = (await repository.All())
+            var result = await repository.Query
                 .Select(c => new CountryListableServiceModel
                 {
                     Id = c.Id,
                     Name = c.Name
                 })
-                .ToList<ICountryListableServiceModel>();
+                .ToListAsync<ICountryListableServiceModel>();
 
             repository.TryDispose();
 

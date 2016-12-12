@@ -21,13 +21,9 @@
         {
         }
 
-        public abstract Task<object> Add(TEntity entity);
+        public virtual IQueryable<TEntity> Query => this.Collection.AsQueryable().AsQueryable<TEntity>();
 
-        public Task<IQueryable<TEntity>> All() => Task.Run(() =>
-        {
-            var query = this.Collection.AsQueryable().AsQueryable<TEntity>();
-            return query;
-        });
+        public abstract Task<object> Add(TEntity entity);
 
         public virtual async Task<object> Delete(object id)
         {

@@ -4,14 +4,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
 
     public abstract class MvcDataServiceFactory<TMinimalServiceModel, TServiceModel, TDetailsServiceModel, TDbModel> : IMvcDataService<TMinimalServiceModel, TServiceModel, TDetailsServiceModel>
         where TMinimalServiceModel : class
@@ -51,12 +50,12 @@
 
             var repository = this.RepositoryProvider.Create();
 
-            var models = (await repository.All())
+            var models = await repository.Query
                 .OrderByDescending(d => d.DateModified)
                 .Skip(pageNumber * itemsPerPage)
                 .Take(itemsPerPage)
                 .Select(this.MapDbModelToServiceModel)
-                .ToList();
+                .ToListAsync();
 
             repository.TryDispose();
 
