@@ -31,7 +31,7 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.BiotaxonomyMongoConnectionKey].ConnectionString)
+                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.BiotaxonomyMongoConnection].ConnectionString)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);

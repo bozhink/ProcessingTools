@@ -10,7 +10,7 @@
 
         public BioTaxonomyDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.BioTaxonomyDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.BioTaxonomyDatabaseConnection;
         }
 
         public string ConnectionString

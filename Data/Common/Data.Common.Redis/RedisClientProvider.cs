@@ -9,7 +9,7 @@
     {
         public IRedisClient Create()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.RedisConnectionStringKey].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.RedisConnectionString].ConnectionString;
             return new RedisClient(connectionString);
         }
     }

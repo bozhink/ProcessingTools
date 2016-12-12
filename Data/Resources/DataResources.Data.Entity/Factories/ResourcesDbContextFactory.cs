@@ -10,7 +10,7 @@
 
         public ResourcesDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.DataResourcesDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.DataResourcesDatabaseConnection;
         }
 
         public string ConnectionString
