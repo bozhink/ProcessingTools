@@ -6,12 +6,13 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Repositories;
 
     public class XmlTaxonRankRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository, IXmlTaxonRankSearchableRepository
     {
-        public XmlTaxonRankRepository(IXmlTaxaContextProvider contextProvider, IConfig config)
-            : base(contextProvider)
+        public XmlTaxonRankRepository(IFactory<IXmlTaxaContext> contextFactory, IConfig config)
+            : base(contextFactory)
         {
             if (config == null)
             {

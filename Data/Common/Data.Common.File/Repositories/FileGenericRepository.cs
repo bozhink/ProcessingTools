@@ -8,6 +8,7 @@
     using Contracts.Repositories;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
 
@@ -15,8 +16,8 @@
         where TContext : IFileDbContext<TEntity>
         where TEntity : class
     {
-        public FileGenericRepository(IFileDbContextProvider<TContext, TEntity> contextProvider)
-            : base(contextProvider)
+        public FileGenericRepository(IFactory<TContext> contextFactory)
+            : base(contextFactory)
         {
         }
 

@@ -7,6 +7,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public class NinjectBiotaxonomyDataBindings : NinjectModule
@@ -25,16 +26,16 @@
                 .To<XmlTaxaContext>()
                 .InSingletonScope();
 
-            this.Bind<IXmlTaxaContextProvider>()
-                .To<XmlTaxaContextProvider>()
-                .InSingletonScope();
-
             this.Bind<IXmlBiotaxonomicBlackListContext>()
                 .To<XmlBiotaxonomicBlackListContext>()
                 .InSingletonScope();
 
-            this.Bind<IXmlBiotaxonomicBlackListContextProvider>()
-                .To<XmlBiotaxonomicBlackListContextProvider>()
+            this.Bind<IFactory<IXmlTaxaContext>>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<IFactory<IXmlBiotaxonomicBlackListContext>>()
+                .ToFactory()
                 .InSingletonScope();
 
             // Common

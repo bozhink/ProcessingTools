@@ -9,19 +9,20 @@
     using Contracts.Repositories;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
     public class FileRepository<TContext, TEntity> : IFileRepository<TEntity>, IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
     {
-        public FileRepository(IFileDbContextProvider<TContext, TEntity> contextProvider)
+        public FileRepository(IFactory<TContext> contextFactory)
         {
-            if (contextProvider == null)
+            if (contextFactory == null)
             {
-                throw new ArgumentNullException(nameof(contextProvider));
+                throw new ArgumentNullException(nameof(contextFactory));
             }
 
-            this.Context = contextProvider.Create();
+            this.Context = contextFactory.Create();
         }
 
         public virtual IEnumerable<TEntity> Entities => this.Context.DataSet;
