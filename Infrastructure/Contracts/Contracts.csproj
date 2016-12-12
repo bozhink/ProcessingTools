@@ -107,6 +107,7 @@
     <Compile Include="IDocumentToDocumentCloner.cs" />
     <Compile Include="IDocumentValidator.cs" />
     <Compile Include="IExceptionHandler.cs" />
+    <Compile Include="IFactory.cs" />
     <Compile Include="IGenericDeserializer.cs" />
     <Compile Include="IGenericDocumentCloner.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />
