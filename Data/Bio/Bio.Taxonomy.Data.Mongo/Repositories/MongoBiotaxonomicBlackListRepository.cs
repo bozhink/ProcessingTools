@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Contracts.Repositories;
     using Models;
@@ -9,7 +10,7 @@
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
-    public class MongoBiotaxonomicBlackListRepository : MongoCrudRepository<MongoBlackListEntity, IBlackListEntity>, IMongoBiotaxonomicBlackListRepository
+    public class MongoBiotaxonomicBlackListRepository : MongoCrudRepository<MongoBlackListEntity, IBlackListEntity>, IMongoBiotaxonomicBlackListRepository, IMongoBiotaxonomicBlackListIterableRepository
     {
         private readonly UpdateOptions updateOptions;
 
@@ -22,6 +23,11 @@
                 BypassDocumentValidation = false
             };
         }
+
+        public IEnumerable<IBlackListEntity> Entities => this.Collection
+           .Find("{}")
+           .ToCursor()
+           .ToEnumerable<IBlackListEntity>();
 
         public override Task<object> Add(IBlackListEntity entity) => this.Update(entity);
 
