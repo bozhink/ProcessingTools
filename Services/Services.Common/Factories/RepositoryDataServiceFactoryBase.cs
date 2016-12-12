@@ -4,9 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Contracts.Data.Repositories;
 
     public abstract class RepositoryDataServiceFactoryBase<TDbModel, TServiceModel> : IRepositoryDataService<TDbModel, TServiceModel>

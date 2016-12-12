@@ -9,7 +9,6 @@
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
 
     public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
