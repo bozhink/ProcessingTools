@@ -61,7 +61,6 @@
     <Compile Include="Repositories\MongoGenericRepository.cs" />
     <Compile Include="Repositories\MongoRepository.cs" />
     <Compile Include="Repositories\AbstractMongoSearchableRepository.cs" />
-    <Compile Include="Repositories\MongoSearchableRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
