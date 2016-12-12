@@ -1,12 +1,16 @@
 ﻿namespace ProcessingTools.DbSeeder.Settings
 {
+    using System.Configuration;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
 
@@ -20,6 +24,21 @@
                     return ConfigBuilder.Create();
                 })
                 .InSingletonScope();
+
+            // MongoDB
+            this.Bind<IBiotaxonomyMongoDatabaseInitializer>()
+                .To<BiotaxonomyMongoDatabaseInitializer>()
+                .InSingletonScope();
+
+            this.Bind<IBiotaxonomyMongoDatabaseProvider>()
+                .To<BiotaxonomyMongoDatabaseProvider>()
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.BiotaxonomyMongoConnectionKey].ConnectionString)
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
 
             // Xml
             this.Bind<IXmlTaxaContext>()
