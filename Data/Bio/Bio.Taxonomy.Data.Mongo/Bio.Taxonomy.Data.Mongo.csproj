@@ -47,7 +47,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="BiotaxonomyMongoDatabaseInitializer.cs" />
     <Compile Include="BiotaxonomyMongoDatabaseProvider.cs" />
     <Compile Include="Contracts\IBiotaxonomyMongoDatabaseInitializer.cs" />

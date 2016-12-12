@@ -8,9 +8,9 @@
     using ProcessingTools.Configurator;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlTaxonRankRepository : FileGenericRepository<ITaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository, IXmlTaxonRankSearchableRepository
+    public class XmlTaxonRankRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository, IXmlTaxonRankSearchableRepository
     {
-        public XmlTaxonRankRepository(ITaxaContextProvider contextProvider, IConfig config)
+        public XmlTaxonRankRepository(IXmlTaxaContextProvider contextProvider, IConfig config)
             : base(contextProvider)
         {
             if (config == null)

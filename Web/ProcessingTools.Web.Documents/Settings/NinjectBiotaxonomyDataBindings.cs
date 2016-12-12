@@ -3,6 +3,8 @@
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Configurator;
     using ProcessingTools.Contracts.Data.Repositories;
@@ -18,6 +20,24 @@
                 })
                 .InSingletonScope();
 
+            // Xml
+            this.Bind<IXmlTaxaContext>()
+                .To<XmlTaxaContext>()
+                .InSingletonScope();
+
+            this.Bind<IXmlTaxaContextProvider>()
+                .To<XmlTaxaContextProvider>()
+                .InSingletonScope();
+
+            this.Bind<IXmlBiotaxonomicBlackListContext>()
+                .To<XmlBiotaxonomicBlackListContext>()
+                .InSingletonScope();
+
+            this.Bind<IXmlBiotaxonomicBlackListContextProvider>()
+                .To<XmlBiotaxonomicBlackListContextProvider>()
+                .InSingletonScope();
+
+            // Common
             this.Bind<ITaxonRankSearchableRepository>()
                 .To<XmlTaxonRankRepository>();
 

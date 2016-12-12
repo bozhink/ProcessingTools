@@ -33,13 +33,6 @@
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Bio.Taxonomy.Data.Xml.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

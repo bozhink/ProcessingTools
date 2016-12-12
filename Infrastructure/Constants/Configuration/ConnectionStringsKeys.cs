@@ -7,6 +7,7 @@
         public const string BiorepositoriesMongoConnectionKey = "BiorepositoriesMongoConnection";
         public const string BioTaxonomyDatabaseConnectionKey = "BioTaxonomyDatabaseConnection";
         public const string BiotaxonomyMongoConnectionKey = "BiotaxonomyMongoConnection";
+        public const string BiotaxonomyMongoDabaseNameKey = "BiotaxonomyMongoDabaseName";
         public const string DataDatabseConnectionKey = "DataDatabseConnection";
         public const string DataResourcesDatabaseConnectionKey = "DataResourcesDatabaseConnection";
         public const string DocumentsDatabaseConnectionKey = "DocumentsDatabaseConnection";

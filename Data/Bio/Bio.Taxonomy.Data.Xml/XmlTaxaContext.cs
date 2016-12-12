@@ -16,9 +16,9 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Common.Validation;
 
-    public class TaxaContext : ITaxaContext
+    public class XmlTaxaContext : IXmlTaxaContext
     {
-        public TaxaContext()
+        public XmlTaxaContext()
         {
             this.Taxa = new ConcurrentDictionary<string, ITaxonRankEntity>();
         }
