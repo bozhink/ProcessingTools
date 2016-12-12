@@ -61,7 +61,6 @@
     <Compile Include="Repositories\MongoBiotaxonomicBlackListIterableRepository.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankRepository.cs" />
-    <Compile Include="Repositories\MongoTaxonRankSearchableRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Queries\get-taxa-with-named-ranks.js" />

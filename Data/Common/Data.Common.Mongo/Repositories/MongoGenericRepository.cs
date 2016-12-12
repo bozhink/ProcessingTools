@@ -9,15 +9,15 @@
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Extensions;
 
-    public class MongoGenericRepository<TEntity> : MongoCrudRepository<TEntity, TEntity>, IMongoGenericRepository<TEntity>
-        where TEntity : class
+    public class MongoGenericRepository<T> : MongoCrudRepository<T, T>, IMongoGenericRepository<T>
+        where T : class
     {
         public MongoGenericRepository(IMongoDatabaseProvider provider)
             : base(provider)
         {
         }
 
-        public override async Task<object> Add(TEntity entity)
+        public override async Task<object> Add(T entity)
         {
             DummyValidator.ValidateEntity(entity);
 
@@ -25,7 +25,7 @@
             return entity;
         }
 
-        public override async Task<object> Update(TEntity entity)
+        public override async Task<object> Update(T entity)
         {
             DummyValidator.ValidateEntity(entity);
 
@@ -41,7 +41,7 @@
             return count;
         }
 
-        public virtual async Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        public virtual async Task<long> Count(Expression<Func<T, bool>> filter)
         {
             DummyValidator.ValidateFilter(filter);
 
