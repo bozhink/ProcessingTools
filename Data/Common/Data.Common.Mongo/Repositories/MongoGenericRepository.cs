@@ -3,11 +3,9 @@
     using System;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
+    using Contracts.Repositories;
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public class MongoGenericRepository<TEntity> : MongoCrudRepository<TEntity>, IMongoGenericRepository<TEntity>
         where TEntity : class

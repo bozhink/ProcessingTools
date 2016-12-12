@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
-    using ProcessingTools.Data.Common.Mongo.Repositories.Contracts;
+    using ProcessingTools.Data.Common.Mongo.Contracts.Repositories;
 
     public interface IMongoBiotaxonomicBlackListRepository : IMongoCrudRepository<IBlackListEntity>, IBiotaxonomicBlackListRepository
     {

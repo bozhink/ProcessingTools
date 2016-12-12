@@ -3,12 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
-    using Mongo.Contracts;
-
+    using Contracts.Repositories;
     using MongoDB.Driver;
-
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Contracts.Expressions;
 

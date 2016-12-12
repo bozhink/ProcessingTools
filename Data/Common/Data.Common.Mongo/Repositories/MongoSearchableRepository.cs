@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo.Repositories
 {
-    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using Contracts;
 
     public class MongoSearchableRepository<TEntity> : MongoSearchableRepository<TEntity, TEntity>
         where TEntity : class

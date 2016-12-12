@@ -4,13 +4,11 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
+    using Contracts.Repositories;
     using MongoDB.Driver;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Constants;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Enumerations;
 
     public abstract class MongoSearchableRepository<TDbModel, TEntity> : MongoRepository<TDbModel>, IMongoSearchableRepository<TEntity>
