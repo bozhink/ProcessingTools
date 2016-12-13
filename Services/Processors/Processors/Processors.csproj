@@ -89,6 +89,7 @@
     <Compile Include="Contracts\Quantities\IQuantitiesTagger.cs" />
     <Compile Include="Contracts\References\IReferencesParser.cs" />
     <Compile Include="Contracts\References\IReferencesTagger.cs" />
+    <Compile Include="Contracts\Validation\ICrossReferencesValidator.cs" />
     <Compile Include="Contracts\Validation\IExternalLinksValidator.cs" />
     <Compile Include="Contracts\Validation\ITaxaValidator.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Processors\QueryReplacer.cs" />
     <Compile Include="Processors\References\ReferencesParser.cs" />
     <Compile Include="Processors\References\ReferencesTagger.cs" />
+    <Compile Include="Processors\Validation\CrossReferencesValidator.cs" />
     <Compile Include="Processors\Validation\ExternalLinksValidator.cs" />
     <Compile Include="Processors\Validation\TaxaValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

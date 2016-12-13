@@ -118,6 +118,7 @@
     <Compile Include="Contracts\Controllers\IRunCustomXQueryTransformController.cs" />
     <Compile Include="Contracts\Controllers\ITagCollectionCodesController.cs" />
     <Compile Include="Contracts\Controllers\ITagSpecimenCodesController.cs" />
+    <Compile Include="Contracts\Controllers\IValidateCrossReferencesController.cs" />
     <Compile Include="Contracts\IControllerInfo.cs" />
     <Compile Include="Contracts\Controllers\IExpandLowerTaxaController.cs" />
     <Compile Include="Contracts\Controllers\IExtractTaxaController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Controllers\TagSpecimenCodesController.cs" />
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
+    <Compile Include="Controllers\ValidateCrossReferencesController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
     <Compile Include="Contracts\IProgramSettings.cs" />
     <Compile Include="Contracts\IFileProcessor.cs" />
