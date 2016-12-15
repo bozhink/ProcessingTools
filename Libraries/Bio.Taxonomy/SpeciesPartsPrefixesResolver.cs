@@ -11,6 +11,7 @@
                 { "a", SpeciesPartType.Aberration },
                 { "ab", SpeciesPartType.Aberration },
                 { "aff", SpeciesPartType.Species },
+                { "afn", SpeciesPartType.Species },
                 { "cf", SpeciesPartType.Species },
                 { "f", SpeciesPartType.Form },
                 { "fo", SpeciesPartType.Form },
