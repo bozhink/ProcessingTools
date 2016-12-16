@@ -6,12 +6,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using Contracts;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Extensions.Linq;
 
-    public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
+    public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : IRepositoryDataService<TDbModel, TServiceModel>
     {
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
 
@@ -19,7 +20,29 @@
 
         protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
 
-        public override async Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository)
+        public virtual async Task<object> Add(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (models == null || models.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            var entities = this.MapServiceModelsToEntities(models);
+
+            var tasks = entities.Select(e => repository.Add(e))
+                .ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await repository.SaveChanges();
+        }
+
+        public async Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository)
         {
             if (repository == null)
             {
@@ -33,7 +56,74 @@
             return result.AsQueryable();
         }
 
-        public override async Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take)
+        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (ids == null || ids.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(ids));
+            }
+
+            var tasks = ids.Select(id => repository.Delete(id))
+                .ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await repository.SaveChanges();
+        }
+
+        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (models == null || models.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            var entities = this.MapServiceModelsToEntities(models);
+
+            var tasks = entities.Select(e => repository.Delete(e))
+                .ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await repository.SaveChanges();
+        }
+
+        public async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (ids == null || ids.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(ids));
+            }
+
+            var mapping = this.MapDbModelToServiceModel.Compile();
+
+            var result = new ConcurrentQueue<TServiceModel>();
+
+            foreach (var id in ids)
+            {
+                var entity = await repository.Get(id);
+                result.Enqueue(mapping.Invoke(entity));
+            }
+
+            return new HashSet<TServiceModel>(result).AsQueryable();
+        }
+
+        public async Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take)
         {
             if (repository == null)
             {
@@ -60,32 +150,29 @@
             return result.AsQueryable();
         }
 
-        public override async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
+        public virtual async Task<object> Update(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
-            if (ids == null || ids.Length < 1)
+            if (models == null || models.Length < 1)
             {
-                throw new ArgumentNullException(nameof(ids));
+                throw new ArgumentNullException(nameof(models));
             }
 
-            var mapping = this.MapDbModelToServiceModel.Compile();
+            var entities = this.MapServiceModelsToEntities(models);
 
-            var result = new ConcurrentQueue<TServiceModel>();
+            var tasks = entities.Select(e => repository.Update(e))
+                .ToArray();
 
-            foreach (var id in ids)
-            {
-                var entity = await repository.Get(id);
-                result.Enqueue(mapping.Invoke(entity));
-            }
+            await Task.WhenAll(tasks);
 
-            return new HashSet<TServiceModel>(result).AsQueryable();
+            return await repository.SaveChanges();
         }
 
-        protected override IEnumerable<TDbModel> MapServiceModelsToEntities(TServiceModel[] models)
+        protected IEnumerable<TDbModel> MapServiceModelsToEntities(TServiceModel[] models)
         {
             return models.AsQueryable()
                 .Select(this.MapServiceModelToDbModel)
