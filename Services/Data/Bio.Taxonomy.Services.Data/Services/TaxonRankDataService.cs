@@ -92,7 +92,7 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var query = await repository.Find(t => t.Name == name, t => t.Name, SortOrder.Ascending);
+                var query = await repository.Find(t => t.Name == name);
 
                 var result = query.ToList()
                     .SelectMany(this.MapDbModelToServiceModel)
@@ -125,10 +125,7 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var query = await repository.Find(
-                    t => t.Name.ToLower().Contains(name.ToLower()),
-                    t => t.Name,
-                    SortOrder.Ascending);
+                var query = await repository.Find(t => t.Name.ToLower().Contains(name.ToLower()));
 
                 var result = query.ToList()
                     .SelectMany(this.MapDbModelToServiceModel)
