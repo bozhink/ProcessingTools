@@ -58,18 +58,11 @@
                 .InSingletonScope();
 
             // Common
-            this.Bind<ITaxonRankSearchableRepository>()
-                .To<XmlTaxonRankRepository>();
-
             this.Bind<ITaxonRankRepository>()
                 .To<XmlTaxonRankRepository>();
 
             this.Bind<IBiotaxonomicBlackListRepository>()
                 .To<XmlBiotaxonomicBlackListRepository>();
-
-            this.Bind<IRepositoryFactory<ITaxonRankSearchableRepository>>()
-                .ToFactory()
-                .InSingletonScope();
 
             this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
                 .ToFactory()

@@ -42,7 +42,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Repositories\IBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Contracts\Repositories\ITaxonRankRepository.cs" />
-    <Compile Include="Contracts\Repositories\ITaxonRankSearchableRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

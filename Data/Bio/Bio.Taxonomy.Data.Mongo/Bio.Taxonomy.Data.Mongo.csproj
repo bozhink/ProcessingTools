@@ -56,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Repositories\IMongoBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Contracts\Repositories\IMongoTaxonRankRepository.cs" />
-    <Compile Include="Contracts\Repositories\IMongoTaxonRankSearchableRepository.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Repositories\MongoTaxonRankRepository.cs" />
   </ItemGroup>

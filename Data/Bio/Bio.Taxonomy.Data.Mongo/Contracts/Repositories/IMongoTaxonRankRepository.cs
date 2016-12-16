@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
 
-    public interface IMongoTaxonRankRepository : IMongoTaxonRankSearchableRepository, ITaxonRankRepository
+    public interface IMongoTaxonRankRepository : ITaxonRankRepository
     {
     }
 }

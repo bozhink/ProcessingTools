@@ -12,7 +12,7 @@
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
-    public class MongoTaxonRankRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository, IMongoTaxonRankSearchableRepository
+    public class MongoTaxonRankRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository
     {
         private readonly UpdateOptions updateOptions;
 

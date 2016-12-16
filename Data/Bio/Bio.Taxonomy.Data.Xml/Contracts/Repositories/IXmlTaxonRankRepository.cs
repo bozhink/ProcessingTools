@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
 
-    public interface IXmlTaxonRankRepository : IXmlTaxonRankSearchableRepository, ITaxonRankRepository
+    public interface IXmlTaxonRankRepository : ITaxonRankRepository
     {
     }
 }
