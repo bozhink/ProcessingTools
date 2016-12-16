@@ -53,6 +53,8 @@
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IInsertableRepository.cs" />
+    <Compile Include="Data\Repositories\IRemovableRepository.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
     <Compile Include="Data\Repositories\ISearchableCountableCrudRepository.cs" />
     <Compile Include="Data\Repositories\ISearchableCountableCrudRepositoryProvider.cs" />
