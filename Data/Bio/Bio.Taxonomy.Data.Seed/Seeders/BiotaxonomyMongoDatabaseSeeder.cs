@@ -22,14 +22,14 @@
         private readonly IRepositoryFactory<ITaxonRankRepository> taxonRankRepositoryFactory;
 
         private readonly IRepositoryFactory<IMongoBiotaxonomicBlackListRepository> mongoBiotaxonomicBlackListRepositoryFactory;
-        private readonly IRepositoryFactory<IBiotaxonomicBlackListIterableRepository> biotaxonomicBlackListIterableRepositoryFactory;
+        private readonly IRepositoryFactory<IBiotaxonomicBlackListRepository> biotaxonomicBlackListIterableRepositoryFactory;
 
         public BiotaxonomyMongoDatabaseSeeder(
             IBiotaxonomyMongoDatabaseProvider biotaxonomyMongoDatabaseProvider,
             IRepositoryFactory<IMongoTaxonRankRepository> mongoTaxonRankRepositoryFactory,
             IRepositoryFactory<ITaxonRankRepository> taxonRankRepositoryFactory,
             IRepositoryFactory<IMongoBiotaxonomicBlackListRepository> mongoBiotaxonomicBlackListRepositoryFactory,
-            IRepositoryFactory<IBiotaxonomicBlackListIterableRepository> biotaxonomicBlackListIterableRepositoryFactory)
+            IRepositoryFactory<IBiotaxonomicBlackListRepository> biotaxonomicBlackListIterableRepositoryFactory)
         {
             if (biotaxonomyMongoDatabaseProvider == null)
             {

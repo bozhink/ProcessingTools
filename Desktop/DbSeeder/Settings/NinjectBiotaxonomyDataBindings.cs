@@ -64,9 +64,6 @@
             this.Bind<ITaxonRankRepository>()
                 .To<XmlTaxonRankRepository>();
 
-            this.Bind<IBiotaxonomicBlackListIterableRepository>()
-                .To<XmlBiotaxonomicBlackListRepository>();
-
             this.Bind<IBiotaxonomicBlackListRepository>()
                 .To<XmlBiotaxonomicBlackListRepository>();
 
@@ -75,10 +72,6 @@
                 .InSingletonScope();
 
             this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
-                .ToFactory()
-                .InSingletonScope();
-
-            this.Bind<IRepositoryFactory<IBiotaxonomicBlackListIterableRepository>>()
                 .ToFactory()
                 .InSingletonScope();
 

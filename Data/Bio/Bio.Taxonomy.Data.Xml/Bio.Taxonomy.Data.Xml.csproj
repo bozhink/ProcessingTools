@@ -47,7 +47,6 @@
     <Compile Include="Models\TaxonRankXmlModel.cs" />
     <Compile Include="Models\TaxonXmlModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Contracts\Repositories\IXmlBiotaxonomicBlackListIterableRepository.cs" />
     <Compile Include="Contracts\Repositories\IXmlBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Contracts\Repositories\IXmlTaxonRankRepository.cs" />
     <Compile Include="Contracts\Repositories\IXmlTaxonRankSearchableRepository.cs" />

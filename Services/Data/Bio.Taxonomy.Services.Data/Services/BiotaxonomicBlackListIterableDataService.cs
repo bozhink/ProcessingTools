@@ -11,9 +11,9 @@
 
     public class BiotaxonomicBlackListIterableDataService : IBiotaxonomicBlackListIterableDataService
     {
-        private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListIterableRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
 
-        public BiotaxonomicBlackListIterableDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListIterableRepository> repositoryProvider)
+        public BiotaxonomicBlackListIterableDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
             if (repositoryProvider == null)
             {

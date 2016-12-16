@@ -21,7 +21,7 @@
     {
         private const int NumberOfItemsToImportAtOnce = 100;
 
-        private readonly IRepositoryFactory<IXmlBiotaxonomicBlackListIterableRepository> blackListRepositoryFactory;
+        private readonly IRepositoryFactory<IXmlBiotaxonomicBlackListRepository> blackListRepositoryFactory;
         private readonly IBioTaxonomyDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
         private readonly IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory;
@@ -32,7 +32,7 @@
         public BioTaxonomyDataSeeder(
             IBioTaxonomyDbContextFactory contextFactory,
             IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory,
-            IRepositoryFactory<IXmlBiotaxonomicBlackListIterableRepository> blackListRepositoryFactory)
+            IRepositoryFactory<IXmlBiotaxonomicBlackListRepository> blackListRepositoryFactory)
         {
             if (contextFactory == null)
             {
