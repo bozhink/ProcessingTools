@@ -44,10 +44,12 @@
     <Compile Include="Data\IDatabaseInitializer.cs" />
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
+    <Compile Include="Data\Repositories\IAddableRepository.cs" />
     <Compile Include="Data\Repositories\ICountableCrudRepository.cs" />
     <Compile Include="Data\Repositories\ICountableRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IDeletableRepository.cs" />
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
