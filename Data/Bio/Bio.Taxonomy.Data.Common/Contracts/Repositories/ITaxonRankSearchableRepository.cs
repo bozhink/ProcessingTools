@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface ITaxonRankSearchableRepository : ISearchableRepository<ITaxonRankEntity>
+    public interface ITaxonRankSearchableRepository : IRepository<ITaxonRankEntity>, IFiltrableRepository<ITaxonRankEntity>
     {
     }
 }
