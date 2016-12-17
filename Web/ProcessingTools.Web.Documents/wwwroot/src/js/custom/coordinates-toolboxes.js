@@ -3,7 +3,7 @@
 
     window.coordinatesToolboxes = (function () {
 
-        var templatesProvider = new window.app.services.TemplatesProvider('../../../static/templates');
+        var templatesProvider = new window.app.services.TemplatesProvider('../../../wwwroot/build/dist/templates');
 
         function listAnchorClickEventHandler(event) {
             const TEXT_TO_SCROLL_CLASS_NAME = 'selected-text-to-scroll';
@@ -106,7 +106,11 @@
                         title: toolbox.title
                     })).appendTo($aside);
 
-                    map = leaflet.map('coordinates-map').setView([0.0, 0.0], 0);
+                    map = leaflet.map('coordinates-map', {
+                        center: [0.0, 0.0],
+                        zoom: 0,
+                        worldCopyJump: true
+                    });
 
                     leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors'
