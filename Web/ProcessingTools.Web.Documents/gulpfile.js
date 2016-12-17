@@ -33,8 +33,6 @@ gulp.task('less', function () {
         .pipe(gulp.dest(path.join(distPath, paths.css)));
 });
 
-
-
 gulp.task('build', ['less']);
 
 gulp.task('continuous-build', function () {
