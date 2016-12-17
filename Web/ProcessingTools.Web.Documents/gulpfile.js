@@ -1,12 +1,15 @@
-﻿const compilePath = 'js/compiled',
-    dist = 'js/dist',
-    tsPath = 'typescript/*.ts',
+﻿const
     srcPath = 'wwwroot/src',
     distPath = 'wwwroot/build/dist',
+    compilePath = 'wwwroot/build/compiled',
+    testsPath = 'wwwroot/tests',
     paths = {
         templates: 'templates',
         less: 'less',
-        css: 'css'
+        css: 'css',
+        js: 'js',
+        typescript: 'typescript',
+        tsdefinitions: 'tsdefinitions'
     };
 
 var gulp = require('gulp'),
@@ -21,36 +24,57 @@ var gulp = require('gulp'),
     del = require('del'),
     path = require('path');
 
+/**
+ * Clean build directory
+ */
+gulp.task('clean', function () {
+    return del([compilePath, distPath]);
+});
+
+/**
+ * Copy all templates to the distribution directory
+ */
 gulp.task('copy-templates', function () {
     return gulp.src(path.join(srcPath, paths.templates, '**/*'))
         .pipe(gulp.dest(path.join(distPath, paths.templates)));
 });
 
-gulp.task('less', function () {
-    return gulp.src(path.join(srcPath, paths.less, '**/*'))
+/**
+ * Copy JavaScript files to the distribution directory
+ */
+gulp.task('copy-js', function () {
+    return gulp.src(path.join(srcPath, paths.js, '**/*.js'))
+        .pipe(gulp.dest(path.join(distPath, paths.js)));
+});
+
+/**
+ * Compile and minify LESS files
+ */
+gulp.task('compile-less', function () {
+    return gulp.src(path.join(srcPath, paths.less, '**/*.less'))
         .pipe(less())
-        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(cleanCSS({
+            compatibility: 'ie8'
+        }))
         .pipe(gulp.dest(path.join(distPath, paths.css)));
 });
 
-gulp.task('build', ['less']);
+/**
+ * Compile TypeScript files
+ */
+gulp.task('compile-typescript', function () {
+    var tsResult = gulp.src(path.join(srcPath, paths.typescript, '**/*.ts'))
+        .pipe(ts({
+            target: 'ES5',
+            declarationFiles: false,
+            noResolve: true,
+            noImplicitAny: true
+        }));
 
-gulp.task('continuous-build', function () {
-    gulp.watch(['./static/**/*.*', '!./static/build/**/*.*'], ['build']);
+    tsResult.dts.pipe(gulp.dest(path.join(compilePath, paths.tsdefinitions)));
+
+    return tsResult.js.pipe(gulp.dest(path.join(compilePath, paths.typescript)));
 });
-
-gulp.task('test', function () {
-    gulp.src('./static/code/tests/*.js')
-        .pipe(mocha())
-        .on('error', function () {
-            this.emit('end');
-        });
-});
-
-gulp.task('watch', function () {
-    gulp.watch('./static/code/**/*.js', ['test']);
-});
-
 
 gulp.task('compressScripts', function () {
     gulp
@@ -60,31 +84,34 @@ gulp.task('compressScripts', function () {
         .pipe(plumber())
         .pipe(concat('scripts.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(dist));
+        .pipe(gulp.dest(path.join(distPath, paths.js)));
 });
 
-gulp.task('typescript', function () {
-    var tsResult = gulp.src(tsPath)
-        .pipe(ts({
-            target: 'ES5',
-            declarationFiles: false,
-            noResolve: true,
-            noImplicitAny: true
-        }));
-    
-    tsResult.dts.pipe(gulp.dest(compilePath + '/tsdefinitions'));
-    return tsResult.js.pipe(gulp.dest(compilePath + '/typescript'));
-});
+/**
+ * Build all code
+ */
+gulp.task('build', ['compile-less', 'compile-typescript', 'copy-js', 'copy-templates']);
 
 gulp.task('watch', function () {
-    gulp.watch([tsPath], ['typescript']);
+    gulp.watch([srcPath], ['build']);
 });
 
-gulp.task('default', ['typescript', 'watch', 'compressScripts']);
+/**
+ * Run tests
+ */
+gulp.task('test', function () {
+    return gulp.src(path.join(testsPath, '**/*.js'))
+        .pipe(mocha())
+        .on('error', function () {
+            this.emit('end');
+        });
+});
 
-gulp.task('clean', function () {
-    return del([compilePath, dist]);
-})
+gulp.task('watch-tests', function () {
+    gulp.watch(path.join(testsPath, '**/*.js'), ['test']);
+});
 
-
-
+/**
+ * Default task
+ */
+gulp.task('default', ['build', 'test']);
