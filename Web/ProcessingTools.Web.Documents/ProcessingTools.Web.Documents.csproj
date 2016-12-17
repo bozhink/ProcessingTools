@@ -512,10 +512,6 @@
     <Content Include="Areas\Files\Views\Upload\UploadMultipleFiles.cshtml" />
     <Content Include="Areas\Files\Views\Metadata\Index.cshtml" />
     <Content Include="Areas\Files\Views\Metadata\Details.cshtml" />
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
     <Content Include="static\less\document-preview.less" />
     <Content Include="static\less\toolbox.less" />
     <Content Include="package.json" />
