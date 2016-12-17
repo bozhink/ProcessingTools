@@ -36,7 +36,7 @@
             bundles.Add(new ScriptBundle(BundleNames.InteractJSScriptBundleName)
                 .Include(
                     "~/bower_components/interact/interact.js",
-                    "~/static/code/app/configurations/interact-config.js"));
+                    "~/wwwroot/build/dist/js/app/configurations/interact-config.js"));
 
             // Modernizr
             bundles.Add(new ScriptBundle(BundleNames.ModernizrScriptBundleName)
@@ -53,7 +53,7 @@
             bundles.Add(new ScriptBundle(BundleNames.ToastrScriptBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.js",
-                    "~/static/code/app/configurations/toastr-config.js"));
+                    "~/wwwroot/build/dist/js/app/configurations/toastr-config.js"));
 
             // Handlebars
             bundles.Add(new ScriptBundle(BundleNames.HandlebarsScriptBundleName)
@@ -73,98 +73,98 @@
             bundles.Add(new ScriptBundle(BundleNames.MonacoEditorScriptBundleName)
                 .Include(
                     "~/node_modules/monaco-editor/min/vs/loader.js",
-                    "~/static/code/app/configurations/monaco-editor-config.js"));
+                    "~/wwwroot/build/dist/js/app/configurations/monaco-editor-config.js"));
 
             // Custom
             bundles.Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
                 .Include(
                     "~/bower_components/bootstrap/dist/css/bootstrap.css",
-                    "~/static/build/css/site.css",
-                    "~/static/build/css/tooltips.css"));
+                    "~/wwwroot/build/dist/css/site.css",
+                    "~/wwwroot/build/dist/css/tooltips.css"));
 
             bundles.Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
-                    "~/static/code/app/services/json-requester.js",
-                    "~/static/code/app/services/templates-provider.js"));
+                    "~/wwwroot/build/dist/js/app/services/json-requester.js",
+                    "~/wwwroot/build/dist/js/app/services/templates-provider.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)
                 .Include(
-                    "~/static/code/custom/key-bindings.js"));
+                    "~/wwwroot/build/dist/js/custom/key-bindings.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.AutoSaveScriptBundleName)
                 .Include(
-                    "~/static/code/custom/auto-save.js"));
+                    "~/wwwroot/build/dist/js/custom/auto-save.js"));
 
             // Files Index
             bundles.Add(new ScriptBundle(BundleNames.FilesIndexScriptBundleName)
                 .Include(
-                    "~/static/code/custom/files-index.js"));
+                    "~/wwwroot/build/dist/js/custom/files-index.js"));
 
             // Document Edit
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
-                    "~/static/code/app/services/documents/document-content-data.js",
-                    "~/static/code/app/controllers/documents/document-controller.js",
-                    "~/static/code/custom/document-edit.js"));
+                    "~/wwwroot/build/dist/js/app/services/documents/document-content-data.js",
+                    "~/wwwroot/build/dist/js/app/controllers/documents/document-controller.js",
+                    "~/wwwroot/build/dist/js/custom/document-edit.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
-                    "~/static/build/css/document-edit.css"));
+                    "~/wwwroot/build/dist/css/document-edit.css"));
 
             // Document Preview
             bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
                 .Include(
-                    "~/static/code/app/services/documents/document-content-data.js",
-                    "~/static/code/app/controllers/documents/document-controller.js",
-                    "~/static/code/app/services/templates-provider.js",
-                    "~/static/code/custom/html-selection-tagger.js",
-                    "~/static/code/custom/toolbox-event-handlers.js",
-                    "~/static/code/custom/coordinates-toolboxes.js",
-                    "~/static/code/custom/document-preview.js"));
+                    "~/wwwroot/build/dist/js/app/services/documents/document-content-data.js",
+                    "~/wwwroot/build/dist/js/app/controllers/documents/document-controller.js",
+                    "~/wwwroot/build/dist/js/app/services/templates-provider.js",
+                    "~/wwwroot/build/dist/js/custom/html-selection-tagger.js",
+                    "~/wwwroot/build/dist/js/custom/toolbox-event-handlers.js",
+                    "~/wwwroot/build/dist/js/custom/coordinates-toolboxes.js",
+                    "~/wwwroot/build/dist/js/custom/document-preview.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
                 .Include(
                     "~/bower_components/toastr/toastr.min.css",
-                    "~/static/build/css/toolbox.css",
-                    "~/static/build/css/document-preview.css"));
+                    "~/wwwroot/build/dist/css/toolbox.css",
+                    "~/wwwroot/build/dist/css/document-preview.css"));
 
             // Address List
             bundles.Add(new ScriptBundle(BundleNames.AddressListScriptBundleName)
                 .Include(
-                    "~/static/code/app/controllers/address-list-controller.js"));
+                    "~/wwwroot/build/dist/js/app/controllers/address-list-controller.js"));
 
             bundles.Add(new StyleBundle(BundleNames.AddressListStyleBundleName)
                 .Include(
-                    "~/static/build/css/address-list.css"));
+                    "~/wwwroot/build/dist/css/address-list.css"));
 
             // Taxa Ranks
             bundles.Add(new ScriptBundle(BundleNames.TaxaRanksScriptBundleName)
                 .Include(
-                    "~/static/code/app/models/data/bio/taxonomy/taxon-rank.js",
-                    "~/static/code/app/data/data-set.js",
-                    "~/static/code/app/services/ng-json-requester.js",
-                    "~/static/code/app/services/search-string-service.js",
-                    "~/static/code/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
-                    "~/static/code/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
+                    "~/wwwroot/build/dist/js/app/models/data/bio/taxonomy/taxon-rank.js",
+                    "~/wwwroot/build/dist/js/app/data/data-set.js",
+                    "~/wwwroot/build/dist/js/app/services/ng-json-requester.js",
+                    "~/wwwroot/build/dist/js/app/services/search-string-service.js",
+                    "~/wwwroot/build/dist/js/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
+                    "~/wwwroot/build/dist/js/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
 
             bundles.Add(new StyleBundle(BundleNames.TaxaRanksStyleBundleName)
                 .Include(
-                    "~/static/build/css/biotaxonomic-lists.css"));
+                    "~/wwwroot/build/dist/css/biotaxonomic-lists.css"));
 
             // Biotaxonomic Black List
             bundles.Add(new ScriptBundle(BundleNames.BiotaxonomicBlackListScriptBundleName)
                 .Include(
-                    "~/static/code/app/models/data/bio/taxonomy/black-list-item.js",
-                    "~/static/code/app/data/data-set.js",
-                    "~/static/code/app/services/ng-json-requester.js",
-                    "~/static/code/app/services/search-string-service.js",
-                    "~/static/code/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
-                    "~/static/code/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
+                    "~/wwwroot/build/dist/js/app/models/data/bio/taxonomy/black-list-item.js",
+                    "~/wwwroot/build/dist/js/app/data/data-set.js",
+                    "~/wwwroot/build/dist/js/app/services/ng-json-requester.js",
+                    "~/wwwroot/build/dist/js/app/services/search-string-service.js",
+                    "~/wwwroot/build/dist/js/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
+                    "~/wwwroot/build/dist/js/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
 
             bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
                 .Include(
-                    "~/static/build/css/biotaxonomic-lists.css"));
+                    "~/wwwroot/build/dist/css/biotaxonomic-lists.css"));
 
             ////BundleTable.EnableOptimizations = true;
         }
