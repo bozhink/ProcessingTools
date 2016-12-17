@@ -1,46 +1,39 @@
-﻿/*
-This file in the main entry point for defining Gulp tasks and using Gulp plugins.
-Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
-*/
-
-var gulp = require('gulp'),
-    less = less = require('gulp-less'),
-    cleanCSS = require('gulp-clean-css'),
-    browserify = require('gulp-browserify'),
-    uglify = require('gulp-uglify'),
-    minifier = require('gulp-uglify/minifier'),
-    pump = require('pump'),
-    mocha = require('gulp-mocha');
-
-gulp.task('less', function () {
-    gulp.src('./static/less/**/*.less')
-        .pipe(less())
-        .pipe(cleanCSS({ compatibility: 'ie8' }))
-        .pipe(gulp.dest('./static/build/css'))
-        .on('error', function () {
-            this.emit('end');
-        });
-});
-
-gulp.task('browserify', function () {
-    return gulp.src('./static/code/**/*.js')
-      .pipe(browserify())
-      .pipe(gulp.dest('./static/build/js'));
-});
-
-gulp.task('compress', function (done) {
-    var options = {
-        preserveComments: 'license'
+﻿const compilePath = 'js/compiled',
+    dist = 'js/dist',
+    tsPath = 'typescript/*.ts',
+    srcPath = 'wwwroot/src',
+    distPath = 'wwwroot/build/dist',
+    paths = {
+        templates: 'templates',
+        less: 'less',
+        css: 'css'
     };
 
-    pump([
-        gulp.src('./static/code/**/*.js'),
-        //minifier(options, uglifyjs),
-        uglify(),
-        gulp.dest('./static/build/js')
-    ],
-    done);
+var gulp = require('gulp'),
+    browserify = require('gulp-browserify'),
+    cleanCSS = require('gulp-clean-css'),
+    concat = require('gulp-concat'),
+    less = require('gulp-less'),
+    mocha = require('gulp-mocha'),
+    plumber = require('gulp-plumber'),
+    ts = require('gulp-typescript'),
+    uglify = require('gulp-uglify'),
+    del = require('del'),
+    path = require('path');
+
+gulp.task('copy-templates', function () {
+    return gulp.src(path.join(srcPath, paths.templates, '**/*'))
+        .pipe(gulp.dest(path.join(distPath, paths.templates)));
 });
+
+gulp.task('less', function () {
+    return gulp.src(path.join(srcPath, paths.less, '**/*'))
+        .pipe(less())
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(gulp.dest(path.join(distPath, paths.css)));
+});
+
+
 
 gulp.task('build', ['less']);
 
@@ -59,3 +52,41 @@ gulp.task('test', function () {
 gulp.task('watch', function () {
     gulp.watch('./static/code/**/*.js', ['test']);
 });
+
+
+gulp.task('compressScripts', function () {
+    gulp
+        .src([
+            compilePath + '/typescript/*.js'
+        ])
+        .pipe(plumber())
+        .pipe(concat('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(dist));
+});
+
+gulp.task('typescript', function () {
+    var tsResult = gulp.src(tsPath)
+        .pipe(ts({
+            target: 'ES5',
+            declarationFiles: false,
+            noResolve: true,
+            noImplicitAny: true
+        }));
+    
+    tsResult.dts.pipe(gulp.dest(compilePath + '/tsdefinitions'));
+    return tsResult.js.pipe(gulp.dest(compilePath + '/typescript'));
+});
+
+gulp.task('watch', function () {
+    gulp.watch([tsPath], ['typescript']);
+});
+
+gulp.task('default', ['typescript', 'watch', 'compressScripts']);
+
+gulp.task('clean', function () {
+    return del([compilePath, dist]);
+})
+
+
+
