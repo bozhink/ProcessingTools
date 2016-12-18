@@ -547,7 +547,7 @@
     <Content Include="wwwroot\src\js\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
     <Content Include="wwwroot\src\js\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
     <Content Include="wwwroot\src\js\controllers\documents\document-controller.js" />
-    <Content Include="wwwroot\src\js\custom\files-index.js" />
+    <Content Include="wwwroot\src\js\apps\files-index.js" />
     <Content Include="wwwroot\src\js\data\data-set.js" />
     <Content Include="wwwroot\src\js\models\data\bio\taxonomy\black-list-item.js" />
     <Content Include="wwwroot\src\js\models\data\bio\taxonomy\taxon-rank.js" />

@@ -111,6 +111,16 @@ gulp.task('build-document-preview', function () {
         .pipe(gulp.dest(path.join(distPath, paths.apps)));
 });
 
+gulp.task('build-files-index', function () {
+    return gulp.src([
+            path.join(srcPath, paths.apps, 'files-index.js')
+        ])
+        .pipe(browserify())
+        .pipe(concat('files-index.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(path.join(distPath, paths.apps)));
+});
+
 /**
  * Build all code
  */
@@ -120,7 +130,8 @@ gulp.task('build', [
     'copy-js',
     'copy-templates',
     'build-document-edit',
-    'build-document-preview']);
+    'build-document-preview',
+    'build-files-index']);
 
 gulp.task('watch', function () {
     gulp.watch([srcPath], ['build']);

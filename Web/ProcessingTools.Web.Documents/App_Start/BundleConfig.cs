@@ -45,6 +45,7 @@
             // Bootstrap
             bundles.Add(new ScriptBundle(BundleNames.BootstrapScriptBundleName)
                 .Include(
+                    "~/bower_components/tether/dist/js/tether.min.js",
                     "~/bower_components/bootstrap/dist/js/bootstrap.js",
                     "~/bower_components/respond/src/*.js"));
 
@@ -75,6 +76,7 @@
             // Custom
             bundles.Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
                 .Include(
+                    "~/bower_components/tether/dist/css/tether.min.css",
                     "~/bower_components/bootstrap/dist/css/bootstrap.css",
                     "~/wwwroot/build/dist/css/site.css",
                     "~/wwwroot/build/dist/css/tooltips.css"));
@@ -82,7 +84,7 @@
             // Files Index
             bundles.Add(new ScriptBundle(BundleNames.FilesIndexScriptBundleName)
                 .Include(
-                    "~/wwwroot/build/dist/js/custom/files-index.js"));
+                    "~/wwwroot/build/dist/js/apps/files-index.min.js"));
 
             // Document Edit
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
