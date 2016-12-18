@@ -1,95 +1,90 @@
-﻿(function () {
-    'use strict';
-    var app, configurations;
+﻿'use strict';
 
-    function InteractJSConfig() {
-        function resizeMoveListener(event) {
-            var target = event.target,
-                x = (parseFloat(target.getAttribute('data-x')) || 0),
-                y = (parseFloat(target.getAttribute('data-y')) || 0);
+export function InteractJSConfig(window, interact) {
+    if (!window) {
+        throw 'Window object is required';
+    }
 
-            // update the element's style
-            target.style.width = event.rect.width + 'px';
-            target.style.height = event.rect.height + 'px';
+    if (!interact) {
+        throw 'Interact is required';
+    }
 
-            // translate when resizing from top or left edges
-            x += event.deltaRect.left;
-            y += event.deltaRect.top;
+    function resizeMoveEventHandler(event) {
+        var e = event || window.event,
+            target = e.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
 
-            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+        // update the element's style
+        target.style.width = event.rect.width + 'px';
+        target.style.height = event.rect.height + 'px';
 
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
-            //target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
-        }
+        // translate when resizing from top or left edges
+        x += event.deltaRect.left;
+        y += event.deltaRect.top;
 
-        function dragEndListener(event) {
-            //var textEl = event.target.querySelector('p');
+        target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px,' + y + 'px)';
 
-            //textEl && (textEl.textContent =
-            //  'moved a distance of '
-            //  + (Math.sqrt(event.dx * event.dx +
-            //               event.dy * event.dy) | 0) + 'px');
-        }
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+        //target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
+    }
 
-        function dragMoveListener(event) {
-            var target = event.target,
-                // keep the dragged position in the data-x/data-y attributes
-                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+    function dragEndEventHandler(event) {
+        //var textEl = event.target.querySelector('p');
 
-            // translate the element
-            target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+        //textEl && (textEl.textContent =
+        //  'moved a distance of '
+        //  + (Math.sqrt(event.dx * event.dx +
+        //               event.dy * event.dy) | 0) + 'px');
+    }
 
-            // update the position attributes
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
-        }
+    function dragMoveEventHandler(event) {
+        var e = event || window.event,
+            target = e.target,
+            // keep the dragged position in the data-x/data-y attributes
+            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-        function registerDragabbleBehavior(selector) {
-            window.interact(selector)
-                .draggable({
-                    inertia: true,
-                    restrict: {
-                        //restriction: "parent",
-                        endOnly: true,
-                        elementRect: {
-                            top: 0,
-                            left: 0,
-                            bottom: 1,
-                            right: 1
-                        }
-                    },
-                    autoScroll: true,
-                    onmove: dragMoveListener,
-                    onend: dragEndListener
-                })
-                .resizable({
-                    preserveAspectRatio: false,
-                    edges: {
-                        left: true,
-                        right: true,
-                        bottom: true,
-                        top: true
+        // translate the element
+        target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+        // update the position attributes
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+    }
+
+    function registerDragabbleBehavior(selector) {
+        interact(selector)
+            .draggable({
+                inertia: true,
+                restrict: {
+                    //restriction: "parent",
+                    endOnly: true,
+                    elementRect: {
+                        top: 0,
+                        left: 0,
+                        bottom: 1,
+                        right: 1
                     }
-                })
-                .on('resizemove', resizeMoveListener);
-        }
-
-        return {
-            registerDragabbleBehavior: registerDragabbleBehavior
-        };
+                },
+                autoScroll: true,
+                onmove: dragMoveEventHandler,
+                onend: dragEndEventHandler
+            })
+            .resizable({
+                preserveAspectRatio: false,
+                edges: {
+                    left: true,
+                    right: true,
+                    bottom: true,
+                    top: true
+                }
+            })
+            .on('resizemove', resizeMoveEventHandler);
     }
 
-    if (typeof module !== 'undefined') {
-        module.exports = InteractJSConfig;
-    } else {
-        window.app = window.app || {};
-        app = window.app;
-
-        app.configurations = app.configurations || {};
-        configurations = app.configurations;
-
-        configurations.InteractJSConfig = InteractJSConfig;
-    }
-}());
+    return {
+        registerDragabbleBehavior: registerDragabbleBehavior
+    };
+}
