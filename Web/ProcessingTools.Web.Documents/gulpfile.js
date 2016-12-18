@@ -8,6 +8,7 @@
         less: 'less',
         css: 'css',
         js: 'js',
+        apps: 'js/apps',
         typescript: 'typescript',
         tsdefinitions: 'tsdefinitions'
     };
@@ -77,7 +78,7 @@ gulp.task('compile-typescript', function () {
 });
 
 gulp.task('compressScripts', function () {
-    gulp
+    return gulp
         .src([
             compilePath + '/typescript/*.js'
         ])
@@ -88,9 +89,22 @@ gulp.task('compressScripts', function () {
 });
 
 /**
+ * Compile apps
+ */
+gulp.task('build-document-edit', function () {
+    return gulp.src([
+            path.join(srcPath, paths.apps, 'document-edit.js')
+        ])
+        .pipe(browserify())
+        .pipe(concat('document-edit.min.js'))
+        //.pipe(uglify())
+        .pipe(gulp.dest(path.join(distPath, paths.apps)));
+});
+
+/**
  * Build all code
  */
-gulp.task('build', ['compile-less', 'compile-typescript', 'copy-js', 'copy-templates']);
+gulp.task('build', ['compile-less', 'compile-typescript', 'copy-js', 'copy-templates', 'build-document-edit']);
 
 gulp.task('watch', function () {
     gulp.watch([srcPath], ['build']);

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-export function ToastrConfig(toastr) {
+module.exports = function ToastrConfig(toastr) {
     if (!toastr) {
         throw 'Toastr is required';
     }

@@ -17,41 +17,41 @@ var modes = null,
         display: 'High Contrast Dark'
     }];
 
-function getModes(monaco) {
-    return (function () {
-        var modesIds = monaco.languages.getLanguages().map(function (lang) {
-            return lang.id;
+module.exports = function MonacoEditorConfig(window, require, monaco) {
+
+    function getModes(monaco) {
+        return (function () {
+            var modesIds = monaco.languages.getLanguages().map(function (lang) {
+                return lang.id;
+            });
+
+            modesIds.sort();
+
+            return modesIds.map(function (modeId) {
+                var item = {
+                    modeId: modeId
+                };
+
+                if (modeId === DEFAULT_LANGUAGE) {
+                    item.selected = true;
+                }
+
+                return item;
+            });
+        }());
+    }
+
+    function createEditor(monaco, containerElement, language, theme, content) {
+        content = content || '';
+        language = language || DEFAULT_LANGUAGE;
+        theme = theme || DEFAULT_THEME;
+
+        return monaco.editor.create(containerElement, {
+            value: content.toString(),
+            language: language,
+            theme: theme
         });
-
-        modesIds.sort();
-
-        return modesIds.map(function (modeId) {
-            var item = {
-                modeId: modeId
-            };
-
-            if (modeId === DEFAULT_LANGUAGE) {
-                item.selected = true;
-            }
-
-            return item;
-        });
-    }());
-}
-
-function createEditor(monaco, containerElement, language, theme, content) {
-    content = content || '';
-    language = language || DEFAULT_LANGUAGE;
-    theme = theme || DEFAULT_THEME;
-
-    return monaco.editor.create(containerElement, {
-        value: content.toString(),
-        language: language,
-        theme: theme
-    });
-}
-
-export function MonacoEditorConfig(window, require, monaco) {
+    }
 
     function initEditor(containerElement, pathToNodeModules, language, theme, content) {
         return new Promise(function (resolve, reject) {

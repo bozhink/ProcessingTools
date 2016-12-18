@@ -35,8 +35,7 @@
             // InteractJS
             bundles.Add(new ScriptBundle(BundleNames.InteractJSScriptBundleName)
                 .Include(
-                    "~/bower_components/interact/interact.js",
-                    "~/wwwroot/build/dist/js/app/configurations/interact-config.js"));
+                    "~/bower_components/interact/interact.js"));
 
             // Modernizr
             bundles.Add(new ScriptBundle(BundleNames.ModernizrScriptBundleName)
@@ -52,8 +51,7 @@
             // Toastr
             bundles.Add(new ScriptBundle(BundleNames.ToastrScriptBundleName)
                 .Include(
-                    "~/bower_components/toastr/toastr.js",
-                    "~/wwwroot/build/dist/js/app/configurations/toastr-config.js"));
+                    "~/bower_components/toastr/toastr.js"));
 
             // Handlebars
             bundles.Add(new ScriptBundle(BundleNames.HandlebarsScriptBundleName)
@@ -72,8 +70,7 @@
             // MonacoEditor
             bundles.Add(new ScriptBundle(BundleNames.MonacoEditorScriptBundleName)
                 .Include(
-                    "~/node_modules/monaco-editor/min/vs/loader.js",
-                    "~/wwwroot/build/dist/js/app/configurations/monaco-editor-config.js"));
+                    "~/node_modules/monaco-editor/min/vs/loader.js"));
 
             // Custom
             bundles.Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
@@ -82,15 +79,18 @@
                     "~/wwwroot/build/dist/css/site.css",
                     "~/wwwroot/build/dist/css/tooltips.css"));
 
+            // TODO: remove
             bundles.Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
                 .Include(
                     "~/wwwroot/build/dist/js/app/services/json-requester.js",
                     "~/wwwroot/build/dist/js/app/services/templates-provider.js"));
 
+            // TODO: remove
             bundles.Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)
                 .Include(
                     "~/wwwroot/build/dist/js/custom/key-bindings.js"));
 
+            // TODO: remove
             bundles.Add(new ScriptBundle(BundleNames.AutoSaveScriptBundleName)
                 .Include(
                     "~/wwwroot/build/dist/js/custom/auto-save.js"));
@@ -103,9 +103,7 @@
             // Document Edit
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
-                    "~/wwwroot/build/dist/js/app/services/documents/document-content-data.js",
-                    "~/wwwroot/build/dist/js/app/controllers/documents/document-controller.js",
-                    "~/wwwroot/build/dist/js/custom/document-edit.js"));
+                    "~/wwwroot/build/dist/js/apps/document-edit.min.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
                 .Include(
