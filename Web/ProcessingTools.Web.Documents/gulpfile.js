@@ -101,10 +101,26 @@ gulp.task('build-document-edit', function () {
         .pipe(gulp.dest(path.join(distPath, paths.apps)));
 });
 
+gulp.task('build-document-preview', function () {
+    return gulp.src([
+            path.join(srcPath, paths.apps, 'document-preview.js')
+        ])
+        .pipe(browserify())
+        .pipe(concat('document-preview.min.js'))
+        //.pipe(uglify())
+        .pipe(gulp.dest(path.join(distPath, paths.apps)));
+});
+
 /**
  * Build all code
  */
-gulp.task('build', ['compile-less', 'compile-typescript', 'copy-js', 'copy-templates', 'build-document-edit']);
+gulp.task('build', [
+    'compile-less',
+    'compile-typescript',
+    'copy-js',
+    'copy-templates',
+    'build-document-edit',
+    'build-document-preview']);
 
 gulp.task('watch', function () {
     gulp.watch([srcPath], ['build']);

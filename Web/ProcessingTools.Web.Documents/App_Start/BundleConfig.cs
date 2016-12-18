@@ -79,22 +79,6 @@
                     "~/wwwroot/build/dist/css/site.css",
                     "~/wwwroot/build/dist/css/tooltips.css"));
 
-            // TODO: remove
-            bundles.Add(new ScriptBundle(BundleNames.ApplicationScriptBundleName)
-                .Include(
-                    "~/wwwroot/build/dist/js/app/services/json-requester.js",
-                    "~/wwwroot/build/dist/js/app/services/templates-provider.js"));
-
-            // TODO: remove
-            bundles.Add(new ScriptBundle(BundleNames.KeyBindingsScriptBundleName)
-                .Include(
-                    "~/wwwroot/build/dist/js/custom/key-bindings.js"));
-
-            // TODO: remove
-            bundles.Add(new ScriptBundle(BundleNames.AutoSaveScriptBundleName)
-                .Include(
-                    "~/wwwroot/build/dist/js/custom/auto-save.js"));
-
             // Files Index
             bundles.Add(new ScriptBundle(BundleNames.FilesIndexScriptBundleName)
                 .Include(
@@ -113,13 +97,7 @@
             // Document Preview
             bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
                 .Include(
-                    "~/wwwroot/build/dist/js/app/services/documents/document-content-data.js",
-                    "~/wwwroot/build/dist/js/app/controllers/documents/document-controller.js",
-                    "~/wwwroot/build/dist/js/app/services/templates-provider.js",
-                    "~/wwwroot/build/dist/js/custom/html-selection-tagger.js",
-                    "~/wwwroot/build/dist/js/custom/toolbox-event-handlers.js",
-                    "~/wwwroot/build/dist/js/custom/coordinates-toolboxes.js",
-                    "~/wwwroot/build/dist/js/custom/document-preview.js"));
+                    "~/wwwroot/build/dist/js/apps/document-preview.min.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
                 .Include(

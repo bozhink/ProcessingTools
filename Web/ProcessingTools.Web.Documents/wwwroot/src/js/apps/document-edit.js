@@ -14,7 +14,7 @@ const
 
 
 
-var $ = window.JQuery,
+var $ = window.jQuery,
     document = window.document,
     storage = window.sessionStorage,
     toastr = window.toastr,
@@ -125,7 +125,7 @@ function keyDownEventHandler(event) {
     var e = event || window.event;
 
     if (e.ctrlKey) {
-        // Ctrl + s
+        // Ctrl + S
         if (e.which === 83) {
             e.stopPropagation();
             e.preventDefault();
@@ -133,7 +133,7 @@ function keyDownEventHandler(event) {
             return false;
         }
 
-        // Ctrl + r
+        // Ctrl + R
         if (e.which === 82) {
             e.stopPropagation();
             e.preventDefault();

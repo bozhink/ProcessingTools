@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-export function InteractJSConfig(window, interact) {
+module.exports = function InteractJSConfig(window, interact) {
     if (!window) {
         throw 'Window object is required';
     }
