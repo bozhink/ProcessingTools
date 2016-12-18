@@ -487,7 +487,6 @@
     <Content Include="Areas\Files\Views\Metadata\Index.cshtml" />
     <Content Include="Areas\Files\Views\Metadata\Details.cshtml" />
     <Content Include="package.json" />
-    <Content Include="JSLintNet.json" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -530,7 +529,6 @@
     <Content Include="Views\Shared\Errors\InvalidPageNumber.cshtml" />
     <Content Include="Views\Shared\Errors\InvalidNumberOfItemsPerPage.cshtml" />
     <Content Include="Views\Shared\Errors\BadRequest.cshtml" />
-    <Content Include="Settings.StyleCop" />
     <Content Include="Views\Shared\Errors\InvalidUserId.cshtml" />
     <Content Include="Views\Shared\_DetailsHeader.cshtml" />
     <Content Include="Views\Shared\_DetailsFooter.cshtml" />
@@ -538,6 +536,41 @@
     <Content Include="Views\Shared\Help.cshtml" />
     <Content Include="Views\Shared\_EditHeader.cshtml" />
     <Content Include="Views\Shared\_EditFooter.cshtml" />
+    <Content Include="wwwroot\src\js\apps\document-edit.js" />
+    <Content Include="wwwroot\src\js\apps\document-preview.js" />
+    <Content Include="wwwroot\src\js\components\coordinates-toolboxes.js" />
+    <Content Include="wwwroot\src\js\components\html-selection-tagger.js" />
+    <Content Include="wwwroot\src\js\configurations\interact-config.js" />
+    <Content Include="wwwroot\src\js\configurations\monaco-editor-config.js" />
+    <Content Include="wwwroot\src\js\configurations\toastr-config.js" />
+    <Content Include="wwwroot\src\js\controllers\address-list-controller.js" />
+    <Content Include="wwwroot\src\js\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
+    <Content Include="wwwroot\src\js\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
+    <Content Include="wwwroot\src\js\controllers\documents\document-controller.js" />
+    <Content Include="wwwroot\src\js\custom\files-index.js" />
+    <Content Include="wwwroot\src\js\data\data-set.js" />
+    <Content Include="wwwroot\src\js\models\data\bio\taxonomy\black-list-item.js" />
+    <Content Include="wwwroot\src\js\models\data\bio\taxonomy\taxon-rank.js" />
+    <Content Include="wwwroot\src\js\modules\data\bio\taxonomy\biotaxonomic-black-list-app.js" />
+    <Content Include="wwwroot\src\js\modules\data\bio\taxonomy\taxa-ranks-app.js" />
+    <Content Include="wwwroot\src\js\services\documents\document-content-data.js" />
+    <Content Include="wwwroot\src\js\services\json-requester.js" />
+    <Content Include="wwwroot\src\js\services\ng-json-requester.js" />
+    <Content Include="wwwroot\src\js\services\search-string-service.js" />
+    <Content Include="wwwroot\src\js\services\templates-provider.js" />
+    <Content Include="wwwroot\src\js\services\toastr-reporter.js" />
+    <Content Include="wwwroot\src\less\address-list.less" />
+    <Content Include="wwwroot\src\less\biotaxonomic-lists.less" />
+    <Content Include="wwwroot\src\less\document-edit.less" />
+    <Content Include="wwwroot\src\less\document-preview.less" />
+    <Content Include="wwwroot\src\less\inc\colors.less" />
+    <Content Include="wwwroot\src\less\inc\constants.less" />
+    <Content Include="wwwroot\src\less\site.less" />
+    <Content Include="wwwroot\src\less\toolbox.less" />
+    <Content Include="wwwroot\src\less\tooltips.less" />
+    <Content Include="wwwroot\src\templates\coordinates-map.handlebars" />
+    <Content Include="wwwroot\src\templates\coordinates-toolbox.handlebars" />
+    <Content Include="wwwroot\tests\data-set-tests.js" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
   </ItemGroup>
   <ItemGroup>
