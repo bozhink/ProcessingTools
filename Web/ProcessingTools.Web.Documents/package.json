@@ -25,6 +25,9 @@
     "monaco-editor": "^0.7.0"
   },
   "devDependencies": {
+    "@types/angular": "^1.5.21",
+    "@types/jquery": "^2.0.34",
+    "@types/node": "^6.0.52",
     "babel-eslint": "^7.1.1",
     "babel-preset-es2015": "^6.18.0",
     "babelify": "^7.3.0",
@@ -52,6 +55,7 @@
     "sinon": "^1.17.6",
     "tsd": "^0.6.5",
     "tsify": "^2.0.7",
+    "tslint": "^4.1.1",
     "typescript": "^2.1.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
