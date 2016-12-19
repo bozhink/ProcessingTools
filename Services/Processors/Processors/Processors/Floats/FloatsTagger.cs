@@ -10,6 +10,7 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
@@ -178,11 +179,19 @@
                             {
                                 string thisXrefLastItem = Regex.Replace(matchLeftXref.Value, @"\A<xref [^>]*>[^<>]*?([A-Z]?\d+)</xref>, <xref [^>]*>[A-Z]?\d+", "$1");
                                 string thisXrefRid = Regex.Replace(matchLeftXref.Value, @"\A<xref [^>]*rid=""([^<>""]+)""[^>]*>[^<>]+</xref>, <xref [^>]*>[A-Z]?\d+", "$1");
-                                string thisLabelLastItem = Regex.Replace(this.floatLabelById[thisXrefRid].ToString(), @"\A.*?([A-Z]?\d+)\W*?\Z", "$1");
+                                string label = this.floatLabelById[thisXrefRid]?.ToString();
 
-                                if (string.Compare(thisXrefLastItem, thisLabelLastItem) != 0)
+                                if (!string.IsNullOrEmpty(label))
                                 {
-                                    leftXref = Regex.Replace(matchLeftXref.Value, @"(?=</xref>, )", "–" + thisLabelLastItem);
+                                    string thisLabelLastItem = Regex.Replace(label, @"\A.*?([A-Z]?\d+)\W*?\Z", "$1");
+                                    if (string.Compare(thisXrefLastItem, thisLabelLastItem) != 0)
+                                    {
+                                        leftXref = Regex.Replace(matchLeftXref.Value, @"(?=</xref>, )", "–" + thisLabelLastItem);
+                                    }
+                                }
+                                else
+                                {
+                                    this.logger?.Log(LogType.Warning, "Invalid rid: {0} in {1}", thisXrefRid, xrefGroup);
                                 }
                             }
 
@@ -197,11 +206,19 @@
                             {
                                 string thisXrefFirstItem = Regex.Replace(matchRightXref.Value, @"[A-Z]?\d+</xref>, <xref [^>]*>([A-Z]?\d+)[^<>]*?</xref>\Z", "$1");
                                 string thisXrefRid = Regex.Replace(matchRightXref.Value, @"[A-Z]?\d+</xref>, <xref [^>]*rid=""([^<>""]+)""[^>]*>[^<>]+</xref>\Z", "$1");
-                                string thisLabelFirstItem = Regex.Replace(this.floatLabelById[thisXrefRid].ToString(), @"\A([A-Z]?\d+).*?\Z", "$1");
+                                string label = this.floatLabelById[thisXrefRid]?.ToString();
 
-                                if (string.Compare(thisXrefFirstItem, thisLabelFirstItem) != 0)
+                                if (!string.IsNullOrEmpty(label))
                                 {
-                                    rightXref = Regex.Replace(matchRightXref.Value, @"(?<=, <xref [^>]*>)", thisLabelFirstItem + "–");
+                                    string thisLabelFirstItem = Regex.Replace(label, @"\A([A-Z]?\d+).*?\Z", "$1");
+                                    if (string.Compare(thisXrefFirstItem, thisLabelFirstItem) != 0)
+                                    {
+                                        rightXref = Regex.Replace(matchRightXref.Value, @"(?<=, <xref [^>]*>)", thisLabelFirstItem + "–");
+                                    }
+                                }
+                                else
+                                {
+                                    this.logger?.Log(LogType.Warning, "Invalid rid: {0} in {1}", thisXrefRid, xrefGroup);
                                 }
                             }
 
