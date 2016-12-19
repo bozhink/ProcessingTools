@@ -9,9 +9,7 @@
     using Contracts.Repositories;
     using MongoDB.Driver;
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Expressions;
-    using ProcessingTools.Enumerations;
 
     public abstract class MongoCrudRepository<TDbModel, TEntity> : MongoRepository<TDbModel>, IMongoCrudRepository<TEntity>, IMongoSearchableRepository<TEntity>
         where TEntity : class
@@ -43,39 +41,6 @@
 
                 var query = this.Collection.AsQueryable().Where(filter).AsEnumerable();
                 return query;
-            });
-
-        // TODO
-        public virtual Task<IEnumerable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, object>> sort,
-            SortOrder sortOrder = SortOrder.Ascending,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect) => Task.Run(() =>
-            {
-                DummyValidator.ValidateFilter(filter);
-                DummyValidator.ValidateSort(sort);
-                DummyValidator.ValidateSkip(skip);
-                DummyValidator.ValidateTake(take);
-
-                var query = this.Collection.AsQueryable().Where(filter);
-
-                switch (sortOrder)
-                {
-                    case SortOrder.Ascending:
-                        query = query.OrderBy(sort);
-                        break;
-
-                    case SortOrder.Descending:
-                        query = query.OrderByDescending(sort);
-                        break;
-
-                    default:
-                        throw new NotImplementedException();
-                }
-
-                query = query.Skip(skip).Take(take);
-                return query.AsEnumerable();
             });
 
         public virtual Task<TEntity> FindFirst(

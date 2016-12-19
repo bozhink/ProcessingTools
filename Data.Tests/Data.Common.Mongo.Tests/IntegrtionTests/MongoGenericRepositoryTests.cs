@@ -52,7 +52,7 @@
         [TestMethod]
         [Timeout(5000)]
         [Ignore]
-        public void MongoGenericRepository_AddAllSkipTakeDelete_ShouldWork()
+        public void MongoGenericRepository_AddAllFindDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
             var provider = new RealMongoDatabaseProvider(databaseName);
@@ -64,7 +64,7 @@
 
             repository.Add(book).Wait();
 
-            var books = repository.Find(b => true, b => b.Id, SortOrder.Ascending, 0, 1).Result.ToList();
+            var books = repository.Find(b => true).Result.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 

@@ -8,9 +8,7 @@
     using Contracts;
     using Contracts.Repositories;
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
 
     public class FileRepository<TContext, TEntity> : IFileRepository<TEntity>, IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
@@ -39,39 +37,6 @@
 
                 var query = this.Context.DataSet;
                 query = query.Where(filter);
-                return query.AsEnumerable();
-            });
-
-        // TODO
-        public virtual Task<IEnumerable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, object>> sort,
-            SortOrder sortOrder = SortOrder.Ascending,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect) => Task.Run(() =>
-            {
-                DummyValidator.ValidateFilter(filter);
-                DummyValidator.ValidateSort(sort);
-                DummyValidator.ValidateSkip(skip);
-                DummyValidator.ValidateTake(take);
-
-                var query = this.Context.DataSet.Where(filter);
-
-                switch (sortOrder)
-                {
-                    case SortOrder.Ascending:
-                        query = query.OrderBy(sort);
-                        break;
-
-                    case SortOrder.Descending:
-                        query = query.OrderByDescending(sort);
-                        break;
-
-                    default:
-                        throw new NotImplementedException();
-                }
-
-                query = query.Skip(skip).Take(take);
                 return query.AsEnumerable();
             });
 

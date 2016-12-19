@@ -9,7 +9,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlTaxonRankRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository, IXmlTaxonRankSearchableRepository
+    public class XmlTaxonRankRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
     {
         public XmlTaxonRankRepository(IFactory<IXmlTaxaContext> contextFactory, IConfig config)
             : base(contextFactory)

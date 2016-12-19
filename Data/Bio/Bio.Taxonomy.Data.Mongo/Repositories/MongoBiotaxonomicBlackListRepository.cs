@@ -10,7 +10,7 @@
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
-    public class MongoBiotaxonomicBlackListRepository : MongoCrudRepository<MongoBlackListEntity, IBlackListEntity>, IMongoBiotaxonomicBlackListRepository, IMongoBiotaxonomicBlackListIterableRepository
+    public class MongoBiotaxonomicBlackListRepository : MongoCrudRepository<MongoBlackListEntity, IBlackListEntity>, IMongoBiotaxonomicBlackListRepository
     {
         private readonly UpdateOptions updateOptions;
 

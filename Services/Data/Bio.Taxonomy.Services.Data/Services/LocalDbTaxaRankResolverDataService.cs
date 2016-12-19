@@ -13,9 +13,9 @@
 
     public class LocalDbTaxaRankResolverDataService : ILocalDbTaxaRankResolverDataService
     {
-        private readonly IGenericRepositoryProvider<ITaxonRankSearchableRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
 
-        public LocalDbTaxaRankResolverDataService(IGenericRepositoryProvider<ITaxonRankSearchableRepository> repositoryProvider)
+        public LocalDbTaxaRankResolverDataService(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -54,7 +54,7 @@
             return new HashSet<ITaxonRank>(result);
         }
 
-        private async Task FindRankForSingleTaxon(ITaxonRankSearchableRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task FindRankForSingleTaxon(ITaxonRankRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
         {
             var entity = await repository.FindFirst(t => t.Name.ToLower() == name);
 

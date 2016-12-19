@@ -9,7 +9,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlBiotaxonomicBlackListRepository : FileGenericRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository, IXmlBiotaxonomicBlackListIterableRepository
+    public class XmlBiotaxonomicBlackListRepository : FileGenericRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository
     {
         public XmlBiotaxonomicBlackListRepository(IFactory<IXmlBiotaxonomicBlackListContext> contextFactory, IConfig config)
             : base(contextFactory)

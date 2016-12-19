@@ -8,9 +8,7 @@
     using System.Threading.Tasks;
     using Contracts;
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Enumerations;
 
     public abstract class EntitySearchableRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IDisposable
         where TContext : DbContext
@@ -32,39 +30,6 @@
 
             var query = this.DbSet.Where(filter).AsEnumerable();
             return query;
-        });
-
-        // TODO
-        public virtual Task<IEnumerable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, object>> sort,
-            SortOrder sortOrder = SortOrder.Ascending,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect) => Task.Run(() =>
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateSort(sort);
-            DummyValidator.ValidateSkip(skip);
-            DummyValidator.ValidateTake(take);
-
-            var query = this.DbSet.Where(filter);
-
-            switch (sortOrder)
-            {
-                case SortOrder.Ascending:
-                    query = query.OrderBy(sort);
-                    break;
-
-                case SortOrder.Descending:
-                    query = query.OrderByDescending(sort);
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            query = query.Skip(skip).Take(take);
-            return query.AsEnumerable();
         });
 
         public virtual async Task<TEntity> FindFirst(
