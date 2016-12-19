@@ -32,6 +32,7 @@
     "tether": "^1.4.0"
   },
   "resolutions": {
-    "jquery-validation": ">=1.8"
+    "jquery-validation": ">=1.8",
+    "jquery": ">=1.8"
   }
 }
