@@ -8,78 +8,36 @@
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            // Angular
-            bundles.Add(new ScriptBundle(BundleNames.AngularScriptBundleName)
+            // Defaults
+            bundles.Add(new ScriptBundle(BundleNames.DefaultScriptBundleName)
                 .Include(
-                    "~/bower_components/angular/angular.min.js"));
-
-            // JQuery
-            bundles.Add(new ScriptBundle(BundleNames.JQueryScriptBundleName)
-                .Include(
-                    "~/bower_components/jquery/dist/jquery.js"));
-
-            bundles.Add(new ScriptBundle(BundleNames.JQueryFormScriptBundleName)
-                .Include(
-                    "~/bower_components/jquery-form/jquery.form.js"));
-
-            bundles.Add(new ScriptBundle(BundleNames.JQueryValidationScriptBundleName)
-                .Include(
-                    "~/bower_components/jquery-validation/dist/jquery.validate.min.js",
-                    "~/bower_components/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"));
-
-            // CryptoJS
-            bundles.Add(new ScriptBundle(BundleNames.CryptoJSScriptBundleName)
-                .Include(
-                    "~/bower_components/cryptojs-sha1/cryptojs-sha1.js"));
-
-            // InteractJS
-            bundles.Add(new ScriptBundle(BundleNames.InteractJSScriptBundleName)
-                .Include(
-                    "~/bower_components/interact/interact.js"));
-
-            // Modernizr
-            bundles.Add(new ScriptBundle(BundleNames.ModernizrScriptBundleName)
-                .Include(
-                    "~/bower_components/modernizr/modernizr.js"));
-
-            // Bootstrap
-            bundles.Add(new ScriptBundle(BundleNames.BootstrapScriptBundleName)
-                .Include(
+                    "~/bower_components/jquery/dist/jquery.js",
                     "~/bower_components/tether/dist/js/tether.min.js",
                     "~/bower_components/bootstrap/dist/js/bootstrap.js",
                     "~/bower_components/respond/src/*.js"));
 
-            // Toastr
-            bundles.Add(new ScriptBundle(BundleNames.ToastrScriptBundleName)
-                .Include(
-                    "~/bower_components/toastr/toastr.js"));
-
-            // Handlebars
-            bundles.Add(new ScriptBundle(BundleNames.HandlebarsScriptBundleName)
-                .Include(
-                    "~/bower_components/handlebars/handlebars.min.js"));
-
-            // Leaflet
-            bundles.Add(new ScriptBundle(BundleNames.LeafletScriptBundleName)
-                .Include(
-                    "~/bower_components/leaflet/dist/leaflet.js"));
-
-            bundles.Add(new StyleBundle(BundleNames.LeafletStyleBundleName)
-                .Include(
-                    "~/bower_components/leaflet/dist/leaflet.css"));
-
-            // MonacoEditor
-            bundles.Add(new ScriptBundle(BundleNames.MonacoEditorScriptBundleName)
-                .Include(
-                    "~/node_modules/monaco-editor/min/vs/loader.js"));
-
-            // Custom
             bundles.Add(new StyleBundle(BundleNames.DefaultStyleBundleName)
                 .Include(
                     "~/bower_components/tether/dist/css/tether.min.css",
                     "~/bower_components/bootstrap/dist/css/bootstrap.css",
                     "~/wwwroot/build/dist/css/site.css",
                     "~/wwwroot/build/dist/css/tooltips.css"));
+
+            // Angular
+            bundles.Add(new ScriptBundle(BundleNames.AngularScriptBundleName)
+                .Include(
+                    "~/bower_components/angular/angular.min.js"));
+
+            // JQuery
+            bundles.Add(new ScriptBundle(BundleNames.JQueryValidationScriptBundleName)
+                .Include(
+                    "~/bower_components/jquery-validation/dist/jquery.validate.min.js",
+                    "~/bower_components/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"));
+
+            // Modernizr
+            bundles.Add(new ScriptBundle(BundleNames.ModernizrScriptBundleName)
+                .Include(
+                    "~/bower_components/modernizr/modernizr.js"));
 
             // Files Index
             bundles.Add(new ScriptBundle(BundleNames.FilesIndexScriptBundleName)
@@ -89,6 +47,9 @@
             // Document Edit
             bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
                 .Include(
+                    "~/bower_components/cryptojs-sha1/cryptojs-sha1.js",
+                    "~/bower_components/toastr/toastr.js",
+                    "~/node_modules/monaco-editor/min/vs/loader.js",
                     "~/wwwroot/build/dist/js/apps/document-edit.min.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
@@ -99,10 +60,16 @@
             // Document Preview
             bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
                 .Include(
+                    "~/bower_components/cryptojs-sha1/cryptojs-sha1.js",
+                    "~/bower_components/interact/interact.js",
+                    "~/bower_components/handlebars/handlebars.min.js",
+                    "~/bower_components/leaflet/dist/leaflet.js",
+                    "~/bower_components/toastr/toastr.js",
                     "~/wwwroot/build/dist/js/apps/document-preview.min.js"));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
                 .Include(
+                    "~/bower_components/leaflet/dist/leaflet.css",
                     "~/bower_components/toastr/toastr.min.css",
                     "~/wwwroot/build/dist/css/toolbox.css",
                     "~/wwwroot/build/dist/css/document-preview.css"));
@@ -143,8 +110,9 @@
             bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
                 .Include(
                     "~/wwwroot/build/dist/css/biotaxonomic-lists.css"));
-
-            ////BundleTable.EnableOptimizations = true;
+#if Release
+            BundleTable.EnableOptimizations = true;
+#endif
         }
     }
 }
