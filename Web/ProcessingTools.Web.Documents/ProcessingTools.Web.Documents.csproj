@@ -575,6 +575,9 @@
     <Content Include="wwwroot\src\templates\coordinates-toolbox.handlebars" />
     <Content Include="wwwroot\tests\data-set-tests.js" />
     <Content Include="Areas\Data\Views\web.config" />
+    <Content Include="Areas\Data\Views\Bio\Index.cshtml" />
+    <Content Include="Areas\Data\Views\Bio\Help.cshtml" />
+    <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
   </ItemGroup>
   <ItemGroup>
@@ -586,7 +589,6 @@
     <Folder Include="Areas\DataResources\Models\ContentTypes\" />
     <Folder Include="Areas\DataResources\Views\Shared\" />
     <Folder Include="Areas\Data\Models\" />
-    <Folder Include="Areas\Data\Views\Bio\" />
     <Folder Include="Areas\Data\Views\Shared\" />
     <Folder Include="Areas\Files\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />

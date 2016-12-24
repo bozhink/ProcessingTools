@@ -20,6 +20,7 @@
                 .Include(
                     "~/bower_components/tether/dist/css/tether.min.css",
                     "~/bower_components/bootstrap/dist/css/bootstrap.css",
+                    "~/bower_components/font-awesome/css/font-awesome.min.css",
                     "~/wwwroot/build/dist/css/site.css",
                     "~/wwwroot/build/dist/css/tooltips.css"));
 

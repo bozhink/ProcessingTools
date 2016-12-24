@@ -37,7 +37,8 @@
     "cryptojs-sha1": "^1.0.0",
     "leaflet": "^1.0.2",
     "angular": "1.6.0",
-    "tether": "^1.4.0"
+    "tether": "^1.4.0",
+    "font-awesome": "^4.7.0"
   },
   "resolutions": {
     "jquery-validation": ">=1.8",
