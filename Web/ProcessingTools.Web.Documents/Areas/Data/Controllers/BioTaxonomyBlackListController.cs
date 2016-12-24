@@ -1,25 +1,24 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
     using System;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-
-    using Models.BiotaxonomicBlackList;
-
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
-    using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Documents.Areas.Data.Models.BiotaxonomicBlackList;
 
-    [Authorize]
-    public class BiotaxonomicBlackListController : Controller
+    public class BioTaxonomyBlackListController : Controller
     {
         private readonly IBiotaxonomicBlackListDataService dataService;
         private readonly IBiotaxonomicBlackListIterableDataService searchService;
 
-        public BiotaxonomicBlackListController(IBiotaxonomicBlackListDataService dataService, IBiotaxonomicBlackListIterableDataService searchService)
+        public BioTaxonomyBlackListController(
+            IBiotaxonomicBlackListDataService dataService,
+            IBiotaxonomicBlackListIterableDataService searchService)
         {
             if (dataService == null)
             {
@@ -35,22 +34,9 @@
             this.searchService = searchService;
         }
 
-        [HttpGet]
-        public ActionResult Help()
-        {
-            return this.View();
-        }
-
-        // GET: /Data/Bio/Taxonomy/BiotaxonomicBlackList
-        [HttpGet]
-        public ActionResult Index()
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View();
-        }
-
-        [HttpPost, ActionName(nameof(Index))]
-        public async Task<JsonResult> IndexPost(BlackListItemsRequestModel viewModel)
+        [HttpPost]
+        [Route(RouteConstants.BioTaxonomyBlackListDataSubmitRoute)]
+        public async Task<JsonResult> Post(BlackListItemsRequestModel viewModel)
         {
             if (viewModel == null || !this.ModelState.IsValid)
             {
@@ -68,6 +54,7 @@
         }
 
         [HttpPost]
+        [Route(RouteConstants.BioTaxonomyBlackListDataSearchRoute)]
         public async Task<JsonResult> Search(string searchString)
         {
             if (string.IsNullOrWhiteSpace(searchString))
@@ -95,11 +82,6 @@
             return this.GetJsonResult(
                 new SearchResposeModel(
                     responseItems.ToArray()));
-        }
-
-        protected override void HandleUnknownAction(string actionName)
-        {
-            this.IvalidActionErrorView(actionName).ExecuteResult(this.ControllerContext);
         }
 
         private JsonResult GetEmptyJsonResult()

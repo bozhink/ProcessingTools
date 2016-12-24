@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Models.BiotaxonomicBlackList
+﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.BiotaxonomicBlackList
 {
     using System;
     using Contracts;
