@@ -7,10 +7,13 @@
     <h2>Bio Data</h2>
 </header>
 
-<div nav-loading>
-    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Loading...
+<div ng-app="bioDataApp">
+    <div taxa-ranks>
+        <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Loading...
+    </div>
 </div>
 
 @section Scripts {
-    @Scripts.Render(BundleNames.BioDataAppScriptBundleName)
+    <script src="~/bower_components/angular/angular.min.js"></script>
+    <script src="~/wwwroot/build/dist/js/apps/bio-data-app.min.js"></script>
 }

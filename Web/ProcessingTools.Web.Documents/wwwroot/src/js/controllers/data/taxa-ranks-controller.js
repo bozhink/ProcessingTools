@@ -5,9 +5,9 @@ var TaxonRank = require('../../models/data/taxon-rank');
 module.exports = function TaxaRanksController(dataSet, searchService, jsonRequester, reporter) {
     var self = this;
 
-    self.taxa = dataSet.data;
+    self.items = dataSet.data;
 
-    self.addTaxa = function () {
+    self.addItem = function () {
         var pairs, text = self.textArea || '';
         text = text.replace(/[^\w\-]+/g, ' ').trim();
         if (text === '') {
@@ -29,7 +29,7 @@ module.exports = function TaxaRanksController(dataSet, searchService, jsonReques
         self.textArea = '';
     };
 
-    self.removeTaxon = function (id) {
+    self.removeItem = function (id) {
         dataSet.remove(id);
     };
 
@@ -56,7 +56,7 @@ module.exports = function TaxaRanksController(dataSet, searchService, jsonReques
             });
     };
 
-    self.submitTaxa = function (url) {
+    self.submitItems = function (url) {
         var i, len, taxon, taxa = [];
 
         if (!url) {

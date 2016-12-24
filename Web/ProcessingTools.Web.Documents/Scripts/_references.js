@@ -14,6 +14,7 @@
 /// <reference path="../wwwroot/src/js/controllers/data/taxa-ranks-controller.js" />
 /// <reference path="../wwwroot/src/js/controllers/documents/document-controller.js" />
 /// <reference path="../wwwroot/src/js/data/data-set.js" />
+/// <reference path="../wwwroot/src/js/directives/taxa-ranks.js" />
 /// <reference path="../wwwroot/src/js/models/data/black-list-item.js" />
 /// <reference path="../wwwroot/src/js/models/data/taxon-rank.js" />
 /// <reference path="../wwwroot/src/js/services/documents/document-content-data.js" />

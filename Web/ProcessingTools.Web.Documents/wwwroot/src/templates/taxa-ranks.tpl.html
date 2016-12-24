@@ -1,0 +1,37 @@
+<div class="contols">
+    <div class="form-group">
+        <fieldset>
+            <legend>Add taxa</legend>
+            <form ng-submit="vm.addItem()" class="form-horizontal">
+                <textarea ng-model="vm.textArea" name="taxa" cols="30" rows="4" placeholder="add taxon-rank pairs here" class="form-control"></textarea>
+                <input class="btn btn-primary" type="submit" value="add" />
+            </form>
+        </fieldset>
+    </div>
+    <div class="form-group">
+        <fieldset>
+            <legend>Search taxa</legend>
+            <form ng-submit="vm.search('@searchUrl')" class="form-horizontal">
+                <input ng-model="vm.searchString" type="text" size="30" placeholder="input taxon name to search here" class="form-control" pattern=".+" />
+                <input class="btn btn-primary" type="submit" value="search" />
+            </form>
+        </fieldset>
+    </div>
+</div>
+<div class="form-group" ng-if="vm.items.length">
+    <fieldset>
+        <legend>Taxa list</legend>
+        <ul class="view-list">
+            <li ng-repeat="taxon in vm.items | orderBy: 'taxonName'" class="list-item">
+                <span class="index">{{$index + 1}}.</span>
+                <span class="taxon-name">{{taxon.taxonName}}</span>
+                <span class="taxon-rank">{{taxon.rank}}</span>
+                <span ng-click="vm.removeItem(taxon.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
+            </li>
+        </ul>
+        <div class="form-group">
+            <span ng-click="vm.clearList()" class="btn btn-default">Clear List</span>
+            <span ng-click="vm.submitItems('@submitUrl')" class="btn btn-default">Submit</span>
+        </div>
+    </fieldset>
+</div>

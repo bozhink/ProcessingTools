@@ -553,6 +553,7 @@
     <Content Include="wwwroot\src\js\controllers\documents\document-controller.js" />
     <Content Include="wwwroot\src\js\apps\files-index.js" />
     <Content Include="wwwroot\src\js\data\data-set.js" />
+    <Content Include="wwwroot\src\js\directives\taxa-ranks.js" />
     <Content Include="wwwroot\src\js\models\data\black-list-item.js" />
     <Content Include="wwwroot\src\js\models\data\taxon-rank.js" />
     <Content Include="wwwroot\src\js\services\documents\document-content-data.js" />
@@ -573,6 +574,7 @@
     <Content Include="wwwroot\src\less\tooltips.less" />
     <Content Include="wwwroot\src\templates\coordinates-map.handlebars" />
     <Content Include="wwwroot\src\templates\coordinates-toolbox.handlebars" />
+    <Content Include="wwwroot\src\templates\taxa-ranks.tpl.html" />
     <Content Include="wwwroot\tests\data-set-tests.js" />
     <Content Include="Areas\Data\Views\web.config" />
     <Content Include="Areas\Data\Views\Bio\Index.cshtml" />

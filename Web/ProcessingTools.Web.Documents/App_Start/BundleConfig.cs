@@ -84,12 +84,6 @@
                 .Include(
                     "~/wwwroot/build/dist/css/address-list.css"));
 
-            // Bio Data App
-            bundles.Add(new ScriptBundle(BundleNames.BioDataAppScriptBundleName)
-                .Include(
-                    "~/bower_components/angular/angular.min.js",
-                    "~/wwwroot/build/dist/js/apps/bio-data-app.min.js"));
-
             // Taxa Ranks
             bundles.Add(new ScriptBundle(BundleNames.TaxaRanksScriptBundleName)
                 .Include(
