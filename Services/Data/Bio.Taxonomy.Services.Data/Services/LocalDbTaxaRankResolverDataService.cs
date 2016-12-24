@@ -6,19 +6,16 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Extensions;
 
     public class LocalDbTaxaRankResolverDataService : ILocalDbTaxaRankResolverDataService
     {
-        private readonly ITaxonRankSearchableRepositoryProvider repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
 
-        public LocalDbTaxaRankResolverDataService(ITaxonRankSearchableRepositoryProvider repositoryProvider)
+        public LocalDbTaxaRankResolverDataService(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -28,7 +25,7 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
             if (scientificNames == null || scientificNames.Length < 1)
             {
@@ -42,9 +39,8 @@
 
             var result = new ConcurrentQueue<ITaxonRank>();
 
+            await this.repositoryProvider.Execute(async (repository) =>
             {
-                var repository = this.repositoryProvider.Create();
-
                 var tasks = new ConcurrentQueue<Task>();
 
                 foreach (var name in names)
@@ -53,38 +49,29 @@
                 }
 
                 await Task.WhenAll(tasks);
+            });
 
-                repository.TryDispose();
-            }
-
-            return new HashSet<ITaxonRank>(result).AsQueryable();
+            return new HashSet<ITaxonRank>(result);
         }
 
-        // TODO: EntityNotFoundException: Re-thick catching of this exception
-        private async Task FindRankForSingleTaxon(ISearchableRepository<ITaxonRankEntity> repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task FindRankForSingleTaxon(ITaxonRankRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
         {
-            try
+            var entity = await repository.FindFirst(t => t.Name.ToLower() == name);
+
+            if (entity == null)
             {
-                var entity = await repository.FindFirst(t => t.Name.ToLower() == name);
-
-                if (entity == null)
-                {
-                    throw new EntityNotFoundException();
-                }
-
-                foreach (var rank in entity.Ranks)
-                {
-                    var taxon = new TaxonRankServiceModel
-                    {
-                        ScientificName = entity.Name,
-                        Rank = rank
-                    };
-
-                    outputCollection.Enqueue(taxon);
-                }
+                return;
             }
-            catch (EntityNotFoundException)
+
+            foreach (var rank in entity.Ranks)
             {
+                var taxon = new TaxonRankServiceModel
+                {
+                    ScientificName = entity.Name,
+                    Rank = rank
+                };
+
+                outputCollection.Enqueue(taxon);
             }
         }
     }

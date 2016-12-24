@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
     using ProcessingTools.Attributes;
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
     using ProcessingTools.Serialization.Csv;
 
     [FileName("grbio_collections_pers.csv")]
     [CsvObject]
-    public class CollectionPer
+    public class CollectionPer : ICollectionPer
     {
         [CsvColumn("Access Eligibility and Rules")]
         public string AccessEligibilityAndRules { get; set; }

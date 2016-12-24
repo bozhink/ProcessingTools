@@ -8,6 +8,7 @@
         public const string ClientSettingsProvider = "ClientSettingsProvider";
         public const string CodesRemoveNonCodeNodesXslPath = "CodesRemoveNonCodeNodesXslPath";
         public const string ConfigJsonFilePath = "ConfigJsonFilePath";
+        public const string DataFilesDirectoryPath = "DataFilesDirectoryPath";
         public const string DefaultDataFilesDirectory = "DefaultDataFilesDirectory";
         public const string ExternalLinksXslFilePath = "ExternalLinksXslFilePath";
         public const string FormatHtmlToXmlXslFilePath = "FormatHtmlToXmlXslFilePath";
@@ -16,6 +17,7 @@
         public const string FormatTaxonTreatmentsXslPath = "FormatTaxonTreatmentsXslPath";
         public const string FormatXmlToHtmlXslFilePath = "FormatXmlToHtmlXslFilePath";
         public const string NlmInitialFormatXslPath = "NlmInitialFormatXslPath";
+        public const string RanksDataFileName = "RanksDataFileName";
         public const string ReferencesGetReferencesXslPath = "ReferencesGetReferencesXslPath";
         public const string ReferencesTagTemplateXslPath = "ReferencesTagTemplateXslPath";
         public const string RemoveTaxonNamePartsXslPath = "RemoveTaxonNamePartsXslPath";

@@ -118,6 +118,7 @@
     <Compile Include="Contracts\Controllers\IRunCustomXQueryTransformController.cs" />
     <Compile Include="Contracts\Controllers\ITagCollectionCodesController.cs" />
     <Compile Include="Contracts\Controllers\ITagSpecimenCodesController.cs" />
+    <Compile Include="Contracts\Controllers\IValidateCrossReferencesController.cs" />
     <Compile Include="Contracts\IControllerInfo.cs" />
     <Compile Include="Contracts\Controllers\IExpandLowerTaxaController.cs" />
     <Compile Include="Contracts\Controllers\IExtractTaxaController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Controllers\TagSpecimenCodesController.cs" />
     <Compile Include="Controllers\TagSpecimenCountController.cs" />
     <Compile Include="Controllers\TagTypeStatusController.cs" />
+    <Compile Include="Controllers\ValidateCrossReferencesController.cs" />
     <Compile Include="Controllers\ValidateExternalLinksController.cs" />
     <Compile Include="Contracts\IProgramSettings.cs" />
     <Compile Include="Contracts\IFileProcessor.cs" />
@@ -250,6 +252,7 @@
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Core\ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\NinjectBiotaxonomyDataBindings.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
     <Compile Include="Settings\NinjectDataBindings.cs" />
     <Compile Include="Settings\NinjectDataMinersBindings.cs" />
@@ -346,6 +349,10 @@
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Common\Data.Common\Data.Common.csproj">
+      <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo\Geo.Data.Common\Geo.Data.Common.csproj">
       <Project>{ab947ca0-8619-48c6-87d5-e01556f17f18}</Project>
       <Name>Geo.Data.Common</Name>
@@ -373,6 +380,10 @@
     <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
+      <Project>{BDE55FC4-E7D2-416D-A220-164CA99BD63B}</Project>
+      <Name>Configurator</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>

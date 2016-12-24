@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo
 {
-    using System.Configuration;
-
+    using System;
     using Contracts;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Conventions;
@@ -10,16 +9,23 @@
 
     public class BiotaxonomyMongoDatabaseProvider : IBiotaxonomyMongoDatabaseProvider
     {
-        private const string BiotaxonomyMongoConnectionKey = "BiotaxonomyMongoConnection";
-        private const string BiotaxonomyMongoDabaseNameKey = "BiotaxonomyMongoDabaseName";
-
         private readonly string connectionString;
         private readonly string databaseName;
 
-        public BiotaxonomyMongoDatabaseProvider()
+        public BiotaxonomyMongoDatabaseProvider(string connectionString, string databaseName)
         {
-            this.connectionString = ConfigurationManager.ConnectionStrings[BiotaxonomyMongoConnectionKey].ConnectionString;
-            this.databaseName = ConfigurationManager.AppSettings[BiotaxonomyMongoDabaseNameKey];
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new ArgumentNullException(nameof(connectionString));
+            }
+
+            if (string.IsNullOrWhiteSpace(databaseName))
+            {
+                throw new ArgumentNullException(nameof(databaseName));
+            }
+
+            this.connectionString = connectionString;
+            this.databaseName = databaseName;
         }
 
         public IMongoDatabase Create()

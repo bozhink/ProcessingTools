@@ -28,6 +28,9 @@
                     .BindDefaultInterface();
             });
 
+            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
+                .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
+
             this.Bind<ITypesProvider>()
                 .To<SeederTypesProvider>()
                 .InSingletonScope();
@@ -153,20 +156,6 @@
             // Bio.Taxonomy.Data
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Bio.Taxonomy.Data.Xml.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Bio.Taxonomy.Data.Mongo.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(ProcessingTools.Bio.Taxonomy.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
@@ -178,15 +167,6 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
-
-            this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankRepositoryProvider>()
-                .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankRepositoryProvider>();
-
-            this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts.IBiotaxonomicBlackListIterableRepositoryProvider>()
-                .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListIterableRepositoryProvider>();
-
-            this.Bind<ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts.IBiotaxonomicBlackListRepositoryProvider>()
-                .To<ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListRepositoryProvider>();
         }
     }
 }

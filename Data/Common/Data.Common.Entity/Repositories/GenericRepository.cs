@@ -2,14 +2,14 @@
 {
     using System;
     using System.Data.Entity;
-    using System.Linq;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class GenericRepository<T> : IRepository<T>
+    public class GenericRepository<TContext, T> : IRepository<T>
+        where TContext : IDbContext
         where T : class
     {
-        public GenericRepository(IDbContext context)
+        public GenericRepository(TContext context)
         {
             if (context == null)
             {
@@ -20,14 +20,9 @@
             this.DbSet = this.Context.Set<T>();
         }
 
-        protected IDbSet<T> DbSet { get; private set; }
+        public virtual IDbSet<T> DbSet { get; private set; }
 
-        protected IDbContext Context { get; private set; }
-
-        public virtual IQueryable<T> All()
-        {
-            return this.DbSet.AsQueryable();
-        }
+        public virtual TContext Context { get; private set; }
 
         public virtual T Get(object id)
         {

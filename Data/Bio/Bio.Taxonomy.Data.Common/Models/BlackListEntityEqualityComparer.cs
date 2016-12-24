@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Common.Models
 {
     using System.Collections.Generic;
-    using Contracts;
+    using Contracts.Models;
 
     public class BlackListEntityEqualityComparer : EqualityComparer<IBlackListEntity>
     {

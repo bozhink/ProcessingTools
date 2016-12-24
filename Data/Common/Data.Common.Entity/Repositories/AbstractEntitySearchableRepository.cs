@@ -1,17 +1,14 @@
 ﻿namespace ProcessingTools.Data.Common.Entity.Repositories
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Common.Validation;
-    using ProcessingTools.Constants;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Enumerations;
 
     public abstract class EntitySearchableRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IDisposable
         where TContext : DbContext
@@ -23,77 +20,17 @@
         {
         }
 
-        public virtual Task<IQueryable<TEntity>> All() => Task.FromResult(this.DbSet.AsQueryable<TEntity>());
+        public virtual IQueryable<TEntity> Query => this.DbSet.AsQueryable<TEntity>();
 
-        public virtual Task<IQueryable<TEntity>> Find(
+        // TODO
+        public virtual Task<IEnumerable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
         {
             DummyValidator.ValidateFilter(filter);
 
-            var query = this.DbSet.Where(filter);
+            var query = this.DbSet.Where(filter).AsEnumerable();
             return query;
         });
-
-        public virtual Task<IQueryable<Tout>> Find<Tout>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, Tout>> projection) => Task.Run(() =>
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateProjection(projection);
-
-            var query = this.DbSet.Where(filter).Select(projection);
-            return query;
-        });
-
-        public virtual Task<IQueryable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, object>> sort,
-            SortOrder sortOrder = SortOrder.Ascending,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect) => Task.Run(() =>
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateSort(sort);
-            DummyValidator.ValidateSkip(skip);
-            DummyValidator.ValidateTake(take);
-
-            var query = this.DbSet.Where(filter);
-
-            switch (sortOrder)
-            {
-                case SortOrder.Ascending:
-                    query = query.OrderBy(sort);
-                    break;
-
-                case SortOrder.Descending:
-                    query = query.OrderByDescending(sort);
-                    break;
-
-                default:
-                    throw new NotImplementedException();
-            }
-
-            query = query.Skip(skip).Take(take);
-            return query;
-        });
-
-        public virtual async Task<IQueryable<T>> Find<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection,
-            Expression<Func<TEntity, object>> sort,
-            SortOrder sortOrder = SortOrder.Ascending,
-            int skip = 0,
-            int take = PagingConstants.DefaultNumberOfTopItemsToSelect)
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateProjection(projection);
-            DummyValidator.ValidateSort(sort);
-            DummyValidator.ValidateSkip(skip);
-            DummyValidator.ValidateTake(take);
-
-            var query = await this.Find(filter, sort, sortOrder, skip, take);
-            return query.Select(projection);
-        }
 
         public virtual async Task<TEntity> FindFirst(
             Expression<Func<TEntity, bool>> filter)

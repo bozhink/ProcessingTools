@@ -17,7 +17,7 @@
                 .To<MediatypesDbContext>()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConnectionStringsKeys.MediatypesDatabaseConnectionKey);
+                    ConnectionStringsKeys.MediatypesDatabaseConnection);
 
             this.Bind<IMediatypesDbContextFactory>()
                 .To<MediatypesDbContextFactory>()

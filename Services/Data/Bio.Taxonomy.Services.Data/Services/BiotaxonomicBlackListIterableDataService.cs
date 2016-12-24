@@ -4,35 +4,32 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Extensions.Linq;
 
     public class BiotaxonomicBlackListIterableDataService : IBiotaxonomicBlackListIterableDataService
     {
-        private readonly IBiotaxonomicBlackListIterableRepositoryProvider provider;
+        private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
 
-        public BiotaxonomicBlackListIterableDataService(IBiotaxonomicBlackListIterableRepositoryProvider provider)
+        public BiotaxonomicBlackListIterableDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
-            if (provider == null)
+            if (repositoryProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(repositoryProvider));
             }
 
-            this.provider = provider;
+            this.repositoryProvider = repositoryProvider;
         }
 
-        public Task<IEnumerable<string>> All() => Task.Run(() =>
+        public async Task<IEnumerable<string>> All() => await this.repositoryProvider.Execute(async (repository) =>
         {
-            var repository = this.provider.Create();
-
-            var result = new HashSet<string>(repository.Entities
+            var result = await repository.Entities
                 .Select(s => s.Content)
-                .ToList());
+                .ToListAsync();
 
-            repository.TryDispose();
-
-            return result.AsEnumerable();
+            return new HashSet<string>(result);
         });
     }
 }

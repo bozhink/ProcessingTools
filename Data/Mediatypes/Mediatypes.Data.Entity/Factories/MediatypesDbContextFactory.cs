@@ -10,7 +10,7 @@
 
         public MediatypesDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.MediatypesDatabaseConnectionKey;
+            this.ConnectionString = ConnectionStringsKeys.MediatypesDatabaseConnection;
         }
 
         public string ConnectionString

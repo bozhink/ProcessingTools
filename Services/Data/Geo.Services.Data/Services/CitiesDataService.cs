@@ -4,12 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
     using Models.Cities;
     using Models.Cities.Contracts;
-
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
@@ -31,13 +30,13 @@
         {
             var repository = this.repositoryProvider.Create();
 
-            var result = (await repository.All())
+            var result = await repository.Query
                 .Select(c => new CityListableServiceModel
                 {
                     Id = c.Id,
                     Name = c.Name
                 })
-                .ToList<ICityListableServiceModel>();
+                .ToListAsync<ICityListableServiceModel>();
 
             repository.TryDispose();
 

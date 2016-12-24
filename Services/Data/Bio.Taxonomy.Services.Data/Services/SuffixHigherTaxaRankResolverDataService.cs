@@ -34,28 +34,25 @@
             };
         }
 
-        public Task<IQueryable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
-            return Task.Run(() =>
+            var result = new HashSet<ITaxonRank>();
+
+            foreach (var scientificName in scientificNames)
             {
-                var result = new HashSet<ITaxonRank>();
+                var ranks = this.rankPerSuffix.Keys
+                    .Where(s => Regex.IsMatch(scientificName, $"\\A[A-Z](?:(?i)[a-z]*{s})\\Z"))
+                    .Select(k => this.rankPerSuffix[k])
+                    .ToList();
 
-                foreach (var scientificName in scientificNames)
+                ranks.ForEach(r => result.Add(new TaxonRankServiceModel
                 {
-                    var ranks = this.rankPerSuffix.Keys
-                        .Where(s => Regex.IsMatch(scientificName, $"\\A[A-Z](?:(?i)[a-z]*{s})\\Z"))
-                        .Select(k => this.rankPerSuffix[k])
-                        .ToList();
+                    ScientificName = scientificName,
+                    Rank = r
+                }));
+            }
 
-                    ranks.ForEach(r => result.Add(new TaxonRankServiceModel
-                    {
-                        ScientificName = scientificName,
-                        Rank = r
-                    }));
-                }
-
-                return result.AsQueryable();
-            });
+            return await Task.FromResult(result);
         }
     }
 }

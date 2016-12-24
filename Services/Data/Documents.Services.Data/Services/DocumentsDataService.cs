@@ -9,6 +9,7 @@
     using ProcessingTools.Common;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Documents.Data.Common.Constants;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
@@ -16,12 +17,11 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.FileSystem.Contracts;
 
     public class DocumentsDataService : IDocumentsDataService
     {
-        private const string DefaultDataFilesDirectoryKey = "DefaultDataFilesDirectory";
-
         private readonly IDocumentsRepositoryProvider<Document> repositoryProvider;
         private readonly IXmlFileReaderWriter xmlFileReaderWriter;
 
@@ -41,11 +41,12 @@
             this.xmlFileReaderWriter = xmlFileReaderWriter;
         }
 
+        // TODO: ConfigurationManager
         private string DataDirectory
         {
             get
             {
-                string path = ConfigurationManager.AppSettings[DefaultDataFilesDirectoryKey];
+                string path = ConfigurationManager.AppSettings[AppSettingsKeys.DefaultDataFilesDirectory];
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -79,7 +80,7 @@
 
             var repository = this.repositoryProvider.Create();
 
-            var documents = (await repository.All())
+            var documents = await repository.Query
                 .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .OrderByDescending(d => d.DateModified)
@@ -96,7 +97,7 @@
                     DateCreated = d.DateCreated,
                     DateModified = d.DateModified
                 })
-                .ToList();
+                .ToListAsync();
 
             repository.TryDispose();
 
@@ -117,10 +118,10 @@
 
             var repository = this.repositoryProvider.Create();
 
-            long count = (await repository.All())
+            long count = await repository.Query
                 .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .LongCount();
+                .LongCountAsync();
 
             repository.TryDispose();
 
@@ -243,42 +244,6 @@
             return this.xmlFileReaderWriter.ReadToStream(entity.FilePath, this.DataDirectory);
         }
 
-        public async Task<object> UpdateMeta(object userId, object articleId, DocumentServiceModel document)
-        {
-            if (userId == null)
-            {
-                throw new ArgumentNullException(nameof(userId));
-            }
-
-            if (articleId == null)
-            {
-                throw new ArgumentNullException(nameof(articleId));
-            }
-
-            if (document == null)
-            {
-                throw new ArgumentNullException(nameof(document));
-            }
-
-            var repository = this.repositoryProvider.Create();
-
-            var entity = await this.GetEntity(userId, articleId, document.Id, repository);
-
-            entity.Comment = document.Comment;
-            entity.ContentType = document.ContentType;
-            entity.FileExtension = document.FileExtension;
-            entity.FileName = document.FileName;
-            entity.ModifiedByUser = userId.ToString();
-            entity.DateModified = DateTime.UtcNow;
-
-            await repository.Update(entity: entity);
-            await repository.SaveChanges();
-
-            repository.TryDispose();
-
-            return entity.ContentLength;
-        }
-
         public async Task<object> UpdateContent(object userId, object articleId, DocumentServiceModel document, string content)
         {
             if (userId == null)
@@ -317,6 +282,42 @@
             return entity.ContentLength;
         }
 
+        public async Task<object> UpdateMeta(object userId, object articleId, DocumentServiceModel document)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            var entity = await this.GetEntity(userId, articleId, document.Id, repository);
+
+            entity.Comment = document.Comment;
+            entity.ContentType = document.ContentType;
+            entity.FileExtension = document.FileExtension;
+            entity.FileName = document.FileName;
+            entity.ModifiedByUser = userId.ToString();
+            entity.DateModified = DateTime.UtcNow;
+
+            await repository.Update(entity: entity);
+            await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return entity.ContentLength;
+        }
+
         private async Task<Document> GetDocument(object userId, object articleId, object documentId)
         {
             if (userId == null)
@@ -345,10 +346,11 @@
 
         private async Task<Document> GetEntity(object userId, object articleId, object documentId, ISearchableCountableCrudRepository<Document> repository)
         {
-            var entity = (await repository.All())
+            var entity = await repository.Query
                 .Where(d => d.CreatedByUser == userId.ToString())
                 //// TODO: // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .FirstOrDefault(d => d.Id.ToString() == documentId.ToString());
+                .FirstOrDefaultAsync(d => d.Id.ToString() == documentId.ToString());
+
             if (entity == null)
             {
                 repository.TryDispose();

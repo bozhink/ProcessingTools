@@ -29,7 +29,7 @@
 
             repository.Add(book).Wait();
 
-            var books = repository.All().Result.ToList();
+            var books = repository.Query.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 
@@ -45,14 +45,14 @@
 
             repository.Delete(bookFromDb).Wait();
 
-            var booksAfterDeletion = repository.All().Result?.ToList();
+            var booksAfterDeletion = repository.Query?.ToList();
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");
         }
 
         [TestMethod]
         [Timeout(5000)]
         [Ignore]
-        public void MongoGenericRepository_AddAllSkipTakeDelete_ShouldWork()
+        public void MongoGenericRepository_AddAllFindDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
             var provider = new RealMongoDatabaseProvider(databaseName);
@@ -64,7 +64,7 @@
 
             repository.Add(book).Wait();
 
-            var books = repository.Find(b => true, b => b.Id, SortOrder.Ascending, 0, 1).Result.ToList();
+            var books = repository.Find(b => true).Result.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 
@@ -80,7 +80,7 @@
 
             repository.Delete(bookFromDb).Wait();
 
-            var booksAfterDeletion = repository.All().Result?.ToList();
+            var booksAfterDeletion = repository.Query?.ToList();
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");
         }
 
@@ -99,7 +99,7 @@
 
             repository.Add(book).Wait();
 
-            var books = repository.All().Result.ToList();
+            var books = repository.Query.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 
@@ -117,7 +117,7 @@
             bookFromDb.Author.FirstName = bookFromDb.Author.FirstName + "1";
             repository.Update(bookFromDb).Wait();
 
-            books = repository.All().Result.ToList();
+            books = repository.Query.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 
@@ -133,7 +133,7 @@
 
             repository.Delete(bookFromDb).Wait();
 
-            var booksAfterDeletion = repository.All().Result?.ToList();
+            var booksAfterDeletion = repository.Query?.ToList();
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");
         }
     }

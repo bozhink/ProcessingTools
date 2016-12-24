@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
     using ProcessingTools.Attributes;
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
     using ProcessingTools.Serialization.Csv;
 
     [FileName("grbio_staff_labels.csv")]
     [CsvObject]
-    public class StaffLabel
+    public class StaffLabel : IStaffLabel
     {
         [CsvColumn("City/Town")]
         public string CityTown { get; set; }

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -70,7 +71,7 @@
             return true;
         }
 
-        private void ReplaceTreatmentMetaClassificationItem(IDocument document, IQueryable<ITaxonClassification> classification, string genus, TaxonRankType rank)
+        private void ReplaceTreatmentMetaClassificationItem(IDocument document, IEnumerable<ITaxonClassification> classification, string genus, TaxonRankType rank)
         {
             if (classification == null)
             {

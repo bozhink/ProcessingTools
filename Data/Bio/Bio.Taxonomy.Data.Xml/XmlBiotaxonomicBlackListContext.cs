@@ -10,8 +10,8 @@
     using Contracts;
     using Models;
 
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
     using ProcessingTools.Common.Validation;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext

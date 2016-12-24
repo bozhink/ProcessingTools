@@ -5,9 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
 

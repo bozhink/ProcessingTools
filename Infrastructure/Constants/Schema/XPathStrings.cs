@@ -26,5 +26,7 @@
         public const string TaxonNamePartsOfLowerTaxonNames = LowerTaxonNames + "/" + ElementNames.TaxonNamePart;
         public const string TaxonTreatmentNomenclature = ".//tp:taxon-treatment/tp:nomenclature";
         public const string XLinkHref = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
+        public const string IdAttributes = ".//@id";
+        public const string RidAttributes = ".//@rid";
     }
 }

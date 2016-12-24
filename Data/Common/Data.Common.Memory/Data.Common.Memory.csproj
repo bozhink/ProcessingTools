@@ -33,7 +33,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IMemoryKeyValueDataStore.cs" />
     <Compile Include="Contracts\IMemoryStringKeyCollectionValueDataStore.cs" />
     <Compile Include="Contracts\Repositories\IMemoryKeyCollectionValuePairsRepository.cs" />

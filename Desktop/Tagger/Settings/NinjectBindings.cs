@@ -24,6 +24,9 @@
                  .BindDefaultInterface();
             });
 
+            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
+                .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
+
             this.Bind(b =>
             {
                 b.From(ProcessingTools.Net.Assembly.Assembly.GetType().Assembly)
@@ -76,18 +79,6 @@
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ConsoleLogger>();
-
-            this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankSearchableRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankSearchableRepositoryProvider>();
-
-            this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.ITaxonRankRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlTaxonRankRepositoryProvider>();
-
-            this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.IBiotaxonomicBlackListIterableRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListIterableRepositoryProvider>();
-
-            this.Bind<Bio.Taxonomy.Data.Common.Repositories.Contracts.IBiotaxonomicBlackListRepositoryProvider>()
-                .To<Bio.Taxonomy.Data.Xml.Repositories.XmlBiotaxonomicBlackListRepositoryProvider>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
                 .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>();

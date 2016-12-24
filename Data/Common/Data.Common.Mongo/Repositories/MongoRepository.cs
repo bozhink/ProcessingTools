@@ -2,12 +2,10 @@
 {
     using System;
     using Contracts;
+    using Contracts.Repositories;
     using Factories;
-
     using MongoDB.Bson;
     using MongoDB.Driver;
-
-    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public abstract class MongoRepository<TEntity> : IMongoRepository<TEntity>
         where TEntity : class

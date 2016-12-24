@@ -7,27 +7,27 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Repositories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
 
     public class TaxonRankDataService : ITaxonRankDataService
     {
-        private readonly ITaxonRankRepositoryProvider provider;
+        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
 
         private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        public TaxonRankDataService(ITaxonRankRepositoryProvider provider)
+        public TaxonRankDataService(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
         {
-            if (provider == null)
+            if (repositoryProvider == null)
             {
-                throw new ArgumentNullException(nameof(provider));
+                throw new ArgumentNullException(nameof(repositoryProvider));
             }
 
-            this.provider = provider;
+            this.repositoryProvider = repositoryProvider;
         }
 
         private Func<ITaxonRankEntity, IEnumerable<ITaxonRank>> MapDbModelToServiceModel => t => t.Ranks.Select(r => new TaxonRankServiceModel
@@ -37,58 +37,50 @@
         });
 
         private Func<ITaxonRank, ITaxonRankEntity> MapServiceModelToDbModel => t =>
-                {
-                    var taxon = new TaxonRankEntity
-                    {
-                        Name = t.ScientificName,
-                        IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(t.ScientificName)
-                    };
+        {
+            var taxon = new TaxonRankEntity
+            {
+                Name = t.ScientificName,
+                IsWhiteListed = !this.matchNonWhiteListedHigherTaxon.IsMatch(t.ScientificName)
+            };
 
-                    taxon.Ranks.Add(t.Rank);
+            taxon.Ranks.Add(t.Rank);
 
-                    return taxon;
-                };
+            return taxon;
+        };
 
         public virtual async Task<object> Add(params ITaxonRank[] taxa)
         {
             var validTaxa = this.ValidateTaxa(taxa);
 
-            var repository = this.provider.Create();
-
+            return await this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validTaxa.Select(this.MapServiceModelToDbModel)
                     .Select(t => repository.Add(t))
                     .ToArray();
 
                 await Task.WhenAll(tasks);
-            }
 
-            var result = await repository.SaveChanges();
-
-            repository.TryDispose();
-
-            return result;
+                var result = await repository.SaveChanges();
+                return result;
+            });
         }
 
         public virtual async Task<object> Delete(params ITaxonRank[] taxa)
         {
             var validTaxa = this.ValidateTaxa(taxa);
 
-            var repository = this.provider.Create();
-
+            return await this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validTaxa.Select(this.MapServiceModelToDbModel)
                     .Select(t => repository.Delete(t))
                     .ToArray();
 
                 await Task.WhenAll(tasks);
-            }
 
-            var result = await repository.SaveChanges();
-
-            repository.TryDispose();
-
-            return result;
+                var result = await repository.SaveChanges();
+                return result;
+            });
         }
 
         public virtual async Task<IEnumerable<ITaxonRank>> FindByName(string name)
@@ -98,34 +90,30 @@
                 throw new ArgumentNullException(nameof(name));
             }
 
-            var repository = this.provider.Create();
+            return await this.repositoryProvider.Execute(async (repository) =>
+            {
+                var query = await repository.Find(t => t.Name == name);
 
-            var query = await repository.Find(
-                t => t.Name == name,
-                t => t.Name,
-                SortOrder.Ascending);
+                var result = query.ToList()
+                    .SelectMany(this.MapDbModelToServiceModel)
+                    .ToList();
 
-            var result = query.ToList()
-                .SelectMany(this.MapDbModelToServiceModel)
-                .ToList();
-
-            repository.TryDispose();
-
-            return result;
+                return result;
+            });
         }
 
         public virtual async Task<IEnumerable<ITaxonRank>> GetWhiteListedTaxa()
         {
-            var repository = this.provider.Create();
+            return await this.repositoryProvider.Execute(async (repository) =>
+            {
+                var query = await repository.Find(t => t.IsWhiteListed == true);
 
-            var result = (await repository.Find(t => t.IsWhiteListed == true))
-                .ToList()
-                .SelectMany(this.MapDbModelToServiceModel)
-                .ToList();
+                var result = query.ToList()
+                    .SelectMany(this.MapDbModelToServiceModel)
+                    .ToList();
 
-            repository.TryDispose();
-
-            return result;
+                return result;
+            });
         }
 
         public virtual async Task<IEnumerable<ITaxonRank>> SearchByName(string name)
@@ -135,41 +123,34 @@
                 throw new ArgumentNullException(nameof(name));
             }
 
-            var repository = this.provider.Create();
+            return await this.repositoryProvider.Execute(async (repository) =>
+            {
+                var query = await repository.Find(t => t.Name.ToLower().Contains(name.ToLower()));
 
-            var query = await repository.Find(
-                t => t.Name.ToLower().Contains(name.ToLower()),
-                t => t.Name,
-                SortOrder.Ascending);
+                var result = query.ToList()
+                    .SelectMany(this.MapDbModelToServiceModel)
+                    .ToList();
 
-            var result = query.ToList()
-                .SelectMany(this.MapDbModelToServiceModel)
-                .ToList();
-
-            repository.TryDispose();
-
-            return result;
+                return result;
+            });
         }
 
         public virtual async Task<object> Update(params ITaxonRank[] taxa)
         {
             var validTaxa = this.ValidateTaxa(taxa);
 
-            var repository = this.provider.Create();
-
+            return await this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validTaxa.Select(this.MapServiceModelToDbModel)
                     .Select(t => repository.Update(t))
                     .ToArray();
 
                 await Task.WhenAll(tasks);
-            }
 
-            var result = await repository.SaveChanges();
+                var result = await repository.SaveChanges();
 
-            repository.TryDispose();
-
-            return result;
+                return result;
+            });
         }
 
         private ITaxonRank[] ValidateTaxa(ITaxonRank[] taxa)

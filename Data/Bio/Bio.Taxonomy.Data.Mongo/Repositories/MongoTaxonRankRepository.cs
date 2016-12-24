@@ -4,13 +4,10 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
-    using Contracts;
+    using Contracts.Repositories;
     using Models;
-
     using MongoDB.Driver;
-
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Mongo.Repositories;

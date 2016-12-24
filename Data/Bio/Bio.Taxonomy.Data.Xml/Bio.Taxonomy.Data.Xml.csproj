@@ -37,10 +37,8 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ITaxaContext.cs" />
+    <Compile Include="Contracts\IXmlTaxaContext.cs" />
     <Compile Include="Contracts\IXmlBiotaxonomicBlackListContext.cs" />
-    <Compile Include="Contracts\IXmlBiotaxonomicBlackListContextProvider.cs" />
     <Compile Include="Models\BlackListEntity.cs" />
     <Compile Include="Models\BlackListXmlModel.cs" />
     <Compile Include="Models\RankListXmlModel.cs" />
@@ -49,27 +47,12 @@
     <Compile Include="Models\TaxonRankXmlModel.cs" />
     <Compile Include="Models\TaxonXmlModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Contracts\ITaxaContextProvider.cs" />
-    <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListIterableRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListIterableRepositoryProvider.cs" />
-    <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlBiotaxonomicBlackListRepositoryProvider.cs" />
-    <Compile Include="Repositories\Contracts\IXmlTaxonRankRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlTaxonRankRepositoryProvider.cs" />
-    <Compile Include="Repositories\Contracts\IXmlTaxonRankSearchableRepository.cs" />
-    <Compile Include="Repositories\Contracts\IXmlTaxonRankSearchableRepositoryProvider.cs" />
-    <Compile Include="Repositories\XmlBiotaxonomicBlackListIterableRepository.cs" />
-    <Compile Include="Repositories\XmlBiotaxonomicBlackListIterableRepositoryProvider.cs" />
+    <Compile Include="Contracts\Repositories\IXmlBiotaxonomicBlackListRepository.cs" />
+    <Compile Include="Contracts\Repositories\IXmlTaxonRankRepository.cs" />
     <Compile Include="Repositories\XmlBiotaxonomicBlackListRepository.cs" />
-    <Compile Include="Repositories\XmlBiotaxonomicBlackListRepositoryProvider.cs" />
-    <Compile Include="Repositories\XmlTaxonRankSearchableRepository.cs" />
-    <Compile Include="Repositories\XmlTaxonRankSearchableRepositoryProvider.cs" />
-    <Compile Include="TaxaContextProvider.cs" />
     <Compile Include="Repositories\XmlTaxonRankRepository.cs" />
-    <Compile Include="Repositories\XmlTaxonRankRepositoryProvider.cs" />
-    <Compile Include="TaxaContext.cs" />
+    <Compile Include="XmlTaxaContext.cs" />
     <Compile Include="XmlBiotaxonomicBlackListContext.cs" />
-    <Compile Include="XmlBiotaxonomicBlackListContextProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">

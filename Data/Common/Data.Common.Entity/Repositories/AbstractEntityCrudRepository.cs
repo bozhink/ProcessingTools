@@ -5,9 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
     using Contracts;
-
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Entity.Contracts;
@@ -60,23 +58,42 @@
             }
         });
 
-        protected Task<T> Delete<T>(T entity, IDbSet<T> set) where T : class => Task.Run(() =>
+        protected async Task<T> AddOrGet<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
+            where T : class
         {
             DummyValidator.ValidateEntity(entity);
             DummyValidator.ValidateSet(set);
+            DummyValidator.ValidateFilter(filter);
 
-            var entry = this.GetEntry(entity);
-            if (entry.State != EntityState.Deleted)
+            var dbmodel = await set.AsQueryable().FirstOrDefaultAsync(filter);
+            if (dbmodel == null)
             {
-                entry.State = EntityState.Deleted;
-                return entity;
+                var result = await this.Add(entity, set);
+                await this.SaveChanges();
+
+                return result;
             }
-            else
-            {
-                set.Attach(entity);
-                return set.Remove(entity);
-            }
-        });
+
+            return dbmodel;
+        }
+
+        protected Task<T> Delete<T>(T entity, IDbSet<T> set) where T : class => Task.Run(() =>
+                {
+                    DummyValidator.ValidateEntity(entity);
+                    DummyValidator.ValidateSet(set);
+
+                    var entry = this.GetEntry(entity);
+                    if (entry.State != EntityState.Deleted)
+                    {
+                        entry.State = EntityState.Deleted;
+                        return entity;
+                    }
+                    else
+                    {
+                        set.Attach(entity);
+                        return set.Remove(entity);
+                    }
+                });
 
         protected async Task<T> Delete<T>(object id, IDbSet<T> set)
             where T : class
@@ -127,25 +144,6 @@
             await updater.Invoke(entity);
 
             return await this.Update(entity, set);
-        }
-
-        protected async Task<T> AddOrGet<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
-            where T : class
-        {
-            DummyValidator.ValidateEntity(entity);
-            DummyValidator.ValidateSet(set);
-            DummyValidator.ValidateFilter(filter);
-
-            var dbmodel = await set.AsQueryable().FirstOrDefaultAsync(filter);
-            if (dbmodel == null)
-            {
-                var result = await this.Add(entity, set);
-                await this.SaveChanges();
-
-                return result;
-            }
-
-            return dbmodel;
         }
     }
 }

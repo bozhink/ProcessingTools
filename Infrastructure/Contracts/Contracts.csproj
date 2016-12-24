@@ -44,12 +44,18 @@
     <Compile Include="Data\IDatabaseInitializer.cs" />
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
+    <Compile Include="Data\Repositories\IAddableRepository.cs" />
     <Compile Include="Data\Repositories\ICountableCrudRepository.cs" />
     <Compile Include="Data\Repositories\ICountableRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IDeletableRepository.cs" />
+    <Compile Include="Data\Repositories\IFiltrableRepository.cs" />
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IInsertableRepository.cs" />
+    <Compile Include="Data\Repositories\IRemovableRepository.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
     <Compile Include="Data\Repositories\ISearchableCountableCrudRepository.cs" />
     <Compile Include="Data\Repositories\ISearchableCountableCrudRepositoryProvider.cs" />
@@ -106,6 +112,7 @@
     <Compile Include="IDocumentToDocumentCloner.cs" />
     <Compile Include="IDocumentValidator.cs" />
     <Compile Include="IExceptionHandler.cs" />
+    <Compile Include="IFactory.cs" />
     <Compile Include="IGenericDeserializer.cs" />
     <Compile Include="IGenericDocumentCloner.cs" />
     <Compile Include="IGenericDocumentFactory.cs" />

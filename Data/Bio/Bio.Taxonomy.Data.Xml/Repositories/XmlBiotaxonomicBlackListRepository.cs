@@ -2,18 +2,17 @@
 {
     using System;
     using System.Threading.Tasks;
-
-    using Contracts;
-
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using Contracts.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlBiotaxonomicBlackListRepository : FileCrudRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository
+    public class XmlBiotaxonomicBlackListRepository : FileGenericRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository
     {
-        public XmlBiotaxonomicBlackListRepository(IXmlBiotaxonomicBlackListContextProvider contextProvider, IConfig config)
-            : base(contextProvider)
+        public XmlBiotaxonomicBlackListRepository(IFactory<IXmlBiotaxonomicBlackListContext> contextFactory, IConfig config)
+            : base(contextFactory)
         {
             if (config == null)
             {

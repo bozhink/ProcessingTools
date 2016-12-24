@@ -6,13 +6,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-
+    using Contracts;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions.Linq;
 
-    public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactoryBase<TDbModel, TServiceModel>
+    public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : IRepositoryDataService<TDbModel, TServiceModel>
     {
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
 
@@ -20,47 +20,85 @@
 
         protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
 
-        public override async Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository)
+        public virtual async Task<object> Add(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
-            var result = (await repository.All())
-                .Select(this.MapDbModelToServiceModel)
-                .ToList()
-                .AsQueryable();
+            if (models == null || models.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
 
-            return result;
+            var entities = this.MapServiceModelsToEntities(models);
+
+            var tasks = entities.Select(e => repository.Add(e))
+                .ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await repository.SaveChanges();
         }
 
-        public override async Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take)
+        public async Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            var result = (await repository.Find(x => true, this.SortExpression, SortOrder.Ascending, skip, take))
+            var result = await repository.Query
                 .Select(this.MapDbModelToServiceModel)
-                .ToList()
-                .AsQueryable();
+                .ToListAsync();
 
-            return result;
+            return result.AsQueryable();
         }
 
-        public override async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
+        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (ids == null || ids.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(ids));
+            }
+
+            var tasks = ids.Select(id => repository.Delete(id))
+                .ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await repository.SaveChanges();
+        }
+
+        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (models == null || models.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            var entities = this.MapServiceModelsToEntities(models);
+
+            var tasks = entities.Select(e => repository.Delete(e))
+                .ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await repository.SaveChanges();
+        }
+
+        public async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
         {
             if (repository == null)
             {
@@ -85,7 +123,56 @@
             return new HashSet<TServiceModel>(result).AsQueryable();
         }
 
-        protected override IEnumerable<TDbModel> MapServiceModelsToEntities(TServiceModel[] models)
+        public async Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            var result = await repository.Query
+                .OrderBy(this.SortExpression)
+                .Skip(skip)
+                .Take(take)
+                .Select(this.MapDbModelToServiceModel)
+                .ToListAsync();
+
+            return result.AsQueryable();
+        }
+
+        public virtual async Task<object> Update(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (models == null || models.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            var entities = this.MapServiceModelsToEntities(models);
+
+            var tasks = entities.Select(e => repository.Update(e))
+                .ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await repository.SaveChanges();
+        }
+
+        protected IEnumerable<TDbModel> MapServiceModelsToEntities(TServiceModel[] models)
         {
             return models.AsQueryable()
                 .Select(this.MapServiceModelToDbModel)

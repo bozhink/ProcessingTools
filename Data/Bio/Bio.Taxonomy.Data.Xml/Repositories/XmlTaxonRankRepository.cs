@@ -2,18 +2,17 @@
 {
     using System;
     using System.Threading.Tasks;
-
-    using Contracts;
-
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models.Contracts;
+    using Contracts.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Configurator;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlTaxonRankRepository : FileGenericRepository<ITaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
+    public class XmlTaxonRankRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
     {
-        public XmlTaxonRankRepository(ITaxaContextProvider contextProvider, IConfig config)
-            : base(contextProvider)
+        public XmlTaxonRankRepository(IFactory<IXmlTaxaContext> contextFactory, IConfig config)
+            : base(contextFactory)
         {
             if (config == null)
             {

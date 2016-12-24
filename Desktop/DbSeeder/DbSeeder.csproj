@@ -68,6 +68,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\Seeders\GenericDbSeeder.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Providers\CommandNamesProvider.cs" />
     <Compile Include="Providers\HelpProvider.cs" />
     <Compile Include="Providers\SeederTypesProvider.cs" />
+    <Compile Include="Settings\NinjectBiotaxonomyDataBindings.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
     <Compile Include="Contracts\Seeders\IBioDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IBioEnvironmentsDbSeeder.cs" />
@@ -157,6 +159,18 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Common\Data.Common.File\Data.Common.File.csproj">
+      <Project>{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}</Project>
+      <Name>Data.Common.File</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
+      <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
+      <Name>Data.Common.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Common\Data.Common\Data.Common.csproj">
+      <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo\Geo.Data.Entity\Geo.Data.Entity.csproj">
       <Project>{91a87e76-6ae4-4e63-9689-b129db752bd5}</Project>
       <Name>Geo.Data.Entity</Name>
@@ -180,6 +194,14 @@
     <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Seed\DataResources.Data.Seed.csproj">
       <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
       <Name>DataResources.Data.Seed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
+      <Project>{BDE55FC4-E7D2-416D-A220-164CA99BD63B}</Project>
+      <Name>Configurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>

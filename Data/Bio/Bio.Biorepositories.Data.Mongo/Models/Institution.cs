@@ -2,10 +2,11 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Enumerations;
     using ProcessingTools.Contracts;
 
-    public class Institution : IStringIdentifiable
+    public class Institution : IStringIdentifiable, IInstitution
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv
 {
     using ProcessingTools.Attributes;
+    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
     using ProcessingTools.Serialization.Csv;
 
     [FileName("grbio_collections_labels.csv")]
     [CsvObject]
-    public class CollectionLabel
+    public class CollectionLabel : ICollectionLabel
     {
         [CsvColumn("Collection Name")]
         public string CollectionName { get; set; }

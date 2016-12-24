@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\GenericDbContextInitializer.cs" />
-    <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IDbContextInitializer.cs" />
     <Compile Include="Contracts\IDbContextProvider.cs" />
