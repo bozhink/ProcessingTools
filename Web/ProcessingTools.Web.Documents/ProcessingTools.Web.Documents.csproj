@@ -333,6 +333,7 @@
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeDetailsViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeEditViewModel.cs" />
     <Compile Include="Areas\DataResources\ViewModels\ContentTypes\Contracts\IContentTypeIndexViewModel.cs" />
+    <Compile Include="Areas\Data\Controllers\BioController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\Files\Controllers\MetadataController.cs" />
     <Compile Include="Areas\Files\Controllers\UploadController.cs" />
@@ -584,8 +585,8 @@
     <Folder Include="Areas\BioTaxonomyData\Views\Shared\" />
     <Folder Include="Areas\DataResources\Models\ContentTypes\" />
     <Folder Include="Areas\DataResources\Views\Shared\" />
-    <Folder Include="Areas\Data\Controllers\" />
     <Folder Include="Areas\Data\Models\" />
+    <Folder Include="Areas\Data\Views\Bio\" />
     <Folder Include="Areas\Data\Views\Shared\" />
     <Folder Include="Areas\Files\Views\Shared\" />
     <Folder Include="Areas\GeoData\Views\Shared\" />
