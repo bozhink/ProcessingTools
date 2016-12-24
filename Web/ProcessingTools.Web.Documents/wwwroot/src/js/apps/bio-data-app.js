@@ -6,20 +6,15 @@ var Reporter = require('../services/message-reporter'),
     SearchStringService = require('../services/search-string-service'),
     TaxaRanksDirective = require('../directives/taxa-ranks').taxaRanks,
     TaxaRanksController = require('../controllers/data/taxa-ranks-controller'),
-    BiotaxonomicBlackListController = require('../controllers/data/biotaxonomic-black-list-controller'),
-    app = angular.module('bioDataApp', []);
+    BiotaxonomicBlackListController = require('../controllers/data/biotaxonomic-black-list-controller');
 
-app.config(['$httpProvider', function ($httpProvider) {
-
-        var templateMap = {
-            'taxa-ranks.tpl.html': '/wwwroot/build/dist/templates/taxa-ranks.tpl.html',
-        };
-
+angular.module('bioDataApp', [])
+    .config(['$httpProvider', 'UrlMap', function ($httpProvider, UrlMap) {
         $httpProvider.interceptors.push(function () {
             return {
                 'request': function (config) {
                     var url = config.url;
-                    config.url = templateMap[url] || url;
+                    config.url = UrlMap[url] || url;
                     return config;
                 }
             };

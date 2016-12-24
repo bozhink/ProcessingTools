@@ -16,4 +16,9 @@
 @section Scripts {
     <script src="~/bower_components/angular/angular.min.js"></script>
     <script src="~/wwwroot/build/dist/js/apps/bio-data-app.min.js"></script>
+    <script>
+        angular.module('bioDataApp').constant('UrlMap', {
+            'taxa-ranks.tpl.html': '/wwwroot/build/dist/templates/taxa-ranks.tpl.html',
+        });
+    </script>
 }
