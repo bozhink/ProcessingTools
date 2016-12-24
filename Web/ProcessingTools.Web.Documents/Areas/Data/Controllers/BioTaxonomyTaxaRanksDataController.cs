@@ -11,7 +11,7 @@
     using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
-    using ProcessingTools.Web.Documents.Areas.Data.Models.TaxaRanks;
+    using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyTaxaRanks;
 
     [Authorize]
     public class BioTaxonomyTaxaRanksDataController : Controller

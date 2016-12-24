@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.BiotaxonomicBlackList.Contracts
+﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList.Contracts
 {
     public interface IBlackListItemResponseModel
     {

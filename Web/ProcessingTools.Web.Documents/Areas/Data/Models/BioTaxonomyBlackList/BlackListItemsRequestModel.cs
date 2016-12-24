@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.BiotaxonomicBlackList
+﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList
 {
     using System.Collections.Generic;
 

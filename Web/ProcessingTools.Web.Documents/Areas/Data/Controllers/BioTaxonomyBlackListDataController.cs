@@ -9,14 +9,14 @@
     using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
-    using ProcessingTools.Web.Documents.Areas.Data.Models.BiotaxonomicBlackList;
+    using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList;
 
-    public class BioTaxonomyBlackListController : Controller
+    public class BioTaxonomyBlackListDataController : Controller
     {
         private readonly IBiotaxonomicBlackListDataService dataService;
         private readonly IBiotaxonomicBlackListIterableDataService searchService;
 
-        public BioTaxonomyBlackListController(
+        public BioTaxonomyBlackListDataController(
             IBiotaxonomicBlackListDataService dataService,
             IBiotaxonomicBlackListIterableDataService searchService)
         {
