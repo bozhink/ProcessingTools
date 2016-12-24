@@ -14,11 +14,11 @@
     using ProcessingTools.Web.Documents.Areas.Data.Models.TaxaRanks;
 
     [Authorize]
-    public class TaxaRanksDataController : Controller
+    public class BioTaxonomyTaxaRanksDataController : Controller
     {
         private readonly ITaxonRankDataService service;
 
-        public TaxaRanksDataController(ITaxonRankDataService service)
+        public BioTaxonomyTaxaRanksDataController(ITaxonRankDataService service)
         {
             if (service == null)
             {
