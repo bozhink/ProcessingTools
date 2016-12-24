@@ -11,7 +11,7 @@
     <div class="form-group">
         <fieldset>
             <legend>Search black-list item</legend>
-            <form ng-submit="blackList.search('@searchUrl')" class="form-horizontal">
+            <form ng-submit="blackList.search('blackListSearchUrl')" class="form-horizontal">
                 <input ng-model="blackList.searchString" type="text" size="30" placeholder="input black-list item to search here" class="form-control"
                     pattern=".+" />
                 <input class="btn btn-primary" type="submit" value="search" />
@@ -31,7 +31,7 @@
         </ul>
         <div class="form-group">
             <span ng-click="blackList.clearList()" class="btn btn-default">Clear List</span>
-            <span ng-click="blackList.submitItems('@submitUrl')" class="btn btn-default">Submit</span>
+            <span ng-click="blackList.submitItems('blackListSubmitUrl')" class="btn btn-default">Submit</span>
         </div>
     </fieldset>
 </div>

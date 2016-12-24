@@ -11,7 +11,7 @@
     <div class="form-group">
         <fieldset>
             <legend>Search taxa</legend>
-            <form ng-submit="taxaList.search('@searchUrl')" class="form-horizontal">
+            <form ng-submit="taxaList.search('taxaRanksSearchUrl')" class="form-horizontal">
                 <input ng-model="taxaList.searchString" type="text" size="30" placeholder="input taxon name to search here" class="form-control" pattern=".+" />
                 <input class="btn btn-primary" type="submit" value="search" />
             </form>
@@ -31,7 +31,7 @@
         </ul>
         <div class="form-group">
             <span ng-click="taxaList.clearList()" class="btn btn-default">Clear List</span>
-            <span ng-click="taxaList.submitItems('@submitUrl')" class="btn btn-default">Submit</span>
+            <span ng-click="taxaList.submitItems('taxaRanksSubmitUrl')" class="btn btn-default">Submit</span>
         </div>
     </fieldset>
 </div>

@@ -548,14 +548,18 @@
     <Content Include="wwwroot\src\js\configurations\monaco-editor-config.js" />
     <Content Include="wwwroot\src\js\configurations\toastr-config.js" />
     <Content Include="wwwroot\src\js\controllers\address-list-controller.js" />
-    <Content Include="wwwroot\src\js\controllers\data\biotaxonomic-black-list-controller.js" />
-    <Content Include="wwwroot\src\js\controllers\data\taxa-ranks-controller.js" />
+    <Content Include="wwwroot\src\js\controllers\data\bio\black-list-controller.js" />
+    <Content Include="wwwroot\src\js\controllers\data\bio\taxa-ranks-controller.js" />
     <Content Include="wwwroot\src\js\controllers\documents\document-controller.js" />
     <Content Include="wwwroot\src\js\apps\files-index.js" />
+    <Content Include="wwwroot\src\js\controllers\nav-controller.js" />
     <Content Include="wwwroot\src\js\data\data-set.js" />
+    <Content Include="wwwroot\src\js\directives\black-list.js" />
+    <Content Include="wwwroot\src\js\directives\navigation-tabs.js" />
     <Content Include="wwwroot\src\js\directives\taxa-ranks.js" />
     <Content Include="wwwroot\src\js\models\data\black-list-item.js" />
     <Content Include="wwwroot\src\js\models\data\taxon-rank.js" />
+    <Content Include="wwwroot\src\js\routers\bio-data-router.js" />
     <Content Include="wwwroot\src\js\services\documents\document-content-data.js" />
     <Content Include="wwwroot\src\js\services\json-requester.js" />
     <Content Include="wwwroot\src\js\services\message-reporter.js" />
@@ -574,13 +578,19 @@
     <Content Include="wwwroot\src\less\tooltips.less" />
     <Content Include="wwwroot\src\templates\coordinates-map.handlebars" />
     <Content Include="wwwroot\src\templates\coordinates-toolbox.handlebars" />
-    <Content Include="wwwroot\src\templates\taxa-ranks.tpl.html" />
+    <Content Include="wwwroot\src\templates\directives\data\bio\black-list.tpl.html" />
+    <Content Include="wwwroot\src\templates\directives\data\bio\taxa-ranks.tpl.html" />
+    <Content Include="wwwroot\src\templates\directives\navigation-tabs.tpl.html" />
+    <Content Include="wwwroot\src\templates\views\data\bio\black-list.view.html" />
+    <Content Include="wwwroot\src\templates\views\data\bio\home.view.html" />
+    <Content Include="wwwroot\src\templates\views\data\bio\taxa-ranks.view.html" />
     <Content Include="wwwroot\tests\data-set-tests.js" />
     <Content Include="Areas\Data\Views\web.config" />
     <Content Include="Areas\Data\Views\Bio\Index.cshtml" />
     <Content Include="Areas\Data\Views\Bio\Help.cshtml" />
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
+    <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

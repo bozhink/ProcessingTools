@@ -25,20 +25,16 @@ angular.module('bioDataApp', ['ng', 'ngRoute'])
         });
     }])
     .config(['$routeProvider', Router])
-    .constant('Pages', [
-        {
-            title: 'Home',
-            route: '/'
-        },
-        {
-            title: 'Taxa Ranks',
-            route: '/taxa-ranks'
-        },
-        {
-            title: 'Black List',
-            route: '/black-list'
-        }
-    ])
+    .constant('Pages', [{
+        title: 'Home',
+        route: '/'
+    }, {
+        title: 'Taxa Ranks',
+        route: '/taxa-ranks'
+    }, {
+        title: 'Black List',
+        route: '/black-list'
+    }])
     .service('DataSet', [
         DataSet
     ])
