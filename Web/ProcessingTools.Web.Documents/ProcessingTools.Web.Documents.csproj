@@ -539,6 +539,7 @@
     <Content Include="Views\Shared\Help.cshtml" />
     <Content Include="Views\Shared\_EditHeader.cshtml" />
     <Content Include="Views\Shared\_EditFooter.cshtml" />
+    <Content Include="wwwroot\src\js\apps\bio-data-app.js" />
     <Content Include="wwwroot\src\js\apps\document-edit.js" />
     <Content Include="wwwroot\src\js\apps\document-preview.js" />
     <Content Include="wwwroot\src\js\components\coordinates-toolboxes.js" />

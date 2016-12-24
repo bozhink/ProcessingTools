@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
+/// <reference path="../wwwroot/src/js/apps/bio-data-app.js" />
 /// <reference path="../wwwroot/src/js/apps/document-edit.js" />
 /// <reference path="../wwwroot/src/js/apps/document-preview.js" />
 /// <reference path="../wwwroot/src/js/apps/files-index.js" />

@@ -91,6 +91,17 @@ gulp.task('compressScripts', function () {
 /**
  * Compile apps
  */
+gulp.task('build-bio-data-app', function () {
+    return gulp
+        .src([
+            path.join(srcPath, paths.apps, 'bio-data-app.js')
+        ])
+        .pipe(browserify())
+        .pipe(concat('bio-data-app.min.js'))
+        //.pipe(uglify())
+        .pipe(gulp.dest(path.join(distPath, paths.apps)));
+});
+
 gulp.task('build-document-edit', function () {
     return gulp.src([
             path.join(srcPath, paths.apps, 'document-edit.js')
@@ -131,7 +142,8 @@ gulp.task('build', [
     'copy-templates',
     'build-document-edit',
     'build-document-preview',
-    'build-files-index']);
+    'build-files-index',
+    'build-bio-data-app']);
 
 gulp.task('watch', function () {
     gulp.watch([srcPath], ['build']);

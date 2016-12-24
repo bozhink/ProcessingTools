@@ -6,6 +6,7 @@
         public const string AddressListStyleBundleName = "~/Content/address-list";
         public const string AngularScriptBundleName = "~/bundles/angular";
         public const string ApplicationScriptBundleName = "~/bundles/app";
+        public const string BioDataAppScriptBundleName = "~/bundles/bio-data-app";
         public const string BiotaxonomicBlackListScriptBundleName = "~/bundles/biotaxonomic-black-list";
         public const string BiotaxonomicBlackListStyleBundleName = "~/Content/biotaxonomic-black-list";
         public const string DefaultScriptBundleName = "~/bundles/js";
