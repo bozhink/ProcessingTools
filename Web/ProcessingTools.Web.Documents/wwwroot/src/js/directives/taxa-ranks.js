@@ -1,6 +1,6 @@
 exports.taxaRanks = function() {
   return {
-    controller: 'TaxaRanksController as vm',
+    controller: 'TaxaRanksController as taxaList',
     templateUrl: 'taxa-ranks.tpl.html'
   }
 };
