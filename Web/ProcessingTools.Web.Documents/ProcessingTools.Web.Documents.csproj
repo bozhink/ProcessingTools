@@ -557,6 +557,7 @@
     <Content Include="wwwroot\src\js\models\data\taxon-rank.js" />
     <Content Include="wwwroot\src\js\services\documents\document-content-data.js" />
     <Content Include="wwwroot\src\js\services\json-requester.js" />
+    <Content Include="wwwroot\src\js\services\message-reporter.js" />
     <Content Include="wwwroot\src\js\services\ng-json-requester.js" />
     <Content Include="wwwroot\src\js\services\search-string-service.js" />
     <Content Include="wwwroot\src\js\services\templates-provider.js" />

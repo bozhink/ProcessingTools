@@ -2,7 +2,7 @@
 
 var BlackListItem = require('../../models/data/black-list-item');
 
-module.exports = function BiotaxonomicBlackListController(dataSet, searchService, jsonRequester) {
+module.exports = function BiotaxonomicBlackListController(dataSet, searchService, jsonRequester, reporter) {
     var self = this;
 
     self.items = dataSet.data;
@@ -41,8 +41,12 @@ module.exports = function BiotaxonomicBlackListController(dataSet, searchService
             .then(function successCallback(response) {
                 if (response.status === 200) {
                     dataSet.addMulti(response.data.Items, (e) => new BlackListItem(e.Content));
+                } else {
+                    reporter.report(response.status, 'error')
                 }
-            }).catch(function () {});
+            }).catch(function (err) {
+                reporter.report(err, 'error');
+            });
     };
 
     self.submitItems = function (url) {
@@ -66,6 +70,9 @@ module.exports = function BiotaxonomicBlackListController(dataSet, searchService
             }
         }).then(function () {
             dataSet.removeAll();
-        }).catch(function () {});
+            reporter.report('Done', 'success');
+        }).catch(function (err) {
+            reporter.report(err, 'error');
+        });
     };
 };

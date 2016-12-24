@@ -18,6 +18,7 @@
 /// <reference path="../wwwroot/src/js/models/data/taxon-rank.js" />
 /// <reference path="../wwwroot/src/js/services/documents/document-content-data.js" />
 /// <reference path="../wwwroot/src/js/services/json-requester.js" />
+/// <reference path="../wwwroot/src/js/services/message-reporter.js" />
 /// <reference path="../wwwroot/src/js/services/ng-json-requester.js" />
 /// <reference path="../wwwroot/src/js/services/search-string-service.js" />
 /// <reference path="../wwwroot/src/js/services/templates-provider.js" />

@@ -1,6 +1,7 @@
 /* globals angular */
 
-var DataSet = require('../data/data-set'),
+var Reporter = require('../services/message-reporter'),
+    DataSet = require('../data/data-set'),
     NgJsonRequester = require('../services/ng-json-requester'),
     SearchStringService = require('../services/search-string-service'),
     TaxaRanksController = require('../controllers/data/taxa-ranks-controller'),
@@ -18,15 +19,20 @@ var app = angular.module('bioDataApp', [])
         'JsonRequester',
         SearchStringService
     ])
+    .factory('Reporter', [
+        Reporter
+    ])
     .controller('TaxaRanksController', [
         'DataSet',
         'SearchStringService',
         'JsonRequester',
+        'Reporter',
         TaxaRanksController
     ])
     .controller('BiotaxonomicBlackListController', [
         'DataSet',
         'SearchStringService',
         'JsonRequester',
+        'Reporter',
         BiotaxonomicBlackListController
     ]);

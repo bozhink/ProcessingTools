@@ -2,7 +2,7 @@
 
 var TaxonRank = require('../../models/data/taxon-rank');
 
-module.exports = function TaxaRanksController(dataSet, searchService, jsonRequester) {
+module.exports = function TaxaRanksController(dataSet, searchService, jsonRequester, reporter) {
     var self = this;
 
     self.taxa = dataSet.data;
@@ -48,8 +48,12 @@ module.exports = function TaxaRanksController(dataSet, searchService, jsonReques
             .then(function successCallback(response) {
                 if (response.status === 200) {
                     dataSet.addMulti(response.data.Taxa, (e) => new TaxonRank(e.TaxonName, e.Rank));
+                } else {
+                    reporter.report(response.status, 'error')
                 }
-            }).catch(function () {});
+            }).catch(function (err) {
+                reporter.report(err, 'error');
+            });
     };
 
     self.submitTaxa = function (url) {
@@ -74,6 +78,9 @@ module.exports = function TaxaRanksController(dataSet, searchService, jsonReques
             }
         }).then(function () {
             dataSet.removeAll();
-        }).catch(function () {});
+            reporter.report('Done', 'success');
+        }).catch(function (err) {
+            reporter.report(err, 'error');
+        });
     };
 };
