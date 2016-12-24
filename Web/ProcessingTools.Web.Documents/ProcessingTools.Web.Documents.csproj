@@ -548,13 +548,13 @@
     <Content Include="wwwroot\src\js\configurations\monaco-editor-config.js" />
     <Content Include="wwwroot\src\js\configurations\toastr-config.js" />
     <Content Include="wwwroot\src\js\controllers\address-list-controller.js" />
-    <Content Include="wwwroot\src\js\controllers\data\bio\taxonomy\biotaxonomic-black-list-controller.js" />
-    <Content Include="wwwroot\src\js\controllers\data\bio\taxonomy\taxa-ranks-controller.js" />
+    <Content Include="wwwroot\src\js\controllers\data\biotaxonomic-black-list-controller.js" />
+    <Content Include="wwwroot\src\js\controllers\data\taxa-ranks-controller.js" />
     <Content Include="wwwroot\src\js\controllers\documents\document-controller.js" />
     <Content Include="wwwroot\src\js\apps\files-index.js" />
     <Content Include="wwwroot\src\js\data\data-set.js" />
-    <Content Include="wwwroot\src\js\models\data\bio\taxonomy\black-list-item.js" />
-    <Content Include="wwwroot\src\js\models\data\bio\taxonomy\taxon-rank.js" />
+    <Content Include="wwwroot\src\js\models\data\black-list-item.js" />
+    <Content Include="wwwroot\src\js\models\data\taxon-rank.js" />
     <Content Include="wwwroot\src\js\modules\data\bio\taxonomy\biotaxonomic-black-list-app.js" />
     <Content Include="wwwroot\src\js\modules\data\bio\taxonomy\taxa-ranks-app.js" />
     <Content Include="wwwroot\src\js\services\documents\document-content-data.js" />
