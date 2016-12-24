@@ -1,4 +1,6 @@
-﻿module.exports = function DataSet() {
+﻿'use strict';
+
+module.exports = function DataSet() {
     var id = 0,
         dataSet = [];
 
