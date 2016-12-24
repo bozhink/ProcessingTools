@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var TaxonRank = require('../../models/data/taxon-rank');
+var TaxonRank = require('../../../models/data/taxon-rank');
 
 module.exports = function TaxaRanksController(dataSet, searchService, jsonRequester, reporter) {
     var self = this;

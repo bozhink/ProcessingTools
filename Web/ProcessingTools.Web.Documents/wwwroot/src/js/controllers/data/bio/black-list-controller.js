@@ -1,8 +1,8 @@
 ﻿'use strict';
 
-var BlackListItem = require('../../models/data/black-list-item');
+var BlackListItem = require('../../../models/data/black-list-item');
 
-module.exports = function BiotaxonomicBlackListController(dataSet, searchService, jsonRequester, reporter) {
+module.exports = function BlackListController(dataSet, searchService, jsonRequester, reporter) {
     var self = this;
 
     self.items = dataSet.data;

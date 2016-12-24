@@ -1,0 +1,37 @@
+<div class="contols">
+    <div class="form-group">
+        <fieldset>
+            <legend>Add black-list items</legend>
+            <form ng-submit="blackList.addItem()" class="form-horizontal">
+                <textarea ng-model="blackList.textArea" name="taxa" cols="30" rows="4" placeholder="add black-list items here" class="form-control"></textarea>
+                <input class="btn btn-primary" type="submit" value="add" />
+            </form>
+        </fieldset>
+    </div>
+    <div class="form-group">
+        <fieldset>
+            <legend>Search black-list item</legend>
+            <form ng-submit="blackList.search('@searchUrl')" class="form-horizontal">
+                <input ng-model="blackList.searchString" type="text" size="30" placeholder="input black-list item to search here" class="form-control"
+                    pattern=".+" />
+                <input class="btn btn-primary" type="submit" value="search" />
+            </form>
+        </fieldset>
+    </div>
+</div>
+<div class="form-group" ng-if="blackList.items.length">
+    <fieldset>
+        <legend>Black-list items</legend>
+        <ul class="view-list">
+            <li ng-repeat="item in blackList.items | orderBy: 'content'" class="list-item">
+                <span class="index">{{$index + 1}}.</span>
+                <span class="black-list-item">{{item.content}}</span>
+                <span ng-click="blackList.removeItem(item.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
+            </li>
+        </ul>
+        <div class="form-group">
+            <span ng-click="blackList.clearList()" class="btn btn-default">Clear List</span>
+            <span ng-click="blackList.submitItems('@submitUrl')" class="btn btn-default">Submit</span>
+        </div>
+    </fieldset>
+</div>

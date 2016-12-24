@@ -7,8 +7,9 @@ var Reporter = require('../services/message-reporter'),
     Router = require('../routers/bio-data-router'),
     NavigationTabsDirective = require('../directives/navigation-tabs').navigationTabs,
     TaxaRanksDirective = require('../directives/taxa-ranks').taxaRanks,
-    TaxaRanksController = require('../controllers/data/taxa-ranks-controller'),
-    BiotaxonomicBlackListController = require('../controllers/data/biotaxonomic-black-list-controller'),
+    BlackListDirective = require('../directives/black-list').blackList,
+    TaxaRanksController = require('../controllers/data/bio/taxa-ranks-controller'),
+    BlackListController = require('../controllers/data/bio/black-list-controller'),
     NavigationController = require('../controllers/nav-controller');
 
 angular.module('bioDataApp', ['ng', 'ngRoute'])
@@ -58,6 +59,9 @@ angular.module('bioDataApp', ['ng', 'ngRoute'])
     .directive('taxaRanks', [
         TaxaRanksDirective
     ])
+    .directive('blackList', [
+        BlackListDirective
+    ])
     .controller('TaxaRanksController', [
         'DataSet',
         'SearchStringService',
@@ -65,12 +69,12 @@ angular.module('bioDataApp', ['ng', 'ngRoute'])
         'Reporter',
         TaxaRanksController
     ])
-    .controller('BiotaxonomicBlackListController', [
+    .controller('BlackListController', [
         'DataSet',
         'SearchStringService',
         'JsonRequester',
         'Reporter',
-        BiotaxonomicBlackListController
+        BlackListController
     ])
     .controller('NavigationController', [
         '$location',

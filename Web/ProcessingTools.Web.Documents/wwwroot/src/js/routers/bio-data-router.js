@@ -9,6 +9,6 @@ module.exports = function BioDataRouter($routeProvider) {
             templateUrl: 'bio-data-taxa-ranks.view.html'
         })
         .when('/black-list', {
-            template: '<div black-list></div>'
+            templateUrl: 'bio-data-black-list.view.html'
         });
 }
