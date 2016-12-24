@@ -1,30 +1,20 @@
-﻿(function (window) {
-    'use strict';
-    var app, models;
+﻿'use strict';
 
-    window.app = window.app || {};
-    app = window.app;
+function BlackListItem(content) {
+    var self = this;
 
-    app.models = app.models || {};
-    models = app.models;
-
-    function BlackListItem(content) {
-        var self = this;
-
-        content = content ? content.replace(/\s+/g, '') : '';
-        if (content.length < 1) {
-            throw 'Null or whitespace content';
-        }
-
-        self.id = undefined;
-        self.content = content;
+    content = content ? content.replace(/\s+/g, '') : '';
+    if (content.length < 1) {
+        throw 'Null or whitespace content';
     }
 
-    BlackListItem.prototype.getHash = function () {
-        var self = this;
-        return self.content;
-    };
+    self.id = undefined;
+    self.content = content;
+}
 
-    models.BlackListItem = BlackListItem;
+BlackListItem.prototype.getHash = function () {
+    var self = this;
+    return self.content;
+};
 
-}(window));
+module.exports = BlackListItem;
