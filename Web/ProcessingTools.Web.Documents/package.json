@@ -1,10 +1,10 @@
 {
   "name": "processing-tools.web.documents",
-  "version": "0.0.0.1",
+  "version": "0.0.1",
   "description": "Web application for document and data manipulation",
   "main": "index.js",
   "scripts": {
-    "postinstall": "./node_modules/.bin/bower install; ./node_modules/.bin/gulp build",
+    "postinstall": "./node_modules/.bin/bower install",
     "clean": "./node_modules/.bin/gulp clean",
     "test": "./node_modules/.bin/mocha wwwroot/tests/",
     "test-kitten": "./node_modules/.bin/mocha -R nyan wwwroot/tests/",
@@ -18,6 +18,11 @@
     "type": "git",
     "url": "https://github.com/bozhink/ProcessingTools.git"
   },
+  "keywords": [
+    "data management",
+    "taxonomy"
+  ],
+  "readme": "README.md",
   "bugs": {
     "url": "https://github.com/bozhink/ProcessingTools/issues"
   },
