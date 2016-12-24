@@ -1,7 +1,8 @@
 /* globals angular */
 
 var DataSet = require('../data/data-set'),
-    JsonRequester = require('../services/ng-json-requester');
+    JsonRequester = require('../services/ng-json-requester'),
+    SearchStringService = require('../services/search-string-service');
 
 var app = angular.module('bioDataApp', [])
     .service('DataSet', [
@@ -10,4 +11,8 @@ var app = angular.module('bioDataApp', [])
     .factory('JsonRequester', [
         '$http',
         JsonRequester
+    ])
+    .factory('SearchStringService', [
+        'JsonRequester',
+        SearchStringService
     ]);
