@@ -555,8 +555,6 @@
     <Content Include="wwwroot\src\js\data\data-set.js" />
     <Content Include="wwwroot\src\js\models\data\black-list-item.js" />
     <Content Include="wwwroot\src\js\models\data\taxon-rank.js" />
-    <Content Include="wwwroot\src\js\modules\data\bio\taxonomy\biotaxonomic-black-list-app.js" />
-    <Content Include="wwwroot\src\js\modules\data\bio\taxonomy\taxa-ranks-app.js" />
     <Content Include="wwwroot\src\js\services\documents\document-content-data.js" />
     <Content Include="wwwroot\src\js\services\json-requester.js" />
     <Content Include="wwwroot\src\js\services\ng-json-requester.js" />

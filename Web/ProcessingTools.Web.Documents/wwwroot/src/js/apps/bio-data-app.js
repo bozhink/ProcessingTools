@@ -3,7 +3,8 @@
 var DataSet = require('../data/data-set'),
     NgJsonRequester = require('../services/ng-json-requester'),
     SearchStringService = require('../services/search-string-service'),
-    TaxaRanksController = require('../controllers/data/taxa-ranks-controller');
+    TaxaRanksController = require('../controllers/data/taxa-ranks-controller'),
+    BiotaxonomicBlackListController = require('../controllers/data/biotaxonomic-black-list-controller');
 
 var app = angular.module('bioDataApp', [])
     .service('DataSet', [
@@ -20,6 +21,12 @@ var app = angular.module('bioDataApp', [])
     .controller('TaxaRanksController', [
         'DataSet',
         'SearchStringService',
-        'NgJsonRequester',
+        'JsonRequester',
         TaxaRanksController
+    ])
+    .controller('BiotaxonomicBlackListController', [
+        'DataSet',
+        'SearchStringService',
+        'JsonRequester',
+        BiotaxonomicBlackListController
     ]);
