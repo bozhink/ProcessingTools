@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Models.TaxaRanks
+﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.TaxaRanks
 {
     using System;
     using Contracts;

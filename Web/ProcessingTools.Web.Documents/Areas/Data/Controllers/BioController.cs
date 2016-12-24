@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
+    using System.Net;
     using System.Web.Mvc;
+    using ProcessingTools.Web.Documents.Extensions;
 
     public class BioController : Controller
     {
@@ -8,6 +10,7 @@
         [HttpGet]
         public ActionResult Index()
         {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -15,7 +18,14 @@
         [HttpGet]
         public ActionResult Help()
         {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
+        }
+
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.IvalidActionErrorView(actionName)
+                .ExecuteResult(this.ControllerContext);
         }
     }
 }

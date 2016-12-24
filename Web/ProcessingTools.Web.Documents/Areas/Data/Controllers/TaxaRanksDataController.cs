@@ -1,25 +1,24 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
     using System;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
     using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
-    using ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Models.TaxaRanks;
-    using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Documents.Areas.Data.Models.TaxaRanks;
 
     [Authorize]
-    public class TaxaRanksController : Controller
+    public class TaxaRanksDataController : Controller
     {
         private readonly ITaxonRankDataService service;
 
-        public TaxaRanksController(ITaxonRankDataService service)
+        public TaxaRanksDataController(ITaxonRankDataService service)
         {
             if (service == null)
             {
@@ -29,22 +28,9 @@
             this.service = service;
         }
 
-        [HttpGet]
-        public ActionResult Help()
-        {
-            return this.View();
-        }
-
-        // GET: /Data/Bio/Taxonomy/TaxaRanks
-        [HttpGet]
-        public ActionResult Index()
-        {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View();
-        }
-
-        [HttpPost, ActionName(nameof(TaxaRanksController.Index))]
-        public async Task<JsonResult> IndexPost(TaxaRanksRequestModel model)
+        [HttpPost]
+        [Route(RouteConstants.BioTaxonomyTaxaRanksDataSubmitRoute)]
+        public async Task<JsonResult> Post(TaxaRanksRequestModel model)
         {
             if (model == null || !this.ModelState.IsValid)
             {
@@ -66,6 +52,7 @@
         }
 
         [HttpPost]
+        [Route(RouteConstants.BioTaxonomyTaxaRanksDataSearchRoute)]
         public async Task<JsonResult> Search(string searchString)
         {
             if (string.IsNullOrWhiteSpace(searchString))
@@ -91,11 +78,6 @@
             return this.GetJsonResult(
                 new SearchResposeModel(
                     responseTaxa.ToArray()));
-        }
-
-        protected override void HandleUnknownAction(string actionName)
-        {
-            this.IvalidActionErrorView(actionName).ExecuteResult(this.ControllerContext);
         }
 
         private JsonResult GetEmptyJsonResult()

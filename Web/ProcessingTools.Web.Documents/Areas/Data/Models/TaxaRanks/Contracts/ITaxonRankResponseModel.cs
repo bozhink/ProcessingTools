@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Models.TaxaRanks.Contracts
+﻿namespace ProcessingTools.Web.Documents.Areas.Data.Models.TaxaRanks.Contracts
 {
     public interface ITaxonRankResponseModel
     {

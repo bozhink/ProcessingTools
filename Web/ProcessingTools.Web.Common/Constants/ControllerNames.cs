@@ -5,7 +5,7 @@
         public const string AbbreviationsControllerName = "Abbreviations";
         public const string AccountControllerName = "Account";
         public const string ArticlesControllerName = "Articles";
-        public const string BiotaxonomicBlackListControllerName = "BiotaxonomicBlackList";
+        public const string BioControllerName = "Bio";
         public const string ContentTypesControllerName = "ContentTypes";
         public const string ContinentsControllerName = "Continents";
         public const string DocumentContentControllerName = "DocumentContent";
@@ -18,7 +18,6 @@
         public const string MetadataControllerName = "Metadata";
         public const string ProductsControllerName = "Products";
         public const string PublishersControllerName = "Publishers";
-        public const string TaxaRanksControllerName = "TaxaRanks";
         public const string UploadControllerName = "Upload";
     }
 }

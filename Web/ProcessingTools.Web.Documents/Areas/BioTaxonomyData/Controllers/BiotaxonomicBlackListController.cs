@@ -49,7 +49,7 @@
             return this.View();
         }
 
-        [HttpPost, ActionName(nameof(TaxaRanksController.Index))]
+        [HttpPost, ActionName(nameof(Index))]
         public async Task<JsonResult> IndexPost(BlackListItemsRequestModel viewModel)
         {
             if (viewModel == null || !this.ModelState.IsValid)

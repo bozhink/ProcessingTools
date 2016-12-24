@@ -44,8 +44,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Taxa Ranks", nameof(ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Controllers.TaxaRanksController.Index), ControllerNames.TaxaRanksControllerName, routeValues: new { area = AreasConstants.BioTaxonomyDataAreaName }, htmlAttributes: null)</li>
-                                    <li>@Html.ActionLink("Black List", nameof(ProcessingTools.Web.Documents.Areas.BioTaxonomyData.Controllers.BiotaxonomicBlackListController.Index), ControllerNames.BiotaxonomicBlackListControllerName, routeValues: new { area = AreasConstants.BioTaxonomyDataAreaName }, htmlAttributes: null)</li>
+                                    <li>@Html.ActionLink("Bio Data", nameof(ProcessingTools.Web.Documents.Areas.Data.Controllers.BioController.Index), ControllerNames.BioControllerName, routeValues: new { area = AreasConstants.DataAreaName }, htmlAttributes: null)</li>
                                 </ul>
                             </li>
                         }
