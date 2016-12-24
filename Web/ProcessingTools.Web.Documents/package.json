@@ -1,16 +1,16 @@
 {
   "name": "processing-tools.web.documents",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.0.1",
+  "description": "Web application for document and data manipulation",
   "main": "index.js",
   "scripts": {
-    "postinstall": "bower install",
-    "clean": "gulp clean",
-    "test": "mocha wwwroot/tests/",
-    "test-kitten": "mocha -R nyan wwwroot/tests/",
-    "watch-tests": "gulp watch-tests",
-    "build": "gulp build",
-    "watch": "gulp watch"
+    "postinstall": "./node_modules/.bin/bower install; ./node_modules/.bin/gulp build",
+    "clean": "./node_modules/.bin/gulp clean",
+    "test": "./node_modules/.bin/mocha wwwroot/tests/",
+    "test-kitten": "./node_modules/.bin/mocha -R nyan wwwroot/tests/",
+    "watch-tests": "./node_modules/.bin/gulp watch-tests",
+    "build": "./node_modules/.bin/gulp build",
+    "watch": "./node_modules/.bin/gulp watch"
   },
   "author": "Bozhin Karaivanov",
   "license": "GPL-3.0",
@@ -22,7 +22,9 @@
     "url": "https://github.com/bozhink/ProcessingTools/issues"
   },
   "dependencies": {
-    "monaco-editor": "^0.7.0"
+    "codemirror": "^5.22.0",
+    "monaco-editor": "^0.7.0",
+    "requirejs": "^2.3.2"
   },
   "devDependencies": {
     "@types/angular": "^1.5.21",
@@ -53,10 +55,10 @@
     "mocha": "^3.2.0",
     "pump": "^1.0.1",
     "sinon": "^1.17.6",
-    "tsd": "^0.6.5",
     "tsify": "^2.0.7",
     "tslint": "^4.1.1",
     "typescript": "^2.1.4",
+    "typings": "^2.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.8.0"

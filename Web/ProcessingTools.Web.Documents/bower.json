@@ -4,7 +4,15 @@
   "authors": [
     "bozhink <bozhink@gmail.com>"
   ],
-  "description": "",
+  "description": "Web application for document and data manipulation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bozhink/ProcessingTools.git"
+  },
+  "keywords": [
+    "data manipulation",
+    "taxonomy"
+  ],
   "main": "",
   "license": "GPLv3",
   "ignore": [
