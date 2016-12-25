@@ -84,33 +84,6 @@
                 .Include(
                     "~/wwwroot/build/dist/css/address-list.css"));
 
-            // Taxa Ranks
-            bundles.Add(new ScriptBundle(BundleNames.TaxaRanksScriptBundleName)
-                .Include(
-                    "~/wwwroot/build/dist/js/app/models/data/bio/taxonomy/taxon-rank.js",
-                    "~/wwwroot/build/dist/js/app/data/data-set.js",
-                    "~/wwwroot/build/dist/js/app/services/ng-json-requester.js",
-                    "~/wwwroot/build/dist/js/app/services/search-string-service.js",
-                    "~/wwwroot/build/dist/js/app/controllers/data/bio/taxonomy/taxa-ranks-controller.js",
-                    "~/wwwroot/build/dist/js/app/modules/data/bio/taxonomy/taxa-ranks-app.js"));
-
-            bundles.Add(new StyleBundle(BundleNames.TaxaRanksStyleBundleName)
-                .Include(
-                    "~/wwwroot/build/dist/css/biotaxonomic-lists.css"));
-
-            // Biotaxonomic Black List
-            bundles.Add(new ScriptBundle(BundleNames.BiotaxonomicBlackListScriptBundleName)
-                .Include(
-                    "~/wwwroot/build/dist/js/app/models/data/bio/taxonomy/black-list-item.js",
-                    "~/wwwroot/build/dist/js/app/data/data-set.js",
-                    "~/wwwroot/build/dist/js/app/services/ng-json-requester.js",
-                    "~/wwwroot/build/dist/js/app/services/search-string-service.js",
-                    "~/wwwroot/build/dist/js/app/controllers/data/bio/taxonomy/biotaxonomic-black-list-controller.js",
-                    "~/wwwroot/build/dist/js/app/modules/data/bio/taxonomy/biotaxonomic-black-list-app.js"));
-
-            bundles.Add(new StyleBundle(BundleNames.BiotaxonomicBlackListStyleBundleName)
-                .Include(
-                    "~/wwwroot/build/dist/css/biotaxonomic-lists.css"));
 #if Release
             BundleTable.EnableOptimizations = true;
 #endif

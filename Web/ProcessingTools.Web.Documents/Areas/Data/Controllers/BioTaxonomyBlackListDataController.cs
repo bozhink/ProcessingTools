@@ -8,9 +8,9 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
-    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList;
 
+    [Authorize]
     public class BioTaxonomyBlackListDataController : Controller
     {
         private readonly IBiotaxonomicBlackListDataService dataService;
@@ -35,7 +35,6 @@
         }
 
         [HttpPost]
-        [Route(RouteConstants.BioTaxonomyBlackListDataSubmitRoute)]
         public async Task<JsonResult> Post(BlackListItemsRequestModel viewModel)
         {
             if (viewModel == null || !this.ModelState.IsValid)
@@ -54,7 +53,6 @@
         }
 
         [HttpPost]
-        [Route(RouteConstants.BioTaxonomyBlackListDataSearchRoute)]
         public async Task<JsonResult> Search(string searchString)
         {
             if (string.IsNullOrWhiteSpace(searchString))

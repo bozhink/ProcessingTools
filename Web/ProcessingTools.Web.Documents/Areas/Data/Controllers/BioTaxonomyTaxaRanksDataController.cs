@@ -10,7 +10,6 @@
     using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
     using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
-    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyTaxaRanks;
 
     [Authorize]
@@ -29,7 +28,6 @@
         }
 
         [HttpPost]
-        [Route(RouteConstants.BioTaxonomyTaxaRanksDataSubmitRoute)]
         public async Task<JsonResult> Post(TaxaRanksRequestModel model)
         {
             if (model == null || !this.ModelState.IsValid)
@@ -52,7 +50,6 @@
         }
 
         [HttpPost]
-        [Route(RouteConstants.BioTaxonomyTaxaRanksDataSearchRoute)]
         public async Task<JsonResult> Search(string searchString)
         {
             if (string.IsNullOrWhiteSpace(searchString))

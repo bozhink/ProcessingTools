@@ -35,18 +35,21 @@ angular.module('bioDataApp', ['ng', 'ngRoute'])
         title: 'Black List',
         route: '/black-list'
     }])
-    .service('DataSet', [
+    .factory('TaxaRanksDataSet', [
         DataSet
     ])
-    .factory('JsonRequester', [
+    .factory('BlackListDataSet', [
+        DataSet
+    ])
+    .service('JsonRequester', [
         '$http',
         NgJsonRequester
     ])
-    .factory('SearchStringService', [
+    .service('SearchStringService', [
         'JsonRequester',
         SearchStringService
     ])
-    .factory('Reporter', [
+    .service('Reporter', [
         Reporter
     ])
     .directive('navigationTabs', [
@@ -59,14 +62,14 @@ angular.module('bioDataApp', ['ng', 'ngRoute'])
         BlackListDirective
     ])
     .controller('TaxaRanksController', [
-        'DataSet',
+        'TaxaRanksDataSet',
         'SearchStringService',
         'JsonRequester',
         'Reporter',
         TaxaRanksController
     ])
     .controller('BlackListController', [
-        'DataSet',
+        'BlackListDataSet',
         'SearchStringService',
         'JsonRequester',
         'Reporter',

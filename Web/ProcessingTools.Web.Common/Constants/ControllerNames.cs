@@ -19,5 +19,7 @@
         public const string ProductsControllerName = "Products";
         public const string PublishersControllerName = "Publishers";
         public const string UploadControllerName = "Upload";
+        public const string BioTaxonomyTaxaRanksDataControllerName = "BioTaxonomyTaxaRanksData";
+        public const string BioTaxonomyBlackListDataControllerName = "BioTaxonomyBlackListData";
     }
 }
