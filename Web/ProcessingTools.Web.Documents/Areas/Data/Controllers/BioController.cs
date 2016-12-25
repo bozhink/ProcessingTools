@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using ProcessingTools.Web.Documents.Extensions;
 
+    [Authorize]
     public class BioController : Controller
     {
         // GET: Data/Bio
