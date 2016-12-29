@@ -65,8 +65,8 @@
                     "~/bower_components/interact/interact.js",
                     "~/bower_components/handlebars/handlebars.min.js",
                     "~/bower_components/leaflet/dist/leaflet.js",
-                    "~/bower_components/toastr/toastr.js",
-                    "~/wwwroot/build/dist/js/apps/document-preview.min.js"));
+                    "~/bower_components/toastr/toastr.js"/*,
+                    "~/wwwroot/build/dist/js/apps/document-preview.min.js"*/));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
                 .Include(

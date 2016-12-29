@@ -552,6 +552,8 @@
     <Content Include="wwwroot\src\js\directives\black-list.js" />
     <Content Include="wwwroot\src\js\directives\navigation-tabs.js" />
     <Content Include="wwwroot\src\js\directives\taxa-ranks.js" />
+    <Content Include="wwwroot\src\js\event-handlers\documents\document-preview-event-handlers.js" />
+    <Content Include="wwwroot\src\js\event-handlers\event-handler-factory.js" />
     <Content Include="wwwroot\src\js\models\data\black-list-item.js" />
     <Content Include="wwwroot\src\js\models\data\taxon-rank.js" />
     <Content Include="wwwroot\src\js\routers\bio-data-router.js" />

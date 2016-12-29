@@ -46,14 +46,14 @@ module.exports = function DocumentController(dataService, reporter) {
             });
     }
 
-    function createSaveAction(url, getContentCallback, done) {
-        return function (quietMode) {
+    function createSaveAction(url, quietMode, getContentCallback, done) {
+        return function () {
             save(url, quietMode, getContentCallback, done);
         };
     }
 
-    function createGetAction(url, setContentCallback, done) {
-        return function (quietMode) {
+    function createGetAction(url, quietMode, setContentCallback, done) {
+        return function () {
             get(url, quietMode, setContentCallback, done);
         };
     }
