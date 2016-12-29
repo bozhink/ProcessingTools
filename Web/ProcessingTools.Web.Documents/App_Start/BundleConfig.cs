@@ -50,8 +50,8 @@
                 .Include(
                     "~/bower_components/cryptojs-sha1/cryptojs-sha1.js",
                     "~/bower_components/toastr/toastr.js",
-                    "~/node_modules/monaco-editor/min/vs/loader.js",
-                    "~/wwwroot/build/dist/js/apps/document-edit.min.js"));
+                    "~/node_modules/monaco-editor/min/vs/loader.js"/*,
+                    "~/wwwroot/build/dist/js/apps/document-edit.min.js"*/));
 
             bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
                 .Include(

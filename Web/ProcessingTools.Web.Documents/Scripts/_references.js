@@ -8,6 +8,7 @@
 /// <reference path="../wwwroot/src/js/components/html-selection-tagger.js" />
 /// <reference path="../wwwroot/src/js/configurations/interact-config.js" />
 /// <reference path="../wwwroot/src/js/configurations/monaco-editor-config.js" />
+/// <reference path="../wwwroot/src/js/configurations/require-config.js" />
 /// <reference path="../wwwroot/src/js/configurations/toastr-config.js" />
 /// <reference path="../wwwroot/src/js/controllers/address-list-controller.js" />
 /// <reference path="../wwwroot/src/js/controllers/data/bio/black-list-controller.js" />

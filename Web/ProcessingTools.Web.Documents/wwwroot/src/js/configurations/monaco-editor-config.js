@@ -4,7 +4,8 @@ const
     DEFAULT_LANGUAGE = 'xml',
     DEFAULT_THEME = 'vs';
 
-var modes = null,
+var config = require('./require-config'),
+    modes = null,
     themes = [{
         themeId: 'vs',
         display: 'Visual Studio',
@@ -17,9 +18,9 @@ var modes = null,
         display: 'High Contrast Dark'
     }];
 
-module.exports = function MonacoEditorConfig(window, require, monaco) {
+module.exports = function MonacoEditorConfig(window, require) {
 
-    function getModes(monaco) {
+    function getModes(monaco, selected) {
         return (function () {
             var modesIds = monaco.languages.getLanguages().map(function (lang) {
                 return lang.id;
@@ -32,7 +33,7 @@ module.exports = function MonacoEditorConfig(window, require, monaco) {
                     modeId: modeId
                 };
 
-                if (modeId === DEFAULT_LANGUAGE) {
+                if (modeId === selected) {
                     item.selected = true;
                 }
 
@@ -41,11 +42,20 @@ module.exports = function MonacoEditorConfig(window, require, monaco) {
         }());
     }
 
-    function createEditor(monaco, containerElement, language, theme, content) {
-        content = content || '';
-        language = language || DEFAULT_LANGUAGE;
-        theme = theme || DEFAULT_THEME;
+    function getThemes(monaco, theme) {
+        var i, len;
+        for (i = 0, len = themes.length; i < len; i += 1) {
+            if (themes[i].themeId === theme) {
+                themes[i].selected = true;
+            } else {
+                themes[i].selected = false;
+            }
+        }
 
+        return themes;
+    }
+
+    function createEditor(monaco, containerElement, language, theme, content) {
         return monaco.editor.create(containerElement, {
             value: content.toString(),
             language: language,
@@ -54,18 +64,20 @@ module.exports = function MonacoEditorConfig(window, require, monaco) {
     }
 
     function initEditor(containerElement, pathToNodeModules, language, theme, content) {
+        content = content || '';
+        language = language || DEFAULT_LANGUAGE;
+        theme = theme || DEFAULT_THEME;
+
         return new Promise(function (resolve, reject) {
             var editor;
 
             try {
-                require.config({
-                    paths: {
-                        'vs': pathToNodeModules + '/monaco-editor/min/vs'
-                    }
-                });
+                config(require, pathToNodeModules);
 
                 require(['vs/editor/editor.main'], function () {
-                    modes = getModes(monaco);
+                    var monaco = window.monaco;
+                    modes = getModes(monaco, language);
+                    themes = getThemes(monaco, theme);
 
                     editor = createEditor(monaco, containerElement, language, theme, content);
 
@@ -95,7 +107,7 @@ module.exports = function MonacoEditorConfig(window, require, monaco) {
         var oldModel,
             newModel,
             content,
-            language = mode ? mode.modeId || DEFAULT_LANGUAGE : DEFAULT_LANGUAGE;
+            language = mode || DEFAULT_LANGUAGE;
 
         if (editor) {
             content = editor.getValue();
@@ -109,10 +121,9 @@ module.exports = function MonacoEditorConfig(window, require, monaco) {
     }
 
     function changeTheme(editor, theme) {
-        var newTheme = theme ? theme.themeId || DEFAULT_THEME : DEFAULT_THEME;
         if (editor) {
             editor.updateOptions({
-                'theme': newTheme
+                'theme': (theme || DEFAULT_THEME)
             });
         }
     }

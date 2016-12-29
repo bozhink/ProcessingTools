@@ -7,12 +7,12 @@ const
     SAVE_BUTTON_ID = 'save-button',
     REFRESH_BUTTON_ID = 'refresh-button',
     keys = {
+        mode: 'MONACO_EDITOR_MODE',
+        theme: 'MONACO_EDITOR_THEME',
         lastGetTimeKey: 'LAST_GET_TIME_KEY_EDIT',
         lastSavedTimeKey: 'LAST_SAVED_TIME_KEY_EDIT',
         contentHashKey: 'CONTENT_HASH_KEY_EDIT'
     };
-
-
 
 var $ = window.jQuery,
     document = window.document,
@@ -23,16 +23,20 @@ var $ = window.jQuery,
     dataService = require('../services/documents/document-content-data')(storage, keys, jsonRequester, sha1),
     reporter = require('../services/toastr-reporter')(toastr),
     documentController = require('../controllers/documents/document-controller')(dataService, reporter),
-    monacoEditorConfig = require('../configurations/monaco-editor-config')(window, window.require, window.monaco),
+    monacoEditorConfig = require('../configurations/monaco-editor-config')(window, window.require),
+    eventHandlerFactory = require('../event-handlers/event-handler-factory')(window),
+    eventHandlers = {},
     editor,
+    mode,
+    theme,
     getUrl = document.getElementById(GET_LINK_ID).href,
     saveUrl = document.getElementById(SAVE_LINK_ID).href,
-    loadContentEventHandler,
-    saveContentEventHandler;
+    loadContentAction,
+    saveContentAction;
 
 require('../configurations/toastr-config')(toastr);
 
-loadContentEventHandler = documentController.createGetAction(getUrl, function (content) {
+loadContentAction = documentController.createGetAction(getUrl, false, function (content) {
     var contentHash;
     if (content) {
         editor.setValue(content);
@@ -44,15 +48,21 @@ loadContentEventHandler = documentController.createGetAction(getUrl, function (c
         type: 'success',
         message: 'Content is retrieved'
     });
-})(false);
+});
 
-saveContentEventHandler = documentController.createSaveAction(saveUrl, function () {
+saveContentAction = documentController.createSaveAction(saveUrl, false, function () {
     return editor.getValue();
-})(false);
+});
 
-monacoEditorConfig.init(document.getElementById(EDITOR_CONTAINER_ID), '../../../node_modules')
+eventHandlers.loadContent = eventHandlerFactory.create(loadContentAction);
+eventHandlers.saveContent = eventHandlerFactory.create(saveContentAction);
+
+mode = storage.getItem(keys.mode);
+theme = storage.getItem(keys.theme);
+
+monacoEditorConfig.init(document.getElementById(EDITOR_CONTAINER_ID), '../../../node_modules', mode, theme)
     .then(function (res) {
-        var i, len, option, modes, themes;
+        var i, len, modes, themes;
 
         if (!res) {
             return;
@@ -63,24 +73,28 @@ monacoEditorConfig.init(document.getElementById(EDITOR_CONTAINER_ID), '../../../
         editor = res.editor;
 
         // Fetch content
-        loadContentEventHandler();
+        loadContentAction();
 
         // Populate modes and themes
         if (themes) {
             len = themes.length;
             for (i = 0; i < len; i += 1) {
-                option = document.createElement('option');
-                option.textContent = themes[i].display;
-                option.selected = themes[i].selected;
-                $(".theme-picker").append(option);
+                $('<option />')
+                    .attr({
+                        selected: themes[i].selected
+                    })
+                    .text(themes[i].display)
+                    .appendTo($('.theme-picker'));
             }
 
-            $(".theme-picker").change(function () {
+            $('.theme-picker').change(function () {
                 var index = this.selectedIndex,
                     $body = $('body'),
                     $monacoEditor = $('.monaco-editor');
 
-                monacoEditorConfig.changeTheme(themes[index]);
+                theme = themes[index].themeId;
+                storage.setItem(keys.theme, theme)
+                monacoEditorConfig.changeTheme(editor, theme);
 
                 if (index > 0) {
                     // Not the default theme
@@ -101,14 +115,18 @@ monacoEditorConfig.init(document.getElementById(EDITOR_CONTAINER_ID), '../../../
         if (modes) {
             len = modes.length;
             for (i = 0; i < len; i += 1) {
-                option = document.createElement('option');
-                option.textContent = modes[i].modeId;
-                option.selected = modes[i].selected;
-                $(".language-picker").append(option);
+                $('<option />')
+                    .attr({
+                        selected: modes[i].selected
+                    })
+                    .text(modes[i].modeId)
+                    .appendTo($('.language-picker'));
             }
 
-            $(".language-picker").change(function () {
-                monacoEditorConfig.changeMode(modes[this.selectedIndex]);
+            $('.language-picker').change(function () {
+                mode = modes[this.selectedIndex].modeId;
+                storage.setItem(keys.mode, mode);
+                monacoEditorConfig.changeMode(editor, mode);
             });
         }
     });
@@ -116,10 +134,10 @@ monacoEditorConfig.init(document.getElementById(EDITOR_CONTAINER_ID), '../../../
 // Events registration
 document
     .getElementById(SAVE_BUTTON_ID)
-    .addEventListener('click', saveContentEventHandler, false);
+    .addEventListener('click', eventHandlers.saveContent, false);
 document
     .getElementById(REFRESH_BUTTON_ID)
-    .addEventListener('click', loadContentEventHandler, false);
+    .addEventListener('click', eventHandlers.loadContent, false);
 
 function keyDownEventHandler(event) {
     var e = event || window.event;
@@ -127,18 +145,12 @@ function keyDownEventHandler(event) {
     if (e.ctrlKey) {
         // Ctrl + S
         if (e.which === 83) {
-            e.stopPropagation();
-            e.preventDefault();
-            saveContentEventHandler();
-            return false;
+            return eventHandlers.saveContent(e);
         }
 
         // Ctrl + R
         if (e.which === 82) {
-            e.stopPropagation();
-            e.preventDefault();
-            loadContentEventHandler();
-            return false;
+            return eventHandlers.loadContent(e);
         }
     }
 }

@@ -541,6 +541,7 @@
     <Content Include="wwwroot\src\js\components\html-selection-tagger.js" />
     <Content Include="wwwroot\src\js\configurations\interact-config.js" />
     <Content Include="wwwroot\src\js\configurations\monaco-editor-config.js" />
+    <Content Include="wwwroot\src\js\configurations\require-config.js" />
     <Content Include="wwwroot\src\js\configurations\toastr-config.js" />
     <Content Include="wwwroot\src\js\controllers\address-list-controller.js" />
     <Content Include="wwwroot\src\js\controllers\data\bio\black-list-controller.js" />

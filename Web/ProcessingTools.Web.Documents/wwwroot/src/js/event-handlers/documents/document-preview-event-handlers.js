@@ -2,7 +2,6 @@ const MAIN_ASIDE_ID = 'aside-main-box';
 
 module.exports = function (window, document, $, factory, tagger, coordinatesToolboxes) {
 
-
     function createBaloon(event, contentSelector) {
         var e = event || window.event,
             rid = e.target.getAttribute('href'),
