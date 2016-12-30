@@ -141,6 +141,7 @@
     <Compile Include="IReporter.cs" />
     <Compile Include="ISandbox.cs" />
     <Compile Include="IStringIdentifiable.cs" />
+    <Compile Include="IStringItemsProvider.cs" />
     <Compile Include="ITransformer.cs" />
     <Compile Include="ITypesProvider.cs" />
     <Compile Include="IUrlLinkable.cs" />
