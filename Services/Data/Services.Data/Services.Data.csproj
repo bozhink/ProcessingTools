@@ -59,6 +59,7 @@
     <Compile Include="Contracts\Bio\Taxonomy\IAphiaTaxaRankResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IBiotaxonomicBlackListDataService.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IBlackList.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IBlackListSearchService.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\ICatalogueOfLifeTaxaClassificationResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\ICatalogueOfLifeTaxaRankResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IGbifTaxaClassificationResolver.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\BiotaxonomicBlackListDataService.cs" />
     <Compile Include="Services\Bio\Taxonomy\BlackList.cs" />
+    <Compile Include="Services\Bio\Taxonomy\BlackListSearchService.cs" />
     <Compile Include="Services\Bio\Taxonomy\CatalogueOfLifeTaxaClassificationResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\CatalogueOfLifeTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\GbifTaxaClassificationResolver.cs" />
