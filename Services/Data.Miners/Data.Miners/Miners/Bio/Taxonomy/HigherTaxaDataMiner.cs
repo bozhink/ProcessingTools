@@ -6,8 +6,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Constants;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Strings.Extensions;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner

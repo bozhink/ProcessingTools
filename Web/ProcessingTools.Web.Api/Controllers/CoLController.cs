@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using System.Web.Http.Cors;
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using Factories;
+    using Abstractions;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [EnableCors("*", "*", "*")]
-    public class CoLController : TaxaClassificationDataServiceControllerFactory
+    public class CoLController : AbstractTaxaClassificationResolverController
     {
-        public CoLController(ICatalogueOfLifeTaxaClassificationResolverDataService service)
+        public CoLController(ICatalogueOfLifeTaxaClassificationResolver resolver)
+            : base(resolver)
         {
-            this.Service = service;
         }
     }
 }

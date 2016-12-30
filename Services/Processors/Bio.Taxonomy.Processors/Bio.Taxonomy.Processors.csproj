@@ -105,9 +105,9 @@
       <Project>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</Project>
       <Name>Data.Miners</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
-      <Project>{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}</Project>
-      <Name>Bio.Taxonomy.Services.Data</Name>
+    <ProjectReference Include="..\..\Data\Services.Data\Services.Data.csproj">
+      <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
+      <Name>Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>

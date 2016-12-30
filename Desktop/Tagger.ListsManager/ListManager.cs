@@ -7,12 +7,10 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Windows.Forms;
-
     using Ninject;
     using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
-
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
     using Settings;
 
     public partial class ListManagerControl : UserControl
@@ -47,7 +45,7 @@
             }
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>

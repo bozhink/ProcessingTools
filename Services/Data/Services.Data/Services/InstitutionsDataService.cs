@@ -2,26 +2,27 @@
 {
     using System;
     using System.Linq.Expressions;
+    using Contracts;
+    using Contracts.Models;
+    using Models;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Services.Common.Factories;
-    using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Models;
 
-    public class InstitutionsDataService : SimpleDataServiceWithRepositoryFactory<Institution, InstitutionServiceModel>, IInstitutionsDataService
+    public class InstitutionsDataService : SimpleDataServiceWithRepositoryFactory<Institution, IInstitution>, IInstitutionsDataService
     {
         public InstitutionsDataService(IResourcesRepository<Institution> repository)
             : base(repository)
         {
         }
 
-        protected override Expression<Func<Institution, InstitutionServiceModel>> MapDbModelToServiceModel => e => new InstitutionServiceModel
+        protected override Expression<Func<Institution, IInstitution>> MapDbModelToServiceModel => e => new InstitutionServiceModel
         {
             Id = e.Id,
             Name = e.Name
         };
 
-        protected override Expression<Func<InstitutionServiceModel, Institution>> MapServiceModelToDbModel => m => new Institution
+        protected override Expression<Func<IInstitution, Institution>> MapServiceModelToDbModel => m => new Institution
         {
             Id = m.Id,
             Name = m.Name

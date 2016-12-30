@@ -2,15 +2,14 @@
 {
     using Contracts.Controllers;
     using Generics;
-
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse treatment meta with GBIF.")]
-    public class ParseTreatmentMetaWithGbifController : GenericDocumentParserController<ITreatmentMetaParser<IGbifTaxaClassificationResolverDataService>>, IParseTreatmentMetaWithGbifController
+    public class ParseTreatmentMetaWithGbifController : GenericDocumentParserController<ITreatmentMetaParser<IGbifTaxaClassificationResolver>>, IParseTreatmentMetaWithGbifController
     {
-        public ParseTreatmentMetaWithGbifController(ITreatmentMetaParser<IGbifTaxaClassificationResolverDataService> parser)
+        public ParseTreatmentMetaWithGbifController(ITreatmentMetaParser<IGbifTaxaClassificationResolver> parser)
             : base(parser)
         {
         }

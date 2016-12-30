@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Factories;
+    using Abstractions;
     using Geo.Services.Data.Contracts;
     using Geo.Services.Data.Models;
     using Models.GeoNames;
 
-    public class GeoNameController : GenericDataServiceControllerFactory<GeoNameServiceModel, GeoNameRequestModel, GeoNameResponseModel>
+    public class GeoNameController : GenericDataServiceController<GeoNameServiceModel, GeoNameRequestModel, GeoNameResponseModel>
     {
         public GeoNameController(IGeoNamesDataService service)
             : base(service)

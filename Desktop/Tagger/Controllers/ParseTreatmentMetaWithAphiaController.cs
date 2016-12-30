@@ -2,15 +2,14 @@
 {
     using Contracts.Controllers;
     using Generics;
-
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse treatment meta with Aphia.")]
-    public class ParseTreatmentMetaWithAphiaController : GenericDocumentParserController<ITreatmentMetaParser<IAphiaTaxaClassificationResolverDataService>>, IParseTreatmentMetaWithAphiaController
+    public class ParseTreatmentMetaWithAphiaController : GenericDocumentParserController<ITreatmentMetaParser<IAphiaTaxaClassificationResolver>>, IParseTreatmentMetaWithAphiaController
     {
-        public ParseTreatmentMetaWithAphiaController(ITreatmentMetaParser<IAphiaTaxaClassificationResolverDataService> parser)
+        public ParseTreatmentMetaWithAphiaController(ITreatmentMetaParser<IAphiaTaxaClassificationResolver> parser)
             : base(parser)
         {
         }

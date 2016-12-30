@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using System.Web.Http.Cors;
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using Factories;
+    using Abstractions;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [EnableCors("*", "*", "*")]
-    public class GbifController : TaxaClassificationDataServiceControllerFactory
+    public class GbifController : AbstractTaxaClassificationResolverController
     {
-        public GbifController(IGbifTaxaClassificationResolverDataService service)
+        public GbifController(IGbifTaxaClassificationResolver resolver)
+            : base(resolver)
         {
-            this.Service = service;
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Factories;
+    using Abstractions;
     using Models.Institutions;
     using Services.Data.Contracts;
-    using Services.Data.Models;
+    using Services.Data.Contracts.Models;
 
-    public class InstitutionController : GenericDataServiceControllerFactory<InstitutionServiceModel, InstitutionRequestModel, InstitutionResponseModel>
+    public class InstitutionController : GenericDataServiceController<IInstitution, InstitutionRequestModel, InstitutionResponseModel>
     {
         public InstitutionController(IInstitutionsDataService service)
             : base(service)

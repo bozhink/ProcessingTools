@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Services.Common.Contracts;
 
-    public interface IProductsDataService : IMultiEntryDataService<ProductServiceModel>
+    public interface IProductsDataService : IMultiEntryDataService<IProduct>
     {
     }
 }

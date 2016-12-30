@@ -7,11 +7,11 @@
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class GenericParseHigherTaxaController<TService> : ITaggerController
-        where TService : ITaxonRankResolverDataService
+        where TService : ITaxaRankResolver
     {
         private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
         private readonly ILogger logger;

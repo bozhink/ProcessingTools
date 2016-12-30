@@ -6,10 +6,10 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Strings.Extensions;
 
     public abstract class TaxaTagger : IDocumentTagger

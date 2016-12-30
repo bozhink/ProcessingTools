@@ -47,18 +47,58 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaInformationResolver.cs" />
+    <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaRankResolverOverTaxaClassificationResolver.cs" />
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IAboveGenusTaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IAphiaTaxaClassificationResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IAphiaTaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IBiotaxonomicBlackListDataService.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IBiotaxonomicBlackListIterableDataService.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IBlackList.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ICatalogueOfLifeTaxaClassificationResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ICatalogueOfLifeTaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IGbifTaxaClassificationResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IGbifTaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ILocalDbTaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ISuffixHigherTaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ITaxaInformationResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ITaxaClassificationResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ITaxonRankDataService.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ITaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\IWhiteList.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFileContentDataService.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFilesDataService.cs" />
     <Compile Include="Contracts\Files\IXmlFileContentDataService.cs" />
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
     <Compile Include="Contracts\Mediatypes\IMediatypesResolver.cs" />
+    <Compile Include="Contracts\Models\Bio\Taxonomy\ITaxonRankWithWhiteListing.cs" />
+    <Compile Include="Contracts\Models\IInstitution.cs" />
+    <Compile Include="Contracts\Models\IProduct.cs" />
+    <Compile Include="Models\Bio\Taxonomy\BlackListEntity.cs" />
+    <Compile Include="Models\Bio\Taxonomy\TaxonClassificationServiceModel.cs" />
+    <Compile Include="Models\Bio\Taxonomy\TaxonRankEntity.cs" />
+    <Compile Include="Models\Bio\Taxonomy\TaxonRankServiceModel.cs" />
+    <Compile Include="Models\Bio\Taxonomy\TaxonRankWithWhiteListingServiceModel.cs" />
     <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
     <Compile Include="Models\Mediatypes\MediatypeServiceModel.cs" />
+    <Compile Include="Services\Bio\Taxonomy\AboveGenusTaxaRankResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\AphiaTaxaClassificationResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\AphiaTaxaRankResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\BiotaxonomicBlackListDataService.cs" />
+    <Compile Include="Services\Bio\Taxonomy\BiotaxonomicBlackListIterableDataService.cs" />
+    <Compile Include="Services\Bio\Taxonomy\CatalogueOfLifeTaxaClassificationResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\CatalogueOfLifeTaxaRankResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\GbifTaxaClassificationResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\GbifTaxaRankResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\LocalDbTaxaRankResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\SuffixHigherTaxaRankResolver.cs" />
+    <Compile Include="Services\Bio\Taxonomy\TaxonRankDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\Files\XmlFileContentDataService.cs" />
@@ -70,6 +110,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Bio\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
+      <Project>{827CC531-1B71-4DF2-B657-5E6EC5BD080F}</Project>
+      <Name>Bio.Taxonomy.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
@@ -101,6 +145,22 @@
     <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
+      <Project>{F364BD78-29DE-48BE-9098-B6AE0C468008}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
+      <Project>{436A7881-3C88-4892-885D-29D487A42FA4}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
+      <Project>{344310AE-C162-4159-AEC1-91821190546F}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>

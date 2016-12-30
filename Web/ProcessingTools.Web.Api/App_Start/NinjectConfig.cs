@@ -120,13 +120,6 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
         };
 
         public static IKernel CreateKernel()

@@ -9,12 +9,12 @@
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Processors.Abstractions.Taggers;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Xml.Extensions;
 
     public class LowerTaxaTagger : TaxaTagger, ILowerTaxaTagger

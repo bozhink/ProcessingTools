@@ -22,7 +22,7 @@
 
             this.Bind(b =>
             {
-                b.From(Bio.Taxonomy.Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

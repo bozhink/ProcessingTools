@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Models;
     using ProcessingTools.Common;
     using ProcessingTools.Net.Constants;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyTaxaRanks;
 
     [Authorize]

@@ -1,11 +1,10 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers
 {
-    using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public interface ITreatmentMetaParser<TService> : IDocumentParser
-        where TService : ITaxaInformationResolverDataService<ITaxonClassification>
+        where TService : ITaxaClassificationResolver
     {
     }
 }

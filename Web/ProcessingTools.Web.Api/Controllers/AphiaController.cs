@@ -1,13 +1,13 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Bio.Taxonomy.Services.Data.Contracts;
-    using Factories;
+    using Abstractions;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
-    public class AphiaController : TaxaClassificationDataServiceControllerFactory
+    public class AphiaController : AbstractTaxaClassificationResolverController
     {
-        public AphiaController(IAphiaTaxaClassificationResolverDataService service)
+        public AphiaController(IAphiaTaxaClassificationResolver resolver)
+            : base(resolver)
         {
-            this.Service = service;
         }
     }
 }

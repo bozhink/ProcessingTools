@@ -9,14 +9,14 @@
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Strings.Extensions;
 
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
-        where TService : ITaxonRankResolverDataService
+        where TService : ITaxaRankResolver
         where T : ITaxonRank
     {
         private readonly TService taxaRankDataService;

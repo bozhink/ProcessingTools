@@ -6,12 +6,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Processors.Abstractions.Taggers;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class HigherTaxaTagger : TaxaTagger, IHigherTaxaTagger
     {

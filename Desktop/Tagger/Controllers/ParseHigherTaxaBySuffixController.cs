@@ -2,18 +2,17 @@
 {
     using Contracts.Controllers;
     using Generics;
-
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse higher taxa by suffix.")]
-    public class ParseHigherTaxaBySuffixController : GenericParseHigherTaxaController<ISuffixHigherTaxaRankResolverDataService>, IParseHigherTaxaBySuffixController
+    public class ParseHigherTaxaBySuffixController : GenericParseHigherTaxaController<ISuffixHigherTaxaRankResolver>, IParseHigherTaxaBySuffixController
     {
         public ParseHigherTaxaBySuffixController(
-            IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolverDataService, ITaxonRank> parser,
+            IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolver, ITaxonRank> parser,
             ILogger logger)
             : base(parser, logger)
         {

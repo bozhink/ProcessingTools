@@ -8,13 +8,13 @@
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
-    using ProcessingTools.Bio.Taxonomy.Services.Data.Contracts;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class TreatmentMetaParser<TService> : ITreatmentMetaParser<TService>
-        where TService : ITaxaInformationResolverDataService<ITaxonClassification>
+        where TService : ITaxaClassificationResolver
     {
         private const string SelectTreatmentGeneraXPathString = ".//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 

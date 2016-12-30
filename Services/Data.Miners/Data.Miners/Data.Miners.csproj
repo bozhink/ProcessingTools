@@ -134,10 +134,6 @@
       <Project>{F80D5E4C-DC41-48C6-99C1-43387B0D1BAF}</Project>
       <Name>Bio.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Taxonomy.Services.Data\Bio.Taxonomy.Services.Data.csproj">
-      <Project>{CDEE4BDA-695D-471C-AE50-2D4CA4B2FE69}</Project>
-      <Name>Bio.Taxonomy.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Geo.Services.Data\Geo.Services.Data.csproj">
       <Project>{C9AFD557-6559-4059-9287-65CA567F57EB}</Project>
       <Name>Geo.Services.Data</Name>
@@ -151,12 +147,7 @@
       <Name>Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\Miners" />
-    <Folder Include="Contracts\Models" />
-    <Folder Include="Miners" />
-    <Folder Include="Models" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

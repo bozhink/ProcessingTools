@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Factories;
+    using Abstractions;
     using Models.Products;
     using Services.Data.Contracts;
-    using Services.Data.Models;
+    using Services.Data.Contracts.Models;
 
-    public class ProductController : GenericDataServiceControllerFactory<ProductServiceModel, ProductRequestModel, ProductResponseModel>
+    public class ProductController : GenericDataServiceController<IProduct, ProductRequestModel, ProductResponseModel>
     {
         public ProductController(IProductsDataService service)
             : base(service)
