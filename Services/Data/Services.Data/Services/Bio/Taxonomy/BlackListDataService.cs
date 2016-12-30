@@ -9,11 +9,11 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public class BiotaxonomicBlackListDataService : IBiotaxonomicBlackListDataService
+    public class BlackListDataService : IBlackListDataService
     {
         private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
 
-        public BiotaxonomicBlackListDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
+        public BlackListDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -23,7 +23,22 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<object> Add(params string[] items)
+        public async Task<object> Delete(params string[] items)
+        {
+            var validItems = this.ValidateInputItems(items);
+
+            return await this.repositoryProvider.Execute(async (repository) =>
+            {
+                var tasks = validItems.Select(b => repository.Delete(b)).ToArray();
+
+                await Task.WhenAll(tasks);
+
+                var result = await repository.SaveChanges();
+                return result;
+            });
+        }
+
+        public async Task<object> Upsert(params string[] items)
         {
             var validItems = this.ValidateInputItems(items);
 
@@ -34,26 +49,6 @@
                     Content = s
                 })
                 .Select(b => repository.Add(b))
-                .ToArray();
-
-                await Task.WhenAll(tasks);
-
-                var result = await repository.SaveChanges();
-                return result;
-            });
-        }
-
-        public async Task<object> Delete(params string[] items)
-        {
-            var validItems = this.ValidateInputItems(items);
-
-            return await this.repositoryProvider.Execute(async (repository) =>
-            {
-                var tasks = validItems.Select(s => new BlackListEntity
-                {
-                    Content = s
-                })
-                .Select(b => repository.Delete(b))
                 .ToArray();
 
                 await Task.WhenAll(tasks);

@@ -13,11 +13,11 @@
     [Authorize]
     public class BioTaxonomyBlackListDataController : Controller
     {
-        private readonly IBiotaxonomicBlackListDataService dataService;
+        private readonly IBlackListDataService dataService;
         private readonly IBlackListSearchService searchService;
 
         public BioTaxonomyBlackListDataController(
-            IBiotaxonomicBlackListDataService dataService,
+            IBlackListDataService dataService,
             IBlackListSearchService searchService)
         {
             if (dataService == null)
@@ -46,7 +46,7 @@
                 .Select(i => i.Content)
                 .ToArray();
 
-            await this.dataService.Add(taxa);
+            await this.dataService.Upsert(taxa);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();

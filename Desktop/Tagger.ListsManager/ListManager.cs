@@ -157,14 +157,14 @@
                 }
                 else
                 {
-                    var service = this.kernel.Get<IBiotaxonomicBlackListDataService>();
+                    var service = this.kernel.Get<IBlackListDataService>();
 
                     var items = new HashSet<string>(this.listView.Items
                         .Cast<ListViewItem>()
                         .Select(i => i.Text))
                         .ToArray();
 
-                    await service.Add(items);
+                    await service.Upsert(items);
                 }
             }
             catch (Exception ex)

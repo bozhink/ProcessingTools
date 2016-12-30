@@ -2,10 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    public interface IBiotaxonomicBlackListDataService
+    public interface IBlackListDataService
     {
-        Task<object> Add(params string[] items);
-
         Task<object> Delete(params string[] items);
+
+        Task<object> Upsert(params string[] items);
     }
 }
