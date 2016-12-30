@@ -45,36 +45,6 @@
                 .Include(
                     "~/wwwroot/build/dist/js/apps/files-index.min.js"));
 
-            // Document Edit
-            bundles.Add(new ScriptBundle(BundleNames.DocumentEditScriptBundleName)
-                .Include(
-                    "~/bower_components/cryptojs-sha1/cryptojs-sha1.js",
-                    "~/bower_components/toastr/toastr.js",
-                    "~/node_modules/monaco-editor/min/vs/loader.js"/*,
-                    "~/wwwroot/build/dist/js/apps/document-edit.min.js"*/));
-
-            bundles.Add(new StyleBundle(BundleNames.DocumentEditStyleBundleName)
-                .Include(
-                    "~/bower_components/toastr/toastr.min.css",
-                    "~/wwwroot/build/dist/css/document-edit.css"));
-
-            // Document Preview
-            bundles.Add(new ScriptBundle(BundleNames.DocumentPreviewScriptBundleName)
-                .Include(
-                    "~/bower_components/cryptojs-sha1/cryptojs-sha1.js",
-                    "~/bower_components/interact/interact.js",
-                    "~/bower_components/handlebars/handlebars.min.js",
-                    "~/bower_components/leaflet/dist/leaflet.js",
-                    "~/bower_components/toastr/toastr.js"/*,
-                    "~/wwwroot/build/dist/js/apps/document-preview.min.js"*/));
-
-            bundles.Add(new StyleBundle(BundleNames.DocumentPreviewStyleBundleName)
-                .Include(
-                    "~/bower_components/leaflet/dist/leaflet.css",
-                    "~/bower_components/toastr/toastr.min.css",
-                    "~/wwwroot/build/dist/css/toolbox.css",
-                    "~/wwwroot/build/dist/css/document-preview.css"));
-
             // Address List
             bundles.Add(new ScriptBundle(BundleNames.AddressListScriptBundleName)
                 .Include(

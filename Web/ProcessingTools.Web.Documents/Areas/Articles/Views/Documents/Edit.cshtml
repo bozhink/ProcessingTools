@@ -6,7 +6,8 @@
 }
 
 @section Styles {
-    @Styles.Render(BundleNames.DocumentEditStyleBundleName)
+    <link href="~/bower_components/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/build/dist/css/document-edit.css" rel="stylesheet" />
 }
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -55,18 +56,16 @@
 </nav>
 
 <div id="editor-container"></div>
-
 <div class="clearfix"></div>
-
 <aside style="display: none;">
     @Html.ActionLink(
-        linkText: Strings.DefaultRefreshActionLinkTitle,
+        linkText: "_",
         actionName: nameof(DocumentContentController.GetXml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.DocumentId },
         htmlAttributes: new { id = "get-link" })
     @Html.ActionLink(
-        linkText: Strings.DefaultSaveActionLinkTitle,
+        linkText: "_",
         actionName: nameof(DocumentContentController.SaveXml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.DocumentId },
@@ -74,6 +73,8 @@
 </aside>
 
 @section Scripts {
-    @Scripts.Render(BundleNames.DocumentEditScriptBundleName)
+    <script src="~/bower_components/cryptojs-sha1/cryptojs-sha1.js"></script>
+    <script src="~/bower_components/toastr/toastr.min.js"></script>
+    <script src="~/node_modules/monaco-editor/min/vs/loader.js"></script>
     <script src="~/wwwroot/build/dist/js/apps/document-edit.min.js"></script>
 }

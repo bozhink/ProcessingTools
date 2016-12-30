@@ -6,7 +6,10 @@
 }
 
 @section Styles {
-    @Styles.Render(BundleNames.DocumentPreviewStyleBundleName)
+    <link href="~/bower_components/leaflet/dist/leaflet.css" rel="stylesheet" />
+    <link href="~/bower_components/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/build/dist/css/toolbox.css" rel="stylesheet" />
+    <link href="~/wwwroot/build/dist/css/document-preview.css" rel="stylesheet" />
 }
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -42,11 +45,6 @@
                         <li><a id="tag-suppl-materials-citations-menu-item">Suppl. materials citations</a></li>
                         <li><a id="tag-appendices-citations-menu-item">Appendices citations</a></li>
                         <li><a id="tag-bibliographic-citations-menu-item">Bibliographic citations</a></li>
-                        @*<li role="separator" class="divider"></li>*@
-                        @*<li><a>Coordinates</a></li>*@
-                        @*<li role="separator" class="divider"></li>*@
-                        @*<li><a>Lower taxa</a></li>*@
-                        @*<li><a>Higher taxa</a></li>*@
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -63,20 +61,17 @@
 </nav>
 
 <article id="article" contextmenu="supermenu"></article>
-
-<aside id="aside-main-box"></aside>
-
 <div class="clearfix"></div>
-
+<aside id="aside-main-box"></aside>
 <aside style="display: none;">
     @Html.ActionLink(
-        linkText: Strings.DefaultRefreshActionLinkTitle,
+        linkText: "_",
         actionName: nameof(DocumentContentController.GetHtml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.DocumentId },
         htmlAttributes: new { id = "get-link" })
     @Html.ActionLink(
-        linkText: Strings.DefaultSaveActionLinkTitle,
+        linkText: "_",
         actionName: nameof(DocumentContentController.SaveHtml),
         controllerName: ControllerNames.DocumentContentControllerName,
         routeValues: new { id = Model.DocumentId },
@@ -84,7 +79,11 @@
 </aside>
 
 @section Scripts {
-    @Scripts.Render(BundleNames.DocumentPreviewScriptBundleName)
+    <script src="~/bower_components/cryptojs-sha1/cryptojs-sha1.js"></script>
+    <script src="~/bower_components/interact/dist/interact.min.js"></script>
+    <script src="~/bower_components/handlebars/handlebars.min.js"></script>
+    <script src="~/bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="~/bower_components/toastr/toastr.min.js"></script>
     <script src="~/wwwroot/build/dist/js/apps/document-preview.min.js"></script>
 }
 
