@@ -1,11 +1,8 @@
 ﻿namespace ProcessingTools.Services.Data.Contracts.Bio.Taxonomy
 {
-    using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Services.Data;
 
-    public interface IBlackListDataService
+    public interface IBlackListDataService : IAddableDataService<string>, IDeletableDataService<string>
     {
-        Task<object> Delete(params string[] items);
-
-        Task<object> Upsert(params string[] items);
     }
 }

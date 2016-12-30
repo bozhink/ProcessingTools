@@ -46,7 +46,7 @@
                 .Select(i => i.Content)
                 .ToArray();
 
-            await this.dataService.Upsert(taxa);
+            await this.dataService.Add(taxa);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();

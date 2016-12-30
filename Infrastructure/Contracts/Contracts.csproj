@@ -153,6 +153,8 @@
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
+    <Compile Include="Services\Data\IAddableDataService.cs" />
+    <Compile Include="Services\Data\IDeletableDataService.cs" />
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />

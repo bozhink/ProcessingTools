@@ -164,7 +164,7 @@
                         .Select(i => i.Text))
                         .ToArray();
 
-                    await service.Upsert(items);
+                    await service.Add(items);
                 }
             }
             catch (Exception ex)

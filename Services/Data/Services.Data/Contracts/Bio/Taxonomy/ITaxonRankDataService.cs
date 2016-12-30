@@ -1,12 +1,9 @@
 ﻿namespace ProcessingTools.Services.Data.Contracts.Bio.Taxonomy
 {
-    using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Contracts.Services.Data;
 
-    public interface ITaxonRankDataService
+    public interface ITaxonRankDataService : IAddableDataService<ITaxonRank>, IDeletableDataService<ITaxonRank>
     {
-        Task<object> Add(params ITaxonRank[] taxa);
-
-        Task<object> Delete(params ITaxonRank[] taxa);
     }
 }

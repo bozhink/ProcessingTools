@@ -23,22 +23,7 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<object> Delete(params string[] items)
-        {
-            var validItems = this.ValidateInputItems(items);
-
-            return await this.repositoryProvider.Execute(async (repository) =>
-            {
-                var tasks = validItems.Select(b => repository.Delete(b)).ToArray();
-
-                await Task.WhenAll(tasks);
-
-                var result = await repository.SaveChanges();
-                return result;
-            });
-        }
-
-        public async Task<object> Upsert(params string[] items)
+        public async Task<object> Add(params string[] items)
         {
             var validItems = this.ValidateInputItems(items);
 
@@ -50,6 +35,21 @@
                 })
                 .Select(b => repository.Add(b))
                 .ToArray();
+
+                await Task.WhenAll(tasks);
+
+                var result = await repository.SaveChanges();
+                return result;
+            });
+        }
+
+        public async Task<object> Delete(params string[] items)
+        {
+            var validItems = this.ValidateInputItems(items);
+
+            return await this.repositoryProvider.Execute(async (repository) =>
+            {
+                var tasks = validItems.Select(b => repository.Delete(b)).ToArray();
 
                 await Task.WhenAll(tasks);
 
