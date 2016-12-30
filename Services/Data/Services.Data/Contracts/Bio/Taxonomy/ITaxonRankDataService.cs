@@ -12,8 +12,6 @@
 
         Task<IEnumerable<ITaxonRank>> FindByName(string name);
 
-        Task<IEnumerable<ITaxonRank>> GetWhiteListedTaxa();
-
         Task<IEnumerable<ITaxonRank>> SearchByName(string name);
 
         Task<object> Update(params ITaxonRank[] taxa);

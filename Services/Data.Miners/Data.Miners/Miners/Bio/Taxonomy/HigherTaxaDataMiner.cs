@@ -14,16 +14,16 @@
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        private readonly ITaxonRankDataService service;
+        private readonly IWhiteList whitelist;
 
-        public HigherTaxaDataMiner(ITaxonRankDataService service)
+        public HigherTaxaDataMiner(IWhiteList whitelist)
         {
-            if (service == null)
+            if (whitelist == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(whitelist));
             }
 
-            this.service = service;
+            this.whitelist = whitelist;
         }
 
         public async Task<IEnumerable<string>> Mine(string content)
@@ -46,12 +46,12 @@
 
         private async Task<IEnumerable<string>> MatchWithWhiteList(IEnumerable<string> words)
         {
-            var whiteListItems = new HashSet<string>((await this.service.GetWhiteListedTaxa())
-                .Select(t => t.ScientificName.ToLower()));
+            var whiteListItems = await this.whitelist.Items;
+            var seed = new HashSet<string>(whiteListItems.Select(t => t.ToLower()));
 
-            var whiteListMatches = words.Where(w => whiteListItems.Contains(w.ToLower()));
+            var matches = words.Where(w => seed.Contains(w.ToLower()));
 
-            return new HashSet<string>(whiteListMatches);
+            return new HashSet<string>(matches);
         }
     }
 }

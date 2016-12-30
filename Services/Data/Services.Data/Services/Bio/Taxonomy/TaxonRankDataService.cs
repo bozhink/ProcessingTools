@@ -101,20 +101,6 @@
             });
         }
 
-        public virtual async Task<IEnumerable<ITaxonRank>> GetWhiteListedTaxa()
-        {
-            return await this.repositoryProvider.Execute(async (repository) =>
-            {
-                var query = await repository.Find(t => t.IsWhiteListed == true);
-
-                var result = query.ToList()
-                    .SelectMany(this.MapDbModelToServiceModel)
-                    .ToList();
-
-                return result;
-            });
-        }
-
         public virtual async Task<IEnumerable<ITaxonRank>> SearchByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
