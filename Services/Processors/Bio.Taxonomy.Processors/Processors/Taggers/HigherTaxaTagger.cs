@@ -24,11 +24,11 @@
 
         public HigherTaxaTagger(
             IHigherTaxaDataMiner miner,
-            IBiotaxonomicBlackListIterableDataService service,
+            IBlackList blacklist,
             ITextContentHarvester contentHarvester,
             IStringTagger contentTagger,
             ILogger logger)
-            : base(service)
+            : base(blacklist)
         {
             if (miner == null)
             {

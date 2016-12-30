@@ -33,10 +33,10 @@
         private readonly ILogger logger;
 
         public LowerTaxaTagger(
-            IBiotaxonomicBlackListIterableDataService service,
+            IBlackList blacklist,
             IContentTagger contentTagger,
             ILogger logger)
-            : base(service)
+            : base(blacklist)
         {
             if (contentTagger == null)
             {

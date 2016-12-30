@@ -16,16 +16,16 @@
     {
         private const string SelectPersonNamesXPath = "//surname[string-length(normalize-space(.)) > 2]|//given-names[string-length(normalize-space(.)) > 2]";
 
-        private readonly IBiotaxonomicBlackListIterableDataService service;
+        private readonly IBlackList blacklist;
 
-        public TaxaTagger(IBiotaxonomicBlackListIterableDataService service)
+        public TaxaTagger(IBlackList blacklist)
         {
-            if (service == null)
+            if (blacklist == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(blacklist));
             }
 
-            this.service = service;
+            this.blacklist = blacklist;
         }
 
         public abstract Task<object> Tag(IDocument document);
@@ -70,7 +70,7 @@
         private async Task<IEnumerable<string>> ClearFakeTaxaNamesUsingBlackList(IEnumerable<string> taxaNames)
         {
             var taxaNamesFirstWord = await this.GetTaxaNamesFirstWords(taxaNames);
-            var blackListItems = await this.service.All();
+            var blackListItems = await this.blacklist.Items;
 
             var blackListedNames = taxaNamesFirstWord.MatchWithStringList(blackListItems, true, false, true);
 

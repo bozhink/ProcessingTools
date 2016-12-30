@@ -14,11 +14,11 @@
     public class BioTaxonomyBlackListDataController : Controller
     {
         private readonly IBiotaxonomicBlackListDataService dataService;
-        private readonly IBiotaxonomicBlackListIterableDataService searchService;
+        private readonly IBlackList searchService;
 
         public BioTaxonomyBlackListDataController(
             IBiotaxonomicBlackListDataService dataService,
-            IBiotaxonomicBlackListIterableDataService searchService)
+            IBlackList searchService)
         {
             if (dataService == null)
             {
@@ -61,7 +61,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundItems = (await this.searchService.All())
+            var foundItems = (await this.searchService.Items)
                 .Where(i => i.Contains(searchString))
                 .ToList();
 

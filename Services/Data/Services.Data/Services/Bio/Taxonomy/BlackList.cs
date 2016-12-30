@@ -9,11 +9,11 @@
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Extensions.Linq;
 
-    public class BiotaxonomicBlackListIterableDataService : IBiotaxonomicBlackListIterableDataService
+    public class BlackList : IBlackList
     {
         private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
 
-        public BiotaxonomicBlackListIterableDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
+        public BlackList(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -23,13 +23,19 @@
             this.repositoryProvider = repositoryProvider;
         }
 
-        public async Task<IEnumerable<string>> All() => await this.repositoryProvider.Execute(async (repository) =>
+        public Task<IEnumerable<string>> Items
         {
-            var result = await repository.Entities
-                .Select(s => s.Content)
-                .ToListAsync();
+            get
+            {
+                return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
+                {
+                    var result = await repository.Entities
+                        .Select(s => s.Content)
+                        .ToListAsync();
 
-            return new HashSet<string>(result);
-        });
+                    return new HashSet<string>(result);
+                });
+            }
+        }
     }
 }

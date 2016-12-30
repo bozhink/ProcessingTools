@@ -247,9 +247,9 @@
                 }
                 else
                 {
-                    var service = this.kernel.Get<IBiotaxonomicBlackListIterableDataService>();
+                    var service = this.kernel.Get<IBlackList>();
 
-                    (await service.All())
+                    (await service.Items)
                         .Where(i => i.Contains(textToSearch))
                         .ToList()
                         .ForEach(item =>
