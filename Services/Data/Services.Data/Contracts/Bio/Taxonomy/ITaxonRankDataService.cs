@@ -10,8 +10,6 @@
 
         Task<object> Delete(params ITaxonRank[] taxa);
 
-        Task<IEnumerable<ITaxonRank>> FindByName(string name);
-
         Task<IEnumerable<ITaxonRank>> SearchByName(string name);
 
         Task<object> Update(params ITaxonRank[] taxa);

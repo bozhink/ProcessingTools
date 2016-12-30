@@ -82,25 +82,6 @@
             });
         }
 
-        public virtual async Task<IEnumerable<ITaxonRank>> FindByName(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
-
-            return await this.repositoryProvider.Execute(async (repository) =>
-            {
-                var query = await repository.Find(t => t.Name == name);
-
-                var result = query.ToList()
-                    .SelectMany(this.MapDbModelToServiceModel)
-                    .ToList();
-
-                return result;
-            });
-        }
-
         public virtual async Task<IEnumerable<ITaxonRank>> SearchByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
