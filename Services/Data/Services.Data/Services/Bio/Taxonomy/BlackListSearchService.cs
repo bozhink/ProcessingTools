@@ -25,6 +25,11 @@
 
         public async Task<IEnumerable<string>> Search(string filter)
         {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                return new string[] { };
+            }
+
             return await this.repositoryProvider.Execute(async (repository) =>
             {
                 var searchString = filter.ToLower();

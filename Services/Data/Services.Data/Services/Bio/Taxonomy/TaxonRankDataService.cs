@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -28,12 +27,6 @@
 
             this.repositoryProvider = repositoryProvider;
         }
-
-        private Func<ITaxonRankEntity, IEnumerable<ITaxonRank>> MapDbModelToServiceModel => t => t.Ranks.Select(r => new TaxonRankServiceModel
-        {
-            ScientificName = t.Name,
-            Rank = r
-        });
 
         private Func<ITaxonRank, ITaxonRankEntity> MapServiceModelToDbModel => t =>
         {
@@ -78,25 +71,6 @@
                 await Task.WhenAll(tasks);
 
                 var result = await repository.SaveChanges();
-                return result;
-            });
-        }
-
-        public virtual async Task<IEnumerable<ITaxonRank>> SearchByName(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
-
-            return await this.repositoryProvider.Execute(async (repository) =>
-            {
-                var query = await repository.Find(t => t.Name.ToLower().Contains(name.ToLower()));
-
-                var result = query.ToList()
-                    .SelectMany(this.MapDbModelToServiceModel)
-                    .ToList();
-
                 return result;
             });
         }

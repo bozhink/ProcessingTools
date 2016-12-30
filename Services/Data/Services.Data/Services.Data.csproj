@@ -70,6 +70,7 @@
     <Compile Include="Contracts\Bio\Taxonomy\ITaxaClassificationResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\ITaxonRankDataService.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\ITaxaRankResolver.cs" />
+    <Compile Include="Contracts\Bio\Taxonomy\ITaxonRankSearchService.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IWhiteList.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFileContentDataService.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFilesDataService.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Services\Bio\Taxonomy\LocalDbTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\SuffixHigherTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\TaxonRankDataService.cs" />
+    <Compile Include="Services\Bio\Taxonomy\TaxonRankSearchService.cs" />
     <Compile Include="Services\Bio\Taxonomy\WhiteList.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />

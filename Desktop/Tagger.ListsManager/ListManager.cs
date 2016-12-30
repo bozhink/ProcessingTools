@@ -232,9 +232,9 @@
             {
                 if (this.IsRankList)
                 {
-                    var service = this.kernel.Get<ITaxonRankDataService>();
-                    var foundTaxa = await service.SearchByName(textToSearch);
+                    var service = this.kernel.Get<ITaxonRankSearchService>();
 
+                    var foundTaxa = await service.Search(textToSearch);
                     foreach (var taxon in foundTaxa)
                     {
                         string scientificName = taxon.ScientificName;
