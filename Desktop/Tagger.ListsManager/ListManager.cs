@@ -247,15 +247,13 @@
                 }
                 else
                 {
-                    var service = this.kernel.Get<IBlackList>();
+                    var service = this.kernel.Get<IBlackListSearchService>();
 
-                    (await service.Items)
-                        .Where(i => i.Contains(textToSearch))
-                        .ToList()
-                        .ForEach(item =>
-                        {
-                            this.listView.Items.Add(item);
-                        });
+                    var items = await service.Search(textToSearch);
+                    foreach (var item in items)
+                    {
+                        this.listView.Items.Add(item);
+                    }
                 }
             }
             catch (Exception ex)
