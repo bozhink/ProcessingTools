@@ -8,7 +8,5 @@
         Task<object> Add(params ITaxonRank[] taxa);
 
         Task<object> Delete(params ITaxonRank[] taxa);
-
-        Task<object> Update(params ITaxonRank[] taxa);
     }
 }

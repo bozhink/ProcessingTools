@@ -64,31 +64,11 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var tasks = validTaxa.Select(this.MapServiceModelToDbModel)
-                    .Select(t => repository.Delete(t.Name))
-                    .ToArray();
+                var tasks = validTaxa.Select(t => repository.Delete(t.ScientificName)).ToArray();
 
                 await Task.WhenAll(tasks);
 
                 var result = await repository.SaveChanges();
-                return result;
-            });
-        }
-
-        public virtual async Task<object> Update(params ITaxonRank[] taxa)
-        {
-            var validTaxa = this.ValidateTaxa(taxa);
-
-            return await this.repositoryProvider.Execute(async (repository) =>
-            {
-                var tasks = validTaxa.Select(this.MapServiceModelToDbModel)
-                    .Select(t => repository.Update(t))
-                    .ToArray();
-
-                await Task.WhenAll(tasks);
-
-                var result = await repository.SaveChanges();
-
                 return result;
             });
         }
