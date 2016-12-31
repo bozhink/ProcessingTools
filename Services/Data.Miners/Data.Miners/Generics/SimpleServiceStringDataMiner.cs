@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Common.Contracts;
 

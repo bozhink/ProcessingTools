@@ -35,8 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\BiorepositoriesDataMinerBase.cs" />
-    <Compile Include="Contracts\IDataMiner.cs" />
-    <Compile Include="Contracts\IStringDataMiner.cs" />
     <Compile Include="Contracts\Miners\Bio\Environments\IEnvoTermsDataMiner.cs" />
     <Compile Include="Contracts\Miners\Bio\Environments\IExtractHcmrDataMiner.cs" />
     <Compile Include="Contracts\Miners\Bio\IBiorepositoriesCollectionsDataMiner.cs" />
