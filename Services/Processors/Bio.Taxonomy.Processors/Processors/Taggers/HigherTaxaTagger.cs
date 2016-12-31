@@ -9,7 +9,7 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
-    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
@@ -60,7 +60,8 @@
 
             // TODO: evaluator
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var data = await this.miner.Mine(textContent);
+            // TODO
+            var data = await this.miner.Mine(textContent, null, null);
 
             var plausibleTaxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));
 

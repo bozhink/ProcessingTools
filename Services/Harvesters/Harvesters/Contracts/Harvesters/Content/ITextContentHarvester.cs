@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Contracts.Content
+﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Content
 {
     using ProcessingTools.Contracts.Harvesters;
 

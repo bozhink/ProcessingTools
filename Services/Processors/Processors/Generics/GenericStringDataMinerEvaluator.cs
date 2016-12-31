@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Contracts;
-    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Contracts.Data.Miners;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
 
     public class GenericStringDataMinerEvaluator<TMiner> : IGenericStringDataMinerEvaluator<TMiner>
         where TMiner : IStringDataMiner

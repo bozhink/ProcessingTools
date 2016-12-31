@@ -33,11 +33,40 @@
             var matchWord = new Regex(@"[^\W\d]+");
 
             var result = new HashSet<string>();
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return result;
+            }
+
             for (Match word = matchWord.Match(text); word.Success; word = word.NextMatch())
             {
                 result.Add(word.Value);
             }
 
+            return result;
+        }
+
+        public static IEnumerable<string> DistinctWithStopWords(this IEnumerable<string> words, IEnumerable<string> stopWords)
+        {
+            if (words == null || stopWords == null)
+            {
+                return new string[] { };
+            }
+
+            var compareSet = new HashSet<string>(stopWords.Select(w => w.ToLower()));
+            var result = new HashSet<string>(words.Where(w => !compareSet.Contains(w.ToLower())));
+            return result;
+        }
+
+        public static IEnumerable<string> MatchWithSeedWords(this IEnumerable<string> words, IEnumerable<string> seed)
+        {
+            if (words == null || seed == null)
+            {
+                return new string[] { };
+            }
+
+            var compareSet = new HashSet<string>(seed.Select(w => w.ToLower()));
+            var result = new HashSet<string>(words.Where(w => compareSet.Contains(w.ToLower())));
             return result;
         }
 

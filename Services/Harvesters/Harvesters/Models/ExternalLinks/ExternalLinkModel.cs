@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
-
+    using Contracts.Models.ExternalLinks;
     using ProcessingTools.Constants.Schema;
 
     [Serializable]

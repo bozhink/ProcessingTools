@@ -4,10 +4,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Harvesters.Abstractions;
-    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
-    using ProcessingTools.Harvesters.Contracts.Factories;
-    using ProcessingTools.Harvesters.Models.ExternalLinks;
+    using Abstractions;
+    using Contracts.Factories;
+    using Contracts.Harvesters.ExternalLinks;
+    using Contracts.Models.ExternalLinks;
+    using Models.ExternalLinks;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
 

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Data.Miners;
 
-    public interface IHigherTaxaDataMiner : IStringDataMiner
+    public interface IHigherTaxaDataMiner : IStringTextDataMiner
     {
     }
 }

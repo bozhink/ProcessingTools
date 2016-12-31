@@ -38,21 +38,25 @@
   <ItemGroup>
     <Compile Include="Abstractions\AbstractGenericQueryableXmlHarvester.cs" />
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\Abbreviations\IAbbreviationsHarvester.cs" />
-    <Compile Include="Contracts\Content\ITextContentHarvester.cs" />
-    <Compile Include="Contracts\ExternalLinks\IExternalLinksHarvester.cs" />
+    <Compile Include="Contracts\Harvesters\Abbreviations\IAbbreviationsHarvester.cs" />
+    <Compile Include="Contracts\Harvesters\Content\ITextContentHarvester.cs" />
+    <Compile Include="Contracts\Harvesters\ExternalLinks\IExternalLinksHarvester.cs" />
     <Compile Include="Contracts\Factories\IAbbreviationsTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\IExternalLinksTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\ITextContentTransformersFactory.cs" />
+    <Compile Include="Contracts\Harvesters\Meta\IPersonNamesHarvester.cs" />
+    <Compile Include="Contracts\Models\Meta\IPersonNameModel.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\Content\TextContentHarvester.cs" />
     <Compile Include="Harvesters\ExternalLinks\ExternalLinksHarvester.cs" />
+    <Compile Include="Harvesters\Meta\PersonNamesHarvester.cs" />
     <Compile Include="Models\Abbreviations\AbbreviationXmlModel.cs" />
     <Compile Include="Models\Abbreviations\AbbreviationsXmlModel.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinkModel.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinksModel.cs" />
-    <Compile Include="Models\Abbreviations\IAbbreviationModel.cs" />
-    <Compile Include="Models\ExternalLinks\IExternalLinkModel.cs" />
+    <Compile Include="Contracts\Models\Abbreviations\IAbbreviationModel.cs" />
+    <Compile Include="Contracts\Models\ExternalLinks\IExternalLinkModel.cs" />
+    <Compile Include="Models\Meta\PersonNameModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +71,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
+      <Name>Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>

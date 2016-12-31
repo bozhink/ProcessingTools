@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Models.ExternalLinks
+﻿namespace ProcessingTools.Harvesters.Contracts.Models.ExternalLinks
 {
     public interface IExternalLinkModel
     {
