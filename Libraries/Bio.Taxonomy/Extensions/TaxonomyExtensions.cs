@@ -6,8 +6,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
     using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Extensions;
@@ -17,6 +17,13 @@
     // TODO: Consolidate different extension namespace-s
     public static class TaxonomyExtensions
     {
+        public static XmlElement CreateTaxonNameXmlElement(this IDocument document, TaxonType type)
+        {
+            XmlElement tn = document.XmlDocument.CreateElement(ElementNames.TaxonName);
+            tn.SetAttribute(AttributeNames.Type, type.ToString().ToLower());
+            return tn;
+        }
+
         public static IEnumerable<string> ExtractTaxa(this XmlNode node, bool stripTags = false, TaxonType type = TaxonType.Any)
         {
             if (node == null)

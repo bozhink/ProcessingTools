@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Bio.Taxonomy
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Contracts.Miners.Bio.Taxonomy;
@@ -14,19 +15,20 @@
 
         public async Task<IEnumerable<string>> Mine(string content, IEnumerable<string> seed, IEnumerable<string> stopWords)
         {
-            var result = new HashSet<string>();
-
             if (string.IsNullOrWhiteSpace(content))
             {
-                return result;
+                return new string[] { };
             }
 
             var words = await content.ExtractWordsFromText()
                 .DistinctWithStopWords(stopWords)
-                .MatchWithSeedWords(seed)
                 .ToArrayAsync();
 
-            return new HashSet<string>(words);
+            var result = await words.Where(w => this.matchHigherTaxa.IsMatch(w))
+                .Union(words.MatchWithSeedWords(seed))
+                .ToArrayAsync();
+
+            return new HashSet<string>(result);
         }
     }
 }

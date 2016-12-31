@@ -7,17 +7,20 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.Processors.Abstractions.Taggers;
-    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Taggers;
+    using Contracts.Taggers;
+    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Strings.Extensions;
     using ProcessingTools.Xml.Extensions;
 
-    public class LowerTaxaTagger : TaxaTagger, ILowerTaxaTagger
+    public class LowerTaxaTagger : ILowerTaxaTagger
     {
         private const string SensuSubpattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
         private const string InfragenericRankSubpattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";
@@ -29,25 +32,39 @@
 
         private const string ItalicXPath = ".//i[not(tn)]|.//italic[not(tn)]|.//Italic[not(tn)]";
 
+        private readonly IPersonNamesHarvester personNamesHarvester;
         private readonly IContentTagger contentTagger;
+        private readonly IBlackList blacklist;
         private readonly ILogger logger;
 
         public LowerTaxaTagger(
+            IPersonNamesHarvester personNamesHarvester,
             IBlackList blacklist,
             IContentTagger contentTagger,
             ILogger logger)
-            : base(blacklist)
         {
+            if (personNamesHarvester == null)
+            {
+                throw new ArgumentNullException(nameof(personNamesHarvester));
+            }
+
+            if (blacklist == null)
+            {
+                throw new ArgumentNullException(nameof(blacklist));
+            }
+
             if (contentTagger == null)
             {
                 throw new ArgumentNullException(nameof(contentTagger));
             }
 
+            this.personNamesHarvester = personNamesHarvester;
+            this.blacklist = blacklist;
             this.contentTagger = contentTagger;
             this.logger = logger;
         }
 
-        public override async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument document)
         {
             if (document == null)
             {
@@ -93,7 +110,7 @@
                 {
                     if (taxonomicNames.Contains(node.InnerText, comparer))
                     {
-                        var tn = this.CreateNewTaxonNameXmlElement(document, TaxonType.Lower);
+                        var tn = document.CreateTaxonNameXmlElement(TaxonType.Lower);
                         tn.InnerXml = node.InnerXml
                             .RegexReplace(@"\A([A-Z][A-Za-z]{0,2}\.)([a-z])", "$1 $2");
                         node.InnerXml = tn.OuterXml;
@@ -352,7 +369,7 @@
 
             var orderedTaxaParts = new HashSet<string>(taxa).OrderByDescending(t => t.Length);
 
-            var tagModel = this.CreateNewTaxonNameXmlElement(document, TaxonType.Lower);
+            var tagModel = document.CreateTaxonNameXmlElement(TaxonType.Lower);
             foreach (var item in orderedTaxaParts)
             {
                 try
@@ -422,6 +439,44 @@
         {
             string textValue = node.SelectSingleNode(taxonNamePartElementName)?.InnerText ?? string.Empty;
             return Regex.Replace(textValue, @"\s+", string.Empty);
+        }
+
+        private async Task<IEnumerable<string>> ClearFakeTaxaNames(IDocument document, IEnumerable<string> taxaNames)
+        {
+            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWord(document, taxaNames);
+
+            var result = taxaNames.Where(tn => taxaNamesFirstWord.Contains(tn.GetFirstWord()));
+            return result;
+        }
+
+        private async Task<IEnumerable<string>> GetTaxaNamesFirstWord(IDocument document, IEnumerable<string> taxaNames)
+        {
+            var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement);
+
+            Console.WriteLine(string.Join(", ", stopWords));
+
+            var taxaNamesFirstWord = await taxaNames.GetFirstWord()
+                .Distinct()
+                .DistinctWithStopWords(stopWords)
+                .ToArrayAsync();
+
+            return new HashSet<string>(taxaNamesFirstWord);
+        }
+
+        private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
+        {
+            var personNames = await this.personNamesHarvester.Harvest(context);
+            var blacklistItems = await this.blacklist.Items;
+
+            var stopWords = await personNames
+                .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
+                .Where(n => !string.IsNullOrWhiteSpace(n))
+                .Union(blacklistItems)
+                .Select(w => w.ToLower())
+                .Distinct()
+                .ToArrayAsync();
+
+            return stopWords;
         }
     }
 }
