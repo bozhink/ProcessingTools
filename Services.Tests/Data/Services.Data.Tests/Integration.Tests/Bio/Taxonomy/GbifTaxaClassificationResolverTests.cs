@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Services.Data.Tests.Integration.Tests.Bio.Taxonomy
 {
+    using System.Linq;
     using NUnit.Framework;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Net.Factories;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
-    using System.Linq;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(GbifTaxaClassificationResolver))]
     public class GbifTaxaClassificationResolverTests
