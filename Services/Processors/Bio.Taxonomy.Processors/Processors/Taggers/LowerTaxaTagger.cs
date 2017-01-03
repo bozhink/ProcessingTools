@@ -453,8 +453,6 @@
         {
             var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement);
 
-            Console.WriteLine(string.Join(", ", stopWords));
-
             var taxaNamesFirstWord = await taxaNames.GetFirstWord()
                 .Distinct()
                 .DistinctWithStopWords(stopWords)
