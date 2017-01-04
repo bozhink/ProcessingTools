@@ -18,14 +18,11 @@
             this.articleSchemaType = SchemaType.System;
             this.articleSchemaTypeStyleIsLockedForModification = false;
 
-            this.HigherStructrureXpath = "//article";
-
             this.ExtractHigherTaxa = false;
             this.ExtractLowerTaxa = false;
             this.ExtractTaxa = false;
             this.InitialFormat = false;
             this.FormatTreat = false;
-            this.ParseBySection = false;
             this.ParseCoordinates = false;
             this.ParseReferences = false;
             this.ParseTreatmentMetaWithAphia = false;
@@ -93,10 +90,6 @@
         public bool InitialFormat { get; set; }
 
         public bool FormatTreat { get; set; }
-
-        public string HigherStructrureXpath { get; set; }
-
-        public bool ParseBySection { get; set; }
 
         public bool ParseCoordinates { get; set; }
 

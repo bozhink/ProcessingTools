@@ -140,10 +140,6 @@
                             this.Settings.TagReferences = true;
                             break;
 
-                        case 's':
-                            this.Settings.ParseBySection = true;
-                            break;
-
                         case 'V':
                             this.Settings.ValidateTaxa = true;
                             break;

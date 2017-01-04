@@ -13,6 +13,7 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Constants.Schema;
 
     public partial class SingleFileProcessor : IFileProcessor
     {
@@ -294,16 +295,9 @@
             }
 
             // Main Tagging part of the program
-            if (this.settings.ParseBySection)
+            foreach (XmlNode subcontext in this.document.SelectNodes(XPathStrings.HigherDocumentStructure))
             {
-                foreach (XmlNode subcontext in this.document.XmlDocument.SelectNodes(this.settings.HigherStructrureXpath, this.document.NamespaceManager))
-                {
-                    await this.ContextProcessing(subcontext);
-                }
-            }
-            else
-            {
-                await this.ContextProcessing(context);
+                await this.ContextProcessing(subcontext);
             }
 
             if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)

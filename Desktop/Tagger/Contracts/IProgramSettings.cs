@@ -22,11 +22,7 @@
 
         bool FormatTreat { get; }
 
-        string HigherStructrureXpath { get; }
-
         bool InitialFormat { get; }
-
-        bool ParseBySection { get; }
 
         bool ParseCoordinates { get; }
 

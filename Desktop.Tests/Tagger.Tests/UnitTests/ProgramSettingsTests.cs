@@ -20,31 +20,6 @@
         }
 
         [TestMethod]
-        public void ProgramSettings_HigherStructrureXpathPropertyInNewInstance_ShouldBeDefault()
-        {
-            string defaultXpath = "//article";
-            Assert.AreEqual(defaultXpath, this.programSettings.HigherStructrureXpath, "Default HigherStructrureXpath value should be //article");
-        }
-
-        [TestMethod]
-        public void ProgramSettings_ValidChangesOfHigherStructrureXpathProperty_ShouldBePersistent()
-        {
-            string xpath = "//i";
-
-            {
-                this.programSettings.HigherStructrureXpath = xpath;
-
-                Assert.AreEqual(xpath, this.programSettings.HigherStructrureXpath, "1. HigherStructrureXpath and XPath should match.");
-            }
-
-            {
-                this.programSettings.HigherStructrureXpath = null;
-
-                Assert.IsNull(this.programSettings.HigherStructrureXpath, "2. HigherStructrureXpath value should be null.");
-            }
-        }
-
-        [TestMethod]
         public void ProgramSettings_ExtractHigherTaxaPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ExtractHigherTaxa, DefaultValueShouldBeFalseMessage);
@@ -138,22 +113,6 @@
 
             this.programSettings.FormatTreat = false;
             Assert.IsFalse(this.programSettings.FormatTreat, ValueShouldBeFalseMessage);
-        }
-
-        [TestMethod]
-        public void ProgramSettings_ParseBySectionPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.ParseBySection, DefaultValueShouldBeFalseMessage);
-        }
-
-        [TestMethod]
-        public void ProgramSettings_ValidChangesOfParseBySectionProperty_ShouldBePersistent()
-        {
-            this.programSettings.ParseBySection = true;
-            Assert.IsTrue(this.programSettings.ParseBySection, ValueShouldBeTrueMessage);
-
-            this.programSettings.ParseBySection = false;
-            Assert.IsFalse(this.programSettings.ParseBySection, ValueShouldBeFalseMessage);
         }
 
         [TestMethod]

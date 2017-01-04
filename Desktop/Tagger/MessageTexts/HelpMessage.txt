@@ -19,9 +19,6 @@ Options:
     R = Tag references
 
     X = Query replace <input> <output> <query>
-    F = Flora
-
-    s = Parse document by first-level sections
 
     Taxonomic part
         A = tag lower taxa
@@ -51,7 +48,7 @@ Options:
     --environments = tag environments (ENVO ID-s)
     --codes = tag institutional and specimen codes
     --abbrev = tag abbreviations
-    --envo = use greek tagger
+    --envo = use Greek tagger
 
     -V, --validate-taxa = valdate taxonomic names with Global Names Resolver
 
