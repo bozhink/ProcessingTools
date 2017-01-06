@@ -55,6 +55,7 @@
     <Compile Include="Contracts\Coordinates\ICoordinatesParser.cs" />
     <Compile Include="Contracts\Coordinates\ICoordinatesTagger.cs" />
     <Compile Include="Contracts\Dates\IDatesTagger.cs" />
+    <Compile Include="Contracts\Documents\IDocumentMerger.cs" />
     <Compile Include="Contracts\ExternalLinks\IExternalLinksTagger.cs" />
     <Compile Include="Contracts\Factories\Bio\ICodesTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\Bio\ITaxonTreatmentsTransformersFactory.cs" />
