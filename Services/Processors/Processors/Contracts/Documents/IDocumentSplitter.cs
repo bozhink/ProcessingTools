@@ -3,8 +3,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
 
-    public interface IDocumentMerger
+    public interface IDocumentSplitter
     {
-        Task<IDocument> Merge(params string[] fileNames);
+        Task<object> Split(IDocument document);
     }
 }
