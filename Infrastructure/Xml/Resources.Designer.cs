@@ -70,5 +70,16 @@ namespace ProcessingTools.Xml {
                 return ResourceManager.GetString("ContextWrapper", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;document:document-wrapper xmlns:document=&quot;urn:processing-tools-xml:document-wrapper&quot;&gt;&lt;/document:document-wrapper&gt;
+        ///.
+        /// </summary>
+        internal static string DocumentWrapper {
+            get {
+                return ResourceManager.GetString("DocumentWrapper", resourceCulture);
+            }
+        }
     }
 }

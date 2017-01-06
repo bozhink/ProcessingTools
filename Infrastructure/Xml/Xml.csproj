@@ -48,6 +48,7 @@
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Factories\IXQueryTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
+    <Compile Include="Contracts\Providers\IDocumentWrapperProvider.cs" />
     <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
     <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Contracts\Transformers\IXQueryTransformer.cs" />
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
+    <Compile Include="Providers\DocumentWrapperProvider.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\XQueryTransformer.cs" />
     <Compile Include="Transformers\XslTransformer.cs" />
@@ -99,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Xml\context-wrapper.xml" />
+    <Content Include="Xml\document-wrapper.xml" />
     <Content Include="Xsl\codes.remove-non-code-nodes.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
