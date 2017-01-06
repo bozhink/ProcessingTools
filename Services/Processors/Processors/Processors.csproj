@@ -58,6 +58,7 @@
     <Compile Include="Contracts\Documents\IDocumentMerger.cs" />
     <Compile Include="Contracts\Documents\IDocumentReader.cs" />
     <Compile Include="Contracts\Documents\IDocumentSplitter.cs" />
+    <Compile Include="Contracts\Documents\IDocumentWriter.cs" />
     <Compile Include="Contracts\ExternalLinks\IExternalLinksTagger.cs" />
     <Compile Include="Contracts\Factories\Bio\ICodesTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\Bio\ITaxonTreatmentsTransformersFactory.cs" />
