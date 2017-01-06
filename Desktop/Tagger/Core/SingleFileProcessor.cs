@@ -338,6 +338,7 @@
             return;
         }
 
+        // TODO: use ProcessingTools.Processors.Contracts.Documents.IDocumentReader
         private async Task ReadDocument()
         {
             var document = await this.filesManager.ReadXmlFile(this.InputFileName);
