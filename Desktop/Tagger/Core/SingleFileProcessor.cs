@@ -2,44 +2,39 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts;
     using Contracts.Controllers;
     using ProcessingTools.Constants;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Files.Generators;
-    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Services.Data.Contracts.Files;
-    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Processors.Contracts.Documents;
 
     public partial class SingleFileProcessor : IFileProcessor
     {
         private readonly Func<Type, ITaggerController> controllerFactory;
         private readonly IDocumentFactory documentFactory;
+        private readonly IDocumentReader documentReader;
+        private readonly IDocumentWriter documentWriter;
         private readonly IDocumentNormalizer documentNormalizer;
         private readonly IFileNameGenerator fileNameGenerator;
-        private readonly IXmlFileContentDataService filesManager;
         private readonly ILogger logger;
         private IDocument document;
         private IProgramSettings settings;
         private ConcurrentQueue<Task> tasks;
 
         public SingleFileProcessor(
-            IXmlFileContentDataService filesManager,
             IFileNameGenerator fileNameGenerator,
             IDocumentFactory documentFactory,
+            IDocumentReader documentReader,
+            IDocumentWriter documentWriter,
             IDocumentNormalizer documentNormalizer,
             Func<Type, ITaggerController> controllerFactory,
             ILogger logger)
         {
-            if (filesManager == null)
-            {
-                throw new ArgumentNullException(nameof(filesManager));
-            }
-
             if (fileNameGenerator == null)
             {
                 throw new ArgumentNullException(nameof(fileNameGenerator));
@@ -48,6 +43,16 @@
             if (documentFactory == null)
             {
                 throw new ArgumentNullException(nameof(documentFactory));
+            }
+
+            if (documentReader == null)
+            {
+                throw new ArgumentNullException(nameof(documentReader));
+            }
+
+            if (documentWriter == null)
+            {
+                throw new ArgumentNullException(nameof(documentWriter));
             }
 
             if (documentNormalizer == null)
@@ -60,9 +65,10 @@
                 throw new ArgumentNullException(nameof(controllerFactory));
             }
 
-            this.filesManager = filesManager;
             this.fileNameGenerator = fileNameGenerator;
             this.documentFactory = documentFactory;
+            this.documentReader = documentReader;
+            this.documentWriter = documentWriter;
             this.documentNormalizer = documentNormalizer;
             this.controllerFactory = controllerFactory;
             this.logger = logger;
@@ -338,24 +344,12 @@
             return;
         }
 
-        // TODO: use ProcessingTools.Processors.Contracts.Documents.IDocumentReader
         private async Task ReadDocument()
         {
-            var document = await this.filesManager.ReadXmlFile(this.InputFileName);
-            this.document = this.documentFactory.Create(document.OuterXml);
-
-            switch (this.document.XmlDocument.DocumentElement.Name)
-            {
-                case "article":
-                    this.settings.ArticleSchemaType = SchemaType.Nlm;
-                    break;
-
-                default:
-                    this.settings.ArticleSchemaType = SchemaType.System;
-                    break;
-            }
-
+            this.document = await this.documentReader.ReadDocument(this.InputFileName);
+            this.settings.ArticleSchemaType = this.document.SchemaType;
             this.document.SchemaType = this.settings.ArticleSchemaType;
+
             await this.documentNormalizer.NormalizeToSystem(this.document);
         }
 
@@ -371,7 +365,7 @@
                     __ =>
                     {
                         __.Wait();
-                        var o = this.filesManager.WriteXmlFile(this.OutputFileName, this.document.XmlDocument).Result;
+                        var o = this.documentWriter.WriteDocument(this.OutputFileName, this.document).Result;
                     }),
                 this.logger);
     }

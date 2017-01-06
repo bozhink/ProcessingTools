@@ -149,6 +149,7 @@
     <Compile Include="Processors\Coordinates\CoordinatesTagger.cs" />
     <Compile Include="Processors\Dates\DatesTagger.cs" />
     <Compile Include="Processors\Documents\DocumentReader.cs" />
+    <Compile Include="Processors\Documents\DocumentWriter.cs" />
     <Compile Include="Processors\DocumentXQueryProcessor.cs" />
     <Compile Include="Processors\DocumentXslProcessor.cs" />
     <Compile Include="Processors\ExternalLinks\ExternalLinksTagger.cs" />
