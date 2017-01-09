@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
-    using System.IO;
     using System.Reflection;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
@@ -17,7 +16,15 @@
         {
             this.Bind(b =>
             {
-                b.FromAssembliesInPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
+                b.From(Assembly.GetExecutingAssembly())
+                .SelectAllClasses()
+                .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.FromAssembliesMatching(
+                    $"{nameof(ProcessingTools)}.*.dll")
                 .SelectAllClasses()
                 .BindDefaultInterface();
             });
