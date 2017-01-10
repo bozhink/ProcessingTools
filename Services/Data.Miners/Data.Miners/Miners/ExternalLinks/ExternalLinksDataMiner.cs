@@ -93,7 +93,7 @@
                         .Select(item => new ExternalLink
                         {
                             Content = item,
-                            Href = item,
+                            Href = item.Replace("<", "%3C").Replace(">", "%3E").Replace("&", "%26"),
                             Type = patterns[key]
                         })
                         .ToList()
