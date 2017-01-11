@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
-    public class TreatmentMetaParser<TService> : ITreatmentMetaParser<TService>
+    public class TreatmentMetaParserWithDataService<TService> : ITreatmentMetaParserWithDataService<TService>
         where TService : ITaxaClassificationResolver
     {
         private const string SelectTreatmentGeneraXPathString = ".//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
@@ -23,7 +23,7 @@
         private readonly TService service;
         private readonly ILogger logger;
 
-        public TreatmentMetaParser(TService service, ILogger logger)
+        public TreatmentMetaParserWithDataService(TService service, ILogger logger)
         {
             if (service == null)
             {

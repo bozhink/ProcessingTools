@@ -111,7 +111,9 @@
     <Content Include="Xsl\envo-items-to-tagreplace.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Xsl\parse-treatment-meta-with-inner-information.xsl" />
+    <Content Include="Xsl\taxonomy\parse-treatment-meta-with-inner-information.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Xsl\taxonomy\expand-genus-in-paragraph.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

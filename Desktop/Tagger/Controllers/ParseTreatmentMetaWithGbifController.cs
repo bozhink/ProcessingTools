@@ -7,9 +7,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse treatment meta with GBIF.")]
-    public class ParseTreatmentMetaWithGbifController : GenericDocumentParserController<ITreatmentMetaParser<IGbifTaxaClassificationResolver>>, IParseTreatmentMetaWithGbifController
+    public class ParseTreatmentMetaWithGbifController : GenericDocumentParserController<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>, IParseTreatmentMetaWithGbifController
     {
-        public ParseTreatmentMetaWithGbifController(ITreatmentMetaParser<IGbifTaxaClassificationResolver> parser)
+        public ParseTreatmentMetaWithGbifController(ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver> parser)
             : base(parser)
         {
         }

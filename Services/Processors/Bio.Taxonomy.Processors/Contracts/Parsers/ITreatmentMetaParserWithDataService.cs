@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
-    public interface ITreatmentMetaParser<TService> : IDocumentParser
+    public interface ITreatmentMetaParserWithDataService<TService> : IDocumentParser
         where TService : ITaxaClassificationResolver
     {
     }

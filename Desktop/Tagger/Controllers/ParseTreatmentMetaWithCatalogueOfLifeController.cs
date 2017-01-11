@@ -7,9 +7,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse treatment meta with CoL.")]
-    public class ParseTreatmentMetaWithCatalogueOfLifeController : GenericDocumentParserController<ITreatmentMetaParser<ICatalogueOfLifeTaxaClassificationResolver>>, IParseTreatmentMetaWithCatalogueOfLifeController
+    public class ParseTreatmentMetaWithCatalogueOfLifeController : GenericDocumentParserController<ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxaClassificationResolver>>, IParseTreatmentMetaWithCatalogueOfLifeController
     {
-        public ParseTreatmentMetaWithCatalogueOfLifeController(ITreatmentMetaParser<ICatalogueOfLifeTaxaClassificationResolver> parser)
+        public ParseTreatmentMetaWithCatalogueOfLifeController(ITreatmentMetaParserWithDataService<ICatalogueOfLifeTaxaClassificationResolver> parser)
             : base(parser)
         {
         }
