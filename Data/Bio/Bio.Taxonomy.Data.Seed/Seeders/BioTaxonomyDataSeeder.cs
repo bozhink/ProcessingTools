@@ -54,7 +54,7 @@
             this.blackListRepositoryFactory = blackListRepositoryFactory;
             this.seeder = new FileByLineDbContextSeeder<BioTaxonomyDbContext>(this.contextFactory);
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryPath];
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
