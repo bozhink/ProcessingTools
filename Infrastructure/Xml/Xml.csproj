@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="saxon9he-api, Version=9.7.0.10, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Saxon-HE.9.7.0.10\lib\net40\saxon9he-api.dll</HintPath>
+    <Reference Include="saxon9he-api, Version=9.7.0.14, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Saxon-HE.9.7.0.14\lib\net40\saxon9he-api.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

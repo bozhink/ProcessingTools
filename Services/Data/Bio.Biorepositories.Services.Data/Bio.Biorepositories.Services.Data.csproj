@@ -48,7 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BiorepositoriesPersonalCollectionsDataService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Bio\Bio.Biorepositories.Data.Common\Bio.Biorepositories.Data.Common.csproj">
       <Project>{6F791C48-EA33-4FBA-86D0-BCFABA6E088F}</Project>
