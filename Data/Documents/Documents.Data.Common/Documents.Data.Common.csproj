@@ -44,6 +44,7 @@
     <Compile Include="Contracts\Models\IFileEntity.cs" />
     <Compile Include="Contracts\Models\IInstitutionEntity.cs" />
     <Compile Include="Contracts\Models\IJournalEntity.cs" />
+    <Compile Include="Contracts\Models\IJournalMeta.cs" />
     <Compile Include="Contracts\Models\IPublisherEntity.cs" />
     <Compile Include="Contracts\Repositories\IFilesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
