@@ -115,6 +115,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Controllers\IParseTreatmentMetaWithInternalInformationController.cs" />
     <Compile Include="Contracts\Controllers\IRunCustomXQueryTransformController.cs" />
     <Compile Include="Contracts\Controllers\ITagCollectionCodesController.cs" />
     <Compile Include="Contracts\Controllers\ITagSpecimenCodesController.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Controllers\Generics\GenericXmlContextParserController.cs" />
     <Compile Include="Controllers\Generics\GenericXmlContextTaggerController.cs" />
     <Compile Include="Controllers\ParseTreatmentMaterialsController.cs" />
+    <Compile Include="Controllers\ParseTreatmentMetaWithInternalInformationController.cs" />
     <Compile Include="Controllers\RunCustomXQueryTransformController.cs" />
     <Compile Include="Controllers\TagCollectionCodesController.cs" />
     <Compile Include="Controllers\TagSpecimenCodesController.cs" />
