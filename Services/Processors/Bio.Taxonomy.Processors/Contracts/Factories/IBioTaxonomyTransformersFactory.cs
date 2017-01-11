@@ -5,5 +5,7 @@
     public interface IBioTaxonomyTransformersFactory
     {
         IXmlTransformer GetRemoveTaxonNamePartsTransformer();
+
+        IXmlTransformer GetParseTreatmentMetaWithInternalInformationTransformer();
     }
 }

@@ -23,6 +23,7 @@
         private const string TextContentTransformerName = "TextContentTransformer";
         private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
         private const string RemoveTaxonNamePartsTransformerName = "RemoveTaxonNamePartsTransformer";
+        private const string ParseTreatmentMetaWithInternalInformationTransformerName = "ParseTreatmentMetaWithInternalInformationTransformer";
 
         public override void Load()
         {
@@ -104,6 +105,12 @@
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.RemoveTaxonNamePartsXslPath]);
+
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(ParseTreatmentMetaWithInternalInformationTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.ParseTreatmentMetaWithInternalInformationXslFileName]);
 
             this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
                 .Named(AbbreviationsTransformerName)

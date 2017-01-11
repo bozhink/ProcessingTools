@@ -17,6 +17,7 @@
         public const string FormatTaxonTreatmentsXslPath = "FormatTaxonTreatmentsXslPath";
         public const string FormatXmlToHtmlXslFilePath = "FormatXmlToHtmlXslFilePath";
         public const string NlmInitialFormatXslPath = "NlmInitialFormatXslPath";
+        public const string ParseTreatmentMetaWithInternalInformationXslFileName = "ParseTreatmentMetaWithInternalInformationXslPath";
         public const string RanksDataFileName = "RanksDataFileName";
         public const string ReferencesGetReferencesXslPath = "ReferencesGetReferencesXslPath";
         public const string ReferencesTagTemplateXslPath = "ReferencesTagTemplateXslPath";
