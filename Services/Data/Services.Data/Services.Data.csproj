@@ -80,6 +80,7 @@
     <Compile Include="Contracts\IProductsDataService.cs" />
     <Compile Include="Contracts\Mediatypes\IMediatypesResolver.cs" />
     <Compile Include="Contracts\Meta\IJournalMetaDataService.cs" />
+    <Compile Include="Contracts\Meta\IJournalsMetaDataService.cs" />
     <Compile Include="Contracts\Models\Bio\Taxonomy\ITaxonRankWithWhiteListing.cs" />
     <Compile Include="Contracts\Models\IInstitution.cs" />
     <Compile Include="Contracts\Models\IProduct.cs" />
