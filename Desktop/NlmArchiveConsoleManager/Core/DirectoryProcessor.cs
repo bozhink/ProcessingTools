@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -56,46 +57,54 @@
             }
         }
 
-        public Task Process()
+        public async Task Process()
+        {
+            var initialDirectory = Directory.GetCurrentDirectory();
+            Directory.SetCurrentDirectory(this.DirectoryName);
+
+            var exceptions = await this.ProcessDirectory();
+
+            Directory.SetCurrentDirectory(initialDirectory);
+
+            if (exceptions.Count > 0)
+            {
+                throw new AggregateException(exceptions.ToList());
+            }
+        }
+
+        private async Task<ConcurrentQueue<Exception>> ProcessDirectory()
+        {
+            var xmlFiles = await this.GetFiles();
+            var exceptions = new ConcurrentQueue<Exception>();
+            Parallel.ForEach(
+                xmlFiles,
+                (fileName, state) =>
+                {
+                    try
+                    {
+                        var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, journal);
+                        fileProcessor.Process().Wait();
+                    }
+                    catch (Exception e)
+                    {
+                        exceptions.Enqueue(e);
+                        ////state.Break();
+                    }
+                });
+
+            return exceptions;
+        }
+
+        private Task<IEnumerable<string>> GetFiles()
         {
             var matchSupplementaryMaterial = new Regex(@"\-s\d+\Z");
 
-            return Task.Run(() =>
-            {
-                var exceptions = new ConcurrentQueue<Exception>();
+            var files = Directory.GetFiles(Directory.GetCurrentDirectory())
+                .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == "xml" &&
+                            !matchSupplementaryMaterial.IsMatch(Path.GetFileNameWithoutExtension(f)))
+                .ToArray();
 
-                var initialDirectory = Directory.GetCurrentDirectory();
-
-                Directory.SetCurrentDirectory(this.DirectoryName);
-
-                var xmlFiles = Directory.GetFiles(Directory.GetCurrentDirectory())
-                    .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == "xml" &&
-                                !matchSupplementaryMaterial.IsMatch(Path.GetFileNameWithoutExtension(f)))
-                    .ToArray();
-
-                Parallel.ForEach(
-                    xmlFiles,
-                    (fileName, state) =>
-                    {
-                        try
-                        {
-                            var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, journal);
-                            fileProcessor.Process().Wait();
-                        }
-                        catch (Exception e)
-                        {
-                            exceptions.Enqueue(e);
-                            ////state.Break();
-                        }
-                    });
-
-                Directory.SetCurrentDirectory(initialDirectory);
-
-                if (exceptions.Count > 0)
-                {
-                    throw new AggregateException(exceptions.ToList());
-                }
-            });
+            return Task.FromResult<IEnumerable<string>>(files);
         }
     }
 }
