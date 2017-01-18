@@ -6,22 +6,30 @@
     using System.Threading.Tasks;
     using Contracts.Core;
     using Contracts.Factories;
-    using Contracts.Models;
-    using Contracts.Services;
+    using Contracts.Settings;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Services.Data.Contracts.Meta;
+    using ProcessingTools.Services.Data.Contracts.Models.Meta;
 
     public class Engine : IEngine
     {
+        private readonly IApplicationSettings applicationSettings;
         private readonly IDirectoryProcessorFactory directoryProcessorFactory;
         private readonly IJournalsMetaDataService journalsMetaService;
         private readonly ILogger logger;
 
         public Engine(
+            IApplicationSettings applicationSettings,
             IDirectoryProcessorFactory directoryProcessorFactory,
             IJournalsMetaDataService journalsMetaService,
             ILogger logger)
         {
+            if (applicationSettings == null)
+            {
+                throw new ArgumentNullException(nameof(applicationSettings));
+            }
+
             if (directoryProcessorFactory == null)
             {
                 throw new ArgumentNullException(nameof(directoryProcessorFactory));
@@ -32,6 +40,7 @@
                 throw new ArgumentNullException(nameof(journalsMetaService));
             }
 
+            this.applicationSettings = applicationSettings;
             this.directoryProcessorFactory = directoryProcessorFactory;
             this.journalsMetaService = journalsMetaService;
             this.logger = logger;
@@ -62,7 +71,7 @@
 
         public async Task Run(params string[] args)
         {
-            IJournal journal = await this.journalsMetaService.GetJournalMeta();
+            IJournal journal = await this.journalsMetaService.GetJournalMeta(this.applicationSettings.JournalJsonFileName);
 
             var directories = args.Select(this.SelectDirectoryName)
                 .Where(d => !string.IsNullOrWhiteSpace(d))

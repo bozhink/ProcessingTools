@@ -1,38 +1,35 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Services
+﻿namespace ProcessingTools.Services.Data.Services.Meta
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using Contracts.Models;
-    using Contracts.Services;
-    using Contracts.Settings;
-    using Models;
+    using Contracts.Meta;
+    using Contracts.Models.Meta;
+    using Models.Meta;
     using ProcessingTools.Contracts;
 
     public class JournalsMetaDataService : IJournalsMetaDataService
     {
-        private readonly IApplicationSettings settings;
         private readonly IDeserializer deserializer;
 
-        public JournalsMetaDataService(IApplicationSettings settings, IDeserializer deserializer)
+        public JournalsMetaDataService(IDeserializer deserializer)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
             if (deserializer == null)
             {
                 throw new ArgumentNullException(nameof(deserializer));
             }
 
-            this.settings = settings;
             this.deserializer = deserializer;
         }
 
-        public async Task<IJournal> GetJournalMeta()
+        public async Task<IJournal> GetJournalMeta(string journalJsonFileName)
         {
-            using (var stream = new FileStream(this.settings.JournalJsonFileName, FileMode.Open))
+            if (string.IsNullOrWhiteSpace(journalJsonFileName))
+            {
+                throw new ArgumentNullException(nameof(journalJsonFileName));
+            }
+
+            using (var stream = new FileStream(journalJsonFileName, FileMode.Open))
             {
                 var journalJsonObject = await this.deserializer.Deserialize<JournalDataContract>(stream);
 

@@ -46,6 +46,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
@@ -78,9 +79,11 @@
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
     <Compile Include="Contracts\Mediatypes\IMediatypesResolver.cs" />
+    <Compile Include="Contracts\Meta\IJournalsMetaDataService.cs" />
     <Compile Include="Contracts\Models\Bio\Taxonomy\ITaxonRankWithWhiteListing.cs" />
     <Compile Include="Contracts\Models\IInstitution.cs" />
     <Compile Include="Contracts\Models\IProduct.cs" />
+    <Compile Include="Contracts\Models\Meta\IJournal.cs" />
     <Compile Include="Models\Bio\Taxonomy\BlackListEntity.cs" />
     <Compile Include="Models\Bio\Taxonomy\TaxonClassificationServiceModel.cs" />
     <Compile Include="Models\Bio\Taxonomy\TaxonRankEntity.cs" />
@@ -88,6 +91,8 @@
     <Compile Include="Models\Bio\Taxonomy\TaxonRankWithWhiteListingServiceModel.cs" />
     <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
     <Compile Include="Models\Mediatypes\MediatypeServiceModel.cs" />
+    <Compile Include="Models\Meta\Journal.cs" />
+    <Compile Include="Models\Meta\JournalDataContract.cs" />
     <Compile Include="Services\Bio\Taxonomy\AboveGenusTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaClassificationResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaRankResolver.cs" />
@@ -110,6 +115,7 @@
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolver.cs" />
+    <Compile Include="Services\Meta\JournalsMetaDataService.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

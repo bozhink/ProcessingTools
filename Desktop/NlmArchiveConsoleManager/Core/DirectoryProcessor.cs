@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using Contracts.Core;
     using Contracts.Factories;
-    using Contracts.Models;
+    using ProcessingTools.Services.Data.Contracts.Models.Meta;
 
     public class DirectoryProcessor : IDirectoryProcessor
     {

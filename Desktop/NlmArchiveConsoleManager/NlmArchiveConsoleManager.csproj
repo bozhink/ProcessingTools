@@ -72,8 +72,6 @@
     <Compile Include="Contracts\Core\IProcessor.cs" />
     <Compile Include="Contracts\Factories\IDirectoryProcessorFactory.cs" />
     <Compile Include="Contracts\Factories\IFileProcessorFactory.cs" />
-    <Compile Include="Contracts\Models\IJournal.cs" />
-    <Compile Include="Contracts\Services\IJournalsMetaDataService.cs" />
     <Compile Include="Contracts\Settings\IApplicationSettings.cs" />
     <Compile Include="Core\DirectoryProcessor.cs" />
     <Compile Include="Core\Engine.cs" />
@@ -83,12 +81,9 @@
     <Compile Include="Contracts\Core\IDirectoryProcessor.cs" />
     <Compile Include="Models\FileReplacementModel.cs" />
     <Compile Include="Contracts\Models\IFileReplacementModel.cs" />
-    <Compile Include="Models\Journal.cs" />
-    <Compile Include="Models\JournalDataContract.cs" />
     <Compile Include="PowerShellScriptInvoker.cs" />
     <Compile Include="PowerShellScriptParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\JournalsMetaDataService.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />

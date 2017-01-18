@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
+﻿namespace ProcessingTools.Services.Data.Models.Meta
 {
     using System.Runtime.Serialization;
 

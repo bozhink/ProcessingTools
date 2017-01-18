@@ -15,6 +15,7 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Services.Data.Contracts.Models.Meta;
 
     public class FileProcessor : IFileProcessor
     {

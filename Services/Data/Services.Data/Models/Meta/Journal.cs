@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
+﻿namespace ProcessingTools.Services.Data.Models.Meta
 {
-    using Contracts.Models;
+    using Contracts.Models.Meta;
 
     public class Journal : IJournal
     {
