@@ -3,6 +3,12 @@
     public sealed class XPathStrings
     {
         public const string ArticleIdOfTypeDoi = "/article/front/article-meta/article-id[@pub-id-type='doi']";
+        public const string ArticleJournalMetaIssnEPub = "/article/front/journal-meta/issn[@pub-type='epub']";
+        public const string ArticleJournalMetaIssnPPub = "/article/front/journal-meta/issn[@pub-type='ppub']";
+        public const string ArticleJournalMetaJournalAbbreviatedTitle = "/article/front/journal-meta/journal-title-group/abbrev-journal-title";
+        public const string ArticleJournalMetaJournalId = "/article/front/journal-meta/journal-id[@journal-id-type='publisher-id']";
+        public const string ArticleJournalMetaJournalTitle = "/article/front/journal-meta/journal-title-group/journal-title";
+        public const string ArticleJournalMetaPublisherName = "/article/front/journal-meta/publisher/publisher-name";
         public const string ArticleMetaElocationId = "/article/front/article-meta/elocation-id";
         public const string ArticleMetaFirstPage = "/article/front/article-meta/fpage";
         public const string ArticleMetaIssue = "/article/front/article-meta/issue";

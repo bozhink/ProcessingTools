@@ -13,10 +13,10 @@
 
     public class Engine : IEngine
     {
-        private readonly IProcessorFactory processorFactory;
-        private readonly IJournalsMetaDataService journalsMetaService;
         private readonly IHelpProvider helpProvider;
+        private readonly IJournalsMetaDataService journalsMetaService;
         private readonly ILogger logger;
+        private readonly IProcessorFactory processorFactory;
 
         public Engine(
             IProcessorFactory processorFactory,
@@ -44,6 +44,10 @@
             this.helpProvider = helpProvider;
             this.logger = logger;
         }
+
+        private Func<string, bool> FilterDoubleDashedOption => a => a.IndexOf("--") == 0;
+
+        private Func<string, bool> FilterNonDashedOption => a => a.IndexOf("--") < 0;
 
         private Func<string, string> SelectDirectoryName => x =>
         {
@@ -109,8 +113,5 @@
                 direcoryProcessor.Process().Wait();
             }
         }
-
-        private Func<string, bool> FilterDoubleDashedOption => a => a.IndexOf("--") == 0;
-        private Func<string, bool> FilterNonDashedOption => a => a.IndexOf("--") < 0;
     }
 }

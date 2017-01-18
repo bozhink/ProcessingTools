@@ -111,6 +111,8 @@
 
             this.ProcessReferencedFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
             this.MoveNonXmlFile(fileNameReplacementPrefix);
+            this.UpdateJournalMetaInDocument(document);
+
             await this.WriteDocument(document, outputFileName);
 
             // Remove original file
@@ -241,6 +243,29 @@
                 hrefAttribute.InnerText = referencesNamesReplacements
                     .FirstOrDefault(r => r.Source == content)
                     .Destination;
+            }
+        }
+
+        private void UpdateJournalMetaInDocument(IDocument document)
+        {
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalId, this.journal.JournalId);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalTitle, this.journal.JournalTitle);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalAbbreviatedTitle, this.journal.AbbreviatedJournalTitle);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnPPub, this.journal.IssnPPub);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnEPub, this.journal.IssnEPub);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaPublisherName, this.journal.PublisherName);
+        }
+
+        private void UpdateMetaNodeContent(IDocument document, string xpath, string content)
+        {
+            this.UpdateMetaNodeContent(document.SelectSingleNode(xpath), content);
+        }
+
+        private void UpdateMetaNodeContent(XmlNode node, string content)
+        {
+            if (node != null)
+            {
+                node.InnerXml = content;
             }
         }
 

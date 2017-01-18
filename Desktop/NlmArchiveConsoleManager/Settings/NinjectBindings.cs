@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
+    using System.Configuration;
+    using System.Reflection;
     using Core;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
@@ -11,8 +13,6 @@
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.Services.Data.Services.Files;
-    using System.Configuration;
-    using System.Reflection;
 
     public class NinjectBindings : NinjectModule
     {

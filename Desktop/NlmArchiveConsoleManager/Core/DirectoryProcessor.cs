@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.IO;
+    using System.IO.Compression;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -63,19 +64,26 @@
             var initialDirectory = Directory.GetCurrentDirectory();
             Directory.SetCurrentDirectory(this.DirectoryName);
 
-            var exceptions = await this.ProcessDirectory();
+            await this.ProcessDirectory()
+                .ContinueWith(_ =>
+                {
+                    _.Wait();
+                    this.CreateZipFile();
+                });
 
             Directory.SetCurrentDirectory(initialDirectory);
-
-            if (exceptions.Count > 0)
-            {
-                throw new AggregateException(exceptions.ToList());
-            }
         }
 
-        private async Task<ConcurrentQueue<Exception>> ProcessDirectory()
+        private void CreateZipFile()
         {
-            var xmlFiles = await this.GetFiles();
+            var zipDestination = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            ZipFile.CreateFromDirectory(this.DirectoryName, Path.Combine(zipDestination, this.DirectoryName.Trim(new char[] { ':', '/', '\\' }) + ".zip"));
+        }
+
+        private async Task ProcessDirectory()
+        {
+            var directory = Directory.GetCurrentDirectory();
+            var xmlFiles = await this.GetFiles(directory);
             var exceptions = new ConcurrentQueue<Exception>();
 
             foreach (var fileName in xmlFiles)
@@ -91,14 +99,17 @@
                 }
             }
 
-            return exceptions;
+            if (exceptions.Count > 0)
+            {
+                throw new AggregateException(exceptions.ToList());
+            }
         }
 
-        private Task<IEnumerable<string>> GetFiles()
+        private Task<IEnumerable<string>> GetFiles(string directory)
         {
             var matchSupplementaryMaterial = new Regex(@"\-s\d+\Z");
 
-            var files = Directory.GetFiles(Directory.GetCurrentDirectory())
+            var files = Directory.GetFiles(directory)
                 .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == FileConstants.XmlFileExtension &&
                             !matchSupplementaryMaterial.IsMatch(Path.GetFileNameWithoutExtension(f)))
                 .ToArray();
