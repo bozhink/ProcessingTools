@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Services
+﻿namespace ProcessingTools.Harvesters.Harvesters.Meta
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Models;
-    using Contracts.Services;
-    using Models;
+    using Contracts.Harvesters.Meta;
+    using Contracts.Models.Meta;
+    using Models.Meta;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
 

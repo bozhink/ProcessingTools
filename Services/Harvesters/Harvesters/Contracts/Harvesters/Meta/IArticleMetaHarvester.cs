@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Contracts.Services
+﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Meta
 {
-    using Contracts.Models;
+    using Models.Meta;
     using ProcessingTools.Contracts.Harvesters;
 
     public interface IArticleMetaHarvester : IGenericDocumentHarvester<IArticle>

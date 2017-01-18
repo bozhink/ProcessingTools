@@ -9,11 +9,11 @@
     using System.Xml;
     using Contracts.Core;
     using Contracts.Models;
-    using Contracts.Services;
     using Models;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Services.Data.Contracts.Files;
 
     public class FileProcessor : IFileProcessor

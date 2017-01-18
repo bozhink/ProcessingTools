@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
+﻿namespace ProcessingTools.Harvesters.Models.Meta
 {
-    using Contracts.Models;
+    using Contracts.Models.Meta;
 
-    public class Author : IAuthor
+    internal class Author : IAuthor
     {
         public string GivenNames { get; set; }
 

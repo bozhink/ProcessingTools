@@ -44,11 +44,15 @@
     <Compile Include="Contracts\Factories\IAbbreviationsTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\IExternalLinksTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\ITextContentTransformersFactory.cs" />
+    <Compile Include="Contracts\Harvesters\Meta\IArticleMetaHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Meta\IPersonNamesHarvester.cs" />
+    <Compile Include="Contracts\Models\Meta\IArticle.cs" />
+    <Compile Include="Contracts\Models\Meta\IAuthor.cs" />
     <Compile Include="Contracts\Models\Meta\IPersonNameModel.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\Content\TextContentHarvester.cs" />
     <Compile Include="Harvesters\ExternalLinks\ExternalLinksHarvester.cs" />
+    <Compile Include="Harvesters\Meta\ArticleMetaHarvester.cs" />
     <Compile Include="Harvesters\Meta\PersonNamesHarvester.cs" />
     <Compile Include="Models\Abbreviations\AbbreviationXmlModel.cs" />
     <Compile Include="Models\Abbreviations\AbbreviationsXmlModel.cs" />
@@ -56,6 +60,8 @@
     <Compile Include="Models\ExternalLinks\ExternalLinksModel.cs" />
     <Compile Include="Contracts\Models\Abbreviations\IAbbreviationModel.cs" />
     <Compile Include="Contracts\Models\ExternalLinks\IExternalLinkModel.cs" />
+    <Compile Include="Models\Meta\Article.cs" />
+    <Compile Include="Models\Meta\Author.cs" />
     <Compile Include="Models\Meta\PersonNameModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

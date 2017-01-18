@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Models
+﻿namespace ProcessingTools.Harvesters.Models.Meta
 {
     using System.Collections.Generic;
-    using Contracts.Models;
+    using Contracts.Models.Meta;
 
-    public class Article : IArticle
+    internal class Article : IArticle
     {
         public ICollection<IAuthor> Authors { get; set; }
 

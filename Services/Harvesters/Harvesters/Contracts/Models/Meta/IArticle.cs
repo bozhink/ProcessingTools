@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.NlmArchiveConsoleManager.Contracts.Models
+﻿namespace ProcessingTools.Harvesters.Contracts.Models.Meta
 {
     using System.Collections.Generic;
 
