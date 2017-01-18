@@ -112,7 +112,19 @@
             this.ProcessReferencedFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
             this.MoveNonXmlFile(fileNameReplacementPrefix);
             await this.WriteDocument(document, outputFileName);
-            this.RemoveOriginalXmlFile();
+
+            // Remove original file
+            if (outputFileName != Path.GetFileName(this.FileName))
+            {
+                try
+                {
+                    File.Delete(this.FileName);
+                }
+                catch (Exception e)
+                {
+                    this.logger?.Log(e);
+                }
+            }
         }
 
         private async Task<string> ComposeFileNameReplacementPrefix(IDocument document)
@@ -161,18 +173,6 @@
                 {
                     this.logger?.Log(ex);
                 }
-            }
-        }
-
-        private void RemoveOriginalXmlFile()
-        {
-            try
-            {
-                File.Delete(this.FileName);
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e);
             }
         }
 

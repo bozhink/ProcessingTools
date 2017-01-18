@@ -72,7 +72,6 @@
     <Compile Include="Contracts\Core\IProcessor.cs" />
     <Compile Include="Contracts\Factories\IModelFactory.cs" />
     <Compile Include="Contracts\Factories\IProcessorFactory.cs" />
-    <Compile Include="Contracts\Settings\IApplicationSettings.cs" />
     <Compile Include="Core\DirectoryProcessor.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\FileProcessor.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="PowerShellScriptInvoker.cs" />
     <Compile Include="PowerShellScriptParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\ApplicationSettings.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
     <Compile Include="Startup.cs" />

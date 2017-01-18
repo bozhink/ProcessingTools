@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Meta
 {
+    using System.Text.RegularExpressions;
     using Contracts.Models.Meta;
 
     public class Journal : IJournal
@@ -20,5 +21,7 @@
         public string JournalTitle { get; set; }
 
         public string PublisherName { get; set; }
+
+        public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLower();
     }
 }

@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Contracts.Core;
     using Contracts.Factories;
-    using Contracts.Settings;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Services.Data.Contracts.Meta;
@@ -14,22 +13,17 @@
 
     public class Engine : IEngine
     {
-        private readonly IApplicationSettings applicationSettings;
         private readonly IProcessorFactory processorFactory;
-        private readonly IJournalMetaDataService journalsMetaService;
+        private readonly IJournalsMetaDataService journalsMetaService;
+        private readonly IHelpProvider helpProvider;
         private readonly ILogger logger;
 
         public Engine(
-            IApplicationSettings applicationSettings,
             IProcessorFactory processorFactory,
-            IJournalMetaDataService journalsMetaService,
+            IJournalsMetaDataService journalsMetaService,
+            IHelpProvider helpProvider,
             ILogger logger)
         {
-            if (applicationSettings == null)
-            {
-                throw new ArgumentNullException(nameof(applicationSettings));
-            }
-
             if (processorFactory == null)
             {
                 throw new ArgumentNullException(nameof(processorFactory));
@@ -40,9 +34,14 @@
                 throw new ArgumentNullException(nameof(journalsMetaService));
             }
 
-            this.applicationSettings = applicationSettings;
+            if (helpProvider == null)
+            {
+                throw new ArgumentNullException(nameof(helpProvider));
+            }
+
             this.processorFactory = processorFactory;
             this.journalsMetaService = journalsMetaService;
+            this.helpProvider = helpProvider;
             this.logger = logger;
         }
 
@@ -71,9 +70,31 @@
 
         public async Task Run(params string[] args)
         {
-            IJournal journal = await this.journalsMetaService.GetJournalMeta(this.applicationSettings.JournalJsonFileName);
+            int numberOfDoubleDashedArguments = args.Count(this.FilterDoubleDashedOption);
+            if (numberOfDoubleDashedArguments != 1)
+            {
+                await this.helpProvider.GetHelp();
+                return;
+            }
 
-            var directories = args.Select(this.SelectDirectoryName)
+            var journalId = args.Single(this.FilterDoubleDashedOption).Substring(2);
+
+            IJournal journal = (await this.journalsMetaService.GetAllJournalsMeta())
+                .FirstOrDefault(j => j.Permalink == journalId);
+
+            if (journal == null)
+            {
+                this.logger?.Log(LogType.Error, "Journal not found");
+                return;
+            }
+
+            this.ProcessDirectories(args, journal);
+        }
+
+        private void ProcessDirectories(string[] args, IJournal journal)
+        {
+            var directories = args.Where(this.FilterNonDashedOption)
+                .Select(this.SelectDirectoryName)
                 .Where(d => !string.IsNullOrWhiteSpace(d))
                 .ToArray();
 
@@ -88,5 +109,8 @@
                 direcoryProcessor.Process().Wait();
             }
         }
+
+        private Func<string, bool> FilterDoubleDashedOption => a => a.IndexOf("--") == 0;
+        private Func<string, bool> FilterNonDashedOption => a => a.IndexOf("--") < 0;
     }
 }

@@ -1,15 +1,18 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
-    using System.Reflection;
+    using Core;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Constants;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.Services.Data.Services.Files;
+    using System.Configuration;
+    using System.Reflection;
 
     public class NinjectBindings : NinjectModule
     {
@@ -63,6 +66,25 @@
             this.Bind<ProcessingTools.Contracts.IReporter>()
                 .To<ProcessingTools.Reporters.LogReporter>()
                 .InSingletonScope();
+
+            {
+                var appSettingsReader = new AppSettingsReader();
+                string journalMetaFilesDirectory = appSettingsReader.GetValue(AppSettingsKeys.JournalsJsonFilesDirectoryName, typeof(string)).ToString();
+
+                this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+                    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataService>()
+                    .WhenInjectedInto<Engine>()
+                    .WithConstructorArgument(
+                        ParameterNames.JournalMetaFilesDirectoryName,
+                        journalMetaFilesDirectory);
+
+                this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+                    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataService>()
+                    .WhenInjectedInto<HelpProvider>()
+                    .WithConstructorArgument(
+                        ParameterNames.JournalMetaFilesDirectoryName,
+                        journalMetaFilesDirectory);
+            }
         }
     }
 }

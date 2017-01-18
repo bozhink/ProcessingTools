@@ -26,5 +26,6 @@
         public const string TaxonTreatmentExtractMaterialsXslFileName = "TaxonTreatmentExtractMaterialsXslPath";
         public const string TextContentXslFileName = "TextContentXslFileName";
         public const string ZooBankRegistrationNlmXslFileName = "ZoobankNlmXslPath";
+        public const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectory";
     }
 }

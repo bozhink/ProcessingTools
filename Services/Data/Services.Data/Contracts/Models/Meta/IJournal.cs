@@ -18,5 +18,7 @@
         string JournalTitle { get; }
 
         string PublisherName { get; }
+
+        string Permalink { get; }
     }
 }
