@@ -117,6 +117,7 @@
     <Compile Include="Models\ProductServiceModel.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolver.cs" />
     <Compile Include="Services\Meta\JournalMetaDataService.cs" />
+    <Compile Include="Services\Meta\JournalsMetaDataService.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
