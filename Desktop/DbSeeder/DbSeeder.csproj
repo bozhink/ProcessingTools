@@ -74,7 +74,6 @@
     <Compile Include="Abstractions\Seeders\GenericDbSeeder.cs" />
     <Compile Include="Contracts\Core\IEngine.cs" />
     <Compile Include="Contracts\Providers\ICommandNamesProvider.cs" />
-    <Compile Include="Core\LogReporter.cs" />
     <Compile Include="Core\Sandbox.cs" />
     <Compile Include="Core\SeedCommandRunner.cs" />
     <Compile Include="Providers\CommandNamesProvider.cs" />
@@ -214,6 +213,10 @@
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Reporters\Reporters.csproj">
+      <Project>{7351B164-F80A-4FA2-A3E3-9B3DBB2FDAAD}</Project>
+      <Name>Reporters</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

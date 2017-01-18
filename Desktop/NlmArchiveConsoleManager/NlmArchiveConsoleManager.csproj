@@ -79,6 +79,7 @@
     <Compile Include="Contracts\Core\IEngine.cs" />
     <Compile Include="Contracts\Core\IFileProcessor.cs" />
     <Compile Include="Contracts\Core\IDirectoryProcessor.cs" />
+    <Compile Include="Core\HelpProvider.cs" />
     <Compile Include="Models\FileReplacementModel.cs" />
     <Compile Include="Contracts\Models\IFileReplacementModel.cs" />
     <Compile Include="PowerShellScriptInvoker.cs" />
@@ -121,6 +122,10 @@
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Reporters\Reporters.csproj">
+      <Project>{7351B164-F80A-4FA2-A3E3-9B3DBB2FDAAD}</Project>
+      <Name>Reporters</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>

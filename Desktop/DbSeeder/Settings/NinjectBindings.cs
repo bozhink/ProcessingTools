@@ -13,6 +13,7 @@
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Reporters;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.

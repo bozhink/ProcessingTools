@@ -1,10 +1,11 @@
-﻿namespace ProcessingTools.DbSeeder.Core
+﻿namespace ProcessingTools.Reporters
 {
     using System.Text;
     using System.Threading.Tasks;
+    using Contracts;
     using ProcessingTools.Contracts;
 
-    internal class LogReporter : IReporter
+    public class LogReporter : ILogReporter
     {
         private readonly ILogger logger;
         private readonly StringBuilder stringBuilder;

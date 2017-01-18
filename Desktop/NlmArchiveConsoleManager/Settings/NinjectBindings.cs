@@ -5,6 +5,7 @@
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
+    using ProcessingTools.Constants;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
@@ -24,7 +25,7 @@
             this.Bind(b =>
             {
                 b.FromAssembliesMatching(
-                    $"{nameof(ProcessingTools)}.*.dll")
+                    $"{nameof(ProcessingTools)}.*.{FileConstants.DllFileExtension}")
                 .SelectAllClasses()
                 .BindDefaultInterface();
             });
@@ -57,6 +58,10 @@
 
             this.Bind<IModelFactory>()
                 .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Contracts.IReporter>()
+                .To<ProcessingTools.Reporters.LogReporter>()
                 .InSingletonScope();
         }
     }
