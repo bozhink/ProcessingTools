@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts.Core;
+    using Contracts.Factories;
     using Contracts.Models;
     using Models;
     using ProcessingTools.Constants.Schema;
@@ -22,6 +23,7 @@
         private readonly IArticleMetaHarvester articleMetaHarvester;
         private readonly IDocumentFactory documentFactory;
         private readonly IXmlFileContentDataService fileManager;
+        private readonly IModelFactory modelFactory;
         private readonly IJournal journal;
         private readonly ILogger logger;
         private string fileName;
@@ -33,6 +35,7 @@
             IDocumentFactory documentFactory,
             IXmlFileContentDataService fileManager,
             IArticleMetaHarvester articleMetaHarvester,
+            IModelFactory modelFactory,
             ILogger logger)
         {
             if (journal == null)
@@ -55,11 +58,17 @@
                 throw new ArgumentNullException(nameof(articleMetaHarvester));
             }
 
+            if (modelFactory == null)
+            {
+                throw new ArgumentNullException(nameof(modelFactory));
+            }
+
             this.FileName = fileName;
             this.journal = journal;
             this.documentFactory = documentFactory;
             this.fileManager = fileManager;
             this.articleMetaHarvester = articleMetaHarvester;
+            this.modelFactory = modelFactory;
             this.logger = logger;
         }
 
@@ -162,12 +171,10 @@
             var filesToMove = new HashSet<IFileReplacementModel>(Directory
                 .GetFiles(Directory.GetCurrentDirectory())
                 .Where(f => Path.GetFileNameWithoutExtension(f) == this.fileNameWithoutExtension)
-                .Select(f => new FileReplacementModel
-                {
-                    OriginalFileName = f,
-                    Source = f,
-                    Destination = fileNameReplacementPrefix + Path.GetExtension(f)
-                }));
+                .Select(f => this.modelFactory.CreateFileReplacementModel(
+                    destination: fileNameReplacementPrefix + Path.GetExtension(f),
+                    originalFileName: f,
+                    source: f)));
 
             Parallel.ForEach(
                 filesToMove,
@@ -196,12 +203,10 @@
                 .Select(f =>
                 {
                     string externalFileName = Path.GetFileName(f);
-                    return new FileReplacementModel
-                    {
-                        Source = f,
-                        Destination = matchXmlFileName.Replace(externalFileName, fileNameReplacementPrefix),
-                        OriginalFileName = externalFileName
-                    };
+                    return this.modelFactory.CreateFileReplacementModel(
+                        destination: matchXmlFileName.Replace(externalFileName, fileNameReplacementPrefix),
+                        originalFileName: externalFileName,
+                        source: f);
                 }));
 
             this.MoveExternalFiles(referencesNamesReplacements);

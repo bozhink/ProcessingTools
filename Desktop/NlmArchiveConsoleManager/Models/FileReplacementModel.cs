@@ -4,10 +4,17 @@
 
     public class FileReplacementModel : IFileReplacementModel
     {
-        public string Destination { get; set; }
+        public FileReplacementModel(string destination, string originalFileName, string source)
+        {
+            this.Destination = destination;
+            this.OriginalFileName = originalFileName;
+            this.Source = source;
+        }
 
-        public string OriginalFileName { get; set; }
+        public string Destination { get; private set; }
 
-        public string Source { get; set; }
+        public string OriginalFileName { get; private set; }
+
+        public string Source { get; private set; }
     }
 }

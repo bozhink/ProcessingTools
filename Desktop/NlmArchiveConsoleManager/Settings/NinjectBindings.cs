@@ -58,6 +58,10 @@
             this.Bind<IFileProcessorFactory>()
                 .ToFactory()
                 .InSingletonScope();
+
+            this.Bind<IModelFactory>()
+                .ToFactory()
+                .InSingletonScope();
         }
     }
 }
