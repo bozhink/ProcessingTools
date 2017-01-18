@@ -10,7 +10,7 @@
     using Contracts.Core;
     using Contracts.Factories;
     using Contracts.Models;
-    using Models;
+    using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
@@ -101,17 +101,18 @@
             var document = await this.ReadDocument();
             if (document.XmlDocument.DocumentElement.Name != ElementNames.Article)
             {
-                throw new ApplicationException($"'{this.fileName}' is not a NLM xml file.");
+                throw new ApplicationException($"'{this.FileName}' is not a NLM xml file.");
             }
 
             string fileNameReplacementPrefix = await this.ComposeFileNameReplacementPrefix(document);
-            this.logger?.Log("{0} / {1}", this.FileName, fileNameReplacementPrefix);
+            var outputFileName = $"{fileNameReplacementPrefix}.{FileConstants.XmlFileExtension}";
 
-            this.ProcessExternalFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
-            this.MoveXmlFile(fileNameReplacementPrefix);
+            this.logger?.Log("{0} / {1} / {2}", this.FileName, fileNameReplacementPrefix, outputFileName);
 
-            var outputFileName = $"{fileNameReplacementPrefix}.xml";
+            this.ProcessReferencedFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
+            this.MoveNonXmlFile(fileNameReplacementPrefix);
             await this.WriteDocument(document, outputFileName);
+            this.RemoveOriginalXmlFile();
         }
 
         private async Task<string> ComposeFileNameReplacementPrefix(IDocument document)
@@ -128,12 +129,10 @@
             return fileNameReplacementPrefix;
         }
 
-        // Move external files to the new destinations.
-        private void MoveExternalFiles(IEnumerable<IFileReplacementModel> referencesNamesReplacements)
+        // Move files referenced in the XML document to the new destinations.
+        private void MoveReferencedFiles(IEnumerable<IFileReplacementModel> referencedFileNamesReplacements)
         {
-            Parallel.ForEach(
-                referencesNamesReplacements,
-                (reference) =>
+            foreach (var reference in referencedFileNamesReplacements)
             {
                 try
                 {
@@ -162,44 +161,55 @@
                 {
                     this.logger?.Log(ex);
                 }
-            });
+            }
+        }
+
+        private void RemoveOriginalXmlFile()
+        {
+            try
+            {
+                File.Delete(this.FileName);
+            }
+            catch (Exception e)
+            {
+                this.logger?.Log(e);
+            }
         }
 
         // Move other files with name FileName and different extensions to corresponding destination.
-        private void MoveXmlFile(string fileNameReplacementPrefix)
+        private void MoveNonXmlFile(string fileNameReplacementPrefix)
         {
-            var filesToMove = new HashSet<IFileReplacementModel>(Directory
-                .GetFiles(Directory.GetCurrentDirectory())
-                .Where(f => Path.GetFileNameWithoutExtension(f) == this.fileNameWithoutExtension)
+            var filesToMove = Directory.GetFiles(Directory.GetCurrentDirectory())
+                .Where(f => Path.GetFileNameWithoutExtension(f) == this.fileNameWithoutExtension &&
+                            Path.GetExtension(f).TrimStart('.').ToLower() != FileConstants.XmlFileExtension)
                 .Select(f => this.modelFactory.CreateFileReplacementModel(
                     destination: fileNameReplacementPrefix + Path.GetExtension(f),
                     originalFileName: f,
-                    source: f)));
+                    source: f))
+                .ToList();
 
-            Parallel.ForEach(
-                filesToMove,
-                (file) =>
+            foreach (var file in filesToMove)
+            {
+                try
                 {
-                    try
-                    {
-                        File.Move(file.Source, file.Destination);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.logger?.Log(ex);
-                    }
-                });
+                    File.Move(file.Source, file.Destination);
+                }
+                catch (Exception ex)
+                {
+                    this.logger?.Log(ex);
+                }
+            }
         }
 
-        private void ProcessExternalFiles(IDocument document, string orginalPrefix, string fileNameReplacementPrefix)
+        private void ProcessReferencedFiles(IDocument document, string orginalPrefix, string fileNameReplacementPrefix)
         {
-            // Get external files references.
-            var externalFiles = new HashSet<string>(document.SelectNodes(XPathStrings.XLinkHref)
+            // Get file references.
+            var referencedFileNames = new HashSet<string>(document.SelectNodes(XPathStrings.XLinkHref)
                 .Cast<XmlAttribute>()
                 .Select(h => h.InnerText));
 
             var matchXmlFileName = new Regex($"\\A{Regex.Escape(orginalPrefix)}");
-            var referencesNamesReplacements = new HashSet<IFileReplacementModel>(externalFiles
+            var referencesNamesReplacements = new HashSet<IFileReplacementModel>(referencedFileNames
                 .Select(f =>
                 {
                     string externalFileName = Path.GetFileName(f);
@@ -209,7 +219,7 @@
                         source: f);
                 }));
 
-            this.MoveExternalFiles(referencesNamesReplacements);
+            this.MoveReferencedFiles(referencesNamesReplacements);
 
             this.UpdateContentInDocument(document, referencesNamesReplacements);
         }

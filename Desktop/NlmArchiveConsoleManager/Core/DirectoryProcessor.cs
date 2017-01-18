@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using Contracts.Core;
     using Contracts.Factories;
+    using ProcessingTools.Constants;
     using ProcessingTools.Services.Data.Contracts.Models.Meta;
 
     public class DirectoryProcessor : IDirectoryProcessor
@@ -76,21 +77,19 @@
         {
             var xmlFiles = await this.GetFiles();
             var exceptions = new ConcurrentQueue<Exception>();
-            Parallel.ForEach(
-                xmlFiles,
-                (fileName, state) =>
+
+            foreach (var fileName in xmlFiles)
+            {
+                try
                 {
-                    try
-                    {
-                        var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, journal);
-                        fileProcessor.Process().Wait();
-                    }
-                    catch (Exception e)
-                    {
-                        exceptions.Enqueue(e);
-                        ////state.Break();
-                    }
-                });
+                    var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, this.journal);
+                    fileProcessor.Process().Wait();
+                }
+                catch (Exception e)
+                {
+                    exceptions.Enqueue(e);
+                }
+            }
 
             return exceptions;
         }
@@ -100,7 +99,7 @@
             var matchSupplementaryMaterial = new Regex(@"\-s\d+\Z");
 
             var files = Directory.GetFiles(Directory.GetCurrentDirectory())
-                .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == "xml" &&
+                .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == FileConstants.XmlFileExtension &&
                             !matchSupplementaryMaterial.IsMatch(Path.GetFileNameWithoutExtension(f)))
                 .ToArray();
 
