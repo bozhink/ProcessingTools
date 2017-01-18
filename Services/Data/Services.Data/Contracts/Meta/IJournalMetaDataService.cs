@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Models.Meta;
 
-    public interface IJournalsMetaDataService
+    public interface IJournalMetaDataService
     {
         Task<IJournal> GetJournalMeta(string journalJsonFileName);
     }

@@ -8,11 +8,11 @@
     using Models.Meta;
     using ProcessingTools.Contracts;
 
-    public class JournalsMetaDataService : IJournalsMetaDataService
+    public class JournalMetaDataService : IJournalMetaDataService
     {
         private readonly IDeserializer deserializer;
 
-        public JournalsMetaDataService(IDeserializer deserializer)
+        public JournalMetaDataService(IDeserializer deserializer)
         {
             if (deserializer == null)
             {

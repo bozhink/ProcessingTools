@@ -16,13 +16,13 @@
     {
         private readonly IApplicationSettings applicationSettings;
         private readonly IProcessorFactory processorFactory;
-        private readonly IJournalsMetaDataService journalsMetaService;
+        private readonly IJournalMetaDataService journalsMetaService;
         private readonly ILogger logger;
 
         public Engine(
             IApplicationSettings applicationSettings,
             IProcessorFactory processorFactory,
-            IJournalsMetaDataService journalsMetaService,
+            IJournalMetaDataService journalsMetaService,
             ILogger logger)
         {
             if (applicationSettings == null)
