@@ -70,9 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Core\IProcessor.cs" />
-    <Compile Include="Contracts\Factories\IDirectoryProcessorFactory.cs" />
-    <Compile Include="Contracts\Factories\IFileProcessorFactory.cs" />
     <Compile Include="Contracts\Factories\IModelFactory.cs" />
+    <Compile Include="Contracts\Factories\IProcessorFactory.cs" />
     <Compile Include="Contracts\Settings\IApplicationSettings.cs" />
     <Compile Include="Core\DirectoryProcessor.cs" />
     <Compile Include="Core\Engine.cs" />

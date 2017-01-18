@@ -12,25 +12,25 @@
 
     public class DirectoryProcessor : IDirectoryProcessor
     {
-        private readonly IFileProcessorFactory fileProcessorFactory;
+        private readonly IProcessorFactory processorFactory;
         private readonly IJournal journal;
         private string direcoryName;
 
-        public DirectoryProcessor(string direcoryName, IJournal journal, IFileProcessorFactory fileProcessorFactory)
+        public DirectoryProcessor(string direcoryName, IJournal journal, IProcessorFactory processorFactory)
         {
             if (journal == null)
             {
                 throw new ArgumentNullException(nameof(journal));
             }
 
-            if (fileProcessorFactory == null)
+            if (processorFactory == null)
             {
-                throw new ArgumentNullException(nameof(fileProcessorFactory));
+                throw new ArgumentNullException(nameof(processorFactory));
             }
 
             this.DirectoryName = direcoryName;
             this.journal = journal;
-            this.fileProcessorFactory = fileProcessorFactory;
+            this.processorFactory = processorFactory;
         }
 
         private string DirectoryName
@@ -79,7 +79,7 @@
                     {
                         try
                         {
-                            var fileProcessor = this.fileProcessorFactory.CreateFileProcessor(fileName, journal);
+                            var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, journal);
                             fileProcessor.Process().Wait();
                         }
                         catch (Exception e)

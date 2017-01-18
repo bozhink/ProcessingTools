@@ -15,13 +15,13 @@
     public class Engine : IEngine
     {
         private readonly IApplicationSettings applicationSettings;
-        private readonly IDirectoryProcessorFactory directoryProcessorFactory;
+        private readonly IProcessorFactory processorFactory;
         private readonly IJournalsMetaDataService journalsMetaService;
         private readonly ILogger logger;
 
         public Engine(
             IApplicationSettings applicationSettings,
-            IDirectoryProcessorFactory directoryProcessorFactory,
+            IProcessorFactory processorFactory,
             IJournalsMetaDataService journalsMetaService,
             ILogger logger)
         {
@@ -30,9 +30,9 @@
                 throw new ArgumentNullException(nameof(applicationSettings));
             }
 
-            if (directoryProcessorFactory == null)
+            if (processorFactory == null)
             {
-                throw new ArgumentNullException(nameof(directoryProcessorFactory));
+                throw new ArgumentNullException(nameof(processorFactory));
             }
 
             if (journalsMetaService == null)
@@ -41,7 +41,7 @@
             }
 
             this.applicationSettings = applicationSettings;
-            this.directoryProcessorFactory = directoryProcessorFactory;
+            this.processorFactory = processorFactory;
             this.journalsMetaService = journalsMetaService;
             this.logger = logger;
         }
@@ -81,7 +81,7 @@
             {
                 this.logger?.Log(directoryName);
 
-                var direcoryProcessor = this.directoryProcessorFactory.CreateDirectoryProcessor(directoryName, journal);
+                var direcoryProcessor = this.processorFactory.CreateDirectoryProcessor(directoryName, journal);
 
                 // Processing of each should be executed strictly sequential
                 // due to the changes of the current location.

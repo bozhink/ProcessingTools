@@ -51,11 +51,7 @@
                 .To<ProcessingTools.Serialization.Serializers.DataContractJsonDeserializer>()
                 .InSingletonScope();
 
-            this.Bind<IDirectoryProcessorFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
-            this.Bind<IFileProcessorFactory>()
+            this.Bind<IProcessorFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
