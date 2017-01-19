@@ -10,11 +10,11 @@
     using ProcessingTools.Processors.Contracts;
 
     [Description("Query replace.")]
-    public class QueryReplaceController : IQueryReplaceController
+    public class QueryReplaceCommand : IQueryReplaceCommand
     {
         private readonly IQueryReplacer queryReplacer;
 
-        public QueryReplaceController(IQueryReplacer queryReplacer)
+        public QueryReplaceCommand(IQueryReplacer queryReplacer)
         {
             if (queryReplacer == null)
             {

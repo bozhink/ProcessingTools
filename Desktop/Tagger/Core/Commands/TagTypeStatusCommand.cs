@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio;
 
     [Description("Tag type status.")]
-    public class TagTypeStatusController : GenericDocumentTaggerController<ITypeStatusTagger>, ITagTypeStatusController
+    public class TagTypeStatusCommand : GenericDocumentTaggerCommand<ITypeStatusTagger>, ITagTypeStatusCommand
     {
-        public TagTypeStatusController(ITypeStatusTagger tagger)
+        public TagTypeStatusCommand(ITypeStatusTagger tagger)
             : base(tagger)
         {
         }

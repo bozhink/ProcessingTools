@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Institutions;
 
     [Description("Tag institutions.")]
-    public class TagInstitutionsController : GenericDocumentTaggerController<IInstitutionsTagger>, ITagInstitutionsController
+    public class TagInstitutionsCommand : GenericDocumentTaggerCommand<IInstitutionsTagger>, ITagInstitutionsCommand
     {
-        public TagInstitutionsController(IInstitutionsTagger tagger)
+        public TagInstitutionsCommand(IInstitutionsTagger tagger)
             : base(tagger)
         {
         }

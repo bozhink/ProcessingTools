@@ -7,9 +7,9 @@
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
 
     [Description("Parse lower taxa.")]
-    public class ParseLowerTaxaController : GenericXmlContextParserController<ILowerTaxaParser>, IParseLowerTaxaController
+    public class ParseLowerTaxaCommand : GenericXmlContextParserCommand<ILowerTaxaParser>, IParseLowerTaxaCommand
     {
-        public ParseLowerTaxaController(ILowerTaxaParser parser)
+        public ParseLowerTaxaCommand(ILowerTaxaParser parser)
             : base(parser)
         {
         }

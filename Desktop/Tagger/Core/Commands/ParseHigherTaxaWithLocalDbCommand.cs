@@ -9,9 +9,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse higher taxa with local database.")]
-    public class ParseHigherTaxaWithLocalDbController : GenericParseHigherTaxaController<ILocalDbTaxaRankResolver>, IParseHigherTaxaWithLocalDbController
+    public class ParseHigherTaxaWithLocalDbCommand : GenericParseHigherTaxaCommand<ILocalDbTaxaRankResolver>, IParseHigherTaxaWithLocalDbCommand
     {
-        public ParseHigherTaxaWithLocalDbController(
+        public ParseHigherTaxaWithLocalDbCommand(
             IHigherTaxaParserWithDataService<ILocalDbTaxaRankResolver, ITaxonRank> parser,
             ILogger logger)
             : base(parser, logger)

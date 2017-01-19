@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.References;
 
     [Description("Parse references.")]
-    public class ParseReferencesController : GenericXmlContextParserController<IReferencesParser>, IParseReferencesController
+    public class ParseReferencesCommand : GenericXmlContextParserCommand<IReferencesParser>, IParseReferencesCommand
     {
-        public ParseReferencesController(IReferencesParser parser)
+        public ParseReferencesCommand(IReferencesParser parser)
             : base(parser)
         {
         }

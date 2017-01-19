@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface IExpandLowerTaxaController : ITaggerController
+    public interface IExpandLowerTaxaCommand : ITaggerCommand
     {
     }
 }

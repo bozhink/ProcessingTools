@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio.Materials;
 
     [Description("Parse treatment materials.")]
-    public class ParseTreatmentMaterialsController : GenericDocumentParserController<ITreatmentMaterialsParser>, IParseTreatmentMaterialsController
+    public class ParseTreatmentMaterialsCommand : GenericDocumentParserCommand<ITreatmentMaterialsParser>, IParseTreatmentMaterialsCommand
     {
-        public ParseTreatmentMaterialsController(ITreatmentMaterialsParser parser)
+        public ParseTreatmentMaterialsCommand(ITreatmentMaterialsParser parser)
             : base(parser)
         {
         }

@@ -7,9 +7,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse treatment meta with Aphia.")]
-    public class ParseTreatmentMetaWithAphiaController : GenericDocumentParserController<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>, IParseTreatmentMetaWithAphiaController
+    public class ParseTreatmentMetaWithAphiaCommand : GenericDocumentParserCommand<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>, IParseTreatmentMetaWithAphiaCommand
     {
-        public ParseTreatmentMetaWithAphiaController(ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver> parser)
+        public ParseTreatmentMetaWithAphiaCommand(ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver> parser)
             : base(parser)
         {
         }

@@ -9,11 +9,11 @@
     using ProcessingTools.Processors.Contracts;
 
     [Description("Custom XQuery transform.")]
-    public class RunCustomXQueryTransformController : IRunCustomXQueryTransformController
+    public class RunCustomXQueryTransformCommand : IRunCustomXQueryTransformCommand
     {
         private readonly IDocumentXQueryProcessor processor;
 
-        public RunCustomXQueryTransformController(IDocumentXQueryProcessor processor)
+        public RunCustomXQueryTransformCommand(IDocumentXQueryProcessor processor)
         {
             if (processor == null)
             {

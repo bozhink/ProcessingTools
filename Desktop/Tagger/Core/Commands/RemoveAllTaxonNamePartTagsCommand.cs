@@ -6,9 +6,9 @@
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
 
     [Description("Remove all taxon-name-part tags.")]
-    public class RemoveAllTaxonNamePartTagsController : GenericDocumentFormatterController<ITaxonNamePartsRemover>, IRemoveAllTaxonNamePartTagsController
+    public class RemoveAllTaxonNamePartTagsCommand : GenericDocumentFormatterCommand<ITaxonNamePartsRemover>, IRemoveAllTaxonNamePartTagsCommand
     {
-        public RemoveAllTaxonNamePartTagsController(ITaxonNamePartsRemover formatter)
+        public RemoveAllTaxonNamePartTagsCommand(ITaxonNamePartsRemover formatter)
             : base(formatter)
         {
         }

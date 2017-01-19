@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Validation;
 
     [Description("Taxa validation using Global Names Resolver.")]
-    public class ValidateTaxaController : GenericDocumentValidatorController<ITaxaValidator>, IValidateTaxaController
+    public class ValidateTaxaCommand : GenericDocumentValidatorCommand<ITaxaValidator>, IValidateTaxaCommand
     {
-        public ValidateTaxaController(ITaxaValidator validator)
+        public ValidateTaxaCommand(ITaxaValidator validator)
             : base(validator)
         {
         }

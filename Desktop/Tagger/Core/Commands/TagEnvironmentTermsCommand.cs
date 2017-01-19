@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
 
     [Description("Tag envo terms using local database.")]
-    public class TagEnvironmentTermsController : GenericDocumentTaggerController<IEnvironmentTermsTagger>, ITagEnvironmentTermsController
+    public class TagEnvironmentTermsCommand : GenericDocumentTaggerCommand<IEnvironmentTermsTagger>, ITagEnvironmentTermsCommand
     {
-        public TagEnvironmentTermsController(IEnvironmentTermsTagger tagger)
+        public TagEnvironmentTermsCommand(IEnvironmentTermsTagger tagger)
             : base(tagger)
         {
         }

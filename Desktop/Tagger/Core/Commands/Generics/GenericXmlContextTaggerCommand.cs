@@ -6,12 +6,12 @@
     using Contracts.Commands;
     using ProcessingTools.Contracts;
 
-    public class GenericXmlContextTaggerController<TTagger> : ITaggerController
+    public class GenericXmlContextTaggerCommand<TTagger> : ITaggerCommand
         where TTagger : IXmlContextTagger
     {
         private readonly TTagger tagger;
 
-        public GenericXmlContextTaggerController(TTagger tagger)
+        public GenericXmlContextTaggerCommand(TTagger tagger)
         {
             if (tagger == null)
             {

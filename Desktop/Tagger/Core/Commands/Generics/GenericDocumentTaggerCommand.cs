@@ -6,12 +6,12 @@
     using Contracts.Commands;
     using ProcessingTools.Contracts;
 
-    public class GenericDocumentTaggerController<TTagger> : ITaggerController
+    public class GenericDocumentTaggerCommand<TTagger> : ITaggerCommand
         where TTagger : IDocumentTagger
     {
         private readonly TTagger tagger;
 
-        public GenericDocumentTaggerController(TTagger tagger)
+        public GenericDocumentTaggerCommand(TTagger tagger)
         {
             if (tagger == null)
             {

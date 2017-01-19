@@ -10,13 +10,13 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
-    public class GenericParseHigherTaxaController<TService> : ITaggerController
+    public class GenericParseHigherTaxaCommand<TService> : ITaggerCommand
         where TService : ITaxaRankResolver
     {
         private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
         private readonly ILogger logger;
 
-        public GenericParseHigherTaxaController(
+        public GenericParseHigherTaxaCommand(
             IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
             ILogger logger)
         {

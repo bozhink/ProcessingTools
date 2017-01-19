@@ -9,11 +9,11 @@
     using ProcessingTools.Processors.Contracts;
 
     [Description("Custom XSL transform.")]
-    public class RunCustomXslTransformController : IRunCustomXslTransformController
+    public class RunCustomXslTransformCommand : IRunCustomXslTransformCommand
     {
         private readonly IDocumentXslProcessor processor;
 
-        public RunCustomXslTransformController(IDocumentXslProcessor processor)
+        public RunCustomXslTransformCommand(IDocumentXslProcessor processor)
         {
             if (processor == null)
             {

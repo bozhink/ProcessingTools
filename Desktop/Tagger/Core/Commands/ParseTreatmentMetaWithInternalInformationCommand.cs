@@ -6,9 +6,9 @@
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
 
     [Description("Parse treatment meta with internal information.")]
-    public class ParseTreatmentMetaWithInternalInformationController : GenericDocumentParserController<ITreatmentMetaParserWithInternalInformation>, IParseTreatmentMetaWithInternalInformationController
+    public class ParseTreatmentMetaWithInternalInformationCommand : GenericDocumentParserCommand<ITreatmentMetaParserWithInternalInformation>, IParseTreatmentMetaWithInternalInformationCommand
     {
-        public ParseTreatmentMetaWithInternalInformationController(ITreatmentMetaParserWithInternalInformation parser)
+        public ParseTreatmentMetaWithInternalInformationCommand(ITreatmentMetaParserWithInternalInformation parser)
             : base(parser)
         {
         }

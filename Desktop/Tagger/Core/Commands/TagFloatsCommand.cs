@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Tag floats.")]
-    public class TagFloatsController : GenericXmlContextTaggerController<IFloatsTagger>, ITagFloatsController
+    public class TagFloatsCommand : GenericXmlContextTaggerCommand<IFloatsTagger>, ITagFloatsCommand
     {
-        public TagFloatsController(IFloatsTagger tagger)
+        public TagFloatsCommand(IFloatsTagger tagger)
             : base(tagger)
         {
         }

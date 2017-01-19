@@ -6,12 +6,12 @@
     using Contracts.Commands;
     using ProcessingTools.Contracts;
 
-    public class GenericDocumentParserController<TParser> : ITaggerController
+    public class GenericDocumentParserCommand<TParser> : ITaggerCommand
         where TParser : IDocumentParser
     {
         private readonly TParser parser;
 
-        public GenericDocumentParserController(TParser parser)
+        public GenericDocumentParserCommand(TParser parser)
         {
             if (parser == null)
             {

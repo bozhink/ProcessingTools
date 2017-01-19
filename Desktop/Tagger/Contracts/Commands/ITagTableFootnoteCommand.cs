@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface ITagTableFootnoteController : ITaggerController
+    public interface ITagTableFootnoteCommand : ITaggerCommand
     {
     }
 }

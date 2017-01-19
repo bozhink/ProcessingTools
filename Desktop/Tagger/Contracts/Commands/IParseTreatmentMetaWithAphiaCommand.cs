@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface IParseTreatmentMetaWithAphiaController : ITaggerController
+    public interface IParseTreatmentMetaWithAphiaCommand : ITaggerCommand
     {
     }
 }

@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Quantities;
 
     [Description("Tag quantities.")]
-    public class TagQuantitiesController : GenericDocumentTaggerController<IQuantitiesTagger>, ITagQuantitiesController
+    public class TagQuantitiesCommand : GenericDocumentTaggerCommand<IQuantitiesTagger>, ITagQuantitiesCommand
     {
-        public TagQuantitiesController(IQuantitiesTagger tagger)
+        public TagQuantitiesCommand(IQuantitiesTagger tagger)
             : base(tagger)
         {
         }

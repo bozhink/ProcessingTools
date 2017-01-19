@@ -6,9 +6,9 @@
     using ProcessingTools.Processors.Contracts.Validation;
 
     [Description("Validate cross-references.")]
-    public class ValidateCrossReferencesController : GenericDocumentValidatorController<ICrossReferencesValidator>, IValidateCrossReferencesController
+    public class ValidateCrossReferencesCommand : GenericDocumentValidatorCommand<ICrossReferencesValidator>, IValidateCrossReferencesCommand
     {
-        public ValidateCrossReferencesController(ICrossReferencesValidator validator)
+        public ValidateCrossReferencesCommand(ICrossReferencesValidator validator)
             : base(validator)
         {
         }

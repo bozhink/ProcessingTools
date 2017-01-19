@@ -9,11 +9,11 @@
     using ProcessingTools.Processors.Contracts.References;
 
     [Description("Tag references.")]
-    public class TagReferencesController : ITagReferencesController
+    public class TagReferencesCommand : ITagReferencesCommand
     {
         private readonly IReferencesTagger tagger;
 
-        public TagReferencesController(IReferencesTagger tagger)
+        public TagReferencesCommand(IReferencesTagger tagger)
         {
             if (tagger == null)
             {

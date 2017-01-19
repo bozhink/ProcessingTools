@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface IValidateCrossReferencesController : ITaggerController, INotAwaitableController
+    public interface IValidateCrossReferencesCommand : ITaggerCommand, INotAwaitableCommand
     {
     }
 }

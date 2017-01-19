@@ -89,8 +89,8 @@
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
                 .To<ProcessingTools.Common.Providers.DateTimeProvider>();
 
-            this.Bind<Func<Type, ITaggerController>>()
-                .ToMethod(context => t => (ITaggerController)context.Kernel.Get(t))
+            this.Bind<Func<Type, ITaggerCommand>>()
+                .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()

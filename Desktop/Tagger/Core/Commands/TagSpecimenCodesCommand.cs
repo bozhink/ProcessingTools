@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio.Codes;
 
     [Description("Tag specimen codes.")]
-    public class TagSpecimenCodesController : GenericDocumentTaggerController<ISpecimenCodesByPatternTagger>, ITagSpecimenCodesController
+    public class TagSpecimenCodesCommand : GenericDocumentTaggerCommand<ISpecimenCodesByPatternTagger>, ITagSpecimenCodesCommand
     {
-        public TagSpecimenCodesController(ISpecimenCodesByPatternTagger tagger)
+        public TagSpecimenCodesCommand(ISpecimenCodesByPatternTagger tagger)
             : base(tagger)
         {
         }

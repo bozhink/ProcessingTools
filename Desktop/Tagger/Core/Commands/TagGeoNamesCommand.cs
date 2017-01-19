@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Geo;
 
     [Description("Tag geo names.")]
-    public class TagGeoNamesController : GenericDocumentTaggerController<IGeoNamesTagger>, ITagGeoNamesController
+    public class TagGeoNamesCommand : GenericDocumentTaggerCommand<IGeoNamesTagger>, ITagGeoNamesCommand
     {
-        public TagGeoNamesController(IGeoNamesTagger tagger)
+        public TagGeoNamesCommand(IGeoNamesTagger tagger)
             : base(tagger)
         {
         }

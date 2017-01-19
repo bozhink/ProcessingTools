@@ -7,13 +7,13 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
-    public class GenericDocumentTaggerWithNormalizationController<TTagger> : ITaggerController
+    public class GenericDocumentTaggerWithNormalizationCommand<TTagger> : ITaggerCommand
         where TTagger : IDocumentTagger
     {
         private readonly TTagger tagger;
         private readonly IDocumentNormalizer documentNormalizer;
 
-        public GenericDocumentTaggerWithNormalizationController(TTagger tagger, IDocumentNormalizer documentNormalizer)
+        public GenericDocumentTaggerWithNormalizationCommand(TTagger tagger, IDocumentNormalizer documentNormalizer)
         {
             if (tagger == null)
             {

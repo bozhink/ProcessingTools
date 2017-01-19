@@ -7,9 +7,9 @@
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
 
     [Description("Format treatments.")]
-    public class FormatTreatmentsController : GenericDocumentFormatterController<ITreatmentFormatter>, IFormatTreatmentsController
+    public class FormatTreatmentsCommand : GenericDocumentFormatterCommand<ITreatmentFormatter>, IFormatTreatmentsCommand
     {
-        public FormatTreatmentsController(ITreatmentFormatter formatter)
+        public FormatTreatmentsCommand(ITreatmentFormatter formatter)
             : base(formatter)
         {
         }

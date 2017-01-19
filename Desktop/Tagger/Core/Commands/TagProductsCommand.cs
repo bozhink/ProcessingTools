@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Products;
 
     [Description("Tag products.")]
-    public class TagProductsController : GenericDocumentTaggerController<IProductsTagger>, ITagProductsController
+    public class TagProductsCommand : GenericDocumentTaggerCommand<IProductsTagger>, ITagProductsCommand
     {
-        public TagProductsController(IProductsTagger tagger)
+        public TagProductsCommand(IProductsTagger tagger)
             : base(tagger)
         {
         }

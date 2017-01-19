@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.ExternalLinks;
 
     [Description("Tag web links and DOI.")]
-    public class TagWebLinksController : GenericDocumentTaggerController<IExternalLinksTagger>, ITagWebLinksController
+    public class TagWebLinksCommand : GenericDocumentTaggerCommand<IExternalLinksTagger>, ITagWebLinksCommand
     {
-        public TagWebLinksController(IExternalLinksTagger tagger)
+        public TagWebLinksCommand(IExternalLinksTagger tagger)
             : base(tagger)
         {
         }

@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Validation;
 
     [Description("Validate external links.")]
-    public class ValidateExternalLinksController : GenericDocumentValidatorController<IExternalLinksValidator>, IValidateExternalLinksController
+    public class ValidateExternalLinksCommand : GenericDocumentValidatorCommand<IExternalLinksValidator>, IValidateExternalLinksCommand
     {
-        public ValidateExternalLinksController(IExternalLinksValidator validator)
+        public ValidateExternalLinksCommand(IExternalLinksValidator validator)
             : base(validator)
         {
         }

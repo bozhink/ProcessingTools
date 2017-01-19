@@ -7,9 +7,9 @@
     using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
     [Description("Initial format.")]
-    public class InitialFormatController : GenericDocumentFormatterController<IDocumentInitialFormatter>, IInitialFormatController
+    public class InitialFormatCommand : GenericDocumentFormatterCommand<IDocumentInitialFormatter>, IInitialFormatCommand
     {
-        public InitialFormatController(IDocumentInitialFormatter formatter)
+        public InitialFormatCommand(IDocumentInitialFormatter formatter)
             : base(formatter)
         {
         }

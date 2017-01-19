@@ -8,9 +8,9 @@
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
     [Description("Tag higher taxa.")]
-    public class TagHigherTaxaController : GenericDocumentTaggerWithNormalizationController<IHigherTaxaTagger>, ITagHigherTaxaController
+    public class TagHigherTaxaCommand : GenericDocumentTaggerWithNormalizationCommand<IHigherTaxaTagger>, ITagHigherTaxaCommand
     {
-        public TagHigherTaxaController(IHigherTaxaTagger tagger, IDocumentNormalizer documentNormalizer)
+        public TagHigherTaxaCommand(IHigherTaxaTagger tagger, IDocumentNormalizer documentNormalizer)
             : base(tagger, documentNormalizer)
         {
         }

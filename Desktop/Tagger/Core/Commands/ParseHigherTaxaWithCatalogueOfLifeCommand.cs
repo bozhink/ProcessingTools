@@ -9,9 +9,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse higher taxa using CoL.")]
-    public class ParseHigherTaxaWithCatalogueOfLifeController : GenericParseHigherTaxaController<ICatalogueOfLifeTaxaRankResolver>, IParseHigherTaxaWithCatalogueOfLifeController
+    public class ParseHigherTaxaWithCatalogueOfLifeCommand : GenericParseHigherTaxaCommand<ICatalogueOfLifeTaxaRankResolver>, IParseHigherTaxaWithCatalogueOfLifeCommand
     {
-        public ParseHigherTaxaWithCatalogueOfLifeController(
+        public ParseHigherTaxaWithCatalogueOfLifeCommand(
             IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolver, ITaxonRank> parser,
             ILogger logger)
             : base(parser, logger)

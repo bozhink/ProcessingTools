@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio;
 
     [Description("Tag specimen count.")]
-    public class TagSpecimenCountController : GenericDocumentTaggerController<ISpecimenCountTagger>, ITagSpecimenCountController
+    public class TagSpecimenCountCommand : GenericDocumentTaggerCommand<ISpecimenCountTagger>, ITagSpecimenCountCommand
     {
-        public TagSpecimenCountController(ISpecimenCountTagger tagger)
+        public TagSpecimenCountCommand(ISpecimenCountTagger tagger)
             : base(tagger)
         {
         }

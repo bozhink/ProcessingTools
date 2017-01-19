@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Geo;
 
     [Description("Tag geo epithets.")]
-    public class TagGeoEpithetsController : GenericDocumentTaggerController<IGeoEpithetsTagger>, ITagGeoEpithetsController
+    public class TagGeoEpithetsCommand : GenericDocumentTaggerCommand<IGeoEpithetsTagger>, ITagGeoEpithetsCommand
     {
-        public TagGeoEpithetsController(IGeoEpithetsTagger tagger)
+        public TagGeoEpithetsCommand(IGeoEpithetsTagger tagger)
             : base(tagger)
         {
         }

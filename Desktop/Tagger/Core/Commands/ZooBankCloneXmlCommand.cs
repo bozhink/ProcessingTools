@@ -11,13 +11,13 @@
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [Description("Clone ZooBank xml.")]
-    public class ZooBankCloneXmlController : IZooBankCloneXmlController
+    public class ZooBankCloneXmlCommand : IZooBankCloneXmlCommand
     {
         private readonly IZoobankXmlCloner cloner;
         private readonly IDocumentFactory documentFactory;
         private readonly IXmlFileReader fileReader;
 
-        public ZooBankCloneXmlController(IDocumentFactory documentFactory, IZoobankXmlCloner cloner, IXmlFileReader fileReader)
+        public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZoobankXmlCloner cloner, IXmlFileReader fileReader)
         {
             if (documentFactory == null)
             {

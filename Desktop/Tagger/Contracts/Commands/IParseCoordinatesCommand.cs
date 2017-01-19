@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface IParseCoordinatesController : ITaggerController
+    public interface IParseCoordinatesCommand : ITaggerCommand
     {
     }
 }

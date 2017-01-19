@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio;
 
     [Description("Tag morphological epithets.")]
-    public class TagMorphologicalEpithetsController : GenericDocumentTaggerController<IMorphologicalEpithetsTagger>, ITagMorphologicalEpithetsController
+    public class TagMorphologicalEpithetsCommand : GenericDocumentTaggerCommand<IMorphologicalEpithetsTagger>, ITagMorphologicalEpithetsCommand
     {
-        public TagMorphologicalEpithetsController(IMorphologicalEpithetsTagger tagger)
+        public TagMorphologicalEpithetsCommand(IMorphologicalEpithetsTagger tagger)
             : base(tagger)
         {
         }

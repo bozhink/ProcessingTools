@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Coordinates;
 
     [Description("Tag coordinates.")]
-    public class TagCoordinatesController : GenericDocumentTaggerController<ICoordinatesTagger>, ITagCoordinatesController
+    public class TagCoordinatesCommand : GenericDocumentTaggerCommand<ICoordinatesTagger>, ITagCoordinatesCommand
     {
-        public TagCoordinatesController(ICoordinatesTagger tagger)
+        public TagCoordinatesCommand(ICoordinatesTagger tagger)
             : base(tagger)
         {
         }

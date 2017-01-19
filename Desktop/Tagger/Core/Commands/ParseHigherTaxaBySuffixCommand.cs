@@ -9,9 +9,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse higher taxa by suffix.")]
-    public class ParseHigherTaxaBySuffixController : GenericParseHigherTaxaController<ISuffixHigherTaxaRankResolver>, IParseHigherTaxaBySuffixController
+    public class ParseHigherTaxaBySuffixCommand : GenericParseHigherTaxaCommand<ISuffixHigherTaxaRankResolver>, IParseHigherTaxaBySuffixCommand
     {
-        public ParseHigherTaxaBySuffixController(
+        public ParseHigherTaxaBySuffixCommand(
             IHigherTaxaParserWithDataService<ISuffixHigherTaxaRankResolver, ITaxonRank> parser,
             ILogger logger)
             : base(parser, logger)

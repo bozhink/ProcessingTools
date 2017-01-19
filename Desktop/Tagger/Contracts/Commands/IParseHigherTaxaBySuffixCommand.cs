@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface IParseHigherTaxaBySuffixController : ITaggerController
+    public interface IParseHigherTaxaBySuffixCommand : ITaggerCommand
     {
     }
 }

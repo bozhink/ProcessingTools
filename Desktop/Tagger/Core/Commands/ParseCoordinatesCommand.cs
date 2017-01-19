@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Coordinates;
 
     [Description("Parse coordinates.")]
-    public class ParseCoordinatesController : GenericXmlContextParserController<ICoordinatesParser>, IParseCoordinatesController
+    public class ParseCoordinatesCommand : GenericXmlContextParserCommand<ICoordinatesParser>, IParseCoordinatesCommand
     {
-        public ParseCoordinatesController(ICoordinatesParser parser)
+        public ParseCoordinatesCommand(ICoordinatesParser parser)
             : base(parser)
         {
         }

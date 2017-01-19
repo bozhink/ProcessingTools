@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Dates;
 
     [Description("Tag dates.")]
-    public class TagDatesController : GenericDocumentTaggerController<IDatesTagger>, ITagDatesController
+    public class TagDatesCommand : GenericDocumentTaggerCommand<IDatesTagger>, ITagDatesCommand
     {
-        public TagDatesController(IDatesTagger tagger)
+        public TagDatesCommand(IDatesTagger tagger)
             : base(tagger)
         {
         }

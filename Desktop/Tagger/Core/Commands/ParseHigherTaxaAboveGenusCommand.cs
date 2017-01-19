@@ -9,9 +9,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Make higher taxa of type 'above-genus'.")]
-    public class ParseHigherTaxaAboveGenusController : GenericParseHigherTaxaController<IAboveGenusTaxaRankResolver>, IParseHigherTaxaAboveGenusController
+    public class ParseHigherTaxaAboveGenusCommand : GenericParseHigherTaxaCommand<IAboveGenusTaxaRankResolver>, IParseHigherTaxaAboveGenusCommand
     {
-        public ParseHigherTaxaAboveGenusController(
+        public ParseHigherTaxaAboveGenusCommand(
             IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolver, ITaxonRank> parser,
             ILogger logger)
             : base(parser, logger)

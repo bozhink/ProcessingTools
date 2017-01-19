@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Tag table foot-notes.")]
-    public class TagTableFootnoteController : GenericXmlContextTaggerController<ITableFootNotesTagger>, ITagTableFootnoteController
+    public class TagTableFootnoteCommand : GenericXmlContextTaggerCommand<ITableFootNotesTagger>, ITagTableFootnoteCommand
     {
-        public TagTableFootnoteController(ITableFootNotesTagger tagger)
+        public TagTableFootnoteCommand(ITableFootNotesTagger tagger)
             : base(tagger)
         {
         }

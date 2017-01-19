@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Abbreviations;
 
     [Description("Tag abbreviations.")]
-    public class TagAbbreviationsController : GenericXmlContextTaggerController<IAbbreviationsTagger>, ITagAbbreviationsController
+    public class TagAbbreviationsCommand : GenericXmlContextTaggerCommand<IAbbreviationsTagger>, ITagAbbreviationsCommand
     {
-        public TagAbbreviationsController(IAbbreviationsTagger tagger)
+        public TagAbbreviationsCommand(IAbbreviationsTagger tagger)
             : base(tagger)
         {
         }

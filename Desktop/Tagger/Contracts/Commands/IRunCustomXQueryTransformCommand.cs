@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface IRunCustomXQueryTransformController : ITaggerController
+    public interface IRunCustomXQueryTransformCommand : ITaggerCommand
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface IRemoveAllTaxonNamePartTagsController : ITaggerController
+    public interface IRemoveAllTaxonNamePartTagsCommand : ITaggerCommand
     {
     }
 }

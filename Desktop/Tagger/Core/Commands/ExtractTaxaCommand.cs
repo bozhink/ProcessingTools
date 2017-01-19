@@ -8,11 +8,11 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
 
-    public class ExtractTaxaController : IExtractTaxaController
+    public class ExtractTaxaCommand : IExtractTaxaCommand
     {
         private readonly ILogger logger;
 
-        public ExtractTaxaController(ILogger logger)
+        public ExtractTaxaCommand(ILogger logger)
         {
             this.logger = logger;
         }

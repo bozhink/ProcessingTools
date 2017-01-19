@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Geo;
 
     [Description("Tag altitudes.")]
-    public class TagAltitudesController : GenericDocumentTaggerController<IAltitudesTagger>, ITagAltitudesController
+    public class TagAltitudesCommand : GenericDocumentTaggerCommand<IAltitudesTagger>, ITagAltitudesCommand
     {
-        public TagAltitudesController(IAltitudesTagger tagger)
+        public TagAltitudesCommand(IAltitudesTagger tagger)
             : base(tagger)
         {
         }

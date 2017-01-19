@@ -45,43 +45,43 @@
             logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
         }
 
-        private async Task InvokeProcessor<TController>(XmlNode context)
-            where TController : ITaggerController
+        private async Task InvokeProcessor<TCommand>(XmlNode context)
+            where TCommand : ITaggerCommand
         {
-            await this.InvokeProcessor(typeof(TController), context);
+            await this.InvokeProcessor(typeof(TCommand), context);
         }
 
-        private async Task InvokeProcessor(Type controllerType, XmlNode context)
+        private async Task InvokeProcessor(Type commandType, XmlNode context)
         {
-            var controller = this.controllerFactory(controllerType);
+            var command = this.commandFactory(commandType);
             var document = this.WrapContextInDocument(context);
 
-            var isValidationController = controllerType.GetInterfaces().Count(t => t == typeof(INotAwaitableController)) > 0;
-            if (isValidationController)
+            var isValidationCommand = commandType.GetInterfaces().Count(t => t == typeof(INotAwaitableCommand)) > 0;
+            if (isValidationCommand)
             {
-                // Validation controllers should not overwrite the content of this.document.XmlDocument,
+                // Validation commands should not overwrite the content of this.document.XmlDocument,
                 // and here this content is copied in a new DOM object.
-                var task = this.InvokeController(controller, document);
+                var task = this.InvokeCommand(command, document);
                 this.tasks.Enqueue(task);
             }
             else
             {
-                await this.InvokeController(controller, document);
+                await this.InvokeCommand(command, document);
                 context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
         }
 
-        private async Task InvokeController(ITaggerController controller, IDocument document)
+        private async Task InvokeCommand(ITaggerCommand command, IDocument document)
         {
-            if (controller == null)
+            if (command == null)
             {
-                throw new ArgumentNullException(nameof(controller), $"Controller of type {controller.GetType().FullName} is invalid.");
+                throw new ArgumentNullException(nameof(command), $"Command of type {command.GetType().FullName} is invalid.");
             }
 
-            string message = controller.GetDescriptionMessageForCommand();
+            string message = command.GetDescriptionMessageForCommand();
             await InvokeProcessor(
                 message,
-                _ => controller.Run(document, this.settings),
+                _ => command.Run(document, this.settings),
                 this.logger);
         }
 

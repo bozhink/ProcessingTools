@@ -6,12 +6,12 @@
     using Contracts.Commands;
     using ProcessingTools.Contracts;
 
-    public class GenericDocumentFormatterController<TFormatter> : ITaggerController
+    public class GenericDocumentFormatterCommand<TFormatter> : ITaggerCommand
         where TFormatter : IDocumentFormatter
     {
         private readonly TFormatter formatter;
 
-        public GenericDocumentFormatterController(TFormatter formatter)
+        public GenericDocumentFormatterCommand(TFormatter formatter)
         {
             if (formatter == null)
             {

@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
 
     [Description("Tag envo terms using EXTRACT.")]
-    public class TagEnvironmentTermsWithExtractController : GenericDocumentTaggerController<IEnvironmentTermsWithExtractTagger>, ITagEnvironmentTermsWithExtractController
+    public class TagEnvironmentTermsWithExtractCommand : GenericDocumentTaggerCommand<IEnvironmentTermsWithExtractTagger>, ITagEnvironmentTermsWithExtractCommand
     {
-        public TagEnvironmentTermsWithExtractController(IEnvironmentTermsWithExtractTagger tagger)
+        public TagEnvironmentTermsWithExtractCommand(IEnvironmentTermsWithExtractTagger tagger)
             : base(tagger)
         {
         }

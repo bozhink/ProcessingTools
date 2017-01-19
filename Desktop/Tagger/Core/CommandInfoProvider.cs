@@ -21,7 +21,7 @@
         public void ProcessInformation()
         {
             // Print commands’ information
-            string defaultInterfaceName = typeof(ITaggerController).FullName;
+            string defaultInterfaceName = typeof(ITaggerCommand).FullName;
             var types = System.Reflection.Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)

@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Geo;
 
     [Description("Tag geographic deviations.")]
-    public class TagGeographicDeviationsController : GenericDocumentTaggerController<IGeographicDeviationsTagger>, ITagGeographicDeviationsController
+    public class TagGeographicDeviationsCommand : GenericDocumentTaggerCommand<IGeographicDeviationsTagger>, ITagGeographicDeviationsCommand
     {
-        public TagGeographicDeviationsController(IGeographicDeviationsTagger tagger)
+        public TagGeographicDeviationsCommand(IGeographicDeviationsTagger tagger)
             : base(tagger)
         {
         }

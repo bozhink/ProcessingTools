@@ -6,12 +6,12 @@
     using Contracts.Commands;
     using ProcessingTools.Contracts;
 
-    public class GenericDocumentValidatorController<TValidator> : ITaggerController
+    public class GenericDocumentValidatorCommand<TValidator> : ITaggerCommand
         where TValidator : IDocumentValidator
     {
         private readonly TValidator validator;
 
-        public GenericDocumentValidatorController(TValidator validator)
+        public GenericDocumentValidatorCommand(TValidator validator)
         {
             if (validator == null)
             {

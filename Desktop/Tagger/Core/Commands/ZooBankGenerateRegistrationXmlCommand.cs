@@ -9,11 +9,11 @@
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [Description("Generate xml document for registration in ZooBank.")]
-    public class ZooBankGenerateRegistrationXmlController : IZooBankGenerateRegistrationXmlController
+    public class ZooBankGenerateRegistrationXmlCommand : IZooBankGenerateRegistrationXmlCommand
     {
         private readonly IZooBankRegistrationXmlGenerator generator;
 
-        public ZooBankGenerateRegistrationXmlController(IZooBankRegistrationXmlGenerator generator)
+        public ZooBankGenerateRegistrationXmlCommand(IZooBankRegistrationXmlGenerator generator)
         {
             if (generator == null)
             {

@@ -8,7 +8,7 @@
 
     public static class CommandExtensions
     {
-        public static string GetDescriptionMessageForCommand(this ITaggerController command)
+        public static string GetDescriptionMessageForCommand(this ITaggerCommand command)
         {
             var type = command.GetType();
 

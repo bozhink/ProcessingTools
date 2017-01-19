@@ -9,9 +9,9 @@
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [Description("Parse higher taxa using GBIF.")]
-    public class ParseHigherTaxaWithGbifController : GenericParseHigherTaxaController<IGbifTaxaRankResolver>, IParseHigherTaxaWithGbifController
+    public class ParseHigherTaxaWithGbifCommand : GenericParseHigherTaxaCommand<IGbifTaxaRankResolver>, IParseHigherTaxaWithGbifCommand
     {
-        public ParseHigherTaxaWithGbifController(
+        public ParseHigherTaxaWithGbifCommand(
             IHigherTaxaParserWithDataService<IGbifTaxaRankResolver, ITaxonRank> parser,
             ILogger logger)
             : base(parser, logger)

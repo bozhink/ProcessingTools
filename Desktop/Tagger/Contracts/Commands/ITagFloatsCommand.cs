@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
-    public interface ITagFloatsController : ITaggerController
+    public interface ITagFloatsCommand : ITaggerCommand
     {
     }
 }

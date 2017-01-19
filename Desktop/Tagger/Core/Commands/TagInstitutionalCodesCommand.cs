@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Bio.Codes;
 
     [Description("Tag institutional codes.")]
-    public class TagInstitutionalCodesController : GenericDocumentTaggerController<IInstitutionalCodesTagger>, ITagInstitutionalCodesController
+    public class TagInstitutionalCodesCommand : GenericDocumentTaggerCommand<IInstitutionalCodesTagger>, ITagInstitutionalCodesCommand
     {
-        public TagInstitutionalCodesController(IInstitutionalCodesTagger tagger)
+        public TagInstitutionalCodesCommand(IInstitutionalCodesTagger tagger)
             : base(tagger)
         {
         }

@@ -15,7 +15,7 @@
 
     public partial class SingleFileProcessor : IFileProcessor
     {
-        private readonly Func<Type, ITaggerController> controllerFactory;
+        private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentReader documentReader;
         private readonly IDocumentWriter documentWriter;
@@ -32,7 +32,7 @@
             IDocumentReader documentReader,
             IDocumentWriter documentWriter,
             IDocumentNormalizer documentNormalizer,
-            Func<Type, ITaggerController> controllerFactory,
+            Func<Type, ITaggerCommand> commandFactory,
             ILogger logger)
         {
             if (fileNameGenerator == null)
@@ -60,9 +60,9 @@
                 throw new ArgumentNullException(nameof(documentNormalizer));
             }
 
-            if (controllerFactory == null)
+            if (commandFactory == null)
             {
-                throw new ArgumentNullException(nameof(controllerFactory));
+                throw new ArgumentNullException(nameof(commandFactory));
             }
 
             this.fileNameGenerator = fileNameGenerator;
@@ -70,7 +70,7 @@
             this.documentReader = documentReader;
             this.documentWriter = documentWriter;
             this.documentNormalizer = documentNormalizer;
-            this.controllerFactory = controllerFactory;
+            this.commandFactory = commandFactory;
             this.logger = logger;
 
             this.tasks = new ConcurrentQueue<Task>();
@@ -145,19 +145,19 @@
         {
             if (this.settings.TagFloats)
             {
-                await this.InvokeProcessor<ITagFloatsController>(context);
+                await this.InvokeProcessor<ITagFloatsCommand>(context);
             }
 
             if (this.settings.TagReferences)
             {
-                await this.InvokeProcessor<ITagReferencesController>(context);
+                await this.InvokeProcessor<ITagReferencesCommand>(context);
             }
 
             if (this.settings.ExpandLowerTaxa)
             {
                 for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
                 {
-                    await this.InvokeProcessor<IExpandLowerTaxaController>(context);
+                    await this.InvokeProcessor<IExpandLowerTaxaCommand>(context);
                 }
             }
         }
@@ -166,138 +166,138 @@
         {
             if (this.settings.ZoobankCloneXml)
             {
-                await this.InvokeProcessor<IZooBankCloneXmlController>(context);
+                await this.InvokeProcessor<IZooBankCloneXmlCommand>(context);
                 return;
             }
 
             if (this.settings.ZoobankCloneJson)
             {
-                await this.InvokeProcessor<IZooBankCloneJsonController>(context);
+                await this.InvokeProcessor<IZooBankCloneJsonCommand>(context);
                 return;
             }
 
             if (this.settings.ZoobankGenerateRegistrationXml)
             {
-                await this.InvokeProcessor<IZooBankGenerateRegistrationXmlController>(context);
+                await this.InvokeProcessor<IZooBankGenerateRegistrationXmlCommand>(context);
                 return;
             }
 
             if (this.settings.QueryReplace)
             {
-                await this.InvokeProcessor<IQueryReplaceController>(context);
+                await this.InvokeProcessor<IQueryReplaceCommand>(context);
                 return;
             }
 
             if (this.settings.RunXslTransform)
             {
-                await this.InvokeProcessor<IRunCustomXslTransformController>(context);
+                await this.InvokeProcessor<IRunCustomXslTransformCommand>(context);
             }
 
             if (this.settings.InitialFormat)
             {
-                await this.InvokeProcessor<IInitialFormatController>(context);
+                await this.InvokeProcessor<IInitialFormatCommand>(context);
             }
 
             if (this.settings.ParseReferences)
             {
-                await this.InvokeProcessor<IParseReferencesController>(context);
+                await this.InvokeProcessor<IParseReferencesCommand>(context);
             }
 
             if (this.settings.TagDoi || this.settings.TagWebLinks)
             {
-                await this.InvokeProcessor<ITagWebLinksController>(context);
+                await this.InvokeProcessor<ITagWebLinksCommand>(context);
             }
 
             if (this.settings.ResolveMediaTypes)
             {
-                await this.InvokeProcessor<IResolveMediaTypesController>(context);
+                await this.InvokeProcessor<IResolveMediaTypesCommand>(context);
             }
 
             if (this.settings.TagTableFn)
             {
-                await this.InvokeProcessor<ITagTableFootnoteController>(context);
+                await this.InvokeProcessor<ITagTableFootnoteCommand>(context);
             }
 
             if (this.settings.TagCoordinates)
             {
-                await this.InvokeProcessor<ITagCoordinatesController>(context);
+                await this.InvokeProcessor<ITagCoordinatesCommand>(context);
             }
 
             if (this.settings.ParseCoordinates)
             {
-                await this.InvokeProcessor<IParseCoordinatesController>(context);
+                await this.InvokeProcessor<IParseCoordinatesCommand>(context);
             }
 
-            foreach (var controllerType in this.settings.CalledCommands)
+            foreach (var commandType in this.settings.CalledCommands)
             {
-                await this.InvokeProcessor(controllerType, context);
+                await this.InvokeProcessor(commandType, context);
             }
 
             if (this.settings.TagEnvironmentTermsWithExtract)
             {
-                await this.InvokeProcessor<ITagEnvironmentTermsWithExtractController>(context);
+                await this.InvokeProcessor<ITagEnvironmentTermsWithExtractCommand>(context);
             }
 
             // Tag envo terms using environment database
             if (this.settings.TagEnvironmentTerms)
             {
-                await this.InvokeProcessor<ITagEnvironmentTermsController>(context);
+                await this.InvokeProcessor<ITagEnvironmentTermsCommand>(context);
             }
 
             if (this.settings.TagAbbreviations)
             {
-                await this.InvokeProcessor<ITagAbbreviationsController>(context);
+                await this.InvokeProcessor<ITagAbbreviationsCommand>(context);
             }
 
             // Tag institutions, institutional codes, and specimen codes
             if (this.settings.TagCodes)
             {
-                await this.InvokeProcessor<ITagInstitutionalCodesController>(context);
+                await this.InvokeProcessor<ITagInstitutionalCodesCommand>(context);
             }
 
             if (this.settings.TagLowerTaxa)
             {
-                await this.InvokeProcessor<ITagLowerTaxaController>(context);
+                await this.InvokeProcessor<ITagLowerTaxaCommand>(context);
             }
 
             if (this.settings.TagHigherTaxa)
             {
-                await this.InvokeProcessor<ITagHigherTaxaController>(context);
+                await this.InvokeProcessor<ITagHigherTaxaCommand>(context);
             }
 
             if (this.settings.ParseLowerTaxa)
             {
-                await this.InvokeProcessor<IParseLowerTaxaController>(context);
+                await this.InvokeProcessor<IParseLowerTaxaCommand>(context);
             }
 
             if (this.settings.ParseHigherTaxa)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithLocalDbController>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithLocalDbCommand>(context);
             }
 
             if (this.settings.ParseHigherWithAphia)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithAphiaController>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithAphiaCommand>(context);
             }
 
             if (this.settings.ParseHigherWithCoL)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeController>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeCommand>(context);
             }
 
             if (this.settings.ParseHigherWithGbif)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithGbifController>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithGbifCommand>(context);
             }
 
             if (this.settings.ParseHigherBySuffix)
             {
-                await this.InvokeProcessor<IParseHigherTaxaBySuffixController>(context);
+                await this.InvokeProcessor<IParseHigherTaxaBySuffixCommand>(context);
             }
 
             if (this.settings.ParseHigherAboveGenus)
             {
-                await this.InvokeProcessor<IParseHigherTaxaAboveGenusController>(context);
+                await this.InvokeProcessor<IParseHigherTaxaAboveGenusCommand>(context);
             }
 
             // Main Tagging part of the program
@@ -308,37 +308,37 @@
 
             if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
             {
-                await this.InvokeProcessor<IExtractTaxaController>(context);
+                await this.InvokeProcessor<IExtractTaxaCommand>(context);
             }
 
             if (this.settings.ValidateTaxa)
             {
-                this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaController>(context));
+                this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaCommand>(context));
             }
 
             if (this.settings.UntagSplit)
             {
-                await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsController>(context);
+                await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsCommand>(context);
             }
 
             if (this.settings.FormatTreat)
             {
-                await this.InvokeProcessor<IFormatTreatmentsController>(context);
+                await this.InvokeProcessor<IFormatTreatmentsCommand>(context);
             }
 
             if (this.settings.ParseTreatmentMetaWithAphia)
             {
-                await this.InvokeProcessor<IParseTreatmentMetaWithAphiaController>(context);
+                await this.InvokeProcessor<IParseTreatmentMetaWithAphiaCommand>(context);
             }
 
             if (this.settings.ParseTreatmentMetaWithGbif)
             {
-                await this.InvokeProcessor<IParseTreatmentMetaWithGbifController>(context);
+                await this.InvokeProcessor<IParseTreatmentMetaWithGbifCommand>(context);
             }
 
             if (this.settings.ParseTreatmentMetaWithCol)
             {
-                await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeController>(context);
+                await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeCommand>(context);
             }
 
             return;

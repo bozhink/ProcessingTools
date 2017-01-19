@@ -7,9 +7,9 @@
     using ProcessingTools.Processors.Contracts.Floats;
 
     [Description("Resolve media-types.")]
-    public class ResolveMediaTypesController : GenericXmlContextParserController<IMediatypesParser>, IResolveMediaTypesController
+    public class ResolveMediaTypesCommand : GenericXmlContextParserCommand<IMediatypesParser>, IResolveMediaTypesCommand
     {
-        public ResolveMediaTypesController(IMediatypesParser parser)
+        public ResolveMediaTypesCommand(IMediatypesParser parser)
             : base(parser)
         {
         }

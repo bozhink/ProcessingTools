@@ -9,11 +9,11 @@
     using ProcessingTools.Special.Processors.Contracts;
 
     [Description("Test.")]
-    public class TestController : ITestController
+    public class TestCommand : ITestCommand
     {
         private readonly ITestFeaturesProvider provider;
 
-        public TestController(ITestFeaturesProvider provider)
+        public TestCommand(ITestFeaturesProvider provider)
         {
             if (provider == null)
             {

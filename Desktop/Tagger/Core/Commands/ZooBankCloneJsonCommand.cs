@@ -15,12 +15,12 @@
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [Description("Clone ZooBank JSON.")]
-    public class ZooBankCloneJsonController : IZooBankCloneJsonController
+    public class ZooBankCloneJsonCommand : IZooBankCloneJsonCommand
     {
         private readonly IZoobankJsonCloner cloner;
         private readonly ILogger logger;
 
-        public ZooBankCloneJsonController(IZoobankJsonCloner cloner, ILogger logger)
+        public ZooBankCloneJsonCommand(IZoobankJsonCloner cloner, ILogger logger)
         {
             if (cloner == null)
             {
