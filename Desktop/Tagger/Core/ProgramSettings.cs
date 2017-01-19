@@ -13,7 +13,7 @@
         public ProgramSettings()
         {
             this.FileNames = new List<string>();
-            this.CalledControllers = new List<Type>();
+            this.CalledCommands = new List<Type>();
 
             this.articleSchemaType = SchemaType.System;
             this.articleSchemaTypeStyleIsLockedForModification = false;
@@ -79,7 +79,7 @@
 
         public IList<string> FileNames { get; set; }
 
-        public ICollection<Type> CalledControllers { get; set; }
+        public ICollection<Type> CalledCommands { get; set; }
 
         public bool ExtractHigherTaxa { get; set; }
 

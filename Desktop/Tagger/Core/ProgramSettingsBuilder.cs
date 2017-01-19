@@ -3,28 +3,28 @@
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-
+    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
     public class ProgramSettingsBuilder
     {
         private ILogger logger;
-        private ControllerInfoProvider controllerInfoProvider;
+        private ICommandInfoProvider commandInfoProvider;
 
         public ProgramSettingsBuilder(ILogger logger, string[] args)
         {
             this.logger = logger;
 
-            this.controllerInfoProvider = new ControllerInfoProvider();
-            this.controllerInfoProvider.ProcessInformation();
+            this.commandInfoProvider = new CommandInfoProvider();
+            this.commandInfoProvider.ProcessInformation();
 
             this.Settings = new ProgramSettings();
 
             this.ParseFileNames(args);
             this.ParseSingleDashedOptions(args);
             this.ParseDoubleDashedOptions(args);
-            this.ParseDirectControllerCalls(args);
+            this.ParseDirectCommandCalls(args);
         }
 
         public ProgramSettings Settings { get; private set; }
@@ -248,39 +248,39 @@
             }
         }
 
-        private void ParseDirectControllerCalls(string[] args)
+        private void ParseDirectCommandCalls(string[] args)
         {
-            Regex matchDirectControllerCall = new Regex(@"\A\+\w+");
+            Regex matchDirectCall = new Regex(@"\A\+\w+");
 
-            var controllerNames = args
-                .Where(a => matchDirectControllerCall.IsMatch(a))
+            var commandNames = args
+                .Where(a => matchDirectCall.IsMatch(a))
                 .Select(a => a.Substring(1))
                 .ToArray();
 
-            foreach (var controllerName in controllerNames)
+            foreach (var commandName in commandNames)
             {
-                var matchingControllers = this.controllerInfoProvider
-                    .ControllersInformation
-                    .Where(i => i.Value.Name.ToLower().IndexOf(controllerName.ToLower()) == 0)
+                var matchingCommands = this.commandInfoProvider
+                    .CommandsInformation
+                    .Where(i => i.Value.Name.ToLower().IndexOf(commandName.ToLower()) == 0)
                     .ToArray();
 
-                switch (matchingControllers.Length)
+                switch (matchingCommands.Length)
                 {
                     case 0:
-                        this.logger?.Log(LogType.Warning, "No matching controller '{0}'.", controllerName);
+                        this.logger?.Log(LogType.Warning, "No matching command '{0}'.", commandName);
                         break;
 
                     case 1:
-                        var controllerInfo = matchingControllers.Single().Value;
-                        this.Settings.CalledControllers.Add(controllerInfo.ControllerType);
+                        var commandInfo = matchingCommands.Single().Value;
+                        this.Settings.CalledCommands.Add(commandInfo.CommandType);
                         break;
 
                     default:
                         this.logger?.Log(
                             LogType.Warning,
-                            "Multiple controllers match input name '{0}': {1}",
-                            controllerName,
-                            string.Join("\n\t", matchingControllers.Select(c => c.Key.ToString())));
+                            "Multiple commands match input name '{0}': {1}",
+                            commandName,
+                            string.Join("\n\t", matchingCommands.Select(c => c.Key.ToString())));
                         break;
                 }
             }
@@ -290,11 +290,11 @@
         {
             this.logger?.Log(Messages.HelpMessage);
 
-            // Print controllers’ information
-            foreach (var contollerType in this.controllerInfoProvider.ControllersInformation.Keys.OrderBy(k => k.Name))
+            // Print commands’ information
+            foreach (var commandType in this.commandInfoProvider.CommandsInformation.Keys.OrderBy(k => k.Name))
             {
-                var controllerInfo = this.controllerInfoProvider.ControllersInformation[contollerType];
-                this.logger?.Log("    +{0}\t=\t{1}", controllerInfo.Name, controllerInfo.Description);
+                var commandInfo = this.commandInfoProvider.CommandsInformation[commandType];
+                this.logger?.Log("    +{0}\t=\t{1}", commandInfo.Name, commandInfo.Description);
             }
 
             Environment.Exit(1);

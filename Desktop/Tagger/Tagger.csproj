@@ -120,7 +120,7 @@
     <Compile Include="Contracts\Commands\ITagCollectionCodesCommand.cs" />
     <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
     <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
-    <Compile Include="Contracts\IControllerInfo.cs" />
+    <Compile Include="Contracts\ICommandInfo.cs" />
     <Compile Include="Contracts\Commands\IExpandLowerTaxaCommand.cs" />
     <Compile Include="Contracts\Commands\IExtractTaxaCommand.cs" />
     <Compile Include="Contracts\Commands\IFormatTreatmentsCommand.cs" />
@@ -172,7 +172,7 @@
     <Compile Include="Contracts\Commands\IZooBankCloneJsonCommand.cs" />
     <Compile Include="Contracts\Commands\IZooBankCloneXmlCommand.cs" />
     <Compile Include="Contracts\Commands\IZooBankGenerateRegistrationXmlCommand.cs" />
-    <Compile Include="ControllerInfoProvider.cs" />
+    <Compile Include="Core\CommandInfoProvider.cs" />
     <Compile Include="Core\Commands\Generics\GenericDocumentFormatterCommand.cs" />
     <Compile Include="Core\Commands\Generics\GenericDocumentParserCommand.cs" />
     <Compile Include="Core\Commands\Generics\GenericDocumentTaggerCommand.cs" />
@@ -192,7 +192,8 @@
     <Compile Include="Contracts\IProgramSettings.cs" />
     <Compile Include="Contracts\IFileProcessor.cs" />
     <Compile Include="Contracts\IStartup.cs" />
-    <Compile Include="Models\ControllerInfo.cs" />
+    <Compile Include="Contracts\ICommandInfoProvider.cs" />
+    <Compile Include="Models\CommandInfo.cs" />
     <Compile Include="Core\Commands\ExpandLowerTaxaCommand.cs" />
     <Compile Include="Core\Commands\ExtractTaxaCommand.cs" />
     <Compile Include="Core\Commands\FormatTreatmentsCommand.cs" />
@@ -238,7 +239,7 @@
     <Compile Include="Core\Commands\ZooBankCloneJsonCommand.cs" />
     <Compile Include="Core\Commands\ZooBankCloneXmlCommand.cs" />
     <Compile Include="Core\Commands\ZooBankGenerateRegistrationXmlCommand.cs" />
-    <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Extensions\CommandExtensions.cs" />
     <Compile Include="Core\Commands\Generics\GenericParseHigherTaxaCommand.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>

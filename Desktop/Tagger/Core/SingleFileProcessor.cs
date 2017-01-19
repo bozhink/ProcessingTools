@@ -228,7 +228,7 @@
                 await this.InvokeProcessor<IParseCoordinatesController>(context);
             }
 
-            foreach (var controllerType in this.settings.CalledControllers)
+            foreach (var controllerType in this.settings.CalledCommands)
             {
                 await this.InvokeProcessor(controllerType, context);
             }

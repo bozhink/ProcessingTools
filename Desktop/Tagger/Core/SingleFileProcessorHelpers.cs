@@ -78,7 +78,7 @@
                 throw new ArgumentNullException(nameof(controller), $"Controller of type {controller.GetType().FullName} is invalid.");
             }
 
-            string message = controller.GetDescriptionMessageForController();
+            string message = controller.GetDescriptionMessageForCommand();
             await InvokeProcessor(
                 message,
                 _ => controller.Run(document, this.settings),

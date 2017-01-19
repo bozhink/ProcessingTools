@@ -8,7 +8,7 @@
     {
         SchemaType ArticleSchemaType { get; set; }
 
-        ICollection<Type> CalledControllers { get; }
+        ICollection<Type> CalledCommands { get; }
 
         bool ExpandLowerTaxa { get; }
 

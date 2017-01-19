@@ -3,9 +3,9 @@
     using System;
     using Contracts;
 
-    public class ControllerInfo : IControllerInfo
+    public class CommandInfo : ICommandInfo
     {
-        public Type ControllerType { get; set; }
+        public Type CommandType { get; set; }
 
         public string Description { get; set; }
 

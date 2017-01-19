@@ -2,9 +2,9 @@
 {
     using System;
 
-    public interface IControllerInfo
+    public interface ICommandInfo
     {
-        Type ControllerType { get; set; }
+        Type CommandType { get; set; }
 
         string Name { get; set; }
 

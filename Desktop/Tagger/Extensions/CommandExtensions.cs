@@ -3,28 +3,26 @@
     using System;
     using System.Reflection;
     using System.Text.RegularExpressions;
-
     using Contracts.Commands;
-
     using ProcessingTools.Attributes;
 
-    public static class ControllerExtensions
+    public static class CommandExtensions
     {
-        public static string GetDescriptionMessageForController(this ITaggerController controller)
+        public static string GetDescriptionMessageForCommand(this ITaggerController command)
         {
-            var type = controller.GetType();
+            var type = command.GetType();
 
-            return $"\n\t{type.GetDescriptionMessageForController()}\n";
+            return $"\n\t{type.GetDescriptionMessageForCommand()}\n";
         }
 
-        public static string GetDescriptionMessageForController(this Type type)
+        public static string GetDescriptionMessageForCommand(this Type type)
         {
             string message = type.GetCustomAttribute<DescriptionAttribute>(false)?.Description;
 
             if (string.IsNullOrWhiteSpace(message))
             {
                 var name = Regex.Replace((string)type.FullName, @".*?([^\.]+)\Z", "$1");
-                name = Regex.Replace(name, @"Controller\Z", string.Empty);
+                name = Regex.Replace(name, @"Command\Z", string.Empty);
 
                 message = Regex.Replace(name, "(?=[A-Z])", " ").Trim();
             }
