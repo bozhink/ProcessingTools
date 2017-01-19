@@ -26,11 +26,13 @@
         private const string InfragenericRankSubpattern = @"(?i)\b(?:subgen(?:us)?|subg|sg|(?:sub)?ser|trib|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?";
         private const string InfraspecificRankSubpattern = @"(?i)(?:\b(?:ab?|mod|sp|var|subvar|subsp|sbsp|subspec|subspecies|ssp|race|rassa|(?:sub)?f[ao]?|(?:sub)?forma?|st|r|sf|cf|gr|n\.?\s*sp|nr|(?:sp(?:\.\s*|\s+))?(?:near|afn|aff)|prope|(?:super)?(?:sub)?sec[ct]?(?:ion)?)\b\.?(?:\s*[γβɑ])?(?:\s*\bn(?:ova?)?\b\.?)?|×|\?)";
 
-        private const string StructureXPathTemplate = ".//p|.//title|.//article-meta/title-group|.//label|.//license-p|.//li|.//th|.//td|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
+        private const string ParallelStructureXPath = ".//p[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]|.//td[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]|.//th[not(ancestor::p)][not(ancestor::td)][not(ancestor::th)][not(ancestor::li)][not(ancestor::title)][not(ancestor::label)]";
+
+        private const string SequentialStructureXPath = ".//title|.//article-meta/title-group|.//label|.//license-p|.//li|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
 
         private const string LowerTaxaXPath = ".//p|.//td|.//th|.//li|.//article-title|.//title|.//label|.//ref|.//kwd|.//tp:nomenclature-citation|.//*[@object_id='95']|.//*[@object_id='90']|.//value[../@id!='244'][../@id!='434'][../@id!='433'][../@id!='432'][../@id!='431'][../@id!='430'][../@id!='429'][../@id!='428'][../@id!='427'][../@id!='426'][../@id!='425'][../@id!='424'][../@id!='423'][../@id!='422'][../@id!='421'][../@id!='420'][../@id!='419'][../@id!='417'][../@id!='48']";
 
-        private const string ItalicXPath = ".//i[not(tn)]|.//italic[not(tn)]|.//Italic[not(tn)]";
+        private const string ItalicXPath = ".//i[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//Italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]";
 
         private readonly IPersonNamesHarvester personNamesHarvester;
         private readonly IContentTagger contentTagger;
@@ -95,7 +97,7 @@
                 @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                 "$1‘$2’ $4$3");
 
-            this.AdvancedTagLowerTaxa(document, string.Format(StructureXPathTemplate, "count(.//tn[@type='lower']) != 0"));
+            this.AdvancedTagLowerTaxa(document);
             //// this.Xml = this.TagInfraspecificTaxa(this.Xml);
         }
 
@@ -138,15 +140,25 @@
         }
 
         // TODO: XPath-s correction needed
-        private void AdvancedTagLowerTaxa(IDocument document, string xpath)
+        private void AdvancedTagLowerTaxa(IDocument document)
         {
-            document.SelectNodes(xpath)
+            document.SelectNodes(ParallelStructureXPath)
                 .AsParallel()
                 .ForAll(this.TagInfrarankTaxaSync);
 
-            document.SelectNodes(".//value[.//tn[@type='lower']]")
-                .AsParallel()
-                .ForAll(this.TagInfrarankTaxaSync);
+            var xpaths = new string[]
+            {
+                SequentialStructureXPath,
+                ".//value[.//tn[@type='lower']]"
+            };
+
+            foreach (string xpath in xpaths)
+            {
+                foreach (var node in document.SelectNodes(xpath))
+                {
+                    this.TagInfrarankTaxaSync(node);
+                }
+            }
         }
 
         private void TagInfrarankTaxaSync(XmlNode node)
