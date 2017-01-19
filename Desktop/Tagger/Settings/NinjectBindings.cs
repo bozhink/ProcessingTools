@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
-    using Contracts.Controllers;
+    using Contracts.Commands;
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Interception.Infrastructure.Language;

@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Tagger.Controllers.Generics
+﻿namespace ProcessingTools.Tagger.Commands.Generics
 {
     using System;
     using System.Threading.Tasks;
     using Contracts;
-    using Contracts.Controllers;
+    using Contracts.Commands;
     using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;

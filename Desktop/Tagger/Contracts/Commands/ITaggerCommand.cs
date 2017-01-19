@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Contracts.Controllers
+﻿namespace ProcessingTools.Tagger.Contracts.Commands
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;

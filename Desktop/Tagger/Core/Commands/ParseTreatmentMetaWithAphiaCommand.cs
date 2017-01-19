@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Tagger.Controllers
+﻿namespace ProcessingTools.Tagger.Commands
 {
-    using Contracts.Controllers;
+    using Contracts.Commands;
     using Generics;
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;

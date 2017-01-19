@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Tagger.Controllers
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
-    using Contracts.Controllers;
+    using Contracts.Commands;
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;

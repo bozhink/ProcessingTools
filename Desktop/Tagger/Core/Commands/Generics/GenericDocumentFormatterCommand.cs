@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Tagger.Controllers.Generics
+﻿namespace ProcessingTools.Tagger.Commands.Generics
 {
     using System;
     using System.Threading.Tasks;
     using Contracts;
-    using Contracts.Controllers;
+    using Contracts.Commands;
     using ProcessingTools.Contracts;
 
     public class GenericDocumentFormatterController<TFormatter> : ITaggerController

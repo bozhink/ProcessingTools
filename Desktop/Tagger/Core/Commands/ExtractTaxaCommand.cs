@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Tagger.Controllers
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
-    using Contracts.Controllers;
+    using Contracts.Commands;
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;

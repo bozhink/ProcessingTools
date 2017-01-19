@@ -4,7 +4,7 @@
     using System.Reflection;
     using System.Text.RegularExpressions;
 
-    using Contracts.Controllers;
+    using Contracts.Commands;
 
     using ProcessingTools.Attributes;
 

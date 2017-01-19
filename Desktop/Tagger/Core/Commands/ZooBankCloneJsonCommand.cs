@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Controllers
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
     using Contracts;
-    using Contracts.Controllers;
+    using Contracts.Commands;
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;
