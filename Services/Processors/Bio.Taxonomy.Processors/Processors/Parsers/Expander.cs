@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Text;
-    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Extensions;
@@ -17,7 +16,6 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 
     public class Expander : IExpander
@@ -341,26 +339,6 @@
             this.logger?.Log();
         }
 
-        private void PrintMethodMessage(string name)
-        {
-            this.logger?.Log("\n\n#\n##\n### {0} will be executed...\n##\n#\n", name);
-        }
-
-        private void PrintNextShortened(Species sp)
-        {
-            this.logger?.Log("\nNext shortened taxon:\t{0}", sp.ToString());
-        }
-
-        private void PrintSubstitutionMessage(Species original, Species substitution)
-        {
-            this.logger?.Log("\tSubstitution:\t{0}\t-->\t{1}", original.ToString(), substitution.ToString());
-        }
-
-        private void PrintSubstitutionMessageFail(Species original, Species substitution)
-        {
-            this.logger?.Log("\tFailed Subst:\t{0}\t<->\t{1}", original.ToString(), substitution.ToString());
-        }
-
         private void RemoveIdAndPositionAttributesToTaxonNameElements(XmlNode context)
         {
             context.SelectNodes(XPathStrings.LowerTaxonNames)
@@ -379,80 +357,6 @@
                 {
                     n.RemoveAttribute(AttributeNames.Id);
                 });
-        }
-
-        private void StableExpand(XmlNode context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            // In this method it is supposed that the subspecies name is not shortened
-            this.PrintMethodMessage(nameof(this.StableExpand));
-
-            var shortTaxaListUnique = this.GetListOfShortenedTaxa(context);
-            var nonShortTaxaListUnique = this.GetListOfNonShortenedTaxa(context);
-
-            var speciesList = nonShortTaxaListUnique
-                .Select(t => new Species(t))
-                .ToList();
-
-            string xml = context.InnerXml;
-
-            foreach (string shortTaxon in shortTaxaListUnique)
-            {
-                string text = Regex.Replace(shortTaxon, " xmlns:\\w+=\".*?\"", string.Empty);
-                string replace = text;
-
-                var sp = new Species(shortTaxon);
-                this.PrintNextShortened(sp);
-
-                foreach (var sp1 in speciesList)
-                {
-                    if (string.Compare(sp.SubspeciesName, sp1.SubspeciesName, true) != 0)
-                    {
-                        continue;
-                    }
-
-                    var matchGenus = Regex.Match(sp1.GenusName, sp.GenusPattern);
-                    var matchSubgenus = Regex.Match(sp1.SubgenusName, sp.SubgenusPattern);
-                    var matchSpecies = Regex.Match(sp1.SpeciesName, sp.SpeciesPattern);
-
-                    if (string.IsNullOrWhiteSpace(sp.SubgenusName))
-                    {
-                        if (matchGenus.Success && matchSpecies.Success)
-                        {
-                            if (string.IsNullOrWhiteSpace(sp1.SubgenusName))
-                            {
-                                this.PrintSubstitutionMessage(sp, sp1);
-                                replace = replace
-                                    .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
-                                    .RegexReplace("(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
-                            }
-                            else
-                            {
-                                this.PrintSubstitutionMessageFail(sp, sp1);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (matchGenus.Success && matchSubgenus.Success && matchSpecies.Success)
-                        {
-                            this.PrintSubstitutionMessage(sp, sp1);
-                            replace = replace
-                                .RegexReplace("(?<=type=\"genus\"[^>]+full-name=\")(?=\")", sp1.GenusName)
-                                .RegexReplace("(?<=type=\"subgenus\"[^>]+full-name=\")(?=\")", sp1.SubgenusName)
-                                .RegexReplace("(?<=type=\"species\"[^>]+full-name=\")(?=\")", sp1.SpeciesName);
-                        }
-                    }
-                }
-
-                xml = Regex.Replace(xml, Regex.Escape(text), replace);
-            }
-
-            context.InnerXml = xml;
         }
 
         private void StableExpand(IQueryable<ITaxonName> taxonNames)
