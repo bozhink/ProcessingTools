@@ -4,6 +4,9 @@
 
 * Initial format [-i]
   * correct invalid punctuation in italics. Search with **&lt;italic&gt;(\s\*\.|[^<>]\*[”“&/,;-])|\.\s\*&lt;/italic&gt;|&lt;/italic&gt;\.?\s\*&lt;italic&gt;**
+<!--
+<italic>(\s*\.|[^<>]*[”“&/,;-])|\.\s*</italic>|</italic>\.?\s*<italic>
+-->
 
 * Tag external links (web links) [-w, -d]
   * URL
@@ -43,3 +46,8 @@
   * Tag collection codes and collection names
   * Tag known specimen codes (e.g., OSUC, CASENT, EMEC)
   * Tag other specimen codes
+
+* Data validation
+  * Validate cross-references [+validatec]
+  * Validate taxa names [+validatet] [Redis cache is optional]
+  * Validate external links [+validatee] [Redis cache is optional]
