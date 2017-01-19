@@ -215,45 +215,38 @@
 
         private void ProcessBlockElementWhiteSpaces(IDocument document, string xpath)
         {
-            document.SelectNodes(xpath)
-                .AsParallel()
-                .ForAll(node =>
-                {
-                    node.InnerXml = node.InnerXml
-                        .RegexReplace(@"\s+", " ")
-                        .Trim();
-                });
+            foreach (var node in document.SelectNodes(xpath))
+            {
+                node.InnerXml = node.InnerXml
+                    .RegexReplace(@"\s+", " ")
+                    .Trim();
+            }
         }
 
         private void ProcessInlineElementWhiteSpaces(IDocument document, string xpath)
         {
-            document.SelectNodes(xpath)
-                .AsParallel()
-                .ForAll(node =>
+            foreach (var node in document.SelectNodes(xpath))
+            {
+                bool beginsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\A\s+");
+                bool endsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\s+\Z");
+
+                if (beginsWithWhiteSpace || endsWithWhiteSpace)
                 {
-                    bool beginsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\A\s+");
-                    bool endsWithWhiteSpace = Regex.IsMatch(node.InnerXml, @"\s+\Z");
-
-                    if (beginsWithWhiteSpace || endsWithWhiteSpace)
+                    // TODO: Needs revision
+                    try
                     {
-                        lock (new object())
-                        {
-                            // TODO: Needs revision
-                            try
-                            {
-                                node.InnerXml = node.InnerXml.Trim();
+                        node.InnerXml = node.InnerXml.Trim();
 
-                                var replacement = node.OwnerDocument.CreateDocumentFragment();
-                                replacement.InnerXml = (beginsWithWhiteSpace ? " " : string.Empty) + node?.OuterXml + (endsWithWhiteSpace ? " " : string.Empty);
+                        var replacement = node.OwnerDocument.CreateDocumentFragment();
+                        replacement.InnerXml = (beginsWithWhiteSpace ? " " : string.Empty) + node?.OuterXml + (endsWithWhiteSpace ? " " : string.Empty);
 
-                                node?.ParentNode?.ReplaceChild(replacement, node);
-                            }
-                            catch
-                            {
-                            }
-                        }
+                        node?.ParentNode?.ReplaceChild(replacement, node);
                     }
-                });
+                    catch
+                    {
+                    }
+                }
+            }
         }
 
         private void RefactorEmailTags(IDocument document)
@@ -288,7 +281,7 @@
 
         private void TrimBlockElements(IDocument document)
         {
-            this.ProcessBlockElementWhiteSpaces(document, "//title | //label | //article-title[count(ancestor::ref) = 0] | //p[count(ancestor::p) + count(ancestor::title) + count(ancestor::label) = 0] | //license-p | //xref-group");
+            this.ProcessBlockElementWhiteSpaces(document, "//title | //label | //article-title[not(ancestor::ref)] | //p[not(ancestor::p)][not(ancestor::li)][not(ancestor::td)][not(ancestor::th)][not(ancestor::title)][not(ancestor::label)] | //license-p | //xref-group");
             this.ProcessBlockElementWhiteSpaces(document, "//mixed-citation | //element-citation");
             this.ProcessBlockElementWhiteSpaces(document, "//tp:nomenclature-citation");
             this.ProcessBlockElementWhiteSpaces(document, "//kwd");
