@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands
+﻿namespace ProcessingTools.Tagger.Core.Commands
 {
     using System;
     using System.Collections.Generic;

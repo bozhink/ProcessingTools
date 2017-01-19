@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Generics
+﻿namespace ProcessingTools.Tagger.Core.Commands.Generics
 {
     using System;
     using System.Threading.Tasks;

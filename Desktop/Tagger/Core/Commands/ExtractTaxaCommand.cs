@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands
+﻿namespace ProcessingTools.Tagger.Core.Commands
 {
     using System.Linq;
     using System.Threading.Tasks;
