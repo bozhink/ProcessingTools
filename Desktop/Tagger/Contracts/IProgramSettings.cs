@@ -24,6 +24,10 @@
 
         bool InitialFormat { get; }
 
+        bool MergeInputFiles { get; }
+
+        string OutputFileName { get; set; }
+
         bool ParseCoordinates { get; }
 
         bool ParseHigherAboveGenus { get; }
@@ -49,8 +53,6 @@
         bool ParseTreatmentMetaWithGbif { get; }
 
         bool QueryReplace { get; }
-
-        string ReferencesGetReferencesXmlPath { get; set; }
 
         bool ResolveMediaTypes { get; }
 

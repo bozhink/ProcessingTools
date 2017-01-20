@@ -355,7 +355,7 @@
 
         private void SetUpConfigParameters()
         {
-            this.settings.ReferencesGetReferencesXmlPath = $"{this.OutputFileName}-references.xml";
+            this.settings.OutputFileName =this.OutputFileName;
         }
 
         private Task WriteOutputFile() => InvokeProcessor(

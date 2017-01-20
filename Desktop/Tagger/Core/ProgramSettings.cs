@@ -77,9 +77,9 @@
             }
         }
 
-        public IList<string> FileNames { get; set; }
-
         public ICollection<Type> CalledCommands { get; set; }
+
+        public bool ExpandLowerTaxa { get; set; }
 
         public bool ExtractHigherTaxa { get; set; }
 
@@ -87,11 +87,31 @@
 
         public bool ExtractTaxa { get; set; }
 
-        public bool InitialFormat { get; set; }
+        public IList<string> FileNames { get; set; }
 
         public bool FormatTreat { get; set; }
 
+        public bool InitialFormat { get; set; }
+
+        public bool MergeInputFiles { get; set; }
+
+        public string OutputFileName { get; set; }
+
         public bool ParseCoordinates { get; set; }
+
+        public bool ParseHigherAboveGenus { get; set; }
+
+        public bool ParseHigherBySuffix { get; set; }
+
+        public bool ParseHigherTaxa { get; set; }
+
+        public bool ParseHigherWithAphia { get; set; }
+
+        public bool ParseHigherWithCoL { get; set; }
+
+        public bool ParseHigherWithGbif { get; set; }
+
+        public bool ParseLowerTaxa { get; set; }
 
         public bool ParseReferences { get; set; }
 
@@ -103,17 +123,9 @@
 
         public bool QueryReplace { get; set; }
 
-        public bool ParseHigherAboveGenus { get; set; }
-
-        public bool ParseHigherBySuffix { get; set; }
-
-        public bool ParseHigherWithAphia { get; set; }
-
-        public bool ParseHigherWithCoL { get; set; }
-
-        public bool ParseHigherWithGbif { get; set; }
-
         public bool ResolveMediaTypes { get; set; }
+
+        public bool RunXslTransform { get; set; }
 
         public bool TagAbbreviations { get; set; }
 
@@ -129,34 +141,24 @@
 
         public bool TagFloats { get; set; }
 
+        public bool TagHigherTaxa { get; set; }
+
+        public bool TagLowerTaxa { get; set; }
+
         public bool TagReferences { get; set; }
 
         public bool TagTableFn { get; set; }
 
         public bool TagWebLinks { get; set; }
 
-        public bool TagLowerTaxa { get; set; }
-
-        public bool TagHigherTaxa { get; set; }
-
-        public bool ParseLowerTaxa { get; set; }
-
-        public bool ParseHigherTaxa { get; set; }
-
-        public bool ExpandLowerTaxa { get; set; }
-
         public bool UntagSplit { get; set; }
 
         public bool ValidateTaxa { get; set; }
-
-        public bool RunXslTransform { get; set; }
 
         public bool ZoobankCloneJson { get; set; }
 
         public bool ZoobankCloneXml { get; set; }
 
         public bool ZoobankGenerateRegistrationXml { get; set; }
-
-        public string ReferencesGetReferencesXmlPath { get; set; }
     }
 }

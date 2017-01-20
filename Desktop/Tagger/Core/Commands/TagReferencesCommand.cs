@@ -58,7 +58,7 @@
                 referencesFileName = Guid.NewGuid().ToString();
             }
 
-            var outputDirectoryName = Path.GetDirectoryName(settings.ReferencesGetReferencesXmlPath);
+            var outputDirectoryName = Path.GetDirectoryName(settings.OutputFileName);
             this.tagger.ReferencesGetReferencesXmlPath = Path.Combine(outputDirectoryName, $"{referencesFileName}-references.{FileConstants.XmlFileExtension}");
         }
     }
