@@ -147,6 +147,10 @@
                         case 'M':
                             this.Settings.MergeInputFiles = true;
                             break;
+
+                        case 'S':
+                            this.Settings.SplitDocument = true;
+                            break;
                     }
                 }
             }
@@ -252,6 +256,10 @@
                 else if (item.CompareTo("--merge") == 0)
                 {
                     this.Settings.MergeInputFiles = true;
+                }
+                else if (item.CompareTo("--split") == 0)
+                {
+                    this.Settings.SplitDocument = true;
                 }
             }
         }

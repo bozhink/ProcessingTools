@@ -18,8 +18,9 @@ Options:
     r = Parse references [under construction]
     R = Tag references
 
-    M = merge input files
-    --merge = merge input files
+    M, --merge = merge input files
+
+    S, --split = split document into sub-documents
 
     X = Query replace <input> <output> <query>
 

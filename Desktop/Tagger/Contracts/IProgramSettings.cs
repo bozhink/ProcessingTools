@@ -58,6 +58,8 @@
 
         bool RunXslTransform { get; }
 
+        bool SplitDocument { get; }
+
         bool TagAbbreviations { get; }
 
         bool TagCodes { get; }

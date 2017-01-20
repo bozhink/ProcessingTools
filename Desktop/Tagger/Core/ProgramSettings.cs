@@ -56,6 +56,8 @@
             this.ZoobankCloneJson = false;
             this.ZoobankCloneXml = false;
             this.ZoobankGenerateRegistrationXml = false;
+            this.MergeInputFiles = false;
+            this.SplitDocument = false;
         }
 
         public SchemaType ArticleSchemaType
@@ -126,6 +128,8 @@
         public bool ResolveMediaTypes { get; set; }
 
         public bool RunXslTransform { get; set; }
+
+        public bool SplitDocument { get; set; }
 
         public bool TagAbbreviations { get; set; }
 
