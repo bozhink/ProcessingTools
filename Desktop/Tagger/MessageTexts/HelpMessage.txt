@@ -18,6 +18,9 @@ Options:
     r = Parse references [under construction]
     R = Tag references
 
+    M = merge input files
+    --merge = merge input files
+
     X = Query replace <input> <output> <query>
 
     Taxonomic part
@@ -50,6 +53,6 @@ Options:
     --abbrev = tag abbreviations
     --envo = use Greek tagger
 
-    -V, --validate-taxa = valdate taxonomic names with Global Names Resolver
+    -V, --validate-taxa = validate taxonomic names with Global Names Resolver
 
     --xsl = run custom XSL transform; syntax: <in xml> <out xml> <xsl file path>

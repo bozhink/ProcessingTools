@@ -143,6 +143,10 @@
                         case 'V':
                             this.Settings.ValidateTaxa = true;
                             break;
+
+                        case 'M':
+                            this.Settings.MergeInputFiles = true;
+                            break;
                     }
                 }
             }
@@ -244,6 +248,10 @@
                 else if (item.CompareTo("--xsl") == 0)
                 {
                     this.Settings.RunXslTransform = true;
+                }
+                else if (item.CompareTo("--merge") == 0)
+                {
+                    this.Settings.MergeInputFiles = true;
                 }
             }
         }
