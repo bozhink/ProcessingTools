@@ -20,7 +20,7 @@
   </xsl:template>
 
   <xsl:template name="harvest-ext-link">
-    <xsl:for-each select="//ext-link">
+    <xsl:for-each select="//ext-link[@ext-link-type!='pmid'][@ext-link-type!='pmcid'][@ext-link-type!='gen']">
       <xsl:variable name="base-address">
         <xsl:call-template name="get-base-address">
           <xsl:with-param name="uri" select="@xlink:href" />
