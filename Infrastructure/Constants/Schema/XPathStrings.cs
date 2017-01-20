@@ -2,18 +2,18 @@
 {
     public sealed class XPathStrings
     {
-        public const string ArticleIdOfTypeDoi = "/article/front/article-meta/article-id[@pub-id-type='doi']";
-        public const string ArticleJournalMetaIssnEPub = "/article/front/journal-meta/issn[@pub-type='epub']";
-        public const string ArticleJournalMetaIssnPPub = "/article/front/journal-meta/issn[@pub-type='ppub']";
-        public const string ArticleJournalMetaJournalAbbreviatedTitle = "/article/front/journal-meta/journal-title-group/abbrev-journal-title";
-        public const string ArticleJournalMetaJournalId = "/article/front/journal-meta/journal-id[@journal-id-type='publisher-id']";
-        public const string ArticleJournalMetaJournalTitle = "/article/front/journal-meta/journal-title-group/journal-title";
-        public const string ArticleJournalMetaPublisherName = "/article/front/journal-meta/publisher/publisher-name";
-        public const string ArticleMetaElocationId = "/article/front/article-meta/elocation-id";
-        public const string ArticleMetaFirstPage = "/article/front/article-meta/fpage";
-        public const string ArticleMetaIssue = "/article/front/article-meta/issue";
-        public const string ArticleMetaLastPage = "/article/front/article-meta/lpage";
-        public const string ArticleMetaVolume = "/article/front/article-meta/volume";
+        public const string ArticleIdOfTypeDoi = ".//front/article-meta/article-id[@pub-id-type='doi']";
+        public const string ArticleJournalMetaIssnEPub = ".//front/journal-meta/issn[@pub-type='epub']";
+        public const string ArticleJournalMetaIssnPPub = ".//front/journal-meta/issn[@pub-type='ppub']";
+        public const string ArticleJournalMetaJournalAbbreviatedTitle = ".//front/journal-meta/journal-title-group/abbrev-journal-title";
+        public const string ArticleJournalMetaJournalId = ".//front/journal-meta/journal-id[@journal-id-type='publisher-id']";
+        public const string ArticleJournalMetaJournalTitle = ".//front/journal-meta/journal-title-group/journal-title";
+        public const string ArticleJournalMetaPublisherName = ".//front/journal-meta/publisher/publisher-name";
+        public const string ArticleMetaElocationId = ".//front/article-meta/elocation-id";
+        public const string ArticleMetaFirstPage = ".//front/article-meta/fpage";
+        public const string ArticleMetaIssue = ".//front/article-meta/issue";
+        public const string ArticleMetaLastPage = ".//front/article-meta/lpage";
+        public const string ArticleMetaVolume = ".//front/article-meta/volume";
         public const string ArticleZooBankSelfUri = ".//article-meta/self-uri[@content-type='zoobank']";
         public const string ContentNodes = ".//p|.//title|.//license-p|.//li|.//th|.//td|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
         public const string ContributorZooBankUri = ".//article-meta/contrib-group/contrib/uri[@content-type='zoobank']";

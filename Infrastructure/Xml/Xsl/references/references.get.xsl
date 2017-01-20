@@ -4,7 +4,7 @@
   <xsl:template match="/">
     <references>
       <article>
-        <xsl:value-of select="/article/front/article-meta/article-id[@pub-id-type='doi']"/>
+        <xsl:value-of select="//article-meta[1]/article-id[@pub-id-type='doi']"/>
       </article>
       <xsl:for-each select="//ref-list[ref]">
         <reference-list title="{normalize-space(title)}">
