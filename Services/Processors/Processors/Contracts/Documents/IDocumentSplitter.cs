@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Processors.Contracts.Documents
 {
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
     using ProcessingTools.Contracts;
 
     public interface IDocumentSplitter
     {
-        Task<object> Split(IDocument document);
+        IEnumerable<IDocument> Split(IDocument document);
     }
 }

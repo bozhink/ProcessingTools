@@ -5,10 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts.Commands;
     using Extensions;
-
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
