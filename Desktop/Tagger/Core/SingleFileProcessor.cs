@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts;
@@ -17,6 +19,7 @@
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IDocumentFactory documentFactory;
+        private readonly IDocumentMerger documentMerger;
         private readonly IDocumentReader documentReader;
         private readonly IDocumentWriter documentWriter;
         private readonly IDocumentNormalizer documentNormalizer;
@@ -29,6 +32,7 @@
         public SingleFileProcessor(
             IFileNameGenerator fileNameGenerator,
             IDocumentFactory documentFactory,
+            IDocumentMerger documentMerger,
             IDocumentReader documentReader,
             IDocumentWriter documentWriter,
             IDocumentNormalizer documentNormalizer,
@@ -43,6 +47,11 @@
             if (documentFactory == null)
             {
                 throw new ArgumentNullException(nameof(documentFactory));
+            }
+
+            if (documentMerger == null)
+            {
+                throw new ArgumentNullException(nameof(documentMerger));
             }
 
             if (documentReader == null)
@@ -67,6 +76,7 @@
 
             this.fileNameGenerator = fileNameGenerator;
             this.documentFactory = documentFactory;
+            this.documentMerger = documentMerger;
             this.documentReader = documentReader;
             this.documentWriter = documentWriter;
             this.documentNormalizer = documentNormalizer;
@@ -123,22 +133,38 @@
 
             this.InputFileName = this.settings.FileNames[0];
 
-            this.OutputFileName = numberOfFileNames > 1 ?
-                this.settings.FileNames[1] :
-                await this.fileNameGenerator.Generate(
-                    this.InputFileName,
+            if (this.settings.MergeInputFiles)
+            {
+                this.OutputFileName = await this.fileNameGenerator.Generate(
+                    Path.Combine(Path.GetDirectoryName(this.InputFileName), FileConstants.DefaultBundleXmlFileName),
                     FileConstants.MaximalLengthOfGeneratedNewFileName,
                     true);
 
-            this.QueryFileName = numberOfFileNames > 2 ?
-                this.settings.FileNames[2] :
-                string.Empty;
+                this.logger?.Log(
+                    Messages.InputOutputFileNamesMessageFormat,
+                    "*",
+                    this.OutputFileName,
+                    string.Empty);
+            }
+            else
+            {
+                this.OutputFileName = numberOfFileNames > 1 ?
+                    this.settings.FileNames[1] :
+                    await this.fileNameGenerator.Generate(
+                        this.InputFileName,
+                        FileConstants.MaximalLengthOfGeneratedNewFileName,
+                        true);
 
-            this.logger?.Log(
-                Messages.InputOutputFileNamesMessageFormat,
-                this.InputFileName,
-                this.OutputFileName,
-                this.QueryFileName);
+                this.QueryFileName = numberOfFileNames > 2 ?
+                    this.settings.FileNames[2] :
+                    string.Empty;
+
+                this.logger?.Log(
+                    Messages.InputOutputFileNamesMessageFormat,
+                    this.InputFileName,
+                    this.OutputFileName,
+                    this.QueryFileName);
+            }
         }
 
         private async Task ContextProcessing(XmlNode context)
@@ -346,7 +372,15 @@
 
         private async Task ReadDocument()
         {
-            this.document = await this.documentReader.ReadDocument(this.InputFileName);
+            if (settings.MergeInputFiles)
+            {
+                this.document = await this.documentMerger.Merge(this.settings.FileNames.ToArray());
+            }
+            else
+            {
+                this.document = await this.documentReader.ReadDocument(this.InputFileName);
+            }
+
             this.settings.ArticleSchemaType = this.document.SchemaType;
             this.document.SchemaType = this.settings.ArticleSchemaType;
 
@@ -355,7 +389,7 @@
 
         private void SetUpConfigParameters()
         {
-            this.settings.OutputFileName =this.OutputFileName;
+            this.settings.OutputFileName = this.OutputFileName;
         }
 
         private Task WriteOutputFile() => InvokeProcessor(
