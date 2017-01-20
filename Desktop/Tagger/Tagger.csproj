@@ -120,6 +120,7 @@
     <Compile Include="Contracts\Commands\ITagCollectionCodesCommand.cs" />
     <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
     <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
+    <Compile Include="Contracts\Helpers\IReadDocumentHelper.cs" />
     <Compile Include="Contracts\ICommandInfo.cs" />
     <Compile Include="Contracts\Commands\IExpandLowerTaxaCommand.cs" />
     <Compile Include="Contracts\Commands\IExtractTaxaCommand.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Contracts\IFileProcessor.cs" />
     <Compile Include="Contracts\IStartup.cs" />
     <Compile Include="Contracts\ICommandInfoProvider.cs" />
+    <Compile Include="Core\Helpers\ReadDocumentHelper.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Models\CommandInfo.cs" />
     <Compile Include="Core\Commands\ExpandLowerTaxaCommand.cs" />

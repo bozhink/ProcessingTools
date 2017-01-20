@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Concurrent;
     using System.IO;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts;
     using Contracts.Commands;
+    using Contracts.Helpers;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
@@ -19,8 +19,7 @@
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IDocumentFactory documentFactory;
-        private readonly IDocumentMerger documentMerger;
-        private readonly IDocumentReader documentReader;
+        private readonly IReadDocumentHelper documentReader;
         private readonly IDocumentWriter documentWriter;
         private readonly IDocumentNormalizer documentNormalizer;
         private readonly IFileNameGenerator fileNameGenerator;
@@ -32,8 +31,7 @@
         public SingleFileProcessor(
             IFileNameGenerator fileNameGenerator,
             IDocumentFactory documentFactory,
-            IDocumentMerger documentMerger,
-            IDocumentReader documentReader,
+            IReadDocumentHelper documentReader,
             IDocumentWriter documentWriter,
             IDocumentNormalizer documentNormalizer,
             Func<Type, ITaggerCommand> commandFactory,
@@ -47,11 +45,6 @@
             if (documentFactory == null)
             {
                 throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            if (documentMerger == null)
-            {
-                throw new ArgumentNullException(nameof(documentMerger));
             }
 
             if (documentReader == null)
@@ -76,7 +69,6 @@
 
             this.fileNameGenerator = fileNameGenerator;
             this.documentFactory = documentFactory;
-            this.documentMerger = documentMerger;
             this.documentReader = documentReader;
             this.documentWriter = documentWriter;
             this.documentNormalizer = documentNormalizer;
@@ -105,9 +97,9 @@
             {
                 await this.ConfigureFileProcessor();
 
-                this.SetUpConfigParameters();
+                this.settings.OutputFileName = this.OutputFileName;
 
-                await this.ReadDocument();
+                this.document = await this.documentReader.Read(this.settings);
 
                 await this.ProcessDocument(this.document.XmlDocument.DocumentElement);
 
@@ -368,28 +360,6 @@
             }
 
             return;
-        }
-
-        private async Task ReadDocument()
-        {
-            if (settings.MergeInputFiles)
-            {
-                this.document = await this.documentMerger.Merge(this.settings.FileNames.ToArray());
-            }
-            else
-            {
-                this.document = await this.documentReader.ReadDocument(this.InputFileName);
-            }
-
-            this.settings.ArticleSchemaType = this.document.SchemaType;
-            this.document.SchemaType = this.settings.ArticleSchemaType;
-
-            await this.documentNormalizer.NormalizeToSystem(this.document);
-        }
-
-        private void SetUpConfigParameters()
-        {
-            this.settings.OutputFileName = this.OutputFileName;
         }
 
         private Task WriteOutputFile() => InvokeProcessor(
