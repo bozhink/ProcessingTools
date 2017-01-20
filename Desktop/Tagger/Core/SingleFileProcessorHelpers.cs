@@ -12,7 +12,7 @@
 
     public partial class SingleFileProcessor
     {
-        private static async Task InvokeProcessor(string message, Func<object, Task> action, ILogger logger)
+        private static async Task InvokeProcessor(string message, Func<Task> action, ILogger logger)
         {
             var timer = new Stopwatch();
             timer.Start();
@@ -20,7 +20,7 @@
 
             try
             {
-                await action.Invoke(null);
+                await action.Invoke();
             }
             catch (AggregateException e)
             {
@@ -79,7 +79,7 @@
             string message = command.GetDescriptionMessageForCommand();
             await InvokeProcessor(
                 message,
-                _ => command.Run(document, this.settings),
+                () => command.Run(document, this.settings),
                 this.logger);
         }
 

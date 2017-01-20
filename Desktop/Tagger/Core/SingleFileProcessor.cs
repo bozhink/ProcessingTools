@@ -394,13 +394,16 @@
 
         private Task WriteOutputFile() => InvokeProcessor(
             Messages.WriteOutputFileMessage,
-            _ => this.documentNormalizer.NormalizeToDocumentSchema(this.document)
-                .ContinueWith(
-                    __ =>
-                    {
-                        __.Wait();
-                        var o = this.documentWriter.WriteDocument(this.OutputFileName, this.document).Result;
-                    }),
-                this.logger);
+            () =>
+            {
+                return this.documentNormalizer.NormalizeToDocumentSchema(this.document)
+                    .ContinueWith(
+                        __ =>
+                        {
+                            __.Wait();
+                            var o = this.documentWriter.WriteDocument(this.OutputFileName, this.document).Result;
+                        });
+            },
+            this.logger);
     }
 }
