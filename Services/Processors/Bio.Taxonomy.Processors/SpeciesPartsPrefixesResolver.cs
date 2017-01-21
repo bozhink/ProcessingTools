@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy
+﻿namespace ProcessingTools.Bio.Taxonomy.Processors
 {
     using System.Collections.Generic;
     using ProcessingTools.Enumerations;

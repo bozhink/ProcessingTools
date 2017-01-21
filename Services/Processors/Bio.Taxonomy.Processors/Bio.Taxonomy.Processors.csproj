@@ -69,6 +69,7 @@
     <Compile Include="Processors\Taggers\HigherTaxaTagger.cs" />
     <Compile Include="Processors\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpeciesPartsPrefixesResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
