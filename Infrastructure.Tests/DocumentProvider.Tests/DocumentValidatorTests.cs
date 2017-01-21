@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.DocumentProvider.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Reporters;
 
     [TestClass]
     public class DocumentValidatorTests
@@ -12,9 +14,10 @@
             var document = new TaxPubDocument();
             document.Xml = "<article><front></front></article>";
 
-            var validator = new DocumentValidator(null);
+            var validator = new DocumentValidator();
+            var reporter = new LogReporter(new ConsoleLogger());
 
-            validator.Validate(document).Wait();
+            validator.Validate(document, reporter).Wait();
         }
     }
 }

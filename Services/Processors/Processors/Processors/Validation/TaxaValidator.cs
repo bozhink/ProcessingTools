@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
     using ProcessingTools.Processors.Contracts.Validation;
@@ -15,12 +14,10 @@
     {
         private readonly ITaxonNamesHarvester harvester;
         private readonly ITaxaValidationService validationService;
-        private readonly ILogger logger;
 
         public TaxaValidator(
             ITaxonNamesHarvester harvester,
-            ITaxaValidationService validationService,
-            ILogger logger)
+            ITaxaValidationService validationService)
         {
             if (harvester == null)
             {
@@ -34,18 +31,21 @@
 
             this.harvester = harvester;
             this.validationService = validationService;
-            this.logger = logger;
         }
 
-        public async Task<object> Validate(IDocument document)
+        public async Task<object> Validate(IDocument document, IReporter reporter)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var data = await this.harvester.Harvest(document.XmlDocument);
+            if (reporter == null)
+            {
+                throw new ArgumentNullException(nameof(reporter));
+            }
 
+            var data = await this.harvester.Harvest(document.XmlDocument);
             var scientificNames = data?.Distinct()
                 .Select(s => new TaxonNameServiceModel
                 {
@@ -55,17 +55,21 @@
 
             if (scientificNames == null || scientificNames.Length < 1)
             {
-                this.logger?.Log(LogType.Warning, "No taxa found.");
+                reporter.AppendContent("Warning: No taxon names found.");
                 return false;
             }
 
             var result = await this.validationService.Validate(scientificNames);
 
-            var notFoundNames = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
+            var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => r.ValidatedObject.Name)
                 .OrderBy(i => i);
 
-            this.logger?.Log("Not found taxa names:\n|\t{0}\n", string.Join("\n|\t", notFoundNames));
+            reporter.AppendContent("Non-valid taxon names:");
+            foreach (var taxonName in nonValidItems)
+            {
+                reporter.AppendContent(string.Format("\t{0}", taxonName));
+            }
 
             return true;
         }

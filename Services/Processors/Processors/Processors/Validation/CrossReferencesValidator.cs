@@ -10,18 +10,16 @@
 
     public class CrossReferencesValidator : ICrossReferencesValidator
     {
-        private readonly ILogger logger;
-
-        public CrossReferencesValidator(ILogger logger)
-        {
-            this.logger = logger;
-        }
-
-        public Task<object> Validate(IDocument document)
+        public Task<object> Validate(IDocument document, IReporter reporter)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
+            }
+
+            if (reporter == null)
+            {
+                throw new ArgumentNullException(nameof(reporter));
             }
 
             var histogram = this.GetHistogramOfIdValues(document);
@@ -29,13 +27,13 @@
             var nonUniqueIds = histogram.Where(p => p.Value > 1L).Select(p => p.Key).ToList();
             if (nonUniqueIds.Count > 0)
             {
-                this.logger?.Log("Multiple ID definitions: {0}", string.Join(", ", nonUniqueIds));
+                reporter.AppendContent(string.Format("Duplicated ID definitions: {0}", string.Join(", ", nonUniqueIds)));
             }
 
             var invalidReferences = this.GetInvalidReferences(document, histogram).ToList();
             if (invalidReferences.Count > 0)
             {
-                this.logger?.Log("Invalid references: {0}", string.Join(", ", invalidReferences));
+                reporter.AppendContent(string.Format("Invalid ID references: {0}", string.Join(", ", invalidReferences)));
             }
 
             return Task.FromResult<object>(true);

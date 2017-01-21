@@ -2,15 +2,15 @@
 {
     using Contracts.Commands;
     using Generics;
-
     using ProcessingTools.Attributes;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Validation;
 
     [Description("Validate external links.")]
     public class ValidateExternalLinksCommand : GenericDocumentValidatorCommand<IExternalLinksValidator>, IValidateExternalLinksCommand
     {
-        public ValidateExternalLinksCommand(IExternalLinksValidator validator)
-            : base(validator)
+        public ValidateExternalLinksCommand(IExternalLinksValidator validator, IReporter reporter)
+            : base(validator, reporter)
         {
         }
     }

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Processors.Contracts.Validation;
@@ -14,54 +13,64 @@
     public class ExternalLinksValidator : IExternalLinksValidator
     {
         private readonly IExternalLinksHarvester harvester;
-        private readonly IUrlValidationService service;
-        private readonly ILogger logger;
+        private readonly IUrlValidationService validationService;
 
-        public ExternalLinksValidator(IExternalLinksHarvester harvester, IUrlValidationService service, ILogger logger)
+        public ExternalLinksValidator(
+            IExternalLinksHarvester harvester,
+            IUrlValidationService validationService)
         {
             if (harvester == null)
             {
                 throw new ArgumentNullException(nameof(harvester));
             }
 
-            if (service == null)
+            if (validationService == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(validationService));
             }
 
             this.harvester = harvester;
-            this.service = service;
-            this.logger = logger;
+            this.validationService = validationService;
         }
 
-        public async Task<object> Validate(IDocument document)
+        public async Task<object> Validate(IDocument document, IReporter reporter)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var externalLinks = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
-            if (externalLinks == null)
+            if (reporter == null)
             {
-                this.logger?.Log(LogType.Info, "No external links are found.");
+                throw new ArgumentNullException(nameof(reporter));
+            }
+
+            var data = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
+            var externalLinks = data?.Distinct()
+                .Select(e => new UrlServiceModel
+                {
+                    BaseAddress = e.BaseAddress,
+                    Address = e.Uri
+                })
+                .ToArray();
+
+            if (externalLinks == null || externalLinks.Length < 1)
+            {
+                reporter.AppendContent("Warning: No external links found.");
                 return false;
             }
 
-            var linksToValidate = externalLinks.Select(e => new UrlServiceModel
-            {
-                BaseAddress = e.BaseAddress,
-                Address = e.Uri
-            })
-            .ToArray();
-
-            var result = await this.service.Validate(linksToValidate);
+            var result = await this.validationService.Validate(externalLinks);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => $"{r.ValidatedObject.FullAddress} / {r.ValidationStatus.ToString()} /")
                 .OrderBy(i => i);
 
-            this.logger?.Log("Non-valid external links:\n|\t{0}\n", string.Join("\n|\t", nonValidItems));
+            reporter.AppendContent("Non-valid external links:");
+            foreach (var taxonName in nonValidItems)
+            {
+                reporter.AppendContent(string.Format("\t{0}", taxonName));
+            }
 
             return true;
         }

@@ -14,12 +14,10 @@
     {
         private const string TaxPubDtdPathKey = "TaxPubDtdPath";
         private readonly string taxPubDtdPath;
-        private readonly ILogger logger;
+        private readonly StringBuilder reportBuilder = new StringBuilder();
 
-        public DocumentValidator(ILogger logger)
+        public DocumentValidator()
         {
-            this.logger = logger;
-
             // TODO: AppSettingsReader
             var appSettingsReader = new AppSettingsReader();
             try
@@ -38,7 +36,7 @@
             }
         }
 
-        public async Task<object> Validate(IDocument document)
+        public async Task<object> Validate(IDocument document, IReporter reporter)
         {
             if (document == null)
             {
@@ -46,12 +44,14 @@
             }
 
             string fileName = Path.GetTempFileName() + ".xml";
-            this.logger?.Log(fileName);
+
+            reporter.AppendContent(string.Format("File name = {0}", fileName));
 
             await this.WriteXmlFileWithDoctype(document, fileName);
 
             await this.ReadXmlFileWithDtdValidation(fileName);
 
+            reporter.AppendContent(this.reportBuilder.ToString());
             return true;
         }
 
@@ -116,7 +116,7 @@
 
         private void ValidationCallBack(object sender, ValidationEventArgs e)
         {
-            this.logger?.Log("Validation Error: {0}", e.Message);
+            this.reportBuilder.AppendFormat("Validation Error: {0}", e.Message);
         }
     }
 }
