@@ -120,6 +120,7 @@
     <Compile Include="Contracts\Commands\ITagCollectionCodesCommand.cs" />
     <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
     <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
+    <Compile Include="Contracts\Helpers\IInvokeActionHelper.cs" />
     <Compile Include="Contracts\Helpers\IReadDocumentHelper.cs" />
     <Compile Include="Contracts\Helpers\IWriteDocumentHelper.cs" />
     <Compile Include="Contracts\ICommandInfo.cs" />
