@@ -1,57 +1,81 @@
 ﻿namespace ProcessingTools.Tagger.Core.Commands
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Commands;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
 
     public class ExtractTaxaCommand : IExtractTaxaCommand
     {
-        private readonly ILogger logger;
+        private readonly ITaxonNamesHarvester harvester;
+        private readonly IReporter reporter;
 
-        public ExtractTaxaCommand(ILogger logger)
+        public ExtractTaxaCommand(ITaxonNamesHarvester harvester, IReporter reporter)
         {
-            this.logger = logger;
+            if (harvester == null)
+            {
+                throw new ArgumentNullException(nameof(harvester));
+            }
+
+            if (reporter == null)
+            {
+                throw new ArgumentNullException(nameof(reporter));
+            }
+
+            this.harvester = harvester;
+            this.reporter = reporter;
         }
 
-        public Task<object> Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, IProgramSettings settings)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException(nameof(document));
+            }
+
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            var context = document.XmlDocument;
+
             if (settings.ExtractTaxa)
             {
-                this.logger?.Log(Messages.ExtractAllTaxaMessage);
-                document.XmlDocument
-                    .ExtractTaxa(true)
-                    .OrderBy(i => i)
-                    .ToList()
-                    .ForEach(t => this.logger?.Log(t));
-
-                return Task.FromResult<object>(true);
+                var data = await this.harvester.Harvest(context);
+                this.BuildReport(Messages.ExtractAllTaxaMessage, data);
             }
-
-            if (settings.ExtractLowerTaxa)
+            else
             {
-                this.logger?.Log(Messages.ExtractLowerTaxaMessage);
-                document.XmlDocument
-                    .ExtractTaxa(true, TaxonType.Lower)
-                    .OrderBy(i => i)
-                    .ToList()
-                    .ForEach(t => this.logger?.Log(t));
+                if (settings.ExtractLowerTaxa)
+                {
+                    var data = await this.harvester.HarvestLowerTaxa(context);
+                    this.BuildReport(Messages.ExtractLowerTaxaMessage, data);
+                }
+
+                if (settings.ExtractHigherTaxa)
+                {
+                    var data = await this.harvester.HarvestHigherTaxa(context);
+                    this.BuildReport(Messages.ExtractHigherTaxaMessage, data);
+                }
             }
 
-            if (settings.ExtractHigherTaxa)
+            await this.reporter.MakeReport();
+
+            return true;
+        }
+
+        private void BuildReport(string message, IEnumerable<string> data)
+        {
+            this.reporter.AppendContent(message);
+            foreach (var item in data.OrderBy(i => i))
             {
-                this.logger?.Log(Messages.ExtractHigherTaxaMessage);
-                document.XmlDocument
-                    .ExtractTaxa(true, TaxonType.Higher)
-                    .OrderBy(i => i)
-                    .ToList()
-                    .ForEach(t => this.logger?.Log(t));
+                this.reporter.AppendContent(item);
             }
-
-            return Task.FromResult<object>(true);
         }
     }
 }

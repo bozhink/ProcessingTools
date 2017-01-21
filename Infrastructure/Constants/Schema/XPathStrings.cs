@@ -20,6 +20,7 @@
         public const string CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes = ".//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)='']";
         public const string CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes = ".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']";
         public const string CoordinateWithEmptyLatitudeOrLongitude = ".//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']";
+        public const string ElementWithFullNameAttribute = ".//*[normalize-space(@" + AttributeNames.FullName + ")!='']";
         public const string HigherDocumentStructure = "//article[not(ancestor::article)][not(ancestor::document)]|//document[not(ancestor::article)][not(ancestor::document)]";
         public const string IdAttributes = ".//@id";
         public const string LowerTaxonNames = ".//tn[@type='lower']";

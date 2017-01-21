@@ -91,7 +91,7 @@
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
     <Compile Include="Harvesters\IHarvester.cs" />
     <Compile Include="Harvesters\IEnumerableHarvester.cs" />
-    <Compile Include="Harvesters\IStringQueryableXmlHarvester.cs" />
+    <Compile Include="Harvesters\IStringEnumerableXmlHarvester.cs" />
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="ICommandRunner.cs" />
     <Compile Include="ICommentable.cs" />

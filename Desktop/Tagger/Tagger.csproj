@@ -410,6 +410,10 @@
       <Project>{ef204549-80d1-4665-8cfe-8e57c5c88ee6}</Project>
       <Name>Interceptors</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Reporters\Reporters.csproj">
+      <Project>{7351B164-F80A-4FA2-A3E3-9B3DBB2FDAAD}</Project>
+      <Name>Reporters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
       <Name>Serialization</Name>

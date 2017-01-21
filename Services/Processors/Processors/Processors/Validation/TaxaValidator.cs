@@ -3,27 +3,37 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
     using ProcessingTools.Processors.Contracts.Validation;
     using ProcessingTools.Services.Validation.Contracts;
     using ProcessingTools.Services.Validation.Models;
 
     public class TaxaValidator : ITaxaValidator
     {
-        private readonly ITaxaValidationService service;
+        private readonly ITaxonNamesHarvester harvester;
+        private readonly ITaxaValidationService validationService;
         private readonly ILogger logger;
 
-        public TaxaValidator(ITaxaValidationService service, ILogger logger)
+        public TaxaValidator(
+            ITaxonNamesHarvester harvester,
+            ITaxaValidationService validationService,
+            ILogger logger)
         {
-            if (service == null)
+            if (harvester == null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(harvester));
             }
 
-            this.service = service;
+            if (validationService == null)
+            {
+                throw new ArgumentNullException(nameof(validationService));
+            }
+
+            this.harvester = harvester;
+            this.validationService = validationService;
             this.logger = logger;
         }
 
@@ -34,11 +44,14 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var scientificNames = document.XmlDocument.ExtractTaxa(true)
+            var data = await this.harvester.Harvest(document.XmlDocument);
+
+            var scientificNames = data?.Distinct()
                 .Select(s => new TaxonNameServiceModel
                 {
                     Name = s
-                })?.ToArray();
+                })
+                .ToArray();
 
             if (scientificNames == null || scientificNames.Length < 1)
             {
@@ -46,7 +59,7 @@
                 return false;
             }
 
-            var result = await this.service.Validate(scientificNames);
+            var result = await this.validationService.Validate(scientificNames);
 
             var notFoundNames = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => r.ValidatedObject.Name)

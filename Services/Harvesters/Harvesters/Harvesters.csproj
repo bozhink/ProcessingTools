@@ -39,6 +39,7 @@
     <Compile Include="Abstractions\AbstractGenericQueryableXmlHarvester.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Harvesters\Abbreviations\IAbbreviationsHarvester.cs" />
+    <Compile Include="Contracts\Harvesters\Bio\ITaxonNamesHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Content\ITextContentHarvester.cs" />
     <Compile Include="Contracts\Harvesters\ExternalLinks\IExternalLinksHarvester.cs" />
     <Compile Include="Contracts\Factories\IAbbreviationsTransformersFactory.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Contracts\Models\Meta\IAuthor.cs" />
     <Compile Include="Contracts\Models\Meta\IPersonNameModel.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
+    <Compile Include="Harvesters\Bio\TaxonNamesHarvester.cs" />
     <Compile Include="Harvesters\Content\TextContentHarvester.cs" />
     <Compile Include="Harvesters\ExternalLinks\ExternalLinksHarvester.cs" />
     <Compile Include="Harvesters\Meta\ArticleMetaHarvester.cs" />
@@ -78,6 +80,10 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
+      <Project>{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}</Project>
+      <Name>DocumentProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
@@ -85,6 +91,14 @@
     <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
+      <Project>{B2A9C868-B6FF-4F68-9B40-E9B8511F2598}</Project>
+      <Name>Bio.Taxonomy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Strings\Strings.csproj">
+      <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
+      <Name>Strings</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

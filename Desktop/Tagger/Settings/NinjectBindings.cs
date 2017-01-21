@@ -78,16 +78,23 @@
 
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ConsoleLogger>();
+                .To<ConsoleLogger>()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Contracts.IReporter>()
+                .To<Reporters.LogReporter>()
+                .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>();
+                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
+                .InSingletonScope();
 
             this.Bind<ProcessingTools.Cache.Data.Common.Contracts.Repositories.IValidationCacheDataRepository>()
                 .To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
 
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
-                .To<ProcessingTools.Common.Providers.DateTimeProvider>();
+                .To<ProcessingTools.Common.Providers.DateTimeProvider>()
+                .InSingletonScope();
 
             this.Bind<Func<Type, ITaggerCommand>>()
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
