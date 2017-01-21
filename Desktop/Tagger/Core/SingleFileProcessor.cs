@@ -69,8 +69,6 @@
             this.tasks = new ConcurrentQueue<Task>();
         }
 
-        public string InputFileName { get; set; }
-
         public string OutputFileName { get; set; }
 
         public async Task Run(IProgramSettings settings)
@@ -112,34 +110,36 @@
                 throw new InvalidOperationException("The name of the input file is required");
             }
 
-            this.InputFileName = this.settings.FileNames[0];
+            string inputFileName = this.settings.FileNames[0];
+
+            string inputFileNameMessage = "*";
+            string outputFileNameMessage = "*";
 
             if (this.settings.MergeInputFiles)
             {
                 this.OutputFileName = await this.fileNameGenerator.Generate(
-                    Path.Combine(Path.GetDirectoryName(this.InputFileName), FileConstants.DefaultBundleXmlFileName),
+                    Path.Combine(Path.GetDirectoryName(inputFileName), FileConstants.DefaultBundleXmlFileName),
                     FileConstants.MaximalLengthOfGeneratedNewFileName,
                     true);
-
-                this.logger?.Log(
-                    Messages.InputOutputFileNamesMessageFormat,
-                    "*",
-                    this.OutputFileName);
             }
             else
             {
                 this.OutputFileName = numberOfFileNames > 1 ?
                     this.settings.FileNames[1] :
                     await this.fileNameGenerator.Generate(
-                        this.InputFileName,
+                        inputFileName,
                         FileConstants.MaximalLengthOfGeneratedNewFileName,
                         true);
 
-                this.logger?.Log(
-                    Messages.InputOutputFileNamesMessageFormat,
-                    this.InputFileName,
-                    this.OutputFileName);
+                inputFileNameMessage = inputFileName;
             }
+
+            if (!this.settings.SplitDocument)
+            {
+                outputFileNameMessage = this.OutputFileName;
+            }
+
+            this.logger?.Log(Messages.InputOutputFileNamesMessageFormat, inputFileNameMessage, outputFileNameMessage);
         }
 
         private async Task ContextProcessing(XmlNode context)
