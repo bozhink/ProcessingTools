@@ -5,6 +5,6 @@
 
     public interface IWriteDocumentHelper
     {
-        Task<object> Read(IDocument document, IProgramSettings settings);
+        Task<object> Write(IDocument document, IProgramSettings settings);
     }
 }

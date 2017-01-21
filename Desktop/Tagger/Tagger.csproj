@@ -196,6 +196,7 @@
     <Compile Include="Contracts\IStartup.cs" />
     <Compile Include="Contracts\ICommandInfoProvider.cs" />
     <Compile Include="Core\Helpers\ReadDocumentHelper.cs" />
+    <Compile Include="Core\Helpers\WriteDocumentHelper.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Models\CommandInfo.cs" />
     <Compile Include="Core\Commands\ExpandLowerTaxaCommand.cs" />
