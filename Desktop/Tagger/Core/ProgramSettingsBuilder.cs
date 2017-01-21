@@ -140,10 +140,6 @@
                             this.Settings.TagReferences = true;
                             break;
 
-                        case 'V':
-                            this.Settings.ValidateTaxa = true;
-                            break;
-
                         case 'M':
                             this.Settings.MergeInputFiles = true;
                             break;
@@ -244,10 +240,6 @@
                 else if (item.CompareTo("--envo") == 0)
                 {
                     this.Settings.TagEnvironmentTermsWithExtract = true;
-                }
-                else if (item.CompareTo("--validate-taxa") == 0)
-                {
-                    this.Settings.ValidateTaxa = true;
                 }
                 else if (item.CompareTo("--xsl") == 0)
                 {

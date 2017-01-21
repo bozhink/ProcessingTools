@@ -86,8 +86,6 @@
 
         bool UntagSplit { get; }
 
-        bool ValidateTaxa { get; }
-
         bool ZoobankCloneJson { get; }
 
         bool ZoobankCloneXml { get; }

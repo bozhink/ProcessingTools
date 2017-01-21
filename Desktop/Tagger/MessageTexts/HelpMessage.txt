@@ -52,8 +52,6 @@ Options:
     --environments = tag environments (ENVO ID-s)
     --codes = tag institutional and specimen codes
     --abbrev = tag abbreviations
-    --envo = use Greek tagger
-
-    -V, --validate-taxa = validate taxonomic names with Global Names Resolver
+    --envo = use EXTRACT (Greek) tagger
 
     --xsl = run custom XSL transform; syntax: <in xml> <out xml> <xsl file path>

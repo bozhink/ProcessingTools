@@ -51,7 +51,6 @@
             this.ParseHigherTaxa = false;
             this.ExpandLowerTaxa = false;
             this.UntagSplit = false;
-            this.ValidateTaxa = false;
             this.RunXslTransform = false;
             this.ZoobankCloneJson = false;
             this.ZoobankCloneXml = false;
@@ -156,8 +155,6 @@
         public bool TagWebLinks { get; set; }
 
         public bool UntagSplit { get; set; }
-
-        public bool ValidateTaxa { get; set; }
 
         public bool ZoobankCloneJson { get; set; }
 

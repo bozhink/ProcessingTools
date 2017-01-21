@@ -321,11 +321,6 @@
                 await this.InvokeProcessor<IExtractTaxaCommand>(context);
             }
 
-            if (this.settings.ValidateTaxa)
-            {
-                this.tasks.Enqueue(this.InvokeProcessor<IValidateTaxaCommand>(context));
-            }
-
             if (this.settings.UntagSplit)
             {
                 await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsCommand>(context);

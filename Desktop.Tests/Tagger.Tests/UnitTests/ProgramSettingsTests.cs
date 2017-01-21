@@ -564,22 +564,6 @@
         }
 
         [TestMethod]
-        public void ProgramSettings_ValidateTaxaPropertyInNewInstance_ShouldBeFalse()
-        {
-            Assert.IsFalse(this.programSettings.ValidateTaxa, DefaultValueShouldBeFalseMessage);
-        }
-
-        [TestMethod]
-        public void ProgramSettings_ValidChangesOfValidateTaxaProperty_ShouldBePersistent()
-        {
-            this.programSettings.ValidateTaxa = true;
-            Assert.IsTrue(this.programSettings.ValidateTaxa, ValueShouldBeTrueMessage);
-
-            this.programSettings.ValidateTaxa = false;
-            Assert.IsFalse(this.programSettings.ValidateTaxa, ValueShouldBeFalseMessage);
-        }
-
-        [TestMethod]
         public void ProgramSettings_ZoobankCloneJsonPropertyInNewInstance_ShouldBeFalse()
         {
             Assert.IsFalse(this.programSettings.ZoobankCloneJson, DefaultValueShouldBeFalseMessage);
