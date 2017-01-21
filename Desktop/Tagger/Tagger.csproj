@@ -121,6 +121,7 @@
     <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
     <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
     <Compile Include="Contracts\Helpers\IReadDocumentHelper.cs" />
+    <Compile Include="Contracts\Helpers\IWriteDocumentHelper.cs" />
     <Compile Include="Contracts\ICommandInfo.cs" />
     <Compile Include="Contracts\Commands\IExpandLowerTaxaCommand.cs" />
     <Compile Include="Contracts\Commands\IExtractTaxaCommand.cs" />
