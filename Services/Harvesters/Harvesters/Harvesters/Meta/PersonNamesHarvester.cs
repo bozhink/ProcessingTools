@@ -13,7 +13,7 @@
 
     public class PersonNamesHarvester : IPersonNamesHarvester
     {
-        public async Task<IQueryable<IPersonNameModel>> Harvest(XmlNode context)
+        public async Task<IEnumerable<IPersonNameModel>> Harvest(XmlNode context)
         {
             if (context == null)
             {
@@ -31,7 +31,7 @@
                 })
                 .ToArrayAsync();
 
-            return new HashSet<IPersonNameModel>(items).AsQueryable();
+            return new HashSet<IPersonNameModel>(items);
         }
     }
 }

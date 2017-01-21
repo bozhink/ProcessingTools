@@ -3,7 +3,7 @@
     using Models.Abbreviations;
     using ProcessingTools.Contracts.Harvesters;
 
-    public interface IAbbreviationsHarvester : IGenericQueryableXmlHarvester<IAbbreviationModel>
+    public interface IAbbreviationsHarvester : IGenericEnumerableXmlHarvester<IAbbreviationModel>
     {
     }
 }

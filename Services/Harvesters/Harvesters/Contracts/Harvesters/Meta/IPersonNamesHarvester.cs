@@ -3,7 +3,7 @@
     using Models.Meta;
     using ProcessingTools.Contracts.Harvesters;
 
-    public interface IPersonNamesHarvester : IGenericQueryableXmlHarvester<IPersonNameModel>
+    public interface IPersonNamesHarvester : IGenericEnumerableXmlHarvester<IPersonNameModel>
     {
     }
 }

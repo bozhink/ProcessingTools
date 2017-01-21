@@ -87,10 +87,10 @@
     <Compile Include="Files\IO\IXmlFileReader.cs" />
     <Compile Include="Files\IO\IXmlFileWriter.cs" />
     <Compile Include="Harvesters\IGenericDocumentHarvester.cs" />
-    <Compile Include="Harvesters\IGenericQueryableXmlHarvester.cs" />
+    <Compile Include="Harvesters\IGenericEnumerableXmlHarvester.cs" />
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
     <Compile Include="Harvesters\IHarvester.cs" />
-    <Compile Include="Harvesters\IQueryableHarvester.cs" />
+    <Compile Include="Harvesters\IEnumerableHarvester.cs" />
     <Compile Include="Harvesters\IStringQueryableXmlHarvester.cs" />
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="ICommandRunner.cs" />

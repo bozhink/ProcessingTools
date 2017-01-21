@@ -38,7 +38,7 @@
             this.transformersFactory = transformersFactory;
         }
 
-        protected override async Task<IQueryable<IAbbreviationModel>> Run(XmlDocument document)
+        protected override async Task<IEnumerable<IAbbreviationModel>> Run(XmlDocument document)
         {
             var transformer = this.transformersFactory.GetAbbreviationsTransformer();
             var items = await this.serializer.Deserialize<AbbreviationsXmlModel>(transformer, document.DocumentElement);
@@ -50,7 +50,7 @@
 
             var result = new HashSet<IAbbreviationModel>(items.Abbreviations);
 
-            return result.AsQueryable();
+            return result;
         }
     }
 }

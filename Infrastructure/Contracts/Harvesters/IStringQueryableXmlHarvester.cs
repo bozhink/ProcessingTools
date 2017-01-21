@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Harvesters
 {
-    public interface IStringQueryableXmlHarvester : IGenericQueryableXmlHarvester<string>
+    public interface IStringQueryableXmlHarvester : IGenericEnumerableXmlHarvester<string>
     {
     }
 }

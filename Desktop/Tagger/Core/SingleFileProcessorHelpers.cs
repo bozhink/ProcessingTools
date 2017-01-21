@@ -17,22 +17,24 @@
             var timer = new Stopwatch();
             timer.Start();
 
-            try
             {
-                logger?.Log(message);
-                await action.Invoke();
-            }
-            catch (AggregateException e)
-            {
-                foreach (var exception in e.InnerExceptions)
+                try
                 {
-                    logger?.Log(exception, string.Empty);
-                    logger?.Log();
+                    logger?.Log(message);
+                    await action.Invoke();
                 }
-            }
-            catch (Exception e)
-            {
-                logger?.Log(e, string.Empty);
+                catch (AggregateException e)
+                {
+                    foreach (var exception in e.InnerExceptions)
+                    {
+                        logger?.Log(exception, string.Empty);
+                        logger?.Log();
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger?.Log(e, string.Empty);
+                }
             }
 
             logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);

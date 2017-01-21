@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Harvesters.Harvesters.ExternalLinks
 {
     using System;
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
     using Abstractions;
@@ -37,12 +37,12 @@
             this.transformersFactory = transformersFactory;
         }
 
-        protected override async Task<IQueryable<IExternalLinkModel>> Run(XmlDocument document)
+        protected override async Task<IEnumerable<IExternalLinkModel>> Run(XmlDocument document)
         {
             var transformer = this.transformersFactory.GetExternalLinksTransformer();
             var items = await this.serializer.Deserialize<ExternalLinksModel>(transformer, document.OuterXml);
 
-            return items.ExternalLinks?.AsQueryable();
+            return items.ExternalLinks;
         }
     }
 }

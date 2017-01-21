@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Harvesters.Abstractions
 {
     using System;
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
-
     using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Xml.Contracts.Providers;
 
-    public abstract class AbstractGenericQueryableXmlHarvester<T> : IGenericQueryableXmlHarvester<T>
+    public abstract class AbstractGenericQueryableXmlHarvester<T> : IGenericEnumerableXmlHarvester<T>
     {
         private readonly IXmlContextWrapperProvider contextWrapperProvider;
 
@@ -22,7 +21,7 @@
             this.contextWrapperProvider = contextWrapperProvider;
         }
 
-        public Task<IQueryable<T>> Harvest(XmlNode context)
+        public Task<IEnumerable<T>> Harvest(XmlNode context)
         {
             if (context == null)
             {
@@ -34,6 +33,6 @@
             return this.Run(document);
         }
 
-        protected abstract Task<IQueryable<T>> Run(XmlDocument document);
+        protected abstract Task<IEnumerable<T>> Run(XmlDocument document);
     }
 }
