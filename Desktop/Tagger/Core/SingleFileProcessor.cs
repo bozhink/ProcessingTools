@@ -12,18 +12,17 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Files.Generators;
-    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Processors.Contracts.Documents;
 
     public partial class SingleFileProcessor : IFileProcessor
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IDocumentFactory documentFactory;
         private readonly IReadDocumentHelper documentReader;
-        private readonly IDocumentWriter documentWriter;
-        private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IWriteDocumentHelper documentWriter;
+
         private readonly IFileNameGenerator fileNameGenerator;
         private readonly ILogger logger;
+
         private IDocument document;
         private IProgramSettings settings;
         private ConcurrentQueue<Task> tasks;
@@ -32,8 +31,7 @@
             IFileNameGenerator fileNameGenerator,
             IDocumentFactory documentFactory,
             IReadDocumentHelper documentReader,
-            IDocumentWriter documentWriter,
-            IDocumentNormalizer documentNormalizer,
+            IWriteDocumentHelper documentWriter,
             Func<Type, ITaggerCommand> commandFactory,
             ILogger logger)
         {
@@ -57,11 +55,6 @@
                 throw new ArgumentNullException(nameof(documentWriter));
             }
 
-            if (documentNormalizer == null)
-            {
-                throw new ArgumentNullException(nameof(documentNormalizer));
-            }
-
             if (commandFactory == null)
             {
                 throw new ArgumentNullException(nameof(commandFactory));
@@ -71,7 +64,6 @@
             this.documentFactory = documentFactory;
             this.documentReader = documentReader;
             this.documentWriter = documentWriter;
-            this.documentNormalizer = documentNormalizer;
             this.commandFactory = commandFactory;
             this.logger = logger;
 
@@ -364,16 +356,7 @@
 
         private Task WriteOutputFile() => InvokeProcessor(
             Messages.WriteOutputFileMessage,
-            () =>
-            {
-                return this.documentNormalizer.NormalizeToDocumentSchema(this.document)
-                    .ContinueWith(
-                        __ =>
-                        {
-                            __.Wait();
-                            var o = this.documentWriter.WriteDocument(this.OutputFileName, this.document).Result;
-                        });
-            },
+            () => this.documentWriter.Write(this.document, this.settings),
             this.logger);
     }
 }
