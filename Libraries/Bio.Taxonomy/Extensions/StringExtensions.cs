@@ -2,7 +2,7 @@
 {
     using System;
     using Constants;
-    using Types;
+    using ProcessingTools.Enumerations;
 
     public static class StringExtensions
     {

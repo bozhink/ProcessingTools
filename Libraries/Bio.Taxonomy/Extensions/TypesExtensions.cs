@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using ProcessingTools.Bio.Taxonomy.Constants;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
 

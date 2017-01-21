@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Enumerations;
 
     internal class TaxonClassificationServiceModel : ITaxonClassification
     {

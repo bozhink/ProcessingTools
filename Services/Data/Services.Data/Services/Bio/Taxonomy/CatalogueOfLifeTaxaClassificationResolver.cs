@@ -12,8 +12,8 @@
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants;
+    using ProcessingTools.Enumerations;
 
     public class CatalogueOfLifeTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolver
     {

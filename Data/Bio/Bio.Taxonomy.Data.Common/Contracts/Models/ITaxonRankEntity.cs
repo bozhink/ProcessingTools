@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models
 {
     using System.Collections.Generic;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
 
     public interface ITaxonRankEntity : INameable
     {

@@ -7,7 +7,7 @@
     using Contracts.Bio.Taxonomy;
     using Models.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Enumerations;
 
     public class SuffixHigherTaxaRankResolver : ISuffixHigherTaxaRankResolver
     {

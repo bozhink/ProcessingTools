@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Bio.Taxonomy
 {
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Enumerations;
 
     public class TaxonRankServiceModel : ITaxonRank
     {

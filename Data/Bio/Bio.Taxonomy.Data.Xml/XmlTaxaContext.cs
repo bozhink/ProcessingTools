@@ -7,14 +7,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
-
     using Contracts;
     using Models;
-
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Enumerations;
 
     public class XmlTaxaContext : IXmlTaxaContext
     {

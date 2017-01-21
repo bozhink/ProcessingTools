@@ -9,9 +9,9 @@
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder

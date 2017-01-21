@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Contracts
 {
-    using Types;
+    using ProcessingTools.Enumerations;
 
     public interface ITaxonRank
     {

@@ -38,6 +38,7 @@
     <Compile Include="SchemaType.cs" />
     <Compile Include="SortOrder.cs" />
     <Compile Include="SpeciesPartType.cs" />
+    <Compile Include="TaxonRankType.cs" />
     <Compile Include="TaxonType.cs" />
     <Compile Include="ValidationStatus.cs" />
   </ItemGroup>

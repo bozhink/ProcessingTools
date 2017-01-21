@@ -12,8 +12,8 @@
     using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants;
+    using ProcessingTools.Enumerations;
 
     public class GbifTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IGbifTaxaClassificationResolver
     {

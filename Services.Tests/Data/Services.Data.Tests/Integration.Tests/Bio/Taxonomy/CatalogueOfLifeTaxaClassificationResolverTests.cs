@@ -3,7 +3,7 @@
     using System.Linq;
     using NUnit.Framework;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife;
-    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Net.Factories;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
 
