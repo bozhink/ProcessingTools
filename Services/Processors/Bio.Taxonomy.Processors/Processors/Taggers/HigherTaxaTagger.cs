@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts.Taggers;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;

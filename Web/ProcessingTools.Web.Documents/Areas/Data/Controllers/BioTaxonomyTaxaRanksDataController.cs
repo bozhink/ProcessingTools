@@ -5,8 +5,8 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Common;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Models.Bio.Taxonomy;

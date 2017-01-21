@@ -7,9 +7,9 @@
     using Contracts;
     using Contracts.Commands;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class GenericParseHigherTaxaCommand<TService> : ITaggerCommand

@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class TreatmentMetaParserWithDataService<TService> : ITreatmentMetaParserWithDataService<TService>

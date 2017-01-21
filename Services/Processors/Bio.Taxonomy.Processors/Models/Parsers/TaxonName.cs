@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     internal class TaxonName : ITaxonName
     {

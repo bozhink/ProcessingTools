@@ -8,7 +8,6 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts.Taggers;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;

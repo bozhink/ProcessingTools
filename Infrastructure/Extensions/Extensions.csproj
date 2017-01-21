@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyExtensions.cs" />
@@ -43,9 +44,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexExtensions.cs" />
     <Compile Include="ConvertExtensions.cs" />
+    <Compile Include="TaxonomyExtensions.cs" />
     <Compile Include="TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Enumerations\Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>

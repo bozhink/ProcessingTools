@@ -6,12 +6,12 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Strings.Extensions;
 

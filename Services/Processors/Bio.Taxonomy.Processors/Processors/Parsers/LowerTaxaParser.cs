@@ -6,7 +6,6 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.Processors.Comparers;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;

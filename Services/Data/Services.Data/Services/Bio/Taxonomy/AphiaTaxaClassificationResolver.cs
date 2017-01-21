@@ -8,10 +8,10 @@
     using Contracts.Bio.Taxonomy;
     using Models.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class AphiaTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IAphiaTaxaClassificationResolver
     {

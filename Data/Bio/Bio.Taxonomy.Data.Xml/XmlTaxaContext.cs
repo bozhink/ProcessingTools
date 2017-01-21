@@ -10,9 +10,9 @@
     using Contracts;
     using Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
-    using ProcessingTools.Bio.Taxonomy.Extensions;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class XmlTaxaContext : IXmlTaxaContext
     {
