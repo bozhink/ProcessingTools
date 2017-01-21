@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Extensions
 {
     using System;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Extensions related to IDisposable.

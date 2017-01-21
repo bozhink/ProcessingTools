@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Extensions
+﻿namespace ProcessingTools.Enumerations
 {
     public enum DisposeStatus
     {

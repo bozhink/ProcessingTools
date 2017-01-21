@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DisposeStatus.cs" />
     <Compile Include="ExceptionSeverity.cs" />
     <Compile Include="LogType.cs" />
     <Compile Include="MethodType.cs" />
