@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.Tagger.Core.Commands.Generics
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml;
     using Contracts;
     using Contracts.Commands;
     using ProcessingTools.Bio.Taxonomy.Contracts;
@@ -9,8 +11,6 @@
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using System.Xml;
-    using System.Linq;
 
     public class GenericParseHigherTaxaCommand<TService> : ITaggerCommand
         where TService : ITaxaRankResolver
@@ -72,7 +72,6 @@
 
                 await this.reporter.MakeReport();
             }
-
         }
     }
 }

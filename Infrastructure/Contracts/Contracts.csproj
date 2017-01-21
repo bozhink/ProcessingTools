@@ -160,7 +160,6 @@
     <Compile Include="Services\Data\IAddableDataService.cs" />
     <Compile Include="Services\Data\IDeletableDataService.cs" />
     <Compile Include="Services\ISearchService.cs" />
-    <Compile Include="Types\ExceptionSeverity.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />
     <Compile Include="IFormatter.cs" />
