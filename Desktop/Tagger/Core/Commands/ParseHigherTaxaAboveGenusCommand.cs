@@ -13,8 +13,8 @@
     {
         public ParseHigherTaxaAboveGenusCommand(
             IHigherTaxaParserWithDataService<IAboveGenusTaxaRankResolver, ITaxonRank> parser,
-            ILogger logger)
-            : base(parser, logger)
+            IReporter reporter)
+            : base(parser, reporter)
         {
         }
     }

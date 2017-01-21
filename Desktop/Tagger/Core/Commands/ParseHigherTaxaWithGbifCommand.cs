@@ -13,8 +13,8 @@
     {
         public ParseHigherTaxaWithGbifCommand(
             IHigherTaxaParserWithDataService<IGbifTaxaRankResolver, ITaxonRank> parser,
-            ILogger logger)
-            : base(parser, logger)
+            IReporter reporter)
+            : base(parser, reporter)
         {
         }
     }

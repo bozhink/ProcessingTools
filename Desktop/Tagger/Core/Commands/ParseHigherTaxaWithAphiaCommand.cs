@@ -13,8 +13,8 @@
     {
         public ParseHigherTaxaWithAphiaCommand(
             IHigherTaxaParserWithDataService<IAphiaTaxaRankResolver, ITaxonRank> parser,
-            ILogger logger)
-            : base(parser, logger)
+            IReporter reporter)
+            : base(parser, reporter)
         {
         }
     }

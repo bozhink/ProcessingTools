@@ -9,24 +9,31 @@
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using System.Xml;
+    using System.Linq;
 
     public class GenericParseHigherTaxaCommand<TService> : ITaggerCommand
         where TService : ITaxaRankResolver
     {
         private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
-        private readonly ILogger logger;
+        private readonly IReporter reporter;
 
         public GenericParseHigherTaxaCommand(
             IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
-            ILogger logger)
+            IReporter reporter)
         {
             if (parser == null)
             {
                 throw new ArgumentNullException(nameof(parser));
             }
 
+            if (reporter == null)
+            {
+                throw new ArgumentNullException(nameof(reporter));
+            }
+
             this.parser = parser;
-            this.logger = logger;
+            this.reporter = reporter;
         }
 
         public async Task<object> Run(IDocument document, IProgramSettings settings)
@@ -42,9 +49,30 @@
             }
 
             var result = await this.parser.Parse(document.XmlDocument.DocumentElement);
-            await document.XmlDocument.PrintNonParsedTaxa(this.logger);
+
+            await this.PrintNonParsedTaxa(document.XmlDocument);
 
             return result;
+        }
+
+        public async Task PrintNonParsedTaxa(XmlDocument xmlDocument)
+        {
+            var uniqueHigherTaxaList = xmlDocument.ExtractUniqueNonParsedHigherTaxa()
+                .Distinct()
+                .OrderBy(s => s)
+                .ToArray();
+
+            if (uniqueHigherTaxaList.Length > 0)
+            {
+                this.reporter.AppendContent("Non-parsed taxa:");
+                foreach (var taxonName in uniqueHigherTaxaList)
+                {
+                    this.reporter.AppendContent(string.Format("\t{0}", taxonName));
+                }
+
+                await this.reporter.MakeReport();
+            }
+
         }
     }
 }

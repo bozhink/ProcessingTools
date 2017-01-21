@@ -13,8 +13,8 @@
     {
         public ParseHigherTaxaWithCatalogueOfLifeCommand(
             IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolver, ITaxonRank> parser,
-            ILogger logger)
-            : base(parser, logger)
+            IReporter reporter)
+            : base(parser, reporter)
         {
         }
     }

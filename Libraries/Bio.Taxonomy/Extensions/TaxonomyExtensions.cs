@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
@@ -33,22 +32,6 @@
             var result = new HashSet<string>(taxaNames);
 
             return result;
-        }
-
-        public static Task PrintNonParsedTaxa(this XmlDocument xmlDocument, ILogger logger)
-        {
-            return Task.Run(() =>
-            {
-                var uniqueHigherTaxaList = xmlDocument.ExtractUniqueNonParsedHigherTaxa()
-                    .Distinct()
-                    .OrderBy(s => s)
-                    .ToList();
-
-                if (uniqueHigherTaxaList.Count > 0)
-                {
-                    logger?.Log("\nNon-parsed taxa: {0}\n", string.Join("\n\t", uniqueHigherTaxaList));
-                }
-            });
         }
     }
 }
