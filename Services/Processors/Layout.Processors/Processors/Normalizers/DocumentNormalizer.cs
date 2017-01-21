@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Layout.Processors.Contracts.Factories;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 

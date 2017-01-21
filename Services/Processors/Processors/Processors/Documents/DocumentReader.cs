@@ -5,7 +5,7 @@
     using Contracts.Documents;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Data.Contracts.Files;
 
     public class DocumentReader : IDocumentReader

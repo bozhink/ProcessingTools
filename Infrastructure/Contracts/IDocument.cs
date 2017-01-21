@@ -3,8 +3,7 @@
     using System.Linq;
     using System.Text;
     using System.Xml;
-
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public interface IDocument
     {

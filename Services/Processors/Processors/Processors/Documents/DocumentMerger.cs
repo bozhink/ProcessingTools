@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Contracts.Documents;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Xml.Contracts.Providers;
 
     public class DocumentMerger : IDocumentMerger

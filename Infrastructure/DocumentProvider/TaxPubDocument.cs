@@ -6,7 +6,7 @@
     using System.Xml;
     using Contracts;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public class TaxPubDocument : ITaxPubDocument
     {

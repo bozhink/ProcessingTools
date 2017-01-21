@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public class ProgramSettings : IProgramSettings
     {

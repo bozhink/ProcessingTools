@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Tests.UnitTests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Tagger.Core;
 
     [TestClass]

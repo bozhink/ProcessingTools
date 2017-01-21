@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public interface IProgramSettings
     {
