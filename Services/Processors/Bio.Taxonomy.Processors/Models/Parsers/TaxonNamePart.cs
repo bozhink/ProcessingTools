@@ -4,8 +4,8 @@
     using System.Linq.Expressions;
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Enumerations;
 
     internal class TaxonNamePart : MinimalTaxonNamePart, ITaxonNamePart
     {

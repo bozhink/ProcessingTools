@@ -13,6 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;
 

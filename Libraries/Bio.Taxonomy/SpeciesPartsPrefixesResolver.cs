@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using Types;
+    using ProcessingTools.Enumerations;
 
     public class SpeciesPartsPrefixesResolver
     {

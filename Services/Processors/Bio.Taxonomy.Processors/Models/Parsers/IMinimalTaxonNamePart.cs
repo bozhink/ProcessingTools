@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 {
-    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Enumerations;
 
     internal interface IMinimalTaxonNamePart
     {
