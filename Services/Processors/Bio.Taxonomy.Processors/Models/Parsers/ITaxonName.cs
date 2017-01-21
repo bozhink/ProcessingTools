@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers
 {
     using System.Linq;
-    using ProcessingTools.Bio.Taxonomy.Types;
+    using ProcessingTools.Enumerations;
 
     internal interface ITaxonName
     {

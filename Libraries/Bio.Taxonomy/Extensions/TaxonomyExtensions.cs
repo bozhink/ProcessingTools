@@ -4,9 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.Types;
+
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
 
     // TODO: Consolidate different extension namespace-s
     public static class TaxonomyExtensions

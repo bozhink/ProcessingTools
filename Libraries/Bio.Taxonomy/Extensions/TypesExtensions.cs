@@ -5,6 +5,7 @@
     using ProcessingTools.Bio.Taxonomy.Constants;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Enumerations;
 
     public static class TypesExtensions
     {

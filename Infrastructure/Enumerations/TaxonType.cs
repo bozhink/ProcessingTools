@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Types
+﻿namespace ProcessingTools.Enumerations
 {
     public enum TaxonType
     {

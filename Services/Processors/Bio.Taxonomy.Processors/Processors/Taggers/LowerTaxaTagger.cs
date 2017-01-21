@@ -9,8 +9,8 @@
     using System.Xml;
     using Contracts.Taggers;
     using ProcessingTools.Bio.Taxonomy.Extensions;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;

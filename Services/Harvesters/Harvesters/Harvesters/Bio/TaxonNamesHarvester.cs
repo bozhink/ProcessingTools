@@ -7,9 +7,9 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts.Harvesters.Bio;
-    using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.DocumentProvider.Extensions;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Strings.Extensions;
     using ProcessingTools.Xml.Extensions;
