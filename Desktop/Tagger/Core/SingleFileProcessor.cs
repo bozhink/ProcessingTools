@@ -23,7 +23,6 @@
         private readonly IFileNameGenerator fileNameGenerator;
         private readonly ILogger logger;
 
-        private IDocument document;
         private IProgramSettings settings;
         private ConcurrentQueue<Task> tasks;
 
@@ -91,11 +90,11 @@
 
                 this.settings.OutputFileName = this.OutputFileName;
 
-                this.document = await this.documentReader.Read(this.settings);
+                var document = await this.documentReader.Read(this.settings);
 
-                await this.ProcessDocument(this.document.XmlDocument.DocumentElement);
+                await this.ProcessDocument(document.XmlDocument.DocumentElement);
 
-                this.tasks.Enqueue(this.WriteOutputFile());
+                this.tasks.Enqueue(this.WriteOutputFile(document));
 
                 Task.WaitAll(this.tasks.ToArray());
             }
@@ -311,7 +310,7 @@
             }
 
             // Main Tagging part of the program
-            foreach (XmlNode subcontext in this.document.SelectNodes(XPathStrings.HigherDocumentStructure))
+            foreach (XmlNode subcontext in context.SelectNodes(XPathStrings.HigherDocumentStructure))
             {
                 await this.ContextProcessing(subcontext);
             }
@@ -349,9 +348,9 @@
             return;
         }
 
-        private Task WriteOutputFile() => InvokeProcessor(
+        private Task WriteOutputFile(IDocument document) => InvokeProcessor(
             Messages.WriteOutputFileMessage,
-            () => this.documentWriter.Write(this.document, this.settings),
+            () => this.documentWriter.Write(document, this.settings),
             this.logger);
     }
 }

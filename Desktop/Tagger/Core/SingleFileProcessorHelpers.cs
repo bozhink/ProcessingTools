@@ -16,10 +16,10 @@
         {
             var timer = new Stopwatch();
             timer.Start();
-            logger?.Log(message);
 
             try
             {
+                logger?.Log(message);
                 await action.Invoke();
             }
             catch (AggregateException e)
