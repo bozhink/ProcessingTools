@@ -130,8 +130,7 @@ namespace ProcessingTools.Tagger {
         
         /// <summary>
         ///   Looks up a localized string similar to Input file name: {0}
-        ///Output file name: {1}
-        ///{2}.
+        ///Output file name: {1}.
         /// </summary>
         internal static string InputOutputFileNamesMessageFormat {
             get {

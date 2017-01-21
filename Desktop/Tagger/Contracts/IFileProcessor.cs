@@ -8,8 +8,6 @@
 
         string OutputFileName { get; set; }
 
-        string QueryFileName { get; set; }
-
         Task Run(IProgramSettings settings);
     }
 }

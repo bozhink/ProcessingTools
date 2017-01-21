@@ -73,8 +73,6 @@
 
         public string OutputFileName { get; set; }
 
-        public string QueryFileName { get; set; }
-
         public async Task Run(IProgramSettings settings)
         {
             if (settings == null)
@@ -126,8 +124,7 @@
                 this.logger?.Log(
                     Messages.InputOutputFileNamesMessageFormat,
                     "*",
-                    this.OutputFileName,
-                    string.Empty);
+                    this.OutputFileName);
             }
             else
             {
@@ -138,15 +135,10 @@
                         FileConstants.MaximalLengthOfGeneratedNewFileName,
                         true);
 
-                this.QueryFileName = numberOfFileNames > 2 ?
-                    this.settings.FileNames[2] :
-                    string.Empty;
-
                 this.logger?.Log(
                     Messages.InputOutputFileNamesMessageFormat,
                     this.InputFileName,
-                    this.OutputFileName,
-                    this.QueryFileName);
+                    this.OutputFileName);
             }
         }
 
