@@ -4,8 +4,6 @@
 
     public interface IFileProcessor
     {
-        string OutputFileName { get; set; }
-
         Task Run(IProgramSettings settings);
     }
 }
