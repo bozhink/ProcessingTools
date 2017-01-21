@@ -76,7 +76,14 @@
                 return false;
             }
 
+            // Due to some XSL characteristics, double normalization is better than a single one.
             var result = await this.documentNormalizer.NormalizeToDocumentSchema(document)
+                .ContinueWith(
+                    _ =>
+                    {
+                        _.Wait();
+                        return this.documentNormalizer.NormalizeToDocumentSchema(document);
+                    })
                 .ContinueWith(
                     _ =>
                     {
