@@ -6,7 +6,7 @@
     using System.Xml;
     using Commands;
 
-    public interface IInvokeActionHelper
+    public interface IInvokeCommandHelper
     {
         ICollection<Task> Tasks { get; }
 
@@ -14,6 +14,6 @@
 
         Task<object> Invoke<TCommand>(XmlNode context) where TCommand : ITaggerCommand;
 
-        Task<object> InvokeProcessor(Type commandType, XmlNode context);
+        Task<object> Invoke(Type commandType, XmlNode context);
     }
 }

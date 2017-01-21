@@ -35,11 +35,6 @@
                 logger?.Log(e, string.Empty);
             }
 
-            PrintElapsedTime(timer, logger);
-        }
-
-        private static void PrintElapsedTime(Stopwatch timer, ILogger logger)
-        {
             logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
         }
 
