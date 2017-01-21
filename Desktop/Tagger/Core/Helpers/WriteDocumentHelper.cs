@@ -1,10 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Core.Helpers
 {
     using System;
+    using System.IO;
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Helpers;
     using Extensions;
+    using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Documents;
@@ -58,7 +60,12 @@
                 foreach (var subdocument in subdocuments)
                 {
                     var fileName = subdocument.GenerateFileNameFromDocumentId();
-                    await this.WriteSingleDocument(fileName, subdocument);
+
+                    var path = Path.Combine(
+                        Path.GetDirectoryName(settings.OutputFileName),
+                        $"{fileName}.{FileConstants.XmlFileExtension}");
+
+                    await this.WriteSingleDocument(path, subdocument);
                 }
             }
             else
