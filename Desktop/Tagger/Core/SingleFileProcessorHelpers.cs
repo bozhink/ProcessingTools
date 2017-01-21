@@ -8,7 +8,7 @@
     using Contracts.Commands;
     using Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public partial class SingleFileProcessor
     {

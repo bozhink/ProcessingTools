@@ -2,10 +2,10 @@
 {
     using System;
     using System.IO;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Loggers.Base;
-    using ProcessingTools.Loggers.Contracts;
-    using ProcessingTools.Loggers.Diagnostics;
+    using Base;
+    using Contracts;
+    using Diagnostics;
+    using ProcessingTools.Enumerations;
 
     public class TextWriterLogger : LoggerBase, ITextWriterLogger
     {

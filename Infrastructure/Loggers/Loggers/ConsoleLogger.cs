@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Loggers.Loggers
 {
     using System;
-    using ProcessingTools.Contracts.Types;
-    using ProcessingTools.Loggers.Contracts;
+    using Contracts;
+    using ProcessingTools.Enumerations;
 
     public class ConsoleLogger : TextWriterLogger, IConsoleLogger
     {

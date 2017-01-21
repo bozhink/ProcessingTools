@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     public class ZoobankXmlCloner : IZoobankXmlCloner

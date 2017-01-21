@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ExceptionSeverity.cs" />
+    <Compile Include="LogType.cs" />
     <Compile Include="MethodType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaType.cs" />

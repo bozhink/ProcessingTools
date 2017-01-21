@@ -4,7 +4,7 @@
     using System.IO;
     using Ninject.Extensions.Interception;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Logs warning that a given file already exists.

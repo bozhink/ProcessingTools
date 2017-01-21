@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using log4net;
-using ProcessingTools.Contracts.Types;
+using ProcessingTools.Enumerations;
 using ProcessingTools.Loggers.Base;
 using ProcessingTools.Loggers.Contracts;
 

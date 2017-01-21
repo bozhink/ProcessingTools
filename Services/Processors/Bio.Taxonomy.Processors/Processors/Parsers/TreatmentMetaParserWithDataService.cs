@@ -10,7 +10,7 @@
     using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class TreatmentMetaParserWithDataService<TService> : ITreatmentMetaParserWithDataService<TService>

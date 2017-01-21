@@ -4,7 +4,7 @@
     using System.Text;
     using Diagnostics;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public abstract class LoggerBase : ILogger
     {

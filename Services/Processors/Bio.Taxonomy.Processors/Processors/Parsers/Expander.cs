@@ -15,7 +15,7 @@
     using ProcessingTools.Bio.Taxonomy.Types;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Xml.Extensions;
 
     public class Expander : IExpander

@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
     using Contracts;
@@ -11,7 +10,7 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [Description("Clone ZooBank JSON.")]

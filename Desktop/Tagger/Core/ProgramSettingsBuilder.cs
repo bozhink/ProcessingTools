@@ -5,7 +5,6 @@
     using System.Text.RegularExpressions;
     using Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
     using ProcessingTools.Enumerations;
 
     public class ProgramSettingsBuilder

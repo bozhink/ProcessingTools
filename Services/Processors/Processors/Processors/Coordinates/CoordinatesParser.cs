@@ -6,7 +6,7 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Geo;
     using ProcessingTools.Geo.Contracts;
     using ProcessingTools.Processors.Contracts.Coordinates;

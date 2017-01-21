@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Contracts
 {
     using System;
-    using Types;
+    using ProcessingTools.Enumerations;
 
     public interface ILogger
     {

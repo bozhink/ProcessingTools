@@ -94,6 +94,10 @@
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Enumerations\Enumerations.csproj">
+      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Serialization\Serialization.csproj">
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
       <Name>Serialization</Name>

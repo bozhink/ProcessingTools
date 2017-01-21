@@ -4,9 +4,8 @@
     using System.Collections.ObjectModel;
     using System.Management.Automation;
     using System.Threading;
-
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Types;
+    using ProcessingTools.Enumerations;
 
     public class PowerShellScriptInvoker
     {
