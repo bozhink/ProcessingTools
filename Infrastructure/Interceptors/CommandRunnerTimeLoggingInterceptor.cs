@@ -8,11 +8,11 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Types;
 
-    public class CommantRunnerTimeLoggingInterceptor : IInterceptor
+    public class CommandRunnerTimeLoggingInterceptor : IInterceptor
     {
         private readonly ILogger logger;
 
-        public CommantRunnerTimeLoggingInterceptor(ILogger logger)
+        public CommandRunnerTimeLoggingInterceptor(ILogger logger)
         {
             this.logger = logger;
         }

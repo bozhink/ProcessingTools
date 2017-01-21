@@ -8,6 +8,8 @@ namespace ProcessingTools.Interceptors
     using System.Threading.Tasks;
     using Ninject.Extensions.Interception;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class AsyncExceptionHandlingInterceptor : IInterceptor
     {
@@ -21,16 +23,9 @@ namespace ProcessingTools.Interceptors
             this.handler = handler;
         }
 
-        private enum MethodType
-        {
-            Synchronous,
-            AsyncAction,
-            AsyncFunction
-        }
-
         public void Intercept(IInvocation invocation)
         {
-            var delegateType = this.GetDelegateType(invocation.Request.Method);
+            var delegateType = invocation.Request.Method.GetDelegateType();
             switch (delegateType)
             {
                 case MethodType.Synchronous:
@@ -57,22 +52,6 @@ namespace ProcessingTools.Interceptors
             var resultType = invocation.Request.Method.ReturnType.GetGenericArguments()[0];
             var method = HandleAsyncMethodInfo.MakeGenericMethod(resultType);
             invocation.ReturnValue = method.Invoke(this, new[] { invocation.ReturnValue });
-        }
-
-        private MethodType GetDelegateType(MethodInfo method)
-        {
-            var returnType = method.ReturnType;
-            if (returnType == typeof(Task))
-            {
-                return MethodType.AsyncAction;
-            }
-
-            if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>))
-            {
-                return MethodType.AsyncFunction;
-            }
-
-            return MethodType.Synchronous;
         }
 
         private async Task HandleAsync(Task task)

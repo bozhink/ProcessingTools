@@ -26,15 +26,24 @@ namespace ProcessingTools.Interceptors
             catch (Exception e)
             {
                 var sb = new StringBuilder();
-                sb.AppendFormat("Executing {0}.{1} (", invocation.Request.Target.GetType().Name, invocation.Request.Method.Name);
+                sb.AppendFormat(
+                    "Executing {0}.{1} (",
+                    invocation.Request.Target.GetType().Name,
+                    invocation.Request.Method.Name);
 
                 var parameters = invocation.Request.Method.GetParameters();
                 for (int i = 0; i < invocation.Request.Arguments.Length; ++i)
                 {
-                    sb.AppendFormat("{0}={1},", parameters[i].Name, invocation.Request.Arguments[i]);
+                    sb.AppendFormat(
+                        "{0}={1},",
+                        parameters[i].Name,
+                        invocation.Request.Arguments[i]);
                 }
 
-                sb.AppendFormat(") {0} caught: {1})", e.GetType().Name, e.Message);
+                sb.AppendFormat(
+                    ") {0} caught: {1})",
+                    e.GetType().Name,
+                    e.Message);
 
                 this.logger?.Log(e, message: sb.ToString());
                 throw e;

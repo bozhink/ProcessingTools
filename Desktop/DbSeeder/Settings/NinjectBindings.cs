@@ -59,7 +59,7 @@
             this.Bind<ICommandRunner>()
                 .To<SeedCommandRunner>()
                 .Intercept()
-                .With<CommantRunnerTimeLoggingInterceptor>();
+                .With<CommandRunnerTimeLoggingInterceptor>();
 
             this.Bind<ISandbox>()
                 .To<Sandbox>();

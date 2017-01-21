@@ -2,6 +2,9 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Extensions related to Type objects.
@@ -49,6 +52,34 @@
             }
 
             return typeDefaults.GetOrAdd(type, t => Activator.CreateInstance(t));
+        }
+
+        /// <summary>
+        /// Determines if a method is async or not.
+        /// See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
+        /// </summary>
+        /// <param name="method">MethodInfo object.</param>
+        /// <returns></returns>
+        public static MethodType GetDelegateType(this MethodInfo method)
+        {
+            if (method == null)
+            {
+                throw new ArgumentNullException(nameof(method));
+            }
+
+            var returnType = method.ReturnType;
+
+            if (returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>))
+            {
+                return MethodType.AsyncFunction;
+            }
+
+            if (returnType == typeof(Task))
+            {
+                return MethodType.AsyncAction;
+            }
+
+            return MethodType.Synchronous;
         }
     }
 }

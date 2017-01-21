@@ -46,6 +46,12 @@
     <Compile Include="ConvertExtensions.cs" />
     <Compile Include="TypeExtensions.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
