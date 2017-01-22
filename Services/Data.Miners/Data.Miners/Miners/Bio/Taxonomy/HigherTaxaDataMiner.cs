@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Contracts.Miners.Bio.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Constants;
+    using ProcessingTools.Constants;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Strings.Extensions;
 

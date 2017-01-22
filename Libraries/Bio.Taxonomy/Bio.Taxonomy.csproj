@@ -35,7 +35,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\TaxaRegexPatterns.cs" />
     <Compile Include="Contracts\IExtendedTaxonRank.cs" />
     <Compile Include="Contracts\ITaxonClassification.cs" />
     <Compile Include="Contracts\ITaxonRank.cs" />
