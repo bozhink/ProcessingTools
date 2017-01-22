@@ -442,10 +442,6 @@
       <Project>{96899cf4-3e65-4860-8d89-0bec7d4e93ed}</Project>
       <Name>Mappings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
-      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
-      <Name>Bio.Taxonomy</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>

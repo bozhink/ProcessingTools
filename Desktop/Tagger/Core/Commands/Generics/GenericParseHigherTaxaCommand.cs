@@ -6,9 +6,9 @@
     using System.Xml;
     using Contracts;
     using Contracts.Commands;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 

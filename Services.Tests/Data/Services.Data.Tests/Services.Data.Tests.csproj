@@ -72,10 +72,6 @@
       <Project>{B06BF303-2A6C-4FBE-AEE4-26E7A73C2DB1}</Project>
       <Name>Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
-      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
-      <Name>Bio.Taxonomy</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
       <Project>{436A7881-3C88-4892-885D-29D487A42FA4}</Project>
       <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>

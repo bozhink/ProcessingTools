@@ -83,10 +83,6 @@
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
-      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
-      <Name>Bio.Taxonomy</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
       <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
       <Name>Data.Common.Mongo</Name>

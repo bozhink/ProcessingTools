@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Contracts.Bio.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     public abstract class AbstractTaxaRankResolverOverTaxaClassificationResolver : ITaxaRankResolver
     {

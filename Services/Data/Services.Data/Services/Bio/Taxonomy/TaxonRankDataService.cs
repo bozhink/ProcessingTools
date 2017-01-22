@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using Contracts.Bio.Taxonomy;
     using Models.Bio.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     public class TaxonRankDataService : ITaxonRankDataService
     {

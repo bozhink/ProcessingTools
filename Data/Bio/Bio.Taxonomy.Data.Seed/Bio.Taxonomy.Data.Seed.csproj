@@ -84,10 +84,6 @@
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Bio.Taxonomy\Bio.Taxonomy.csproj">
-      <Project>{b2a9c868-b6ff-4f68-9b40-e9b8511f2598}</Project>
-      <Name>Bio.Taxonomy</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.File\Data.Common.File.csproj">
       <Project>{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}</Project>
       <Name>Data.Common.File</Name>

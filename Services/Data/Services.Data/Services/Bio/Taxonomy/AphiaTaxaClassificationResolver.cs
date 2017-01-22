@@ -7,9 +7,9 @@
     using Abstractions.Bio.Taxonomy;
     using Contracts.Bio.Taxonomy;
     using Models.Bio.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 

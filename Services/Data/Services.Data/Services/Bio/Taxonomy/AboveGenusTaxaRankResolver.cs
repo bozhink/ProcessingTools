@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts.Bio.Taxonomy;
     using Models.Bio.Taxonomy;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using System.Collections.Generic;
 
     public class AboveGenusTaxaRankResolver : IAboveGenusTaxaRankResolver
     {

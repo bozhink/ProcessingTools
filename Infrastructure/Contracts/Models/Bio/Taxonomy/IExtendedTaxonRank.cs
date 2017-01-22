@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Contracts
+﻿namespace ProcessingTools.Contracts.Models.Bio.Taxonomy
 {
     public interface IExtendedTaxonRank : ITaxonRank
     {

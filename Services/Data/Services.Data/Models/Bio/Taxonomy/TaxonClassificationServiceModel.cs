@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using ProcessingTools.Bio.Taxonomy.Contracts;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
 
     internal class TaxonClassificationServiceModel : ITaxonClassification
