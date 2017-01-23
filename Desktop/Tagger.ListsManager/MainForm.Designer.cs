@@ -135,7 +135,6 @@
             this.openConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.openConfigFileToolStripMenuItem.Text = "&Open configuration file";
-            this.openConfigFileToolStripMenuItem.Click += new System.EventHandler(this.OpenConfigFileToolStripMenuItem_Click);
             // 
             // openDefaultConfigFileToolStripMenuItem
             // 
@@ -144,7 +143,6 @@
             | System.Windows.Forms.Keys.O)));
             this.openDefaultConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.openDefaultConfigFileToolStripMenuItem.Text = "Open default configuration file";
-            this.openDefaultConfigFileToolStripMenuItem.Click += new System.EventHandler(this.OpenDefaultConfigFileToolStripMenuItem_Click);
             // 
             // closeConfigFileToolStripMenuItem
             // 
@@ -152,7 +150,6 @@
             this.closeConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
             this.closeConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.closeConfigFileToolStripMenuItem.Text = "&Close configuration file";
-            this.closeConfigFileToolStripMenuItem.Click += new System.EventHandler(this.CloseConfigFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

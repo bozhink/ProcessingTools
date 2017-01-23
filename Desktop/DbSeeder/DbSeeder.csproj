@@ -194,10 +194,6 @@
       <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
       <Name>DataResources.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
-      <Project>{BDE55FC4-E7D2-416D-A220-164CA99BD63B}</Project>
-      <Name>Configurator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>

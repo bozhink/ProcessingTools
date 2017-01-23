@@ -210,10 +210,6 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Configurator\Configurator.csproj">
-      <Project>{bde55fc4-e7d2-416d-a220-164ca99bd63b}</Project>
-      <Name>Configurator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>
