@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.DbSeeder.Settings
 {
     using System;
+    using System.Configuration;
     using System.Reflection;
     using Ninject;
     using Ninject.Extensions.Conventions;
@@ -14,6 +15,7 @@
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Reporters;
+    using ProcessingTools.Constants.Configuration;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.
@@ -110,6 +112,39 @@
             });
 
             // Bio.Biorepositories.Data
+            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                .WhenInjectedInto(typeof(ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.BiorepositoriesRepository<>))
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+
+            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                .WhenInjectedInto(typeof(ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.BiorepositoriesRepositoryProvider<>))
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+
+            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                .WhenInjectedInto<ProcessingTools.Bio.Biorepositories.Data.Seed.Seeders.BiorepositoriesDataSeeder>()
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+
             this.Bind(b =>
             {
                 b.From(ProcessingTools.Bio.Biorepositories.Data.Mongo.Assembly.Assembly.GetType().Assembly)

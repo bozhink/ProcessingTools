@@ -3,8 +3,13 @@
     public sealed class AppSettingsKeys
     {
         public const string AbbreviationsXQueryFileName = "AbbreviationsXQueryFilePath";
+        public const string BiorepositoriesMongoConnection = "BiorepositoriesMongoConnection";
         public const string BiorepositoriesMongoDabaseName = "BiorepositoriesMongoDabaseName";
+        public const string BiorepositoriesSeedCsvDataFilesDirectoryName = "BiorepositoriesSeedCsvDataFilesDirectoryName";
+        public const string BiotaxonomyBlackListXmlFileName = "BiotaxonomyBlackListXmlFileName";
+        public const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
         public const string BiotaxonomyMongoDabaseName = "BiotaxonomyMongoDabaseName";
+        public const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
         public const string ClientSettingsProvider = "ClientSettingsProvider";
         public const string CodesRemoveNonCodeNodesXslFileName = "CodesRemoveNonCodeNodesXslPath";
         public const string ConfigJsonFileFileName = "ConfigJsonFilePath";
@@ -16,9 +21,12 @@
         public const string FormatSystemToNlmXslFileName = "FormatSystemToNlmXslPath";
         public const string FormatTaxonTreatmentsXslFileName = "FormatTaxonTreatmentsXslPath";
         public const string FormatXmlToHtmlXslFileFileName = "FormatXmlToHtmlXslFilePath";
+        public const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectory";
+        public const string MaximalTimeInMinutesToWaitTheMainThread = "MaximalTimeInMinutesToWaitTheMainThread";
         public const string NlmInitialFormatXslFileName = "NlmInitialFormatXslPath";
         public const string ParseTreatmentMetaWithInternalInformationXslFileName = "ParseTreatmentMetaWithInternalInformationXslPath";
         public const string RanksDataFileName = "RanksDataFileName";
+        public const string RedisConnection = "RedisConnection";
         public const string ReferencesGetReferencesXslFileName = "ReferencesGetReferencesXslPath";
         public const string ReferencesTagTemplateXslFileName = "ReferencesTagTemplateXslPath";
         public const string RemoveTaxonNamePartsXslFileName = "RemoveTaxonNamePartsXslPath";
@@ -26,22 +34,5 @@
         public const string TaxonTreatmentExtractMaterialsXslFileName = "TaxonTreatmentExtractMaterialsXslPath";
         public const string TextContentXslFileName = "TextContentXslFileName";
         public const string ZooBankRegistrationNlmXslFileName = "ZoobankNlmXslPath";
-        public const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectory";
-
-        public const string BiorepositoriesMongoConnection = "BiorepositoriesMongoConnection";
-        public const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
-        public const string RedisConnection = "RedisConnection";
-
-
-        public const string MaximalTimeInMinutesToWaitTheMainThread = "MaximalTimeInMinutesToWaitTheMainThread";
-
-
-
-
-        public const string BiotaxonomyBlackListXmlFileName = "BiotaxonomyBlackListXmlFileName";
-        public const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
-
-
-        public const string BiorepositoriesSeedCsvDataFilesDirectoryName = "BiorepositoriesSeedCsvDataFilesDirectoryName";
     }
 }
