@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using Contracts;
     using Core;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
     public class Startup : IStartup

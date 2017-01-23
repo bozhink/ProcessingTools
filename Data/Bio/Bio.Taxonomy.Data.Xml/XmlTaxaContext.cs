@@ -16,7 +16,6 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
-
     public class XmlTaxaContext : IXmlTaxaContext
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);

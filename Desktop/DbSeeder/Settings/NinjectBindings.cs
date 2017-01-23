@@ -7,6 +7,7 @@
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
@@ -15,7 +16,6 @@
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Reporters;
-    using ProcessingTools.Constants.Configuration;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.

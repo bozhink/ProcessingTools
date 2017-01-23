@@ -8,10 +8,10 @@
     using Abstractions.Bio.Taxonomy;
     using Contracts.Bio.Taxonomy;
     using Models.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
