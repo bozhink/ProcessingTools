@@ -7,5 +7,6 @@
         public const string XQueyFileName = "xqueryFileName";
         public const string XslFileName = "xslFileName";
         public const string JournalMetaFilesDirectoryName = "journalMetaFilesDirectory";
+        public const string DataFileName = "dataFileName";
     }
 }

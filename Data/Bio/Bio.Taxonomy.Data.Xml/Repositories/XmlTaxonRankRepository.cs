@@ -5,26 +5,26 @@
     using Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
-    using ProcessingTools.Configurator;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Repositories;
 
     public class XmlTaxonRankRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
     {
-        public XmlTaxonRankRepository(IFactory<IXmlTaxaContext> contextFactory, IConfig config)
+        private readonly string dataFileName;
+
+        public XmlTaxonRankRepository(string dataFileName, IFactory<IXmlTaxaContext> contextFactory)
             : base(contextFactory)
         {
-            if (config == null)
+            if (string.IsNullOrWhiteSpace(dataFileName))
             {
-                throw new ArgumentNullException(nameof(config));
+                throw new ArgumentNullException(nameof(dataFileName));
             }
 
-            this.Config = config;
-            this.Context.LoadFromFile(this.Config.RankListXmlFilePath).Wait();
+            this.dataFileName = dataFileName;
+
+            this.Context.LoadFromFile(this.dataFileName).Wait();
         }
 
-        protected IConfig Config { get; private set; }
-
-        public override Task<long> SaveChanges() => this.Context.WriteToFile(this.Config.RankListXmlFilePath);
+        public override Task<long> SaveChanges() => this.Context.WriteToFile(this.dataFileName);
     }
 }

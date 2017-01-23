@@ -66,11 +66,11 @@
 
             // Geo.Data
             this.Bind(b =>
-         {
-             b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                 .SelectAllClasses()
-                 .BindDefaultInterface();
-         });
+            {
+                b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
 
             this.Bind(b =>
             {
@@ -79,7 +79,7 @@
                     .BindDefaultInterface();
             });
 
-            // MediaType.Data
+            // Mediatypes.Data
             this.Bind(b =>
             {
                 b.From(ProcessingTools.Mediatypes.Data.Entity.Assembly.Assembly.GetType().Assembly)

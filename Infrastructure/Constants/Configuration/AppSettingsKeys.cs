@@ -27,5 +27,11 @@
         public const string TextContentXslFileName = "TextContentXslFileName";
         public const string ZooBankRegistrationNlmXslFileName = "ZoobankNlmXslPath";
         public const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectory";
+
+
+
+
+        public const string BiotaxonomyBlackListXmlFileName = "BiotaxonomyBlackListXmlFileName";
+        public const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
     }
 }

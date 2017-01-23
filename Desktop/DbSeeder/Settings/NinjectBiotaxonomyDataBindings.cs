@@ -9,7 +9,6 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
-    using ProcessingTools.Configurator;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
@@ -18,13 +17,6 @@
     {
         public override void Load()
         {
-            this.Bind<IConfig>()
-                .ToMethod(context =>
-                {
-                    return ConfigBuilder.Create();
-                })
-                .InSingletonScope();
-
             // MongoDB
             this.Bind<IBiotaxonomyMongoDatabaseInitializer>()
                 .To<BiotaxonomyMongoDatabaseInitializer>()
@@ -59,10 +51,16 @@
 
             // Common
             this.Bind<ITaxonRankRepository>()
-                .To<XmlTaxonRankRepository>();
+                .To<XmlTaxonRankRepository>()
+                .WithConstructorArgument(
+                    ParameterNames.DataFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyRankListXmlFileName]);
 
             this.Bind<IBiotaxonomicBlackListRepository>()
-                .To<XmlBiotaxonomicBlackListRepository>();
+                .To<XmlBiotaxonomicBlackListRepository>()
+                .WithConstructorArgument(
+                    ParameterNames.DataFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyBlackListXmlFileName]);
 
             this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
                 .ToFactory()
