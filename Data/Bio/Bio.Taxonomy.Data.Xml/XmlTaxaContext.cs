@@ -5,17 +5,22 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
     using Contracts;
     using Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
+
     public class XmlTaxaContext : IXmlTaxaContext
     {
+        private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
+
         public XmlTaxaContext()
         {
             this.Taxa = new ConcurrentDictionary<string, ITaxonRankEntity>();
@@ -27,7 +32,7 @@
 
         private Func<ITaxonRankEntity, TaxonXmlModel> MapTaxonRankEntityToTaxonXmlModel => t => new TaxonXmlModel
         {
-            IsWhiteListed = t.IsWhiteListed,
+            IsWhiteListed = !this.matchHigherTaxa.IsMatch(t.Name),
             Parts = new TaxonPartXmlModel[]
             {
                 new TaxonPartXmlModel
@@ -43,15 +48,19 @@
 
         private Func<TaxonXmlModel, ITaxonRankEntity> MapTaxonXmlModelToTaxonRankEntity => t =>
         {
-            var ranks = t.Parts.FirstOrDefault().Ranks.Values
+            var firstPart = t.Parts.FirstOrDefault();
+
+            var ranks = firstPart.Ranks.Values
                 .Where(r => !string.IsNullOrWhiteSpace(r))
                 .Select(r => r.MapTaxonRankStringToTaxonRankType())
-                .ToList();
+                .ToArray();
+
+            var taxonName = firstPart.Value;
 
             var taxon = new Taxon
             {
-                Name = t.Parts.FirstOrDefault().Value,
-                IsWhiteListed = t.IsWhiteListed,
+                Name = taxonName,
+                IsWhiteListed = !this.matchHigherTaxa.IsMatch(taxonName),
                 Ranks = new HashSet<TaxonRankType>(ranks)
             };
 
