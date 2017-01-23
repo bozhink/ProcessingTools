@@ -1,17 +1,16 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories
 {
     using System;
-
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
+    using Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public class BiorepositoriesRepositoryProvider<T> : IBiorepositoriesRepositoryProvider<T>
         where T : class
     {
-        private readonly IBiorepositoriesMongoDatabaseProvider contextProvider;
+        private readonly IMongoDatabaseProvider contextProvider;
 
-        public BiorepositoriesRepositoryProvider(IBiorepositoriesMongoDatabaseProvider contextProvider)
+        public BiorepositoriesRepositoryProvider(IMongoDatabaseProvider contextProvider)
         {
             if (contextProvider == null)
             {

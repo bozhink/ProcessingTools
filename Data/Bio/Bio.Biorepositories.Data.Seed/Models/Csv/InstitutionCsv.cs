@@ -7,7 +7,7 @@
 
     [FileName("grbio_institutions.csv")]
     [CsvObject]
-    public class Institution : IInstitution
+    public class InstitutionCsv : IInstitution
     {
         private string institutionCode;
 

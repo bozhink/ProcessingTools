@@ -6,6 +6,7 @@
     using Contracts;
     using Core;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Enumerations;
 
     public class Startup : IStartup
@@ -27,7 +28,7 @@
         public void Run(string[] args)
         {
             int timeSpanInMunutesValue = 0;
-            if (!int.TryParse(ConfigurationManager.AppSettings["MaximalTimeInMinutesToWaitTheMainThread"], out timeSpanInMunutesValue))
+            if (!int.TryParse(ConfigurationManager.AppSettings[AppSettingsKeys.MaximalTimeInMinutesToWaitTheMainThread], out timeSpanInMunutesValue))
             {
                 throw new SystemException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
             }

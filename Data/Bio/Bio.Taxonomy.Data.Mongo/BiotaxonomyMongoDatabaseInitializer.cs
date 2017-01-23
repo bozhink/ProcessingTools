@@ -2,17 +2,17 @@
 {
     using System;
     using System.Threading.Tasks;
-
     using Contracts;
     using Models;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
 
     public class BiotaxonomyMongoDatabaseInitializer : IBiotaxonomyMongoDatabaseInitializer
     {
         private readonly IMongoDatabase db;
 
-        public BiotaxonomyMongoDatabaseInitializer(IBiotaxonomyMongoDatabaseProvider provider)
+        public BiotaxonomyMongoDatabaseInitializer(IMongoDatabaseProvider provider)
         {
             if (provider == null)
             {

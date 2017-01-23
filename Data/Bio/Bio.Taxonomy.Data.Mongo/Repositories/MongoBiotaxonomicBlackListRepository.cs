@@ -6,15 +6,15 @@
     using Models;
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
     public class MongoBiotaxonomicBlackListRepository : MongoCrudRepository<MongoBlackListEntity, IBlackListEntity>, IMongoBiotaxonomicBlackListRepository
     {
         private readonly UpdateOptions updateOptions;
 
-        public MongoBiotaxonomicBlackListRepository(IBiotaxonomyMongoDatabaseProvider provider)
+        public MongoBiotaxonomicBlackListRepository(IMongoDatabaseProvider provider)
             : base(provider)
         {
             this.updateOptions = new UpdateOptions

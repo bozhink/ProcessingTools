@@ -6,7 +6,7 @@
 
     [FileName("grbio_staff.csv")]
     [CsvObject]
-    public class Staff : IStaff
+    public class StaffCsv : IStaff
     {
         [CsvColumn("Additional Affiliations")]
         public string AdditionalAffiliations { get; set; }

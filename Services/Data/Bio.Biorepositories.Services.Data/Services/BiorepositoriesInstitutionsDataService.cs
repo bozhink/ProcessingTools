@@ -2,8 +2,8 @@
 {
     using System;
     using System.Linq.Expressions;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Factories;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Models;

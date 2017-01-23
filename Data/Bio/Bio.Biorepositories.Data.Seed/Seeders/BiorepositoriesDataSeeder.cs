@@ -7,23 +7,24 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Contracts;
-
+    using Models.Csv;
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts;
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories;
+    using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Seed;
     using ProcessingTools.Extensions;
     using ProcessingTools.Serialization.Csv;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {
-        private readonly IBiorepositoriesMongoDatabaseProvider contextProvider;
+        private readonly IMongoDatabaseProvider contextProvider;
         private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
-        public BiorepositoriesDataSeeder(IBiorepositoriesMongoDatabaseProvider contextProvider)
+        public BiorepositoriesDataSeeder(IMongoDatabaseProvider contextProvider)
         {
             if (contextProvider == null)
             {
@@ -32,7 +33,7 @@
 
             this.contextProvider = contextProvider;
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings["BiorepositoriesSeedCsvDataFiles"];
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesSeedCsvDataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -45,22 +46,14 @@
 
             var tasks = new List<Task>();
 
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.Collection, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.Collection>());
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.CollectionLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionLabel>());
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.CollectionPer, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionPer>());
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.CollectionPerLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.CollectionPerLabel>());
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.Institution, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.Institution>());
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.InstitutionLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.InstitutionLabel>());
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.Staff, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.Staff>());
-            tasks.Add(
-                this.ImportCsvFileToMongo<Models.Csv.StaffLabel, ProcessingTools.Bio.Biorepositories.Data.Mongo.Models.StaffLabel>());
+            tasks.Add(this.ImportCsvFileToMongo<CollectionCsv, Collection>());
+            tasks.Add(this.ImportCsvFileToMongo<CollectionLabelCsv, CollectionLabel>());
+            tasks.Add(this.ImportCsvFileToMongo<CollectionPerCsv, CollectionPer>());
+            tasks.Add(this.ImportCsvFileToMongo<CollectionPerLabelCsv, CollectionPerLabel>());
+            tasks.Add(this.ImportCsvFileToMongo<InstitutionCsv, Institution>());
+            tasks.Add(this.ImportCsvFileToMongo<InstitutionLabelCsv, InstitutionLabel>());
+            tasks.Add(this.ImportCsvFileToMongo<StaffCsv, Staff>());
+            tasks.Add(this.ImportCsvFileToMongo<StaffLabelCsv, StaffLabel>());
 
             await Task.WhenAll(tasks.ToArray());
 
@@ -97,7 +90,7 @@
                     .ToArray();
                 if (items == null || items.Length < 1)
                 {
-                    throw new ApplicationException("Deserialized items are not valid.");
+                    throw new ApplicationException("De-serialized items are not valid.");
                 }
 
                 var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);

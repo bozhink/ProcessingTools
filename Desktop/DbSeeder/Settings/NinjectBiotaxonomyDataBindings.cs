@@ -6,31 +6,85 @@
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Seed.Seeders;
     using ProcessingTools.Bio.Taxonomy.Data.Xml;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Common.Mongo;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public class NinjectBiotaxonomyDataBindings : NinjectModule
     {
         public override void Load()
         {
             // MongoDB
+            this.Bind<IMongoTaxonRankRepository>()
+                .To<MongoTaxonRankRepository>();
+
+            this.Bind<IMongoBiotaxonomicBlackListRepository>()
+                .To<MongoBiotaxonomicBlackListRepository>();
+
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
+                .WhenInjectedInto<MongoTaxonRankRepository>()
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
+                .WhenInjectedInto<MongoBiotaxonomicBlackListRepository>()
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+
+            // Seeder
             this.Bind<IBiotaxonomyMongoDatabaseInitializer>()
                 .To<BiotaxonomyMongoDatabaseInitializer>()
                 .InSingletonScope();
 
-            this.Bind<IBiotaxonomyMongoDatabaseProvider>()
-                .To<BiotaxonomyMongoDatabaseProvider>()
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
+                .WhenInjectedInto<BiotaxonomyMongoDatabaseSeeder>()
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.BiotaxonomyMongoConnection].ConnectionString)
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
+                .WhenInjectedInto<BiotaxonomyMongoDatabaseInitializer>()
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+
+            this.Bind<IRepositoryFactory<IMongoTaxonRankRepository>>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<IRepositoryFactory<IMongoBiotaxonomicBlackListRepository>>()
+                .ToFactory()
+                .InSingletonScope();
 
             // Xml
             this.Bind<IXmlTaxaContext>()

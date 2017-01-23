@@ -7,8 +7,8 @@
     using Factories;
     using Models;
 
+    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
-    using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories.Contracts;
 
     public class BiorepositoriesPersonalCollectionsDataService : BiorepositoriesDataServiceFactory<CollectionPer, BiorepositoriesCollectionServiceModel>, IBiorepositoriesPersonalCollectionsDataService
     {

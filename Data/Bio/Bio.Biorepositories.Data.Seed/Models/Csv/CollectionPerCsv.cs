@@ -6,7 +6,7 @@
 
     [FileName("grbio_collections_pers.csv")]
     [CsvObject]
-    public class CollectionPer : ICollectionPer
+    public class CollectionPerCsv : ICollectionPer
     {
         [CsvColumn("Access Eligibility and Rules")]
         public string AccessEligibilityAndRules { get; set; }

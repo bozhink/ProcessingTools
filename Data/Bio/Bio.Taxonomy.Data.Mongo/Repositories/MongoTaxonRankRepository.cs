@@ -8,15 +8,15 @@
     using Models;
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Common.Validation;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
     public class MongoTaxonRankRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository
     {
         private readonly UpdateOptions updateOptions;
 
-        public MongoTaxonRankRepository(IBiotaxonomyMongoDatabaseProvider provider)
+        public MongoTaxonRankRepository(IMongoDatabaseProvider provider)
             : base(provider)
         {
             this.updateOptions = new UpdateOptions

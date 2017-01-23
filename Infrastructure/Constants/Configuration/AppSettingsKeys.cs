@@ -9,7 +9,7 @@
         public const string CodesRemoveNonCodeNodesXslFileName = "CodesRemoveNonCodeNodesXslPath";
         public const string ConfigJsonFileFileName = "ConfigJsonFilePath";
         public const string DataFilesDirectoryName = "DataFilesDirectoryPath";
-        public const string DefaultDataFilesDirectoryName = "DefaultDataFilesDirectory";
+        public const string DefaultDataFilesDirectoryName = "DefaultDataFilesDirectoryName";
         public const string ExternalLinksXslFileFileName = "ExternalLinksXslFilePath";
         public const string FormatHtmlToXmlXslFileFileName = "FormatHtmlToXmlXslFilePath";
         public const string FormatNlmToSystemXslFileName = "FormatNlmToSystemXslPath";
@@ -28,10 +28,20 @@
         public const string ZooBankRegistrationNlmXslFileName = "ZoobankNlmXslPath";
         public const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectory";
 
+        public const string BiorepositoriesMongoConnection = "BiorepositoriesMongoConnection";
+        public const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
+        public const string RedisConnection = "RedisConnection";
+
+
+        public const string MaximalTimeInMinutesToWaitTheMainThread = "MaximalTimeInMinutesToWaitTheMainThread";
+
 
 
 
         public const string BiotaxonomyBlackListXmlFileName = "BiotaxonomyBlackListXmlFileName";
         public const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
+
+
+        public const string BiorepositoriesSeedCsvDataFilesDirectoryName = "BiorepositoriesSeedCsvDataFilesDirectoryName";
     }
 }
