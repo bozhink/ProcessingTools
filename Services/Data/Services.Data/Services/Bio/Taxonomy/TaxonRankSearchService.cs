@@ -7,6 +7,7 @@
     using Contracts.Bio.Taxonomy;
     using Models.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
@@ -43,6 +44,7 @@
                         ScientificName = t.Name,
                         Rank = rank
                     }))
+                    .Take(PagingConstants.DefaultLargeNumberOfItemsPerPage)
                     .ToList();
 
                 return result;
