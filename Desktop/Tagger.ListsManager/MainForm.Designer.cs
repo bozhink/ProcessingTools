@@ -29,15 +29,9 @@
 
         private System.Windows.Forms.TabPage rankListTabPage;
 
-        private System.Windows.Forms.StatusStrip statusStrip;
-
         private System.Windows.Forms.TabControl tabControl;
 
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelConfigOutput;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -62,9 +56,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelConfigOutput = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,34 +69,11 @@
             this.blackListManager = new ProcessingTools.ListsManager.ListManagerControl();
             this.rankListTabPage = new System.Windows.Forms.TabPage();
             this.rankListManager = new ProcessingTools.ListsManager.ListManagerControl();
-            this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.blackListTabPage.SuspendLayout();
             this.rankListTabPage.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabelConfigOutput});
-            this.statusStrip.Location = new System.Drawing.Point(0, 594);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(639, 22);
-            this.statusStrip.TabIndex = 0;
-            this.statusStrip.Text = "statusStrip";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(106, 17);
-            this.toolStripStatusLabel1.Text = "Current configuration file:";
-            // 
-            // toolStripStatusLabelConfigOutput
-            // 
-            this.toolStripStatusLabelConfigOutput.Name = "toolStripStatusLabelConfigOutput";
-            this.toolStripStatusLabelConfigOutput.Size = new System.Drawing.Size(0, 17);
             // 
             // menuStrip
             // 
@@ -234,14 +202,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 616);
             this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "Tagger Lists Manager";
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
