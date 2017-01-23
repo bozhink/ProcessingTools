@@ -82,8 +82,7 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.IReporter>()
-                .To<Reporters.LogReporter>()
-                .InSingletonScope();
+                .To<Reporters.LogReporter>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
                 .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()

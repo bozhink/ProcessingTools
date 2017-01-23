@@ -42,8 +42,13 @@
             return Task.Run(() =>
             {
                 // Parse references
-                const string ReferencesXPath = ".//ref|.//reference";
-                context.SelectNodes(ReferencesXPath)
+                context.SelectNodes(XPathStrings.ReferencesXPath)
+                    .Cast<XmlNode>()
+                    .AsParallel()
+                    .ForAll(n => this.ParseSync(n));
+
+                // Parse documents in merged document
+                context.SelectNodes(XPathStrings.HigherDocumentStructure)
                     .Cast<XmlNode>()
                     .AsParallel()
                     .ForAll(n => this.ParseSync(n));

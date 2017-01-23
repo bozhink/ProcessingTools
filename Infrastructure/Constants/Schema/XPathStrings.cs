@@ -21,12 +21,13 @@
         public const string CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes = ".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']";
         public const string CoordinateWithEmptyLatitudeOrLongitude = ".//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']";
         public const string ElementWithFullNameAttribute = ".//*[normalize-space(@" + AttributeNames.FullName + ")!='']";
-        public const string HigherDocumentStructure = "//article[not(ancestor::article)][not(ancestor::document)]|//document[not(ancestor::article)][not(ancestor::document)]";
+        public const string HigherDocumentStructure = ".//article[not(ancestor::article)][not(ancestor::document)]|.//document[not(ancestor::article)][not(ancestor::document)]";
         public const string IdAttributes = ".//@id";
         public const string LowerTaxonNames = ".//tn[@type='lower']";
         public const string MediaElement = ".//media";
         public const string ObjectIdOfTypeIpni = ".//object-id[@content-type='ipni']";
         public const string ObjectIdOfTypeZooBank = ".//object-id[@content-type='zoobank']";
+        public const string ReferencesXPath = ".//ref|.//reference";
         public const string RidAttributes = ".//@rid";
         public const string RootNodesOfContext = "./*";
         public const string SpecimenCodesContentNodes = "//p|//li|//th|//td|//title|//tp:nomenclature-citation";

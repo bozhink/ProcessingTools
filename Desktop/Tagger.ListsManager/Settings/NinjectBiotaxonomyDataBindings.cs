@@ -66,17 +66,23 @@
                 .InSingletonScope();
 
             // Common
+            ////this.Bind<ITaxonRankRepository>()
+            ////    .To<XmlTaxonRankRepository>()
+            ////    .WithConstructorArgument(
+            ////        ParameterNames.DataFileName,
+            ////        ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyRankListXmlFileName]);
+
+            ////this.Bind<IBiotaxonomicBlackListRepository>()
+            ////    .To<XmlBiotaxonomicBlackListRepository>()
+            ////    .WithConstructorArgument(
+            ////        ParameterNames.DataFileName,
+            ////        ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyBlackListXmlFileName]);
+
             this.Bind<ITaxonRankRepository>()
-                .To<XmlTaxonRankRepository>()
-                .WithConstructorArgument(
-                    ParameterNames.DataFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyRankListXmlFileName]);
+                .To<MongoTaxonRankRepository>();
 
             this.Bind<IBiotaxonomicBlackListRepository>()
-                .To<XmlBiotaxonomicBlackListRepository>()
-                .WithConstructorArgument(
-                    ParameterNames.DataFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyBlackListXmlFileName]);
+                .To<MongoBiotaxonomicBlackListRepository>();
 
             this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
                 .ToFactory()
