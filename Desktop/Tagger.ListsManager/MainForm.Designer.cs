@@ -6,8 +6,6 @@
 
         private System.Windows.Forms.TabPage blackListTabPage;
 
-        private System.Windows.Forms.ToolStripMenuItem closeConfigFileToolStripMenuItem;
-
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -17,12 +15,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip;
 
-        private System.Windows.Forms.OpenFileDialog openConfigFileDialog;
-
-        private System.Windows.Forms.ToolStripMenuItem openConfigFileToolStripMenuItem;
-
-        private System.Windows.Forms.ToolStripMenuItem openDefaultConfigFileToolStripMenuItem;
-
         private System.Windows.Forms.ToolStripMenuItem qiutToolStripMenuItem;
 
         private ListManagerControl rankListManager;
@@ -30,8 +22,6 @@
         private System.Windows.Forms.TabPage rankListTabPage;
 
         private System.Windows.Forms.TabControl tabControl;
-
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -58,12 +48,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openDefaultConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.qiutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openConfigFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.blackListTabPage = new System.Windows.Forms.TabPage();
             this.blackListManager = new ProcessingTools.ListsManager.ListManagerControl();
@@ -88,41 +73,10 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openConfigFileToolStripMenuItem,
-            this.openDefaultConfigFileToolStripMenuItem,
-            this.closeConfigFileToolStripMenuItem,
-            this.toolStripSeparator1,
             this.qiutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // openConfigFileToolStripMenuItem
-            // 
-            this.openConfigFileToolStripMenuItem.Name = "openConfigFileToolStripMenuItem";
-            this.openConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.openConfigFileToolStripMenuItem.Text = "&Open configuration file";
-            // 
-            // openDefaultConfigFileToolStripMenuItem
-            // 
-            this.openDefaultConfigFileToolStripMenuItem.Name = "openDefaultConfigFileToolStripMenuItem";
-            this.openDefaultConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.O)));
-            this.openDefaultConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.openDefaultConfigFileToolStripMenuItem.Text = "Open default configuration file";
-            // 
-            // closeConfigFileToolStripMenuItem
-            // 
-            this.closeConfigFileToolStripMenuItem.Name = "closeConfigFileToolStripMenuItem";
-            this.closeConfigFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.closeConfigFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.closeConfigFileToolStripMenuItem.Text = "&Close configuration file";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(271, 6);
             // 
             // qiutToolStripMenuItem
             // 
@@ -131,11 +85,6 @@
             this.qiutToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.qiutToolStripMenuItem.Text = "&Quit";
             this.qiutToolStripMenuItem.Click += new System.EventHandler(this.QiutToolStripMenuItem_Click);
-            // 
-            // openConfigFileDialog
-            // 
-            this.openConfigFileDialog.DefaultExt = "xml";
-            this.openConfigFileDialog.InitialDirectory = "C:\\";
             // 
             // tabControl
             // 
