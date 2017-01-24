@@ -79,6 +79,7 @@
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
     <Compile Include="Contracts\Mediatypes\IMediatypesResolver.cs" />
+    <Compile Include="Contracts\Mediatypes\IMediatypeStringResolver.cs" />
     <Compile Include="Contracts\Meta\IJournalMetaDataService.cs" />
     <Compile Include="Contracts\Meta\IJournalsMetaDataService.cs" />
     <Compile Include="Contracts\Models\Bio\Taxonomy\ITaxonRankWithWhiteListing.cs" />
@@ -116,7 +117,9 @@
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
-    <Compile Include="Services\Mediatypes\MediatypesResolverWithSystemWeb.cs" />
+    <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />
+    <Compile Include="Services\Mediatypes\MediatypeStringResolverWithSystemWeb.cs" />
+    <Compile Include="Services\Mediatypes\MediatypeStringResolverWithWindowsRegistry.cs" />
     <Compile Include="Services\Meta\JournalMetaDataService.cs" />
     <Compile Include="Services\Meta\JournalsMetaDataService.cs" />
     <Compile Include="Services\ProductsDataService.cs" />

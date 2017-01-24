@@ -35,8 +35,12 @@
             this.Bind<IMediatypesRepository>()
                 .To<MediatypesRepository>();
 
+            this.Bind<IMediatypeStringResolver>()
+                .To<MediatypeStringResolverWithWindowsRegistry>()
+                .InSingletonScope();
+
             this.Bind<IMediatypesResolver>()
-                .To<MediatypesResolverWithSystemWeb>();
+                .To<MediatypesResolverWithMediatypeStringResolver>();
         }
     }
 }
