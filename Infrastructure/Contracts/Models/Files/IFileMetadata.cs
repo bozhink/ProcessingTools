@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Contracts.Models.Files
 {
-    public interface IFileMetadata : IObjectIdentifiable, IDescribable, IContentTypable, IModelWithUserInformation
+    public interface IFileMetadata : IObjectIdentifiable, IDescribable, IContentTypable, IModelWithUserInformation, IFileNameable
     {
         long ContentLength { get; }
 
         string FileExtension { get; }
-
-        string FileName { get; }
 
         string FullName { get; }
     }
