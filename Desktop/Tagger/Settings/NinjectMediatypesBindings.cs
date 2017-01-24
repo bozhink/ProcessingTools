@@ -30,7 +30,8 @@
                 .InSingletonScope();
 
             this.Bind<ISearchableMediatypesRepository>()
-                .To<MediatypesRepository>();
+                .To<MediatypesRepository>()
+                .InThreadScope();
 
             this.Bind<IMediatypesRepository>()
                 .To<MediatypesRepository>();
@@ -40,7 +41,7 @@
                 .InSingletonScope();
 
             this.Bind<IMediatypesResolver>()
-                .To<MediatypesResolverWithMediatypeStringResolver>();
+                .To<MediatypesResolverWithDatabase>();
         }
     }
 }

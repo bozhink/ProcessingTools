@@ -4,14 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Contracts.Mediatypes;
+    using Models.Mediatypes;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models.Mediatypes;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
-    using ProcessingTools.Services.Data.Contracts.Mediatypes;
-    using ProcessingTools.Services.Data.Models.Mediatypes;
 
-    // TODO: dispose repository
     public class MediatypesResolverWithDatabase : IMediatypesResolver
     {
         private readonly ISearchableMediatypesRepository repository;
