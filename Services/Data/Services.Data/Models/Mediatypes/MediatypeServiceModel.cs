@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models.Mediatypes;
 
-    public class MediatypeServiceModel : IMediatype
+    internal class MediatypeServiceModel : IMediatype
     {
         public string FileExtension { get; set; }
 

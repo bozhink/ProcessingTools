@@ -159,6 +159,7 @@
     <Compile Include="Models\IFileNameable.cs" />
     <Compile Include="Models\IMediaTypable.cs" />
     <Compile Include="Models\IUrlLinkable.cs" />
+    <Compile Include="Models\Mediatypes\IFileWithMediatype.cs" />
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
