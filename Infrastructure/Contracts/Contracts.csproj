@@ -96,7 +96,7 @@
     <Compile Include="ICommandRunner.cs" />
     <Compile Include="ICommentable.cs" />
     <Compile Include="IContent.cs" />
-    <Compile Include="IContentTypable.cs" />
+    <Compile Include="Models\IContentTypable.cs" />
     <Compile Include="IContextFormatter.cs" />
     <Compile Include="IContextParser.cs" />
     <Compile Include="IContextProcessor.cs" />
