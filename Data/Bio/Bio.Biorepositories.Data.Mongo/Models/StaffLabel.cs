@@ -3,7 +3,7 @@
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class StaffLabel : IStringIdentifiable, IStaffLabel
     {

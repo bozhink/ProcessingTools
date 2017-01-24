@@ -2,7 +2,7 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Documents.Data.Common.Contracts.Models;
 
     public class JournalMeta : IStringIdentifiable, IJournalMeta

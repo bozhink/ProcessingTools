@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Common.Contracts.Models
 {
     using System;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
 
     // TODO: separation with IFileEntity

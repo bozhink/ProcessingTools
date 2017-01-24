@@ -2,7 +2,7 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;

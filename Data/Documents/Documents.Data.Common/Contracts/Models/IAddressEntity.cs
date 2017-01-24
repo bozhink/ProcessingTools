@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Common.Contracts.Models
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public interface IAddressEntity : IGuidIdentifiable, IModelWithUserInformation
     {

@@ -4,7 +4,7 @@
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Biorepositories.Data.Common.Enumerations;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class Institution : IStringIdentifiable, IInstitution
     {

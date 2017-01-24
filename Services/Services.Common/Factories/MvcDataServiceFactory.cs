@@ -7,8 +7,8 @@
     using Contracts;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
 

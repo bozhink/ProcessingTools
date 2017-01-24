@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Documents.Data.Common.Contracts.Models
 {
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
 
     public interface IFileEntity : IGuidIdentifiable, IModelWithUserInformation, IDescribable

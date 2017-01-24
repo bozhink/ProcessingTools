@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Models
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class GeoNameServiceModel : INameableIntegerIdentifiable
     {

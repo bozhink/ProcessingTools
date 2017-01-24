@@ -2,9 +2,8 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class ModelWithUserInformation : IModelWithUserInformation
     {

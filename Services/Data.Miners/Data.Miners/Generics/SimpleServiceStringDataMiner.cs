@@ -6,8 +6,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Miners;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Common.Contracts;
 
