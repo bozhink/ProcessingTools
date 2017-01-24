@@ -12,11 +12,11 @@
     using ProcessingTools.Services.Data.Models.Mediatypes;
 
     // TODO: dispose repository
-    public class MediatypesResolver : IMediatypesResolver
+    public class MediatypesResolverWithDatabase : IMediatypesResolver
     {
         private readonly ISearchableMediatypesRepository repository;
 
-        public MediatypesResolver(ISearchableMediatypesRepository repository)
+        public MediatypesResolverWithDatabase(ISearchableMediatypesRepository repository)
         {
             if (repository == null)
             {
@@ -28,7 +28,7 @@
 
         public async Task<IEnumerable<IMediatype>> ResolveMediatype(string fileExtension)
         {
-            string extension = fileExtension?.TrimStart('.', ' ', '\n', '\r');
+            string extension = fileExtension?.Trim('.', ' ', '\n', '\r');
             if (string.IsNullOrWhiteSpace(extension))
             {
                 throw new ArgumentNullException(nameof(fileExtension));

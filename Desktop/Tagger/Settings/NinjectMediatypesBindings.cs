@@ -8,8 +8,10 @@
     using ProcessingTools.Mediatypes.Data.Entity.Factories;
     using ProcessingTools.Mediatypes.Data.Entity.Providers;
     using ProcessingTools.Mediatypes.Data.Entity.Repositories;
+    using ProcessingTools.Services.Data.Contracts.Mediatypes;
+    using ProcessingTools.Services.Data.Services.Mediatypes;
 
-    public class NinjectMediatypesDataBindings : NinjectModule
+    public class NinjectMediatypesBindings : NinjectModule
     {
         public override void Load()
         {
@@ -32,6 +34,9 @@
 
             this.Bind<IMediatypesRepository>()
                 .To<MediatypesRepository>();
+
+            this.Bind<IMediatypesResolver>()
+                .To<MediatypesResolverWithSystemWeb>();
         }
     }
 }

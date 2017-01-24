@@ -115,7 +115,8 @@
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />
-    <Compile Include="Services\Mediatypes\MediatypesResolver.cs" />
+    <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
+    <Compile Include="Services\Mediatypes\MediatypesResolverWithSystemWeb.cs" />
     <Compile Include="Services\Meta\JournalMetaDataService.cs" />
     <Compile Include="Services\Meta\JournalsMetaDataService.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
