@@ -74,11 +74,13 @@
     <Compile Include="Abstractions\Seeders\GenericDbSeeder.cs" />
     <Compile Include="Contracts\Core\IEngine.cs" />
     <Compile Include="Contracts\Providers\ICommandNamesProvider.cs" />
+    <Compile Include="Contracts\Seeders\IMediatypesMongoDbSeeder.cs" />
     <Compile Include="Core\Sandbox.cs" />
     <Compile Include="Core\SeedCommandRunner.cs" />
     <Compile Include="Providers\CommandNamesProvider.cs" />
     <Compile Include="Providers\HelpProvider.cs" />
     <Compile Include="Providers\SeederTypesProvider.cs" />
+    <Compile Include="Seeders\MediatypesMongoDbSeeder.cs" />
     <Compile Include="Settings\NinjectBiotaxonomyDataBindings.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
     <Compile Include="Contracts\Seeders\IBioDbSeeder.cs" />
@@ -181,6 +183,10 @@
     <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Entity\Mediatypes.Data.Entity.csproj">
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>Mediatypes.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Mongo\Mediatypes.Data.Mongo.csproj">
+      <Project>{326F9B92-08F1-46C4-9B66-F8AE39170674}</Project>
+      <Name>Mediatypes.Data.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Seed\Mediatypes.Data.Seed.csproj">
       <Project>{d284eedf-76af-4bd1-a10d-cefe39ff59d0}</Project>
