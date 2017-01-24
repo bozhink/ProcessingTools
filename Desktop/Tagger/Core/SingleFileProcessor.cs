@@ -303,10 +303,18 @@
                 await this.InvokeProcessor<IParseHigherTaxaAboveGenusCommand>(context);
             }
 
-            // Main Tagging part of the program
-            foreach (XmlNode subcontext in context.SelectNodes(XPathStrings.HigherDocumentStructure))
+            // Contextual processing
+            var subcontextNodeList = context.SelectNodes(XPathStrings.HigherDocumentStructure);
+            if (subcontextNodeList.Count < 1)
             {
-                await this.ContextProcessing(subcontext);
+                await this.ContextProcessing(context);
+            }
+            else
+            {
+                foreach (XmlNode subcontext in subcontextNodeList)
+                {
+                    await this.ContextProcessing(subcontext);
+                }
             }
 
             if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
