@@ -44,11 +44,7 @@
                 }
                 else
                 {
-                    return response.Select(e => new MediatypeServiceModel
-                    {
-                        Mimetype = e.Mimetype,
-                        Mimesubtype = e.Mimesubtype
-                    });
+                    return response.Select(e => new MediatypeServiceModel(e.Mimetype, e.Mimesubtype));
                 }
             }
             catch
@@ -59,14 +55,10 @@
 
         private IEnumerable<IMediatype> GetStaticResult(string mimetype, string mimesubtype)
         {
-            var result = new IMediatype[1];
-            result[0] = new MediatypeServiceModel
+            return new IMediatype[]
             {
-                Mimetype = mimetype,
-                Mimesubtype = mimesubtype
+                new MediatypeServiceModel(mimetype, mimesubtype)
             };
-
-            return result;
         }
     }
 }
