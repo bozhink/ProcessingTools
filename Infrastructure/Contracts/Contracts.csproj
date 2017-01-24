@@ -148,7 +148,6 @@
     <Compile Include="IStringItemsProvider.cs" />
     <Compile Include="ITransformer.cs" />
     <Compile Include="ITypesProvider.cs" />
-    <Compile Include="IUrlLinkable.cs" />
     <Compile Include="IXmlContextNormalizer.cs" />
     <Compile Include="IXmlContextParser.cs" />
     <Compile Include="IXmlContextTagger.cs" />
@@ -159,6 +158,7 @@
     <Compile Include="Models\Files\IFileMetadata.cs" />
     <Compile Include="Models\IFileNameable.cs" />
     <Compile Include="Models\IMediaTypable.cs" />
+    <Compile Include="Models\IUrlLinkable.cs" />
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
