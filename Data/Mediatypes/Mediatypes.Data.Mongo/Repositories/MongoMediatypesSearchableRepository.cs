@@ -1,17 +1,34 @@
 ﻿namespace ProcessingTools.Mediatypes.Data.Mongo.Repositories
 {
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Models;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
     using System;
     using System.Collections.Generic;
+    using Models;
+    using MongoDB.Driver;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Mediatypes.Data.Common.Contracts.Models;
+    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
     public class MongoMediatypesSearchableRepository : ISearchableMediatypesRepository
     {
+        private readonly IMongoCollection<Mediatype> collection;
+
+        public MongoMediatypesSearchableRepository(IMongoDatabaseProvider databaseProvider)
+        {
+            if (databaseProvider == null)
+            {
+                throw new ArgumentNullException(nameof(databaseProvider));
+            }
+
+            string collectionName = CollectionNameFactory.Create<Mediatype>();
+            this.collection = databaseProvider.Create().GetCollection<Mediatype>(collectionName);
+        }
+
         public IEnumerable<IMediatype> GetByFileExtension(string fileExtension)
         {
-
-
-            throw new NotImplementedException();
+            var extension = fileExtension?.ToLower().Trim(' ', '.');
+            var cursor = this.collection.Find(e => e.FileExtension.ToLower() == extension).ToCursor();
+            return cursor.ToEnumerable();
         }
     }
 }
