@@ -9,6 +9,8 @@
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Common.Mongo;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.DbSeeder.Core;
@@ -89,12 +91,38 @@
                     .BindDefaultInterface();
             });
 
+            this.Bind<ProcessingTools.Mediatypes.Data.Mongo.Contracts.IMediatypesMongoDatabaseInitializer>()
+                .To<ProcessingTools.Mediatypes.Data.Mongo.MediatypesMongoDatabaseInitializer>()
+                .InSingletonScope();
+
             this.Bind(b =>
             {
                 b.From(ProcessingTools.Mediatypes.Data.Seed.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            this.Bind<IMongoDatabaseProvider>()
+                .To<MongoDatabaseProvider>()
+                .WhenInjectedInto<ProcessingTools.Mediatypes.Data.Seed.Seeders.MediatypesMongoDatabaseSeeder>()
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDabaseName]);
+
+            this.Bind<IMongoDatabaseProvider>()
+               .To<MongoDatabaseProvider>()
+               .WhenInjectedInto<ProcessingTools.Mediatypes.Data.Mongo.MediatypesMongoDatabaseInitializer>()
+               .InSingletonScope()
+               .WithConstructorArgument(
+                   ParameterNames.ConnectionString,
+                   ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoConnection])
+               .WithConstructorArgument(
+                   ParameterNames.DatabaseName,
+                   ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDabaseName]);
 
             // DataResources
             this.Bind(b =>

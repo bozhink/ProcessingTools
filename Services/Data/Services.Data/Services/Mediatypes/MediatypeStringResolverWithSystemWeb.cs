@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
 {
+    using System.Threading.Tasks;
     using System.Web;
     using Contracts.Mediatypes;
-    using System.Threading.Tasks;
 
     public class MediatypeStringResolverWithSystemWeb : IMediatypeStringResolver
     {
