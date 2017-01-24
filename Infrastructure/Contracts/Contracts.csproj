@@ -95,7 +95,7 @@
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="ICommandRunner.cs" />
     <Compile Include="Models\ICommentable.cs" />
-    <Compile Include="IContent.cs" />
+    <Compile Include="Models\IContent.cs" />
     <Compile Include="Models\IContentTypable.cs" />
     <Compile Include="IContextFormatter.cs" />
     <Compile Include="IContextParser.cs" />
