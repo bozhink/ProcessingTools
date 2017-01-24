@@ -7,8 +7,6 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
@@ -17,9 +15,8 @@
     public class MediatypesParser : IMediatypesParser
     {
         private readonly IMediatypesResolver mediatypesResolver;
-        private readonly ILogger logger;
 
-        public MediatypesParser(IMediatypesResolver mediatypesResolver, ILogger logger)
+        public MediatypesParser(IMediatypesResolver mediatypesResolver)
         {
             if (mediatypesResolver == null)
             {
@@ -27,7 +24,6 @@
             }
 
             this.mediatypesResolver = mediatypesResolver;
-            this.logger = logger;
         }
 
         public async Task<object> Parse(XmlNode context)
@@ -37,26 +33,25 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            XmlNodeList mediaElements = context.SelectNodes(XPathStrings.MediaElement);
-
-            if (mediaElements.Count < 1)
+            var mediaElementList = context.SelectNodes(XPathStrings.MediaElement);
+            if (mediaElementList.Count < 1)
             {
                 return false;
             }
 
-            var extensions = this.GetExtensions(mediaElements);
-            var mediatypes = await this.ResolveMediaTypes(extensions);
+            var extensions = this.GetExtensions(mediaElementList);
 
-            foreach (XmlNode mediaNode in mediaElements)
+            var mediatypes = await this.ResolveMediatypes(extensions);
+
+            foreach (XmlNode mediaNode in mediaElementList)
             {
                 var fileName = this.GetFileName(mediaNode);
                 if (string.IsNullOrWhiteSpace(fileName))
                 {
-                    this.logger?.Log(LogType.Warning, "File name is not provided.");
                     continue;
                 }
 
-                var mediatype = this.GetMediaTypeOfFileName(mediatypes, fileName);
+                var mediatype = this.GetResolvedMediatypeForFileName(mediatypes, fileName);
 
                 mediaNode
                     .SetOrUpdateAttribute(AttributeNames.MimeType, mediatype.MimeType)
@@ -87,28 +82,28 @@
             return mediaNode.Attributes[AttributeNames.XLinkHrefFullAttributeName]?.InnerText;
         }
 
-        private IMediaType GetMediaTypeOfFileName(IEnumerable<IMediaType> mediatypes, string fileName)
+        private IMediaType GetResolvedMediatypeForFileName(IEnumerable<IMediaType> mediatypes, string fileName)
         {
-            IMediaType mediatype = new MediaTypeResponseModel
+            IMediaType result = new MediatypeResponseModel
             {
                 FileExtension = this.GetFileExtension(fileName)
             };
 
-            if (!string.IsNullOrEmpty(mediatype.FileExtension))
+            if (!string.IsNullOrEmpty(result.FileExtension))
             {
-                var result = mediatypes.FirstOrDefault(t => t.FileExtension == mediatype.FileExtension);
-                if (result != null)
+                var mediatype = mediatypes.FirstOrDefault(t => t.FileExtension == result.FileExtension);
+                if (mediatype != null)
                 {
-                    mediatype = result;
+                    result = mediatype;
                 }
             }
 
-            return mediatype;
+            return result;
         }
 
-        private async Task<IMediaType> ResolveFileExtensionToMediaType(string extension)
+        private async Task<IMediaType> ResolveFileExtensionToMediatype(string extension)
         {
-            var result = new MediaTypeResponseModel
+            var result = new MediatypeResponseModel
             {
                 FileExtension = extension
             };
@@ -118,7 +113,6 @@
 
             if (response != null)
             {
-                result.FileExtension = response.FileExtension;
                 result.MimeType = response.Mimetype;
                 result.MimeSubtype = response.Mimesubtype;
             }
@@ -126,16 +120,16 @@
             return result;
         }
 
-        private async Task<IEnumerable<IMediaType>> ResolveMediaTypes(IEnumerable<string> extensions)
+        private async Task<IEnumerable<IMediaType>> ResolveMediatypes(IEnumerable<string> extensions)
         {
-            var mediatypes = new HashSet<IMediaType>();
+            var result = new HashSet<IMediaType>();
             foreach (var extension in extensions)
             {
-                var mediatype = await this.ResolveFileExtensionToMediaType(extension);
-                mediatypes.Add(mediatype);
+                var mediatype = await this.ResolveFileExtensionToMediatype(extension);
+                result.Add(mediatype);
             }
 
-            return mediatypes;
+            return result;
         }
     }
 }

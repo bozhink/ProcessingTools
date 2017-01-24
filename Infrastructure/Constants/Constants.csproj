@@ -40,7 +40,7 @@
     <Compile Include="Configuration\ParameterNames.cs" />
     <Compile Include="Content\ContentTypeConstants.cs" />
     <Compile Include="FileConstants.cs" />
-    <Compile Include="Media\MediaTypes.cs" />
+    <Compile Include="MediaTypes.cs" />
     <Compile Include="ModelValidationConstants.cs" />
     <Compile Include="PagingConstants.cs" />
     <Compile Include="ProcessingConstants.cs" />

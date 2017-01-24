@@ -118,7 +118,7 @@
     <Compile Include="Models\Floats\GraphicFloatObject.cs" />
     <Compile Include="Models\Floats\HabitusFloatObject.cs" />
     <Compile Include="Models\Floats\MapFloatObject.cs" />
-    <Compile Include="Models\Floats\MediaTypeResponseModel.cs" />
+    <Compile Include="Models\Floats\MediatypeResponseModel.cs" />
     <Compile Include="Models\Floats\MovieFloatObject.cs" />
     <Compile Include="Models\Floats\PictureFloatObject.cs" />
     <Compile Include="Models\Floats\PlateFloatObject.cs" />
