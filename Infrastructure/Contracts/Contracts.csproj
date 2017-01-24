@@ -157,6 +157,7 @@
     <Compile Include="Models\Bio\Taxonomy\ITaxonClassification.cs" />
     <Compile Include="Models\Bio\Taxonomy\ITaxonRank.cs" />
     <Compile Include="Models\Files\IFileMetadata.cs" />
+    <Compile Include="Models\IMediaTypable.cs" />
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
