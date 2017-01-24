@@ -11,15 +11,10 @@
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
     using ProcessingTools.Bio.Environments.Data.Entity.Models;
     using ProcessingTools.Bio.Environments.Data.Seed.Contracts;
+    using ProcessingTools.Constants.Configuration;
 
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {
-        private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
-        private const string EnvironmentsEntitiesFileNameKey = "EnvironmentsEntitiesFileName";
-        private const string EnvironmentsNamesFileNameKey = "EnvironmentsNamesFileName";
-        private const string EnvironmentsGroupsFileNameKey = "EnvironmentsGroupsFileName";
-        private const string EnvironmentsGlobalFileNameKey = "EnvironmentsGlobalFileName";
-
         private readonly IBioEnvironmentsDbContextProvider contextProvider;
         private readonly Type stringType = typeof(string);
 
@@ -35,7 +30,7 @@
 
             this.contextProvider = contextProvider;
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -43,13 +38,13 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            await this.ImportEnvironmentsEntities(ConfigurationManager.AppSettings[EnvironmentsEntitiesFileNameKey]);
+            await this.ImportEnvironmentsEntities(ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsEntitiesFileName]);
 
-            await this.ImportEnvironmentsNames(ConfigurationManager.AppSettings[EnvironmentsNamesFileNameKey]);
+            await this.ImportEnvironmentsNames(ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsNamesFileName]);
 
-            await this.ImportEnvironmentsGroups(ConfigurationManager.AppSettings[EnvironmentsGroupsFileNameKey]);
+            await this.ImportEnvironmentsGroups(ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsGroupsFileName]);
 
-            await this.ImportEnvironmentsGlobals(ConfigurationManager.AppSettings[EnvironmentsGlobalFileNameKey]);
+            await this.ImportEnvironmentsGlobals(ConfigurationManager.AppSettings[AppSettingsKeys.EnvironmentsGlobalFileName]);
 
             if (this.exceptions.Count > 0)
             {

@@ -9,6 +9,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;
@@ -16,8 +17,6 @@
 
     public class MediatypesDataSeeder : IMediatypesDataSeeder
     {
-        private const string MediaTypeDataJsonFilePathKey = "MediaTypeDataJsonFilePath";
-
         private readonly IMediatypesDbContextProvider contextProvider;
 
         private ConcurrentQueue<Exception> exceptions;
@@ -60,7 +59,7 @@
 
         private ExtensionJson[] ParseDataJsonFile()
         {
-            string jsonFilePath = ConfigurationManager.AppSettings[MediaTypeDataJsonFilePathKey];
+            string jsonFilePath = ConfigurationManager.AppSettings[AppSettingsKeys.MediaTypeDataJsonFileName];
 
             string jsonString = File.ReadAllText(jsonFilePath);
 

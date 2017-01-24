@@ -89,13 +89,13 @@
                 .Named(FormatXmlToHtmlTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFileFileName]);
+                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFileName]);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FormatHtmlToXmlTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFileFileName]);
+                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFileName]);
 
             // Factories
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IReferencesTransformersFactory>()

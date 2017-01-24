@@ -4,11 +4,10 @@
     using System.IO;
     using System.Xml;
     using System.Xml.Serialization;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
-
     using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
+    using ProcessingTools.Constants.Configuration;
 
     [TestClass]
     public class BlackListXmlModelTests
@@ -17,7 +16,7 @@
         public void BlackListXmlModel_Deserialize_ShouldWork()
         {
             const int NumberOfListItems = 2;
-            string directoryFileName = ConfigurationManager.AppSettings["DataFilesDirectoryPath"];
+            string directoryFileName = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             string fileName = ConfigurationManager.AppSettings["BlackListSampleFileName"];
 
             BlackListXmlModel list = null;

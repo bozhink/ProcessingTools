@@ -46,7 +46,7 @@
         {
             get
             {
-                string path = ConfigurationManager.AppSettings[AppSettingsKeys.DefaultDataFilesDirectoryName];
+                string path = ConfigurationManager.AppSettings[AppSettingsKeys.AppDataDirectoryName];
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);

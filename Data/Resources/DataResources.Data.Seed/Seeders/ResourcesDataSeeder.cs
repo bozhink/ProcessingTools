@@ -6,6 +6,7 @@
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Entity.Seed;
     using ProcessingTools.DataResources.Data.Entity;
     using ProcessingTools.DataResources.Data.Entity.Contracts;
@@ -14,10 +15,6 @@
 
     public class ResourcesDataSeeder : IResourcesDataSeeder
     {
-        private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
-        private const string ProductsSeedFileNameKey = "ProductsSeedFileName";
-        private const string InstitutionsSeedFileNameKey = "InstitutionsSeedFileName";
-
         private readonly IResourcesDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
@@ -35,7 +32,7 @@
             this.contextFactory = contextFactory;
             this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(this.contextFactory);
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -47,10 +44,10 @@
 
             tasks.Add(
                 this.SeedProducts(
-                    ConfigurationManager.AppSettings[ProductsSeedFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.ProductsSeedFileName]));
             tasks.Add(
                 this.SeedInstitutions(
-                    ConfigurationManager.AppSettings[InstitutionsSeedFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.InstitutionsSeedFileName]));
 
             await Task.WhenAll(tasks.ToArray());
 

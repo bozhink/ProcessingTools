@@ -92,7 +92,7 @@
                 .Named(ExternalLinksTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFileFileName]);
+                    ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFileName]);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(TextContentTransformerName)

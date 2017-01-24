@@ -10,14 +10,11 @@
     using ProcessingTools.Bio.Data.Entity.Contracts;
     using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Bio.Data.Seed.Contracts;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioDataSeeder : IBioDataSeeder
     {
-        private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
-        private const string MorphologicalEpithetsFileNameKey = "MorphologicalEpithetsFileName";
-        private const string TypeStatusesFileNameKey = "TypeStatusesFileName";
-
         private readonly IBioDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
@@ -35,7 +32,7 @@
             this.contextFactory = contextFactory;
             this.seeder = new FileByLineDbContextSeeder<BioDbContext>(this.contextFactory);
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -47,10 +44,10 @@
 
             tasks.Add(
                 this.SeedMorphologicalEpithets(
-                    ConfigurationManager.AppSettings[MorphologicalEpithetsFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.MorphologicalEpithetsFileName]));
             tasks.Add(
                 this.SeedTypeStatuses(
-                    ConfigurationManager.AppSettings[TypeStatusesFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.TypeStatusesFileName]));
 
             await Task.WhenAll(tasks.ToArray());
 

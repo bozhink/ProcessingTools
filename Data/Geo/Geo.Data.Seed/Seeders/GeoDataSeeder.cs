@@ -6,6 +6,7 @@
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Entity.Seed;
     using ProcessingTools.Geo.Data.Entity;
     using ProcessingTools.Geo.Data.Entity.Contracts;
@@ -14,12 +15,6 @@
 
     public class GeoDataSeeder : IGeoDataSeeder
     {
-        private const string DataFilesDirectoryPathKey = "DataFilesDirectoryPath";
-        private const string GeoNamesSeedFileNameKey = "GeoNamesSeedFileName";
-        private const string GeoEpithetsSeedFileNameKey = "GeoEpithetsSeedFileName";
-        private const string CountryCodesSeedFileNameKey = "CountryCodesSeedFileName";
-        private const string ContinentsCodesSeedFileNameKey = "ContinentsCodesSeedFileName";
-
         private readonly IGeoDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
@@ -37,7 +32,7 @@
             this.contextFactory = contextFactory;
             this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(this.contextFactory);
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[DataFilesDirectoryPathKey];
+            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -50,16 +45,16 @@
 
             tasks.Add(
                 this.SeedGeoNames(
-                    ConfigurationManager.AppSettings[GeoNamesSeedFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.GeoNamesSeedFileName]));
             tasks.Add(
                 this.SeedGeoEpithets(
-                    ConfigurationManager.AppSettings[GeoEpithetsSeedFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.GeoEpithetsSeedFileName]));
             tasks.Add(
                 this.SeedContinents(
-                    ConfigurationManager.AppSettings[ContinentsCodesSeedFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.ContinentsCodesSeedFileName]));
             tasks.Add(
                 this.SeedCountryCodes(
-                    ConfigurationManager.AppSettings[CountryCodesSeedFileNameKey]));
+                    ConfigurationManager.AppSettings[AppSettingsKeys.CountryCodesSeedFileName]));
 
             await Task.WhenAll(tasks.ToArray());
 

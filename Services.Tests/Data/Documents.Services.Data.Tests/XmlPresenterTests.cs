@@ -100,8 +100,8 @@
             this.service = this.serviceMock.Object;
 
             var xslCache = new XslTransformCache();
-            var htmlToXmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFileFileName], xslCache);
-            var xmlToHtmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFileFileName], xslCache);
+            var htmlToXmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFileName], xslCache);
+            var xmlToHtmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFileName], xslCache);
 
             this.transformersFactoryMock = new Mock<IDocumentsFormatTransformersFactory>();
             this.transformersFactoryMock

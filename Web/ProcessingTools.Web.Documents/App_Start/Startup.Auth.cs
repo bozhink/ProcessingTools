@@ -9,6 +9,7 @@
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.Twitter;
     using Owin;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Documents.Contracts;
@@ -35,7 +36,7 @@
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.
-                    // This is a security feature which is used when you change a password or add an external login to your account.  
+                    // This is a security feature which is used when you change a password or add an external login to your account.
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
@@ -56,8 +57,8 @@
             ////    clientId: "",
             ////    clientSecret: "");
 
-            string twitterConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
-            string twitterConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+            string twitterConsumerKey = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerKey];
+            string twitterConsumerSecret = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerSecret];
             if (!string.IsNullOrWhiteSpace(twitterConsumerKey) && !string.IsNullOrWhiteSpace(twitterConsumerSecret))
             {
                 app.UseTwitterAuthentication(new TwitterAuthenticationOptions
