@@ -36,7 +36,7 @@
                 .To<MediatypesRepository>();
 
             this.Bind<IMediatypeStringResolver>()
-                .To<MediatypeStringResolverWithWindowsRegistry>()
+                .To<MediatypeStringResolverWithStaticDictionary>()
                 .InSingletonScope();
 
             this.Bind<IMediatypesResolver>()

@@ -118,6 +118,8 @@
     <Compile Include="Models\ProductServiceModel.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />
+    <Compile Include="Services\Mediatypes\MediatypeStringResolverWithStaticDictionary.cs" />
+    <Compile Include="Services\Mediatypes\MediatypeStringResolverWithStaticDictionaryData.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithSystemWeb.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithWindowsRegistry.cs" />
     <Compile Include="Services\Meta\JournalMetaDataService.cs" />

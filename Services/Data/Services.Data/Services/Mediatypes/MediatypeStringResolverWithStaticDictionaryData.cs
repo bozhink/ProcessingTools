@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Mediatypes.Data.Internal.Repositories
+﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
 {
+    using Contracts.Mediatypes;
     using System.Collections.Generic;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
 
-    public partial class MediatypesRepositoryDictionary : ISearchableMediatypesRepository
+    public partial class MediatypeStringResolverWithStaticDictionary : IMediatypeStringResolver
     {
         private readonly Dictionary<string, string> mimetypes = new Dictionary<string, string>
         {

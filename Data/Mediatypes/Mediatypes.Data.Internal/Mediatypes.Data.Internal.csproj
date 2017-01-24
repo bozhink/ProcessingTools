@@ -36,8 +36,6 @@
   <ItemGroup>
     <Compile Include="Abstractions\Repositories\AbstractSearchableMediatypesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\MediatypesRepositoryDictionary.cs" />
-    <Compile Include="Repositories\MediatypesRepositoryDictionaryData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mediatypes.Data.Common\Mediatypes.Data.Common.csproj">
@@ -45,7 +43,9 @@
       <Name>Mediatypes.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
