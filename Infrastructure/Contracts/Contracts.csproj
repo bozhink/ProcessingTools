@@ -105,7 +105,7 @@
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IDateTimeProvider.cs" />
     <Compile Include="Models\IDefinable.cs" />
-    <Compile Include="IDescribable.cs" />
+    <Compile Include="Models\IDescribable.cs" />
     <Compile Include="IDeserializer.cs" />
     <Compile Include="IDocumentFactory.cs" />
     <Compile Include="IDocumentFormatter.cs" />
