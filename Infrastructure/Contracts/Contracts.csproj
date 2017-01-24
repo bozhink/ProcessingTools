@@ -104,7 +104,7 @@
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IDateTimeProvider.cs" />
-    <Compile Include="IDefinable.cs" />
+    <Compile Include="Models\IDefinable.cs" />
     <Compile Include="IDescribable.cs" />
     <Compile Include="IDeserializer.cs" />
     <Compile Include="IDocumentFactory.cs" />
