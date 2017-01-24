@@ -94,7 +94,7 @@
     <Compile Include="Harvesters\IStringEnumerableXmlHarvester.cs" />
     <Compile Include="IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="ICommandRunner.cs" />
-    <Compile Include="ICommentable.cs" />
+    <Compile Include="Models\ICommentable.cs" />
     <Compile Include="IContent.cs" />
     <Compile Include="Models\IContentTypable.cs" />
     <Compile Include="IContextFormatter.cs" />

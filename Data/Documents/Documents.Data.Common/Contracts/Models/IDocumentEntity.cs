@@ -2,6 +2,7 @@
 {
     using System;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     // TODO: separation with IFileEntity
     public interface IDocumentEntity : IGuidIdentifiable, ICommentable, IModelWithUserInformation
