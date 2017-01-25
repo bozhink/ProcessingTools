@@ -38,11 +38,11 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Comparers\UrlEqualityComparer.cs" />
-    <Compile Include="Contracts\ITaxaValidationService.cs" />
-    <Compile Include="Contracts\IUrlValidationService.cs" />
-    <Compile Include="Contracts\IValidationService.cs" />
+    <Compile Include="Contracts\Services\ITaxaValidationService.cs" />
+    <Compile Include="Contracts\Services\IUrlValidationService.cs" />
+    <Compile Include="Contracts\Services\IValidationService.cs" />
     <Compile Include="Abstractions\AbstractValidationService.cs" />
-    <Compile Include="Models\Contracts\IValidationServiceModel.cs" />
+    <Compile Include="Contracts\Models\IValidationServiceModel.cs" />
     <Compile Include="Models\TaxonNameServiceModel.cs" />
     <Compile Include="Models\UrlServiceModel.cs" />
     <Compile Include="Models\ValidationServiceModel.cs" />

@@ -1,9 +1,8 @@
-﻿namespace ProcessingTools.Services.Validation.Contracts
+﻿namespace ProcessingTools.Services.Validation.Contracts.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using Models.Contracts;
+    using Models;
 
     public interface IValidationService<T>
     {

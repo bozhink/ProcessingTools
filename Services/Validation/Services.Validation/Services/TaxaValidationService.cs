@@ -8,9 +8,9 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Abstractions;
-    using Contracts;
+    using Contracts.Services;
+    using Contracts.Models;
     using Models;
-    using Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;

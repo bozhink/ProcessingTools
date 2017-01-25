@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts;
+    using Contracts.Models;
+    using Contracts.Services;
     using Models;
-    using Models.Contracts;
     using ProcessingTools.Common.Collections;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Validation;

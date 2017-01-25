@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Validation.Models.Contracts
+﻿namespace ProcessingTools.Services.Validation.Contracts.Models
 {
     using System;
     using ProcessingTools.Enumerations;

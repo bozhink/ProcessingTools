@@ -1,5 +1,13 @@
 ﻿namespace ProcessingTools.Services.Validation.Services
 {
+    using Abstractions;
+    using Comparers;
+    using Contracts.Models;
+    using Contracts.Services;
+    using Models;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Cache.Contracts.Validation;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -7,14 +15,6 @@
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using Abstractions;
-    using Comparers;
-    using Contracts;
-    using Models;
-    using Models.Contracts;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Validation;
 
     public class UrlValidationService : AbstractValidationService<UrlServiceModel, UrlServiceModel>, IUrlValidationService
     {

@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Services.Validation.Contracts
+﻿namespace ProcessingTools.Services.Validation.Contracts.Services
 {
-    using Models;
+    using Validation.Models;
 
     public interface ITaxaValidationService : IValidationService<TaxonNameServiceModel>
     {

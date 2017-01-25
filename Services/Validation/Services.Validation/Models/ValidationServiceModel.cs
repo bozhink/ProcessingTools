@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Validation.Models
 {
     using System;
-    using Contracts;
+    using Contracts.Models;
     using ProcessingTools.Enumerations;
 
     public class ValidationServiceModel<T> : IValidationServiceModel<T>
