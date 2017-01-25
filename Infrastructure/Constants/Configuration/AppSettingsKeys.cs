@@ -11,6 +11,8 @@
         public const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
         public const string BiotaxonomyMongoDabaseName = "BiotaxonomyMongoDabaseName";
         public const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
+        public const string CacheMongoConnection = "CacheMongoConnection";
+        public const string CacheMongoDabaseName = "CacheMongoDabaseName";
         public const string ClientSettingsProvider = "ClientSettingsProvider";
         public const string CodesRemoveNonCodeNodesXslFileName = "CodesRemoveNonCodeNodesXslFileName";
         public const string ContinentsCodesSeedFileName = "ContinentsCodesSeedFileName";

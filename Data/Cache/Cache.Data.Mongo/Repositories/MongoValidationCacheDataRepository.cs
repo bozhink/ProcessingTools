@@ -15,6 +15,8 @@
     {
         private readonly IMongoCollection<ValidatedObject> collection;
 
+        private readonly UpdateOptions updateOptions;
+
         public MongoValidationCacheDataRepository(IMongoDatabaseProvider databaseProvider)
         {
             if (databaseProvider == null)
@@ -29,6 +31,12 @@
                 {
                     WriteConcern = WriteConcern.Unacknowledged
                 });
+
+            this.updateOptions = new UpdateOptions
+            {
+                IsUpsert = true,
+                BypassDocumentValidation = false
+            };
         }
 
         public IEnumerable<string> Keys => this.collection.AsQueryable().Select(o => o.Id);
@@ -45,10 +53,12 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            var dbmodel = new ValidatedObject(key, value);
-            await this.collection.InsertOneAsync(dbmodel);
-
-            return true;
+            return await this.collection.UpdateOneAsync(
+                Builders<ValidatedObject>.Filter
+                    .Eq(o => o.Id, key),
+                Builders<ValidatedObject>.Update
+                    .AddToSet(o => o.Values, value),
+                this.updateOptions);
         }
 
         public IEnumerable<IValidationCacheEntity> GetAll(string key)

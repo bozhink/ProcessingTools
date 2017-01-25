@@ -9,6 +9,8 @@
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Services.Data.Services.Files;
+    using ProcessingTools.Constants.Configuration;
+    using System.Configuration;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -89,7 +91,18 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Cache.Data.Common.Contracts.Repositories.IValidationCacheDataRepository>()
-                .To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
+                ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
+                .To<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>();
+            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                .WhenInjectedInto<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>()
+                .InSingletonScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoConnection])
+                .WithConstructorArgument(
+                    ParameterNames.DatabaseName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoDabaseName]);
 
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
                 .To<ProcessingTools.Common.Providers.DateTimeProvider>()
