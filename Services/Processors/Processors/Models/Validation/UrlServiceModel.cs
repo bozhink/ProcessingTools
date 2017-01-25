@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Services.Validation.Models
+﻿namespace ProcessingTools.Processors.Models.Validation
 {
-    using Contracts.Models;
+    using ProcessingTools.Services.Validation.Contracts.Models;
 
     internal class UrlServiceModel : IUrl
     {

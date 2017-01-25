@@ -3,12 +3,12 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Contracts.Validation;
+    using Models.Validation;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
-    using ProcessingTools.Processors.Contracts.Validation;
     using ProcessingTools.Services.Validation.Contracts.Services;
-    using ProcessingTools.Services.Validation.Models;
 
     public class ExternalLinksValidator : IExternalLinksValidator
     {

@@ -1,13 +1,5 @@
 ﻿namespace ProcessingTools.Services.Validation.Services
 {
-    using Abstractions;
-    using Comparers;
-    using Contracts.Models;
-    using Contracts.Services;
-    using Models;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Validation;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -15,21 +7,28 @@
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Abstractions;
+    using Comparers;
+    using Contracts.Models;
+    using Contracts.Services;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Cache.Contracts.Validation;
 
-    public class UrlValidationService : AbstractValidationService<UrlServiceModel, UrlServiceModel>, IUrlValidationService
+    public class UrlValidationService : AbstractValidationService<IUrl, IUrl>, IUrlValidationService
     {
         public UrlValidationService(IValidationCacheService cacheService)
             : base(cacheService)
         {
         }
 
-        protected override Func<UrlServiceModel, string> GetContextKey => item => item.FullAddress;
+        protected override Func<IUrl, string> GetContextKey => item => item.FullAddress;
 
-        protected override Func<UrlServiceModel, UrlServiceModel> GetItemToCheck => item => item;
+        protected override Func<IUrl, IUrl> GetItemToCheck => item => item;
 
-        protected override Func<UrlServiceModel, UrlServiceModel> GetValidatedObject => item => item;
+        protected override Func<IUrl, IUrl> GetValidatedObject => item => item;
 
-        protected override Task Validate(IEnumerable<UrlServiceModel> items, ICollection<IValidationServiceModel<UrlServiceModel>> validatedItems)
+        protected override Task Validate(IEnumerable<IUrl> items, ICollection<IValidationServiceModel<IUrl>> validatedItems)
         {
             return Task.Run(() =>
             {
@@ -75,7 +74,7 @@
             });
         }
 
-        private async Task<IValidationServiceModel<UrlServiceModel>> MakeRequest(UrlServiceModel item)
+        private async Task<IValidationServiceModel<IUrl>> MakeRequest(IUrl item)
         {
             var result = this.MapToValidationServiceModel(item);
 

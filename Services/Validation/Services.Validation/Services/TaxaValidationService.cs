@@ -8,15 +8,15 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Abstractions;
-    using Contracts.Services;
     using Contracts.Models;
+    using Contracts.Services;
     using Models;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Validation;
 
-    public class TaxaValidationService : AbstractValidationService<TaxonNameServiceModel, string>, ITaxaValidationService
+    public class TaxaValidationService : AbstractValidationService<ITaxonName, string>, ITaxaValidationService
     {
         private const int MaximalNumberOfItemsToSendAtOnce = 100;
         private readonly IGlobalNamesResolverDataRequester requester;
@@ -34,14 +34,14 @@
 
         protected override Func<string, string> GetContextKey => item => item;
 
-        protected override Func<TaxonNameServiceModel, string> GetItemToCheck => item => item.Name;
+        protected override Func<ITaxonName, string> GetItemToCheck => item => item.Name;
 
-        protected override Func<string, TaxonNameServiceModel> GetValidatedObject => item => new TaxonNameServiceModel
+        protected override Func<string, ITaxonName> GetValidatedObject => item => new TaxonNameServiceModel
         {
             Name = item
         };
 
-        protected override async Task Validate(IEnumerable<string> items, ICollection<IValidationServiceModel<TaxonNameServiceModel>> validatedItems)
+        protected override async Task Validate(IEnumerable<string> items, ICollection<IValidationServiceModel<ITaxonName>> validatedItems)
         {
             if (items == null)
             {

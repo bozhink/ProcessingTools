@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Comparers\UrlEqualityComparer.cs" />
+    <Compile Include="Contracts\Models\ITaxonName.cs" />
+    <Compile Include="Contracts\Models\IUrl.cs" />
     <Compile Include="Contracts\Services\ITaxaValidationService.cs" />
     <Compile Include="Contracts\Services\IUrlValidationService.cs" />
     <Compile Include="Contracts\Services\IValidationService.cs" />

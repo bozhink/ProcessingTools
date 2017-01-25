@@ -4,7 +4,7 @@
     using Contracts.Models;
     using ProcessingTools.Enumerations;
 
-    public class ValidationServiceModel<T> : IValidationServiceModel<T>
+    internal class ValidationServiceModel<T> : IValidationServiceModel<T>
     {
         public T ValidatedObject { get; set; }
 

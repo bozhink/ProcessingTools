@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Services.Validation.Models
 {
-    public class TaxonNameServiceModel
+    using Contracts.Models;
+
+    internal class TaxonNameServiceModel : ITaxonName
     {
         public string Name { get; set; }
     }

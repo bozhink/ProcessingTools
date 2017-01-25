@@ -39,7 +39,7 @@
 
         protected Func<TItemToCheck, IValidationServiceModel<TValidatedObject>> MapToValidationServiceModel => item => new ValidationServiceModel<TValidatedObject>
         {
-            ValidatedObject = this.GetValidatedObject.Invoke(item),
+            ValidatedObject = this.GetValidatedObject(item),
             ValidationException = null,
             ValidationStatus = ValidationStatus.Valid
         };
