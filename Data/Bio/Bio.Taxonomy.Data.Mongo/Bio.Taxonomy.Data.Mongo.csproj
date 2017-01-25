@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Queries\get-taxa-with-named-ranks.js" />
+    <Content Include="Queries\taxa-select-multi-ranks.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
