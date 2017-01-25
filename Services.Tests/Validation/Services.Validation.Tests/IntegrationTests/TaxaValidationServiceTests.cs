@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net.Factories;
-    using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;
     using ProcessingTools.Services.Validation.Services;
 

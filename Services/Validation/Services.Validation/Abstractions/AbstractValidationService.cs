@@ -9,7 +9,7 @@
     using Models;
     using ProcessingTools.Common.Collections;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Models.Validation;
 
     public abstract class AbstractValidationService<TValidatedObject, TItemToCheck> : IValidationService<TValidatedObject>
@@ -26,8 +26,6 @@
             this.cacheService = cacheService;
             this.CacheServiceIsUsable = true;
         }
-
-        protected IValidationCacheService CacheService => this.cacheService;
 
         protected bool CacheServiceIsUsable { get; private set; }
 
@@ -62,25 +60,6 @@
             return validatedItems.ToArray();
         }
 
-        private async Task<IEnumerable<TItemToCheck>> TryValidationWithCache(
-            IEnumerable<TValidatedObject> items,
-            ICollection<IValidationServiceModel<TValidatedObject>> validatedItems)
-        {
-            var itemsToCheck = new ConcurrentQueueCollection<TItemToCheck>();
-            try
-            {
-                await this.ValidateItemsFromCache(items, validatedItems, itemsToCheck);
-                this.CacheServiceIsUsable = true;
-            }
-            catch
-            {
-                itemsToCheck = new ConcurrentQueueCollection<TItemToCheck>(items.Select(this.GetItemToCheck));
-                this.CacheServiceIsUsable = false;
-            }
-
-            return itemsToCheck.ToArray();
-        }
-
         protected virtual async Task AddItemToCache(IValidationServiceModel<TValidatedObject> item)
         {
             if (!this.CacheServiceIsUsable)
@@ -101,14 +80,12 @@
 
             try
             {
-                // TODO: DateTime.UtcNow
                 var model = new ValidationCacheServiceModel
                 {
-                    Status = item.ValidationStatus,
-                    LastUpdate = DateTime.UtcNow
+                    Status = item.ValidationStatus
                 };
 
-                await this.CacheService.Add(contextKey, model);
+                await this.cacheService.Add(contextKey, model);
             }
             catch
             {
@@ -117,6 +94,25 @@
         }
 
         protected abstract Task Validate(IEnumerable<TItemToCheck> items, ICollection<IValidationServiceModel<TValidatedObject>> validatedItems);
+
+        private async Task<IEnumerable<TItemToCheck>> TryValidationWithCache(
+            IEnumerable<TValidatedObject> items,
+            ICollection<IValidationServiceModel<TValidatedObject>> validatedItems)
+        {
+            var itemsToCheck = new ConcurrentQueueCollection<TItemToCheck>();
+            try
+            {
+                await this.ValidateItemsFromCache(items, validatedItems, itemsToCheck);
+                this.CacheServiceIsUsable = true;
+            }
+            catch
+            {
+                itemsToCheck = new ConcurrentQueueCollection<TItemToCheck>(items.Select(this.GetItemToCheck));
+                this.CacheServiceIsUsable = false;
+            }
+
+            return itemsToCheck.ToArray();
+        }
 
         private async Task ValidateItemsFromCache(
             IEnumerable<TValidatedObject> items,
@@ -156,7 +152,7 @@
                 return;
             }
 
-            var cachedItem = await cacheService.Get(contextKey);
+            var cachedItem = await this.cacheService.Get(contextKey);
             if (cachedItem != null && cachedItem.Status == ValidationStatus.Valid)
             {
                 var model = this.MapToValidationServiceModel(item);

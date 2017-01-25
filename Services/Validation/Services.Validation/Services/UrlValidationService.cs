@@ -13,7 +13,7 @@
     using Contracts.Services;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Validation;
+    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
 
     public class UrlValidationService : AbstractValidationService<IUrl, IUrl>, IUrlValidationService
     {

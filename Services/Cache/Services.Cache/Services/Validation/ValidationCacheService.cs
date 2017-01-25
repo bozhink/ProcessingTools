@@ -4,12 +4,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Contracts.Models.Validation;
+    using Contracts.Services.Validation;
+    using Models.Validation;
     using ProcessingTools.Cache.Data.Common.Contracts.Models;
     using ProcessingTools.Cache.Data.Common.Contracts.Repositories;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Services.Cache.Contracts.Validation;
-    using ProcessingTools.Services.Cache.Models.Validation;
 
     public class ValidationCacheService : IValidationCacheService
     {

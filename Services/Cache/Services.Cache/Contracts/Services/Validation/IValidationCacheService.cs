@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Cache.Contracts.Validation
+﻿namespace ProcessingTools.Services.Cache.Contracts.Services.Validation
 {
     using System.Threading.Tasks;
     using Models.Validation;

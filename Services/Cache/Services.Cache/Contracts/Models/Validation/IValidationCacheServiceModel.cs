@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Cache.Models.Validation
+﻿namespace ProcessingTools.Services.Cache.Contracts.Models.Validation
 {
     using ProcessingTools.Cache.Data.Common.Contracts.Models;
 

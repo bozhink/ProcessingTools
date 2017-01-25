@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Services.Cache.Models.Validation
 {
     using System;
+    using Contracts.Models.Validation;
     using ProcessingTools.Enumerations;
 
     public class ValidationCacheServiceModel : IValidationCacheServiceModel

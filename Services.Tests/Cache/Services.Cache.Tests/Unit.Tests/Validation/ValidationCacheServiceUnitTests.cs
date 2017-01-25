@@ -9,7 +9,7 @@
     using ProcessingTools.Cache.Data.Common.Contracts.Models;
     using ProcessingTools.Cache.Data.Common.Contracts.Repositories;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Services.Cache.Models.Validation;
+    using ProcessingTools.Services.Cache.Contracts.Models.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;
     using ProcessingTools.Tests.Library;
 
