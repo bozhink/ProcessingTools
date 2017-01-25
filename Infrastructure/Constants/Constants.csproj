@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assemblies.cs" />
+    <Compile Include="CachingConstants.cs" />
     <Compile Include="ConcurrencyConstants.cs" />
     <Compile Include="Configuration\AppSettingsKeys.cs" />
     <Compile Include="Configuration\ConnectionStringsKeys.cs" />

@@ -38,7 +38,6 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Comparers\UrlEqualityComparer.cs" />
-    <Compile Include="Constants\CachingConstants.cs" />
     <Compile Include="Contracts\ITaxaValidationService.cs" />
     <Compile Include="Contracts\IUrlValidationService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
@@ -55,6 +54,10 @@
     <ProjectReference Include="..\..\..\Data\Cache\Cache.Data.Common\Cache.Data.Common.csproj">
       <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
       <Name>Cache.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>

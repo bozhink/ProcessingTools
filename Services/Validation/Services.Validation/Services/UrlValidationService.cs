@@ -6,14 +6,14 @@
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Comparers;
+    using Contracts;
+    using Factories;
+    using Models;
+    using Models.Contracts;
+    using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Validation;
-    using ProcessingTools.Services.Validation.Comparers;
-    using ProcessingTools.Services.Validation.Constants;
-    using ProcessingTools.Services.Validation.Contracts;
-    using ProcessingTools.Services.Validation.Factories;
-    using ProcessingTools.Services.Validation.Models;
-    using ProcessingTools.Services.Validation.Models.Contracts;
 
     public class UrlValidationService : ValidationServiceFactory<UrlServiceModel, UrlServiceModel>, IUrlValidationService
     {
