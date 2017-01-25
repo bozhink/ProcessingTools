@@ -8,16 +8,16 @@
         /// <summary>
         /// Returned result is valid.
         /// </summary>
-        Valid = 0,
+        Valid = 1,
 
         /// <summary>
         /// Returned result is not valid.
         /// </summary>
-        Invalid = 1,
+        Invalid = 2,
 
         /// <summary>
         /// Can not determine if the returned result is valid or invalid.
         /// </summary>
-        Undefined = 2
+        Undefined = 0
     }
 }

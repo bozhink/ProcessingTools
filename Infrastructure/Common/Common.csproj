@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Collections\ConcurrentQueueCollection.cs" />
     <Compile Include="Contracts\IRandomProvider.cs" />
     <Compile Include="Defaults.cs" />
     <Compile Include="Dictionaries.cs" />

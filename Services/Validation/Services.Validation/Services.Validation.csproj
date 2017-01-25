@@ -41,7 +41,7 @@
     <Compile Include="Contracts\ITaxaValidationService.cs" />
     <Compile Include="Contracts\IUrlValidationService.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
-    <Compile Include="Factories\ValidationServiceFactory.cs" />
+    <Compile Include="Abstractions\AbstractValidationService.cs" />
     <Compile Include="Models\Contracts\IValidationServiceModel.cs" />
     <Compile Include="Models\TaxonNameServiceModel.cs" />
     <Compile Include="Models\UrlServiceModel.cs" />
@@ -54,6 +54,10 @@
     <ProjectReference Include="..\..\..\Data\Cache\Cache.Data.Common\Cache.Data.Common.csproj">
       <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
       <Name>Cache.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
+      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
@@ -83,9 +87,6 @@
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ValidationServicesClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,8 +7,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Abstractions;
     using Contracts;
-    using Factories;
     using Models;
     using Models.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
@@ -16,7 +16,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Validation;
 
-    public class TaxaValidationService : ValidationServiceFactory<TaxonNameServiceModel, string>, ITaxaValidationService
+    public class TaxaValidationService : AbstractValidationService<TaxonNameServiceModel, string>, ITaxaValidationService
     {
         private const int MaximalNumberOfItemsToSendAtOnce = 100;
         private readonly IGlobalNamesResolverDataRequester requester;
@@ -41,11 +41,21 @@
             Name = item
         };
 
-        protected override async Task Validate(string[] items, ConcurrentQueue<IValidationServiceModel<TaxonNameServiceModel>> validatedItems)
+        protected override async Task Validate(IEnumerable<string> items, ICollection<IValidationServiceModel<TaxonNameServiceModel>> validatedItems)
         {
+            if (items == null)
+            {
+                return;
+            }
+
+            if (validatedItems == null)
+            {
+                return;
+            }
+
             var exceptions = new ConcurrentQueue<Exception>();
 
-            int numberOfItems = items.Length;
+            int numberOfItems = items.Count();
 
             for (int i = 0; i < numberOfItems + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
             {
@@ -60,59 +70,61 @@
                     continue;
                 }
 
-                if (itemsToSend?.Length > 0)
+                if (itemsToSend?.Length < 1)
                 {
-                    XmlDocument gnrXmlResponse = await this.requester.SearchWithGlobalNamesResolverPost(itemsToSend);
-
-                    try
-                    {
-                        gnrXmlResponse.Save($"{System.IO.Path.GetTempPath()}/gnr-{Guid.NewGuid().ToString()}.xml");
-                    }
-                    catch
-                    {
-                    }
-
-                    gnrXmlResponse.SelectNodes("//datum")
-                        .Cast<XmlNode>()
-                        .AsParallel()
-                        .ForAll(datumNode =>
-                        {
-                            try
-                            {
-                                string suppliedNameString = datumNode["supplied-name-string"].InnerText;
-
-                                var validatedObject = this.GetValidationServiceModel.Invoke(suppliedNameString);
-
-                                IEnumerable<string> nameParts = Regex.Replace(suppliedNameString, @"\W+", " ")
-                                    .ToLower()
-                                    .Split(' ')
-                                    .Select(s => s.Trim());
-
-                                const string XPathPartPrefix = "[contains(translate(string(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '";
-                                const string XPathPartSuffix = "')]";
-
-                                string xpathPart = XPathPartPrefix + string.Join(XPathPartSuffix + XPathPartPrefix, nameParts) + XPathPartSuffix;
-
-                                XmlNodeList taxaMatches = datumNode.SelectNodes(".//results/result/*" + xpathPart);
-                                if (taxaMatches.Count < 1)
-                                {
-                                    validatedObject.ValidationStatus = ValidationStatus.Invalid;
-                                }
-                                else
-                                {
-                                    validatedObject.ValidationStatus = ValidationStatus.Valid;
-                                }
-
-                                this.CacheObtainedData(validatedObject).Wait(CachingConstants.WaitAddDataToCacheTimeoutMilliseconds);
-
-                                validatedItems.Enqueue(validatedObject);
-                            }
-                            catch (Exception e)
-                            {
-                                exceptions.Enqueue(new Exception($"Error: Invalid content in response: {datumNode.InnerXml}", e));
-                            }
-                        });
+                    continue;
                 }
+
+                XmlDocument gnrXmlResponse = await this.requester.SearchWithGlobalNamesResolverPost(itemsToSend);
+
+                try
+                {
+                    gnrXmlResponse.Save($"{System.IO.Path.GetTempPath()}/gnr-{Guid.NewGuid().ToString()}.xml");
+                }
+                catch
+                {
+                }
+
+                gnrXmlResponse.SelectNodes("//datum")
+                    .Cast<XmlNode>()
+                    .AsParallel()
+                    .ForAll(datumNode =>
+                    {
+                        try
+                        {
+                            string suppliedNameString = datumNode["supplied-name-string"]?.InnerText;
+
+                            var validatedObject = this.MapToValidationServiceModel(suppliedNameString);
+
+                            IEnumerable<string> nameParts = Regex.Replace(suppliedNameString, @"\W+", " ")
+                                .ToLower()
+                                .Split(' ')
+                                .Select(s => s.Trim());
+
+                            const string XPathPartPrefix = "[contains(translate(string(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '";
+                            const string XPathPartSuffix = "')]";
+
+                            string xpathPart = XPathPartPrefix + string.Join(XPathPartSuffix + XPathPartPrefix, nameParts) + XPathPartSuffix;
+
+                            XmlNodeList taxaMatches = datumNode.SelectNodes(".//results/result/*" + xpathPart);
+                            if (taxaMatches.Count < 1)
+                            {
+                                validatedObject.ValidationStatus = ValidationStatus.Invalid;
+                            }
+                            else
+                            {
+                                validatedObject.ValidationStatus = ValidationStatus.Valid;
+                            }
+
+                            this.AddItemToCache(validatedObject).Wait(CachingConstants.WaitAddDataToCacheTimeoutMilliseconds);
+
+                            validatedItems.Add(validatedObject);
+                        }
+                        catch (Exception e)
+                        {
+                            exceptions.Enqueue(new Exception($"Error: Invalid content in response: {datumNode.InnerXml}", e));
+                        }
+                    });
             }
 
             if (exceptions.Count > 0)
