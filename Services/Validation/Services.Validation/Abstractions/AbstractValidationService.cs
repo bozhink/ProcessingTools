@@ -7,12 +7,12 @@
     using Contracts.Models;
     using Contracts.Services;
     using Models;
-    using ProcessingTools.Common.Collections;
+    using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Models.Validation;
 
-    public abstract class AbstractValidationService<T, TItemToCheck> : IValidationService<T>
+    public abstract class AbstractValidationService<T> : IValidationService<T>
     {
         private readonly IValidationCacheService cacheService;
 
@@ -27,40 +27,49 @@
             this.CacheServiceIsUsable = true;
         }
 
-        protected bool CacheServiceIsUsable { get; private set; }
+        protected abstract Func<T, string> GetPermalink { get; }
 
-        protected abstract Func<TItemToCheck, string> GetContextKey { get; }
-
-        protected abstract Func<T, TItemToCheck> GetItemToCheck { get; }
-
-        protected abstract Func<TItemToCheck, T> GetValidatedObject { get; }
-
-        protected Func<TItemToCheck, IValidationServiceModel<T>> MapToValidationServiceModel => item => new ValidationServiceModel<T>
+        protected virtual Func<T, IValidationServiceModel<T>> MapToResponseModel => item => new ValidationServiceModel<T>
         {
-            ValidatedObject = this.GetValidatedObject(item),
+            ValidatedObject = item,
             ValidationException = null,
-            ValidationStatus = ValidationStatus.Valid
+            ValidationStatus = ValidationStatus.Undefined
         };
+
+        private bool CacheServiceIsUsable { get; set; }
 
         public async Task<IEnumerable<IValidationServiceModel<T>>> Validate(params T[] items)
         {
-            var validatedItems = new ConcurrentQueueCollection<IValidationServiceModel<T>>();
-
             if (items == null || items.Length < 1)
             {
-                return validatedItems;
+                return null;
             }
 
-            var itemsToCheck = await this.TryValidationWithCache(items, validatedItems);
-            if (itemsToCheck.Count() > 0)
+            var result = items.Select(this.MapToResponseModel).ToArray();
+
+            await this.ValidateWithCache(result);
+
+            var itemsToCheck = this.GetItemsToCheck(result);
+
+            var validatedItems = await this.Validate(itemsToCheck.Select(i => i.ValidatedObject));
+            validatedItems.ToList().ForEach(validatedItem =>
             {
-                await this.Validate(itemsToCheck, validatedItems);
-            }
+                string permalink = this.GetPermalink(validatedItem.ValidatedObject);
+                foreach (var item in result.Where(i => this.GetPermalink(i.ValidatedObject) == permalink))
+                {
+                    item.ValidationStatus = validatedItem.ValidationStatus;
+                    item.ValidationException = validatedItem.ValidationException;
+                }
 
-            return validatedItems.ToArray();
+                this.AddItemToCache(validatedItem).Wait(CachingConstants.WaitAddDataToCacheTimeoutMilliseconds);
+            });
+
+            return result;
         }
 
-        protected virtual async Task AddItemToCache(IValidationServiceModel<T> item)
+        protected abstract Task<IEnumerable<IValidationServiceModel<T>>> Validate(IEnumerable<T> items);
+
+        private async Task AddItemToCache(IValidationServiceModel<T> item)
         {
             if (!this.CacheServiceIsUsable)
             {
@@ -72,8 +81,8 @@
                 return;
             }
 
-            string contextKey = this.GetContextKey(this.GetItemToCheck(item.ValidatedObject));
-            if (string.IsNullOrWhiteSpace(contextKey))
+            string permalink = this.GetPermalink(item.ValidatedObject);
+            if (string.IsNullOrWhiteSpace(permalink))
             {
                 return;
             }
@@ -85,82 +94,71 @@
                     Status = item.ValidationStatus
                 };
 
-                await this.cacheService.Add(contextKey, model);
+                await this.cacheService.Add(permalink, model);
             }
-            catch
+            catch (Exception e)
             {
                 this.CacheServiceIsUsable = false;
             }
         }
 
-        protected abstract Task Validate(IEnumerable<TItemToCheck> items, ICollection<IValidationServiceModel<T>> validatedItems);
-
-        private async Task<IEnumerable<TItemToCheck>> TryValidationWithCache(
-            IEnumerable<T> items,
-            ICollection<IValidationServiceModel<T>> validatedItems)
+        private IEnumerable<IValidationServiceModel<T>> GetItemsToCheck(IEnumerable<IValidationServiceModel<T>> items)
         {
-            var itemsToCheck = new ConcurrentQueueCollection<TItemToCheck>();
-            try
-            {
-                await this.ValidateItemsFromCache(items, validatedItems, itemsToCheck);
-                this.CacheServiceIsUsable = true;
-            }
-            catch
-            {
-                itemsToCheck = new ConcurrentQueueCollection<TItemToCheck>(items.Select(this.GetItemToCheck));
-                this.CacheServiceIsUsable = false;
-            }
-
-            return itemsToCheck.ToArray();
+            return items.Where(i => i.ValidationStatus != ValidationStatus.Valid);
         }
 
-        private async Task ValidateItemsFromCache(
-            IEnumerable<T> items,
-            ICollection<IValidationServiceModel<T>> validatedItems,
-            ICollection<TItemToCheck> itemsToCheck)
+        private async Task<ValidationStatus> ValidateSingleItemFromCache(T item)
         {
+            const ValidationStatus DefaultStatus = ValidationStatus.Undefined;
+
             if (!this.CacheServiceIsUsable)
             {
-                return;
+                return DefaultStatus;
             }
 
-            if (items == null)
+            string permalink = this.GetPermalink(item);
+            if (string.IsNullOrWhiteSpace(permalink))
             {
-                return;
+                return DefaultStatus;
             }
 
-            var tasks = items.Select(this.GetItemToCheck)
-                .Select(item => this.ValidateSingleItem(item, validatedItems, itemsToCheck))
-                .ToArray();
+            var cachedItem = await this.cacheService.Get(permalink);
+            if (cachedItem == null)
+            {
+                return DefaultStatus;
+            }
+
+            return cachedItem.Status;
+        }
+
+        private async Task<object> ValidateWithCache(IEnumerable<IValidationServiceModel<T>> items)
+        {
+            if (!this.CacheServiceIsUsable || items == null)
+            {
+                return false;
+            }
+
+            var itemsToCheck = this.GetItemsToCheck(items);
+
+            var tasks = itemsToCheck.Select(async (item) =>
+            {
+                try
+                {
+                    var status = await this.ValidateSingleItemFromCache(item.ValidatedObject);
+                    item.ValidationStatus = status;
+                }
+                catch (Exception e)
+                {
+                    item.ValidationStatus = ValidationStatus.Undefined;
+                    item.ValidationException = e;
+                    this.CacheServiceIsUsable = false;
+                }
+            })
+            .ToArray();
 
             await Task.WhenAll(tasks);
-        }
 
-        private async Task ValidateSingleItem(
-            TItemToCheck item,
-            ICollection<IValidationServiceModel<T>> validatedItems,
-            ICollection<TItemToCheck> itemsToCheck)
-        {
-            if (!this.CacheServiceIsUsable)
-            {
-                return;
-            }
-
-            string contextKey = this.GetContextKey(item);
-            if (string.IsNullOrWhiteSpace(contextKey))
-            {
-                return;
-            }
-
-            var cachedItem = await this.cacheService.Get(contextKey);
-            if (cachedItem != null && cachedItem.Status == ValidationStatus.Valid)
-            {
-                var model = this.MapToValidationServiceModel(item);
-                validatedItems.Add(model);
-                return;
-            }
-
-            itemsToCheck.Add(item);
+            return true;
         }
     }
 }

@@ -57,7 +57,7 @@
                 Builders<ValidatedObject>.Filter
                     .Eq(o => o.Id, key),
                 Builders<ValidatedObject>.Update
-                    .AddToSet(o => o.Values, value),
+                    .AddToSet(o => o.Values, new ValidationCacheEntity(value)),
                 this.updateOptions);
         }
 
@@ -100,7 +100,7 @@
                 return false;
             }
 
-            var result = dbmodel.Values.Remove(value);
+            var result = dbmodel.Values.Remove(new ValidationCacheEntity(value));
 
             var response = await this.collection.ReplaceOneAsync(o => o.Id == key, dbmodel);
 

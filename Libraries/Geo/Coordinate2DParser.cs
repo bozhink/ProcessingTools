@@ -169,8 +169,6 @@
                 var utmEastingString = utmCoordinatesMatch.Groups[UtmEastingValue].Value.Trim().PadRight(6, '0');
                 var utmNorthingString = utmCoordinatesMatch.Groups[UtmNorthingValue].Value.Trim().PadRight(7, '0');
 
-                Console.WriteLine("{0}E, {1}N", utmEastingString, utmNorthingString);
-
                 var utmZone = utmCoordinatesMatch.Groups[UtmZoneValue].Value.Trim();
                 var utmEasting = double.Parse(utmEastingString);
                 var utmNorthing = double.Parse(utmNorthingString);

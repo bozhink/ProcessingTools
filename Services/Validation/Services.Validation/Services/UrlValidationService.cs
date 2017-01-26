@@ -1,109 +1,89 @@
 ﻿namespace ProcessingTools.Services.Validation.Services
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Abstractions;
-    using Comparers;
     using Contracts.Models;
     using Contracts.Services;
-    using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
 
-    public class UrlValidationService : AbstractValidationService<IUrl, IUrl>, IUrlValidationService
+    public class UrlValidationService : AbstractValidationService<string>, IUrlValidationService
     {
+        private const int MaximalNumberOfItemsToSendAtOnce = 10;
+
         public UrlValidationService(IValidationCacheService cacheService)
             : base(cacheService)
         {
         }
 
-        protected override Func<IUrl, string> GetContextKey => item => item.FullAddress;
+        protected override Func<string, string> GetPermalink => item => item;
 
-        protected override Func<IUrl, IUrl> GetItemToCheck => item => item;
-
-        protected override Func<IUrl, IUrl> GetValidatedObject => item => item;
-
-        protected override Task Validate(IEnumerable<IUrl> items, ICollection<IValidationServiceModel<IUrl>> validatedItems)
+        protected override async Task<IEnumerable<IValidationServiceModel<string>>> Validate(IEnumerable<string> items) => await Task.Run(() =>
         {
-            return Task.Run(() =>
+            if (items == null)
             {
-                if (items == null)
+                return null;
+            }
+
+            var result = items.Distinct().Select(this.MapToResponseModel).ToList();
+
+            int numberOfItemsToCheck = result.Count();
+            for (int i = 0; i < numberOfItemsToCheck + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
+            {
+                IValidationServiceModel<string>[] itemsToSend = null;
+
+                try
                 {
-                    return;
+                    itemsToSend = result.Skip(i)?.Take(MaximalNumberOfItemsToSendAtOnce)?.ToArray();
+                }
+                catch
+                {
+                    continue;
                 }
 
-                if (validatedItems == null)
+                if (itemsToSend?.Length < 1)
                 {
-                    return;
+                    continue;
                 }
 
-                var comparer = new UrlEqualityComparer();
-                var exceptions = new ConcurrentQueue<Exception>();
-
-                items.Distinct(comparer)
-                    .GroupBy(i => i.BaseAddress)
-                    .AsParallel()
-                    .ForAll(group =>
-                    {
-                        // For different BaseAddress-es requests are parallel,
-                        // for equal - sequential.
-                        foreach (var item in group)
-                        {
-                            try
-                            {
-                                var validationResult = this.MakeRequest(item).Result;
-                                this.AddItemToCache(validationResult).Wait(CachingConstants.WaitAddDataToCacheTimeoutMilliseconds);
-                                validatedItems.Add(validationResult);
-                            }
-                            catch (Exception e)
-                            {
-                                exceptions.Enqueue(e);
-                            }
-                        }
-                    });
-
-                if (exceptions.Count > 0)
+                try
                 {
-                    throw new AggregateException(exceptions);
+                    itemsToSend.AsParallel().ForAll(item => this.MakeRequest(item).Wait());
                 }
-            });
-        }
+                catch
+                {
+                }
+            }
 
-        private async Task<IValidationServiceModel<IUrl>> MakeRequest(IUrl item)
+            return result;
+        });
+
+        private async Task MakeRequest(IValidationServiceModel<string> item)
         {
-            var result = this.MapToValidationServiceModel(item);
-
             try
             {
-                if (string.IsNullOrWhiteSpace(item.Address))
+                var validatedObject = item.ValidatedObject;
+                if (string.IsNullOrWhiteSpace(validatedObject))
                 {
-                    throw new ApplicationException($"URL address is null or whitespace: '{item.BaseAddress}//{item.Address}'.");
+                    throw new ApplicationException($"URL address is null or whitespace: '{validatedObject}'.");
                 }
 
                 using (var client = new HttpClient())
                 {
-                    if (!string.IsNullOrWhiteSpace(item.BaseAddress))
-                    {
-                        client.BaseAddress = new Uri(item.BaseAddress);
-                    }
-
-                    var response = await client.GetAsync(item.Address);
-
-                    result.ValidationStatus = this.MapHttpStatusCodeToValidationStatus(response.StatusCode);
+                    var response = await client.GetAsync(validatedObject);
+                    item.ValidationStatus = this.MapHttpStatusCodeToValidationStatus(response.StatusCode);
                 }
             }
             catch (Exception e)
             {
-                result.ValidationStatus = ValidationStatus.Undefined;
-                result.ValidationException = e;
+                item.ValidationStatus = ValidationStatus.Undefined;
+                item.ValidationException = e;
             }
-
-            return result;
         }
 
         private ValidationStatus MapHttpStatusCodeToValidationStatus(HttpStatusCode statusCode)

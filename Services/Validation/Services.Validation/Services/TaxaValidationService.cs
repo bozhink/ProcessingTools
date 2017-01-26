@@ -10,13 +10,13 @@
     using Abstractions;
     using Contracts.Models;
     using Contracts.Services;
-    using Models;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
-    using ProcessingTools.Constants;
+    using ProcessingTools.Constants.Uri;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
 
-    public class TaxaValidationService : AbstractValidationService<ITaxonName, string>, ITaxaValidationService
+    public class TaxaValidationService : AbstractValidationService<string>, ITaxaValidationService
     {
         private const int MaximalNumberOfItemsToSendAtOnce = 100;
         private readonly IGlobalNamesResolverDataRequester requester;
@@ -32,32 +32,66 @@
             this.requester = requester;
         }
 
-        protected override Func<string, string> GetContextKey => item => item;
+        protected override Func<string, string> GetPermalink => item => string.Format(
+            "{0}:{1}",
+            PermalinkPrefixes.ValidationCacheTaxonName,
+            item.Trim().RegexReplace(@"\W+", "_").ToLower());
 
-        protected override Func<ITaxonName, string> GetItemToCheck => item => item.Name;
-
-        protected override Func<string, ITaxonName> GetValidatedObject => item => new TaxonNameServiceModel
-        {
-            Name = item
-        };
-
-        protected override async Task Validate(IEnumerable<string> items, ICollection<IValidationServiceModel<ITaxonName>> validatedItems)
+        protected override async Task<IEnumerable<IValidationServiceModel<string>>> Validate(IEnumerable<string> items)
         {
             if (items == null)
             {
-                return;
+                return null;
             }
 
-            if (validatedItems == null)
+            var result = new ConcurrentQueue<IValidationServiceModel<string>>();
+
+            var itemsToCheck = new HashSet<string>(items);
+            await this.ProcessItemsToCheck(result, itemsToCheck);
+
+            return result;
+        }
+
+        private void ProcessDatumNode(XmlNode datumNode, ConcurrentQueue<IValidationServiceModel<string>> result)
+        {
+            string suppliedNameString = datumNode["supplied-name-string"]?.InnerText;
+            var validatedObject = this.MapToResponseModel(suppliedNameString);
+
+            try
             {
-                return;
+                IEnumerable<string> nameParts = Regex.Replace(suppliedNameString, @"\W+", " ")
+                    .ToLower()
+                    .Split(' ')
+                    .Select(s => s.Trim());
+
+                const string XPathPartPrefix = "[contains(translate(string(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '";
+                const string XPathPartSuffix = "')]";
+
+                string xpathPart = XPathPartPrefix + string.Join(XPathPartSuffix + XPathPartPrefix, nameParts) + XPathPartSuffix;
+
+                XmlNodeList taxaMatches = datumNode.SelectNodes(".//results/result/*" + xpathPart);
+                if (taxaMatches.Count < 1)
+                {
+                    validatedObject.ValidationStatus = ValidationStatus.Invalid;
+                }
+                else
+                {
+                    validatedObject.ValidationStatus = ValidationStatus.Valid;
+                }
+            }
+            catch (Exception e)
+            {
+                validatedObject.ValidationStatus = ValidationStatus.Undefined;
+                validatedObject.ValidationException = e;
             }
 
-            var exceptions = new ConcurrentQueue<Exception>();
+            result.Enqueue(validatedObject);
+        }
 
-            int numberOfItems = items.Count();
-
-            for (int i = 0; i < numberOfItems + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
+        private async Task ProcessItemsToCheck(ConcurrentQueue<IValidationServiceModel<string>> result, HashSet<string> items)
+        {
+            int numberOfItemsToCheck = items.Count();
+            for (int i = 0; i < numberOfItemsToCheck + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
             {
                 string[] itemsToSend = null;
 
@@ -75,61 +109,31 @@
                     continue;
                 }
 
-                XmlDocument gnrXmlResponse = await this.requester.SearchWithGlobalNamesResolverPost(itemsToSend);
-
                 try
                 {
-                    gnrXmlResponse.Save($"{System.IO.Path.GetTempPath()}/gnr-{Guid.NewGuid().ToString()}.xml");
+                    XmlDocument gnrXmlResponse = await this.requester.SearchWithGlobalNamesResolverPost(itemsToSend);
+
+                    this.SaveResponseToTempDirectory(gnrXmlResponse);
+
+                    gnrXmlResponse.SelectNodes("//datum")
+                        .Cast<XmlNode>()
+                        .AsParallel()
+                        .ForAll(datumNode => this.ProcessDatumNode(datumNode, result));
                 }
                 catch
                 {
                 }
-
-                gnrXmlResponse.SelectNodes("//datum")
-                    .Cast<XmlNode>()
-                    .AsParallel()
-                    .ForAll(datumNode =>
-                    {
-                        try
-                        {
-                            string suppliedNameString = datumNode["supplied-name-string"]?.InnerText;
-
-                            var validatedObject = this.MapToValidationServiceModel(suppliedNameString);
-
-                            IEnumerable<string> nameParts = Regex.Replace(suppliedNameString, @"\W+", " ")
-                                .ToLower()
-                                .Split(' ')
-                                .Select(s => s.Trim());
-
-                            const string XPathPartPrefix = "[contains(translate(string(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '";
-                            const string XPathPartSuffix = "')]";
-
-                            string xpathPart = XPathPartPrefix + string.Join(XPathPartSuffix + XPathPartPrefix, nameParts) + XPathPartSuffix;
-
-                            XmlNodeList taxaMatches = datumNode.SelectNodes(".//results/result/*" + xpathPart);
-                            if (taxaMatches.Count < 1)
-                            {
-                                validatedObject.ValidationStatus = ValidationStatus.Invalid;
-                            }
-                            else
-                            {
-                                validatedObject.ValidationStatus = ValidationStatus.Valid;
-                            }
-
-                            this.AddItemToCache(validatedObject).Wait(CachingConstants.WaitAddDataToCacheTimeoutMilliseconds);
-
-                            validatedItems.Add(validatedObject);
-                        }
-                        catch (Exception e)
-                        {
-                            exceptions.Enqueue(new Exception($"Error: Invalid content in response: {datumNode.InnerXml}", e));
-                        }
-                    });
             }
+        }
 
-            if (exceptions.Count > 0)
+        private void SaveResponseToTempDirectory(XmlDocument gnrXmlResponse)
+        {
+            try
             {
-                throw new AggregateException(exceptions);
+                gnrXmlResponse.Save($"{System.IO.Path.GetTempPath()}/gnr-{Guid.NewGuid().ToString()}.xml");
+            }
+            catch
+            {
             }
         }
     }

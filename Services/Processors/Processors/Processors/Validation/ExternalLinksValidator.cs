@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts.Validation;
-    using Models.Validation;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
@@ -46,14 +45,9 @@
             }
 
             var data = await this.harvester.Harvest(document.XmlDocument.DocumentElement);
-            var externalLinks = data?.Distinct()
-                .Select(e => new UrlServiceModel
-                {
-                    BaseAddress = e.BaseAddress,
-                    Address = e.Uri
-                })
+            var externalLinks = data?.Select(e => e.FullAddress)
+                .Distinct()
                 .ToArray();
-
             if (externalLinks == null || externalLinks.Length < 1)
             {
                 reporter.AppendContent("Warning: No external links found.");
@@ -63,7 +57,7 @@
             var result = await this.validationService.Validate(externalLinks);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
-                .Select(r => $"{r.ValidatedObject.FullAddress} / {r.ValidationStatus.ToString()} /")
+                .Select(r => $"{r.ValidatedObject} / {r.ValidationStatus.ToString()} /")
                 .OrderBy(i => i);
 
             reporter.AppendContent("Non-valid external links:");

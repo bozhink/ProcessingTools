@@ -131,8 +131,6 @@
     <Compile Include="Models\References\IReferenceTemplateItem.cs" />
     <Compile Include="Models\References\ReferenceTemplateItem.cs" />
     <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
-    <Compile Include="Models\Validation\TaxonNameServiceModel.cs" />
-    <Compile Include="Models\Validation\UrlServiceModel.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />

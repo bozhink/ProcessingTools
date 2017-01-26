@@ -7,6 +7,22 @@
 
     public class ValidationCacheEntity : IValidationCacheEntity
     {
+        public ValidationCacheEntity()
+        {
+        }
+
+        public ValidationCacheEntity(IValidationCacheEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            this.Content = entity.Content;
+            this.LastUpdate = entity.LastUpdate;
+            this.Status = entity.Status;
+        }
+
         [BsonIgnoreIfDefault]
         public string Content { get; set; }
 

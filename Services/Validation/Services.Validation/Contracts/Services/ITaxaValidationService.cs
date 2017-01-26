@@ -2,7 +2,7 @@
 {
     using Models;
 
-    public interface ITaxaValidationService : IValidationService<ITaxonName>
+    public interface ITaxaValidationService : IValidationService<string>
     {
     }
 }

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts.Validation;
-    using Models.Validation;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
@@ -46,12 +45,7 @@
             }
 
             var data = await this.harvester.Harvest(document.XmlDocument);
-            var scientificNames = data?.Distinct()
-                .Select(s => new TaxonNameServiceModel
-                {
-                    Name = s
-                })
-                .ToArray();
+            var scientificNames = data?.Distinct().ToArray();
 
             if (scientificNames == null || scientificNames.Length < 1)
             {
@@ -62,7 +56,7 @@
             var result = await this.validationService.Validate(scientificNames);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
-                .Select(r => r.ValidatedObject.Name)
+                .Select(r => r.ValidatedObject)
                 .OrderBy(i => i);
 
             reporter.AppendContent("Non-valid taxon names:");

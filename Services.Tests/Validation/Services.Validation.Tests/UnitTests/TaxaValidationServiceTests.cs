@@ -2,14 +2,12 @@
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
     using Moq;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Validation.Services;
 
-    // TODO: add more tests
     [TestClass]
     public class TaxaValidationServiceTests
     {
@@ -46,11 +44,7 @@
         {
             string[] taxa = { "Coleoptera", "Zospeum", "Homo sapiens" };
 
-            var items = taxa.Select(t => new TaxonNameServiceModel
-            {
-                Name = t
-            })
-            .ToArray();
+            var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
             var result = service.Validate(items).Result.ToList();
@@ -63,7 +57,7 @@
             {
                 Assert.AreEqual(
                     1,
-                    result.Where(r => r.ValidatedObject.Name == items[i].Name).Count(),
+                    result.Where(r => r.ValidatedObject == items[i]).Count(),
                     $"Result should contain Item #{i} only once.");
                 Assert.IsTrue(result[i].ValidationStatus == ValidationStatus.Valid, $"Item #{i} should be valid.");
                 Assert.IsNull(result[i].ValidationException, $"Item #{i} should have null exception.");
@@ -76,11 +70,7 @@
         {
             string[] taxa = { "Coleoptera", "Zospeum", "John Smith" };
 
-            var items = taxa.Select(t => new TaxonNameServiceModel
-            {
-                Name = t
-            })
-            .ToArray();
+            var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
             var result = service.Validate(items).Result.ToList();
@@ -91,7 +81,7 @@
 
             foreach (var taxon in taxa)
             {
-                var matchingResults = result.Where(r => r.ValidatedObject.Name == taxon);
+                var matchingResults = result.Where(r => r.ValidatedObject == taxon);
                 Assert.AreEqual(
                     1,
                     matchingResults.Count(),
