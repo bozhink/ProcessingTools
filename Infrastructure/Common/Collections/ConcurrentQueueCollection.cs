@@ -24,10 +24,10 @@
 
         public void Clear()
         {
-            while (!base.IsEmpty)
+            while (!this.IsEmpty)
             {
                 T item;
-                base.TryDequeue(out item);
+                this.TryDequeue(out item);
             }
         }
 

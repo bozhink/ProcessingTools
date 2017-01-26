@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Cache.Data.Mongo.Models
 {
     using System;
+    using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Cache.Data.Common.Contracts.Models;
     using ProcessingTools.Enumerations;
-    using MongoDB.Bson.Serialization.Attributes;
 
     public class ValidationCacheEntity : IValidationCacheEntity
     {

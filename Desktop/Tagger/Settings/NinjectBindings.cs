@@ -1,16 +1,16 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
+    using System.Configuration;
     using Contracts.Commands;
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
+    using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Services.Data.Services.Files;
-    using ProcessingTools.Constants.Configuration;
-    using System.Configuration;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
