@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Models.ExternalLinks
 {
-    public interface IExternalLinkModel
+    using ProcessingTools.Contracts.Models;
+
+    public interface IExternalLinkModel : IValuable
     {
         string BaseAddress { get; }
 
         string Uri { get; }
-
-        string Value { get; }
     }
 }
