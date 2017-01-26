@@ -140,6 +140,7 @@
     <Compile Include="INormalizer.cs" />
     <Compile Include="Models\IObjectIdentifiable.cs" />
     <Compile Include="Models\IPatternHoldable.cs" />
+    <Compile Include="Models\IPermalinkable.cs" />
     <Compile Include="Models\IPerson.cs" />
     <Compile Include="IProcessor.cs" />
     <Compile Include="IProvider.cs" />

@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Documents.Data.Common.Contracts.Models
 {
-    public interface IJournalMeta
+    using ProcessingTools.Contracts.Models;
+
+    public interface IJournalMeta : IPermalinkable
     {
         string JournalId { get; }
 
@@ -13,8 +15,6 @@
         string IssnEPub { get; }
 
         string PublisherName { get; }
-
-        string Permalink { get; }
 
         string FileNamePattern { get; }
 
