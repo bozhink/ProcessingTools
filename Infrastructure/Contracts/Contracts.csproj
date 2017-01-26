@@ -126,6 +126,7 @@
     <Compile Include="IGenericXmlContextNormalizer.cs" />
     <Compile Include="IGenericXmlContextParser.cs" />
     <Compile Include="IGenericXmlContextTagger.cs" />
+    <Compile Include="Models\IFullAddressable.cs" />
     <Compile Include="Models\IGuidIdentifiable.cs" />
     <Compile Include="Models\IGenericIdentifiable.cs" />
     <Compile Include="IGuidProvider.cs" />
