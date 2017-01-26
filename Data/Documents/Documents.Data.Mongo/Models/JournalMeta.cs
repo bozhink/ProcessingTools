@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Mongo.Models
 {
+    using System.Text.RegularExpressions;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Contracts.Models;
@@ -33,8 +34,8 @@
         [BsonIgnoreIfDefault]
         public string JournalTitle { get; set; }
 
-        [BsonIgnoreIfDefault]
-        public string Permalink { get; set; }
+        [BsonIgnore]
+        public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLower();
 
         [BsonIgnoreIfDefault]
         public string PublisherName { get; set; }

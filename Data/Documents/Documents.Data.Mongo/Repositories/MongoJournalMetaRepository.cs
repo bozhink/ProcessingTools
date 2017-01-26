@@ -33,7 +33,6 @@
             IssnPPub = m.IssnPPub,
             JournalId = m.JournalId,
             JournalTitle = m.JournalTitle,
-            Permalink = m.Permalink,
             PublisherName = m.PublisherName
         };
 
