@@ -18,6 +18,8 @@
         public const string ContinentsCodesSeedFileName = "ContinentsCodesSeedFileName";
         public const string CountryCodesSeedFileName = "CountryCodesSeedFileName";
         public const string DataFilesDirectoryName = "DataFilesDirectoryName";
+        public const string DocumentsMongoConnection = "DocumentsMongoConnection";
+        public const string DocumentsMongoDabaseName = "DocumentsMongoDabaseName";
         public const string EnvironmentsEntitiesFileName = "EnvironmentsEntitiesFileName";
         public const string EnvironmentsGlobalFileName = "EnvironmentsGlobalFileName";
         public const string EnvironmentsGroupsFileName = "EnvironmentsGroupsFileName";

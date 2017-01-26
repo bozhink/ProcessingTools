@@ -70,23 +70,47 @@
             {
                 var appSettingsReader = new AppSettingsReader();
                 string journalMetaFilesDirectory = appSettingsReader.GetValue(AppSettingsKeys.JournalsJsonFilesDirectoryName, typeof(string)).ToString();
+                string documentsMongoConnection = appSettingsReader.GetValue(AppSettingsKeys.DocumentsMongoConnection, typeof(string)).ToString();
+                string documentsMongoDabaseName = appSettingsReader.GetValue(AppSettingsKeys.DocumentsMongoDabaseName, typeof(string)).ToString();
 
                 this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalMetaDataService>()
                     .To<ProcessingTools.Services.Data.Services.Meta.JournalMetaDataServiceWithFiles>();
 
-                this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
-                    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithFiles>()
-                    .WhenInjectedInto<Engine>()
-                    .WithConstructorArgument(
-                        ParameterNames.JournalMetaFilesDirectoryName,
-                        journalMetaFilesDirectory);
+                ////this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+                ////    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithFiles>()
+                ////    .WhenInjectedInto<Engine>()
+                ////    .WithConstructorArgument(
+                ////        ParameterNames.JournalMetaFilesDirectoryName,
+                ////        journalMetaFilesDirectory);
+
+                ////this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+                ////    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithFiles>()
+                ////    .WhenInjectedInto<HelpProvider>()
+                ////    .WithConstructorArgument(
+                ////        ParameterNames.JournalMetaFilesDirectoryName,
+                ////        journalMetaFilesDirectory);
 
                 this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
-                    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithFiles>()
-                    .WhenInjectedInto<HelpProvider>()
+                    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
+                    .WhenInjectedInto<Engine>();
+
+                this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+                    .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
+                    .WhenInjectedInto<HelpProvider>();
+
+                this.Bind<ProcessingTools.Documents.Data.Common.Contracts.Repositories.IJournalMetaRepository>()
+                    .To<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>();
+
+                this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                    .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                    .WhenInjectedInto<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>()
+                    .InSingletonScope()
                     .WithConstructorArgument(
-                        ParameterNames.JournalMetaFilesDirectoryName,
-                        journalMetaFilesDirectory);
+                        ParameterNames.ConnectionString,
+                        documentsMongoConnection)
+                    .WithConstructorArgument(
+                        ParameterNames.DatabaseName,
+                        documentsMongoDabaseName);
             }
         }
     }

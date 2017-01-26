@@ -66,6 +66,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -95,6 +99,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
+      <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
+      <Name>Data.Common.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{886CD5EA-A0BD-41C1-A583-797265011223}</Project>
+      <Name>Documents.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Documents\Documents.Data.Mongo\Documents.Data.Mongo.csproj">
+      <Project>{E617DF4A-0DE0-49DC-B739-9D1BB51A7E2D}</Project>
+      <Name>Documents.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
