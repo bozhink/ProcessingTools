@@ -20,5 +20,20 @@
 
         [XmlText]
         public string Value { get; set; }
+
+        public string FullAddress
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(this.BaseAddress))
+                {
+                    return this.Uri.Trim();
+                }
+                else
+                {
+                    return $"{this.BaseAddress.Trim().TrimEnd('/', ' ')}/{this.Uri.Trim().TrimStart('/', ' ')}";
+                }
+            }
+        }
     }
 }

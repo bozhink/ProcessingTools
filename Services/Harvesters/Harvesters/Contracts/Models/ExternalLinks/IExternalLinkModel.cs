@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface IExternalLinkModel : IValuable
+    public interface IExternalLinkModel : IValuable, IFullAddressable
     {
         string BaseAddress { get; }
 
