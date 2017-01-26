@@ -7,9 +7,9 @@
     using Contracts.Core;
     using Contracts.Factories;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Data.Contracts.Meta;
-    using ProcessingTools.Services.Data.Contracts.Models.Meta;
 
     public class Engine : IEngine
     {
@@ -83,19 +83,19 @@
 
             var journalId = args.Single(this.FilterDoubleDashedOption).Substring(2);
 
-            IJournal journal = (await this.journalsMetaService.GetAllJournalsMeta())
+            IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMeta())
                 .FirstOrDefault(j => j.Permalink == journalId);
 
-            if (journal == null)
+            if (journalMeta == null)
             {
                 this.logger?.Log(LogType.Error, "Journal not found");
                 return;
             }
 
-            this.ProcessDirectories(args, journal);
+            this.ProcessDirectories(args, journalMeta);
         }
 
-        private void ProcessDirectories(string[] args, IJournal journal)
+        private void ProcessDirectories(string[] args, IJournalMeta journalMeta)
         {
             var directories = args.Where(this.FilterNonDashedOption)
                 .Select(this.SelectDirectoryName)
@@ -106,7 +106,7 @@
             {
                 this.logger?.Log(directoryName);
 
-                var direcoryProcessor = this.processorFactory.CreateDirectoryProcessor(directoryName, journal);
+                var direcoryProcessor = this.processorFactory.CreateDirectoryProcessor(directoryName, journalMeta);
 
                 // Processing of each should be executed strictly sequential
                 // due to the changes of the current location.

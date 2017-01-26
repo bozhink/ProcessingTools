@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts.Meta;
-    using Contracts.Models.Meta;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public class JournalsMetaDataServiceWithFiles : IJournalsMetaDataService
     {
@@ -47,11 +47,11 @@
             }
         }
 
-        public async Task<IEnumerable<IJournal>> GetAllJournalsMeta()
+        public async Task<IEnumerable<IJournalMeta>> GetAllJournalsMeta()
         {
             var journalMetaFiles = Directory.GetFiles(this.JournalMetaFilesDirectory).ToArray();
 
-            var result = new HashSet<IJournal>();
+            var result = new HashSet<IJournalMeta>();
             foreach (var fileName in journalMetaFiles)
             {
                 var journalMeta = await this.journalMetaDataService.GetJournalMeta(fileName);

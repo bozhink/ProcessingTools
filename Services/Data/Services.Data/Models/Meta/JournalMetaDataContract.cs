@@ -3,7 +3,7 @@
     using System.Runtime.Serialization;
 
     [DataContract]
-    public class JournalDataContract
+    public class JournalMetaDataContract
     {
         [DataMember(Name = "abbreviatedJournalTitle")]
         public string AbbreviatedJournalTitle { get; set; }

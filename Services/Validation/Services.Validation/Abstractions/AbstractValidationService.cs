@@ -96,7 +96,7 @@
 
                 await this.cacheService.Add(permalink, model);
             }
-            catch (Exception e)
+            catch
             {
                 this.CacheServiceIsUsable = false;
             }

@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Models.Meta;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public interface IJournalsMetaDataService
     {
-        Task<IEnumerable<IJournal>> GetAllJournalsMeta();
+        Task<IEnumerable<IJournalMeta>> GetAllJournalsMeta();
     }
 }

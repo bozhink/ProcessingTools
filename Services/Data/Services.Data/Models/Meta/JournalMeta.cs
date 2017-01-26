@@ -1,11 +1,13 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Meta
 {
     using System.Text.RegularExpressions;
-    using Contracts.Models.Meta;
+    using ProcessingTools.Contracts.Models.Documents;
 
-    public class Journal : IJournal
+    internal class JournalMeta : IJournalMeta
     {
         public string AbbreviatedJournalTitle { get; set; }
+
+        public string ArchiveNamePattern { get; set; }
 
         /// <summary>
         /// Structure must be: {0} = volume, {1} = issue, {2} = id, {3} = first page.
@@ -20,8 +22,8 @@
 
         public string JournalTitle { get; set; }
 
-        public string PublisherName { get; set; }
-
         public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLower();
+
+        public string PublisherName { get; set; }
     }
 }

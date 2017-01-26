@@ -11,19 +11,19 @@
     using Contracts.Core;
     using Contracts.Factories;
     using ProcessingTools.Constants;
-    using ProcessingTools.Services.Data.Contracts.Models.Meta;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public class DirectoryProcessor : IDirectoryProcessor
     {
         private readonly IProcessorFactory processorFactory;
-        private readonly IJournal journal;
+        private readonly IJournalMeta journalMeta;
         private string direcoryName;
 
-        public DirectoryProcessor(string direcoryName, IJournal journal, IProcessorFactory processorFactory)
+        public DirectoryProcessor(string direcoryName, IJournalMeta journalMeta, IProcessorFactory processorFactory)
         {
-            if (journal == null)
+            if (journalMeta == null)
             {
-                throw new ArgumentNullException(nameof(journal));
+                throw new ArgumentNullException(nameof(journalMeta));
             }
 
             if (processorFactory == null)
@@ -32,7 +32,7 @@
             }
 
             this.DirectoryName = direcoryName;
-            this.journal = journal;
+            this.journalMeta = journalMeta;
             this.processorFactory = processorFactory;
         }
 
@@ -93,7 +93,7 @@
             {
                 try
                 {
-                    var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, this.journal);
+                    var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, this.journalMeta);
                     fileProcessor.Process().Wait();
                 }
                 catch (Exception e)

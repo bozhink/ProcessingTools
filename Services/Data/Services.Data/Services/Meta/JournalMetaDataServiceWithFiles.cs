@@ -4,9 +4,9 @@
     using System.IO;
     using System.Threading.Tasks;
     using Contracts.Meta;
-    using Contracts.Models.Meta;
     using Models.Meta;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public class JournalMetaDataServiceWithFiles : IJournalMetaDataService
     {
@@ -22,7 +22,7 @@
             this.deserializer = deserializer;
         }
 
-        public async Task<IJournal> GetJournalMeta(string journalJsonFileName)
+        public async Task<IJournalMeta> GetJournalMeta(string journalJsonFileName)
         {
             if (string.IsNullOrWhiteSpace(journalJsonFileName))
             {
@@ -31,9 +31,9 @@
 
             using (var stream = new FileStream(journalJsonFileName, FileMode.Open))
             {
-                var journalJsonObject = await this.deserializer.Deserialize<JournalDataContract>(stream);
+                var journalJsonObject = await this.deserializer.Deserialize<JournalMetaDataContract>(stream);
 
-                return new Journal
+                return new JournalMeta
                 {
                     AbbreviatedJournalTitle = journalJsonObject.AbbreviatedJournalTitle,
                     FileNamePattern = journalJsonObject.FileNamePattern,

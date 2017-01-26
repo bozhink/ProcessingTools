@@ -10,10 +10,10 @@
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
     using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
 
     public class MongoJournalMetaRepository : MongoRepository<JournalMeta>, IMongoJournalMetaRepository
     {

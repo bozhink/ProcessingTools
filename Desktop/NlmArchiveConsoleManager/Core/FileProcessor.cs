@@ -13,10 +13,10 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Services.Data.Contracts.Files;
-    using ProcessingTools.Services.Data.Contracts.Models.Meta;
 
     public class FileProcessor : IFileProcessor
     {
@@ -24,23 +24,23 @@
         private readonly IDocumentFactory documentFactory;
         private readonly IXmlFileContentDataService fileManager;
         private readonly IModelFactory modelFactory;
-        private readonly IJournal journal;
+        private readonly IJournalMeta journalMeta;
         private readonly ILogger logger;
         private string fileName;
         private string fileNameWithoutExtension;
 
         public FileProcessor(
             string fileName,
-            IJournal journal,
+            IJournalMeta journalMeta,
             IDocumentFactory documentFactory,
             IXmlFileContentDataService fileManager,
             IArticleMetaHarvester articleMetaHarvester,
             IModelFactory modelFactory,
             ILogger logger)
         {
-            if (journal == null)
+            if (journalMeta == null)
             {
-                throw new ArgumentNullException(nameof(journal));
+                throw new ArgumentNullException(nameof(journalMeta));
             }
 
             if (documentFactory == null)
@@ -64,7 +64,7 @@
             }
 
             this.FileName = fileName;
-            this.journal = journal;
+            this.journalMeta = journalMeta;
             this.documentFactory = documentFactory;
             this.fileManager = fileManager;
             this.articleMetaHarvester = articleMetaHarvester;
@@ -134,7 +134,7 @@
             var articleMeta = await this.articleMetaHarvester.Harvest(document);
 
             string fileNameReplacementPrefix = string.Format(
-                this.journal.FileNamePattern,
+                this.journalMeta.FileNamePattern,
                 articleMeta.Volume?.ConvertTo<int>(),
                 articleMeta.Issue?.ConvertTo<int>(),
                 articleMeta.Id,
@@ -248,12 +248,12 @@
 
         private void UpdateJournalMetaInDocument(IDocument document)
         {
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalId, this.journal.JournalId);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalTitle, this.journal.JournalTitle);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalAbbreviatedTitle, this.journal.AbbreviatedJournalTitle);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnPPub, this.journal.IssnPPub);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnEPub, this.journal.IssnEPub);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaPublisherName, this.journal.PublisherName);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalId, this.journalMeta.JournalId);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalTitle, this.journalMeta.JournalTitle);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalAbbreviatedTitle, this.journalMeta.AbbreviatedJournalTitle);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnPPub, this.journalMeta.IssnPPub);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnEPub, this.journalMeta.IssnEPub);
+            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaPublisherName, this.journalMeta.PublisherName);
         }
 
         private void UpdateMetaNodeContent(IDocument document, string xpath, string content)

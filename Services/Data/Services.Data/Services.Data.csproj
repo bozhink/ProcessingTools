@@ -85,7 +85,6 @@
     <Compile Include="Contracts\Models\Bio\Taxonomy\ITaxonRankWithWhiteListing.cs" />
     <Compile Include="Contracts\Models\IInstitution.cs" />
     <Compile Include="Contracts\Models\IProduct.cs" />
-    <Compile Include="Contracts\Models\Meta\IJournal.cs" />
     <Compile Include="Models\Bio\Taxonomy\BlackListEntity.cs" />
     <Compile Include="Models\Bio\Taxonomy\TaxonClassificationServiceModel.cs" />
     <Compile Include="Models\Bio\Taxonomy\TaxonRankEntity.cs" />
@@ -93,8 +92,10 @@
     <Compile Include="Models\Bio\Taxonomy\TaxonRankWithWhiteListingServiceModel.cs" />
     <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
     <Compile Include="Models\Mediatypes\MediatypeServiceModel.cs" />
-    <Compile Include="Models\Meta\Journal.cs" />
-    <Compile Include="Models\Meta\JournalDataContract.cs" />
+    <Compile Include="Models\Meta\JournalMeta.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Models\Meta\JournalMetaDataContract.cs" />
     <Compile Include="Services\Bio\Taxonomy\AboveGenusTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaClassificationResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaRankResolver.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithSystemWeb.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithWindowsRegistry.cs" />
     <Compile Include="Services\Meta\JournalMetaDataServiceWithFiles.cs" />
+    <Compile Include="Services\Meta\JournalsMetaDataServiceWithDatabase.cs" />
     <Compile Include="Services\Meta\JournalsMetaDataServiceWithFiles.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +137,10 @@
     <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Documents\Documents.Data.Common\Documents.Data.Common.csproj">
+      <Project>{886CD5EA-A0BD-41C1-A583-797265011223}</Project>
+      <Name>Documents.Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Mediatypes\Mediatypes.Data.Common\Mediatypes.Data.Common.csproj">
       <Project>{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}</Project>
