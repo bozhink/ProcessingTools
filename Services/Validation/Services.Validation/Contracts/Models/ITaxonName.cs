@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface ITaxonName : INameable
+    public interface ITaxonName : INameable, IPermalinkable
     {
     }
 }

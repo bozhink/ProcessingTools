@@ -2,10 +2,8 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface IUrl : IAddressable
+    public interface IUrl : IAddressable, IFullAddressable, IPermalinkable
     {
         string BaseAddress { get; }
-
-        string FullAddress { get; }
     }
 }

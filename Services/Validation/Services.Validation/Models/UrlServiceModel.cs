@@ -22,5 +22,7 @@
                 }
             }
         }
+
+        public string Permalink => this.FullAddress;
     }
 }

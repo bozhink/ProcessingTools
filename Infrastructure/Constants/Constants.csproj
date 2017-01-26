@@ -54,11 +54,13 @@
     <Compile Include="Schema\XPathStrings.cs" />
     <Compile Include="TaxaClassificationConstants.cs" />
     <Compile Include="TaxaRegexPatterns.cs" />
+    <Compile Include="Uri\PermalinkPrefixes.cs" />
     <Compile Include="Uri\UrlConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CommonAppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
