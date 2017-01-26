@@ -68,7 +68,7 @@
                 .ContinueWith(_ =>
                 {
                     _.Wait();
-                    this.CreateZipFile();
+                    ////this.CreateZipFile();
                 });
 
             Directory.SetCurrentDirectory(initialDirectory);

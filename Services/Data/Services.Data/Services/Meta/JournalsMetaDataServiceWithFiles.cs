@@ -8,12 +8,12 @@
     using Contracts.Meta;
     using Contracts.Models.Meta;
 
-    public class JournalsMetaDataService : IJournalsMetaDataService
+    public class JournalsMetaDataServiceWithFiles : IJournalsMetaDataService
     {
         private readonly IJournalMetaDataService journalMetaDataService;
         private string journalMetaFilesDirectory;
 
-        public JournalsMetaDataService(string journalMetaFilesDirectory, IJournalMetaDataService journalMetaDataService)
+        public JournalsMetaDataServiceWithFiles(string journalMetaFilesDirectory, IJournalMetaDataService journalMetaDataService)
         {
             if (journalMetaDataService == null)
             {

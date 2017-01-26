@@ -122,8 +122,8 @@
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithStaticDictionaryData.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithSystemWeb.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithWindowsRegistry.cs" />
-    <Compile Include="Services\Meta\JournalMetaDataService.cs" />
-    <Compile Include="Services\Meta\JournalsMetaDataService.cs" />
+    <Compile Include="Services\Meta\JournalMetaDataServiceWithFiles.cs" />
+    <Compile Include="Services\Meta\JournalsMetaDataServiceWithFiles.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
