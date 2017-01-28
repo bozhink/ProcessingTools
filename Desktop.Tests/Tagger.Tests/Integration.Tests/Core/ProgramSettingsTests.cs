@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Tests.UnitTests
+﻿namespace ProcessingTools.Tagger.Tests.Integration.Tests.Core
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Enumerations;
