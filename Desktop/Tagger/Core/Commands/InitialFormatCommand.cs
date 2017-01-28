@@ -2,7 +2,6 @@
 {
     using Contracts.Commands;
     using Generics;
-
     using ProcessingTools.Attributes;
     using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
