@@ -42,6 +42,7 @@
     <Compile Include="Processors\Flora.cs" />
     <Compile Include="Contracts\Processors\IFlora.cs" />
     <Compile Include="Contracts\Processors\ITestFeaturesProvider.cs" />
+    <Compile Include="Processors\GavinLaurensParser.cs" />
     <Compile Include="Processors\QuentinFlora.cs" />
     <Compile Include="Processors\TestFeaturesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
