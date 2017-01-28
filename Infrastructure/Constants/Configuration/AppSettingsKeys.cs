@@ -30,6 +30,7 @@
         public const string FormatSystemToNlmXslFileName = "FormatSystemToNlmXslFileName";
         public const string FormatTaxonTreatmentsXslFileName = "FormatTaxonTreatmentsXslFileName";
         public const string FormatXmlToHtmlXslFileName = "FormatXmlToHtmlXslFileName";
+        public const string GavinLaurensXslFileName = "GavinLaurensXslFileName";
         public const string GeoEpithetsSeedFileName = "GeoEpithetsSeedFileName";
         public const string GeoNamesSeedFileName = "GeoNamesSeedFileName";
         public const string InstitutionsSeedFileName = "InstitutionsSeedFileName";

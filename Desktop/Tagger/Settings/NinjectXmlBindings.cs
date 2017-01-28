@@ -14,17 +14,17 @@
         private const string ExternalLinksTransformerName = "ExternalLinksTransformer";
         private const string FormatToNlmTransformerName = "FormatToNlmTransformer";
         private const string FormatToSystemTransformerName = "FormatToSystemTransformer";
+        private const string GavinLaurensTransformerName = "GavinLaurensTransformer";
         private const string NlmInitialFormatTransformerName = "NlmInitialFormatTransformer";
+        private const string ParseTreatmentMetaWithInternalInformationTransformerName = "ParseTreatmentMetaWithInternalInformationTransformer";
         private const string ReferencesGetReferencesTransformerName = "ReferencesGetReferencesTransformer";
         private const string ReferencesTagTemplateTransformerName = "ReferencesTagTemplateTransformer";
+        private const string RemoveTaxonNamePartsTransformerName = "RemoveTaxonNamePartsTransformer";
         private const string SystemInitialFormatTransformerName = "SystemInitialFormatTransformer";
         private const string TaxonTreatmentExtractMaterialsTransformerName = "TaxonTreatmentExtractMaterialsTransformer";
         private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
         private const string TextContentTransformerName = "TextContentTransformer";
         private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
-        private const string RemoveTaxonNamePartsTransformerName = "RemoveTaxonNamePartsTransformer";
-        private const string ParseTreatmentMetaWithInternalInformationTransformerName = "ParseTreatmentMetaWithInternalInformationTransformer";
-
         public override void Load()
         {
             // Transformers
@@ -112,6 +112,12 @@
                     ParameterNames.XslFileName,
                     ConfigurationManager.AppSettings[AppSettingsKeys.ParseTreatmentMetaWithInternalInformationXslFileName]);
 
+            this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
+                .Named(GavinLaurensTransformerName)
+                .WithConstructorArgument(
+                    ParameterNames.XslFileName,
+                    ConfigurationManager.AppSettings[AppSettingsKeys.GavinLaurensXslFileName]);
+
             this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
                 .Named(AbbreviationsTransformerName)
                 .WithConstructorArgument(
@@ -160,6 +166,10 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Harvesters.Contracts.Factories.IAbbreviationsTransformersFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Special.Processors.Contracts.Factories.ISpecialTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }
