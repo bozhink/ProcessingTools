@@ -47,7 +47,7 @@
                 ParameterNames.Parser);
 
             Assert.IsNotNull(parser, "Private parser field should not be null.");
-            Assert.AreSame(parserMock.Object, parser);
+            Assert.AreSame(parserMock.Object, parser, "Private parser field should not be set correctly.");
         }
 
         #endregion ConstructorTests

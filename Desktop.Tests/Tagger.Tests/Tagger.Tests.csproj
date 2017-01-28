@@ -51,6 +51,7 @@
     <Compile Include="Unit.Tests\Core\Commands\ExpandLowerTaxaCommandUnitTests.cs" />
     <Compile Include="Integration.Tests\Core\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit.Tests\Core\Commands\ExtractTaxaCommandUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">

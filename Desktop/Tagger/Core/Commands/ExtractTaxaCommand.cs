@@ -42,7 +42,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            var context = document.XmlDocument;
+            var context = document.XmlDocument.DocumentElement;
 
             if (settings.ExtractTaxa)
             {
