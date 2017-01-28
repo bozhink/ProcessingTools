@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Commands\IParseTreatmentMetaWithInternalInformationCommand.cs" />
     <Compile Include="Contracts\Commands\IRunCustomXQueryTransformCommand.cs" />
+    <Compile Include="Contracts\Commands\ISpecialCaseGavinLaurensCommand.cs" />
     <Compile Include="Contracts\Commands\ITagCollectionCodesCommand.cs" />
     <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
     <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Core\Commands\ParseTreatmentMaterialsCommand.cs" />
     <Compile Include="Core\Commands\ParseTreatmentMetaWithInternalInformationCommand.cs" />
     <Compile Include="Core\Commands\RunCustomXQueryTransformCommand.cs" />
+    <Compile Include="Core\Commands\SpecialCaseGavinLaurensCommand.cs" />
     <Compile Include="Core\Commands\TagCollectionCodesCommand.cs" />
     <Compile Include="Core\Commands\TagSpecimenCodesCommand.cs" />
     <Compile Include="Core\Commands\TagSpecimenCountCommand.cs" />
