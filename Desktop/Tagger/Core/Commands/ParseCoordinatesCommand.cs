@@ -2,7 +2,6 @@
 {
     using Contracts.Commands;
     using Generics;
-
     using ProcessingTools.Attributes;
     using ProcessingTools.Processors.Contracts.Coordinates;
 
