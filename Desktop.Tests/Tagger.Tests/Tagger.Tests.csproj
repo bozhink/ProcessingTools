@@ -62,6 +62,7 @@
     <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithAphiaCommandUnitTests.cs" />
     <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithCatalogueOfLifeCommandUnitTests.cs" />
     <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithGbifCommandUnitTests.cs" />
+    <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithInternalInformationCommandUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
