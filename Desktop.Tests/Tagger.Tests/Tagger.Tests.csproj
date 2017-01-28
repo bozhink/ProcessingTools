@@ -56,6 +56,7 @@
     <Compile Include="Unit.Tests\Core\Commands\FormatTreatmentsCommandUnitTests.cs" />
     <Compile Include="Unit.Tests\Core\Commands\InitialFormatCommandUnitTests.cs" />
     <Compile Include="Unit.Tests\Core\Commands\ParseCoordinatesCommandUnitTests.cs" />
+    <Compile Include="Unit.Tests\Core\Commands\ParseLowerTaxaCommandUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
