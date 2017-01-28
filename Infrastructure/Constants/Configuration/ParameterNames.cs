@@ -6,6 +6,7 @@
         public const string DatabaseName = "databaseName";
         public const string DataFileName = "dataFileName";
         public const string Document = "document";
+        public const string Formatter = "formatter";
         public const string Harvester = "harvester";
         public const string JournalMetaFilesDirectoryName = "journalMetaFilesDirectory";
         public const string Parser = "parser";
