@@ -6,7 +6,7 @@
     using Contracts.Commands;
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Special.Processors.Contracts;
+    using ProcessingTools.Special.Processors.Contracts.Processors;
 
     [Description("Test.")]
     public class TestCommand : ITestCommand
