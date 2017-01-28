@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration.Tests\Core\Commands\ExtractTaxaCommandIntegrationTests.cs" />
     <Compile Include="Unit.Tests\Core\Commands\ExpandLowerTaxaCommandUnitTests.cs" />
     <Compile Include="Integration.Tests\Core\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
