@@ -58,6 +58,7 @@
     <Compile Include="Unit.Tests\Core\Commands\ParseCoordinatesCommandUnitTests.cs" />
     <Compile Include="Unit.Tests\Core\Commands\ParseLowerTaxaCommandUnitTests.cs" />
     <Compile Include="Unit.Tests\Core\Commands\ParseReferencesCommandUnitTests.cs" />
+    <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMaterialsCommandUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
