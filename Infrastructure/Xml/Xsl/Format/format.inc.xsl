@@ -469,6 +469,16 @@
     </xsl:element>
   </xsl:template>
 
+  <xsl:template match="trans-source[not(@xml:lang)] | trans-title[not(@xml:lang)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="xml:lang">
+        <xsl:text>en</xsl:text>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="date-in-citation[normalize-space(@content-type)='']">
     <xsl:variable name="content">
       <xsl:call-template name="to-lower-case">
