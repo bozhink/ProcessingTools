@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes
 {
-    using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
+    using Contracts.Models.Bio.SpecimenCodes;
 
     internal class SpecimenCodeResponseModel : ISpecimenCode
     {
         private string content;
         private string contentType;
+        private string url;
         private int hashCode;
 
         public string Content
@@ -17,8 +18,8 @@
 
             set
             {
-                this.content = value;
-                this.hashCode = (this.content + this.contentType).GetHashCode();
+                this.content = value ?? string.Empty;
+                this.RecalculateHash();
             }
         }
 
@@ -31,13 +32,32 @@
 
             set
             {
-                this.contentType = value;
-                this.hashCode = (this.content + this.contentType).GetHashCode();
+                this.contentType = value ?? string.Empty;
+                this.RecalculateHash();
+            }
+        }
+
+        public string Url
+        {
+            get
+            {
+                return this.url;
+            }
+
+            set
+            {
+                this.url = value ?? string.Empty;
+                this.RecalculateHash();
             }
         }
 
         public override bool Equals(object obj) => this.GetHashCode() == obj.GetHashCode();
 
         public override int GetHashCode() => this.hashCode;
+
+        private void RecalculateHash()
+        {
+            this.hashCode = (this.content + this.contentType + this.url).GetHashCode();
+        }
     }
 }

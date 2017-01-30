@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface ISpecimenCode : IContent, IContentTypable
+    public interface ISpecimenCode : IContent, IContentTypable, IUrlLinkable
     {
     }
 }
