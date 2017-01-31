@@ -140,25 +140,24 @@
                 .Distinct()
                 .ToList();
 
-            speciesUniq.ForEach(s => this.logger?.Log(s));
-
             IDictionary<string, string[]> speciesGenusPairs = new Dictionary<string, string[]>();
 
             foreach (string species in speciesUniq)
             {
-                var genera = context.SelectNodes($"{XPathStrings.LowerTaxonNames}[normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})='{species}'][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus})!='' or normalize-space({XPathStrings.TaxonNamePartOfTypeGenus}/@full-name)!='']/{XPathStrings.TaxonNamePartOfTypeGenus}")
+                var genera = context.SelectNodes($"{XPathStrings.LowerTaxonNames}[normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})='{species}'][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus})!='' or normalize-space({XPathStrings.TaxonNamePartOfTypeGenus}/@{AttributeNames.FullName})!='']/{XPathStrings.TaxonNamePartOfTypeGenus}")
                     .Cast<XmlElement>()
                     .Select(g =>
                     {
                         if ((string.IsNullOrWhiteSpace(g.InnerText) || g.InnerText.Contains('.')) && g.Attributes[AttributeNames.FullName] != null)
                         {
-                            return g.Attributes[AttributeNames.FullName].InnerText;
+                            return g.Attributes[AttributeNames.FullName].InnerText.Trim();
                         }
                         else
                         {
-                            return g.InnerText;
+                            return g.InnerText.Trim();
                         }
                     })
+                    .Where(g => !string.IsNullOrWhiteSpace(g) && !g.Contains("."))
                     .Distinct()
                     .ToList();
 
