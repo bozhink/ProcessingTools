@@ -70,10 +70,49 @@
 
   <!---->
 
-  <xsl:template match="named-content[@content-type='voucher code']//named-content[@content-type='voucher code']">
+  <xsl:template match="named-content[@content-type='voucher code'][ancestor::named-content[@content-type='voucher code']]">
     <xsl:apply-templates />
   </xsl:template>
-  
+
+  <xsl:template match="named-content[@content-type='voucher code'][@xlink:title='OSUC'][not(ancestor::named-content[@content-type='voucher code'])][not(ext-link)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <ext-link xlink:type="simple" ext-link-type="uri">
+        <xsl:attribute name="xlink:href">
+          <xsl:text>http://hol.osu.edu/spmInfo.html?id=OSUC%20</xsl:text>
+          <xsl:value-of select="normalize-space(translate(string(), 'QWERTYUIOPASDFGHJKLZXCVBNM', ''))" />
+        </xsl:attribute>
+        <xsl:apply-templates />
+      </ext-link>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="named-content[@content-type='voucher code'][@xlink:title='CASENT'][not(ancestor::named-content[@content-type='voucher code'])][not(ext-link)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <ext-link xlink:type="simple" ext-link-type="uri">
+        <xsl:attribute name="xlink:href">
+          <xsl:text>http://data.antweb.org/specimen/CASENT</xsl:text>
+          <xsl:value-of select="normalize-space(translate(string(), 'QWERTYUIOPASDFGHJKLZXCVBNM', ''))" />
+        </xsl:attribute>
+        <xsl:apply-templates />
+      </ext-link>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="named-content[@content-type='voucher code'][@xlink:title='USNMENT'][not(ancestor::named-content[@content-type='voucher code'])][not(ext-link)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <ext-link xlink:type="simple" ext-link-type="uri">
+        <xsl:attribute name="xlink:href">
+          <xsl:text>http://hol.osu.edu/spmInfo.html?id=USNMENT</xsl:text>
+          <xsl:value-of select="normalize-space(translate(string(), 'QWERTYUIOPASDFGHJKLZXCVBNM', ''))" />
+        </xsl:attribute>
+        <xsl:apply-templates />
+      </ext-link>
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="named-content">
     <xsl:element name="{name()}">
       <xsl:apply-templates select="@*" />
@@ -425,6 +464,16 @@
             <xsl:text></xsl:text>
           </xsl:otherwise>
         </xsl:choose>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="trans-source[not(@xml:lang)] | trans-title[not(@xml:lang)]">
+    <xsl:element name="{name()}">
+      <xsl:apply-templates select="@*" />
+      <xsl:attribute name="xml:lang">
+        <xsl:text>en</xsl:text>
       </xsl:attribute>
       <xsl:apply-templates />
     </xsl:element>

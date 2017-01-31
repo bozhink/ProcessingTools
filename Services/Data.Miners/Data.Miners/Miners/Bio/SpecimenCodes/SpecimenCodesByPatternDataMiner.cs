@@ -38,7 +38,13 @@
                 { @"\bFJIQBC\W*\d+", string.Empty },
                 { @"\bMNHN\W*IM\W*2000\W*\d+\b", string.Empty },
                 { @"\bMZUSP\W*\d+(?:\.\d+)?\b", "Museu de Zoologia da Universidade de São Paulo, São Paulo State, Brazil" },
-                { @"\bLBP\W*\d+(?:\.\d+)?\b", "Laboratório de Biologia e Genética de Peixes, São Paulo State, Brazil" }
+                { @"\bLBP\W*\d+(?:\.\d+)?\b", "Laboratório de Biologia e Genética de Peixes, São Paulo State, Brazil" },
+                { @"\bUCFC\s+\d\s+\d{3,3}\s+\d{3,3}\b", string.Empty },
+                { @"(?<=CMNH[^A-Za-z]*\D)\d{3,3},\d{3,3}", "CMNH" },
+                { @"\bUSNMENT\d{8,8}", "USNMENT" },
+                { @"(?<=OSUC[^A-Za-z\r\n]*\D)\d{5,6}(?=\D)", "OSUC" },
+                { @"(?<=UCRC ENT[^A-Za-z\r\n]*\D)\d{5,6}(?=\D)", "UCRC ENT" },
+                { @"(?<=CASENT[^A-Za-z\r\n]*\D)\d{7,7}(?=\D)", "CASENT" }
             };
         }
 
