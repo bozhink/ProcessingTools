@@ -402,6 +402,78 @@
                 });
         }
 
+        private void AddTaxonNamePartsToTaxonNameElements(XmlNode context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            context.SelectNodes(".//tn[@type='lower'][not(tn-part)]")
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(node =>
+                {
+                    var text = node.InnerXml
+                        .RegexReplace("><", "> <")
+                        .RegexReplace(@"<[^<>]+>", string.Empty);
+
+                    var matchWordValues = Regex.Match(text, @"((?:[^\W\d]|\-)+)");
+                    var matches = new HashSet<string>(matchWordValues.ToIEnumerable());
+
+                    string innerXmlReplacement = node.InnerXml;
+                    foreach (var match in matches)
+                    {
+                        string pattern = @"(?<!<[^<>]+)\b(" + match + @"\b\.?)";
+                        innerXmlReplacement = Regex.Replace(innerXmlReplacement, pattern, @"<tn-part type="""">$1</tn-part>");
+                    }
+
+                    node.InnerXml = innerXmlReplacement;
+                });
+        }
+
+        private IDictionary<string, string> BuildDictionaryOfKnownRanks(XmlNode context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            var items = context.SelectNodes(".//tn[@type='lower']//tn-part[normalize-space(@type)!='']")
+                .Cast<XmlNode>()
+                .Select(n => $"{n.InnerText}|{n.Attributes[AttributeNames.Type]?.InnerText}")
+                .Distinct()
+                .ToArray();
+
+            var dictionary = new Dictionary<string, string>();
+
+            foreach (var item in items)
+            {
+                var taxonRankPair = item.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                if (taxonRankPair.Length < 2)
+                {
+                    continue;
+                }
+
+                string taxonName = taxonRankPair[0];
+                string taxonRank = taxonRankPair[1].ToLower();
+                if (dictionary.ContainsKey(taxonName))
+                {
+                    if (dictionary[taxonName] != taxonRank)
+                    {
+                        // Taxon name has multiple ranks
+                        dictionary.Remove(taxonName);
+                    }
+                }
+                else
+                {
+                    dictionary.Add(taxonName, taxonRank);
+                }
+            }
+
+            return dictionary;
+        }
+
         private void ParseLowerTaxaWithBasionym(XmlNode context)
         {
             try
@@ -501,6 +573,9 @@
 
         private object ParseSync(XmlNode context)
         {
+            ////this.AddTaxonNamePartsToTaxonNameElements(context);
+            ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
+            ////this.ResolveWithDictionaryOfKnownRanks(context, knownRanks);
             this.ParseLowerTaxaWithoutBasionym(context);
             this.ParseLowerTaxaWithBasionym(context);
             this.RemoveWrappingItalics(context);
@@ -535,6 +610,33 @@
                 context.InnerXml,
                 @"<i>(<tn(\s*>|\s[^<>]*>)<tn-part type=""genus""[^<>]*>[^<>]*</tn-part>\s*\(<tn-part type=""(subgenus|superspecies)""[^<>]*>.*?</tn>)</i>",
                 "$1");
+        }
+
+        private void ResolveWithDictionaryOfKnownRanks(XmlNode context, IDictionary<string, string> dictionary)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (dictionary == null)
+            {
+                throw new ArgumentNullException(nameof(dictionary));
+            }
+
+            context.SelectNodes(".//tn[@type='lower']//tn-part[normalize-space(@type)='']")
+                .Cast<XmlNode>()
+                .AsParallel()
+                .ForAll(node =>
+                {
+                    string taxonName = node.InnerText;
+                    string taxonRank = null;
+                    dictionary.TryGetValue(taxonName, out taxonRank);
+                    if (!string.IsNullOrEmpty(taxonRank))
+                    {
+                        node.SafeSetAttributeValue(AttributeNames.Type, taxonRank);
+                    }
+                });
         }
 
         private void UpdateSingleWordTaxonNamePartOfTypeRanks(XmlNode context, string xpath, IEnumerable<ITaxonNamePart> listOfNonSingleWordTaxonNameParts)
