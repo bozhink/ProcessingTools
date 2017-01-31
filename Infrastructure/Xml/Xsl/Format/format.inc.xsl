@@ -190,7 +190,7 @@
     <xsl:value-of select="." />
   </xsl:template>
 
-  <xsl:template match="a//a|a//ext-link|a//xref|xref//xref|xref//a|xref//ext-link|ext-link//ext-link">
+  <xsl:template match="a//a|a//ext-link|a//xref|xref//xref|xref//a|xref//ext-link|ext-link//ext-link|xref//named-content">
     <xsl:apply-templates />
   </xsl:template>
 

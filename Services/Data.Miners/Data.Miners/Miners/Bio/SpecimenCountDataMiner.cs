@@ -9,6 +9,7 @@
  * 1♂&amp;1♀
  * 2 larvae
  * 1 larva
+ * 0m, 7f, 3i
  */
 
 namespace ProcessingTools.Data.Miners.Miners.Bio
@@ -23,7 +24,7 @@ namespace ProcessingTools.Data.Miners.Miners.Bio
     public class SpecimenCountDataMiner : ISpecimenCountDataMiner
     {
         private const string RangeOfItemsSubPattern = @"(?:\d+(?:\s*[–—−‒-]?\s*))+";
-        private const string Pattern = @"((?i)" + RangeOfItemsSubPattern + @"[^\w<>\(\)\[\]]{0,5}(?:(?:[♀♂]|\bexx?\b\.?|\bspp\b\.?|\bmales?\b|\bfemales?\b|\bjuveniles?\b|\blarvae?\b|\badults?\b|(?:\bdry\b\s*|\bwet\b\s*)?\bspecimens?\b|\bspec\b\.?|\bsex undetermined\b|\bunsexed\b(?:\s+specimens?\b)?)\s*?)+)";
+        private const string Pattern = @"((?i)" + RangeOfItemsSubPattern + @"[^\w<>\(\)\[\]]{0,5}(?:(?:[♀♂]|[fmij]\b|\bexx?\b\.?|\bspp\b\.?|\bmales?\b|\bfemales?\b|\bjuveniles?\b|\blarvae?\b|\badults?\b|(?:\bdry\b\s*|\bwet\b\s*)?\bspecimens?\b|\bspec\b\.?|\bsex undetermined\b|\bunsexed\b(?:\s+specimens?\b)?)\s*?)+)";
 
         public async Task<IEnumerable<string>> Mine(string content)
         {
