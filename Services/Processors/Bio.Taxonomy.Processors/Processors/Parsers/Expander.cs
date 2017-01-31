@@ -8,9 +8,9 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.Processors.Comparers;
-    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
-    using ProcessingTools.Bio.Taxonomy.Processors.Models.Parsers;
+    using Comparers;
+    using Contracts.Parsers;
+    using Models.Parsers;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
@@ -21,8 +21,8 @@
     {
         private readonly ILogger logger;
 
-        private readonly Expression<Func<ITaxonNamePart, bool>> matchResolvedGenera = p => (p.Rank == SpeciesPartType.Genus) && (p.IsResolved || !p.IsAbbreviated);
-        private readonly Expression<Func<ITaxonNamePart, bool>> matchUnResolvedGenera = p => (p.Rank == SpeciesPartType.Genus) && (p.IsAbbreviated && !p.IsResolved);
+        private readonly Expression<Func<ITaxonNamePart, bool>> matchNotResolvedGenera = MatchNotResolved(SpeciesPartType.Genus);
+        private readonly Expression<Func<ITaxonNamePart, bool>> matchResolvedGenera = MatchResolved(SpeciesPartType.Genus);
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsAbbreviatedAndNotResolved = p => p.IsAbbreviated && !p.IsResolved;
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsResolvedOrNotAbbreviated = p => p.IsResolved || !p.IsAbbreviated;
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsWithMeaningfullRank = p => p.Rank != SpeciesPartType.Undefined;
@@ -57,6 +57,10 @@
                 return this.ParseSync(context);
             });
         }
+
+        private static Expression<Func<ITaxonNamePart, bool>> MatchNotResolved(SpeciesPartType rank) => p => (p.Rank == rank) && (p.IsAbbreviated && !p.IsResolved);
+
+        private static Expression<Func<ITaxonNamePart, bool>> MatchResolved(SpeciesPartType rank) => p => (p.Rank == rank) && (p.IsResolved || !p.IsAbbreviated);
 
         private void AddIdAndPositionAttributesToTaxonNameElements(XmlNode context)
         {
@@ -310,14 +314,12 @@
             try
             {
                 var taxonNames = this.GetContextTaxonVectorModel(context);
-
-                this.PrintContextVectorModel(taxonNames);
+                ////this.PrintContextVectorModel(taxonNames);
 
                 this.UniqueGenusMatchExpand(taxonNames);
                 this.StableExpand(taxonNames);
+                ////this.ResolveSubgenericByGenusAndLowerMatches(taxonNames, SpeciesPartType.Species);
                 this.ImportModifiedItems(context, taxonNames);
-
-                //// this.StableExpand(context);
                 this.ForceExactSpeciesMatchExpand(context);
             }
             catch (Exception e)
@@ -360,6 +362,72 @@
                 {
                     n.RemoveAttribute(AttributeNames.Id);
                 });
+        }
+
+        private void ResolveSubgenericByGenusAndLowerMatches(IQueryable<ITaxonName> taxonNames, SpeciesPartType rank)
+        {
+            if (rank <= SpeciesPartType.Genus)
+            {
+                return;
+            }
+
+            var matchResolved = MatchResolved(rank);
+            var matchNotResolved = MatchNotResolved(rank);
+
+            var taxaWithResolvedPart = taxonNames.Where(t => t.Parts.Any(this.matchResolvedGenera) && t.Parts.Any(matchResolved))
+                .ToList();
+
+            var taxaWithNotResolvedPart = taxonNames.Where(t => t.Parts.Any(this.matchResolvedGenera) && t.Parts.Any(matchNotResolved) && t.Parts.Any(p => p.Rank > rank));
+
+            var messageBag = new StringBuilder();
+            foreach (var taxon in taxaWithNotResolvedPart)
+            {
+                messageBag.Append(taxon);
+                messageBag.AppendLine();
+
+                try
+                {
+                    string genus = taxon.Parts.First(p => p.Rank == SpeciesPartType.Genus).FullName;
+
+                    var query = taxaWithResolvedPart.Where(t => t.Parts.Single(p => p.Rank == SpeciesPartType.Genus).FullName == genus);
+                    foreach (var part in taxon.Parts.Where(p => p.Rank > rank))
+                    {
+                        if (!part.IsAbbreviated || part.IsResolved)
+                        {
+                            query = query.Where(t => t.Parts.FirstOrDefault(p => p.Rank == part.Rank)?.FullName == part.FullName);
+                        }
+                    }
+
+                    var matches = query.Distinct(new TaxonNameContentEqualityComparer()).ToArray();
+
+                    if (matches.Length == 1)
+                    {
+                        var match = matches[0];
+
+                        var taxonNamePartValue = match.Parts.First(p => p.Rank == rank).FullName;
+                        foreach (var taxonNamePart in taxon.Parts)
+                        {
+                            if (taxonNamePart.Rank == rank)
+                            {
+                                taxonNamePart.FullName = taxonNamePartValue;
+                                taxonNamePart.IsModified = true;
+
+                                messageBag.AppendFormat("\tSubstitution ({0}):", taxonNamePart.Rank);
+                                messageBag.AppendFormat("\t\t{0}", taxonNamePartValue);
+                                messageBag.AppendLine();
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                }
+
+                messageBag.AppendLine();
+            }
+
+            this.logger?.Log(messageBag?.ToString());
         }
 
         private void StableExpand(IQueryable<ITaxonName> taxonNames)
@@ -461,7 +529,7 @@
             var query = taxonNames.SelectMany(t => t.Parts.Where(this.matchResolvedGenera).Select(p => p.FullName));
             var genera = new HashSet<string>(query.ToArray());
 
-            var abbreviatedGenera = taxonNames.SelectMany(t => t.Parts.Where(this.matchUnResolvedGenera));
+            var abbreviatedGenera = taxonNames.SelectMany(t => t.Parts.Where(this.matchNotResolvedGenera));
             abbreviatedGenera.AsParallel()
                 .ForAll(abbreviatedGenus =>
                 {
