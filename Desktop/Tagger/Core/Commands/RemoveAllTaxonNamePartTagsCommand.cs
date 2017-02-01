@@ -3,7 +3,7 @@
     using Contracts.Commands;
     using Generics;
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Formatters;
+    using Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
 
     [Description("Remove all taxon-name-part tags.")]
     public class RemoveAllTaxonNamePartTagsCommand : GenericDocumentFormatterCommand<ITaxonNamePartsRemover>, IRemoveAllTaxonNamePartTagsCommand

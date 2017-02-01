@@ -97,10 +97,6 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Processors\Bio.Taxonomy.Processors\Bio.Taxonomy.Processors.csproj">
-      <Project>{b8e7a642-ca04-470b-8a1f-767a7ee282fd}</Project>
-      <Name>Bio.Taxonomy.Processors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Layout.Processors\Layout.Processors.csproj">
       <Project>{fc880066-d413-4e16-9f46-23acd5e30c2d}</Project>
       <Name>Layout.Processors</Name>

@@ -3,7 +3,7 @@
     using Contracts.Commands;
     using Generics;
     using ProcessingTools.Attributes;
-    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
+    using Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
 
     [Description("Parse treatment meta with internal information.")]
     public class ParseTreatmentMetaWithInternalInformationCommand : GenericDocumentParserCommand<ITreatmentMetaParserWithInternalInformation>, IParseTreatmentMetaWithInternalInformationCommand

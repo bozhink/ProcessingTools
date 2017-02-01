@@ -36,6 +36,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Comparers\Bio\Taxonomy\TaxonNameContentEqualityComparer.cs" />
+    <Compile Include="Comparers\Bio\Taxonomy\TaxonNamePartContentEqualityComparer.cs" />
+    <Compile Include="Contracts\Factories\Bio\IBioTaxonomyTransformersFactory.cs" />
+    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\IMinimalTaxonName.cs" />
+    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\IMinimalTaxonNamePart.cs" />
+    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\ITaxonName.cs" />
+    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\ITaxonNamePart.cs" />
     <Compile Include="Contracts\Processors\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICodesTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICollectionCodesTagger.cs" />
@@ -49,6 +56,16 @@
     <Compile Include="Contracts\Processors\Bio\ISpecimenCountTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\ITypeStatusTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Materials\ITreatmentMaterialsParser.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Formatters\ITaxonNamePartsRemover.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Formatters\ITreatmentFormatter.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\IExpander.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\IHigherTaxaParserWithDataService.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ILowerTaxaParser.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParser.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParserWithDataService.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParserWithInternalInformation.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\IHigherTaxaTagger.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\ILowerTaxaTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\ZooBank\IZoobankJsonCloner.cs" />
     <Compile Include="Contracts\Processors\Bio\ZooBank\IZooBankRegistrationXmlGenerator.cs" />
     <Compile Include="Contracts\Processors\Bio\ZooBank\IZoobankXmlCloner.cs" />
@@ -110,6 +127,12 @@
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermSerializableModel.cs" />
+    <Compile Include="Models\Bio\Taxonomy\Parsers\MinimalTaxonName.cs" />
+    <Compile Include="Models\Bio\Taxonomy\Parsers\MinimalTaxonNamePart.cs" />
+    <Compile Include="Models\Bio\Taxonomy\Parsers\Species.cs" />
+    <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonName.cs" />
+    <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonNamePart.cs" />
+    <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonRankResponseModel.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinkSerializableModel.cs" />
     <Compile Include="Contracts\Models\Floats\IFloatObject.cs" />
     <Compile Include="Contracts\Models\Floats\IMediaType.cs" />
@@ -141,6 +164,15 @@
     <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Formatters\TaxonNamePartsRemover.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Formatters\TreatmentFormatter.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Parsers\Expander.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Parsers\HigherTaxaParserWithDataService.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Parsers\LowerTaxaParser.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithDataService.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithInternalInformation.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Taggers\HigherTaxaTagger.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
     <Compile Include="Processors\Bio\ZooBank\ZoobankJsonCloner.cs" />
     <Compile Include="Processors\Bio\ZooBank\ZooBankRegistrationXmlGenerator.cs" />
@@ -184,6 +216,7 @@
     <Compile Include="Providers\QuantityTagModelProvider.cs" />
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
+    <Compile Include="SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +259,10 @@
     <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Strings\Strings.csproj">
+      <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
+      <Name>Strings</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
       <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>

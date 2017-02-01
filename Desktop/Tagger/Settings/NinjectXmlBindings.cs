@@ -162,7 +162,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Bio.Taxonomy.Processors.Contracts.Factories.IBioTaxonomyTransformersFactory>()
+            this.Bind<ProcessingTools.Processors.Contracts.Factories.Bio.IBioTaxonomyTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 

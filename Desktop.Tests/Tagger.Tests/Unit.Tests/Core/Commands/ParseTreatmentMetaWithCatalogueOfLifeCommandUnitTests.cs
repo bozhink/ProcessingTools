@@ -4,9 +4,9 @@
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Taxonomy.Processors.Contracts.Parsers;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Tagger.Contracts;
     using ProcessingTools.Tagger.Core.Commands;
