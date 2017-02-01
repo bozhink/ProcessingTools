@@ -80,6 +80,9 @@
     <None Include="Xsd\abbreviations.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Xsd\query-replacer.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -106,6 +109,7 @@
   <ItemGroup>
     <Content Include="Xml\context-wrapper.xml" />
     <Content Include="Xml\document-wrapper.xml" />
+    <Content Include="Xml\query-replacer-sample-query.xml" />
     <Content Include="Xsl\codes.remove-non-code-nodes.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
