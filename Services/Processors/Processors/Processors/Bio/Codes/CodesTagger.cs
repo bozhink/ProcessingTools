@@ -12,15 +12,16 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Bio.Codes;
+    using Contracts.Factories.Bio;
+    using Contracts.Models.Bio.Codes;
+    using Models.Bio.Codes;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Bio.Codes;
-    using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Models.Bio.Codes;
     using ProcessingTools.Xml.Extensions;
 
     public class CodesTagger : ICodesTagger

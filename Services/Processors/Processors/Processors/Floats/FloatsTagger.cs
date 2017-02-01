@@ -8,13 +8,13 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Floats;
+    using Contracts.Models.Floats;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Contracts.Floats;
-    using ProcessingTools.Processors.Models.Floats;
-    using ProcessingTools.Processors.Types;
+    using Types;
 
     public class FloatsTagger : IFloatsTagger
     {

@@ -6,9 +6,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Floats;
+    using Contracts.Models.Floats;
+    using Models.Floats;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Processors.Contracts.Floats;
-    using ProcessingTools.Processors.Models.Floats;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
     using ProcessingTools.Xml.Extensions;
 

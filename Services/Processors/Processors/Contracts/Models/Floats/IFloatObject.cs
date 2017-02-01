@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Models.Floats
+﻿namespace ProcessingTools.Processors.Contracts.Models.Floats
 {
     using Types;
 

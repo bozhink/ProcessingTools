@@ -7,10 +7,11 @@
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Linq;
+    using Contracts.Factories;
+    using Contracts.Models.References;
+    using Contracts.References;
+    using Models.References;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Factories;
-    using ProcessingTools.Processors.Contracts.References;
-    using ProcessingTools.Processors.Models.References;
 
     public class ReferencesTagger : IReferencesTagger
     {

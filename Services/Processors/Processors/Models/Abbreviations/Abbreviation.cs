@@ -3,6 +3,7 @@
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using Contracts.Models.Abbreviations;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Extensions;

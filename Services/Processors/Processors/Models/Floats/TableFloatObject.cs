@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
+    using Contracts.Models.Floats;
     using ProcessingTools.Constants.Schema;
     using Types;
 

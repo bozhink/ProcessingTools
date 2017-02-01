@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Models.Bio.Codes
+﻿namespace ProcessingTools.Processors.Contracts.Models.Bio.Codes
 {
     public interface ISpecimenCode
     {

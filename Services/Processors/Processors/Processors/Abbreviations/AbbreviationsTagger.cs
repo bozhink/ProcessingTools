@@ -5,10 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Abbreviations;
+    using Contracts.Models.Abbreviations;
+    using Models.Abbreviations;
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Processors.Contracts.Abbreviations;
-    using ProcessingTools.Processors.Models.Abbreviations;
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Extensions;
 

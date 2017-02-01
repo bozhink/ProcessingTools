@@ -1,5 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Models.Bio.Codes
 {
+    using Contracts.Models.Bio.Codes;
+
     public class SpecimenCode : ISpecimenCode
     {
         public SpecimenCode(string prefix, string type, string code = null, string fullString = null)

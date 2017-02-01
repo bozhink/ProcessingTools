@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Models.References
+﻿namespace ProcessingTools.Processors.Contracts.Models.References
 {
     internal interface IReferenceTemplateItem
     {
