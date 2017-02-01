@@ -4,7 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Processors.Contracts;
+    using Contracts.Processors;
 
     public class QueryReplacer : IQueryReplacer
     {

@@ -4,12 +4,12 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Processors.Coordinates;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo;
     using ProcessingTools.Geo.Contracts;
-    using ProcessingTools.Processors.Contracts.Coordinates;
     using ProcessingTools.Xml.Extensions;
 
     public class CoordinatesParser : ICoordinatesParser

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Documents;
+    using Contracts.Processors.Documents;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Contracts.Files;
 

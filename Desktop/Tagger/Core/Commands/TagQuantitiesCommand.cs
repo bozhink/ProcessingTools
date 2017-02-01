@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Quantities;
+    using ProcessingTools.Processors.Contracts.Processors.Quantities;
 
     [Description("Tag quantities.")]
     public class TagQuantitiesCommand : GenericDocumentTaggerCommand<IQuantitiesTagger>, ITagQuantitiesCommand

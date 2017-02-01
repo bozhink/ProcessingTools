@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Floats;
+    using ProcessingTools.Processors.Contracts.Processors.Floats;
 
     [Description("Tag floats.")]
     public class TagFloatsCommand : GenericXmlContextTaggerCommand<IFloatsTagger>, ITagFloatsCommand

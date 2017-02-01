@@ -12,9 +12,9 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Bio.Codes;
     using Contracts.Factories.Bio;
     using Contracts.Models.Bio.Codes;
+    using Contracts.Processors.Bio.Codes;
     using Models.Bio.Codes;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;

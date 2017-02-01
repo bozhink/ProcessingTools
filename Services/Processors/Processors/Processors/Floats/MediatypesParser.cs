@@ -6,8 +6,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Floats;
     using Contracts.Models.Floats;
+    using Contracts.Processors.Floats;
     using Models.Floats;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;

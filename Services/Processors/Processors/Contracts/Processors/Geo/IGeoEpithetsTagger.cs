@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Geo
+﻿namespace ProcessingTools.Processors.Contracts.Processors.Geo
 {
     using ProcessingTools.Contracts;
 

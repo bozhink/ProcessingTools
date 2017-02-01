@@ -7,7 +7,7 @@
     using Contracts.Commands;
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors;
 
     [Description("Query replace.")]
     public class QueryReplaceCommand : IQueryReplaceCommand

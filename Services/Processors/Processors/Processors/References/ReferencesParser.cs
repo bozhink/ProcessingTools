@@ -4,8 +4,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Processors.References;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.References;
 
     public class ReferencesParser : IReferencesParser
     {

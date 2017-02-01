@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Quantities
+﻿namespace ProcessingTools.Processors.Contracts.Processors.Quantities
 {
     using ProcessingTools.Contracts;
 

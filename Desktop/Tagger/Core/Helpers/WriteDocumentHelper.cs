@@ -9,7 +9,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Processors.Contracts.Processors.Documents;
 
     public class WriteDocumentHelper : IWriteDocumentHelper
     {

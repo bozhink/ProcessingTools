@@ -6,7 +6,7 @@
     using Contracts.Commands;
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
     [Description("Generate xml document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlCommand : IZooBankGenerateRegistrationXmlCommand

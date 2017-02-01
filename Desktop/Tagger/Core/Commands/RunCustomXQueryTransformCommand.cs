@@ -6,7 +6,7 @@
     using Contracts.Commands;
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors;
 
     [Description("Custom XQuery transform.")]
     public class RunCustomXQueryTransformCommand : IRunCustomXQueryTransformCommand

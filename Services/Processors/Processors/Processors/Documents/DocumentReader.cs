@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Documents;
+    using Contracts.Processors.Documents;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;

@@ -9,7 +9,7 @@
     using ProcessingTools.Attributes;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.References;
+    using ProcessingTools.Processors.Contracts.Processors.References;
 
     [Description("Tag references.")]
     public class TagReferencesCommand : ITagReferencesCommand

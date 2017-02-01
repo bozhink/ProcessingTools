@@ -3,7 +3,7 @@
     using Contracts.Commands;
     using Generics;
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Coordinates;
+    using ProcessingTools.Processors.Contracts.Processors.Coordinates;
 
     [Description("Parse coordinates.")]
     public class ParseCoordinatesCommand : GenericXmlContextParserCommand<ICoordinatesParser>, IParseCoordinatesCommand

@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Institutions;
+    using ProcessingTools.Processors.Contracts.Processors.Institutions;
 
     [Description("Tag institutions.")]
     public class TagInstitutionsCommand : GenericDocumentTaggerCommand<IInstitutionsTagger>, ITagInstitutionsCommand

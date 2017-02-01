@@ -25,6 +25,7 @@
         private const string TaxonTreatmentFormatTransformerName = "TaxonTreatmentFormatTransformer";
         private const string TextContentTransformerName = "TextContentTransformer";
         private const string ZooBankRegistrationTransformerName = "ZooBankRegistrationTransformer";
+
         public override void Load()
         {
             // Transformers

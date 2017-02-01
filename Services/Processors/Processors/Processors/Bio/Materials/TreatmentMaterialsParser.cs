@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Processors.Bio.Materials;
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Bio.Materials;
     using ProcessingTools.Processors.Contracts.Factories.Bio;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser

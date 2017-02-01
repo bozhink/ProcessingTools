@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
 
     [Description("Tag specimen codes.")]
     public class TagSpecimenCodesCommand : GenericDocumentTaggerCommand<ISpecimenCodesByPatternTagger>, ITagSpecimenCodesCommand

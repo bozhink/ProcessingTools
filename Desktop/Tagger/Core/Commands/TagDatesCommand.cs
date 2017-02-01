@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Dates;
+    using ProcessingTools.Processors.Contracts.Processors.Dates;
 
     [Description("Tag dates.")]
     public class TagDatesCommand : GenericDocumentTaggerCommand<IDatesTagger>, ITagDatesCommand

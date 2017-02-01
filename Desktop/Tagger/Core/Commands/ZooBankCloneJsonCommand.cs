@@ -11,7 +11,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
     [Description("Clone ZooBank JSON.")]
     public class ZooBankCloneJsonCommand : IZooBankCloneJsonCommand

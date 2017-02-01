@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Bio;
+    using ProcessingTools.Processors.Contracts.Processors.Bio;
 
     [Description("Tag specimen count.")]
     public class TagSpecimenCountCommand : GenericDocumentTaggerCommand<ISpecimenCountTagger>, ITagSpecimenCountCommand

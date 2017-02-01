@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Contracts.Processors;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Xml.Contracts.Factories;
 
     public class DocumentXQueryProcessor : IDocumentXQueryProcessor

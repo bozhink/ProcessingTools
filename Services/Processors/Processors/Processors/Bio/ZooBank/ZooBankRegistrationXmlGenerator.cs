@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Contracts.Factories;
+    using Contracts.Processors.Bio.ZooBank;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
-    using ProcessingTools.Processors.Contracts.Factories;
 
     public class ZooBankRegistrationXmlGenerator : IZooBankRegistrationXmlGenerator
     {

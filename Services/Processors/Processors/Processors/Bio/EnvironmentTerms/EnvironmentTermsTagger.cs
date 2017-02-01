@@ -3,12 +3,12 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Contracts.Processors.Bio.EnvironmentTerms;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
     using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
 
     public class EnvironmentTermsTagger : IEnvironmentTermsTagger

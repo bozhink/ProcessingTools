@@ -3,14 +3,14 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Contracts.Processors.ExternalLinks;
+    using Models.ExternalLinks;
     using ProcessingTools.Attributes.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.ExternalLinks;
-    using ProcessingTools.Processors.Models.ExternalLinks;
 
     public class ExternalLinksTagger : IExternalLinksTagger
     {

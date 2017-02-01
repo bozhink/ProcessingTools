@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Geo;
+    using ProcessingTools.Processors.Contracts.Processors.Geo;
 
     [Description("Tag geo epithets.")]
     public class TagGeoEpithetsCommand : GenericDocumentTaggerCommand<IGeoEpithetsTagger>, ITagGeoEpithetsCommand

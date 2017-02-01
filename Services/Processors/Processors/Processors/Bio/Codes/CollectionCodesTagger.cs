@@ -4,14 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Contracts.Processors.Bio.Codes;
+    using Models.Bio.Codes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Bio.Codes;
-    using ProcessingTools.Processors.Models.Bio.Codes;
 
     public class CollectionCodesTagger : ICollectionCodesTagger
     {

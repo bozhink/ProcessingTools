@@ -4,7 +4,7 @@
     using Generics;
     using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Validation;
+    using ProcessingTools.Processors.Contracts.Processors.Validation;
 
     [Description("Taxa validation using Global Names Resolver.")]
     public class ValidateTaxaCommand : GenericDocumentValidatorCommand<ITaxaValidator>, IValidateTaxaCommand

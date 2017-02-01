@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms
+﻿namespace ProcessingTools.Processors.Contracts.Processors.Bio.EnvironmentTerms
 {
     using ProcessingTools.Contracts;
 

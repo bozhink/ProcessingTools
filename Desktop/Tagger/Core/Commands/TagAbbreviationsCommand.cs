@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Abbreviations;
+    using ProcessingTools.Processors.Contracts.Processors.Abbreviations;
 
     [Description("Tag abbreviations.")]
     public class TagAbbreviationsCommand : GenericXmlContextTaggerCommand<IAbbreviationsTagger>, ITagAbbreviationsCommand

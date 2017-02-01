@@ -9,7 +9,7 @@
     using System.Xml.Linq;
     using Contracts.Factories;
     using Contracts.Models.References;
-    using Contracts.References;
+    using Contracts.Processors.References;
     using Models.References;
     using ProcessingTools.Contracts;
 

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Validation;
+    using Contracts.Processors.Validation;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
 

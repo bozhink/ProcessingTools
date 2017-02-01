@@ -4,7 +4,7 @@
     using Generics;
 
     using ProcessingTools.Attributes;
-    using ProcessingTools.Processors.Contracts.Coordinates;
+    using ProcessingTools.Processors.Contracts.Processors.Coordinates;
 
     [Description("Tag coordinates.")]
     public class TagCoordinatesCommand : GenericDocumentTaggerCommand<ICoordinatesTagger>, ITagCoordinatesCommand
