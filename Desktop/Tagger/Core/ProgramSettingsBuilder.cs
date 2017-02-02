@@ -267,28 +267,49 @@
 
             foreach (var commandName in commandNames)
             {
+                string commandNameLowerCase = commandName.ToLower();
+
                 var matchingCommands = this.commandInfoProvider
                     .CommandsInformation
-                    .Where(i => i.Value.Name.ToLower().IndexOf(commandName.ToLower()) == 0)
+                    .Where(i => i.Value.Name.ToLower().IndexOf(commandNameLowerCase) == 0)
                     .ToArray();
 
                 switch (matchingCommands.Length)
                 {
                     case 0:
-                        this.logger?.Log(LogType.Warning, "No matching command '{0}'.", commandName);
+                        {
+                            this.logger?.Log(LogType.Warning, "No matching command '{0}'.", commandName);
+                        }
+
                         break;
 
                     case 1:
-                        var commandInfo = matchingCommands.Single().Value;
-                        this.Settings.CalledCommands.Add(commandInfo.CommandType);
+                        {
+                            var commandInfo = matchingCommands.Single().Value;
+                            this.Settings.CalledCommands.Add(commandInfo.CommandType);
+                        }
+
                         break;
 
                     default:
-                        this.logger?.Log(
-                            LogType.Warning,
-                            "Multiple commands match input name '{0}': {1}",
-                            commandName,
-                            string.Join("\n\t", matchingCommands.Select(c => c.Key.ToString())));
+                        {
+                            // Get direct full-name match from a list of ‘like’-matches
+                            var commandInfo = matchingCommands.Select(c => c.Value).FirstOrDefault(c => c.Name.ToLower() == commandNameLowerCase);
+                            if (commandInfo != null)
+                            {
+                                this.Settings.CalledCommands.Add(commandInfo.CommandType);
+                            }
+                            else
+                            {
+
+                                this.logger?.Log(
+                                    LogType.Warning,
+                                    "Multiple commands match input name '{0}': {1}",
+                                    commandName,
+                                    string.Join("\n\t", matchingCommands.Select(c => c.Key.ToString())));
+                            }
+                        }
+
                         break;
                 }
             }
