@@ -123,6 +123,7 @@
     <Compile Include="Contracts\Commands\IRunCustomXQueryTransformCommand.cs" />
     <Compile Include="Contracts\Commands\ISpecialCaseGavinLaurensCommand.cs" />
     <Compile Include="Contracts\Commands\ITagCollectionCodesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagLowerTaxaInItalicCommand.cs" />
     <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
     <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
     <Compile Include="Contracts\Helpers\IInvokeCommandHelper.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Core\Commands\RunCustomXQueryTransformCommand.cs" />
     <Compile Include="Core\Commands\SpecialCaseGavinLaurensCommand.cs" />
     <Compile Include="Core\Commands\TagCollectionCodesCommand.cs" />
+    <Compile Include="Core\Commands\TagLowerTaxaInItalicCommand.cs" />
     <Compile Include="Core\Commands\TagSpecimenCodesCommand.cs" />
     <Compile Include="Core\Commands\TagSpecimenCountCommand.cs" />
     <Compile Include="Core\Commands\TagTypeStatusCommand.cs" />

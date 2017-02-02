@@ -65,6 +65,7 @@
     <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParserWithDataService.cs" />
     <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParserWithInternalInformation.cs" />
     <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\IHigherTaxaTagger.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\ILowerTaxaInItalicTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\ILowerTaxaTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\ZooBank\IZoobankJsonCloner.cs" />
     <Compile Include="Contracts\Processors\Bio\ZooBank\IZooBankRegistrationXmlGenerator.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithDataService.cs" />
     <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithInternalInformation.cs" />
     <Compile Include="Processors\Bio\Taxonomy\Taggers\HigherTaxaTagger.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\Taggers\LowerTaxaInItalicTagger.cs" />
     <Compile Include="Processors\Bio\Taxonomy\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
     <Compile Include="Processors\Bio\ZooBank\ZoobankJsonCloner.cs" />
