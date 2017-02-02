@@ -12,7 +12,7 @@
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
 
-    public class ExternalLinksHarvester : AbstractGenericQueryableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
+    public class ExternalLinksHarvester : AbstractGenericEnumerableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
         private readonly IXmlTransformDeserializer serializer;
         private readonly IExternalLinksTransformersFactory transformersFactory;

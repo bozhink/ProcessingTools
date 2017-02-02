@@ -13,7 +13,7 @@
     using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
 
-    public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
+    public class AbbreviationsHarvester : AbstractGenericEnumerableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {
         private readonly IXmlTransformDeserializer serializer;
         private readonly IAbbreviationsTransformersFactory transformersFactory;
