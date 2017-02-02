@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Bio
+﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

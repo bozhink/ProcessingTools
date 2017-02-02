@@ -5,7 +5,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio.Taxonomy;
     using ProcessingTools.Tagger.Contracts;
     using ProcessingTools.Tagger.Core.Commands;
 

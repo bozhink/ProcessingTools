@@ -6,7 +6,7 @@
     using Contracts.Processors.Validation;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio.Taxonomy;
     using ProcessingTools.Services.Validation.Contracts.Services;
 
     public class TaxaValidator : ITaxaValidator

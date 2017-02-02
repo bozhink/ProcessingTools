@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Harvesters.Bio
+﻿namespace ProcessingTools.Harvesters.Harvesters.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Harvesters.Bio;
+    using Contracts.Harvesters.Bio.Taxonomy;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Enumerations;
