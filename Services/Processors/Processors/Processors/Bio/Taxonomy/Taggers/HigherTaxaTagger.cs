@@ -20,14 +20,14 @@
 
         private readonly IHigherTaxaDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
-        private readonly ITaxaStopWordsProvider taxaStopWordsProvider;
+        private readonly ITaxaStopWordsProvider stopWordsProvider;
         private readonly IWhiteList whitelist;
         private readonly IStringTagger contentTagger;
 
         public HigherTaxaTagger(
             IHigherTaxaDataMiner miner,
             ITextContentHarvester contentHarvester,
-            ITaxaStopWordsProvider taxaStopWordsProvider,
+            ITaxaStopWordsProvider stopWordsProvider,
             IWhiteList whitelist,
             IStringTagger contentTagger)
         {
@@ -41,9 +41,9 @@
                 throw new ArgumentNullException(nameof(contentHarvester));
             }
 
-            if (taxaStopWordsProvider == null)
+            if (stopWordsProvider == null)
             {
-                throw new ArgumentNullException(nameof(taxaStopWordsProvider));
+                throw new ArgumentNullException(nameof(stopWordsProvider));
             }
 
             if (whitelist == null)
@@ -58,7 +58,7 @@
 
             this.miner = miner;
             this.contentHarvester = contentHarvester;
-            this.taxaStopWordsProvider = taxaStopWordsProvider;
+            this.stopWordsProvider = stopWordsProvider;
             this.whitelist = whitelist;
             this.contentTagger = contentTagger;
         }
@@ -71,7 +71,7 @@
             }
 
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var stopWords = await this.taxaStopWordsProvider.GetStopWords(document.XmlDocument.DocumentElement);
+            var stopWords = await this.stopWordsProvider.GetStopWords(document.XmlDocument.DocumentElement);
             var seed = await this.whitelist.Items;
 
             var data = await this.miner.Mine(textContent, seed, stopWords);

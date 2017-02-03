@@ -6,10 +6,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio.Taxonomy;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Processors.Contracts.Providers;
@@ -17,23 +19,37 @@
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
+        private readonly ILowerTaxaDataMiner miner;
+        private readonly ITextContentHarvester contentHarvester;
         private readonly IPlausibleLowerTaxaHarvester plausibleLowerTaxaHarvester;
-        private readonly ITaxaStopWordsProvider taxaStopWordsProvider;
+        private readonly ITaxaStopWordsProvider stopWordsProvider;
         private readonly IContentTagger contentTagger;
 
         public LowerTaxaInItalicTagger(
+            ILowerTaxaDataMiner miner,
+            ITextContentHarvester contentHarvester,
             IPlausibleLowerTaxaHarvester plausibleLowerTaxaHarvester,
-            ITaxaStopWordsProvider taxaStopWordsProvider,
+            ITaxaStopWordsProvider stopWordsProvider,
             IContentTagger contentTagger)
         {
+            if (miner == null)
+            {
+                throw new ArgumentNullException(nameof(miner));
+            }
+
+            if (contentHarvester == null)
+            {
+                throw new ArgumentNullException(nameof(contentHarvester));
+            }
+
             if (plausibleLowerTaxaHarvester == null)
             {
                 throw new ArgumentNullException(nameof(plausibleLowerTaxaHarvester));
             }
 
-            if (taxaStopWordsProvider == null)
+            if (stopWordsProvider == null)
             {
-                throw new ArgumentNullException(nameof(taxaStopWordsProvider));
+                throw new ArgumentNullException(nameof(stopWordsProvider));
             }
 
             if (contentTagger == null)
@@ -41,8 +57,10 @@
                 throw new ArgumentNullException(nameof(contentTagger));
             }
 
+            this.miner = miner;
+            this.contentHarvester = contentHarvester;
             this.plausibleLowerTaxaHarvester = plausibleLowerTaxaHarvester;
-            this.taxaStopWordsProvider = taxaStopWordsProvider;
+            this.stopWordsProvider = stopWordsProvider;
             this.contentTagger = contentTagger;
         }
 
@@ -53,9 +71,16 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
+
             var plausibleLowerTaxa = await this.plausibleLowerTaxaHarvester.Harvest(document.XmlDocument.DocumentElement);
             plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(document, plausibleLowerTaxa))
                 .Select(name => name.ToLower()));
+
+            var stopWords = await this.stopWordsProvider.GetStopWords(document.XmlDocument.DocumentElement);
+
+            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            var x = await this.miner.Mine(textContent, plausibleLowerTaxa, stopWords);
+
 
             this.TagDirectTaxonomicMatches(document, plausibleLowerTaxa);
 
@@ -91,7 +116,7 @@
 
         private async Task<IEnumerable<string>> GetTaxaNamesFirstWord(IDocument document, IEnumerable<string> taxaNames)
         {
-            var stopWords = await this.taxaStopWordsProvider.GetStopWords(document.XmlDocument.DocumentElement);
+            var stopWords = await this.stopWordsProvider.GetStopWords(document.XmlDocument.DocumentElement);
 
             var taxaNamesFirstWord = await taxaNames.GetFirstWord()
                 .Distinct()
