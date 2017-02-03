@@ -19,29 +19,22 @@
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
-        private readonly ILowerTaxaHarvester lowerTaxaHarvester;
-        private readonly IPlausibleLowerTaxaInItalicHarvester plausibleLowerTaxaInItalicHarvester;
+        private readonly IPlausibleLowerTaxaHarvester plausibleLowerTaxaHarvester;
         private readonly IPersonNamesHarvester personNamesHarvester;
         private readonly IContentTagger contentTagger;
         private readonly IBlackList blacklist;
         private readonly ILogger logger;
 
         public LowerTaxaInItalicTagger(
-            ILowerTaxaHarvester lowerTaxaHarvester,
-            IPlausibleLowerTaxaInItalicHarvester plausibleLowerTaxaInItalicHarvester,
+            IPlausibleLowerTaxaHarvester plausibleLowerTaxaHarvester,
             IPersonNamesHarvester personNamesHarvester,
             IBlackList blacklist,
             IContentTagger contentTagger,
             ILogger logger)
         {
-            if (lowerTaxaHarvester == null)
+           if (plausibleLowerTaxaHarvester == null)
             {
-                throw new ArgumentNullException(nameof(lowerTaxaHarvester));
-            }
-
-            if (plausibleLowerTaxaInItalicHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(plausibleLowerTaxaInItalicHarvester));
+                throw new ArgumentNullException(nameof(plausibleLowerTaxaHarvester));
             }
 
             if (personNamesHarvester == null)
@@ -59,8 +52,7 @@
                 throw new ArgumentNullException(nameof(contentTagger));
             }
 
-            this.lowerTaxaHarvester = lowerTaxaHarvester;
-            this.plausibleLowerTaxaInItalicHarvester = plausibleLowerTaxaInItalicHarvester;
+            this.plausibleLowerTaxaHarvester = plausibleLowerTaxaHarvester;
             this.personNamesHarvester = personNamesHarvester;
             this.blacklist = blacklist;
             this.contentTagger = contentTagger;
@@ -74,15 +66,8 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var knownLowerTaxaNames = await this.lowerTaxaHarvester.Harvest(document.XmlDocument.DocumentElement);
-            foreach (var item in knownLowerTaxaNames)
-            {
-                Console.WriteLine(item);
-            }
 
-            var plausibleLowerTaxaInItalics = await this.plausibleLowerTaxaInItalicHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var plausibleLowerTaxa = new HashSet<string>(plausibleLowerTaxaInItalics.Concat(knownLowerTaxaNames));
-
+            var plausibleLowerTaxa = await this.plausibleLowerTaxaHarvester.Harvest(document.XmlDocument.DocumentElement);
             plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(document, plausibleLowerTaxa))
                 .Select(name => name.ToLower()));
 

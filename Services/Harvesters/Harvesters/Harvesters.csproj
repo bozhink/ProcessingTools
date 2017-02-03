@@ -40,6 +40,7 @@
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Harvesters\Abbreviations\IAbbreviationsHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Bio\Taxonomy\ILowerTaxaHarvester.cs" />
+    <Compile Include="Contracts\Harvesters\Bio\Taxonomy\IPlausibleLowerTaxaHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Bio\Taxonomy\IPlausibleLowerTaxaInItalicHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Bio\Taxonomy\ITaxonNamesHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Content\ITextContentHarvester.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Contracts\Models\Meta\IPersonNameModel.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\Bio\Taxonomy\LowerTaxaHarvester.cs" />
+    <Compile Include="Harvesters\Bio\Taxonomy\PlausibleLowerTaxaHarvester.cs" />
     <Compile Include="Harvesters\Bio\Taxonomy\PlausibleLowerTaxaInItalicHarvester.cs" />
     <Compile Include="Harvesters\Bio\Taxonomy\TaxonNamesHarvester.cs" />
     <Compile Include="Harvesters\Content\TextContentHarvester.cs" />
