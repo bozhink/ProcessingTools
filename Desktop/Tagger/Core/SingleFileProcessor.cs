@@ -12,6 +12,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Files.Generators;
+    using ProcessingTools.Enumerations;
 
     public partial class SingleFileProcessor : IFileProcessor
     {
@@ -82,13 +83,23 @@
             {
                 this.settings.OutputFileName = await this.GetOutputFileName();
 
-                var document = await this.documentReader.Read(this.settings);
+                IDocument document;
+
+                try
+                {
+                    document = await this.documentReader.Read(this.settings);
+                }
+                catch
+                {
+                    this.logger?.Log(LogType.Error, "One or more input files cannot be read.");
+                    return;
+                }
 
                 await this.ProcessDocument(document.XmlDocument.DocumentElement);
 
                 this.tasks.Enqueue(this.WriteOutputFile(document));
 
-                Task.WaitAll(this.tasks.ToArray());
+                await Task.WhenAll(this.tasks.ToArray());
             }
             catch (Exception e)
             {
