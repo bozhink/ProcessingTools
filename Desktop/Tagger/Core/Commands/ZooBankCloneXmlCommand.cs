@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Core.Commands
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Commands;
@@ -10,7 +9,7 @@
     using ProcessingTools.Contracts.Files.IO;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
-    [Description("Clone ZooBank xml.")]
+    [Description("Clone ZooBank XML.")]
     public class ZooBankCloneXmlCommand : IZooBankCloneXmlCommand
     {
         private readonly IZoobankXmlCloner cloner;

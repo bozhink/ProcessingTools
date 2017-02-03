@@ -114,6 +114,11 @@
                 .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
+            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+                .Intercept()
+                .With<FileNotFoundInterceptor>();
+
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
                 .Intercept()

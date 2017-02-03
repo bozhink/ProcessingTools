@@ -301,7 +301,6 @@
                             }
                             else
                             {
-
                                 this.logger?.Log(
                                     LogType.Warning,
                                     "Multiple commands match input name '{0}': {1}",
