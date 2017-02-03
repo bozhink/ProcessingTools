@@ -106,6 +106,7 @@
     <Compile Include="Contracts\Providers\IProductTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IQuantityTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\ISpecimenCountTagModelProvider.cs" />
+    <Compile Include="Contracts\Providers\ITaxaStopWordsProvider.cs" />
     <Compile Include="Contracts\Providers\ITypeStatusTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IXmlTagModelProvider.cs" />
     <Compile Include="Contracts\Processors\Quantities\IQuantitiesTagger.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Providers\ProductTagModelProvider.cs" />
     <Compile Include="Providers\QuantityTagModelProvider.cs" />
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
+    <Compile Include="Providers\TaxaStopWordsProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
     <Compile Include="SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />

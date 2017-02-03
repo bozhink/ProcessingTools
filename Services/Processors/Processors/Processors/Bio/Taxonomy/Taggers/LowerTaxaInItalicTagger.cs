@@ -4,47 +4,36 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio.Taxonomy;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Providers;
     using ProcessingTools.Strings.Extensions;
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
         private readonly IPlausibleLowerTaxaHarvester plausibleLowerTaxaHarvester;
-        private readonly IPersonNamesHarvester personNamesHarvester;
+        private readonly ITaxaStopWordsProvider taxaStopWordsProvider;
         private readonly IContentTagger contentTagger;
-        private readonly IBlackList blacklist;
-        private readonly ILogger logger;
 
         public LowerTaxaInItalicTagger(
             IPlausibleLowerTaxaHarvester plausibleLowerTaxaHarvester,
-            IPersonNamesHarvester personNamesHarvester,
-            IBlackList blacklist,
-            IContentTagger contentTagger,
-            ILogger logger)
+            ITaxaStopWordsProvider taxaStopWordsProvider,
+            IContentTagger contentTagger)
         {
-           if (plausibleLowerTaxaHarvester == null)
+            if (plausibleLowerTaxaHarvester == null)
             {
                 throw new ArgumentNullException(nameof(plausibleLowerTaxaHarvester));
             }
 
-            if (personNamesHarvester == null)
+            if (taxaStopWordsProvider == null)
             {
-                throw new ArgumentNullException(nameof(personNamesHarvester));
-            }
-
-            if (blacklist == null)
-            {
-                throw new ArgumentNullException(nameof(blacklist));
+                throw new ArgumentNullException(nameof(taxaStopWordsProvider));
             }
 
             if (contentTagger == null)
@@ -53,10 +42,8 @@
             }
 
             this.plausibleLowerTaxaHarvester = plausibleLowerTaxaHarvester;
-            this.personNamesHarvester = personNamesHarvester;
-            this.blacklist = blacklist;
+            this.taxaStopWordsProvider = taxaStopWordsProvider;
             this.contentTagger = contentTagger;
-            this.logger = logger;
         }
 
         public async Task<object> Tag(IDocument document)
@@ -65,7 +52,6 @@
             {
                 throw new ArgumentNullException(nameof(document));
             }
-
 
             var plausibleLowerTaxa = await this.plausibleLowerTaxaHarvester.Harvest(document.XmlDocument.DocumentElement);
             plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(document, plausibleLowerTaxa))
@@ -95,8 +81,6 @@
                 });
         }
 
-
-
         private async Task<IEnumerable<string>> ClearFakeTaxaNames(IDocument document, IEnumerable<string> taxaNames)
         {
             var taxaNamesFirstWord = await this.GetTaxaNamesFirstWord(document, taxaNames);
@@ -107,7 +91,7 @@
 
         private async Task<IEnumerable<string>> GetTaxaNamesFirstWord(IDocument document, IEnumerable<string> taxaNames)
         {
-            var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement);
+            var stopWords = await this.taxaStopWordsProvider.GetStopWords(document.XmlDocument.DocumentElement);
 
             var taxaNamesFirstWord = await taxaNames.GetFirstWord()
                 .Distinct()
@@ -115,22 +99,6 @@
                 .ToArrayAsync();
 
             return new HashSet<string>(taxaNamesFirstWord);
-        }
-
-        private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
-        {
-            var personNames = await this.personNamesHarvester.Harvest(context);
-            var blacklistItems = await this.blacklist.Items;
-
-            var stopWords = await personNames
-                .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
-                .Where(n => !string.IsNullOrWhiteSpace(n))
-                .Union(blacklistItems)
-                .Select(w => w.ToLower())
-                .Distinct()
-                .ToArrayAsync();
-
-            return stopWords;
         }
     }
 }

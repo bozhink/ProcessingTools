@@ -4,16 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
+    using ProcessingTools.Processors.Contracts.Providers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class HigherTaxaTagger : IHigherTaxaTagger
@@ -22,16 +20,14 @@
 
         private readonly IHigherTaxaDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
-        private readonly IPersonNamesHarvester personNamesHarvester;
-        private readonly IBlackList blacklist;
+        private readonly ITaxaStopWordsProvider taxaStopWordsProvider;
         private readonly IWhiteList whitelist;
         private readonly IStringTagger contentTagger;
 
         public HigherTaxaTagger(
             IHigherTaxaDataMiner miner,
             ITextContentHarvester contentHarvester,
-            IPersonNamesHarvester personNamesHarvester,
-            IBlackList blacklist,
+            ITaxaStopWordsProvider taxaStopWordsProvider,
             IWhiteList whitelist,
             IStringTagger contentTagger)
         {
@@ -45,14 +41,9 @@
                 throw new ArgumentNullException(nameof(contentHarvester));
             }
 
-            if (personNamesHarvester == null)
+            if (taxaStopWordsProvider == null)
             {
-                throw new ArgumentNullException(nameof(personNamesHarvester));
-            }
-
-            if (blacklist == null)
-            {
-                throw new ArgumentNullException(nameof(blacklist));
+                throw new ArgumentNullException(nameof(taxaStopWordsProvider));
             }
 
             if (whitelist == null)
@@ -67,8 +58,7 @@
 
             this.miner = miner;
             this.contentHarvester = contentHarvester;
-            this.personNamesHarvester = personNamesHarvester;
-            this.blacklist = blacklist;
+            this.taxaStopWordsProvider = taxaStopWordsProvider;
             this.whitelist = whitelist;
             this.contentTagger = contentTagger;
         }
@@ -81,7 +71,7 @@
             }
 
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement);
+            var stopWords = await this.taxaStopWordsProvider.GetStopWords(document.XmlDocument.DocumentElement);
             var seed = await this.whitelist.Items;
 
             var data = await this.miner.Mine(textContent, seed, stopWords);
@@ -92,21 +82,6 @@
             await this.contentTagger.Tag(document, taxaNames, tagModel, HigherTaxaXPath);
 
             return true;
-        }
-
-        private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
-        {
-            var personNames = await this.personNamesHarvester.Harvest(context);
-            var blacklistItems = await this.blacklist.Items;
-
-            var stopWords = await personNames
-                .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
-                .Where(n => !string.IsNullOrWhiteSpace(n))
-                .Union(blacklistItems)
-                .Distinct()
-                .ToArrayAsync();
-
-            return stopWords;
         }
     }
 }
