@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio.Taxonomy;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
@@ -18,19 +19,24 @@
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
-        private const string ItalicXPath = ".//i[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//Italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]";
-
+        private readonly ILowerTaxaInItalicHarvester lowerTaxaInItalicHarvester;
         private readonly IPersonNamesHarvester personNamesHarvester;
         private readonly IContentTagger contentTagger;
         private readonly IBlackList blacklist;
         private readonly ILogger logger;
 
         public LowerTaxaInItalicTagger(
+            ILowerTaxaInItalicHarvester lowerTaxaInItalicHarvester,
             IPersonNamesHarvester personNamesHarvester,
             IBlackList blacklist,
             IContentTagger contentTagger,
             ILogger logger)
         {
+            if (lowerTaxaInItalicHarvester == null)
+            {
+                throw new ArgumentNullException(nameof(lowerTaxaInItalicHarvester));
+            }
+
             if (personNamesHarvester == null)
             {
                 throw new ArgumentNullException(nameof(personNamesHarvester));
@@ -46,6 +52,7 @@
                 throw new ArgumentNullException(nameof(contentTagger));
             }
 
+            this.lowerTaxaInItalicHarvester = lowerTaxaInItalicHarvester;
             this.personNamesHarvester = personNamesHarvester;
             this.blacklist = blacklist;
             this.contentTagger = contentTagger;
@@ -61,7 +68,8 @@
 
             var knownLowerTaxaNames = this.GetKnownLowerTaxa(document);
 
-            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(document).Concat(knownLowerTaxaNames));
+            var plausibleLowerTaxaInItelics = await this.lowerTaxaInItalicHarvester.Harvest(document.XmlDocument.DocumentElement);
+            var plausibleLowerTaxa = new HashSet<string>(plausibleLowerTaxaInItelics.Concat(knownLowerTaxaNames));
 
             plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(document, plausibleLowerTaxa))
                 .Select(name => name.ToLower()));
@@ -76,7 +84,7 @@
             var comparer = StringComparer.InvariantCultureIgnoreCase;
 
             // Tag all direct matches
-            document.SelectNodes(ItalicXPath)
+            document.SelectNodes(XPathStrings.ItalicsForLowerTaxaHarvesting)
                 .AsParallel()
                 .ForAll(node =>
                 {
@@ -90,38 +98,12 @@
                 });
         }
 
-        private IEnumerable<string> GetPlausibleLowerTaxa(IDocument document)
-        {
-            var result = document.SelectNodes(ItalicXPath)
-                .Select(x => x.InnerText)
-                .Where(this.IsMatchingLowerTaxaFormat)
-                .Distinct()
-                .ToArray();
-
-            return result;
-        }
-
         private IEnumerable<string> GetKnownLowerTaxa(IDocument document)
         {
             var result = document.SelectNodes(".//tn[@type='lower']")
                 .Select(x => x.InnerText)
                 .Distinct()
                 .ToArray();
-
-            return result;
-        }
-
-        private bool IsMatchingLowerTaxaFormat(string textToCheck)
-        {
-            bool result = false;
-
-            result |= Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]*)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]*)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z][a-z\.×]+[’”]?[‘“]?(?:\-[A-Z][a-z\.×]+)?[’”]?)\s*\(\s*(?<subgenus>[A-Za-z][a-z\.×]+)\s*\)\s*(?<species>[a-z\.×-]+)\s*(?<subspecies>[a-z×-]+)\Z") ||
-                      Regex.IsMatch(textToCheck, @"\A(?<genus>[‘“]?[A-Z]{2,}[’”]?)\Z");
-
-            result &= !textToCheck.Contains("s.n.") && !textToCheck.Contains(" coll.");
 
             return result;
         }

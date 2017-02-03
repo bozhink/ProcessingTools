@@ -23,6 +23,7 @@
         public const string ElementWithFullNameAttribute = ".//*[normalize-space(@" + AttributeNames.FullName + ")!='']";
         public const string HigherDocumentStructure = ".//article[not(ancestor::article)][not(ancestor::document)]|.//document[not(ancestor::article)][not(ancestor::document)]";
         public const string IdAttributes = ".//@id";
+        public const string ItalicsForLowerTaxaHarvesting = ".//i[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//Italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]";
         public const string LowerTaxonNames = ".//tn[@type='lower']";
         public const string MediaElement = ".//media";
         public const string ObjectIdOfTypeIpni = ".//object-id[@content-type='ipni']";
