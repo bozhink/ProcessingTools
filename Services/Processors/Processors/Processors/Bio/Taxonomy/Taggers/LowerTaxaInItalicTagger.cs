@@ -19,14 +19,14 @@
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
-        private readonly ILowerTaxaInItalicHarvester lowerTaxaInItalicHarvester;
+        private readonly IPlausibleLowerTaxaInItalicHarvester lowerTaxaInItalicHarvester;
         private readonly IPersonNamesHarvester personNamesHarvester;
         private readonly IContentTagger contentTagger;
         private readonly IBlackList blacklist;
         private readonly ILogger logger;
 
         public LowerTaxaInItalicTagger(
-            ILowerTaxaInItalicHarvester lowerTaxaInItalicHarvester,
+            IPlausibleLowerTaxaInItalicHarvester lowerTaxaInItalicHarvester,
             IPersonNamesHarvester personNamesHarvester,
             IBlackList blacklist,
             IContentTagger contentTagger,

@@ -10,7 +10,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions.Linq;
 
-    public class LowerTaxaInItalicHarvester : ILowerTaxaInItalicHarvester
+    public class PlausibleLowerTaxaInItalicHarvester : IPlausibleLowerTaxaInItalicHarvester
     {
         public async Task<IEnumerable<string>> Harvest(XmlNode context)
         {

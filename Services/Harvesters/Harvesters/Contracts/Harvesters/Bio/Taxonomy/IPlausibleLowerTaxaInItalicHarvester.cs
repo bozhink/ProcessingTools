@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Harvesters;
 
-    public interface ILowerTaxaInItalicHarvester : IStringEnumerableXmlHarvester
+    public interface IPlausibleLowerTaxaInItalicHarvester : IStringEnumerableXmlHarvester
     {
     }
 }
