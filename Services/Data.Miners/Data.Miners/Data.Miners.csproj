@@ -46,6 +46,7 @@
     <Compile Include="Contracts\Miners\Bio\SpecimenCodes\ISpecimenCodesByPatternDataMiner.cs" />
     <Compile Include="Contracts\Miners\Bio\SpecimenCodes\ISpecimenCodesDataMiner.cs" />
     <Compile Include="Contracts\Miners\Bio\Taxonomy\IHigherTaxaDataMiner.cs" />
+    <Compile Include="Contracts\Miners\Bio\Taxonomy\ILowerTaxaDataMiner.cs" />
     <Compile Include="Contracts\Miners\Dates\IDatesDataMiner.cs" />
     <Compile Include="Contracts\Miners\ExternalLinks\IExternalLinksDataMiner.cs" />
     <Compile Include="Contracts\Miners\Geo\IAltitudesDataMiner.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Miners\Bio\SpecimenCodes\SpecimenCodesByPatternDataMiner.cs" />
     <Compile Include="Miners\Bio\SpecimenCountDataMiner.cs" />
     <Compile Include="Miners\Bio\Taxonomy\HigherTaxaDataMiner.cs" />
+    <Compile Include="Miners\Bio\Taxonomy\LowerTaxaDataMiner.cs" />
     <Compile Include="Miners\Bio\TypeStatusDataMiner.cs" />
     <Compile Include="Miners\Dates\DatesDataMiner.cs" />
     <Compile Include="Miners\ExternalLinks\ExternalLinksDataMiner.cs" />
