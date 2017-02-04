@@ -4,13 +4,13 @@
     using System.Xml;
     using Contracts.Wrappers;
     using ProcessingTools.Contracts;
-    using Enumerations;
+    using ProcessingTools.Enumerations;
 
-    public class DocumentWrapperProvider : IDocumentWrapperProvider
+    public class DocumentWrapper : IDocumentWrapper
     {
         private readonly IDocumentFactory documentFactory;
 
-        public DocumentWrapperProvider(IDocumentFactory documentFactory)
+        public DocumentWrapper(IDocumentFactory documentFactory)
         {
             if (documentFactory == null)
             {

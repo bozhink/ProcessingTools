@@ -9,16 +9,16 @@
 
     public abstract class AbstractGenericQueryableXmlHarvester<T> : IGenericEnumerableXmlHarvester<T>
     {
-        private readonly IXmlContextWrapperProvider contextWrapperProvider;
+        private readonly IXmlContextWrapper contextWrapper;
 
-        public AbstractGenericQueryableXmlHarvester(IXmlContextWrapperProvider contextWrapperProvider)
+        public AbstractGenericQueryableXmlHarvester(IXmlContextWrapper contextWrapper)
         {
-            if (contextWrapperProvider == null)
+            if (contextWrapper == null)
             {
-                throw new ArgumentNullException(nameof(contextWrapperProvider));
+                throw new ArgumentNullException(nameof(contextWrapper));
             }
 
-            this.contextWrapperProvider = contextWrapperProvider;
+            this.contextWrapper = contextWrapper;
         }
 
         public Task<IEnumerable<T>> Harvest(XmlNode context)
@@ -28,7 +28,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var document = this.contextWrapperProvider.Create(context);
+            var document = this.contextWrapper.Create(context);
 
             return this.Run(document);
         }

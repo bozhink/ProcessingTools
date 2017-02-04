@@ -18,10 +18,10 @@
         private readonly IExternalLinksTransformersFactory transformersFactory;
 
         public ExternalLinksHarvester(
-            IXmlContextWrapperProvider contextWrapperProvider,
+            IXmlContextWrapper contextWrapper,
             IXmlTransformDeserializer serializer,
             IExternalLinksTransformersFactory transformersFactory)
-            : base(contextWrapperProvider)
+            : base(contextWrapper)
         {
             if (serializer == null)
             {

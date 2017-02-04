@@ -20,7 +20,7 @@
     public partial class FileProcessor : IFileProcessor
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
-        private readonly IDocumentWrapperProvider documentWrapper;
+        private readonly IDocumentWrapper documentWrapper;
         private readonly IDocumentManager documentManager;
 
         private readonly IFileNameGenerator fileNameGenerator;
@@ -31,7 +31,7 @@
 
         public FileProcessor(
             IFileNameGenerator fileNameGenerator,
-            IDocumentWrapperProvider documentWrapper,
+            IDocumentWrapper documentWrapper,
             IDocumentManager documentManager,
             Func<Type, ITaggerCommand> commandFactory,
             ILogger logger)

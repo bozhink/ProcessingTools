@@ -2,7 +2,7 @@
 {
     using System.Xml;
 
-    public interface IXmlContextWrapperProvider
+    public interface IXmlContextWrapper
     {
         XmlDocument Create(XmlNode context);
     }

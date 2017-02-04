@@ -11,22 +11,22 @@
     public class DocumentMerger : IDocumentMerger
     {
         private readonly IDocumentReader documentReader;
-        private readonly IDocumentWrapperProvider documentWrapperProvider;
+        private readonly IDocumentWrapper documentWrapper;
 
-        public DocumentMerger(IDocumentReader documentReader, IDocumentWrapperProvider documentWrapperProvider)
+        public DocumentMerger(IDocumentReader documentReader, IDocumentWrapper documentWrapper)
         {
             if (documentReader == null)
             {
                 throw new ArgumentNullException(nameof(documentReader));
             }
 
-            if (documentWrapperProvider == null)
+            if (documentWrapper == null)
             {
-                throw new ArgumentNullException(nameof(documentWrapperProvider));
+                throw new ArgumentNullException(nameof(documentWrapper));
             }
 
             this.documentReader = documentReader;
-            this.documentWrapperProvider = documentWrapperProvider;
+            this.documentWrapper = documentWrapper;
         }
 
         public async Task<IDocument> Merge(params string[] fileNames)
@@ -45,7 +45,7 @@
                 throw new ArgumentException("No valid file names are provided", nameof(fileNames));
             }
 
-            var document = this.documentWrapperProvider.Create();
+            var document = this.documentWrapper.Create();
 
             foreach (var fileName in cleanedFileNames)
             {

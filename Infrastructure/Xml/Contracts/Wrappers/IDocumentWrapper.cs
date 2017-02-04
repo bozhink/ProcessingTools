@@ -4,7 +4,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
-    public interface IDocumentWrapperProvider
+    public interface IDocumentWrapper
     {
         IDocument Create();
 

@@ -48,15 +48,15 @@
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Factories\IXQueryTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
-    <Compile Include="Contracts\Wrappers\IDocumentWrapperProvider.cs" />
+    <Compile Include="Contracts\Wrappers\IDocumentWrapper.cs" />
     <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
     <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
-    <Compile Include="Contracts\Wrappers\IXmlContextWrapperProvider.cs" />
+    <Compile Include="Contracts\Wrappers\IXmlContextWrapper.cs" />
     <Compile Include="Contracts\Transformers\IXQueryTransformer.cs" />
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
-    <Compile Include="Wrappers\DocumentWrapperProvider.cs" />
+    <Compile Include="Wrappers\DocumentWrapper.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\XQueryTransformer.cs" />
     <Compile Include="Transformers\XslTransformer.cs" />
@@ -68,7 +68,7 @@
     </Compile>
     <Compile Include="Contracts\IXQueryTransform.cs" />
     <Compile Include="Transform\XQueryTransform.cs" />
-    <Compile Include="Wrappers\XmlContextWrapperProvider.cs" />
+    <Compile Include="Wrappers\XmlContextWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

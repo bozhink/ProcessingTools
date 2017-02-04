@@ -19,10 +19,10 @@
         private readonly IAbbreviationsTransformersFactory transformersFactory;
 
         public AbbreviationsHarvester(
-            IXmlContextWrapperProvider contextWrapperProvider,
+            IXmlContextWrapper contextWrapper,
             IXmlTransformDeserializer serializer,
             IAbbreviationsTransformersFactory transformersFactory)
-            : base(contextWrapperProvider)
+            : base(contextWrapper)
         {
             if (serializer == null)
             {

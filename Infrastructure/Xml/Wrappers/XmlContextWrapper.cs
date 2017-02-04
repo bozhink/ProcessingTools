@@ -4,7 +4,7 @@
     using System.Xml;
     using Contracts.Wrappers;
 
-    public class XmlContextWrapperProvider : IXmlContextWrapperProvider
+    public class XmlContextWrapper : IXmlContextWrapper
     {
         public XmlDocument Create(XmlNode context)
         {
