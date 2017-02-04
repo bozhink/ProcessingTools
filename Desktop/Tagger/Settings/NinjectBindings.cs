@@ -2,7 +2,6 @@
 {
     using System;
     using System.Configuration;
-    using Contracts.Commands;
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Interception.Infrastructure.Language;
@@ -11,6 +10,7 @@
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Services.Data.Services.Files;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -24,6 +24,13 @@
                 b.FromThisAssembly()
                  .SelectAllClasses()
                  .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(typeof(ITaggerCommand).Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
             });
 
             this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
@@ -105,11 +112,11 @@
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
-                .WhenInjectedInto<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
-                .Intercept()
-                .With<FileNotFoundInterceptor>();
+            //this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+            //    .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+            //    .WhenInjectedInto<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
+            //    .Intercept()
+            //    .With<FileNotFoundInterceptor>();
             this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
                 .WhenInjectedInto<XmlFileContentDataService>();

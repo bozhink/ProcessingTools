@@ -3,13 +3,13 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using Contracts;
     using Contracts.Helpers;
     using Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
+    using ProcessingTools.Tagger.Commands.Contracts;
 
     public class WriteDocumentHelper : IWriteDocumentHelper
     {

@@ -38,6 +38,7 @@
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="ControllerExtensions.cs" />
     <Compile Include="DisposableExtensions.cs" />
+    <Compile Include="DocumentExtensions.cs" />
     <Compile Include="Linq\AsyncLinqExtensions.cs" />
     <Compile Include="MappingsExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />

@@ -3,11 +3,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts;
     using Contracts.Helpers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
+    using ProcessingTools.Tagger.Commands.Contracts;
 
     public class ReadDocumentHelper : IReadDocumentHelper
     {

@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts;
 
     public interface IReadDocumentHelper
     {

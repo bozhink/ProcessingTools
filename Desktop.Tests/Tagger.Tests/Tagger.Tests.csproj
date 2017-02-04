@@ -48,21 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integration.Tests\Core\Commands\ExtractTaxaCommandIntegrationTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ExpandLowerTaxaCommandUnitTests.cs" />
-    <Compile Include="Integration.Tests\Core\ProgramSettingsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ExtractTaxaCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\FormatTreatmentsCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\InitialFormatCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseCoordinatesCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseLowerTaxaCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseReferencesCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMaterialsCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithAphiaCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithCatalogueOfLifeCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithGbifCommandUnitTests.cs" />
-    <Compile Include="Unit.Tests\Core\Commands\ParseTreatmentMetaWithInternalInformationCommandUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
@@ -124,6 +110,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Integration.Tests\Core\" />
+    <Folder Include="Unit.Tests\Core\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

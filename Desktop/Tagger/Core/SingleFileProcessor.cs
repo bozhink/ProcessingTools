@@ -6,13 +6,14 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts;
-    using Contracts.Commands;
     using Contracts.Helpers;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Files.Generators;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     public partial class SingleFileProcessor : IFileProcessor
     {
