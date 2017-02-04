@@ -103,8 +103,7 @@
             string typeLowerCase = type.ToLower();
             var result = Enum.GetValues(typeof(SpeciesPartType))
                 .Cast<SpeciesPartType>()
-                .Where(r => r.ToString().ToLower() == typeLowerCase)
-                .FirstOrDefault();
+                .FirstOrDefault(r => r.ToString().ToLower() == typeLowerCase);
 
             return result;
         }
