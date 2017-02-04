@@ -273,6 +273,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\MvcControllerWithExceptionHandling.cs" />
     <Compile Include="App_GlobalResources\Strings.bg.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -299,13 +300,16 @@
     <Compile Include="Areas\Articles\Controllers\DocumentContentController.cs" />
     <Compile Include="Areas\Articles\Controllers\DocumentsController.cs" />
     <Compile Include="Areas\Articles\Controllers\FilesController.cs" />
+    <Compile Include="Areas\Articles\Controllers\TaggerController.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\ContentResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseModel.cs" />
     <Compile Include="Areas\Articles\Models\DocumentContent\MessageResponseStatus.cs" />
+    <Compile Include="Areas\Articles\Models\Tagger\FileModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Documents\DocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Documents\Contracts\IDocumentIdViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
+    <Compile Include="Areas\Articles\ViewModels\Tagger\FileViewModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\BlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\Contracts\IBlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\SearchResposeModel.cs" />
@@ -337,7 +341,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Factories\CertificateValidatorFactory.cs" />
-    <Compile Include="Factories\MvcControllerWithExceptionHandling.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -516,6 +519,8 @@
     <Content Include="Areas\Data\Views\Bio\Index.cshtml" />
     <Content Include="Areas\Data\Views\Bio\Help.cshtml" />
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Articles\Views\Tagger\Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Tagger\_Edit.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -618,6 +623,10 @@
     <ProjectReference Include="..\..\Infrastructure\Enumerations\Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Tagger.Commands\Tagger.Commands.csproj">
+      <Project>{6FD4843F-4B5D-412C-8101-396960FDDC21}</Project>
+      <Name>Tagger.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>

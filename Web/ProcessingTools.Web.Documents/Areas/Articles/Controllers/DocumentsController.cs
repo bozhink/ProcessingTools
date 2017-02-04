@@ -3,11 +3,10 @@
     using System;
     using System.Net;
     using System.Web.Mvc;
-
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents;
-    using ProcessingTools.Web.Documents.Factories;
 
     public class DocumentsController : MvcControllerWithExceptionHandling
     {

@@ -1,10 +1,8 @@
-﻿namespace ProcessingTools.Web.Documents.Factories
+﻿namespace ProcessingTools.Web.Documents.Abstractions
 {
     using System;
     using System.Web.Mvc;
-
     using Extensions;
-
     using ProcessingTools.Common.Exceptions;
 
     public abstract class MvcControllerWithExceptionHandling : Controller

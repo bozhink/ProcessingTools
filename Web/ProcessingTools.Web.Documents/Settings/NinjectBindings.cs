@@ -18,6 +18,13 @@
                  .BindDefaultInterface();
             });
 
+            this.Bind(b =>
+            {
+                b.From(typeof(ProcessingTools.Tagger.Commands.Contracts.Commands.ITaggerCommand).Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
             this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
 

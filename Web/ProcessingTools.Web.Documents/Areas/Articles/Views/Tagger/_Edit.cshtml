@@ -1,0 +1,105 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Tagger.FileViewModel
+
+<section>
+    <header>
+        <h4>@InstanceNames.FilesControllerInstanceName</h4>
+    </header>
+
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileExtension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileExtension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentLength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentLength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ArticleId)
+            @Html.HiddenFor(model => model.Comment)
+            @Html.HiddenFor(model => model.ContentLength)
+            @Html.HiddenFor(model => model.ContentType)
+            @Html.HiddenFor(model => model.DateCreated)
+            @Html.HiddenFor(model => model.DateModified)
+            @Html.HiddenFor(model => model.DocumentId)
+            @Html.HiddenFor(model => model.FileName)
+            @Html.HiddenFor(model => model.FileExtension)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CommandId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.CommandId, Model.CommandId, htmlAttributes: new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.CommandId, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Execute" class="btn btn-default" />
+                    <input type="reset" value="Reset" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+</section>
+
+@section Scripts {
+    @Scripts.Render(BundleNames.JQueryValidationScriptBundleName)
+}
