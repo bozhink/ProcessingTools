@@ -127,11 +127,6 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Core\ProgramSettingsBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -423,16 +418,11 @@
   <ItemGroup>
     <Content Include="MessageTexts\HelpMessage.txt" />
     <Content Include="MessageTexts\WriteOutputFileMessage.txt" />
-    <Content Include="Resources\ContextWrapper.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
