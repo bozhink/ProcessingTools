@@ -7,11 +7,11 @@
     using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
-    public abstract class AbstractGenericQueryableXmlHarvester<T> : IGenericEnumerableXmlHarvester<T>
+    public abstract class AbstractGenericEnumerableXmlHarvester<T> : IGenericEnumerableXmlHarvester<T>
     {
         private readonly IXmlContextWrapper contextWrapper;
 
-        public AbstractGenericQueryableXmlHarvester(IXmlContextWrapper contextWrapper)
+        public AbstractGenericEnumerableXmlHarvester(IXmlContextWrapper contextWrapper)
         {
             if (contextWrapper == null)
             {
