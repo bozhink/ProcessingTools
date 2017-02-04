@@ -16,7 +16,7 @@
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
-    public partial class SingleFileProcessor : IFileProcessor
+    public partial class FileProcessor : IFileProcessor
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IDocumentFactory documentFactory;
@@ -28,7 +28,7 @@
         private IProgramSettings settings;
         private ConcurrentQueue<Task> tasks;
 
-        public SingleFileProcessor(
+        public FileProcessor(
             IFileNameGenerator fileNameGenerator,
             IDocumentFactory documentFactory,
             IDocumentManager documentManager,

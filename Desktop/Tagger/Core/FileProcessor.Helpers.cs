@@ -10,7 +10,7 @@
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Commands.Extensions;
 
-    public partial class SingleFileProcessor
+    public partial class FileProcessor
     {
         private static async Task InvokeProcessor(string message, Func<Task> action, ILogger logger)
         {
