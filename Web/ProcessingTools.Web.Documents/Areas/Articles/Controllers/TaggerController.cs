@@ -1,41 +1,48 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using System.Web;
     using System.Web.Mvc;
+    using System.Xml;
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Tagger.Commands.Contracts.Models;
+    using ProcessingTools.Tagger.Commands.Contracts.Providers;
     using ProcessingTools.Web.Common.Constants;
-    using ProcessingTools.Web.Common.ViewModels;
+    using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Tagger;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Tagger;
-    using ProcessingTools.Web.Documents.Extensions;
-    using ProcessingTools.Web.Documents.Abstractions;
-    using Strings = Resources.Strings;
-    using ProcessingTools.Tagger.Commands.Contracts.Providers;
-    using ProcessingTools.Tagger.Commands.Contracts.Models;
-    using System.Xml;
 
     public class TaggerController : MvcControllerWithExceptionHandling
     {
-        private const string DocumentValidationBinding = nameof(FileModel.DocumentId) + "," + nameof(FileModel.FileName) + "," + nameof(FileModel.FileExtension) + "," + nameof(FileModel.ContentType) + "," + nameof(FileModel.Comment) + "," + nameof(FileModel.CommandId);
+        private const string DocumentValidationBinding = nameof(FileModel.DocumentId) + "," + nameof(FileModel.FileName) + "," + nameof(FileModel.Comment) + "," + nameof(FileModel.CommandId);
 
+        private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly ICommandInfoProvider commandInfoProvider;
+        private readonly IFactory<ICommandSettings> commandSettingsFactory;
+        private readonly IDocumentFactory documentFactory;
+        private readonly IDocumentNormalizer documentNormalizer;
         private readonly IDocumentsDataService service;
 
         public TaggerController(
             ICommandInfoProvider commandInfoProvider,
-            IDocumentsDataService service)
+            IDocumentsDataService service,
+            IDocumentFactory documentFactory,
+            IDocumentNormalizer documentNormalizer,
+            Func<Type, ITaggerCommand> commandFactory,
+            IFactory<ICommandSettings> commandSettingsFactory)
         {
             if (commandInfoProvider == null)
             {
@@ -47,20 +54,42 @@
                 throw new ArgumentNullException(nameof(service));
             }
 
+            if (documentFactory == null)
+            {
+                throw new ArgumentNullException(nameof(documentFactory));
+            }
+
+            if (documentNormalizer == null)
+            {
+                throw new ArgumentNullException(nameof(documentNormalizer));
+            }
+
+            if (commandFactory == null)
+            {
+                throw new ArgumentNullException(nameof(commandFactory));
+            }
+
+            if (commandSettingsFactory == null)
+            {
+                throw new ArgumentNullException(nameof(commandSettingsFactory));
+            }
+
             this.commandInfoProvider = commandInfoProvider;
             this.service = service;
+            this.documentFactory = documentFactory;
+            this.documentNormalizer = documentNormalizer;
+            this.commandFactory = commandFactory;
+            this.commandSettingsFactory = commandSettingsFactory;
 
             this.commandInfoProvider.ProcessInformation();
         }
 
-
-
-        private string UserId => User.Identity.GetUserId();
+        protected override string InstanceName => InstanceNames.FilesControllerInstanceName;
 
         // TODO: To be removed
         private int FakeArticleId => 0;
 
-        protected override string InstanceName => InstanceNames.FilesControllerInstanceName;
+        private string UserId => User.Identity.GetUserId();
 
         // GET: /Articles/Tagger
         [HttpGet]
@@ -99,35 +128,16 @@
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;
 
-                XmlDocument document = new XmlDocument
-                {
-                    PreserveWhitespace = true
-                };
-
-                var reader = await this.service.GetReader(userId, articleId, model.DocumentId);
-
-                document.Load(reader);
-
-                using (var stream = document.OuterXml.ToStream())
-                {
-                    var documentMetadata = new DocumentServiceModel
-                    {
-                        Comment = model.CommandId,
-                        ContentLength = stream.Length,
-                        ContentType = "application/xml",
-                        FileExtension = "xml",
-                        FileName = model.FileName
-                    };
-
-                    var result = await this.service.Create(userId, articleId, documentMetadata, stream);
-                }
+                var xmldocument = await this.ReadDocument(model, userId, articleId);
+                await this.RunCommand(model, xmldocument);
+                await this.WriteDocument(model, userId, articleId, xmldocument);
 
                 this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
             }
 
             this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return this.View(model);
+            return this.RedirectToAction(nameof(this.Edit), new { id = model.DocumentId });
         }
 
         // GET: /Articles/Help
@@ -135,6 +145,14 @@
         public ActionResult Help()
         {
             return this.View();
+        }
+
+        private SelectList GetCommandsAsSelectList()
+        {
+            return new SelectList(
+                items: this.commandInfoProvider.CommandsInformation.Values.OrderBy(i => i.Description),
+                dataValueField: nameof(ICommandInfo.Name),
+                dataTextField: nameof(ICommandInfo.Description));
         }
 
         private async Task<FileViewModel> GetDetails(object userId, object articleId, object id)
@@ -177,12 +195,73 @@
             return viewModel;
         }
 
-        private SelectList GetCommandsAsSelectList()
+        private async Task<XmlDocument> ReadDocument(FileModel model, string userId, int articleId)
         {
-            return new SelectList(
-                items: this.commandInfoProvider.CommandsInformation.Values,
-                dataValueField: nameof(ICommandInfo.Name),
-                dataTextField: nameof(ICommandInfo.Description));
+            XmlDocument document = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
+
+            var reader = await this.service.GetReader(userId, articleId, model.DocumentId);
+
+            document.Load(reader);
+            return document;
+        }
+
+        private async Task<object> RunCommand(FileModel model, XmlDocument xmldocument)
+        {
+            var document = this.documentFactory.Create(xmldocument.OuterXml);
+            if (document.XmlDocument.DocumentElement.Name == ElementNames.Article)
+            {
+                document.SchemaType = SchemaType.Nlm;
+            }
+            else
+            {
+                document.SchemaType = SchemaType.System;
+            }
+
+            await this.documentNormalizer.NormalizeToSystem(document);
+
+            var commandType = this.commandInfoProvider
+                .CommandsInformation
+                .First(p => p.Value.Name == model.CommandId)
+                .Key;
+
+            var command = this.commandFactory.Invoke(commandType);
+            var settings = this.commandSettingsFactory.Create();
+
+            var result = await command.Run(document, settings);
+
+            await this.documentNormalizer.NormalizeToDocumentSchema(document);
+            await this.documentNormalizer.NormalizeToDocumentSchema(document);
+
+            xmldocument.LoadXml(document.Xml);
+
+            return result;
+        }
+
+        private async Task<object> WriteDocument(FileModel model, string userId, int articleId, XmlDocument document)
+        {
+            using (var stream = document.OuterXml.ToStream())
+            {
+                string comment = this.commandInfoProvider
+                    .CommandsInformation
+                    .Values
+                    .FirstOrDefault(i => i.Name == model.CommandId)
+                    .Description;
+
+                var documentMetadata = new DocumentServiceModel
+                {
+                    Comment = comment,
+                    ContentLength = stream.Length,
+                    ContentType = ContentTypes.Xml,
+                    FileExtension = FileConstants.XmlFileExtension,
+                    FileName = model.FileName
+                };
+
+                var result = await this.service.Create(userId, articleId, documentMetadata, stream);
+                return result;
+            }
         }
     }
 }
