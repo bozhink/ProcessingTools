@@ -6,7 +6,7 @@
     using Ninject;
     using Settings;
 
-    public static class Startup
+    public static class Program
     {
         public static void Main(string[] args)
         {

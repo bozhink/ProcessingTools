@@ -95,7 +95,7 @@
     <Compile Include="Contracts\Seeders\IDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IMediatypesDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\ITaxonomyDbSeeder.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Seeders\BioDbSeeder.cs" />
