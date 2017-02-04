@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandSettings.cs" />
     <Compile Include="Providers\CommandInfoProvider.cs" />
     <Compile Include="Commands\ExpandLowerTaxaCommand.cs" />
     <Compile Include="Commands\ExtractTaxaCommand.cs" />
