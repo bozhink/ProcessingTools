@@ -38,7 +38,9 @@
     <Compile Include="ConcurrencyConstants.cs" />
     <Compile Include="Configuration\AppSettingsKeys.cs" />
     <Compile Include="Configuration\ConnectionStringsKeys.cs" />
+    <Compile Include="Configuration\FactoryKeys.cs" />
     <Compile Include="Configuration\ParameterNames.cs" />
+    <Compile Include="ContentTypes.cs" />
     <Compile Include="Content\ContentTypeConstants.cs" />
     <Compile Include="FileConstants.cs" />
     <Compile Include="MediaTypes.cs" />
