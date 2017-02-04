@@ -18,7 +18,7 @@
     public class RedisValidationCacheDataRepositoryUnitTests
     {
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Add valid key and valid value should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisValidationCacheDataRepository_AddValidNonPresentKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -122,7 +122,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository GetAll valid key and empty list should return empty IEnumerable.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public void RedisValidationCacheDataRepository_GetAllValidKeyAndEmptyList_ShouldReturnEmptyIEnumerable()
         {
             // Arrange
@@ -187,7 +187,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Get Keys should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public void RedisValidationCacheDataRepository_GetKeys_ShouldWork()
         {
             // Arrange
@@ -217,7 +217,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Remove valid non-present key should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisValidationCacheDataRepository_RemoveValidNonPresentKey_ShouldWork()
         {
             // Arrange
@@ -248,7 +248,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Remove valid key and valid value should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisValidationCacheDataRepository_RemoveValidNonPresentKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -286,7 +286,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Remove valid yet-present key should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisValidationCacheDataRepository_RemoveValidYetPresentKey_ShouldWork()
         {
             // Arrange
@@ -412,7 +412,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository SaveChanges should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisValidationCacheDataRepository_SaveChanges_ShouldWork()
         {
             // Arrange
