@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts;
@@ -88,13 +89,18 @@
 
                 try
                 {
-                    document = await this.documentReader.Read(this.settings);
+                    document = await this.documentReader.Read(
+                        this.settings.MergeInputFiles,
+                        this.settings.FileNames.ToArray());
                 }
                 catch
                 {
                     this.logger?.Log(LogType.Error, "One or more input files cannot be read.");
                     return;
                 }
+
+                settings.ArticleSchemaType = document.SchemaType;
+                document.SchemaType = settings.ArticleSchemaType;
 
                 await this.ProcessDocument(document.XmlDocument.DocumentElement);
 
@@ -364,7 +370,10 @@
 
         private Task WriteOutputFile(IDocument document) => InvokeProcessor(
             Messages.WriteOutputFileMessage,
-            () => this.documentWriter.Write(document, this.settings),
+            () => this.documentWriter.Write(
+                this.settings.OutputFileName,
+                document,
+                this.settings.SplitDocument),
             this.logger);
     }
 }

@@ -9,7 +9,6 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
-    using ProcessingTools.Tagger.Commands.Contracts;
 
     public class WriteDocumentHelper : IWriteDocumentHelper
     {
@@ -42,19 +41,19 @@
             this.documentNormalizer = documentNormalizer;
         }
 
-        public async Task<object> Write(IDocument document, IProgramSettings settings)
+        public async Task<object> Write(string outputFileName, IDocument document, bool splitDocument)
         {
+            if (string.IsNullOrWhiteSpace(outputFileName))
+            {
+                throw new ArgumentNullException(nameof(outputFileName));
+            }
+
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
-            if (settings.SplitDocument)
+            if (splitDocument)
             {
                 var subdocuments = this.documentSplitter.Split(document);
                 foreach (var subdocument in subdocuments)
@@ -62,7 +61,7 @@
                     var fileName = subdocument.GenerateFileNameFromDocumentId();
 
                     var path = Path.Combine(
-                        Path.GetDirectoryName(settings.OutputFileName),
+                        Path.GetDirectoryName(outputFileName),
                         $"{fileName}.{FileConstants.XmlFileExtension}");
 
                     await this.WriteSingleDocument(path, subdocument);
@@ -70,7 +69,7 @@
             }
             else
             {
-                await this.WriteSingleDocument(settings.OutputFileName, document);
+                await this.WriteSingleDocument(outputFileName, document);
             }
 
             return true;

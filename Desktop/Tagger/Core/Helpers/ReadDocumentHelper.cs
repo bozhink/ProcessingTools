@@ -48,26 +48,23 @@
             this.documentNormalizer = documentNormalizer;
         }
 
-        public async Task<IDocument> Read(IProgramSettings settings)
+        public async Task<IDocument> Read(bool mergeInputFiles, params string[] fileNames)
         {
-            if (settings == null)
+            if (fileNames == null || fileNames.Length < 1)
             {
-                throw new ArgumentNullException(nameof(settings));
+                throw new ArgumentNullException(nameof(fileNames));
             }
 
             IDocument document;
 
-            if (settings.MergeInputFiles)
+            if (mergeInputFiles)
             {
-                document = await this.documentMerger.Merge(settings.FileNames.ToArray());
+                document = await this.documentMerger.Merge(fileNames);
             }
             else
             {
-                document = await this.documentReader.ReadDocument(settings.FileNames[0]);
+                document = await this.documentReader.ReadDocument(fileNames[0]);
             }
-
-            settings.ArticleSchemaType = document.SchemaType;
-            document.SchemaType = settings.ArticleSchemaType;
 
             await this.documentNormalizer.NormalizeToSystem(document);
 

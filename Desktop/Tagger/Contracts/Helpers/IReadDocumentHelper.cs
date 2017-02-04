@@ -2,10 +2,9 @@
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts;
 
     public interface IReadDocumentHelper
     {
-        Task<IDocument> Read(IProgramSettings settings);
+        Task<IDocument> Read(bool mergeInputFiles, params string[] fileNames);
     }
 }
