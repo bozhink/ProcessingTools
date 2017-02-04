@@ -22,11 +22,10 @@
         public void ProcessInformation()
         {
             // Print commands’ information
-            string defaultCommandInterfaceName = typeof(ITaggerCommand).FullName;
-            var types = System.Reflection.Assembly.GetExecutingAssembly()
+            var commandType = typeof(ITaggerCommand);
+            var types = commandType.Assembly
                 .GetTypes()
-                .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract)
-                .Where(t => t.GetInterfaces().Any(i => i.FullName == defaultCommandInterfaceName))
+                .Where(t => t.IsClass && !t.IsGenericType && !t.IsAbstract && t.GetInterfaces().Contains(commandType))
                 .ToArray();
 
             types.Select(type =>
