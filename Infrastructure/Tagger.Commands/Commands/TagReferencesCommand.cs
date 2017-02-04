@@ -45,6 +45,11 @@
 
         private void SetReferencesOutputFileName(IDocument document, ICommandSettings settings)
         {
+            if (string.IsNullOrWhiteSpace(settings.OutputFileName))
+            {
+                return;
+            }
+
             string referencesFileName = document.GenerateFileNameFromDocumentId();
 
             var outputDirectoryName = Path.GetDirectoryName(settings.OutputFileName);
