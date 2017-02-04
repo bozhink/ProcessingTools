@@ -17,8 +17,8 @@
             {
                 using (var kernel = NinjectConfig.CreateKernel())
                 {
-                    var startup = kernel.Get<IStartup>();
-                    startup.Run(args);
+                    var engine = kernel.Get<IEngine>();
+                    engine.Run(args);
                 }
             }
             catch (Exception e)

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger
+﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
     using System.Configuration;
@@ -9,12 +9,12 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
-    public class Startup : IStartup
+    public class Engine : IEngine
     {
         private readonly IFileProcessor fileProcessor;
         private readonly ILogger logger;
 
-        public Startup(IFileProcessor fileProcessor, ILogger logger)
+        public Engine(IFileProcessor fileProcessor, ILogger logger)
         {
             if (fileProcessor == null)
             {

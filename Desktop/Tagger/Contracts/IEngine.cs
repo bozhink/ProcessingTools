@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Contracts
 {
-    public interface IStartup
+    public interface IEngine
     {
         void Run(string[] args);
     }
