@@ -10,17 +10,11 @@
 
     public class DocumentMerger : IDocumentMerger
     {
-        private readonly IDocumentFactory documentFactory;
         private readonly IDocumentReader documentReader;
         private readonly IDocumentWrapperProvider documentWrapperProvider;
 
-        public DocumentMerger(IDocumentFactory documentFactory, IDocumentReader documentReader, IDocumentWrapperProvider documentWrapperProvider)
+        public DocumentMerger(IDocumentReader documentReader, IDocumentWrapperProvider documentWrapperProvider)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
             if (documentReader == null)
             {
                 throw new ArgumentNullException(nameof(documentReader));
@@ -31,7 +25,6 @@
                 throw new ArgumentNullException(nameof(documentWrapperProvider));
             }
 
-            this.documentFactory = documentFactory;
             this.documentReader = documentReader;
             this.documentWrapperProvider = documentWrapperProvider;
         }
@@ -52,7 +45,7 @@
                 throw new ArgumentException("No valid file names are provided", nameof(fileNames));
             }
 
-            var document = this.documentFactory.Create(this.documentWrapperProvider.DocumentWrapper);
+            var document = this.documentWrapperProvider.Create();
 
             foreach (var fileName in cleanedFileNames)
             {

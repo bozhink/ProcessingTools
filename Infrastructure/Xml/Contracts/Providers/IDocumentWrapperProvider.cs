@@ -1,7 +1,9 @@
 ﻿namespace ProcessingTools.Xml.Contracts.Providers
 {
+    using ProcessingTools.Contracts;
+
     public interface IDocumentWrapperProvider
     {
-        string DocumentWrapper { get; }
+        IDocument Create();
     }
 }
