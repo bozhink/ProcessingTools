@@ -34,7 +34,7 @@
 
             document.Load(xmlFileName);
 
-            var contextWrapperProvider = new XmlContextWrapperProvider();
+            var contextWrapper = new XmlContextWrapper();
 
             var deserializer = new XmlDeserializer();
             var serializer = new XmlTransformDeserializer(deserializer);
@@ -48,7 +48,7 @@
                 .Setup(f => f.GetExternalLinksTransformer())
                 .Returns(transformer);
 
-            var harvester = new ExternalLinksHarvester(contextWrapperProvider, serializer, transformersFactoryMock.Object);
+            var harvester = new ExternalLinksHarvester(contextWrapper, serializer, transformersFactoryMock.Object);
 
             // Act
             var externalLinks = harvester.Harvest(document.DocumentElement).Result?.ToList();
