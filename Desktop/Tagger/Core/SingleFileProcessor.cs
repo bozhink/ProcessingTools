@@ -7,12 +7,12 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts;
-    using Contracts.Helpers;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Files.Generators;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Processors.Documents;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
@@ -20,8 +20,7 @@
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IDocumentFactory documentFactory;
-        private readonly IReadDocumentHelper documentReader;
-        private readonly IWriteDocumentHelper documentWriter;
+        private readonly IDocumentManager documentManager;
 
         private readonly IFileNameGenerator fileNameGenerator;
         private readonly ILogger logger;
@@ -32,8 +31,7 @@
         public SingleFileProcessor(
             IFileNameGenerator fileNameGenerator,
             IDocumentFactory documentFactory,
-            IReadDocumentHelper documentReader,
-            IWriteDocumentHelper documentWriter,
+            IDocumentManager documentManager,
             Func<Type, ITaggerCommand> commandFactory,
             ILogger logger)
         {
@@ -47,14 +45,9 @@
                 throw new ArgumentNullException(nameof(documentFactory));
             }
 
-            if (documentReader == null)
+            if (documentManager == null)
             {
-                throw new ArgumentNullException(nameof(documentReader));
-            }
-
-            if (documentWriter == null)
-            {
-                throw new ArgumentNullException(nameof(documentWriter));
+                throw new ArgumentNullException(nameof(documentManager));
             }
 
             if (commandFactory == null)
@@ -64,8 +57,7 @@
 
             this.fileNameGenerator = fileNameGenerator;
             this.documentFactory = documentFactory;
-            this.documentReader = documentReader;
-            this.documentWriter = documentWriter;
+            this.documentManager = documentManager;
             this.commandFactory = commandFactory;
             this.logger = logger;
 
@@ -89,7 +81,7 @@
 
                 try
                 {
-                    document = await this.documentReader.Read(
+                    document = await this.documentManager.Read(
                         this.settings.MergeInputFiles,
                         this.settings.FileNames.ToArray());
                 }
@@ -370,7 +362,7 @@
 
         private Task WriteOutputFile(IDocument document) => InvokeProcessor(
             Messages.WriteOutputFileMessage,
-            () => this.documentWriter.Write(
+            () => this.documentManager.Write(
                 this.settings.OutputFileName,
                 document,
                 this.settings.SplitDocument),

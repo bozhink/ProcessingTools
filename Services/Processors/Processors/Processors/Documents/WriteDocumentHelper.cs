@@ -1,12 +1,11 @@
-﻿namespace ProcessingTools.Tagger.Core.Helpers
+﻿namespace ProcessingTools.Processors.Processors.Documents
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using Contracts.Helpers;
-    using Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
 

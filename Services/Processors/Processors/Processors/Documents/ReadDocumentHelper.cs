@@ -1,13 +1,10 @@
-﻿namespace ProcessingTools.Tagger.Core.Helpers
+﻿namespace ProcessingTools.Processors.Processors.Documents
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Helpers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
-    using ProcessingTools.Tagger.Commands.Contracts;
 
     public class ReadDocumentHelper : IReadDocumentHelper
     {
