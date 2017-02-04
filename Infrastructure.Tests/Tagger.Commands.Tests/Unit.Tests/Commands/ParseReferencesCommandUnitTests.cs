@@ -78,7 +78,7 @@
             // Arrange
             var parserMock = new Mock<IReferencesParser>();
             var command = new ParseReferencesCommand(parserMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
@@ -118,7 +118,7 @@
             // Arrange
             var parserMock = new Mock<IReferencesParser>();
             var command = new ParseReferencesCommand(parserMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             var xmldocumentStub = new XmlDocument();

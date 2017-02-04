@@ -26,7 +26,7 @@
             this.tagger = tagger;
         }
 
-        public Task<object> Run(IDocument document, IProgramSettings settings)
+        public Task<object> Run(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -43,7 +43,7 @@
             return this.tagger.Tag(document.XmlDocument.DocumentElement);
         }
 
-        private void SetReferencesOutputFileName(IDocument document, IProgramSettings settings)
+        private void SetReferencesOutputFileName(IDocument document, ICommandSettings settings)
         {
             string referencesFileName = document.GenerateFileNameFromDocumentId();
 

@@ -78,7 +78,7 @@
             // Arrange
             var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>();
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
@@ -118,7 +118,7 @@
             // Arrange
             var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>();
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             // Act

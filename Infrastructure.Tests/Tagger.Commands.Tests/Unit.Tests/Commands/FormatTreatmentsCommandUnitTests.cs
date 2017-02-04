@@ -77,7 +77,7 @@
             // Arrange
             var formatterMock = new Mock<ITreatmentFormatter>();
             var command = new FormatTreatmentsCommand(formatterMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
@@ -117,7 +117,7 @@
             // Arrange
             var formatterMock = new Mock<ITreatmentFormatter>();
             var command = new FormatTreatmentsCommand(formatterMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             // Act

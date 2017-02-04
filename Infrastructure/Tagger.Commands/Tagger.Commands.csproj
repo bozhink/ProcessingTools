@@ -153,7 +153,7 @@
     <Compile Include="Contracts\Commands\IZooBankGenerateRegistrationXmlCommand.cs" />
     <Compile Include="Contracts\Models\ICommandInfo.cs" />
     <Compile Include="Contracts\Providers\ICommandInfoProvider.cs" />
-    <Compile Include="Contracts\IProgramSettings.cs" />
+    <Compile Include="Contracts\ICommandSettings.cs" />
     <Compile Include="Extensions\CommandExtensions.cs" />
     <Compile Include="Generics\GenericDocumentFormatterCommand.cs" />
     <Compile Include="Generics\GenericDocumentParserCommand.cs" />
@@ -169,7 +169,6 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\CommandInfo.cs" />
-    <Compile Include="ProgramSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

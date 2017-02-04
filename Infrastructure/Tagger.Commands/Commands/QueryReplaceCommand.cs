@@ -23,7 +23,7 @@
             this.queryReplacer = queryReplacer;
         }
 
-        public async Task<object> Run(IDocument document, IProgramSettings settings)
+        public async Task<object> Run(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

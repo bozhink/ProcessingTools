@@ -24,7 +24,7 @@
             var harvesterMock = new Mock<ITaxonNamesHarvester>();
             var reporterMock = new Mock<IReporter>();
             var command = new ExtractTaxaCommand(harvesterMock.Object, reporterMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             var xmldocumentStub = new XmlDocument();
@@ -63,7 +63,7 @@
             var harvesterMock = new Mock<ITaxonNamesHarvester>();
             var reporterMock = new Mock<IReporter>();
             var command = new ExtractTaxaCommand(harvesterMock.Object, reporterMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             var xmldocumentStub = new XmlDocument();
@@ -102,7 +102,7 @@
             var harvesterMock = new Mock<ITaxonNamesHarvester>();
             var reporterMock = new Mock<IReporter>();
             var command = new ExtractTaxaCommand(harvesterMock.Object, reporterMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             var xmldocumentStub = new XmlDocument();
@@ -141,7 +141,7 @@
             var harvesterMock = new Mock<ITaxonNamesHarvester>();
             var reporterMock = new Mock<IReporter>();
             var command = new ExtractTaxaCommand(harvesterMock.Object, reporterMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             var xmldocumentStub = new XmlDocument();
@@ -180,7 +180,7 @@
             var harvesterMock = new Mock<ITaxonNamesHarvester>();
             var reporterMock = new Mock<IReporter>();
             var command = new ExtractTaxaCommand(harvesterMock.Object, reporterMock.Object);
-            var settingsMock = new Mock<IProgramSettings>();
+            var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();
 
             var xmldocumentStub = new XmlDocument();

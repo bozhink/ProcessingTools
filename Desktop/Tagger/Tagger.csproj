@@ -121,6 +121,8 @@
   <ItemGroup>
     <Compile Include="Contracts\IFileProcessor.cs" />
     <Compile Include="Contracts\IEngine.cs" />
+    <Compile Include="Contracts\IProgramSettings.cs" />
+    <Compile Include="Core\ProgramSettings.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

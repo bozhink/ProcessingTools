@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Tagger.Tests.Integration.Tests.Core
+﻿namespace ProcessingTools.Tagger.Tests.Integration.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands;
+    using ProcessingTools.Tagger.Core;
 
     [TestClass]
     public class ProgramSettingsTests

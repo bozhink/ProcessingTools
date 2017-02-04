@@ -23,7 +23,7 @@
             this.provider = provider;
         }
 
-        public Task<object> Run(IDocument document, IProgramSettings settings)
+        public Task<object> Run(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

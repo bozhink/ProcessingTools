@@ -5,6 +5,6 @@
 
     public interface ITaggerCommand
     {
-        Task<object> Run(IDocument document, IProgramSettings settings);
+        Task<object> Run(IDocument document, ICommandSettings settings);
     }
 }
