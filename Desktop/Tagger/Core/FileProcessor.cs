@@ -15,11 +15,12 @@
     using ProcessingTools.Processors.Contracts.Processors.Documents;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Xml.Contracts.Providers;
 
     public partial class FileProcessor : IFileProcessor
     {
         private readonly Func<Type, ITaggerCommand> commandFactory;
-        private readonly IDocumentFactory documentFactory;
+        private readonly IDocumentWrapperProvider documentWrapper;
         private readonly IDocumentManager documentManager;
 
         private readonly IFileNameGenerator fileNameGenerator;
@@ -30,7 +31,7 @@
 
         public FileProcessor(
             IFileNameGenerator fileNameGenerator,
-            IDocumentFactory documentFactory,
+            IDocumentWrapperProvider documentWrapper,
             IDocumentManager documentManager,
             Func<Type, ITaggerCommand> commandFactory,
             ILogger logger)
@@ -40,9 +41,9 @@
                 throw new ArgumentNullException(nameof(fileNameGenerator));
             }
 
-            if (documentFactory == null)
+            if (documentWrapper == null)
             {
-                throw new ArgumentNullException(nameof(documentFactory));
+                throw new ArgumentNullException(nameof(documentWrapper));
             }
 
             if (documentManager == null)
@@ -56,7 +57,7 @@
             }
 
             this.fileNameGenerator = fileNameGenerator;
-            this.documentFactory = documentFactory;
+            this.documentWrapper = documentWrapper;
             this.documentManager = documentManager;
             this.commandFactory = commandFactory;
             this.logger = logger;

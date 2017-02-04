@@ -49,10 +49,10 @@
         private async Task InvokeProcessor(Type commandType, XmlNode context)
         {
             var command = this.commandFactory(commandType);
-            var document = this.WrapContextInDocument(context);
+            var document = this.documentWrapper.Create(context, this.settings.ArticleSchemaType);
 
-            var isValidationCommand = commandType.GetInterfaces().Count(t => t == typeof(INotAwaitableCommand)) > 0;
-            if (isValidationCommand)
+            var isNotAwaitableCommand = commandType.GetInterfaces().Count(t => t == typeof(INotAwaitableCommand)) > 0;
+            if (isNotAwaitableCommand)
             {
                 // Validation commands should not overwrite the content of this.document.XmlDocument,
                 // and here this content is copied in a new DOM object.
@@ -78,14 +78,6 @@
                 message,
                 () => command.Run(document, this.settings),
                 this.logger);
-        }
-
-        private IDocument WrapContextInDocument(XmlNode context)
-        {
-            var document = this.documentFactory.Create(Resources.ContextWrapper);
-            document.XmlDocument.DocumentElement.InnerXml = context.InnerXml;
-            document.SchemaType = this.settings.ArticleSchemaType;
-            return document;
         }
     }
 }
