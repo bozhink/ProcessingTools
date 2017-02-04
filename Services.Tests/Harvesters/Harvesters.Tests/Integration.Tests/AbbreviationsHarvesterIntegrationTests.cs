@@ -11,7 +11,7 @@
     using ProcessingTools.Harvesters.Harvesters.Abbreviations;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Providers;
+    using ProcessingTools.Xml.Wrappers;
     using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;
 

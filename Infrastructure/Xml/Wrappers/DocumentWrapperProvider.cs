@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Xml.Providers
+﻿namespace ProcessingTools.Xml.Wrappers
 {
     using System;
     using System.Xml;
-    using Contracts.Providers;
+    using Contracts.Wrappers;
     using ProcessingTools.Contracts;
     using Enumerations;
 

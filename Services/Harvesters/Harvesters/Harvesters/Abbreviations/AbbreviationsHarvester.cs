@@ -10,7 +10,7 @@
     using Contracts.Harvesters.Abbreviations;
     using Contracts.Models.Abbreviations;
     using Models.Abbreviations;
-    using ProcessingTools.Xml.Contracts.Providers;
+    using ProcessingTools.Xml.Contracts.Wrappers;
     using ProcessingTools.Xml.Contracts.Serialization;
 
     public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester

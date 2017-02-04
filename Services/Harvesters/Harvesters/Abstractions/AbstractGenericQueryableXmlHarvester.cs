@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Xml.Contracts.Providers;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public abstract class AbstractGenericQueryableXmlHarvester<T> : IGenericEnumerableXmlHarvester<T>
     {

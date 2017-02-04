@@ -6,7 +6,7 @@
     using Contracts.Processors.Documents;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Xml.Contracts.Providers;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class DocumentMerger : IDocumentMerger
     {

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Contracts.Providers
+﻿namespace ProcessingTools.Xml.Contracts.Wrappers
 {
     using System.Xml;
     using ProcessingTools.Contracts;

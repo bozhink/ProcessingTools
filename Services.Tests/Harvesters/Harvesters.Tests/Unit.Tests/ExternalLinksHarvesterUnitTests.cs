@@ -6,7 +6,7 @@
     using ProcessingTools.Harvesters.Contracts.Factories;
     using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
     using ProcessingTools.Tests.Library;
-    using ProcessingTools.Xml.Contracts.Providers;
+    using ProcessingTools.Xml.Contracts.Wrappers;
     using ProcessingTools.Xml.Contracts.Serialization;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]
