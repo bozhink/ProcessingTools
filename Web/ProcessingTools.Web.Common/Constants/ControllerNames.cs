@@ -1,11 +1,13 @@
 ﻿namespace ProcessingTools.Web.Common.Constants
 {
-    public static class ControllerNames
+    public sealed class ControllerNames
     {
         public const string AbbreviationsControllerName = "Abbreviations";
         public const string AccountControllerName = "Account";
         public const string ArticlesControllerName = "Articles";
         public const string BioControllerName = "Bio";
+        public const string BioTaxonomyBlackListDataControllerName = "BioTaxonomyBlackListData";
+        public const string BioTaxonomyTaxaRanksDataControllerName = "BioTaxonomyTaxaRanksData";
         public const string ContentTypesControllerName = "ContentTypes";
         public const string ContinentsControllerName = "Continents";
         public const string DocumentContentControllerName = "DocumentContent";
@@ -18,8 +20,7 @@
         public const string MetadataControllerName = "Metadata";
         public const string ProductsControllerName = "Products";
         public const string PublishersControllerName = "Publishers";
+        public const string TaggerControllerName = "Tagger";
         public const string UploadControllerName = "Upload";
-        public const string BioTaxonomyTaxaRanksDataControllerName = "BioTaxonomyTaxaRanksData";
-        public const string BioTaxonomyBlackListDataControllerName = "BioTaxonomyBlackListData";
     }
 }
