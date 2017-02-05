@@ -521,6 +521,7 @@
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Articles\Views\Tagger\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Tagger\_Edit.cshtml" />
+    <Content Include="Areas\Articles\Views\Files\DeleteAll.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
     <Content Include="README.md" />
   </ItemGroup>

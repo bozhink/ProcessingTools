@@ -124,6 +124,12 @@
         </tbody>
     </table>
 
+    <p>
+        @Html.ActionLink(
+            linkText: Strings.DeleteAllFilesActionLinkTitle,
+            actionName: nameof(FilesController.DeleteAll))
+    </p>
+
     <footer>
         @Html.Partial(ViewNames.NavigationFootPartialViewName)
     </footer>

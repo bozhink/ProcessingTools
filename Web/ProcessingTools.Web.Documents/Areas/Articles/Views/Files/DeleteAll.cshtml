@@ -1,0 +1,12 @@
+﻿@using Strings = Resources.Strings
+
+@{
+    ViewBag.Title = Strings.DeleteAllFilesPageTitle;
+}
+
+<header>
+    <h2>@Strings.DeleteAllFilesPageHeading</h2>
+</header>
+<h3>@Strings.DeleteAllFilesPromptMessage</h3>
+
+@Html.Partial(ViewNames.DeleteFooterPartialViewName)

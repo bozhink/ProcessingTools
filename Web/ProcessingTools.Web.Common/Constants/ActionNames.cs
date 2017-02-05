@@ -5,6 +5,7 @@
         public const string DeafulHelpActionName = "Help";
         public const string DeafultCreateActionName = "Create";
         public const string DeafultDeleteActionName = "Delete";
+        public const string DeafultDeleteAllActionName = "DeleteAll";
         public const string DeafultDetailsActionName = "Details";
         public const string DeafultEditActionName = "Edit";
         public const string DeafultIndexActionName = "Index";

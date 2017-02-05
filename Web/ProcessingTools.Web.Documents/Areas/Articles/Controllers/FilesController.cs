@@ -71,6 +71,24 @@
             return this.RedirectToAction(nameof(this.Index));
         }
 
+        // GET: /Articles/Files/DeleteAll
+        [HttpGet, ActionName(ActionNames.DeafultDeleteAllActionName)]
+        public ActionResult DeleteAll()
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View();
+        }
+
+        // POST: /Articles/Files/DeleteAll
+        [HttpPost, ActionName(ActionNames.DeafultDeleteAllActionName)]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteAllConfirmed()
+        {
+            await this.service.DeleteAll(this.UserId, this.FakeArticleId);
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.RedirectToAction(nameof(this.Index));
+        }
+
         // GET: /Articles/Files/Details/5
         [HttpGet]
         public async Task<ActionResult> Details(Guid? id)

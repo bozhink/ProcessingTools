@@ -208,6 +208,18 @@
   <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
     <value>Upload New File or Files</value>
   </data>
+  <data name="DeleteAllFilesActionLinkTitle" xml:space="preserve">
+    <value>Delete All Files</value>
+  </data>
+  <data name="DeleteAllFilesPageHeading" xml:space="preserve">
+    <value>Delete All Files</value>
+  </data>
+  <data name="DeleteAllFilesPageTitle" xml:space="preserve">
+    <value>Delete All Files</value>
+  </data>
+  <data name="DeleteAllFilesPromptMessage" xml:space="preserve">
+    <value>Are you sure you want to delete all files?</value>
+  </data>
   <data name="DeletePromptMessage" xml:space="preserve">
     <value>Are you sure you want to delete this?</value>
   </data>

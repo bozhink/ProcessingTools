@@ -331,6 +331,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete All Files.
+        /// </summary>
+        internal static string DeleteAllFilesActionLinkTitle {
+            get {
+                return ResourceManager.GetString("DeleteAllFilesActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete All Files.
+        /// </summary>
+        internal static string DeleteAllFilesPageHeading {
+            get {
+                return ResourceManager.GetString("DeleteAllFilesPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete All Files.
+        /// </summary>
+        internal static string DeleteAllFilesPageTitle {
+            get {
+                return ResourceManager.GetString("DeleteAllFilesPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete all files?.
+        /// </summary>
+        internal static string DeleteAllFilesPromptMessage {
+            get {
+                return ResourceManager.GetString("DeleteAllFilesPromptMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this?.
         /// </summary>
         internal static string DeletePromptMessage {

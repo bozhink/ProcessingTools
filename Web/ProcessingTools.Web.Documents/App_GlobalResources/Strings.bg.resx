@@ -207,6 +207,18 @@
   <data name="DefaultUploadNewFileActionLinkTitle" xml:space="preserve">
     <value>Качи файл или файлове</value>
   </data>
+  <data name="DeleteAllFilesActionLinkTitle" xml:space="preserve">
+    <value>Изтриване на всички файлове</value>
+  </data>
+  <data name="DeleteAllFilesPageHeading" xml:space="preserve">
+    <value>Изтриване на всички файлове</value>
+  </data>
+  <data name="DeleteAllFilesPageTitle" xml:space="preserve">
+    <value>Изтриване на всички файлове</value>
+  </data>
+  <data name="DeleteAllFilesPromptMessage" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да изтриете всички файлове?</value>
+  </data>
   <data name="DeletePromptMessage" xml:space="preserve">
     <value>Сигурни ли сте, че искате да изтриете този обект?</value>
   </data>
