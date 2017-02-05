@@ -80,8 +80,8 @@
         // TODO: hard dependencies
         private void ParseSingleCoordinateXmlNode(XmlNode coordinateNode)
         {
-            var latitude = new CoordinatePart(this.logger);
-            var longitude = new CoordinatePart(this.logger);
+            var latitude = new CoordinatePart();
+            var longitude = new CoordinatePart();
 
             string coordinateNodeInnerText = coordinateNode.InnerText;
             string coordinateType = coordinateNode.Attributes[AttributeNames.Type]?.InnerText;
