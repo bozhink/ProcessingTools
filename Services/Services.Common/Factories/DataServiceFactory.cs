@@ -5,8 +5,8 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Contracts;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
 

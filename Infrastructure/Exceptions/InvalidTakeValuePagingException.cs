@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Common.Exceptions
+﻿namespace ProcessingTools.Exceptions
 {
     using System;
     using System.Runtime.Serialization;

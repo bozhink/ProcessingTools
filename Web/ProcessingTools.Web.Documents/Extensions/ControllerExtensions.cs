@@ -8,7 +8,7 @@
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
-    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.ViewModels.Error;
     using Strings = Resources.Strings;

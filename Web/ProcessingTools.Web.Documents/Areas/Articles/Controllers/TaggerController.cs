@@ -7,13 +7,13 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Tagger.Commands.Contracts;

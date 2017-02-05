@@ -3,7 +3,7 @@
     using System;
     using System.Web.Mvc;
     using Extensions;
-    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Exceptions;
 
     public abstract class MvcControllerWithExceptionHandling : Controller
     {

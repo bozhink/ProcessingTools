@@ -41,17 +41,6 @@
     <Compile Include="Contracts\IRandomProvider.cs" />
     <Compile Include="Defaults.cs" />
     <Compile Include="Dictionaries.cs" />
-    <Compile Include="Exceptions\EntityNotFoundException.cs" />
-    <Compile Include="Exceptions\InvalidIdException.cs" />
-    <Compile Include="Exceptions\InvalidItemsPerPageException.cs" />
-    <Compile Include="Exceptions\InvalidOrEmptyFilesException.cs" />
-    <Compile Include="Exceptions\NullOrEmptyFileException.cs" />
-    <Compile Include="Exceptions\InvalidPageNumberException.cs" />
-    <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
-    <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
-    <Compile Include="Exceptions\NoFilesSelectedException.cs" />
-    <Compile Include="Exceptions\InvalidUserIdException.cs" />
-    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Models\ModelWithUserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
@@ -68,6 +57,10 @@
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj">
+      <Project>{8C506EE8-1C2E-4684-A081-2DE56BF70FE9}</Project>
+      <Name>Exceptions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

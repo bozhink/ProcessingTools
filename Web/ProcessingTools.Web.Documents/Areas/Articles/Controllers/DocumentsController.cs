@@ -3,7 +3,7 @@
     using System;
     using System.Net;
     using System.Web.Mvc;
-    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents;

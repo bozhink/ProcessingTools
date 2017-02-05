@@ -68,6 +68,10 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Exceptions\Exceptions.csproj">
+      <Project>{8C506EE8-1C2E-4684-A081-2DE56BF70FE9}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>

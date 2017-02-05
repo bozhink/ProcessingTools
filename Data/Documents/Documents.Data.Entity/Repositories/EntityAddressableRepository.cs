@@ -4,14 +4,12 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Models;
-
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Documents.Data.Common.Contracts.Models;
     using ProcessingTools.Documents.Data.Common.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Exceptions;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityCrudRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
         where TEntity : class, IAddressableEntity
