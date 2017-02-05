@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Contracts.Commands
 {
-    public interface ISpecialCaseGavinLaurensCommand : ITaggerCommand, ISimpleTaggerCommand
+    public interface ISpecialCaseGavinLaurensCommand : ITaggerCommand
     {
     }
 }

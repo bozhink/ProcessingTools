@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Contracts.Commands
 {
-    public interface IParseHigherTaxaWithAphiaCommand : ITaggerCommand, ISimpleTaggerCommand
+    public interface IParseHigherTaxaWithAphiaCommand : ITaggerCommand
     {
     }
 }
