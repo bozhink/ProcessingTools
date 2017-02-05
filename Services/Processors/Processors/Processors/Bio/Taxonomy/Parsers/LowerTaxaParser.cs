@@ -420,7 +420,7 @@
                         .RegexReplace(@"<[^<>]+>", string.Empty);
 
                     var matchWordValues = Regex.Match(text, @"((?:[^\W\d]|\-)+)");
-                    var matches = new HashSet<string>(matchWordValues.ToIEnumerable());
+                    var matches = new HashSet<string>(matchWordValues.AsEnumerable());
 
                     string innerXmlReplacement = node.InnerXml;
                     foreach (var match in matches)

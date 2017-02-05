@@ -6,7 +6,7 @@
 
     public static class RegexExtensions
     {
-        public static IEnumerable<string> ToIEnumerable(this Match match)
+        public static IEnumerable<string> AsEnumerable(this Match match)
         {
             for (var m = match; m.Success; m = m.NextMatch())
             {
@@ -14,26 +14,26 @@
             }
         }
 
-        public static string RegexReplace(this string target, string regexPattern, string regexReplacement)
+        public static string RegexReplace(this string input, string pattern, string replacement)
         {
-            return Regex.Replace(target, regexPattern, regexReplacement);
+            return Regex.Replace(input: input, pattern: pattern, replacement: replacement);
         }
 
-        public static string RegexReplace(this string target, Regex regex, string regexReplacement)
+        public static string RegexReplace(this string input, Regex regex, string replacement)
         {
-            return regex.Replace(target, regexReplacement);
+            return regex.Replace(input: input, replacement: replacement);
         }
 
-        public static IEnumerable<string> GetMatches(this string text, Regex search)
+        public static IEnumerable<string> GetMatches(this string input, Regex regex)
         {
-            return new HashSet<string>(search.Match(text).ToIEnumerable());
+            return new HashSet<string>(regex.Match(input: input).AsEnumerable());
         }
 
-        public static Task<IEnumerable<string>> GetMatchesAsync(this string text, Regex search)
+        public static Task<IEnumerable<string>> GetMatchesAsync(this string text, Regex regex)
         {
             return Task.Run(() =>
             {
-                return text.GetMatches(search);
+                return text.GetMatches(regex);
             });
         }
     }

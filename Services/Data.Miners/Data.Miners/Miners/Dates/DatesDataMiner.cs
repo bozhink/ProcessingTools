@@ -77,7 +77,7 @@
             {
                 tasks.Add(Task.Run(() =>
                 {
-                    foreach (var item in Regex.Match(content, pattern).ToIEnumerable())
+                    foreach (var item in Regex.Match(content, pattern).AsEnumerable())
                     {
                         matches.Enqueue(item);
                     }
