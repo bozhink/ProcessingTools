@@ -216,6 +216,38 @@
             return documentId;
         }
 
+        public async Task<object> DeleteAll(object userId, object articleId)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var repository = this.repositoryProvider.Create();
+
+            var entities = repository.Query
+                .Where(d => d.CreatedByUser == userId.ToString())
+                //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
+                .AsEnumerable();
+
+            foreach (var entity in entities)
+            {
+                await this.xmlFileReaderWriter.Delete(entity.FilePath, this.DataDirectory);
+                await repository.Delete(entity.Id);
+            }
+
+            var result = await repository.SaveChanges();
+
+            repository.TryDispose();
+
+            return result;
+        }
+
         public async Task<DocumentServiceModel> Get(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocument(userId, articleId, documentId);

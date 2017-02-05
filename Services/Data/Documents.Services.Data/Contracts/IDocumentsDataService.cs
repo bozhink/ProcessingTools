@@ -17,6 +17,8 @@
 
         Task<object> Delete(object userId, object articleId, object documentId);
 
+        Task<object> DeleteAll(object userId, object articleId);
+
         Task<DocumentServiceModel> Get(object userId, object articleId, object documentId);
 
         Task<XmlReader> GetReader(object userId, object articleId, object documentId);
