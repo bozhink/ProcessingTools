@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts;
+    using Contracts.Models;
     using Models;
     using ProcessingTools.Common;
     using ProcessingTools.Constants;
@@ -57,7 +58,7 @@
             }
         }
 
-        public async Task<IEnumerable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
+        public async Task<IEnumerable<IDocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
         {
             if (userId == null)
             {
@@ -129,7 +130,7 @@
             return count;
         }
 
-        public async Task<object> Create(object userId, object articleId, DocumentServiceModel document, Stream inputStream)
+        public async Task<object> Create(object userId, object articleId, IDocumentServiceModel document, Stream inputStream)
         {
             if (userId == null)
             {
@@ -249,7 +250,7 @@
             return result;
         }
 
-        public async Task<DocumentServiceModel> Get(object userId, object articleId, object documentId)
+        public async Task<IDocumentServiceModel> Get(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocument(userId, articleId, documentId);
             return new DocumentServiceModel
@@ -277,7 +278,7 @@
             return this.xmlFileReaderWriter.ReadToStream(entity.FilePath, this.DataDirectory);
         }
 
-        public async Task<object> UpdateContent(object userId, object articleId, DocumentServiceModel document, string content)
+        public async Task<object> UpdateContent(object userId, object articleId, IDocumentServiceModel document, string content)
         {
             if (userId == null)
             {
@@ -315,7 +316,7 @@
             return entity.ContentLength;
         }
 
-        public async Task<object> UpdateMeta(object userId, object articleId, DocumentServiceModel document)
+        public async Task<object> UpdateMeta(object userId, object articleId, IDocumentServiceModel document)
         {
             if (userId == null)
             {

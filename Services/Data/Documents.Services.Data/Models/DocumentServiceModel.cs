@@ -1,8 +1,9 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Models
 {
     using System;
+    using Contracts.Models;
 
-    public class DocumentServiceModel
+    public class DocumentServiceModel : IDocumentServiceModel
     {
         public DocumentServiceModel()
         {

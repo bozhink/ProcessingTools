@@ -52,6 +52,7 @@
     <Compile Include="DataModels\Publishers\AddressEntity.cs" />
     <Compile Include="DataModels\Publishers\PublisherEntity.cs" />
     <Compile Include="Models\DocumentServiceModel.cs" />
+    <Compile Include="Contracts\Models\IDocumentServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DocumentsDataService.cs" />
     <Compile Include="Services\XmlPresenter.cs" />
