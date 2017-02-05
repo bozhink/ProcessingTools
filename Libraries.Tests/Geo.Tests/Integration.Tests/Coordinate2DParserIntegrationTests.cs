@@ -49,7 +49,7 @@
             // Act
             parser.ParseCoordinateString(coordinateString, coordinateType, latitude, longitude);
 
-            //Assert
+            // Assert
             Assert.AreEqual(latitudeValue, latitude.Value, "Latitude should match");
             Assert.AreEqual(longitudeValue, longitude.Value, "Longitude should match");
         }

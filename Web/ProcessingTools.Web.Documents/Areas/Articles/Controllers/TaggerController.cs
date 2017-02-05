@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Articles.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -24,7 +25,6 @@
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Tagger;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Tagger;
-    using System.Collections.Generic;
 
     public class TaggerController : MvcControllerWithExceptionHandling
     {
@@ -200,7 +200,7 @@
                 ContentLength = document.ContentLength,
                 DateCreated = document.DateCreated,
                 DateModified = document.DateModified,
-                CommandId = GetCommandsAsSelectList()
+                CommandId = this.GetCommandsAsSelectList()
             };
 
             return viewModel;

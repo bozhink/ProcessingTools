@@ -9,8 +9,8 @@
     using Contracts.Harvesters.ExternalLinks;
     using Contracts.Models.ExternalLinks;
     using Models.ExternalLinks;
-    using ProcessingTools.Xml.Contracts.Wrappers;
     using ProcessingTools.Xml.Contracts.Serialization;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class ExternalLinksHarvester : AbstractGenericEnumerableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {

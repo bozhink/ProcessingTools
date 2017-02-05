@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Contracts
 {
-    using System.IO;
     using System.Collections.Generic;
+    using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Models;
 
     public interface IDocumentsDataService

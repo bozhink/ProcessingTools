@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
     using Abstractions;
@@ -10,8 +9,8 @@
     using Contracts.Harvesters.Abbreviations;
     using Contracts.Models.Abbreviations;
     using Models.Abbreviations;
-    using ProcessingTools.Xml.Contracts.Wrappers;
     using ProcessingTools.Xml.Contracts.Serialization;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class AbbreviationsHarvester : AbstractGenericEnumerableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {

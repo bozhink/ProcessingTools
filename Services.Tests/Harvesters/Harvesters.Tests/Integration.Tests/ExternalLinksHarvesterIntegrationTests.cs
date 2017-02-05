@@ -11,9 +11,9 @@
     using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Wrappers;
     using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;
+    using ProcessingTools.Xml.Wrappers;
 
     [TestClass]
     public class ExternalLinksHarvesterIntegrationTests
