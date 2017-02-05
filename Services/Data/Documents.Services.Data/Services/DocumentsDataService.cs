@@ -1,11 +1,14 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts;
+    using Models;
     using ProcessingTools.Common;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
@@ -14,8 +17,6 @@
     using ProcessingTools.Documents.Data.Common.Constants;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
-    using ProcessingTools.Documents.Services.Data.Contracts;
-    using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.FileSystem.Contracts;
@@ -56,7 +57,7 @@
             }
         }
 
-        public async Task<IQueryable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
+        public async Task<IEnumerable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
         {
             if (userId == null)
             {

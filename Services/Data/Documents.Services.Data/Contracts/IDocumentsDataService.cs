@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Contracts
 {
     using System.IO;
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
 
@@ -9,7 +9,7 @@
 
     public interface IDocumentsDataService
     {
-        Task<IQueryable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage);
+        Task<IEnumerable<DocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage);
 
         Task<long> Count(object userId, object articleId);
 
