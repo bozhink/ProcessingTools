@@ -1,168 +1,93 @@
-﻿/*
- 01. Oct. 1930
- 24.- 29.09.1929
- 19/August/2002
- 2012/12/10
- 15th October 2014
- 2nd March 2015
- July 01.2015
- 26–30. June, 2014
- 29th of April, 2015
- 13-III-08-V-1998
- 30Aug1923
-*/
-
-namespace ProcessingTools.Data.Miners.Miners.Dates
+﻿namespace ProcessingTools.Data.Miners.Miners.Dates
 {
-    using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Dates;
+    using Contracts.Miners.Dates;
     using ProcessingTools.Extensions;
 
     public class DatesDataMiner : IDatesDataMiner
     {
-        public Task<IEnumerable<string>> Mine(string content)
+        private const string RangeSubpattern = @"\s*(?:[–—−‒-]+|to)\s*";
+
+        private const string DaySubpattern = @"(?<!\d)(?:[1-2][0-9]|3[0-1]|0?[1-9])(?:st|nd|rd|th)?\.?(?!\d)";
+        private const string DayRangeSubpattern = @"(?:" + DaySubpattern + RangeSubpattern + @")+" + DaySubpattern;
+
+        private const string YearSubpattern = @"(?<!\d)(?:1[6-9][0-9]|20[0-9])[0-9](?!\d)";
+
+        private const string MonthSubpattern = @"(?<![A-Za-z])(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)(?![A-Za-z])";
+
+        private const string MonthRomanSubpattern = @"(?<![IVX])(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)(?![IVX])";
+
+        private const string MonthArabicSubpattern = @"(?<!\d)(?:0?[1-9]|1[0-2])(?!\d)";
+
+        public async Task<IEnumerable<string>> Mine(string content)
         {
-            return Task.Run(() =>
+            var patterns = new string[]
             {
-                if (string.IsNullOrWhiteSpace(content))
-                {
-                    throw new ArgumentNullException(nameof(content));
-                }
+                // DD [month in Arabic] YYYY
+                @"(?i)" + DaySubpattern + @"\W{0,4}" + MonthArabicSubpattern + @"\W{0,4}" + YearSubpattern,
+                @"(?i)" + DayRangeSubpattern + @"\W{0,4}" + MonthArabicSubpattern + @"\W{0,4}" + YearSubpattern,
 
-                var tasks = new Queue<Task>();
+                // YYYY [month in Arabic] DD
+                @"(?i)" + YearSubpattern + @"\W{0,4}" + MonthArabicSubpattern + @"\W{0,4}" + DaySubpattern,
+                @"(?i)" + YearSubpattern + @"\W{0,4}" + MonthArabicSubpattern + @"\W{0,4}" + DayRangeSubpattern,
 
-                var internalMiner = new InternalMiner(content);
+                // [month string] DD YYYY
+                @"(?i)" + MonthSubpattern + @"\W{0,4}" + DaySubpattern + @"\W{0,4}" + YearSubpattern,
+                @"(?i)" + MonthSubpattern + @"\W{0,4}" + DayRangeSubpattern + @"\W{0,4}" + YearSubpattern,
+                @"(?i)(?:" + MonthSubpattern + @"(?:\W{0,4}" + DaySubpattern + @")?\W{0,4}(?:" + RangeSubpattern + @")?)+\W{0,4}" + YearSubpattern,
+                @"(?i)(?:" + MonthSubpattern + @"(?:\W{0,4}" + DaySubpattern + @")?\W{0,4}(?:" + RangeSubpattern + @")?)+\W{0,4}" + YearSubpattern + RangeSubpattern + YearSubpattern,
 
-                tasks.Enqueue(internalMiner.MineDayMonthNumberYear());
-                tasks.Enqueue(internalMiner.MineMonthStringDayYear());
-                tasks.Enqueue(internalMiner.MineDayMonthRomanYear());
-                tasks.Enqueue(internalMiner.MineDayMonthStringYear());
-                tasks.Enqueue(internalMiner.MineYearDashMonthDashDay());
-                tasks.Enqueue(internalMiner.MineYearMonthRomanDay());
+                // [month in Roman] DD YYYY
+                @"(?i)" + MonthRomanSubpattern + @"\W{0,4}" + DaySubpattern + @"\W{0,4}" + YearSubpattern,
+                @"(?i)" + MonthRomanSubpattern + @"\W{0,4}" + DayRangeSubpattern + @"\W{0,4}" + YearSubpattern,
+                @"(?i)(?:" + MonthRomanSubpattern + @"(?:\W{0,4}" + DaySubpattern + @")?\W{0,4}(?:" + RangeSubpattern + @")?)+\W{0,4}" + YearSubpattern,
+                @"(?i)(?:" + MonthRomanSubpattern + @"(?:\W{0,4}" + DaySubpattern + @")?\W{0,4}(?:" + RangeSubpattern + @")?)+\W{0,4}" + YearSubpattern + RangeSubpattern + YearSubpattern,
 
-                Task.WaitAll(tasks.ToArray());
+                // DD [month in Roman] YYYY
+                @"(?i)(?:(?:" + DaySubpattern + @"\W{0,4})?" + MonthRomanSubpattern + @"\W{0,4}){1,2}" + YearSubpattern,
+                @"(?i)(?:(?:" + DayRangeSubpattern + @"\W{0,4})?" + MonthRomanSubpattern + @"\W{0,4}){1,2}" + YearSubpattern,
 
-                var result = new HashSet<string>(internalMiner.Items);
-                return result.AsEnumerable<string>();
-            });
+                // YYYY [month in Roman] DD
+                @"(?i)" + YearSubpattern + @"(?:\W{0,4}" + MonthRomanSubpattern + @"(?:\W{0,4}" + DaySubpattern + @")?){1,2}",
+                @"(?i)" + YearSubpattern + @"(?:\W{0,4}" + MonthRomanSubpattern + @"(?:\W{0,4}" + DayRangeSubpattern + @")?){1,2}",
+                @"(?i)" + YearSubpattern + @"(?:\W{0,4}(?:" + RangeSubpattern + @")?" + MonthRomanSubpattern + @"(?:\W{0,4}" + DaySubpattern + @")?)+",
+
+                // DD [month string] YYYY
+                @"(?i)" + DaySubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?" + MonthSubpattern,
+                @"(?i)" + DayRangeSubpattern + @"\W{0,4}(?:\bof\b\W{0,4})" + MonthSubpattern,
+                @"(?i)(?:(?:" + DaySubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"(?:" + RangeSubpattern + @")?){2,}",
+                @"(?i)(?:(?:" + DaySubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"\W{0,4}){1,2}" + YearSubpattern,
+                @"(?i)(?:(?:" + DayRangeSubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"\W{0,4}){1,2}" + YearSubpattern
+            };
+
+            var result = await this.GetMatches(content, patterns);
+
+            return result;
         }
 
-        private class InternalMiner
+        private async Task<IEnumerable<string>> GetMatches(string content, params string[] patterns)
         {
-            private const string DaySubpattern = @"(?:[1-2][0-9]|3[0-1]|0?[1-9])";
-            private const string DayRangeSubpattern = @"(?:(?:" + DaySubpattern + @"\s*[–—−‒-]\s*)+" + DaySubpattern + @"|(?<![^\s–—−‒-])" + DaySubpattern + @")";
+            var matches = new ConcurrentQueue<string>();
 
-            private const string YearSubpattern = @"(?:1[6-9][0-9]|20[0-9])[0-9](?![0-9])";
-
-            private ConcurrentQueue<string> items;
-            private string content;
-
-            public InternalMiner(string content)
+            var tasks = new List<Task>();
+            foreach (var pattern in patterns)
             {
-                if (string.IsNullOrWhiteSpace(content))
+                tasks.Add(Task.Run(() =>
                 {
-                    throw new ArgumentNullException(nameof(content));
-                }
-
-                this.content = content;
-                this.items = new ConcurrentQueue<string>();
+                    foreach (var item in Regex.Match(content, pattern).ToIEnumerable())
+                    {
+                        matches.Enqueue(item);
+                    }
+                }));
             }
 
-            public IEnumerable<string> Items => this.items;
+            await Task.WhenAll(tasks.ToArray());
 
-            /// <summary>
-            /// Finds dates of format DD [mounth as arabic number] YYYY in text and adds them in List dates.
-            /// </summary>
-            /// <returns>Task.</returns>
-            /// <example>16.6.2013</example>
-            public async Task MineDayMonthNumberYear()
-            {
-                const string Pattern = @"((?i)(?:(?:(?:" + DaySubpattern + @"(?:\s*[–—−‒-]\s*))+|(?<![^\s–—−‒-])" + DaySubpattern + @")[^\w<>]{0,4})?\b(?:1[0-2]|0[1-9]|[1-9])\b[^\w<>]{0,4}" + YearSubpattern + @"\b)";
-
-                await this.content.GetMatchesAsync(new Regex(Pattern))
-                    .ContinueWith(this.EnqueueInItems);
-            }
-
-            /// <summary>
-            /// Finds dates in format YYYY-MM-DD
-            /// </summary>
-            /// <returns>Task.</returns>
-            /// <example>1999-07-27</example>
-            public async Task MineYearDashMonthDashDay()
-            {
-                const string Pattern = @"((?i)\b" + YearSubpattern + @"(?:\s*[–—−‒-]\s*)(?:0?[1-9]|1[1-2])(?:\s*[–—−‒-]\s*)" + DaySubpattern + @"\b)";
-
-                await this.content.GetMatchesAsync(new Regex(Pattern))
-                    .ContinueWith(this.EnqueueInItems);
-            }
-
-            /// <summary>
-            /// Finds dates of format [mounth string] DD YYYY in text and adds them in List dates.
-            /// </summary>
-            /// <returns>Task.</returns>
-            /// <example>March 12.2014</example>
-            public async Task MineMonthStringDayYear()
-            {
-                const string Pattern = @"((?i)(?:(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s*(?:[–—−‒-]|to)\s*)+(?:(?:(?:" + DaySubpattern + @"(?:\s*[–—−‒-]\s*))+|(?<!\S)" + DaySubpattern + @")[^\w<>]{0,4})?[^\w<>]{0,4}" + YearSubpattern + @"\b)";
-
-                await this.content.GetMatchesAsync(new Regex(Pattern))
-                    .ContinueWith(this.EnqueueInItems);
-            }
-
-            /// <summary>
-            /// Finds dates of format DD [mounth in roman] YYYY in text and adds them in List dates.
-            /// </summary>
-            /// <returns>Task.</returns>
-            /// <example>22–25.I.2007</example>
-            public async Task MineDayMonthRomanYear()
-            {
-                const string Pattern = @"((?i)(?:(?:" + DayRangeSubpattern + @"[^\w<>]{0,4})?\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)\b[^\w<>]{0,4}){1,2}" + YearSubpattern + @"\b)";
-
-                await this.content.GetMatchesAsync(new Regex(Pattern))
-                    .ContinueWith(this.EnqueueInItems);
-            }
-
-            /// <summary>
-            /// Finds dates of format YYYY [mounth in roman] DD in text and adds them in List dates.
-            /// </summary>
-            /// <returns>Task.</returns>
-            /// <example>2011.IX.27–29</example>
-            /// <example>2012.VIII–X</example>
-            public async Task MineYearMonthRomanDay()
-            {
-                const string Pattern = @"((?i)\b" + YearSubpattern + @"(?:[^\w<>]{0,4}\b(?:I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)\b(?:[^\w<>]{0,4}" + DayRangeSubpattern + @")?){1,2})";
-
-                await this.content.GetMatchesAsync(new Regex(Pattern))
-                    .ContinueWith(this.EnqueueInItems);
-            }
-
-            /// <summary>
-            /// Finds dates of format DD [mounth string] YYYY in text and adds them in List dates.
-            /// </summary>
-            /// <returns>Task.</returns>
-            /// <example>24–30 March 2013</example>
-            /// <example>18 Jan 2008</example>
-            public async Task MineDayMonthStringYear()
-            {
-                const string MonthSubpattern = @"(?:Jan(?:uary)?|Febr?(?:uary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)";
-                const string Pattern = @"((?i)(?:(?:" + DayRangeSubpattern + @"[^\w<>]{0,4})?\b" + MonthSubpattern + @"\b[^\w<>]{0,4}){1,2}" + YearSubpattern + @"\b)";
-
-                await this.content.GetMatchesAsync(new Regex(Pattern))
-                    .ContinueWith(this.EnqueueInItems);
-            }
-
-            private async Task EnqueueInItems(Task<IEnumerable<string>> matches)
-            {
-                foreach (var item in await matches)
-                {
-                    this.items.Enqueue(item);
-                }
-            }
+            var result = new HashSet<string>(matches);
+            return result;
         }
     }
 }
