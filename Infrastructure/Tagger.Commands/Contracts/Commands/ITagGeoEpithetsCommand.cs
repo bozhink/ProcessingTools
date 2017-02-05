@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Contracts.Commands
 {
-    public interface ITagGeoEpithetsCommand : ITaggerCommand
+    public interface ITagGeoEpithetsCommand : ITaggerCommand, ISimpleTaggerCommand
     {
     }
 }

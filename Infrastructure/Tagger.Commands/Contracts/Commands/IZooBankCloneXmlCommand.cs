@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Contracts.Commands
 {
-    public interface IZooBankCloneXmlCommand : ITagInstitutionalCodesCommand
+    public interface IZooBankCloneXmlCommand : ITaggerCommand
     {
     }
 }

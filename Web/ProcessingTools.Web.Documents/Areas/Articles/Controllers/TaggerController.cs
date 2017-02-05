@@ -24,17 +24,19 @@
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Tagger;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Tagger;
+    using System.Collections.Generic;
 
     public class TaggerController : MvcControllerWithExceptionHandling
     {
         private const string DocumentValidationBinding = nameof(FileModel.DocumentId) + "," + nameof(FileModel.FileName) + "," + nameof(FileModel.Comment) + "," + nameof(FileModel.CommandId);
 
         private readonly Func<Type, ITaggerCommand> commandFactory;
-        private readonly ICommandInfoProvider commandInfoProvider;
         private readonly IFactory<ICommandSettings> commandSettingsFactory;
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentNormalizer documentNormalizer;
         private readonly IDocumentsDataService service;
+
+        private readonly IDictionary<Type, ICommandInfo> commandsInformation;
 
         public TaggerController(
             ICommandInfoProvider commandInfoProvider,
@@ -74,14 +76,23 @@
                 throw new ArgumentNullException(nameof(commandSettingsFactory));
             }
 
-            this.commandInfoProvider = commandInfoProvider;
             this.service = service;
             this.documentFactory = documentFactory;
             this.documentNormalizer = documentNormalizer;
             this.commandFactory = commandFactory;
             this.commandSettingsFactory = commandSettingsFactory;
 
-            this.commandInfoProvider.ProcessInformation();
+            commandInfoProvider.ProcessInformation();
+
+            var commandsInformation = commandInfoProvider.CommandsInformation
+                .Where(p => p.Key.GetInterfaces()
+                .Contains(typeof(ISimpleTaggerCommand)));
+
+            this.commandsInformation = new Dictionary<Type, ICommandInfo>();
+            foreach (var commandInformation in commandsInformation)
+            {
+                this.commandsInformation.Add(commandInformation.Key, commandInformation.Value);
+            }
         }
 
         protected override string InstanceName => InstanceNames.FilesControllerInstanceName;
@@ -150,7 +161,7 @@
         private SelectList GetCommandsAsSelectList()
         {
             return new SelectList(
-                items: this.commandInfoProvider.CommandsInformation.Values.OrderBy(i => i.Description),
+                items: this.commandsInformation.Values.OrderBy(i => i.Description),
                 dataValueField: nameof(ICommandInfo.Name),
                 dataTextField: nameof(ICommandInfo.Description));
         }
@@ -222,8 +233,7 @@
 
             await this.documentNormalizer.NormalizeToSystem(document);
 
-            var commandType = this.commandInfoProvider
-                .CommandsInformation
+            var commandType = this.commandsInformation
                 .First(p => p.Value.Name == model.CommandId)
                 .Key;
 
@@ -244,8 +254,7 @@
         {
             using (var stream = document.OuterXml.ToStream())
             {
-                string comment = this.commandInfoProvider
-                    .CommandsInformation
+                string comment = this.commandsInformation
                     .Values
                     .FirstOrDefault(i => i.Name == model.CommandId)
                     .Description;

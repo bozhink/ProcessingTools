@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Contracts.Commands
 {
-    public interface ITagAbbreviationsCommand : ITaggerCommand
+    public interface ITagAbbreviationsCommand : ITaggerCommand, ISimpleTaggerCommand
     {
     }
 }

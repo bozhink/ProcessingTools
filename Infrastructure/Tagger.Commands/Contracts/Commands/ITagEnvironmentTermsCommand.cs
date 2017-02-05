@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Contracts.Commands
 {
-    public interface ITagEnvironmentTermsCommand : ITaggerCommand
+    public interface ITagEnvironmentTermsCommand : ITaggerCommand, ISimpleTaggerCommand
     {
     }
 }

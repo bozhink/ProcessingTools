@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Contracts.Commands
 {
-    public interface IParseTreatmentMaterialsCommand : ITaggerCommand
+    public interface IParseTreatmentMaterialsCommand : ITaggerCommand, ISimpleTaggerCommand
     {
     }
 }
