@@ -8,7 +8,6 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Factories;
     using ProcessingTools.Layout.Processors.Contracts.Formatters;
-    using ProcessingTools.Xml.Extensions;
 
     public class DocumentInitialFormatter : IDocumentInitialFormatter
     {

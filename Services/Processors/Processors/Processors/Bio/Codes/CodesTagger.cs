@@ -22,7 +22,6 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Xml.Extensions;
 
     public class CodesTagger : ICodesTagger
     {

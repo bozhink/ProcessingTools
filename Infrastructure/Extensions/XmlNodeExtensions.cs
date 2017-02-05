@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Extensions
+﻿namespace ProcessingTools.Extensions
 {
     using System;
     using System.IO;
@@ -6,7 +6,6 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
     using ProcessingTools.Common;
     using ProcessingTools.Contracts;
 

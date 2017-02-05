@@ -17,7 +17,6 @@
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Strings.Extensions;
-    using ProcessingTools.Xml.Extensions;
 
     public class LowerTaxaTagger : ILowerTaxaTagger
     {

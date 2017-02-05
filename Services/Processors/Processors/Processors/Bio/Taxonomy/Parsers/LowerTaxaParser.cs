@@ -15,7 +15,6 @@
     using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Xml.Extensions;
 
     public class LowerTaxaParser : ILowerTaxaParser
     {

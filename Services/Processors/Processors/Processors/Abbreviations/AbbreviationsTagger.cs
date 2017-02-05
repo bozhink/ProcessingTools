@@ -9,9 +9,9 @@
     using Contracts.Processors.Abbreviations;
     using Models.Abbreviations;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Xml.Contracts.Wrappers;
-    using ProcessingTools.Xml.Extensions;
 
     public class AbbreviationsTagger : IAbbreviationsTagger
     {

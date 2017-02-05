@@ -5,9 +5,9 @@
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Xsl;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Contracts.Cache;
     using ProcessingTools.Xml.Contracts.Transformers;
-    using ProcessingTools.Xml.Extensions;
 
     public class XslTransformer : IXslTransformer
     {

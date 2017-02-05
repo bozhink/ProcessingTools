@@ -3,11 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-
     using ProcessingTools.Common;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Net.Factories.Contracts;
-    using ProcessingTools.Xml.Extensions;
 
     public class AphiaDirectSoapRequester
     {
