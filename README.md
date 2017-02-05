@@ -1,2 +1,2 @@
 # ProcessingTools
-Tools for layout edititing and bio-semantic tagging
+Tools for layout editing and bio-semantic tagging
