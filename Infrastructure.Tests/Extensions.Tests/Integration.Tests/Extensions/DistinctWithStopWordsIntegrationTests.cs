@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Strings.Tests.Integration.Tests.Extensions
+﻿namespace ProcessingTools.Extensions.Tests.Integration.Tests.Extensions
 {
     using System.Collections.Generic;
     using NUnit.Framework;
-    using ProcessingTools.Strings.Extensions;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration")]
     public class DistinctWithStopWordsIntegrationTests

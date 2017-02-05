@@ -13,7 +13,6 @@
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Strings.Extensions;
 
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
         where TService : ITaxaRankResolver

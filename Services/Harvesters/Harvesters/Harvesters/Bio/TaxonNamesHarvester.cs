@@ -11,7 +11,6 @@
     using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Strings.Extensions;
 
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {

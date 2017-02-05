@@ -1,9 +1,8 @@
-﻿namespace ProcessingTools.Strings.Tests.Unit.Tests.Extensions
+﻿namespace ProcessingTools.Extensions.Tests.Unit.Tests.Extensions
 {
     using System.Collections.Generic;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Strings.Extensions;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit")]
     public class DistinctWithStopWordsUnitTests

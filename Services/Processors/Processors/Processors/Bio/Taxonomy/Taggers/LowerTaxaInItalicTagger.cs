@@ -14,7 +14,6 @@
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Strings.Extensions;
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
