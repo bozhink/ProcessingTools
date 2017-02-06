@@ -68,43 +68,49 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'bibr');
         }),
+        
         tagAppendicesCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'app');
         }),
+        
         tagSupplMaterialsCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'supplementary-material');
         }),
+        
         tagTablesCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'table');
         }),
+        
         tagFiguresCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'fig');
         }),
-        emailThisPage: factory.create(function () {
-            window.location = 'mailto:?body=' + window.location.href;
-        }),
-        foo: factory.create(tagger.foo),
+        
         tagLink: factory.create(function () {
             tagger.tagLink();
         }),
+        
         tagCoordinate: factory.create(function () {
             tagger.tagInSpan('locality-coordinates');
         }),
+        
         tagAbbrev: factory.create(function () {
             tagger.tag('abbr', 'abbrev');
         }),
+        
         tagAbbrevDef: factory.create(function () {
             tagger.tagInSpan('p');
             tagger.tagInSpan('def');
         }),
+        
         tagbibliographyElement: factory.create(function (e) {
             var elementName = e.target.id.toString().substr(10);
             tagger.tagInMark(elementName);
         }),
+        
         tagBibliographicCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
             manualTagMenufactory($target.text(), function ($menu) {
@@ -119,6 +125,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+        
         tagAppendicesCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
             manualTagMenufactory($target.text(), function ($menu) {
@@ -133,6 +140,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+        
         tagSupplMaterialsCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
             manualTagMenufactory($target.text(), function ($menu) {
@@ -147,6 +155,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+        
         tagTablesCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
             manualTagMenufactory($target.text(), function ($menu) {
@@ -161,6 +170,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+        
         tagFiguresCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
             manualTagMenufactory($target.text(), function ($menu) {
@@ -175,6 +185,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+        
         setElementInEditMode: function (event) {
             var e = event || window.event,
                 $target = $(e.target),
@@ -188,6 +199,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                     .addClass('in-edit');
             }
         },
+        
         unsetElementInEditMode: function (event) {
             var e = event || window.event,
                 $target = $(e.target),
@@ -201,6 +213,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                     .removeClass('in-edit');
             }
         },
+        
         unsetAllInEditMode: function (event) {
             var e = event || window.event;
             e.stopPropagation();
@@ -209,11 +222,17 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 .removeAttr('contenteditable')
                 .removeClass('in-edit');
         },
+        
         clearTagsInSelection: factory.create(tagger.clearTagsInSelection),
+        
         tagInBold: factory.create(tagger.tagInBold),
+        
         tagInItalic: factory.create(tagger.tagInItalic),
+        
         tagInUnderline: factory.create(tagger.tagInUnderline),
+        
         tagInMonospace: factory.create(tagger.tagInMonospace),
+        
         mouseoverXref: function (event) {
             var e = event || window.event,
                 target = e.target;
@@ -241,6 +260,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 return false;
             }
         },
+        
         mouseoutXref: function (event) {
             var e = event || window.event,
                 target = e.target;
@@ -253,9 +273,11 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 return false;
             }
         },
+        
         genrateCoordinatesListToolbox: factory.create(function () {
             coordinatesToolboxes.genrateCoordinatesListToolbox('#' + MAIN_ASIDE_ID);
         }),
+        
         genrateCoordinatesMapToolbox: factory.create(function () {
             coordinatesToolboxes.genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
         })
