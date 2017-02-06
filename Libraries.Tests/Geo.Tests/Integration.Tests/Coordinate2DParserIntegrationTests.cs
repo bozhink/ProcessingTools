@@ -53,5 +53,29 @@
             Assert.AreEqual(latitudeValue, latitude.Value, "Latitude should match");
             Assert.AreEqual(longitudeValue, longitude.Value, "Longitude should match");
         }
+
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(Coordinate2DParser), Description = "Coordinate2DParser with UTM coordinate should work.")]
+        [TestCase(@"33T 455.4683", "42.297928", "14.454084")]
+        [TestCase(@"UTM WGS84: 33T 455.4683", "42.297928", "14.454084")]
+        [TestCase(@"33T 4498003N; 674582E", "40.614422", "17.063799")]
+        [TestCase(@"UTM ED50: 33T 4498003N; 674582E", "40.614422", "17.063799")]
+        [TestCase(@"33T 674582E; 4498003N", "40.614422", "17.063799")]
+        [TestCase(@"UTM ED50: 33T 674582E; 4498003N", "40.614422", "17.063799")]
+        [TestCase(@"55G 595500 5371700", "-41.800816", "148.149549")]
+        public void Coordinate2DParser_WitUTMCoordinate_ShouldWork(string coordinateString, string latitudeValue, string longitudeValue)
+        {
+            // Arrange
+            var latitude = new CoordinatePart();
+            var longitude = new CoordinatePart();
+            var coordinateType = string.Empty;
+            var parser = this.Coordinate2DParserFactory.Invoke();
+
+            // Act
+            parser.ParseCoordinateString(coordinateString, coordinateType, latitude, longitude);
+
+            // Assert
+            Assert.AreEqual(latitudeValue, latitude.Value, "Latitude should match");
+            Assert.AreEqual(longitudeValue, longitude.Value, "Longitude should match");
+        }
     }
 }
