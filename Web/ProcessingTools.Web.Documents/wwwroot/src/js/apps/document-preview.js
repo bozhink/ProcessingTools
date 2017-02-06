@@ -294,7 +294,8 @@ $('#supermenu')
     .on('click', '.mi-app', eventHandlers.tagAppendicesCitation)
     .on('click', '.mi-suppl-material', eventHandlers.tagSupplMaterialsCitation)
     .on('click', '.mi-tab', eventHandlers.tagTablesCitation)
-    .on('click', '.mi-fig', eventHandlers.tagFiguresCitation);
+    .on('click', '.mi-fig', eventHandlers.tagFiguresCitation)
+    .on('click', '.mi-move', eventHandlers.moveFloatingObject);
 
 document
     .getElementById(SAVE_BUTTON_ID)
@@ -340,6 +341,10 @@ document
 document
     .getElementById('tag-figures-citations-menu-item')
     .addEventListener('click', eventHandlers.tagFiguresCitationMenuClick, false);
+
+document
+    .getElementById('move-floating-objects')
+    .addEventListener('click', eventHandlers.moveFloatingObjectsMenuClick, false);
 
 document
     .addEventListener('keydown', keyDownEventHandler, false);
