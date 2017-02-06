@@ -18,6 +18,7 @@
                 return new string[] { };
             }
 
+            content = Regex.Replace(content, @"\s+", " ");
             string cleanedContent = this.CleanContent(content, stopWords);
 
             var extendedSeed = string.Join(" ", seed)
@@ -30,11 +31,11 @@
             var matches = new HashSet<string>();
             foreach (var item in extendedSeed)
             {
-                var m = new Regex(@"(?i)" + item + @"(\s*.{0,50}?\s*" + InfraRankSubpattern + @"\s*\b[a-z][a-z-]*\.?)*").Match(cleanedContent);
+                var m = new Regex(@"(?i)" + item + @"(\s*.{0,30}?\s*" + InfraRankSubpattern + @"\s*\b[a-z](?:[a-z-]*\.|[a-z-]*[a-z]))*").Match(cleanedContent);
                 if (m.Success)
                 {
                     var value = m.Value.Trim();
-                    if (Regex.IsMatch(content, $"\\b{Regex.Escape(value)}\\b"))
+                    if (value.Length > 1 && Regex.IsMatch(content, $"\\b{Regex.Escape(value)}\\b"))
                     {
                         matches.Add(m.Value);
                     }
@@ -42,7 +43,7 @@
             }
 
             // TODO
-            foreach (var item in matches)
+            foreach (var item in matches.Distinct().OrderBy(i => i))
             {
                 Console.WriteLine(item);
             }
@@ -62,7 +63,7 @@
         {
             var comparer = StringComparer.InvariantCultureIgnoreCase;
 
-            var words = content.Split(new char[] { ' ', '\r', '\n', ',', ';', ':' }, StringSplitOptions.RemoveEmptyEntries);
+            var words = content.Split(new char[] { ' ', '\r', '\n', /*',',*/ ';', ':', '*', '/', '\\', '%', '@', '#', '=', '+', '!', '|', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
 
             var cleanedWords = new List<string>(words.Length);
             foreach (var word in words)
