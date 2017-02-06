@@ -7,6 +7,8 @@
     /// </summary>
     public class LevenshteinDistance
     {
+        public const int DefaultFuzzynessRadius = 3;
+
         /// <summary>
         /// Compute the distance between two strings.
         /// </summary>
@@ -54,6 +56,23 @@
 
             // Step 7
             return distanceMatrix[string1Length, string2Length];
+        }
+
+        public static SimilarityType ComputeSimilarity(string string1, string string2, uint fuzzynessRadius = DefaultFuzzynessRadius)
+        {
+            int distance = Compute(string1, string2);
+
+            if (distance < 1)
+            {
+                return SimilarityType.Same;
+            }
+
+            if (distance > fuzzynessRadius)
+            {
+                return SimilarityType.NotSimilar;
+            }
+
+            return SimilarityType.Similar;
         }
     }
 }
