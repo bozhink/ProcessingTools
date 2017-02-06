@@ -1,15 +1,6 @@
 ﻿'use strict';
 
 module.exports = function HtmlSelectionTagger(window, document) {
-    function foo() {
-        var selection = window.getSelection().getRangeAt(0),
-            selectedText = selection.extractContents(),
-            span = document.createElement("span");
-        span.style.backgroundColor = "yellow";
-        span.appendChild(selectedText);
-        selection.insertNode(span);
-    }
-
     function clearTagsInSelection() {
         var selection = window.getSelection().getRangeAt(0),
             selectedText = selection.extractContents(),
@@ -111,7 +102,6 @@ module.exports = function HtmlSelectionTagger(window, document) {
     }
 
     return {
-        foo: foo,
         clearTagsInSelection: clearTagsInSelection,
         tag: tag,
         tagLink: tagLink,
