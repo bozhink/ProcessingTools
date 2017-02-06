@@ -312,12 +312,6 @@ document
     .getElementById('menu-item-refresh')
     .addEventListener('click', eventHandlers.loadContent, false);
 document
-    .getElementById('menu-item-email-page')
-    .addEventListener('click', eventHandlers.emailThisPage, false);
-document
-    .getElementById('menu-item-foo')
-    .addEventListener('click', eventHandlers.foo, false);
-document
     .getElementById('menu-item-tag-link')
     .addEventListener('click', eventHandlers.tagLink, false);
 document
