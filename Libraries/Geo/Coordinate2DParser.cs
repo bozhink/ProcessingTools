@@ -48,16 +48,16 @@
                     var integerUtmCoordinatesMatchPatterns = new string[]
                     {
                     // UTM WGS84: 33T 455.4683
-                    @"\A(?:UTM\s*WGS84:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\Z",
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\s*\Z",
 
                     // UTM ED50: 33T 4498003N; 674582E
-                    @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7})N\W+(?<easting>[0-9]{2,7})E\Z",
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7})N\W+(?<easting>[0-9]{2,7})E\s*\Z",
 
                     // UTM ED50: 33T 674582E; 4498003N
-                    @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\Z",
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\s*\Z",
 
                     // 55G 595500 5371700
-                    @"\A(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,6})\W+(?<northing>[0-9]{2,7})\Z"
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,6})\W+(?<northing>[0-9]{2,7})\s*\Z"
                     };
 
                     var integerUtmCoordinatesMatches = integerUtmCoordinatesMatchPatterns.Select(p => Regex.Match(coordinateString, p));
