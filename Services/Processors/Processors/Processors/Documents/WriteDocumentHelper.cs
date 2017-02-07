@@ -6,7 +6,6 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Formatters;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
 
@@ -15,7 +14,6 @@
         private readonly IDocumentSplitter documentSplitter;
         private readonly IDocumentWriter documentWriter;
         private readonly IDocumentPreWriteNormalizer documentNormalizer;
-        
 
         public WriteDocumentHelper(
             IDocumentSplitter documentSplitter,
