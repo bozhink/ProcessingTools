@@ -61,6 +61,8 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
             $supermenu = $('#supermenu'),
             $menu;
 
+        $('body').removeClass('move-anchor');
+
         // Remove notification
         $('#manual-mode-notifier').remove();
         $('<div>')
@@ -271,6 +273,8 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                         .attr('label', $element.find('.label').text().trim())
                         .appendTo($menu);
                 });
+
+                $('body').addClass('move-anchor');
             });
         }),
 
