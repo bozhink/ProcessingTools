@@ -6,6 +6,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Layout.Processors.Contracts.Formatters;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
 
@@ -14,11 +15,13 @@
         private readonly IDocumentSplitter documentSplitter;
         private readonly IDocumentWriter documentWriter;
         private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IDocumentFinalFormatter documentFinalFormatter;
 
         public WriteDocumentHelper(
             IDocumentSplitter documentSplitter,
             IDocumentWriter documentWriter,
-            IDocumentNormalizer documentNormalizer)
+            IDocumentNormalizer documentNormalizer,
+            IDocumentFinalFormatter documentFinalFormatter)
         {
             if (documentSplitter == null)
             {
@@ -35,9 +38,15 @@
                 throw new ArgumentNullException(nameof(documentNormalizer));
             }
 
+            if (documentFinalFormatter == null)
+            {
+                throw new ArgumentNullException(nameof(documentFinalFormatter));
+            }
+
             this.documentSplitter = documentSplitter;
             this.documentWriter = documentWriter;
             this.documentNormalizer = documentNormalizer;
+            this.documentFinalFormatter = documentFinalFormatter;
         }
 
         public async Task<object> Write(string outputFileName, IDocument document, bool splitDocument)
@@ -88,6 +97,12 @@
                     {
                         _.Wait();
                         return this.documentNormalizer.NormalizeToDocumentSchema(document);
+                    })
+                .ContinueWith(
+                    _ =>
+                    {
+                        _.Wait();
+                        return this.documentFinalFormatter.Format(document).Result;
                     })
                 .ContinueWith(
                     _ =>

@@ -40,6 +40,7 @@
     <Compile Include="Contracts\Factories\IFormatTransformersFactory.cs" />
     <Compile Include="Contracts\Factories\INormalizationTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\ITransformerFactory.cs" />
+    <Compile Include="Contracts\Formatters\IDocumentFinalFormatter.cs" />
     <Compile Include="Contracts\Formatters\IDocumentInitialFormatter.cs" />
     <Compile Include="Contracts\Factories\IInitialFormatTransformerFactory.cs" />
     <Compile Include="Contracts\Normalizers\IDocumentNormalizer.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Factories\NormalizationTransformerFactory.cs" />
     <Compile Include="Models\Taggers\ContentTaggerSettings.cs" />
     <Compile Include="Models\Taggers\IContentTaggerSettings.cs" />
+    <Compile Include="Processors\Formatters\DocumentFinalFormatter.cs" />
     <Compile Include="Processors\Formatters\DocumentInitialFormatter.cs" />
     <Compile Include="Processors\Normalizers\DocumentNormalizer.cs" />
     <Compile Include="Contracts\Taggers\IStringTagger.cs" />
