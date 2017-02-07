@@ -1,4 +1,6 @@
-const MAIN_ASIDE_ID = 'aside-main-box';
+const
+    MAIN_ASIDE_ID = 'aside-main-box',
+    ARTICLE_FIGS_AND_TABLES = 'article_figs_and_tables';
 
 module.exports = function (window, document, $, factory, tagger, coordinatesToolboxes) {
 
@@ -107,16 +109,45 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
         }),
 
         moveFloatingObject: factory.create(function (e) {
-            var rid = e.target.getAttribute('rid'),
-                selection = getSelectionParentElement(),
-                $p = $(selection).closest('p');
-
-            if ($p.length < 1) {
+            var $selection,
+                $anchorElement,
+                rid = e.target.getAttribute('rid');
+            
+            if (!rid) {
                 return false;
             }
 
-            $p.after($('#' + rid));
-            $(e.target).remove();
+            function getAnchorElement($selection, closestSelector) {
+                var $anchor;
+
+                if (!$selection || !closestSelector) {
+                    return null;
+                }
+
+                try {
+                    $anchor = $selection.closest(closestSelector);
+                    if ($anchor.length > 0 && $anchor.closest('.' + ARTICLE_FIGS_AND_TABLES).length < 1) {
+                        return $anchor;
+                    }
+                } catch (ex) {}
+
+                return null;
+            }
+
+            try {
+                $selection = $(getSelectionParentElement());
+
+                $anchorElement = getAnchorElement($selection, '.table-wrap') ||
+                    getAnchorElement($selection, 'figure.fig') ||
+                    getAnchorElement($selection, '.title') ||
+                    getAnchorElement($selection, 'p.p') ||
+                    null;
+
+                if ($anchorElement != null) {
+                    $anchorElement.after($('#' + rid));
+                    $(e.target).remove();
+                }
+            } catch (ex) {}
 
             return false;
         }),
@@ -221,7 +252,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
         moveFloatingObjectsMenuClick: factory.create(function (e) {
             var $target = $(e.target);
             actionsMenuFactory($target.text(), function ($menu) {
-                var $articleFigsAndTables = $('.article_figs_and_tables');
+                var $articleFigsAndTables = $('.' + ARTICLE_FIGS_AND_TABLES);
                 $articleFigsAndTables.find('.fig').each(function (i, element) {
                     var $element = $(element);
                     $('<menuitem>')
