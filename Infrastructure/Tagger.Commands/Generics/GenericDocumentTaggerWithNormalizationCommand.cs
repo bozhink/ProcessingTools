@@ -11,9 +11,9 @@
         where TTagger : IDocumentTagger
     {
         private readonly TTagger tagger;
-        private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IDocumentSchemaNormalizer documentNormalizer;
 
-        public GenericDocumentTaggerWithNormalizationCommand(TTagger tagger, IDocumentNormalizer documentNormalizer)
+        public GenericDocumentTaggerWithNormalizationCommand(TTagger tagger, IDocumentSchemaNormalizer documentNormalizer)
         {
             if (tagger == null)
             {

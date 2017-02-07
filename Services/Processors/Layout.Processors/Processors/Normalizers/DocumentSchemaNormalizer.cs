@@ -2,16 +2,16 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Contracts.Factories;
+    using Contracts.Normalizers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Layout.Processors.Contracts.Factories;
-    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
-    public class DocumentNormalizer : IDocumentNormalizer
+    public class DocumentSchemaNormalizer : IDocumentSchemaNormalizer
     {
         private readonly INormalizationTransformerFactory transformerFactory;
 
-        public DocumentNormalizer(INormalizationTransformerFactory transformerFactory)
+        public DocumentSchemaNormalizer(INormalizationTransformerFactory transformerFactory)
         {
             if (transformerFactory == null)
             {

@@ -33,7 +33,7 @@
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IFactory<ICommandSettings> commandSettingsFactory;
         private readonly IDocumentFactory documentFactory;
-        private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IDocumentSchemaNormalizer documentNormalizer;
         private readonly IDocumentsDataService service;
 
         private readonly IDictionary<Type, ICommandInfo> commandsInformation;
@@ -42,7 +42,7 @@
             ICommandInfoProvider commandInfoProvider,
             IDocumentsDataService service,
             IDocumentFactory documentFactory,
-            IDocumentNormalizer documentNormalizer,
+            IDocumentSchemaNormalizer documentNormalizer,
             Func<Type, ITaggerCommand> commandFactory,
             IFactory<ICommandSettings> commandSettingsFactory)
         {

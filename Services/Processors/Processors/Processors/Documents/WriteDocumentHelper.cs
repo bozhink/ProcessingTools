@@ -14,14 +14,13 @@
     {
         private readonly IDocumentSplitter documentSplitter;
         private readonly IDocumentWriter documentWriter;
-        private readonly IDocumentNormalizer documentNormalizer;
-        private readonly IDocumentFinalFormatter documentFinalFormatter;
+        private readonly IDocumentPreWriteNormalizer documentNormalizer;
+        
 
         public WriteDocumentHelper(
             IDocumentSplitter documentSplitter,
             IDocumentWriter documentWriter,
-            IDocumentNormalizer documentNormalizer,
-            IDocumentFinalFormatter documentFinalFormatter)
+            IDocumentPreWriteNormalizer documentNormalizer)
         {
             if (documentSplitter == null)
             {
@@ -38,15 +37,9 @@
                 throw new ArgumentNullException(nameof(documentNormalizer));
             }
 
-            if (documentFinalFormatter == null)
-            {
-                throw new ArgumentNullException(nameof(documentFinalFormatter));
-            }
-
             this.documentSplitter = documentSplitter;
             this.documentWriter = documentWriter;
             this.documentNormalizer = documentNormalizer;
-            this.documentFinalFormatter = documentFinalFormatter;
         }
 
         public async Task<object> Write(string outputFileName, IDocument document, bool splitDocument)
@@ -91,19 +84,7 @@
             }
 
             // Due to some XSL characteristics, double normalization is better than a single one.
-            var result = await this.documentNormalizer.NormalizeToDocumentSchema(document)
-                .ContinueWith(
-                    _ =>
-                    {
-                        _.Wait();
-                        return this.documentNormalizer.NormalizeToDocumentSchema(document);
-                    })
-                .ContinueWith(
-                    _ =>
-                    {
-                        _.Wait();
-                        return this.documentFinalFormatter.Format(document).Result;
-                    })
+            var result = await this.documentNormalizer.Normalize(document)
                 .ContinueWith(
                     _ =>
                     {
