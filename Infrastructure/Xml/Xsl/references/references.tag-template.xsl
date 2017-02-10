@@ -70,6 +70,11 @@
       <xsl:value-of select="$year"/>
       <xsl:value-of select="$id"/>
     </reference>
+    <!--<reference id="{$id}" year="{$year}" authors="{$authors},">
+      <xsl:value-of select="$authors"/>
+      <xsl:value-of select="$year"/>
+      <xsl:value-of select="$id"/>
+    </reference>-->
   </xsl:template>
 
   <xsl:template match="surname | anonymous">
