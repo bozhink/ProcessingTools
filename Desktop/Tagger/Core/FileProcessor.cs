@@ -13,7 +13,6 @@
     using ProcessingTools.Contracts.Files.Generators;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
-    using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
@@ -22,7 +21,6 @@
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IDocumentWrapper documentWrapper;
         private readonly IDocumentManager documentManager;
-
         private readonly IFileNameGenerator fileNameGenerator;
         private readonly ILogger logger;
 

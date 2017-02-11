@@ -6,7 +6,7 @@
     /// <summary>
     /// Provides normalizations for IDocument objects.
     /// </summary>
-    public interface IDocumentNormalizer
+    public interface IDocumentSchemaNormalizer
     {
         /// <summary>
         /// Normalizes the IDocument object's xml to its current SchemaType.

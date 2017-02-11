@@ -19,15 +19,27 @@
 
   <xsl:template match="tp:taxon-treatment[ancestor::sec/title//tn/tn-part[@type='family']]/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'][string(.)='FAMILIA']">
     <xsl:element name="{name(.)}">
-      <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="./ancestor::sec/title//tn/tn-part[@type='family']"/>
+      <xsl:apply-templates select="@*" />
+      <xsl:call-template name="name-to-first-letter-upper">
+        <xsl:with-param name="name" select="./ancestor::sec/title//tn/tn-part[@type='family']" />
+      </xsl:call-template>
     </xsl:element>
   </xsl:template>
-  
+
   <xsl:template match="tp:taxon-treatment[ancestor::sec/title//tn/tn-part[@type='order']]/tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'][string(.)='ORDO']">
     <xsl:element name="{name(.)}">
-      <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="./ancestor::sec/title//tn/tn-part[@type='order']"/>
+      <xsl:apply-templates select="@*" />
+      <xsl:call-template name="name-to-first-letter-upper">
+        <xsl:with-param name="name" select="./ancestor::sec/title//tn/tn-part[@type='order']" />
+      </xsl:call-template>
     </xsl:element>
+  </xsl:template>
+
+  <xsl:template name="name-to-first-letter-upper">
+    <xsl:param name="name" />
+    <xsl:variable name="string">
+      <xsl:value-of select="translate(normalize-space($name), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')" />
+    </xsl:variable>
+    <xsl:value-of select="concat(translate(substring($string, 1, 1), 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'), substring($string, 2))" />
   </xsl:template>
 </xsl:stylesheet>

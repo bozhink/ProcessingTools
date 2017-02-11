@@ -7,7 +7,7 @@
 
     public class TagLowerTaxaInItalicCommand : GenericDocumentTaggerWithNormalizationCommand<ILowerTaxaInItalicTagger>, ITagLowerTaxaCommand
     {
-        public TagLowerTaxaInItalicCommand(ILowerTaxaInItalicTagger tagger, IDocumentNormalizer documentNormalizer)
+        public TagLowerTaxaInItalicCommand(ILowerTaxaInItalicTagger tagger, IDocumentSchemaNormalizer documentNormalizer)
             : base(tagger, documentNormalizer)
         {
         }

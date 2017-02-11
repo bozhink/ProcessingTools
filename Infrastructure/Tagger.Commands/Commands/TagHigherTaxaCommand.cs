@@ -9,7 +9,7 @@
     [Description("Tag higher taxa.")]
     public class TagHigherTaxaCommand : GenericDocumentTaggerWithNormalizationCommand<IHigherTaxaTagger>, ITagHigherTaxaCommand
     {
-        public TagHigherTaxaCommand(IHigherTaxaTagger tagger, IDocumentNormalizer documentNormalizer)
+        public TagHigherTaxaCommand(IHigherTaxaTagger tagger, IDocumentSchemaNormalizer documentNormalizer)
             : base(tagger, documentNormalizer)
         {
         }

@@ -11,13 +11,13 @@
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentMerger documentMerger;
         private readonly IDocumentReader documentReader;
-        private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IDocumentPostReadNormalizer documentNormalizer;
 
         public ReadDocumentHelper(
             IDocumentFactory documentFactory,
             IDocumentMerger documentMerger,
             IDocumentReader documentReader,
-            IDocumentNormalizer documentNormalizer)
+            IDocumentPostReadNormalizer documentNormalizer)
         {
             if (documentFactory == null)
             {
@@ -63,7 +63,7 @@
                 document = await this.documentReader.ReadDocument(fileNames[0]);
             }
 
-            await this.documentNormalizer.NormalizeToSystem(document);
+            await this.documentNormalizer.Normalize(document);
 
             return document;
         }

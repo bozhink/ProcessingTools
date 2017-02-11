@@ -47,6 +47,16 @@
                     .AsParallel()
                     .ForAll(n => this.ParseSync(n));
 
+                ////context.SelectNodes(".//sec[not(sec)]")
+                ////    .Cast<XmlNode>()
+                ////    .AsParallel()
+                ////    .ForAll(n => this.ParseSync(n));
+
+                ////context.SelectNodes(".//p")
+                ////    .Cast<XmlNode>()
+                ////    .AsParallel()
+                ////    .ForAll(n => this.ParseSync(n));
+
                 // Parse documents in merged document
                 context.SelectNodes(XPathStrings.HigherDocumentStructure)
                     .Cast<XmlNode>()

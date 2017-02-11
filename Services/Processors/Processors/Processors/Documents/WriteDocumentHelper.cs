@@ -13,12 +13,12 @@
     {
         private readonly IDocumentSplitter documentSplitter;
         private readonly IDocumentWriter documentWriter;
-        private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IDocumentPreWriteNormalizer documentNormalizer;
 
         public WriteDocumentHelper(
             IDocumentSplitter documentSplitter,
             IDocumentWriter documentWriter,
-            IDocumentNormalizer documentNormalizer)
+            IDocumentPreWriteNormalizer documentNormalizer)
         {
             if (documentSplitter == null)
             {
@@ -82,13 +82,7 @@
             }
 
             // Due to some XSL characteristics, double normalization is better than a single one.
-            var result = await this.documentNormalizer.NormalizeToDocumentSchema(document)
-                .ContinueWith(
-                    _ =>
-                    {
-                        _.Wait();
-                        return this.documentNormalizer.NormalizeToDocumentSchema(document);
-                    })
+            var result = await this.documentNormalizer.Normalize(document)
                 .ContinueWith(
                     _ =>
                     {

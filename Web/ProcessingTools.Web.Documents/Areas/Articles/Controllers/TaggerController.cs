@@ -33,16 +33,17 @@
         private readonly Func<Type, ITaggerCommand> commandFactory;
         private readonly IFactory<ICommandSettings> commandSettingsFactory;
         private readonly IDocumentFactory documentFactory;
-        private readonly IDocumentNormalizer documentNormalizer;
+        private readonly IDocumentPostReadNormalizer documentReadNormalizer;
+        private readonly IDocumentPreWriteNormalizer documentWriteNormalizer;
         private readonly IDocumentsDataService service;
-
         private readonly IDictionary<Type, ICommandInfo> commandsInformation;
 
         public TaggerController(
             ICommandInfoProvider commandInfoProvider,
             IDocumentsDataService service,
             IDocumentFactory documentFactory,
-            IDocumentNormalizer documentNormalizer,
+            IDocumentPostReadNormalizer documentReadNormalizer,
+            IDocumentPreWriteNormalizer documentWriteNormalizer,
             Func<Type, ITaggerCommand> commandFactory,
             IFactory<ICommandSettings> commandSettingsFactory)
         {
@@ -61,9 +62,14 @@
                 throw new ArgumentNullException(nameof(documentFactory));
             }
 
-            if (documentNormalizer == null)
+            if (documentReadNormalizer == null)
             {
-                throw new ArgumentNullException(nameof(documentNormalizer));
+                throw new ArgumentNullException(nameof(documentReadNormalizer));
+            }
+
+            if (documentWriteNormalizer == null)
+            {
+                throw new ArgumentNullException(nameof(documentWriteNormalizer));
             }
 
             if (commandFactory == null)
@@ -78,7 +84,8 @@
 
             this.service = service;
             this.documentFactory = documentFactory;
-            this.documentNormalizer = documentNormalizer;
+            this.documentReadNormalizer = documentReadNormalizer;
+            this.documentWriteNormalizer = documentWriteNormalizer;
             this.commandFactory = commandFactory;
             this.commandSettingsFactory = commandSettingsFactory;
 
@@ -140,8 +147,12 @@
                 var articleId = this.FakeArticleId;
 
                 var xmldocument = await this.ReadDocument(model, userId, articleId);
-                await this.RunCommand(model, xmldocument);
-                await this.WriteDocument(model, userId, articleId, xmldocument);
+                var result = await this.RunCommand(model, xmldocument)
+                    .ContinueWith(_ =>
+                    {
+                        _.Wait();
+                        return this.WriteDocument(model, userId, articleId, _.Result).Result;
+                    });
 
                 this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
@@ -219,7 +230,7 @@
             return document;
         }
 
-        private async Task<object> RunCommand(FileModel model, XmlDocument xmldocument)
+        private async Task<XmlDocument> RunCommand(FileModel model, XmlDocument xmldocument)
         {
             var document = this.documentFactory.Create(xmldocument.OuterXml);
             if (document.XmlDocument.DocumentElement.Name == ElementNames.Article)
@@ -231,7 +242,7 @@
                 document.SchemaType = SchemaType.System;
             }
 
-            await this.documentNormalizer.NormalizeToSystem(document);
+            await this.documentReadNormalizer.Normalize(document);
 
             var commandType = this.commandsInformation
                 .First(p => p.Value.Name == model.CommandId)
@@ -240,12 +251,17 @@
             var command = this.commandFactory.Invoke(commandType);
             var settings = this.commandSettingsFactory.Create();
 
-            var result = await command.Run(document, settings);
-
-            await this.documentNormalizer.NormalizeToDocumentSchema(document);
-            await this.documentNormalizer.NormalizeToDocumentSchema(document);
-
-            xmldocument.LoadXml(document.Xml);
+            var result = await command.Run(document, settings)
+                .ContinueWith(_ =>
+                {
+                    _.Wait();
+                    return this.documentWriteNormalizer.Normalize(document);
+                })
+                .ContinueWith(_ =>
+                {
+                    _.Wait();
+                    return document.XmlDocument;
+                });
 
             return result;
         }
@@ -269,6 +285,9 @@
                 };
 
                 var result = await this.service.Create(userId, articleId, documentMetadata, stream);
+
+                stream.Close();
+
                 return result;
             }
         }
