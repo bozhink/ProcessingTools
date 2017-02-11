@@ -60,7 +60,7 @@
         /// </summary>
         /// <param name="text">Text string to be parsed.</param>
         /// <returns>Parsed text string.</returns>
-        private static string ParseDifferentPartsOfTaxonomicNames(string text)
+        private string ParseDifferentPartsOfTaxonomicNames(string text)
         {
             const string InfraTaxonNamePattern = @"([A-Za-zçäöüëïâěôûêîæœ\.-]+)";
             const string InfraPatternSuffix = @"(\.\s*|\s+)" + InfraTaxonNamePattern;
@@ -119,7 +119,7 @@
         /// </summary>
         /// <param name="text">Text string to be parsed.</param>
         /// <returns>Parsed text string.</returns>
-        private static string ParseFullStringMatch(string text)
+        private string ParseFullStringMatch(string text)
         {
             const string GenusPattern = @"[A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+";
             ////const string SubgenusPattern = @"[A-Z][a-zçäöüëïâěôûêîæœ\.-]+";
@@ -190,7 +190,7 @@
             return replace;
         }
 
-        private static string ParseLower(string text)
+        private string ParseLower(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -199,13 +199,13 @@
 
             string replace = text;
 
-            replace = ParseFullStringMatch(replace);
+            replace = this.ParseFullStringMatch(replace);
 
-            replace = ParseDifferentPartsOfTaxonomicNames(replace);
+            replace = this.ParseDifferentPartsOfTaxonomicNames(replace);
 
-            replace = ParseTaxaFromBeginning(replace);
+            replace = this.ParseTaxaFromBeginning(replace);
 
-            replace = ParseWholeString(replace);
+            replace = this.ParseWholeString(replace);
 
             // Parse question mark
             replace = Regex.Replace(replace, @"(?<=</tn-part>)\s*\?", "<tn-part type=\"uncertainty-rank\">?</tn-part>");
@@ -222,7 +222,7 @@
             return replace;
         }
 
-        private static string ParseTaxaFromBeginning(string text)
+        private string ParseTaxaFromBeginning(string text)
         {
             string replace = text;
 
@@ -286,7 +286,7 @@
             return replace;
         }
 
-        private static string ParseWholeString(string text)
+        private string ParseWholeString(string text)
         {
             string replace = text;
 
@@ -583,11 +583,41 @@
             ////this.AddTaxonNamePartsToTaxonNameElements(context);
             ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
             ////this.ResolveWithDictionaryOfKnownRanks(context, knownRanks);
+            this.ParseWithDirectMatchWithInfraPrefix(context);
             this.ParseLowerTaxaWithoutBasionym(context);
             this.ParseLowerTaxaWithBasionym(context);
             this.RemoveWrappingItalics(context);
 
             return true;
+        }
+
+        private void ParseWithDirectMatchWithInfraPrefix(XmlNode context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            var xml = context.InnerXml;
+
+            var prefixes = SpeciesPartsPrefixesResolver.SpeciesPartsRanks
+                .Keys
+                .OrderByDescending(k => k.Length)
+                .ToArray();
+
+            foreach (var prefix in prefixes)
+            {
+                var rank = SpeciesPartsPrefixesResolver.SpeciesPartsRanks[prefix].ToRankString();
+                xml = xml
+                    .RegexReplace(
+                        $"(?i)(?<=\\b{prefix}\\.?\\s*<i\\b[^>]*><tn\\b[^>]+type=\"lower\"[^>]*>)(\\S+)(?=</tn></i>)",
+                        $"<tn-part type=\"{rank}\">$1</tn-part>")
+                    .RegexReplace(
+                        $"(?i)(?<=\\b{prefix}\\.?\\s*<tn\\b[^>]+type=\"lower\"[^>]*>)(\\S+)(?=</tn>)",
+                        $"<tn-part type=\"{rank}\">$1</tn-part>");
+            }
+
+            context.InnerXml = xml;
         }
 
         private void RegularizeRankOfSingleWordTaxonName(XmlNode context)
