@@ -9,7 +9,7 @@
 
     public class ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy : IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy
     {
-        public int ExecutionPriority => 1;
+        public int ExecutionPriority => 100;
 
         public async Task<object> Parse(XmlNode context)
         {
@@ -20,8 +20,8 @@
 
             var xml = context.InnerXml;
 
-            var prefixes = SpeciesPartsPrefixesResolver.SpeciesPartsRanks
-                .Keys
+            var prefixes = SpeciesPartsPrefixesResolver.NonAmbiguousSpeciesPartsRanks
+                .Select(p => p.Key)
                 .OrderByDescending(k => k.Length)
                 .ToArray();
 

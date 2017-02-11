@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Processors
 {
     using System.Collections.Generic;
+    using System.Linq;
     using ProcessingTools.Enumerations;
 
     public class SpeciesPartsPrefixesResolver
@@ -76,7 +77,28 @@
                 { "×", SpeciesPartType.Species }
             };
 
+        public static readonly IEnumerable<string> UncertaintyPrefixes = new HashSet<string>
+        {
+            "?",
+            "aff",
+            "afn",
+            "cf",
+            "near",
+            "nr",
+            "sp aff",
+            "sp cf",
+            "sp near",
+            "sp nr",
+            "sp",
+            "sp. aff",
+            "sp. cf",
+            "sp. near",
+            "sp. nr"
+        };
+
         private const string DefaultRank = "species";
+
+        public static IEnumerable<KeyValuePair<string, SpeciesPartType>> NonAmbiguousSpeciesPartsRanks => SpeciesPartsRanks.Where(p => p.Key.Length > 1 && p.Key.IndexOf("trib") < 0);
 
         public string Resolve(string infraSpecificRank)
         {
