@@ -216,6 +216,7 @@
     <Compile Include="Processors\Validation\TaxaValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AltitudeTagModelProvider.cs" />
+    <Compile Include="Providers\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Providers\CoordinateTagModelProvider.cs" />
     <Compile Include="Providers\DateTagModelProvider.cs" />
     <Compile Include="Providers\GeoEpithetTagModelProvider.cs" />

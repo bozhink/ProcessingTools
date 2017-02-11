@@ -12,6 +12,7 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors;
     using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
@@ -25,24 +26,45 @@
         private const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
         private const string UncertaintyRank = "uncertainty-rank";
         private const string UncertaintyRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + UncertaintyRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
+
+        private readonly IParseLowerTaxaStrategiesProvider strategiesProvider;
         private readonly ILogger logger;
 
-        public LowerTaxaParser(ILogger logger)
+        public LowerTaxaParser(IParseLowerTaxaStrategiesProvider strategiesProvider, ILogger logger)
         {
+            if (strategiesProvider == null)
+            {
+                throw new ArgumentNullException(nameof(strategiesProvider));
+            }
+
+            this.strategiesProvider = strategiesProvider;
             this.logger = logger;
         }
 
-        public Task<object> Parse(XmlNode context)
+        public async Task<object> Parse(XmlNode context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            return Task.Run(() =>
+            var strategies = this.strategiesProvider.Strategies
+                .Where(s => s.ExecutionPriority > 0)
+                .OrderBy(s => s.ExecutionPriority);
+
+            foreach (var strategy in strategies)
             {
-                return this.ParseSync(context);
-            });
+                await strategy.Parse(context);
+            }
+
+            ////this.AddTaxonNamePartsToTaxonNameElements(context);
+            ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
+            ////this.ResolveWithDictionaryOfKnownRanks(context, knownRanks);
+            this.ParseLowerTaxaWithoutBasionym(context);
+            this.ParseLowerTaxaWithBasionym(context);
+            this.RemoveWrappingItalics(context);
+
+            return true;
         }
 
         private static string GetInfraRankTaxonNameParts123ReplaceString(SpeciesPartType type)
@@ -576,48 +598,6 @@
             {
                 this.logger?.Log(e, "Parse lower taxa without basionym.");
             }
-        }
-
-        private object ParseSync(XmlNode context)
-        {
-            ////this.AddTaxonNamePartsToTaxonNameElements(context);
-            ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
-            ////this.ResolveWithDictionaryOfKnownRanks(context, knownRanks);
-            this.ParseWithDirectMatchWithInfraPrefix(context);
-            this.ParseLowerTaxaWithoutBasionym(context);
-            this.ParseLowerTaxaWithBasionym(context);
-            this.RemoveWrappingItalics(context);
-
-            return true;
-        }
-
-        private void ParseWithDirectMatchWithInfraPrefix(XmlNode context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            var xml = context.InnerXml;
-
-            var prefixes = SpeciesPartsPrefixesResolver.SpeciesPartsRanks
-                .Keys
-                .OrderByDescending(k => k.Length)
-                .ToArray();
-
-            foreach (var prefix in prefixes)
-            {
-                var rank = SpeciesPartsPrefixesResolver.SpeciesPartsRanks[prefix].ToRankString();
-                xml = xml
-                    .RegexReplace(
-                        $"(?i)(?<=\\b{prefix}\\.?\\s*<i\\b[^>]*><tn\\b[^>]+type=\"lower\"[^>]*>)(\\S+)(?=</tn></i>)",
-                        $"<tn-part type=\"{rank}\">$1</tn-part>")
-                    .RegexReplace(
-                        $"(?i)(?<=\\b{prefix}\\.?\\s*<tn\\b[^>]+type=\"lower\"[^>]*>)(\\S+)(?=</tn>)",
-                        $"<tn-part type=\"{rank}\">$1</tn-part>");
-            }
-
-            context.InnerXml = xml;
         }
 
         private void RegularizeRankOfSingleWordTaxonName(XmlNode context)

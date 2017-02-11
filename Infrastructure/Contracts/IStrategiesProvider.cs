@@ -5,6 +5,6 @@
     public interface IStrategiesProvider<TStrategy>
         where TStrategy : IStrategy
     {
-        IEnumerable<IStrategy> Strategies { get; }
+        IEnumerable<TStrategy> Strategies { get; }
     }
 }
