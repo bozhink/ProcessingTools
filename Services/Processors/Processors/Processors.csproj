@@ -119,6 +119,7 @@
     <Compile Include="Contracts\Processors\Validation\ICrossReferencesValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\IExternalLinksValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\ITaxaValidator.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaFromLeftStrategy.cs" />
     <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaStrategy.cs" />
     <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithByPartsMatchStrategy.cs" />
     <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
     <Compile Include="SpeciesPartsPrefixesResolver.cs" />
+    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaFromLeftStrategy.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithByPartsMatchStrategy.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithFullStringMatchStrategy.cs" />

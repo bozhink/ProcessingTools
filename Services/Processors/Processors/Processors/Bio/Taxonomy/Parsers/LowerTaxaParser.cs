@@ -56,8 +56,12 @@
             ////this.AddTaxonNamePartsToTaxonNameElements(context);
             ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
             ////this.ResolveWithDictionaryOfKnownRanks(context, knownRanks);
-            this.ParseLowerTaxaWithoutBasionym(context);
-            this.ParseLowerTaxaWithBasionym(context);
+            //this.ParseLowerTaxaWithoutBasionym(context);
+            //this.ParseLowerTaxaWithBasionym(context);
+
+            this.AddFullNameAttribute(context);
+            this.RegularizeRankOfSingleWordTaxonName(context);
+            this.AddMissingEmptyTagsInTaxonName(context);
             this.RemoveWrappingItalics(context);
 
             this.EnsureFormatting(context);
@@ -127,72 +131,8 @@
 
             string replace = text;
 
-            replace = this.ParseTaxaFromBeginning(replace);
 
-            return replace;
-        }
 
-        private string ParseTaxaFromBeginning(string text)
-        {
-            string replace = text;
-
-            // Genus species subspecies
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""genus"">$1</tn-part>$2<tn-part type=""species"">$3</tn-part>$4<tn-part type=""subspecies"">$5</tn-part>");
-
-            // Genus species
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""genus"">$1</tn-part>$2<tn-part type=""species"">$3</tn-part>");
-            replace = Regex.Replace(
-                replace,
-                @"\A‘([A-Z][a-z\.]+)’([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"‘<tn-part type=""genus"">$1</tn-part>’$2<tn-part type=""species"">$3</tn-part>");
-
-            // Genus (Subgenus) species subspecies
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""subgenus"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>$7<tn-part type=""subspecies"">$8</tn-part>");
-
-            // Genus (superspecies) species subspecies
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêî\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""superspecies"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>$7<tn-part type=""subspecies"">$8</tn-part>");
-
-            // Genus (Subgenus) species
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""subgenus"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>");
-
-            // Genus (superspecies) species
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""superspecies"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>");
-
-            // Genus (Subgenus)
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)",
-                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""subgenus"">$3</tn-part>$4)");
-
-            // Genus
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)",
-                @"<tn-part type=""genus"">$1</tn-part>");
-
-            // species
-            replace = Regex.Replace(
-                replace,
-                @"\A([a-zçäöüëïâěôûêîæœ\.-]+)",
-                @"<tn-part type=""species"">$1</tn-part>");
             return replace;
         }
 
@@ -412,33 +352,11 @@
                     lowerTaxon.InnerXml = replace;
                 }
 
-                this.AddFullNameAttribute(context);
 
-                this.RegularizeRankOfSingleWordTaxonName(context);
-
-                this.AddMissingEmptyTagsInTaxonName(context);
             }
             catch (Exception e)
             {
                 this.logger?.Log(e, "Parse lower taxa with basionym.");
-            }
-        }
-
-        private void ParseLowerTaxaWithoutBasionym(XmlNode context)
-        {
-            try
-            {
-                context.SelectNodes(SelectLowerTaxaWithoutChildNodesXPath)
-                    .Cast<XmlNode>()
-                    .AsParallel()
-                    .ForAll(lowerTaxon =>
-                    {
-                        lowerTaxon.InnerXml = ParseLower(lowerTaxon.InnerXml);
-                    });
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, "Parse lower taxa without basionym.");
             }
         }
 
@@ -521,10 +439,7 @@
                                 node.Attributes.Append(rankAttribute);
                             }
 
-                            rankAttribute.InnerText = match.Rank.ToString().ToLower();
-
-                            // TODO: remove this line
-                            this.logger?.Log("\t {1} --> {0}", match.Rank, node.InnerText);
+                            rankAttribute.InnerText = match.Rank.ToRankString();
                         }
                     }
                 });
