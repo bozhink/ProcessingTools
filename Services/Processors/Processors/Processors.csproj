@@ -117,6 +117,7 @@
     <Compile Include="Contracts\Processors\Validation\ICrossReferencesValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\IExternalLinksValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\ITaxaValidator.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaStrategy.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
@@ -301,9 +302,7 @@
       <Name>Layout.Processors</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\Strategies\Bio\Taxonomy\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
