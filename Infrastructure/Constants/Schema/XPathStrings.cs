@@ -37,5 +37,11 @@
         public const string TaxonNamePartsOfLowerTaxonNames = LowerTaxonNames + "/" + ElementNames.TaxonNamePart;
         public const string TaxonTreatmentNomenclature = ".//tp:taxon-treatment/tp:nomenclature";
         public const string XLinkHref = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
+
+        public const string LowerTaxonNameWithNoGenusTaxonNamePart = ".//tn[@type='lower'][count(.//tn-part[@type='genus']) = 0]";
+
+        public const string TaxonNamePartOfNonAuxiliaryType = "[@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
+
+        public const string LowerTaxonNamePartWithNoFullNameAttribute = ".//tn[@type='lower']/tn-part[not(@full-name)]" + TaxonNamePartOfNonAuxiliaryType;
     }
 }

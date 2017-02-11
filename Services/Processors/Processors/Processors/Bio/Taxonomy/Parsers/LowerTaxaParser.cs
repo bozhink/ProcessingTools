@@ -334,11 +334,9 @@
 
         private void AddFullNameAttribute(XmlNode context)
         {
-            const string XPath = ".//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
-
             var document = context.OwnerDocument();
 
-            context.SelectNodes(XPath)
+            context.SelectNodes(XPathStrings.LowerTaxonNamePartWithNoFullNameAttribute)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(lowerTaxonNamePart =>
@@ -361,44 +359,52 @@
 
         private void AddMissingEmptyTagsInTaxonName(XmlNode context)
         {
-            const string XPath = ".//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]";
-
             var document = context.OwnerDocument();
 
-            context.SelectNodes(XPath)
+            context.SelectNodes(XPathStrings.LowerTaxonNameWithNoGenusTaxonNamePart)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(lowerTaxon =>
                 {
-                    var genusNode = lowerTaxon.SelectSingleNode(".//tn-part[@type='genus']");
-                    if (genusNode == null)
+                    var ranks = lowerTaxon.SelectNodes(".//tn-part" + XPathStrings.TaxonNamePartOfNonAuxiliaryType + "/@type")
+                        .Cast<XmlAttribute>()
+                        .Select(a => a.InnerText)
+                        .Distinct()
+                        .Select(t => t.ToSpeciesPartType())
+                        .Where(t => t != SpeciesPartType.Undefined)
+                        .ToArray();
+
+                    if (ranks.Any(r => r < SpeciesPartType.Superspecies))
                     {
-                        var speciesNode = lowerTaxon.SelectSingleNode(".//tn-part[@type='species']");
-                        if (speciesNode == null)
-                        {
-                            XmlElement speciesElement = document.CreateElement(ElementNames.TaxonNamePart);
-                            speciesElement.SetAttribute(
-                                AttributeNames.Type,
-                                TaxonRankType.Species.MapTaxonRankTypeToTaxonRankString());
-                            speciesElement.SetAttribute(
-                                AttributeNames.FullName,
-                                string.Empty);
+                        // All ranks are super-specific, so no empty genus or species element should be added
+                        return;
+                    }
 
-                            lowerTaxon.PrependChild(speciesElement);
-                        }
+                    if (ranks.All(r => r > SpeciesPartType.Species))
+                    {
+                        // All ranks are infra-specific, so here an empty species element is needed
+                        XmlElement speciesElement = document.CreateElement(ElementNames.TaxonNamePart);
+                        speciesElement.SetAttribute(
+                            AttributeNames.Type,
+                            TaxonRankType.Species.MapTaxonRankTypeToTaxonRankString());
+                        speciesElement.SetAttribute(
+                            AttributeNames.FullName,
+                            string.Empty);
 
-                        // Add genus tag
-                        {
-                            XmlElement genusElement = document.CreateElement(ElementNames.TaxonNamePart);
-                            genusElement.SetAttribute(
-                                AttributeNames.Type,
-                                TaxonRankType.Genus.MapTaxonRankTypeToTaxonRankString());
-                            genusElement.SetAttribute(
-                                AttributeNames.FullName,
-                                string.Empty);
+                        lowerTaxon.PrependChild(speciesElement);
+                    }
 
-                            lowerTaxon.PrependChild(genusElement);
-                        }
+                    // Add empty genus element
+                    {
+                        XmlElement genusElement = document.CreateElement(ElementNames.TaxonNamePart);
+                        genusElement.SetAttribute(
+                            AttributeNames.Type,
+                            TaxonRankType.Genus.MapTaxonRankTypeToTaxonRankString());
+                        genusElement.SetAttribute(
+                            AttributeNames.FullName,
+                            string.Empty);
+
+                        lowerTaxon.PrependChild(genusElement);
                     }
                 });
         }
