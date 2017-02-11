@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Strategies.Bio.Taxonomy
 {
     using System;
+    using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts.Strategies.Bio.Taxonomy;
-    using System.Linq;
-    using System.Text.RegularExpressions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
 
@@ -43,9 +43,6 @@
         /// <returns>Parsed text string.</returns>
         private string ParseDifferentPartsOfTaxonomicNames(string text)
         {
-
-
-
             var patternRanks = SpeciesPartsPrefixesResolver.NonAmbiguousSpeciesPartsRanks.GroupBy(p => p.Value)
                 .Select(g => new
                 {

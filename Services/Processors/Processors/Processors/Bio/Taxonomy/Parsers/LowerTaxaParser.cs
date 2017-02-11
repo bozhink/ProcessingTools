@@ -12,9 +12,9 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors;
     using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
 
     public class LowerTaxaParser : ILowerTaxaParser
@@ -22,7 +22,6 @@
         private const string SelectLowerTaxaWithInvalidChildNodesXPath = ".//tn[@type='lower'][count(*) != count(tn-part)]";
         private const string SelectLowerTaxaWithoutChildNodesXPath = ".//tn[@type='lower'][not(*)]";
         private const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
-        private const string UncertaintyRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + AttributeValues.UncertaintyRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
 
         private readonly IParseLowerTaxaStrategiesProvider strategiesProvider;
         private readonly ILogger logger;
@@ -118,10 +117,6 @@
                     }
                 });
         }
-
-
-
-
 
         private string ParseLower(string text)
         {
