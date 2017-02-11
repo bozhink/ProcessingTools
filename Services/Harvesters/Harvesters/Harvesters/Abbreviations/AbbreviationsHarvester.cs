@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
     using Abstractions;
@@ -10,19 +9,19 @@
     using Contracts.Harvesters.Abbreviations;
     using Contracts.Models.Abbreviations;
     using Models.Abbreviations;
-    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
-    public class AbbreviationsHarvester : AbstractGenericQueryableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
+    public class AbbreviationsHarvester : AbstractGenericEnumerableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {
         private readonly IXmlTransformDeserializer serializer;
         private readonly IAbbreviationsTransformersFactory transformersFactory;
 
         public AbbreviationsHarvester(
-            IXmlContextWrapperProvider contextWrapperProvider,
+            IXmlContextWrapper contextWrapper,
             IXmlTransformDeserializer serializer,
             IAbbreviationsTransformersFactory transformersFactory)
-            : base(contextWrapperProvider)
+            : base(contextWrapper)
         {
             if (serializer == null)
             {

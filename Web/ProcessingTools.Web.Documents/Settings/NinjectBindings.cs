@@ -1,8 +1,14 @@
 ﻿namespace ProcessingTools.Web.Documents.Settings
 {
+    using System;
+    using Ninject;
     using Ninject.Extensions.Conventions;
+    using Ninject.Extensions.Factory;
     using Ninject.Modules;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Services.Files;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -16,6 +22,13 @@
                 b.FromThisAssembly()
                  .SelectAllClasses()
                  .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(typeof(ProcessingTools.Tagger.Commands.Contracts.Commands.ITaggerCommand).Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
             });
 
             this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
@@ -42,8 +55,65 @@
                     .BindDefaultInterface();
             });
 
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.Layout.Processors.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.Processors.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.Special.Processors.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
+                b.From(ProcessingTools.Serialization.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
             this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
+
+            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
+                .InSingletonScope();
+
+            this.Bind<Func<Type, ITaggerCommand>>()
+                .ToMethod(context => t => context.Kernel.Get(t) as ITaggerCommand)
+                .InSingletonScope();
+
+            this.Bind<IFactory<ICommandSettings>>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Contracts.IReporter>()
+                .To<ProcessingTools.Reporters.LogReporter>();
+
+            this.Bind<ProcessingTools.Contracts.ILogger>()
+                .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
+                .To<ProcessingTools.Common.Providers.DateTimeProvider>()
+                .InSingletonScope();
+
+            this.Bind<ProcessingTools.Geo.Contracts.ICoordinate2DParser>()
+                .To<ProcessingTools.Geo.Coordinate2DParser>();
+
+            this.Bind<ProcessingTools.Geo.Contracts.IUtmCoordianesTransformer>()
+                .To<ProcessingTools.Geo.UtmCoordianesTransformer>();
         }
     }
 }

@@ -6,34 +6,27 @@
     using Contracts.Processors.Documents;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Xml.Contracts.Providers;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class DocumentMerger : IDocumentMerger
     {
-        private readonly IDocumentFactory documentFactory;
         private readonly IDocumentReader documentReader;
-        private readonly IDocumentWrapperProvider documentWrapperProvider;
+        private readonly IDocumentWrapper documentWrapper;
 
-        public DocumentMerger(IDocumentFactory documentFactory, IDocumentReader documentReader, IDocumentWrapperProvider documentWrapperProvider)
+        public DocumentMerger(IDocumentReader documentReader, IDocumentWrapper documentWrapper)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
             if (documentReader == null)
             {
                 throw new ArgumentNullException(nameof(documentReader));
             }
 
-            if (documentWrapperProvider == null)
+            if (documentWrapper == null)
             {
-                throw new ArgumentNullException(nameof(documentWrapperProvider));
+                throw new ArgumentNullException(nameof(documentWrapper));
             }
 
-            this.documentFactory = documentFactory;
             this.documentReader = documentReader;
-            this.documentWrapperProvider = documentWrapperProvider;
+            this.documentWrapper = documentWrapper;
         }
 
         public async Task<IDocument> Merge(params string[] fileNames)
@@ -52,7 +45,7 @@
                 throw new ArgumentException("No valid file names are provided", nameof(fileNames));
             }
 
-            var document = this.documentFactory.Create(this.documentWrapperProvider.DocumentWrapper);
+            var document = this.documentWrapper.Create();
 
             foreach (var fileName in cleanedFileNames)
             {

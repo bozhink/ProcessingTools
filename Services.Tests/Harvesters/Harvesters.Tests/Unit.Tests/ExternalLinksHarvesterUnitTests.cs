@@ -6,13 +6,13 @@
     using ProcessingTools.Harvesters.Contracts.Factories;
     using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
     using ProcessingTools.Tests.Library;
-    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]
     public class ExternalLinksHarvesterUnitTests
     {
-        private const string ContextWrapperProviderFieldName = "contextWrapperProvider";
+        private const string ContextWrapperFieldName = "contextWrapper";
         private const string SerializerFieldName = "serializer";
         private const string TransformersFactoryFieldName = "transformersFactory";
         private static readonly Type HarvesterType = typeof(ExternalLinksHarvester);
@@ -21,20 +21,20 @@
         public void ExternalLinksHarvester_WithValidParametersInConstructor_ShouldCorrectlyInitializeNewInstance()
         {
             // Arrange
-            var contextWrapperProviderMock = new Mock<IXmlContextWrapperProvider>();
+            var contextWrapperMock = new Mock<IXmlContextWrapper>();
             var serializerMock = new Mock<IXmlTransformDeserializer>();
             var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
 
             // Act
-            var harvester = new ExternalLinksHarvester(contextWrapperProviderMock.Object, serializerMock.Object, transformersFactoryMock.Object);
+            var harvester = new ExternalLinksHarvester(contextWrapperMock.Object, serializerMock.Object, transformersFactoryMock.Object);
 
             // Assert
             Assert.IsNotNull(harvester);
 
-            var contextWrapperProviderField = PrivateField.GetInstanceField(HarvesterType.BaseType, harvester, ContextWrapperProviderFieldName);
-            Assert.IsNotNull(contextWrapperProviderField);
-            Assert.IsInstanceOf<IXmlContextWrapperProvider>(contextWrapperProviderField);
-            Assert.AreSame(contextWrapperProviderMock.Object, contextWrapperProviderField);
+            var contextWrapperField = PrivateField.GetInstanceField(HarvesterType.BaseType, harvester, ContextWrapperFieldName);
+            Assert.IsNotNull(contextWrapperField);
+            Assert.IsInstanceOf<IXmlContextWrapper>(contextWrapperField);
+            Assert.AreSame(contextWrapperMock.Object, contextWrapperField);
 
             var serializerField = PrivateField.GetInstanceField(HarvesterType, harvester, SerializerFieldName);
             Assert.IsNotNull(serializerField);
@@ -47,8 +47,8 @@
             Assert.AreSame(transformersFactoryMock.Object, transformersFactoryField);
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null contextWrapperProvider in constructor should throw ArgumentNullException with correct ParamName.")]
-        public void ExternalLinksHarvester_WithNullContextWrapperProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null contextWrapper in constructor should throw ArgumentNullException with correct ParamName.")]
+        public void ExternalLinksHarvester_WithNullContextWrapperInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
             var serializerMock = new Mock<IXmlTransformDeserializer>();
@@ -60,20 +60,20 @@
                 var harvester = new ExternalLinksHarvester(null, serializerMock.Object, transformersFactoryMock.Object);
             });
 
-            Assert.AreEqual(ContextWrapperProviderFieldName, exception.ParamName);
+            Assert.AreEqual(ContextWrapperFieldName, exception.ParamName);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null transformer in constructor should throw ArgumentNullException with correct ParamName.")]
         public void ExternalLinksHarvester_WithNullTransformerProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var contextWrapperProviderMock = new Mock<IXmlContextWrapperProvider>();
+            var contextWrapperMock = new Mock<IXmlContextWrapper>();
             var serializerMock = new Mock<IXmlTransformDeserializer>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new ExternalLinksHarvester(contextWrapperProviderMock.Object, serializerMock.Object, null);
+                var harvester = new ExternalLinksHarvester(contextWrapperMock.Object, serializerMock.Object, null);
             });
 
             Assert.AreEqual(TransformersFactoryFieldName, exception.ParamName);
@@ -83,13 +83,13 @@
         public void ExternalLinksHarvester_WithNullSerializerProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var contextWrapperProviderMock = new Mock<IXmlContextWrapperProvider>();
+            var contextWrapperMock = new Mock<IXmlContextWrapper>();
             var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new ExternalLinksHarvester(contextWrapperProviderMock.Object, null, transformersFactoryMock.Object);
+                var harvester = new ExternalLinksHarvester(contextWrapperMock.Object, null, transformersFactoryMock.Object);
             });
 
             Assert.AreEqual(SerializerFieldName, exception.ParamName);

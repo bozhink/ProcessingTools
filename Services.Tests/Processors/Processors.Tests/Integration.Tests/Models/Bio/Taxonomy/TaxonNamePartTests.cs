@@ -2,115 +2,120 @@
 {
     using System.Xml;
     using NUnit.Framework;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
 
     [TestFixture]
     public class TaxonNamePartTests
     {
         [TestCase(
-            @"<tn-part type=""order"" full-name=""Coleoptera"">Coleoptera</tn-part>",
-            "order",
-            "Coleoptera",
-            "Coleoptera",
+            @"<tn-part type=""genus"" full-name=""Zospeum"">Zospeum</tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
+            "Zospeum",
             "",
             false)]
         [TestCase(
-            @"<tn-part type=""order"" full-name=""Coleoptera"">C.</tn-part>",
-            "order",
-            "Coleoptera",
-            "C.",
+            @"<tn-part type=""genus"" full-name=""Zospeum"">Z.</tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
+            "Z.",
             "",
             true)]
         [TestCase(
-            @"<tn-part type=""order"">Coleoptera</tn-part>",
-            "order",
-            "Coleoptera",
-            "Coleoptera",
+            @"<tn-part type=""genus"">Zospeum</tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
+            "Zospeum",
             "",
             false)]
         [TestCase(
-            @"<tn-part type=""order"">C.</tn-part>",
-            "order",
+            @"<tn-part type=""genus"">Z.</tn-part>",
+            SpeciesPartType.Genus,
             "",
-            "C.",
+            "Z.",
             "",
             true)]
         [TestCase(
-            @"<tn-part type=""order""></tn-part>",
-            "order",
+            @"<tn-part type=""genus""></tn-part>",
+            SpeciesPartType.Genus,
             "",
             "",
             "",
             true)]
         [TestCase(
             @"<tn-part></tn-part>",
-            "",
+            SpeciesPartType.Undefined,
             "",
             "",
             "",
             true)]
         [TestCase(
-            @"<tn-part type=""order"" full-name=""Coleoptera""></tn-part>",
-            "order",
-            "Coleoptera",
+            @"<tn-part type=""genus"" full-name=""Zospeum""></tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
             "",
             "",
             true)]
         [TestCase(
-            @"<tn-part id=""TN1"" type=""order"" full-name=""Coleoptera"">Coleoptera</tn-part>",
-            "order",
-            "Coleoptera",
-            "Coleoptera",
+            @"<tn-part id=""TN1"" type=""genus"" full-name=""Zospeum"">Zospeum</tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
+            "Zospeum",
             "TN1",
             false)]
         [TestCase(
-            @"<tn-part id=""TN1"" type=""order"" full-name=""Coleoptera"">C.</tn-part>",
-            "order",
-            "Coleoptera",
-            "C.",
+            @"<tn-part id=""TN1"" type=""genus"" full-name=""Zospeum"">Z.</tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
+            "Z.",
             "TN1",
             true)]
         [TestCase(
-            @"<tn-part id=""TN1"" type=""order"">Coleoptera</tn-part>",
-            "order",
-            "Coleoptera",
-            "Coleoptera",
+            @"<tn-part id=""TN1"" type=""genus"">Zospeum</tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
+            "Zospeum",
             "TN1",
             false)]
         [TestCase(
-            @"<tn-part id=""TN1"" type=""order"">C.</tn-part>",
-            "order",
+            @"<tn-part id=""TN1"" type=""genus"">Z.</tn-part>",
+            SpeciesPartType.Genus,
             "",
-            "C.",
+            "Z.",
             "TN1",
             true)]
         [TestCase(
-            @"<tn-part id=""TN1"" type=""order""></tn-part>",
-            "order",
+            @"<tn-part id=""TN1"" type=""genus""></tn-part>",
+            SpeciesPartType.Genus,
             "",
             "",
             "TN1",
             true)]
         [TestCase(
             @"<tn-part id=""TN1""></tn-part>",
-            "",
+            SpeciesPartType.Undefined,
             "",
             "",
             "TN1",
             true)]
         [TestCase(
-            @"<tn-part id=""TN1"" type=""order"" full-name=""Coleoptera""></tn-part>",
-            "order",
-            "Coleoptera",
+            @"<tn-part id=""TN1"" type=""genus"" full-name=""Zospeum""></tn-part>",
+            SpeciesPartType.Genus,
+            "Zospeum",
             "",
             "TN1",
             true)]
-        public void TaxonNamePart_WithValidNodeParameterInConstructor_ShouldReturnValidObject(string nodeString, string taxonRank, string fullName, string taxonName, string id, bool abbreviated)
+        public void TaxonNamePart_WithValidNodeParameterInConstructor_ShouldReturnValidObject(string nodeString, SpeciesPartType taxonRank, string fullName, string taxonName, string id, bool abbreviated)
         {
+            // Arrange
             var document = new XmlDocument();
             document.LoadXml(nodeString);
 
+            // Act
             var taxonNamePart = new TaxonNamePart(document.DocumentElement);
+
+            // Assert
             Assert.IsNotNull(taxonNamePart, "Object should not be null.");
 
             Assert.AreEqual(abbreviated, taxonNamePart.IsAbbreviated, "Taxon name part should " + (abbreviated ? "not " : string.Empty) + "be abbreviated.");

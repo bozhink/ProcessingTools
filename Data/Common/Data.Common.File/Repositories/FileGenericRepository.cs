@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Repositories;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Validation;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Exceptions;
 
     public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>, IFileCrudRepository<TEntity>
         where TContext : IFileDbContext<TEntity>

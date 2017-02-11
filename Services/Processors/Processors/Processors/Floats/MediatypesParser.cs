@@ -10,8 +10,8 @@
     using Contracts.Processors.Floats;
     using Models.Floats;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
-    using ProcessingTools.Xml.Extensions;
 
     public class MediatypesParser : IMediatypesParser
     {

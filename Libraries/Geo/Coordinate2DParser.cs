@@ -18,7 +18,6 @@
         private const string UtmEastingValue = "easting";
         private const string UtmNorthingValue = "northing";
 
-        // TODO: Error on 34.47325°, 132.10362°
         private const string CoordinateParsePattern = @"\A\W*?(\-?\d+[\.,\s]{1,3}\d+(?=\W*\s\W*\-?\d+[\.,\s]{1,3}\d+)|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SNWOE]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W+?((?<=\-?\d+[\.,\s]{1,3}\d+\W*\s\W*?)\-?\d+[\.,\s]{1,3}\d+|\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[EWO]|[SNWOE]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[SNWOE]?)\W*?\Z";
 
         private const string LatitudeMatchPattern = @"\-?\d+\W{1,3}\d+\W{1,3}\d+\W{0,10}?[SN]|\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,10}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
@@ -49,13 +48,16 @@
                     var integerUtmCoordinatesMatchPatterns = new string[]
                     {
                     // UTM WGS84: 33T 455.4683
-                    @"\A(?:UTM\s*WGS84:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\Z",
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})\.(?<northing>[0-9]{2,7})\s*\Z",
 
                     // UTM ED50: 33T 4498003N; 674582E
-                    @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7})N\W+(?<easting>[0-9]{2,7})E\Z",
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<northing>[0-9]{2,7})N\W+(?<easting>[0-9]{2,7})E\s*\Z",
 
                     // UTM ED50: 33T 674582E; 4498003N
-                    @"\A(?:UTM\s*ED50:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\Z"
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,7})E\W+(?<northing>[0-9]{2,7})N\s*\Z",
+
+                    // 55G 595500 5371700
+                    @"\A(?:\s*UTM\s*[A-Z]+[0-9]+:?\s+)?(?<zone>[0-9]{1,2}[A-Z])\s+(?<easting>[0-9]{2,6})\W+(?<northing>[0-9]{2,7})\s*\Z"
                     };
 
                     var integerUtmCoordinatesMatches = integerUtmCoordinatesMatchPatterns.Select(p => Regex.Match(coordinateString, p));
@@ -75,10 +77,10 @@
 
                     var simpleSphericalCoordinatesPatterns = new string[]
                     {
-                    // 29.5423°, -86.1926°
+                    // 29.5423°, -86.1926°  /see test case/
                     @"\A(?<latitude>\-?[0-9]+\.[0-9]+\W?)[;,\s]+(?<longitude>\-?[0-9]+\.[0-9]+\W?)\Z",
 
-                    // -31:34:55; 159:5:9
+                    // -31:34:55; 159:5:9 /see test case/
                     @"\A(?<latitude>\-?[0-9]+ [0-9]+ [0-9]+)[;,\s]+(?<longitude>\-?[0-9]+ [0-9]+ [0-9]+)\Z",
                     };
 
@@ -93,17 +95,11 @@
                 }
 
                 {
-                    //// S21°59'01, W64°12'30 is valid
-                    //// 8.77522 N, -70.80349 E
-                    //// -3.08732°N, -79.71493°W -->> (\-?\d+\.\d+°\w,\s*\-?\d+\.\d+°\w)      (\-?\d+\.\d+\s*°\s*\w,\s*\-?\d+\.\d+\s*°\s*\w)
-
-                    ////03°14.78S, 72°54.61W
-                    ////03°15’S 72°54’W
-                    ////20°20.1N 74°33.6W
-
-                    ////37°08'09.4"N, 8°23'04.2"W
-                    ////08º48’23’’S, 115º56’24’’E
-                    ////20°20.1N 74°33.6W
+                    //// 03°14.78S, 72°54.61W /see test case/
+                    //// 03°15’S 72°54’W /see test case/
+                    //// 20°20.1N 74°33.6W /see test case/
+                    //// 37°08'09.4"N, 8°23'04.2"W /see test case/
+                    //// 08º48’23’’S, 115º56’24’’E /see test case/
 
                     string coordinateText = this.SimplifyCoordinateString(coordinateString);
 
@@ -300,21 +296,26 @@
         private string SimplifyCoordinateString(string coordinateString)
         {
             string coordinateText = coordinateString
+                .RegexReplace(@"'\s*\-+\s*""", "'") //// 16°03'--""S, 130°26'--""E  /see test case/
                 .RegexReplace("[–—−-]", "-")
                 .RegexReplace(@"[,;]", ",")
+                .RegexReplace(@"(?i)[,;:\.\s]+(lat|long?)(\.|itude)", " ") //// Lon. 151. E. Lat. 3. S. /see test case/
                 .RegexReplace(@"[^EWONS\d\W]+", " ") //// Remove text
                 .RegexReplace(@"\s[a-z]+\s", " ")
                 .RegexReplace(@"\-\s+(?=\d)", " -")
-                .RegexReplace("E(?=[EWONS])", " ") //// 29.63527EN, 82.37111EW
+                .RegexReplace("E(?=[EWONS])", " ") //// 29.63527EN, 82.37111EW /see test case/
                 .RegexReplace(@"[\\\/\|<>\!\?\*:=]+", " ") //// Remove some unused special characters
                 .RegexReplace(@"\s{2,}", " ")
-                .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9])\s*\.\s*([0-5][0-9](\s*\.\s*\d+)?(?!\.)(?!\d))", "$1 $2 $3") //// N33.50.13, E107.48.52 --> N33 50 13, E107 48 52
-                .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9]\s*\.\s*[0-9]{3,})", "$1 $2") //// N33.50.613, E107.48.524 --> N33 50.613, E107 48.524
-                .RegexReplace(@"(?<=°\s*\d\d)\s+(?=\d\d\d)", ".") //// S39°34 283, W71°29 908
-                .RegexReplace(@"(?<=°\s*\d\d)\s*'\s*(\d\d\d)\s*""", ".$1 ") //// S39°34'283"W 71°29'908"
-                .RegexReplace(@"(?<=\d)(\s*[,\.]\s+|\s+[,\.]\s*)(?=\d)", ".") //// 20. 58139°S, 164.76444°E
-                .RegexReplace(@"\W*°[^\w,]+|W+°[^\w,]*", "°") //// 22.14158°’S, 166.67993 °E
-                .RegexReplace(@"(?<=\d)\s+°", "°"); //// 164 °7.6444'E
+                .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9])\s*\.\s*([0-5][0-9](\s*\.\s*\d+)?(?!\.)(?!\d))", "$1 $2 $3") //// N33.50.13, E107.48.52 --> N33 50 13, E107 48 52 /see test case/
+                .RegexReplace(@"([01]?[0-9]?[0-9])\s*\.\s*([0-5][0-9]\s*\.\s*[0-9]{3,})", "$1 $2") //// N33.50.613, E107.48.524 --> N33 50.613, E107 48.524 /see test case/
+                .RegexReplace(@"(?<=°\s*\d\d)\s+(?=\d\d\d)", ".") //// S39°34 283, W71°29 908 /see test case/
+                .RegexReplace(@"(?<=°\s*\d\d)\s*'\s*(\d\d\d)\s*""", ".$1 ") //// S39°34'283"W 71°29'908" /see test case/
+                .RegexReplace(@"(?<=\d)(\s*[,\.]\s+|\s+[,\.]\s*)(?=\d)", ".") //// 20. 58139°S, 164.76444°E /see test case/
+                .RegexReplace(@"\W*°[^\w,]+|W+°[^\w,]*", "°") //// 22.14158°’S, 166.67993 °E /see test case/
+                .RegexReplace(@"(?<=\d)\s+°", "°") //// 164 °7.6444'E /see test case/
+                .RegexReplace(@"\A(\W*\d+)\.\W*([EWONS])", "$1.0$2") //// Lon. 151. E. Lat. 3. S. /see test case/
+                .RegexReplace(@"([EWONS]\W+\d+)\.\W*([EWONS])", "$1.0$2") //// Lon. 151. E. Lat. 3. S. /see test case/
+                .Trim(new char[] { ' ', '.', ',', ';' });
 
             return coordinateText;
         }

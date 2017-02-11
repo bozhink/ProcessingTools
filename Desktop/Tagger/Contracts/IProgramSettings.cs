@@ -3,8 +3,9 @@
     using System;
     using System.Collections.Generic;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Tagger.Commands.Contracts;
 
-    public interface IProgramSettings
+    public interface IProgramSettings : ICommandSettings
     {
         SchemaType ArticleSchemaType { get; set; }
 
@@ -12,21 +13,11 @@
 
         bool ExpandLowerTaxa { get; }
 
-        bool ExtractHigherTaxa { get; }
-
-        bool ExtractLowerTaxa { get; }
-
-        bool ExtractTaxa { get; }
-
-        IList<string> FileNames { get; }
-
         bool FormatTreat { get; }
 
         bool InitialFormat { get; }
 
         bool MergeInputFiles { get; }
-
-        string OutputFileName { get; set; }
 
         bool ParseCoordinates { get; }
 

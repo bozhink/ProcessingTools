@@ -17,7 +17,7 @@
     public class RedisKeyCollectionValuePairsRepositoryOfTweetUnitTests
     {
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Add valid key and valid value should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_AddValidNonPresentKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -122,7 +122,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet GetAll valid key and empty list should return empty IEnumerable.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_GetAllValidKeyAndEmptyList_ShouldReturnEmptyIEnumerable()
         {
             // Arrange
@@ -187,7 +187,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Get Keys should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public void RedisKeyCollectionValuePairsRepositoryOfTweet_GetKeys_ShouldWork()
         {
             // Arrange
@@ -217,7 +217,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid non-present key should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidNonPresentKey_ShouldWork()
         {
             // Arrange
@@ -248,7 +248,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid key and valid value should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidKeyAndValidValue_ShouldWork()
         {
             // Arrange
@@ -286,7 +286,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Remove valid yet-present key should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_RemoveValidYetPresentKey_ShouldWork()
         {
             // Arrange
@@ -412,7 +412,7 @@
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet SaveChanges should work.")]
-        [Timeout(1000)]
+        [Timeout(5000)]
         public async Task RedisKeyCollectionValuePairsRepositoryOfTweet_SaveChanges_ShouldWork()
         {
             // Arrange

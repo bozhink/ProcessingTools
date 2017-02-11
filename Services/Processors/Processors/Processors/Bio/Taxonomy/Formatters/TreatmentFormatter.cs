@@ -9,7 +9,6 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
-    using ProcessingTools.Xml.Extensions;
 
     public class TreatmentFormatter : ITreatmentFormatter
     {

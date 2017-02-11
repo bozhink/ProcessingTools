@@ -4,7 +4,6 @@
     using System.Globalization;
     using System.Text.RegularExpressions;
     using Contracts;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using Types;
 
@@ -16,11 +15,9 @@
 
         private string coordinatePartString;
         private int decimalCoordinatePartSign;
-        private ILogger logger;
 
-        public CoordinatePart(ILogger logger)
+        public CoordinatePart()
         {
-            this.logger = logger;
             this.decimalCoordinatePartSign = 1;
             this.DecimalValue = 0.0;
             this.coordinatePartString = string.Empty;
@@ -85,10 +82,8 @@
             {
                 coordinatePartUnsignedValue = this.ParseCoordinatePart();
             }
-            catch (Exception e)
+            catch
             {
-                // TODO: coordinate part
-                this.logger?.Log(e, "CoordinatePart.Parse()");
                 coordinatePartUnsignedValue = 0.0;
             }
             finally

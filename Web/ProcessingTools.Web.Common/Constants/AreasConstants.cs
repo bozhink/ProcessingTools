@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Common.Constants
 {
-    public static class AreasConstants
+    public sealed class AreasConstants
     {
         public const string ArticlesAreaName = "Articles";
         public const string DataAreaName = "Data";

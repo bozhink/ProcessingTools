@@ -3,9 +3,10 @@
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Tagger.Commands.Contracts.Providers;
+    using ProcessingTools.Tagger.Commands.Providers;
 
     public class ProgramSettingsBuilder
     {
@@ -301,7 +302,6 @@
                             }
                             else
                             {
-
                                 this.logger?.Log(
                                     LogType.Warning,
                                     "Multiple commands match input name '{0}': {1}",

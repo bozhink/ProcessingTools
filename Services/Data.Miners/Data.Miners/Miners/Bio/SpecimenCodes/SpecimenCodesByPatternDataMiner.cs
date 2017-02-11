@@ -56,7 +56,7 @@
             }
 
             var data = await this.patterns.AsParallel()
-                .SelectMany(p => Regex.Match(content, p.Key).ToIEnumerable()
+                .SelectMany(p => Regex.Match(content, p.Key).AsEnumerable()
                     .Select(m => new SpecimenCodeResponseModel
                     {
                         Content = m,

@@ -9,19 +9,19 @@
     using Contracts.Harvesters.ExternalLinks;
     using Contracts.Models.ExternalLinks;
     using Models.ExternalLinks;
-    using ProcessingTools.Xml.Contracts.Providers;
     using ProcessingTools.Xml.Contracts.Serialization;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
-    public class ExternalLinksHarvester : AbstractGenericQueryableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
+    public class ExternalLinksHarvester : AbstractGenericEnumerableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
         private readonly IXmlTransformDeserializer serializer;
         private readonly IExternalLinksTransformersFactory transformersFactory;
 
         public ExternalLinksHarvester(
-            IXmlContextWrapperProvider contextWrapperProvider,
+            IXmlContextWrapper contextWrapper,
             IXmlTransformDeserializer serializer,
             IExternalLinksTransformersFactory transformersFactory)
-            : base(contextWrapperProvider)
+            : base(contextWrapper)
         {
             if (serializer == null)
             {

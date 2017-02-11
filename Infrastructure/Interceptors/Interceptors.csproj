@@ -56,6 +56,7 @@
     <Compile Include="ExceptionLoggingInterceptor.cs" />
     <Compile Include="FileExistsRaiseWarningInterceptor.cs" />
     <Compile Include="LogExceptionAttribute.cs" />
+    <Compile Include="FileNotFoundInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

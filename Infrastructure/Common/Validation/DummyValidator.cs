@@ -3,7 +3,7 @@
     using System;
     using System.Linq.Expressions;
     using Constants;
-    using Exceptions;
+    using ProcessingTools.Exceptions;
 
     public static class DummyValidator
     {

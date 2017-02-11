@@ -108,6 +108,14 @@
                                         actionName: nameof(FilesController.Download),
                                         routeValues: new { id = item.DocumentId })
                                 </span>
+                                <span class="item">
+                                    @Html.ActionLink(
+                                        linkText: "Tag",
+                                        actionName: nameof(TaggerController.Edit),
+                                        controllerName: ControllerNames.TaggerControllerName,
+                                        routeValues: new { id = item.DocumentId },
+                                        htmlAttributes: null)
+                                </span>
                             </span>
                         </td>
                     </tr>
@@ -115,6 +123,12 @@
             }
         </tbody>
     </table>
+
+    <p>
+        @Html.ActionLink(
+            linkText: Strings.DeleteAllFilesActionLinkTitle,
+            actionName: nameof(FilesController.DeleteAll))
+    </p>
 
     <footer>
         @Html.Partial(ViewNames.NavigationFootPartialViewName)

@@ -70,39 +70,6 @@ namespace ProcessingTools.Tagger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
-        ///        Extract all taxa.
-        ///.
-        /// </summary>
-        internal static string ExtractAllTaxaMessage {
-            get {
-                return ResourceManager.GetString("ExtractAllTaxaMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 
-        ///        Extract higher taxa.
-        ///.
-        /// </summary>
-        internal static string ExtractHigherTaxaMessage {
-            get {
-                return ResourceManager.GetString("ExtractHigherTaxaMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 
-        ///        Extract lower taxa.
-        ///.
-        /// </summary>
-        internal static string ExtractLowerTaxaMessage {
-            get {
-                return ResourceManager.GetString("ExtractLowerTaxaMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Usage: Tagger -&lt;options&gt; &lt;input file name&gt;[ &lt;output file name&gt;[ &lt;query|zoobank input file&gt;]][ --&lt;double-dashed options&gt;]
         ///where:
         ///Options:

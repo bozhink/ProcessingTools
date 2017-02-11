@@ -48,15 +48,14 @@
     <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
     <Compile Include="Contracts\Factories\IXQueryTransformerFactory.cs" />
     <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
-    <Compile Include="Contracts\Providers\IDocumentWrapperProvider.cs" />
+    <Compile Include="Contracts\Wrappers\IDocumentWrapper.cs" />
     <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
     <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
-    <Compile Include="Contracts\Providers\IXmlContextWrapperProvider.cs" />
+    <Compile Include="Contracts\Wrappers\IXmlContextWrapper.cs" />
     <Compile Include="Contracts\Transformers\IXQueryTransformer.cs" />
     <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
-    <Compile Include="Extensions\XmlNodeExtensions.cs" />
-    <Compile Include="Providers\DocumentWrapperProvider.cs" />
+    <Compile Include="Wrappers\DocumentWrapper.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\XQueryTransformer.cs" />
     <Compile Include="Transformers\XslTransformer.cs" />
@@ -68,7 +67,7 @@
     </Compile>
     <Compile Include="Contracts\IXQueryTransform.cs" />
     <Compile Include="Transform\XQueryTransform.cs" />
-    <Compile Include="Providers\XmlContextWrapperProvider.cs" />
+    <Compile Include="Wrappers\XmlContextWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -101,6 +100,10 @@
       <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Extensions\Extensions.csproj">
+      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Serialization\Serialization.csproj">
       <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
       <Name>Serialization</Name>
@@ -119,6 +122,7 @@
     <Content Include="Xsl\envo-items-to-tagreplace.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Xsl\format\epub-html-to-nlm.xsl" />
     <Content Include="Xsl\special\gavin-laurens-tn-ultimate.xsl" />
     <Content Include="Xsl\taxonomy\parse-treatment-meta-with-inner-information.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

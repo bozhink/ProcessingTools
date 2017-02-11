@@ -9,21 +9,21 @@
     using Contracts.Processors.Abbreviations;
     using Models.Abbreviations;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Xml.Contracts.Providers;
-    using ProcessingTools.Xml.Extensions;
+    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class AbbreviationsTagger : IAbbreviationsTagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[contains(string(.),string('{0}'))]";
 
         private readonly IAbbreviationsHarvester abbreviationsHarvester;
-        private readonly IXmlContextWrapperProvider wrapperProvider;
+        private readonly IXmlContextWrapper contextWrapper;
         private readonly ILogger logger;
 
         public AbbreviationsTagger(
             IAbbreviationsHarvester abbreviationsHarvester,
-            IXmlContextWrapperProvider wrapperProvider,
+            IXmlContextWrapper contextWrapper,
             ILogger logger)
         {
             if (abbreviationsHarvester == null)
@@ -31,13 +31,13 @@
                 throw new ArgumentNullException(nameof(abbreviationsHarvester));
             }
 
-            if (wrapperProvider == null)
+            if (contextWrapper == null)
             {
-                throw new ArgumentNullException(nameof(wrapperProvider));
+                throw new ArgumentNullException(nameof(contextWrapper));
             }
 
             this.abbreviationsHarvester = abbreviationsHarvester;
-            this.wrapperProvider = wrapperProvider;
+            this.contextWrapper = contextWrapper;
             this.logger = logger;
         }
 
@@ -133,7 +133,7 @@
                 return 0;
             }
 
-            var document = this.wrapperProvider.Create(context);
+            var document = this.contextWrapper.Create(context);
 
             var abbreviationSet = new HashSet<IAbbreviation>(abbreviationDefinitions);
             abbreviationSet.OrderByDescending(a => a.Content.Length)

@@ -16,7 +16,6 @@
     using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Xml.Extensions;
 
     public class Expander : IExpander
     {
@@ -47,6 +46,16 @@
                     .Cast<XmlNode>()
                     .AsParallel()
                     .ForAll(n => this.ParseSync(n));
+
+                ////context.SelectNodes(".//sec[not(sec)]")
+                ////    .Cast<XmlNode>()
+                ////    .AsParallel()
+                ////    .ForAll(n => this.ParseSync(n));
+
+                ////context.SelectNodes(".//p")
+                ////    .Cast<XmlNode>()
+                ////    .AsParallel()
+                ////    .ForAll(n => this.ParseSync(n));
 
                 // Parse documents in merged document
                 context.SelectNodes(XPathStrings.HigherDocumentStructure)

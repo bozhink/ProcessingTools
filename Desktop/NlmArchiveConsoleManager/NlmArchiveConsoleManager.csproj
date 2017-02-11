@@ -92,7 +92,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

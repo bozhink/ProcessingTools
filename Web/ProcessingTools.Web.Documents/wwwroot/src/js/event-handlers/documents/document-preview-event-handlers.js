@@ -1,4 +1,6 @@
-const MAIN_ASIDE_ID = 'aside-main-box';
+const
+    MAIN_ASIDE_ID = 'aside-main-box',
+    ARTICLE_FIGS_AND_TABLES = 'article_figs_and_tables';
 
 module.exports = function (window, document, $, factory, tagger, coordinatesToolboxes) {
 
@@ -36,10 +38,30 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
         $aside.find('.balloon').remove();
     }
 
-    function manualTagMenufactory(menuName, callback) {
+    // http://stackoverflow.com/questions/7215479/get-parent-element-of-a-selected-text
+    function getSelectionParentElement() {
+        var parentElement = null,
+            selection;
+        if (window.getSelection) {
+            selection = window.getSelection();
+            if (selection.rangeCount) {
+                parentElement = selection.getRangeAt(0).commonAncestorContainer;
+                if (parentElement.nodeType != 1) {
+                    parentElement = parentElement.parentNode;
+                }
+            }
+        } else if ((selection = document.selection) && selection.type != "Control") {
+            parentElement = selection.createRange().parentElement();
+        }
+        return parentElement;
+    }
+
+    function actionsMenuFactory(menuName, callback) {
         var $aside = $('#' + MAIN_ASIDE_ID),
             $supermenu = $('#supermenu'),
             $menu;
+
+        $('body').removeClass('move-anchor');
 
         // Remove notification
         $('#manual-mode-notifier').remove();
@@ -53,7 +75,6 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
         $('.manual-tag-menu').remove();
         $menu = $('<menu>')
             .addClass('manual-tag-menu')
-            .attr('id', 'menu-bibliographic-citations')
             .attr('label', menuName);
 
         // Populate the menu
@@ -68,46 +89,96 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'bibr');
         }),
+
         tagAppendicesCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'app');
         }),
+
         tagSupplMaterialsCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'supplementary-material');
         }),
+
         tagTablesCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'table');
         }),
+
         tagFiguresCitation: factory.create(function (e) {
             var rid = e.target.getAttribute('rid');
             tagger.tagInXref(rid, 'fig');
         }),
-        emailThisPage: factory.create(function () {
-            window.location = 'mailto:?body=' + window.location.href;
+
+        moveFloatingObject: factory.create(function (e) {
+            var $selection,
+                $anchorElement,
+                rid = e.target.getAttribute('rid');
+            
+            if (!rid) {
+                return false;
+            }
+
+            function getAnchorElement($selection, closestSelector) {
+                var $anchor;
+
+                if (!$selection || !closestSelector) {
+                    return null;
+                }
+
+                try {
+                    $anchor = $selection.closest(closestSelector);
+                    if ($anchor.length > 0 && $anchor.closest('.' + ARTICLE_FIGS_AND_TABLES).length < 1) {
+                        return $anchor;
+                    }
+                } catch (ex) {}
+
+                return null;
+            }
+
+            try {
+                $selection = $(getSelectionParentElement());
+
+                $anchorElement = getAnchorElement($selection, '.table-wrap') ||
+                    getAnchorElement($selection, 'figure.fig') ||
+                    getAnchorElement($selection, '.title') ||
+                    getAnchorElement($selection, 'p.p') ||
+                    null;
+
+                if ($anchorElement != null) {
+                    $anchorElement.after($('#' + rid));
+                    $(e.target).remove();
+                }
+            } catch (ex) {}
+
+            return false;
         }),
-        foo: factory.create(tagger.foo),
+
         tagLink: factory.create(function () {
             tagger.tagLink();
         }),
+
         tagCoordinate: factory.create(function () {
             tagger.tagInSpan('locality-coordinates');
         }),
+
         tagAbbrev: factory.create(function () {
             tagger.tag('abbr', 'abbrev');
         }),
+
         tagAbbrevDef: factory.create(function () {
             tagger.tagInSpan('p');
             tagger.tagInSpan('def');
         }),
+
         tagbibliographyElement: factory.create(function (e) {
             var elementName = e.target.id.toString().substr(10);
             tagger.tagInMark(elementName);
         }),
+
         tagBibliographicCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
-            manualTagMenufactory($target.text(), function ($menu) {
+            actionsMenuFactory($target.text(), function ($menu) {
                 $('.ref').each(function (i, element) {
                     var $element = $(element);
                     $('<menuitem>')
@@ -119,9 +190,10 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+
         tagAppendicesCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
-            manualTagMenufactory($target.text(), function ($menu) {
+            actionsMenuFactory($target.text(), function ($menu) {
                 $('.app').each(function (i, element) {
                     var $element = $(element);
                     $('<menuitem>')
@@ -133,9 +205,10 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+
         tagSupplMaterialsCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
-            manualTagMenufactory($target.text(), function ($menu) {
+            actionsMenuFactory($target.text(), function ($menu) {
                 $('.supplementary-material').each(function (i, element) {
                     var $element = $(element);
                     $('<menuitem>')
@@ -147,9 +220,10 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+
         tagTablesCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
-            manualTagMenufactory($target.text(), function ($menu) {
+            actionsMenuFactory($target.text(), function ($menu) {
                 $('.table-wrap').each(function (i, element) {
                     var $element = $(element);
                     $('<menuitem>')
@@ -161,9 +235,10 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+
         tagFiguresCitationMenuClick: factory.create(function (e) {
             var $target = $(e.target);
-            manualTagMenufactory($target.text(), function ($menu) {
+            actionsMenuFactory($target.text(), function ($menu) {
                 $('.fig').each(function (i, element) {
                     var $element = $(element);
                     $('<menuitem>')
@@ -175,6 +250,34 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 });
             });
         }),
+
+        moveFloatingObjectsMenuClick: factory.create(function (e) {
+            var $target = $(e.target);
+            actionsMenuFactory($target.text(), function ($menu) {
+                var $articleFigsAndTables = $('.' + ARTICLE_FIGS_AND_TABLES);
+                $articleFigsAndTables.find('.fig').each(function (i, element) {
+                    var $element = $(element);
+                    $('<menuitem>')
+                        .addClass('mi-move')
+                        .attr('id', 'mi-move-fig-' + i)
+                        .attr('rid', $element.attr('id'))
+                        .attr('label', $element.find('.label').text().trim())
+                        .appendTo($menu);
+                });
+                $articleFigsAndTables.find('.table-wrap').each(function (i, element) {
+                    var $element = $(element);
+                    $('<menuitem>')
+                        .addClass('mi-move')
+                        .attr('id', 'mi-move-table-' + i)
+                        .attr('rid', $element.attr('id'))
+                        .attr('label', $element.find('.label').text().trim())
+                        .appendTo($menu);
+                });
+
+                $('body').addClass('move-anchor');
+            });
+        }),
+
         setElementInEditMode: function (event) {
             var e = event || window.event,
                 $target = $(e.target),
@@ -188,6 +291,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                     .addClass('in-edit');
             }
         },
+
         unsetElementInEditMode: function (event) {
             var e = event || window.event,
                 $target = $(e.target),
@@ -201,6 +305,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                     .removeClass('in-edit');
             }
         },
+
         unsetAllInEditMode: function (event) {
             var e = event || window.event;
             e.stopPropagation();
@@ -209,11 +314,17 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 .removeAttr('contenteditable')
                 .removeClass('in-edit');
         },
+
         clearTagsInSelection: factory.create(tagger.clearTagsInSelection),
+
         tagInBold: factory.create(tagger.tagInBold),
+
         tagInItalic: factory.create(tagger.tagInItalic),
+
         tagInUnderline: factory.create(tagger.tagInUnderline),
+
         tagInMonospace: factory.create(tagger.tagInMonospace),
+
         mouseoverXref: function (event) {
             var e = event || window.event,
                 target = e.target;
@@ -241,6 +352,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 return false;
             }
         },
+
         mouseoutXref: function (event) {
             var e = event || window.event,
                 target = e.target;
@@ -253,9 +365,11 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                 return false;
             }
         },
+
         genrateCoordinatesListToolbox: factory.create(function () {
             coordinatesToolboxes.genrateCoordinatesListToolbox('#' + MAIN_ASIDE_ID);
         }),
+
         genrateCoordinatesMapToolbox: factory.create(function () {
             coordinatesToolboxes.genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
         })

@@ -3,14 +3,12 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-
     using Contracts;
     using Models;
-
+    using ProcessingTools.Extensions;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Net.Extensions;
     using ProcessingTools.Net.Factories.Contracts;
-    using ProcessingTools.Xml.Extensions;
 
     /// <summary>
     /// Implementations of some of the Catalogue Of Life (CoL) API-s.

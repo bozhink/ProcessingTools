@@ -11,9 +11,9 @@
     using ProcessingTools.Harvesters.Harvesters.Abbreviations;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Providers;
     using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;
+    using ProcessingTools.Xml.Wrappers;
 
     [TestClass]
     public class AbbreviationsHarvesterIntegrationTests
@@ -33,7 +33,7 @@
 
             document.Load(xmlFileName);
 
-            var contextWrapperProvider = new XmlContextWrapperProvider();
+            var contextWrapper = new XmlContextWrapper();
 
             var deserializer = new XmlDeserializer();
             var serializer = new XmlTransformDeserializer(deserializer);
@@ -47,7 +47,7 @@
                 .Setup(f => f.GetAbbreviationsTransformer())
                 .Returns(transformer);
 
-            var harvester = new AbbreviationsHarvester(contextWrapperProvider, serializer, transformersFactoryMock.Object);
+            var harvester = new AbbreviationsHarvester(contextWrapper, serializer, transformersFactoryMock.Object);
 
             // Act
             var abbreviations = harvester.Harvest(document.DocumentElement).Result?.ToList();

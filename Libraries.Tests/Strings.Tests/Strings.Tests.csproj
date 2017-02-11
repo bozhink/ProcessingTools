@@ -62,10 +62,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Extensions\ListIntersectionsExtensionsTests.cs" />
-    <Compile Include="Integration.Tests\Extensions\DistinctWithStopWordsIntegrationTests.cs" />
+    <Compile Include="Integration.Tests\LevenshteinDistanceIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.Tests\Extensions\DistinctWithStopWordsUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Strings\Strings.csproj">

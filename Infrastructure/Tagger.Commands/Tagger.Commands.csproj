@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6FD4843F-4B5D-412C-8101-396960FDDC21}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProcessingTools.Tagger.Commands</RootNamespace>
+    <AssemblyName>ProcessingTools.Tagger.Commands</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandSettings.cs" />
+    <Compile Include="Contracts\Commands\ISimpleTaggerCommand.cs" />
+    <Compile Include="Providers\CommandInfoProvider.cs" />
+    <Compile Include="Commands\ExpandLowerTaxaCommand.cs" />
+    <Compile Include="Commands\ExtractTaxaCommand.cs" />
+    <Compile Include="Commands\FormatTreatmentsCommand.cs" />
+    <Compile Include="Commands\InitialFormatCommand.cs" />
+    <Compile Include="Commands\ParseCoordinatesCommand.cs" />
+    <Compile Include="Commands\ParseHigherTaxaAboveGenusCommand.cs" />
+    <Compile Include="Commands\ParseHigherTaxaBySuffixCommand.cs" />
+    <Compile Include="Commands\ParseHigherTaxaWithAphiaCommand.cs" />
+    <Compile Include="Commands\ParseHigherTaxaWithCatalogueOfLifeCommand.cs" />
+    <Compile Include="Commands\ParseHigherTaxaWithGbifCommand.cs" />
+    <Compile Include="Commands\ParseHigherTaxaWithLocalDbCommand.cs" />
+    <Compile Include="Commands\ParseLowerTaxaCommand.cs" />
+    <Compile Include="Commands\ParseReferencesCommand.cs" />
+    <Compile Include="Commands\ParseTreatmentMaterialsCommand.cs" />
+    <Compile Include="Commands\ParseTreatmentMetaWithAphiaCommand.cs" />
+    <Compile Include="Commands\ParseTreatmentMetaWithCatalogueOfLifeCommand.cs" />
+    <Compile Include="Commands\ParseTreatmentMetaWithGbifCommand.cs" />
+    <Compile Include="Commands\ParseTreatmentMetaWithInternalInformationCommand.cs" />
+    <Compile Include="Commands\QueryReplaceCommand.cs" />
+    <Compile Include="Commands\RemoveAllTaxonNamePartTagsCommand.cs" />
+    <Compile Include="Commands\ResolveMediaTypesCommand.cs" />
+    <Compile Include="Commands\RunCustomXQueryTransformCommand.cs" />
+    <Compile Include="Commands\RunCustomXslTransformCommand.cs" />
+    <Compile Include="Commands\SpecialCaseGavinLaurensCommand.cs" />
+    <Compile Include="Commands\TagAbbreviationsCommand.cs" />
+    <Compile Include="Commands\TagAltitudesCommand.cs" />
+    <Compile Include="Commands\TagCollectionCodesCommand.cs" />
+    <Compile Include="Commands\TagCoordinatesCommand.cs" />
+    <Compile Include="Commands\TagDatesCommand.cs" />
+    <Compile Include="Commands\TagEnvironmentTermsCommand.cs" />
+    <Compile Include="Commands\TagEnvironmentTermsWithExtractCommand.cs" />
+    <Compile Include="Commands\TagFloatsCommand.cs" />
+    <Compile Include="Commands\TagGeoEpithetsCommand.cs" />
+    <Compile Include="Commands\TagGeographicDeviationsCommand.cs" />
+    <Compile Include="Commands\TagGeoNamesCommand.cs" />
+    <Compile Include="Commands\TagHigherTaxaCommand.cs" />
+    <Compile Include="Commands\TagInstitutionalCodesCommand.cs" />
+    <Compile Include="Commands\TagInstitutionsCommand.cs" />
+    <Compile Include="Commands\TagLowerTaxaCommand.cs" />
+    <Compile Include="Commands\TagLowerTaxaInItalicCommand.cs" />
+    <Compile Include="Commands\TagMorphologicalEpithetsCommand.cs" />
+    <Compile Include="Commands\TagProductsCommand.cs" />
+    <Compile Include="Commands\TagQuantitiesCommand.cs" />
+    <Compile Include="Commands\TagReferencesCommand.cs" />
+    <Compile Include="Commands\TagSpecimenCodesCommand.cs" />
+    <Compile Include="Commands\TagSpecimenCountCommand.cs" />
+    <Compile Include="Commands\TagTableFootnoteCommand.cs" />
+    <Compile Include="Commands\TagTypeStatusCommand.cs" />
+    <Compile Include="Commands\TagWebLinksCommand.cs" />
+    <Compile Include="Commands\TestCommand.cs" />
+    <Compile Include="Commands\ValidateCrossReferencesCommand.cs" />
+    <Compile Include="Commands\ValidateExternalLinksCommand.cs" />
+    <Compile Include="Commands\ValidateTaxaCommand.cs" />
+    <Compile Include="Commands\ZooBankCloneJsonCommand.cs" />
+    <Compile Include="Commands\ZooBankCloneXmlCommand.cs" />
+    <Compile Include="Commands\ZooBankGenerateRegistrationXmlCommand.cs" />
+    <Compile Include="Contracts\Commands\IExpandLowerTaxaCommand.cs" />
+    <Compile Include="Contracts\Commands\IExtractTaxaCommand.cs" />
+    <Compile Include="Contracts\Commands\IFormatTreatmentsCommand.cs" />
+    <Compile Include="Contracts\Commands\IInitialFormatCommand.cs" />
+    <Compile Include="Contracts\Commands\INotAwaitableCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseCoordinatesCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseHigherTaxaAboveGenusCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseHigherTaxaBySuffixCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseHigherTaxaWithAphiaCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseHigherTaxaWithCatalogueOfLifeCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseHigherTaxaWithGbifCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseHigherTaxaWithLocalDbCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseLowerTaxaCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseReferencesCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseTreatmentMaterialsCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithAphiaCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithCatalogueOfLifeCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithGbifCommand.cs" />
+    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithInternalInformationCommand.cs" />
+    <Compile Include="Contracts\Commands\IQueryReplaceCommand.cs" />
+    <Compile Include="Contracts\Commands\IRemoveAllTaxonNamePartTagsCommand.cs" />
+    <Compile Include="Contracts\Commands\IResolveMediaTypesCommand.cs" />
+    <Compile Include="Contracts\Commands\IRunCustomXQueryTransformCommand.cs" />
+    <Compile Include="Contracts\Commands\IRunCustomXslTransformCommand.cs" />
+    <Compile Include="Contracts\Commands\ISpecialCaseGavinLaurensCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagAbbreviationsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagAltitudesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagCollectionCodesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagCoordinatesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagDatesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagEnvironmentTermsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagEnvironmentTermsWithExtractCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagFloatsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagGeoEpithetsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagGeographicDeviationsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagGeoNamesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITaggerCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagHigherTaxaCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagInstitutionalCodesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagInstitutionsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagLowerTaxaCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagLowerTaxaInItalicCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagMorphologicalEpithetsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagProductsCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagQuantitiesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagReferencesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagSpecimenCountCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagTableFootnoteCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagTypeStatusCommand.cs" />
+    <Compile Include="Contracts\Commands\ITagWebLinksCommand.cs" />
+    <Compile Include="Contracts\Commands\ITestCommand.cs" />
+    <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
+    <Compile Include="Contracts\Commands\IValidateExternalLinksCommand.cs" />
+    <Compile Include="Contracts\Commands\IValidateTaxaCommand.cs" />
+    <Compile Include="Contracts\Commands\IZooBankCloneJsonCommand.cs" />
+    <Compile Include="Contracts\Commands\IZooBankCloneXmlCommand.cs" />
+    <Compile Include="Contracts\Commands\IZooBankGenerateRegistrationXmlCommand.cs" />
+    <Compile Include="Contracts\Models\ICommandInfo.cs" />
+    <Compile Include="Contracts\Providers\ICommandInfoProvider.cs" />
+    <Compile Include="Contracts\ICommandSettings.cs" />
+    <Compile Include="Extensions\CommandExtensions.cs" />
+    <Compile Include="Generics\GenericDocumentFormatterCommand.cs" />
+    <Compile Include="Generics\GenericDocumentParserCommand.cs" />
+    <Compile Include="Generics\GenericDocumentTaggerCommand.cs" />
+    <Compile Include="Generics\GenericDocumentTaggerWithNormalizationCommand.cs" />
+    <Compile Include="Generics\GenericDocumentValidatorCommand.cs" />
+    <Compile Include="Generics\GenericParseHigherTaxaCommand.cs" />
+    <Compile Include="Generics\GenericXmlContextParserCommand.cs" />
+    <Compile Include="Generics\GenericXmlContextTaggerCommand.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommandInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
+      <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>
+      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
+      <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
+      <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
+      <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>
+      <Name>Harvesters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Layout.Processors\Layout.Processors.csproj">
+      <Project>{FC880066-D413-4E16-9F46-23ACD5E30C2D}</Project>
+      <Name>Layout.Processors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Processors\Processors.csproj">
+      <Project>{237D4CAF-98A4-4C86-91A6-46AE3E27E965}</Project>
+      <Name>Processors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Processors\Special.Processors\Special.Processors.csproj">
+      <Project>{287BB38D-333E-4206-B0DC-7D87345EE2AE}</Project>
+      <Name>Special.Processors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Attributes\Attributes.csproj">
+      <Project>{1F0EDC77-2CAD-46F5-80DE-8AF619B7E41D}</Project>
+      <Name>Attributes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extensions\Extensions.csproj">
+      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MessageTexts\ExtractAllTaxaMessage.txt" />
+    <Content Include="MessageTexts\ExtractHigherTaxaMessage.txt" />
+    <Content Include="MessageTexts\ExtractLowerTaxaMessage.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

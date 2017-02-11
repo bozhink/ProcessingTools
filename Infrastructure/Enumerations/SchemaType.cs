@@ -2,7 +2,7 @@
 {
     public enum SchemaType
     {
-        Nlm,
-        System
+        Nlm = 1,
+        System = 0
     }
 }

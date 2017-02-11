@@ -4,9 +4,9 @@
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Contracts.Cache;
     using ProcessingTools.Xml.Contracts.Transformers;
-    using ProcessingTools.Xml.Extensions;
 
     public class XQueryTransformer : IXQueryTransformer
     {

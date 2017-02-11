@@ -7,9 +7,9 @@
     using System.Xml;
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Common;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;

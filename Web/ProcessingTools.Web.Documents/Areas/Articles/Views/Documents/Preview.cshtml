@@ -38,8 +38,9 @@
                         htmlAttributes: new { target = "_blank" })
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tag manually <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manual actions <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a id="move-floating-objects">Move floating objects</a></li>
                         <li><a id="tag-figures-citations-menu-item">Figures citations</a></li>
                         <li><a id="tag-tables-citations-menu-item">Tables citations</a></li>
                         <li><a id="tag-suppl-materials-citations-menu-item">Suppl. materials citations</a></li>
@@ -98,12 +99,6 @@
             }
         }
     </menu>
-    <menu label="Share on...">
-        <menuitem label="Twitter" onclick="window.open('//twitter.com/intent/tweet?text='+window.location.href);"></menuitem>
-        <menuitem label="Facebook" onclick="window.open('//facebook.com/sharer/sharer.php?u='+window.location.href);"></menuitem>
-    </menu>
-    <menuitem id="menu-item-email-page" label="Email This Page"></menuitem>
-    <menuitem id="menu-item-foo" label="Foo"></menuitem>
     <menuitem id="menu-item-tag-link" label="Tag link"></menuitem>
     <menuitem id="menu-item-tag-coordinate" label="Tag coordinate"></menuitem>
 </menu>
