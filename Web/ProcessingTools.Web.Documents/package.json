@@ -32,7 +32,7 @@
     "requirejs": "^2.3.2"
   },
   "devDependencies": {
-    "@types/angular": "^1.6.4",
+    "@types/angular": "^1.6.5",
     "@types/jquery": "^2.0.40",
     "@types/node": "^7.0.5",
     "babel-eslint": "^7.1.1",
@@ -46,7 +46,7 @@
     "eslint-plugin-react": "^6.9.0",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
-    "gulp-clean-css": "^3.0.0",
+    "gulp-clean-css": "^3.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-less": "^3.3.0",
     "gulp-mocha": "^3.0.1",
@@ -62,7 +62,7 @@
     "sinon": "^1.17.7",
     "tsify": "^3.0.1",
     "tslint": "^4.4.2",
-    "typescript": "^2.1.5",
+    "typescript": "^2.1.6",
     "typings": "^2.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
