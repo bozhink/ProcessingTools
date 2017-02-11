@@ -98,6 +98,7 @@
     <Compile Include="Contracts\Processors\Floats\ITableFootNotesTagger.cs" />
     <Compile Include="Contracts\IGenericStringDataMinerEvaluator.cs" />
     <Compile Include="Contracts\Processors\Products\IProductsTagger.cs" />
+    <Compile Include="Contracts\Providers\Bio\Taxonomy\IParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Contracts\Providers\IAltitudeTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\ICoordinateTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IDateTagModelProvider.cs" />
