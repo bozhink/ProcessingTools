@@ -136,81 +136,7 @@
             return replace;
         }
 
-        /// <summary>
-        /// Parse taxa with full string match.
-        /// </summary>
-        /// <param name="text">Text string to be parsed.</param>
-        /// <returns>Parsed text string.</returns>
-        private string ParseFullStringMatch(string text)
-        {
-            const string GenusPattern = @"[A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+";
-            ////const string SubgenusPattern = @"[A-Z][a-zçäöüëïâěôûêîæœ\.-]+";
-            const string SpeciesPattern = @"[A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+";
-            const string SubspeciesPattern = @"[A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+";
 
-            const string InternalSignsPattern = @"[\s\?×]+";
-
-            string replace = text;
-
-            // Genus species subspecies
-            replace = Regex.Replace(
-                replace,
-                $"\\A({GenusPattern})({InternalSignsPattern})({SpeciesPattern})({InternalSignsPattern})({SubspeciesPattern})\\Z",
-                "<tn-part type=\"genus\">$1</tn-part>$2<tn-part type=\"species\">$3</tn-part>$4<tn-part type=\"subspecies\">$5</tn-part>");
-
-            // Genus species
-            replace = Regex.Replace(
-                replace,
-                $"\\A({GenusPattern})({InternalSignsPattern})({SpeciesPattern})\\Z",
-                "<tn-part type=\"genus\">$1</tn-part>$2<tn-part type=\"species\">$3</tn-part>");
-            replace = Regex.Replace(
-                replace,
-                $"\\A‘({GenusPattern})’({InternalSignsPattern})({SpeciesPattern})\\Z",
-                "‘<tn-part type=\"genus\">$1</tn-part>’$2<tn-part type=\"species\">$3</tn-part>");
-
-            // Genus (Subgenus) species subspecies
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)\Z",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>$7<tn-part type=\"subspecies\">$8</tn-part>");
-
-            // Genus (superspecies) species subspecies
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêî\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)\Z",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"superspecies\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>$7<tn-part type=\"subspecies\">$8</tn-part>");
-
-            // Genus (Subgenus) species
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)\Z",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>");
-
-            // Genus (superspecies) species
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)\Z",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"superspecies\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>");
-
-            // Genus (Subgenus)
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)\Z",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)");
-
-            // Genus
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)\Z",
-                "<tn-part type=\"genus\">$1</tn-part>");
-
-            // species
-            replace = Regex.Replace(
-                replace,
-                @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\Z",
-                @"<tn-part type=""species"">$1</tn-part>");
-            return replace;
-        }
 
         private string ParseLower(string text)
         {
@@ -221,8 +147,6 @@
 
             string replace = text;
 
-            replace = this.ParseFullStringMatch(replace);
-
             replace = this.ParseDifferentPartsOfTaxonomicNames(replace);
 
             replace = this.ParseTaxaFromBeginning(replace);
@@ -230,10 +154,10 @@
             replace = this.ParseWholeString(replace);
 
             // Parse question mark
-            replace = Regex.Replace(replace, @"(?<=</tn-part>)\s*\?", "<tn-part type=\"uncertainty-rank\">?</tn-part>");
+            replace = Regex.Replace(replace, @"(?<=</tn-part>)\s*\?", @"<tn-part type=""uncertainty-rank"">?</tn-part>");
 
             // Parse hybrid sign
-            replace = Regex.Replace(replace, @"(?<=</tn-part>\s*)×(?=\s*<tn-part)", "<tn-part type=\"hybrid-sign\">×</tn-part>");
+            replace = Regex.Replace(replace, @"(?<=</tn-part>\s*)×(?=\s*<tn-part)", @"<tn-part type=""hybrid-sign"">×</tn-part>");
 
             // Here we must return the dot after tn-part[@type='infraspecific-rank'] back into the tag
             replace = Regex.Replace(replace, @"</tn-part>\.", ".</tn-part>");
@@ -252,53 +176,53 @@
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"genus\">$1</tn-part>$2<tn-part type=\"species\">$3</tn-part>$4<tn-part type=\"subspecies\">$5</tn-part>");
+                @"<tn-part type=""genus"">$1</tn-part>$2<tn-part type=""species"">$3</tn-part>$4<tn-part type=""subspecies"">$5</tn-part>");
 
             // Genus species
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"genus\">$1</tn-part>$2<tn-part type=\"species\">$3</tn-part>");
+                @"<tn-part type=""genus"">$1</tn-part>$2<tn-part type=""species"">$3</tn-part>");
             replace = Regex.Replace(
                 replace,
                 @"\A‘([A-Z][a-z\.]+)’([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                "‘<tn-part type=\"genus\">$1</tn-part>’$2<tn-part type=\"species\">$3</tn-part>");
+                @"‘<tn-part type=""genus"">$1</tn-part>’$2<tn-part type=""species"">$3</tn-part>");
 
             // Genus (Subgenus) species subspecies
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>$7<tn-part type=\"subspecies\">$8</tn-part>");
+                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""subgenus"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>$7<tn-part type=""subspecies"">$8</tn-part>");
 
             // Genus (superspecies) species subspecies
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêî\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]+)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"superspecies\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>$7<tn-part type=\"subspecies\">$8</tn-part>");
+                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""superspecies"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>$7<tn-part type=""subspecies"">$8</tn-part>");
 
             // Genus (Subgenus) species
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>");
+                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""subgenus"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>");
 
             // Genus (superspecies) species
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([a-z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)([\s\?×]*)([A-Z]?[a-zçäöüëïâěôûêîæœ\.-]+)",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"superspecies\">$3</tn-part>$4)$5<tn-part type=\"species\">$6</tn-part>");
+                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""superspecies"">$3</tn-part>$4)$5<tn-part type=""species"">$6</tn-part>");
 
             // Genus (Subgenus)
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)([\s\?×]*)\(\s*([A-Z][a-zçäöüëïâěôûêîæœ\.-]+)([\s\?×]*?)\s*\)",
-                "<tn-part type=\"genus\">$1</tn-part>$2(<tn-part type=\"subgenus\">$3</tn-part>$4)");
+                @"<tn-part type=""genus"">$1</tn-part>$2(<tn-part type=""subgenus"">$3</tn-part>$4)");
 
             // Genus
             replace = Regex.Replace(
                 replace,
                 @"\A([A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+)",
-                "<tn-part type=\"genus\">$1</tn-part>");
+                @"<tn-part type=""genus"">$1</tn-part>");
 
             // species
             replace = Regex.Replace(
@@ -315,42 +239,28 @@
             replace = Regex.Replace(
                 replace,
                 @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Ss]sp|[Ss]ubsp)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)\Z",
-                "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"infraspecific-rank\">$2</tn-part>$3<tn-part type=\"subspecies\">$4</tn-part>");
+                @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""subspecies"">$4</tn-part>");
 
             replace = Regex.Replace(
                 replace,
                 @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Vv]ar|[Vv]|[Vv]ariety)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)\Z",
-                "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"infraspecific-rank\">$2</tn-part>$3<tn-part type=\"variety\">$4</tn-part>");
+                @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""variety"">$4</tn-part>");
 
             replace = Regex.Replace(
                 replace,
                 @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Aa]b)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)\Z",
-                "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"infraspecific-rank\">$2</tn-part>$3<tn-part type=\"aberration\">$4</tn-part>");
+                @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""aberration"">$4</tn-part>");
 
             replace = Regex.Replace(
                 replace,
                 @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Ff]|[Ff]orma?)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)\Z",
-                "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"infraspecific-rank\">$2</tn-part>$3<tn-part type=\"form\">$4</tn-part>");
+                @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""form"">$4</tn-part>");
 
             replace = Regex.Replace(
                 replace,
                 @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Ss]f|[Ss]ubforma?)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)\Z",
-                "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"infraspecific-rank\">$2</tn-part>$3<tn-part type=\"subform\">$4</tn-part>");
+                @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""subform"">$4</tn-part>");
 
-            replace = Regex.Replace(
-                replace,
-                @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\s+([a-zçäöüëïâěôûêî-]+)\Z",
-                "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"subspecies\">$2</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\A([a-zçäöüëïâěôûêîæœ\.-]+)\Z",
-                "<tn-part type=\"species\">$1</tn-part>");
-
-            replace = Regex.Replace(
-                replace,
-                @"\A([A-Z\.-]+)\Z",
-                "<tn-part type=\"genus\">$1</tn-part>");
             return replace;
         }
 
@@ -520,15 +430,15 @@
                     string parseSpecific = Regex.Replace(replace, "^.*?<specific>(.*?)</specific>.*$", "$1");
                     parseSpecific = ParseLower(parseSpecific);
 
-                    replace = Regex.Replace(replace, "<genus>(.+?)</genus>", "<tn-part type=\"genus\">$1</tn-part>");
-                    replace = Regex.Replace(replace, "<genus-authority>(.*?)</genus-authority>", "<tn-part type=\"authority\">$1</tn-part>");
+                    replace = Regex.Replace(replace, "<genus>(.+?)</genus>", @"<tn-part type=""genus"">$1</tn-part>");
+                    replace = Regex.Replace(replace, "<genus-authority>(.*?)</genus-authority>", @"<tn-part type=""authority"">$1</tn-part>");
 
                     replace = Regex.Replace(replace, "<basionym>(.*?)</basionym>", parseBasionym);
                     replace = Regex.Replace(replace, "<specific>(.*?)</specific>", parseSpecific);
 
-                    replace = Regex.Replace(replace, @"<basionym-authority>(\s*)(\(.*?\))(\s*)(.*?)</basionym-authority>", "$1<tn-part type=\"basionym-authority\">$2</tn-part>$3<tn-part type=\"authority\">$4</tn-part>");
-                    replace = Regex.Replace(replace, "<basionym-authority>(.*?)</basionym-authority>", "<tn-part type=\"authority\">$1</tn-part>");
-                    replace = Regex.Replace(replace, "<authority>(.*?)</authority>", "<tn-part type=\"authority\">$1</tn-part>");
+                    replace = Regex.Replace(replace, @"<basionym-authority>(\s*)(\(.*?\))(\s*)(.*?)</basionym-authority>", @"$1<tn-part type=""basionym-authority"">$2</tn-part>$3<tn-part type=""authority"">$4</tn-part>");
+                    replace = Regex.Replace(replace, "<basionym-authority>(.*?)</basionym-authority>", @"<tn-part type=""authority"">$1</tn-part>");
+                    replace = Regex.Replace(replace, "<authority>(.*?)</authority>", @"<tn-part type=""authority"">$1</tn-part>");
 
                     for (Match m = Regex.Match(replace, @"<infraspecific-rank>[^<>]*</infraspecific-rank>\s*<infraspecific>[^<>]*</infraspecific>\s*\)?\s*<species>[^<>]*</species>(\s*<authority>[^<>]*</authority>)?"); m.Success; m = m.NextMatch())
                     {
@@ -541,12 +451,12 @@
 
                         string rank = rankResolver.Resolve(infraSpecificRank);
 
-                        replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", "<tn-part type=\"infraspecific-rank\">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", "<tn-part type=\"" + rank + "\">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, @"<species>([a-zçäöüëïâěôûêîæœ\.-]+)</species>", "<tn-part type=\"species\">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, @"<species>([a-zçäöüëïâěôûêîæœ\.-]+)\s+([a-z\s\.-]+)</species>", "<tn-part type=\"species\">$1</tn-part> <tn-part type=\"subspecies\">$2</tn-part>");
-                        rank = replace1.Contains("type=\"subspecies\"") ? "subspecies" : "species";
-                        replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"authority\">$1</tn-part>");
+                        replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", @"<tn-part type=""infraspecific-rank"">$1</tn-part>");
+                        replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", @"<tn-part type=""" + rank + @""">$1</tn-part>");
+                        replace1 = Regex.Replace(replace1, @"<species>([a-zçäöüëïâěôûêîæœ\.-]+)</species>", @"<tn-part type=""species"">$1</tn-part>");
+                        replace1 = Regex.Replace(replace1, @"<species>([a-zçäöüëïâěôûêîæœ\.-]+)\s+([a-z\s\.-]+)</species>", @"<tn-part type=""species"">$1</tn-part> <tn-part type=""subspecies"">$2</tn-part>");
+                        rank = replace1.Contains(@"type=""subspecies""") ? "subspecies" : "species";
+                        replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", @"<tn-part type=""authority"">$1</tn-part>");
                         replace = Regex.Replace(replace, Regex.Escape(m.Value), replace1);
                     }
 
@@ -555,10 +465,10 @@
                         string replace1 = m.Value;
                         string infraSpecificRank = Regex.Replace(Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1"), "\\.", string.Empty);
                         string rank = rankResolver.Resolve(infraSpecificRank);
-                        replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", "<tn-part type=\"infraspecific-rank\">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", "<tn-part type=\"" + rank + "\">$1</tn-part>");
-                        ////replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"" + rank + "-authority\">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", "<tn-part type=\"authority\">$1</tn-part>");
+                        replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", @"<tn-part type=""infraspecific-rank"">$1</tn-part>");
+                        replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", @"<tn-part type=""" + rank + @""">$1</tn-part>");
+                        ////replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", @"<tn-part type=""" + rank + @"-authority"">$1</tn-part>");
+                        replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", @"<tn-part type=""authority"">$1</tn-part>");
                         replace = Regex.Replace(replace, Regex.Escape(m.Value), replace1);
                     }
 
