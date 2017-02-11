@@ -93,6 +93,7 @@
     <Compile Include="Harvesters\IEnumerableHarvester.cs" />
     <Compile Include="Harvesters\IStringEnumerableXmlHarvester.cs" />
     <Compile Include="IDocumentNormalizer.cs" />
+    <Compile Include="IParseContextStrategy.cs" />
     <Compile Include="IStrategy.cs" />
     <Compile Include="Models\Documents\IJournalMeta.cs" />
     <Compile Include="Models\IAbbreviatedNameableGuidIdentifiable.cs" />
