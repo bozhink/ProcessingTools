@@ -107,5 +107,10 @@
 
             return result;
         }
+
+        public static string ToRankString(this SpeciesPartType type)
+        {
+            return type.ToString().ToLower();
+        }
     }
 }

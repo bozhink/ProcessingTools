@@ -38,8 +38,8 @@
     "leaflet": "^1.0.3",
     "tether": "^1.4.0",
     "font-awesome": "^4.7.0",
-    "angular": "1.6.1",
-    "angular-route": "^1.6.1"
+    "angular": "1.6.2",
+    "angular-route": "^1.6.2"
   },
   "resolutions": {
     "jquery-validation": ">=1.8",

@@ -60,7 +60,7 @@
         /// </summary>
         /// <param name="text">Text string to be parsed.</param>
         /// <returns>Parsed text string.</returns>
-        private static string ParseDifferentPartsOfTaxonomicNames(string text)
+        private string ParseDifferentPartsOfTaxonomicNames(string text)
         {
             const string InfraTaxonNamePattern = @"([A-Za-zçäöüëïâěôûêîæœ\.-]+)";
             const string InfraPatternSuffix = @"(\.\s*|\s+)" + InfraTaxonNamePattern;
@@ -119,7 +119,7 @@
         /// </summary>
         /// <param name="text">Text string to be parsed.</param>
         /// <returns>Parsed text string.</returns>
-        private static string ParseFullStringMatch(string text)
+        private string ParseFullStringMatch(string text)
         {
             const string GenusPattern = @"[A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+";
             ////const string SubgenusPattern = @"[A-Z][a-zçäöüëïâěôûêîæœ\.-]+";
@@ -190,7 +190,7 @@
             return replace;
         }
 
-        private static string ParseLower(string text)
+        private string ParseLower(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -199,13 +199,13 @@
 
             string replace = text;
 
-            replace = ParseFullStringMatch(replace);
+            replace = this.ParseFullStringMatch(replace);
 
-            replace = ParseDifferentPartsOfTaxonomicNames(replace);
+            replace = this.ParseDifferentPartsOfTaxonomicNames(replace);
 
-            replace = ParseTaxaFromBeginning(replace);
+            replace = this.ParseTaxaFromBeginning(replace);
 
-            replace = ParseWholeString(replace);
+            replace = this.ParseWholeString(replace);
 
             // Parse question mark
             replace = Regex.Replace(replace, @"(?<=</tn-part>)\s*\?", "<tn-part type=\"uncertainty-rank\">?</tn-part>");
@@ -222,7 +222,7 @@
             return replace;
         }
 
-        private static string ParseTaxaFromBeginning(string text)
+        private string ParseTaxaFromBeginning(string text)
         {
             string replace = text;
 
@@ -286,7 +286,7 @@
             return replace;
         }
 
-        private static string ParseWholeString(string text)
+        private string ParseWholeString(string text)
         {
             string replace = text;
 
@@ -334,11 +334,9 @@
 
         private void AddFullNameAttribute(XmlNode context)
         {
-            const string XPath = ".//tn[@type='lower']/tn-part[not(@full-name)][@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
-
             var document = context.OwnerDocument();
 
-            context.SelectNodes(XPath)
+            context.SelectNodes(XPathStrings.LowerTaxonNamePartWithNoFullNameAttribute)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(lowerTaxonNamePart =>
@@ -361,44 +359,52 @@
 
         private void AddMissingEmptyTagsInTaxonName(XmlNode context)
         {
-            const string XPath = ".//tn[@type='lower'][not(count(tn-part)=1 and tn-part/@type='subgenus')][count(tn-part[@type='genus'])=0 or (count(tn-part[@type='species'])=0 and count(tn-part[@type!='genus'][@type!='subgenus'][@type!='section'][@type!='subsection'])!=0)]";
-
             var document = context.OwnerDocument();
 
-            context.SelectNodes(XPath)
+            context.SelectNodes(XPathStrings.LowerTaxonNameWithNoGenusTaxonNamePart)
                 .Cast<XmlNode>()
                 .AsParallel()
                 .ForAll(lowerTaxon =>
                 {
-                    var genusNode = lowerTaxon.SelectSingleNode(".//tn-part[@type='genus']");
-                    if (genusNode == null)
+                    var ranks = lowerTaxon.SelectNodes(".//tn-part" + XPathStrings.TaxonNamePartOfNonAuxiliaryType + "/@type")
+                        .Cast<XmlAttribute>()
+                        .Select(a => a.InnerText)
+                        .Distinct()
+                        .Select(t => t.ToSpeciesPartType())
+                        .Where(t => t != SpeciesPartType.Undefined)
+                        .ToArray();
+
+                    if (ranks.Any(r => r < SpeciesPartType.Superspecies))
                     {
-                        var speciesNode = lowerTaxon.SelectSingleNode(".//tn-part[@type='species']");
-                        if (speciesNode == null)
-                        {
-                            XmlElement speciesElement = document.CreateElement(ElementNames.TaxonNamePart);
-                            speciesElement.SetAttribute(
-                                AttributeNames.Type,
-                                TaxonRankType.Species.MapTaxonRankTypeToTaxonRankString());
-                            speciesElement.SetAttribute(
-                                AttributeNames.FullName,
-                                string.Empty);
+                        // All ranks are super-specific, so no empty genus or species element should be added
+                        return;
+                    }
 
-                            lowerTaxon.PrependChild(speciesElement);
-                        }
+                    if (ranks.All(r => r > SpeciesPartType.Species))
+                    {
+                        // All ranks are infra-specific, so here an empty species element is needed
+                        XmlElement speciesElement = document.CreateElement(ElementNames.TaxonNamePart);
+                        speciesElement.SetAttribute(
+                            AttributeNames.Type,
+                            TaxonRankType.Species.MapTaxonRankTypeToTaxonRankString());
+                        speciesElement.SetAttribute(
+                            AttributeNames.FullName,
+                            string.Empty);
 
-                        // Add genus tag
-                        {
-                            XmlElement genusElement = document.CreateElement(ElementNames.TaxonNamePart);
-                            genusElement.SetAttribute(
-                                AttributeNames.Type,
-                                TaxonRankType.Genus.MapTaxonRankTypeToTaxonRankString());
-                            genusElement.SetAttribute(
-                                AttributeNames.FullName,
-                                string.Empty);
+                        lowerTaxon.PrependChild(speciesElement);
+                    }
 
-                            lowerTaxon.PrependChild(genusElement);
-                        }
+                    // Add empty genus element
+                    {
+                        XmlElement genusElement = document.CreateElement(ElementNames.TaxonNamePart);
+                        genusElement.SetAttribute(
+                            AttributeNames.Type,
+                            TaxonRankType.Genus.MapTaxonRankTypeToTaxonRankString());
+                        genusElement.SetAttribute(
+                            AttributeNames.FullName,
+                            string.Empty);
+
+                        lowerTaxon.PrependChild(genusElement);
                     }
                 });
         }
@@ -577,11 +583,41 @@
             ////this.AddTaxonNamePartsToTaxonNameElements(context);
             ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
             ////this.ResolveWithDictionaryOfKnownRanks(context, knownRanks);
+            this.ParseWithDirectMatchWithInfraPrefix(context);
             this.ParseLowerTaxaWithoutBasionym(context);
             this.ParseLowerTaxaWithBasionym(context);
             this.RemoveWrappingItalics(context);
 
             return true;
+        }
+
+        private void ParseWithDirectMatchWithInfraPrefix(XmlNode context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            var xml = context.InnerXml;
+
+            var prefixes = SpeciesPartsPrefixesResolver.SpeciesPartsRanks
+                .Keys
+                .OrderByDescending(k => k.Length)
+                .ToArray();
+
+            foreach (var prefix in prefixes)
+            {
+                var rank = SpeciesPartsPrefixesResolver.SpeciesPartsRanks[prefix].ToRankString();
+                xml = xml
+                    .RegexReplace(
+                        $"(?i)(?<=\\b{prefix}\\.?\\s*<i\\b[^>]*><tn\\b[^>]+type=\"lower\"[^>]*>)(\\S+)(?=</tn></i>)",
+                        $"<tn-part type=\"{rank}\">$1</tn-part>")
+                    .RegexReplace(
+                        $"(?i)(?<=\\b{prefix}\\.?\\s*<tn\\b[^>]+type=\"lower\"[^>]*>)(\\S+)(?=</tn>)",
+                        $"<tn-part type=\"{rank}\">$1</tn-part>");
+            }
+
+            context.InnerXml = xml;
         }
 
         private void RegularizeRankOfSingleWordTaxonName(XmlNode context)
