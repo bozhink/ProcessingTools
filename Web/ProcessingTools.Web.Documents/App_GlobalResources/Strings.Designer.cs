@@ -106,6 +106,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coordinates Calculator.
+        /// </summary>
+        internal static string CoordinatesCalculatorActionLinkTitle {
+            get {
+                return ResourceManager.GetString("CoordinatesCalculatorActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinates Calculator.
+        /// </summary>
+        internal static string CoordinatesCalculatorPageHeading {
+            get {
+                return ResourceManager.GetString("CoordinatesCalculatorPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinates Calculator.
+        /// </summary>
+        internal static string CoordinatesCalculatorPageTitle {
+            get {
+                return ResourceManager.GetString("CoordinatesCalculatorPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string DeafultCreatePageHeading {
@@ -421,6 +448,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go Back.
+        /// </summary>
+        internal static string GoBackActionLinkTitle {
+            get {
+                return ResourceManager.GetString("GoBackActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please, go back and try again..
         /// </summary>
         internal static string GoBackAndTryAgainMessage {
@@ -705,6 +741,15 @@ namespace Resources {
         internal static string RegisterActionLinkTitle {
             get {
                 return ResourceManager.GetString("RegisterActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        internal static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
             }
         }
     }

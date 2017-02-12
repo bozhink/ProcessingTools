@@ -133,6 +133,15 @@
   <data name="ContactActionLinkTitle" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="CoordinatesCalculatorActionLinkTitle" xml:space="preserve">
+    <value>Coordinates Calculator</value>
+  </data>
+  <data name="CoordinatesCalculatorPageHeading" xml:space="preserve">
+    <value>Coordinates Calculator</value>
+  </data>
+  <data name="CoordinatesCalculatorPageTitle" xml:space="preserve">
+    <value>Coordinates Calculator</value>
+  </data>
   <data name="DeafultCreatePageHeading" xml:space="preserve">
     <value>Create</value>
   </data>
@@ -238,6 +247,9 @@
   <data name="FilesActionLinkTitle" xml:space="preserve">
     <value>Files</value>
   </data>
+  <data name="GoBackActionLinkTitle" xml:space="preserve">
+    <value>Go Back</value>
+  </data>
   <data name="GoBackAndTryAgainMessage" xml:space="preserve">
     <value>Please, go back and try again.</value>
   </data>
@@ -333,5 +345,8 @@
   </data>
   <data name="RegisterActionLinkTitle" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
   </data>
 </root>

@@ -310,6 +310,7 @@
     <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Tagger\FileViewModel.cs" />
+    <Compile Include="Areas\Data\Controllers\CoordinatesCalculatorController.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\BlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\Contracts\IBlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\SearchResposeModel.cs" />
@@ -324,6 +325,11 @@
     <Compile Include="Areas\Data\Controllers\BioController.cs" />
     <Compile Include="Areas\Data\Controllers\BioTaxonomyTaxaRanksDataController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
+    <Compile Include="Areas\Data\Models\CoordinatesCalculator\CoordinatesRequestModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinateViewModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinatesResponseViewModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\ICoordinate.cs" />
+    <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\ICoordinates.cs" />
     <Compile Include="Areas\Files\Controllers\MetadataController.cs" />
     <Compile Include="Areas\Files\Controllers\UploadController.cs" />
     <Compile Include="Areas\Files\FilesAreaRegistration.cs" />
@@ -522,6 +528,9 @@
     <Content Include="Areas\Articles\Views\Tagger\Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Tagger\_Edit.cshtml" />
     <Content Include="Areas\Articles\Views\Files\DeleteAll.cshtml" />
+    <Content Include="Areas\Data\Views\CoordinatesCalculator\Help.cshtml" />
+    <Content Include="Areas\Data\Views\CoordinatesCalculator\Index.cshtml" />
+    <Content Include="Areas\Data\Views\CoordinatesCalculator\Calculate.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
     <Content Include="README.md" />
   </ItemGroup>

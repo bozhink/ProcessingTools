@@ -10,6 +10,7 @@
         public const string BioTaxonomyTaxaRanksDataControllerName = "BioTaxonomyTaxaRanksData";
         public const string ContentTypesControllerName = "ContentTypes";
         public const string ContinentsControllerName = "Continents";
+        public const string CoordinatesCalculatorControllerName = "CoordinatesCalculator";
         public const string DocumentContentControllerName = "DocumentContent";
         public const string DocumentsControllerName = "Documents";
         public const string FilesControllerName = "Files";

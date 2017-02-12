@@ -1,0 +1,47 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Data.ViewModels.CoordinatesCalculator.CoordinatesResponseViewModel
+@using ProcessingTools.Web.Documents.Areas.Data.Controllers
+@using Strings = Resources.Strings
+
+@{
+    this.ViewBag.Title = Strings.CoordinatesCalculatorPageTitle + " - " + Strings.Results;
+}
+
+<header>
+    <h2>@Strings.CoordinatesCalculatorPageHeading</h2>
+</header>
+
+<section>
+    <header>
+        <h3>@Strings.Results</h3>
+    </header>
+
+    @if (Model != null && Model.Coordinates?.Count > 0)
+    {
+        <dl>
+            @foreach (var coordinate in Model.Coordinates)
+            {
+                <dt>
+                    @coordinate.Coordinate
+                </dt>
+
+                <dd>
+                    [@coordinate.Latitude, @coordinate.Longitude]
+                </dd>
+            }
+        </dl>
+    }
+    else
+    {
+        <p>No coordinates.</p>
+    }
+</section>
+
+<hr />
+
+<footer>
+    <nav class="separated-items">
+        <span class="item">
+            @Html.ActionLink(Strings.GoBackActionLinkTitle, nameof(CoordinatesCalculatorController.Index))
+        </span>
+    </nav>
+</footer>
