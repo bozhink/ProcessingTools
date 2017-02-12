@@ -38,10 +38,10 @@
             int length = this.replaces.GetLength(0);
             for (int i = 0; i < length; ++i)
             {
-                var re = new Regex(@"\A" + replaces[i, 0]);
+                var re = new Regex(@"\A" + this.replaces[i, 0]);
                 if (re.IsMatch(text))
                 {
-                    return re.Replace(text, replaces[i, 1]);
+                    return re.Replace(text, this.replaces[i, 1]);
                 }
             }
 

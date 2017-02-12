@@ -58,10 +58,10 @@
             int length = this.replaces.GetLength(0);
             for (int i = 0; i < length; ++i)
             {
-                var re = new Regex(@"\A" + replaces[i, 0] + @"\Z");
+                var re = new Regex(@"\A" + this.replaces[i, 0] + @"\Z");
                 if (re.IsMatch(text))
                 {
-                    return re.Replace(text, replaces[i, 1]);
+                    return re.Replace(text, this.replaces[i, 1]);
                 }
             }
 

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
+﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Parsers
 {
     using System;
     using System.Collections.Generic;
@@ -6,15 +6,15 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Common.Bio.Taxonomy;
+    using Comparers.Bio.Taxonomy;
+    using Contracts.Models.Bio.Taxonomy.Parsers;
+    using Contracts.Processors.Bio.Taxonomy.Parsers;
+    using Contracts.Providers.Bio.Taxonomy;
+    using Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Common.Bio.Taxonomy;
-    using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
-    using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
 
     public class LowerTaxaParser : ILowerTaxaParser
     {

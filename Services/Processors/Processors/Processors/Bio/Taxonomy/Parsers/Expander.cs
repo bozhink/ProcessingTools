@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
+﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Parsers
 {
     using System;
     using System.Collections.Concurrent;
@@ -8,14 +8,14 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
+    using Comparers.Bio.Taxonomy;
+    using Contracts.Models.Bio.Taxonomy.Parsers;
+    using Contracts.Processors.Bio.Taxonomy.Parsers;
+    using Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
 
     public class Expander : IExpander
     {
