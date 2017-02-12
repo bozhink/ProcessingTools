@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
+﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Taggers
 {
     using System;
     using System.Collections.Generic;
@@ -7,6 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
@@ -14,7 +15,6 @@
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class LowerTaxaTagger : ILowerTaxaTagger

@@ -1,10 +1,11 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Taggers
+﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Taggers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
@@ -13,7 +14,6 @@
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class HigherTaxaTagger : IHigherTaxaTagger
