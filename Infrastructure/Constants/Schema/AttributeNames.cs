@@ -3,6 +3,7 @@
     public sealed class AttributeNames
     {
         public const string ContentType = "content-type";
+        public const string Delete = "delete";
         public const string Description = "description";
         public const string ExtLinkType = "ext-link-type";
         public const string FullName = "full-name";

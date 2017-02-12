@@ -7,6 +7,7 @@
         public const string BiorepositoriesInstitutionContentType = "institution";
         public const string HybridSign = "hybrid-sign";
         public const string InfraRank = "infraspecific-rank";
+        public const string Infraspecific = "infraspecific";
         public const string RefTypeAffifliation = "aff";
         public const string RefTypeAppendix = "app";
         public const string RefTypeBibliographicReference = "bibr";
@@ -24,5 +25,6 @@
         public const string TaxonTypeHigher = "higher";
         public const string TaxonTypeLower = "lower";
         public const string UncertaintyRank = "uncertainty-rank";
+        public const string XRank = "x-rank";
     }
 }

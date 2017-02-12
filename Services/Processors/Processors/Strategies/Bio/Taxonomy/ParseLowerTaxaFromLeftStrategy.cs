@@ -13,7 +13,6 @@
     {
         private readonly string[,] replaces = ParseLowerTaxaReplacePatterns.Replaces;
 
-
         public int ExecutionPriority => 400;
 
         public async Task<object> Parse(XmlNode context)

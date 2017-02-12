@@ -8,6 +8,7 @@
     using Common.Bio.Taxonomy;
     using Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Extensions;
 
     public class ParseLowerTaxaWithFullStringMatchStrategy : IParseLowerTaxaWithFullStringMatchStrategy
     {
@@ -29,6 +30,20 @@
                 {
                     node.InnerXml = this.ParseFullStringMatch(node.InnerXml);
                 });
+
+            context.SelectNodes(XPathStrings.TaxonNamePartsOfLowerTaxonNames + $"[@{AttributeNames.Type}='{AttributeValues.XRank}']")
+                .Cast<XmlElement>()
+                .AsParallel()
+                .ForAll(element =>
+                {
+                    element.SetAttribute(AttributeNames.Delete, true.ToString().ToLower());
+                    element.InnerXml = this.ParseFullStringMatch(element.InnerXml);
+                });
+
+            foreach (XmlNode node in context.SelectNodes(XPathStrings.TaxonNamePartsOfLowerTaxonNames + $"[@{AttributeNames.Delete}]"))
+            {
+                node.ReplaceXmlNodeByItsInnerXml();
+            }
 
             return await Task.FromResult(true);
         }

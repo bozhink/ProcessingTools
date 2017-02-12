@@ -23,6 +23,10 @@
 
   <xsl:template match="article_figs_and_tables[not(*)]" />
 
+  <xsl:template match="*[@delete='true']">
+    <xsl:apply-templates />
+  </xsl:template>
+
   <!-- Clear double-format tags -->
   <!-- Italics -->
   <xsl:template match="i//i | i//em | i//italic | i//Italic">
@@ -170,7 +174,7 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="//tp:nomenclature-citation[not(comment)]">
+  <xsl:template match="tp:nomenclature-citation[not(comment)]">
     <xsl:element name="{name()}">
       <comment>
         <xsl:apply-templates />
@@ -184,6 +188,32 @@
 
   <xsl:template match="tn-part/*[name(.)!='i' and name(.)!='b']">
     <xsl:value-of select="." />
+  </xsl:template>
+
+  <xsl:template match="tn-part[@type='authority'][not(@full-name)][normalize-space(.)='']"></xsl:template>
+
+  <xsl:template match="tn/genus-authority | tn/authority | tn/basionym-authority[not(contains(string(), '(') or contains(string(), ')'))]">
+    <tn-part type="authority">
+      <xsl:apply-templates />
+    </tn-part>
+  </xsl:template>
+
+  <xsl:template match="tn/infraspecific-rank | tn/infraspecific">
+    <tn-part type="{name()}">
+      <xsl:apply-templates />
+    </tn-part>
+  </xsl:template>
+
+  <xsl:template match="tn/basionym | tn/specific | tn/genus | tn/species">
+    <tn-part type="x-rank">
+      <xsl:apply-templates />
+    </tn-part>
+  </xsl:template>
+
+  <xsl:template match="tn/sensu">
+    <tn-part type="sensu">
+      <xsl:apply-templates />
+    </tn-part>
   </xsl:template>
 
   <xsl:template match="xref/institutional_code">

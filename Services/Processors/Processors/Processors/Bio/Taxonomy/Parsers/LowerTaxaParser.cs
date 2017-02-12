@@ -55,9 +55,7 @@
 
             ////this.AddTaxonNamePartsToTaxonNameElements(context);
             ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
-            ////this.ResolveWithDictionaryOfKnownRanks(context, knownRanks);
-            //this.ParseLowerTaxaWithoutBasionym(context);
-            //this.ParseLowerTaxaWithBasionym(context);
+            this.ParseLowerTaxaWithBasionym(context);
 
             this.AddFullNameAttribute(context);
             this.RegularizeRankOfSingleWordTaxonName(context);
@@ -119,21 +117,11 @@
                     {
                         node.Attributes[AttributeNames.Type].InnerText = AttributeValues.UncertaintyRank;
                     }
+                    else if (value == "×")
+                    {
+                        node.Attributes[AttributeNames.Type].InnerText = AttributeValues.HybridSign;
+                    }
                 });
-        }
-
-        private string ParseLower(string text)
-        {
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                return text;
-            }
-
-            string replace = text;
-
-
-
-            return replace;
         }
 
         private void AddFullNameAttribute(XmlNode context)
@@ -289,65 +277,51 @@
         {
             try
             {
+                var document = context.OwnerDocument();
+
+                var matchBasinymAuthorityAndAuthority = new Regex(@"\A\s*(\(.*?\))(\s*)(.*?)\Z");
+
+                foreach (XmlNode node in context.SelectNodes(".//basionym-authority"))
+                {
+                    var fragment = document.CreateDocumentFragment();
+
+                    string xml = node.InnerXml.Trim();
+                    if (!string.IsNullOrWhiteSpace(xml))
+                    {
+                        if (matchBasinymAuthorityAndAuthority.IsMatch(xml))
+                        {
+                            xml = matchBasinymAuthorityAndAuthority.Replace(xml, @"<tn-part type=""basionym-authority"">$1</tn-part>$2<tn-part type=""authority"">$3</tn-part>");
+                        }
+                        else
+                        {
+                            xml = @"<tn-part type=""authority"">" + xml + @"</tn-part>";
+                        }
+                    }
+
+                    fragment.InnerXml = " " + xml;
+                    node.ParentNode.ReplaceChild(fragment, node);
+                }
+
                 var rankResolver = new SpeciesPartsPrefixesResolver();
 
-                foreach (XmlNode lowerTaxon in context.SelectNodes(SelectLowerTaxaWithInvalidChildNodesXPath))
+                foreach (XmlNode lowerTaxon in context.SelectNodes(XPathStrings.LowerTaxonNames + $"[{ElementNames.TaxonNamePart}[@{AttributeNames.Type}='{AttributeValues.Infraspecific}']]"))
                 {
-                    string replace = Regex.Replace(lowerTaxon.InnerXml, "</?i>", string.Empty);
+                    string replace = lowerTaxon.InnerXml.RegexReplace("</?i>", string.Empty);
 
-                    // TODO: DOM
-                    string parseBasionym = Regex.Replace(replace, "^.*?<basionym>(.*?)</basionym>.*$", "$1");
-                    parseBasionym = ParseLower(parseBasionym);
-
-                    string parseSpecific = Regex.Replace(replace, "^.*?<specific>(.*?)</specific>.*$", "$1");
-                    parseSpecific = ParseLower(parseSpecific);
-
-                    replace = Regex.Replace(replace, "<genus>(.+?)</genus>", @"<tn-part type=""genus"">$1</tn-part>");
-                    replace = Regex.Replace(replace, "<genus-authority>(.*?)</genus-authority>", @"<tn-part type=""authority"">$1</tn-part>");
-
-                    replace = Regex.Replace(replace, "<basionym>(.*?)</basionym>", parseBasionym);
-                    replace = Regex.Replace(replace, "<specific>(.*?)</specific>", parseSpecific);
-
-                    replace = Regex.Replace(replace, @"<basionym-authority>(\s*)(\(.*?\))(\s*)(.*?)</basionym-authority>", @"$1<tn-part type=""basionym-authority"">$2</tn-part>$3<tn-part type=""authority"">$4</tn-part>");
-                    replace = Regex.Replace(replace, "<basionym-authority>(.*?)</basionym-authority>", @"<tn-part type=""authority"">$1</tn-part>");
-                    replace = Regex.Replace(replace, "<authority>(.*?)</authority>", @"<tn-part type=""authority"">$1</tn-part>");
-
-                    for (Match m = Regex.Match(replace, @"<infraspecific-rank>[^<>]*</infraspecific-rank>\s*<infraspecific>[^<>]*</infraspecific>\s*\)?\s*<species>[^<>]*</species>(\s*<authority>[^<>]*</authority>)?"); m.Success; m = m.NextMatch())
+                    const string InfraPattern = @"<tn-part type=""infraspecific-rank"">(?<rank>[^<>]*)</tn-part>\s*<tn-part type=""infraspecific"">([^<>]*)</tn-part>";
+                    for (Match m = Regex.Match(replace, InfraPattern); m.Success; m = m.NextMatch())
                     {
-                        string replace1 = m.Value;
-
-                        char[] separators = new char[] { ' ', ',', '.' };
-                        string infraSpecificRank = Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1").Split(separators, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+                        string infraSpecificRank = m.Groups["rank"].Value.ToLower().Trim(new char[] { ' ', '.' });
 
                         Console.WriteLine(infraSpecificRank);
 
                         string rank = rankResolver.Resolve(infraSpecificRank);
+                        string replace1 = m.Value.RegexReplace(
+                            @"<tn-part type=""infraspecific"">([^<>]*)</tn-part>",
+                            @"<tn-part type=""" + rank + @""">$1</tn-part>");
 
-                        replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", @"<tn-part type=""infraspecific-rank"">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", @"<tn-part type=""" + rank + @""">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, @"<species>([a-zçäöüëïâěôûêîæœ\.-]+)</species>", @"<tn-part type=""species"">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, @"<species>([a-zçäöüëïâěôûêîæœ\.-]+)\s+([a-z\s\.-]+)</species>", @"<tn-part type=""species"">$1</tn-part> <tn-part type=""subspecies"">$2</tn-part>");
-                        rank = replace1.Contains(@"type=""subspecies""") ? "subspecies" : "species";
-                        replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", @"<tn-part type=""authority"">$1</tn-part>");
                         replace = Regex.Replace(replace, Regex.Escape(m.Value), replace1);
                     }
-
-                    for (Match m = Regex.Match(replace, @"<infraspecific-rank>[^<>]*</infraspecific-rank>\s*<infraspecific>[^<>]*</infraspecific>(\s*<authority>[^<>]*</authority>)?"); m.Success; m = m.NextMatch())
-                    {
-                        string replace1 = m.Value;
-                        string infraSpecificRank = Regex.Replace(Regex.Replace(replace, "^.*?<infraspecific-rank>([^<>]*)</infraspecific-rank>.*$", "$1"), "\\.", string.Empty);
-                        string rank = rankResolver.Resolve(infraSpecificRank);
-                        replace1 = Regex.Replace(replace1, "<infraspecific-rank>([^<>]*)</infraspecific-rank>", @"<tn-part type=""infraspecific-rank"">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, "<infraspecific>([^<>]*)</infraspecific>", @"<tn-part type=""" + rank + @""">$1</tn-part>");
-                        ////replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", @"<tn-part type=""" + rank + @"-authority"">$1</tn-part>");
-                        replace1 = Regex.Replace(replace1, "<authority>([^<>]*)</authority>", @"<tn-part type=""authority"">$1</tn-part>");
-                        replace = Regex.Replace(replace, Regex.Escape(m.Value), replace1);
-                    }
-
-                    replace = Regex.Replace(replace, @"<sensu>(.*?)</sensu>", @"<tn-part type=""sensu"">$1</tn-part>");
-                    replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">×</tn-part>", @"<tn-part type=""hybrid-sign"">×</tn-part>");
-                    replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">\?</tn-part>", @"<tn-part type=""uncertainty-rank"">?</tn-part>");
-                    replace = Regex.Replace(replace, @"<tn-part type=""infraspecific-rank"">((?i)(afn|aff|prope|cf|nr|near|sp\. near)\.?)</tn-part>", @"<tn-part type=""uncertainty-rank"">$1</tn-part>");
 
                     lowerTaxon.InnerXml = replace;
                 }
