@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Processors
+﻿namespace ProcessingTools.Processors.Common.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Linq;
     using ProcessingTools.Enumerations;
 
-    public class SpeciesPartsPrefixesResolver
+    internal static class SpeciesPartsPrefixesResolver
     {
         public static readonly IDictionary<string, SpeciesPartType> SpeciesPartsRanks = new Dictionary<string, SpeciesPartType>
         {
@@ -100,7 +100,7 @@
 
         public static IEnumerable<KeyValuePair<string, SpeciesPartType>> NonAmbiguousSpeciesPartsRanks => SpeciesPartsRanks.Where(p => p.Key.Length > 1 && p.Key.IndexOf("trib") < 0);
 
-        public string Resolve(string infraSpecificRank)
+        public static string Resolve(string infraSpecificRank)
         {
             string rank;
             try

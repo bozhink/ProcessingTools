@@ -7,10 +7,9 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors;
+    using ProcessingTools.Processors.Common.Bio.Taxonomy;
     using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
@@ -24,9 +23,8 @@
         private const string TaxonNamePartElementFormatString = @"<tn-part type=""{0}"">{1}</tn-part>";
 
         private readonly IParseLowerTaxaStrategiesProvider strategiesProvider;
-        private readonly ILogger logger;
 
-        public LowerTaxaParser(IParseLowerTaxaStrategiesProvider strategiesProvider, ILogger logger)
+        public LowerTaxaParser(IParseLowerTaxaStrategiesProvider strategiesProvider)
         {
             if (strategiesProvider == null)
             {
@@ -34,7 +32,6 @@
             }
 
             this.strategiesProvider = strategiesProvider;
-            this.logger = logger;
         }
 
         public async Task<object> Parse(XmlNode context)
@@ -50,12 +47,14 @@
 
             foreach (var strategy in strategies)
             {
-                await strategy.Parse(context);
+                try
+                {
+                    await strategy.Parse(context);
+                }
+                catch
+                {
+                }
             }
-
-            ////this.AddTaxonNamePartsToTaxonNameElements(context);
-            ////var knownRanks = this.BuildDictionaryOfKnownRanks(context);
-            this.ParseLowerTaxaWithBasionym(context);
 
             this.AddFullNameAttribute(context);
             this.RegularizeRankOfSingleWordTaxonName(context);
@@ -271,67 +270,6 @@
             }
 
             return dictionary;
-        }
-
-        private void ParseLowerTaxaWithBasionym(XmlNode context)
-        {
-            try
-            {
-                var document = context.OwnerDocument();
-
-                var matchBasinymAuthorityAndAuthority = new Regex(@"\A\s*(\(.*?\))(\s*)(.*?)\Z");
-
-                foreach (XmlNode node in context.SelectNodes(".//basionym-authority"))
-                {
-                    var fragment = document.CreateDocumentFragment();
-
-                    string xml = node.InnerXml.Trim();
-                    if (!string.IsNullOrWhiteSpace(xml))
-                    {
-                        if (matchBasinymAuthorityAndAuthority.IsMatch(xml))
-                        {
-                            xml = matchBasinymAuthorityAndAuthority.Replace(xml, @"<tn-part type=""basionym-authority"">$1</tn-part>$2<tn-part type=""authority"">$3</tn-part>");
-                        }
-                        else
-                        {
-                            xml = @"<tn-part type=""authority"">" + xml + @"</tn-part>";
-                        }
-                    }
-
-                    fragment.InnerXml = " " + xml;
-                    node.ParentNode.ReplaceChild(fragment, node);
-                }
-
-                var rankResolver = new SpeciesPartsPrefixesResolver();
-
-                foreach (XmlNode lowerTaxon in context.SelectNodes(XPathStrings.LowerTaxonNames + $"[{ElementNames.TaxonNamePart}[@{AttributeNames.Type}='{AttributeValues.Infraspecific}']]"))
-                {
-                    string replace = lowerTaxon.InnerXml.RegexReplace("</?i>", string.Empty);
-
-                    const string InfraPattern = @"<tn-part type=""infraspecific-rank"">(?<rank>[^<>]*)</tn-part>\s*<tn-part type=""infraspecific"">([^<>]*)</tn-part>";
-                    for (Match m = Regex.Match(replace, InfraPattern); m.Success; m = m.NextMatch())
-                    {
-                        string infraSpecificRank = m.Groups["rank"].Value.ToLower().Trim(new char[] { ' ', '.' });
-
-                        Console.WriteLine(infraSpecificRank);
-
-                        string rank = rankResolver.Resolve(infraSpecificRank);
-                        string replace1 = m.Value.RegexReplace(
-                            @"<tn-part type=""infraspecific"">([^<>]*)</tn-part>",
-                            @"<tn-part type=""" + rank + @""">$1</tn-part>");
-
-                        replace = Regex.Replace(replace, Regex.Escape(m.Value), replace1);
-                    }
-
-                    lowerTaxon.InnerXml = replace;
-                }
-
-
-            }
-            catch (Exception e)
-            {
-                this.logger?.Log(e, "Parse lower taxa with basionym.");
-            }
         }
 
         private void RegularizeRankOfSingleWordTaxonName(XmlNode context)

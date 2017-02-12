@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Common.Bio.Taxonomy;
     using Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
