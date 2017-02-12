@@ -1,14 +1,14 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Formatters
+﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Formatters
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Contracts.Processors.Bio.Taxonomy.Formatters;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
 
     public class TreatmentFormatter : ITreatmentFormatter
     {
