@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Formatters
+﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Formatters
 {
     using System;
     using System.Threading.Tasks;
+    using Contracts.Factories.Bio;
+    using Contracts.Processors.Bio.Taxonomy.Formatters;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
 
     public class TaxonNamePartsRemover : ITaxonNamePartsRemover
     {

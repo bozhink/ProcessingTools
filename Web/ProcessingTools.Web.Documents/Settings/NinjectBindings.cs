@@ -114,6 +114,12 @@
 
             this.Bind<ProcessingTools.Geo.Contracts.IUtmCoordianesTransformer>()
                 .To<ProcessingTools.Geo.UtmCoordianesTransformer>();
+
+            this.Bind<Func<Type, ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
+                .ToMethod(context =>
+                {
+                    return t => context.Kernel.Get(t) as ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
+                });
         }
     }
 }

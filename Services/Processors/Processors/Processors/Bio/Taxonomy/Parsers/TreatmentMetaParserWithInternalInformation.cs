@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Processors.Processors.Parsers
+﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Parsers
 {
     using System;
     using System.Threading.Tasks;
+    using Contracts.Factories.Bio;
+    using Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
 
     public class TreatmentMetaParserWithInternalInformation : ITreatmentMetaParserWithInternalInformation
     {

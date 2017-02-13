@@ -23,7 +23,10 @@
         public const string ElementWithFullNameAttribute = ".//*[normalize-space(@" + AttributeNames.FullName + ")!='']";
         public const string HigherDocumentStructure = ".//article[not(ancestor::article)][not(ancestor::document)]|.//document[not(ancestor::article)][not(ancestor::document)]";
         public const string IdAttributes = ".//@id";
+        public const string LowerTaxonNamePartWithNoFullNameAttribute = LowerTaxonNames + "/tn-part[not(@full-name)]" + TaxonNamePartOfNonAuxiliaryType;
         public const string LowerTaxonNames = ".//tn[@type='lower']";
+        public const string LowerTaxonNameWithNoGenusTaxonNamePart = LowerTaxonNames + "[count(.//tn-part[@type='genus']) = 0]";
+        public const string LowerTaxonNameWithNoTaxonNamePart = LowerTaxonNames + "[not(" + ElementNames.TaxonNamePart + ")]";
         public const string MediaElement = ".//media";
         public const string ObjectIdOfTypeIpni = ".//object-id[@content-type='ipni']";
         public const string ObjectIdOfTypeZooBank = ".//object-id[@content-type='zoobank']";
@@ -32,16 +35,11 @@
         public const string RootNodesOfContext = "./*";
         public const string SpecimenCodesContentNodes = "//p|//li|//th|//td|//title|//tp:nomenclature-citation";
         public const string TableRowWithCoordinatePartsWichCanBeMerged = ".//tr[count(" + CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1][count(" + CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1]";
+        public const string TaxonNamePartOfNonAuxiliaryType = "[@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
         public const string TaxonNamePartOfTypeGenus = "tn-part[@type='genus']";
         public const string TaxonNamePartOfTypeSpecies = "tn-part[@type='species']";
         public const string TaxonNamePartsOfLowerTaxonNames = LowerTaxonNames + "/" + ElementNames.TaxonNamePart;
         public const string TaxonTreatmentNomenclature = ".//tp:taxon-treatment/tp:nomenclature";
         public const string XLinkHref = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
-
-        public const string LowerTaxonNameWithNoGenusTaxonNamePart = ".//tn[@type='lower'][count(.//tn-part[@type='genus']) = 0]";
-
-        public const string TaxonNamePartOfNonAuxiliaryType = "[@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
-
-        public const string LowerTaxonNamePartWithNoFullNameAttribute = ".//tn[@type='lower']/tn-part[not(@full-name)]" + TaxonNamePartOfNonAuxiliaryType;
     }
 }

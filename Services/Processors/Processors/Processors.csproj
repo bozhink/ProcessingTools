@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Common\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
     <Compile Include="Comparers\Bio\Taxonomy\TaxonNameContentEqualityComparer.cs" />
     <Compile Include="Comparers\Bio\Taxonomy\TaxonNamePartContentEqualityComparer.cs" />
     <Compile Include="Contracts\Factories\Bio\IBioTaxonomyTransformersFactory.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Contracts\Processors\Floats\ITableFootNotesTagger.cs" />
     <Compile Include="Contracts\IGenericStringDataMinerEvaluator.cs" />
     <Compile Include="Contracts\Processors\Products\IProductsTagger.cs" />
+    <Compile Include="Contracts\Providers\Bio\Taxonomy\IParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Contracts\Providers\IAltitudeTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\ICoordinateTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IDateTagModelProvider.cs" />
@@ -117,6 +119,12 @@
     <Compile Include="Contracts\Processors\Validation\ICrossReferencesValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\IExternalLinksValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\ITaxaValidator.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaFromLeftStrategy.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaStrategy.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithBasionymStrategy.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithByPartsMatchStrategy.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" />
+    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithFullStringMatchStrategy.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
@@ -213,6 +221,7 @@
     <Compile Include="Processors\Validation\TaxaValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AltitudeTagModelProvider.cs" />
+    <Compile Include="Providers\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Providers\CoordinateTagModelProvider.cs" />
     <Compile Include="Providers\DateTagModelProvider.cs" />
     <Compile Include="Providers\GeoEpithetTagModelProvider.cs" />
@@ -224,7 +233,12 @@
     <Compile Include="Providers\QuantityTagModelProvider.cs" />
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
-    <Compile Include="SpeciesPartsPrefixesResolver.cs" />
+    <Compile Include="Common\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
+    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaFromLeftStrategy.cs" />
+    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithBasionymStrategy.cs" />
+    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithByPartsMatchStrategy.cs" />
+    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" />
+    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithFullStringMatchStrategy.cs" />
     <Compile Include="Types\FloatsReferenceType.cs" />
   </ItemGroup>
   <ItemGroup>
