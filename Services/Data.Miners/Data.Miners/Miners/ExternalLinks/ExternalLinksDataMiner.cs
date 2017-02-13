@@ -28,11 +28,11 @@
 
         private const string HttpPattern = @"(?i)https?://(?:www)?\S+?" + UriPatternSuffix + @"|" +
             @"(?i)(?<!://)www\S+?" + UriPatternSuffix + @"|" +
-            IPAddressPattern + @"(?:\D\S*)" + UriPatternSuffix + @"|" +
+            ////IPAddressPattern + @"(?:\D\S*)" + UriPatternSuffix + @"|" +
             @"[A-Za-z0-9][A-Za-z0-9@~&:\.\-_]*\.(?:com|org|net|edu)\b\S*?" + UriPatternSuffix;
 
-        private const string PmcidPattern = @"(?i)\bpmc\W?\d+|(?i)(?<=\bpmcid\W?)\d+";
-        private const string PmidPattern = @"(?i)(?<=\bpmid\W?)\d+";
+        private const string PmcidPattern = @"(?i)\bpmc\W*\d+|(?i)(?<=\bpmcid\W*)\d+";
+        private const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
 
         public async Task<IEnumerable<IExternalLink>> Mine(string content)
         {
