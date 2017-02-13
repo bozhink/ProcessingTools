@@ -98,7 +98,7 @@
 
         private const string DefaultRank = "species";
 
-        public static IEnumerable<KeyValuePair<string, SpeciesPartType>> NonAmbiguousSpeciesPartsRanks => SpeciesPartsRanks.Where(p => p.Key.Length > 1 && p.Key.IndexOf("trib") < 0);
+        public static IEnumerable<KeyValuePair<string, SpeciesPartType>> NonAmbiguousSpeciesPartsRanks => SpeciesPartsRanks.Where(p => p.Key.Length > 1 && p.Key.IndexOf("trib") < 0 && p.Key != "near");
 
         public static string Resolve(string infraSpecificRank)
         {
