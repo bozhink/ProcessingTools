@@ -15,7 +15,7 @@
             // Act
             var result = LevenshteinDistance.Compute(string1, string2);
 
-            //Assert
+            // Assert
             Assert.AreEqual(distance, result);
         }
 
@@ -30,7 +30,7 @@
             var distanceLeft = LevenshteinDistance.Compute(string1, string2);
             var distanceRight = LevenshteinDistance.Compute(string2, string1);
 
-            //Assert
+            // Assert
             Assert.AreEqual(distanceLeft, distanceRight);
         }
     }
