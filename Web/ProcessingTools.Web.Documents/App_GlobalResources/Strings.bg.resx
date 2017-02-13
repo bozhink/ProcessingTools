@@ -132,6 +132,15 @@
   <data name="ContactActionLinkTitle" xml:space="preserve">
     <value>Контакти</value>
   </data>
+  <data name="CoordinatesCalculatorActionLinkTitle" xml:space="preserve">
+    <value>Калкулатор на координати</value>
+  </data>
+  <data name="CoordinatesCalculatorPageHeading" xml:space="preserve">
+    <value>Калкулатор на координати</value>
+  </data>
+  <data name="CoordinatesCalculatorPageTitle" xml:space="preserve">
+    <value>Калкулатор на координати</value>
+  </data>
   <data name="DeafultCreatePageHeading" xml:space="preserve">
     <value>Създаване</value>
   </data>
@@ -237,6 +246,9 @@
   <data name="FilesActionLinkTitle" xml:space="preserve">
     <value>Файлове</value>
   </data>
+  <data name="GoBackActionLinkTitle" xml:space="preserve">
+    <value>Назад</value>
+  </data>
   <data name="GoBackAndTryAgainMessage" xml:space="preserve">
     <value>Моля, въренете се назад и опитайте отново.</value>
   </data>
@@ -332,5 +344,8 @@
   </data>
   <data name="RegisterActionLinkTitle" xml:space="preserve">
     <value>Регистриране</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Резултати</value>
   </data>
 </root>

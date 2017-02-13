@@ -1,0 +1,37 @@
+﻿@model ProcessingTools.Web.Documents.Areas.Data.ViewModels.CoordinatesCalculator.CoordinatesResponseViewModel
+@using ProcessingTools.Web.Common.Constants
+@using ProcessingTools.Web.Documents.Areas.Data.Controllers
+@using Strings = Resources.Strings
+
+@{
+    this.ViewBag.Title = Strings.CoordinatesCalculatorPageTitle;
+}
+
+<header>
+    <h2>@Strings.CoordinatesCalculatorPageHeading</h2>
+</header>
+
+<div class="contols">
+    <div class="form-group">
+        <fieldset>
+            <legend>Coordinates</legend>
+            @using (Html.BeginForm(
+                actionName: nameof(CoordinatesCalculatorController.Calculate),
+                controllerName: ControllerNames.CoordinatesCalculatorControllerName,
+                method: FormMethod.Post,
+                htmlAttributes: new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.Coordinates, htmlAttributes: new { cols = "30", rows = "4", placeholder = "insert coordinates here", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Coordinates, string.Empty, new { @class = "text-danger" })
+                <input class="btn btn-primary" type="submit" value="@ActionNames.DeafultCalculateActionName" />
+            }
+        </fieldset>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render(BundleNames.JQueryValidationScriptBundleName)
+}
