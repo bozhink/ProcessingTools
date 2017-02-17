@@ -9,25 +9,23 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo.Contracts.Models;
     using ProcessingTools.Geo.Contracts.Parsers;
-    using ProcessingTools.Geo.Models;
 
     public class CoordinatesParser : ICoordinatesParser
     {
         private const string CurrentCoordinateWillNotBeProcessedErrorMessage = "Current coordinate will not be processed!";
 
-        private readonly ICoordinate2DParser coordinate2DParser;
+        private readonly ICoordinateParser coordinateParser;
         private readonly ILogger logger;
 
-        public CoordinatesParser(ICoordinate2DParser coordinate2DParser, ILogger logger)
+        public CoordinatesParser(ICoordinateParser coordinateParser, ILogger logger)
         {
-            if (coordinate2DParser == null)
+            if (coordinateParser == null)
             {
-                throw new ArgumentNullException(nameof(coordinate2DParser));
+                throw new ArgumentNullException(nameof(coordinateParser));
             }
 
-            this.coordinate2DParser = coordinate2DParser;
+            this.coordinateParser = coordinateParser;
             this.logger = logger;
         }
 
@@ -42,10 +40,6 @@
 
             foreach (XmlNode coordinateNode in context.SelectNodes(XPathStrings.CoordinateWithEmptyLatitudeOrLongitude))
             {
-                this.logger?.Log("\n{0}", coordinateNode.OuterXml);
-
-                coordinateNode.InnerXml = Regex.Replace(coordinateNode.InnerXml, "(º|˚|<sup>o</sup>)", "°");
-
                 try
                 {
                     this.ParseSingleCoordinateXmlNode(coordinateNode);
@@ -78,28 +72,26 @@
             }
         }
 
-        // TODO: hard dependencies
         private void ParseSingleCoordinateXmlNode(XmlNode coordinateNode)
         {
-            var latitude = new CoordinatePart();
-            var longitude = new CoordinatePart();
+            this.logger?.Log("\n{0}", coordinateNode.OuterXml);
+
+            coordinateNode.InnerXml = Regex.Replace(coordinateNode.InnerXml, "(º|˚|<sup>o</sup>)", "°");
 
             string coordinateNodeInnerText = coordinateNode.InnerText;
             string coordinateType = coordinateNode.Attributes[AttributeNames.Type]?.InnerText;
 
-            this.coordinate2DParser.ParseCoordinateString(coordinateNodeInnerText, coordinateType, latitude, longitude);
+            var coordinate = this.coordinateParser.ParseCoordinateString(coordinateNodeInnerText, coordinateType);
 
-            this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
-
-            this.SetCoordinatePartAttribute(coordinateNode, latitude, AttributeNames.Latitude);
-            this.SetCoordinatePartAttribute(coordinateNode, longitude, AttributeNames.Longitude);
+            this.SetCoordinatePartAttribute(coordinateNode, coordinate.Latitude, AttributeNames.Latitude);
+            this.SetCoordinatePartAttribute(coordinateNode, coordinate.Longitude, AttributeNames.Longitude);
         }
 
-        private void SetCoordinatePartAttribute(XmlNode coordinate, ICoordinatePart coordinatePart, string attributeName)
+        private void SetCoordinatePartAttribute(XmlNode coordinate, string coordinatePart, string attributeName)
         {
-            if (coordinatePart.PartIsPresent)
+            if (!string.IsNullOrEmpty(coordinatePart))
             {
-                coordinate.SafeSetAttributeValue(attributeName, coordinatePart.Value);
+                coordinate.SafeSetAttributeValue(attributeName, coordinatePart);
             }
         }
     }

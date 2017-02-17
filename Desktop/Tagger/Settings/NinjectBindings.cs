@@ -2,6 +2,7 @@
 {
     using System;
     using System.Configuration;
+    using Interceptors;
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
@@ -61,6 +62,12 @@
             this.Bind<ProcessingTools.Geo.Contracts.Factories.ICoordinatesFactory>()
                 .ToFactory()
                 .InSingletonScope();
+
+            this.Bind<ProcessingTools.Geo.Contracts.Parsers.ICoordinate2DParser>()
+                .To<ProcessingTools.Geo.Parsers.Coordinate2DParser>()
+                .WhenInjectedInto<ProcessingTools.Geo.Parsers.CoordinateParser>()
+                .Intercept()
+                .With<LogParsedCoordinatesInterceptor>();
 
             this.Bind(b =>
             {
