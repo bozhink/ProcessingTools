@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Geo
+﻿namespace ProcessingTools.Geo.Transformers
 {
     using System;
     using System.Linq;
-    using Contracts;
+    using Contracts.Transformers;
     using GeoAPI.CoordinateSystems;
     using GeoAPI.CoordinateSystems.Transformations;
     using ProjNet.CoordinateSystems;

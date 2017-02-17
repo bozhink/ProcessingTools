@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Contracts
+﻿namespace ProcessingTools.Geo.Contracts.Parsers
 {
     using Models;
 

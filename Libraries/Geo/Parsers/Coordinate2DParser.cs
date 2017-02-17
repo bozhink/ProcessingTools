@@ -1,10 +1,11 @@
-﻿namespace ProcessingTools.Geo
+﻿namespace ProcessingTools.Geo.Parsers
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Contracts;
+    using Contracts.Parsers;
     using Contracts.Models;
+    using Contracts.Transformers;
     using Models;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;

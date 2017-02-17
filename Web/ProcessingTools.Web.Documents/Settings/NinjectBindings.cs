@@ -50,6 +50,13 @@
 
             this.Bind(b =>
             {
+                b.From(ProcessingTools.Geo.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
                 b.From(ProcessingTools.Xml.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
@@ -108,12 +115,6 @@
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
                 .To<ProcessingTools.Common.Providers.DateTimeProvider>()
                 .InSingletonScope();
-
-            this.Bind<ProcessingTools.Geo.Contracts.ICoordinate2DParser>()
-                .To<ProcessingTools.Geo.Coordinate2DParser>();
-
-            this.Bind<ProcessingTools.Geo.Contracts.IUtmCoordianesTransformer>()
-                .To<ProcessingTools.Geo.UtmCoordianesTransformer>();
 
             this.Bind<Func<Type, ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
                 .ToMethod(context =>
