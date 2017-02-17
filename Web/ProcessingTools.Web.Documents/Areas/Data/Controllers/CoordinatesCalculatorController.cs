@@ -5,8 +5,9 @@
     using System.Net;
     using System.Web.Mvc;
     using Models.CoordinatesCalculator;
-    using ProcessingTools.Geo;
     using ProcessingTools.Geo.Contracts;
+    using ProcessingTools.Geo.Contracts.Models;
+    using ProcessingTools.Geo.Models;
     using ProcessingTools.Web.Common.Constants;
     using ViewModels.CoordinatesCalculator;
 

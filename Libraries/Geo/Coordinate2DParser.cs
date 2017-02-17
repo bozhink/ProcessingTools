@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using Contracts;
+    using Contracts.Models;
+    using Models;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
     using Types;

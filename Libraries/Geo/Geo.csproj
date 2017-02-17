@@ -48,11 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\ICoordinate.cs" />
-    <Compile Include="Coordinate.cs" />
+    <Compile Include="Contracts\Models\ICoordinate.cs" />
+    <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Coordinate2DParser.cs" />
-    <Compile Include="CoordinatePart.cs" />
-    <Compile Include="Contracts\ICoordinatePart.cs" />
+    <Compile Include="Models\CoordinatePart.cs" />
+    <Compile Include="Contracts\Models\ICoordinatePart.cs" />
     <Compile Include="Contracts\IUtmCoordianesTransformer.cs" />
     <Compile Include="Contracts\ICoordinate2DParser.cs" />
     <Compile Include="Models\Json\GeoJson\GeoJsonCoordinateReferenceSystem.cs" />

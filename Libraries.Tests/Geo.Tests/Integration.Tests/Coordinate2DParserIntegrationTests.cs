@@ -2,6 +2,7 @@
 {
     using System;
     using NUnit.Framework;
+    using ProcessingTools.Geo.Models;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(Coordinate2DParser))]
     public class Coordinate2DParserIntegrationTests

@@ -9,8 +9,9 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo;
     using ProcessingTools.Geo.Contracts;
+    using ProcessingTools.Geo.Contracts.Models;
+    using ProcessingTools.Geo.Models;
 
     public class CoordinatesParser : ICoordinatesParser
     {

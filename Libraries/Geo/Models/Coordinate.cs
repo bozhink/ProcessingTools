@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Geo
+﻿namespace ProcessingTools.Geo.Models
 {
-    using Contracts;
+    using Contracts.Models;
 
     public class Coordinate : ICoordinate
     {

@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Geo
+﻿namespace ProcessingTools.Geo.Models
 {
     using System;
     using System.Globalization;
     using System.Text.RegularExpressions;
-    using Contracts;
+    using Contracts.Models;
     using ProcessingTools.Extensions;
     using Types;
 
