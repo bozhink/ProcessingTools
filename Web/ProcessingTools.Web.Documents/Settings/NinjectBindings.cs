@@ -55,6 +55,10 @@
                     .BindDefaultInterface();
             });
 
+            this.Bind<ProcessingTools.Geo.Contracts.Factories.ICoordinatesFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
             this.Bind(b =>
             {
                 b.From(ProcessingTools.Xml.Assembly.Assembly.GetType().Assembly)

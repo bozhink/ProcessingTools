@@ -4,6 +4,7 @@
     using System.Configuration;
     using Ninject;
     using Ninject.Extensions.Conventions;
+    using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
@@ -56,6 +57,10 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
+
+            this.Bind<ProcessingTools.Geo.Contracts.Factories.ICoordinatesFactory>()
+                .ToFactory()
+                .InSingletonScope();
 
             this.Bind(b =>
             {

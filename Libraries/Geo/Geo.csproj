@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
+    <Compile Include="Contracts\Factories\ICoordinatesFactory.cs" />
     <Compile Include="Contracts\Models\ICoordinate.cs" />
+    <Compile Include="Contracts\Parsers\ICoordinateParser.cs" />
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Parsers\Coordinate2DParser.cs" />
     <Compile Include="Models\CoordinatePart.cs" />
@@ -70,6 +72,7 @@
     </Compile>
     <Compile Include="Models\Json\GeoJson\GeoJsonObject.cs" />
     <Compile Include="Models\Json\GeoJson\GeoJsonType.cs" />
+    <Compile Include="Parsers\CoordinateParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\CoordinatePartType.cs" />
     <Compile Include="Transformers\UtmCoordianesTransformer.cs">
@@ -104,6 +107,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

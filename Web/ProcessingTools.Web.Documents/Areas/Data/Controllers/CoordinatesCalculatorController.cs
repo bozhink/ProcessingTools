@@ -6,8 +6,6 @@
     using System.Web.Mvc;
     using Models.CoordinatesCalculator;
     using ProcessingTools.Geo.Contracts.Parsers;
-    using ProcessingTools.Geo.Contracts.Models;
-    using ProcessingTools.Geo.Models;
     using ProcessingTools.Web.Common.Constants;
     using ViewModels.CoordinatesCalculator;
 
@@ -15,16 +13,16 @@
     {
         private const string CoordinatesRequestModelValidationBindings = nameof(CoordinatesRequestModel.Coordinates);
 
-        private readonly ICoordinate2DParser coordinate2DParser;
+        private readonly ICoordinateParser coordinateParser;
 
-        public CoordinatesCalculatorController(ICoordinate2DParser coordinate2DParser)
+        public CoordinatesCalculatorController(ICoordinateParser coordinateParser)
         {
-            if (coordinate2DParser == null)
+            if (coordinateParser == null)
             {
-                throw new ArgumentNullException(nameof(coordinate2DParser));
+                throw new ArgumentNullException(nameof(coordinateParser));
             }
 
-            this.coordinate2DParser = coordinate2DParser;
+            this.coordinateParser = coordinateParser;
         }
 
         // GET: Data/CoordinatesCalculator
@@ -58,17 +56,15 @@
                 var viewModel = new CoordinatesResponseViewModel();
                 foreach (var coordinateString in coordinateStrings)
                 {
-                    var latitude = new CoordinatePart();
-                    var longitude = new CoordinatePart();
                     try
                     {
-                        this.coordinate2DParser.ParseCoordinateString(coordinateString, null, latitude, longitude);
+                        var coordinate = this.coordinateParser.ParseCoordinateString(coordinateString);
 
                         viewModel.Coordinates.Add(new CoordinateViewModel
                         {
                             Coordinate = coordinateString,
-                            Latitude = latitude.Value,
-                            Longitude = longitude.Value
+                            Latitude = coordinate.Latitude,
+                            Longitude = coordinate.Longitude
                         });
                     }
                     catch
