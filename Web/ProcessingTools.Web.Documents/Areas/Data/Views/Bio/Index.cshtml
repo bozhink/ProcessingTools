@@ -14,35 +14,6 @@
     </div>
 </div>
 
-<aside style="display: none;">
-    @Html.ActionLink(
-        linkText: "_",
-        actionName: nameof(BioTaxonomyTaxaRanksDataController.Post),
-        controllerName: ControllerNames.BioTaxonomyTaxaRanksDataControllerName,
-        routeValues: new { area = AreasConstants.DataAreaName },
-        htmlAttributes: new { id = "taxa-ranks-submit-link" })
-    @Html.ActionLink(
-        linkText: "_",
-        actionName: nameof(BioTaxonomyTaxaRanksDataController.Search),
-        controllerName: ControllerNames.BioTaxonomyTaxaRanksDataControllerName,
-        routeValues: new { area = AreasConstants.DataAreaName },
-        htmlAttributes: new { id = "taxa-ranks-search-link" })
-    @Html.ActionLink(
-        linkText: "_",
-        actionName: nameof(BioTaxonomyBlackListDataController.Post),
-        controllerName: ControllerNames.BioTaxonomyBlackListDataControllerName,
-        routeValues: new { area = AreasConstants.DataAreaName },
-        htmlAttributes: new { id = "black-list-submit-link" })
-    @Html.ActionLink(
-        linkText: "_",
-        actionName: nameof(BioTaxonomyBlackListDataController.Search),
-        controllerName: ControllerNames.BioTaxonomyBlackListDataControllerName,
-        routeValues: new { area = AreasConstants.DataAreaName },
-        htmlAttributes: new { id = "black-list-search-link" })
-</aside>
-
-
-
 @section Scripts {
     <script src="~/bower_components/angular/angular.min.js"></script>
     <script src="~/bower_components/angular-route/angular-route.min.js"></script>
@@ -55,10 +26,10 @@
             'taxa-ranks.tpl.html': '/wwwroot/build/dist/templates/directives/data/bio/taxa-ranks.tpl.html',
             'black-list.tpl.html': '/wwwroot/build/dist/templates/directives/data/bio/black-list.tpl.html',
             'navigation-tabs.tpl.html': '/wwwroot/build/dist/templates/directives/navigation-tabs.tpl.html',
-            'blackListSearchUrl': document.getElementById('black-list-search-link').href,
-            'blackListSubmitUrl': document.getElementById('black-list-submit-link').href,
-            'taxaRanksSearchUrl': document.getElementById('taxa-ranks-search-link').href,
-            'taxaRanksSubmitUrl': document.getElementById('taxa-ranks-submit-link').href
+            'blackListSearchUrl': '@(Url.Action(actionName: nameof(BioTaxonomyBlackListDataController.Search), controllerName: ControllerNames.BioTaxonomyBlackListDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))',
+            'blackListSubmitUrl': '@(Url.Action(actionName: nameof(BioTaxonomyBlackListDataController.Post), controllerName: ControllerNames.BioTaxonomyBlackListDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))',
+            'taxaRanksSearchUrl': '@(Url.Action(actionName: nameof(BioTaxonomyTaxaRanksDataController.Search), controllerName: ControllerNames.BioTaxonomyTaxaRanksDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))',
+            'taxaRanksSubmitUrl': '@(Url.Action(actionName: nameof(BioTaxonomyTaxaRanksDataController.Post), controllerName: ControllerNames.BioTaxonomyTaxaRanksDataControllerName, routeValues: new { area = AreasConstants.DataAreaName }))'
         });
     </script>
 }
