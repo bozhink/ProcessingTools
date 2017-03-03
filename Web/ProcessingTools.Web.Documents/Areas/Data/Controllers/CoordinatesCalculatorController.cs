@@ -9,6 +9,7 @@
     using ProcessingTools.Web.Common.Constants;
     using ViewModels.CoordinatesCalculator;
 
+    [Authorize]
     public class CoordinatesCalculatorController : Controller
     {
         private const string CoordinatesRequestModelValidationBindings = nameof(CoordinatesRequestModel.Coordinates);
