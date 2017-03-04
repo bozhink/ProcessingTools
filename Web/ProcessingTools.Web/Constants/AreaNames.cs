@@ -2,5 +2,6 @@
 {
     public sealed class AreaNames
     {
+        public const string DefaultArea = "";
     }
 }

@@ -346,8 +346,6 @@
     <Compile Include="Constants\AreaNames.cs" />
     <Compile Include="Constants\RouteNames.cs" />
     <Compile Include="Constants\ViewNames.cs" />
-    <Compile Include="Contracts\Services\IEmailService.cs" />
-    <Compile Include="Contracts\Services\ISmsService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -432,10 +430,11 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Partials\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Shared\Help.cshtml" />
+    <Content Include="Views\Shared\Partials\_NavigationBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
