@@ -3,7 +3,6 @@
     using System;
     using System.Configuration;
     using System.Web.Mvc;
-    using Contracts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
@@ -11,13 +10,14 @@
     using Microsoft.Owin.Security.Twitter;
     using Owin;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Services.Web.Contracts.Factories;
     using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
 
     public partial class Startup
     {
-        private readonly ICertificateValidatorFactory certificateValidatorFactory = (ICertificateValidatorFactory)DependencyResolver.Current.GetService(typeof(ICertificateValidatorFactory));
+        private readonly ICertificateValidatorFactory certificateValidatorFactory = DependencyResolver.Current.GetService<ICertificateValidatorFactory>();
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)

@@ -337,12 +337,10 @@
     <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentViewModel.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Continents\DetailedContinentViewModel.cs" />
     <Compile Include="Areas\GeoData\ViewModels\Countries\CountryViewModel.cs" />
-    <Compile Include="Contracts\ICertificateValidatorFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
-    <Compile Include="Factories\CertificateValidatorFactory.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -11,6 +11,7 @@ using ProcessingTools.Services.Web.Managers;
 
 namespace ProcessingTools.Web.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {

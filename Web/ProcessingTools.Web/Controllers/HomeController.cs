@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using Abstractions.Controllers;
 
+    [RequireHttps]
     public class HomeController : BaseMvcController
     {
         public const string ControllerName = "Home";

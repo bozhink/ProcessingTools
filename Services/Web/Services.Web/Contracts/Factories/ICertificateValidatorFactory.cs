@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Documents.Contracts
+﻿namespace ProcessingTools.Services.Web.Contracts.Factories
 {
     using Microsoft.Owin.Security;
 

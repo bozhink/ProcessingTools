@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Web.Documents.Factories
+﻿namespace ProcessingTools.Services.Web.Factories
 {
-    using Contracts;
+    using Contracts.Factories;
     using Microsoft.Owin.Security;
 
     public class CertificateValidatorFactory : ICertificateValidatorFactory

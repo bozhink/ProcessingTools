@@ -26,6 +26,13 @@
 
             this.Bind(b =>
             {
+                b.From(nameof(ProcessingTools.Services.Web))
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+            });
+
+            this.Bind(b =>
+            {
                 b.From(typeof(ProcessingTools.Tagger.Commands.Contracts.Commands.ITaggerCommand).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

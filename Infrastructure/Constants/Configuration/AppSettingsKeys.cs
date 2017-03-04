@@ -25,6 +25,8 @@
         public const string EnvironmentsGroupsFileName = "EnvironmentsGroupsFileName";
         public const string EnvironmentsNamesFileName = "EnvironmentsNamesFileName";
         public const string ExternalLinksXslFileName = "ExternalLinksXslFileName";
+        public const string FacebookAppId = "FacebookAppId";
+        public const string FacebookAppSecret = "FacebookAppSecret";
         public const string FormatHtmlToXmlXslFileName = "FormatHtmlToXmlXslFileName";
         public const string FormatNlmToSystemXslFileName = "FormatNlmToSystemXslFileName";
         public const string FormatSystemToNlmXslFileName = "FormatSystemToNlmXslFileName";
@@ -41,6 +43,8 @@
         public const string MediaTypeDataJsonFileName = "MediaTypeDataJsonFileName";
         public const string MediatypesMongoConnection = "MediatypesMongoConnection";
         public const string MediatypesMongoDabaseName = "MediatypesMongoDabaseName";
+        public const string MicrosoftClientId = "MicrosoftClientId";
+        public const string MicrosoftClientSecret = "MicrosoftClientSecret";
         public const string MorphologicalEpithetsFileName = "MorphologicalEpithetsFileName";
         public const string NlmInitialFormatXslFileName = "NlmInitialFormatXslFileName";
         public const string ParseTreatmentMetaWithInternalInformationXslFileName = "ParseTreatmentMetaWithInternalInformationXslFileName";

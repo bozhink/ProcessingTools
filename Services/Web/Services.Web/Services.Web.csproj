@@ -78,8 +78,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Factories\ICertificateValidatorFactory.cs" />
     <Compile Include="Contracts\Services\IEmailService.cs" />
     <Compile Include="Contracts\Services\ISmsService.cs" />
+    <Compile Include="Factories\CertificateValidatorFactory.cs" />
     <Compile Include="Managers\ApplicationSignInManager.cs" />
     <Compile Include="Managers\ApplicationUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +98,7 @@
       <Name>Users.Data.Entity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

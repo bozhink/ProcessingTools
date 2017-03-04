@@ -2,6 +2,7 @@
 {
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
+    using ProcessingTools.Constants;
 
     public class NinjectBindings : NinjectModule
     {
@@ -9,15 +10,10 @@
         {
             this.Bind(configure =>
             {
-                configure
-                    .FromThisAssembly()
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-
-                configure
-                    .From(ProcessingTools.Users.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
+                configure.FromAssembliesMatching(
+                    $"{nameof(ProcessingTools)}.*.{FileConstants.DllFileExtension}")
+                .SelectAllClasses()
+                .BindDefaultInterface();
             });
         }
     }
