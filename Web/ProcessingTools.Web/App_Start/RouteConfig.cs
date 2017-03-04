@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace ProcessingTools.Web
+﻿namespace ProcessingTools.Web
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Constants;
+    using Controllers;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -14,10 +12,14 @@ namespace ProcessingTools.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
+                name: RouteNames.MvcDefault,
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new
+                {
+                    controller = HomeController.ControllerName,
+                    action = HomeController.IndexActionName,
+                    id = UrlParameter.Optional
+                });
         }
     }
 }

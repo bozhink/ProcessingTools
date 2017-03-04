@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
-
-namespace ProcessingTools.Web
+﻿namespace ProcessingTools.Web
 {
+    using System.Web.Http;
+    using Constants;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -15,10 +13,12 @@ namespace ProcessingTools.Web
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
+                name: RouteNames.ApiDefault,
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new
+                {
+                    id = RouteParameter.Optional
+                });
         }
     }
 }
