@@ -335,7 +335,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\Controllers\BaseMvcController.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -381,7 +383,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
@@ -501,6 +502,24 @@
   <ItemGroup>
     <Analyzer Include="..\..\packages\System.Runtime.InteropServices.Analyzers.1.1.0\analyzers\dotnet\cs\System.Runtime.InteropServices.Analyzers.dll" />
     <Analyzer Include="..\..\packages\System.Runtime.InteropServices.Analyzers.1.1.0\analyzers\dotnet\cs\System.Runtime.InteropServices.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
+      <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
+      <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
+      <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
+      <Name>Users.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Mappings\Mappings.csproj">
+      <Project>{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}</Project>
+      <Name>Mappings</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

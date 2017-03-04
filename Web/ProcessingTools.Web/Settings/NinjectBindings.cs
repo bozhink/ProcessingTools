@@ -7,11 +7,17 @@
     {
         public override void Load()
         {
-            this.Bind(b =>
+            this.Bind(configure =>
             {
-                b.FromThisAssembly()
-                 .SelectAllClasses()
-                 .BindDefaultInterface();
+                configure
+                    .FromThisAssembly()
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                configure
+                    .From(ProcessingTools.Users.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
             });
         }
     }

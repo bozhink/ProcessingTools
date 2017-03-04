@@ -1,15 +1,11 @@
-﻿using Microsoft.Owin;
-using Owin;
-
-[assembly: OwinStartup(typeof(ProcessingTools.Web.Api.Startup))]
+﻿[assembly: Microsoft.Owin.OwinStartup(typeof(ProcessingTools.Web.Api.Startup))]
 
 namespace ProcessingTools.Web.Api
 {
     using System.Web.Http;
-
     using Ninject.Web.Common.OwinHost;
     using Ninject.Web.WebApi.OwinHost;
-
+    using Owin;
     using ProcessingTools.Constants;
 
     public partial class Startup
