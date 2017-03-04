@@ -7,8 +7,9 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Web.Common.Constants;
-    using ProcessingTools.Web.Documents.ViewModels.Manage;
+    using ViewModels.Manage;
 
     [Authorize]
     public class ManageController : Controller

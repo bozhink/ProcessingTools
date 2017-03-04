@@ -3,6 +3,7 @@
     using System;
     using System.Configuration;
     using System.Web.Mvc;
+    using Contracts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
@@ -10,9 +11,9 @@
     using Microsoft.Owin.Security.Twitter;
     using Owin;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Web.Documents.Contracts;
 
     public partial class Startup
     {

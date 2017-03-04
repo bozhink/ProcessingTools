@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44328</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -284,16 +284,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\ApplicationSignInManager.cs" />
-    <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
-    <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Articles\ArticlesAreaRegistration.cs" />
@@ -745,6 +741,10 @@
     <ProjectReference Include="..\..\Services\Validation\Services.Validation\Services.Validation.csproj">
       <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
       <Name>Services.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Web\Services.Web\Services.Web.csproj">
+      <Project>{CE9F3A6E-C793-4046-8768-3DEE63CA35E4}</Project>
+      <Name>Services.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProcessingTools.Web.Common\ProcessingTools.Web.Common.csproj">
       <Project>{3b6c4b49-817c-478b-b4d5-f3c079fcf0b0}</Project>
