@@ -1,19 +1,17 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ProcessingTools.Web.Models;
 using ProcessingTools.Users.Data.Entity.Models;
 using ProcessingTools.Services.Web.Managers;
 
 namespace ProcessingTools.Web.Controllers
 {
+    using ViewModels.Account;
+
     [RequireHttps]
     [Authorize]
     public class AccountController : Controller

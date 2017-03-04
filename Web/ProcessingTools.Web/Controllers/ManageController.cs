@@ -6,11 +6,13 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ProcessingTools.Web.Models;
+using ProcessingTools.Web.ViewModels;
 using ProcessingTools.Services.Web.Managers;
 
 namespace ProcessingTools.Web.Controllers
 {
+    using ViewModels.Manage;
+
     [RequireHttps]
     [Authorize]
     public class ManageController : Controller
