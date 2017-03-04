@@ -33,6 +33,8 @@
         public const string GavinLaurensXslFileName = "GavinLaurensXslFileName";
         public const string GeoEpithetsSeedFileName = "GeoEpithetsSeedFileName";
         public const string GeoNamesSeedFileName = "GeoNamesSeedFileName";
+        public const string GoogleClientId = "GoogleClientId";
+        public const string GoogleClientSecret = "GoogleClientSecret";
         public const string InstitutionsSeedFileName = "InstitutionsSeedFileName";
         public const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectoryName";
         public const string MaximalTimeInMinutesToWaitTheMainThread = "MaximalTimeInMinutesToWaitTheMainThread";
