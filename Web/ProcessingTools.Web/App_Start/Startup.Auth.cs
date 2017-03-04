@@ -8,6 +8,7 @@ using Owin;
 using ProcessingTools.Web.Models;
 using ProcessingTools.Users.Data.Entity.Models;
 using ProcessingTools.Users.Data.Entity;
+using ProcessingTools.Services.Web.Managers;
 
 namespace ProcessingTools.Web
 {

@@ -339,7 +339,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -375,6 +374,8 @@
     <Compile Include="Constants\AreaNames.cs" />
     <Compile Include="Constants\RouteNames.cs" />
     <Compile Include="Constants\ViewNames.cs" />
+    <Compile Include="Contracts\Services\IEmailService.cs" />
+    <Compile Include="Contracts\Services\ISmsService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -519,6 +520,10 @@
     <ProjectReference Include="..\..\Infrastructure\Mappings\Mappings.csproj">
       <Project>{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}</Project>
       <Name>Mappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Web\Services.Web\Services.Web.csproj">
+      <Project>{CE9F3A6E-C793-4046-8768-3DEE63CA35E4}</Project>
+      <Name>Services.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

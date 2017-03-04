@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProcessingTools.Web.Models;
+using ProcessingTools.Services.Web.Managers;
 
 namespace ProcessingTools.Web.Controllers
 {
