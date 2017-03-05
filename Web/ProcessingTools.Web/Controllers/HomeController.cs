@@ -11,14 +11,21 @@
         public const string AboutActionName = "About";
         public const string ContactActionName = "Contact";
 
-        [HttpGet, ActionName(AboutActionName)]
+        [HttpGet, ActionName(HomeController.IndexActionName)]
+        public virtual ActionResult Index()
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View();
+        }
+
+        [HttpGet, ActionName(HomeController.AboutActionName)]
         public ActionResult About()
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
-        [HttpGet, ActionName(ContactActionName)]
+        [HttpGet, ActionName(HomeController.ContactActionName)]
         public ActionResult Contact()
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;
