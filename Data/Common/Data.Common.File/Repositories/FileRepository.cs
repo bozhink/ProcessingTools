@@ -49,20 +49,6 @@
                 return entity;
             });
 
-        public virtual Task<T> FindFirst<T>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, T>> projection) => Task.Run(() =>
-            {
-                DummyValidator.ValidateFilter(filter);
-                DummyValidator.ValidateProjection(projection);
-
-                var entity = this.Context.DataSet
-                    .Where(filter)
-                    .Select(projection)
-                    .FirstOrDefault();
-                return entity;
-            });
-
         public virtual Task<TEntity> Get(object id)
         {
             DummyValidator.ValidateId(id);

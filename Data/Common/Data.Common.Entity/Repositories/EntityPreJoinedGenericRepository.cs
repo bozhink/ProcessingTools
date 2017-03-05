@@ -47,12 +47,5 @@
             DummyValidator.ValidateFilter(filter);
             return await this.Query.FirstOrDefaultAsync(filter);
         }
-
-        public override async Task<T> FindFirst<T>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, T>> projection)
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateProjection(projection);
-            return await this.Query.Where(filter).Select(projection).FirstOrDefaultAsync();
-        }
     }
 }

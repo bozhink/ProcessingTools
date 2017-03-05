@@ -81,21 +81,6 @@
             return Task.FromResult(this.Collection.AsQueryable().AsQueryable<IJournalMeta>().FirstOrDefault(filter));
         }
 
-        public Task<Tout> FindFirst<Tout>(Expression<Func<IJournalMeta, bool>> filter, Expression<Func<IJournalMeta, Tout>> projection)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            if (projection == null)
-            {
-                throw new ArgumentNullException(nameof(projection));
-            }
-
-            return Task.FromResult(this.Collection.AsQueryable().AsQueryable<IJournalMeta>().Where(filter).Select(projection).FirstOrDefault());
-        }
-
         public async Task<IJournalMeta> Get(object id)
         {
             if (id == null)

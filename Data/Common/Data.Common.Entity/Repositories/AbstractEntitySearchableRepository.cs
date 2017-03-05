@@ -41,20 +41,6 @@
             return entity;
         }
 
-        public virtual async Task<Tout> FindFirst<Tout>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, Tout>> projection)
-        {
-            DummyValidator.ValidateFilter(filter);
-            DummyValidator.ValidateProjection(projection);
-
-            var entity = await this.DbSet
-                .Where(filter)
-                .Select(projection)
-                .FirstOrDefaultAsync();
-            return entity;
-        }
-
         public virtual async Task<TEntity> Get(object id) => await this.Get(id, this.DbSet);
 
         protected virtual Task<T> Get<T>(object id, IDbSet<T> set) where T : class => Task.Run(() =>

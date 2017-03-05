@@ -54,20 +54,6 @@
                 return entity;
             });
 
-        public virtual Task<Tout> FindFirst<Tout>(
-            Expression<Func<TEntity, bool>> filter,
-            Expression<Func<TEntity, Tout>> projection) => Task.Run(() =>
-            {
-                DummyValidator.ValidateFilter(filter);
-                DummyValidator.ValidateProjection(projection);
-                var entity = this.Collection
-                   .AsQueryable()
-                   .Where(filter)
-                   .Select(projection)
-                   .FirstOrDefault();
-                return entity;
-            });
-
         public async Task<TEntity> Get(object id)
         {
             DummyValidator.ValidateId(id);
