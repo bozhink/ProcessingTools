@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Web.Abstractions.Controllers
 {
-    using Microsoft.AspNet.Identity;
     using System.Net;
     using System.Web.Mvc;
     using Constants;
+    using Microsoft.AspNet.Identity;
     using ProcessingTools.Web.Controllers;
 
     public abstract class BaseMvcController : Controller
@@ -11,7 +11,10 @@
         public const string IndexActionName = "Index";
         public const string HelpActionName = "Help";
 
-        protected object DefaultRouteValues => new { area = AreaNames.DefaultArea };
+        protected object DefaultRouteValues => new
+        {
+            area = AreaNames.DefaultArea
+        };
 
         protected string UserId => this.User?.Identity?.GetUserId();
 
