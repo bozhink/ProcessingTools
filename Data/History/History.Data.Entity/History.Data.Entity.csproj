@@ -45,12 +45,14 @@
     <Compile Include="Contracts\IHistoryDatabaseInitializer.cs" />
     <Compile Include="Contracts\IHistoryDbContext.cs" />
     <Compile Include="Contracts\IHistoryDbContextFactory.cs" />
+    <Compile Include="Contracts\Repositories\IEntityHistoryRepository.cs" />
     <Compile Include="Factories\HistoryDbContextFactory.cs" />
     <Compile Include="HistoryDbContext.cs" />
     <Compile Include="Initializers\HistoryDatabaseInitializer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EntityHistoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
@@ -74,10 +76,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\Repositories\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
