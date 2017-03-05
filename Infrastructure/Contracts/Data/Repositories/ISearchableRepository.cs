@@ -1,9 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
-    using System.Threading.Tasks;
-
-    public interface ISearchableRepository<T> : IRepository<T>, IQueryableRepository<T>, IFirstFilterableRepository<T>
+    public interface ISearchableRepository<T> : IRepository<T>, IQueryableRepository<T>, IFirstFilterableRepository<T>, ISelectableByIdRepository<T>
     {
-        Task<T> Get(object id);
     }
 }

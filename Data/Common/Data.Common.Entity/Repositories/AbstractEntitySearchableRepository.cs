@@ -41,7 +41,7 @@
             return entity;
         }
 
-        public virtual async Task<TEntity> Get(object id) => await this.Get(id, this.DbSet);
+        public virtual async Task<TEntity> GetById(object id) => await this.Get(id, this.DbSet);
 
         protected virtual Task<T> Get<T>(object id, IDbSet<T> set) where T : class => Task.Run(() =>
         {

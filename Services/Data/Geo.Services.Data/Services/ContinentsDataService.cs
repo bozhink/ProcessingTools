@@ -71,7 +71,7 @@
 
             var repository = this.RepositoryProvider.Create();
 
-            var entity = await repository.Get(id: id);
+            var entity = await repository.GetById(id: id);
             if (entity == null)
             {
                 throw new EntityNotFoundException();
@@ -100,7 +100,7 @@
 
             var repository = this.RepositoryProvider.Create();
 
-            var entity = await repository.Get(id: continentId);
+            var entity = await repository.GetById(id: continentId);
             if (entity == null)
             {
                 throw new EntityNotFoundException();
@@ -125,7 +125,7 @@
         {
             var repository = this.RepositoryProvider.Create();
 
-            var entity = await repository.Get(id: continentId);
+            var entity = await repository.GetById(id: continentId);
             if (entity == null)
             {
                 throw new EntityNotFoundException();

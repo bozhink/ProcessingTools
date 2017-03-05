@@ -95,7 +95,7 @@
 
             var repository = this.RepositoryProvider.Create();
 
-            var entity = await repository.Get(id: id);
+            var entity = await repository.GetById(id: id);
             if (entity == null)
             {
                 throw new EntityNotFoundException();

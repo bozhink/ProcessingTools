@@ -49,7 +49,7 @@
                 return entity;
             });
 
-        public virtual Task<TEntity> Get(object id)
+        public virtual Task<TEntity> GetById(object id)
         {
             DummyValidator.ValidateId(id);
 

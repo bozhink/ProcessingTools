@@ -44,7 +44,7 @@
             return query.LongCountAsync(filter);
         }
 
-        public override async Task<IPublisherEntity> Get(object id)
+        public override async Task<IPublisherEntity> GetById(object id)
         {
             DummyValidator.ValidateId(id);
 

@@ -50,7 +50,7 @@
             DummyValidator.ValidateId(id);
             DummyValidator.ValidateUpdate(update);
 
-            var entity = await this.Get(id);
+            var entity = await this.GetById(id);
             if (entity == null)
             {
                 throw new EntityNotFoundException();

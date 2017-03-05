@@ -75,6 +75,7 @@
     <Compile Include="Data\Repositories\ISavabaleRepository.cs" />
     <Compile Include="Data\Repositories\ISearchableRepository.cs" />
     <Compile Include="Data\Repositories\ISearchableRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\ISelectableByIdRepository.cs" />
     <Compile Include="Data\Repositories\IStringKeyCollectionValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IStringKeyValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IUpdatableRepository.cs" />

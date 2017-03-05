@@ -54,7 +54,7 @@
                 return entity;
             });
 
-        public async Task<TEntity> Get(object id)
+        public async Task<TEntity> GetById(object id)
         {
             DummyValidator.ValidateId(id);
 

@@ -116,7 +116,7 @@
 
             foreach (var id in ids)
             {
-                var entity = await repository.Get(id);
+                var entity = await repository.GetById(id);
                 result.Enqueue(mapping.Invoke(entity));
             }
 

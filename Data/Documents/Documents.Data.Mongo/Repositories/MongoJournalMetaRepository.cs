@@ -81,7 +81,7 @@
             return Task.FromResult(this.Collection.AsQueryable().AsQueryable<IJournalMeta>().FirstOrDefault(filter));
         }
 
-        public async Task<IJournalMeta> Get(object id)
+        public async Task<IJournalMeta> GetById(object id)
         {
             if (id == null)
             {
