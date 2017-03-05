@@ -1,22 +1,54 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+@using ProcessingTools.Web.Constants
+@using ProcessingTools.Web.Controllers
+@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
+@if (this.Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm(
+        actionName: AccountController.LogOffActionName,
+        controllerName: AccountController.ControllerName,
+        routeValues: new { area = AreaNames.DefaultArea },
+        method: FormMethod.Post,
+        htmlAttributes: new
+        {
+            id = "logoutForm",
+            @class = "navbar-right"
+        }))
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(
+                    linkText: string.Format(Strings.GreetingActionLinkTitle, this.User.Identity.GetUserName()),
+                    actionName: ManageController.IndexActionName,
+                    controllerName: ManageController.ControllerName,
+                    routeValues: new { area = AreaNames.DefaultArea },
+                    htmlAttributes: new { title = Strings.ManageActionLinkTitle })
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()">@Strings.LogOutActionLinkTitle</a>
+            </li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            @Html.ActionLink(
+                linkText: Strings.RegisterActionLinkTitle,
+                actionName: AccountController.RegisterActionName,
+                controllerName: AccountController.ControllerName,
+                routeValues: new { area = AreaNames.DefaultArea },
+                htmlAttributes: new { id = "registerLink" })
+        </li>
+        <li>
+            @Html.ActionLink(
+                linkText: Strings.LogInActionLinkTitle,
+                actionName: AccountController.LoginActionName,
+                controllerName: AccountController.ControllerName,
+                routeValues: new { area = AreaNames.DefaultArea },
+                htmlAttributes: new { id = "loginLink" })
+        </li>
     </ul>
 }

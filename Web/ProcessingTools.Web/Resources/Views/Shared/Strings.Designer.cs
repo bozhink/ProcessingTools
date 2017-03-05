@@ -59,5 +59,167 @@ namespace ProcessingTools.Web.Resources.Views.Shared {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutActionLinkTitle {
+            get {
+                return ResourceManager.GetString("AboutActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string ContactActionLinkTitle {
+            get {
+                return ResourceManager.GetString("ContactActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while processing your request..
+        /// </summary>
+        public static string ErrorMessage {
+            get {
+                return ResourceManager.GetString("ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error..
+        /// </summary>
+        public static string ErrorPageHeading {
+            get {
+                return ResourceManager.GetString("ErrorPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorPageTitle {
+            get {
+                return ResourceManager.GetString("ErrorPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello {0}!.
+        /// </summary>
+        public static string GreetingActionLinkTitle {
+            get {
+                return ResourceManager.GetString("GreetingActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string HelpActionLinkTitle {
+            get {
+                return ResourceManager.GetString("HelpActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string HelpPageHeading {
+            get {
+                return ResourceManager.GetString("HelpPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string HelpPageTitle {
+            get {
+                return ResourceManager.GetString("HelpPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        public static string IndexPageHeading {
+            get {
+                return ResourceManager.GetString("IndexPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        public static string IndexPageTitle {
+            get {
+                return ResourceManager.GetString("IndexPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account has been locked out, please try again later..
+        /// </summary>
+        public static string LockedOutMessage {
+            get {
+                return ResourceManager.GetString("LockedOutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked out..
+        /// </summary>
+        public static string LockedOutPageHeading {
+            get {
+                return ResourceManager.GetString("LockedOutPageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Out.
+        /// </summary>
+        public static string LockedOutPageTitle {
+            get {
+                return ResourceManager.GetString("LockedOutPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        public static string LogInActionLinkTitle {
+            get {
+                return ResourceManager.GetString("LogInActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log off.
+        /// </summary>
+        public static string LogOutActionLinkTitle {
+            get {
+                return ResourceManager.GetString("LogOutActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage.
+        /// </summary>
+        public static string ManageActionLinkTitle {
+            get {
+                return ResourceManager.GetString("ManageActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string RegisterActionLinkTitle {
+            get {
+                return ResourceManager.GetString("RegisterActionLinkTitle", resourceCulture);
+            }
+        }
     }
 }

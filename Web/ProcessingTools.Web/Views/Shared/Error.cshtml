@@ -1,9 +1,9 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
+﻿@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
+@model System.Web.Mvc.HandleErrorInfo
 @{
-    ViewBag.Title = "Error";
+    this.ViewBag.Title = Strings.ErrorPageTitle;
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h1 class="text-danger">@Strings.ErrorPageHeading</h1>
+<h2 class="text-danger">@Strings.ErrorMessage</h2>
 

@@ -75,6 +75,13 @@
 
         private IAuthenticationManager AuthenticationManager => this.HttpContext.GetOwinContext().Authentication;
 
+        // GET: /Account
+        [HttpGet, ActionName(AccountController.IndexActionName)]
+        public ActionResult Index()
+        {
+            return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName, routeValues: this.DefaultRouteValues);
+        }
+
         // GET: /Account/Login
         [HttpGet, ActionName(AccountController.LoginActionName)]
         [AllowAnonymous]

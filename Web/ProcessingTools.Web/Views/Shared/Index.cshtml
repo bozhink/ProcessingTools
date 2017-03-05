@@ -1,7 +1,8 @@
-﻿
+﻿@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
 @{
-    ViewBag.Title = "Index";
+    this.ViewBag.Title = Strings.IndexPageTitle;
 }
-
-<h2>Index</h2>
+<header>
+    <h2>@Strings.IndexPageHeading</h2>
+</header>
 

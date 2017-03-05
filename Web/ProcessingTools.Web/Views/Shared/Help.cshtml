@@ -1,7 +1,8 @@
-﻿
+﻿@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
 @{
-    ViewBag.Title = "Help";
+    this.ViewBag.Title = Strings.HelpPageTitle;
 }
-
-<h2>Help</h2>
+<header>
+    <h2>@Strings.HelpPageHeading</h2>
+</header>
 

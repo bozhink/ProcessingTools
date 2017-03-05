@@ -1,7 +1,8 @@
 ﻿@using ProcessingTools.Web.Abstractions.Controllers
 @using ProcessingTools.Web.Constants
 @using ProcessingTools.Web.Controllers
-<div class="navbar navbar-inverse navbar-fixed-top">
+@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,15 +10,55 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Application name", "Index", "Home", new { area = AreaNames.DefaultArea }, htmlAttributes: new { @class = "navbar-brand" })
+            @Html.ActionLink(
+                linkText: ProcessingTools.Web.Common.Constants.ContentConstants.ApplicationName,
+                actionName: HomeController.IndexActionName,
+                controllerName: HomeController.ControllerName,
+                routeValues: new { area = AreaNames.DefaultArea },
+                htmlAttributes: new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", BaseMvcController.IndexActionName)</li>
-                <li>@Html.ActionLink("About", HomeController.AboutActionName, HomeController.ControllerName, new { area = AreaNames.DefaultArea }, htmlAttributes: null)</li>
-                <li>@Html.ActionLink("Contact", HomeController.ContactActionName, HomeController.ControllerName, new { area = AreaNames.DefaultArea }, htmlAttributes: null)</li>
+                <li>
+                    @Html.ActionLink(
+                        linkText: "Home",
+                        actionName: BaseMvcController.IndexActionName)
+                </li>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    //
+                }
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Strings.HelpActionLinkTitle <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            @Html.ActionLink(
+                                linkText: Strings.HelpActionLinkTitle,
+                                actionName: BaseMvcController.HelpActionName,
+                                routeValues: null,
+                                htmlAttributes: new { target = "_blank" })
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            @Html.ActionLink(
+                                linkText: Strings.ContactActionLinkTitle,
+                                actionName: HomeController.ContactActionName,
+                                controllerName: HomeController.ControllerName,
+                                routeValues: new { area = AreaNames.DefaultArea },
+                                htmlAttributes: null)
+                        </li>
+                        <li>
+                            @Html.ActionLink(
+                                linkText: Strings.AboutActionLinkTitle,
+                                actionName: HomeController.AboutActionName,
+                                controllerName: HomeController.ControllerName,
+                                routeValues: new { area = AreaNames.DefaultArea },
+                                htmlAttributes: null)
+                        </li>
+                    </ul>
+                </li>
             </ul>
             @Html.Partial(ViewNames.DefaultLoginPartial)
         </div>
     </div>
-</div>
+</nav>
