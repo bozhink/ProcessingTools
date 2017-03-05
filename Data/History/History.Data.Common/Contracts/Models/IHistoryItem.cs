@@ -3,7 +3,7 @@
     using System;
     using ProcessingTools.Contracts.Models;
 
-    public interface IHistoryItem : IGuidIdentifiable
+    public interface IHistoryItem : IStringIdentifiable
     {
         string Data { get; }
 

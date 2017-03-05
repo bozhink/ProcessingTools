@@ -10,6 +10,7 @@
         public const string DefaultConnection = "DefaultConnection";
         public const string DocumentsDatabaseConnection = "DocumentsDatabaseConnection";
         public const string GeoDatabseConnection = "GeoDatabseConnection";
+        public const string HistoryDatabaseConnection = "HistoryDatabaseConnection";
         public const string MediatypesDatabaseConnection = "MediatypesDatabaseConnection";
     }
 }

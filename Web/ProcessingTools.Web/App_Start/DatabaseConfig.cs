@@ -11,6 +11,10 @@
                 .GetService<ProcessingTools.Users.Data.Entity.Contracts.IUsersDataInitializer>()
                 .Initialize();
 
+            await DependencyResolver.Current
+                .GetService<ProcessingTools.History.Data.Entity.Contracts.IHistoryDatabaseInitializer>()
+                .Initialize();
+
             ////await DependencyResolver.Current
             ////    .GetService<ProcessingTools.Documents.Data.Entity.Contracts.IDocumentsDataInitializer>()
             ////    .Initialize();

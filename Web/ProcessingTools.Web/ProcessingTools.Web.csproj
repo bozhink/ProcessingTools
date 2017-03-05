@@ -564,6 +564,10 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\History\History.Data.Entity\History.Data.Entity.csproj">
+      <Project>{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}</Project>
+      <Name>History.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Users.Data.Entity</Name>
