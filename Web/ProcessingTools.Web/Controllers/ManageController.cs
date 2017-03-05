@@ -12,6 +12,7 @@
     using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Web.Common.Enumerations;
     using ViewModels.Manage;
+    using Strings = Resources.Controllers.Manage.Strings;
 
     [RequireHttps]
     [Authorize]
@@ -76,13 +77,13 @@
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             this.ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : string.Empty;
+                message == ManageMessageId.ChangePasswordSuccess ? Strings.ChangePasswordSuccessMessage :
+                message == ManageMessageId.SetPasswordSuccess ? Strings.SetPasswordSuccessMessage :
+                message == ManageMessageId.SetTwoFactorSuccess ? Strings.SetTwoFactorSuccessMessage :
+                message == ManageMessageId.Error ? Strings.ErrorMessage :
+                message == ManageMessageId.AddPhoneSuccess ? Strings.AddPhoneSuccessMessage :
+                message == ManageMessageId.RemovePhoneSuccess ? Strings.RemovePhoneSuccessMessage :
+                string.Empty;
 
             var userId = this.UserId;
             var viewModel = new IndexViewModel
@@ -148,7 +149,7 @@
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = string.Format(Strings.SecurityCodeSmsBody, code)
                 };
 
                 await this.UserManager.SmsService.SendAsync(message);
@@ -224,7 +225,7 @@
                     return this.RedirectToAction(ManageController.IndexActionName, new { Message = ManageMessageId.AddPhoneSuccess });
                 }
 
-                this.AddErrors("Failed to verify phone");
+                this.AddErrors(Strings.FailedToVerifyPhoneMessage);
             }
 
             return this.View(model);
@@ -319,9 +320,9 @@
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             this.ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : string.Empty;
+                message == ManageMessageId.RemoveLoginSuccess ? Strings.RemoveLoginSuccessMessage :
+                message == ManageMessageId.Error ? Strings.ErrorMessage :
+                string.Empty;
 
             var user = await this.UserManager.FindByIdAsync(this.UserId);
             if (user == null)
