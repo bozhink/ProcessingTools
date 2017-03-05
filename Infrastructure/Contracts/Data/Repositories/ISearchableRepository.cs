@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    public interface ISearchableRepository<T> : IRepository<T>, IQueryableRepository<T>, IFiltrableRepository<T>
+    public interface ISearchableRepository<T> : IRepository<T>, IQueryableRepository<T>, IFilterableRepository<T>
     {
         Task<T> Get(object id);
     }

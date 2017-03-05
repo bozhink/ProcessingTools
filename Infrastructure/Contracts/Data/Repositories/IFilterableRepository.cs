@@ -5,7 +5,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public interface IFiltrableRepository<T> : IRepository<T>
+    public interface IFilterableRepository<T> : IRepository<T>
     {
         Task<IEnumerable<T>> Find(Expression<Func<T, bool>> filter);
 
