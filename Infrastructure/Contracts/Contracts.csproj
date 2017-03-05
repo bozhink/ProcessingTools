@@ -55,6 +55,7 @@
     <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IDeletableRepository.cs" />
     <Compile Include="Data\Repositories\IFilterableRepository.cs" />
+    <Compile Include="Data\Repositories\IFirstFilterableRepository.cs" />
     <Compile Include="Data\Repositories\IFullTextSearchableRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />

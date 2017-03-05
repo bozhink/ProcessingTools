@@ -8,7 +8,5 @@
     public interface IFilterableRepository<T> : IRepository<T>
     {
         Task<IEnumerable<T>> Find(Expression<Func<T, bool>> filter);
-
-        Task<T> FindFirst(Expression<Func<T, bool>> filter);
     }
 }
