@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IHistoryRepository : IAddableRepository<IHistoryItem>, IRemovableRepository<IHistoryItem>, ISavabaleRepository
+    public interface IHistoryRepository : IFilterableRepository<IHistoryItem>, IAddableRepository<IHistoryItem>, IDeletableRepository<IHistoryItem>, ISavabaleRepository
     {
     }
 }
