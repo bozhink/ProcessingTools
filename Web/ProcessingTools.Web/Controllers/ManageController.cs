@@ -11,12 +11,17 @@ using ProcessingTools.Services.Web.Managers;
 
 namespace ProcessingTools.Web.Controllers
 {
+    using Abstractions.Controllers;
     using ViewModels.Manage;
 
     [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {
+        public const string ControllerName = "Manage";
+        public const string IndexActionName = BaseMvcController.IndexActionName;
+        public const string HelpActionName = BaseMvcController.HelpActionName;
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -54,29 +59,37 @@ namespace ProcessingTools.Web.Controllers
             }
         }
 
-        //
         // GET: /Manage/Index
+        [HttpGet, ActionName(IndexActionName)]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
+            this.ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
+                : string.Empty;
 
-            var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+            var userId = this.User.Identity.GetUserId();
+            var viewModel = new IndexViewModel
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                HasPassword = this.HasPassword(),
+                PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId),
+                TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId),
+                Logins = await this.UserManager.GetLoginsAsync(userId),
+                BrowserRemembered = await this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
-            return View(model);
+
+            return this.View(viewModel);
+        }
+
+        // GET: /Manage/Help
+        [HttpGet, ActionName(HelpActionName)]
+        public ActionResult Help()
+        {
+            return this.View();
         }
 
         //
