@@ -2,30 +2,31 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Contracts.Services;
     using Models;
     using Newtonsoft.Json;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.History.Data.Common.Contracts.Models;
     using ProcessingTools.History.Data.Common.Contracts.Repositories;
 
     public class HistoryDataService : IHistoryDataService
     {
         private readonly IHistoryRepository repository;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public HistoryDataService(IHistoryRepository repository)
+        public HistoryDataService(IHistoryRepository repository, IDateTimeProvider dateTimeProvider)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
         }
 
-        // TODO
         public Task<object> AddItemToHistory(object userId, object objectId, object item)
         {
-            throw new NotImplementedException();
+            return this.AddItemToHistory(userId, objectId, this.dateTimeProvider.Now, item);
         }
 
         public async Task<object> AddItemToHistory(object userId, object objectId, DateTime dateModified, object item)
@@ -68,14 +69,109 @@
             return result;
         }
 
-        public Task<IEnumerable> Get(object objectId, Type objectType, int skip, int take)
+        public async Task<IEnumerable> Get(object objectId, Type objectType, int skip, int take)
         {
-            throw new NotImplementedException();
+            if (objectId == null)
+            {
+                throw new ArgumentNullException(nameof(objectId));
+            }
+
+            if (objectType == null)
+            {
+                throw new ArgumentNullException(nameof(objectType));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(skip), skip, "Value should be non-negative");
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(take), take, "Value should be positive");
+            }
+
+            var query = await this.GetQuery(objectId, objectType);
+
+            var data = await query.Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+
+            return data;
         }
 
-        public Task<IEnumerable> GetAll(object objectId, Type objectType)
+        public async Task<IEnumerable<IHistoryItem>> Get(object objectId, int skip, int take)
         {
-            throw new NotImplementedException();
+            if (objectId == null)
+            {
+                throw new ArgumentNullException(nameof(objectId));
+            }
+
+            if (skip < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(skip), skip, "Value should be non-negative");
+            }
+
+            if (take < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(take), take, "Value should be positive");
+            }
+
+            string id = objectId.ToString();
+            var query = await this.repository.Find(h => h.ObjectId == id);
+
+            var data = await query.OrderBy(h => h.DateModified)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+
+            return data;
+        }
+
+        public async Task<IEnumerable> GetAll(object objectId, Type objectType)
+        {
+            if (objectId == null)
+            {
+                throw new ArgumentNullException(nameof(objectId));
+            }
+
+            if (objectType == null)
+            {
+                throw new ArgumentNullException(nameof(objectType));
+            }
+
+            var query = await this.GetQuery(objectId, objectType);
+
+            var data = await query.Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
+                .ToListAsync();
+
+            return data;
+        }
+
+        public async Task<IEnumerable<IHistoryItem>> GetAll(object objectId)
+        {
+            if (objectId == null)
+            {
+                throw new ArgumentNullException(nameof(objectId));
+            }
+
+            string id = objectId.ToString();
+            var query = await this.repository.Find(h => h.ObjectId == id);
+
+            var data = await query.OrderBy(h => h.DateModified)
+                .ToListAsync();
+
+            return data;
+        }
+
+        private async Task<IEnumerable<IHistoryItem>> GetQuery(object objectId, Type objectType)
+        {
+            string id = objectId.ToString();
+            string typeName = objectType.FullName;
+
+            var query = await this.repository.Find(h => h.ObjectId == id && h.ObjectType == typeName);
+            return query.OrderBy(h => h.DateModified);
         }
     }
 }
