@@ -11,6 +11,7 @@
         public const string DocumentsDatabaseConnection = "DocumentsDatabaseConnection";
         public const string GeoDatabseConnection = "GeoDatabseConnection";
         public const string HistoryDatabaseConnection = "HistoryDatabaseConnection";
+        public const string JournalsDatabaseConnection = "JournalsDatabaseConnection";
         public const string MediatypesDatabaseConnection = "MediatypesDatabaseConnection";
     }
 }

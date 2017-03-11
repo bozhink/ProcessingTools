@@ -21,6 +21,10 @@
                 .To<ProcessingTools.History.Data.Entity.HistoryDbContext>()
                 .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
                 .InRequestScope();
+
+            this.Bind<ProcessingTools.Journals.Data.Entity.Contracts.IJournalsDbContext>()
+                .To<ProcessingTools.Journals.Data.Entity.JournalsDbContext>()
+                .InRequestScope();
         }
     }
 }

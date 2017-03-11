@@ -568,6 +568,10 @@
       <Project>{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}</Project>
       <Name>History.Data.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Journals\Journals.Data.Entity\Journals.Data.Entity.csproj">
+      <Project>{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}</Project>
+      <Name>Journals.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Users.Data.Entity</Name>

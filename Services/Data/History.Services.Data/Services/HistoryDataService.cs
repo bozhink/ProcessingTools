@@ -124,6 +124,15 @@
             var data = await query.OrderBy(h => h.DateModified)
                 .Skip(skip)
                 .Take(take)
+                .Select(h => new HistoryItem
+                {
+                    Id = h.Id,
+                    Data = h.Data,
+                    ObjectId = h.ObjectId,
+                    ObjectType = h.ObjectType,
+                    DateModified = h.DateModified,
+                    UserId = h.UserId
+                })
                 .ToListAsync();
 
             return data;
@@ -160,6 +169,15 @@
             var query = await this.repository.Find(h => h.ObjectId == id);
 
             var data = await query.OrderBy(h => h.DateModified)
+                .Select(h => new HistoryItem
+                {
+                    Id = h.Id,
+                    Data = h.Data,
+                    ObjectId = h.ObjectId,
+                    ObjectType = h.ObjectType,
+                    DateModified = h.DateModified,
+                    UserId = h.UserId
+                })
                 .ToListAsync();
 
             return data;

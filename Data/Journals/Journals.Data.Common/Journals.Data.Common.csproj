@@ -34,11 +34,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Contracts\Models\IAddress.cs" />
+    <Compile Include="Contracts\Models\IAddressable.cs" />
+    <Compile Include="Contracts\Models\IInstitution.cs" />
+    <Compile Include="Contracts\Models\IPublisher.cs" />
+    <Compile Include="Contracts\Repositories\IAddressableRepository.cs" />
+    <Compile Include="Contracts\Repositories\IPublishersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Contracts\Models\" />
-    <Folder Include="Contracts\Repositories\" />
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

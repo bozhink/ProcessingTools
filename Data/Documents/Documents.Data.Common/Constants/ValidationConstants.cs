@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Common.Constants
 {
-    public static class ValidationConstants
+    public sealed class ValidationConstants
     {
         public const int MaximalLengthOfPublisherName = 60;
         public const int MaximalLengthOfAbbreviatedPublisherName = 40;
