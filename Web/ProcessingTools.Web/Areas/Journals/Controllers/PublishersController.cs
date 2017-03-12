@@ -10,6 +10,7 @@
     using ProcessingTools.Journals.Data.Common.Contracts.Models;
     using ProcessingTools.Journals.Data.Entity.Contracts;
     using ProcessingTools.Journals.Data.Entity.Models;
+    using ProcessingTools.Journals.Data.Common.Contracts.Repositories;
     using ViewModels.Publishers;
 
     [Authorize]
@@ -21,19 +22,19 @@
         public const string DetailsActionName = "Details";
         public const string EditActionName = "Edit";
 
-        private readonly IJournalsDbContext db;
+        private readonly IPublishersRepository repository;
 
-        public PublishersController(IJournalsDbContextFactory factory)
+        public PublishersController(IPublishersRepository repository)
         {
-            if (factory == null)
+            if (repository == null)
             {
-                throw new ArgumentNullException(nameof(factory));
+                throw new ArgumentNullException(nameof(repository));
             }
 
-            this.db = factory.Create();
+            this.repository = repository;
         }
 
-        private Func<Publisher, PublisherViewModel> MapModelToViewModel => p => new PublisherViewModel
+        private Func<IPublisher, PublisherViewModel> MapModelToViewModel => p => new PublisherViewModel
         {
             Id = p.Id,
             Name = p.Name,
@@ -61,7 +62,7 @@
         [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
-            var data = await this.db.Publishers.ToListAsync();
+            var data = await this.repository.Query.ToListAsync();
 
             var viewModel = data.Select(this.MapModelToViewModel);
 
@@ -78,7 +79,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await Task.FromResult(this.db.Publishers.Find(id));
+            var data = await this.repository.GetById(id);
             if (data == null)
             {
                 return this.HttpNotFound();
@@ -110,8 +111,8 @@
 
                 var entity = this.MapViewModelToModel(model);
 
-                this.db.Publishers.Add(entity);
-                await this.db.SaveChangesAsync();
+                await this.repository.Add(entity);
+                await this.repository.SaveChanges();
 
                 return this.RedirectToAction(IndexActionName);
             }
@@ -128,7 +129,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await Task.FromResult(this.db.Publishers.Find(id));
+            var data = await this.repository.GetById(id);
             if (data == null)
             {
                 return this.HttpNotFound();
@@ -151,8 +152,8 @@
 
                 var entity = this.MapViewModelToModel(model);
 
-                this.db.Entry(entity).State = EntityState.Modified;
-                await this.db.SaveChangesAsync();
+                await this.repository.Update(entity);
+                await this.repository.SaveChanges();
 
                 return this.RedirectToAction(IndexActionName);
             }
@@ -169,7 +170,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await Task.FromResult(this.db.Publishers.Find(id));
+            var data = await this.repository.GetById(id);
             if (data == null)
             {
                 return this.HttpNotFound();
@@ -190,10 +191,8 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entity = await Task.FromResult(this.db.Publishers.Find(id));
-
-            this.db.Publishers.Remove(entity);
-            await this.db.SaveChangesAsync();
+            await this.repository.Delete(id);
+            await this.repository.SaveChanges();
 
             return this.RedirectToAction(IndexActionName);
         }
@@ -202,7 +201,6 @@
         {
             if (disposing)
             {
-                this.db.Dispose();
             }
 
             base.Dispose(disposing);
