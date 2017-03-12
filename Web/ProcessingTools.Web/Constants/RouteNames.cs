@@ -4,5 +4,6 @@
     {
         public const string ApiDefault = "DefaultApi";
         public const string MvcDefault = "Default";
+        public const string JournalsDefault = "Journals_default";
     }
 }

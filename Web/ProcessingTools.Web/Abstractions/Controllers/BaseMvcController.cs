@@ -8,8 +8,8 @@
 
     public abstract class BaseMvcController : Controller
     {
-        public const string IndexActionName = "Index";
-        public const string HelpActionName = "Help";
+        public const string IndexActionName = RouteValues.IndexActionName;
+        public const string HelpActionName = RouteValues.HelpActionName;
 
         protected object DefaultRouteValues => new
         {

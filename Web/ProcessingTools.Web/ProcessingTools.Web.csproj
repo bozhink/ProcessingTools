@@ -343,8 +343,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
     <Compile Include="Constants\AreaNames.cs" />
     <Compile Include="Constants\RouteNames.cs" />
+    <Compile Include="Constants\RouteValues.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Constants\ViewNames.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -485,6 +487,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Journals\Views\web.config" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -544,6 +547,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Journals\Controllers\" />
+    <Folder Include="Areas\Journals\Models\" />
+    <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
