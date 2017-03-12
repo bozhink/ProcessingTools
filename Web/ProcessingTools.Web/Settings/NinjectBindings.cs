@@ -27,6 +27,10 @@
                     ParameterNames.ConnectionString,
                     ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.HistoryDatabaseConnection].ConnectionString);
 
+            this.Bind<ProcessingTools.History.Data.Common.Contracts.Repositories.IHistoryRepository>()
+                .To<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
+                .InRequestScope();
+
             this.Bind<ProcessingTools.Journals.Data.Entity.Contracts.IJournalsDbContext>()
                 .To<ProcessingTools.Journals.Data.Entity.JournalsDbContext>()
                 .WhenInjectedInto(typeof(ProcessingTools.Data.Common.Entity.Repositories.GenericRepository<,>))

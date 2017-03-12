@@ -7,10 +7,10 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Abstractions.Controllers;
+    using ProcessingTools.History.Services.Data.Contracts.Services;
     using ProcessingTools.Journals.Data.Common.Contracts.Models;
-    using ProcessingTools.Journals.Data.Entity.Contracts;
-    using ProcessingTools.Journals.Data.Entity.Models;
     using ProcessingTools.Journals.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Journals.Data.Entity.Models;
     using ViewModels.Publishers;
 
     [Authorize]
@@ -23,15 +23,22 @@
         public const string EditActionName = "Edit";
 
         private readonly IPublishersRepository repository;
+        private readonly IHistoryDataService historyDataService;
 
-        public PublishersController(IPublishersRepository repository)
+        public PublishersController(IPublishersRepository repository, IHistoryDataService historyDataService)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
+            if (historyDataService == null)
+            {
+                throw new ArgumentNullException(nameof(historyDataService));
+            }
+
             this.repository = repository;
+            this.historyDataService = historyDataService;
         }
 
         private Func<IPublisher, PublisherViewModel> MapModelToViewModel => p => new PublisherViewModel
@@ -114,6 +121,8 @@
                 await this.repository.Add(entity);
                 await this.repository.SaveChanges();
 
+                await this.historyDataService.AddItemToHistory(this.UserId, entity.Id, entity);
+
                 return this.RedirectToAction(IndexActionName);
             }
 
@@ -154,6 +163,8 @@
 
                 await this.repository.Update(entity);
                 await this.repository.SaveChanges();
+
+                await this.historyDataService.AddItemToHistory(this.UserId, entity.Id, entity);
 
                 return this.RedirectToAction(IndexActionName);
             }
