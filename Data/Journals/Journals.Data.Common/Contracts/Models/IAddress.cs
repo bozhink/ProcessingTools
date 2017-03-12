@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface IAddress : IGuidIdentifiable, IModelWithUserInformation
+    public interface IAddress : IStringIdentifiable
     {
         string AddressString { get; }
 

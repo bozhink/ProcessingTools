@@ -40,6 +40,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\Repositories\AbstractEntityAddressableRepository.cs" />
     <Compile Include="Contracts\IJournalsDatabaseInitializer.cs" />
     <Compile Include="Contracts\IJournalsDbContext.cs" />
     <Compile Include="Contracts\IJournalsDbContextFactory.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="JournalsDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Addressable.cs" />
     <Compile Include="Models\Institution.cs" />
     <Compile Include="Models\Publisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

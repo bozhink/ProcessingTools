@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Models
 {
-    public interface IAbbreviatedNameableGuidIdentifiable : INameableGuidIdentifiable
+    public interface IAbbreviatedNameableGuidIdentifiable : IAbbreviatedNameable, INameableGuidIdentifiable
     {
-        string AbbreviatedName { get; }
     }
 }

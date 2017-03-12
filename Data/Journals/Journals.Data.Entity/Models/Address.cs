@@ -2,20 +2,20 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Common.Models;
     using ProcessingTools.Journals.Data.Common.Constants;
     using ProcessingTools.Journals.Data.Common.Contracts.Models;
 
-    public class Address : ModelWithUserInformation, IAddress
+    public class Address : IAddress
     {
         public Address()
-            : base()
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Guid.NewGuid().ToString();
         }
 
         [Key]
-        public Guid Id { get; set; }
+        [Required(AllowEmptyStrings = false)]
+        [MaxLength(ValidationConstants.MaximalLengthOfId)]
+        public string Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfAddressString)]

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface IPublisher : IAddressable, IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
+    public interface IPublisher : IAddressable, IAbbreviatedNameableStringIdentifiable, IModelWithUserInformation
     {
     }
 }

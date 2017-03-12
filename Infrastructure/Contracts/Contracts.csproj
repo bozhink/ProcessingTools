@@ -100,8 +100,10 @@
     <Compile Include="IStrategiesProvider.cs" />
     <Compile Include="IStrategy.cs" />
     <Compile Include="Models\Documents\IJournalMeta.cs" />
+    <Compile Include="Models\IAbbreviatedNameable.cs" />
     <Compile Include="Models\IAbbreviatedNameableGuidIdentifiable.cs" />
     <Compile Include="ICommandRunner.cs" />
+    <Compile Include="Models\IAbbreviatedNameableStringIdentifiable.cs" />
     <Compile Include="Models\IAddressable.cs" />
     <Compile Include="Models\ICommentable.cs" />
     <Compile Include="Models\IContent.cs" />

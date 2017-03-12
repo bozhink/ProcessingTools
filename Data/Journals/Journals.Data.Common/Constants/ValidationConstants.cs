@@ -2,6 +2,8 @@
 {
     public sealed class ValidationConstants
     {
+        public const int MaximalLengthOfId = 36;
+
         public const int MaximalLengthOfPublisherName = 60;
         public const int MaximalLengthOfAbbreviatedPublisherName = 40;
 
