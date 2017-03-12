@@ -44,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\GenericDbContextInitializer.cs" />
+    <Compile Include="Abstractions\Repositories\AbstractEntityRepository.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IDbContextInitializer.cs" />
     <Compile Include="Contracts\IDbContextProvider.cs" />
+    <Compile Include="Contracts\Repositories\IGenericRepository.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="Models\Contracts\IEntityWithPreJoinedFields.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,8 +20,18 @@
 
         public HistoryDataService(IHistoryRepository repository, IDateTimeProvider dateTimeProvider)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(dateTimeProvider));
+            }
+
+            this.repository = repository;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public Task<object> AddItemToHistory(object userId, object objectId, object item)
