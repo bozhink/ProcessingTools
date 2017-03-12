@@ -343,7 +343,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\AddressViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
     <Compile Include="Constants\AreaNames.cs" />
     <Compile Include="Constants\RouteNames.cs" />
     <Compile Include="Constants\RouteValues.cs" />
@@ -488,6 +491,13 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Journals\Views\web.config" />
+    <Content Include="Areas\Journals\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Create.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Delete.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Details.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Edit.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Index.cshtml" />
+    <Content Include="Areas\Journals\Views\Publishers\Help.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -547,7 +557,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Journals\Controllers\" />
     <Folder Include="Areas\Journals\Models\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
@@ -573,6 +582,10 @@
     <ProjectReference Include="..\..\Data\History\History.Data.Entity\History.Data.Entity.csproj">
       <Project>{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}</Project>
       <Name>History.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Journals\Journals.Data.Common\Journals.Data.Common.csproj">
+      <Project>{8db94bb1-6191-4b80-bafc-a0c115d0a728}</Project>
+      <Name>Journals.Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Journals\Journals.Data.Entity\Journals.Data.Entity.csproj">
       <Project>{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}</Project>
