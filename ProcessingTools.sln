@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -349,6 +349,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "History.Services.Data", "Services\Data\History.Services.Data\History.Services.Data.csproj", "{66D22FE6-56AC-4754-BC2E-B534B62639C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journals.Data.Entity", "Data\Journals\Journals.Data.Entity\Journals.Data.Entity.csproj", "{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journals.Services.Data", "Services\Data\Journals.Services.Data\Journals.Services.Data.csproj", "{DC1A2B54-0B9B-422F-A401-90026EE48DE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1422,6 +1424,14 @@ Global
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}.Release|x64.ActiveCfg = Release|Any CPU
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}.Release|x64.Build.0 = Release|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Debug|x64.Build.0 = Debug|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Release|x64.ActiveCfg = Release|Any CPU
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1583,6 +1593,7 @@ Global
 		{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6} = {47DD9EDC-2F22-4C24-9857-434F335BBAE2}
 		{66D22FE6-56AC-4754-BC2E-B534B62639C9} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE} = {EE28DB83-9315-416D-8010-DC9A01029BBD}
+		{DC1A2B54-0B9B-422F-A401-90026EE48DE7} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
