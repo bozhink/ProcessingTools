@@ -4,9 +4,11 @@
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using Models;
     using ProcessingTools.Enumerations;
 
     public interface IGenericDataService<TModel>
+        where TModel : IServiceModel
     {
         Task<object> Add(TModel model);
 

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface IPublisherDetails : IPublisher, IAddressable, IModelWithUserInformation, IDetailedModel
+    public interface IPublisherDetails : IPublisher, IAddressable, IModelWithUserInformation, IDetailedModel, IServiceModel
     {
     }
 }

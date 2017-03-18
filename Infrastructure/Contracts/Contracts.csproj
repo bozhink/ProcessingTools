@@ -115,6 +115,7 @@
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IDateTimeProvider.cs" />
+    <Compile Include="Models\IDataModel.cs" />
     <Compile Include="Models\IDefinable.cs" />
     <Compile Include="Models\IDescribable.cs" />
     <Compile Include="IDeserializer.cs" />

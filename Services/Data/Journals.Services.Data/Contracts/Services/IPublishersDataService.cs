@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Journals.Services.Data.Contracts.Services
 {
-    using System.Threading.Tasks;
+    using Models;
+    using ProcessingTools.Contracts.Services.Data;
 
-    public interface IPublishersDataService
+    public interface IPublishersDataService : IAddressableDataService<IPublisherDetails>, IDetailedGenericDataService<IPublisher, IPublisherDetails>
     {
-        Task<object> Add();
     }
 }

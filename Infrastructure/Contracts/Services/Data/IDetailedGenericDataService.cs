@@ -8,6 +8,7 @@
     using ProcessingTools.Enumerations;
 
     public interface IDetailedGenericDataService<TModel, TDetailedModel> : IGenericDataService<TModel>
+        where TModel : IServiceModel
         where TDetailedModel : TModel, IDetailedModel
     {
         Task<TDetailedModel> GetDetails(object id);

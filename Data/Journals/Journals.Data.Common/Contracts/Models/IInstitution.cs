@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface IInstitution : IAddressable, IAbbreviatedNameableStringIdentifiable, IModelWithUserInformation
+    public interface IInstitution : IAddressable, IAbbreviatedNameableStringIdentifiable, IModelWithUserInformation, IDataModel
     {
     }
 }

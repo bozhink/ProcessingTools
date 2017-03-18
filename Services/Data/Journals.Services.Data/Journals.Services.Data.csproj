@@ -33,12 +33,14 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\Services\AbstractAddressableDataService.cs" />
     <Compile Include="Contracts\Models\IAddress.cs" />
     <Compile Include="Contracts\Models\IAddressable.cs" />
     <Compile Include="Contracts\Models\IInstitution.cs" />
     <Compile Include="Contracts\Models\IInstitutionDetails.cs" />
     <Compile Include="Contracts\Models\IPublisher.cs" />
     <Compile Include="Contracts\Models\IPublisherDetails.cs" />
+    <Compile Include="Contracts\Services\IAddressableDataService.cs" />
     <Compile Include="Contracts\Services\IPublishersDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
