@@ -96,7 +96,7 @@
             return addressId;
         }
 
-        public override async Task<object> Delete(object id)
+        public override Task<object> Delete(object id)
         {
             if (id == null)
             {
@@ -109,12 +109,12 @@
                 return null;
             }
 
-            await entity.Addresses
-                .AsQueryable()
-                .ForEachAsync(a => this.Repository.Context.Addresses.Remove(a));
+            entity.Addresses
+                .ToList()
+                .ForEach(a => this.Repository.Context.Addresses.Remove(a));
 
             this.Repository.Delete(entity);
-            return id;
+            return Task.FromResult(id);
         }
     }
 }

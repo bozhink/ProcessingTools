@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
 {
-    using ProcessingTools.Journals.Data.Common.Contracts.Models;
-    using ProcessingTools.Journals.Data.Common.Constants;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Journals.Data.Common.Constants;
 
-    public class PublisherViewModel : IPublisher
+    public class PublisherViewModel
     {
         public PublisherViewModel()
         {
@@ -43,6 +42,6 @@
         public string ModifiedByUser { get; set; }
 
         [Display(Name = "Addresses", Description = "Addresses")]
-        public ICollection<IAddress> Addresses { get; set; }
+        public ICollection<AddressViewModel> Addresses { get; set; }
     }
 }

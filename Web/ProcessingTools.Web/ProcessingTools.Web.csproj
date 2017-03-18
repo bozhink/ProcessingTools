@@ -345,6 +345,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
+    <Compile Include="Areas\Journals\Models\Publishers\Address.cs" />
+    <Compile Include="Areas\Journals\Models\Publishers\Publisher.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\AddressViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
     <Compile Include="Constants\AreaNames.cs" />
@@ -557,7 +559,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Journals\Models\" />
     <Folder Include="Areas\Journals\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -611,6 +612,14 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Mappings\Mappings.csproj">
       <Project>{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}</Project>
       <Name>Mappings</Name>
@@ -618,6 +627,10 @@
     <ProjectReference Include="..\..\Services\Data\History.Services.Data\History.Services.Data.csproj">
       <Project>{66D22FE6-56AC-4754-BC2E-B534B62639C9}</Project>
       <Name>History.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Data\Journals.Services.Data\Journals.Services.Data.csproj">
+      <Project>{DC1A2B54-0B9B-422F-A401-90026EE48DE7}</Project>
+      <Name>Journals.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Web\Services.Web\Services.Web.csproj">
       <Project>{CE9F3A6E-C793-4046-8768-3DEE63CA35E4}</Project>

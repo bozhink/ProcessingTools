@@ -31,6 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\Services\AbstractAddresssableDataService.cs" />
@@ -82,7 +86,13 @@
       <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\History.Services.Data\History.Services.Data.csproj">
+      <Project>{66D22FE6-56AC-4754-BC2E-B534B62639C9}</Project>
+      <Name>History.Services.Data</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

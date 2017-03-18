@@ -1,8 +1,10 @@
 ﻿namespace ProcessingTools.Journals.Services.Data.Abstractions.Services
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Dynamic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Constants;
@@ -23,6 +25,8 @@
         where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Journals.Data.Common.Contracts.Models.IAddressable
         where TRepository : ISearchableCountableCrudRepository<TDataModel>, IAddressableRepository
     {
+        private readonly static ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();
+
         private readonly TRepository repository;
         private readonly IDateTimeProvider datetimeProvider;
 
@@ -49,6 +53,20 @@
         protected IDateTimeProvider DatetimeProvider => this.datetimeProvider;
 
         protected TRepository Repository => this.repository;
+
+        private static Expression<Func<T, S>> BuildExpression<T, S>(LambdaExpression lambda)
+        {
+            ParameterExpression lambdaParameter = lambda.Parameters.Single();
+            ParameterExpression parameter = Expression.Parameter(typeof(T), lambdaParameter.Name);
+
+            var symbols = new Dictionary<string, object>();
+            symbols.Add(parameter.ToString(), parameter);
+
+            var expression = lambda.Body.ToString();
+            var body = System.Linq.Dynamic.DynamicExpression.Parse(typeof(S), expression, symbols);
+
+            return Expression.Lambda<Func<T, S>>(body, parameter);
+        }
 
         public abstract Task<object> Add(object userId, TServiceModel model);
 
@@ -255,35 +273,43 @@
         private async Task<IEnumerable<TDataModel>> BuildQuery(int skip, int take, LambdaExpression sort, SortOrder order, LambdaExpression filter)
         {
             Expression<Func<TDataModel, bool>> dataFilter = x => true;
-            if (filter != null)
+            try
             {
-                ParameterExpression filterParameter = filter.Parameters.Single();
-                ParameterExpression parameter = Expression.Parameter(typeof(TDataModel), filterParameter.Name);
-
-                dataFilter = Expression.Lambda<Func<TDataModel, bool>>(filter.Body, parameter);
+                if (filter != null)
+                {
+                    dataFilter = BuildExpression<TDataModel, bool>(filter);
+                }
+            }
+            catch
+            {
             }
 
             var query = await this.repository.Find(dataFilter);
 
-            if (sort != null)
+            try
             {
-                ParameterExpression sortParameter = sort.Parameters.Single();
-                ParameterExpression parameter = Expression.Parameter(typeof(TDataModel), sortParameter.Name);
-                var lambda = Expression.Lambda<Func<TDataModel, object>>(sort.Body, parameter).Compile();
+                var lambda = SortExpressions.GetOrAdd(
+                    sort.ToString(),
+                    key => BuildExpression<TDataModel, object>(sort));
+
+                var func = lambda.Compile();
 
                 switch (order)
                 {
                     case SortOrder.Ascending:
-                        query = query.OrderBy(lambda);
+                        query = query.OrderBy(func);
                         break;
 
                     case SortOrder.Descending:
-                        query = query.OrderByDescending(lambda);
+                        query = query.OrderByDescending(func);
                         break;
 
                     default:
                         break;
                 }
+            }
+            catch
+            {
             }
 
             query = query.Skip(skip).Take(take);

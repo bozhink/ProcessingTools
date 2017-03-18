@@ -2,9 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Journals.Data.Common.Constants;
-    using ProcessingTools.Journals.Data.Common.Contracts.Models;
 
-    public class AddressViewModel : IAddress
+    public class AddressViewModel
     {
         [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfId)]

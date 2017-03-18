@@ -150,7 +150,9 @@
             var updater = new Updater<TEntity>(update);
             await updater.Invoke(model);
 
-            return await this.Update(model);
+            this.repository.Update(model);
+
+            return Task.FromResult<object>(model);
         }
     }
 }

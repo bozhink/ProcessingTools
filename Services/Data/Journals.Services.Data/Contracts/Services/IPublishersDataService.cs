@@ -5,5 +5,6 @@
 
     public interface IPublishersDataService : IAddressableDataService<IPublisherDetails>, IDetailedGenericDataService<IPublisher, IPublisherDetails>
     {
+        bool SaveToHistory { get; set; }
     }
 }

@@ -10,6 +10,7 @@
     using Models.ServiceModels;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.History.Services.Data.Contracts.Services;
     using TDataModel = ProcessingTools.Journals.Data.Common.Contracts.Models.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisherDetails;
     using TRepository = ProcessingTools.Journals.Data.Common.Contracts.Repositories.IPublishersRepository;
@@ -17,10 +18,20 @@
 
     public class PublishersDataService : AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>, IPublishersDataService
     {
-        public PublishersDataService(TRepository repository, IDateTimeProvider datetimeProvider)
+        private readonly IHistoryDataService historyService;
+
+        public PublishersDataService(TRepository repository, IDateTimeProvider datetimeProvider, IHistoryDataService historyService)
             : base(repository, datetimeProvider)
         {
+            if (historyService == null)
+            {
+                throw new ArgumentNullException(nameof(historyService));
+            }
+
+            this.historyService = historyService;
         }
+
+        public bool SaveToHistory { get; set; } = true;
 
         protected override Func<TDataModel, TDetailedServiceModel> MapDataModelToDetailedServiceModel => dataModel => new PublisherDetailsServiceModel
         {
@@ -77,6 +88,12 @@
 
             await this.Repository.SaveChanges();
 
+            if (this.SaveToHistory)
+            {
+                var entity = await this.Repository.GetById(dataModel.Id);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+            }
+
             return dataModel.Id;
         }
 
@@ -106,7 +123,39 @@
 
             await this.Repository.SaveChanges();
 
+            if (this.SaveToHistory)
+            {
+                var entity = await this.Repository.GetById(model.Id);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+            }
+
             return model.Id;
+        }
+
+        public override async Task<object> AddAddress(object userId, object modelId, IAddress address)
+        {
+            var result = await base.AddAddress(userId, modelId, address);
+
+            if (this.SaveToHistory)
+            {
+                var entity = await this.Repository.GetById(modelId);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+            }
+
+            return result;
+        }
+
+        public override async Task<object> RemoveAddress(object userId, object modelId, object addressId)
+        {
+            var result = await base.RemoveAddress(userId, modelId, addressId);
+
+            if (this.SaveToHistory)
+            {
+                var entity = await this.Repository.GetById(modelId);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+            }
+
+            return result;
         }
     }
 }

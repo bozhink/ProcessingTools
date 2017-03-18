@@ -7,10 +7,10 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Abstractions.Controllers;
-    using ProcessingTools.History.Services.Data.Contracts.Services;
-    using ProcessingTools.Journals.Data.Common.Contracts.Models;
-    using ProcessingTools.Journals.Data.Common.Contracts.Repositories;
-    using ProcessingTools.Journals.Data.Entity.Models;
+    using Models.Publishers;
+    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Journals.Services.Data.Contracts.Models;
+    using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ViewModels.Publishers;
 
     [Authorize]
@@ -22,56 +22,61 @@
         public const string DetailsActionName = "Details";
         public const string EditActionName = "Edit";
 
-        private readonly IPublishersRepository repository;
-        private readonly IHistoryDataService historyDataService;
+        private readonly IPublishersDataService service;
 
-        public PublishersController(IPublishersRepository repository, IHistoryDataService historyDataService)
+        public PublishersController(IPublishersDataService service)
         {
-            if (repository == null)
+            if (service == null)
             {
-                throw new ArgumentNullException(nameof(repository));
+                throw new ArgumentNullException(nameof(service));
             }
 
-            if (historyDataService == null)
-            {
-                throw new ArgumentNullException(nameof(historyDataService));
-            }
-
-            this.repository = repository;
-            this.historyDataService = historyDataService;
+            this.service = service;
+            this.service.SaveToHistory = true;
         }
 
         private Func<IPublisher, PublisherViewModel> MapModelToViewModel => p => new PublisherViewModel
         {
             Id = p.Id,
             Name = p.Name,
+            AbbreviatedName = p.AbbreviatedName
+        };
+
+        private Func<IPublisherDetails, PublisherViewModel> MapDetailedModelToViewModel => p => new PublisherViewModel
+        {
+            Id = p.Id,
+            Name = p.Name,
             AbbreviatedName = p.AbbreviatedName,
             CreatedByUser = p.CreatedByUser,
-            ModifiedByUser = p.ModifiedByUser,
             DateCreated = p.DateCreated,
             DateModified = p.DateModified,
-            Addresses = p.Addresses.ToList<IAddress>()
+            ModifiedByUser = p.ModifiedByUser,
+            Addresses = p.Addresses
+                .Select(a => new AddressViewModel
+                {
+                    Id = a.Id,
+                    AddressString = a.AddressString,
+                    CityId = a.CityId,
+                    CountryId = a.CountryId
+                })
+            .ToList()
         };
 
         private Func<PublisherViewModel, Publisher> MapViewModelToModel => p => new Publisher
         {
             Id = p.Id,
             Name = p.Name,
-            AbbreviatedName = p.AbbreviatedName,
-            CreatedByUser = p.CreatedByUser,
-            ModifiedByUser = p.ModifiedByUser,
-            DateCreated = p.DateCreated,
-            DateModified = p.DateModified
+            AbbreviatedName = p.AbbreviatedName
         };
 
         // GET: Journals/Publishers
         [HttpGet, ActionName(IndexActionName)]
         [AllowAnonymous]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int p = 0, int n = 10)
         {
-            var data = await this.repository.Query.ToListAsync();
+            var data = await this.service.Select(this.UserId, p * n, n, x => x.Name);
 
-            var viewModel = data.Select(this.MapModelToViewModel);
+            var viewModel = await data.Select(this.MapModelToViewModel).ToListAsync();
 
             return this.View(viewModel);
         }
@@ -86,13 +91,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.repository.GetById(id);
+            var data = await this.service.GetDetails(this.UserId, id);
             if (data == null)
             {
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapModelToViewModel(data);
+            var viewModel = this.MapDetailedModelToViewModel(data);
 
             return this.View(viewModel);
         }
@@ -107,26 +112,16 @@
         // POST: Journals/Publishers/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AbbreviatedName,Name")] PublisherViewModel model)
+        public async Task<ActionResult> Create([Bind(Include = "AbbreviatedName,Name")] Publisher model)
         {
             if (this.ModelState.IsValid)
             {
-                model.CreatedByUser = this.UserId;
-                model.ModifiedByUser = model.CreatedByUser;
-                model.DateCreated = DateTime.UtcNow;
-                model.DateModified = model.DateCreated;
-
-                var entity = this.MapViewModelToModel(model);
-
-                await this.repository.Add(entity);
-                await this.repository.SaveChanges();
-
-                await this.historyDataService.AddItemToHistory(this.UserId, entity.Id, entity);
+                await this.service.Add(this.UserId, model);
 
                 return this.RedirectToAction(IndexActionName);
             }
 
-            return this.View(model);
+            return this.View(this.MapModelToViewModel(model));
         }
 
         // GET: Journals/Publishers/Edit/5
@@ -138,13 +133,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.repository.GetById(id);
+            var data = await this.service.GetDetails(this.UserId, id);
             if (data == null)
             {
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapModelToViewModel(data);
+            var viewModel = this.MapDetailedModelToViewModel(data);
 
             return this.View(viewModel);
         }
@@ -152,24 +147,16 @@
         // POST: Journals/Publishers/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,AbbreviatedName,Name,DateCreated,CreatedByUser")] PublisherViewModel model)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model)
         {
             if (this.ModelState.IsValid)
             {
-                model.ModifiedByUser = this.UserId;
-                model.DateModified = DateTime.UtcNow;
-
-                var entity = this.MapViewModelToModel(model);
-
-                await this.repository.Update(entity);
-                await this.repository.SaveChanges();
-
-                await this.historyDataService.AddItemToHistory(this.UserId, entity.Id, entity);
+                await this.service.Update(this.UserId, model);
 
                 return this.RedirectToAction(IndexActionName);
             }
 
-            return this.View(model);
+            return this.View(this.MapModelToViewModel(model));
         }
 
         // GET: Journals/Publishers/Delete/5
@@ -181,13 +168,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.repository.GetById(id);
+            var data = await this.service.GetDetails(this.UserId, id);
             if (data == null)
             {
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapModelToViewModel(data);
+            var viewModel = this.MapDetailedModelToViewModel(data);
 
             return this.View(viewModel);
         }
@@ -202,8 +189,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            await this.repository.Delete(id);
-            await this.repository.SaveChanges();
+            await this.service.Delete(this.UserId, id);
 
             return this.RedirectToAction(IndexActionName);
         }
