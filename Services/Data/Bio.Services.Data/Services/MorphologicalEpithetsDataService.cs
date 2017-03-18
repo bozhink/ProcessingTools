@@ -6,9 +6,9 @@
     using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Bio.Services.Data.Contracts;
     using ProcessingTools.Bio.Services.Data.Models;
-    using ProcessingTools.Services.Common.Factories;
+    using ProcessingTools.Services.Common.Abstractions;
 
-    public class MorphologicalEpithetsDataService : SimpleDataServiceWithRepositoryFactory<MorphologicalEpithet, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataService
+    public class MorphologicalEpithetsDataService : AbstractDataServiceWithRepository<MorphologicalEpithet, MorphologicalEpithetServiceModel>, IMorphologicalEpithetsDataService
     {
         public MorphologicalEpithetsDataService(IBioDataRepository<MorphologicalEpithet> repository)
             : base(repository)

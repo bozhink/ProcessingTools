@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Factories
+﻿namespace ProcessingTools.Services.Common.Abstractions
 {
     using System;
     using System.Collections.Concurrent;
@@ -12,7 +12,7 @@
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions.Linq;
 
-    public abstract class RepositoryDataServiceFactory<TDbModel, TServiceModel> : IRepositoryDataService<TDbModel, TServiceModel>
+    public abstract class AbstractRepositoryDataService<TDbModel, TServiceModel> : IRepositoryDataService<TDbModel, TServiceModel>
     {
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
 

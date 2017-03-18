@@ -7,9 +7,9 @@
     using Models;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
-    using ProcessingTools.Services.Common.Factories;
+    using ProcessingTools.Services.Common.Abstractions;
 
-    public class InstitutionsDataService : SimpleDataServiceWithRepositoryFactory<Institution, IInstitution>, IInstitutionsDataService
+    public class InstitutionsDataService : AbstractDataServiceWithRepository<Institution, IInstitution>, IInstitutionsDataService
     {
         public InstitutionsDataService(IResourcesRepository<Institution> repository)
             : base(repository)

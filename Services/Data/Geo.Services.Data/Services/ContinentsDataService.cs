@@ -10,9 +10,9 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
-    using ProcessingTools.Services.Common.Factories;
+    using ProcessingTools.Services.Common.Abstractions;
 
-    public class ContinentsDataService : DataServiceFactory<Continent, ContinentServiceModel>, IContinentsDataService
+    public class ContinentsDataService : AbstractDataService<Continent, ContinentServiceModel>, IContinentsDataService
     {
         public ContinentsDataService(IGeoDataRepositoryProvider<Continent> repositoryProvider)
             : base(repositoryProvider)

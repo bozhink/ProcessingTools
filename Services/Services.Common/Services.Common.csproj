@@ -31,17 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\DataServiceFactory.cs" />
-    <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
-    <Compile Include="Factories\SimpleDataServiceWithRepositoryFactory.cs" />
+    <Compile Include="Abstractions\AbstractDataService.cs" />
+    <Compile Include="Abstractions\AbstractRepositoryDataService.cs" />
+    <Compile Include="Abstractions\AbstractDataServiceWithRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +65,6 @@
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

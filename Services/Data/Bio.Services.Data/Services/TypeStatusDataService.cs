@@ -6,9 +6,9 @@
     using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Bio.Services.Data.Contracts;
     using ProcessingTools.Bio.Services.Data.Models;
-    using ProcessingTools.Services.Common.Factories;
+    using ProcessingTools.Services.Common.Abstractions;
 
-    public class TypeStatusDataService : SimpleDataServiceWithRepositoryFactory<TypeStatus, TypeStatusServiceModel>, ITypeStatusDataService
+    public class TypeStatusDataService : AbstractDataServiceWithRepository<TypeStatus, TypeStatusServiceModel>, ITypeStatusDataService
     {
         public TypeStatusDataService(IBioDataRepository<TypeStatus> repository)
             : base(repository)

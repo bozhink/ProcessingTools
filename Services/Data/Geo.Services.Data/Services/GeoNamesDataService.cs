@@ -6,9 +6,9 @@
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Contracts;
     using ProcessingTools.Geo.Services.Data.Models;
-    using ProcessingTools.Services.Common.Factories;
+    using ProcessingTools.Services.Common.Abstractions;
 
-    public class GeoNamesDataService : SimpleDataServiceWithRepositoryFactory<GeoName, GeoNameServiceModel>, IGeoNamesDataService
+    public class GeoNamesDataService : AbstractDataServiceWithRepository<GeoName, GeoNameServiceModel>, IGeoNamesDataService
     {
         public GeoNamesDataService(IGeoDataRepository<GeoName> repository)
             : base(repository)

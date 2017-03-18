@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Factories
+﻿namespace ProcessingTools.Services.Common.Abstractions
 {
     using System;
     using System.Linq;
@@ -8,11 +8,11 @@
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Extensions;
 
-    public abstract class SimpleDataServiceWithRepositoryFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
+    public abstract class AbstractDataServiceWithRepository<TDbModel, TServiceModel> : AbstractRepositoryDataService<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
         private readonly ISearchableCountableCrudRepository<TDbModel> repository;
 
-        public SimpleDataServiceWithRepositoryFactory(ISearchableCountableCrudRepository<TDbModel> repository)
+        public AbstractDataServiceWithRepository(ISearchableCountableCrudRepository<TDbModel> repository)
         {
             if (repository == null)
             {

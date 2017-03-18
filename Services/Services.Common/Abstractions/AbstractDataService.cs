@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Factories
+﻿namespace ProcessingTools.Services.Common.Abstractions
 {
     using System;
     using System.Linq;
@@ -10,11 +10,11 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
 
-    public abstract class DataServiceFactory<TDbModel, TServiceModel> : IDataService<TServiceModel>
+    public abstract class AbstractDataService<TDbModel, TServiceModel> : IDataService<TServiceModel>
         where TDbModel : class
         where TServiceModel : class
     {
-        public DataServiceFactory(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
+        public AbstractDataService(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
