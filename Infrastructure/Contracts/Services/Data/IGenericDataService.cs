@@ -10,14 +10,14 @@
     public interface IGenericDataService<TModel>
         where TModel : IServiceModel
     {
-        Task<object> Add(TModel model);
+        Task<object> Add(object userId, TModel model);
 
-        Task<object> Update(TModel model);
+        Task<object> Update(object userId, TModel model);
 
-        Task<object> Delete(object id);
+        Task<object> Delete(object userId, object id);
 
-        Task<TModel> Get(object id);
+        Task<TModel> Get(object userId, object id);
 
-        Task<IEnumerable<TModel>> Select(int skip, int take, Expression<Func<TModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TModel, bool>> filter = null);
+        Task<IEnumerable<TModel>> Select(object userId, int skip, int take, Expression<Func<TModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TModel, bool>> filter = null);
     }
 }

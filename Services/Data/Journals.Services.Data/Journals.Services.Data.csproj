@@ -33,7 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Services\AbstractAddressableDataService.cs" />
+    <Compile Include="Abstractions\Services\AbstractAddresssableDataService.cs" />
     <Compile Include="Contracts\Models\IAddress.cs" />
     <Compile Include="Contracts\Models\IAddressable.cs" />
     <Compile Include="Contracts\Models\IInstitution.cs" />
@@ -42,9 +42,22 @@
     <Compile Include="Contracts\Models\IPublisherDetails.cs" />
     <Compile Include="Contracts\Services\IAddressableDataService.cs" />
     <Compile Include="Contracts\Services\IPublishersDataService.cs" />
+    <Compile Include="Models\DataModels\AddressDataModel.cs" />
+    <Compile Include="Models\DataModels\InstitutionDataModel.cs" />
+    <Compile Include="Models\DataModels\PublisherDataModel.cs" />
+    <Compile Include="Models\ServiceModels\AddressServiceModel.cs" />
+    <Compile Include="Models\ServiceModels\InstitutionDetailsServiceModel.cs" />
+    <Compile Include="Models\ServiceModels\InstitutionServiceModel.cs" />
+    <Compile Include="Models\ServiceModels\PublisherDetailsServiceModel.cs" />
+    <Compile Include="Models\ServiceModels\PublisherServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PublishersDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\Common\Data.Common\Data.Common.csproj">
+      <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Journals\Journals.Data.Common\Journals.Data.Common.csproj">
       <Project>{8db94bb1-6191-4b80-bafc-a0c115d0a728}</Project>
       <Name>Journals.Data.Common</Name>
@@ -57,10 +70,19 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Exceptions\Exceptions.csproj">
+      <Project>{8C506EE8-1C2E-4684-A081-2DE56BF70FE9}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

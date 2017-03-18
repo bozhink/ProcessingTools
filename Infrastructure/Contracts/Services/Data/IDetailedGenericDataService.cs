@@ -11,8 +11,8 @@
         where TModel : IServiceModel
         where TDetailedModel : TModel, IDetailedModel
     {
-        Task<TDetailedModel> GetDetails(object id);
+        Task<TDetailedModel> GetDetails(object userId, object id);
 
-        Task<IEnumerable<TDetailedModel>> SelectDetails(int skip, int take, Expression<Func<TDetailedModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TDetailedModel, bool>> filter = null);
+        Task<IEnumerable<TDetailedModel>> SelectDetails(object userId, int skip, int take, Expression<Func<TDetailedModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TDetailedModel, bool>> filter = null);
     }
 }

@@ -6,10 +6,6 @@
     {
         int? CityId { get; }
 
-        string City { get; }
-
         int? CountryId { get; }
-
-        string Country { get; }
     }
 }
