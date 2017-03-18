@@ -178,6 +178,8 @@
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
     <Compile Include="Services\Data\IAddableDataService.cs" />
     <Compile Include="Services\Data\IDeletableDataService.cs" />
+    <Compile Include="Services\Data\IDetailedGenericDataService.cs" />
+    <Compile Include="Services\Data\IGenericDataService.cs" />
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />
