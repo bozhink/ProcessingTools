@@ -8,8 +8,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Services.Common.Contracts;
 
     public class SimpleServiceStringDataMiner<TDataService, TDataServiceModel> : IStringDataMiner
         where TDataServiceModel : INameableIntegerIdentifiable

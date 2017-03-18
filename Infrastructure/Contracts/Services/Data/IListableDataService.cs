@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Services.Common.Contracts
+﻿namespace ProcessingTools.Contracts.Services.Data
 {
-    using Models.Contracts;
+    using Models;
 
     public interface IListableDataService<T> : IIterableDataService<T>
         where T : IListableServiceModel

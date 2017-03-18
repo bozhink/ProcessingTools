@@ -39,16 +39,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IDataService.cs" />
-    <Compile Include="Contracts\IIterableDataService.cs" />
-    <Compile Include="Contracts\IListableDataService.cs" />
-    <Compile Include="Contracts\IMultiEntryDataService.cs" />
-    <Compile Include="Contracts\IRepositoryDataService.cs" />
     <Compile Include="Factories\DataServiceFactory.cs" />
     <Compile Include="Factories\RepositoryDataServiceFactory.cs" />
     <Compile Include="Factories\SimpleDataServiceWithRepositoryFactory.cs" />
-    <Compile Include="Models\Contracts\IListableServiceModel.cs" />
-    <Compile Include="Models\Contracts\IServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -143,6 +143,7 @@
     <Compile Include="IHelpProvider.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\IIntegerIdentifiable.cs" />
+    <Compile Include="Models\IListableServiceModel.cs" />
     <Compile Include="Models\IModelWithUserInformation.cs" />
     <Compile Include="Models\INameable.cs" />
     <Compile Include="Models\INameableGuidIdentifiable.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="IProvider.cs" />
     <Compile Include="IReporter.cs" />
     <Compile Include="ISandbox.cs" />
+    <Compile Include="Models\IServiceModel.cs" />
     <Compile Include="Models\IStringIdentifiable.cs" />
     <Compile Include="IStringItemsProvider.cs" />
     <Compile Include="ITransformer.cs" />
@@ -177,9 +179,14 @@
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
     <Compile Include="Services\Data\IAddableDataService.cs" />
+    <Compile Include="Services\Data\IDataService.cs" />
     <Compile Include="Services\Data\IDeletableDataService.cs" />
     <Compile Include="Services\Data\IDetailedGenericDataService.cs" />
     <Compile Include="Services\Data\IGenericDataService.cs" />
+    <Compile Include="Services\Data\IIterableDataService.cs" />
+    <Compile Include="Services\Data\IListableDataService.cs" />
+    <Compile Include="Services\Data\IMultiEntryDataService.cs" />
+    <Compile Include="Services\Data\IRepositoryDataService.cs" />
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />

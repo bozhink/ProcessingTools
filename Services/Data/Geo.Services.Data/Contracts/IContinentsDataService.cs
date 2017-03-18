@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Contracts
 {
     using System.Threading.Tasks;
-
     using Models;
-    using ProcessingTools.Services.Common.Contracts;
+    using ProcessingTools.Contracts.Services.Data;
 
     public interface IContinentsDataService : IDataService<ContinentServiceModel>
     {

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Contracts
 {
     using Models;
-    using ProcessingTools.Services.Common.Contracts;
+    using ProcessingTools.Contracts.Services.Data;
 
     public interface IMorphologicalEpithetsDataService : IMultiEntryDataService<MorphologicalEpithetServiceModel>
     {

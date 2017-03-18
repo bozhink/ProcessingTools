@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Extensions;
 
     public abstract class SimpleDataServiceWithRepositoryFactory<TDbModel, TServiceModel> : RepositoryDataServiceFactory<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable

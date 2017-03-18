@@ -6,7 +6,7 @@
     using System.Web.Http;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Services.Common.Contracts;
+    using ProcessingTools.Contracts.Services.Data;
 
     public class GenericDataServiceController<TServiceModel, TRequestModel, TResponseModel> : ApiController
         where TServiceModel : class
