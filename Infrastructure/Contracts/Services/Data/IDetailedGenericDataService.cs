@@ -4,10 +4,11 @@
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using Models;
     using ProcessingTools.Enumerations;
 
     public interface IDetailedGenericDataService<TModel, TDetailedModel> : IGenericDataService<TModel>
-        where TDetailedModel : TModel
+        where TDetailedModel : TModel, IDetailedModel
     {
         Task<TDetailedModel> GetDetails(object id);
 
