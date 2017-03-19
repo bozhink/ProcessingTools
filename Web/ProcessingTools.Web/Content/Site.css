@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.edit-buttons {
+    display: block;
+}
+
+.edit-buttons a {
+    margin-left: 10px;
+}
+
+.edit-buttons a:first-of-type {
+    margin-left: 0;
+}

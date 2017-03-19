@@ -1,0 +1,78 @@
+﻿@model ProcessingTools.Web.ViewModels.Shared.EditButtonsViewModel
+<nav class="edit-buttons">
+    @if (Model != null)
+    {
+        if (Model.ButtonNewIsVisible)
+        {
+            @Html.ActionLink(
+                linkText: Model.ButtonNewText,
+                actionName: Model.ButtonNewRoute?.ActionName,
+                controllerName: Model.ButtonNewRoute?.ControllerName,
+                routeValues: Model.ButtonNewRoute?.RouteValues,
+                htmlAttributes: new { @class = "btn btn-default", id = "btn-new" })
+        }
+
+        if (Model.ButtonSaveIsVisible)
+        {
+            @Html.ActionLink(
+                linkText: Model.ButtonSaveText,
+                actionName: Model.ButtonSaveRoute?.ActionName,
+                controllerName: Model.ButtonSaveRoute?.ControllerName,
+                routeValues: Model.ButtonSaveRoute?.RouteValues,
+                htmlAttributes: new { @class = "btn btn-default", id = "btn-save" })
+        }
+
+        if (Model.ButtonSaveAndExitIsVisible)
+        {
+            @Html.ActionLink(
+                linkText: Model.ButtonSaveAndExitText,
+                actionName: Model.ButtonSaveAndExitRoute?.ActionName,
+                controllerName: Model.ButtonSaveAndExitRoute?.ControllerName,
+                routeValues: Model.ButtonSaveAndExitRoute?.RouteValues,
+                htmlAttributes: new { @class = "btn btn-default", id = "btn-save-and-exit" })
+            @Html.Hidden("exit")
+        }
+
+        if (Model.ButtonSaveAndNewIsVisible)
+        {
+            @Html.ActionLink(
+                linkText: Model.ButtonSaveAndNewText,
+                actionName: Model.ButtonSaveAndNewRoute?.ActionName,
+                controllerName: Model.ButtonSaveAndNewRoute?.ControllerName,
+                routeValues: Model.ButtonSaveAndNewRoute?.RouteValues,
+                htmlAttributes: new { @class = "btn btn-default", id = "btn-save-and-new" })
+            @Html.Hidden("createNew")
+        }
+
+        if (Model.ButtonCancelIsVisible)
+        {
+            @Html.ActionLink(
+                linkText: Model.ButtonCancelText,
+                actionName: Model.ButtonCancelRoute?.ActionName,
+                controllerName: Model.ButtonCancelRoute?.ControllerName,
+                routeValues: Model.ButtonCancelRoute?.RouteValues,
+                htmlAttributes: new { @class = "btn btn-default", id = "btn-cancel" })
+            @Html.Hidden("cancel")
+        }
+
+        if (Model.ButtonViewIsVisible)
+        {
+            @Html.ActionLink(
+                linkText: Model.ButtonViewText,
+                actionName: Model.ButtonViewRoute?.ActionName,
+                controllerName: Model.ButtonViewRoute?.ControllerName,
+                routeValues: Model.ButtonViewRoute?.RouteValues,
+                htmlAttributes: new { @class = "btn btn-default", id = "btn-view" })
+        }
+
+        if (Model.ButtonHistoryIsVisible)
+        {
+            @Html.ActionLink(
+                linkText: Model.ButtonHistoryText,
+                actionName: Model.ButtonHistoryRoute?.ActionName,
+                controllerName: Model.ButtonHistoryRoute?.ControllerName,
+                routeValues: Model.ButtonHistoryRoute?.RouteValues,
+                htmlAttributes: new { @class = "btn btn-default", id = "btn-history" })
+        }
+    }
+</nav>

@@ -7,5 +7,6 @@
         public const string DefaultNavigationBar = "~/Views/Shared/Partials/_NavigationBar.cshtml";
         public const string Error = "Error";
         public const string Lockout = "Lockout";
+        public const string SharedEditButtonsPartial = "~/Views/Shared/Buttons/_EditButtons.cshtml";
     }
 }

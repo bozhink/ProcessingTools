@@ -161,14 +161,33 @@
         // POST: Journals/Publishers/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model, string addresses)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model, string addresses, bool exit, bool createNew, bool cancel)
         {
+            if (cancel)
+            {
+                return this.RedirectToAction(BaseMvcController.IndexActionName);
+            }
+
             if (this.ModelState.IsValid)
             {
                 var modelId = await this.service.Update(this.UserId, model);
                 await this.UpdateAddressesFromJson(modelId, addresses);
 
-                return this.RedirectToAction(BaseMvcController.IndexActionName);
+                if (exit)
+                {
+                    return this.RedirectToAction(BaseMvcController.IndexActionName);
+                }
+
+                if (createNew)
+                {
+                    return this.RedirectToAction(CreateActionName);
+                }
+
+                return this.RedirectToAction(EditActionName, new { id = modelId });
+            }
+            else
+            {
+                this.AddErrors("Invalid data");
             }
 
             return this.View(this.MapModelToViewModel(model));

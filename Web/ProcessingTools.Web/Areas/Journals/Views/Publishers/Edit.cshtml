@@ -1,6 +1,7 @@
 ﻿@using ProcessingTools.Web.Areas.Journals.Controllers
 @using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
 @using ProcessingTools.Web.Constants
+@using ProcessingTools.Web.ViewModels.Shared
 @model PublisherViewModel
 
 @{
@@ -16,6 +17,61 @@
 }
 
 <h2>Edit</h2>
+
+@Html.Partial(ViewNames.SharedEditButtonsPartial, new EditButtonsViewModel
+{
+    ButtonSaveIsVisible = true,
+    ButtonSaveText = "Save",
+    ButtonSaveRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = PublishersController.EditActionName,
+        ControllerName = PublishersController.ControllerName,
+        RouteValues = new
+        {
+            area = AreaNames.Journals,
+            id = Model?.Id
+        }
+    },
+
+    ButtonSaveAndExitIsVisible = true,
+    ButtonSaveAndExitText = "Save and Exit",
+    ButtonSaveAndExitRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = PublishersController.EditActionName,
+        ControllerName = PublishersController.ControllerName,
+        RouteValues = new
+        {
+            area = AreaNames.Journals,
+            id = Model?.Id,
+            exit = true
+        }
+    },
+
+    ButtonSaveAndNewIsVisible = true,
+    ButtonSaveAndNewText = "Save and New",
+    ButtonSaveAndNewRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = PublishersController.EditActionName,
+        ControllerName = PublishersController.ControllerName,
+        RouteValues = new
+        {
+            area = AreaNames.Journals,
+            id = Model?.Id,
+            createNew = true
+        }
+    },
+
+    ButtonCancelIsVisible = true,
+    ButtonCancelText = "Cancel",
+    ButtonCancelRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = PublishersController.IndexActionName,
+        ControllerName = PublishersController.ControllerName,
+        RouteValues = new
+        {
+        }
+    },
+})
 
 @using (Html.BeginForm())
 {
