@@ -7,10 +7,10 @@
     using System.Xml;
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Common;
+    using ProcessingTools.Constants;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Net.Constants;
     using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
     using Strings = Resources.Strings;
@@ -56,7 +56,7 @@
             var document = new DocumentServiceModel
             {
                 Id = id,
-                ContentType = ContentTypeConstants.XmlContentType
+                ContentType = ContentTypes.Xml
             };
 
             await this.presenter.SaveHtml(userId, this.fakeArticleId, document, content);
@@ -76,7 +76,7 @@
             var document = new DocumentServiceModel
             {
                 Id = id,
-                ContentType = ContentTypeConstants.XmlContentType
+                ContentType = ContentTypes.Xml
             };
 
             await this.presenter.SaveXml(userId, this.fakeArticleId, document, content);
@@ -137,7 +137,7 @@
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 Data = new MessageResponseModel
                 {
@@ -152,7 +152,7 @@
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 Data = new ContentResponseModel
                 {
@@ -169,7 +169,7 @@
             this.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 Data = new MessageResponseModel
                 {
@@ -184,7 +184,7 @@
             this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 Data = new MessageResponseModel
                 {
@@ -199,7 +199,7 @@
             this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 Data = new MessageResponseModel
                 {
@@ -214,7 +214,7 @@
             this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 Data = new MessageResponseModel
                 {
@@ -229,7 +229,7 @@
             this.Response.StatusCode = (int)HttpStatusCode.NotFound;
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 Data = new MessageResponseModel
                 {

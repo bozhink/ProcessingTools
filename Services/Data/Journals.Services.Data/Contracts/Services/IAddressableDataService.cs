@@ -8,6 +8,8 @@
     {
         Task<object> AddAddress(object userId, object modelId, IAddress address);
 
+        Task<object> UpdateAddress(object userId, object modelId, IAddress address);
+
         Task<object> RemoveAddress(object userId, object modelId, object addressId);
     }
 }

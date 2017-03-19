@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Common;
-    using ProcessingTools.Net.Constants;
+    using ProcessingTools.Constants;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList;
 
@@ -90,7 +90,7 @@
         {
             return new JsonResult
             {
-                ContentType = ContentTypeConstants.JsonContentType,
+                ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.DefaultEncoding,
                 JsonRequestBehavior = JsonRequestBehavior.DenyGet,
                 Data = data

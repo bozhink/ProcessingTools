@@ -5,16 +5,15 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
-
-    using Constants;
-    using Extensions;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Net.Extensions;
 
     public class WeakFormUrlEncodedContent : ByteArrayContent
     {
         public WeakFormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)
             : base(WeakFormUrlEncodedContent.GetContentByteArray(nameValueCollection, encoding))
         {
-            Headers.ContentType = new MediaTypeHeaderValue(ContentTypeConstants.UrlEncodedContentType);
+            Headers.ContentType = new MediaTypeHeaderValue(ContentTypes.UrlEncoded);
         }
 
         private static byte[] GetContentByteArray(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)

@@ -46,12 +46,55 @@
             }
 
             var dbaddress = this.MapAddressToAddress(address);
+            dbaddress.Id = Guid.NewGuid().ToString();
 
             entity.Addresses.Add(dbaddress);
 
             this.Repository.Update(entity);
 
             return await Task.FromResult(entity);
+        }
+
+        public virtual async Task<object> UpdateAddress(object entityId, IAddress address)
+        {
+            if (entityId == null)
+            {
+                throw new ArgumentNullException(nameof(entityId));
+            }
+
+            if (address == null)
+            {
+                throw new ArgumentNullException(nameof(address));
+            }
+
+            var query = this.Repository.DbSet.AsQueryable()
+                .Where(e => e.Id == entityId.ToString())
+                .Include(e => e.Addresses)
+                .SelectMany(e => e.Addresses
+                    .Where(a => a.Id == address.Id.ToString())
+                    .OrderBy(a => a.Id)
+                    .Skip(0)
+                    .Take(1));
+
+            var dbaddress = await query.FirstOrDefaultAsync();
+            if (dbaddress == null)
+            {
+                return null;
+            }
+
+            dbaddress.AddressString = address.AddressString;
+            dbaddress.CityId = address.CityId;
+            dbaddress.CountryId = address.CountryId;
+
+            var entry = this.Repository.Context.Entry(dbaddress);
+            if (entry.State == EntityState.Detached)
+            {
+                this.Repository.Context.Addresses.Attach(dbaddress);
+            }
+
+            entry.State = EntityState.Modified;
+
+            return await Task.FromResult(dbaddress.Id);
         }
 
         public virtual async Task<object> RemoveAddress(object entityId, object addressId)
@@ -68,29 +111,30 @@
 
             // This code is for validation that the entity with entityId contains
             // an address with addressId
-            var address = await this.Repository.DbSet.AsQueryable()
+            var query = this.Repository.DbSet.AsQueryable()
                 .Where(e => e.Id == entityId.ToString())
                 .Include(e => e.Addresses)
                 .SelectMany(e => e.Addresses
                     .Where(a => a.Id == addressId.ToString())
+                    .OrderBy(a => a.Id)
                     .Skip(0)
-                    .Take(1))
-                .FirstOrDefaultAsync();
+                    .Take(1));
 
-            if (address == null)
+            var dbaddress = await query.FirstOrDefaultAsync();
+            if (dbaddress == null)
             {
                 return null;
             }
 
-            var entry = this.Repository.Context.Entry(address);
+            var entry = this.Repository.Context.Entry(dbaddress);
             if (entry.State != EntityState.Deleted)
             {
                 entry.State = EntityState.Deleted;
             }
             else
             {
-                this.Repository.Context.Addresses.Attach(address);
-                this.Repository.Context.Addresses.Remove(address);
+                this.Repository.Context.Addresses.Attach(dbaddress);
+                this.Repository.Context.Addresses.Remove(dbaddress);
             }
 
             return addressId;

@@ -132,6 +132,48 @@
             return dataModel.Id;
         }
 
+        public virtual async Task<object> UpdateAddress(object userId, object modelId, IAddress address)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (modelId == null)
+            {
+                throw new ArgumentNullException(nameof(modelId));
+            }
+
+            if (address == null)
+            {
+                throw new ArgumentNullException(nameof(address));
+            }
+
+            var dataModel = new AddressDataModel
+            {
+                Id = address.Id,
+                AddressString = address.AddressString,
+                CityId = address.CityId,
+                CountryId = address.CountryId
+            };
+
+            await this.repository.UpdateAddress(modelId, dataModel);
+
+            var now = this.datetimeProvider.Now;
+            var user = userId.ToString();
+
+            await this.repository.Update(
+                modelId,
+                ExpressionBuilder<TDataModel>
+                    .UpdateExpression
+                    .Set(p => p.ModifiedByUser, user)
+                    .Set(p => p.DateModified, now));
+
+            await this.repository.SaveChanges();
+
+            return dataModel.Id;
+        }
+
         public virtual async Task<object> RemoveAddress(object userId, object modelId, object addressId)
         {
             if (userId == null)

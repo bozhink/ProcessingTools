@@ -39,7 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Constants\ContentTypeConstants.cs" />
     <Compile Include="Constants\HeaderConstants.cs" />
     <Compile Include="Contracts\INetConnector.cs" />
     <Compile Include="Extensions\ClientExtensions.cs" />
@@ -52,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Post.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Constants\Constants.csproj">
+      <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

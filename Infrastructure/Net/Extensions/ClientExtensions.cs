@@ -3,8 +3,8 @@
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;
-
-    using Constants;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Net.Constants;
 
     public static class ClientExtensions
     {
@@ -35,12 +35,12 @@
 
         public static void AddAcceptXmlHeader(this HttpClient client)
         {
-            client.AddAcceptContentTypeHeader(ContentTypeConstants.XmlContentType);
+            client.AddAcceptContentTypeHeader(ContentTypes.Xml);
         }
 
         public static void AddAcceptJsonHeader(this HttpClient client)
         {
-            client.AddAcceptContentTypeHeader(ContentTypeConstants.JsonContentType);
+            client.AddAcceptContentTypeHeader(ContentTypes.Json);
         }
     }
 }

@@ -6,12 +6,16 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Abstractions.Controllers;
-    using Models.Publishers;
+    using Newtonsoft.Json;
+    using ProcessingTools.Common;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
-    using ViewModels.Publishers;
+    using ProcessingTools.Web.Abstractions.Controllers;
+    using ProcessingTools.Web.Areas.Journals.Models.Publishers;
+    using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers;
 
     [Authorize]
     public class PublishersController : BaseMvcController
@@ -21,6 +25,7 @@
         public const string DeleteActionName = "Delete";
         public const string DetailsActionName = "Details";
         public const string EditActionName = "Edit";
+        public const string AddressesActionName = "Addresses";
 
         private readonly IPublishersDataService service;
 
@@ -69,6 +74,14 @@
             AbbreviatedName = p.AbbreviatedName
         };
 
+        private Func<IAddress, Address> MapAddress => a => new Address
+        {
+            Id = a.Id,
+            AddressString = a.AddressString,
+            CityId = a.CityId,
+            CountryId = a.CountryId
+        };
+
         // GET: Journals/Publishers
         [HttpGet, ActionName(IndexActionName)]
         [AllowAnonymous]
@@ -112,13 +125,14 @@
         // POST: Journals/Publishers/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AbbreviatedName,Name")] Publisher model)
+        public async Task<ActionResult> Create([Bind(Include = "AbbreviatedName,Name")] Publisher model, string addresses)
         {
             if (this.ModelState.IsValid)
             {
-                await this.service.Add(this.UserId, model);
+                var modelId = await this.service.Add(this.UserId, model);
+                await this.UpdateAddressesFromJson(modelId, addresses);
 
-                return this.RedirectToAction(IndexActionName);
+                return this.RedirectToAction(BaseMvcController.IndexActionName);
             }
 
             return this.View(this.MapModelToViewModel(model));
@@ -133,13 +147,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.service.GetDetails(this.UserId, id);
+            var data = await this.service.Get(this.UserId, id);
             if (data == null)
             {
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapDetailedModelToViewModel(data);
+            var viewModel = this.MapModelToViewModel(data);
 
             return this.View(viewModel);
         }
@@ -147,13 +161,14 @@
         // POST: Journals/Publishers/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model, string addresses)
         {
             if (this.ModelState.IsValid)
             {
-                await this.service.Update(this.UserId, model);
+                var modelId = await this.service.Update(this.UserId, model);
+                await this.UpdateAddressesFromJson(modelId, addresses);
 
-                return this.RedirectToAction(IndexActionName);
+                return this.RedirectToAction(BaseMvcController.IndexActionName);
             }
 
             return this.View(this.MapModelToViewModel(model));
@@ -191,7 +206,45 @@
 
             await this.service.Delete(this.UserId, id);
 
-            return this.RedirectToAction(IndexActionName);
+            return this.RedirectToAction(BaseMvcController.IndexActionName);
+        }
+
+        [HttpGet, ActionName(AddressesActionName)]
+        public async Task<JsonResult> Addresses(string id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var result = new JsonResult
+            {
+                ContentType = ContentTypes.Json,
+                ContentEncoding = Defaults.DefaultEncoding,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data = new Address[] { }
+            };
+
+            var model = await this.service.GetDetails(this.UserId, id);
+            if (model?.Addresses?.Count > 0)
+            {
+                result.Data = model.Addresses.Select(this.MapAddress).ToArray();
+            }
+
+            return result;
+        }
+
+        [HttpPost, ActionName(AddressesActionName)]
+        public async Task<JsonResult> Addresses(string id, Address[] addresses)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            await this.UpdateAddresses(id, addresses);
+
+            return await this.Addresses(id);
         }
 
         protected override void Dispose(bool disposing)
@@ -201,6 +254,54 @@
             }
 
             base.Dispose(disposing);
+        }
+
+        private async Task UpdateAddressesFromJson(object modelId, string addresses)
+        {
+            if (!string.IsNullOrWhiteSpace(addresses) && addresses != "[]")
+            {
+                try
+                {
+                    var addressesArray = JsonConvert.DeserializeObject<Address[]>(addresses);
+                    await this.UpdateAddresses(modelId, addressesArray);
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private async Task UpdateAddresses(object modelId, Address[] addresses)
+        {
+            if (addresses?.Length > 0)
+            {
+                foreach (var address in addresses)
+                {
+                    try
+                    {
+                        switch (address.Status)
+                        {
+                            case UpdateStatus.Modified:
+                                await this.service.UpdateAddress(this.UserId, modelId, address);
+                                break;
+
+                            case UpdateStatus.Added:
+                                await this.service.AddAddress(this.UserId, modelId, address);
+                                break;
+
+                            case UpdateStatus.Removed:
+                                await this.service.RemoveAddress(this.UserId, modelId, address.Id);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
         }
     }
 }

@@ -5,8 +5,8 @@
     using System.Xml;
     using Contracts;
     using Models;
+    using ProcessingTools.Constants;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Net.Constants;
     using ProcessingTools.Net.Extensions;
     using ProcessingTools.Net.Factories.Contracts;
 
@@ -39,7 +39,7 @@
             string url = $"col/webservice?name={scientificName}&response=full";
 
             var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            string response = await connector.Get(url, ContentTypeConstants.XmlContentType);
+            string response = await connector.Get(url, ContentTypes.Xml);
             return response.ToXmlDocument();
         }
 

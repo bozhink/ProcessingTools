@@ -9,8 +9,8 @@
     using System.Xml;
     using Contracts;
     using ProcessingTools.Common;
+    using ProcessingTools.Constants;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Net.Constants;
     using ProcessingTools.Net.Factories.Contracts;
 
     public class GlobalNamesResolverDataRequester : IGlobalNamesResolverDataRequester
@@ -37,7 +37,7 @@
                 string url = $"{ApiUrl}?{searchString}";
 
                 var connector = this.connectorFactory.Create(BaseAddress);
-                string response = await connector.Get(url, ContentTypeConstants.XmlContentType);
+                string response = await connector.Get(url, ContentTypes.Xml);
                 return response.ToXmlDocument();
             }
             catch

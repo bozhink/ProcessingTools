@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common;
+    using ProcessingTools.Constants;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Net.Constants;
     using ProcessingTools.Net.Factories.Contracts;
 
     public class AphiaDirectSoapRequester
@@ -48,7 +48,7 @@
             var response = await connector.Post(
                 ApiUrl,
                 this.AphiaSoapXml(scientificName).OuterXml,
-                ContentTypeConstants.XmlContentType,
+                ContentTypes.Xml,
                 Defaults.DefaultEncoding);
 
             return response.ToXmlDocument();

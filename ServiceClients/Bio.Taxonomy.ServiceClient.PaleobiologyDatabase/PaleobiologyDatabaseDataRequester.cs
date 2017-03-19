@@ -4,11 +4,9 @@
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
     using Contracts;
     using Models;
-
-    using ProcessingTools.Net.Constants;
+    using ProcessingTools.Constants;
     using ProcessingTools.Net.Factories.Contracts;
 
     public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
@@ -41,7 +39,7 @@
             string url = $"data1.1/taxa/single.txt?name={scientificName}";
 
             var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
-            string responseString = await connector.Get(url, ContentTypeConstants.XmlContentType);
+            string responseString = await connector.Get(url, ContentTypes.Xml);
 
             string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
             string values = Regex.Match(responseString, "\n[^\r\n]+").Value;

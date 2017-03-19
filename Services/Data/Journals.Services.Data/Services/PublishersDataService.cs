@@ -145,6 +145,19 @@
             return result;
         }
 
+        public override async Task<object> UpdateAddress(object userId, object modelId, IAddress address)
+        {
+            var result = await base.UpdateAddress(userId, modelId, address);
+
+            if (this.SaveToHistory)
+            {
+                var entity = await this.Repository.GetById(modelId);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+            }
+
+            return result;
+        }
+
         public override async Task<object> RemoveAddress(object userId, object modelId, object addressId)
         {
             var result = await base.RemoveAddress(userId, modelId, addressId);

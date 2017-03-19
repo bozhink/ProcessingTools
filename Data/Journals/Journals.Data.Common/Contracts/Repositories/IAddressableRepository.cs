@@ -7,6 +7,8 @@
     {
         Task<object> AddAddress(object entityId, IAddress address);
 
+        Task<object> UpdateAddress(object entityId, IAddress address);
+
         Task<object> RemoveAddress(object entityId, object addressId);
     }
 }

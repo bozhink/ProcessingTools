@@ -45,6 +45,7 @@
     <Compile Include="Constants\SectionNames.cs" />
     <Compile Include="Constants\ViewNames.cs" />
     <Compile Include="Enumerations\ManageMessageId.cs" />
+    <Compile Include="Models\SuccessMessageResponseModel.cs" />
     <Compile Include="ViewModels\Contracts\IPagingViewModel.cs" />
     <Compile Include="ViewModels\ListWithPagingViewModel.cs" />
     <Compile Include="ViewModels\NamedViewModel.cs" />
