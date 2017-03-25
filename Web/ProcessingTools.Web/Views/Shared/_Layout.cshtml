@@ -7,7 +7,7 @@
     <meta name="description" content="The description of my page" />
     <title>@this.ViewBag.Title - @ContentConstants.ApplicationName</title>
     @Styles.Render(BundleNames.DefaultStyleBundleName)
-    @RenderSection(SectionNames.StylesSectionName, required: false)
+    @RenderSection(SectionNames.Styles, required: false)
     @Scripts.Render(BundleNames.ModernizrScriptBundleName)
 </head>
 <body>
@@ -24,6 +24,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/Site.js"></script>
     @*@Scripts.Render(BundleNames.DefaultScriptBundleName)*@
-    @RenderSection(SectionNames.ScriptsSectionName, required: false)
+    @RenderSection(SectionNames.Scripts, required: false)
 </body>
 </html>

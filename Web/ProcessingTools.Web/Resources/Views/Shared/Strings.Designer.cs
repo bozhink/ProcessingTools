@@ -70,6 +70,69 @@ namespace ProcessingTools.Web.Resources.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ButtonCancelText {
+            get {
+                return ResourceManager.GetString("ButtonCancelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string ButtonHistoryText {
+            get {
+                return ResourceManager.GetString("ButtonHistoryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string ButtonNewText {
+            get {
+                return ResourceManager.GetString("ButtonNewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and Exit.
+        /// </summary>
+        public static string ButtonSaveAndExitText {
+            get {
+                return ResourceManager.GetString("ButtonSaveAndExitText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and New.
+        /// </summary>
+        public static string ButtonSaveAndNewText {
+            get {
+                return ResourceManager.GetString("ButtonSaveAndNewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ButtonSaveText {
+            get {
+                return ResourceManager.GetString("ButtonSaveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string ButtonViewText {
+            get {
+                return ResourceManager.GetString("ButtonViewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string ContactActionLinkTitle {

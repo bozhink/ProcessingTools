@@ -117,79 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutActionLinkTitle" xml:space="preserve">
-    <value>Относно</value>
+  <data name="CreatePageTitle" xml:space="preserve">
+    <value>Създаване на издателство</value>
   </data>
-  <data name="ButtonCancelText" xml:space="preserve">
-    <value>Отказ</value>
+  <data name="DeleteConfirmedPageTitle" xml:space="preserve">
+    <value>Потвърдете изтриване на издателство</value>
   </data>
-  <data name="ButtonHistoryText" xml:space="preserve">
-    <value>История</value>
+  <data name="DeletePageTitle" xml:space="preserve">
+    <value>Изтриване на издателство</value>
   </data>
-  <data name="ButtonNewText" xml:space="preserve">
-    <value>Нов</value>
+  <data name="DetailsPageTitle" xml:space="preserve">
+    <value>Подробности за издателство</value>
   </data>
-  <data name="ButtonSaveAndExitText" xml:space="preserve">
-    <value>Запис и изход</value>
-  </data>
-  <data name="ButtonSaveAndNewText" xml:space="preserve">
-    <value>Запис и нов</value>
-  </data>
-  <data name="ButtonSaveText" xml:space="preserve">
-    <value>Запис</value>
-  </data>
-  <data name="ButtonViewText" xml:space="preserve">
-    <value>Преглед</value>
-  </data>
-  <data name="ContactActionLinkTitle" xml:space="preserve">
-    <value>Контакти</value>
-  </data>
-  <data name="ErrorMessage" xml:space="preserve">
-    <value>Възникна грешка при обработка на заявката.</value>
-  </data>
-  <data name="ErrorPageHeading" xml:space="preserve">
-    <value>Грешка</value>
-  </data>
-  <data name="ErrorPageTitle" xml:space="preserve">
-    <value>Грешка</value>
-  </data>
-  <data name="GreetingActionLinkTitle" xml:space="preserve">
-    <value>Здравейте, {0}!</value>
-  </data>
-  <data name="HelpActionLinkTitle" xml:space="preserve">
-    <value>Помощ</value>
-  </data>
-  <data name="HelpPageHeading" xml:space="preserve">
-    <value>Помощ</value>
+  <data name="EditPageTitle" xml:space="preserve">
+    <value>Редакция на издателство</value>
   </data>
   <data name="HelpPageTitle" xml:space="preserve">
     <value>Помощ</value>
   </data>
-  <data name="IndexPageHeading" xml:space="preserve">
-    <value>Начало</value>
-  </data>
   <data name="IndexPageTitle" xml:space="preserve">
-    <value>Начало</value>
-  </data>
-  <data name="LockedOutMessage" xml:space="preserve">
-    <value>Този потребител е временно заключен. Моля, опитайте по-късно.</value>
-  </data>
-  <data name="LockedOutPageHeading" xml:space="preserve">
-    <value>Заключен</value>
-  </data>
-  <data name="LockedOutPageTitle" xml:space="preserve">
-    <value>Заключен</value>
-  </data>
-  <data name="LogInActionLinkTitle" xml:space="preserve">
-    <value>Вход</value>
-  </data>
-  <data name="LogOutActionLinkTitle" xml:space="preserve">
-    <value>Изход</value>
-  </data>
-  <data name="ManageActionLinkTitle" xml:space="preserve">
-    <value>Управление</value>
-  </data>
-  <data name="RegisterActionLinkTitle" xml:space="preserve">
-    <value>Регистрация</value>
+    <value>Списък с издателства</value>
   </data>
 </root>

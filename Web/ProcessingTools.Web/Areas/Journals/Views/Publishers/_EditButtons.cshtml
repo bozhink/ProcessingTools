@@ -1,0 +1,64 @@
+﻿@using ProcessingTools.Web.Areas.Journals.Controllers
+@using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
+@using ProcessingTools.Web.Constants
+@using ProcessingTools.Web.ViewModels.Shared
+@using SharedStrings = ProcessingTools.Web.Resources.Views.Shared.Strings;
+@model PublisherViewModel
+@{ 
+    string actionName = this.ViewData[ContextKeys.ActionName].ToString();
+    string controllerName = this.ViewData[ContextKeys.ControllerName].ToString();
+}
+@Html.Partial(ViewNames.SharedEditButtonsPartial, new EditButtonsViewModel
+{
+    ButtonSaveIsVisible = true,
+    ButtonSaveText = SharedStrings.ButtonSaveText,
+    ButtonSaveRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = actionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+            area = AreaNames.Journals,
+            id = Model?.Id
+        }
+    },
+
+    ButtonSaveAndExitIsVisible = true,
+    ButtonSaveAndExitText = SharedStrings.ButtonSaveAndExitText,
+    ButtonSaveAndExitRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = actionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+            area = AreaNames.Journals,
+            id = Model?.Id,
+            exit = true
+        }
+    },
+
+    ButtonSaveAndNewIsVisible = true,
+    ButtonSaveAndNewText = SharedStrings.ButtonSaveAndNewText,
+    ButtonSaveAndNewRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = actionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+            area = AreaNames.Journals,
+            id = Model?.Id,
+            createNew = true
+        }
+    },
+
+    ButtonCancelIsVisible = true,
+    ButtonCancelText = SharedStrings.ButtonCancelText,
+    ButtonCancelRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = PublishersController.IndexActionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+        }
+    }
+})

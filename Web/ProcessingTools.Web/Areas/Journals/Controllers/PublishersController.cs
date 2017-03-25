@@ -14,8 +14,10 @@
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Web.Abstractions.Controllers;
+    using ProcessingTools.Web.Constants;
     using ProcessingTools.Web.Areas.Journals.Models.Publishers;
     using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers;
+    using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers.Strings;
 
     [Authorize]
     public class PublishersController : BaseMvcController
@@ -91,6 +93,7 @@
 
             var viewModel = await data.Select(this.MapModelToViewModel).ToListAsync();
 
+            this.ViewBag.Title = Strings.IndexPageTitle;
             return this.View(viewModel);
         }
 
@@ -112,6 +115,7 @@
 
             var viewModel = this.MapDetailedModelToViewModel(data);
 
+            this.ViewBag.Title = Strings.DetailsPageTitle;
             return this.View(viewModel);
         }
 
@@ -119,7 +123,12 @@
         [HttpGet, ActionName(CreateActionName)]
         public ActionResult Create()
         {
-            return this.View();
+            var viewModel = new PublisherViewModel();
+
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = CreateActionName;
+            this.ViewBag.Title = Strings.CreatePageTitle;
+            return this.View(ViewNames.Edit, viewModel);
         }
 
         // POST: Journals/Publishers/Create
@@ -135,7 +144,12 @@
                 return this.RedirectToAction(BaseMvcController.IndexActionName);
             }
 
-            return this.View(this.MapModelToViewModel(model));
+            var viewModel = this.MapModelToViewModel(model);
+
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = CreateActionName;
+            this.ViewBag.Title = Strings.CreatePageTitle;
+            return this.View(ViewNames.Edit, viewModel);
         }
 
         // GET: Journals/Publishers/Edit/5
@@ -155,7 +169,10 @@
 
             var viewModel = this.MapModelToViewModel(data);
 
-            return this.View(viewModel);
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = EditActionName;
+            this.ViewBag.Title = Strings.EditPageTitle;
+            return this.View(ViewNames.Edit, viewModel);
         }
 
         // POST: Journals/Publishers/Edit/5
@@ -190,7 +207,12 @@
                 this.AddErrors("Invalid data");
             }
 
-            return this.View(this.MapModelToViewModel(model));
+            var viewModel = this.MapModelToViewModel(model);
+
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = EditActionName;
+            this.ViewBag.Title = Strings.EditPageTitle;
+            return this.View(ViewNames.Edit, viewModel);
         }
 
         // GET: Journals/Publishers/Delete/5
@@ -210,6 +232,7 @@
 
             var viewModel = this.MapDetailedModelToViewModel(data);
 
+            this.ViewBag.Title = Strings.DeletePageTitle;
             return this.View(viewModel);
         }
 

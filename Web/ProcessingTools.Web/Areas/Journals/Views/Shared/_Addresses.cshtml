@@ -1,0 +1,40 @@
+﻿@using ProcessingTools.Web.Constants
+@using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Shared.Strings
+<hr />
+<div role="grid">
+    <h4>@Strings.AddressesHeading <span data-bind="text: count()" class="badge"></span> <button data-bind="click: addAddress, enable: count() < 5" class="btn btn-default glyphicon glyphicon-plus" title="@Strings.AddAddressTitle"></button></h4>
+    @*<button data-bind="click: save('@url').invoke, enable: isModified()" class="btn btn-default glyphicon glyphicon-save">Save</button>*@
+    <table data-bind="visible: count() > 0">
+        <thead>
+            <tr>
+                <th>@Strings.AddressTableHeading</th>
+                <th>@Strings.CityTableHeading</th>
+                <th>@Strings.CountryTableHeading</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: addresses">
+            <tr data-bind="visible: status() < 3">
+                <td><input type="text" data-bind="value: addressString" class="form-control" /></td>
+                <td><input type="text" data-bind="value: cityId" class="form-control" /></td>
+                <td><input type="text" data-bind="value: countryId" class="form-control" /></td>
+                <td><a href="#" data-bind="click: $root.removeAddress" class="glyphicon glyphicon-remove" title="@Strings.RemoveAddressTitle"></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/Scripts/knockout.validation.min.js"></script>
+<script src="~/Scripts/JsonRequester.js"></script>
+<script src="~/Areas/Journals/Models/Address.js"></script>
+<script src="~/Areas/Journals/ViewModels/AddressViewModel.js"></script>
+<script>
+    window.jsonRequester.get('@this.ViewData[ContextKeys.Url].ToString()')
+        .then(function (data) {
+            ko.applyBindings(new AddressesViewModel(data));
+        })
+        .catch(function (error) {
+            ko.applyBindings(new AddressesViewModel());
+        });
+</script>

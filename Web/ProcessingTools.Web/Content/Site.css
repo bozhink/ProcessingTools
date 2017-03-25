@@ -25,6 +25,9 @@ textarea {
 
 .edit-buttons {
     display: block;
+    padding: 15px 0;
+    border-top: 1px solid rgba(0, 0, 0, .075);
+    border-bottom: 1px solid rgba(0, 0, 0, .075);
 }
 
 .edit-buttons a {
@@ -33,4 +36,8 @@ textarea {
 
 .edit-buttons a:first-of-type {
     margin-left: 0;
+}
+
+form header ~ div.form-horizontal {
+    margin-top: 20px;
 }

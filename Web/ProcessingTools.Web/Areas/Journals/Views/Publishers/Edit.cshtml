@@ -1,86 +1,30 @@
 ﻿@using ProcessingTools.Web.Areas.Journals.Controllers
 @using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
 @using ProcessingTools.Web.Constants
-@using ProcessingTools.Web.ViewModels.Shared
 @model PublisherViewModel
 
 @{
-    this.ViewBag.Title = "Edit";
-    string url = Url.Action(
+    this.ViewData[ContextKeys.Url] = Url.Action(
         actionName: PublishersController.AddressesActionName,
         controllerName: PublishersController.ControllerName,
         routeValues: new
         {
             area = AreaNames.Journals,
-            id = Model.Id
+            id = Model?.Id
         });
 }
 
-<h2>Edit</h2>
 
-@Html.Partial(ViewNames.SharedEditButtonsPartial, new EditButtonsViewModel
-{
-    ButtonSaveIsVisible = true,
-    ButtonSaveText = "Save",
-    ButtonSaveRoute = new ProcessingTools.Web.ViewModels.Shared.Route
-    {
-        ActionName = PublishersController.EditActionName,
-        ControllerName = PublishersController.ControllerName,
-        RouteValues = new
-        {
-            area = AreaNames.Journals,
-            id = Model?.Id
-        }
-    },
 
-    ButtonSaveAndExitIsVisible = true,
-    ButtonSaveAndExitText = "Save and Exit",
-    ButtonSaveAndExitRoute = new ProcessingTools.Web.ViewModels.Shared.Route
-    {
-        ActionName = PublishersController.EditActionName,
-        ControllerName = PublishersController.ControllerName,
-        RouteValues = new
-        {
-            area = AreaNames.Journals,
-            id = Model?.Id,
-            exit = true
-        }
-    },
-
-    ButtonSaveAndNewIsVisible = true,
-    ButtonSaveAndNewText = "Save and New",
-    ButtonSaveAndNewRoute = new ProcessingTools.Web.ViewModels.Shared.Route
-    {
-        ActionName = PublishersController.EditActionName,
-        ControllerName = PublishersController.ControllerName,
-        RouteValues = new
-        {
-            area = AreaNames.Journals,
-            id = Model?.Id,
-            createNew = true
-        }
-    },
-
-    ButtonCancelIsVisible = true,
-    ButtonCancelText = "Cancel",
-    ButtonCancelRoute = new ProcessingTools.Web.ViewModels.Shared.Route
-    {
-        ActionName = PublishersController.IndexActionName,
-        ControllerName = PublishersController.ControllerName,
-        RouteValues = new
-        {
-        }
-    },
-})
-
-@using (Html.BeginForm())
+@using (Html.BeginForm(this.ViewData[ContextKeys.ActionName].ToString(), this.ViewData[ContextKeys.ControllerName].ToString(), FormMethod.Post, htmlAttributes: new { id = "form-publisher" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+    <header>
+        <h2>@this.ViewBag.Title</h2>
+        @Html.Partial(ViewNames.EditButtons, Model, this.ViewData)
+    </header>
     <div class="form-horizontal">
-        <h4>Publisher</h4>
-        <hr />
-        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         <input type="hidden" data-bind="value: json()" name="addresses" />
 
@@ -99,61 +43,6 @@
                 @Html.ValidationMessageFor(model => model.AbbreviatedName, string.Empty, new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
 }
-
-<div role="grid">
-    <h3>Addresses <span data-bind="text: count()" class="badge"></span> <button data-bind="click: addAddress, enable: count() < 5" class="btn btn-default glyphicon glyphicon-plus" title="Add address"></button></h3>
-    @*<button data-bind="click: save('@url').invoke, enable: isModified()" class="btn btn-default glyphicon glyphicon-save">Save</button>*@
-    <table data-bind="visible: count() > 0">
-        <thead>
-            <tr>
-                <th>Address</th>
-                <th>City</th>
-                <th>Country</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody data-bind="foreach: addresses">
-            <tr data-bind="visible: status() < 3">
-                <td><input type="text" data-bind="value: addressString" class="form-control" /></td>
-                <td><input type="text" data-bind="value: cityId" class="form-control" /></td>
-                <td><input type="text" data-bind="value: countryId" class="form-control" /></td>
-                <td><a href="#" data-bind="click: $root.removeAddress" class="glyphicon glyphicon-remove"></a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-@section Scripts
-{
-    <script src="~/Scripts/knockout-3.4.2.js"></script>
-    <script src="~/Scripts/knockout.validation.min.js"></script>
-    <script src="~/Areas/Journals/Models/Publishers/Address.js"></script>
-    <script src="~/Areas/Journals/ViewModels/Publishers/AddressViewModel.js"></script>
-    <script>
-        $.ajax({
-            url: '@url',
-            method: 'GET',
-            contentType: 'application/json',
-            success: function (res) {
-                ko.applyBindings(new AddressesViewModel(res));
-            },
-            error: function (err) {
-                ko.applyBindings(new AddressesViewModel());
-            }
-        });
-    </script>
-}
-
-
-
-<div>
-    @Html.ActionLink("Back to List", PublishersController.IndexActionName)
-</div>
+@Html.Partial(ViewNames.Addresses, Model, this.ViewData)

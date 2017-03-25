@@ -11,7 +11,7 @@
         @ViewBag.Title - @ContentConstants.ApplicationName
     </title>
     @Styles.Render(BundleNames.DefaultStyleBundleName)
-    @RenderSection(SectionNames.StylesSectionName, required: false)
+    @RenderSection(SectionNames.Styles, required: false)
     @Scripts.Render(BundleNames.ModernizrScriptBundleName)
 </head>
 <body>
@@ -73,6 +73,6 @@
     </div>
 
     @Scripts.Render(BundleNames.DefaultScriptBundleName)
-    @RenderSection(SectionNames.ScriptsSectionName, required: false)
+    @RenderSection(SectionNames.Scripts, required: false)
 </body>
 </html>

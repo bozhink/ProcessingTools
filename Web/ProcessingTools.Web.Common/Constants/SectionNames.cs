@@ -2,7 +2,8 @@
 {
     public sealed class SectionNames
     {
-        public const string ScriptsSectionName = "Scripts";
-        public const string StylesSectionName = "Styles";
+        public const string Scripts = "Scripts";
+        public const string Styles = "Styles";
+        public const string EditButtons = "EditButtons";
     }
 }
