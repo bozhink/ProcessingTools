@@ -46,3 +46,22 @@
     </div>
 }
 @Html.Partial(ViewNames.Addresses, Model, this.ViewData)
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Scripts/knockout.validation.min.js"></script>
+    <script src="~/Scripts/JsonRequester.js"></script>
+    <script src="~/Areas/Journals/Models/Address.js"></script>
+    <script src="~/Areas/Journals/ViewModels/AddressViewModel.js"></script>
+    <script>
+        window.jsonRequester.get('@this.ViewData[ContextKeys.Url].ToString()')
+            .then(function (data) {
+                ko.applyBindings(new AddressesViewModel(data));
+            })
+            .catch(function (error) {
+                ko.applyBindings(new AddressesViewModel());
+            });
+    </script>
+}

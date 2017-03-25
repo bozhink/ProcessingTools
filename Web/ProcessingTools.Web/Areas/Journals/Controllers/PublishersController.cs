@@ -134,7 +134,7 @@
         // POST: Journals/Publishers/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AbbreviatedName,Name")] Publisher model, string addresses)
+        public async Task<ActionResult> Create([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model, string addresses)
         {
             if (this.ModelState.IsValid)
             {

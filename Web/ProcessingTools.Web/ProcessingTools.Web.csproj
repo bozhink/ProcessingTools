@@ -345,6 +345,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
     <Compile Include="Areas\Journals\Models\Publishers\Address.cs" />
@@ -528,6 +529,11 @@
     <Content Include="Areas\Journals\Views\Publishers\Help.cshtml" />
     <Content Include="Areas\Journals\Views\Shared\_Addresses.cshtml" />
     <Content Include="Areas\Journals\Views\Publishers\_EditButtons.cshtml" />
+    <Content Include="Areas\Journals\Views\Institutions\Create.cshtml" />
+    <Content Include="Areas\Journals\Views\Institutions\Delete.cshtml" />
+    <Content Include="Areas\Journals\Views\Institutions\Details.cshtml" />
+    <Content Include="Areas\Journals\Views\Institutions\Edit.cshtml" />
+    <Content Include="Areas\Journals\Views\Institutions\Index.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
