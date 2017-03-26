@@ -19,20 +19,20 @@
     public class AccountController : BaseMvcController
     {
         public const string ControllerName = "Account";
-        public const string ConfirmEmailActionName = "ConfirmEmail";
-        public const string ExternalLoginActionName = "ExternalLogin";
-        public const string ExternalLoginCallbackActionName = "ExternalLoginCallback";
-        public const string ExternalLoginConfirmationActionName = "ExternalLoginConfirmation";
-        public const string ExternalLoginFailureActionName = "ExternalLoginFailure";
-        public const string ForgotPasswordActionName = "ForgotPassword";
-        public const string ForgotPasswordConfirmationActionName = "ForgotPasswordConfirmation";
-        public const string LoginActionName = "Login";
-        public const string LogOffActionName = "LogOff";
-        public const string RegisterActionName = "Register";
-        public const string ResetPasswordActionName = "ResetPassword";
-        public const string ResetPasswordConfirmationActionName = "ResetPasswordConfirmation";
-        public const string SendCodeActionName = "SendCode";
-        public const string VerifyCodeActionName = "VerifyCode";
+        public const string ConfirmEmailActionName = nameof(AccountController.ConfirmEmail);
+        public const string ExternalLoginActionName = nameof(AccountController.ExternalLogin);
+        public const string ExternalLoginCallbackActionName = nameof(AccountController.ExternalLoginCallback);
+        public const string ExternalLoginConfirmationActionName = nameof(AccountController.ExternalLoginConfirmation);
+        public const string ExternalLoginFailureActionName = nameof(AccountController.ExternalLoginFailure);
+        public const string ForgotPasswordActionName = nameof(AccountController.ForgotPassword);
+        public const string ForgotPasswordConfirmationActionName = nameof(AccountController.ForgotPasswordConfirmation);
+        public const string LoginActionName = nameof(AccountController.Login);
+        public const string LogOffActionName = nameof(AccountController.LogOff);
+        public const string RegisterActionName = nameof(AccountController.Register);
+        public const string ResetPasswordActionName = nameof(AccountController.ResetPassword);
+        public const string ResetPasswordConfirmationActionName = nameof(AccountController.ResetPasswordConfirmation);
+        public const string SendCodeActionName = nameof(AccountController.SendCode);
+        public const string VerifyCodeActionName = nameof(AccountController.VerifyCode);
 
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;

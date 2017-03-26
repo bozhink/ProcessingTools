@@ -19,17 +19,17 @@
     public class ManageController : BaseMvcController
     {
         public const string ControllerName = "Manage";
-        public const string RemoveLoginActionName = "RemoveLogin";
-        public const string ManageLoginsActionName = "ManageLogins";
-        public const string AddPhoneNumberActionName = "AddPhoneNumber";
-        public const string VerifyPhoneNumberActionName = "VerifyPhoneNumber";
-        public const string EnableTwoFactorAuthenticationActionName = "EnableTwoFactorAuthentication";
-        public const string DisableTwoFactorAuthenticationActionName = "DisableTwoFactorAuthentication";
-        public const string RemovePhoneNumberActionName = "RemovePhoneNumber";
-        public const string ChangePasswordActionName = "ChangePassword";
-        public const string SetPasswordActionName = "SetPassword";
-        public const string LinkLoginActionName = "LinkLogin";
-        public const string LinkLoginCallbackActionName = "LinkLoginCallback";
+        public const string RemoveLoginActionName = nameof(ManageController.RemoveLogin);
+        public const string ManageLoginsActionName = nameof(ManageController.ManageLogins);
+        public const string AddPhoneNumberActionName = nameof(ManageController.AddPhoneNumber);
+        public const string VerifyPhoneNumberActionName = nameof(ManageController.VerifyPhoneNumber);
+        public const string EnableTwoFactorAuthenticationActionName = nameof(ManageController.EnableTwoFactorAuthentication);
+        public const string DisableTwoFactorAuthenticationActionName = nameof(ManageController.DisableTwoFactorAuthentication);
+        public const string RemovePhoneNumberActionName = nameof(ManageController.RemovePhoneNumber);
+        public const string ChangePasswordActionName = nameof(ManageController.ChangePassword);
+        public const string SetPasswordActionName = nameof(ManageController.SetPassword);
+        public const string LinkLoginActionName = nameof(ManageController.LinkLogin);
+        public const string LinkLoginCallbackActionName = nameof(ManageController.LinkLoginCallback);
 
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;

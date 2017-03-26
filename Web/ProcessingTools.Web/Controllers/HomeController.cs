@@ -8,24 +8,24 @@
     public class HomeController : BaseMvcController
     {
         public const string ControllerName = "Home";
-        public const string AboutActionName = "About";
-        public const string ContactActionName = "Contact";
+        public const string AboutActionName = nameof(HomeController.About);
+        public const string ContactActionName = nameof(HomeController.Contact);
 
-        [HttpGet, ActionName(HomeController.IndexActionName)]
-        public virtual ActionResult Index()
+        [HttpGet, ActionName(IndexActionName)]
+        public ActionResult Index()
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
-        [HttpGet, ActionName(HomeController.AboutActionName)]
+        [HttpGet, ActionName(AboutActionName)]
         public ActionResult About()
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
-        [HttpGet, ActionName(HomeController.ContactActionName)]
+        [HttpGet, ActionName(ContactActionName)]
         public ActionResult Contact()
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;

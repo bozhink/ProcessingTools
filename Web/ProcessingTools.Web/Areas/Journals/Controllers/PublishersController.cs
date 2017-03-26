@@ -25,11 +25,11 @@
     public class PublishersController : BaseMvcController
     {
         public const string ControllerName = "Publishers";
-        public const string CreateActionName = "Create";
-        public const string DeleteActionName = "Delete";
-        public const string DetailsActionName = "Details";
-        public const string EditActionName = "Edit";
-        public const string AddressesActionName = "Addresses";
+        public const string CreateActionName = nameof(PublishersController.Create);
+        public const string DeleteActionName = nameof(PublishersController.Delete);
+        public const string DetailsActionName = nameof(PublishersController.Details);
+        public const string EditActionName = nameof(PublishersController.Edit);
+        public const string AddressesActionName = nameof(PublishersController.Addresses);
 
         private readonly IPublishersDataService service;
 
