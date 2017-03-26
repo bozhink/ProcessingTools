@@ -1,14 +1,16 @@
-﻿@using ProcessingTools.Web.Common.Constants
+﻿@using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
+@using Content = ProcessingTools.Web.Common.Constants.ContentConstants
+@using Sections = ProcessingTools.Web.Common.Constants.SectionNames
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The description of my page" />
-    <title>@this.ViewBag.Title - @ContentConstants.ApplicationName</title>
-    @Styles.Render(BundleNames.DefaultStyleBundleName)
-    @RenderSection(SectionNames.Styles, required: false)
-    @Scripts.Render(BundleNames.ModernizrScriptBundleName)
+    <title>@this.ViewBag.Title - @Content.ApplicationName</title>
+    @Styles.Render(Bundles.DefaultStyles)
+    @RenderSection(Sections.Styles, required: false)
+    @Scripts.Render(Bundles.ModernizrScripts)
 </head>
 <body>
     @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DefaultNavigationBar)
@@ -16,14 +18,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - @ContentConstants.CopyrightHolder</p>
+            <p>&copy; @DateTime.Now.Year - @Content.CopyrightHolder</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/Site.js"></script>
-    @*@Scripts.Render(BundleNames.DefaultScriptBundleName)*@
-    @RenderSection(SectionNames.Scripts, required: false)
+    @Scripts.Render(Bundles.JQueryScripts)
+    @Scripts.Render(Bundles.BootstrapScripts)
+    @Scripts.Render(Bundles.DefaultScripts)
+    @RenderSection(Sections.Scripts, required: false)
 </body>
 </html>

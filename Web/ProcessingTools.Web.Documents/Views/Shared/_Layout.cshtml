@@ -10,9 +10,9 @@
     <title>
         @ViewBag.Title - @ContentConstants.ApplicationName
     </title>
-    @Styles.Render(BundleNames.DefaultStyleBundleName)
+    @Styles.Render(BundleNames.DefaultStyles)
     @RenderSection(SectionNames.Styles, required: false)
-    @Scripts.Render(BundleNames.ModernizrScriptBundleName)
+    @Scripts.Render(BundleNames.ModernizrScripts)
 </head>
 <body>
     <header>
@@ -72,7 +72,7 @@
         </footer>
     </div>
 
-    @Scripts.Render(BundleNames.DefaultScriptBundleName)
+    @Scripts.Render(BundleNames.DefaultScripts)
     @RenderSection(SectionNames.Scripts, required: false)
 </body>
 </html>

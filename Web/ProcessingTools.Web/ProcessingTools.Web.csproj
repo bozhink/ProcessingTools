@@ -499,8 +499,8 @@
     <Compile Include="ViewModels\Shared\Route.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Journals\Models\Address.js" />
-    <Content Include="Areas\Journals\ViewModels\AddressViewModel.js" />
+    <Content Include="Scripts\Areas\Journals\Models\Shared\Address.js" />
+    <Content Include="Scripts\Areas\Journals\ViewModels\Shared\AddressViewModel.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

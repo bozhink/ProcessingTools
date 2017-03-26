@@ -1,8 +1,8 @@
 ﻿@using ProcessingTools.Web.Areas.Journals.Controllers
 @using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
 @using ProcessingTools.Web.Constants
+@using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
 @model PublisherViewModel
-
 @{
     this.ViewData[ContextKeys.Url] = Url.Action(
         actionName: PublishersController.AddressesActionName,
@@ -13,9 +13,6 @@
             id = Model?.Id
         });
 }
-
-
-
 @using (Html.BeginForm(this.ViewData[ContextKeys.ActionName].ToString(), this.ViewData[ContextKeys.ControllerName].ToString(), FormMethod.Post, htmlAttributes: new { id = "form-publisher" }))
 {
     @Html.AntiForgeryToken()
@@ -49,12 +46,10 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/knockout-3.4.2.js"></script>
-    <script src="~/Scripts/knockout.validation.min.js"></script>
-    <script src="~/Scripts/JsonRequester.js"></script>
-    <script src="~/Areas/Journals/Models/Address.js"></script>
-    <script src="~/Areas/Journals/ViewModels/AddressViewModel.js"></script>
+    @Scripts.Render(Bundles.JQueryValidationScripts)
+    @Scripts.Render(Bundles.KnockoutScripts)
+    <script src="~/Scripts/Areas/Journals/Models/Shared/Address.js"></script>
+    <script src="~/Scripts/Areas/Journals/ViewModels/Shared/AddressViewModel.js"></script>
     <script>
         window.jsonRequester.get('@this.ViewData[ContextKeys.Url].ToString()')
             .then(function (data) {
