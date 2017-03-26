@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers {
+namespace ProcessingTools.Web.Resources.Areas.Journals.ViewModels.Shared {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Resources.Areas.Journals.ViewModels.Shared.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,74 @@ namespace ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Publisher.
+        ///   Looks up a localized string similar to Address String.
         /// </summary>
-        public static string CreatePageTitle {
+        public static string AddressString {
             get {
-                return ResourceManager.GetString("CreatePageTitle", resourceCulture);
+                return ResourceManager.GetString("AddressString", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Publisher Confirmation.
+        ///   Looks up a localized string similar to The {0} must not be empty..
         /// </summary>
-        public static string DeleteConfirmedPageTitle {
+        public static string AddressStringEmptyErrorMessage {
             get {
-                return ResourceManager.GetString("DeleteConfirmedPageTitle", resourceCulture);
+                return ResourceManager.GetString("AddressStringEmptyErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Publisher.
+        ///   Looks up a localized string similar to The {0} must be between {2} and {1} characters long..
         /// </summary>
-        public static string DeletePageTitle {
+        public static string AddressStringErrorMessage {
             get {
-                return ResourceManager.GetString("DeletePageTitle", resourceCulture);
+                return ResourceManager.GetString("AddressStringErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publisher Details.
+        ///   Looks up a localized string similar to City.
         /// </summary>
-        public static string DetailsPageTitle {
+        public static string CityId {
             get {
-                return ResourceManager.GetString("DetailsPageTitle", resourceCulture);
+                return ResourceManager.GetString("CityId", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Publisher.
+        ///   Looks up a localized string similar to Country.
         /// </summary>
-        public static string EditPageTitle {
+        public static string CountryId {
             get {
-                return ResourceManager.GetString("EditPageTitle", resourceCulture);
+                return ResourceManager.GetString("CountryId", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help.
+        ///   Looks up a localized string similar to ID.
         /// </summary>
-        public static string HelpPageTitle {
+        public static string Id {
             get {
-                return ResourceManager.GetString("HelpPageTitle", resourceCulture);
+                return ResourceManager.GetString("Id", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of Publishers.
+        ///   Looks up a localized string similar to The {0} must not be empty..
         /// </summary>
-        public static string IndexPageTitle {
+        public static string IdEmptyErrorMessage {
             get {
-                return ResourceManager.GetString("IndexPageTitle", resourceCulture);
+                return ResourceManager.GetString("IdEmptyErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid data.
+        ///   Looks up a localized string similar to The {0} must be between {2} and {1} characters long..
         /// </summary>
-        public static string InvalidDataErrorMessage {
+        public static string IdErrorMessage {
             get {
-                return ResourceManager.GetString("InvalidDataErrorMessage", resourceCulture);
+                return ResourceManager.GetString("IdErrorMessage", resourceCulture);
             }
         }
     }

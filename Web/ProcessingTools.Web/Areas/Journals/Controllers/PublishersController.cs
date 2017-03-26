@@ -16,7 +16,9 @@
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
     using ProcessingTools.Web.Areas.Journals.Models.Publishers;
+    using ProcessingTools.Web.Areas.Journals.Models.Shared;
     using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers;
+    using ProcessingTools.Web.Areas.Journals.ViewModels.Shared;
     using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers.Strings;
 
     [Authorize]
@@ -86,12 +88,11 @@
 
         // GET: Journals/Publishers
         [HttpGet, ActionName(IndexActionName)]
-        [AllowAnonymous]
         public async Task<ActionResult> Index(int p = 0, int n = 10)
         {
-            var data = await this.service.Select(this.UserId, p * n, n, x => x.Name);
+            var data = await this.service.SelectDetails(this.UserId, p * n, n, x => x.Name);
 
-            var viewModel = await data.Select(this.MapModelToViewModel).ToListAsync();
+            var viewModel = await data.Select(this.MapDetailedModelToViewModel).ToListAsync();
 
             this.ViewBag.Title = Strings.IndexPageTitle;
             return this.View(viewModel);
@@ -99,7 +100,6 @@
 
         // GET: Journals/Publishers/Details/5
         [HttpGet, ActionName(DetailsActionName)]
-        [AllowAnonymous]
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
@@ -107,13 +107,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.service.GetDetails(this.UserId, id);
-            if (data == null)
+            var model = await this.service.GetDetails(this.UserId, id);
+            if (model == null)
             {
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapDetailedModelToViewModel(data);
+            var viewModel = this.MapDetailedModelToViewModel(model);
 
             this.ViewBag.Title = Strings.DetailsPageTitle;
             return this.View(viewModel);
@@ -136,12 +136,23 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model, string addresses)
         {
-            if (this.ModelState.IsValid)
+            try
             {
-                var modelId = await this.service.Add(this.UserId, model);
-                await this.UpdateAddressesFromJson(modelId, addresses);
+                if (this.ModelState.IsValid)
+                {
+                    var modelId = await this.service.Add(this.UserId, model);
+                    await this.UpdateAddressesFromJson(modelId, addresses);
 
-                return this.RedirectToAction(BaseMvcController.IndexActionName);
+                    return this.RedirectToAction(BaseMvcController.IndexActionName);
+                }
+                else
+                {
+                    this.AddErrors(Strings.InvalidDataErrorMessage);
+                }
+            }
+            catch (Exception e)
+            {
+                this.AddErrors(e.Message);
             }
 
             var viewModel = this.MapModelToViewModel(model);
@@ -185,26 +196,33 @@
                 return this.RedirectToAction(BaseMvcController.IndexActionName);
             }
 
-            if (this.ModelState.IsValid)
+            try
             {
-                var modelId = await this.service.Update(this.UserId, model);
-                await this.UpdateAddressesFromJson(modelId, addresses);
-
-                if (exit)
+                if (this.ModelState.IsValid)
                 {
-                    return this.RedirectToAction(BaseMvcController.IndexActionName);
-                }
+                    var modelId = await this.service.Update(this.UserId, model);
+                    await this.UpdateAddressesFromJson(modelId, addresses);
 
-                if (createNew)
+                    if (exit)
+                    {
+                        return this.RedirectToAction(BaseMvcController.IndexActionName);
+                    }
+
+                    if (createNew)
+                    {
+                        return this.RedirectToAction(CreateActionName);
+                    }
+
+                    return this.RedirectToAction(EditActionName, new { id = modelId });
+                }
+                else
                 {
-                    return this.RedirectToAction(CreateActionName);
+                    this.AddErrors(Strings.InvalidDataErrorMessage);
                 }
-
-                return this.RedirectToAction(EditActionName, new { id = modelId });
             }
-            else
+            catch (Exception e)
             {
-                this.AddErrors("Invalid data");
+                this.AddErrors(e.Message);
             }
 
             var viewModel = this.MapModelToViewModel(model);

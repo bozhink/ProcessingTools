@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreatePageTitle" xml:space="preserve">
-    <value>Създаване на издателство</value>
+  <data name="AddressString" xml:space="preserve">
+    <value>Address String</value>
   </data>
-  <data name="DeleteConfirmedPageTitle" xml:space="preserve">
-    <value>Потвърдете изтриване на издателство</value>
+  <data name="AddressStringEmptyErrorMessage" xml:space="preserve">
+    <value>The {0} must not be empty.</value>
   </data>
-  <data name="DeletePageTitle" xml:space="preserve">
-    <value>Изтриване на издателство</value>
+  <data name="AddressStringErrorMessage" xml:space="preserve">
+    <value>The {0} must be between {2} and {1} characters long.</value>
   </data>
-  <data name="DetailsPageTitle" xml:space="preserve">
-    <value>Подробности за издателство</value>
+  <data name="CityId" xml:space="preserve">
+    <value>City</value>
   </data>
-  <data name="EditPageTitle" xml:space="preserve">
-    <value>Редакция на издателство</value>
+  <data name="CountryId" xml:space="preserve">
+    <value>Country</value>
   </data>
-  <data name="HelpPageTitle" xml:space="preserve">
-    <value>Помощ</value>
+  <data name="Id" xml:space="preserve">
+    <value>ID</value>
   </data>
-  <data name="IndexPageTitle" xml:space="preserve">
-    <value>Списък с издателства</value>
+  <data name="IdEmptyErrorMessage" xml:space="preserve">
+    <value>The {0} must not be empty.</value>
   </data>
-  <data name="InvalidDataErrorMessage" xml:space="preserve">
-    <value>Невалидни данни</value>
+  <data name="IdErrorMessage" xml:space="preserve">
+    <value>The {0} must be between {2} and {1} characters long.</value>
   </data>
 </root>

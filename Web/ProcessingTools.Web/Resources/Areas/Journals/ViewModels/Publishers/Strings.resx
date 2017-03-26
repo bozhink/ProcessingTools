@@ -117,28 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreatePageTitle" xml:space="preserve">
-    <value>Създаване на издателство</value>
+  <data name="AbbreviatedName" xml:space="preserve">
+    <value>Abbreviated Name</value>
   </data>
-  <data name="DeleteConfirmedPageTitle" xml:space="preserve">
-    <value>Потвърдете изтриване на издателство</value>
+  <data name="AbbreviatedNameEmptyErrorMessage" xml:space="preserve">
+    <value>The {0} must not be empty.</value>
   </data>
-  <data name="DeletePageTitle" xml:space="preserve">
-    <value>Изтриване на издателство</value>
+  <data name="AbbreviatedNameErrorMessage" xml:space="preserve">
+    <value>The {0} must be between {2} and {1} characters long.</value>
   </data>
-  <data name="DetailsPageTitle" xml:space="preserve">
-    <value>Подробности за издателство</value>
+  <data name="Addresses" xml:space="preserve">
+    <value>Addresses</value>
   </data>
-  <data name="EditPageTitle" xml:space="preserve">
-    <value>Редакция на издателство</value>
+  <data name="CreatedByUser" xml:space="preserve">
+    <value>Created by</value>
   </data>
-  <data name="HelpPageTitle" xml:space="preserve">
-    <value>Помощ</value>
+  <data name="DateCreated" xml:space="preserve">
+    <value>Created on</value>
   </data>
-  <data name="IndexPageTitle" xml:space="preserve">
-    <value>Списък с издателства</value>
+  <data name="DateModified" xml:space="preserve">
+    <value>Modified on</value>
   </data>
-  <data name="InvalidDataErrorMessage" xml:space="preserve">
-    <value>Невалидни данни</value>
+  <data name="Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IdEmptyErrorMessage" xml:space="preserve">
+    <value>The {0} must not be empty.</value>
+  </data>
+  <data name="IdErrorMessage" xml:space="preserve">
+    <value>The {0} must be between {2} and {1} characters long.</value>
+  </data>
+  <data name="ModifiedByUser" xml:space="preserve">
+    <value>Modified by</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameEmptyErrorMessage" xml:space="preserve">
+    <value>The {0} must not be empty.</value>
+  </data>
+  <data name="NameErrorMessage" xml:space="preserve">
+    <value>The {0} must be between {2} and {1} characters long.</value>
   </data>
 </root>

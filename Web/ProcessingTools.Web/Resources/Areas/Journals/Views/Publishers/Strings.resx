@@ -138,4 +138,7 @@
   <data name="IndexPageTitle" xml:space="preserve">
     <value>List of Publishers</value>
   </data>
+  <data name="InvalidDataErrorMessage" xml:space="preserve">
+    <value>Invalid data</value>
+  </data>
 </root>

@@ -2,7 +2,7 @@
 @using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
 @using ProcessingTools.Web.Constants
 @using ProcessingTools.Web.ViewModels.Shared
-@using SharedStrings = ProcessingTools.Web.Resources.Views.Shared.Strings;
+@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings;
 @model PublisherViewModel
 @{ 
     string actionName = this.ViewData[ContextKeys.ActionName].ToString();
@@ -11,7 +11,7 @@
 @Html.Partial(ViewNames.SharedEditButtonsPartial, new EditButtonsViewModel
 {
     ButtonSaveIsVisible = true,
-    ButtonSaveText = SharedStrings.ButtonSaveText,
+    ButtonSaveText = Strings.ButtonSaveText,
     ButtonSaveRoute = new ProcessingTools.Web.ViewModels.Shared.Route
     {
         ActionName = actionName,
@@ -24,7 +24,7 @@
     },
 
     ButtonSaveAndExitIsVisible = true,
-    ButtonSaveAndExitText = SharedStrings.ButtonSaveAndExitText,
+    ButtonSaveAndExitText = Strings.ButtonSaveAndExitText,
     ButtonSaveAndExitRoute = new ProcessingTools.Web.ViewModels.Shared.Route
     {
         ActionName = actionName,
@@ -38,7 +38,7 @@
     },
 
     ButtonSaveAndNewIsVisible = true,
-    ButtonSaveAndNewText = SharedStrings.ButtonSaveAndNewText,
+    ButtonSaveAndNewText = Strings.ButtonSaveAndNewText,
     ButtonSaveAndNewRoute = new ProcessingTools.Web.ViewModels.Shared.Route
     {
         ActionName = actionName,
@@ -52,7 +52,7 @@
     },
 
     ButtonCancelIsVisible = true,
-    ButtonCancelText = SharedStrings.ButtonCancelText,
+    ButtonCancelText = Strings.ButtonCancelText,
     ButtonCancelRoute = new ProcessingTools.Web.ViewModels.Shared.Route
     {
         ActionName = PublishersController.IndexActionName,

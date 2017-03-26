@@ -117,28 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreatePageTitle" xml:space="preserve">
-    <value>Създаване на издателство</value>
+  <data name="AbbreviatedName" xml:space="preserve">
+    <value>Съкратено име</value>
   </data>
-  <data name="DeleteConfirmedPageTitle" xml:space="preserve">
-    <value>Потвърдете изтриване на издателство</value>
+  <data name="AbbreviatedNameEmptyErrorMessage" xml:space="preserve">
+    <value>Съкратеното име не трябва да е празно.</value>
   </data>
-  <data name="DeletePageTitle" xml:space="preserve">
-    <value>Изтриване на издателство</value>
+  <data name="AbbreviatedNameErrorMessage" xml:space="preserve">
+    <value>{0} трябва да бъде с дължина между {2} и {1} символа.</value>
   </data>
-  <data name="DetailsPageTitle" xml:space="preserve">
-    <value>Подробности за издателство</value>
+  <data name="Addresses" xml:space="preserve">
+    <value>Адреси</value>
   </data>
-  <data name="EditPageTitle" xml:space="preserve">
-    <value>Редакция на издателство</value>
+  <data name="CreatedByUser" xml:space="preserve">
+    <value>Създадено от</value>
   </data>
-  <data name="HelpPageTitle" xml:space="preserve">
-    <value>Помощ</value>
+  <data name="DateCreated" xml:space="preserve">
+    <value>Създадено на</value>
   </data>
-  <data name="IndexPageTitle" xml:space="preserve">
-    <value>Списък с издателства</value>
+  <data name="DateModified" xml:space="preserve">
+    <value>Променено на</value>
   </data>
-  <data name="InvalidDataErrorMessage" xml:space="preserve">
-    <value>Невалидни данни</value>
+  <data name="Id" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="IdEmptyErrorMessage" xml:space="preserve">
+    <value>{0} не трябва да е празно.</value>
+  </data>
+  <data name="IdErrorMessage" xml:space="preserve">
+    <value>{0} трябва да бъде с дължина между {2} и {1} символа.</value>
+  </data>
+  <data name="ModifiedByUser" xml:space="preserve">
+    <value>Променено от</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="NameEmptyErrorMessage" xml:space="preserve">
+    <value>Името не трябва да е празно.</value>
+  </data>
+  <data name="NameErrorMessage" xml:space="preserve">
+    <value>{0} трябва да бъде с дължина между {2} и {1} символа.</value>
   </data>
 </root>

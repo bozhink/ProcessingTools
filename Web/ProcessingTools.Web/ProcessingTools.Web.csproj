@@ -348,9 +348,9 @@
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
-    <Compile Include="Areas\Journals\Models\Publishers\Address.cs" />
+    <Compile Include="Areas\Journals\Models\Shared\Address.cs" />
     <Compile Include="Areas\Journals\Models\Publishers\Publisher.cs" />
-    <Compile Include="Areas\Journals\ViewModels\Publishers\AddressViewModel.cs" />
+    <Compile Include="Areas\Journals\ViewModels\Shared\AddressViewModel.cs" />
     <Compile Include="Areas\Journals\ViewModels\Publishers\PublisherViewModel.cs" />
     <Compile Include="Constants\AreaNames.cs" />
     <Compile Include="Constants\ContextKeys.cs" />
@@ -366,6 +366,26 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Areas\Journals\ViewModels\Publishers\Strings.bg.Designer.cs">
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Areas\Journals\ViewModels\Publishers\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Areas\Journals\ViewModels\Shared\Strings.bg.Designer.cs">
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Areas\Journals\ViewModels\Shared\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Areas\Journals\Views\Publishers\Strings.bg.Designer.cs">
       <DependentUpon>Strings.bg.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -683,6 +703,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Areas\Journals\ViewModels\Publishers\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Journals\ViewModels\Publishers\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Journals\ViewModels\Shared\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Journals\ViewModels\Shared\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Areas\Journals\Views\Publishers\Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>

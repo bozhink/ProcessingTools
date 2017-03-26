@@ -16,12 +16,12 @@
 @using (Html.BeginForm(this.ViewData[ContextKeys.ActionName].ToString(), this.ViewData[ContextKeys.ControllerName].ToString(), FormMethod.Post, htmlAttributes: new { id = "form-publisher" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
     <header>
         <h2>@this.ViewBag.Title</h2>
         @Html.Partial(ViewNames.EditButtons, Model, this.ViewData)
     </header>
     <div class="form-horizontal">
+        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         <input type="hidden" data-bind="value: json()" name="addresses" />
 
