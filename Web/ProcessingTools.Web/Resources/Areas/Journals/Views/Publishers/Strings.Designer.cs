@@ -70,11 +70,47 @@ namespace ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelButtonText {
+            get {
+                return ResourceManager.GetString("CancelButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Publisher.
+        /// </summary>
+        public static string CreateActionLinkText {
+            get {
+                return ResourceManager.GetString("CreateActionLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Publisher.
         /// </summary>
         public static string CreatePageTitle {
             get {
                 return ResourceManager.GetString("CreatePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteActionLinkText {
+            get {
+                return ResourceManager.GetString("DeleteActionLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteButtonText {
+            get {
+                return ResourceManager.GetString("DeleteButtonText", resourceCulture);
             }
         }
         
@@ -88,6 +124,15 @@ namespace ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this publisher?.
+        /// </summary>
+        public static string DeleteMessage {
+            get {
+                return ResourceManager.GetString("DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Publisher.
         /// </summary>
         public static string DeletePageTitle {
@@ -97,11 +142,29 @@ namespace ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string DetailsActionLinkText {
+            get {
+                return ResourceManager.GetString("DetailsActionLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Publisher Details.
         /// </summary>
         public static string DetailsPageTitle {
             get {
                 return ResourceManager.GetString("DetailsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EditActionLinkText {
+            get {
+                return ResourceManager.GetString("EditActionLinkText", resourceCulture);
             }
         }
         

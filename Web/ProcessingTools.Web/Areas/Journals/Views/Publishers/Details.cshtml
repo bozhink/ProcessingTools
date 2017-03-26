@@ -1,68 +1,73 @@
 ﻿@using ProcessingTools.Web.Areas.Journals.Controllers
 @using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
+@using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers.Strings
 @model PublisherViewModel
+<section role="main">
+    <header>
+        <h2>@this.ViewBag.Title</h2>
+    </header>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-@{
-    this.ViewBag.Title = "Details";
-}
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-<h2>Details</h2>
+            <dt>
+                @Html.DisplayNameFor(model => model.AbbreviatedName)
+            </dt>
 
-<div>
-    <h4>Publisher</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AbbreviatedName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AbbreviatedName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AbbreviatedName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateCreated)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateModified)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedByUser)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedByUser)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateModified)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedByUser)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedByUser)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedByUser)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedByUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedByUser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedByUser)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", PublishersController.EditActionName, new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", PublishersController.IndexActionName)
-</p>
+        </dl>
+    </div>
+    <footer>
+        <nav>
+            <ul class="navigation">
+                <li>
+                    @Html.ActionLink(Strings.EditActionLinkText, PublishersController.EditActionName, new { id = Model.Id })
+                </li>
+                <li>
+                    @Html.ActionLink(Strings.BackActionLinkText, PublishersController.IndexActionName)
+                </li>
+            </ul>
+        </nav>
+    </footer>
+</section>

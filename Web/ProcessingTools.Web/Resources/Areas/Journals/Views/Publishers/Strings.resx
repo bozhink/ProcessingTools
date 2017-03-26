@@ -120,17 +120,38 @@
   <data name="BackActionLinkText" xml:space="preserve">
     <value>Back to List</value>
   </data>
+  <data name="CancelButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CreateActionLinkText" xml:space="preserve">
+    <value>Create New Publisher</value>
+  </data>
   <data name="CreatePageTitle" xml:space="preserve">
     <value>Create Publisher</value>
+  </data>
+  <data name="DeleteActionLinkText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteButtonText" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="DeleteConfirmedPageTitle" xml:space="preserve">
     <value>Delete Publisher Confirmation</value>
   </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this publisher?</value>
+  </data>
   <data name="DeletePageTitle" xml:space="preserve">
     <value>Delete Publisher</value>
   </data>
+  <data name="DetailsActionLinkText" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="DetailsPageTitle" xml:space="preserve">
     <value>Publisher Details</value>
+  </data>
+  <data name="EditActionLinkText" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="EditPageTitle" xml:space="preserve">
     <value>Edit Publisher</value>

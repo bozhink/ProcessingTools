@@ -1,4 +1,5 @@
 ﻿body {
+    font-size: 1.5em;
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -7,6 +8,12 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.body-content > footer {
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, .075);
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -24,20 +31,43 @@ textarea {
 }
 
 .edit-buttons {
+    margin: 0 0 2rem 0;
+}
+
+ul.navigation {
+    list-style-type: none;
+    margin: 0 !important;
+    padding: 0 !important;
     display: block;
-    padding: 15px 0;
+}
+
+ul.navigation li {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block;
+}
+
+ul.navigation li:before {
+    content: '|';
+}
+
+ul.navigation li:first-of-type:before {
+    content: '';
+}
+
+section[role=main] header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .175);
+}
+
+section[role=main] header h2 {
+    padding: 1.5rem 0 0 0;
+    margin: 0;
+}
+
+section[role=main] footer {
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
     border-top: 1px solid rgba(0, 0, 0, .075);
-    border-bottom: 1px solid rgba(0, 0, 0, .075);
-}
-
-.edit-buttons a {
-    margin-left: 10px;
-}
-
-.edit-buttons a:first-of-type {
-    margin-left: 0;
-}
-
-form header ~ div.form-horizontal {
-    margin-top: 20px;
 }

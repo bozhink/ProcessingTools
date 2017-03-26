@@ -8,8 +8,12 @@
         <h2>@this.ViewBag.Title</h2>
     </header>
     <footer>
-        <div role="navigation">
-            @Html.ActionLink(Strings.BackActionLinkText, PublishersController.IndexActionName)
-        </div>
+        <nav>
+            <ul class="navigation">
+                <li>
+                    @Html.ActionLink(Strings.BackActionLinkText, PublishersController.IndexActionName)
+                </li>
+            </ul>
+        </nav>
     </footer>
 </section>

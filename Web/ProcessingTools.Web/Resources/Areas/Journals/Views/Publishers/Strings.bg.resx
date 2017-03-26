@@ -120,17 +120,38 @@
   <data name="BackActionLinkText" xml:space="preserve">
     <value>Назад към списъка с издателствата</value>
   </data>
+  <data name="CancelButtonText" xml:space="preserve">
+    <value>Отказ</value>
+  </data>
+  <data name="CreateActionLinkText" xml:space="preserve">
+    <value>Ново издателство</value>
+  </data>
   <data name="CreatePageTitle" xml:space="preserve">
     <value>Създаване на издателство</value>
+  </data>
+  <data name="DeleteActionLinkText" xml:space="preserve">
+    <value>Изтриване</value>
+  </data>
+  <data name="DeleteButtonText" xml:space="preserve">
+    <value>Изтриване</value>
   </data>
   <data name="DeleteConfirmedPageTitle" xml:space="preserve">
     <value>Потвърдете изтриване на издателство</value>
   </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да изтриете това издателство?</value>
+  </data>
   <data name="DeletePageTitle" xml:space="preserve">
     <value>Изтриване на издателство</value>
   </data>
+  <data name="DetailsActionLinkText" xml:space="preserve">
+    <value>Подробно</value>
+  </data>
   <data name="DetailsPageTitle" xml:space="preserve">
     <value>Подробности за издателство</value>
+  </data>
+  <data name="EditActionLinkText" xml:space="preserve">
+    <value>Редакция</value>
   </data>
   <data name="EditPageTitle" xml:space="preserve">
     <value>Редакция на издателство</value>

@@ -15,13 +15,13 @@
         });
 }
 <section role="main">
+    <header>
+        <h2>@this.ViewBag.Title</h2>
+    </header>
     @using (Html.BeginForm(this.ViewData[ContextKeys.ActionName].ToString(), this.ViewData[ContextKeys.ControllerName].ToString(), FormMethod.Post, htmlAttributes: new { id = "form-publisher" }))
     {
+        @Html.Partial(ViewNames.EditButtons, Model, this.ViewData)
         @Html.AntiForgeryToken()
-        <header>
-            <h2>@this.ViewBag.Title</h2>
-            @Html.Partial(ViewNames.EditButtons, Model, this.ViewData)
-        </header>
         <div class="form-horizontal">
             @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
@@ -46,9 +46,13 @@
     }
     @Html.Partial(ViewNames.Addresses, Model, this.ViewData)
     <footer>
-        <div role="navigation">
-            @Html.ActionLink(Strings.BackActionLinkText, PublishersController.IndexActionName)
-        </div>
+        <nav>
+            <ul class="navigation">
+                <li>
+                    @Html.ActionLink(Strings.BackActionLinkText, PublishersController.IndexActionName)
+                </li>
+            </ul>
+        </nav>
     </footer>
 </section>
 @section Scripts
