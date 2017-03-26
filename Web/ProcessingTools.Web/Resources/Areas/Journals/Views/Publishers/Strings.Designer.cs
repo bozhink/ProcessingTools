@@ -61,6 +61,15 @@ namespace ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to List.
+        /// </summary>
+        public static string BackActionLinkText {
+            get {
+                return ResourceManager.GetString("BackActionLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Publisher.
         /// </summary>
         public static string CreatePageTitle {

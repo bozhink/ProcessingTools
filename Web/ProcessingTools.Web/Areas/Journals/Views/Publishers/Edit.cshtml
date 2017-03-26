@@ -2,6 +2,7 @@
 @using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers
 @using ProcessingTools.Web.Constants
 @using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
+@using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers.Strings
 @model PublisherViewModel
 @{
     this.ViewData[ContextKeys.Url] = Url.Action(
@@ -13,37 +14,43 @@
             id = Model?.Id
         });
 }
-@using (Html.BeginForm(this.ViewData[ContextKeys.ActionName].ToString(), this.ViewData[ContextKeys.ControllerName].ToString(), FormMethod.Post, htmlAttributes: new { id = "form-publisher" }))
-{
-    @Html.AntiForgeryToken()
-    <header>
-        <h2>@this.ViewBag.Title</h2>
-        @Html.Partial(ViewNames.EditButtons, Model, this.ViewData)
-    </header>
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-        <input type="hidden" data-bind="value: json()" name="addresses" />
+<section role="main">
+    @using (Html.BeginForm(this.ViewData[ContextKeys.ActionName].ToString(), this.ViewData[ContextKeys.ControllerName].ToString(), FormMethod.Post, htmlAttributes: new { id = "form-publisher" }))
+    {
+        @Html.AntiForgeryToken()
+        <header>
+            <h2>@this.ViewBag.Title</h2>
+            @Html.Partial(ViewNames.EditButtons, Model, this.ViewData)
+        </header>
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            <input type="hidden" data-bind="value: json()" name="addresses" />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, string.Empty, new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AbbreviatedName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AbbreviatedName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AbbreviatedName, string.Empty, new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AbbreviatedName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AbbreviatedName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AbbreviatedName, string.Empty, new { @class = "text-danger" })
-            </div>
+    }
+    @Html.Partial(ViewNames.Addresses, Model, this.ViewData)
+    <footer>
+        <div role="navigation">
+            @Html.ActionLink(Strings.BackActionLinkText, PublishersController.IndexActionName)
         </div>
-    </div>
-}
-@Html.Partial(ViewNames.Addresses, Model, this.ViewData)
-
+    </footer>
+</section>
 @section Scripts
 {
     @Scripts.Render(Bundles.JQueryValidationScripts)

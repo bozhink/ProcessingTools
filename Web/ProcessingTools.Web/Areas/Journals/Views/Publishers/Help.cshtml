@@ -1,7 +1,15 @@
-﻿
+﻿@using ProcessingTools.Web.Areas.Journals.Controllers
+@using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers.Strings
 @{
-    ViewBag.Title = "Help";
+    this.ViewBag.Title = Strings.HelpPageTitle;
 }
-
-<h2>Help</h2>
-
+<section role="main">
+    <header>
+        <h2>@this.ViewBag.Title</h2>
+    </header>
+    <footer>
+        <div role="navigation">
+            @Html.ActionLink(Strings.BackActionLinkText, PublishersController.IndexActionName)
+        </div>
+    </footer>
+</section>
