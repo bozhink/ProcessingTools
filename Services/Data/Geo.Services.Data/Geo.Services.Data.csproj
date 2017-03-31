@@ -52,14 +52,15 @@
     <Compile Include="Contracts\IContinentsDataService.cs" />
     <Compile Include="Contracts\IGeoEpithetsDataService.cs" />
     <Compile Include="Contracts\IGeoNamesDataService.cs" />
-    <Compile Include="Models\Cities\CityListableServiceModel.cs" />
-    <Compile Include="Models\Cities\Contracts\ICityListableServiceModel.cs" />
+    <Compile Include="Contracts\Models\ICityListableModel.cs" />
+    <Compile Include="Contracts\Models\ICountryListableModel.cs" />
+    <Compile Include="Contracts\Services\ICountriesSelectableDataService.cs" />
     <Compile Include="Models\ContinentServiceModel.cs" />
     <Compile Include="Models\ContinentSynonymServiceModel.cs" />
-    <Compile Include="Models\Countries\Contracts\ICountryListableServiceModel.cs" />
-    <Compile Include="Models\Countries\CountryListableServiceModel.cs" />
+    <Compile Include="Models\CountryListableModel.cs" />
     <Compile Include="Models\CountryServiceModel.cs" />
     <Compile Include="Services\ContinentsDataService.cs" />
+    <Compile Include="Services\CountriesSelectableDataService.cs" />
     <Compile Include="Services\GeoEpithetsDataService.cs" />
     <Compile Include="Services\GeoNamesDataService.cs" />
     <Compile Include="Models\GeoEpithetServiceModel.cs" />
@@ -82,6 +83,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
+      <Name>Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>

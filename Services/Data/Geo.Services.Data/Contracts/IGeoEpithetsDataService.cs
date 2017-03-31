@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Contracts
 {
-    using Models;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Geo.Services.Data.Models;
 
     public interface IGeoEpithetsDataService : IMultiEntryDataService<GeoEpithetServiceModel>
     {
