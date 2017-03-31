@@ -186,7 +186,6 @@
     <Compile Include="Services\Data\IDetailedGenericDataService.cs" />
     <Compile Include="Services\Data\IGenericDataService.cs" />
     <Compile Include="Services\Data\IIterableDataService.cs" />
-    <Compile Include="Services\Data\IListableDataService.cs" />
     <Compile Include="Services\Data\IMultiEntryDataService.cs" />
     <Compile Include="Services\Data\IRepositoryDataService.cs" />
     <Compile Include="Services\Data\ISelectableDataService.cs" />
