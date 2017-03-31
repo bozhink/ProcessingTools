@@ -145,7 +145,6 @@
     <Compile Include="IHelpProvider.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\IIntegerIdentifiable.cs" />
-    <Compile Include="Models\IListableServiceModel.cs" />
     <Compile Include="Models\IModelWithUserInformation.cs" />
     <Compile Include="Models\INameable.cs" />
     <Compile Include="Models\INameableGuidIdentifiable.cs" />

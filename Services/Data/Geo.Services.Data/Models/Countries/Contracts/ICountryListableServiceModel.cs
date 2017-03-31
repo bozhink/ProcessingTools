@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface ICountryListableServiceModel : IListableServiceModel, INameableIntegerIdentifiable
+    public interface ICountryListableServiceModel : INameableIntegerIdentifiable
     {
     }
 }
