@@ -32,6 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +45,7 @@
     <Compile Include="DocumentExtensions.cs" />
     <Compile Include="Linq\AsyncLinqExtensions.cs" />
     <Compile Include="Linq\EnumerableExtensions.cs" />
+    <Compile Include="Linq\Expressions\ExpressionExtensions.cs" />
     <Compile Include="ListIntersectionsExtensions.cs" />
     <Compile Include="MappingsExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
@@ -69,6 +74,9 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

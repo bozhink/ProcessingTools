@@ -4,12 +4,9 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Dynamic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Constants;
-    using Contracts.Models;
-    using Models.DataModels;
+    using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Models;
@@ -17,7 +14,10 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Extensions.Linq.Expressions;
     using ProcessingTools.Journals.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Journals.Services.Data.Contracts.Models;
+    using ProcessingTools.Journals.Services.Data.Models.DataModels;
 
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
@@ -53,20 +53,6 @@
         protected IDateTimeProvider DatetimeProvider => this.datetimeProvider;
 
         protected TRepository Repository => this.repository;
-
-        private static Expression<Func<T, S>> BuildExpression<T, S>(LambdaExpression lambda)
-        {
-            ParameterExpression lambdaParameter = lambda.Parameters.Single();
-            ParameterExpression parameter = Expression.Parameter(typeof(T), lambdaParameter.Name);
-
-            var symbols = new Dictionary<string, object>();
-            symbols.Add(parameter.ToString(), parameter);
-
-            var expression = lambda.Body.ToString();
-            var body = System.Linq.Dynamic.DynamicExpression.Parse(typeof(S), expression, symbols);
-
-            return Expression.Lambda<Func<T, S>>(body, parameter);
-        }
 
         public abstract Task<object> Add(object userId, TServiceModel model);
 
@@ -319,7 +305,7 @@
             {
                 if (filter != null)
                 {
-                    dataFilter = BuildExpression<TDataModel, bool>(filter);
+                    dataFilter = filter.ToExpression<TDataModel, bool>();
                 }
             }
             catch
@@ -332,7 +318,7 @@
             {
                 var lambda = SortExpressions.GetOrAdd(
                     sort.ToString(),
-                    key => BuildExpression<TDataModel, object>(sort));
+                    key => sort.ToExpression<TDataModel, object>());
 
                 var func = lambda.Compile();
 
