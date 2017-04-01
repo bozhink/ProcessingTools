@@ -48,6 +48,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\Services\AbstractSelectableDataService.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IContinentsDataService.cs" />
     <Compile Include="Contracts\IGeoEpithetsDataService.cs" />

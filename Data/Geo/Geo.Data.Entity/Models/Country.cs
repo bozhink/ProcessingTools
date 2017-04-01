@@ -3,9 +3,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Geo.Data.Common.Constants;
 
-    public class Country
+    public class Country : IDataModel
     {
         private ICollection<City> cities;
         private ICollection<State> states;

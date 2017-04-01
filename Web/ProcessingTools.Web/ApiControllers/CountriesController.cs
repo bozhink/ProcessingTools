@@ -37,5 +37,18 @@ namespace ProcessingTools.Web.ApiControllers
             })
             .ToArray();
         }
+
+        // GET: api/Countries/5
+        public async Task<CountryResponseModel> Get(int id)
+        {
+            var items = await this.service.Select(c => c.Id == id);
+
+            return items.Select(c => new CountryResponseModel
+            {
+                Id = c.Id,
+                Name = c.Name
+            })
+            .FirstOrDefault();
+        }
     }
 }
