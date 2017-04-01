@@ -19,7 +19,12 @@
         protected override Expression<Func<City, ICityListableModel>> MapDataModelToServiceModel => c => new CityListableModel
         {
             Id = c.Id,
-            Name = c.Name
+            Name = c.Name,
+            Country = new CountryListableModel
+            {
+                Id = c.Country.Id,
+                Name = c.Country.Name
+            }
         };
     }
 }

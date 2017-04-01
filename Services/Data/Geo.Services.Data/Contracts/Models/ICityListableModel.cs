@@ -4,5 +4,6 @@
 
     public interface ICityListableModel : INameableIntegerIdentifiable, IServiceModel
     {
+        ICountryListableModel Country { get; }
     }
 }
