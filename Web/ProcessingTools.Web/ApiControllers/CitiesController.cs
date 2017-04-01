@@ -39,5 +39,23 @@
             })
             .ToArray();
         }
+
+        // GET: api/Cities/5
+        public async Task<CityResponseModel> Get(int id)
+        {
+            var items = await this.service.Select(c => c.Id == id);
+
+            return items.Select(c => new CityResponseModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Country = new CountryResponseModel
+                {
+                    Id = c.Country.Id,
+                    Name = c.Country.Name
+                }
+            })
+            .FirstOrDefault();
+        }
     }
 }

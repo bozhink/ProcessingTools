@@ -45,7 +45,12 @@
     <Compile Include="DocumentExtensions.cs" />
     <Compile Include="Linq\AsyncLinqExtensions.cs" />
     <Compile Include="Linq\EnumerableExtensions.cs" />
+    <Compile Include="Linq\Expressions\ExpressionCompositionUtility.cs" />
     <Compile Include="Linq\Expressions\ExpressionExtensions.cs" />
+    <Compile Include="Linq\Expressions\GenericExpressionVisitor.cs" />
+    <Compile Include="Linq\Expressions\ParameterRebinder.cs" />
+    <Compile Include="Linq\Expressions\ReplaceExpressionVisitor.cs" />
+    <Compile Include="Linq\Expressions\TypeConversionVisitor.cs" />
     <Compile Include="ListIntersectionsExtensions.cs" />
     <Compile Include="MappingsExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />

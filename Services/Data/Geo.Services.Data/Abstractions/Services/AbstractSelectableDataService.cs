@@ -68,11 +68,11 @@
             switch (order)
             {
                 case SortOrder.Ascending:
-                    baseQuery = baseQuery.OrderBy(sort.ToExpression<TDataModel, object>());
+                    baseQuery = baseQuery.OrderBy(sort.ToExpression<TServiceModel, TDataModel, object>());
                     break;
 
                 case SortOrder.Descending:
-                    baseQuery = baseQuery.OrderByDescending(sort.ToExpression<TDataModel, object>());
+                    baseQuery = baseQuery.OrderByDescending(sort.ToExpression<TServiceModel, TDataModel, object>());
                     break;
 
                 default:
@@ -90,7 +90,7 @@
 
             if (filter != null)
             {
-                query = query.Where(filter.ToExpression<TDataModel, bool>());
+                query = query.Where(filter.ToExpression<TServiceModel, TDataModel, bool>());
             }
 
             return query;
