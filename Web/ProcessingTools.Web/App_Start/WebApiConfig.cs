@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web
 {
     using System.Web.Http;
-    using Constants;
+    using ProcessingTools.Web.Constants;
 
     public static class WebApiConfig
     {

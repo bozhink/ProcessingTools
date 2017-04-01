@@ -5,6 +5,38 @@
     self.count = ko.observable(count);
     self.addresses = ko.observableArray([]);
 
+    self.countries = ko.observableArray([]);
+
+    function fetchCountries(done) {
+        $.ajax({
+            url: '/api/countries',
+            method: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var i, len, item;
+                if (Array.isArray(data)) {
+                    self.countries.removeAll();
+                    len = data.length;
+                    for (i = 0; i < len; i += 1) {
+                        item = data[i];
+                        self.countries.push(new Country(item.Id, item.Name));
+                    }
+                }
+
+                if (typeof done === 'function') {
+                    done();
+                }
+            },
+            error: function (error) {
+                console.log(error);
+
+                if (typeof done === 'function') {
+                    done();
+                }
+            }
+        });
+    }
+
     function rebind(addresses) {
         var i, len, address;
 
@@ -26,7 +58,9 @@
         self.isModified(false);
     }
 
-    rebind(addresses);
+    fetchCountries(function () {
+        rebind(addresses);
+    });
 
     self.addAddress = function () {
         self.addresses.push(new Address(-1, '', '', '', 2));

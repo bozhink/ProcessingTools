@@ -1,5 +1,4 @@
-﻿@using ProcessingTools.Web.Constants
-@using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Shared.Strings
+﻿@using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Shared.Strings
 <hr />
 <div role="grid">
     <h4>@Strings.AddressesHeading <span data-bind="text: count()" class="badge"></span> <button data-bind="click: addAddress, enable: count() < 5" class="btn btn-default glyphicon glyphicon-plus" title="@Strings.AddAddressTitle"></button></h4>
@@ -17,7 +16,11 @@
             <tr data-bind="visible: status() < 3">
                 <td><input type="text" data-bind="value: addressString" class="form-control" /></td>
                 <td><input type="text" data-bind="value: cityId" class="form-control" /></td>
-                <td><input type="text" data-bind="value: countryId" class="form-control" /></td>
+                <td><select data-bind="options: $root.countries(),
+                            optionsText: 'name',
+                            optionsValue: 'id',
+                            @*optionsCaption: 'Choose...',*@
+                            value: countryId" class="form-control"></select></td>
                 <td><a href="#" data-bind="click: $root.removeAddress" class="glyphicon glyphicon-remove" title="@Strings.RemoveAddressTitle"></a></td>
             </tr>
         </tbody>
