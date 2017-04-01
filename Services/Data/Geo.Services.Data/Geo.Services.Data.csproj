@@ -55,11 +55,14 @@
     <Compile Include="Contracts\IGeoNamesDataService.cs" />
     <Compile Include="Contracts\Models\ICityListableModel.cs" />
     <Compile Include="Contracts\Models\ICountryListableModel.cs" />
+    <Compile Include="Contracts\Services\ICitiesSelectableDataService.cs" />
     <Compile Include="Contracts\Services\ICountriesSelectableDataService.cs" />
+    <Compile Include="Models\CityListableModel.cs" />
     <Compile Include="Models\ContinentServiceModel.cs" />
     <Compile Include="Models\ContinentSynonymServiceModel.cs" />
     <Compile Include="Models\CountryListableModel.cs" />
     <Compile Include="Models\CountryServiceModel.cs" />
+    <Compile Include="Services\CitiesSelectableDataService.cs" />
     <Compile Include="Services\ContinentsDataService.cs" />
     <Compile Include="Services\CountriesSelectableDataService.cs" />
     <Compile Include="Services\GeoEpithetsDataService.cs" />

@@ -3,9 +3,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Geo.Data.Common.Constants;
 
-    public class City
+    public class City : IDataModel
     {
         private ICollection<PostCode> postCodes;
 
