@@ -11,19 +11,38 @@ namespace ProcessingTools.Extensions.Linq.Expressions
 
     public class GenericExpressionVisitor<S, B> : ExpressionVisitor
     {
-        private readonly Type typeofS = typeof(S);
-        private readonly Type typeofB = typeof(B);
+        private readonly Type typeofS;
+        private readonly IEnumerable<Type> typeofSInterfaces;
+        private readonly Type typeofB;
+        private readonly IEnumerable<PropertyInfo> typeofBProperties;
 
-        private readonly Stack<ParameterExpression[]> parameterStack = new Stack<ParameterExpression[]>();
+        private readonly Stack<ParameterExpression[]> parameterStack;
+        private readonly IDictionary<string, string> propertyNamesMap;
 
-        private readonly IDictionary<string, string> propertyNamesMap = null;
 
         public GenericExpressionVisitor()
         {
+            this.typeofS = typeof(S);
+            this.typeofSInterfaces = typeofS.GetInterfaces();
+
+            this.typeofB = typeof(B);
+            this.typeofBProperties = typeofB.GetProperties();
+
+            this.parameterStack = new Stack<ParameterExpression[]>();
+
+            this.propertyNamesMap = null;
         }
 
         public GenericExpressionVisitor(IDictionary<string, string> propertyNamesMap)
         {
+            this.typeofS = typeof(S);
+            this.typeofSInterfaces = typeofS.GetInterfaces();
+
+            this.typeofB = typeof(B);
+            this.typeofBProperties = typeofB.GetProperties();
+
+            this.parameterStack = new Stack<ParameterExpression[]>();
+
             this.propertyNamesMap = propertyNamesMap;
         }
 
@@ -52,7 +71,8 @@ namespace ProcessingTools.Extensions.Linq.Expressions
             var member = memberExpression.Member;
             var name = member.Name;
 
-            if (member.MemberType == MemberTypes.Property && this.typeofS.GetInterfaces().Contains(member.DeclaringType))
+            if (member.MemberType == MemberTypes.Property &&
+                (this.typeofS == member.DeclaringType || this.typeofS.GetInterfaces().Contains(member.DeclaringType)))
             {
                 string propertyName = name;
 
@@ -63,7 +83,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
 
                 memberExpression = Expression.Property(
                     this.Visit(memberExpression.Expression),
-                    this.typeofB.GetProperty(propertyName));
+                    this.typeofBProperties.First(p => p.Name == propertyName));
             }
 
             return memberExpression;
