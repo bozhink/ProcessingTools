@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using ProcessingTools.Image.Processors.Contracts.Processors;
 
+    [Authorize]
     public class QRCodeGeneratorController : Controller
     {
         private readonly IQRCodeEncoder encoder;
