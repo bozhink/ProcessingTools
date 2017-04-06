@@ -12,6 +12,5 @@
         Task<string> EncodeSvg(string content, int pixelPerModule = 20);
 
         Task<string> EncodeBase64(string content, int pixelPerModule = 20);
-
     }
 }

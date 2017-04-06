@@ -5,6 +5,7 @@
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
+    using Ninject.Web.Common;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Services.Files;
     using ProcessingTools.Tagger.Commands.Contracts;
@@ -132,6 +133,10 @@
                 {
                     return t => context.Kernel.Get(t) as ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
+
+            this.Bind<ProcessingTools.Image.Processors.Contracts.Processors.IQRCodeEncoder>()
+                .To<ProcessingTools.Image.Processors.Processors.QRCodeEncoder>()
+                .InRequestScope();
         }
     }
 }
