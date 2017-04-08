@@ -44,6 +44,7 @@
     <Compile Include="Content\ContentTypeConstants.cs" />
     <Compile Include="FileConstants.cs" />
     <Compile Include="MediaTypes.cs" />
+    <Compile Include="Models\ValidationConstants.cs" />
     <Compile Include="ModelValidationConstants.cs" />
     <Compile Include="PagingConstants.cs" />
     <Compile Include="ProcessingConstants.cs" />
@@ -65,6 +66,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

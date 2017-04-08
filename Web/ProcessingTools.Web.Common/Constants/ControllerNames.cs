@@ -21,6 +21,7 @@
         public const string MetadataControllerName = "Metadata";
         public const string ProductsControllerName = "Products";
         public const string PublishersControllerName = "Publishers";
+        public const string QRCodeGeneratorControllerName = "QRCodeGenerator";
         public const string TaggerControllerName = "Tagger";
         public const string UploadControllerName = "Upload";
     }

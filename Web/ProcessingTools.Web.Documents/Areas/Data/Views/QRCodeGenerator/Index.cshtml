@@ -1,4 +1,5 @@
-﻿@model string
+﻿@using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
+@model ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator.IndexViewModel
 @{
     ViewBag.Title = "QR Code Generator";
 }
@@ -7,26 +8,52 @@
     <header>
         <h2>@ViewBag.Title</h2>
     </header>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary()
-        <div class="form-horizontal">
-            <div class="form-group">
-                <textarea name="content" placeholder="Your text here" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-default" />
-                <input type="reset" value="Reset" class="btn btn-default" />
+    <div class="container-fluid">
+        <div class="col-md-6">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="control-label col-md-4">
+                            @Html.LabelFor(m => m.PixelPerModule)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(m => m.PixelPerModule, new { htmlAttributes = new { type = "number", min = "1", max = "20", @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.PixelPerModule, string.Empty, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-4">
+                            @Html.LabelFor(m => m.Content)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.Content, htmlAttributes: new { placeholder = "Your text here", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Content, string.Empty, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-4">&nbsp;</div>
+                        <div class="col-md-6">
+                            <input type="submit" value="Submit" class="btn btn-default" />
+                            <input type="reset" value="Reset" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            <div role="img" class="qr-code">
+                @if (Model?.Image != null)
+                {
+                    @Html.Raw(Model.Image.ToString())
+                }
             </div>
         </div>
-    }
-
-    <div role="img" class="qr-code">
-        @if (Model != null)
-        {
-            @Html.Raw(Model)
-        }
     </div>
 </section>
+@section Scripts
+{
+    @Scripts.Render(Bundles.JQueryValidationScripts)
+}

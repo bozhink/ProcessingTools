@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44328</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -323,10 +324,12 @@
     <Compile Include="Areas\Data\Controllers\BioTaxonomyTaxaRanksDataController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\Data\Models\CoordinatesCalculator\CoordinatesRequestModel.cs" />
+    <Compile Include="Areas\Data\Models\QRCodeGenerator\IndexRequestModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinateViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinatesResponseViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\ICoordinate.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\ICoordinates.cs" />
+    <Compile Include="Areas\Data\ViewModels\QRCodeGenerator\IndexViewModel.cs" />
     <Compile Include="Areas\Files\Controllers\MetadataController.cs" />
     <Compile Include="Areas\Files\Controllers\UploadController.cs" />
     <Compile Include="Areas\Files\FilesAreaRegistration.cs" />
@@ -781,11 +784,13 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58936</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:58936/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:58936/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
