@@ -38,6 +38,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public async Task<ActionResult> Index([Bind(Include = IndexRequestModelValidationIncludeBindings)]IndexRequestModel model)
         {
             var viewModel = new IndexViewModel

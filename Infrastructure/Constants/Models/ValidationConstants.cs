@@ -2,6 +2,6 @@
 {
     public sealed class ValidationConstants
     {
-        public const int DefaultMaximalLengthOfContent = 200;
+        public const int DefaultMaximalLengthOfContent = 500;
     }
 }
