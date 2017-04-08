@@ -1,16 +1,17 @@
-﻿namespace ProcessingTools.Image.Processors.Contracts.Processors
+﻿namespace ProcessingTools.Imaging.Contracts.Processors
 {
     using System.Drawing;
     using System.Threading.Tasks;
+    using ProcessingTools.Imaging.Constants;
 
     public interface IQRCodeEncoder
     {
-        Task<byte[]> Encode(string content, int pixelPerModule = 20);
+        Task<byte[]> Encode(string content, int pixelPerModule = DefaultConstants.PixelPerModule);
 
-        Task<Bitmap> EncodeBitmap(string content, int pixelPerModule = 20);
+        Task<Image> EncodeImage(string content, int pixelPerModule = DefaultConstants.PixelPerModule);
 
-        Task<string> EncodeSvg(string content, int pixelPerModule = 20);
+        Task<string> EncodeSvg(string content, int pixelPerModule = DefaultConstants.PixelPerModule);
 
-        Task<string> EncodeBase64(string content, int pixelPerModule = 20);
+        Task<string> EncodeBase64(string content, int pixelPerModule = DefaultConstants.PixelPerModule);
     }
 }

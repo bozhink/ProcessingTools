@@ -1,15 +1,21 @@
-﻿namespace ProcessingTools.Image.Processors.Processors
+﻿namespace ProcessingTools.Imaging.Processors
 {
     using System;
     using System.Drawing;
     using System.Threading.Tasks;
-    using ProcessingTools.Image.Processors.Contracts.Processors;
+    using ProcessingTools.Imaging.Constants;
+    using ProcessingTools.Imaging.Contracts.Processors;
     using QRCoder;
 
     public class QRCodeEncoder : IQRCodeEncoder
     {
-        public Task<byte[]> Encode(string content, int pixelPerModule = 20)
+        public Task<byte[]> Encode(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
         {
+            if (pixelPerModule < 1)
+            {
+                pixelPerModule = DefaultConstants.PixelPerModule;
+            }
+
             var qrcodeData = this.GetQRCodeData(content);
             var qrcode = new BitmapByteQRCode(qrcodeData);
             byte[] qrcodeImage = qrcode.GetGraphic(pixelPerModule);
@@ -17,8 +23,13 @@
             return Task.FromResult(qrcodeImage);
         }
 
-        public Task<string> EncodeBase64(string content, int pixelPerModule = 20)
+        public Task<string> EncodeBase64(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
         {
+            if (pixelPerModule < 1)
+            {
+                pixelPerModule = DefaultConstants.PixelPerModule;
+            }
+
             var qrcodeData = this.GetQRCodeData(content);
             var qrcode = new Base64QRCode(qrcodeData);
             string qrcodeImage = qrcode.GetGraphic(pixelPerModule);
@@ -26,17 +37,27 @@
             return Task.FromResult(qrcodeImage);
         }
 
-        public Task<Bitmap> EncodeBitmap(string content, int pixelPerModule = 20)
+        public Task<Image> EncodeImage(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
         {
+            if (pixelPerModule < 1)
+            {
+                pixelPerModule = DefaultConstants.PixelPerModule;
+            }
+
             var qrcodeData = this.GetQRCodeData(content);
             var qrcode = new QRCode(qrcodeData);
             Bitmap qrcodeImage = qrcode.GetGraphic(pixelPerModule);
 
-            return Task.FromResult(qrcodeImage);
+            return Task.FromResult<Image>(qrcodeImage);
         }
 
-        public Task<string> EncodeSvg(string content, int pixelPerModule = 20)
+        public Task<string> EncodeSvg(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
         {
+            if (pixelPerModule < 1)
+            {
+                pixelPerModule = DefaultConstants.PixelPerModule;
+            }
+
             var qrcodeData = this.GetQRCodeData(content);
             var qrcode = new SvgQRCode(qrcodeData);
             string qrcodeImage = qrcode.GetGraphic(pixelPerModule);

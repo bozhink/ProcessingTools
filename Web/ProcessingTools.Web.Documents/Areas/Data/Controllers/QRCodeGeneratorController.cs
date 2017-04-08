@@ -4,7 +4,8 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using ProcessingTools.Image.Processors.Contracts.Processors;
+    using ProcessingTools.Imaging.Constants;
+    using ProcessingTools.Imaging.Contracts.Processors;
     using ProcessingTools.Web.Documents.Areas.Data.Models.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Extensions;
@@ -31,7 +32,7 @@
         {
             var viewModel = new IndexViewModel
             {
-                PixelPerModule = 5
+                PixelPerModule = DefaultConstants.PixelPerModule
             };
 
             return this.View(viewModel);

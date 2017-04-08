@@ -352,7 +352,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journals.Data.Entity", "Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journals.Services.Data", "Services\Data\Journals.Services.Data\Journals.Services.Data.csproj", "{DC1A2B54-0B9B-422F-A401-90026EE48DE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image.Processors", "Services\Processors\Image.Processors\Image.Processors.csproj", "{D3890589-8338-42AE-9A1D-4FD746978BF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imaging", "Services\Processors\Image.Processors\Imaging.csproj", "{D3890589-8338-42AE-9A1D-4FD746978BF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

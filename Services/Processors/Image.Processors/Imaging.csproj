@@ -7,8 +7,8 @@
     <ProjectGuid>{D3890589-8338-42AE-9A1D-4FD746978BF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Image.Processors</RootNamespace>
-    <AssemblyName>ProcessingTools.Image.Processors</AssemblyName>
+    <RootNamespace>ProcessingTools.Imaging</RootNamespace>
+    <AssemblyName>ProcessingTools.Imaging</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeLib, Version=1.0.0.23, Culture=neutral, PublicKeyToken=5f09bda868cc39e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\BarcodeLib.1.0.0.23\lib\net20\BarcodeLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\QrCode.Net.0.4.0.0\lib\net45\Gma.QrCodeNet.Encoding.dll</HintPath>
       <Private>True</Private>
@@ -46,14 +50,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\DefaultConstants.cs" />
+    <Compile Include="Contracts\Processors\IBarcodeEncoder.cs" />
     <Compile Include="Contracts\Processors\IQRCodeEncoder.cs" />
+    <Compile Include="Processors\BarcodeEncoder.cs" />
     <Compile Include="Processors\QRCodeEncoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
+      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
+      <Name>Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
