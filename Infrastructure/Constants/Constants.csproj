@@ -43,6 +43,7 @@
     <Compile Include="ContentTypes.cs" />
     <Compile Include="Content\ContentTypeConstants.cs" />
     <Compile Include="FileConstants.cs" />
+    <Compile Include="ImagingConstants.cs" />
     <Compile Include="MediaTypes.cs" />
     <Compile Include="Models\ValidationConstants.cs" />
     <Compile Include="ModelValidationConstants.cs" />

@@ -1,4 +1,5 @@
 ﻿@using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
+@using ImagingConstants = ProcessingTools.Constants.ImagingConstants
 @model ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator.IndexViewModel
 @{
     this.ViewBag.Title = "QR Code Generator";
@@ -18,7 +19,7 @@
                         @Html.LabelFor(m => m.PixelPerModule)
                     </div>
                     <div class="col-md-6">
-                        @Html.EditorFor(m => m.PixelPerModule, new { htmlAttributes = new { type = "number", min = "1", max = "20", @class = "form-control" } })
+                        @Html.EditorFor(m => m.PixelPerModule, new { htmlAttributes = new { type = "number", min = ImagingConstants.MinimalQRCodePixelPerModule, max = ImagingConstants.MaximalQRCodePixelPerModule, @class = "form-control" } })
                         @Html.ValidationMessageFor(m => m.PixelPerModule, string.Empty, new { @class = "text-danger" })
                     </div>
                 </div>

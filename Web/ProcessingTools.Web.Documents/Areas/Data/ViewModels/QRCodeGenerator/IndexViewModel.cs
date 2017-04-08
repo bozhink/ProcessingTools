@@ -1,18 +1,18 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Imaging.Constants;
+    using ProcessingTools.Constants;
     using ValidationConstants = ProcessingTools.Constants.Models.ValidationConstants;
 
     public class IndexViewModel
     {
         public IndexViewModel()
         {
-            this.PixelPerModule = DefaultConstants.PixelPerModule;
+            this.PixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule;
         }
 
         [Required]
-        [Range(1, 20)]
+        [Range(ImagingConstants.MinimalQRCodePixelPerModule, ImagingConstants.MaximalQRCodePixelPerModule)]
         [Display(Name = "Pixels per module", Description = "Pixels per module")]
         public int PixelPerModule { get; set; }
 

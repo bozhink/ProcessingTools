@@ -3,6 +3,7 @@
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Threading.Tasks;
+    using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Imaging.Contracts.Processors;
@@ -32,7 +33,7 @@
             var barcode = new BarcodeLib.Barcode();
 
             Image image;
-            if (width < 1 || height < 1)
+            if (width < ImagingConstants.MinimalBarcodeWidth || height < ImagingConstants.MinimalBarcodeHeight)
             {
                 image = barcode.Encode((BarcodeLib.TYPE)((int)type), content, Color.Black, Color.White);
             }

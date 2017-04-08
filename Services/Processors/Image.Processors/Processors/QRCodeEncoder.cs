@@ -3,17 +3,17 @@
     using System;
     using System.Drawing;
     using System.Threading.Tasks;
-    using ProcessingTools.Imaging.Constants;
+    using ProcessingTools.Constants;
     using ProcessingTools.Imaging.Contracts.Processors;
     using QRCoder;
 
     public class QRCodeEncoder : IQRCodeEncoder
     {
-        public Task<byte[]> Encode(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
+        public Task<byte[]> Encode(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule)
         {
-            if (pixelPerModule < 1)
+            if (pixelPerModule < ImagingConstants.MinimalQRCodePixelPerModule)
             {
-                pixelPerModule = DefaultConstants.PixelPerModule;
+                pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule;
             }
 
             var qrcodeData = this.GetQRCodeData(content);
@@ -23,11 +23,11 @@
             return Task.FromResult(qrcodeImage);
         }
 
-        public Task<string> EncodeBase64(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
+        public Task<string> EncodeBase64(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule)
         {
-            if (pixelPerModule < 1)
+            if (pixelPerModule < ImagingConstants.MinimalQRCodePixelPerModule)
             {
-                pixelPerModule = DefaultConstants.PixelPerModule;
+                pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule;
             }
 
             var qrcodeData = this.GetQRCodeData(content);
@@ -37,11 +37,11 @@
             return Task.FromResult(qrcodeImage);
         }
 
-        public Task<Image> EncodeImage(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
+        public Task<Image> EncodeImage(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule)
         {
-            if (pixelPerModule < 1)
+            if (pixelPerModule < ImagingConstants.MinimalQRCodePixelPerModule)
             {
-                pixelPerModule = DefaultConstants.PixelPerModule;
+                pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule;
             }
 
             var qrcodeData = this.GetQRCodeData(content);
@@ -51,11 +51,11 @@
             return Task.FromResult<Image>(qrcodeImage);
         }
 
-        public Task<string> EncodeSvg(string content, int pixelPerModule = DefaultConstants.PixelPerModule)
+        public Task<string> EncodeSvg(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule)
         {
-            if (pixelPerModule < 1)
+            if (pixelPerModule < ImagingConstants.MinimalQRCodePixelPerModule)
             {
-                pixelPerModule = DefaultConstants.PixelPerModule;
+                pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule;
             }
 
             var qrcodeData = this.GetQRCodeData(content);
