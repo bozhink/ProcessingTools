@@ -1,15 +1,12 @@
 ﻿@using ProcessingTools.Web.Documents.Controllers
 @using Strings = Resources.Strings
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="The description of my page" />
-    <title>
-        @ViewBag.Title - @ContentConstants.ApplicationName
-    </title>
+    <title>@ViewBag.Title - @ContentConstants.ApplicationName</title>
     @Styles.Render(BundleNames.DefaultStyles)
     @RenderSection(SectionNames.Styles, required: false)
     @Scripts.Render(BundleNames.ModernizrScripts)
@@ -67,12 +64,9 @@
         </section>
         <hr />
         <footer>
-            <p>
-                &copy; @DateTime.Now.Year - @ContentConstants.CopyrightHolder
-            </p>
+            <p>&copy; @DateTime.Now.Year - @ContentConstants.CopyrightHolder</p>
         </footer>
     </div>
-
     @Scripts.Render(BundleNames.DefaultScripts)
     @RenderSection(SectionNames.Scripts, required: false)
 </body>

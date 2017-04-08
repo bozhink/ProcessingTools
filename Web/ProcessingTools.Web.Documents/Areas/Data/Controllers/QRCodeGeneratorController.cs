@@ -1,11 +1,13 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
     using System;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Image.Processors.Contracts.Processors;
     using ProcessingTools.Web.Documents.Areas.Data.Models.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator;
+    using ProcessingTools.Web.Documents.Extensions;
 
     [Authorize]
     public class QRCodeGeneratorController : Controller
@@ -24,7 +26,6 @@
             this.encoder = encoder;
         }
 
-        // GET: Data/QRCodeGenerator
         [HttpGet]
         public ActionResult Index()
         {
@@ -51,7 +52,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    viewModel.Image = await this.encoder.EncodeSvg(model.Content, viewModel.PixelPerModule);
+                    viewModel.Image = await this.encoder.EncodeBase64(model.Content, viewModel.PixelPerModule);
                 }
                 else
                 {
@@ -64,6 +65,19 @@
             }
 
             return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Help()
+        {
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View();
+        }
+
+        protected override void HandleUnknownAction(string actionName)
+        {
+            this.IvalidActionErrorView(actionName)
+                .ExecuteResult(this.ControllerContext);
         }
     }
 }

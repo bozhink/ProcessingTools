@@ -18,8 +18,7 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44328</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -530,6 +529,7 @@
     <Content Include="Areas\Data\Views\CoordinatesCalculator\Index.cshtml" />
     <Content Include="Areas\Data\Views\CoordinatesCalculator\Calculate.cshtml" />
     <Content Include="Areas\Data\Views\QRCodeGenerator\Index.cshtml" />
+    <Content Include="Areas\Data\Views\QRCodeGenerator\Help.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
     <Content Include="README.md" />
   </ItemGroup>

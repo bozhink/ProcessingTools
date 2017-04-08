@@ -1,58 +1,61 @@
 ﻿@using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
 @model ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator.IndexViewModel
 @{
-    ViewBag.Title = "QR Code Generator";
+    this.ViewBag.Title = "QR Code Generator";
 }
-
-<section role="main">
-    <header>
-        <h2>@ViewBag.Title</h2>
-    </header>
-    <div class="container-fluid">
-        <div class="col-md-6">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="control-label col-md-4">
-                            @Html.LabelFor(m => m.PixelPerModule)
-                        </div>
-                        <div class="col-md-6">
-                            @Html.EditorFor(m => m.PixelPerModule, new { htmlAttributes = new { type = "number", min = "1", max = "20", @class = "form-control" } })
-                            @Html.ValidationMessageFor(m => m.PixelPerModule, string.Empty, new { @class = "text-danger" })
-                        </div>
+<header>
+    <h2>@ViewBag.Title</h2>
+</header>
+<div class="container-fluid">
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="control-label col-md-4">
+                        @Html.LabelFor(m => m.PixelPerModule)
                     </div>
-                    <div class="form-group">
-                        <div class="control-label col-md-4">
-                            @Html.LabelFor(m => m.Content)
-                        </div>
-                        <div class="col-md-6">
-                            @Html.TextAreaFor(m => m.Content, htmlAttributes: new { placeholder = "Your text here", @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Content, string.Empty, new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="control-label col-md-4">&nbsp;</div>
-                        <div class="col-md-6">
-                            <input type="submit" value="Submit" class="btn btn-default" />
-                            <input type="reset" value="Reset" class="btn btn-default" />
-                        </div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(m => m.PixelPerModule, new { htmlAttributes = new { type = "number", min = "1", max = "20", @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.PixelPerModule, string.Empty, new { @class = "text-danger" })
                     </div>
                 </div>
-            }
-        </div>
-        <div class="col-md-4">
-            <div role="img" class="qr-code">
+                <div class="form-group">
+                    <div class="control-label col-md-4">
+                        @Html.LabelFor(m => m.Content)
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(m => m.Content, htmlAttributes: new { placeholder = "Your text here", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Content, string.Empty, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4">&nbsp;</div>
+                    <div class="col-md-6">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                        <input type="reset" value="Reset" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <div role="img" class="qr-code">
+            <div class="thumbnail">
                 @if (Model?.Image != null)
                 {
-                    @Html.Raw(Model.Image.ToString())
+                    <img src="@string.Format("data:image/png;base64,{0}", Model.Image.ToString())" alt="QR code" />
+                }
+                else
+                {
+                    <div class="alternative">QR code placeholder</div>
                 }
             </div>
         </div>
     </div>
-</section>
+</div>
 @section Scripts
 {
     @Scripts.Render(Bundles.JQueryValidationScripts)

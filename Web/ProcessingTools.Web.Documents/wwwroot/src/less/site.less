@@ -1,4 +1,6 @@
-﻿body {
+﻿@import 'inc/constants';
+
+body {
     position: relative;
     padding-top: 50px;
     padding-bottom: 20px;
@@ -79,5 +81,27 @@ textarea {
 
     label {
         text-align: inherit !important;
+    }
+}
+
+.qr-code .thumbnail {
+    min-width: @thumbnails-width-height;
+    max-width: @thumbnails-width-height;
+    width: @thumbnails-width-height;
+    min-height: @thumbnails-width-height;
+    max-height: @thumbnails-width-height;
+    height: @thumbnails-width-height;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+
+    .alternative {
+        width: 100%;
+        height: 100%;
+        background-color: lightgray;
+        font-weight: bold;
+        color: darken(gray, 10%);
+        padding: 20px;
     }
 }
