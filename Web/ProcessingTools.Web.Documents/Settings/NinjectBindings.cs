@@ -137,6 +137,10 @@
             this.Bind<ProcessingTools.Imaging.Contracts.Processors.IQRCodeEncoder>()
                 .To<ProcessingTools.Imaging.Processors.QRCodeEncoder>()
                 .InRequestScope();
+
+            this.Bind<ProcessingTools.Imaging.Contracts.Processors.IBarcodeEncoder>()
+                .To<ProcessingTools.Imaging.Processors.BarcodeEncoder>()
+                .InRequestScope();
         }
     }
 }

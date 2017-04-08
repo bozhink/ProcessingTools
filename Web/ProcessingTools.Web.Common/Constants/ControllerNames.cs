@@ -5,6 +5,7 @@
         public const string AbbreviationsControllerName = "Abbreviations";
         public const string AccountControllerName = "Account";
         public const string ArticlesControllerName = "Articles";
+        public const string BarcodeGeneratorControllerName = "BarcodeGenerator";
         public const string BioControllerName = "Bio";
         public const string BioTaxonomyBlackListDataControllerName = "BioTaxonomyBlackListData";
         public const string BioTaxonomyTaxaRanksDataControllerName = "BioTaxonomyTaxaRanksData";

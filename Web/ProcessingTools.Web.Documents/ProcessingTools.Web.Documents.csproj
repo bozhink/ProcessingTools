@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44328</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -306,8 +307,10 @@
     <Compile Include="Areas\Articles\ViewModels\Files\FileDetailsViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Files\FileViewModel.cs" />
     <Compile Include="Areas\Articles\ViewModels\Tagger\FileViewModel.cs" />
+    <Compile Include="Areas\Data\Controllers\BarcodeGeneratorController.cs" />
     <Compile Include="Areas\Data\Controllers\CoordinatesCalculatorController.cs" />
     <Compile Include="Areas\Data\Controllers\QRCodeGeneratorController.cs" />
+    <Compile Include="Areas\Data\Models\BarcodeGenerator\IndexRequestModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\BlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\Contracts\IBlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\SearchResposeModel.cs" />
@@ -324,6 +327,7 @@
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\Data\Models\CoordinatesCalculator\CoordinatesRequestModel.cs" />
     <Compile Include="Areas\Data\Models\QRCodeGenerator\IndexRequestModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\BarcodeGenerator\IndexViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinateViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinatesResponseViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\ICoordinate.cs" />
@@ -530,6 +534,8 @@
     <Content Include="Areas\Data\Views\CoordinatesCalculator\Calculate.cshtml" />
     <Content Include="Areas\Data\Views\QRCodeGenerator\Index.cshtml" />
     <Content Include="Areas\Data\Views\QRCodeGenerator\Help.cshtml" />
+    <Content Include="Areas\Data\Views\BarcodeGenerator\Help.cshtml" />
+    <Content Include="Areas\Data\Views\BarcodeGenerator\Index.cshtml" />
     <None Include="Properties\PublishProfiles\express.pubxml" />
     <Content Include="README.md" />
   </ItemGroup>

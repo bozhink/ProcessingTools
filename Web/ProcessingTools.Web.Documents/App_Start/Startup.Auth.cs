@@ -58,17 +58,17 @@
             ////    clientId: "",
             ////    clientSecret: "");
 
-            //string twitterConsumerKey = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerKey];
-            //string twitterConsumerSecret = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerSecret];
-            //if (!string.IsNullOrWhiteSpace(twitterConsumerKey) && !string.IsNullOrWhiteSpace(twitterConsumerSecret))
-            //{
-            //    app.UseTwitterAuthentication(new TwitterAuthenticationOptions
-            //    {
-            //        ConsumerKey = twitterConsumerKey,
-            //        ConsumerSecret = twitterConsumerSecret,
-            //        BackchannelCertificateValidator = this.certificateValidatorFactory.Create()
-            //    });
-            //}
+            ////string twitterConsumerKey = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerKey];
+            ////string twitterConsumerSecret = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerSecret];
+            ////if (!string.IsNullOrWhiteSpace(twitterConsumerKey) && !string.IsNullOrWhiteSpace(twitterConsumerSecret))
+            ////{
+            ////    app.UseTwitterAuthentication(new TwitterAuthenticationOptions
+            ////    {
+            ////        ConsumerKey = twitterConsumerKey,
+            ////        ConsumerSecret = twitterConsumerSecret,
+            ////        BackchannelCertificateValidator = this.certificateValidatorFactory.Create()
+            ////    });
+            ////}
 
             ////app.UseFacebookAuthentication(
             ////   appId: "",

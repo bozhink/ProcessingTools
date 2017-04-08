@@ -44,6 +44,7 @@
     <Compile Include="ControllerExtensions.cs" />
     <Compile Include="DisposableExtensions.cs" />
     <Compile Include="DocumentExtensions.cs" />
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="ImageExtensions.cs" />
     <Compile Include="Linq\AsyncLinqExtensions.cs" />
     <Compile Include="Linq\EnumerableExtensions.cs" />

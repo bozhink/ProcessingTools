@@ -30,16 +30,25 @@
 
         public Task<Image> EncodeImage(BarcodeType type, string content, int width, int height)
         {
-            var barcode = new BarcodeLib.Barcode();
+            var barcode = new BarcodeLib.Barcode
+            {
+                IncludeLabel = true,
+                Alignment = BarcodeLib.AlignmentPositions.CENTER,
+                RotateFlipType = RotateFlipType.RotateNoneFlipNone,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                LabelPosition = BarcodeLib.LabelPositions.BOTTOMCENTER,
+                AlternateLabel = content
+            };
 
             Image image;
             if (width < ImagingConstants.MinimalBarcodeWidth || height < ImagingConstants.MinimalBarcodeHeight)
             {
-                image = barcode.Encode((BarcodeLib.TYPE)((int)type), content, Color.Black, Color.White);
+                image = barcode.Encode((BarcodeLib.TYPE)((int)type), content);
             }
             else
             {
-                image = barcode.Encode((BarcodeLib.TYPE)((int)type), content, Color.Black, Color.White, width, height);
+                image = barcode.Encode((BarcodeLib.TYPE)((int)type), content, width, height);
             }
 
             return Task.FromResult(image);

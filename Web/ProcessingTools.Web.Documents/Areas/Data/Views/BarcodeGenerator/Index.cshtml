@@ -1,0 +1,81 @@
+﻿@using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
+@using ImagingConstants = ProcessingTools.Constants.ImagingConstants
+@model ProcessingTools.Web.Documents.Areas.Data.ViewModels.BarcodeGenerator.IndexViewModel
+@{
+    this.ViewBag.Title = "Barcode Generator";
+}
+<header>
+    <h2>@ViewBag.Title</h2>
+</header>
+<div class="container-fluid">
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="control-label col-md-4">
+                        @Html.LabelFor(m => m.Width)
+                    </div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(m => m.Width, new { htmlAttributes = new { type = "number", min = ImagingConstants.MinimalBarcodeWidth, max = ImagingConstants.MaximalBarcodeWidth, @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Width, string.Empty, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4">
+                        @Html.LabelFor(m => m.Height)
+                    </div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(m => m.Height, new { htmlAttributes = new { type = "number", min = ImagingConstants.MinimalBarcodeHeight, max = ImagingConstants.MaximalBarcodeHeight, @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Height, string.Empty, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4">
+                        @Html.LabelFor(m => m.Type)
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(m => m.Type, Model.Type, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Type, string.Empty, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4">
+                        @Html.LabelFor(m => m.Content)
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(m => m.Content, htmlAttributes: new { placeholder = "Your text here", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Content, string.Join("; ", this.ViewContext.ViewData?.ModelState[nameof(Model.Content)]?.Errors.Select(e => e.ErrorMessage) ?? new string[] { }), new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4">&nbsp;</div>
+                    <div class="col-md-6">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                        <input type="reset" value="Reset" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <div role="img" class="qr-code">
+            <div class="thumbnail">
+                @if (Model?.Image != null)
+                {
+                    <img src="@string.Format("data:image/png;base64,{0}", Model.Image.ToString())" alt="bar code" />
+                }
+                else
+                {
+                    <div class="alternative">Barcode placeholder</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    @Scripts.Render(Bundles.JQueryValidationScripts)
+}
