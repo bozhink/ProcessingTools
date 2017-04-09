@@ -18,6 +18,8 @@
         {
         }
 
+        public IQueryable<IHistoryItem> Query => this.DbSet.AsQueryable<IHistoryItem>();
+
         public Task<object> Add(IHistoryItem entity)
         {
             if (entity == null)
@@ -89,6 +91,12 @@
             var result = query.FirstOrDefault();
 
             return Task.FromResult(result);
+        }
+
+        public Task<IHistoryItem> GetById(object id)
+        {
+            var entity = this.DbSet.Find(id);
+            return Task.FromResult<IHistoryItem>(entity);
         }
 
         public Task<object> Update(IHistoryItem entity) => this.Add(entity);

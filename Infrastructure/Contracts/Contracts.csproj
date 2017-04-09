@@ -52,7 +52,6 @@
     <Compile Include="Data\Miners\ITextDataMiner.cs" />
     <Compile Include="Data\Repositories\IAsyncRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
-    <Compile Include="Data\Repositories\IFilterableRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
@@ -61,7 +60,6 @@
     <Compile Include="Data\Repositories\IKeyCollectionValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IKeyListableRepository.cs" />
     <Compile Include="Data\Repositories\IKeyValuePairsRepository.cs" />
-    <Compile Include="Data\Repositories\IQueryableRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
     <Compile Include="Data\Repositories\IRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\ISearchableRepository.cs" />

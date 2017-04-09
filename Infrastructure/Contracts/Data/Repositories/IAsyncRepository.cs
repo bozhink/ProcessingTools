@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProcessingTools.Contracts.Data.Repositories
+﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
-    public interface IAsyncRepository<T> : IRepository<T>, IFilterableRepository<T>
+    using System;
+    using System.Linq.Expressions;
+    using System.Threading.Tasks;
+
+    public interface IAsyncRepository<T> : ISearchableRepository<T>
     {
         Task<long> Count();
 
