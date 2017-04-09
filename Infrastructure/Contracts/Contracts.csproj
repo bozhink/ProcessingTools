@@ -51,16 +51,13 @@
     <Compile Include="Data\Miners\IStringTextDataMiner.cs" />
     <Compile Include="Data\Miners\ITextDataMiner.cs" />
     <Compile Include="Data\Repositories\IAsyncRepository.cs" />
-    <Compile Include="Data\Repositories\ICountableCrudRepository.cs" />
-    <Compile Include="Data\Repositories\ICountableRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\IFilterableRepository.cs" />
     <Compile Include="Data\Repositories\IFirstFilterableRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
-    <Compile Include="Data\Repositories\ISearchableCountableCrudRepository.cs" />
-    <Compile Include="Data\Repositories\ISearchableCountableCrudRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IIterableRepository.cs" />
     <Compile Include="Data\Repositories\IKeyCollectionValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IKeyListableRepository.cs" />

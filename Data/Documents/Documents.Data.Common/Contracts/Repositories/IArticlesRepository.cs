@@ -4,7 +4,7 @@
     using Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IArticlesRepository : ISearchableCountableCrudRepository<IArticleEntity>
+    public interface IArticlesRepository : ICrudRepository<IArticleEntity>
     {
         Task<object> AddDocument(object entityId, IDocumentEntity document);
 

@@ -14,7 +14,7 @@
         where TDbModel : class
         where TServiceModel : class
     {
-        public AbstractDataService(ISearchableCountableCrudRepositoryProvider<TDbModel> repositoryProvider)
+        public AbstractDataService(ICrudRepositoryProvider<TDbModel> repositoryProvider)
         {
             if (repositoryProvider == null)
             {
@@ -31,7 +31,7 @@
 
         protected abstract Expression<Func<TServiceModel, TDbModel>> MapServiceToDataModel { get; }
 
-        protected ISearchableCountableCrudRepositoryProvider<TDbModel> RepositoryProvider { get; private set; }
+        protected ICrudRepositoryProvider<TDbModel> RepositoryProvider { get; private set; }
 
         private Func<TDbModel, TServiceModel> MapDataToServiceModelFunc { get; set; }
 

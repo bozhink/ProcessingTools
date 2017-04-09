@@ -23,7 +23,7 @@
         where TServiceModel : class, IServiceModel
         where TDetailedServiceModel : class, TServiceModel, IDetailedModel, Contracts.Models.IAddressable
         where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Journals.Data.Common.Contracts.Models.IAddressable
-        where TRepository : ISearchableCountableCrudRepository<TDataModel>, IAddressableRepository
+        where TRepository : ICrudRepository<TDataModel>, IAddressableRepository
     {
         private readonly static ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();
 

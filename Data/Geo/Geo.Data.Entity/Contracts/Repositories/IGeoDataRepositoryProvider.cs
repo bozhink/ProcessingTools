@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IGeoDataRepositoryProvider<T> : ISearchableCountableCrudRepositoryProvider<T>
+    public interface IGeoDataRepositoryProvider<T> : ICrudRepositoryProvider<T>
         where T : class
     {
     }

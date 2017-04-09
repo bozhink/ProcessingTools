@@ -20,7 +20,7 @@
             this.contextProvider = contextProvider;
         }
 
-        public ISearchableCountableCrudRepository<T> Create()
+        public ICrudRepository<T> Create()
         {
             return new BiorepositoriesRepository<T>(this.contextProvider);
         }

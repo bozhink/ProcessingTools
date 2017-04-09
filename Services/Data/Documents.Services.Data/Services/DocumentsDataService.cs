@@ -378,7 +378,7 @@
             return entity;
         }
 
-        private async Task<Document> GetEntity(object userId, object articleId, object documentId, ISearchableCountableCrudRepository<Document> repository)
+        private async Task<Document> GetEntity(object userId, object articleId, object documentId, ICrudRepository<Document> repository)
         {
             var entity = await repository.Query
                 .Where(d => d.CreatedByUser == userId.ToString())

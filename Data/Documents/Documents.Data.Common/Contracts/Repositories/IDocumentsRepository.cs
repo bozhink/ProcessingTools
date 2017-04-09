@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IDocumentsRepository : ISearchableCountableCrudRepository<IDocumentEntity>
+    public interface IDocumentsRepository : ICrudRepository<IDocumentEntity>
     {
     }
 }

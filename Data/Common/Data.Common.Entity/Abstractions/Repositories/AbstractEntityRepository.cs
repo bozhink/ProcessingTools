@@ -12,7 +12,7 @@
     using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
 
-    public abstract class AbstractEntityRepository<TEntity, TContext, TDbModel> : ISearchableCountableCrudRepository<TEntity>
+    public abstract class AbstractEntityRepository<TEntity, TContext, TDbModel> : ICrudRepository<TEntity>
         where TEntity : class
         where TContext : IDbContext
         where TDbModel : class, TEntity

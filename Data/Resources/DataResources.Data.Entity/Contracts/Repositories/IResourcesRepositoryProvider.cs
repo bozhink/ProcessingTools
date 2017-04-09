@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IResourcesRepositoryProvider<T> : ISearchableCountableCrudRepositoryProvider<T>
+    public interface IResourcesRepositoryProvider<T> : ICrudRepositoryProvider<T>
         where T : class
     {
     }

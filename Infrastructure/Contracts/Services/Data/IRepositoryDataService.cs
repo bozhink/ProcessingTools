@@ -6,18 +6,18 @@
 
     public interface IRepositoryDataService<TDbModel, TServiceModel>
     {
-        Task<object> Add(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models);
+        Task<object> Add(ICrudRepository<TDbModel> repository, params TServiceModel[] models);
 
-        Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository);
+        Task<IQueryable<TServiceModel>> All(ICrudRepository<TDbModel> repository);
 
-        Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models);
+        Task<object> Delete(ICrudRepository<TDbModel> repository, params TServiceModel[] models);
 
-        Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids);
+        Task<object> Delete(ICrudRepository<TDbModel> repository, params object[] ids);
 
-        Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids);
+        Task<IQueryable<TServiceModel>> Get(ICrudRepository<TDbModel> repository, params object[] ids);
 
-        Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take);
+        Task<IQueryable<TServiceModel>> Query(ICrudRepository<TDbModel> repository, int skip, int take);
 
-        Task<object> Update(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models);
+        Task<object> Update(ICrudRepository<TDbModel> repository, params TServiceModel[] models);
     }
 }

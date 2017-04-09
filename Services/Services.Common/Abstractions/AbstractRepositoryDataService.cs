@@ -20,7 +20,7 @@
 
         protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
 
-        public virtual async Task<object> Add(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Add(ICrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
@@ -42,7 +42,7 @@
             return await repository.SaveChangesAsync();
         }
 
-        public async Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository)
+        public async Task<IQueryable<TServiceModel>> All(ICrudRepository<TDbModel> repository)
         {
             if (repository == null)
             {
@@ -56,7 +56,7 @@
             return result.AsQueryable();
         }
 
-        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
+        public virtual async Task<object> Delete(ICrudRepository<TDbModel> repository, params object[] ids)
         {
             if (repository == null)
             {
@@ -76,7 +76,7 @@
             return await repository.SaveChangesAsync();
         }
 
-        public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Delete(ICrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {
@@ -98,7 +98,7 @@
             return await repository.SaveChangesAsync();
         }
 
-        public async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
+        public async Task<IQueryable<TServiceModel>> Get(ICrudRepository<TDbModel> repository, params object[] ids)
         {
             if (repository == null)
             {
@@ -123,7 +123,7 @@
             return new HashSet<TServiceModel>(result).AsQueryable();
         }
 
-        public async Task<IQueryable<TServiceModel>> Query(ISearchableCountableCrudRepository<TDbModel> repository, int skip, int take)
+        public async Task<IQueryable<TServiceModel>> Query(ICrudRepository<TDbModel> repository, int skip, int take)
         {
             if (repository == null)
             {
@@ -150,7 +150,7 @@
             return result.AsQueryable();
         }
 
-        public virtual async Task<object> Update(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
+        public virtual async Task<object> Update(ICrudRepository<TDbModel> repository, params TServiceModel[] models)
         {
             if (repository == null)
             {

@@ -10,9 +10,9 @@
 
     public abstract class AbstractDataServiceWithRepository<TDbModel, TServiceModel> : AbstractRepositoryDataService<TDbModel, TServiceModel>, IMultiEntryDataService<TServiceModel>, IDisposable
     {
-        private readonly ISearchableCountableCrudRepository<TDbModel> repository;
+        private readonly ICrudRepository<TDbModel> repository;
 
-        public AbstractDataServiceWithRepository(ISearchableCountableCrudRepository<TDbModel> repository)
+        public AbstractDataServiceWithRepository(ICrudRepository<TDbModel> repository)
         {
             if (repository == null)
             {
