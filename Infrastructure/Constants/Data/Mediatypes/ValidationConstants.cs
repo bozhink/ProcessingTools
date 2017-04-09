@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Mediatypes.Data.Common.Constants
+﻿namespace ProcessingTools.Constants.Data.Mediatypes
 {
     public static class ValidationConstants
     {

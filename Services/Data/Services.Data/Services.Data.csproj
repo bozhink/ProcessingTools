@@ -142,10 +142,6 @@
       <Project>{886CD5EA-A0BD-41C1-A583-797265011223}</Project>
       <Name>Documents.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\Mediatypes\Mediatypes.Data.Common\Mediatypes.Data.Common.csproj">
-      <Project>{DE0B92AA-03BC-46FD-90B6-DECD1B163CDB}</Project>
-      <Name>Mediatypes.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>

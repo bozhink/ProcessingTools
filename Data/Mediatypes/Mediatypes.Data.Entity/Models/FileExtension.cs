@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Mediatypes.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Mediatypes;
 
     public class FileExtension
     {

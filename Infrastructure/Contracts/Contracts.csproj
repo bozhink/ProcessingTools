@@ -52,6 +52,9 @@
     <Compile Include="Data\IDatabaseInitializer.cs" />
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
+    <Compile Include="Data\Mediatypes\Models\IMediatype.cs" />
+    <Compile Include="Data\Mediatypes\Repositories\IMediatypesRepository.cs" />
+    <Compile Include="Data\Mediatypes\Repositories\ISearchableMediatypesRepository.cs" />
     <Compile Include="Data\Miners\IDataMiner.cs" />
     <Compile Include="Data\Miners\IStringDataMiner.cs" />
     <Compile Include="Data\Miners\IStringTextDataMiner.cs" />

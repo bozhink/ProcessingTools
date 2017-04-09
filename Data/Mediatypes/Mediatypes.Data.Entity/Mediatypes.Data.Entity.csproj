@@ -54,6 +54,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MediatypesDbContext.cs" />
     <Compile Include="Models\FileExtension.cs" />
+    <Compile Include="Models\Mediatype.cs" />
     <Compile Include="Models\Mimesubtype.cs" />
     <Compile Include="Models\Mimetype.cs" />
     <Compile Include="Models\MimetypePair.cs" />
@@ -78,10 +79,6 @@
     <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mediatypes.Data.Common\Mediatypes.Data.Common.csproj">
-      <Project>{de0b92aa-03bc-46fd-90b6-decd1b163cdb}</Project>
-      <Name>Mediatypes.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

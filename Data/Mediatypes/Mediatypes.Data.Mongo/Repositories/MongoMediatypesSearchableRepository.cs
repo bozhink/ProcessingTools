@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using Models;
     using MongoDB.Driver;
+    using ProcessingTools.Contracts.Data.Mediatypes.Models;
+    using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Models;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Mediatypes.Data.Mongo.Models;
 
     public class MongoMediatypesSearchableRepository : ISearchableMediatypesRepository
     {

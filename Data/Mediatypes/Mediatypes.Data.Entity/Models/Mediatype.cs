@@ -1,8 +1,8 @@
-﻿namespace ProcessingTools.Mediatypes.Data.Common.Models
+﻿namespace ProcessingTools.Mediatypes.Data.Entity.Models
 {
-    using Contracts.Models;
+    using ProcessingTools.Contracts.Data.Mediatypes.Models;
 
-    public class Mediatype : IMediatype
+    internal class Mediatype : IMediatype
     {
         public string Description { get; set; }
 

@@ -3,9 +3,9 @@
     using System.Configuration;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Mediatypes.Data.Common.Contracts.Repositories;
     using ProcessingTools.Mediatypes.Data.Entity;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Factories;

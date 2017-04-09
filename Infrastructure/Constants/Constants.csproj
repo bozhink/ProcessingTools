@@ -46,6 +46,7 @@
     <Compile Include="Data\Geo\ContentConstants.cs" />
     <Compile Include="Data\Geo\ValidationConstants.cs" />
     <Compile Include="Data\History\ValidationConstants.cs" />
+    <Compile Include="Data\Mediatypes\ValidationConstants.cs" />
     <Compile Include="FileConstants.cs" />
     <Compile Include="ImagingConstants.cs" />
     <Compile Include="MediaTypes.cs" />
