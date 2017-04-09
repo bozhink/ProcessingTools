@@ -138,6 +138,7 @@
     <Compile Include="IGenericXmlContextParser.cs" />
     <Compile Include="IGenericXmlContextTagger.cs" />
     <Compile Include="Models\IDetailedModel.cs" />
+    <Compile Include="Models\IEnvironmentUser.cs" />
     <Compile Include="Models\IFullAddressable.cs" />
     <Compile Include="Models\IGuidIdentifiable.cs" />
     <Compile Include="Models\IGenericIdentifiable.cs" />
@@ -188,6 +189,8 @@
     <Compile Include="Services\Data\IMultiEntryDataService.cs" />
     <Compile Include="Services\Data\IRepositoryDataService.cs" />
     <Compile Include="Services\Data\ISelectableDataService.cs" />
+    <Compile Include="Services\IDateTimeProvider.cs" />
+    <Compile Include="Services\IEnvironment.cs" />
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />

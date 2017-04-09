@@ -42,6 +42,7 @@
     <Compile Include="TaxonRankType.cs" />
     <Compile Include="TaxonType.cs" />
     <Compile Include="UpdateStatus.cs" />
+    <Compile Include="UserRole.cs" />
     <Compile Include="ValidationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
