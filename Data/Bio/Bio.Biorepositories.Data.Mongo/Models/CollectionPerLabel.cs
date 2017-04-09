@@ -2,7 +2,7 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Bio.Biorepositories.Models;
     using ProcessingTools.Contracts.Models;
 
     public class CollectionPerLabel : IStringIdentifiable, ICollectionPerLabel

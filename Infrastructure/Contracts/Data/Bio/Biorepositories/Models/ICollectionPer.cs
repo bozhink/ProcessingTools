@@ -1,10 +1,8 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
 {
-    public interface ICollection
+    public interface ICollectionPer
     {
         string AccessEligibilityAndRules { get; }
-
-        string AccessionStatus { get; }
 
         string CollectionCode { get; }
 
@@ -15,8 +13,6 @@
         string CollectionName { get; }
 
         string CoolUri { get; }
-
-        string InstitutionCode { get; }
 
         string InstitutionName { get; }
 

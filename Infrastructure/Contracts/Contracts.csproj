@@ -41,6 +41,14 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Bio\Biorepositories\Models\ICollection.cs" />
+    <Compile Include="Data\Bio\Biorepositories\Models\ICollectionLabel.cs" />
+    <Compile Include="Data\Bio\Biorepositories\Models\ICollectionPer.cs" />
+    <Compile Include="Data\Bio\Biorepositories\Models\ICollectionPerLabel.cs" />
+    <Compile Include="Data\Bio\Biorepositories\Models\IInstitution.cs" />
+    <Compile Include="Data\Bio\Biorepositories\Models\IInstitutionLabel.cs" />
+    <Compile Include="Data\Bio\Biorepositories\Models\IStaff.cs" />
+    <Compile Include="Data\Bio\Biorepositories\Models\IStaffLabel.cs" />
     <Compile Include="Data\Cache\Models\IValidationCacheEntity.cs" />
     <Compile Include="Data\Cache\Repositories\IValidationCacheDataRepository.cs" />
     <Compile Include="Data\DataResources\Models\IAbbreviationEntity.cs" />

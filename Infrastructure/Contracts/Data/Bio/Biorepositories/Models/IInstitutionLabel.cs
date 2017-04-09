@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
 {
     public interface IInstitutionLabel
     {

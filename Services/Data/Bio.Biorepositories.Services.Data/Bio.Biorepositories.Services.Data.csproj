@@ -52,10 +52,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\Bio\Bio.Biorepositories.Data.Common\Bio.Biorepositories.Data.Common.csproj">
-      <Project>{6F791C48-EA33-4FBA-86D0-BCFABA6E088F}</Project>
-      <Name>Bio.Biorepositories.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>
