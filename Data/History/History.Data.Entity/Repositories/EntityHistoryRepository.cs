@@ -6,6 +6,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.History.Models;
+    using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.History.Data.Entity.Contracts;
     using ProcessingTools.History.Data.Entity.Contracts.Repositories;
@@ -99,6 +100,14 @@
             return Task.FromResult<IHistoryItem>(entity);
         }
 
-        public Task<object> Update(IHistoryItem entity) => this.Add(entity);
+        public Task<object> Update(IHistoryItem entity)
+        {
+            throw new InvalidOperationException();
+        }
+
+        public Task<object> Update(object id, IUpdateExpression<IHistoryItem> update)
+        {
+            throw new InvalidOperationException();
+        }
     }
 }

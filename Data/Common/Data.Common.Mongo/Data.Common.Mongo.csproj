@@ -58,7 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Repositories\IMongoCrudRepository.cs" />
     <Compile Include="Contracts\Repositories\IMongoGenericRepository.cs" />
-    <Compile Include="Contracts\Repositories\IMongoIterableRepository.cs" />
     <Compile Include="Contracts\Repositories\IMongoRepository.cs" />
     <Compile Include="Contracts\Repositories\IMongoSearchableRepository.cs" />
     <Compile Include="Repositories\AbstractMongoCrudRepository.cs" />

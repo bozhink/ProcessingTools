@@ -50,7 +50,6 @@
     <Compile Include="Data\Miners\IStringDataMiner.cs" />
     <Compile Include="Data\Miners\IStringTextDataMiner.cs" />
     <Compile Include="Data\Miners\ITextDataMiner.cs" />
-    <Compile Include="Data\Repositories\IAsyncRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="Data\Repositories\ISearchableRepository.cs" />
     <Compile Include="Data\Repositories\IStringKeyCollectionValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IStringKeyValuePairsRepository.cs" />
-    <Compile Include="Data\Repositories\IUpdatableRepository.cs" />
     <Compile Include="Expressions\IUpdateCommand.cs" />
     <Compile Include="Expressions\IUpdateExpression.cs" />
     <Compile Include="Files\Generators\IFileNameGenerator.cs" />
