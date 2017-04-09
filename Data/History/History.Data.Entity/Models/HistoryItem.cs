@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.History.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.History;
     using ProcessingTools.History.Data.Common.Contracts.Models;
 
     public class HistoryItem : IHistoryItem

@@ -33,7 +33,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Contracts\Models\IHistoryItem.cs" />
     <Compile Include="Contracts\Repositories\IHistoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

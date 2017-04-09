@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.History.Data.Common.Constants
+﻿namespace ProcessingTools.Constants.Data.History
 {
     public sealed class ValidationConstants
     {
