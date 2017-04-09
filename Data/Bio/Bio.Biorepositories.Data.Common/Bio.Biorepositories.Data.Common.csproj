@@ -41,11 +41,13 @@
     <Compile Include="Contracts\Models\IInstitutionLabel.cs" />
     <Compile Include="Contracts\Models\IStaff.cs" />
     <Compile Include="Contracts\Models\IStaffLabel.cs" />
-    <Compile Include="Enumerations\IndexHerbariorumRecordType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\Repositories\" />
+    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models
 {
-    using Enumerations;
+    using ProcessingTools.Enumerations;
 
     public interface IInstitution
     {

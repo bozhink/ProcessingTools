@@ -3,8 +3,8 @@
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Common.Contracts.Models;
-    using ProcessingTools.Bio.Biorepositories.Data.Common.Enumerations;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Enumerations;
 
     public class Institution : IStringIdentifiable, IInstitution
     {

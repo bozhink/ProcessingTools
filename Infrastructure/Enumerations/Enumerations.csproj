@@ -33,6 +33,7 @@
     <Compile Include="BarcodeType.cs" />
     <Compile Include="DisposeStatus.cs" />
     <Compile Include="ExceptionSeverity.cs" />
+    <Compile Include="IndexHerbariorumRecordType.cs" />
     <Compile Include="LogType.cs" />
     <Compile Include="MethodType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
