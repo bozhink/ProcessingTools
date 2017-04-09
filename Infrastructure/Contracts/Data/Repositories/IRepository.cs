@@ -4,6 +4,8 @@
 
     public interface IRepository
     {
-        Task<long> SaveChangesAsync();
+        object SaveChanges();
+
+        Task<object> SaveChangesAsync();
     }
 }

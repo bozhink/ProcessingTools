@@ -34,7 +34,7 @@
 
         protected IRedisClientProvider ClientProvider => this.clientProvider;
 
-        public virtual Task<long> SaveChangesAsync() => Task.Run(() =>
+        public virtual object SaveChanges()
         {
             using (var client = this.ClientProvider.Create())
             {
@@ -44,11 +44,13 @@
                 }
                 catch (RedisResponseException)
                 {
-                    return 1L;
+                    return 1;
                 }
 
-                return 0L;
+                return 0;
             }
-        });
+        }
+
+        public virtual Task<object> SaveChangesAsync() => Task.Run(() => this.SaveChanges());
     }
 }

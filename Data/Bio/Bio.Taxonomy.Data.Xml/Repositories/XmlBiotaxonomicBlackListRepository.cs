@@ -25,7 +25,9 @@
             this.Context.LoadFromFile(this.dataFileName).Wait();
         }
 
-        public override Task<long> SaveChangesAsync() => this.Context.WriteToFile(this.dataFileName);
+        public override object SaveChanges() => this.Context.WriteToFile(this.dataFileName).Result;
+
+        public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFile(this.dataFileName);
 
         public override Task<object> Update(IBlackListEntity entity) => this.Add(entity);
     }
