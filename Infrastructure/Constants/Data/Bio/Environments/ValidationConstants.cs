@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Environments.Data.Common.Constants
+﻿namespace ProcessingTools.Constants.Data.Bio.Environments
 {
     public static class ValidationConstants
     {

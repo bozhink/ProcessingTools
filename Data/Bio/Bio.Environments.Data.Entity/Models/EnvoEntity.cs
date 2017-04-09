@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Bio.Environments.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Bio.Environments;
 
     public class EnvoEntity
     {
