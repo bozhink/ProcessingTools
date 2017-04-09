@@ -40,7 +40,7 @@
 
                 if (numberOfInsertedItems >= NumberOfItemsToInsertBeforeRepositoryReset)
                 {
-                    await repository.SaveChanges();
+                    await repository.SaveChangesAsync();
                     repository.TryDispose();
                     repository = this.repositoryProvider.Create();
 
@@ -48,7 +48,7 @@
                 }
             }
 
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
             repository.TryDispose();
         }
     }

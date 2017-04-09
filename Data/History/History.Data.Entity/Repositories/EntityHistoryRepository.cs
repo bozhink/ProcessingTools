@@ -64,6 +64,6 @@
             return Task.FromResult(result);
         }
 
-        public override async Task<long> SaveChanges() => await this.Context.SaveChangesAsync();
+        public override async Task<long> SaveChangesAsync() => await this.Context.SaveChangesAsync();
     }
 }

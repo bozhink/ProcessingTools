@@ -69,7 +69,7 @@
             if (dbmodel == null)
             {
                 var result = await this.Add(entity, set);
-                await this.SaveChanges();
+                await this.SaveChangesAsync();
 
                 return result;
             }

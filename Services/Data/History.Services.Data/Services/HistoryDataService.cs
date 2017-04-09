@@ -74,7 +74,7 @@
             };
 
             var result = await this.repository.Add(model);
-            await this.repository.SaveChanges();
+            await this.repository.SaveChangesAsync();
 
             return result;
         }

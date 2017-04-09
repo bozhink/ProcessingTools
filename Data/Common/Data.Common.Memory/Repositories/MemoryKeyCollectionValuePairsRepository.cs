@@ -95,6 +95,6 @@
             return Task.FromResult<object>(true);
         }
 
-        public Task<long> SaveChanges() => Task.FromResult(0L);
+        public Task<long> SaveChangesAsync() => Task.FromResult(0L);
     }
 }

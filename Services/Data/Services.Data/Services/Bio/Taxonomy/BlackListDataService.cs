@@ -38,7 +38,7 @@
 
                 await Task.WhenAll(tasks);
 
-                var result = await repository.SaveChanges();
+                var result = await repository.SaveChangesAsync();
                 return result;
             });
         }
@@ -53,7 +53,7 @@
 
                 await Task.WhenAll(tasks);
 
-                var result = await repository.SaveChanges();
+                var result = await repository.SaveChangesAsync();
                 return result;
             });
         }

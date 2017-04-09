@@ -39,7 +39,7 @@
 
             await Task.WhenAll(tasks);
 
-            return await repository.SaveChanges();
+            return await repository.SaveChangesAsync();
         }
 
         public async Task<IQueryable<TServiceModel>> All(ISearchableCountableCrudRepository<TDbModel> repository)
@@ -73,7 +73,7 @@
 
             await Task.WhenAll(tasks);
 
-            return await repository.SaveChanges();
+            return await repository.SaveChangesAsync();
         }
 
         public virtual async Task<object> Delete(ISearchableCountableCrudRepository<TDbModel> repository, params TServiceModel[] models)
@@ -95,7 +95,7 @@
 
             await Task.WhenAll(tasks);
 
-            return await repository.SaveChanges();
+            return await repository.SaveChangesAsync();
         }
 
         public async Task<IQueryable<TServiceModel>> Get(ISearchableCountableCrudRepository<TDbModel> repository, params object[] ids)
@@ -169,7 +169,7 @@
 
             await Task.WhenAll(tasks);
 
-            return await repository.SaveChanges();
+            return await repository.SaveChangesAsync();
         }
 
         protected IEnumerable<TDbModel> MapServiceModelsToEntities(TServiceModel[] models)

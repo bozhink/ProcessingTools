@@ -25,7 +25,7 @@
             this.CollectionName = CollectionNameFactory.Create<TEntity>();
         }
 
-        public virtual Task<long> SaveChanges() => Task.FromResult(0L);
+        public virtual Task<long> SaveChangesAsync() => Task.FromResult(0L);
 
         protected IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
 

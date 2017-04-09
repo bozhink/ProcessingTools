@@ -84,6 +84,6 @@
             entry.State = EntityState.Detached;
         }
 
-        public virtual async Task<long> SaveChanges() => await this.Context.SaveChangesAsync();
+        public virtual async Task<long> SaveChangesAsync() => await this.Context.SaveChangesAsync();
     }
 }

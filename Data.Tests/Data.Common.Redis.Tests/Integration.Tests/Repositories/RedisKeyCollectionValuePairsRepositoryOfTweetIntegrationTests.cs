@@ -33,11 +33,11 @@
 
             // Act: Clean-up database
             await repository.Remove(key);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             // Act: Add
             await repository.Add(key, value);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             // Act + Assert: Retrieve data
             var valuesFromDb = repository.GetAll(key).ToList();
@@ -50,7 +50,7 @@
 
             // Act: Remove
             await repository.Remove(key);
-            Assert.That(async () => await repository.SaveChanges(), Is.EqualTo(0L).After(2000));
+            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
             Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
@@ -71,7 +71,7 @@
 
             // Act: Clean-up database
             await repository.Remove(key);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             // Act: Add
             for (int i = 0; i < NumberOfItems; ++i)
@@ -99,7 +99,7 @@
             await repository.Add(key, valueToBeDeleted);
 
             values.TrimExcess();
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             // Assert: Get
             Assert.AreEqual(NumberOfItems, values.Count);
@@ -132,7 +132,7 @@
 
             // Act: Remove
             await repository.Remove(key);
-            Assert.That(async () => await repository.SaveChanges(), Is.EqualTo(0L).After(2000));
+            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
             Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
@@ -153,7 +153,7 @@
 
             // Act: Clean-up database
             await repository.Remove(key);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             // Act: Add
             for (int i = 0; i < NumberOfItems; ++i)
@@ -172,7 +172,7 @@
             }
 
             values.TrimExcess();
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             // Act: Get
             var valuesFromDb = repository.GetAll(key).ToList();
@@ -193,7 +193,7 @@
 
             // Act: Remove
             await repository.Remove(key);
-            Assert.That(async () => await repository.SaveChanges(), Is.EqualTo(0L).After(2000));
+            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
             Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
@@ -222,7 +222,7 @@
             Assert.That(async () => await added, Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
-            Assert.That(async () => await repository.SaveChanges(), Is.EqualTo(0L).After(2000));
+            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
 
             // Act: Get
             var valuesFromDb = repository.GetAll(key);
@@ -252,7 +252,7 @@
 
             // Act + Assert: SaveChanges
             // Expected internal catch of "ServiceStack.Redis.RedisResponseException : Background save already in progress"
-            Assert.That(async () => await repository.SaveChanges(), Is.EqualTo(1L));
+            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(1L));
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyCollectionValuePairsRepository<ITweet>), Description = "RedisKeyCollectionValuePairsRepositoryOfTweet Get Keys should work.")]

@@ -112,7 +112,7 @@
             return Task.FromResult<TEntity>(entity);
         }
 
-        public virtual async Task<long> SaveChanges() => await this.repository.Context.SaveChangesAsync();
+        public virtual async Task<long> SaveChangesAsync() => await this.repository.Context.SaveChangesAsync();
 
         public virtual Task<object> Update(TEntity entity)
         {

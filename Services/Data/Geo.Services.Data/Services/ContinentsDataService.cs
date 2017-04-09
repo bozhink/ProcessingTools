@@ -81,10 +81,10 @@
             entity.Countries.Clear();
 
             await repository.Update(entity: entity);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             await repository.Delete(entity.Id);
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -114,7 +114,7 @@
 
             await repository.Update(entity: entity);
 
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -136,7 +136,7 @@
 
             await repository.Update(entity: entity);
 
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             repository.TryDispose();
 

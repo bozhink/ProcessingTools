@@ -369,7 +369,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             // Asset
             Assert.That(result, Is.EqualTo(0L));

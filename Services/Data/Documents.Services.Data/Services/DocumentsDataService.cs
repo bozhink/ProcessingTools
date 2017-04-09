@@ -180,7 +180,7 @@
             entity.ContentLength = await this.xmlFileReaderWriter.Write(inputStream, entity.FilePath, this.DataDirectory);
 
             await repository.Add(entity);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -211,7 +211,7 @@
             await this.xmlFileReaderWriter.Delete(entity.FilePath, this.DataDirectory);
 
             await repository.Delete(entity.Id);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -243,7 +243,7 @@
                 await repository.Delete(entity.Id);
             }
 
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -309,7 +309,7 @@
             }
 
             await repository.Update(entity: entity);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -345,7 +345,7 @@
             entity.DateModified = DateTime.UtcNow;
 
             await repository.Update(entity: entity);
-            await repository.SaveChanges();
+            await repository.SaveChangesAsync();
 
             repository.TryDispose();
 

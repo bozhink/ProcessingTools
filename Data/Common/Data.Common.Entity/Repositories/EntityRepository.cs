@@ -34,7 +34,7 @@
             GC.SuppressFinalize(this);
         }
 
-        public virtual async Task<long> SaveChanges()
+        public virtual async Task<long> SaveChangesAsync()
         {
             long result = await this.Context.SaveChangesAsync();
             return result;

@@ -426,7 +426,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             // Asset
             Assert.That(result, Is.EqualTo(0L));

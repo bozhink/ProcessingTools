@@ -34,7 +34,7 @@
 
         protected IRedisClientProvider ClientProvider => this.clientProvider;
 
-        public virtual Task<long> SaveChanges() => Task.Run(() =>
+        public virtual Task<long> SaveChangesAsync() => Task.Run(() =>
         {
             using (var client = this.ClientProvider.Create())
             {

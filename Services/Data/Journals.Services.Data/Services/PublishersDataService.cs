@@ -86,7 +86,7 @@
 
             await this.Repository.Add(dataModel);
 
-            await this.Repository.SaveChanges();
+            await this.Repository.SaveChangesAsync();
 
             if (this.SaveToHistory)
             {
@@ -121,7 +121,7 @@
                     .Set(p => p.ModifiedByUser, user)
                     .Set(p => p.DateModified, now));
 
-            await this.Repository.SaveChanges();
+            await this.Repository.SaveChangesAsync();
 
             if (this.SaveToHistory)
             {

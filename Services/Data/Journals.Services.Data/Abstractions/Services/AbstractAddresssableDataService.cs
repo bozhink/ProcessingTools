@@ -72,7 +72,7 @@
 
             var result = await this.repository.Delete(id);
 
-            await this.repository.SaveChanges();
+            await this.repository.SaveChangesAsync();
 
             return result;
         }
@@ -113,7 +113,7 @@
                     .Set(p => p.ModifiedByUser, user)
                     .Set(p => p.DateModified, now));
 
-            await this.repository.SaveChanges();
+            await this.repository.SaveChangesAsync();
 
             return dataModel.Id;
         }
@@ -155,7 +155,7 @@
                     .Set(p => p.ModifiedByUser, user)
                     .Set(p => p.DateModified, now));
 
-            await this.repository.SaveChanges();
+            await this.repository.SaveChangesAsync();
 
             return dataModel.Id;
         }
@@ -189,7 +189,7 @@
                     .Set(p => p.ModifiedByUser, user)
                     .Set(p => p.DateModified, now));
 
-            await this.repository.SaveChanges();
+            await this.repository.SaveChangesAsync();
 
             return addressId;
         }

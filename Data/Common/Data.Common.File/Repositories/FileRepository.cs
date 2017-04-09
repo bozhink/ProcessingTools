@@ -56,6 +56,6 @@
             return this.Context.Get(id);
         }
 
-        public virtual Task<long> SaveChanges() => Task.FromResult(0L);
+        public virtual Task<long> SaveChangesAsync() => Task.FromResult(0L);
     }
 }

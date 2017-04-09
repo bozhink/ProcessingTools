@@ -49,7 +49,7 @@
             var repository = this.RepositoryProvider.Create();
 
             await repository.Add(entity: entity);
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -79,7 +79,7 @@
             var repository = this.RepositoryProvider.Create();
 
             await repository.Delete(id: id);
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             repository.TryDispose();
 
@@ -120,7 +120,7 @@
             var repository = this.RepositoryProvider.Create();
 
             await repository.Update(entity: entity);
-            var result = await repository.SaveChanges();
+            var result = await repository.SaveChangesAsync();
 
             repository.TryDispose();
 

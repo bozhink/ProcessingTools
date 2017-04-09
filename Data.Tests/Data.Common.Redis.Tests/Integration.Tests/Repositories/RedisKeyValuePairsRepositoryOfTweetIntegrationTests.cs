@@ -35,7 +35,7 @@
             Assert.That(async () => await added, Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
-            Assert.That(async () => await repository.SaveChanges(), Is.EqualTo(0L));
+            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L));
 
             // Act: Get
             var valueFromDb = repository.Get(key).Result;
@@ -54,7 +54,7 @@
 
             // Act + Assert: SaveChanges
             // Expected internal catch of "ServiceStack.Redis.RedisResponseException : Background save already in progress"
-            Assert.That(async () => await repository.SaveChanges(), Is.EqualTo(1L));
+            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(1L));
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Get Keys should work.")]

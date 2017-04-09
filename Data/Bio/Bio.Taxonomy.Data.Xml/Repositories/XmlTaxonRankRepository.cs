@@ -25,6 +25,6 @@
             this.Context.LoadFromFile(this.dataFileName).Wait();
         }
 
-        public override Task<long> SaveChanges() => this.Context.WriteToFile(this.dataFileName);
+        public override Task<long> SaveChangesAsync() => this.Context.WriteToFile(this.dataFileName);
     }
 }
