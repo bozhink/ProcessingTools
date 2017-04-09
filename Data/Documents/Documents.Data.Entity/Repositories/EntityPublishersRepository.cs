@@ -5,11 +5,10 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
-    using Models;
-    using ProcessingTools.Common.Validation;
     using ProcessingTools.Documents.Data.Common.Contracts.Models;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Models;
 
     public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisherEntity>, IEntityPublishersRepository
     {
@@ -22,7 +21,10 @@
 
         public override async Task<object> Add(IPublisherEntity entity)
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             var dbmodel = new Publisher(entity);
             foreach (var entityAddress in entity.Addresses)
@@ -38,7 +40,10 @@
 
         public override Task<long> Count(Expression<Func<IPublisherEntity, bool>> filter)
         {
-            DummyValidator.ValidateFilter(filter);
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
 
             var query = this.DbSet.AsQueryable<IPublisherEntity>();
             return query.LongCountAsync(filter);
@@ -46,7 +51,10 @@
 
         public override async Task<IPublisherEntity> GetById(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             var query = this.DbSet
                 .Include(p => p.Addresses)

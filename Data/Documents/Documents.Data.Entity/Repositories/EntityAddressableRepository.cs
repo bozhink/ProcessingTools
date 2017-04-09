@@ -3,15 +3,16 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Models;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Documents.Data.Common.Contracts.Models;
     using ProcessingTools.Documents.Data.Common.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Exceptions;
 
-    public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityCrudRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
+    public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
         where TEntity : class, IAddressableEntity
         where TDbModel : AddressableEntity, TEntity
     {
@@ -110,6 +111,36 @@
 
             return dbmodel;
         });
+
+        private async Task<T> AddOrGet<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
+            where T : class
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            if (set == null)
+            {
+                throw new ArgumentNullException(nameof(set));
+            }
+
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var dbmodel = await set.AsQueryable().FirstOrDefaultAsync(filter);
+            if (dbmodel == null)
+            {
+                var result = await this.Add(entity, set);
+                await this.SaveChangesAsync();
+
+                return result;
+            }
+
+            return dbmodel;
+        }
 
         private void RemoveAddressFromAddressSetIfOneOrLessEntityReferencesIt(Address addressToBeRemoved)
         {

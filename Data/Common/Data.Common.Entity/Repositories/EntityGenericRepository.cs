@@ -3,10 +3,9 @@
     using System;
     using System.Data.Entity;
     using System.Threading.Tasks;
-
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public class EntityGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity, TEntity>
+    public class EntityGenericRepository<TContext, TEntity> : EntityRepository<TContext, TEntity, TEntity>
         where TContext : DbContext
         where TEntity : class
     {

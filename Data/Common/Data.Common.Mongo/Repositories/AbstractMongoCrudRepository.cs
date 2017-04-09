@@ -5,11 +5,10 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
     using MongoDB.Driver;
-    using ProcessingTools.Common.Validation;
     using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Common.Mongo.Contracts.Repositories;
 
     public abstract class MongoCrudRepository<TDbModel, TEntity> : MongoRepository<TDbModel>, IMongoCrudRepository<TEntity>, IMongoSearchableRepository<TEntity>
         where TEntity : class
@@ -38,7 +37,10 @@
 
         public virtual async Task<object> Delete(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             var filter = this.GetFilterById(id);
             var result = await this.Collection.DeleteOneAsync(filter);
@@ -49,7 +51,10 @@
         public virtual Task<IEnumerable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
             {
-                DummyValidator.ValidateFilter(filter);
+                if (filter == null)
+                {
+                    throw new ArgumentNullException(nameof(filter));
+                }
 
                 var query = this.Collection.AsQueryable().Where(filter).AsEnumerable();
                 return query;
@@ -58,7 +63,10 @@
         public virtual Task<TEntity> FindFirst(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
             {
-                DummyValidator.ValidateFilter(filter);
+                if (filter == null)
+                {
+                    throw new ArgumentNullException(nameof(filter));
+                }
 
                 var entity = this.Collection
                     .AsQueryable()
@@ -68,7 +76,10 @@
 
         public async Task<TEntity> GetById(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             var filter = this.GetFilterById(id);
             var entity = await this.Collection.Find(filter).FirstOrDefaultAsync();
@@ -79,8 +90,15 @@
 
         public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
         {
-            DummyValidator.ValidateId(id);
-            DummyValidator.ValidateUpdate(update);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (update == null)
+            {
+                throw new ArgumentNullException(nameof(update));
+            }
 
             var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(update);
             var filter = this.GetFilterById(id);

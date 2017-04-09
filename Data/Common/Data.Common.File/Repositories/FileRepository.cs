@@ -5,10 +5,9 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
-    using ProcessingTools.Common.Validation;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Common.File.Contracts;
+    using ProcessingTools.Data.Common.File.Contracts.Repositories;
 
     public class FileRepository<TContext, TEntity> : IFileRepository<TEntity>, IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
@@ -33,7 +32,10 @@
         public virtual Task<IEnumerable<TEntity>> Find(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
             {
-                DummyValidator.ValidateFilter(filter);
+                if (filter == null)
+                {
+                    throw new ArgumentNullException(nameof(filter));
+                }
 
                 var query = this.Context.DataSet;
                 query = query.Where(filter);
@@ -43,7 +45,10 @@
         public virtual Task<TEntity> FindFirst(
             Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
             {
-                DummyValidator.ValidateFilter(filter);
+                if (filter == null)
+                {
+                    throw new ArgumentNullException(nameof(filter));
+                }
 
                 var entity = this.Context.DataSet.FirstOrDefault(filter);
                 return entity;
@@ -51,7 +56,10 @@
 
         public virtual Task<TEntity> GetById(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             return this.Context.Get(id);
         }

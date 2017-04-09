@@ -3,11 +3,10 @@
     using System;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Extensions;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Common.Mongo.Contracts.Repositories;
 
     public class MongoGenericRepository<T> : MongoCrudRepository<T, T>, IMongoGenericRepository<T>
         where T : class
@@ -19,7 +18,10 @@
 
         public override async Task<object> Add(T entity)
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             await this.Collection.InsertOneAsync(entity);
             return entity;
@@ -27,7 +29,10 @@
 
         public override async Task<object> Update(T entity)
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             var id = entity.GetIdValue<BsonIdAttribute>();
             var filter = this.GetFilterById(id);
@@ -43,7 +48,10 @@
 
         public override async Task<long> Count(Expression<Func<T, bool>> filter)
         {
-            DummyValidator.ValidateFilter(filter);
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
 
             var count = await this.Collection.CountAsync(filter);
             return count;

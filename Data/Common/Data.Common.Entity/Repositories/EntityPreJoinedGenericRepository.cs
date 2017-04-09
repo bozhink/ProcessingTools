@@ -6,10 +6,9 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Models.Contracts;
-    using ProcessingTools.Common.Validation;
     using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
+    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
     public class EntityPreJoinedGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
         where TContext : DbContext
@@ -44,7 +43,11 @@
 
         public override async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
         {
-            DummyValidator.ValidateFilter(filter);
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
             return await this.Query.FirstOrDefaultAsync(filter);
         }
     }

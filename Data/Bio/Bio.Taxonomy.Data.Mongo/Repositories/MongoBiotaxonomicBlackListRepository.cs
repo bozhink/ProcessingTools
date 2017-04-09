@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Models;
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
-    using ProcessingTools.Common.Validation;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
@@ -33,7 +33,10 @@
 
         public override async Task<object> Update(IBlackListEntity entity)
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             var result = await this.Collection.UpdateOneAsync(
                 Builders<MongoBlackListEntity>.Filter

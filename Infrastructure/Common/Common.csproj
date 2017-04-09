@@ -46,8 +46,6 @@
     <Compile Include="Providers\DateTimeProvider.cs" />
     <Compile Include="Providers\GuidProvider.cs" />
     <Compile Include="Providers\RandomProvider.cs" />
-    <Compile Include="Validation\DummyValidator.cs" />
-    <Compile Include="Validation\ValidationHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Constants\Constants.csproj">

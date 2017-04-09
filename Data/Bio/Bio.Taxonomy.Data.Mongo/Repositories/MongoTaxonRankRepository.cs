@@ -4,11 +4,10 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Models;
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
-    using ProcessingTools.Common.Validation;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
@@ -39,7 +38,10 @@
 
         public override Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter) => Task.Run(() =>
         {
-            DummyValidator.ValidateFilter(filter);
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
 
             var count = this.Collection.AsQueryable()
                 .Cast<ITaxonRankEntity>()
@@ -50,7 +52,10 @@
 
         public override async Task<object> Update(ITaxonRankEntity entity)
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             var result = await this.Collection.UpdateOneAsync(
                 Builders<MongoTaxonRankEntity>.Filter

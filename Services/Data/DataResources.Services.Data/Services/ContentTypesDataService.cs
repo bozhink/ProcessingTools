@@ -5,12 +5,13 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Validation;
+    using ProcessingTools.Constants;
     using ProcessingTools.DataResources.Data.Entity.Contracts;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.DataResources.Services.Data.Contracts;
     using ProcessingTools.DataResources.Services.Data.Models;
     using ProcessingTools.DataResources.Services.Data.Models.Contracts;
+    using ProcessingTools.Exceptions;
 
     public class ContentTypesDataService : IContentTypesDataService
     {
@@ -28,7 +29,10 @@
 
         public async Task<object> Add(IContentTypeCreateServiceModel model)
         {
-            DummyValidator.ValidateModel(model);
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
 
             int result = 0;
 
@@ -68,8 +72,15 @@
 
         public async Task<IEnumerable<IContentTypeServiceModel>> All(int pageNumber, int numberOfItemsPerPage)
         {
-            ValidationHelpers.ValidatePageNumber(pageNumber);
-            ValidationHelpers.ValidateNumberOfItemsPerPage(numberOfItemsPerPage);
+            if (pageNumber < 0)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (1 > numberOfItemsPerPage || numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
 
             IEnumerable<IContentTypeServiceModel> result = null;
 
@@ -104,7 +115,10 @@
 
         public async Task<object> Delete(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             int result = 0;
             using (var db = this.contextProvider.Create())
@@ -119,7 +133,10 @@
 
         public async Task<IContentTypeDetailsServiceModel> GetDetails(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             IContentTypeDetailsServiceModel result = null;
             using (var db = this.contextProvider.Create())
@@ -140,7 +157,10 @@
 
         public async Task<object> Update(IContentTypeUpdateServiceModel model)
         {
-            DummyValidator.ValidateModel(model);
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
 
             int result = 0;
             using (var db = this.contextProvider.Create())

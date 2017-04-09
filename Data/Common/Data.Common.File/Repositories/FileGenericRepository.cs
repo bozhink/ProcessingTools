@@ -4,12 +4,11 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
-    using ProcessingTools.Common.Validation;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Data.Common.File.Contracts;
+    using ProcessingTools.Data.Common.File.Contracts.Repositories;
     using ProcessingTools.Exceptions;
 
     public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>, IFileCrudRepository<TEntity>
@@ -23,7 +22,11 @@
 
         public virtual Task<object> Add(TEntity entity)
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return this.Context.Add(entity);
         }
 
@@ -33,20 +36,35 @@
 
         public virtual Task<object> Delete(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             return this.Context.Delete(id);
         }
 
         public virtual Task<object> Update(TEntity entity)
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return this.Context.Update(entity);
         }
 
         public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
         {
-            DummyValidator.ValidateId(id);
-            DummyValidator.ValidateUpdate(update);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (update == null)
+            {
+                throw new ArgumentNullException(nameof(update));
+            }
 
             var entity = await this.GetById(id);
             if (entity == null)

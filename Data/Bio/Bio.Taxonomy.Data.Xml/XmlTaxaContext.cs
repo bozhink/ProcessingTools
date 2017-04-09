@@ -8,10 +8,9 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
-    using Contracts;
-    using Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
-    using ProcessingTools.Common.Validation;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
@@ -70,7 +69,10 @@
 
         public Task<object> Delete(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             ITaxonRankEntity taxon;
             this.Taxa.TryRemove(id.ToString(), out taxon);
@@ -79,7 +81,10 @@
 
         public Task<ITaxonRankEntity> Get(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
 
             ITaxonRankEntity taxon;
             this.Taxa.TryGetValue(id.ToString(), out taxon);
@@ -88,7 +93,10 @@
 
         public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
         {
-            DummyValidator.ValidateFileName(fileName);
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
 
             IEnumerable<ITaxonRankEntity> taxa;
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -108,7 +116,10 @@
 
         public async Task<long> WriteToFile(string fileName)
         {
-            DummyValidator.ValidateFileName(fileName);
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
 
             var taxa = this.Taxa.Values.Select(this.MapTaxonRankEntityToTaxonXmlModel).ToArray();
 

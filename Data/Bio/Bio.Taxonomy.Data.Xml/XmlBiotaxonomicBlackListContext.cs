@@ -6,13 +6,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
-
-    using Contracts;
-    using Models;
-
     using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Common.Models;
-    using ProcessingTools.Common.Validation;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
     {
@@ -32,7 +29,10 @@
 
         public Task<object> Add(IBlackListEntity entity) => Task.Run<object>(() =>
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             if (!string.IsNullOrWhiteSpace(entity.Content))
             {
@@ -44,7 +44,11 @@
 
         public Task<object> Delete(object id)
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             var entity = new BlackListEntity
             {
                 Content = id.ToString()
@@ -55,14 +59,21 @@
 
         public Task<IBlackListEntity> Get(object id) => Task.Run(() =>
         {
-            DummyValidator.ValidateId(id);
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
             var entity = this.DataSet.FirstOrDefault(e => e.Content == id.ToString());
             return entity;
         });
 
         public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
         {
-            DummyValidator.ValidateFileName(fileName);
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
 
             var timeSpan = this.lastUpdated - DateTime.Now;
             if (timeSpan.HasValue &&
@@ -88,7 +99,10 @@
 
         public async Task<long> WriteToFile(string fileName)
         {
-            DummyValidator.ValidateFileName(fileName);
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
 
             await this.LoadFromFile(fileName);
 
@@ -108,7 +122,10 @@
 
         private Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
         {
-            DummyValidator.ValidateEntity(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             var items = this.DataSet.ToList();
             items.Remove(entity);
