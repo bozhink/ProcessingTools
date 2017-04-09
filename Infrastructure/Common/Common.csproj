@@ -37,10 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Collections\ConcurrentQueueCollection.cs" />
     <Compile Include="Contracts\IRandomProvider.cs" />
     <Compile Include="Defaults.cs" />
-    <Compile Include="Dictionaries.cs" />
     <Compile Include="Models\ModelWithUserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
