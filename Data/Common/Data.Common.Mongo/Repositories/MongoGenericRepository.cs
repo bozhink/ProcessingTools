@@ -35,13 +35,13 @@
             return result;
         }
 
-        public virtual async Task<long> Count()
+        public override async Task<long> Count()
         {
             var count = await this.Collection.CountAsync("{}");
             return count;
         }
 
-        public virtual async Task<long> Count(Expression<Func<T, bool>> filter)
+        public override async Task<long> Count(Expression<Func<T, bool>> filter)
         {
             DummyValidator.ValidateFilter(filter);
 

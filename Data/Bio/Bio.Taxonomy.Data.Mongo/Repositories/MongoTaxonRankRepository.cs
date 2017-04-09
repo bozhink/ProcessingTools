@@ -31,13 +31,13 @@
             return this.Update(entity);
         }
 
-        public virtual async Task<long> Count()
+        public override async Task<long> Count()
         {
             var count = await this.Collection.CountAsync("{}");
             return count;
         }
 
-        public virtual Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter) => Task.Run(() =>
+        public override Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter) => Task.Run(() =>
         {
             DummyValidator.ValidateFilter(filter);
 

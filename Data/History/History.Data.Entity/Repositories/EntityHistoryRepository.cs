@@ -39,6 +39,20 @@
             return Task.FromResult<object>(model.Id);
         }
 
+        public Task<long> Count()
+        {
+            var result = this.DbSet.LongCount();
+
+            return Task.FromResult(result);
+        }
+
+        public Task<long> Count(Expression<Func<IHistoryItem, bool>> filter)
+        {
+            var result = this.DbSet.AsQueryable<IHistoryItem>().LongCount(filter);
+
+            return Task.FromResult(result);
+        }
+
         public new Task<object> Delete(object id)
         {
             if (id == null)
@@ -63,5 +77,7 @@
 
             return Task.FromResult(result);
         }
+
+        public Task<object> Update(IHistoryItem entity) => this.Add(entity);
     }
 }

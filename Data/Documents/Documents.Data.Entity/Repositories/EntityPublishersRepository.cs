@@ -34,9 +34,9 @@
             return await this.Add(dbmodel, this.DbSet);
         }
 
-        public virtual Task<long> Count() => this.DbSet.LongCountAsync();
+        public override Task<long> Count() => this.DbSet.LongCountAsync();
 
-        public virtual Task<long> Count(Expression<Func<IPublisherEntity, bool>> filter)
+        public override Task<long> Count(Expression<Func<IPublisherEntity, bool>> filter)
         {
             DummyValidator.ValidateFilter(filter);
 

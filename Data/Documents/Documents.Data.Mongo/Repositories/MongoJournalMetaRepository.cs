@@ -49,6 +49,18 @@
             return dbmodel;
         }
 
+        public virtual Task<long> Count()
+        {
+            var result = this.Query.LongCount();
+            return Task.FromResult(result);
+        }
+
+        public virtual Task<long> Count(Expression<Func<IJournalMeta, bool>> filter)
+        {
+            var result = this.Query.LongCount(filter);
+            return Task.FromResult(result);
+        }
+
         public async Task<object> Delete(object id)
         {
             if (id == null)

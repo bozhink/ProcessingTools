@@ -5,8 +5,6 @@
 
     public interface IUpdatableRepository<T> : IRepository<T>
     {
-        Task<object> Update(T entity);
-
         Task<object> Update(object id, IUpdateExpression<T> update);
     }
 }

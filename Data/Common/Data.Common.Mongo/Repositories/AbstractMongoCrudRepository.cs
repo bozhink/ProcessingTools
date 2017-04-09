@@ -24,6 +24,18 @@
 
         public abstract Task<object> Add(TEntity entity);
 
+        public virtual async Task<long> Count()
+        {
+            var result = await this.Collection.CountAsync(m => true);
+            return result;
+        }
+
+        public virtual Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        {
+            var result = this.Query.LongCount(filter);
+            return Task.FromResult(result);
+        }
+
         public virtual async Task<object> Delete(object id)
         {
             DummyValidator.ValidateId(id);

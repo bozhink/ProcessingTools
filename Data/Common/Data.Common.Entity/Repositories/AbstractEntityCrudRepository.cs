@@ -30,6 +30,20 @@
             return await this.Add(dbmodel, this.DbSet);
         }
 
+        public virtual async Task<long> Count()
+        {
+            var count = await this.DbSet.LongCountAsync();
+            return count;
+        }
+
+        public virtual async Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        {
+            DummyValidator.ValidateFilter(filter);
+
+            var count = await this.DbSet.Where(filter).LongCountAsync();
+            return count;
+        }
+
         public virtual async Task<object> Delete(object id) => await this.Delete(id, this.DbSet);
 
         public virtual async Task<object> Update(TEntity entity)
