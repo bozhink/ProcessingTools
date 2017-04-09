@@ -610,10 +610,6 @@
       <Project>{5796c109-8d2e-4ca9-962c-fc1d5263a57c}</Project>
       <Name>Mediatypes.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Common\DataResources.Data.Common.csproj">
-      <Project>{ad202ef1-f5f1-4d85-9cea-ea13ee71d5d6}</Project>
-      <Name>DataResources.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>

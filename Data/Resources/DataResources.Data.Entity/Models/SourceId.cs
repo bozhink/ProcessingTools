@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.DataResources.Data.Common.Constants;
-    using ProcessingTools.DataResources.Data.Common.Contracts.Models;
+    using ProcessingTools.Constants.Data.DataResources;
+    using ProcessingTools.Contracts.Data.DataResources.Models;
 
     public class SourceId : ISourceIdEntity
     {

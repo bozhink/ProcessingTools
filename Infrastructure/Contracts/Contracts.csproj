@@ -41,6 +41,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataResources\Models\IAbbreviationEntity.cs" />
+    <Compile Include="Data\DataResources\Models\IContentTypeEntity.cs" />
+    <Compile Include="Data\DataResources\Models\IEntityWithSources.cs" />
+    <Compile Include="Data\DataResources\Models\IInstitutionEntity.cs" />
+    <Compile Include="Data\DataResources\Models\IProductEntity.cs" />
+    <Compile Include="Data\DataResources\Models\ISourceIdEntity.cs" />
     <Compile Include="Data\History\Models\IHistoryItem.cs" />
     <Compile Include="Data\History\Repositories\IHistoryRepository.cs" />
     <Compile Include="Data\IDatabaseInitializer.cs" />

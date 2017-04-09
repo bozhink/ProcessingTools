@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using ProcessingTools.DataResources.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.DataResources.Models;
 
     public abstract class EntityWithSources : IEntityWithSources
     {

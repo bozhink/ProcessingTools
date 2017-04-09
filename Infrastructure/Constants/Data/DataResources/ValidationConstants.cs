@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DataResources.Data.Common.Constants
+﻿namespace ProcessingTools.Constants.Data.DataResources
 {
     public static class ValidationConstants
     {

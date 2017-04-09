@@ -42,6 +42,7 @@
     <Compile Include="Configuration\ParameterNames.cs" />
     <Compile Include="ContentTypes.cs" />
     <Compile Include="Content\ContentTypeConstants.cs" />
+    <Compile Include="Data\DataResources\ValidationConstants.cs" />
     <Compile Include="Data\Geo\ContentConstants.cs" />
     <Compile Include="Data\Geo\ValidationConstants.cs" />
     <Compile Include="Data\History\ValidationConstants.cs" />
