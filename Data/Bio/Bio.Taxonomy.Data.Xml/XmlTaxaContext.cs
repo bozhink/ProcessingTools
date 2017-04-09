@@ -8,10 +8,10 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 

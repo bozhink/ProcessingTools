@@ -43,6 +43,8 @@
     <Compile Include="ContentTypes.cs" />
     <Compile Include="Content\ContentTypeConstants.cs" />
     <Compile Include="Data\Bio\Environments\ValidationConstants.cs" />
+    <Compile Include="Data\Bio\Taxonomy\ValidationConstants.cs" />
+    <Compile Include="Data\Bio\Taxonomy\XmlModelsConstants.cs" />
     <Compile Include="Data\Bio\ValidationConstants.cs" />
     <Compile Include="Data\DataResources\ValidationConstants.cs" />
     <Compile Include="Data\Documents\ValidationConstants.cs" />

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.Contracts.Data.Bio.Taxonomy.Models
 {
     public interface IBlackListEntity
     {

@@ -75,10 +75,6 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
-      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
-      <Name>Bio.Taxonomy.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

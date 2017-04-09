@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Enumerations;
 

@@ -6,10 +6,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Models;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Comparers;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
     {

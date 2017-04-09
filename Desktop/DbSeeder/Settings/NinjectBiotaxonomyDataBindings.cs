@@ -3,7 +3,7 @@
     using System.Configuration;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;

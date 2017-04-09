@@ -88,10 +88,6 @@
       <Project>{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}</Project>
       <Name>Data.Common.File</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Taxonomy.Data.Common\Bio.Taxonomy.Data.Common.csproj">
-      <Project>{827cc531-1b71-4df2-b657-5e6ec5bd080f}</Project>
-      <Name>Bio.Taxonomy.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bio.Taxonomy.Data.Entity\Bio.Taxonomy.Data.Entity.csproj">
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
       <Name>Bio.Taxonomy.Data.Entity</Name>

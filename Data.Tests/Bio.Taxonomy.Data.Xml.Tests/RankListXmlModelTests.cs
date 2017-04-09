@@ -6,7 +6,7 @@
     using System.Xml.Serialization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Models;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Bio.Taxonomy;
     using ProcessingTools.Constants.Configuration;
 
     [TestClass]

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Models
 {
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
 
     public class BlackListEntity : IBlackListEntity
     {

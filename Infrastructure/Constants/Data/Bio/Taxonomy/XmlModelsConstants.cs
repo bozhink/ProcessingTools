@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Common.Constants
+﻿namespace ProcessingTools.Constants.Data.Bio.Taxonomy
 {
     public static class XmlModelsConstants
     {

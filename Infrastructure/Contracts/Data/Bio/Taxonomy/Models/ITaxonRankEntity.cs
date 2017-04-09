@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.Contracts.Data.Bio.Taxonomy.Models
 {
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;

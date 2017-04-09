@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Entity.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
+    using ProcessingTools.Constants.Data.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
 
     public class BlackListEntity : IBlackListEntity
     {

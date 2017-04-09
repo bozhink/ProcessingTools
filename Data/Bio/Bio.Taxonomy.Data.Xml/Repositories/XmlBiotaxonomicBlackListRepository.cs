@@ -2,10 +2,10 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Contracts.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts.Repositories;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.File.Repositories;
 
     public class XmlBiotaxonomicBlackListRepository : FileGenericRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Models
 {
     using System.Xml.Serialization;
-    using ProcessingTools.Bio.Taxonomy.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Bio.Taxonomy;
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = XmlModelsConstants.RankListTaxonXmlPartElementName)]
