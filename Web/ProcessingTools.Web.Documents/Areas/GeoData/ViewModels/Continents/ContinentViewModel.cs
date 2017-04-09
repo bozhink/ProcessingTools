@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.GeoData.ViewModels.Continents
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Geo.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Web.Common.ViewModels;
 
     public class ContinentViewModel : NamedViewModel

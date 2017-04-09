@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Geo.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Geo;
 
     public class State
     {

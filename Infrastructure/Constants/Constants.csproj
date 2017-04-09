@@ -42,6 +42,8 @@
     <Compile Include="Configuration\ParameterNames.cs" />
     <Compile Include="ContentTypes.cs" />
     <Compile Include="Content\ContentTypeConstants.cs" />
+    <Compile Include="Data\Geo\ContentConstants.cs" />
+    <Compile Include="Data\Geo\ValidationConstants.cs" />
     <Compile Include="FileConstants.cs" />
     <Compile Include="ImagingConstants.cs" />
     <Compile Include="MediaTypes.cs" />
