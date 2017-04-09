@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Bio.Data.Common.Contracts.Repositories.SpecimenCodes
+﻿namespace ProcessingTools.Contracts.Data.Bio.SpecimenCodes.Repositories
 {
-    using Models.SpecimenCodes;
+    using ProcessingTools.Contracts.Data.Bio.SpecimenCodes.Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IIterableSpecimenCodesMiningRepository : IIterableRepository<ISpecimenCodeMiningModel>

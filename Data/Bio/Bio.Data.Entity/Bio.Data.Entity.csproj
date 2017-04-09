@@ -78,10 +78,6 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bio.Data.Common\Bio.Data.Common.csproj">
-      <Project>{767bb0e9-8b9d-4d9f-8940-f9f16cccc644}</Project>
-      <Name>Bio.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

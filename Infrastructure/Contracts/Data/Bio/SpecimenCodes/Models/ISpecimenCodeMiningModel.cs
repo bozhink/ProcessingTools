@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Data.Common.Contracts.Models.SpecimenCodes
+﻿namespace ProcessingTools.Contracts.Data.Bio.SpecimenCodes.Models
 {
     using ProcessingTools.Contracts.Models;
 

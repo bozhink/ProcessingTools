@@ -49,6 +49,8 @@
     <Compile Include="Data\Bio\Biorepositories\Models\IInstitutionLabel.cs" />
     <Compile Include="Data\Bio\Biorepositories\Models\IStaff.cs" />
     <Compile Include="Data\Bio\Biorepositories\Models\IStaffLabel.cs" />
+    <Compile Include="Data\Bio\SpecimenCodes\Models\ISpecimenCodeMiningModel.cs" />
+    <Compile Include="Data\Bio\SpecimenCodes\Repositories\IIterableSpecimenCodesMiningRepository.cs" />
     <Compile Include="Data\Cache\Models\IValidationCacheEntity.cs" />
     <Compile Include="Data\Cache\Repositories\IValidationCacheDataRepository.cs" />
     <Compile Include="Data\DataResources\Models\IAbbreviationEntity.cs" />
