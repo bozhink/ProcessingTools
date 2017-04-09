@@ -53,7 +53,6 @@
     <Compile Include="Data\Repositories\IAsyncRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\IFilterableRepository.cs" />
-    <Compile Include="Data\Repositories\IFirstFilterableRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />

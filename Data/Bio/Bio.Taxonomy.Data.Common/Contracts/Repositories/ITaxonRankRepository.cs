@@ -3,7 +3,7 @@
     using Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface ITaxonRankRepository : IFirstFilterableRepository<ITaxonRankEntity>, IAsyncRepository<ITaxonRankEntity>, IUpdatableRepository<ITaxonRankEntity>, IQueryableRepository<ITaxonRankEntity>
+    public interface ITaxonRankRepository : IFilterableRepository<ITaxonRankEntity>, IAsyncRepository<ITaxonRankEntity>, IUpdatableRepository<ITaxonRankEntity>, IQueryableRepository<ITaxonRankEntity>
     {
     }
 }

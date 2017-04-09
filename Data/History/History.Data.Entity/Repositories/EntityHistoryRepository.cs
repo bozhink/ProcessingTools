@@ -78,6 +78,19 @@
             return Task.FromResult(result);
         }
 
+        public Task<IHistoryItem> FindFirst(Expression<Func<IHistoryItem, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
+
+            var query = this.DbSet.AsQueryable<IHistoryItem>().Where(filter);
+            var result = query.FirstOrDefault();
+
+            return Task.FromResult(result);
+        }
+
         public Task<object> Update(IHistoryItem entity) => this.Add(entity);
     }
 }

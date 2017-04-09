@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProcessingTools.Contracts.Data.Repositories
 {
-    public interface IAsyncRepository<T> : IRepository<T>
+    public interface IAsyncRepository<T> : IRepository<T>, IFilterableRepository<T>
     {
         Task<long> Count();
 
