@@ -93,8 +93,6 @@
             return entity;
         }
 
-        public Task<long> SaveChanges() => Task.FromResult(0L);
-
         public async Task<object> Update(IJournalMeta entity)
         {
             if (entity == null)

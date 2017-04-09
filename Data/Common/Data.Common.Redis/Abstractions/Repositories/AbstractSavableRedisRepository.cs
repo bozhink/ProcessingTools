@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Repositories;
     using ServiceStack.Redis;
 
-    public abstract class AbstractSavableRedisRepository : IKeyListableRepository<string>, ISavabaleRepository
+    public abstract class AbstractSavableRedisRepository : IKeyListableRepository<string>
     {
         private readonly IRedisClientProvider clientProvider;
 

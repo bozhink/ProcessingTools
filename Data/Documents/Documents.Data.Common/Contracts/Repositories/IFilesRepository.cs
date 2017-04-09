@@ -4,7 +4,7 @@
     using Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IFilesRepository : ISavabaleRepository
+    public interface IFilesRepository : IRepository
     {
         Task<object> Add(IFileEntity entity);
 

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo.Repositories
 {
     using System;
+    using System.Threading.Tasks;
     using Contracts;
     using Contracts.Repositories;
     using Factories;
@@ -23,6 +24,8 @@
             this.db = databaseProvider.Create();
             this.CollectionName = CollectionNameFactory.Create<TEntity>();
         }
+
+        public virtual Task<long> SaveChanges() => Task.FromResult(0L);
 
         protected IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
 

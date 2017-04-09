@@ -63,8 +63,6 @@
             return entity;
         }
 
-        public virtual Task<long> SaveChanges() => Task.FromResult(0L);
-
         public abstract Task<object> Update(TEntity entity);
 
         public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)

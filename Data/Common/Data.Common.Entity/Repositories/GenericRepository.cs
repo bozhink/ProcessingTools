@@ -2,6 +2,7 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
@@ -82,5 +83,7 @@
             var entry = this.Context.Entry(entity);
             entry.State = EntityState.Detached;
         }
+
+        public virtual async Task<long> SaveChanges() => await this.Context.SaveChangesAsync();
     }
 }

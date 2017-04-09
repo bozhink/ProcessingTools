@@ -37,8 +37,6 @@
             return this.Context.Delete(id);
         }
 
-        public abstract Task<long> SaveChanges();
-
         public virtual Task<object> Update(TEntity entity)
         {
             DummyValidator.ValidateEntity(entity);
