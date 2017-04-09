@@ -27,7 +27,7 @@
                     ParameterNames.ConnectionString,
                     ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.HistoryDatabaseConnection].ConnectionString);
 
-            this.Bind<ProcessingTools.History.Data.Common.Contracts.Repositories.IHistoryRepository>()
+            this.Bind<ProcessingTools.Contracts.Data.History.Repositories.IHistoryRepository>()
                 .To<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
                 .InRequestScope();
 

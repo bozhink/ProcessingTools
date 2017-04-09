@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
-    using Models;
+    using ProcessingTools.Contracts.Data.History.Models;
     using ProcessingTools.Data.Common.Entity.Repositories;
-    using ProcessingTools.History.Data.Common.Contracts.Models;
+    using ProcessingTools.History.Data.Entity.Contracts;
+    using ProcessingTools.History.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.History.Data.Entity.Models;
 
     public class EntityHistoryRepository : GenericRepository<IHistoryDbContext, HistoryItem>, IEntityHistoryRepository
     {

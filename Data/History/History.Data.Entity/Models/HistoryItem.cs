@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.History;
-    using ProcessingTools.History.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.History.Models;
 
     public class HistoryItem : IHistoryItem
     {

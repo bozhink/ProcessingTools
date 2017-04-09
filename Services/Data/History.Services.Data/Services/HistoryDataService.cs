@@ -5,13 +5,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Services;
-    using Models;
     using Newtonsoft.Json;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.History.Models;
+    using ProcessingTools.Contracts.Data.History.Repositories;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.History.Data.Common.Contracts.Models;
-    using ProcessingTools.History.Data.Common.Contracts.Repositories;
+    using ProcessingTools.History.Services.Data.Contracts.Services;
+    using ProcessingTools.History.Services.Data.Models;
 
     public class HistoryDataService : IHistoryDataService
     {

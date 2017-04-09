@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.History.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.Contracts.Data.History.Models
 {
     using System;
     using ProcessingTools.Contracts.Models;

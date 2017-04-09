@@ -67,10 +67,6 @@
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\History.Data.Common\History.Data.Common.csproj">
-      <Project>{4038c073-872a-401d-8a22-be167aa0b4b7}</Project>
-      <Name>History.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
