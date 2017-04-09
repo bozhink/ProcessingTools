@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.Journals.Data.Common.Contracts.Repositories
+﻿namespace ProcessingTools.Contracts.Data.Journals.Repositories
 {
     using System.Threading.Tasks;
-    using Models;
+    using ProcessingTools.Contracts.Data.Journals.Models;
 
     public interface IAddressableRepository
     {

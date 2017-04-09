@@ -78,10 +78,6 @@
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Journals.Data.Common\Journals.Data.Common.csproj">
-      <Project>{8DB94BB1-6191-4B80-BAFC-A0C115D0A728}</Project>
-      <Name>Journals.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

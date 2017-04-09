@@ -52,6 +52,13 @@
     <Compile Include="Data\IDatabaseInitializer.cs" />
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\IDatabaseSeeder.cs" />
+    <Compile Include="Data\Journals\Models\IAddress.cs" />
+    <Compile Include="Data\Journals\Models\IAddressable.cs" />
+    <Compile Include="Data\Journals\Models\IInstitution.cs" />
+    <Compile Include="Data\Journals\Models\IPublisher.cs" />
+    <Compile Include="Data\Journals\Repositories\IAddressableRepository.cs" />
+    <Compile Include="Data\Journals\Repositories\IInstitutionsRepository.cs" />
+    <Compile Include="Data\Journals\Repositories\IPublishersRepository.cs" />
     <Compile Include="Data\Mediatypes\Models\IMediatype.cs" />
     <Compile Include="Data\Mediatypes\Repositories\IMediatypesRepository.cs" />
     <Compile Include="Data\Mediatypes\Repositories\ISearchableMediatypesRepository.cs" />

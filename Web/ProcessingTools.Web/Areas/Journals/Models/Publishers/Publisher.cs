@@ -2,8 +2,8 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Constants.Data.Journals;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Journals.Data.Common.Constants;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using Strings = ProcessingTools.Web.Resources.Areas.Journals.ViewModels.Publishers.Strings;
 

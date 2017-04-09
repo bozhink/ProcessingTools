@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Areas.Journals.ViewModels.Shared
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Journals.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Journals;
     using Strings = ProcessingTools.Web.Resources.Areas.Journals.ViewModels.Shared.Strings;
 
     public class AddressViewModel

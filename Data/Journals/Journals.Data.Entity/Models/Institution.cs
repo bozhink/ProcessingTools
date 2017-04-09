@@ -2,8 +2,8 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Journals.Data.Common.Constants;
-    using ProcessingTools.Journals.Data.Common.Contracts.Models;
+    using ProcessingTools.Constants.Data.Journals;
+    using ProcessingTools.Contracts.Data.Journals.Models;
 
     public class Institution : Addressable, IInstitution
     {

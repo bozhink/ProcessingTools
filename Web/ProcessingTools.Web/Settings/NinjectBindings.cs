@@ -39,7 +39,7 @@
                     ParameterNames.ConnectionString,
                     ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.JournalsDatabaseConnection].ConnectionString);
 
-            this.Bind<ProcessingTools.Journals.Data.Common.Contracts.Repositories.IPublishersRepository>()
+            this.Bind<ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository>()
                 .To<ProcessingTools.Journals.Data.Entity.Repositories.EntityPublishersRepository>()
                 .InRequestScope();
         }

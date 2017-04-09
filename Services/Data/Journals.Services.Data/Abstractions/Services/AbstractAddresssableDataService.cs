@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Journals.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Common.Expressions;
@@ -15,14 +16,13 @@
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Extensions.Linq.Expressions;
-    using ProcessingTools.Journals.Data.Common.Contracts.Repositories;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Models.DataModels;
 
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
         where TDetailedServiceModel : class, TServiceModel, IDetailedModel, Contracts.Models.IAddressable
-        where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Journals.Data.Common.Contracts.Models.IAddressable
+        where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Contracts.Data.Journals.Models.IAddressable
         where TRepository : ICrudRepository<TDataModel>, IAddressableRepository
     {
         private readonly static ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Journals.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.Contracts.Data.Journals.Models
 {
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;

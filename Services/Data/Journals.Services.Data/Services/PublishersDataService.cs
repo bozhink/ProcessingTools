@@ -3,17 +3,17 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Abstractions.Services;
-    using Contracts.Models;
-    using Contracts.Services;
-    using Models.DataModels;
-    using Models.ServiceModels;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.History.Services.Data.Contracts.Services;
-    using TDataModel = ProcessingTools.Journals.Data.Common.Contracts.Models.IPublisher;
+    using ProcessingTools.Journals.Services.Data.Abstractions.Services;
+    using ProcessingTools.Journals.Services.Data.Contracts.Models;
+    using ProcessingTools.Journals.Services.Data.Contracts.Services;
+    using ProcessingTools.Journals.Services.Data.Models.DataModels;
+    using ProcessingTools.Journals.Services.Data.Models.ServiceModels;
+    using TDataModel = ProcessingTools.Contracts.Data.Journals.Models.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisherDetails;
-    using TRepository = ProcessingTools.Journals.Data.Common.Contracts.Repositories.IPublishersRepository;
+    using TRepository = ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository;
     using TServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisher;
 
     public class PublishersDataService : AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>, IPublishersDataService

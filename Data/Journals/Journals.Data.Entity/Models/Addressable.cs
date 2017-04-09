@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using ProcessingTools.Common.Models;
-    using ProcessingTools.Journals.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Journals.Models;
 
     public abstract class Addressable : ModelWithUserInformation, IAddressable
     {

@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Journals.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Journals.Models;
 
     internal class InstitutionDataModel : IInstitution, IDataModel
     {

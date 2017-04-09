@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq;
-    using Abstractions.Repositories;
-    using Contracts;
-    using Contracts.Repositories;
-    using Models;
+    using ProcessingTools.Contracts.Data.Journals.Models;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
-    using ProcessingTools.Journals.Data.Common.Contracts.Models;
+    using ProcessingTools.Journals.Data.Entity.Abstractions.Repositories;
+    using ProcessingTools.Journals.Data.Entity.Contracts;
+    using ProcessingTools.Journals.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Journals.Data.Entity.Models;
 
     public class EntityPublishersRepository : AbstractEntityAddressableRepository<IPublisher, Publisher>, IEntityPublishersRepository
     {

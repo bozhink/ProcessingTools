@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Journals.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Journals;
     using ProcessingTools.Web.Areas.Journals.ViewModels.Shared;
     using Strings = ProcessingTools.Web.Resources.Areas.Journals.ViewModels.Publishers.Strings;
 
