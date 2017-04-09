@@ -48,10 +48,6 @@
     <Compile Include="Services\UrlValidationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\Cache\Cache.Data.Common\Cache.Data.Common.csproj">
-      <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
-      <Name>Cache.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
       <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
       <Name>Common</Name>

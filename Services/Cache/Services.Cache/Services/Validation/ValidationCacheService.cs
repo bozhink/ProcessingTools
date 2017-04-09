@@ -7,8 +7,8 @@
     using Contracts.Models.Validation;
     using Contracts.Services.Validation;
     using Models.Validation;
-    using ProcessingTools.Cache.Data.Common.Contracts.Models;
-    using ProcessingTools.Cache.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Cache.Models;
+    using ProcessingTools.Contracts.Data.Cache.Repositories;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions.Linq;
 

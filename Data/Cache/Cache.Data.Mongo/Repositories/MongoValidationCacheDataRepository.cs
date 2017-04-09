@@ -7,7 +7,7 @@
     using Models;
     using MongoDB.Driver;
     using MongoDB.Driver.Linq;
-    using ProcessingTools.Cache.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
 

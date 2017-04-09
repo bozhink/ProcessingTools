@@ -109,7 +109,7 @@
                 .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Cache.Data.Common.Contracts.Repositories.IValidationCacheDataRepository>()
+            this.Bind<ProcessingTools.Contracts.Data.Cache.Repositories.IValidationCacheDataRepository>()
                 ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
                 .To<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>();
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()

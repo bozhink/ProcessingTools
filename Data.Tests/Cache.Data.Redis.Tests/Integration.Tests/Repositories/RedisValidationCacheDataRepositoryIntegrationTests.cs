@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Common;
     using NUnit.Framework;
-    using ProcessingTools.Cache.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Enumerations;

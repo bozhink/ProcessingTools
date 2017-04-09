@@ -52,10 +52,6 @@
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cache.Data.Common\Cache.Data.Common.csproj">
-      <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
-      <Name>Cache.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

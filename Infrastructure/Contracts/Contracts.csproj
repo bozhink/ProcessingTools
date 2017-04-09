@@ -41,6 +41,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Cache\Models\IValidationCacheEntity.cs" />
+    <Compile Include="Data\Cache\Repositories\IValidationCacheDataRepository.cs" />
     <Compile Include="Data\DataResources\Models\IAbbreviationEntity.cs" />
     <Compile Include="Data\DataResources\Models\IContentTypeEntity.cs" />
     <Compile Include="Data\DataResources\Models\IEntityWithSources.cs" />

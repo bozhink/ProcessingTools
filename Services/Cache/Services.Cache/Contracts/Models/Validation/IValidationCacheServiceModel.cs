@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Services.Cache.Contracts.Models.Validation
 {
-    using ProcessingTools.Cache.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Cache.Models;
 
     public interface IValidationCacheServiceModel : IValidationCacheEntity
     {

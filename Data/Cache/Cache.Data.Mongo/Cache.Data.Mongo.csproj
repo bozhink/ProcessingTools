@@ -74,10 +74,6 @@
       <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
       <Name>Data.Common.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cache.Data.Common\Cache.Data.Common.csproj">
-      <Project>{3E8D029C-3052-414B-A746-164D1C6F8670}</Project>
-      <Name>Cache.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

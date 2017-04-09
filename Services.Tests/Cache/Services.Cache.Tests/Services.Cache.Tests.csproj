@@ -68,10 +68,6 @@
     <Compile Include="Unit.Tests\Validation\ValidationCacheServiceUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\Cache\Cache.Data.Common\Cache.Data.Common.csproj">
-      <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
-      <Name>Cache.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
       <Name>Contracts</Name>

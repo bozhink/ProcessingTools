@@ -7,7 +7,7 @@
     using Common;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Cache.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Data.Common.Redis.Contracts;

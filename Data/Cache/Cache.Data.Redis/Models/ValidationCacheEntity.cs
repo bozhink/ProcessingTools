@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Cache.Data.Redis.Models
 {
     using System;
-    using ProcessingTools.Cache.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Enumerations;
 
     public class ValidationCacheEntity : IValidationCacheEntity

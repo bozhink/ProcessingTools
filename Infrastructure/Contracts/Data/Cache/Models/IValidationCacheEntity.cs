@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Cache.Data.Common.Contracts.Models
+﻿namespace ProcessingTools.Contracts.Data.Cache.Models
 {
     using System;
     using ProcessingTools.Enumerations;

@@ -6,8 +6,8 @@
     using Common;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Cache.Data.Common.Contracts.Models;
-    using ProcessingTools.Cache.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Cache.Models;
+    using ProcessingTools.Contracts.Data.Cache.Repositories;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Cache.Contracts.Models.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;

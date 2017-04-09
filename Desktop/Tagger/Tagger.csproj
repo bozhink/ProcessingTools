@@ -205,10 +205,6 @@
       <Project>{c6ef8c37-8756-4b8d-95c6-e410cd1a1323}</Project>
       <Name>Bio.Taxonomy.Data.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Cache\Cache.Data.Common\Cache.Data.Common.csproj">
-      <Project>{3e8d029c-3052-414b-a746-164d1c6f8670}</Project>
-      <Name>Cache.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Cache\Cache.Data.Mongo\Cache.Data.Mongo.csproj">
       <Project>{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}</Project>
       <Name>Cache.Data.Mongo</Name>
