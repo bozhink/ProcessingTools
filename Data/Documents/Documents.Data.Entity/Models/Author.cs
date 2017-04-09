@@ -5,11 +5,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-
     using ProcessingTools.Common.Models;
+    using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Documents.Data.Common.Constants;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
 
     public class Author : ModelWithUserInformation, IEntityWithPreJoinedFields, IAuthorEntity
     {
@@ -66,7 +65,7 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => new string[] 
+        public IEnumerable<string> PreJoinFieldNames => new string[]
         {
             nameof(this.Affiliations),
             nameof(this.Articles)

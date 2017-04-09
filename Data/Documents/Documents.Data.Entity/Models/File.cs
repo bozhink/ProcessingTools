@@ -4,8 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Common.Models;
-    using ProcessingTools.Documents.Data.Common.Constants;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
+    using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Contracts.Data.Documents.Models;
 
     public class File : ModelWithUserInformation, IFileEntity
     {

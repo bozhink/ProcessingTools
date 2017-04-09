@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Data.Documents.Models;
+    using ProcessingTools.Contracts.Data.Documents.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
-    using ProcessingTools.Documents.Data.Common.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Exceptions;

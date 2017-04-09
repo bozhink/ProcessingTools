@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Documents.Data.Common.Contracts.Repositories
+﻿namespace ProcessingTools.Contracts.Data.Documents.Repositories
 {
-    using Models;
+    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IDocumentsRepository : ICrudRepository<IDocumentEntity>

@@ -7,7 +7,7 @@
     using Contracts.Meta;
     using Models.Meta;
     using ProcessingTools.Contracts.Models.Documents;
-    using ProcessingTools.Documents.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Documents.Repositories;
     using ProcessingTools.Extensions.Linq;
 
     public class JournalsMetaDataServiceWithDatabase : IJournalsMetaDataService

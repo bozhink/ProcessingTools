@@ -14,7 +14,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Documents.Data.Common.Constants;
+    using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Exceptions;

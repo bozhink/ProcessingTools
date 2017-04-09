@@ -98,7 +98,7 @@
                     .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                     .WhenInjectedInto<HelpProvider>();
 
-                this.Bind<ProcessingTools.Documents.Data.Common.Contracts.Repositories.IJournalMetaRepository>()
+                this.Bind<ProcessingTools.Contracts.Data.Documents.Repositories.IJournalMetaRepository>()
                     .To<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>();
 
                 this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()

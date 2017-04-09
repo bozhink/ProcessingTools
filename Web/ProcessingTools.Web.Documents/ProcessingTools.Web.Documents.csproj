@@ -594,10 +594,6 @@
       <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Documents\Documents.Data.Common\Documents.Data.Common.csproj">
-      <Project>{886cd5ea-a0bd-41c1-a583-797265011223}</Project>
-      <Name>Documents.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents\Documents.Data.Entity\Documents.Data.Entity.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
       <Name>Documents.Data.Entity</Name>

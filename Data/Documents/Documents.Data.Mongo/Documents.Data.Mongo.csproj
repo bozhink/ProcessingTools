@@ -72,10 +72,6 @@
       <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Documents.Data.Common\Documents.Data.Common.csproj">
-      <Project>{886CD5EA-A0BD-41C1-A583-797265011223}</Project>
-      <Name>Documents.Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity.Contracts.Repositories
 {
-    using ProcessingTools.Documents.Data.Common.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Documents.Repositories;
 
     public interface IEntityFilesRepository : IFilesRepository
     {

@@ -2,7 +2,7 @@
 {
     using System;
     using ProcessingTools.Common.Models;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Documents.Models;
 
     public class AddressEntity : ModelWithUserInformation, IAddressEntity
     {

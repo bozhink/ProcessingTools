@@ -4,10 +4,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
+    using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Documents.Data.Common.Constants;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
 
     public class Publisher : AddressableEntity, IEntityWithPreJoinedFields, IPublisherEntity
     {

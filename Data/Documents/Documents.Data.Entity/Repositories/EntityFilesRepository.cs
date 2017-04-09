@@ -3,12 +3,12 @@
     using System;
     using System.Data.Entity;
     using System.Threading.Tasks;
-    using Common.Contracts.Models;
-    using Contracts;
-    using Contracts.Repositories;
-    using Models;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Models;
 
     // TODO
     public class EntityFilesRepository : EntityRepository<DocumentsDbContext, File>, IEntityFilesRepository

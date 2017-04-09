@@ -5,7 +5,7 @@
     using System.Linq;
 
     using ProcessingTools.Common.Models;
-    using ProcessingTools.Documents.Data.Common.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Documents.Models;
 
     public abstract class AddressableEntity : ModelWithUserInformation, IAddressableEntity
     {
