@@ -217,7 +217,7 @@
     <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
     <Compile Include="Services\Data\IAddableDataService.cs" />
-    <Compile Include="Services\Data\IDataService.cs" />
+    <Compile Include="Services\Data\IDataServiceAsync.cs" />
     <Compile Include="Services\Data\IDeletableDataService.cs" />
     <Compile Include="Services\Data\IDetailedGenericDataService.cs" />
     <Compile Include="Services\Data\IGenericDataService.cs" />
