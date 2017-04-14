@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Data.Seed.Seeders
 {
     using System;
+    using System.Linq;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Configuration;
@@ -15,6 +16,9 @@
 
     public class GeoDataSeeder : IGeoDataSeeder
     {
+        private const string UserName = "system";
+        private static readonly DateTime Now = DateTime.UtcNow;
+
         private readonly IGeoDbContextFactory contextFactory;
         private readonly Type stringType = typeof(string);
 
@@ -81,7 +85,11 @@
                     {
                         context.GeoNames.AddOrUpdate(new GeoName
                         {
-                            Name = line
+                            Name = line,
+                            CreatedBy = UserName,
+                            CreatedOn = Now,
+                            ModifiedBy = UserName,
+                            ModifiedOn = Now
                         });
                     });
             }
@@ -106,7 +114,11 @@
                     {
                         context.GeoEpithets.AddOrUpdate(new GeoEpithet
                         {
-                            Name = line
+                            Name = line,
+                            CreatedBy = UserName,
+                            CreatedOn = Now,
+                            ModifiedBy = UserName,
+                            ModifiedOn = Now
                         });
                     });
             }
@@ -134,7 +146,11 @@
                         {
                             context.Continents.AddOrUpdate(new Continent
                             {
-                                Name = data[0]
+                                Name = data[0],
+                                CreatedBy = UserName,
+                                CreatedOn = Now,
+                                ModifiedBy = UserName,
+                                ModifiedOn = Now
                             });
                         }
                     });
@@ -159,13 +175,19 @@
                     (context, line) =>
                     {
                         var data = line.Split('\t');
-                        if (data.Length > 2)
+                        if (data.Length > 2 && data[0].Trim().Length > 1)
                         {
+                            var languageCodes = data[2].Split('/').Select(l => l.Trim()).ToArray();
                             context.Countries.AddOrUpdate(new Country
                             {
                                 Name = data[0],
                                 CallingCode = data[1],
-                                Iso639xCode = data[2]
+                                LanguageCode = languageCodes[0],
+                                Iso639xCode = languageCodes[1],
+                                CreatedBy = UserName,
+                                CreatedOn = Now,
+                                ModifiedBy = UserName,
+                                ModifiedOn = Now
                             });
                         }
                     });
