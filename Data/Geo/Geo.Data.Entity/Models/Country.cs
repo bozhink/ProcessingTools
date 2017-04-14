@@ -4,9 +4,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class Country : SystemInformation, IDataModel
+    public class Country : SystemInformation, ISynonymisable<CountrySynonym>, IDataModel
     {
         private ICollection<Continent> continents;
         private ICollection<State> states;

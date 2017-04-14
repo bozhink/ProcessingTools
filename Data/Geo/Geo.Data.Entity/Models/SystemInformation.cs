@@ -4,8 +4,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Contracts.Models;
 
-    public abstract class SystemInformation
+    public abstract class SystemInformation : IModelWithSystemInformation
     {
         [Required(AllowEmptyStrings = false)]
         [MinLength(ValidationConstants.MinimalLengthOfUserIdentifier)]

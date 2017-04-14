@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Data.Geo.Models;
 
-    public class Municipality : SystemInformation, IDataModel
+    public class Municipality : SystemInformation, ISynonymisable<MunicipalitySynonym>, IDataModel
     {
         private ICollection<County> counties;
         private ICollection<City> cities;

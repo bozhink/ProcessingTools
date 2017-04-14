@@ -4,9 +4,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class District : SystemInformation, IDataModel
+    public class District : SystemInformation, ISynonymisable<DistrictSynonym>, IDataModel
     {
         private ICollection<Municipality> municipalities;
         private ICollection<County> counties;
