@@ -52,6 +52,7 @@
     <Compile Include="Factories\GeoDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CitySynonym.cs" />
     <Compile Include="Models\Continent.cs" />
     <Compile Include="Models\ContinentSynonym.cs" />
     <Compile Include="Models\Country.cs" />
