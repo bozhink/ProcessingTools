@@ -3,20 +3,20 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IMultiEntryDataService<TServiceModel>
+    public interface IMultiEntryDataService<TModel>
     {
-        Task<IQueryable<TServiceModel>> All();
+        Task<object> DeleteAsync(params TModel[] models);
 
-        Task<IQueryable<TServiceModel>> Query(int skip, int take);
+        Task<object> DeleteAsync(params object[] ids);
 
-        Task<IQueryable<TServiceModel>> Get(params object[] ids);
+        Task<TModel> GetByIdAsync(object id);
 
-        Task<object> Add(params TServiceModel[] models);
+        Task<object> InsertAsync(params TModel[] models);
 
-        Task<object> Update(params TServiceModel[] models);
+        Task<TModel[]> SelectAllAsync();
 
-        Task<object> Delete(params TServiceModel[] models);
+        Task<TModel[]> SelectAsync(int skip, int take);
 
-        Task<object> Delete(params object[] ids);
+        Task<object> UpdateAsync(params TModel[] models);
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Services.Common.Abstractions
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
@@ -32,7 +31,52 @@
 
         protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
 
-        public virtual async Task<object> Add(params TServiceModel[] models)
+        public virtual async Task<object> DeleteAsync(params object[] ids)
+        {
+            if (ids == null || ids.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(ids));
+            }
+
+            var tasks = ids.Select(id => this.repository.Delete(id)).ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await this.repository.SaveChangesAsync();
+        }
+
+        public virtual async Task<object> DeleteAsync(params TServiceModel[] models)
+        {
+            if (models == null || models.Length < 1)
+            {
+                throw new ArgumentNullException(nameof(models));
+            }
+
+            var entities = this.MapServiceModelsToEntities(models);
+
+            var tasks = entities.Select(e => this.repository.Delete(e)).ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return await this.repository.SaveChangesAsync();
+        }
+
+        public virtual async Task<TServiceModel> GetByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var mapping = this.MapDbModelToServiceModel.Compile();
+
+            var entity = await this.repository.GetById(id);
+            var result = mapping.Invoke(entity);
+
+            return result;
+        }
+
+        public virtual async Task<object> InsertAsync(params TServiceModel[] models)
         {
             if (models == null || models.Length < 1)
             {
@@ -48,16 +92,16 @@
             return await this.repository.SaveChangesAsync();
         }
 
-        public virtual async Task<IQueryable<TServiceModel>> All()
+        public virtual async Task<TServiceModel[]> SelectAllAsync()
         {
             var result = await this.repository.Query
                 .Select(this.MapDbModelToServiceModel)
-                .ToListAsync();
+                .ToArrayAsync();
 
-            return result.AsQueryable();
+            return result;
         }
 
-        public virtual async Task<IQueryable<TServiceModel>> Query(int skip, int take)
+        public virtual async Task<TServiceModel[]> SelectAsync(int skip, int take)
         {
             if (skip < 0)
             {
@@ -74,62 +118,12 @@
                 .Skip(skip)
                 .Take(take)
                 .Select(this.MapDbModelToServiceModel)
-                .ToListAsync();
+                .ToArrayAsync();
 
-            return result.AsQueryable();
+            return result;
         }
 
-        public virtual async Task<object> Delete(params object[] ids)
-        {
-            if (ids == null || ids.Length < 1)
-            {
-                throw new ArgumentNullException(nameof(ids));
-            }
-
-            var tasks = ids.Select(id => this.repository.Delete(id)).ToArray();
-
-            await Task.WhenAll(tasks);
-
-            return await this.repository.SaveChangesAsync();
-        }
-
-        public virtual async Task<object> Delete(params TServiceModel[] models)
-        {
-            if (models == null || models.Length < 1)
-            {
-                throw new ArgumentNullException(nameof(models));
-            }
-
-            var entities = this.MapServiceModelsToEntities(models);
-
-            var tasks = entities.Select(e => this.repository.Delete(e)).ToArray();
-
-            await Task.WhenAll(tasks);
-
-            return await this.repository.SaveChangesAsync();
-        }
-
-        public virtual async Task<IQueryable<TServiceModel>> Get(params object[] ids)
-        {
-            if (ids == null || ids.Length < 1)
-            {
-                throw new ArgumentNullException(nameof(ids));
-            }
-
-            var mapping = this.MapDbModelToServiceModel.Compile();
-
-            var result = new ConcurrentQueue<TServiceModel>();
-
-            foreach (var id in ids)
-            {
-                var entity = await this.repository.GetById(id);
-                result.Enqueue(mapping.Invoke(entity));
-            }
-
-            return new HashSet<TServiceModel>(result).AsQueryable();
-        }
-
-        public virtual async Task<object> Update(params TServiceModel[] models)
+        public virtual async Task<object> UpdateAsync(params TServiceModel[] models)
         {
             if (models == null || models.Length < 1)
             {

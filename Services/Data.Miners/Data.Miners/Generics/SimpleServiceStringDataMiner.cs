@@ -40,7 +40,7 @@
 
             for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.Query(i, NumberOfItemsToTake))
+                var items = (await this.service.SelectAsync(i, NumberOfItemsToTake))
                     .Select(t => t.Name)
                     .ToList();
 

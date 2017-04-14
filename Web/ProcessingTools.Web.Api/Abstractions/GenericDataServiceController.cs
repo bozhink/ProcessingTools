@@ -37,7 +37,7 @@
 
         public async Task<IHttpActionResult> GetAll()
         {
-            var result = (await this.service.All())
+            var result = (await this.service.SelectAllAsync())
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 
@@ -57,7 +57,7 @@
                 return this.BadRequest("Invalid id.");
             }
 
-            var result = this.mapper.Map<TResponseModel>(await this.service.Get(parsedId));
+            var result = this.mapper.Map<TResponseModel>(await this.service.GetByIdAsync(parsedId));
 
             if (result == null)
             {
@@ -81,7 +81,7 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = (await this.service.Query(skipItemsCount, takeItemsCount))
+            var result = (await this.service.SelectAsync(skipItemsCount, takeItemsCount))
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 
@@ -103,7 +103,7 @@
             var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                await this.service.Add(item);
+                await this.service.InsertAsync(item);
             }
             catch
             {
@@ -123,7 +123,7 @@
             var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                await this.service.Update(item);
+                await this.service.UpdateAsync(item);
             }
             catch
             {
@@ -143,7 +143,7 @@
             var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                await this.service.Delete(item);
+                await this.service.DeleteAsync(item);
             }
             catch
             {
@@ -168,7 +168,7 @@
 
             try
             {
-                await this.service.Delete(id);
+                await this.service.DeleteAsync(id);
             }
             catch
             {
