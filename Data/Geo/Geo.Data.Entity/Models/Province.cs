@@ -6,87 +6,44 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
-    public class Country : SystemInformation, IDataModel
+    public class Province : SystemInformation, IDataModel
     {
-        private ICollection<Continent> continents;
-        private ICollection<State> states;
-        private ICollection<Province> provinces;
         private ICollection<Region> regions;
         private ICollection<District> districts;
         private ICollection<Municipality> municipalities;
         private ICollection<County> counties;
         private ICollection<City> cities;
-        private ICollection<CountrySynonym> synonyms;
+        private ICollection<ProvinceSynonym> synonyms;
 
-        public Country()
+        public Province()
         {
-            this.continents = new HashSet<Continent>();
-            this.states = new HashSet<State>();
-            this.provinces = new HashSet<Province>();
             this.regions = new HashSet<Region>();
             this.districts = new HashSet<District>();
             this.municipalities = new HashSet<Municipality>();
             this.counties = new HashSet<County>();
             this.cities = new HashSet<City>();
-            this.synonyms = new HashSet<CountrySynonym>();
+            this.synonyms = new HashSet<ProvinceSynonym>();
         }
 
         [Key]
         public int Id { get; set; }
 
-        [Index(IsUnique = true)]
+        [Index(IsUnique = false)]
         [Required(AllowEmptyStrings = false)]
-        [MinLength(ValidationConstants.MinimalLengthOfCountryName)]
-        [MaxLength(ValidationConstants.MaximalLengthOfCountryName)]
+        [MinLength(ValidationConstants.MinimalLengthOfStateName)]
+        [MaxLength(ValidationConstants.MaximalLengthOfStateName)]
         public string Name { get; set; }
 
-        [MaxLength(ValidationConstants.MaximalLengthOfCallingCode)]
-        public string CallingCode { get; set; }
+        [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedStateName)]
+        public string AbbreviatedName { get; set; }
 
-        [MaxLength(ValidationConstants.MaximalLengthOfLanguageCode)]
-        public string LanguageCode { get; set; }
+        public virtual int CountryId { get; set; }
 
-        [MaxLength(ValidationConstants.MaximalLengthOfIso639xCode)]
-        public string Iso639xCode { get; set; }
+        public virtual Country Country { get; set; }
 
-        public virtual ICollection<Continent> Continents
-        {
-            get
-            {
-                return this.continents;
-            }
+        public virtual int? StateId { get; set; }
 
-            set
-            {
-                this.continents = value;
-            }
-        }
-
-        public virtual ICollection<State> States
-        {
-            get
-            {
-                return this.states;
-            }
-
-            set
-            {
-                this.states = value;
-            }
-        }
-
-        public virtual ICollection<Province> Provinces
-        {
-            get
-            {
-                return this.provinces;
-            }
-
-            set
-            {
-                this.provinces = value;
-            }
-        }
+        public virtual State State { get; set; }
 
         public virtual ICollection<Region> Regions
         {
@@ -153,7 +110,7 @@
             }
         }
 
-        public virtual ICollection<CountrySynonym> Synonyms
+        public virtual ICollection<ProvinceSynonym> Synonyms
         {
             get
             {

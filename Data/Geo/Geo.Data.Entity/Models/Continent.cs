@@ -4,11 +4,12 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Contracts.Models;
 
-    public class Continent
+    public class Continent : SystemInformation, IDataModel
     {
-        private ICollection<ContinentSynonym> synonyms;
         private ICollection<Country> countries;
+        private ICollection<ContinentSynonym> synonyms;
 
         public Continent()
         {
@@ -20,7 +21,7 @@
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [MinLength(ValidationConstants.MinimalLengthOfContinentName)]
         [MaxLength(ValidationConstants.MaximalLengthOfContinentName)]
         public string Name { get; set; }

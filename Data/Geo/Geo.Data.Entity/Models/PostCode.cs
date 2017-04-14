@@ -3,13 +3,16 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Contracts.Models;
 
-    public class PostCode
+    public class PostCode : SystemInformation, IDataModel
     {
         [Key]
         public int Id { get; set; }
 
         [Index(IsUnique = false)]
+        [Required(AllowEmptyStrings = false)]
+        [MinLength(ValidationConstants.MinimalLengthOfPostCode)]
         [MaxLength(ValidationConstants.MaximalLengthOfPostCode)]
         public string Code { get; set; }
 

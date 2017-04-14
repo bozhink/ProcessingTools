@@ -16,5 +16,12 @@
         public const int MaximalLengthOfPostCode = 5;
         public const int MaximalLengthOfStateName = 60;
         public const int MinimalLengthOfContinentName = 2;
+        public const int MinimalLengthOfCountryName = 2;
+        public const int MinimalLengthOfGeoName = 1;
+        public const int MinimalLengthOfGeoEpithetName = 1;
+        public const int MinimalLengthOfPostCode = 1;
+        public const int MaximalLengthOfUserIdentifier = 128;
+        public const int MinimalLengthOfUserIdentifier = 1;
+        public const int MinimalLengthOfStateName = 1;
     }
 }

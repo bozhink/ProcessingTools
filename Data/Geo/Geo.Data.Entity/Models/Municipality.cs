@@ -6,25 +6,17 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
-    public class State : SystemInformation, IDataModel
+    public class Municipality : SystemInformation, IDataModel
     {
-        private ICollection<Province> provinces;
-        private ICollection<Region> regions;
-        private ICollection<District> districts;
-        private ICollection<Municipality> municipalities;
         private ICollection<County> counties;
         private ICollection<City> cities;
-        private ICollection<StateSynonym> synonyms;
+        private ICollection<MunicipalitySynonym> synonyms;
 
-        public State()
+        public Municipality()
         {
-            this.provinces = new HashSet<Province>();
-            this.regions = new HashSet<Region>();
-            this.districts = new HashSet<District>();
-            this.municipalities = new HashSet<Municipality>();
             this.counties = new HashSet<County>();
             this.cities = new HashSet<City>();
-            this.synonyms = new HashSet<StateSynonym>();
+            this.synonyms = new HashSet<MunicipalitySynonym>();
         }
 
         [Key]
@@ -43,57 +35,21 @@
 
         public virtual Country Country { get; set; }
 
-        public virtual ICollection<Province> Provinces
-        {
-            get
-            {
-                return this.provinces;
-            }
+        public virtual int? StateId { get; set; }
 
-            set
-            {
-                this.provinces = value;
-            }
-        }
+        public virtual State State { get; set; }
 
-        public virtual ICollection<Region> Regions
-        {
-            get
-            {
-                return this.regions;
-            }
+        public virtual int? ProvinceId { get; set; }
 
-            set
-            {
-                this.regions = value;
-            }
-        }
+        public virtual Province Province { get; set; }
 
-        public virtual ICollection<District> Districts
-        {
-            get
-            {
-                return this.districts;
-            }
+        public virtual int? RegionId { get; set; }
 
-            set
-            {
-                this.districts = value;
-            }
-        }
+        public virtual Region Region { get; set; }
 
-        public virtual ICollection<Municipality> Municipalities
-        {
-            get
-            {
-                return this.municipalities;
-            }
+        public virtual int? DistrictId { get; set; }
 
-            set
-            {
-                this.municipalities = value;
-            }
-        }
+        public virtual District District { get; set; }
 
         public virtual ICollection<County> Counties
         {
@@ -121,7 +77,7 @@
             }
         }
 
-        public virtual ICollection<StateSynonym> Synonyms
+        public virtual ICollection<MunicipalitySynonym> Synonyms
         {
             get
             {

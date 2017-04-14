@@ -1,17 +1,10 @@
 ﻿namespace ProcessingTools.Geo.Data.Entity.Models
 {
-    using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Contracts.Models;
 
-    public class ContinentSynonym
+    public class ContinentSynonym : Synonym, IDataModel
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Required]
-        [MinLength(ValidationConstants.MinimalLengthOfContinentName)]
-        [MaxLength(ValidationConstants.MaximalLengthOfContinentName)]
-        public string Name { get; set; }
+        public virtual int ContinentId { get; set; }
 
         public virtual Continent Continent { get; set; }
     }

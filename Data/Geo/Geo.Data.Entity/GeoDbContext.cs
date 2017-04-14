@@ -2,9 +2,9 @@
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-    using Contracts;
-    using Models;
     using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Models;
 
     public class GeoDbContext : DbContext, IGeoDbContext
     {
