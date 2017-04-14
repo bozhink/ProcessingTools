@@ -35,7 +35,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\AbstractRepositoryDataService.cs" />
     <Compile Include="Abstractions\AbstractDataServiceWithRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
