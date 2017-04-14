@@ -346,12 +346,6 @@
     <Compile Include="Areas\Files\FilesAreaRegistration.cs" />
     <Compile Include="Areas\Files\Models\FileMetadataModel.cs" />
     <Compile Include="Areas\Files\ViewModels\Metadata\FileMetadataViewModel.cs" />
-    <Compile Include="Areas\GeoData\Controllers\ContinentsController.cs" />
-    <Compile Include="Areas\GeoData\GeoDataAreaRegistration.cs" />
-    <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentSynonymViewModel.cs" />
-    <Compile Include="Areas\GeoData\ViewModels\Continents\ContinentViewModel.cs" />
-    <Compile Include="Areas\GeoData\ViewModels\Continents\DetailedContinentViewModel.cs" />
-    <Compile Include="Areas\GeoData\ViewModels\Countries\CountryViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -398,13 +392,6 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Articles\Views\web.config" />
     <Content Include="Areas\Articles\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\GeoData\Views\web.config" />
-    <Content Include="Areas\GeoData\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\GeoData\Views\Continents\Create.cshtml" />
-    <Content Include="Areas\GeoData\Views\Continents\Delete.cshtml" />
-    <Content Include="Areas\GeoData\Views\Continents\Details.cshtml" />
-    <Content Include="Areas\GeoData\Views\Continents\Edit.cshtml" />
-    <Content Include="Areas\GeoData\Views\Continents\Index.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Index.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Details.cshtml" />
     <Content Include="Areas\Articles\Views\Files\Upload.cshtml" />
@@ -552,7 +539,6 @@
     <Folder Include="Areas\Articles\Views\Shared\" />
     <Folder Include="Areas\Data\Views\Shared\" />
     <Folder Include="Areas\Files\Views\Shared\" />
-    <Folder Include="Areas\GeoData\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
