@@ -47,6 +47,7 @@
     <Compile Include="Contracts\IGeoDataInitializer.cs" />
     <Compile Include="Contracts\IGeoDbContext.cs" />
     <Compile Include="Contracts\IGeoDbContextFactory.cs" />
+    <Compile Include="Contracts\IGeoRepository.cs" />
     <Compile Include="Initializers\GeoDataInitializer.cs" />
     <Compile Include="GeoDbContext.cs" />
     <Compile Include="Factories\GeoDbContextFactory.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Contracts\IGeoDbContextProvider.cs" />
     <Compile Include="Repositories\GeoDataRepository.cs" />
     <Compile Include="Providers\GeoDbContextProvider.cs" />
+    <Compile Include="Repositories\GeoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
