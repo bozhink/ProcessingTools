@@ -133,6 +133,7 @@
     <Compile Include="Harvesters\IEnumerableHarvester.cs" />
     <Compile Include="Harvesters\IStringEnumerableXmlHarvester.cs" />
     <Compile Include="IDocumentNormalizer.cs" />
+    <Compile Include="IFilter.cs" />
     <Compile Include="IParseContextStrategy.cs" />
     <Compile Include="IParseXmlContextStrategy.cs" />
     <Compile Include="IStrategiesProvider.cs" />
