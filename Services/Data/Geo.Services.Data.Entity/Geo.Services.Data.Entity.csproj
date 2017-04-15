@@ -42,6 +42,27 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Services\IEntityCitiesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityCitySynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityContinentsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityContinentSynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityCountiesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityCountriesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityCountrySynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityCountySynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityDistrictsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityDistrictSynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityGeoEpithetsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityGeoNamesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityMunicipalitiesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityMunicipalitySynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityPostCodesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityProvincesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityProvinceSynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityRegionsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityRegionSynonymsDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityStatesDataService.cs" />
+    <Compile Include="Contracts\Services\IEntityStateSynonymsDataService.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CitySynonym.cs" />
     <Compile Include="Models\Continent.cs" />
@@ -86,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
-    <Folder Include="Contracts\Services\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
