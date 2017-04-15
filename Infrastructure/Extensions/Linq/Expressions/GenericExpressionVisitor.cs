@@ -19,14 +19,13 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         private readonly Stack<ParameterExpression[]> parameterStack;
         private readonly IDictionary<string, string> propertyNamesMap;
 
-
         public GenericExpressionVisitor()
         {
             this.typeofS = typeof(S);
-            this.typeofSInterfaces = typeofS.GetInterfaces();
+            this.typeofSInterfaces = this.typeofS.GetInterfaces();
 
             this.typeofB = typeof(B);
-            this.typeofBProperties = typeofB.GetProperties();
+            this.typeofBProperties = this.typeofB.GetProperties();
 
             this.parameterStack = new Stack<ParameterExpression[]>();
 
@@ -36,10 +35,10 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         public GenericExpressionVisitor(IDictionary<string, string> propertyNamesMap)
         {
             this.typeofS = typeof(S);
-            this.typeofSInterfaces = typeofS.GetInterfaces();
+            this.typeofSInterfaces = this.typeofS.GetInterfaces();
 
             this.typeofB = typeof(B);
-            this.typeofBProperties = typeofB.GetProperties();
+            this.typeofBProperties = this.typeofB.GetProperties();
 
             this.parameterStack = new Stack<ParameterExpression[]>();
 

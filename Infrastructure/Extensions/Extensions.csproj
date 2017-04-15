@@ -54,6 +54,7 @@
     <Compile Include="Linq\Expressions\ParameterRebinder.cs" />
     <Compile Include="Linq\Expressions\ReplaceExpressionVisitor.cs" />
     <Compile Include="Linq\Expressions\TypeConversionVisitor.cs" />
+    <Compile Include="Linq\QueryableExtensions.cs" />
     <Compile Include="ListIntersectionsExtensions.cs" />
     <Compile Include="MappingsExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />

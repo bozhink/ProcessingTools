@@ -7,6 +7,16 @@
 
     public static class ExpressionExtensions
     {
+        /// <summary>
+        /// See http://stackoverflow.com/questions/27669993/creating-a-property-selector-expression-from-a-string
+        /// </summary>
+        public static Expression<Func<T, S>> ToExpressionFromPropertyName<T, S>(this string propertyName)
+        {
+            var parameter = Expression.Parameter(typeof(T));
+            var body = Expression.PropertyOrField(parameter, propertyName);
+            return Expression.Lambda<Func<T, S>>(body, parameter);
+        }
+
         public static Expression<Func<T, S>> ToExpression<T, S>(this LambdaExpression lambda)
         {
             ParameterExpression lambdaParameter = lambda.Parameters.Single();
@@ -94,19 +104,19 @@
             where B : class
         {
             // figure out which types are different in the function-signature
-            var fromTypes = from.Type.GetGenericArguments();
-            var toTypes = typeof(B).GetGenericArguments();
-            if (fromTypes.Length != toTypes.Length)
+            var mapfromTypes = from.Type.GetGenericArguments();
+            var maptoTypes = typeof(B).GetGenericArguments();
+            if (mapfromTypes.Length != maptoTypes.Length)
             {
                 throw new NotSupportedException("Incompatible lambda function-type signatures");
             }
 
             var typeMap = new Dictionary<Type, Type>();
-            for (int i = 0; i < fromTypes.Length; i++)
+            for (int i = 0; i < mapfromTypes.Length; i++)
             {
-                if (fromTypes[i] != toTypes[i])
+                if (mapfromTypes[i] != maptoTypes[i])
                 {
-                    typeMap[fromTypes[i]] = toTypes[i];
+                    typeMap[mapfromTypes[i]] = maptoTypes[i];
                 }
             }
 
