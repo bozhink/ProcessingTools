@@ -4,6 +4,8 @@
 
     public interface ISynonym : INameableIntegerIdentifiable
     {
+        int ParentId { get; }
+
         int? LanguageCode { get; }
     }
 }

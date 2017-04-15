@@ -6,10 +6,10 @@
     public interface ISynonymisableDataService<TSynonym>
         where TSynonym : ISynonym
     {
-        Task<object> AddSynonymAsync(TSynonym synonym);
+        Task<object> AddSynonymAsync(object modelId, TSynonym synonym);
 
-        Task<object> RemoveSynonymAsync(int synonymId);
+        Task<object> RemoveSynonymAsync(object modelId, int synonymId);
 
-        Task<object> UpdateSynonymAsync(TSynonym synonym);
+        Task<object> UpdateSynonymAsync(object modelId, TSynonym synonym);
     }
 }
