@@ -220,6 +220,11 @@
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
     <Compile Include="Services.Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services.Data\Files\IStreamingFilesDataService.cs" />
+    <Compile Include="Services.Data\Geo\Models\ICity.cs" />
+    <Compile Include="Services.Data\Geo\Models\ICitySynonym.cs" />
+    <Compile Include="Services.Data\Geo\Models\IPostCode.cs" />
+    <Compile Include="Services.Data\Geo\Models\ISynonym.cs" />
+    <Compile Include="Services.Data\Geo\Models\ISynonymisable.cs" />
     <Compile Include="Services.Data\IAddableDataService.cs" />
     <Compile Include="Services.Data\IDataServiceAsync.cs" />
     <Compile Include="Services.Data\IDeletableDataService.cs" />
@@ -252,8 +257,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Bio\Environments\" />
-    <Folder Include="Services.Data.Models\Geo\" />
-    <Folder Include="Services.Data\Geo\" />
+    <Folder Include="Services.Data\Geo\Filters\" />
+    <Folder Include="Services.Data\Geo\Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

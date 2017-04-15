@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Entity.Models
+﻿namespace ProcessingTools.Enumerations
 {
     public enum PostCodeType
     {
