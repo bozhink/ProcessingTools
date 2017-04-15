@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Filters
 {
-    public interface IPostCodesFilter
+    using ProcessingTools.Contracts.Models;
+
+    public interface IPostCodesFilter : IGenericIdentifiable<int?>
     {
         string Country { get; }
 

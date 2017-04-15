@@ -230,7 +230,9 @@
     <Compile Include="Services.Data\Geo\Filters\ICountySynonymsFilter.cs" />
     <Compile Include="Services.Data\Geo\Filters\IDistrictsFilter.cs" />
     <Compile Include="Services.Data\Geo\Filters\IDistrictSynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IGeoEpithetsFilter.cs" />
     <Compile Include="Services.Data\Geo\Filters\IGeoFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IGeoNamesFilter.cs" />
     <Compile Include="Services.Data\Geo\Filters\IMunicipalitiesFilter.cs" />
     <Compile Include="Services.Data\Geo\Filters\IMunicipalitySynonymsFilter.cs" />
     <Compile Include="Services.Data\Geo\Filters\IPostCodesFilter.cs" />
@@ -252,6 +254,8 @@
     <Compile Include="Services.Data\Geo\Models\ICountySynonym.cs" />
     <Compile Include="Services.Data\Geo\Models\IDistrict.cs" />
     <Compile Include="Services.Data\Geo\Models\IDistrictSynonym.cs" />
+    <Compile Include="Services.Data\Geo\Models\IGeoEpithet.cs" />
+    <Compile Include="Services.Data\Geo\Models\IGeoName.cs" />
     <Compile Include="Services.Data\Geo\Models\IMunicipality.cs" />
     <Compile Include="Services.Data\Geo\Models\IMunicipalitySynonym.cs" />
     <Compile Include="Services.Data\Geo\Models\IPostCode.cs" />
