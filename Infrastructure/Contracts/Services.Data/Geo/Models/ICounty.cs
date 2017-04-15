@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Models
 {
-    using ProcessingTools.Contracts.Models;
     using System.Collections.Generic;
+    using ProcessingTools.Contracts.Models;
 
-    public interface ICity : ISynonymisable<ICitySynonym>, INameableIntegerIdentifiable, IServiceModel
+    public interface ICounty : ISynonymisable<ICountySynonym>, INameableIntegerIdentifiable, IServiceModel
     {
         int CountryId { get; }
 
@@ -17,8 +17,6 @@
 
         int? MunicipalityId { get; }
 
-        int? CountyId { get; }
-
-        ICollection<IPostCode> PostCodes { get; }
+        ICollection<ICity> Cities { get; }
     }
 }

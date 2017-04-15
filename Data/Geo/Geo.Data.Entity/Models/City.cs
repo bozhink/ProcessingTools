@@ -49,6 +49,8 @@
 
         public virtual int? MunicipalityId { get; set; }
 
+        public virtual Municipality Municipality { get; set; }
+
         public virtual int? CountyId { get; set; }
 
         public virtual County County { get; set; }
