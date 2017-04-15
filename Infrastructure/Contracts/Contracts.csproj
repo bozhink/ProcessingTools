@@ -220,6 +220,28 @@
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
     <Compile Include="Services.Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services.Data\Files\IStreamingFilesDataService.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ICitiesFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ICitySynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IContinentsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IContinentSynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ICountiesFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ICountriesFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ICountrySynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ICountySynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IDistrictsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IDistrictSynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IGeoFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IMunicipalitiesFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IMunicipalitySynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IPostCodesFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IProvincesFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IProvinceSynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IRegionsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IRegionSynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IStatesFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\IStateSynonymsFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ISynonymFilter.cs" />
+    <Compile Include="Services.Data\Geo\Filters\ISynonymisableFilter.cs" />
     <Compile Include="Services.Data\Geo\Models\ICity.cs" />
     <Compile Include="Services.Data\Geo\Models\ICitySynonym.cs" />
     <Compile Include="Services.Data\Geo\Models\IContinent.cs" />
@@ -273,7 +295,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Bio\Environments\" />
-    <Folder Include="Services.Data\Geo\Filters\" />
     <Folder Include="Services.Data\Geo\Services\" />
   </ItemGroup>
   <ItemGroup>

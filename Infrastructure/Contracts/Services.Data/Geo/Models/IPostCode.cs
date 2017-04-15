@@ -8,5 +8,7 @@
         string Code { get; }
 
         PostCodeType Type { get; }
+
+        int CityId { get; }
     }
 }
