@@ -42,6 +42,16 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CitySynonym.cs" />
+    <Compile Include="Models\ContinentSynonym.cs" />
+    <Compile Include="Models\CountrySynonym.cs" />
+    <Compile Include="Models\CountySynonym.cs" />
+    <Compile Include="Models\DistrictSynonym.cs" />
+    <Compile Include="Models\MunicipalitySynonym.cs" />
+    <Compile Include="Models\ProvinceSynonym.cs" />
+    <Compile Include="Models\RegionSynonym.cs" />
+    <Compile Include="Models\StateSynonym.cs" />
+    <Compile Include="Models\Synonym.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
