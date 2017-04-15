@@ -2,14 +2,15 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
 
-    public class GenericRepository<TContext, T> : IRepository<T>, IGenericRepository<TContext, T>
+    public class GenericRepository<TContext, TEntity> : IRepository<TEntity>, IGenericRepository<TContext, TEntity>
         where TContext : IDbContext
-        where T : class
+        where TEntity : class
     {
         public GenericRepository(TContext context)
         {
@@ -19,19 +20,14 @@
             }
 
             this.Context = context;
-            this.DbSet = this.Context.Set<T>();
+            this.DbSet = this.Context.Set<TEntity>();
         }
-
-        public virtual IDbSet<T> DbSet { get; private set; }
 
         public virtual TContext Context { get; private set; }
 
-        public virtual T Get(object id)
-        {
-            return this.DbSet.Find(id);
-        }
+        public virtual IDbSet<TEntity> DbSet { get; private set; }
 
-        public virtual void Add(T entity)
+        public virtual void Add(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
             if (entry.State != EntityState.Detached)
@@ -44,18 +40,7 @@
             }
         }
 
-        public virtual void Update(T entity)
-        {
-            var entry = this.Context.Entry(entity);
-            if (entry.State == EntityState.Detached)
-            {
-                this.DbSet.Attach(entity);
-            }
-
-            entry.State = EntityState.Modified;
-        }
-
-        public virtual void Delete(T entity)
+        public virtual void Delete(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
             if (entry.State != EntityState.Deleted)
@@ -78,14 +63,34 @@
             }
         }
 
-        public virtual void Detach(T entity)
+        public virtual void Detach(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
             entry.State = EntityState.Detached;
         }
 
+        public virtual TEntity Get(object id)
+        {
+            return this.DbSet.Find(id);
+        }
+
+        public IQueryable<TEntity> Queryable() => this.DbSet.AsQueryable();
+
+        public IQueryable<T> Queryable<T>() where T : class => this.Context.Set<T>().AsQueryable();
+
         public virtual object SaveChanges() => this.Context.SaveChanges();
 
         public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync();
+
+        public virtual void Update(TEntity entity)
+        {
+            var entry = this.Context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.DbSet.Attach(entity);
+            }
+
+            entry.State = EntityState.Modified;
+        }
     }
 }

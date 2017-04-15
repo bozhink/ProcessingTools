@@ -6,10 +6,10 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
     using ProcessingTools.Data.Common.Expressions;
 
     public abstract class AbstractEntityRepository<TEntity, TContext, TDbModel> : ICrudRepository<TEntity>
@@ -29,11 +29,11 @@
             this.repository = repository;
         }
 
+        public virtual IQueryable<TEntity> Query => this.repository.DbSet.AsQueryable<TEntity>();
+
         protected abstract Func<TEntity, TDbModel> MapEntityToDbModel { get; }
 
-        protected IGenericRepository<TContext, TDbModel> Repository => repository;
-
-        public virtual IQueryable<TEntity> Query => this.repository.DbSet.AsQueryable<TEntity>();
+        protected IGenericRepository<TContext, TDbModel> Repository => this.repository;
 
         public virtual Task<object> Add(TEntity entity)
         {

@@ -1,27 +1,32 @@
 ﻿namespace ProcessingTools.Data.Common.Entity.Contracts.Repositories
 {
     using System.Data.Entity;
+    using System.Linq;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
-    public interface IGenericRepository<TContext, T> : IRepository<T>
+    public interface IGenericRepository<TContext, TEntity> : IRepository<TEntity>
         where TContext : IDbContext
-        where T : class
+        where TEntity : class
     {
         TContext Context { get; }
 
-        IDbSet<T> DbSet { get; }
+        IDbSet<TEntity> DbSet { get; }
 
-        void Add(T entity);
+        void Add(TEntity entity);
 
         void Delete(object id);
 
-        void Delete(T entity);
+        void Delete(TEntity entity);
 
-        void Detach(T entity);
+        void Detach(TEntity entity);
 
-        T Get(object id);
+        TEntity Get(object id);
 
-        void Update(T entity);
+        IQueryable<TEntity> Queryable();
+
+        IQueryable<T> Queryable<T>() where T : class;
+
+        void Update(TEntity entity);
     }
 }
