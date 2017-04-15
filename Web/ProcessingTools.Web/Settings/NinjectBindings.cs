@@ -19,6 +19,10 @@
                 .BindDefaultInterface();
             });
 
+            this.Bind<ProcessingTools.Contracts.Services.IEnvironment>()
+                .To<ProcessingTools.Web.Services.EnvironmentService>()
+                .InSingletonScope();
+
             this.Bind<ProcessingTools.History.Data.Entity.Contracts.IHistoryDbContext>()
                 .To<ProcessingTools.History.Data.Entity.HistoryDbContext>()
                 .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
@@ -41,6 +45,19 @@
 
             this.Bind<ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository>()
                 .To<ProcessingTools.Journals.Data.Entity.Repositories.EntityPublishersRepository>()
+                .InRequestScope();
+
+            this.Bind<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDbContext>()
+                .To<ProcessingTools.Geo.Data.Entity.GeoDbContext>()
+                .WhenInjectedInto(typeof(ProcessingTools.Geo.Data.Entity.Repositories.GeoRepository<>))
+                .InRequestScope()
+                .WithConstructorArgument(
+                    ParameterNames.ConnectionString,
+                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.GeoDatabseConnection].ConnectionString);
+
+
+            this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.ICitiesDataService>()
+                .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityCitiesDataService>()
                 .InRequestScope();
         }
     }

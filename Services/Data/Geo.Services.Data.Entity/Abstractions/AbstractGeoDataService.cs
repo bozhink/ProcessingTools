@@ -105,7 +105,8 @@
         {
             var query = this.GetQuery(filter);
 
-            var data = await query.Select(this.MapEntityToModel)
+            var data = await query.ToList()
+                .Select(this.MapEntityToModel)
                 .ToArrayAsync();
 
             return data;
@@ -118,7 +119,8 @@
                 .Skip(skip)
                 .Take(take);
 
-            var data = await query.Select(this.MapEntityToModel)
+            var data = await query.ToList()
+                .Select(this.MapEntityToModel)
                 .ToArrayAsync();
 
             return data;

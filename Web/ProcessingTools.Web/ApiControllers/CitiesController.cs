@@ -5,14 +5,14 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-    using ProcessingTools.Geo.Services.Data.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Web.Models.Cities;
 
     public class CitiesController : ApiController
     {
-        private readonly ICitiesSelectableDataService service;
+        private readonly ICitiesDataService service;
 
-        public CitiesController(ICitiesSelectableDataService service)
+        public CitiesController(ICitiesDataService service)
         {
             if (service == null)
             {
@@ -25,7 +25,7 @@
         // GET: api/Cities
         public async Task<IEnumerable<CityResponseModel>> Get()
         {
-            var items = await this.service.Select();
+            var items = await this.service.SelectAsync(null);
 
             return items.Select(c => new CityResponseModel
             {
@@ -43,19 +43,18 @@
         // GET: api/Cities/5
         public async Task<CityResponseModel> Get(int id)
         {
-            var items = await this.service.Select(c => c.Id == id);
+            var item = await this.service.GetByIdAsync(id);
 
-            return items.Select(c => new CityResponseModel
+            return new CityResponseModel
             {
-                Id = c.Id,
-                Name = c.Name,
+                Id = item.Id,
+                Name = item.Name,
                 Country = new CountryResponseModel
                 {
-                    Id = c.Country.Id,
-                    Name = c.Country.Name
+                    Id = item.Country.Id,
+                    Name = item.Country.Name
                 }
-            })
-            .FirstOrDefault();
+            };
         }
     }
 }

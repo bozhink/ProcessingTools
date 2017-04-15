@@ -7,6 +7,8 @@
     {
         int CountryId { get; }
 
+        ICountry Country { get; }
+
         int? StateId { get; }
 
         int? ProvinceId { get; }

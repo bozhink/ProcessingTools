@@ -7,6 +7,8 @@
     {
         public int CountryId { get; set; }
 
+        public ICountry Country { get; set; }
+
         public int? CountyId { get; set; }
 
         public int? DistrictId { get; set; }
