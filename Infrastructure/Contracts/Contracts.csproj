@@ -218,15 +218,15 @@
     <Compile Include="Models\IUrlLinkable.cs" />
     <Compile Include="Models\IValuable.cs" />
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
-    <Compile Include="Services\Data\Files\IStreamingFileContentDataService.cs" />
-    <Compile Include="Services\Data\Files\IStreamingFilesDataService.cs" />
-    <Compile Include="Services\Data\IAddableDataService.cs" />
-    <Compile Include="Services\Data\IDataServiceAsync.cs" />
-    <Compile Include="Services\Data\IDeletableDataService.cs" />
-    <Compile Include="Services\Data\IDetailedGenericDataService.cs" />
-    <Compile Include="Services\Data\IGenericDataService.cs" />
-    <Compile Include="Services\Data\IMultiEntryDataService.cs" />
-    <Compile Include="Services\Data\ISelectableDataService.cs" />
+    <Compile Include="Services.Data\Files\IStreamingFileContentDataService.cs" />
+    <Compile Include="Services.Data\Files\IStreamingFilesDataService.cs" />
+    <Compile Include="Services.Data\IAddableDataService.cs" />
+    <Compile Include="Services.Data\IDataServiceAsync.cs" />
+    <Compile Include="Services.Data\IDeletableDataService.cs" />
+    <Compile Include="Services.Data\IDetailedGenericDataService.cs" />
+    <Compile Include="Services.Data\IGenericDataService.cs" />
+    <Compile Include="Services.Data\IMultiEntryDataService.cs" />
+    <Compile Include="Services.Data\ISelectableDataService.cs" />
     <Compile Include="Services\IDateTimeProvider.cs" />
     <Compile Include="Services\IEnvironment.cs" />
     <Compile Include="Services\ISearchService.cs" />
@@ -252,6 +252,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Bio\Environments\" />
+    <Folder Include="Services.Data.Models\Geo\" />
+    <Folder Include="Services.Data\Geo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
