@@ -14,31 +14,31 @@
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityGeoNamesDataService : AbstractGeoDataService<GeoName, IGeoName, IGeoNamesFilter>, IEntityGeoNamesDataService
+    public class EntityGeoEpithetsDataService : AbstractGeoDataService<GeoEpithet, IGeoEpithet, IGeoEpithetsFilter>, IEntityGeoEpithetsDataService
     {
-        private readonly Func<GeoName, IGeoName> mapEntityToModel;
+        private readonly Func<GeoEpithet, IGeoEpithet> mapEntityToModel;
 
-        public EntityGeoNamesDataService(IGeoRepository<GeoName> repository, IEnvironment environment)
+        public EntityGeoEpithetsDataService(IGeoRepository<GeoEpithet> repository, IEnvironment environment)
             : base(repository, environment)
         {
             this.mapEntityToModel = this.MapEntityToModelExpression.Compile();
         }
 
-        protected override Func<GeoName, IGeoName> MapEntityToModel => this.mapEntityToModel;
+        protected override Func<GeoEpithet, IGeoEpithet> MapEntityToModel => this.mapEntityToModel;
 
-        protected override Func<IGeoName, GeoName> MapModelToEntity => m => new GeoName
+        protected override Func<IGeoEpithet, GeoEpithet> MapModelToEntity => m => new GeoEpithet
         {
             Id = m.Id,
             Name = m.Name
         };
 
-        private Expression<Func<GeoName, IGeoName>> MapEntityToModelExpression => m => new ProcessingTools.Geo.Services.Data.Entity.Models.GeoName
+        private Expression<Func<GeoEpithet, IGeoEpithet>> MapEntityToModelExpression => m => new ProcessingTools.Geo.Services.Data.Entity.Models.GeoEpithet
         {
             Id = m.Id,
             Name = m.Name
         };
 
-        public override async Task<IGeoName[]> SelectAsync(IGeoNamesFilter filter)
+        public override async Task<IGeoEpithet[]> SelectAsync(IGeoEpithetsFilter filter)
         {
             var query = this.GetQuery(filter)
                 .Select(this.MapEntityToModelExpression);
@@ -46,7 +46,7 @@
             return await query.ToArrayAsync();
         }
 
-        public override async Task<IGeoName[]> SelectAsync(IGeoNamesFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        public override async Task<IGeoEpithet[]> SelectAsync(IGeoEpithetsFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
         {
             var query = this.GetQuery(filter)
                 .OrderByName(sortColumn, sortOrder)
@@ -57,7 +57,7 @@
             return await query.ToArrayAsync();
         }
 
-        public override async Task<object> UpdateAsync(IGeoName model)
+        public override async Task<object> UpdateAsync(IGeoEpithet model)
         {
             if (model == null)
             {
@@ -75,7 +75,7 @@
             return await this.UpdateEntityAsync(entity);
         }
 
-        protected override IQueryable<GeoName> GetQuery(IGeoNamesFilter filter)
+        protected override IQueryable<GeoEpithet> GetQuery(IGeoEpithetsFilter filter)
         {
             var query = this.Repository.Queryable();
 
