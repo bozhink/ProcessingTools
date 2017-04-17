@@ -1,23 +1,22 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using ProcessingTools.Contracts.Services.Data.Geo.Models;
-using ProcessingTools.Contracts.Services.Data.Geo.Services;
-using ProcessingTools.Web.Areas.Data.Models.GeoNames;
-using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames;
-using AutoMapper;
-using ProcessingTools.Constants;
-using ProcessingTools.Enumerations;
-using ProcessingTools.Web.Common.ViewModels;
-using ProcessingTools.Web.Abstractions.Controllers;
-using ProcessingTools.Web.Constants;
-
-namespace ProcessingTools.Web.Areas.Data.Controllers
+﻿namespace ProcessingTools.Web.Areas.Data.Controllers
 {
-
+    using System;
+    using System.Data;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using AutoMapper;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Services.Data.Geo.Models;
+    using ProcessingTools.Contracts.Services.Data.Geo.Services;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Web.Abstractions.Controllers;
+    using ProcessingTools.Web.Areas.Data.Models.GeoNames;
+    using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames;
+    using ProcessingTools.Web.Common.ViewModels;
+    using ProcessingTools.Web.Constants;
+    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoNames.Strings;
 
     public class GeoNamesController : BaseMvcController
     {
@@ -42,6 +41,7 @@ namespace ProcessingTools.Web.Areas.Data.Controllers
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IGeoName, GeoNameViewModel>();
+                c.CreateMap<GeoNameRequestModel, GeoNameViewModel>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
@@ -88,7 +88,7 @@ namespace ProcessingTools.Web.Areas.Data.Controllers
             var viewModel = new GeoNamePageViewModel
             {
                 Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = "Details",
+                PageTitle = Strings.DetailsPageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
@@ -102,8 +102,8 @@ namespace ProcessingTools.Web.Areas.Data.Controllers
         {
             var viewModel = new GeoNamePageViewModel
             {
-                Model = null,
-                PageTitle = "Create",
+                Model = new GeoNameViewModel { Id = -1 },
+                PageTitle = Strings.CreatePageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
@@ -131,15 +131,16 @@ namespace ProcessingTools.Web.Areas.Data.Controllers
                 return this.RedirectToAction(IndexActionName);
             }
 
+            model.Id = -1;
             var viewModel = new GeoNamePageViewModel
             {
                 Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = "Create",
+                PageTitle = Strings.CreatePageTitle,
                 ReturnUrl = returnUrl
             };
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
-            return this.View(EditActionName, model);
+            return this.View(EditActionName, viewModel);
         }
 
         // GET: Data/GeoNames/Edit/5
@@ -160,7 +161,7 @@ namespace ProcessingTools.Web.Areas.Data.Controllers
             var viewModel = new GeoNamePageViewModel
             {
                 Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = "Edit",
+                PageTitle = Strings.EditPageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
@@ -191,7 +192,7 @@ namespace ProcessingTools.Web.Areas.Data.Controllers
             var viewModel = new GeoNamePageViewModel
             {
                 Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = "Edit",
+                PageTitle = Strings.EditPageTitle,
                 ReturnUrl = returnUrl
             };
 
@@ -217,7 +218,7 @@ namespace ProcessingTools.Web.Areas.Data.Controllers
             var viewModel = new GeoNamePageViewModel
             {
                 Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = "Delete",
+                PageTitle = Strings.DeletePageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 

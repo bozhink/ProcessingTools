@@ -1,16 +1,17 @@
 ﻿@using ProcessingTools.Web.Areas.Data.Controllers
 @using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames
 @using ProcessingTools.Web.Common.ViewModels
+@using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoNames.Strings
 @model ListWithPagingViewModel<GeoNameViewModel>
 
 @{
-    this.ViewBag.Title = "Index";
+    this.ViewBag.Title = Strings.IndexPageTitle;
 }
 
 <h2>@this.ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", GeoNamesController.CreateActionName)
+    @Html.ActionLink(Strings.CreateActionLinkText, GeoNamesController.CreateActionName)
 </p>
 
 @if (Model.Items.Count() > 0)
@@ -37,9 +38,9 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                        @Html.ActionLink("Details", GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                        @Html.ActionLink("Delete", GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
+                        @Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                        @Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                        @Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
                     </td>
                 </tr>
             }

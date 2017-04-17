@@ -1,20 +1,20 @@
 ﻿@using ProcessingTools.Web.Areas.Data.Controllers
 @using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames
 @using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
+@using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoNames.Strings
 @model GeoNamePageViewModel
 @{
     this.ViewBag.Title = Model.PageTitle;
 }
 
 <h2>@Model.PageHeading</h2>
+<hr />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Geo Name</h4>
-        <hr />
         @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
         @if (Model.Model != null)
         {
@@ -31,14 +31,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@(Model.Model != null ? "Save" : "Create")" class="btn btn-default" />
+                <input type="submit" value="@(Model.Model != null || Model.Model.Id > -1 ? Strings.SaveButtonText : Strings.CreateButtonText)" class="btn btn-info" />
+                <input type="reset" value="@Strings.ResetButtonText" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", GeoNamesController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl })
+    @Html.ActionLink(Strings.BackToListActionLinkText, GeoNamesController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl })
 </div>
 
 @section Scripts {
