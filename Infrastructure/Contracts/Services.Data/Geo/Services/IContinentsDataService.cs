@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Filters;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    public interface IContinentsDataService : IDataServiceAsync<IContinent, IContinentsFilter>, ISynonymisableDataService<IContinentSynonym>
+    public interface IContinentsDataService : IDataServiceAsync<IContinent, IContinentsFilter>
     {
     }
 }
