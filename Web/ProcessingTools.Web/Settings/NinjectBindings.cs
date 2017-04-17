@@ -55,13 +55,16 @@
                     ParameterNames.ConnectionString,
                     ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.GeoDatabseConnection].ConnectionString);
 
-
             this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.ICitiesDataService>()
                 .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityCitiesDataService>()
                 .InRequestScope();
 
             this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.IGeoNamesDataService>()
                 .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityGeoNamesDataService>()
+                .InRequestScope();
+
+            this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.IGeoEpithetsDataService>()
+                .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityGeoEpithetsDataService>()
                 .InRequestScope();
         }
     }

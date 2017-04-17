@@ -1,0 +1,29 @@
+﻿@using ProcessingTools.Web.Areas.Data.Controllers
+@using ProcessingTools.Web.Areas.Data.ViewModels.GeoEpithets
+@using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoEpithets.Strings
+@model GeoEpithetPageViewModel
+
+@{
+    this.ViewBag.Title = Model.PageTitle;
+}
+
+<header>
+    <h2>@Model.PageHeading</h2>
+</header>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.Model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(Strings.EditActionLinkText, GeoEpithetsController.EditActionName, new { id = Model.Model.Id, returnUrl = Model.ReturnUrl }) |
+    @Html.ActionLink(Strings.BackToListActionLinkText, GeoEpithetsController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl })
+</p>

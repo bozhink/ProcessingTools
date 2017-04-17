@@ -360,9 +360,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Data\Controllers\GeoEpithetsController.cs" />
     <Compile Include="Areas\Data\Controllers\GeoNamesController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
+    <Compile Include="Areas\Data\Models\GeoEpithets\GeoEpithetRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\GeoEpithets\GeoEpithetPageViewModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\GeoEpithets\GeoEpithetViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\GeoNames\GeoNamePageViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\GeoNames\GeoNameViewModel.cs" />
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
@@ -389,6 +393,16 @@
     <Compile Include="Models\Cities\CountryResponseModel.cs" />
     <Compile Include="Models\Countries\CountryResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.bg.Designer.cs">
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.bg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -398,6 +412,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Areas\Data\Views\GeoEpithets\Strings.bg.Designer.cs">
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Areas\Data\Views\GeoEpithets\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\Areas\Data\Views\GeoNames\Strings.bg.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -605,6 +629,10 @@
     <Content Include="Areas\Data\Views\GeoNames\Details.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Edit.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Index.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Delete.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Details.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Edit.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Index.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -763,11 +791,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Data\Views\GeoEpithets\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Data\Views\GeoEpithets\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>

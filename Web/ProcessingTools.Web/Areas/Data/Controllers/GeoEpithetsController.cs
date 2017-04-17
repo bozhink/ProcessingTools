@@ -12,25 +12,25 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Areas.Data.Models.GeoNames;
-    using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames;
+    using ProcessingTools.Web.Areas.Data.Models.GeoEpithets;
+    using ProcessingTools.Web.Areas.Data.ViewModels.GeoEpithets;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoNames.Strings;
+    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoEpithets.Strings;
 
     [Authorize]
-    public class GeoNamesController : BaseMvcController
+    public class GeoEpithetsController : BaseMvcController
     {
-        public const string ControllerName = "GeoNames";
-        public const string DetailsActionName = nameof(GeoNamesController.Details);
-        public const string CreateActionName = nameof(GeoNamesController.Create);
-        public const string EditActionName = nameof(GeoNamesController.Edit);
-        public const string DeleteActionName = nameof(GeoNamesController.Delete);
+        public const string ControllerName = "GeoEpithets";
+        public const string DetailsActionName = nameof(GeoEpithetsController.Details);
+        public const string CreateActionName = nameof(GeoEpithetsController.Create);
+        public const string EditActionName = nameof(GeoEpithetsController.Edit);
+        public const string DeleteActionName = nameof(GeoEpithetsController.Delete);
 
-        private readonly IGeoNamesDataService service;
+        private readonly IGeoEpithetsDataService service;
         private readonly IMapper mapper;
 
-        public GeoNamesController(IGeoNamesDataService service)
+        public GeoEpithetsController(IGeoEpithetsDataService service)
         {
             if (service == null)
             {
@@ -41,8 +41,8 @@
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IGeoName, GeoNameViewModel>();
-                c.CreateMap<GeoNameRequestModel, GeoNameViewModel>();
+                c.CreateMap<IGeoEpithet, GeoEpithetViewModel>();
+                c.CreateMap<GeoEpithetRequestModel, GeoEpithetViewModel>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
@@ -63,9 +63,9 @@
 
             long numberOfItems = await this.service.SelectCountAsync(null);
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
-            var items = data.Select(this.mapper.Map<GeoNameViewModel>).ToArray();
+            var items = data.Select(this.mapper.Map<GeoEpithetViewModel>).ToArray();
 
-            var viewModel = new ListWithPagingViewModel<GeoNameViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new ListWithPagingViewModel<GeoEpithetViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(IndexActionName, viewModel);
@@ -86,9 +86,9 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = new GeoNamePageViewModel
+            var viewModel = new GeoEpithetPageViewModel
             {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
+                Model = this.mapper.Map<GeoEpithetViewModel>(model),
                 PageTitle = Strings.DetailsPageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
@@ -101,9 +101,9 @@
         [HttpGet, ActionName(CreateActionName)]
         public ActionResult Create()
         {
-            var viewModel = new GeoNamePageViewModel
+            var viewModel = new GeoEpithetPageViewModel
             {
-                Model = new GeoNameViewModel { Id = -1 },
+                Model = new GeoEpithetViewModel { Id = -1 },
                 PageTitle = Strings.CreatePageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
@@ -115,7 +115,7 @@
         // POST: Data/GeoNames/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name")] GeoNameRequestModel model)
+        public async Task<ActionResult> Create([Bind(Include = "Name")] GeoEpithetRequestModel model)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
 
@@ -133,9 +133,9 @@
             }
 
             model.Id = -1;
-            var viewModel = new GeoNamePageViewModel
+            var viewModel = new GeoEpithetPageViewModel
             {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
+                Model = this.mapper.Map<GeoEpithetViewModel>(model),
                 PageTitle = Strings.CreatePageTitle,
                 ReturnUrl = returnUrl
             };
@@ -159,9 +159,9 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = new GeoNamePageViewModel
+            var viewModel = new GeoEpithetPageViewModel
             {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
+                Model = this.mapper.Map<GeoEpithetViewModel>(model),
                 PageTitle = Strings.EditPageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
@@ -173,7 +173,7 @@
         // POST: Data/GeoNames/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoNameRequestModel model)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoEpithetRequestModel model)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
 
@@ -190,9 +190,9 @@
                 return this.RedirectToAction(IndexActionName);
             }
 
-            var viewModel = new GeoNamePageViewModel
+            var viewModel = new GeoEpithetPageViewModel
             {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
+                Model = this.mapper.Map<GeoEpithetViewModel>(model),
                 PageTitle = Strings.EditPageTitle,
                 ReturnUrl = returnUrl
             };
@@ -216,9 +216,9 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = new GeoNamePageViewModel
+            var viewModel = new GeoEpithetPageViewModel
             {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
+                Model = this.mapper.Map<GeoEpithetViewModel>(model),
                 PageTitle = Strings.DeletePageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
