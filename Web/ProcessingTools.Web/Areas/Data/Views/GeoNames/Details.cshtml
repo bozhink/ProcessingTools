@@ -1,0 +1,28 @@
+﻿@using ProcessingTools.Web.Areas.Data.Controllers
+@using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames
+@model GeoNameViewModel
+
+@{
+    this.ViewBag.Title = "Details";
+}
+
+<h2>@this.ViewBag.Title</h2>
+
+<div>
+    <h4>Geo Name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", GeoNamesController.EditActionName, new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", GeoNamesController.IndexActionName)
+</p>

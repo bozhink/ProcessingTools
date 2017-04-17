@@ -360,7 +360,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Data\Controllers\GeoNamesController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
+    <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\GeoNames\GeoNameViewModel.cs" />
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />
@@ -577,6 +580,11 @@
     <Content Include="Areas\Journals\Views\Institutions\Index.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Create.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Delete.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Details.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Edit.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Index.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -646,8 +654,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Data\Controllers\" />
-    <Folder Include="Areas\Data\Models\" />
     <Folder Include="Areas\Data\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

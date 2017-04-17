@@ -1,0 +1,41 @@
+﻿@using ProcessingTools.Web.Areas.Data.Controllers
+@using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames
+@model IEnumerable<GeoNameViewModel>
+
+@{
+    this.ViewBag.Title = "Index";
+}
+
+<h2>@this.ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", GeoNamesController.CreateActionName)
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @{
+        int i = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(++i)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", GeoNamesController.EditActionName, new { id = item.Id }) |
+                @Html.ActionLink("Details", GeoNamesController.DetailsActionName, new { id = item.Id }) |
+                @Html.ActionLink("Delete", GeoNamesController.DeleteActionName, new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
