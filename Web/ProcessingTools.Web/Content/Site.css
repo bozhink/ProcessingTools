@@ -71,3 +71,17 @@ section[role=main] footer {
     margin-top: 1.5rem;
     border-top: 1px solid rgba(0, 0, 0, .075);
 }
+
+.table.grid {
+    width: 100%;
+}
+
+.grid .grid-row {
+    display: table-row;
+    height: 1.5rem;
+    max-height: 1.5rem !important;
+}
+
+.grid .grid-column {
+    width: 80%;
+}

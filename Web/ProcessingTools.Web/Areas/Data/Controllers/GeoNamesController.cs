@@ -1,26 +1,34 @@
-﻿namespace ProcessingTools.Web.Areas.Data.Controllers
-{
-    using System;
-    using System.Data;
-    using System.Linq;
-    using System.Net;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
-    using ProcessingTools.Contracts.Services.Data.Geo.Models;
-    using ProcessingTools.Contracts.Services.Data.Geo.Services;
-    using ProcessingTools.Web.Areas.Data.Models.GeoNames;
-    using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames;
+﻿using System;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using ProcessingTools.Contracts.Services.Data.Geo.Models;
+using ProcessingTools.Contracts.Services.Data.Geo.Services;
+using ProcessingTools.Web.Areas.Data.Models.GeoNames;
+using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames;
+using AutoMapper;
+using ProcessingTools.Constants;
+using ProcessingTools.Enumerations;
+using ProcessingTools.Web.Common.ViewModels;
+using ProcessingTools.Web.Abstractions.Controllers;
+using ProcessingTools.Web.Constants;
 
-    public class GeoNamesController : Controller
+namespace ProcessingTools.Web.Areas.Data.Controllers
+{
+
+
+    public class GeoNamesController : BaseMvcController
     {
         public const string ControllerName = "GeoNames";
-        public const string IndexActionName = "Index";
-        public const string DetailsActionName = "Details";
-        public const string CreateActionName = "Create";
-        public const string EditActionName = "Edit";
-        public const string DeleteActionName = "Delete";
+        public const string DetailsActionName = nameof(GeoNamesController.Details);
+        public const string CreateActionName = nameof(GeoNamesController.Create);
+        public const string EditActionName = nameof(GeoNamesController.Edit);
+        public const string DeleteActionName = nameof(GeoNamesController.Delete);
 
         private readonly IGeoNamesDataService service;
+        private readonly IMapper mapper;
 
         public GeoNamesController(IGeoNamesDataService service)
         {
@@ -30,25 +38,37 @@
             }
 
             this.service = service;
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<IGeoName, GeoNameViewModel>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         // GET: Data/GeoNames
         [HttpGet, ActionName(IndexActionName)]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? p, int? n)
         {
-            var data = await this.service.SelectAsync(null);
+            string returnUrl = this.Request[ContextKeys.ReturnUrl];
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
 
-            var viewModel = data.Select(this.MapModelToViewModel)
-            .ToArray();
+            int currentPage = p ?? PagingConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
+            long numberOfItems = await this.service.SelectCountAsync(null);
+            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
+            var items = data.Select(this.mapper.Map<GeoNameViewModel>).ToArray();
+
+            var viewModel = new ListWithPagingViewModel<GeoNameViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(IndexActionName, viewModel);
         }
-
-        private Func<IGeoName, GeoNameViewModel> MapModelToViewModel => d => new GeoNameViewModel
-        {
-            Id = d.Id,
-            Name = d.Name
-        };
 
         // GET: Data/GeoNames/Details/5
         [HttpGet, ActionName(DetailsActionName)]
@@ -65,8 +85,14 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapModelToViewModel(model);
+            var viewModel = new GeoNamePageViewModel
+            {
+                Model = this.mapper.Map<GeoNameViewModel>(model),
+                PageTitle = "Details",
+                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
+            };
 
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DetailsActionName, viewModel);
         }
 
@@ -74,7 +100,15 @@
         [HttpGet, ActionName(CreateActionName)]
         public ActionResult Create()
         {
-            return this.View(CreateActionName);
+            var viewModel = new GeoNamePageViewModel
+            {
+                Model = null,
+                PageTitle = "Create",
+                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
+            };
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(EditActionName, viewModel);
         }
 
         // POST: Data/GeoNames/Create
@@ -82,15 +116,30 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Name")] GeoNameRequestModel model)
         {
+            string returnUrl = this.Request[ContextKeys.ReturnUrl];
+
             if (this.ModelState.IsValid)
             {
                 await this.service.InsertAsync(model);
                 await this.service.SaveChangesAsync();
 
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return this.Redirect(returnUrl);
+                }
+
                 return this.RedirectToAction(IndexActionName);
             }
 
-            return this.View(CreateActionName, model);
+            var viewModel = new GeoNamePageViewModel
+            {
+                Model = this.mapper.Map<GeoNameViewModel>(model),
+                PageTitle = "Create",
+                ReturnUrl = returnUrl
+            };
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(EditActionName, model);
         }
 
         // GET: Data/GeoNames/Edit/5
@@ -108,8 +157,14 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapModelToViewModel(model);
+            var viewModel = new GeoNamePageViewModel
+            {
+                Model = this.mapper.Map<GeoNameViewModel>(model),
+                PageTitle = "Edit",
+                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
+            };
 
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -118,15 +173,30 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoNameRequestModel model)
         {
+            string returnUrl = this.Request[ContextKeys.ReturnUrl];
+
             if (this.ModelState.IsValid)
             {
                 await this.service.UpdateAsync(model);
                 await this.service.SaveChangesAsync();
 
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return this.Redirect(returnUrl);
+                }
+
                 return this.RedirectToAction(IndexActionName);
             }
 
-            return this.View(EditActionName, model);
+            var viewModel = new GeoNamePageViewModel
+            {
+                Model = this.mapper.Map<GeoNameViewModel>(model),
+                PageTitle = "Edit",
+                ReturnUrl = returnUrl
+            };
+
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            return this.View(EditActionName, viewModel);
         }
 
         // GET: Data/GeoNames/Delete/5
@@ -144,8 +214,14 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.MapModelToViewModel(model);
+            var viewModel = new GeoNamePageViewModel
+            {
+                Model = this.mapper.Map<GeoNameViewModel>(model),
+                PageTitle = "Delete",
+                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
+            };
 
+            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DeleteActionName, viewModel);
         }
 
@@ -156,6 +232,12 @@
         {
             await this.service.DeleteAsync(id: id);
             await this.service.SaveChangesAsync();
+
+            string returnUrl = this.Request[ContextKeys.ReturnUrl];
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
 
             return this.RedirectToAction(IndexActionName);
         }

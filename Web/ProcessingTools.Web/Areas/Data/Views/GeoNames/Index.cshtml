@@ -1,6 +1,7 @@
 ﻿@using ProcessingTools.Web.Areas.Data.Controllers
 @using ProcessingTools.Web.Areas.Data.ViewModels.GeoNames
-@model IEnumerable<GeoNameViewModel>
+@using ProcessingTools.Web.Common.ViewModels
+@model ListWithPagingViewModel<GeoNameViewModel>
 
 @{
     this.ViewBag.Title = "Index";
@@ -11,31 +12,40 @@
 <p>
     @Html.ActionLink("Create New", GeoNamesController.CreateActionName)
 </p>
-<table class="table">
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
 
-    @{
-        int i = 0;
-    }
-    @foreach (var item in Model)
-    {
+@if (Model.Items.Count() > 0)
+{
+
+    <table class="table grid">
         <tr>
-            <td>@(++i)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", GeoNamesController.EditActionName, new { id = item.Id }) |
-                @Html.ActionLink("Details", GeoNamesController.DetailsActionName, new { id = item.Id }) |
-                @Html.ActionLink("Delete", GeoNamesController.DeleteActionName, new { id = item.Id })
-            </td>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items.First().Name)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @{
+            string returnUrl = Url.Action(Model.ActionName, routeValues: new { p = Model.CurrentPage, n = Model.NumberOfItemsPerPage });
+            int counter = 0;
+            foreach (var item in Model.Items)
+            {
+                ++counter;
+                <tr>
+                    <td>@counter</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                        @Html.ActionLink("Details", GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                        @Html.ActionLink("Delete", GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <footer>
+        @Html.Partial(ProcessingTools.Web.Constants.ViewNames.NavigationFootPartial)
+    </footer>
+}

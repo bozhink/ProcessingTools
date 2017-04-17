@@ -4,6 +4,7 @@
     {
         public const string ActionName = "ActionName";
         public const string ControllerName = "ControllerName";
+        public const string ReturnUrl = "ReturnUrl";
         public const string Url = "url";
     }
 }

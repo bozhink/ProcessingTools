@@ -10,6 +10,7 @@
         public const string EditButtons = "_EditButtons";
         public const string Error = "Error";
         public const string Lockout = "Lockout";
+        public const string NavigationFootPartial = "~/Views/Shared/Partials/_NavigationFoot.cshtml";
         public const string SharedEditButtonsPartial = "~/Views/Shared/Buttons/_EditButtons.cshtml";
     }
 }

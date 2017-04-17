@@ -363,6 +363,7 @@
     <Compile Include="Areas\Data\Controllers\GeoNamesController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\GeoNames\GeoNamePageViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\GeoNames\GeoNameViewModel.cs" />
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
@@ -580,7 +581,6 @@
     <Content Include="Areas\Journals\Views\Institutions\Index.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Data\Views\GeoNames\Create.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Delete.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Details.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Edit.cshtml" />
@@ -651,6 +651,7 @@
     <Content Include="Views\Shared\Partials\_NavigationBar.cshtml" />
     <Content Include="Scripts\knockout.validation.min.js.map" />
     <Content Include="Views\Shared\Buttons\_EditButtons.cshtml" />
+    <Content Include="Views\Shared\Partials\_NavigationFoot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
