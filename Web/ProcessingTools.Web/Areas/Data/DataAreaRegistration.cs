@@ -14,6 +14,7 @@
                 url: "Data/{controller}/{action}/{id}",
                 defaults: new
                 {
+                    controller = RouteValues.DefaultContollerName,
                     action = RouteValues.IndexActionName,
                     id = UrlParameter.Optional
                 });
