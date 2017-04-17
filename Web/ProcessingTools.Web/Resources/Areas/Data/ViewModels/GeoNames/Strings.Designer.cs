@@ -59,5 +59,32 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} must be at least {2} characters long..
+        /// </summary>
+        public static string NameLengthValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("NameLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required.
+        /// </summary>
+        public static string NameValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("NameValidationErrorMessage", resourceCulture);
+            }
+        }
     }
 }
