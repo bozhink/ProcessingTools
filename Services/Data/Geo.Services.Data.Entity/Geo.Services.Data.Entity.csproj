@@ -91,6 +91,7 @@
     <Compile Include="Services\EntityCitySynonymsDataService.cs" />
     <Compile Include="Services\EntityContinentSynonymsDataService.cs" />
     <Compile Include="Services\EntityCountrySynonymsDataService.cs" />
+    <Compile Include="Services\EntityCountySynonymsDataService.cs" />
     <Compile Include="Services\EntityGeoEpithetsDataService.cs" />
     <Compile Include="Services\EntityGeoNamesDataService.cs" />
   </ItemGroup>
