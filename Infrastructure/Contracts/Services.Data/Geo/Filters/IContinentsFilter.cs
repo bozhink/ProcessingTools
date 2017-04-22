@@ -2,5 +2,6 @@
 {
     public interface IContinentsFilter : ISynonymisableFilter
     {
+        string Country { get; }
     }
 }
