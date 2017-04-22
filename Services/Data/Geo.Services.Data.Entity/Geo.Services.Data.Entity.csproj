@@ -99,6 +99,7 @@
     <Compile Include="Services\EntityMunicipalitySynonymsDataService.cs" />
     <Compile Include="Services\EntityProvinceSynonymsDataService.cs" />
     <Compile Include="Services\EntityRegionSynonymsDataService.cs" />
+    <Compile Include="Services\EntityStateSynonymsDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
