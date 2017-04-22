@@ -205,6 +205,15 @@ namespace ProcessingTools.Web.Resources.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string HomeActionLinkTitle {
+            get {
+                return ResourceManager.GetString("HomeActionLinkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Index.
         /// </summary>
         public static string IndexPageHeading {

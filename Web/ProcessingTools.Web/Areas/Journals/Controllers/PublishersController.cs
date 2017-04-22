@@ -14,17 +14,18 @@
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Constants;
     using ProcessingTools.Web.Areas.Journals.Models.Publishers;
     using ProcessingTools.Web.Areas.Journals.Models.Shared;
     using ProcessingTools.Web.Areas.Journals.ViewModels.Publishers;
     using ProcessingTools.Web.Areas.Journals.ViewModels.Shared;
+    using ProcessingTools.Web.Constants;
     using Strings = ProcessingTools.Web.Resources.Areas.Journals.Views.Publishers.Strings;
 
     [Authorize]
     public class PublishersController : BaseMvcController
     {
         public const string ControllerName = "Publishers";
+        public const string IndexActionName = RouteValues.IndexActionName;
         public const string CreateActionName = nameof(PublishersController.Create);
         public const string DeleteActionName = nameof(PublishersController.Delete);
         public const string DetailsActionName = nameof(PublishersController.Details);
@@ -143,7 +144,7 @@
                     var modelId = await this.service.Add(this.UserId, model);
                     await this.UpdateAddressesFromJson(modelId, addresses);
 
-                    return this.RedirectToAction(BaseMvcController.IndexActionName);
+                    return this.RedirectToAction(IndexActionName);
                 }
                 else
                 {
@@ -193,7 +194,7 @@
         {
             if (cancel)
             {
-                return this.RedirectToAction(BaseMvcController.IndexActionName);
+                return this.RedirectToAction(IndexActionName);
             }
 
             try
@@ -205,7 +206,7 @@
 
                     if (exit)
                     {
-                        return this.RedirectToAction(BaseMvcController.IndexActionName);
+                        return this.RedirectToAction(IndexActionName);
                     }
 
                     if (createNew)
@@ -266,7 +267,7 @@
 
             await this.service.Delete(this.UserId, id);
 
-            return this.RedirectToAction(BaseMvcController.IndexActionName);
+            return this.RedirectToAction(IndexActionName);
         }
 
         [HttpGet, ActionName(AddressesActionName)]

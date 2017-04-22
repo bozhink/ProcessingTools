@@ -165,6 +165,9 @@
   <data name="HelpPageTitle" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="HomeActionLinkTitle" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="IndexPageHeading" xml:space="preserve">
     <value>Index</value>
   </data>

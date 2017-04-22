@@ -4,21 +4,22 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using Abstractions.Controllers;
-    using Constants;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Services.Web.Managers;
+    using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Common.Enumerations;
-    using ViewModels.Manage;
-    using Strings = Resources.Controllers.Manage.Strings;
+    using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.ViewModels.Manage;
+    using Strings = ProcessingTools.Web.Resources.Controllers.Manage.Strings;
 
     [RequireHttps]
     [Authorize]
     public class ManageController : BaseMvcController
     {
         public const string ControllerName = "Manage";
+        public const string IndexActionName = RouteValues.IndexActionName;
         public const string RemoveLoginActionName = nameof(ManageController.RemoveLogin);
         public const string ManageLoginsActionName = nameof(ManageController.ManageLogins);
         public const string AddPhoneNumberActionName = nameof(ManageController.AddPhoneNumber);

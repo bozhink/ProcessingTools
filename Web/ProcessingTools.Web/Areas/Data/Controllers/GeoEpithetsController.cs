@@ -22,6 +22,7 @@
     public class GeoEpithetsController : BaseMvcController
     {
         public const string ControllerName = "GeoEpithets";
+        public const string IndexActionName = RouteValues.IndexActionName;
         public const string DetailsActionName = nameof(GeoEpithetsController.Details);
         public const string CreateActionName = nameof(GeoEpithetsController.Create);
         public const string EditActionName = nameof(GeoEpithetsController.Edit);

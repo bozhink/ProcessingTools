@@ -2,15 +2,12 @@
 {
     using System.Net;
     using System.Web.Mvc;
-    using Constants;
     using Microsoft.AspNet.Identity;
+    using ProcessingTools.Web.Constants;
     using ProcessingTools.Web.Controllers;
 
     public abstract class BaseMvcController : Controller
     {
-        public const string IndexActionName = RouteValues.IndexActionName;
-        public const string HelpActionName = RouteValues.HelpActionName;
-
         protected object DefaultRouteValues => new
         {
             area = AreaNames.DefaultArea
@@ -18,7 +15,7 @@
 
         protected string UserId => this.User?.Identity?.GetUserId();
 
-        [HttpGet, ActionName(HelpActionName)]
+        [HttpGet, ActionName(RouteValues.HelpActionName)]
         public virtual ActionResult Help()
         {
             this.Response.StatusCode = (int)HttpStatusCode.OK;

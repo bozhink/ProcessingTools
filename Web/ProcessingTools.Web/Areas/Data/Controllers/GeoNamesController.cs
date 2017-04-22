@@ -22,6 +22,7 @@
     public class GeoNamesController : BaseMvcController
     {
         public const string ControllerName = "GeoNames";
+        public const string IndexActionName = RouteValues.IndexActionName;
         public const string DetailsActionName = nameof(GeoNamesController.Details);
         public const string CreateActionName = nameof(GeoNamesController.Create);
         public const string EditActionName = nameof(GeoNamesController.Edit);

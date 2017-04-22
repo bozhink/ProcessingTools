@@ -4,21 +4,22 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using Abstractions.Controllers;
-    using Constants;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Users.Data.Entity.Models;
-    using ViewModels.Account;
-    using Strings = Resources.Controllers.Account.Strings;
+    using ProcessingTools.Web.Abstractions.Controllers;
+    using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.ViewModels.Account;
+    using Strings = ProcessingTools.Web.Resources.Controllers.Account.Strings;
 
     [RequireHttps]
     [Authorize]
     public class AccountController : BaseMvcController
     {
         public const string ControllerName = "Account";
+        public const string IndexActionName = RouteValues.IndexActionName;
         public const string ConfirmEmailActionName = nameof(AccountController.ConfirmEmail);
         public const string ExternalLoginActionName = nameof(AccountController.ExternalLogin);
         public const string ExternalLoginCallbackActionName = nameof(AccountController.ExternalLoginCallback);
