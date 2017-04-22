@@ -3,7 +3,7 @@
 @{
     if (Model.LastPage > 0)
     {
-        const long MaximalNumberOfPagesToShow = 5;
+        const long MaximalNumberOfPagesToShow = 3;
         const long NumberOfPagesNearActive = MaximalNumberOfPagesToShow / 2;
 
         long leftPage = Model.FirstPage;
@@ -29,7 +29,7 @@
         }
 
         <nav>
-            <ul class="pagination">
+            <ul class="pagination pagination-sm">
                 @if (Model.CurrentPage > Model.FirstPage)
                 {
                     <li>
@@ -41,10 +41,10 @@
                     </li>
                 }
 
-                @if (leftPage > Model.FirstPage)
+                @*@if (leftPage > Model.FirstPage)
                 {
                     <li class="disabled"><a>...</a></li>
-                }
+                }*@
 
                 @for (long i = leftPage; i <= rightPage; ++i)
                 {
@@ -53,10 +53,10 @@
                     </li>
                 }
 
-                @if (rightPage < Model.LastPage)
+                @*@if (rightPage < Model.LastPage)
                 {
                     <li class="disabled"><a>...</a></li>
-                }
+                }*@
 
                 @if (Model.CurrentPage < Model.LastPage)
                 {

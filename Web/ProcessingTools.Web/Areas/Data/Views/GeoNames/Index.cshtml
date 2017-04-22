@@ -16,36 +16,30 @@
 
 @if (Model.Items.Count() > 0)
 {
-
-    <table class="table grid">
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Items.First().Name)
-            </th>
-            <th></th>
-        </tr>
-
+    <div class="container grid">
+        <div class="row grid-header">
+            <div class="col-xs-1 col-sm-1 col-md-1"></div>
+            <div class="col-xs-7 col-sm-7 col-md-7"><strong>@Html.DisplayNameFor(model => model.Items.First().Name)</strong></div>
+            <div class="col-xs-4 col-sm-4 col-md-4"></div>
+        </div>
         @{
             string returnUrl = Url.Action(Model.ActionName, routeValues: new { p = Model.CurrentPage, n = Model.NumberOfItemsPerPage });
             int counter = 0;
             foreach (var item in Model.Items)
             {
                 ++counter;
-                <tr>
-                    <td>@counter</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
+                <div class="row grid-row">
+                    <div class="col-xs-1 col-sm-1 col-md-1">@(Model.CurrentPage * Model.NumberOfItemsPerPage + counter)</div>
+                    <div class="col-xs-11 col-sm-7 col-md-7">@Html.DisplayFor(modelItem => item.Name)</div>
+                    <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
                         @Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
                         @Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
                         @Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
-                    </td>
-                </tr>
+                    </div>
+                </div>
             }
         }
-    </table>
+    </div>
     <footer>
         @Html.Partial(ProcessingTools.Web.Constants.ViewNames.NavigationFootPartial)
     </footer>

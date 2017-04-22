@@ -72,16 +72,26 @@ section[role=main] footer {
     border-top: 1px solid rgba(0, 0, 0, .075);
 }
 
-.table.grid {
-    width: 100%;
+.grid > .grid-row {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 5px 0 5px 0;
 }
 
-.grid .grid-row {
-    display: table-row;
-    height: 1.5rem;
-    max-height: 1.5rem !important;
+.grid > .grid-row:last-child {
+    border-bottom: 2px solid rgb(221, 221, 221);
 }
 
-.grid .grid-column {
-    width: 80%;
+.grid > .grid-row:hover {
+    background-color: #eee;
+}
+
+.grid > .grid-row > div:last-child {
+    text-align: right;
+}
+
+.grid > .grid-header {
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-bottom: 2px solid rgb(221, 221, 221);
 }
