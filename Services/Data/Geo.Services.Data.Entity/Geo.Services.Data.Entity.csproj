@@ -96,6 +96,7 @@
     <Compile Include="Services\EntityCountriesDataService.cs" />
     <Compile Include="Services\EntityCountrySynonymsDataService.cs" />
     <Compile Include="Services\EntityCountySynonymsDataService.cs" />
+    <Compile Include="Services\EntityDistrictsDataService.cs" />
     <Compile Include="Services\EntityDistrictSynonymsDataService.cs" />
     <Compile Include="Services\EntityGeoEpithetsDataService.cs" />
     <Compile Include="Services\EntityGeoNamesDataService.cs" />
