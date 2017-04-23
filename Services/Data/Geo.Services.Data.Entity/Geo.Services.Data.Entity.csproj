@@ -107,6 +107,7 @@
     <Compile Include="Services\EntityProvinceSynonymsDataService.cs" />
     <Compile Include="Services\EntityRegionsDataService.cs" />
     <Compile Include="Services\EntityRegionSynonymsDataService.cs" />
+    <Compile Include="Services\EntityStatesDataService.cs" />
     <Compile Include="Services\EntityStateSynonymsDataService.cs" />
   </ItemGroup>
   <ItemGroup>
