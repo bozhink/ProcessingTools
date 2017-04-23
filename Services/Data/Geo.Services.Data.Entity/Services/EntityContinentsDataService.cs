@@ -9,6 +9,7 @@
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
+    using System.Data.Entity;
 
     public class EntityContinentsDataService : AbstractGeoDataService<Continent, IContinent, IContinentsFilter>, IEntityContinentsDataService
     {
@@ -41,7 +42,8 @@
         protected override IQueryable<Continent> GetQuery(IContinentsFilter filter)
         {
             {
-                var query = this.Repository.Queryable();
+                var query = this.Repository.Queryable()
+                    .Include(c => c.Synonyms);
 
                 if (filter != null)
                 {
