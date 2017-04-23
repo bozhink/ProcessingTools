@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Meta;
-    using Models.Meta;
-    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Contracts.Data.Documents.Repositories;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Services.Data.Contracts.Meta;
+    using ProcessingTools.Services.Data.Models.Meta;
 
     public class JournalsMetaDataServiceWithDatabase : IJournalsMetaDataService
     {

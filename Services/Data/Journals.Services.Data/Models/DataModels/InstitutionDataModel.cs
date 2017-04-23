@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Data.Journals.Models;
+    using ProcessingTools.Contracts.Models;
 
     internal class InstitutionDataModel : IInstitution, IDataModel
     {

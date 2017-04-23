@@ -4,13 +4,13 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
-    using Models.Bio.Taxonomy;
+    using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
-    using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
 
     public class TaxonRankDataService : ITaxonRankDataService
     {

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Entity.Services
 {
     using System;
+    using System.Data.Entity;
     using System.Linq;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data.Geo.Filters;
@@ -9,7 +10,6 @@
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
-    using System.Data.Entity;
 
     public class EntityContinentsDataService : AbstractGeoDataService<Continent, IContinent, IContinentsFilter>, IEntityContinentsDataService
     {

@@ -25,7 +25,7 @@
         where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Contracts.Data.Journals.Models.IAddressable
         where TRepository : ICrudRepository<TDataModel>, IAddressableRepository
     {
-        private readonly static ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();
+        private static readonly ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();
 
         private readonly TRepository repository;
         private readonly IDateTimeProvider datetimeProvider;
