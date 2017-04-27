@@ -187,13 +187,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cache", "Cache", "{BA15A72D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validation", "Validation", "{1CAF68F6-B746-4B64-BB5D-8CF023B8C587}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34804C67-D50F-4753-BC9C-7F3DDECEFC2B}"
-	ProjectSection(SolutionItems) = preProject
-		Grant.sql = Grant.sql
-		WE-Palette.css = WE-Palette.css
-		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processors", "Processors", "{4DA970DE-6147-45AD-9DA6-AEA01FD07B93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processors", "Services\Processors\Processors\Processors.csproj", "{237D4CAF-98A4-4C86-91A6-46AE3E27E965}"
