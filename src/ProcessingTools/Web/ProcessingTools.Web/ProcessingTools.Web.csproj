@@ -587,6 +587,8 @@
     <Compile Include="ViewModels\Shared\Route.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\Areas\Data\Models\Shared\Synonym.js" />
+    <Content Include="Scripts\Areas\Data\ViewModels\Shared\SynonymViewModel.js" />
     <Content Include="Scripts\Areas\Journals\Models\Shared\Address.js" />
     <Content Include="Scripts\Areas\Journals\Models\Shared\Country.js" />
     <Content Include="Scripts\Areas\Journals\ViewModels\Shared\AddressViewModel.js" />
