@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
+namespace ProcessingTools.Web.Resources.Areas.Data.Views.Shared {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Resources.Areas.Data.Views.Shared.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,47 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Add Synonym.
         /// </summary>
-        public static string Name {
+        public static string AddSynonymTitle {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("AddSynonymTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must be between {1} and {2} characters long..
+        ///   Looks up a localized string similar to Language Code.
         /// </summary>
-        public static string NameLengthValidationErrorMessage {
+        public static string LanguageCodeTableHeading {
             get {
-                return ResourceManager.GetString("NameLengthValidationErrorMessage", resourceCulture);
+                return ResourceManager.GetString("LanguageCodeTableHeading", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name is required.
+        ///   Looks up a localized string similar to Remove Synonym.
         /// </summary>
-        public static string NameValidationErrorMessage {
+        public static string RemoveSynonymTitle {
             get {
-                return ResourceManager.GetString("NameValidationErrorMessage", resourceCulture);
+                return ResourceManager.GetString("RemoveSynonymTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synonyms.
+        /// </summary>
+        public static string SynonymsHeading {
+            get {
+                return ResourceManager.GetString("SynonymsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synonym.
+        /// </summary>
+        public static string SynonymTableHeading {
+            get {
+                return ResourceManager.GetString("SynonymTableHeading", resourceCulture);
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Data;
     using System.Linq;
     using System.Net;
@@ -12,26 +13,26 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Areas.Data.Models.GeoEpithets;
-    using ProcessingTools.Web.Areas.Data.ViewModels.GeoEpithets;
+    using ProcessingTools.Web.Areas.Data.Models.Continents;
+    using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoEpithets.Strings;
+    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings;
 
     [Authorize]
-    public class GeoEpithetsController : BaseMvcController
+    public class ContinentsController : BaseMvcController
     {
-        public const string ControllerName = "GeoEpithets";
+        public const string ControllerName = "Continents";
         public const string IndexActionName = RouteValues.IndexActionName;
-        public const string DetailsActionName = nameof(GeoEpithetsController.Details);
-        public const string CreateActionName = nameof(GeoEpithetsController.Create);
-        public const string EditActionName = nameof(GeoEpithetsController.Edit);
-        public const string DeleteActionName = nameof(GeoEpithetsController.Delete);
+        public const string DetailsActionName = nameof(ContinentsController.Details);
+        public const string CreateActionName = nameof(ContinentsController.Create);
+        public const string EditActionName = nameof(ContinentsController.Edit);
+        public const string DeleteActionName = nameof(ContinentsController.Delete);
 
-        private readonly IGeoEpithetsDataService service;
+        private readonly IContinentsDataService service;
         private readonly IMapper mapper;
 
-        public GeoEpithetsController(IGeoEpithetsDataService service)
+        public ContinentsController(IContinentsDataService service)
         {
             if (service == null)
             {
@@ -42,14 +43,32 @@
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IGeoEpithet, GeoEpithetViewModel>();
-                c.CreateMap<GeoEpithetRequestModel, GeoEpithetViewModel>();
+                c.CreateMap<IContinent, ContinentViewModel>()
+                    .ForMember(
+                        destinationMember: d => d.Synonyms,
+                        memberOptions: o => o.ResolveUsing(x => string.Empty))
+                    .ForMember(
+                        destinationMember: d => d.Countries,
+                        memberOptions: o => o.UseValue<IEnumerable<CountryViewModel>>(null))
+                    .ForMember(
+                        destinationMember: d => d.NumberOfCountries,
+                        memberOptions: o => o.ResolveUsing(x => x.Countries.Count));
+                c.CreateMap<ContinentRequestModel, ContinentViewModel>()
+                    .ForMember(
+                        destinationMember: d => d.Synonyms,
+                        memberOptions: o => o.ResolveUsing(x => string.Empty))
+                    .ForMember(
+                        destinationMember: d => d.Countries,
+                        memberOptions: o => o.UseValue<IEnumerable<CountryViewModel>>(null))
+                    .ForMember(
+                        destinationMember: d => d.NumberOfCountries,
+                        memberOptions: o => o.ResolveUsing(x => x.Countries.Count));
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        // GET: Data/GeoNames
+        // GET: Data/Continents
         [HttpGet, ActionName(IndexActionName)]
         public async Task<ActionResult> Index(int? p, int? n)
         {
@@ -63,16 +82,16 @@
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
             long numberOfItems = await this.service.SelectCountAsync(null);
-            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
-            var items = data.Select(this.mapper.Map<GeoEpithetViewModel>).ToArray();
+            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IContinent.Name), SortOrder.Ascending);
+            var items = data.Select(this.mapper.Map<ContinentViewModel>).ToArray();
 
-            var viewModel = new ListWithPagingViewModel<GeoEpithetViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new ListWithPagingViewModel<ContinentViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(IndexActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Details/5
+        // GET: Data/Continents/Details/5
         [HttpGet, ActionName(DetailsActionName)]
         public async Task<ActionResult> Details(int? id)
         {
@@ -87,9 +106,9 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = new GeoEpithetPageViewModel
+            var viewModel = new ContinentPageViewModel
             {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
+                Model = this.mapper.Map<ContinentViewModel>(model),
                 PageTitle = Strings.DetailsPageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
@@ -98,13 +117,13 @@
             return this.View(DetailsActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Create
+        // GET: Data/Continents/Create
         [HttpGet, ActionName(CreateActionName)]
         public ActionResult Create()
         {
-            var viewModel = new GeoEpithetPageViewModel
+            var viewModel = new ContinentPageViewModel
             {
-                Model = new GeoEpithetViewModel { Id = -1 },
+                Model = new ContinentViewModel { Id = -1 },
                 PageTitle = Strings.CreatePageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
@@ -113,10 +132,10 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // POST: Data/GeoNames/Create
+        // POST: Data/Continents/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name")] GeoEpithetRequestModel model)
+        public async Task<ActionResult> Create([Bind(Include = "Name")] ContinentRequestModel model)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
 
@@ -134,9 +153,9 @@
             }
 
             model.Id = -1;
-            var viewModel = new GeoEpithetPageViewModel
+            var viewModel = new ContinentPageViewModel
             {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
+                Model = this.mapper.Map<ContinentViewModel>(model),
                 PageTitle = Strings.CreatePageTitle,
                 ReturnUrl = returnUrl
             };
@@ -145,7 +164,7 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Edit/5
+        // GET: Data/Continents/Edit/5
         [HttpGet, ActionName(EditActionName)]
         public async Task<ActionResult> Edit(int? id)
         {
@@ -160,9 +179,9 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = new GeoEpithetPageViewModel
+            var viewModel = new ContinentPageViewModel
             {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
+                Model = this.mapper.Map<ContinentViewModel>(model),
                 PageTitle = Strings.EditPageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
@@ -171,10 +190,10 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // POST: Data/GeoNames/Edit/5
+        // POST: Data/Continents/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoEpithetRequestModel model)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] ContinentRequestModel model)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
 
@@ -191,9 +210,9 @@
                 return this.RedirectToAction(IndexActionName);
             }
 
-            var viewModel = new GeoEpithetPageViewModel
+            var viewModel = new ContinentPageViewModel
             {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
+                Model = this.mapper.Map<ContinentViewModel>(model),
                 PageTitle = Strings.EditPageTitle,
                 ReturnUrl = returnUrl
             };
@@ -202,7 +221,7 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Delete/5
+        // GET: Data/Continents/Delete/5
         [HttpGet, ActionName(DeleteActionName)]
         public async Task<ActionResult> Delete(int? id)
         {
@@ -217,9 +236,9 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = new GeoEpithetPageViewModel
+            var viewModel = new ContinentPageViewModel
             {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
+                Model = this.mapper.Map<ContinentViewModel>(model),
                 PageTitle = Strings.DeletePageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
@@ -228,7 +247,7 @@
             return this.View(DeleteActionName, viewModel);
         }
 
-        // POST: Data/GeoNames/Delete/5
+        // POST: Data/Continents/Delete/5
         [HttpPost, ActionName(DeleteActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

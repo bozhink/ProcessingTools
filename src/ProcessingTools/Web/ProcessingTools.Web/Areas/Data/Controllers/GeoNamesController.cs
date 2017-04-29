@@ -244,14 +244,5 @@
 
             return this.RedirectToAction(IndexActionName);
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-            }
-
-            base.Dispose(disposing);
-        }
     }
 }

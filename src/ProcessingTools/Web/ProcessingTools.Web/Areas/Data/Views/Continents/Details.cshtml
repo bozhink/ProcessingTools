@@ -1,0 +1,54 @@
+﻿@using ProcessingTools.Web.Areas.Data.Controllers
+@using ProcessingTools.Web.Areas.Data.ViewModels.Continents
+@using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings
+@model ContinentPageViewModel
+
+@{
+    this.ViewBag.Title = Model.PageTitle;
+}
+
+<header>
+    <h2>@Model.PageHeading</h2>
+</header>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.Model.Name)
+        </dd>
+
+    </dl>
+</div>
+@if (Model.Model.Countries != null && Model.Model.Countries.Count() > 0)
+{
+    <section>
+        <header>
+            <h3>@Strings.CountriesHeadingText</h3>
+        </header>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.LabelFor(m => m.Model.Countries.First().Name)</th>
+                    <th>@Html.LabelFor(m => m.Model.Countries.First().LanguageCode)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var country in Model.Model.Countries)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => country.Name)</td>
+                        <td>@Html.DisplayFor(m => country.LanguageCode)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+}
+<p>
+    @Html.ActionLink(Strings.EditActionLinkText, ContinentsController.EditActionName, new { id = Model.Model.Id, returnUrl = Model.ReturnUrl }) |
+    @Html.ActionLink(Strings.BackToListActionLinkText, ContinentsController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl })
+</p>

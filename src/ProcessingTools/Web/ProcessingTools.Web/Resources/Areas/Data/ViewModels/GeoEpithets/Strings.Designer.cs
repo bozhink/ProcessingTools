@@ -70,7 +70,7 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoEpithets {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must be at least {2} characters long..
+        ///   Looks up a localized string similar to The {0} must be between {1} and {2} characters long..
         /// </summary>
         public static string NameLengthValidationErrorMessage {
             get {

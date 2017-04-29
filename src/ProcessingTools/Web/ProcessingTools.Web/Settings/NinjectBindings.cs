@@ -66,6 +66,14 @@
             this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.IGeoEpithetsDataService>()
                 .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityGeoEpithetsDataService>()
                 .InRequestScope();
+
+            this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.IContinentsDataService>()
+                .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityContinentsDataService>()
+                .InRequestScope();
+
+            this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.IContinentSynonymsDataService>()
+                .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityContinentSynonymsDataService>()
+                .InRequestScope();
         }
     }
 }

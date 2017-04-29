@@ -117,13 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="AddSynonymTitle" xml:space="preserve">
+    <value>Add Synonym</value>
   </data>
-  <data name="NameLengthValidationErrorMessage" xml:space="preserve">
-    <value>The {0} must be between {1} and {2} characters long.</value>
+  <data name="SynonymsHeading" xml:space="preserve">
+    <value>Synonyms</value>
   </data>
-  <data name="NameValidationErrorMessage" xml:space="preserve">
-    <value>Name is required</value>
+  <data name="SynonymTableHeading" xml:space="preserve">
+    <value>Synonym</value>
+  </data>
+  <data name="LanguageCodeTableHeading" xml:space="preserve">
+    <value>Language Code</value>
+  </data>
+  <data name="RemoveSynonymTitle" xml:space="preserve">
+    <value>Remove Synonym</value>
   </data>
 </root>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
+namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.Continents {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Resources.Areas.Data.ViewModels.Continents.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,42 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Countries.
+        /// </summary>
+        public static string Countries {
+            get {
+                return ResourceManager.GetString("Countries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language Code.
+        /// </summary>
+        public static string LanguageCode {
+            get {
+                return ResourceManager.GetString("LanguageCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} must be between {1} and {2} characters long..
+        /// </summary>
+        public static string LanguageCodeLengthValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("LanguageCodeLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language Code is required.
+        /// </summary>
+        public static string LanguageCodeValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("LanguageCodeValidationErrorMessage", resourceCulture);
             }
         }
         
@@ -84,6 +120,24 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames {
         public static string NameValidationErrorMessage {
             get {
                 return ResourceManager.GetString("NameValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Countries.
+        /// </summary>
+        public static string NumberOfCountries {
+            get {
+                return ResourceManager.GetString("NumberOfCountries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synonyms.
+        /// </summary>
+        public static string Synonyms {
+            get {
+                return ResourceManager.GetString("Synonyms", resourceCulture);
             }
         }
     }

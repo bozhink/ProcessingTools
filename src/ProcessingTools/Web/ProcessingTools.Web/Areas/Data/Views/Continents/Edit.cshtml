@@ -1,0 +1,50 @@
+﻿@using ProcessingTools.Web.Areas.Data.Controllers
+@using ProcessingTools.Web.Areas.Data.ViewModels.Continents
+@using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
+@using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings
+@model ContinentPageViewModel
+@{
+    this.ViewBag.Title = Model.PageTitle;
+}
+
+<header>
+    <h2>@Model.PageHeading</h2>
+</header>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+        @if (Model.Model != null && Model.Model.Id > -1)
+        {
+            @Html.HiddenFor(m => m.Model.Id)
+        }
+
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Model.Name, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Model.Name, string.Empty, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@(Model.Model != null || Model.Model.Id > -1 ? Strings.SaveButtonText : Strings.CreateButtonText)" class="btn btn-info" />
+                <input type="reset" value="@Strings.ResetButtonText" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(Strings.BackToListActionLinkText, ContinentsController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl })
+</div>
+
+@section Scripts {
+    @Scripts.Render(Bundles.JQueryValidationScripts)
+}

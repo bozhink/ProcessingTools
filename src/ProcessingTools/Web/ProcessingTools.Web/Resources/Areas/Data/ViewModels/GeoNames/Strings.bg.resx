@@ -121,7 +121,7 @@
     <value>Име</value>
   </data>
   <data name="NameLengthValidationErrorMessage" xml:space="preserve">
-    <value>{0} трябва да е с дължина от поне {2} символа.</value>
+    <value>{0} трябва да е с дължина между {1} и {2} символа.</value>
   </data>
   <data name="NameValidationErrorMessage" xml:space="preserve">
     <value>Името е задължително</value>

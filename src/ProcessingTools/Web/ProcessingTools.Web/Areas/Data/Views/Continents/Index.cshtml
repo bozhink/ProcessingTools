@@ -1,0 +1,57 @@
+﻿@using ProcessingTools.Web.Areas.Data.Controllers
+@using ProcessingTools.Web.Areas.Data.ViewModels.Continents
+@using ProcessingTools.Web.Common.ViewModels
+@using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings
+@model ListWithPagingViewModel<ContinentViewModel>
+
+@{
+    this.ViewBag.Title = Strings.IndexPageTitle;
+}
+
+<h2>@this.ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink(Strings.CreateActionLinkText, ContinentsController.CreateActionName)
+</p>
+
+@if (Model.Items.Count() > 0)
+{
+    <table class="table grid">
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items.First().NumberOfCountries)
+            </th>
+            <th></th>
+        </tr>
+
+        @{
+            string returnUrl = Url.Action(Model.ActionName, routeValues: new { p = Model.CurrentPage, n = Model.NumberOfItemsPerPage });
+            int counter = 0;
+            foreach (var item in Model.Items)
+            {
+                ++counter;
+                <tr>
+                    <td>@counter</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfCountries)
+                    </td>
+                    <td>
+                        @Html.ActionLink(Strings.EditActionLinkText, ContinentsController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                        @Html.ActionLink(Strings.DetailsActionLinkText, ContinentsController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                        @Html.ActionLink(Strings.DeleteActionLinkText, ContinentsController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <footer>
+        @Html.Partial(ProcessingTools.Web.Constants.ViewNames.NavigationFootPartial)
+    </footer>
+}

@@ -121,7 +121,7 @@
     <value>Name</value>
   </data>
   <data name="NameLengthValidationErrorMessage" xml:space="preserve">
-    <value>The {0} must be at least {2} characters long.</value>
+    <value>The {0} must be between {1} and {2} characters long.</value>
   </data>
   <data name="NameValidationErrorMessage" xml:space="preserve">
     <value>Name is required</value>

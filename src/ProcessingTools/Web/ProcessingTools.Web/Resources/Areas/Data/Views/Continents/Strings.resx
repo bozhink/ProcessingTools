@@ -117,13 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="BackToListActionLinkText" xml:space="preserve">
+    <value>Back to List</value>
   </data>
-  <data name="NameLengthValidationErrorMessage" xml:space="preserve">
-    <value>The {0} must be between {1} and {2} characters long.</value>
+  <data name="CancelButtonText" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="NameValidationErrorMessage" xml:space="preserve">
-    <value>Name is required</value>
+  <data name="CountriesHeadingText" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="CreateActionLinkText" xml:space="preserve">
+    <value>Create new Continent</value>
+  </data>
+  <data name="CreateButtonText" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreatePageTitle" xml:space="preserve">
+    <value>Create new Continent</value>
+  </data>
+  <data name="DeleteActionLinkText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteButtonText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this continent?</value>
+  </data>
+  <data name="DeletePageTitle" xml:space="preserve">
+    <value>Delete Continent</value>
+  </data>
+  <data name="DetailsActionLinkText" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DetailsPageTitle" xml:space="preserve">
+    <value>Continent Details</value>
+  </data>
+  <data name="EditActionLinkText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditPageTitle" xml:space="preserve">
+    <value>Edit Continent</value>
+  </data>
+  <data name="IndexPageTitle" xml:space="preserve">
+    <value>List of Continents</value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="SaveButtonText" xml:space="preserve">
+    <value>Save</value>
   </data>
 </root>

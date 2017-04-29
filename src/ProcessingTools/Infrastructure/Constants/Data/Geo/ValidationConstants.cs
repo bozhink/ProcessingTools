@@ -21,6 +21,7 @@
         public const int MinimalLengthOfCountryName = 2;
         public const int MinimalLengthOfGeoEpithetName = 1;
         public const int MinimalLengthOfGeoName = 1;
+        public const int MinimalLengthOfLanguageCode = 1;
         public const int MinimalLengthOfPostCode = 1;
         public const int MinimalLengthOfStateName = 1;
         public const int MinimalLengthOfUserIdentifier = 1;

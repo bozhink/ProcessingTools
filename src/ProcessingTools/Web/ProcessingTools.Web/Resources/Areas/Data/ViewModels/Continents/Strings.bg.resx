@@ -117,13 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Countries" xml:space="preserve">
+    <value>Държави</value>
+  </data>
+  <data name="LanguageCode" xml:space="preserve">
+    <value>Код на езика</value>
+  </data>
+  <data name="LanguageCodeLengthValidationErrorMessage" xml:space="preserve">
+    <value>{0} трябва да е с дължина между {1} и {2} символа.</value>
+  </data>
+  <data name="LanguageCodeValidationErrorMessage" xml:space="preserve">
+    <value>Кодът на езика е задължителен</value>
+  </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Име</value>
   </data>
   <data name="NameLengthValidationErrorMessage" xml:space="preserve">
-    <value>The {0} must be between {1} and {2} characters long.</value>
+    <value>{0} трябва да е с дължина между {1} и {2} символа.</value>
   </data>
   <data name="NameValidationErrorMessage" xml:space="preserve">
-    <value>Name is required</value>
+    <value>Името е задължително</value>
+  </data>
+  <data name="NumberOfCountries" xml:space="preserve">
+    <value>Брой държави</value>
+  </data>
+  <data name="Synonyms" xml:space="preserve">
+    <value>Синоними</value>
   </data>
 </root>
