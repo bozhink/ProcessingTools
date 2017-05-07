@@ -94,26 +94,17 @@
     <Compile Include="Models\Synonym.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EntityCitiesDataService.cs" />
-    <Compile Include="Services\EntityCitySynonymsDataService.cs" />
     <Compile Include="Services\EntityContinentsDataService.cs" />
-    <Compile Include="Services\EntityContinentSynonymsDataService.cs" />
     <Compile Include="Services\EntityCountiesDataService.cs" />
     <Compile Include="Services\EntityCountriesDataService.cs" />
-    <Compile Include="Services\EntityCountrySynonymsDataService.cs" />
-    <Compile Include="Services\EntityCountySynonymsDataService.cs" />
     <Compile Include="Services\EntityDistrictsDataService.cs" />
-    <Compile Include="Services\EntityDistrictSynonymsDataService.cs" />
     <Compile Include="Services\EntityGeoEpithetsDataService.cs" />
     <Compile Include="Services\EntityGeoNamesDataService.cs" />
     <Compile Include="Services\EntityMunicipalitiesDataService.cs" />
-    <Compile Include="Services\EntityMunicipalitySynonymsDataService.cs" />
     <Compile Include="Services\EntityPostCodesDataService.cs" />
     <Compile Include="Services\EntityProvincesDataService.cs" />
-    <Compile Include="Services\EntityProvinceSynonymsDataService.cs" />
     <Compile Include="Services\EntityRegionsDataService.cs" />
-    <Compile Include="Services\EntityRegionSynonymsDataService.cs" />
     <Compile Include="Services\EntityStatesDataService.cs" />
-    <Compile Include="Services\EntityStateSynonymsDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
