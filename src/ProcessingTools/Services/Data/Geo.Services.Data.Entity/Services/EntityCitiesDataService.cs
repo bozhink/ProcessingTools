@@ -21,10 +21,20 @@
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<City, City>()
+                    .ForMember(d => d.Country, o => o.Ignore())
+                    .ForMember(d => d.County, o => o.Ignore())
+                    .ForMember(d => d.District, o => o.Ignore())
+                    .ForMember(d => d.Municipality, o => o.Ignore())
+                    .ForMember(d => d.Province, o => o.Ignore())
+                    .ForMember(d => d.Region, o => o.Ignore())
+                    .ForMember(d => d.State, o => o.Ignore())
+                    .ForMember(d => d.PostCodes, o => o.Ignore())
+                    .ForMember(d => d.Synonyms, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 
                 c.CreateMap<CitySynonym, CitySynonym>()
+                    .ForMember(d => d.City, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 

@@ -21,10 +21,19 @@
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<State, State>()
+                    .ForMember(d => d.Country, o => o.Ignore())
+                    .ForMember(d => d.Provinces, o => o.Ignore())
+                    .ForMember(d => d.Regions, o => o.Ignore())
+                    .ForMember(d => d.Districts, o => o.Ignore())
+                    .ForMember(d => d.Municipalities, o => o.Ignore())
+                    .ForMember(d => d.Counties, o => o.Ignore())
+                    .ForMember(d => d.Cities, o => o.Ignore())
+                    .ForMember(d => d.Synonyms, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 
                 c.CreateMap<StateSynonym, StateSynonym>()
+                    .ForMember(d => d.State, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 
