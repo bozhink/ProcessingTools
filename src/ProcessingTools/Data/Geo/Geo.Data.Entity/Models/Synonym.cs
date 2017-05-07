@@ -3,8 +3,9 @@
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Contracts.Data.Geo.Models;
+    using ProcessingTools.Contracts.Models;
 
-    public abstract class Synonym : SystemInformation, ISynonym
+    public abstract class Synonym : SystemInformation, INameableIntegerIdentifiable, ISynonym, IDataModel
     {
         [Key]
         public int Id { get; set; }

@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class District : SystemInformation, ISynonymisable<DistrictSynonym>, IDataModel
+    public class District : SystemInformation, ISynonymisable<DistrictSynonym>, INameableIntegerIdentifiable, IDataModel
     {
         private ICollection<Municipality> municipalities;
         private ICollection<County> counties;

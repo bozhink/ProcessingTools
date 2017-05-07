@@ -6,7 +6,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Enumerations;
 
-    public class PostCode : SystemInformation, IDataModel
+    public class PostCode : SystemInformation, IIntegerIdentifiable, IDataModel
     {
         [Key]
         public int Id { get; set; }

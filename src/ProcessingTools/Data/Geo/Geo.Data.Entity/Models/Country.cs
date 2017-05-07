@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class Country : SystemInformation, ISynonymisable<CountrySynonym>, IDataModel
+    public class Country : SystemInformation, ISynonymisable<CountrySynonym>, INameableIntegerIdentifiable, IDataModel
     {
         private ICollection<Continent> continents;
         private ICollection<State> states;

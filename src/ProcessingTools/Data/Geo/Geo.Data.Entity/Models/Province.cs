@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class Province : SystemInformation, ISynonymisable<ProvinceSynonym>, IDataModel
+    public class Province : SystemInformation, ISynonymisable<ProvinceSynonym>, INameableIntegerIdentifiable, IDataModel
     {
         private ICollection<Region> regions;
         private ICollection<District> districts;

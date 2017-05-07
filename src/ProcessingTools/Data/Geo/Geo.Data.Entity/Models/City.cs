@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class City : SystemInformation, ISynonymisable<CitySynonym>, IDataModel
+    public class City : SystemInformation, ISynonymisable<CitySynonym>, INameableIntegerIdentifiable, IDataModel
     {
         private ICollection<PostCode> postCodes;
         private ICollection<CitySynonym> synonyms;

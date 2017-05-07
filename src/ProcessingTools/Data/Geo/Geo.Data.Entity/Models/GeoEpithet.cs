@@ -5,7 +5,7 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Contracts.Models;
 
-    public class GeoEpithet : SystemInformation, IDataModel
+    public class GeoEpithet : SystemInformation, INameableIntegerIdentifiable, IDataModel
     {
         [Key]
         public int Id { get; set; }

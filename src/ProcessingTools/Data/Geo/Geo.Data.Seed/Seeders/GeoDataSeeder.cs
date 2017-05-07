@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Geo.Data.Seed.Seeders
 {
     using System;
-    using System.Linq;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data.Entity.Migrations;
+    using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Entity.Seed;
