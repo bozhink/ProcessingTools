@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\AbstractGeoDataService.cs" />
     <Compile Include="Abstractions\AbstractGeoDataSynonymsService.cs" />
+    <Compile Include="Abstractions\AbstractGeoSynonymisableDataService.cs" />
     <Compile Include="Contracts\Services\IEntityCitiesDataService.cs" />
     <Compile Include="Contracts\Services\IEntityCitySynonymsDataService.cs" />
     <Compile Include="Contracts\Services\IEntityContinentsDataService.cs" />
