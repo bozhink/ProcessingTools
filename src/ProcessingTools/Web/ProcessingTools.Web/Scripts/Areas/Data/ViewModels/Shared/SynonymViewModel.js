@@ -1,23 +1,20 @@
 function SynonymViewModel(synonyms) {
-    var self = this,
-        count = 0;
+    var self = this;
 
     self.isModified = ko.observable(false);
-    self.count = ko.observable(count);
+    self.count = ko.observable(0);
     self.synonyms = ko.observableArray([]);
 
     function rebind(synonyms) {
-        var i, len, synonym;
-
+        var i, len, synonym, count = 0;
         self.synonyms.removeAll();
-        count = 0;
         self.count(count);
 
         if (Array.isArray(synonyms)) {
             len = synonyms.length;
             for (i = 0; i < len; i += 1) {
                 synonym = synonyms[i];
-                self.synonyms.push(new Synonym(synonym.Id, synonym.name, synonym.languageId, 0));
+                self.synonyms.push(new Synonym(synonym.Id, synonym.Name, synonym.LanguageCode, 0));
                 count += 1;
             }
 
@@ -31,16 +28,14 @@ function SynonymViewModel(synonyms) {
 
     self.addSynonym = function () {
         self.synonyms.push(new Synonym(-1, '', '', 2));
-        count = self.count() + 1;
-        self.count(count);
+        self.count(self.count() + 1);
         self.isModified(true);
     };
 
     self.removeSynonym = function (synonym) {
         if (synonym) {
             self.synonyms.remove(synonym);
-            count = self.count() - 1;
-            self.count(count);
+            self.count(self.count() - 1);
             if (synonym.status() < 2) {
                 self.synonyms.push(new Synonym(synonym.id, synonym.name(), synonym.languageId(), 3));
                 self.isModified(true);
@@ -59,7 +54,7 @@ function SynonymViewModel(synonyms) {
                 data.push({
                     Id: synonym.id,
                     Name: synonym.name(),
-                    LanguageId: synonym.languageId(),
+                    LanguageCode: synonym.languageId(),
                     Status: synonym.status() === 0 ? isModified ? 1 : 0 : synonym.status()
                 });
 
@@ -71,23 +66,4 @@ function SynonymViewModel(synonyms) {
 
         return JSON.stringify(data);
     }, self);
-
-    self.save = function (url) {
-        return {
-            invoke: function () {
-                $.ajax({
-                    url: url,
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: self.json(),
-                    success: function (data) {
-                        rebind(data);
-                    },
-                    error: function (error) {
-                        alert(JSON.stringify(error));
-                    }
-                });
-            }
-        };
-    };
 }

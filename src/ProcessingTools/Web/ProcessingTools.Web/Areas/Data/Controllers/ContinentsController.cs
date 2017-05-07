@@ -2,18 +2,21 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AutoMapper;
+    using Newtonsoft.Json;
+    using ProcessingTools.Common;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Abstractions.Controllers;
+    using ProcessingTools.Web.Areas.Data.Filters.Continents;
     using ProcessingTools.Web.Areas.Data.Models.Continents;
+    using ProcessingTools.Web.Areas.Data.Models.Shared;
     using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
@@ -28,18 +31,26 @@
         public const string CreateActionName = nameof(ContinentsController.Create);
         public const string EditActionName = nameof(ContinentsController.Edit);
         public const string DeleteActionName = nameof(ContinentsController.Delete);
+        public const string SynonymsActionName = nameof(ContinentsController.Synonyms);
 
         private readonly IContinentsDataService service;
+        private readonly IContinentSynonymsDataService synonymsService;
         private readonly IMapper mapper;
 
-        public ContinentsController(IContinentsDataService service)
+        public ContinentsController(IContinentsDataService service, IContinentSynonymsDataService synonymsService)
         {
             if (service == null)
             {
                 throw new ArgumentNullException(nameof(service));
             }
 
+            if (synonymsService == null)
+            {
+                throw new ArgumentNullException(nameof(synonymsService));
+            }
+
             this.service = service;
+            this.synonymsService = synonymsService;
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -63,6 +74,7 @@
                     .ForMember(
                         destinationMember: d => d.NumberOfCountries,
                         memberOptions: o => o.ResolveUsing(x => x.Countries.Count));
+                c.CreateMap<IContinentSynonym, SynonymResponseModel>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
@@ -193,14 +205,17 @@
         // POST: Data/Continents/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] ContinentRequestModel model)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] ContinentRequestModel model, string synonyms)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
 
             if (this.ModelState.IsValid)
             {
                 await this.service.UpdateAsync(model);
+                await this.UpdateSynonymsFromJson(model.Id, synonyms);
+
                 await this.service.SaveChangesAsync();
+                await this.synonymsService.SaveChangesAsync();
 
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
@@ -262,6 +277,80 @@
             }
 
             return this.RedirectToAction(IndexActionName);
+        }
+
+        // GET: Data/Continents/Synonyms/5
+        [HttpGet, ActionName(SynonymsActionName)]
+        public async Task<JsonResult> Synonyms(int id)
+        {
+            var result = new JsonResult
+            {
+                ContentType = ContentTypes.Json,
+                ContentEncoding = Defaults.DefaultEncoding,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data = new SynonymResponseModel[] { }
+            };
+
+            var data = await this.synonymsService.SelectAsync(new ContinentSynonymsFilter
+            {
+                ParentId = id
+            });
+
+            if (data?.Length > 0)
+            {
+                result.Data = data.Select(s => this.mapper.Map<SynonymResponseModel>(s)).ToArray();
+            }
+
+            return result;
+        }
+
+        private async Task UpdateSynonymsFromJson(int modelId, string synonyms)
+        {
+            if (!string.IsNullOrWhiteSpace(synonyms) && synonyms != "[]")
+            {
+                try
+                {
+                    var synonymsArray = JsonConvert.DeserializeObject<ContinentSynonymRequestModel[]>(synonyms);
+                    await this.UpdateSynonyms(modelId, synonymsArray);
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private async Task UpdateSynonyms(int modelId, ContinentSynonymRequestModel[] synonyms)
+        {
+            if (synonyms?.Length > 0)
+            {
+                foreach (var synonym in synonyms)
+                {
+                    try
+                    {
+                        synonym.ParentId = modelId;
+                        switch (synonym.Status)
+                        {
+                            case UpdateStatus.Modified:
+                                await this.synonymsService.UpdateAsync(synonym);
+                                break;
+
+                            case UpdateStatus.Added:
+                                await this.synonymsService.InsertAsync(synonym);
+                                break;
+
+                            case UpdateStatus.Removed:
+                                await this.synonymsService.DeleteAsync(synonym.Id);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
         }
     }
 }

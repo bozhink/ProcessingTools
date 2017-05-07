@@ -21,8 +21,9 @@
                             optionsCaption: 'Choose...',
                             value: countryId" class="form-control"></select>
                 </td>*@
-                <td><a href="#" data-bind="click: $root.removeSynonym" class="glyphicon glyphicon-remove" title="@Strings.RemoveSynonymTitle"></a></td>
+                <td><a href="javascript:void(0);" data-bind="click: $root.removeSynonym" class="glyphicon glyphicon-remove" title="@Strings.RemoveSynonymTitle"></a></td>
             </tr>
         </tbody>
     </table>
 </div>
+<input name="synonyms" data-bind="value: json()" />

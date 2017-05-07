@@ -1,10 +1,12 @@
 ﻿@using ProcessingTools.Web.Areas.Data.Controllers
 @using ProcessingTools.Web.Areas.Data.ViewModels.Continents
+@using ProcessingTools.Web.Constants
 @using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
 @using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings
 @model ContinentPageViewModel
 @{
     this.ViewBag.Title = Model.PageTitle;
+    this.ViewData[ContextKeys.Url] = Url.Action(actionName: ContinentsController.SynonymsActionName, controllerName: ContinentsController.ControllerName, routeValues: new { id = Model?.Model?.Id });
 }
 
 <header>
@@ -39,6 +41,7 @@
             </div>
         </div>
     </div>
+    @Html.Partial(ViewNames.Synonyms, Model, this.ViewData)
 }
 
 <div>
@@ -47,4 +50,16 @@
 
 @section Scripts {
     @Scripts.Render(Bundles.JQueryValidationScripts)
+    @Scripts.Render(Bundles.KnockoutScripts)
+    <script src="~/Scripts/Areas/Data/Models/Shared/Synonym.js"></script>
+    <script src="~/Scripts/Areas/Data/ViewModels/Shared/SynonymViewModel.js"></script>
+    <script>
+        window.jsonRequester.get('@(this.ViewData[ContextKeys.Url]?.ToString())')
+            .then(function (data) {
+                ko.applyBindings(new SynonymViewModel(data));
+            })
+            .catch(function (error) {
+                ko.applyBindings(new SynonymViewModel());
+            });
+    </script>
 }

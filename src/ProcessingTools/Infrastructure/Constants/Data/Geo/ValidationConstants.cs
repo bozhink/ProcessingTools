@@ -15,6 +15,7 @@
         public const int MaximalLengthOfLanguageCode = 10;
         public const int MaximalLengthOfPostCode = 5;
         public const int MaximalLengthOfStateName = 60;
+        public const int MaximalLengthOfSynonymName = 150;
         public const int MaximalLengthOfUserIdentifier = 128;
         public const int MinimalLengthOfCityName = 1;
         public const int MinimalLengthOfContinentName = 2;
@@ -24,6 +25,7 @@
         public const int MinimalLengthOfLanguageCode = 1;
         public const int MinimalLengthOfPostCode = 1;
         public const int MinimalLengthOfStateName = 1;
+        public const int MinimalLengthOfSynonymName = 150;
         public const int MinimalLengthOfUserIdentifier = 1;
     }
 }

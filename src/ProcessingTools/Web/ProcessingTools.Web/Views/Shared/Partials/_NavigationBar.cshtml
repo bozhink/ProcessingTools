@@ -44,6 +44,28 @@
                                     },
                                     htmlAttributes: null)
                             </li>
+                            <li>
+                                @Html.ActionLink(
+                                    linkText: "Geo Epithets",
+                                    actionName: ProcessingTools.Web.Areas.Data.Controllers.GeoEpithetsController.IndexActionName,
+                                    controllerName: ProcessingTools.Web.Areas.Data.Controllers.GeoEpithetsController.ControllerName,
+                                    routeValues: new
+                                    {
+                                        area = AreaNames.Data
+                                    },
+                                    htmlAttributes: null)
+                            </li>
+                            <li>
+                                @Html.ActionLink(
+                                    linkText: "Continents",
+                                    actionName: ProcessingTools.Web.Areas.Data.Controllers.ContinentsController.IndexActionName,
+                                    controllerName: ProcessingTools.Web.Areas.Data.Controllers.ContinentsController.ControllerName,
+                                    routeValues: new
+                                    {
+                                        area = AreaNames.Data
+                                    },
+                                    htmlAttributes: null)
+                            </li>
                         </ul>
                     </li>
                 }

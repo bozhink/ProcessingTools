@@ -364,9 +364,13 @@
     <Compile Include="Areas\Data\Controllers\GeoEpithetsController.cs" />
     <Compile Include="Areas\Data\Controllers\GeoNamesController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
+    <Compile Include="Areas\Data\Filters\Continents\ContinentSynonymsFilter.cs" />
     <Compile Include="Areas\Data\Models\Continents\ContinentRequestModel.cs" />
+    <Compile Include="Areas\Data\Models\Continents\ContinentSynonymRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoEpithets\GeoEpithetRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
+    <Compile Include="Areas\Data\Models\Shared\SynonymRequestModel.cs" />
+    <Compile Include="Areas\Data\Models\Shared\SynonymResponseModel.cs" />
     <Compile Include="Areas\Data\ViewModels\Continents\ContinentPageViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\Continents\ContinentViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\Continents\CountryViewModel.cs" />
@@ -424,6 +428,16 @@
       <DependentUpon>Strings.bg.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Areas\Data\ViewModels\Shared\Strings.bg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Areas\Data\ViewModels\Shared\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -674,7 +688,7 @@
     <Content Include="Areas\Data\Views\Continents\Details.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Index.cshtml" />
-    <Content Include="Areas\Data\Views\Shared\_Synonym.cshtml" />
+    <Content Include="Areas\Data\Views\Shared\_Synonyms.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -853,6 +867,14 @@
       <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\Shared\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\Shared\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>

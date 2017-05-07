@@ -12,5 +12,6 @@
         public const string Lockout = "Lockout";
         public const string NavigationFootPartial = "~/Views/Shared/Partials/_NavigationFoot.cshtml";
         public const string SharedEditButtonsPartial = "~/Views/Shared/Buttons/_EditButtons.cshtml";
+        public const string Synonyms = "_Synonyms";
     }
 }
