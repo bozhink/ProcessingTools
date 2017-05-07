@@ -21,10 +21,13 @@
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<Continent, Continent>()
+                    .ForMember(d => d.Countries, o => o.Ignore())
+                    .ForMember(d => d.Synonyms, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 
                 c.CreateMap<ContinentSynonym, ContinentSynonym>()
+                    .ForMember(d => d.Continent, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 

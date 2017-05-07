@@ -14,7 +14,6 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Areas.Data.Filters.Continents;
     using ProcessingTools.Web.Areas.Data.Models.Continents;
     using ProcessingTools.Web.Areas.Data.Models.Shared;
     using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
@@ -34,23 +33,16 @@
         public const string SynonymsActionName = nameof(ContinentsController.Synonyms);
 
         private readonly IContinentsDataService service;
-        private readonly IContinentSynonymsDataService synonymsService;
         private readonly IMapper mapper;
 
-        public ContinentsController(IContinentsDataService service, IContinentSynonymsDataService synonymsService)
+        public ContinentsController(IContinentsDataService service)
         {
             if (service == null)
             {
                 throw new ArgumentNullException(nameof(service));
             }
 
-            if (synonymsService == null)
-            {
-                throw new ArgumentNullException(nameof(synonymsService));
-            }
-
             this.service = service;
-            this.synonymsService = synonymsService;
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -215,7 +207,6 @@
                 await this.UpdateSynonymsFromJson(model.Id, synonyms);
 
                 await this.service.SaveChangesAsync();
-                await this.synonymsService.SaveChangesAsync();
 
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
@@ -291,10 +282,7 @@
                 Data = new SynonymResponseModel[] { }
             };
 
-            var data = await this.synonymsService.SelectAsync(new ContinentSynonymsFilter
-            {
-                ParentId = id
-            });
+            var data = await this.service.SelectSynonymsAsync(id, null);
 
             if (data?.Length > 0)
             {
@@ -323,32 +311,33 @@
         {
             if (synonyms?.Length > 0)
             {
-                foreach (var synonym in synonyms)
+                try
                 {
-                    try
+                    foreach (var synonym in synonyms)
                     {
                         synonym.ParentId = modelId;
-                        switch (synonym.Status)
-                        {
-                            case UpdateStatus.Modified:
-                                await this.synonymsService.UpdateAsync(synonym);
-                                break;
-
-                            case UpdateStatus.Added:
-                                await this.synonymsService.InsertAsync(synonym);
-                                break;
-
-                            case UpdateStatus.Removed:
-                                await this.synonymsService.DeleteAsync(synonym.Id);
-                                break;
-
-                            default:
-                                break;
-                        }
                     }
-                    catch
+
+                    var modifiedSynonyms = synonyms.Where(s => s.Status == UpdateStatus.Modified).ToArray();
+                    if (modifiedSynonyms.Length > 0)
                     {
+                        await this.service.UpdateSynonymsAsync(modelId, modifiedSynonyms);
                     }
+
+                    var addedSynonyms = synonyms.Where(s => s.Status == UpdateStatus.Added).ToArray();
+                    if (addedSynonyms.Length > 0)
+                    {
+                        await this.service.AddSynonymsAsync(modelId, addedSynonyms);
+                    }
+
+                    var removedSynonyms = synonyms.Where(s => s.Status == UpdateStatus.Removed).Select(s => s.Id).ToArray();
+                    if (removedSynonyms.Length > 0)
+                    {
+                        await this.service.RemoveSynonymsAsync(modelId, removedSynonyms);
+                    }
+                }
+                catch
+                {
                 }
             }
         }

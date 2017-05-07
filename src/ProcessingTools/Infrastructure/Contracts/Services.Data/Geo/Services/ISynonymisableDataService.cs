@@ -14,10 +14,10 @@
 
         Task<object> UpdateSynonymsAsync(int modelId, params TSynonym[] synonyms);
 
-        Task<TSynonym[]> SelectSynonymsAsync(TSynonymFilter filter);
+        Task<TSynonym[]> SelectSynonymsAsync(int modelId, TSynonymFilter filter);
 
-        Task<long> SelectSynonymCountAsync(TSynonymFilter filter);
+        Task<long> SelectSynonymCountAsync(int modelId, TSynonymFilter filter);
 
-        Task<TSynonym> GetSynonymByIdAsync(int id);
+        Task<TSynonym> GetSynonymByIdAsync(int modelId, int id);
     }
 }
