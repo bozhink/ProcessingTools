@@ -229,7 +229,21 @@
 
         protected abstract IQueryable<TEntity> GetQuery(TFilter filter);
 
-        protected abstract IQueryable<TSynonymEntity> GetQuery(TSynonymFilter filter);
+        protected virtual IQueryable<TSynonymEntity> GetQuery(TSynonymFilter filter)
+        {
+            var query = this.SynonymRepository.Queryable();
+
+            if (filter != null)
+            {
+                query = query.Where(
+                     c =>
+                         (!filter.Id.HasValue || c.Id == filter.Id) &&
+                         (string.IsNullOrEmpty(filter.Name) || c.Name.ToLower().Contains(filter.Name.ToLower())) &&
+                         (!filter.LanguageCode.HasValue || c.LanguageCode == filter.LanguageCode));
+            }
+
+            return query;
+        }
 
         public async Task<object> AddSynonymsAsync(int modelId, params TSynonymModel[] synonyms)
         {

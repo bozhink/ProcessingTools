@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Entity.Services
 {
-    using System;
     using System.Data.Entity;
     using System.Linq;
+    using AutoMapper;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data.Geo.Filters;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
@@ -11,36 +11,76 @@
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityStatesDataService : AbstractGeoDataService<State, IState, IStatesFilter>, IEntityStatesDataService
+    public class EntityStatesDataService : AbstractGeoSynonymisableDataService<State, IState, IStatesFilter, StateSynonym, IStateSynonym, IStateSynonymsFilter>, IEntityStatesDataService
     {
-        public EntityStatesDataService(IGeoRepository<State> repository, IEnvironment environment)
-            : base(repository, environment)
-        {
-        }
+        private readonly IMapper mapper;
 
-        protected override Func<State, IState> MapEntityToModel => m => new ProcessingTools.Geo.Services.Data.Entity.Models.State
+        public EntityStatesDataService(IGeoRepository<State> repository, IGeoRepository<StateSynonym> synonymRepository, IEnvironment environment)
+            : base(repository, synonymRepository, environment)
         {
-            Id = m.Id,
-            Name = m.Name,
-            CountryId = m.CountryId,
-            Synonyms = m.Synonyms
-                .Select(
-                    s => new ProcessingTools.Geo.Services.Data.Entity.Models.StateSynonym
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<State, State>()
+                    .ForMember(d => d.CreatedBy, o => o.Ignore())
+                    .ForMember(d => d.CreatedOn, o => o.Ignore());
+
+                c.CreateMap<StateSynonym, StateSynonym>()
+                    .ForMember(d => d.CreatedBy, o => o.Ignore())
+                    .ForMember(d => d.CreatedOn, o => o.Ignore());
+
+                c.CreateMap<IState, State>()
+                    .ForMember(d => d.Country, o => o.Ignore())
+                    .ForMember(d => d.Provinces, o => o.Ignore())
+                    .ForMember(d => d.Regions, o => o.Ignore())
+                    .ForMember(d => d.Districts, o => o.Ignore())
+                    .ForMember(d => d.Municipalities, o => o.Ignore())
+                    .ForMember(d => d.Counties, o => o.Ignore())
+                    .ForMember(d => d.Cities, o => o.Ignore())
+                    .ForMember(d => d.Synonyms, o => o.Ignore())
+                    .ForMember(d => d.CreatedBy, o => o.Ignore())
+                    .ForMember(d => d.CreatedOn, o => o.Ignore())
+                    .ForMember(d => d.ModifiedBy, o => o.Ignore())
+                    .ForMember(d => d.ModifiedOn, o => o.Ignore());
+
+                c.CreateMap<IStateSynonym, StateSynonym>()
+                    .ForMember(d => d.State, o => o.Ignore())
+                    .ForMember(d => d.StateId, o => o.ResolveUsing(x => x.ParentId))
+                    .ForMember(d => d.CreatedBy, o => o.Ignore())
+                    .ForMember(d => d.CreatedOn, o => o.Ignore())
+                    .ForMember(d => d.ModifiedBy, o => o.Ignore())
+                    .ForMember(d => d.ModifiedOn, o => o.Ignore());
+
+                c.CreateMap<State, IState>()
+                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.State
+                    {
+                        Id = m.Id,
+                        Name = m.Name,
+                        CountryId = m.CountryId,
+                        Synonyms = m.Synonyms
+                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.StateSynonym
+                            {
+                                Id = s.Id,
+                                LanguageCode = s.LanguageCode,
+                                Name = s.Name,
+                                ParentId = m.Id
+                            })
+                            .ToList<IStateSynonym>()
+                    });
+
+                c.CreateMap<StateSynonym, IStateSynonym>()
+                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.StateSynonym
                     {
                         Id = s.Id,
-                        LanguageCode = s.LanguageCode,
                         Name = s.Name,
-                        ParentId = m.Id
-                    })
-                .ToList<IStateSynonym>()
-        };
+                        LanguageCode = s.LanguageCode,
+                        ParentId = s.StateId
+                    });
+            });
 
-        protected override Func<IState, State> MapModelToEntity => m => new State
-        {
-            Id = m.Id,
-            Name = m.Name,
-            CountryId = m.CountryId
-        };
+            this.mapper = mapperConfiguration.CreateMapper();
+        }
+
+        protected override IMapper Mapper => this.mapper;
 
         protected override IQueryable<State> GetQuery(IStatesFilter filter)
         {
@@ -51,7 +91,8 @@
             if (filter != null)
             {
                 query = query.Where(
-                    c => (!filter.Id.HasValue || c.Id == filter.Id) &&
+                    c =>
+                         (!filter.Id.HasValue || c.Id == filter.Id) &&
                          (string.IsNullOrEmpty(filter.Name) || c.Name.ToLower().Contains(filter.Name.ToLower())) &&
                          (string.IsNullOrEmpty(filter.Country) || c.Country.Name.ToLower().Contains(filter.Country.ToLower())) &&
                          (string.IsNullOrEmpty(filter.Province) || c.Provinces.Any(s => s.Name.ToLower().Contains(filter.Province.ToLower()))) &&
