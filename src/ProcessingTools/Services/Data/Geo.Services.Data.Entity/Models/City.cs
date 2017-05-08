@@ -19,6 +19,8 @@
 
         public string Name { get; set; }
 
+        public string AbbreviatedName { get; set; }
+
         public ICollection<IPostCode> PostCodes { get; set; } = new HashSet<IPostCode>();
 
         public int? ProvinceId { get; set; }

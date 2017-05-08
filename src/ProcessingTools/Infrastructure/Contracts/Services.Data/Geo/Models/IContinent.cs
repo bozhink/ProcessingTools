@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;
 
-    public interface IContinent : ISynonymisable<IContinentSynonym>, INameableIntegerIdentifiable, IServiceModel
+    public interface IContinent : ISynonymisable<IContinentSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
     {
         ICollection<ICountry> Countries { get; }
     }

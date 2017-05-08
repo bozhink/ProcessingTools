@@ -19,6 +19,8 @@
 
         public string Name { get; set; }
 
+        public string AbbreviatedName { get; set; }
+
         public ICollection<IRegion> Regions { get; set; } = new HashSet<IRegion>();
 
         public int? StateId { get; set; }

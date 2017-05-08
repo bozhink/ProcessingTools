@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AbbreviatedName" xml:space="preserve">
+    <value>Съкратено име</value>
+  </data>
+  <data name="AbbreviatedNameValidationErrorMessage" xml:space="preserve">
+    <value>{0} трябва да е с дължина не по-голяма от {1} символа.</value>
+  </data>
   <data name="Countries" xml:space="preserve">
     <value>Държави</value>
   </data>

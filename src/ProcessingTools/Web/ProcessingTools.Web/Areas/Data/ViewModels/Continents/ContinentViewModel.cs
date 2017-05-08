@@ -14,6 +14,10 @@
         [StringLength(ValidationConstants.MaximalLengthOfContinentName, ErrorMessageResourceName = nameof(Strings.NameLengthValidationErrorMessage), ErrorMessageResourceType = typeof(Strings), MinimumLength = ValidationConstants.MinimalLengthOfContinentName)]
         public string Name { get; set; }
 
+        [Display(Name = nameof(Strings.AbbreviatedName), ResourceType = typeof(Strings))]
+        [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedName, ErrorMessageResourceName = nameof(Strings.AbbreviatedNameValidationErrorMessage), ErrorMessageResourceType = typeof(Strings))]
+        public string AbbreviatedName { get; set; }
+
         [Display(Name = nameof(Strings.Synonyms), ResourceType = typeof(Strings))]
         public string Synonyms { get; set; }
 

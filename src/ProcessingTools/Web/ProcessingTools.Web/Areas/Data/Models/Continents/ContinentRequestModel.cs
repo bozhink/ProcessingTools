@@ -20,6 +20,9 @@
         [MaxLength(ValidationConstants.MaximalLengthOfContinentName)]
         public string Name { get; set; }
 
+        [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedName)]
+        public string AbbreviatedName { get; set; }
+
         public ICollection<ICountry> Countries { get; set; }
 
         public ICollection<IContinentSynonym> Synonyms { get; set; }

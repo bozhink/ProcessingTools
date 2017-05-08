@@ -61,6 +61,24 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.Continents {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abbreviated Name.
+        /// </summary>
+        public static string AbbreviatedName {
+            get {
+                return ResourceManager.GetString("AbbreviatedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} must be at most {1} characters long..
+        /// </summary>
+        public static string AbbreviatedNameValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("AbbreviatedNameValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Countries.
         /// </summary>
         public static string Countries {

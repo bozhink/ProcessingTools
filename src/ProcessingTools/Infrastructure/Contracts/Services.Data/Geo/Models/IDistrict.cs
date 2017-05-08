@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;
 
-    public interface IDistrict : ISynonymisable<IDistrictSynonym>, INameableIntegerIdentifiable, IServiceModel
+    public interface IDistrict : ISynonymisable<IDistrictSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
     {
         int CountryId { get; }
 

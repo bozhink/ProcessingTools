@@ -17,6 +17,8 @@
 
         public string Name { get; set; }
 
+        public string AbbreviatedName { get; set; }
+
         public int? ProvinceId { get; set; }
 
         public int? RegionId { get; set; }
