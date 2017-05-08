@@ -4,7 +4,7 @@
     {
         public const string ContinentNameRegexPattern = @"^[^<>;:]+$";
         public const string CountryNameRegexPattern = ContinentNameRegexPattern;
-        public const int MaximalLengthOfAbbreviatedStateName = 5;
+        public const int MaximalLengthOfAbbreviatedName = 5;
         public const int MaximalLengthOfCallingCode = 20;
         public const int MaximalLengthOfCityName = 150;
         public const int MaximalLengthOfContinentName = 30;

@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class Country : SystemInformation, ISynonymisable<CountrySynonym>, INameableIntegerIdentifiable, IDataModel
+    public class Country : SystemInformation, ISynonymisable<CountrySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {
         private ICollection<Continent> continents;
         private ICollection<State> states;
@@ -40,6 +40,9 @@
         [MinLength(ValidationConstants.MinimalLengthOfCountryName)]
         [MaxLength(ValidationConstants.MaximalLengthOfCountryName)]
         public string Name { get; set; }
+
+        [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedName)]
+        public string AbbreviatedName { get; set; }
 
         [MaxLength(ValidationConstants.MaximalLengthOfCallingCode)]
         public string CallingCode { get; set; }

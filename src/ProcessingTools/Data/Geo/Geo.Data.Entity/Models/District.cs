@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
-    public class District : SystemInformation, ISynonymisable<DistrictSynonym>, INameableIntegerIdentifiable, IDataModel
+    public class District : SystemInformation, ISynonymisable<DistrictSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {
         private ICollection<Municipality> municipalities;
         private ICollection<County> counties;
@@ -31,7 +31,7 @@
         [MaxLength(ValidationConstants.MaximalLengthOfStateName)]
         public string Name { get; set; }
 
-        [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedStateName)]
+        [MaxLength(ValidationConstants.MaximalLengthOfAbbreviatedName)]
         public string AbbreviatedName { get; set; }
 
         public virtual int CountryId { get; set; }
