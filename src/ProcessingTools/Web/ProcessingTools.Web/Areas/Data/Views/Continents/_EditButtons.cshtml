@@ -1,0 +1,70 @@
+﻿@using ProcessingTools.Web.Areas.Data.ViewModels.Continents
+@using ProcessingTools.Web.Constants
+@using ProcessingTools.Web.ViewModels.Shared
+@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings;
+@model ContinentPageViewModel
+@{ 
+    string actionName = this.ViewData[ContextKeys.ActionName].ToString();
+    string backActionName = this.ViewData[ContextKeys.BackActionName].ToString();
+    string controllerName = this.ViewData[ContextKeys.ControllerName].ToString();
+    string areaName = this.ViewData[ContextKeys.AreaName].ToString();
+}
+@Html.Partial(ViewNames.SharedEditButtonsPartial, new EditButtonsViewModel
+{
+    ButtonSaveIsVisible = true,
+    ButtonSaveText = Strings.ButtonSaveText,
+    ButtonSaveRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = actionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+            area = areaName,
+            id = Model?.Model?.Id
+        }
+    },
+
+    ButtonSaveAndExitIsVisible = true,
+    ButtonSaveAndExitText = Strings.ButtonSaveAndExitText,
+    ButtonSaveAndExitRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = actionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+            area = areaName,
+            id = Model?.Model?.Id,
+            exit = true
+        }
+    },
+
+    ButtonSaveAndNewIsVisible = true,
+    ButtonSaveAndNewText = Strings.ButtonSaveAndNewText,
+    ButtonSaveAndNewRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = actionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+            area = areaName,
+            id = Model?.Model?.Id,
+            createNew = true
+        }
+    },
+
+    ButtonCancelIsVisible = true,
+    ButtonCancelText = Strings.ButtonCancelText,
+    ButtonCancelRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    {
+        ActionName = backActionName,
+        ControllerName = controllerName,
+        RouteValues = new
+        {
+            returnUrl = Model.ReturnUrl
+        }
+    },
+
+    ButtonResetIsVisible = true,
+    ButtonResetText = Strings.ButtonResetText,
+    ButtonResetRoute = null
+})

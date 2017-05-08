@@ -55,6 +55,11 @@
             @Html.Hidden("cancel")
         }
 
+        if (Model.ButtonResetIsVisible)
+        {
+            <input type="reset" value="@Model.ButtonResetText" class="btn btn-default" id="btn-reset" />
+        }
+
         if (Model.ButtonViewIsVisible)
         {
             @Html.ActionLink(

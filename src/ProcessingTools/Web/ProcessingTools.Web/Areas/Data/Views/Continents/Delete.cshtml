@@ -2,39 +2,45 @@
 @using ProcessingTools.Web.Areas.Data.ViewModels.Continents
 @using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings
 @model ContinentPageViewModel
-
 @{
     this.ViewBag.Title = Model.PageTitle;
 }
+<section role="main">
+    <header>
+        <h2>@Model.PageHeading</h2>
+        <h3>@Strings.DeleteMessage</h3>
+    </header>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(m => m.Model.Name)
+            </dt>
 
-<header>
-    <h2>@Model.PageHeading</h2>
-    <h3>@Strings.DeleteMessage</h3>
-</header>
-<hr />
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(m => m.Model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(m => m.Model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(m => m.Model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(m => m.Model.AbbreviatedName)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(m => m.Model.AbbreviatedName)
+            </dd>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => m.Model.Id)
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Model.Id)
 
-        <div class="form-actions no-color">
-            <input type="submit" value="@Strings.DeleteButtonText" class="btn btn-danger" />
-            @Html.ActionLink(Strings.CancelButtonText, ContinentsController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl }, htmlAttributes: new { @class = "btn btn-default" })
-        </div>
-    }
-</div>
-
+            <div class="form-actions no-color">
+                <input type="submit" value="@Strings.DeleteButtonText" class="btn btn-danger" />
+                @Html.ActionLink(Strings.CancelButtonText, ContinentsController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl }, htmlAttributes: new { @class = "btn btn-default" })
+            </div>
+        }
+    </div>
+</section>
 <div>
     @Html.ActionLink(Strings.BackToListActionLinkText, ContinentsController.IndexActionName, routeValues: new { returnUrl = Model.ReturnUrl })
 </div>

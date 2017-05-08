@@ -97,6 +97,15 @@ namespace ProcessingTools.Web.Resources.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string ButtonResetText {
+            get {
+                return ResourceManager.GetString("ButtonResetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save and Exit.
         /// </summary>
         public static string ButtonSaveAndExitText {

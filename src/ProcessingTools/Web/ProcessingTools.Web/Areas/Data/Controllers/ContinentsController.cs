@@ -25,6 +25,7 @@
     public class ContinentsController : BaseMvcController
     {
         public const string ControllerName = "Continents";
+        public const string AreaName = AreaNames.Data;
         public const string IndexActionName = RouteValues.IndexActionName;
         public const string DetailsActionName = nameof(ContinentsController.Details);
         public const string CreateActionName = nameof(ContinentsController.Create);
@@ -86,6 +87,7 @@
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
             long numberOfItems = await this.service.SelectCountAsync(null);
+
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IContinent.Name), SortOrder.Ascending);
 
             var items = data.Select(this.mapper.Map<ContinentViewModel>).ToArray();
@@ -97,6 +99,10 @@
                 PageTitle = Strings.IndexPageTitle
             };
 
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = IndexActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(IndexActionName, viewModel);
         }
 
@@ -122,6 +128,10 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = DetailsActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(DetailsActionName, viewModel);
         }
 
@@ -136,6 +146,10 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = CreateActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(EditActionName, viewModel);
         }
 
@@ -203,6 +217,10 @@
                 ReturnUrl = returnUrl
             };
 
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = CreateActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(EditActionName, viewModel);
         }
 
@@ -228,6 +246,10 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = EditActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(EditActionName, viewModel);
         }
 
@@ -294,6 +316,10 @@
                 ReturnUrl = returnUrl
             };
 
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = EditActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(EditActionName, viewModel);
         }
 
@@ -319,6 +345,10 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = DeleteActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(DeleteActionName, viewModel);
         }
 
@@ -327,13 +357,20 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await this.service.DeleteAsync(id: id);
-            await this.service.SaveChangesAsync();
-
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-            if (!string.IsNullOrWhiteSpace(returnUrl))
+            try
             {
-                return this.Redirect(returnUrl);
+                await this.service.DeleteAsync(id: id);
+                await this.service.SaveChangesAsync();
+
+                string returnUrl = this.Request[ContextKeys.ReturnUrl];
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return this.Redirect(returnUrl);
+                }
+            }
+            catch(Exception e)
+            {
+                this.AddErrors(e.Message);
             }
 
             return this.RedirectToAction(IndexActionName);

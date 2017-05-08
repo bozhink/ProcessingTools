@@ -43,5 +43,11 @@
         public Route ButtonViewRoute { get; set; }
 
         public string ButtonViewText { get; set; }
+
+        public bool ButtonResetIsVisible { get; set; }
+
+        public Route ButtonResetRoute { get; set; }
+
+        public string ButtonResetText { get; set; }
     }
 }
