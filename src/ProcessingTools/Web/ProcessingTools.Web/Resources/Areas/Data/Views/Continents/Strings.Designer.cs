@@ -196,6 +196,15 @@ namespace ProcessingTools.Web.Resources.Areas.Data.Views.Continents {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Data.
+        /// </summary>
+        public static string InvalidDataErrorMessage {
+            get {
+                return ResourceManager.GetString("InvalidDataErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string ResetButtonText {

@@ -26,7 +26,7 @@
         {
             foreach (var error in result.Errors)
             {
-                this.ModelState.AddModelError(string.Empty, error);
+                this.ModelState.AddModelError(ContextKeys.ErrorMessage, error);
             }
         }
 
@@ -34,7 +34,7 @@
         {
             foreach (var error in errors)
             {
-                this.ModelState.AddModelError(string.Empty, error);
+                this.ModelState.AddModelError(ContextKeys.ErrorMessage, error);
             }
         }
 

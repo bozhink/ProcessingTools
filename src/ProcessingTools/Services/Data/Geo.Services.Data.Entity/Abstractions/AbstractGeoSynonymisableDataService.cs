@@ -160,8 +160,8 @@
             }
 
             var entity = this.Mapper.Map<TModel, TEntity>(model);
-
-            return await this.InsertEntityAsync(entity);
+            var result = await this.InsertEntityAsync(entity);
+            return result.Id;
         }
 
         public async Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds)

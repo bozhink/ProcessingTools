@@ -91,6 +91,12 @@
         [HttpGet, ActionName(IndexActionName)]
         public async Task<ActionResult> Index(int p = 0, int n = 10)
         {
+            string returnUrl = this.Request[ContextKeys.ReturnUrl];
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
+
             var data = await this.service.SelectDetails(this.UserId, p * n, n, x => x.Name);
 
             var viewModel = await data.Select(this.MapDetailedModelToViewModel).ToListAsync();

@@ -97,7 +97,6 @@
                 PageTitle = Strings.IndexPageTitle
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(IndexActionName, viewModel);
         }
 
@@ -123,7 +122,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DetailsActionName, viewModel);
         }
 
@@ -138,28 +136,63 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
         // POST: Data/Continents/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name")] ContinentRequestModel model)
+        public async Task<ActionResult> Create([Bind(Include = nameof(ContinentRequestModel.Name) + "," + nameof(ContinentRequestModel.AbbreviatedName))] ContinentRequestModel model, string synonyms, bool exit = false, bool createNew = false, bool cancel = false)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
 
-            if (this.ModelState.IsValid)
+            if (cancel)
             {
-                await this.service.InsertAsync(model);
-                await this.service.SaveChangesAsync();
-
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
                     return this.Redirect(returnUrl);
                 }
+                else
+                {
+                    return this.RedirectToAction(IndexActionName);
+                }
+            }
 
-                return this.RedirectToAction(IndexActionName);
+            try
+            {
+                if (this.ModelState.IsValid)
+                {
+                    var id = await this.service.InsertAsync(model);
+                    await this.UpdateSynonymsFromJson((int)id, synonyms);
+                    await this.service.SaveChangesAsync();
+
+                    if (createNew)
+                    {
+                        return this.RedirectToAction(CreateActionName, routeValues: new { ReturnUrl = returnUrl });
+                    }
+
+                    if (exit)
+                    {
+                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            return this.Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return this.RedirectToAction(IndexActionName);
+                        }
+                    }
+
+                    return this.RedirectToAction(EditActionName, routeValues: new { id = id });
+                }
+                else
+                {
+                    this.AddErrors(Strings.InvalidDataErrorMessage);
+                }
+            }
+            catch (Exception e)
+            {
+                this.AddErrors(e.Message);
             }
 
             model.Id = -1;
@@ -170,7 +203,6 @@
                 ReturnUrl = returnUrl
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -196,30 +228,63 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
         // POST: Data/Continents/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] ContinentRequestModel model, string synonyms)
+        public async Task<ActionResult> Edit([Bind(Include = nameof(ContinentRequestModel.Id) + "," + nameof(ContinentRequestModel.Name) + "," + nameof(ContinentRequestModel.AbbreviatedName))] ContinentRequestModel model, string synonyms, bool exit = false, bool createNew = false, bool cancel = false)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
 
-            if (this.ModelState.IsValid)
+            if (cancel)
             {
-                await this.service.UpdateAsync(model);
-                await this.UpdateSynonymsFromJson(model.Id, synonyms);
-
-                await this.service.SaveChangesAsync();
-
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
                     return this.Redirect(returnUrl);
                 }
+                else
+                {
+                    return this.RedirectToAction(IndexActionName);
+                }
+            }
 
-                return this.RedirectToAction(IndexActionName);
+            try
+            {
+                if (this.ModelState.IsValid)
+                {
+                    await this.service.UpdateAsync(model);
+                    await this.UpdateSynonymsFromJson(model.Id, synonyms);
+                    await this.service.SaveChangesAsync();
+
+                    if (createNew)
+                    {
+                        return this.RedirectToAction(CreateActionName, routeValues: new { ReturnUrl = returnUrl });
+                    }
+
+                    if (exit)
+                    {
+                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            return this.Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return this.RedirectToAction(IndexActionName);
+                        }
+                    }
+
+                    return this.RedirectToAction(EditActionName, routeValues: new { id = model.Id });
+                }
+                else
+                {
+                    this.AddErrors(Strings.InvalidDataErrorMessage);
+                }
+            }
+            catch (Exception e)
+            {
+                this.AddErrors(e.Message);
             }
 
             var viewModel = new ContinentPageViewModel
@@ -229,7 +294,6 @@
                 ReturnUrl = returnUrl
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -255,7 +319,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DeleteActionName, viewModel);
         }
 

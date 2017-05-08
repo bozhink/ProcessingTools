@@ -162,6 +162,9 @@
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Списък с континенти</value>
   </data>
+  <data name="InvalidDataErrorMessage" xml:space="preserve">
+    <value>Невалидни данни</value>
+  </data>
   <data name="ResetButtonText" xml:space="preserve">
     <value>Отмени промените</value>
   </data>

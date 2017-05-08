@@ -162,6 +162,9 @@
   <data name="IndexPageTitle" xml:space="preserve">
     <value>List of Continents</value>
   </data>
+  <data name="InvalidDataErrorMessage" xml:space="preserve">
+    <value>Invalid Data</value>
+  </data>
   <data name="ResetButtonText" xml:space="preserve">
     <value>Reset</value>
   </data>
