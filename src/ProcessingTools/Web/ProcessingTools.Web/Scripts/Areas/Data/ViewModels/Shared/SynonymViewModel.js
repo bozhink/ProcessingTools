@@ -5,6 +5,38 @@ function SynonymViewModel(synonyms) {
     self.count = ko.observable(0);
     self.synonyms = ko.observableArray([]);
 
+    self.languages = ko.observableArray([]);
+
+    function fetchLanguages(done) {
+        $.ajax({
+            url: '/api/countries',
+            method: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var i, len, item;
+                if (Array.isArray(data)) {
+                    self.languages.removeAll();
+                    len = data.length;
+                    for (i = 0; i < len; i += 1) {
+                        item = data[i];
+                        self.languages.push(new Language(item.Id, item.LanguageCode + ' - ' + item.Name));
+                    }
+                }
+
+                if (typeof done === 'function') {
+                    done();
+                }
+            },
+            error: function (error) {
+                console.log(error);
+
+                if (typeof done === 'function') {
+                    done();
+                }
+            }
+        });
+    }
+
     function rebind(synonyms) {
         var i, len, synonym, count = 0;
         self.synonyms.removeAll();
@@ -24,7 +56,9 @@ function SynonymViewModel(synonyms) {
         self.isModified(false);
     }
 
-    rebind(synonyms);
+    fetchLanguages(function () {
+        rebind(synonyms);
+    });
 
     self.addSynonym = function () {
         self.synonyms.push(new Synonym(-1, '', '', 2));

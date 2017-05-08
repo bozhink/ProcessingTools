@@ -70,6 +70,10 @@
             this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.IContinentsDataService>()
                 .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityContinentsDataService>()
                 .InRequestScope();
+
+            this.Bind<ProcessingTools.Contracts.Services.Data.Geo.Services.ICountriesDataService>()
+                .To<ProcessingTools.Geo.Services.Data.Entity.Services.EntityCountriesDataService>()
+                .InRequestScope();
         }
     }
 }

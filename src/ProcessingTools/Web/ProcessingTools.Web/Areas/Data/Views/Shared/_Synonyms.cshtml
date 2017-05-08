@@ -13,14 +13,13 @@
         <tbody data-bind="foreach: synonyms">
             <tr data-bind="visible: status() < 3">
                 <td><input type="text" data-bind="value: name" class="form-control" /></td>
-                <td><input type="text" data-bind="value: languageId" class="form-control" /></td>
-                @*<td>
-                    <select data-bind="options: $root.countries(),
-                            optionsText: 'name',
+                <td>
+                    <select data-bind="options: $root.languages(),
+                            optionsText: 'code',
                             optionsValue: 'id',
-                            optionsCaption: 'Choose...',
-                            value: countryId" class="form-control"></select>
-                </td>*@
+                            @*optionsCaption: 'Choose...',*@
+                            value: languageId" class="form-control"></select>
+                </td>
                 <td><a href="javascript:void(0);" data-bind="click: $root.removeSynonym" class="glyphicon glyphicon-remove" title="@Strings.RemoveSynonymTitle"></a></td>
             </tr>
         </tbody>
