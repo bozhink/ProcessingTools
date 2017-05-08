@@ -1,72 +1,60 @@
-﻿@model ProcessingTools.Web.Common.ViewModels.Contracts.IPagingViewModel
+﻿@{
+    var model = Model.Model as ProcessingTools.Web.Common.ViewModels.Contracts.IPagingViewModel;
 
-@{
-    if (Model.LastPage > 0)
+    if (model.LastPage > 0)
     {
         const long MaximalNumberOfPagesToShow = 3;
         const long NumberOfPagesNearActive = MaximalNumberOfPagesToShow / 2;
 
-        long leftPage = Model.FirstPage;
-        long rightPage = Model.LastPage;
+        long leftPage = model.FirstPage;
+        long rightPage = model.LastPage;
 
-        if (Model.NumberOfPages > MaximalNumberOfPagesToShow)
+        if (model.NumberOfPages > MaximalNumberOfPagesToShow)
         {
-            long l = Math.Max(Model.FirstPage, Model.CurrentPage - NumberOfPagesNearActive);
+            long l = Math.Max(model.FirstPage, model.CurrentPage - NumberOfPagesNearActive);
             leftPage = l;
 
-            long r = Math.Min(Model.LastPage, Model.CurrentPage + NumberOfPagesNearActive);
+            long r = Math.Min(model.LastPage, model.CurrentPage + NumberOfPagesNearActive);
             rightPage = r;
 
-            if (l == Model.FirstPage)
+            if (l == model.FirstPage)
             {
-                rightPage += NumberOfPagesNearActive - (Model.CurrentPage - Model.FirstPage);
+                rightPage += NumberOfPagesNearActive - (model.CurrentPage - model.FirstPage);
             }
 
-            if (r == Model.LastPage)
+            if (r == model.LastPage)
             {
-                leftPage -= NumberOfPagesNearActive - (Model.LastPage - Model.CurrentPage);
+                leftPage -= NumberOfPagesNearActive - (model.LastPage - model.CurrentPage);
             }
         }
 
         <nav>
             <ul class="pagination pagination-sm">
-                @if (Model.CurrentPage > Model.FirstPage)
+                @if (model.CurrentPage > model.FirstPage)
                 {
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.FirstPage, n = Model.NumberOfItemsPerPage }, new { id = "page-first", @class = "glyphicon glyphicon-fast-backward" })
-                    </li>
-
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.PreviousPage, n = Model.NumberOfItemsPerPage }, new { id = "page-prev", @class = "glyphicon glyphicon-backward" })
-                    </li>
+                    <li>@Html.ActionLink(" ", model.ActionName, new { p = model.FirstPage, n = model.NumberOfItemsPerPage }, new { id = "page-first", @class = "glyphicon glyphicon-fast-backward" })</li>
+                    <li>@Html.ActionLink(" ", model.ActionName, new { p = model.PreviousPage, n = model.NumberOfItemsPerPage }, new { id = "page-prev", @class = "glyphicon glyphicon-backward" })</li>
                 }
 
-                @*@if (leftPage > Model.FirstPage)
+                @*@if (leftPage > model.FirstPage)
                 {
                     <li class="disabled"><a>...</a></li>
                 }*@
 
                 @for (long i = leftPage; i <= rightPage; ++i)
                 {
-                    <li class="@((i == Model.CurrentPage) ? "active" : null)">
-                        @Html.ActionLink((i + 1).ToString(), Model.ActionName, new { p = i, n = Model.NumberOfItemsPerPage })
-                    </li>
+                    <li class="@((i == model.CurrentPage) ? "active" : null)">@Html.ActionLink((i + 1).ToString(), model.ActionName, new { p = i, n = model.NumberOfItemsPerPage })</li>
                 }
 
-                @*@if (rightPage < Model.LastPage)
+                @*@if (rightPage < model.LastPage)
                 {
                     <li class="disabled"><a>...</a></li>
                 }*@
 
-                @if (Model.CurrentPage < Model.LastPage)
+                @if (model.CurrentPage < model.LastPage)
                 {
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.NextPage, n = Model.NumberOfItemsPerPage }, new { id = "page-next", @class = "glyphicon glyphicon-forward" })
-                    </li>
-
-                    <li>
-                        @Html.ActionLink(" ", Model.ActionName, new { p = Model.LastPage, n = Model.NumberOfItemsPerPage }, new { id = "page-last", @class = "glyphicon glyphicon-fast-forward" })
-                    </li>
+                    <li>@Html.ActionLink(" ", model.ActionName, new { p = model.NextPage, n = model.NumberOfItemsPerPage }, new { id = "page-next", @class = "glyphicon glyphicon-forward" })</li>
+                    <li>@Html.ActionLink(" ", model.ActionName, new { p = model.LastPage, n = model.NumberOfItemsPerPage }, new { id = "page-last", @class = "glyphicon glyphicon-fast-forward" })</li>
                 }
             </ul>
         </nav>

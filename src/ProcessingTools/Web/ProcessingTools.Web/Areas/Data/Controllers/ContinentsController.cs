@@ -87,9 +87,15 @@
 
             long numberOfItems = await this.service.SelectCountAsync(null);
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IContinent.Name), SortOrder.Ascending);
+
             var items = data.Select(this.mapper.Map<ContinentViewModel>).ToArray();
 
-            var viewModel = new ListWithPagingViewModel<ContinentViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var model = new ListWithPagingViewModel<ContinentViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new ContinentIndexPageViewModel
+            {
+                Model = model,
+                PageTitle = Strings.IndexPageTitle
+            };
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(IndexActionName, viewModel);

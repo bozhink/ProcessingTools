@@ -23,9 +23,9 @@
             ////    .GetService<ProcessingTools.Documents.Data.Entity.Contracts.IDocumentsDataInitializer>()
             ////    .Initialize();
 
-            ////await DependencyResolver.Current
-            ////   .GetService<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDataInitializer>()
-            ////   .Initialize();
+            await DependencyResolver.Current
+               .GetService<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDataInitializer>()
+               .Initialize();
 
             ////await DependencyResolver.Current
             ////    .GetService<ProcessingTools.Bio.Data.Entity.Contracts.IBioDataInitializer>()

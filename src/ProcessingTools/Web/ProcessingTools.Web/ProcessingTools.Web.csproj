@@ -371,6 +371,7 @@
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymRequestModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymResponseModel.cs" />
+    <Compile Include="Areas\Data\ViewModels\Continents\ContinentIndexPageViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\Continents\ContinentPageViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\Continents\ContinentViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\Continents\CountryViewModel.cs" />
