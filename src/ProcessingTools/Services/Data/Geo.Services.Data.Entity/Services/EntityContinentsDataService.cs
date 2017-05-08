@@ -52,6 +52,7 @@
                     {
                         Id = m.Id,
                         Name = m.Name,
+                        AbbreviatedName = m.AbbreviatedName,
                         Synonyms = m.Synonyms
                             .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.ContinentSynonym
                             {

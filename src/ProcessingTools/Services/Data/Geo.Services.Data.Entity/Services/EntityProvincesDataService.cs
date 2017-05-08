@@ -64,6 +64,7 @@
                     {
                         Id = m.Id,
                         Name = m.Name,
+                        AbbreviatedName = m.AbbreviatedName,
                         CountryId = m.CountryId,
                         StateId = m.StateId,
                         Synonyms = m.Synonyms

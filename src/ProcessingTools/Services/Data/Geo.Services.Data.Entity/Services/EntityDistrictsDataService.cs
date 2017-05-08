@@ -64,6 +64,7 @@
                     {
                         Id = m.Id,
                         Name = m.Name,
+                        AbbreviatedName = m.AbbreviatedName,
                         CountryId = m.CountryId,
                         ProvinceId = m.ProvinceId,
                         RegionId = m.RegionId,

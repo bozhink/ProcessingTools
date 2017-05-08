@@ -64,6 +64,7 @@
                     {
                         Id = m.Id,
                         Name = m.Name,
+                        AbbreviatedName = m.AbbreviatedName,
                         CallingCode = m.CallingCode,
                         Iso639xCode = m.Iso639xCode,
                         LanguageCode = m.LanguageCode,

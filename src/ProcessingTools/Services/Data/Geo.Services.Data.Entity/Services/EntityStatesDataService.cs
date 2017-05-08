@@ -64,6 +64,7 @@
                     {
                         Id = m.Id,
                         Name = m.Name,
+                        AbbreviatedName = m.AbbreviatedName,
                         CountryId = m.CountryId,
                         Synonyms = m.Synonyms
                             .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.StateSynonym
