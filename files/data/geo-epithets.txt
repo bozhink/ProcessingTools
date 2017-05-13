@@ -1,0 +1,10 @@
+provinces
+cave
+locality
+bridge
+village
+sewage water
+rubbish
+cave ceiling
+cave deposits
+stone

@@ -1,0 +1,6 @@
+TIANamp Micro DNA Kit (TIANGEN BIOTECH (BEIJING) CO., LTD)
+Eppendorf Thermal Cycler (5331AH760577, Eppendorf, Germany)
+program Seqman (DNAStar, Inc.)
+MITOS WebServer (http://mitos.bioinf.uni-leipzig.de/index.py)
+Clustal X version 2.0 (Larkin et al. 2007)
+MEGA 6.0 software (Tamura et al. 2013)
