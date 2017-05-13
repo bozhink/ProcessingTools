@@ -8,6 +8,7 @@
     using ProcessingTools.Web.Models.Countries;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
 
+    [Authorize]
     public class CountriesController : ApiController
     {
         private readonly ICountriesDataService service;

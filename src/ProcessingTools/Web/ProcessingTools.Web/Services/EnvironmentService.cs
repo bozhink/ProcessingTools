@@ -53,7 +53,7 @@
             // TODO
             public UserRole Role => UserRole.Administrator;
 
-            public string Id => this.user.Id;
+            public string Id => this.user?.Id;
         }
     }
 }

@@ -197,7 +197,7 @@
                         }
                     }
 
-                    return this.RedirectToAction(EditActionName, routeValues: new { id = id });
+                    return this.RedirectToAction(EditActionName, routeValues: new { id = id, ReturnUrl = returnUrl });
                 }
                 else
                 {
@@ -297,7 +297,7 @@
                         }
                     }
 
-                    return this.RedirectToAction(EditActionName, routeValues: new { id = model.Id });
+                    return this.RedirectToAction(EditActionName, routeValues: new { id = model.Id, ReturnUrl = returnUrl });
                 }
                 else
                 {
