@@ -13,40 +13,31 @@
     <p>@Html.ActionLink(Strings.CreateActionLinkText, ContinentsController.CreateActionName)</p>
     @if (Model.Model.Items.Count() > 0)
     {
-        <table class="table grid">
-            <tr>
-                <th></th>
-                <th>
-                    @Html.DisplayNameFor(m => m.Model.Items.First().Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m.Model.Items.First().NumberOfCountries)
-                </th>
-                <th></th>
-            </tr>
+        <div class="container grid">
+            <div class="row grid-header">
+                <div class="hidden-xs col-sm-1 col-md-1"></div>
+                <div class="col-xs-6 col-sm-4 col-md-4"><strong>@Html.DisplayNameFor(m => m.Model.Items.First().Name)</strong></div>
+                <div class="col-xs-6 col-sm-7 col-md-7"><strong>@Html.DisplayNameFor(m => m.Model.Items.First().NumberOfCountries)</strong></div>
+            </div>
             @{
                 string returnUrl = Url.Action(Model.Model.ActionName, routeValues: new { p = Model.Model.CurrentPage, n = Model.Model.NumberOfItemsPerPage });
                 int counter = 0;
                 foreach (var item in Model.Model.Items)
                 {
                     ++counter;
-                    <tr>
-                        <td>@counter</td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NumberOfCountries)
-                        </td>
-                        <td>
+                    <div class="row grid-row">
+                        <div class="hidden-xs col-sm-1 col-md-1">@(Model.Model.CurrentPage * Model.Model.NumberOfItemsPerPage + counter)</div>
+                        <div class="col-xs-6 col-sm-4 col-md-4">@Html.DisplayFor(modelItem => item.Name)</div>
+                        <div class="col-xs-6 col-sm-3 col-md-3">@Html.DisplayFor(modelItem => item.NumberOfCountries)</div>
+                        <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
                             @Html.ActionLink(Strings.EditActionLinkText, ContinentsController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
                             @Html.ActionLink(Strings.DetailsActionLinkText, ContinentsController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
                             @Html.ActionLink(Strings.DeleteActionLinkText, ContinentsController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                 }
             }
-        </table>
+        </div>
         <footer>
             @Html.Partial(ProcessingTools.Web.Constants.ViewNames.NavigationFootPartial)
         </footer>
