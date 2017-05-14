@@ -53,7 +53,7 @@
                 c.CreateMap<IContinent, ContinentViewModel>()
                     .ForMember(
                         destinationMember: d => d.Synonyms,
-                        memberOptions: o => o.ResolveUsing(x => string.Empty))
+                        memberOptions: o => o.ResolveUsing(x => string.Join(", ", x.Synonyms.Select(s => s.Name).ToArray())))
                     .ForMember(
                         destinationMember: d => d.Countries,
                         memberOptions: o => o.UseValue<IEnumerable<CountryViewModel>>(null))

@@ -28,6 +28,16 @@
             </dd>
         </dl>
     </div>
+    @if (Model.Model.Synonyms != null && Model.Model.Synonyms.Count() > 0)
+    {
+        <section>
+            <header>
+                <h3>@Html.DisplayNameFor(m => m.Model.Synonyms)</h3>
+            </header>
+            <p>@Model.Model.Synonyms</p>
+        </section>
+    }
+
     @if (Model.Model.Countries != null && Model.Model.Countries.Count() > 0)
     {
         <section>
