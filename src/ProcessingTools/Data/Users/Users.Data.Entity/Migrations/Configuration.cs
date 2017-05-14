@@ -7,7 +7,7 @@ namespace ProcessingTools.Users.Data.Entity.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationDataLossAllowed = true;
             this.ContextType = typeof(UsersDbContext);
             this.ContextKey = this.ContextType.FullName;
         }
