@@ -2,6 +2,7 @@
 {
     using System.Configuration;
     using Ninject.Extensions.Conventions;
+    using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using Ninject.Web.Common;
     using ProcessingTools.Constants;
@@ -18,6 +19,14 @@
                 .SelectAllClasses()
                 .BindDefaultInterface();
             });
+
+            this.Bind<ProcessingTools.Contracts.ILogger>()
+                .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
+                .InTransientScope();
+
+            this.Bind<ProcessingTools.Contracts.ILoggerFactory>()
+                .ToFactory()
+                .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.Services.IEnvironment>()
                 .To<ProcessingTools.Web.Services.EnvironmentService>()

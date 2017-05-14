@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using log4net;
 using ProcessingTools.Enumerations;
 using ProcessingTools.Loggers.Base;
@@ -10,38 +11,56 @@ namespace ProcessingTools.Loggers.Loggers
 {
     public class Log4NetLogger : LoggerBase, ILog4NetLogger
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly ILog logger;
+
+        public Log4NetLogger()
+        {
+            this.logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        }
+
+        public Log4NetLogger(Type type)
+        {
+            this.logger = LogManager.GetLogger(type);
+        }
 
         public override void Log()
         {
         }
 
-        public override void Log(object message) => Logger.Info(message);
+        public override void Log(object message) => logger.Info(message);
 
-        public override void Log(string format, params object[] args) => Logger.InfoFormat(format, args);
+        public override void Log(string format, params object[] args) => logger.InfoFormat(format, args);
 
         public override void Log(LogType type, object message)
         {
             switch (type)
             {
+                case LogType.Debug:
+                    this.logger.Debug(message);
+                    break;
+
                 case LogType.Info:
-                    Logger.Info(message);
+                    this.logger.Info(message);
                     break;
 
                 case LogType.Warning:
-                    Logger.Warn(message);
+                    this.logger.Warn(message);
                     break;
 
                 case LogType.Error:
-                    Logger.Error(message);
+                    this.logger.Error(message);
+                    break;
+
+                case LogType.Fatal:
+                    this.logger.Fatal(message);
                     break;
 
                 case LogType.Exception:
-                    Logger.Error(message);
+                    this.logger.ErrorFormat("Exception: {0}", message);
                     break;
 
                 default:
-                    Logger.Error(message);
+                    this.logger.ErrorFormat("Default Error: {0}", message);
                     break;
             }
         }

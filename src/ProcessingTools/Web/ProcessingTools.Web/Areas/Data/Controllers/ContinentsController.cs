@@ -18,6 +18,7 @@
     using ProcessingTools.Web.Areas.Data.Models.Shared;
     using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
     using ProcessingTools.Web.Common.ViewModels;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Web.Constants;
     using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings;
 
@@ -34,9 +35,10 @@
         public const string SynonymsActionName = nameof(ContinentsController.Synonyms);
 
         private readonly IContinentsDataService service;
+        private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        public ContinentsController(IContinentsDataService service)
+        public ContinentsController(IContinentsDataService service, ILoggerFactory loggerFactory)
         {
             if (service == null)
             {
@@ -44,6 +46,7 @@
             }
 
             this.service = service;
+            this.logger = loggerFactory.CreateLogger(this.GetType());
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -112,12 +115,14 @@
         {
             if (id == null)
             {
+                this.logger?.Log(LogType.Info, id);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var model = await this.service.GetByIdAsync(id);
             if (model == null)
             {
+                this.logger?.Log(LogType.Error, id);
                 return this.HttpNotFound();
             }
 
@@ -206,6 +211,7 @@
             }
             catch (Exception e)
             {
+                this.logger?.Log(e, string.Empty);
                 this.AddErrors(e.Message);
             }
 
@@ -230,12 +236,14 @@
         {
             if (id == null)
             {
+                this.logger?.Log(LogType.Info, id);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var model = await this.service.GetByIdAsync(id);
             if (model == null)
             {
+                this.logger?.Log(LogType.Error, id);
                 return this.HttpNotFound();
             }
 
@@ -306,6 +314,7 @@
             }
             catch (Exception e)
             {
+                this.logger?.Log(e, string.Empty);
                 this.AddErrors(e.Message);
             }
 
@@ -329,12 +338,14 @@
         {
             if (id == null)
             {
+                this.logger?.Log(LogType.Info, id);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var model = await this.service.GetByIdAsync(id);
             if (model == null)
             {
+                this.logger?.Log(LogType.Error, id);
                 return this.HttpNotFound();
             }
 
@@ -370,6 +381,7 @@
             }
             catch(Exception e)
             {
+                this.logger?.Log(e, string.Empty);
                 this.AddErrors(e.Message);
             }
 
@@ -407,8 +419,9 @@
                     var synonymsArray = JsonConvert.DeserializeObject<ContinentSynonymRequestModel[]>(synonyms);
                     await this.UpdateSynonyms(modelId, synonymsArray);
                 }
-                catch
+                catch (Exception e)
                 {
+                    this.logger?.Log(e, string.Empty);
                 }
             }
         }
@@ -442,8 +455,9 @@
                         await this.service.RemoveSynonymsAsync(modelId, removedSynonyms);
                     }
                 }
-                catch
+                catch (Exception e)
                 {
+                    this.logger?.Log(e, string.Empty);
                 }
             }
         }

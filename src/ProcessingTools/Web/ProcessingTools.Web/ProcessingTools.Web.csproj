@@ -819,6 +819,10 @@
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
+      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
+      <Name>Loggers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Mappings\Mappings.csproj">
       <Project>{96899CF4-3E65-4860-8D89-0BEC7D4E93ED}</Project>
       <Name>Mappings</Name>
