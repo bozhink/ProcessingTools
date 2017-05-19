@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IDateTimeProvider
+    public interface IDateTimeProvider : IService
     {
         DateTime Now { get; }
     }

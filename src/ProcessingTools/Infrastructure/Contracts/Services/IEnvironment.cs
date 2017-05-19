@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface IEnvironment
+    public interface IEnvironment : IService
     {
         IEnvironmentUser User { get; }
 
