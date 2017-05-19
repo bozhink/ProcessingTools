@@ -138,8 +138,8 @@
                 .To<ProcessingTools.Imaging.Processors.QRCodeEncoder>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Imaging.Contracts.Processors.IBarcodeEncoder>()
-                .To<ProcessingTools.Imaging.Processors.BarcodeEncoder>()
+            this.Bind<ProcessingTools.Imaging.Contracts.Processors.IBarcodeEncoderService>()
+                .To<ProcessingTools.Imaging.Processors.BarcodeEncoderService>()
                 .InRequestScope();
         }
     }

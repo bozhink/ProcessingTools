@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
-    public interface IBarcodeEncoder : IProcessor
+    public interface IBarcodeEncoderService : IProcessor
     {
         Task<byte[]> Encode(BarcodeType type, string content, int width, int height);
 

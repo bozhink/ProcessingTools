@@ -8,7 +8,7 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Imaging.Contracts.Processors;
 
-    public class BarcodeEncoder : IBarcodeEncoder
+    public class BarcodeEncoderService : IBarcodeEncoderService
     {
         public async Task<byte[]> Encode(BarcodeType type, string content, int width, int height)
         {

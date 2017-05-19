@@ -16,9 +16,9 @@
     {
         private const string IndexRequestModelValidationIncludeBindings = nameof(IndexRequestModel.Width) + "," + nameof(IndexRequestModel.Height) + "," + nameof(IndexRequestModel.Type) + "," + nameof(IndexRequestModel.Content);
 
-        private readonly IBarcodeEncoder encoder;
+        private readonly IBarcodeEncoderService encoder;
 
-        public BarcodeGeneratorController(IBarcodeEncoder encoder)
+        public BarcodeGeneratorController(IBarcodeEncoderService encoder)
         {
             if (encoder == null)
             {

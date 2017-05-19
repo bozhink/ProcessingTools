@@ -54,10 +54,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Processors\IBarcodeEncoder.cs" />
+    <Compile Include="Contracts\Processors\IBarcodeEncoderService.cs" />
     <Compile Include="Contracts\Processors\IImageProcessorService.cs" />
     <Compile Include="Contracts\Processors\IQRCodeEncoder.cs" />
-    <Compile Include="Processors\BarcodeEncoder.cs" />
+    <Compile Include="Processors\BarcodeEncoderService.cs" />
     <Compile Include="Processors\ImageProcessorService.cs" />
     <Compile Include="Processors\QRCodeEncoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
