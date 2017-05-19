@@ -2,9 +2,10 @@
 {
     using System.Drawing;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
-    public interface IBarcodeEncoder
+    public interface IBarcodeEncoder : IProcessor
     {
         Task<byte[]> Encode(BarcodeType type, string content, int width, int height);
 

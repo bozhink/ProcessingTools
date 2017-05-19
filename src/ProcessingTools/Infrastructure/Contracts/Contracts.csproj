@@ -290,6 +290,7 @@
     <Compile Include="Services.Data\ISelectableDataService.cs" />
     <Compile Include="Services\IDateTimeProvider.cs" />
     <Compile Include="Services\IEnvironment.cs" />
+    <Compile Include="Services\IProcessor.cs" />
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="ICloner.cs" />
     <Compile Include="IDocument.cs" />

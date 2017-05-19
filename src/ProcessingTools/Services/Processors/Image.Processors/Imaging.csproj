@@ -55,8 +55,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Processors\IBarcodeEncoder.cs" />
+    <Compile Include="Contracts\Processors\IImageProcessorService.cs" />
     <Compile Include="Contracts\Processors\IQRCodeEncoder.cs" />
     <Compile Include="Processors\BarcodeEncoder.cs" />
+    <Compile Include="Processors\ImageProcessorService.cs" />
     <Compile Include="Processors\QRCodeEncoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +69,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
+      <Name>Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
