@@ -7,7 +7,7 @@
     using ProcessingTools.Imaging.Contracts.Processors;
     using QRCoder;
 
-    public class QRCodeEncoder : IQRCodeEncoder
+    public class QRCodeEncoderService : IQRCodeEncoderService
     {
         public Task<byte[]> Encode(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule)
         {

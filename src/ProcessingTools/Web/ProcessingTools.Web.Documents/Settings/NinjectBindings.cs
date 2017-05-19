@@ -134,8 +134,8 @@
                     return t => context.Kernel.Get(t) as ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
 
-            this.Bind<ProcessingTools.Imaging.Contracts.Processors.IQRCodeEncoder>()
-                .To<ProcessingTools.Imaging.Processors.QRCodeEncoder>()
+            this.Bind<ProcessingTools.Imaging.Contracts.Processors.IQRCodeEncoderService>()
+                .To<ProcessingTools.Imaging.Processors.QRCodeEncoderService>()
                 .InRequestScope();
 
             this.Bind<ProcessingTools.Imaging.Contracts.Processors.IBarcodeEncoderService>()

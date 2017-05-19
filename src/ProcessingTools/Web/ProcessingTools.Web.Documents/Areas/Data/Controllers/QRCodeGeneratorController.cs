@@ -15,9 +15,9 @@
     {
         private const string IndexRequestModelValidationIncludeBindings = nameof(IndexRequestModel.PixelPerModule) + "," + nameof(IndexRequestModel.Content);
 
-        private readonly IQRCodeEncoder encoder;
+        private readonly IQRCodeEncoderService encoder;
 
-        public QRCodeGeneratorController(IQRCodeEncoder encoder)
+        public QRCodeGeneratorController(IQRCodeEncoderService encoder)
         {
             if (encoder == null)
             {

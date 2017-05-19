@@ -5,7 +5,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Services;
 
-    public interface IQRCodeEncoder : IProcessor
+    public interface IQRCodeEncoderService : IProcessor
     {
         Task<byte[]> Encode(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule);
 

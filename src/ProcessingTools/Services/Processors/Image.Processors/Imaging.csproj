@@ -56,10 +56,10 @@
   <ItemGroup>
     <Compile Include="Contracts\Processors\IBarcodeEncoderService.cs" />
     <Compile Include="Contracts\Processors\IImageProcessorService.cs" />
-    <Compile Include="Contracts\Processors\IQRCodeEncoder.cs" />
+    <Compile Include="Contracts\Processors\IQRCodeEncoderService.cs" />
     <Compile Include="Processors\BarcodeEncoderService.cs" />
     <Compile Include="Processors\ImageProcessorService.cs" />
-    <Compile Include="Processors\QRCodeEncoder.cs" />
+    <Compile Include="Processors\QRCodeEncoderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
