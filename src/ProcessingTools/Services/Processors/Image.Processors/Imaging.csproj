@@ -38,15 +38,19 @@
       <HintPath>..\..\..\packages\QrCode.Net.0.4.0.0\lib\net45\Gma.QrCodeNet.Encoding.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="QRCoder, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\QRCoder.1.2.6\lib\net40\QRCoder.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ImageProcessor, Version=2.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ImageProcessor.2.5.4\lib\net45\ImageProcessor.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\iTextSharp.5.5.11\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.2.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\QRCoder.1.2.8\lib\net40\QRCoder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\QRCoder.1.2.6\lib\net40\UnityEngine.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\QRCoder.1.2.8\lib\net40\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
