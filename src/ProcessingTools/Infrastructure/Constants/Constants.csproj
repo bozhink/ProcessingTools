@@ -71,6 +71,16 @@
     <Compile Include="TaxaRegexPatterns.cs" />
     <Compile Include="Uri\PermalinkPrefixes.cs" />
     <Compile Include="Uri\UrlConstants.cs" />
+    <Compile Include="Web\ActionNames.cs" />
+    <Compile Include="Web\AreasConstants.cs" />
+    <Compile Include="Web\BundleNames.cs" />
+    <Compile Include="Web\ContentConstants.cs" />
+    <Compile Include="Web\ControllerNames.cs" />
+    <Compile Include="Web\FormatConstants.cs" />
+    <Compile Include="Web\InstanceNames.cs" />
+    <Compile Include="Web\RouteConstants.cs" />
+    <Compile Include="Web\SectionNames.cs" />
+    <Compile Include="Web\ViewNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CommonAppSettings.config">
