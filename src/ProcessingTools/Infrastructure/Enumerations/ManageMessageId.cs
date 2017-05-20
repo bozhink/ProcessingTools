@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Common.Enumerations
+﻿namespace ProcessingTools.Enumerations
 {
     public enum ManageMessageId
     {

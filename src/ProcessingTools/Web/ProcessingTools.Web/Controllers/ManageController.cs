@@ -7,9 +7,9 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Common.Enumerations;
     using ProcessingTools.Web.Constants;
     using ProcessingTools.Web.ViewModels.Manage;
     using Strings = ProcessingTools.Web.Resources.Controllers.Manage.Strings;
@@ -74,7 +74,7 @@
         private IAuthenticationManager AuthenticationManager => this.HttpContext.GetOwinContext().Authentication;
 
         // GET: /Manage/Index
-        [HttpGet, ActionName(ManageController.IndexActionName)]
+        [HttpGet, ActionName(IndexActionName)]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             this.ViewBag.StatusMessage =
@@ -122,18 +122,18 @@
                 message = ManageMessageId.Error;
             }
 
-            return this.RedirectToAction(ManageController.ManageLoginsActionName, new { Message = message });
+            return this.RedirectToAction(ManageLoginsActionName, new { Message = message });
         }
 
         // GET: /Manage/AddPhoneNumber
-        [HttpGet, ActionName(ManageController.AddPhoneNumberActionName)]
+        [HttpGet, ActionName(AddPhoneNumberActionName)]
         public ActionResult AddPhoneNumber()
         {
             return this.View();
         }
 
         // POST: /Manage/AddPhoneNumber
-        [HttpPost, ActionName(ManageController.AddPhoneNumberActionName)]
+        [HttpPost, ActionName(AddPhoneNumberActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
@@ -156,11 +156,11 @@
                 await this.UserManager.SmsService.SendAsync(message);
             }
 
-            return this.RedirectToAction(ManageController.VerifyPhoneNumberActionName, new { PhoneNumber = model.Number });
+            return this.RedirectToAction(VerifyPhoneNumberActionName, new { PhoneNumber = model.Number });
         }
 
         // POST: /Manage/EnableTwoFactorAuthentication
-        [HttpPost, ActionName(ManageController.EnableTwoFactorAuthenticationActionName)]
+        [HttpPost, ActionName(EnableTwoFactorAuthenticationActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
@@ -171,11 +171,11 @@
                 await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
 
-            return this.RedirectToAction(ManageController.IndexActionName);
+            return this.RedirectToAction(IndexActionName);
         }
 
         // POST: /Manage/DisableTwoFactorAuthentication
-        [HttpPost, ActionName(ManageController.DisableTwoFactorAuthenticationActionName)]
+        [HttpPost, ActionName(DisableTwoFactorAuthenticationActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
@@ -186,11 +186,11 @@
                 await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
 
-            return this.RedirectToAction(ManageController.IndexActionName);
+            return this.RedirectToAction(IndexActionName);
         }
 
         // GET: /Manage/VerifyPhoneNumber
-        [HttpGet, ActionName(ManageController.VerifyPhoneNumberActionName)]
+        [HttpGet, ActionName(VerifyPhoneNumberActionName)]
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await this.UserManager.GenerateChangePhoneNumberTokenAsync(this.UserId, phoneNumber);
@@ -208,7 +208,7 @@
         }
 
         // POST: /Manage/VerifyPhoneNumber
-        [HttpPost, ActionName(ManageController.VerifyPhoneNumberActionName)]
+        [HttpPost, ActionName(VerifyPhoneNumberActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
@@ -223,7 +223,7 @@
                         await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
 
-                    return this.RedirectToAction(ManageController.IndexActionName, new { Message = ManageMessageId.AddPhoneSuccess });
+                    return this.RedirectToAction(IndexActionName, new { Message = ManageMessageId.AddPhoneSuccess });
                 }
 
                 this.AddErrors(Strings.FailedToVerifyPhoneMessage);
@@ -233,14 +233,14 @@
         }
 
         // POST: /Manage/RemovePhoneNumber
-        [HttpPost, ActionName(ManageController.RemovePhoneNumberActionName)]
+        [HttpPost, ActionName(RemovePhoneNumberActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await this.UserManager.SetPhoneNumberAsync(this.UserId, null);
             if (!result.Succeeded)
             {
-                return this.RedirectToAction(ManageController.IndexActionName, new { Message = ManageMessageId.Error });
+                return this.RedirectToAction(IndexActionName, new { Message = ManageMessageId.Error });
             }
 
             var user = await this.UserManager.FindByIdAsync(this.UserId);
@@ -249,18 +249,18 @@
                 await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
 
-            return this.RedirectToAction(ManageController.IndexActionName, new { Message = ManageMessageId.RemovePhoneSuccess });
+            return this.RedirectToAction(IndexActionName, new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
         // GET: /Manage/ChangePassword
-        [HttpGet, ActionName(ManageController.ChangePasswordActionName)]
+        [HttpGet, ActionName(ChangePasswordActionName)]
         public ActionResult ChangePassword()
         {
             return this.View();
         }
 
         // POST: /Manage/ChangePassword
-        [HttpPost, ActionName(ManageController.ChangePasswordActionName)]
+        [HttpPost, ActionName(ChangePasswordActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
@@ -275,7 +275,7 @@
                         await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
 
-                    return this.RedirectToAction(ManageController.IndexActionName, new { Message = ManageMessageId.ChangePasswordSuccess });
+                    return this.RedirectToAction(IndexActionName, new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
 
                 this.AddErrors(result);
@@ -285,14 +285,14 @@
         }
 
         // GET: /Manage/SetPassword
-        [HttpGet, ActionName(ManageController.SetPasswordActionName)]
+        [HttpGet, ActionName(SetPasswordActionName)]
         public ActionResult SetPassword()
         {
             return this.View();
         }
 
         // POST: /Manage/SetPassword
-        [HttpPost, ActionName(ManageController.SetPasswordActionName)]
+        [HttpPost, ActionName(SetPasswordActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
@@ -307,7 +307,7 @@
                         await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
 
-                    return this.RedirectToAction(ManageController.IndexActionName, new { Message = ManageMessageId.SetPasswordSuccess });
+                    return this.RedirectToAction(IndexActionName, new { Message = ManageMessageId.SetPasswordSuccess });
                 }
 
                 this.AddErrors(result);
@@ -317,7 +317,7 @@
         }
 
         // GET: /Manage/ManageLogins
-        [HttpGet, ActionName(ManageController.ManageLoginsActionName)]
+        [HttpGet, ActionName(ManageLoginsActionName)]
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             this.ViewBag.StatusMessage =
@@ -345,7 +345,7 @@
         }
 
         // POST: /Manage/LinkLogin
-        [HttpPost, ActionName(ManageController.LinkLoginActionName)]
+        [HttpPost, ActionName(LinkLoginActionName)]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
@@ -354,22 +354,22 @@
         }
 
         // GET: /Manage/LinkLoginCallback
-        [HttpGet, ActionName(ManageController.LinkLoginCallbackActionName)]
+        [HttpGet, ActionName(LinkLoginCallbackActionName)]
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync(AccountController.ChallengeResult.XsrfKey, this.UserId);
             if (loginInfo == null)
             {
-                return this.RedirectToAction(ManageController.ManageLoginsActionName, new { Message = ManageMessageId.Error });
+                return this.RedirectToAction(ManageLoginsActionName, new { Message = ManageMessageId.Error });
             }
 
             var result = await this.UserManager.AddLoginAsync(this.UserId, loginInfo.Login);
             if (result.Succeeded)
             {
-                return this.RedirectToAction(ManageController.ManageLoginsActionName);
+                return this.RedirectToAction(ManageLoginsActionName);
             }
 
-            return this.RedirectToAction(ManageController.ManageLoginsActionName, new { Message = ManageMessageId.Error });
+            return this.RedirectToAction(ManageLoginsActionName, new { Message = ManageMessageId.Error });
         }
 
         protected override void Dispose(bool disposing)

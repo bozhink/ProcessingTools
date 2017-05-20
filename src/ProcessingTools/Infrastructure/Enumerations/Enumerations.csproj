@@ -36,6 +36,7 @@
     <Compile Include="ExceptionSeverity.cs" />
     <Compile Include="IndexHerbariorumRecordType.cs" />
     <Compile Include="LogType.cs" />
+    <Compile Include="ManageMessageId.cs" />
     <Compile Include="MethodType.cs" />
     <Compile Include="PostCodeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
