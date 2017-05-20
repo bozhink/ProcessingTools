@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using Contracts;
+    using ProcessingTools.Contracts.ViewModels;
 
     public class ListWithPagingViewModel<T> : IPagingViewModel
     {

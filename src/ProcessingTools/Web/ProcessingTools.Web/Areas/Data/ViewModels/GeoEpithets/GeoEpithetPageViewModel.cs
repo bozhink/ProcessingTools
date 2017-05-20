@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.ViewModels.GeoEpithets
 {
-    using ProcessingTools.Web.Common.ViewModels.Contracts;
+    using ProcessingTools.Contracts.ViewModels;
 
     public class GeoEpithetPageViewModel : IPageViewModel<GeoEpithetViewModel>
     {

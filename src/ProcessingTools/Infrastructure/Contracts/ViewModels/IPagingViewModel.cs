@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Common.ViewModels.Contracts
+﻿namespace ProcessingTools.Contracts.ViewModels
 {
     public interface IPagingViewModel
     {
