@@ -123,6 +123,9 @@
   <data name="CancelButtonText" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="CommonDataSectionHeading" xml:space="preserve">
+    <value>Common Data</value>
+  </data>
   <data name="CountriesHeadingText" xml:space="preserve">
     <value>Countries</value>
   </data>

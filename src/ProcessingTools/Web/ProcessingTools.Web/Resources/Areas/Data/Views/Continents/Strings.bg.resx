@@ -123,6 +123,9 @@
   <data name="CancelButtonText" xml:space="preserve">
     <value>Отказ</value>
   </data>
+  <data name="CommonDataSectionHeading" xml:space="preserve">
+    <value>Общи данни</value>
+  </data>
   <data name="CountriesHeadingText" xml:space="preserve">
     <value>Държави</value>
   </data>

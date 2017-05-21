@@ -79,6 +79,15 @@ namespace ProcessingTools.Web.Resources.Areas.Data.Views.Continents {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Common Data.
+        /// </summary>
+        public static string CommonDataSectionHeading {
+            get {
+                return ResourceManager.GetString("CommonDataSectionHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Countries.
         /// </summary>
         public static string CountriesHeadingText {

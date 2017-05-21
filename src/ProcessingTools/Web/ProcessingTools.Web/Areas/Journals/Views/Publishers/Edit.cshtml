@@ -20,7 +20,7 @@
     </header>
     @using (Html.BeginForm(this.ViewData[ContextKeys.ActionName].ToString(), this.ViewData[ContextKeys.ControllerName].ToString(), FormMethod.Post, htmlAttributes: new { id = "form-publisher" }))
     {
-        @Html.Partial(ViewNames.EditButtons, Model, this.ViewData)
+        @Html.Partial(ViewNames.EditButtonsPartial, Model, this.ViewData)
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
@@ -44,7 +44,7 @@
             </div>
         </div>
     }
-    @Html.Partial(ViewNames.Addresses, Model, this.ViewData)
+    @Html.Partial(ViewNames.AddressesPartial, Model, this.ViewData)
     <footer>
         <nav>
             <ul class="navigation">

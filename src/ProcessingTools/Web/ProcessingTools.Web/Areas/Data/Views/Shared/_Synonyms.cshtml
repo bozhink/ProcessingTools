@@ -1,7 +1,6 @@
 @using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Shared.Strings
-<hr />
-<div role="grid">
-    <h4>@Strings.SynonymsHeading <span data-bind="text: count()" class="badge"></span> <button data-bind="click: addSynonym" class="btn btn-default glyphicon glyphicon-plus" title="@Strings.AddSynonymTitle"></button></h4>
+<fieldset role="grid" id="synonyms-grid" style="display: none;">
+    <legend>@Strings.SynonymsHeading <span data-bind="text: count()" class="badge"></span> <a href="javascript:void(0);" data-bind="click: addSynonym" class="glyphicon glyphicon-plus" title="@Strings.AddSynonymTitle"></a></legend>
     <table data-bind="visible: count() > 0">
         <thead>
             <tr>
@@ -24,5 +23,5 @@
             </tr>
         </tbody>
     </table>
-</div>
+</fieldset>
 <input name="synonyms" type="hidden" data-bind="value: json()" />
