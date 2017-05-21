@@ -14,8 +14,6 @@
 
         Task<object> InsertAsync(TModel model);
 
-        Task<object> SaveChangesAsync();
-
         Task<TModel[]> SelectAsync(TFilter filter);
 
         Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending);

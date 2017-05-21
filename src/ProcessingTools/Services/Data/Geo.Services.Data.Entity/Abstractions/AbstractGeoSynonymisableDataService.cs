@@ -75,7 +75,7 @@
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
             this.repository.Update(entity);
-
+            await this.repository.SaveChangesAsync();
             return entity.Synonyms.Count;
         }
 
@@ -90,7 +90,7 @@
             return this.DeleteAsync(id: id);
         }
 
-        public virtual Task<object> DeleteAsync(object id)
+        public virtual async Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -98,7 +98,8 @@
             }
 
             this.repository.Delete(id: id);
-            return Task.FromResult(id);
+            await this.repository.SaveChangesAsync();
+            return id;
         }
 
         public virtual async Task<TModel> GetByIdAsync(object id)
@@ -133,7 +134,6 @@
             }
 
             var model = this.Mapper.Map<TSynonymEntity, TSynonymModel>(entity);
-
             return model;
         }
 
@@ -200,19 +200,13 @@
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
             this.repository.Update(entity);
-
+            await this.repository.SaveChangesAsync();
             return ids.Length;
-        }
-
-        public virtual async Task<object> SaveChangesAsync()
-        {
-            return await this.repository.SaveChangesAsync();
         }
 
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-
             var data = await query.ToListAsync();
             var result = data.Select(e => this.Mapper.Map<TEntity, TModel>(e)).ToArray();
             return result;
@@ -221,7 +215,6 @@
         public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
         {
             var query = this.SelectQuery(this.GetQuery(filter), skip, take, sortColumn, sortOrder);
-
             var data = await query.ToListAsync();
             var result = data.Select(e => this.Mapper.Map<TEntity, TModel>(e)).ToArray();
             return result;
@@ -230,23 +223,20 @@
         public virtual async Task<long> SelectCountAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-
-            var result = await query.LongCountAsync();
-            return result;
+            var count = await query.LongCountAsync();
+            return count;
         }
 
         public virtual async Task<long> SelectSynonymCountAsync(int modelId, TSynonymFilter filter)
         {
             var query = this.GetQuery(modelId, filter);
-
-            var result = await query.LongCountAsync();
-            return result;
+            var count = await query.LongCountAsync();
+            return count;
         }
 
         public virtual async Task<TSynonymModel[]> SelectSynonymsAsync(int modelId, TSynonymFilter filter)
         {
             var query = this.GetQuery(modelId, filter);
-
             var data = await query.ToListAsync();
             var result = data.Select(e => this.Mapper.Map<TSynonymEntity, TSynonymModel>(e)).ToArray();
             return result;
@@ -260,7 +250,6 @@
             }
 
             var entity = this.Mapper.Map<TModel, TEntity>(model);
-
             return await this.UpdateEntityAsync(entity);
         }
 
@@ -301,8 +290,8 @@
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
             this.repository.Update(entity);
-
-            return await Task.FromResult(count);
+            await this.repository.SaveChangesAsync();
+            return count;
         }
 
         protected abstract IQueryable<TEntity> GetQuery(TFilter filter);
@@ -344,7 +333,7 @@
             }
 
             this.repository.Add(entity);
-
+            await this.repository.SaveChangesAsync();
             return await Task.FromResult(entity);
         }
 
@@ -368,10 +357,9 @@
             }
 
             this.Mapper.Map<TEntity, TEntity>(entity, dbentity);
-
             this.repository.Update(dbentity);
-
-            return await Task.FromResult(dbentity);
+            await this.repository.SaveChangesAsync();
+            return dbentity;
         }
     }
 }

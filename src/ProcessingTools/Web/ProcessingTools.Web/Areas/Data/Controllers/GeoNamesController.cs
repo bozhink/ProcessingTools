@@ -33,12 +33,7 @@
 
         public GeoNamesController(IGeoNamesDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -123,7 +118,6 @@
             if (this.ModelState.IsValid)
             {
                 await this.service.InsertAsync(model);
-                await this.service.SaveChangesAsync();
 
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
@@ -181,7 +175,6 @@
             if (this.ModelState.IsValid)
             {
                 await this.service.UpdateAsync(model);
-                await this.service.SaveChangesAsync();
 
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
@@ -234,7 +227,6 @@
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             await this.service.DeleteAsync(id: id);
-            await this.service.SaveChangesAsync();
 
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
             if (!string.IsNullOrWhiteSpace(returnUrl))

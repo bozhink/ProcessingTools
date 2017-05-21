@@ -1,5 +1,11 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
     using AutoMapper;
     using Newtonsoft.Json;
     using ProcessingTools.Common;
@@ -14,12 +20,6 @@
     using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings;
 
     [Authorize]
@@ -40,12 +40,7 @@
 
         public ContinentsController(IContinentsDataService service, ILoggerFactory loggerFactory)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = loggerFactory?.CreateLogger(this.GetType());
 
             var mapperConfiguration = new MapperConfiguration(c =>
@@ -182,7 +177,6 @@
                 if (this.ModelState.IsValid)
                 {
                     var id = await this.InsertModel(model, synonyms);
-                    await this.service.SaveChangesAsync();
 
                     if (createNew)
                     {
@@ -285,7 +279,6 @@
                 {
                     await this.service.UpdateAsync(model);
                     await this.UpdateSynonymsFromJson(model.Id, synonyms);
-                    await this.service.SaveChangesAsync();
 
                     if (createNew)
                     {
@@ -370,7 +363,6 @@
             try
             {
                 await this.service.DeleteAsync(id: id);
-                await this.service.SaveChangesAsync();
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))

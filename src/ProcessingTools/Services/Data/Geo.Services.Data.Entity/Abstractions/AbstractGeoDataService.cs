@@ -22,18 +22,8 @@
 
         public AbstractGeoDataService(IGeoRepository<TEntity> repository, IEnvironment environment)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            if (environment == null)
-            {
-                throw new ArgumentNullException(nameof(environment));
-            }
-
-            this.repository = repository;
-            this.environment = environment;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
         }
 
         protected IGeoRepository<TEntity> Repository => this.repository;
@@ -55,7 +45,7 @@
             return this.DeleteAsync(id: id);
         }
 
-        public virtual Task<object> DeleteAsync(object id)
+        public virtual async Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -63,7 +53,8 @@
             }
 
             this.repository.Delete(id: id);
-            return Task.FromResult(id);
+            await this.repository.SaveChangesAsync();
+            return id;
         }
 
         public virtual Task<TModel> GetByIdAsync(object id)
@@ -80,7 +71,6 @@
             }
 
             var model = this.MapEntityToModel(entity);
-
             return Task.FromResult(model);
         }
 
@@ -92,13 +82,7 @@
             }
 
             var entity = this.MapModelToEntity(model);
-
             return await this.InsertEntityAsync(entity);
-        }
-
-        public virtual async Task<object> SaveChangesAsync()
-        {
-            return await this.repository.SaveChangesAsync();
         }
 
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
@@ -129,9 +113,7 @@
         public virtual async Task<long> SelectCountAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-
             var count = await query.LongCountAsync();
-
             return count;
         }
 
@@ -143,11 +125,10 @@
             }
 
             var entity = this.MapModelToEntity(model);
-
             return await this.UpdateEntityAsync(entity);
         }
 
-        protected Task<TEntity> InsertEntityAsync(TEntity entity)
+        protected async Task<TEntity> InsertEntityAsync(TEntity entity)
         {
             string user = this.environment.User.Id;
             var now = this.environment.DateTime.Now;
@@ -158,11 +139,11 @@
             entity.ModifiedOn = now;
 
             this.repository.Add(entity);
-
-            return Task.FromResult(entity);
+            await this.repository.SaveChangesAsync();
+            return entity;
         }
 
-        protected Task<TEntity> UpdateEntityAsync(TEntity entity)
+        protected async Task<TEntity> UpdateEntityAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -176,8 +157,8 @@
             entity.ModifiedOn = now;
 
             this.repository.Update(entity);
-
-            return Task.FromResult(entity);
+            await this.repository.SaveChangesAsync();
+            return entity;
         }
 
         protected abstract IQueryable<TEntity> GetQuery(TFilter filter);
