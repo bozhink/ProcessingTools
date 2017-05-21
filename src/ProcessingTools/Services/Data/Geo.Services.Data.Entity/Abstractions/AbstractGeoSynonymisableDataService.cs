@@ -149,6 +149,27 @@
             return result.Id;
         }
 
+        public virtual async Task<object> InsertAsync(TModel model, params TSynonymModel[] synonyms)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            var entity = this.Mapper.Map<TModel, TEntity>(model);
+            if (synonyms != null && synonyms.Length > 0)
+            {
+                foreach (var synonym in synonyms)
+                {
+                    var synonymEntity = this.Mapper.Map<TSynonymModel, TSynonymEntity>(synonym);
+                    entity.Synonyms.Add(synonymEntity);
+                }
+            }
+
+            var result = await this.InsertEntityAsync(entity);
+            return result.Id;
+        }
+
         public async Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds)
         {
             if (synonymIds == null || synonymIds.Length < 1)
@@ -313,6 +334,14 @@
             entity.CreatedOn = now;
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
+
+            foreach (var synonym in entity.Synonyms)
+            {
+                synonym.CreatedBy = user;
+                synonym.CreatedOn = now;
+                synonym.ModifiedBy = user;
+                synonym.ModifiedOn = now;
+            }
 
             this.repository.Add(entity);
 

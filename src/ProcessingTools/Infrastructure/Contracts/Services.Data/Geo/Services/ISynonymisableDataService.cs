@@ -9,6 +9,8 @@
         where TSynonym : ISynonym
         where TSynonymFilter : ISynonymFilter
     {
+        Task<object> InsertAsync(TModel model, params TSynonym[] synonyms);
+
         Task<object> AddSynonymsAsync(int modelId, params TSynonym[] synonyms);
 
         Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds);

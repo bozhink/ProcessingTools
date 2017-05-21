@@ -1,15 +1,10 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using AutoMapper;
     using Newtonsoft.Json;
     using ProcessingTools.Common;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
@@ -18,8 +13,13 @@
     using ProcessingTools.Web.Areas.Data.Models.Shared;
     using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
     using ProcessingTools.Web.Common.ViewModels;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Web.Constants;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
     using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings;
 
     [Authorize]
@@ -181,8 +181,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    var id = await this.service.InsertAsync(model);
-                    await this.UpdateSynonymsFromJson((int)id, synonyms);
+                    var id = await this.InsertModel(model, synonyms);
                     await this.service.SaveChangesAsync();
 
                     if (createNew)
@@ -190,7 +189,7 @@
                         return this.RedirectToAction(CreateActionName, routeValues: new { ReturnUrl = returnUrl });
                     }
 
-                    if (exit)
+                    if (id == null || exit)
                     {
                         if (!string.IsNullOrWhiteSpace(returnUrl))
                         {
@@ -379,7 +378,7 @@
                     return this.Redirect(returnUrl);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.logger?.Log(e, string.Empty);
                 this.AddErrors(e.Message);
@@ -408,6 +407,34 @@
             }
 
             return result;
+        }
+
+        private async Task<object> InsertModel(ContinentRequestModel model, string synonyms)
+        {
+            object id = null;
+            bool inserted = false;
+            if (!string.IsNullOrWhiteSpace(synonyms) && synonyms != "[]")
+            {
+                try
+                {
+                    var synonymsArray = JsonConvert.DeserializeObject<ContinentSynonymRequestModel[]>(synonyms);
+                    var addedSynonyms = synonymsArray.Where(s => s.Status == UpdateStatus.Added).ToArray();
+                    id = await this.service.InsertAsync(model, addedSynonyms);
+                    inserted = true;
+                }
+                catch (Exception e)
+                {
+                    this.logger?.Log(e, string.Empty);
+                    inserted = false;
+                }
+            }
+
+            if (!inserted)
+            {
+                id = await this.service.InsertAsync(model);
+            }
+
+            return id;
         }
 
         private async Task UpdateSynonymsFromJson(int modelId, string synonyms)
