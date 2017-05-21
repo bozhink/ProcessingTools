@@ -46,7 +46,7 @@
             }
 
             this.service = service;
-            this.logger = loggerFactory.CreateLogger(this.GetType());
+            this.logger = loggerFactory?.CreateLogger(this.GetType());
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
