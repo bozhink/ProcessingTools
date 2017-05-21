@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Filters;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    public interface IMunicipalitiesDataService : IDataServiceAsync<IMunicipality, IMunicipalitiesFilter>, ISynonymisableDataService<IMunicipalitySynonym, IMunicipalitySynonymsFilter>
+    public interface IMunicipalitiesDataService : IDataServiceAsync<IMunicipality, IMunicipalitiesFilter>, ISynonymisableDataService<IMunicipality, IMunicipalitySynonym, IMunicipalitySynonymsFilter>
     {
     }
 }

@@ -16,9 +16,9 @@
     using ProcessingTools.Geo.Data.Entity.Contracts;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract partial class AbstractGeoSynonymisableDataService<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TSynonymModel, TSynonymFilter>
+    public abstract partial class AbstractGeoSynonymisableDataService<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
         where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Contracts.Data.Geo.Models.ISynonymisable<TSynonymEntity>
-        where TModel : class, IIntegerIdentifiable
+        where TModel : class, IIntegerIdentifiable, ISynonymisable<TSynonymModel>
         where TFilter : IFilter
         where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Contracts.Data.Geo.Models.ISynonym
         where TSynonymModel : class, ISynonym
@@ -30,24 +30,9 @@
 
         public AbstractGeoSynonymisableDataService(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IEnvironment environment)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            if (synonymRepository == null)
-            {
-                throw new ArgumentNullException(nameof(synonymRepository));
-            }
-
-            if (environment == null)
-            {
-                throw new ArgumentNullException(nameof(environment));
-            }
-
-            this.repository = repository;
-            this.synonymRepository = synonymRepository;
-            this.environment = environment;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.synonymRepository = synonymRepository ?? throw new ArgumentNullException(nameof(synonymRepository));
+            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
         }
 
         protected abstract IMapper Mapper { get; }
