@@ -854,10 +854,6 @@
       <Project>{CE9F3A6E-C793-4046-8768-3DEE63CA35E4}</Project>
       <Name>Services.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Web.Common\ProcessingTools.Web.Common.csproj">
-      <Project>{3B6C4B49-817C-478B-B4D5-F3C079FCF0B0}</Project>
-      <Name>ProcessingTools.Web.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Areas\Data\Resources\Continents\Models.Strings.bg.resx">

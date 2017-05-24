@@ -502,10 +502,6 @@
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Web.Common\ProcessingTools.Web.Common.csproj">
-      <Project>{3b6c4b49-817c-478b-b4d5-f3c079fcf0b0}</Project>
-      <Name>ProcessingTools.Web.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Messages.resx">
