@@ -35,7 +35,7 @@
                 "~/bower_components/bootstrap/dist/css/bootstrap.css",
                 "~/bower_components/font-awesome/css/font-awesome.css",
                 "~/bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css",
-                "~/Content/Site.css"));
+                "~/Content/Styles/site.min.css"));
         }
     }
 }

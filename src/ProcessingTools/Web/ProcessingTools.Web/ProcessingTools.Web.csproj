@@ -638,6 +638,12 @@
     <Compile Include="ViewModels\Shared\Route.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Styles\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
     <Content Include="Scripts\Areas\Data\Models\Shared\Language.js" />
     <Content Include="Scripts\Areas\Data\Models\Shared\Synonym.js" />
     <Content Include="Scripts\Areas\Data\ViewModels\Shared\SynonymViewModel.js" />
@@ -651,7 +657,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -699,6 +704,11 @@
     <Content Include="Areas\Data\Views\Shared\_ViewSynonyms.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Partials\_ViewCommonData.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Partials\_ViewCountries.cshtml" />
+    <Content Include="Content\Styles\site.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -770,6 +780,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Journals\Resources\" />
+    <Folder Include="Content\Images\" />
+    <Folder Include="Content\Styles\inc\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

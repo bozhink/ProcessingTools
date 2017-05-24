@@ -1,0 +1,97 @@
+﻿body {
+  font-size: 1.5em;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.body-content > footer {
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.075);
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+  white-space: normal;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+  max-width: 280px;
+}
+.edit-buttons {
+  margin: 0 0 2rem 0;
+}
+ul.navigation {
+  list-style-type: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+ul.navigation li {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-block;
+}
+ul.navigation li:before {
+  content: ' | ';
+}
+ul.navigation li:first-of-type:before {
+  content: '';
+}
+section[role=main] header {
+  padding-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+section[role=main] header h2 {
+  padding: 1.5rem 0 0.4rem 0;
+  margin: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.375);
+}
+section[role=main] footer {
+  padding-top: 1.5rem;
+  margin-top: 3.0rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.075);
+}
+.grid > .grid-row {
+  font-size: 1.5rem;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 5px 0 5px 0;
+}
+.grid > .grid-row:last-child {
+  border-bottom: 2px solid #dddddd;
+}
+.grid > .grid-row:hover {
+  background-color: #eee;
+}
+.grid > .grid-row > div:last-child {
+  text-align: right;
+}
+.grid > .grid-header {
+  font-size: 1.6rem;
+  font-weight: bold;
+  border-bottom: 2px solid #dddddd;
+}
+fieldset + fieldset {
+  margin-top: 3.0rem;
+}
+.section-content {
+  padding: 0 1vw;
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-weight: initial;
+}
+.underline {
+  text-decoration: underline;
+}
+.overline {
+  text-decoration: overline;
+}
