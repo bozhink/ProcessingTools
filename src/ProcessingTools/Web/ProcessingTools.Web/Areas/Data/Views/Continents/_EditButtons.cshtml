@@ -1,15 +1,13 @@
-﻿@using ProcessingTools.Web.Areas.Data.ViewModels.Continents
-@using ProcessingTools.Web.Constants
-@using ProcessingTools.Web.ViewModels.Shared
+﻿@using ProcessingTools.Web.Constants
 @using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings;
-@model ContinentPageViewModel
+@model ProcessingTools.Web.Areas.Data.ViewModels.Continents.ContinentPageViewModel
 @{ 
     string actionName = this.ViewData[ContextKeys.ActionName].ToString();
     string backActionName = this.ViewData[ContextKeys.BackActionName].ToString();
     string controllerName = this.ViewData[ContextKeys.ControllerName].ToString();
     string areaName = this.ViewData[ContextKeys.AreaName].ToString();
 }
-@Html.Partial(ViewNames.SharedEditButtonsPartial, new EditButtonsViewModel
+@Html.Partial(ViewNames.SharedEditButtonsPartial, new ProcessingTools.Web.ViewModels.Shared.EditButtonsViewModel
 {
     ButtonSaveIsVisible = true,
     ButtonSaveText = Strings.ButtonSaveText,

@@ -20,7 +20,7 @@
     using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.Continents.Strings;
+    using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings;
 
     [Authorize]
     public class ContinentsController : BaseMvcController
