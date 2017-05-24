@@ -44,13 +44,9 @@
     <Compile Include="Constants\RouteConstants.cs" />
     <Compile Include="Constants\SectionNames.cs" />
     <Compile Include="Constants\ViewNames.cs" />
-    <Compile Include="ViewModels\ListWithPagingViewModel.cs" />
-    <Compile Include="ViewModels\NamedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>

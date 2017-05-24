@@ -14,10 +14,10 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Data.Models.Continents;
     using ProcessingTools.Web.Areas.Data.Models.Shared;
-    using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings;
 

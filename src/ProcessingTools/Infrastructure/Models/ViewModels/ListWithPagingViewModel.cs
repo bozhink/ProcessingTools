@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Common.ViewModels
+﻿namespace ProcessingTools.Models.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -18,18 +18,12 @@
                 throw new ArgumentNullException(nameof(actionName));
             }
 
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
             this.ActionName = actionName;
+            this.items = items ?? throw new ArgumentNullException(nameof(items));
 
             this.numberOfItems = numberOfItems;
             this.numberOfItemsPerPage = numberOfItemsPerPage;
             this.currentPage = currentPage;
-
-            this.items = items;
         }
 
         public string ActionName { get; private set; }

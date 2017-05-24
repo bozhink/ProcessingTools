@@ -15,8 +15,8 @@
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Common.Constants;
-    using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
     using Strings = Resources.Strings;

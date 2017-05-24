@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Models.Continents
 {
     using ProcessingTools.Contracts.ViewModels;
-    using ProcessingTools.Web.Common.ViewModels;
+    using ProcessingTools.Models.ViewModels;
 
     public class ContinentIndexPageViewModel : IPageViewModel<ListWithPagingViewModel<ContinentViewModel>>
     {
