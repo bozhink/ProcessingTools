@@ -368,6 +368,7 @@
     <Compile Include="Areas\Data\Models\Continents\ContinentSynonymRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoEpithets\GeoEpithetRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
+    <Compile Include="Areas\Data\Models\Shared\SynonymisableViewModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymRequestModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymResponseModel.cs" />
     <Compile Include="Areas\Data\Models\Continents\ContinentIndexPageViewModel.cs" />
@@ -690,11 +691,14 @@
     <Content Include="Areas\Data\Views\Continents\Details.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Index.cshtml" />
-    <Content Include="Areas\Data\Views\Shared\_Synonyms.cshtml" />
+    <Content Include="Areas\Data\Views\Shared\_EditSynonyms.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Partials\_EditButtons.cshtml" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
     <Content Include="Areas\Data\Views\Continents\Partials\_EditCommonData.cshtml" />
+    <Content Include="Areas\Data\Views\Shared\_ViewSynonyms.cshtml" />
+    <Content Include="Areas\Data\Views\Continents\Partials\_ViewCommonData.cshtml" />
+    <Content Include="Areas\Data\Views\Continents\Partials\_ViewCountries.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -1,0 +1,25 @@
+﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.Shared.Views_Strings
+@model ProcessingTools.Web.Areas.Data.Models.Shared.SynonymisableViewModel
+@if (Model != null && Model.Synonyms.Count() > 0)
+{
+    <fieldset>
+        <legend>@Strings.SynonymsHeading</legend>
+        <table class="table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th class="text-left">@Html.LabelFor(m => m.Synonyms.First().Name)</th>
+                    <th class="text-right">@Html.LabelFor(m => m.Synonyms.First().LanguageCode)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var synonym in Model.Synonyms)
+                {
+                    <tr>
+                        <td class="text-left">@Html.DisplayFor(m => synonym.Name)</td>
+                        <td class="text-right">@Html.DisplayFor(m => synonym.LanguageCode)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+}

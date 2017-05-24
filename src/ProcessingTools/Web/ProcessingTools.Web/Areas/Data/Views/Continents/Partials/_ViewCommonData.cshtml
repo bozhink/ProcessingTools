@@ -1,0 +1,12 @@
+﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings
+@model ProcessingTools.Web.Areas.Data.Models.Continents.ContinentViewModel
+<fieldset>
+    <legend>@Strings.CommonDataSectionHeading</legend>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.Name)</dt>
+        <dd>@Html.DisplayFor(m => m.Name)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.AbbreviatedName)</dt>
+        <dd>@Html.DisplayFor(m => m.AbbreviatedName)</dd>
+    </dl>
+</fieldset>

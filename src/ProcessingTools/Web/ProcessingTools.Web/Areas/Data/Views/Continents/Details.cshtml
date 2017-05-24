@@ -1,5 +1,5 @@
-﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings
-@using SharedStrings = ProcessingTools.Web.Areas.Data.Resources.Shared.Views_Strings
+﻿@using ProcessingTools.Web.Constants
+@using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings
 @model ProcessingTools.Web.Areas.Data.Models.Continents.ContinentPageViewModel
 @{
     this.ViewBag.Title = Model.PageTitle;
@@ -11,66 +11,19 @@
             <h2>@Model.PageHeading</h2>
         </header>
         <div class="section-content">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">@Html.Partial(ViewNames.ViewCommonDataPartial, Model.Model)</div>
 
-            <fieldset>
-                <legend>@Strings.CommonDataSectionHeading</legend>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Model.Name)</dt>
-                    <dd>@Html.DisplayFor(m => m.Model.Name)</dd>
+                @if (Model.Model.Synonyms != null && Model.Model.Synonyms.Count() > 0)
+                {
+                    <div class="col-sm-12 col-md-6">@Html.Partial(ViewNames.ViewSynonymsPartial, Model.Model)</div>
+                }
 
-                    <dt>@Html.DisplayNameFor(m => m.Model.AbbreviatedName)</dt>
-                    <dd>@Html.DisplayFor(m => m.Model.AbbreviatedName)</dd>
-                </dl>
-            </fieldset>
-
-            @if (Model.Model.Synonyms != null && Model.Model.Synonyms.Count() > 0)
-            {
-                <fieldset>
-                    <legend>@SharedStrings.SynonymsHeading</legend>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>@Html.LabelFor(m => m.Model.Synonyms.First().Name)</th>
-                                <th>@Html.LabelFor(m => m.Model.Synonyms.First().LanguageCode)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var synonym in Model.Model.Synonyms)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(m => synonym.Name)</td>
-                                    <td>@Html.DisplayFor(m => synonym.LanguageCode)</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </fieldset>
-            }
-
-            @if (Model.Model.Countries != null && Model.Model.Countries.Count() > 0)
-            {
-                <fieldset>
-                    <legend>@Strings.CountriesHeadingText</legend>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>@Html.LabelFor(m => m.Model.Countries.First().Name)</th>
-                                <th>@Html.LabelFor(m => m.Model.Countries.First().LanguageCode)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var country in Model.Model.Countries)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(m => country.Name)</td>
-                                    <td>@Html.DisplayFor(m => country.LanguageCode)</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </fieldset>
-            }
-
+                @if (Model.Model.Countries != null && Model.Model.Countries.Count() > 0)
+                {
+                    <div class="col-sm-12 col-md-6">@Html.Partial(ViewNames.ViewCountriesPartial, Model.Model)</div>
+                }
+            </div>
         </div>
         <footer>
             <nav>

@@ -132,4 +132,7 @@
   <data name="NameErrorMessage" xml:space="preserve">
     <value>The {0} must be between {2} and {1} characters long.</value>
   </data>
+  <data name="Synonyms" xml:space="preserve">
+    <value>Synonyms</value>
+  </data>
 </root>

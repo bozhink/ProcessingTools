@@ -104,5 +104,14 @@ namespace ProcessingTools.Web.Areas.Data.Resources.Shared {
                 return ResourceManager.GetString("NameErrorMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synonyms.
+        /// </summary>
+        public static string Synonyms {
+            get {
+                return ResourceManager.GetString("Synonyms", resourceCulture);
+            }
+        }
     }
 }

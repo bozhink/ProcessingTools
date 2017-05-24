@@ -9,10 +9,13 @@
         public const string Edit = "Edit";
         public const string EditButtonsPartial = "Partials/_EditButtons";
         public const string EditCommonDataPartial = "Partials/_EditCommonData";
+        public const string EditSynonymsPartial = "_EditSynonyms";
         public const string Error = "Error";
         public const string Lockout = "Lockout";
         public const string NavigationFootPartial = "~/Views/Shared/Partials/_NavigationFoot.cshtml";
         public const string SharedEditButtonsPartial = "~/Views/Shared/Buttons/_EditButtons.cshtml";
-        public const string SynonymsPartial = "_Synonyms";
+        public const string ViewCommonDataPartial = "Partials/_ViewCommonData";
+        public const string ViewCountriesPartial = "Partials/_ViewCountries";
+        public const string ViewSynonymsPartial = "_ViewSynonyms";
     }
 }

@@ -132,4 +132,7 @@
   <data name="NameErrorMessage" xml:space="preserve">
     <value>{0} трябва да бъде с дължина между {2} и {1} символа.</value>
   </data>
+  <data name="Synonyms" xml:space="preserve">
+    <value>Синоними</value>
+  </data>
 </root>

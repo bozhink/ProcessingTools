@@ -1,0 +1,22 @@
+﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings
+@model ProcessingTools.Web.Areas.Data.Models.Continents.ContinentViewModel
+<fieldset>
+    <legend>@Strings.CountriesHeadingText</legend>
+    <table class="table-condensed table-hover">
+        <thead>
+            <tr>
+                <th class="text-left">@Html.LabelFor(m => m.Countries.First().Name)</th>
+                <th class="text-right">@Html.LabelFor(m => m.Countries.First().LanguageCode)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var country in Model.Countries)
+            {
+                <tr>
+                    <td class="text-left">@Html.DisplayFor(m => country.Name)</td>
+                    <td class="text-right">@Html.DisplayFor(m => country.LanguageCode)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</fieldset>
