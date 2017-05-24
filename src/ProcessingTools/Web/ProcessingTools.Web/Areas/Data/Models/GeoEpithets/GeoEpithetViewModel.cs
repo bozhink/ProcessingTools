@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Web.Areas.Data.ViewModels.GeoNames
+﻿namespace ProcessingTools.Web.Areas.Data.Models.GeoEpithets
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoNames.Strings;
+    using Strings = ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoEpithets.Strings;
 
-    public class GeoNameViewModel
+    public class GeoEpithetViewModel
     {
         public int Id { get; set; }
 

@@ -17,7 +17,6 @@
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Data.Models.Continents;
     using ProcessingTools.Web.Areas.Data.Models.Shared;
-    using ProcessingTools.Web.Areas.Data.ViewModels.Continents;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings;

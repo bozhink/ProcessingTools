@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Areas.Data.ViewModels.GeoEpithets
+﻿namespace ProcessingTools.Web.Areas.Data.Models.GeoEpithets
 {
     using ProcessingTools.Contracts.ViewModels;
 

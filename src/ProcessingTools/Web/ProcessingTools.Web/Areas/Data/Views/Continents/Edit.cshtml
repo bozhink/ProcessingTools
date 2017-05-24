@@ -1,7 +1,7 @@
 ﻿@using ProcessingTools.Web.Constants
 @using Bundles = ProcessingTools.Web.Common.Constants.BundleNames
 @using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings
-@model ProcessingTools.Web.Areas.Data.ViewModels.Continents.ContinentPageViewModel
+@model ProcessingTools.Web.Areas.Data.Models.Continents.ContinentPageViewModel
 @{
     this.ViewBag.Title = Model.PageTitle;
     this.ViewData[ContextKeys.Url] = Url.Action(actionName: ContinentsController.SynonymsActionName, controllerName: ContinentsController.ControllerName, routeValues: new { id = Model?.Model?.Id });

@@ -13,7 +13,6 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Data.Models.GeoEpithets;
-    using ProcessingTools.Web.Areas.Data.ViewModels.GeoEpithets;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
     using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoEpithets.Strings;

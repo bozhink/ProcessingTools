@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Areas.Data.ViewModels.Continents
+﻿namespace ProcessingTools.Web.Areas.Data.Models.Continents
 {
     using ProcessingTools.Contracts.ViewModels;
     using ProcessingTools.Web.Common.ViewModels;

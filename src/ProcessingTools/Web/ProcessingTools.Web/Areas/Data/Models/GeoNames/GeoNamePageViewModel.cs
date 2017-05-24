@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Areas.Data.ViewModels.GeoNames
+﻿namespace ProcessingTools.Web.Areas.Data.Models.GeoNames
 {
     using ProcessingTools.Contracts.ViewModels;
 

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Web.Areas.Data.ViewModels.Continents
+﻿namespace ProcessingTools.Web.Areas.Data.Models.Continents
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
