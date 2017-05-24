@@ -15,7 +15,7 @@
     using ProcessingTools.Web.Areas.Data.Models.GeoEpithets;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoEpithets.Strings;
+    using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Views_Strings;
 
     [Authorize]
     public class GeoEpithetsController : BaseMvcController

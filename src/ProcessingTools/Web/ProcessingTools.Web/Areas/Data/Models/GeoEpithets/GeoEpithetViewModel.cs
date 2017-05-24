@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.ViewModels.GeoEpithets.Strings;
+    using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Models_Strings;
 
     public class GeoEpithetViewModel
     {

@@ -412,25 +412,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.bg.Designer.cs">
-      <DependentUpon>Strings.bg.resx</DependentUpon>
+    <Compile Include="Areas\Data\Resources\GeoEpithets\Models.Strings.bg.Designer.cs">
+      <DependentUpon>Models.Strings.bg.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
+    <Compile Include="Areas\Data\Resources\GeoEpithets\Models.Strings.Designer.cs">
+      <DependentUpon>Models.Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.bg.Designer.cs">
+    <Compile Include="Areas\Data\Resources\GeoNames\Models.Strings.bg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <DependentUpon>Models.Strings.bg.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.Designer.cs">
+    <Compile Include="Areas\Data\Resources\GeoNames\Models.Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
+      <DependentUpon>Models.Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Areas\Data\Resources\Shared\Models.Strings.bg.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -452,23 +452,23 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Areas\Data\Views\GeoEpithets\Strings.bg.Designer.cs">
-      <DependentUpon>Strings.bg.resx</DependentUpon>
+    <Compile Include="Areas\Data\Resources\GeoEpithets\Views.Strings.bg.Designer.cs">
+      <DependentUpon>Views.Strings.bg.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Areas\Data\Views\GeoEpithets\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
+    <Compile Include="Areas\Data\Resources\GeoEpithets\Views.Strings.Designer.cs">
+      <DependentUpon>Views.Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Areas\Data\Views\GeoNames\Strings.bg.Designer.cs">
+    <Compile Include="Areas\Data\Resources\GeoNames\Views.Strings.bg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <DependentUpon>Views.Strings.bg.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Areas\Data\Views\GeoNames\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
+    <Compile Include="Areas\Data\Resources\GeoNames\Views.Strings.Designer.cs">
+      <DependentUpon>Views.Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -764,8 +764,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Data\Resources\GeoEpithets\" />
-    <Folder Include="Areas\Data\Resources\GeoNames\" />
     <Folder Include="Areas\Journals\Resources\" />
   </ItemGroup>
   <ItemGroup>
@@ -866,21 +864,21 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Models.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.bg.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoEpithets\Models.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoEpithets\Strings.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoEpithets\Models.Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.bg.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoNames\Models.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\GeoNames\Strings.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoNames\Models.Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\Data\Resources\Shared\Models.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -898,21 +896,21 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Views.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\Views\GeoEpithets\Strings.bg.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoEpithets\Views.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+      <LastGenOutput>Views.Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\Views\GeoEpithets\Strings.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoEpithets\Views.Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Views.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\Views\GeoNames\Strings.bg.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoNames\Views.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+      <LastGenOutput>Views.Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\Views\GeoNames\Strings.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\GeoNames\Views.Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Views.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\Data\Resources\Shared\Views.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

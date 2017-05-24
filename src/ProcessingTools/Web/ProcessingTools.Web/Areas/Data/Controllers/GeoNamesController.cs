@@ -15,7 +15,7 @@
     using ProcessingTools.Web.Areas.Data.Models.GeoNames;
     using ProcessingTools.Web.Common.ViewModels;
     using ProcessingTools.Web.Constants;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.Views.GeoNames.Strings;
+    using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoNames.Views_Strings;
 
     [Authorize]
     public class GeoNamesController : BaseMvcController
