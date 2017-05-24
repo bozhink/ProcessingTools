@@ -17,16 +17,17 @@
     {
         @Html.AntiForgeryToken()
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink(
-                    linkText: string.Format(Strings.GreetingActionLinkTitle, this.User.Identity.GetUserName()),
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@string.Format(Strings.GreetingActionLinkTitle, this.User.Identity.GetUserName()) <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink(
+                    linkText: Strings.ManageActionLinkTitle,
                     actionName: ManageController.IndexActionName,
                     controllerName: ManageController.ControllerName,
                     routeValues: new { area = AreaNames.DefaultArea },
-                    htmlAttributes: new { title = Strings.ManageActionLinkTitle })
-            </li>
-            <li>
-                <a href="javascript:document.getElementById('logoutForm').submit()">@Strings.LogOutActionLinkTitle</a>
+                    htmlAttributes: new { })</li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">@Strings.LogOutActionLinkTitle</a></li>
+                </ul>
             </li>
         </ul>
     }
