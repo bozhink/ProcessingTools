@@ -690,10 +690,10 @@
     <Content Include="Areas\Data\Views\Continents\Edit.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Index.cshtml" />
     <Content Include="Areas\Data\Views\Shared\_Synonyms.cshtml" />
-    <Content Include="Areas\Data\Views\Continents\_EditButtons.cshtml" />
+    <Content Include="Areas\Data\Views\Continents\Partials\_EditButtons.cshtml" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
-    <Content Include="Areas\Data\Views\Continents\_CommonData.cshtml" />
+    <Content Include="Areas\Data\Views\Continents\Partials\_EditCommonData.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

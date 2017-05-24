@@ -48,7 +48,7 @@ ul.navigation li {
 }
 
 ul.navigation li:before {
-    content: '|';
+    content: ' | ';
 }
 
 ul.navigation li:first-of-type:before {
@@ -98,6 +98,10 @@ section[role=main] footer {
 
 fieldset + fieldset {
     margin-top: 3.0rem;
+}
+
+.section-content {
+    padding: 0 1vw;
 }
 
 .bold {

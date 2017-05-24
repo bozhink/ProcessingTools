@@ -13,8 +13,12 @@
     @using (Html.BeginForm())
     {
         @Html.Partial(ViewNames.EditButtonsPartial, Model, this.ViewData)
-        @Html.Partial(ViewNames.CommonDataPartial, Model, this.ViewData)
-        @Html.Partial(ViewNames.SynonymsPartial, Model, this.ViewData)
+        <div class="section-content">
+            <div class="row">
+                <div class="col-sm-12 col-md-7">@Html.Partial(ViewNames.EditCommonDataPartial, Model, this.ViewData)</div>
+                <div class="col-sm-12 col-md-5">@Html.Partial(ViewNames.SynonymsPartial, Model, this.ViewData)</div>
+            </div>
+        </div>
     }
     <footer>
         <nav>
