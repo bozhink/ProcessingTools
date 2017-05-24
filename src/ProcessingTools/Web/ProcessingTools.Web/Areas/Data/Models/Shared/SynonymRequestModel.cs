@@ -4,7 +4,7 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Enumerations;
-    using Strings = ProcessingTools.Web.Resources.Areas.Data.ViewModels.Shared.Strings;
+    using Strings = ProcessingTools.Web.Areas.Data.Resources.Shared.Models_Strings;
 
     public class SynonymRequestModel : ISynonym
     {

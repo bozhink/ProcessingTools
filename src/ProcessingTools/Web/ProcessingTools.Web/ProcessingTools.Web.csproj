@@ -432,15 +432,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Areas\Data\ViewModels\Shared\Strings.bg.Designer.cs">
+    <Compile Include="Areas\Data\Resources\Shared\Models.Strings.bg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <DependentUpon>Models.Strings.bg.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Areas\Data\ViewModels\Shared\Strings.Designer.cs">
+    <Compile Include="Areas\Data\Resources\Shared\Models.Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
+      <DependentUpon>Models.Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Areas\Data\Resources\Continents\Views.Strings.bg.Designer.cs">
       <DependentUpon>Views.Strings.bg.resx</DependentUpon>
@@ -472,13 +472,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Areas\Data\Views\Shared\Strings.bg.Designer.cs">
-      <DependentUpon>Strings.bg.resx</DependentUpon>
+    <Compile Include="Areas\Data\Resources\Shared\Views.Strings.bg.Designer.cs">
+      <DependentUpon>Views.Strings.bg.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Areas\Data\Views\Shared\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
+    <Compile Include="Areas\Data\Resources\Shared\Views.Strings.Designer.cs">
+      <DependentUpon>Views.Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -766,7 +766,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Data\Resources\GeoEpithets\" />
     <Folder Include="Areas\Data\Resources\GeoNames\" />
-    <Folder Include="Areas\Data\Resources\Shared\" />
     <Folder Include="Areas\Journals\Resources\" />
   </ItemGroup>
   <ItemGroup>
@@ -883,13 +882,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\Shared\Strings.bg.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\Shared\Models.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\ViewModels\Shared\Strings.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\Shared\Models.Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Areas\Data\Resources\Continents\Views.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -915,13 +914,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\Views\Shared\Strings.bg.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\Shared\Views.Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+      <LastGenOutput>Views.Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Areas\Data\Views\Shared\Strings.resx">
+    <EmbeddedResource Include="Areas\Data\Resources\Shared\Views.Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Views.Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Areas\Journals\ViewModels\Publishers\Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

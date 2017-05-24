@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.Shared {
+namespace ProcessingTools.Web.Areas.Data.Resources.Shared {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.Shared {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Strings {
+    public class Views_Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Strings() {
+        internal Views_Strings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.Shared {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Resources.Areas.Data.ViewModels.Shared.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProcessingTools.Web.Areas.Data.Resources.Shared.Views.Strings", typeof(Views_Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,47 @@ namespace ProcessingTools.Web.Resources.Areas.Data.ViewModels.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ID.
+        ///   Looks up a localized string similar to Add Synonym.
         /// </summary>
-        public static string Id {
+        public static string AddSynonymTitle {
             get {
-                return ResourceManager.GetString("Id", resourceCulture);
+                return ResourceManager.GetString("AddSynonymTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Language Code.
         /// </summary>
-        public static string LanguageCode {
+        public static string LanguageCodeTableHeading {
             get {
-                return ResourceManager.GetString("LanguageCode", resourceCulture);
+                return ResourceManager.GetString("LanguageCodeTableHeading", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Remove Synonym.
         /// </summary>
-        public static string Name {
+        public static string RemoveSynonymTitle {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("RemoveSynonymTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must not be empty..
+        ///   Looks up a localized string similar to Synonyms.
         /// </summary>
-        public static string NameEmptyErrorMessage {
+        public static string SynonymsHeading {
             get {
-                return ResourceManager.GetString("NameEmptyErrorMessage", resourceCulture);
+                return ResourceManager.GetString("SynonymsHeading", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must be between {2} and {1} characters long..
+        ///   Looks up a localized string similar to Synonym.
         /// </summary>
-        public static string NameErrorMessage {
+        public static string SynonymTableHeading {
             get {
-                return ResourceManager.GetString("NameErrorMessage", resourceCulture);
+                return ResourceManager.GetString("SynonymTableHeading", resourceCulture);
             }
         }
     }
