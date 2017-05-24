@@ -34,12 +34,14 @@
         public const string SynonymsActionName = nameof(ContinentsController.Synonyms);
 
         private readonly IContinentsDataService service;
+        private readonly ICountriesDataService countriesService;
         private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        public ContinentsController(IContinentsDataService service, ILoggerFactory loggerFactory)
+        public ContinentsController(IContinentsDataService service, ICountriesDataService countriesService, ILoggerFactory loggerFactory)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.countriesService = countriesService ?? throw new ArgumentNullException(nameof(countriesService));
             this.logger = loggerFactory?.CreateLogger(this.GetType());
 
             var mapperConfiguration = new MapperConfiguration(c =>
@@ -47,23 +49,45 @@
                 c.CreateMap<IContinent, ContinentViewModel>()
                     .ForMember(
                         destinationMember: d => d.Synonyms,
-                        memberOptions: o => o.ResolveUsing(x => string.Join(", ", x.Synonyms.Select(s => s.Name).ToArray())))
+                        memberOptions: o => o.ResolveUsing(x => x.Synonyms?.Select(s => new SynonymViewModel
+                        {
+                            Id = s.Id,
+                            Name = s.Name,
+                            LanguageCode = s.LanguageCode.ToString()
+                        })))
                     .ForMember(
                         destinationMember: d => d.Countries,
-                        memberOptions: o => o.UseValue<IEnumerable<CountryViewModel>>(null))
+                        memberOptions: o => o.ResolveUsing(x => x.Countries?.Select(s => new CountryViewModel
+                        {
+                            Id = s.Id,
+                            Name = s.Name,
+                            LanguageCode = s.LanguageCode
+                        })))
                     .ForMember(
                         destinationMember: d => d.NumberOfCountries,
                         memberOptions: o => o.ResolveUsing(x => x.Countries.Count));
+
                 c.CreateMap<ContinentRequestModel, ContinentViewModel>()
                     .ForMember(
                         destinationMember: d => d.Synonyms,
-                        memberOptions: o => o.ResolveUsing(x => string.Empty))
+                        memberOptions: o => o.ResolveUsing(x => x.Synonyms?.Select(s => new SynonymViewModel
+                        {
+                            Id = s.Id,
+                            Name = s.Name,
+                            LanguageCode = s.LanguageCode.ToString()
+                        })))
                     .ForMember(
                         destinationMember: d => d.Countries,
-                        memberOptions: o => o.UseValue<IEnumerable<CountryViewModel>>(null))
+                        memberOptions: o => o.ResolveUsing(x => x.Countries?.Select(s => new CountryViewModel
+                        {
+                            Id = s.Id,
+                            Name = s.Name,
+                            LanguageCode = s.LanguageCode
+                        })))
                     .ForMember(
                         destinationMember: d => d.NumberOfCountries,
                         memberOptions: o => o.ResolveUsing(x => x.Countries.Count));
+
                 c.CreateMap<IContinentSynonym, SynonymResponseModel>();
             });
 
@@ -126,6 +150,14 @@
                 PageTitle = Strings.DetailsPageTitle,
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
+
+            var countries = await this.countriesService.SelectAsync(null);
+            foreach (var synonym in viewModel.Model.Synonyms)
+            {
+                synonym.LanguageCode = countries.Where(c => c.Id.ToString() == synonym.LanguageCode)
+                    .Select(c => c.LanguageCode)
+                    .FirstOrDefault();
+            }
 
             this.ViewData[ContextKeys.AreaName] = AreaName;
             this.ViewData[ContextKeys.ControllerName] = ControllerName;

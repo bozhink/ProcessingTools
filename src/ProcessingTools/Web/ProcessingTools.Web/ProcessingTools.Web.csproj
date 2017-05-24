@@ -378,6 +378,7 @@
     <Compile Include="Areas\Data\Models\GeoEpithets\GeoEpithetViewModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNamePageViewModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameViewModel.cs" />
+    <Compile Include="Areas\Data\Models\Shared\SynonymViewModel.cs" />
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Journals\JournalsAreaRegistration.cs" />

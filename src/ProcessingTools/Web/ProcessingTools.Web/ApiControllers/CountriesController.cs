@@ -15,12 +15,7 @@
 
         public CountriesController(ICountriesDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         // GET: api/Countries

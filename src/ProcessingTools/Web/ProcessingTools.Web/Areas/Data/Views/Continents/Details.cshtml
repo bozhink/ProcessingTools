@@ -27,8 +27,23 @@
             {
                 <fieldset>
                     <legend>@SharedStrings.SynonymsHeading</legend>
-
-                    <p>@Model.Model.Synonyms</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>@Html.LabelFor(m => m.Model.Synonyms.First().Name)</th>
+                                <th>@Html.LabelFor(m => m.Model.Synonyms.First().LanguageCode)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var synonym in Model.Model.Synonyms)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(m => synonym.Name)</td>
+                                    <td>@Html.DisplayFor(m => synonym.LanguageCode)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </fieldset>
             }
 

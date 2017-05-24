@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Web.Areas.Data.Models.Shared;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Models_Strings;
 
     public class ContinentViewModel
@@ -19,7 +20,7 @@
         public string AbbreviatedName { get; set; }
 
         [Display(Name = nameof(Strings.Synonyms), ResourceType = typeof(Strings))]
-        public string Synonyms { get; set; }
+        public IEnumerable<SynonymViewModel> Synonyms { get; set; }
 
         [Display(Name = nameof(Strings.NumberOfCountries), ResourceType = typeof(Strings))]
         public int NumberOfCountries { get; set; }
