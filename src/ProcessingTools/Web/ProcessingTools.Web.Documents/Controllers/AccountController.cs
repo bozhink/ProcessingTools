@@ -7,10 +7,10 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using ProcessingTools.Constants.Web;
     using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Web.Common.Constants;
-    using ViewModels.Account;
+    using ProcessingTools.Web.Documents.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller

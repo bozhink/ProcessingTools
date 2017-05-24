@@ -10,6 +10,7 @@
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
@@ -21,7 +22,6 @@
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Commands.Contracts.Models;
     using ProcessingTools.Tagger.Commands.Contracts.Providers;
-    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Tagger;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Tagger;

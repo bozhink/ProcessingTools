@@ -1,5 +1,4 @@
-﻿@using ProcessingTools.Web.Abstractions.Controllers
-@using ProcessingTools.Web.Constants
+﻿@using ProcessingTools.Web.Constants
 @using ProcessingTools.Web.Controllers
 @using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -11,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
             @Html.ActionLink(
-                linkText: ProcessingTools.Web.Common.Constants.ContentConstants.ApplicationName,
+                linkText: ProcessingTools.Constants.Web.ContentConstants.ApplicationName,
                 actionName: HomeController.IndexActionName,
                 controllerName: HomeController.ControllerName,
                 routeValues: new { area = AreaNames.DefaultArea },

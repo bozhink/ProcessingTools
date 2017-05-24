@@ -1,11 +1,10 @@
 ﻿namespace ProcessingTools.Web
 {
     using System.Web.Optimization;
-    using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Constants.Web;
 
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle(BundleNames.JQueryScripts).Include(

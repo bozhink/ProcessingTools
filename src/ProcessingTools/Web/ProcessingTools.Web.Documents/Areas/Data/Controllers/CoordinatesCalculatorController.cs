@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using Models.CoordinatesCalculator;
+    using ProcessingTools.Constants.Web;
     using ProcessingTools.Geo.Contracts.Parsers;
-    using ProcessingTools.Web.Common.Constants;
-    using ViewModels.CoordinatesCalculator;
+    using ProcessingTools.Web.Documents.Areas.Data.Models.CoordinatesCalculator;
+    using ProcessingTools.Web.Documents.Areas.Data.ViewModels.CoordinatesCalculator;
 
     [Authorize]
     public class CoordinatesCalculatorController : Controller

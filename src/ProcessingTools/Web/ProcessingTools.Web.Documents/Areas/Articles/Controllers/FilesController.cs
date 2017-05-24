@@ -11,12 +11,12 @@
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Constants;
+    using ProcessingTools.Constants.Web;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.ViewModels;
-    using ProcessingTools.Web.Common.Constants;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
     using Strings = Resources.Strings;

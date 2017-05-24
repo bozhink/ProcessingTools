@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Files
 {
     using System.Web.Mvc;
-    using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Constants.Web;
 
     public class FilesAreaRegistration : AreaRegistration
     {

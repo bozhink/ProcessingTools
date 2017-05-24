@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Articles
 {
     using System.Web.Mvc;
-    using ProcessingTools.Web.Common.Constants;
+    using ProcessingTools.Constants.Web;
 
     public class ArticlesAreaRegistration : AreaRegistration
     {
