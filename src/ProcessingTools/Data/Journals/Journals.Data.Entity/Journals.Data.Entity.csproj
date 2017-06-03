@@ -74,6 +74,10 @@
       <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
+      <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>

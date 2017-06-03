@@ -1,11 +1,11 @@
-﻿namespace ProcessingTools.Common.Models
+﻿namespace ProcessingTools.Models.Abstractions
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models;
 
-    public class ModelWithUserInformation : IModelWithUserInformation
+    public abstract class ModelWithUserInformation : IModelWithUserInformation
     {
         public ModelWithUserInformation()
         {

@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.DataModels.Publishers
 {
     using System;
-    using ProcessingTools.Common.Models;
     using ProcessingTools.Contracts.Data.Documents.Models;
+    using ProcessingTools.Models.Abstractions;
 
     public class AddressEntity : ModelWithUserInformation, IAddressEntity
     {

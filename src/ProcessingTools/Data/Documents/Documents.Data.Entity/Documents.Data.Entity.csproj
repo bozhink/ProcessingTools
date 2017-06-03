@@ -97,6 +97,10 @@
       <Project>{8C506EE8-1C2E-4684-A081-2DE56BF70FE9}</Project>
       <Name>Exceptions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
+      <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>

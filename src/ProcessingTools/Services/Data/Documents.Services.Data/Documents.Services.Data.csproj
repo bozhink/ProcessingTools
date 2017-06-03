@@ -98,6 +98,10 @@
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
       <Name>FileSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
+      <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>

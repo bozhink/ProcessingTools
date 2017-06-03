@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Common.Models;
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
+    using ProcessingTools.Models.Abstractions;
 
     public class Journal : ModelWithUserInformation, IEntityWithPreJoinedFields, IJournalEntity
     {

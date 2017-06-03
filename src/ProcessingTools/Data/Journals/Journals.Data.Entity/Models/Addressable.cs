@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using ProcessingTools.Common.Models;
     using ProcessingTools.Contracts.Data.Journals.Models;
+    using ProcessingTools.Models.Abstractions;
 
     public abstract class Addressable : ModelWithUserInformation, IAddressable
     {

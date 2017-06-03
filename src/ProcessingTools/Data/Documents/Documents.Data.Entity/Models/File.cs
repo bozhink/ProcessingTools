@@ -3,9 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Common.Models;
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Contracts.Data.Documents.Models;
+    using ProcessingTools.Models.Abstractions;
 
     public class File : ModelWithUserInformation, IFileEntity
     {
