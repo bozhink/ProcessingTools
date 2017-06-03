@@ -1,5 +1,6 @@
 ﻿namespace ProcessingTools.Common.Extensions
 {
+    using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
     using ProcessingTools.Common.Attributes;
@@ -7,7 +8,7 @@
     public static class Extensions
     {
         /// <summary>
-        /// Gets the value of the on an struct, including enums.  
+        /// Gets the value of the on an struct, including enums.
         /// </summary>
         /// <typeparam name="T">The type of the struct.</typeparam>
         /// <param name="item">A value of type <see cref="T:System.Enum"/>.</param>
