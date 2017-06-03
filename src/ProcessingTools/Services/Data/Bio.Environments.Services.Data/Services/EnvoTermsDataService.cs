@@ -8,7 +8,7 @@
     using ProcessingTools.Bio.Environments.Services.Data.Contracts;
     using ProcessingTools.Bio.Environments.Services.Data.Models;
     using ProcessingTools.Constants;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions.Linq;
 
     public class EnvoTermsDataService : IEnvoTermsDataService

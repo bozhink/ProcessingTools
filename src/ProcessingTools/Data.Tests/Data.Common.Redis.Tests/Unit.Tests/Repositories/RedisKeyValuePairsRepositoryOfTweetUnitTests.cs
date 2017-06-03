@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Common;
-    using Models;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Data.Common.Redis.Repositories;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Data.Common.Redis.Tests.Common;
+    using ProcessingTools.Data.Common.Redis.Tests.Models;
     using ProcessingTools.Tests.Library;
     using ServiceStack.Redis;
 
@@ -206,7 +206,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
+            var exception = Assert.ThrowsAsync<ProcessingTools.Common.Exceptions.KeyNotFoundException>(() =>
             {
                 return repository.Get(key);
             });
@@ -413,7 +413,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
+            var exception = Assert.ThrowsAsync<ProcessingTools.Common.Exceptions.KeyNotFoundException>(() =>
             {
                 return repository.Update(key, value);
             });

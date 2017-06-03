@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Exceptions
+﻿namespace ProcessingTools.Common.Exceptions
 {
     using System;
     using System.Collections.Generic;

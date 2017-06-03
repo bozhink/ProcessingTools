@@ -11,7 +11,7 @@
     using ProcessingTools.DataResources.Services.Data.Contracts;
     using ProcessingTools.DataResources.Services.Data.Models;
     using ProcessingTools.DataResources.Services.Data.Models.Contracts;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
 
     public class ContentTypesDataService : IContentTypesDataService
     {

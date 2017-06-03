@@ -15,7 +15,7 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Tagger.Commands.Contracts;

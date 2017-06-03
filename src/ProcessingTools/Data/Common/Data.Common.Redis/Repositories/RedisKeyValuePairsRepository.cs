@@ -5,7 +5,7 @@
     using Abstractions.Repositories;
     using Contracts;
     using Contracts.Repositories;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
 
     public class RedisKeyValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyValuePairsRepository<T>
     {

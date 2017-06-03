@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Data.Common.File.Contracts.Repositories;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
 
     public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>, IFileCrudRepository<TEntity>
         where TContext : IFileDbContext<TEntity>

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Constants;
     using Contracts.Generators;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
 
     public class SequentialFileNameGenerator : ISequentialFileNameGenerator
     {

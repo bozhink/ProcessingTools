@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Extensions.Linq.Expressions;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
@@ -23,7 +23,7 @@
         where TServiceModel : class, IServiceModel
         where TDetailedServiceModel : class, TServiceModel, IDetailedModel, Contracts.Models.IAddressable
         where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Contracts.Data.Journals.Models.IAddressable
-        where TRepository : ICrudRepository<TDataModel>, IAddressableRepository
+        where TRepository : class, ICrudRepository<TDataModel>, IAddressableRepository
     {
         private static readonly ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();
 
@@ -32,18 +32,8 @@
 
         public AbstractAddresssableDataService(TRepository repository, IDateTimeProvider datetimeProvider)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            if (datetimeProvider == null)
-            {
-                throw new ArgumentNullException(nameof(datetimeProvider));
-            }
-
-            this.repository = repository;
-            this.datetimeProvider = datetimeProvider;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.datetimeProvider = datetimeProvider ?? throw new ArgumentNullException(nameof(datetimeProvider));
         }
 
         protected abstract Func<TDataModel, TServiceModel> MapDataModelToServiceModel { get; }

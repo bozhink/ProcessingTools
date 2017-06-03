@@ -10,7 +10,7 @@
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
     using Strings = Resources.Strings;
 

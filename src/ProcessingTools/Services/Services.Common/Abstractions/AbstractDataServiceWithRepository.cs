@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
 

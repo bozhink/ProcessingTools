@@ -3,7 +3,7 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Data.Contracts.Files;
 
     public class StreamingSystemFileContentDataService : IStreamingSystemFileContentDataService

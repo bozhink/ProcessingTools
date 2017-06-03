@@ -9,7 +9,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Extensions.Linq.Expressions;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;

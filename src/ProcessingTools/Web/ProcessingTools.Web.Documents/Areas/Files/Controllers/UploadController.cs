@@ -10,7 +10,7 @@
     using Models;
     using ProcessingTools.Contracts.Models.Files;
     using ProcessingTools.Contracts.Services.Data.Files;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
 
     [Authorize]
     public class UploadController : Controller

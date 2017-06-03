@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using ProcessingTools.Contracts.Models.Files;
-    using ProcessingTools.Exceptions;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Services.Data.Contracts.Files;
     using ProcessingTools.Services.Data.Models.Files;
 
