@@ -2,10 +2,9 @@
 {
     using System;
     using System.Text;
+    using ProcessingTools.Contracts;
 
-    using Contracts;
-
-    public class RandomProvider : IRandomProvider
+    public class RandomDataProvider : IRandomDataProvider
     {
         private const string StringCharacters = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890-=[]';,./~!@#$%^&*()_+ ";
 

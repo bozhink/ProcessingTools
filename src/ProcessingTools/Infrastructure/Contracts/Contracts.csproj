@@ -137,6 +137,7 @@
     <Compile Include="ILoggerFactory.cs" />
     <Compile Include="IParseContextStrategy.cs" />
     <Compile Include="IParseXmlContextStrategy.cs" />
+    <Compile Include="IRandomDataProvider.cs" />
     <Compile Include="IStrategiesProvider.cs" />
     <Compile Include="IStrategy.cs" />
     <Compile Include="Models\Documents\IJournalMeta.cs" />

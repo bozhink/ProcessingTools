@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Common.Contracts
+﻿namespace ProcessingTools.Contracts
 {
-    public interface IRandomProvider
+    public interface IRandomDataProvider
     {
         int GetRandomNumber(int min, int max);
 
