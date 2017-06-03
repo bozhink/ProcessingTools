@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Newtonsoft.Json;
-    using ProcessingTools.Common;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
@@ -36,12 +35,7 @@
 
         public PublishersController(IPublishersDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.service.SaveToHistory = true;
         }
 
@@ -287,7 +281,7 @@
             var result = new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Data = new Address[] { }
             };

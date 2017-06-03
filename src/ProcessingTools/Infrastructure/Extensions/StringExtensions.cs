@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Common;
+    using ProcessingTools.Constants;
 
     public static class StringExtensions
     {
@@ -116,12 +116,12 @@
 
             try
             {
-                byte[] bytesContent = Defaults.DefaultEncoding.GetBytes(content);
+                byte[] bytesContent = Defaults.Encoding.GetBytes(content);
                 stream = new MemoryStream(bytesContent);
             }
             catch (EncoderFallbackException e)
             {
-                throw new EncoderFallbackException($"Input document string should be {Defaults.DefaultEncoding.EncodingName} encoded.", e);
+                throw new EncoderFallbackException($"Input document string should be {Defaults.Encoding.EncodingName} encoded.", e);
             }
 
             return stream;

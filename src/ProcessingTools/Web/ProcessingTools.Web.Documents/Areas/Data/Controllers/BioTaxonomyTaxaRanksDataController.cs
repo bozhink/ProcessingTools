@@ -5,7 +5,6 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using ProcessingTools.Common;
     using ProcessingTools.Constants;
     using ProcessingTools.Extensions;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
@@ -22,18 +21,8 @@
             ITaxonRankDataService dataService,
             ITaxonRankSearchService searchService)
         {
-            if (dataService == null)
-            {
-                throw new ArgumentNullException(nameof(dataService));
-            }
-
-            if (searchService == null)
-            {
-                throw new ArgumentNullException(nameof(searchService));
-            }
-
-            this.dataService = dataService;
-            this.searchService = searchService;
+            this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
+            this.searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
         }
 
         [HttpPost]
@@ -96,7 +85,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 JsonRequestBehavior = JsonRequestBehavior.DenyGet,
                 Data = data
             };

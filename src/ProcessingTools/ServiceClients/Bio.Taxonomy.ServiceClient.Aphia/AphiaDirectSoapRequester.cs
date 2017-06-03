@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common;
     using ProcessingTools.Constants;
     using ProcessingTools.Extensions;
     using ProcessingTools.Net.Factories.Contracts;
@@ -17,12 +16,7 @@
 
         public AphiaDirectSoapRequester(INetConnectorFactory connectorFactory)
         {
-            if (connectorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(connectorFactory));
-            }
-
-            this.connectorFactory = connectorFactory;
+            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
         public XmlDocument AphiaSoapXml(string scientificName)
@@ -35,7 +29,7 @@
     <soap:Body>
         <getAphiaRecords xmlns=""http://tempuri.org/"">
             <scientificname>" + scientificName + @"</scientificname>
-            <marine_only>flase</marine_only>
+            <marine_only>false</marine_only>
         </getAphiaRecords>
     </soap:Body>
 </soap:Envelope>");
@@ -49,7 +43,7 @@
                 ApiUrl,
                 this.AphiaSoapXml(scientificName).OuterXml,
                 ContentTypes.Xml,
-                Defaults.DefaultEncoding);
+                Defaults.Encoding);
 
             return response.ToXmlDocument();
         }

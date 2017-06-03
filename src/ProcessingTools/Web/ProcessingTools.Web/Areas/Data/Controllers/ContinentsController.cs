@@ -1,14 +1,12 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Controllers
 {
+    using AutoMapper;
+    using Newtonsoft.Json;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using AutoMapper;
-    using Newtonsoft.Json;
-    using ProcessingTools.Common;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
@@ -417,7 +415,7 @@
             var result = new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Data = new SynonymResponseModel[] { }
             };

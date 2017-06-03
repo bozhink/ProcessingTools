@@ -7,8 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts;
-    using ProcessingTools.Common;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Extensions;
     using ProcessingTools.Net.Factories.Contracts;
@@ -21,12 +20,7 @@
 
         public GlobalNamesResolverDataRequester(INetConnectorFactory connectorFactory)
         {
-            if (connectorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(connectorFactory));
-            }
-
-            this.connectorFactory = connectorFactory;
+            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
         public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
@@ -54,7 +48,7 @@
                 string contentType = "application/x-www-form-urlencoded";
 
                 var connector = this.connectorFactory.Create(BaseAddress);
-                var response = await connector.Post(ApiUrl, postData, contentType, Defaults.DefaultEncoding);
+                var response = await connector.Post(ApiUrl, postData, contentType, Defaults.Encoding);
                 return response.ToXmlDocument();
             }
             catch
@@ -67,8 +61,10 @@
         {
             try
             {
-                Dictionary<string, string> values = new Dictionary<string, string>();
-                values.Add("data", string.Join("\r\n", scientificNames));
+                Dictionary<string, string> values = new Dictionary<string, string>
+                {
+                    { "data", string.Join("\r\n", scientificNames) }
+                };
 
                 if (sourceId != null)
                 {
@@ -76,7 +72,7 @@
                 }
 
                 var connector = this.connectorFactory.Create(BaseAddress);
-                var response = await connector.Post(ApiUrl, values, Defaults.DefaultEncoding);
+                var response = await connector.Post(ApiUrl, values, Defaults.Encoding);
                 return response.ToXmlDocument();
             }
             catch

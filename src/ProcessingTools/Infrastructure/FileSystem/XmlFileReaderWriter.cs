@@ -5,9 +5,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-
-    using Contracts;
-    using ProcessingTools.Common;
+    using ProcessingTools.Constants;
+    using ProcessingTools.FileSystem.Contracts;
 
     public class XmlFileReaderWriter : IXmlFileReaderWriter
     {
@@ -32,7 +31,7 @@
             {
                 Async = true,
                 CloseOutput = true,
-                Encoding = Defaults.DefaultEncoding,
+                Encoding = Defaults.Encoding,
                 Indent = false,
                 IndentChars = " ",
                 NamespaceHandling = NamespaceHandling.OmitDuplicates,

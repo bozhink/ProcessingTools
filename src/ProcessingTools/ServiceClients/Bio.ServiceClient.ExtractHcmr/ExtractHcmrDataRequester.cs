@@ -3,11 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using Contracts;
-    using Models;
-
-    using ProcessingTools.Common;
+    using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Contracts;
+    using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Models;
+    using ProcessingTools.Constants;
     using ProcessingTools.Net.Factories.Contracts;
 
     /// <summary>
@@ -22,12 +20,7 @@
 
         public ExtractHcmrDataRequester(INetConnectorFactory connectorFactory)
         {
-            if (connectorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(connectorFactory));
-            }
-
-            this.connectorFactory = connectorFactory;
+            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
         public async Task<ExtractHcmrResponseModel> RequestData(string content)
@@ -45,7 +38,7 @@
             };
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var result = await connector.PostAndDeserializeXml<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.DefaultEncoding);
+            var result = await connector.PostAndDeserializeXml<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.Encoding);
             return result;
         }
     }

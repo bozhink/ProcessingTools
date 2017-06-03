@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Constants.Data.Documents;
@@ -29,18 +28,8 @@
 
         public DocumentsDataService(IDocumentsRepositoryProvider<Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            if (xmlFileReaderWriter == null)
-            {
-                throw new ArgumentNullException(nameof(xmlFileReaderWriter));
-            }
-
-            this.repositoryProvider = repositoryProvider;
-            this.xmlFileReaderWriter = xmlFileReaderWriter;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
+            this.xmlFileReaderWriter = xmlFileReaderWriter ?? throw new ArgumentNullException(nameof(xmlFileReaderWriter));
         }
 
         // TODO: ConfigurationManager
@@ -299,7 +288,7 @@
 
             var entity = await this.GetEntity(userId, articleId, document.Id, repository);
 
-            using (var stream = new MemoryStream(Defaults.DefaultEncoding.GetBytes(content)))
+            using (var stream = new MemoryStream(Defaults.Encoding.GetBytes(content)))
             {
                 entity.ContentLength = await this.xmlFileReaderWriter.Write(stream, entity.FilePath, this.DataDirectory);
                 entity.ModifiedByUser = userId.ToString();

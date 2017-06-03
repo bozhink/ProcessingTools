@@ -6,7 +6,6 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Common;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Documents.Services.Data.Contracts;
@@ -27,12 +26,7 @@
 
         public DocumentContentController(IXmlPresenter presenter)
         {
-            if (presenter == null)
-            {
-                throw new ArgumentNullException(nameof(presenter));
-            }
-
-            this.presenter = presenter;
+            this.presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
         }
 
         // GET: Articles/DocumentContent
@@ -138,7 +132,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 Data = new MessageResponseModel
                 {
                     Status = MessageResponseStatus.OK,
@@ -153,7 +147,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 Data = new ContentResponseModel
                 {
                     ArticleId = this.fakeArticleId.ToString(),
@@ -170,7 +164,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 Data = new MessageResponseModel
                 {
                     Status = MessageResponseStatus.Error,
@@ -185,7 +179,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 Data = new MessageResponseModel
                 {
                     Status = MessageResponseStatus.Error,
@@ -200,7 +194,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 Data = new MessageResponseModel
                 {
                     Status = MessageResponseStatus.Error,
@@ -215,7 +209,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 Data = new MessageResponseModel
                 {
                     Status = MessageResponseStatus.Error,
@@ -230,7 +224,7 @@
             return new JsonResult
             {
                 ContentType = ContentTypes.Json,
-                ContentEncoding = Defaults.DefaultEncoding,
+                ContentEncoding = Defaults.Encoding,
                 Data = new MessageResponseModel
                 {
                     Status = MessageResponseStatus.Error,

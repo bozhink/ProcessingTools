@@ -53,6 +53,7 @@
     <Compile Include="Data\History\ValidationConstants.cs" />
     <Compile Include="Data\Journals\ValidationConstants.cs" />
     <Compile Include="Data\Mediatypes\ValidationConstants.cs" />
+    <Compile Include="Defaults.cs" />
     <Compile Include="FileConstants.cs" />
     <Compile Include="ImagingConstants.cs" />
     <Compile Include="MediaTypes.cs" />

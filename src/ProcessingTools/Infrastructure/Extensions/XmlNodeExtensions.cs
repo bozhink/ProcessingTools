@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common;
+    using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
 
     public static class XmlNodeExtensions
@@ -382,12 +382,12 @@
             XmlReader xmlReader = null;
             try
             {
-                byte[] bytesContent = Defaults.DefaultEncoding.GetBytes(text);
+                byte[] bytesContent = Defaults.Encoding.GetBytes(text);
                 xmlReader = XmlReader.Create(new MemoryStream(bytesContent), settings);
             }
             catch (EncoderFallbackException e)
             {
-                throw new EncoderFallbackException($"Input document string should be {Defaults.DefaultEncoding.EncodingName} encoded.", e);
+                throw new EncoderFallbackException($"Input document string should be {Defaults.Encoding.EncodingName} encoded.", e);
             }
 
             return xmlReader;

@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common;
+    using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Files.IO;
 
     public class XmlFileWriter : IXmlFileWriter
@@ -13,7 +13,7 @@
             this.WriterSettings = new XmlWriterSettings()
             {
                 Async = true,
-                Encoding = Defaults.DefaultEncoding,
+                Encoding = Defaults.Encoding,
                 Indent = false,
                 IndentChars = " ",
                 NewLineChars = "\n",
