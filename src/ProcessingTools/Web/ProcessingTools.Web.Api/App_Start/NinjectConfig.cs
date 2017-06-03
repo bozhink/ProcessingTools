@@ -23,103 +23,69 @@
             ////kernel
             ////    .Bind<MediaType.Services.Data.Contracts.IMediaTypeDataService>()
             ////    .To<MediaType.Services.Data.Services.MediaTypeDataServiceWindowsRegistry>();
+
             kernel.Bind(b =>
             {
-                b.From(Mediatypes.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Mediatypes.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Services.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Geo.Services.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Services.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Environments.Services.Data.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.ServiceClient.ExtractHcmr.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Assembly.Assembly.GetType().Assembly)
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
+
+                b.From(ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
+            kernel.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
+                .To<ProcessingTools.Common.Providers.DateTimeProvider>()
+                .InSingletonScope();
 
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Environments.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Geo.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Environments.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(ProcessingTools.Common.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.ServiceClient.ExtractHcmr.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.CatalogueOfLife.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.Gbif.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.Gbif.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            kernel.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
+            kernel.Bind<ProcessingTools.Contracts.IGuidProvider>()
+                .To<ProcessingTools.Common.Providers.GuidProvider>()
+                .InSingletonScope();
         };
 
         public static IKernel CreateKernel()
