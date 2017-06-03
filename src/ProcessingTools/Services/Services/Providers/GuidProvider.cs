@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Common.Providers
+﻿namespace ProcessingTools.Services.Providers
 {
     using System;
     using ProcessingTools.Contracts;

@@ -4,11 +4,11 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Cache.Data.Redis.Repositories;
-    using ProcessingTools.Common.Providers;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;
+    using ProcessingTools.Services.Providers;
     using ProcessingTools.Services.Validation.Services;
 
     [TestClass]

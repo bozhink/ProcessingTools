@@ -80,11 +80,11 @@
             });
 
             kernel.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
-                .To<ProcessingTools.Common.Providers.DateTimeProvider>()
+                .To<ProcessingTools.Services.Providers.DateTimeProvider>()
                 .InSingletonScope();
 
             kernel.Bind<ProcessingTools.Contracts.IGuidProvider>()
-                .To<ProcessingTools.Common.Providers.GuidProvider>()
+                .To<ProcessingTools.Services.Providers.GuidProvider>()
                 .InSingletonScope();
         };
 

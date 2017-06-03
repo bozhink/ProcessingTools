@@ -125,7 +125,7 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
-                .To<ProcessingTools.Common.Providers.DateTimeProvider>()
+                .To<ProcessingTools.Services.Providers.DateTimeProvider>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()

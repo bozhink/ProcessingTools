@@ -100,6 +100,10 @@
       <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
       <Name>Services.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Services\Services.csproj">
+      <Project>{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Validation\Services.Validation\Services.Validation.csproj">
       <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
       <Name>Services.Validation</Name>

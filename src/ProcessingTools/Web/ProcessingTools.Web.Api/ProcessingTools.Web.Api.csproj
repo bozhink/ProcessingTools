@@ -438,10 +438,6 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Extensions\Extensions.csproj">
       <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
       <Name>Extensions</Name>
@@ -501,6 +497,10 @@
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services\Services.csproj">
+      <Project>{4b5a7dc2-bdcb-4602-8265-b02ef9b48d16}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
