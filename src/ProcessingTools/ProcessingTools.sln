@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -324,6 +324,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Services.Data.Entity", "Services\Data\Geo.Services.Data.Entity\Geo.Services.Data.Entity.csproj", "{A4357125-C8F2-46A1-808B-3861792B564E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Infrastructure\Models\Models.csproj", "{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services\Services.csproj", "{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1325,6 +1327,14 @@ Global
 		{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}.Release|x64.ActiveCfg = Release|Any CPU
 		{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}.Release|x64.Build.0 = Release|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Debug|x64.Build.0 = Debug|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1477,6 +1487,7 @@ Global
 		{D3890589-8338-42AE-9A1D-4FD746978BF5} = {4DA970DE-6147-45AD-9DA6-AEA01FD07B93}
 		{A4357125-C8F2-46A1-808B-3861792B564E} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
 		{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
