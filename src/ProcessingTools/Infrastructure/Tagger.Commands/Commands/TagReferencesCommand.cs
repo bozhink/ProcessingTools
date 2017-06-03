@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
+    using System.ComponentModel;
     using System.IO;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Processors.References;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Tag references.")]
     public class TagReferencesCommand : ITagReferencesCommand
@@ -18,12 +18,7 @@
 
         public TagReferencesCommand(IReferencesTagger tagger)
         {
-            if (tagger == null)
-            {
-                throw new ArgumentNullException(nameof(tagger));
-            }
-
-            this.tagger = tagger;
+            this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
         public Task<object> Run(IDocument document, ICommandSettings settings)

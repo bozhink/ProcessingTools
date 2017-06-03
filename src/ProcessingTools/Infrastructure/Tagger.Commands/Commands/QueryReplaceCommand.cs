@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Query replace.")]
     public class QueryReplaceCommand : IQueryReplaceCommand
@@ -15,12 +15,7 @@
 
         public QueryReplaceCommand(IQueryReplacer queryReplacer)
         {
-            if (queryReplacer == null)
-            {
-                throw new ArgumentNullException(nameof(queryReplacer));
-            }
-
-            this.queryReplacer = queryReplacer;
+            this.queryReplacer = queryReplacer ?? throw new ArgumentNullException(nameof(queryReplacer));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

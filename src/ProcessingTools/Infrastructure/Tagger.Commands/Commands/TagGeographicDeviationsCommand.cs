@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using Contracts.Commands;
-    using Generics;
-    using ProcessingTools.Attributes;
+    using System.ComponentModel;
     using ProcessingTools.Processors.Contracts.Processors.Geo;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Tagger.Commands.Generics;
 
     [Description("Tag geographic deviations.")]
     public class TagGeographicDeviationsCommand : GenericDocumentTaggerCommand<IGeographicDeviationsTagger>, ITagGeographicDeviationsCommand

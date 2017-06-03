@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using Contracts.Commands;
-    using Generics;
-    using ProcessingTools.Attributes;
+    using System.ComponentModel;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Tagger.Commands.Generics;
 
     [Description("Tag institutional codes.")]
     public class TagInstitutionalCodesCommand : GenericDocumentTaggerCommand<IInstitutionalCodesTagger>, ITagInstitutionalCodesCommand

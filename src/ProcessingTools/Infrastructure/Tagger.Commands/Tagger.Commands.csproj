@@ -198,10 +198,6 @@
       <Project>{287BB38D-333E-4206-B0DC-7D87345EE2AE}</Project>
       <Name>Special.Processors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Attributes\Attributes.csproj">
-      <Project>{1F0EDC77-2CAD-46F5-80DE-8AF619B7E41D}</Project>
-      <Name>Attributes</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>

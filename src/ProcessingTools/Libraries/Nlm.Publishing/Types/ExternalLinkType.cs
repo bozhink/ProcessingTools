@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Nlm.Publishing.Types
 {
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
 
     /// <summary>
     /// Describes the type of external link — for example, the specific source to which the link points
@@ -10,7 +10,7 @@
     public enum ExternalLinkType
     {
         /// <summary>
-        /// Astronomical Object Identifier 
+        /// Astronomical Object Identifier
         /// </summary>
         [Value("aoi")]
         Aoi,

@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Commands;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Special.Processors.Contracts.Processors;
 
@@ -15,12 +15,7 @@
 
         public TestCommand(ITestFeaturesProvider provider)
         {
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
-
-            this.provider = provider;
+            this.provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
 
         public Task<object> Run(IDocument document, ICommandSettings settings)

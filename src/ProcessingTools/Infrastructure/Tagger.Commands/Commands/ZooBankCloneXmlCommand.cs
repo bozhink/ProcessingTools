@@ -1,13 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Files.IO;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Clone ZooBank XML.")]
     public class ZooBankCloneXmlCommand : IZooBankCloneXmlCommand
@@ -18,24 +18,9 @@
 
         public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZoobankXmlCloner cloner, IXmlFileReader fileReader)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            if (cloner == null)
-            {
-                throw new ArgumentNullException(nameof(cloner));
-            }
-
-            if (fileReader == null)
-            {
-                throw new ArgumentNullException(nameof(fileReader));
-            }
-
-            this.documentFactory = documentFactory;
-            this.cloner = cloner;
-            this.fileReader = fileReader;
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
+            this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));
+            this.fileReader = fileReader ?? throw new ArgumentNullException(nameof(fileReader));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

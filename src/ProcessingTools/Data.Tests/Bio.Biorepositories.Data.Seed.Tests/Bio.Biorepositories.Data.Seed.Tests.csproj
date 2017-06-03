@@ -59,9 +59,9 @@
       <Project>{dda1c4f8-aa95-4fee-9e85-d7d0bea6fac3}</Project>
       <Name>Bio.Biorepositories.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Attributes\Attributes.csproj">
-      <Project>{1F0EDC77-2CAD-46F5-80DE-8AF619B7E41D}</Project>
-      <Name>Attributes</Name>
+    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>

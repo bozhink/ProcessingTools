@@ -4,10 +4,8 @@
     using System.Configuration;
     using System.IO;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Serialization.Csv;
 
     [TestClass]

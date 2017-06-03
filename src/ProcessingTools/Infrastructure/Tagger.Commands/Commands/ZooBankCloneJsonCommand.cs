@@ -2,16 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Clone ZooBank JSON.")]
     public class ZooBankCloneJsonCommand : IZooBankCloneJsonCommand
@@ -21,12 +21,7 @@
 
         public ZooBankCloneJsonCommand(IZoobankJsonCloner cloner, ILogger logger)
         {
-            if (cloner == null)
-            {
-                throw new ArgumentNullException(nameof(cloner));
-            }
-
-            this.cloner = cloner;
+            this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));
             this.logger = logger;
         }
 

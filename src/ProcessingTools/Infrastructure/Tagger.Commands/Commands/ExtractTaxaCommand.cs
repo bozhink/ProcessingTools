@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     public class ExtractTaxaCommand : IExtractTaxaCommand
     {
@@ -16,18 +16,8 @@
 
         public ExtractTaxaCommand(ITaxonNamesHarvester harvester, IReporter reporter)
         {
-            if (harvester == null)
-            {
-                throw new ArgumentNullException(nameof(harvester));
-            }
-
-            if (reporter == null)
-            {
-                throw new ArgumentNullException(nameof(reporter));
-            }
-
-            this.harvester = harvester;
-            this.reporter = reporter;
+            this.harvester = harvester ?? throw new ArgumentNullException(nameof(harvester));
+            this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

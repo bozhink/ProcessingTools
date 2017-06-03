@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Generate XML document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlCommand : IZooBankGenerateRegistrationXmlCommand
@@ -15,12 +15,7 @@
 
         public ZooBankGenerateRegistrationXmlCommand(IZooBankRegistrationXmlGenerator generator)
         {
-            if (generator == null)
-            {
-                throw new ArgumentNullException(nameof(generator));
-            }
-
-            this.generator = generator;
+            this.generator = generator ?? throw new ArgumentNullException(nameof(generator));
         }
 
         public Task<object> Run(IDocument document, ICommandSettings settings)

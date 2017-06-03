@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Custom XSL transform.")]
     public class RunCustomXslTransformCommand : IRunCustomXslTransformCommand
@@ -15,12 +15,7 @@
 
         public RunCustomXslTransformCommand(IDocumentXslProcessor processor)
         {
-            if (processor == null)
-            {
-                throw new ArgumentNullException(nameof(processor));
-            }
-
-            this.processor = processor;
+            this.processor = processor ?? throw new ArgumentNullException(nameof(processor));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

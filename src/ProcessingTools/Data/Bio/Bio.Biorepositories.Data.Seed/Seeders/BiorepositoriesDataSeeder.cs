@@ -7,11 +7,11 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts;
-    using Models.Csv;
-    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories;
+    using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
+    using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Seed;
@@ -26,12 +26,7 @@
 
         public BiorepositoriesDataSeeder(IMongoDatabaseProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesSeedCsvDataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
@@ -44,17 +39,17 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            var tasks = new List<Task>();
-
-            tasks.Add(this.ImportCsvFileToMongo<CollectionCsv, Collection>());
-            tasks.Add(this.ImportCsvFileToMongo<CollectionLabelCsv, CollectionLabel>());
-            tasks.Add(this.ImportCsvFileToMongo<CollectionPerCsv, CollectionPer>());
-            tasks.Add(this.ImportCsvFileToMongo<CollectionPerLabelCsv, CollectionPerLabel>());
-            tasks.Add(this.ImportCsvFileToMongo<InstitutionCsv, Institution>());
-            tasks.Add(this.ImportCsvFileToMongo<InstitutionLabelCsv, InstitutionLabel>());
-            tasks.Add(this.ImportCsvFileToMongo<StaffCsv, Staff>());
-            tasks.Add(this.ImportCsvFileToMongo<StaffLabelCsv, StaffLabel>());
-
+            var tasks = new List<Task>
+            {
+                this.ImportCsvFileToMongo<CollectionCsv, Collection>(),
+                this.ImportCsvFileToMongo<CollectionLabelCsv, CollectionLabel>(),
+                this.ImportCsvFileToMongo<CollectionPerCsv, CollectionPer>(),
+                this.ImportCsvFileToMongo<CollectionPerLabelCsv, CollectionPerLabel>(),
+                this.ImportCsvFileToMongo<InstitutionCsv, Institution>(),
+                this.ImportCsvFileToMongo<InstitutionLabelCsv, InstitutionLabel>(),
+                this.ImportCsvFileToMongo<StaffCsv, Staff>(),
+                this.ImportCsvFileToMongo<StaffLabelCsv, StaffLabel>()
+            };
             await Task.WhenAll(tasks.ToArray());
 
             if (this.exceptions.Count > 0)

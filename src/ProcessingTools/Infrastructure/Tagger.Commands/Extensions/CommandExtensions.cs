@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Extensions
 {
     using System;
+    using System.ComponentModel;
     using System.Reflection;
     using System.Text.RegularExpressions;
-    using Contracts.Commands;
-    using ProcessingTools.Attributes;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     public static class CommandExtensions
     {

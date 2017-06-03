@@ -43,9 +43,9 @@
     <Compile Include="Types\XLinkType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Attributes\Attributes.csproj">
-      <Project>{1F0EDC77-2CAD-46F5-80DE-8AF619B7E41D}</Project>
-      <Name>Attributes</Name>
+    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>

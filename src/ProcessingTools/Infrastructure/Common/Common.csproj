@@ -34,6 +34,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DescriptionAttribute.cs" />
+    <Compile Include="Attributes\FileNameAttribute.cs" />
+    <Compile Include="Attributes\ValueAttribute.cs" />
+    <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
