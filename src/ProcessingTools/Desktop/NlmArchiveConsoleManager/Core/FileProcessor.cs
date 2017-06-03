@@ -14,7 +14,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Documents;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Services.Data.Contracts.Files;
 
@@ -38,37 +38,12 @@
             IModelFactory modelFactory,
             ILogger logger)
         {
-            if (journalMeta == null)
-            {
-                throw new ArgumentNullException(nameof(journalMeta));
-            }
-
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            if (fileManager == null)
-            {
-                throw new ArgumentNullException(nameof(fileManager));
-            }
-
-            if (articleMetaHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(articleMetaHarvester));
-            }
-
-            if (modelFactory == null)
-            {
-                throw new ArgumentNullException(nameof(modelFactory));
-            }
-
             this.FileName = fileName;
-            this.journalMeta = journalMeta;
-            this.documentFactory = documentFactory;
-            this.fileManager = fileManager;
-            this.articleMetaHarvester = articleMetaHarvester;
-            this.modelFactory = modelFactory;
+            this.journalMeta = journalMeta ?? throw new ArgumentNullException(nameof(journalMeta));
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
+            this.fileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
+            this.articleMetaHarvester = articleMetaHarvester ?? throw new ArgumentNullException(nameof(articleMetaHarvester));
+            this.modelFactory = modelFactory ?? throw new ArgumentNullException(nameof(modelFactory));
             this.logger = logger;
         }
 

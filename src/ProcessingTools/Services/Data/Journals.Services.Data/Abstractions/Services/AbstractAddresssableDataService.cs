@@ -14,8 +14,8 @@
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Extensions.Linq.Expressions;
+    using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Models.DataModels;
 

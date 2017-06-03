@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Processors.Contracts.Processors.References;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;

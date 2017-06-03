@@ -7,7 +7,7 @@
     using Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq;
 
     public class BlackListSearchService : IBlackListSearchService
     {

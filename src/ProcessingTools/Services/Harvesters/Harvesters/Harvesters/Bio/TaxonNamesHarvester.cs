@@ -10,7 +10,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {

@@ -9,11 +9,11 @@
     using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class SimpleServiceStringDataMiner<TDataService, TDataServiceModel> : IStringDataMiner
         where TDataServiceModel : INameableIntegerIdentifiable
-        where TDataService : IMultiEntryDataService<TDataServiceModel>
+        where TDataService : class, IMultiEntryDataService<TDataServiceModel>
     {
         private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;
 
@@ -21,12 +21,7 @@
 
         public SimpleServiceStringDataMiner(TDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         public async Task<IEnumerable<string>> Mine(string content)

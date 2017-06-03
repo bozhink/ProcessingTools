@@ -154,10 +154,6 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
       <Project>{F364BD78-29DE-48BE-9098-B6AE0C468008}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>

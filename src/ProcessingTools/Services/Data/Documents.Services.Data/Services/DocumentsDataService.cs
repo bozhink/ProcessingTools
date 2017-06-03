@@ -17,8 +17,8 @@
     using ProcessingTools.Documents.Services.Data.Contracts.Models;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.FileSystem.Contracts;
 
     public class DocumentsDataService : IDocumentsDataService

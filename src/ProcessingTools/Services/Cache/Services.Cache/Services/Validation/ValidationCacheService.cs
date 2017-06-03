@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Contracts.Data.Cache.Repositories;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Services.Cache.Contracts.Models.Validation;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Models.Validation;
@@ -20,18 +20,8 @@
 
         public ValidationCacheService(IValidationCacheDataRepository repository, IDateTimeProvider dateTimeProvider)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            if (dateTimeProvider == null)
-            {
-                throw new ArgumentNullException(nameof(dateTimeProvider));
-            }
-
-            this.repository = repository;
-            this.dateTimeProvider = dateTimeProvider;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {

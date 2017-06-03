@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Constants;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {

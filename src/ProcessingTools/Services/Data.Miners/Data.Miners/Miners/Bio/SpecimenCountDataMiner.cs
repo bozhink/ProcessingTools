@@ -19,7 +19,7 @@ namespace ProcessingTools.Data.Miners.Miners.Bio
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class SpecimenCountDataMiner : ISpecimenCountDataMiner
     {

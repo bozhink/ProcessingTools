@@ -13,7 +13,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Constants.Uri;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
 
     public class TaxaValidationService : AbstractValidationService<string>, ITaxaValidationService

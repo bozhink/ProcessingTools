@@ -5,7 +5,7 @@
     using System.Xml;
     using Contracts.Models.Abbreviations;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     internal class Abbreviation : IAbbreviation
     {

@@ -8,7 +8,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Geo.Contracts.Parsers;
 
     public class CoordinatesParser : ICoordinatesParser

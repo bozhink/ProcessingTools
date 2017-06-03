@@ -8,7 +8,7 @@
     using Common.Bio.Taxonomy;
     using Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class ParseLowerTaxaWithFullStringMatchStrategy : IParseLowerTaxaWithFullStringMatchStrategy
     {

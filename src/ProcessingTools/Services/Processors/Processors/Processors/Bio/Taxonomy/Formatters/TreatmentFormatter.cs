@@ -8,7 +8,7 @@
     using Contracts.Processors.Bio.Taxonomy.Formatters;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class TreatmentFormatter : ITreatmentFormatter
     {

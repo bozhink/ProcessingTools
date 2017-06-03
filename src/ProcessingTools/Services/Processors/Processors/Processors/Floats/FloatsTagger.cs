@@ -13,7 +13,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using Types;
 
     public class FloatsTagger : IFloatsTagger

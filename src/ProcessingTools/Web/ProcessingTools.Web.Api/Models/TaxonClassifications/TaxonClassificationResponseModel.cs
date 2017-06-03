@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Api.Models.TaxonClassifications
 {
-    using Mappings.Contracts;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     public class TaxonClassificationResponseModel : IMapFrom<ITaxonClassification>

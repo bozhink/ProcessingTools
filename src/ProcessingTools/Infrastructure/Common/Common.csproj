@@ -35,9 +35,12 @@
       <HintPath>..\..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\FileNameAttribute.cs" />
@@ -59,11 +62,50 @@
     <Compile Include="Exceptions\NullOrEmptyFileException.cs" />
     <Compile Include="Exceptions\StreamCannotBeReadException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\AttributeExtensions.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Extensions\ConvertExtensions.cs" />
+    <Compile Include="Extensions\DisposableExtensions.cs" />
+    <Compile Include="Extensions\DocumentExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Extensions\Linq\AsyncLinqExtensions.cs" />
+    <Compile Include="Extensions\Linq\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\Linq\Expressions\ExpressionCompositionUtility.cs" />
+    <Compile Include="Extensions\Linq\Expressions\ExpressionExtensions.cs" />
+    <Compile Include="Extensions\Linq\Expressions\GenericExpressionVisitor.cs" />
+    <Compile Include="Extensions\Linq\Expressions\ParameterRebinder.cs" />
+    <Compile Include="Extensions\Linq\Expressions\ReplaceExpressionVisitor.cs" />
+    <Compile Include="Extensions\Linq\Expressions\TypeConversionVisitor.cs" />
+    <Compile Include="Extensions\Linq\QueryableExtensions.cs" />
+    <Compile Include="Extensions\ListIntersectionsExtensions.cs" />
+    <Compile Include="Extensions\MappingsExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\RegexExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TaxonomyExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Extensions\XmlNodeExtensions.cs" />
+    <Compile Include="Mappings\MappingsRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Constants\Constants.csproj">
+      <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
+      <Name>Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enumerations\Enumerations.csproj">
+      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

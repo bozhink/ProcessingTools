@@ -8,7 +8,7 @@
     using ProcessingTools.Bio.Services.Data.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {

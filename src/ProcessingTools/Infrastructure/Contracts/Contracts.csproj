@@ -185,8 +185,10 @@
     <Compile Include="Models\IGenericIdentifiable.cs" />
     <Compile Include="IGuidProvider.cs" />
     <Compile Include="IHelpProvider.cs" />
+    <Compile Include="Models\IHaveCustomMappings.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\IIntegerIdentifiable.cs" />
+    <Compile Include="Models\IMapFrom.cs" />
     <Compile Include="Models\IModelWithSystemInformation.cs" />
     <Compile Include="Models\IModelWithUserInformation.cs" />
     <Compile Include="Models\INameable.cs" />

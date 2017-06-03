@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class RepositoryProvider<TRepository> : IGenericRepositoryProvider<TRepository>
         where TRepository : IRepository

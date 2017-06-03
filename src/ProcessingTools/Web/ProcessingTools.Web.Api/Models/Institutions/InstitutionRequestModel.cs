@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Web.Api.Models.Institutions
 {
     using System.ComponentModel.DataAnnotations;
-
-    using Mappings.Contracts;
-    using Services.Data.Models;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Services.Data.Models;
 
     public class InstitutionRequestModel : IMapFrom<InstitutionServiceModel>
     {

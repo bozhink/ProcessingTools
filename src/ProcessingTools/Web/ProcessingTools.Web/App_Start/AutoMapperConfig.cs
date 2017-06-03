@@ -3,7 +3,7 @@
     using System.Reflection;
     using System.Web.Mvc;
     using AutoMapper;
-    using ProcessingTools.Mappings;
+    using ProcessingTools.Common.Mappings;
 
     public static class AutoMapperConfig
     {

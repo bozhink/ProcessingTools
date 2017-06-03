@@ -13,7 +13,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class XmlTaxaContext : IXmlTaxaContext
     {

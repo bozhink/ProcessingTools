@@ -7,8 +7,8 @@
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
     using ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
 
     public class SpecimenCodesByPatternDataMiner : ISpecimenCodesByPatternDataMiner
     {

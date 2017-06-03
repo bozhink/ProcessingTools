@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Models.EnvoTerms
 {
-    using Bio.Environments.Services.Data.Models;
-    using Mappings.Contracts;
+    using ProcessingTools.Bio.Environments.Services.Data.Models;
+    using ProcessingTools.Contracts.Models;
 
     public class EnvoTermResponseModel : IMapFrom<EnvoTermServiceModel>
     {

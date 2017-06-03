@@ -72,10 +72,6 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{48EB9453-82C3-45F2-A76C-61EE610F49C8}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.File\Data.Common.File.csproj">
       <Project>{302862fe-1839-4d5c-be85-8b2b1e73ece0}</Project>
       <Name>Data.Common.File</Name>

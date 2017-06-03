@@ -14,8 +14,8 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder
     {
@@ -34,24 +34,9 @@
             IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory,
             IRepositoryFactory<IXmlBiotaxonomicBlackListRepository> blackListRepositoryFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            if (taxonomicRepositoryFactory == null)
-            {
-                throw new ArgumentNullException(nameof(taxonomicRepositoryFactory));
-            }
-
-            if (blackListRepositoryFactory == null)
-            {
-                throw new ArgumentNullException(nameof(blackListRepositoryFactory));
-            }
-
-            this.contextFactory = contextFactory;
-            this.taxonomicRepositoryFactory = taxonomicRepositoryFactory;
-            this.blackListRepositoryFactory = blackListRepositoryFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
+            this.taxonomicRepositoryFactory = taxonomicRepositoryFactory ?? throw new ArgumentNullException(nameof(taxonomicRepositoryFactory));
+            this.blackListRepositoryFactory = blackListRepositoryFactory ?? throw new ArgumentNullException(nameof(blackListRepositoryFactory));
             this.seeder = new FileByLineDbContextSeeder<BioTaxonomyDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];

@@ -7,7 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {

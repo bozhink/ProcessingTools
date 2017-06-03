@@ -8,7 +8,7 @@
     using Contracts.Commands;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
 

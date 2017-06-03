@@ -8,8 +8,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
 
     public abstract class AbstractDataServiceWithRepository<TDbModel, TServiceModel> : IDisposable
     {

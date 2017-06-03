@@ -7,7 +7,7 @@
     using Contracts.Factories;
     using Contracts.Models;
     using Models;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class XmlPresenter : IXmlPresenter
     {

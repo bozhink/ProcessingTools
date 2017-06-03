@@ -8,7 +8,7 @@
     using Contracts.Transformers;
     using Models;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using Types;
 
     public class Coordinate2DParser : ICoordinate2DParser

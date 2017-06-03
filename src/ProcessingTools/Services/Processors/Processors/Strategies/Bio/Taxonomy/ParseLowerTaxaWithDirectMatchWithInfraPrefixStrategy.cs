@@ -6,7 +6,7 @@
     using System.Xml;
     using Common.Bio.Taxonomy;
     using Contracts.Strategies.Bio.Taxonomy;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy : IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy
     {

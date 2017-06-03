@@ -262,10 +262,6 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Extensions\Extensions.csproj">
-      <Project>{48eb9453-82c3-45f2-a76c-61ee610f49c8}</Project>
-      <Name>Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
       <Name>Serialization</Name>

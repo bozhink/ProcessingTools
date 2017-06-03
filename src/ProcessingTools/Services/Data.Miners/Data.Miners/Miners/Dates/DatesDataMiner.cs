@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Contracts.Miners.Dates;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class DatesDataMiner : IDatesDataMiner
     {

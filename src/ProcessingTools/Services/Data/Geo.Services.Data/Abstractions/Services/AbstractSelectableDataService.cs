@@ -10,8 +10,8 @@
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Extensions.Linq.Expressions;
+    using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
 
     public abstract class AbstractSelectableDataService<TServiceModel, TDataModel> : ISelectableDataService<TServiceModel>

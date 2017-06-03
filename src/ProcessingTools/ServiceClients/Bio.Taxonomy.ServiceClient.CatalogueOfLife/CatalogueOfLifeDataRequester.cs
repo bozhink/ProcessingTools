@@ -3,10 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts;
-    using Models;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Net.Extensions;
     using ProcessingTools.Net.Factories.Contracts;
 

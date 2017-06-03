@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Serialization
 {
     using System;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Serialization.Csv;
 
     public static class MappingExtensions

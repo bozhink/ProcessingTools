@@ -7,7 +7,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
     using ProcessingTools.Contracts.Models.Mediatypes;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Models.Mediatypes;
 

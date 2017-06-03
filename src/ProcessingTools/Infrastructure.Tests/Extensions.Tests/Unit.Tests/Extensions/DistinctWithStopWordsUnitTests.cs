@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Extensions.Tests.Unit.Tests.Extensions
+﻿namespace ProcessingTools.Common.Extensions.Tests.Unit.Tests.Extensions
 {
     using System.Collections.Generic;
     using Moq;

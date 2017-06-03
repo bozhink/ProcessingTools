@@ -9,7 +9,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.History.Models;
     using ProcessingTools.Contracts.Data.History.Repositories;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.History.Services.Data.Contracts.Services;
     using ProcessingTools.History.Services.Data.Models;
 
@@ -20,18 +20,8 @@
 
         public HistoryDataService(IHistoryRepository repository, IDateTimeProvider dateTimeProvider)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            if (dateTimeProvider == null)
-            {
-                throw new ArgumentNullException(nameof(dateTimeProvider));
-            }
-
-            this.repository = repository;
-            this.dateTimeProvider = dateTimeProvider;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
         }
 
         public Task<object> AddItemToHistory(object userId, object objectId, object item)

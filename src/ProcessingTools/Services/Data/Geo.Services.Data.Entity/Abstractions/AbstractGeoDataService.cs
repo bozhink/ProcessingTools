@@ -8,7 +8,7 @@
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Contracts;
     using ProcessingTools.Geo.Data.Entity.Models;
 

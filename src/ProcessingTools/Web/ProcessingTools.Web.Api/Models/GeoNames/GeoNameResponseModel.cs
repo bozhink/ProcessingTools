@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Models.GeoNames
 {
-    using Geo.Services.Data.Models;
-    using Mappings.Contracts;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Geo.Services.Data.Models;
 
     public class GeoNameResponseModel : IMapFrom<GeoNameServiceModel>
     {

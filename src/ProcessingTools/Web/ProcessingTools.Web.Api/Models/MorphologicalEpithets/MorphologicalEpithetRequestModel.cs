@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Web.Api.Models.MorphologicalEpithets
 {
     using System.ComponentModel.DataAnnotations;
-
-    using Bio.Services.Data.Models;
-    using Mappings.Contracts;
+    using ProcessingTools.Bio.Services.Data.Models;
+    using ProcessingTools.Contracts.Models;
 
     public class MorphologicalEpithetRequestModel : IMapFrom<MorphologicalEpithetServiceModel>
     {

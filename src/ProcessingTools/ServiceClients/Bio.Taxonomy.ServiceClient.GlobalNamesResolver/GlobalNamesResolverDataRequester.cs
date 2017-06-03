@@ -9,7 +9,7 @@
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Constants;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Net.Factories.Contracts;
 
     public class GlobalNamesResolverDataRequester : IGlobalNamesResolverDataRequester

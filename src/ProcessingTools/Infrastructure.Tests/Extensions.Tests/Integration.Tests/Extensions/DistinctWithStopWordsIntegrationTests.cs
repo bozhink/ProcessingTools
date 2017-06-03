@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Extensions.Tests.Integration.Tests.Extensions
+﻿namespace ProcessingTools.Common.Extensions.Tests.Integration.Tests.Extensions
 {
     using System.Collections.Generic;
     using NUnit.Framework;

@@ -14,7 +14,7 @@
     using Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class LowerTaxaParser : ILowerTaxaParser
     {

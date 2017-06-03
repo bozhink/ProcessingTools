@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Contracts.Formatters;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     public class DocumentFinalFormatter : IDocumentFinalFormatter
     {

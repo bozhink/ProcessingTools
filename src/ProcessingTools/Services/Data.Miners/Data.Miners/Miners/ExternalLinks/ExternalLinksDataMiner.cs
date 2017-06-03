@@ -9,8 +9,8 @@
     using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
     using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
     using ProcessingTools.Data.Miners.Models.ExternalLinks;
-    using ProcessingTools.Extensions;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Nlm.Publishing.Types;
 
     public class ExternalLinksDataMiner : IExternalLinksDataMiner

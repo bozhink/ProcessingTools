@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Extensions.Tests
+﻿namespace ProcessingTools.Common.Extensions.Tests
 {
     using System;
     using System.Text.RegularExpressions;

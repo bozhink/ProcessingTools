@@ -4,7 +4,7 @@
     using System.Web.Mvc;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ValidationConstants = ProcessingTools.Constants.Models.ValidationConstants;
 
     public class IndexViewModel

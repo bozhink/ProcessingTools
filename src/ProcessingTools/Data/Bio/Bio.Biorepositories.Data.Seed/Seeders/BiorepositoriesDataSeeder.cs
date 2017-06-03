@@ -15,7 +15,7 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Seed;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Serialization.Csv;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder

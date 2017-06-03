@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Imaging.Contracts.Processors;
 
     public class BarcodeEncoderService : IBarcodeEncoderService

@@ -9,7 +9,7 @@
     using Contracts.Models.Meta;
     using Models.Meta;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq;
 
     public class PersonNamesHarvester : IPersonNamesHarvester
     {
