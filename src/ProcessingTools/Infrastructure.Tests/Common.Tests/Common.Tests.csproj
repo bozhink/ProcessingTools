@@ -6,8 +6,8 @@
     <ProjectGuid>{EF47A1D3-63DF-4A22-9ADB-859F1BB319DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Extensions.Tests</RootNamespace>
-    <AssemblyName>ProcessingTools.Extensions.Tests</AssemblyName>
+    <RootNamespace>ProcessingTools.Common.Tests</RootNamespace>
+    <AssemblyName>ProcessingTools.Common.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

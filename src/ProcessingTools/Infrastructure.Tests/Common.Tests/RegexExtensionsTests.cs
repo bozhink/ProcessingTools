@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Common.Extensions.Tests
+﻿namespace ProcessingTools.Common.Tests
 {
     using System;
     using System.Text.RegularExpressions;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Common.Extensions;
 
     [TestClass]
     public class RegexExtensionsTests
