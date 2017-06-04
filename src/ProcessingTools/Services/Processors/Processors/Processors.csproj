@@ -314,9 +314,7 @@
       <Name>Layout.Processors</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\ExternalLinks\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>

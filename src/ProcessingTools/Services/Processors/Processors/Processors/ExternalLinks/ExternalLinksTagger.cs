@@ -18,13 +18,13 @@
 
         private readonly IExternalLinksDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
-        private readonly ISimpleXmlSerializableObjectTagger<ExternalLink> contentTagger;
+        private readonly ISimpleXmlSerializableObjectTagger<ExternalLinkXmlModel> contentTagger;
         private readonly ILogger logger;
 
         public ExternalLinksTagger(
             IExternalLinksDataMiner miner,
             ITextContentHarvester contentHarvester,
-            ISimpleXmlSerializableObjectTagger<ExternalLink> contentTagger,
+            ISimpleXmlSerializableObjectTagger<ExternalLinkXmlModel> contentTagger,
             ILogger logger)
         {
             this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
@@ -42,7 +42,7 @@
 
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
-                .Select(i => new ExternalLink
+                .Select(i => new ExternalLinkXmlModel
                 {
                     Href = i.Href,
                     ExternalLinkType = i.Type.GetValue(),

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Nlm.Publishing.Models
+﻿namespace ProcessingTools.Models.Serialization.Nlm
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
@@ -6,7 +6,7 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = ElementNames.Abbrev, Namespace = "", IsNullable = false)]
-    public partial class NlmAbbreviationModel
+    public partial class AbbreviationXmlModel
     {
         [XmlAttribute(AttributeName = AttributeNames.ContentType)]
         public string ContentType { get; set; }

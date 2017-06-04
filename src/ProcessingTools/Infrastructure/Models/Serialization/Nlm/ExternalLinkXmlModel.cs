@@ -6,7 +6,7 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementNames.ExtLink, Namespace = "", IsNullable = false)]
-    public class ExternalLink
+    public class ExternalLinkXmlModel
     {
         [XmlAttribute(AttributeNames.ExtLinkType)]
         public string ExternalLinkType { get; set; }
