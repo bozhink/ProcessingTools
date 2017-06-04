@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Nlm.Publishing.Tests.RegressionTests
+﻿namespace ProcessingTools.Enumerations.Tests.Integration.Tests.Nlm
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Extensions;
