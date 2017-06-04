@@ -64,10 +64,6 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Nlm.Publishing\Nlm.Publishing.csproj">
-      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
-      <Name>Nlm.Publishing</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

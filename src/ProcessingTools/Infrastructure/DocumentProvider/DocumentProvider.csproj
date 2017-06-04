@@ -46,10 +46,6 @@
     <Compile Include="TaxPubDocument.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nlm.Publishing\Nlm.Publishing.csproj">
-      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
-      <Name>Nlm.Publishing</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>

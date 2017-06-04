@@ -301,10 +301,6 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Nlm.Publishing\Nlm.Publishing.csproj">
-      <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
-      <Name>Nlm.Publishing</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
       <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
       <Name>Bio.ServiceClient.MaterialsParser</Name>
