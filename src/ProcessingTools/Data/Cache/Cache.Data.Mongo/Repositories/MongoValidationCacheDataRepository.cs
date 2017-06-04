@@ -25,12 +25,12 @@
             }
 
             string collectionName = CollectionNameFactory.Create<ValidatedObject>();
-            this.collection = databaseProvider.Create().GetCollection<ValidatedObject>(
-                collectionName,
-                new MongoCollectionSettings
-                {
-                    WriteConcern = WriteConcern.Unacknowledged
-                });
+            var settings = new MongoCollectionSettings
+            {
+                WriteConcern = WriteConcern.Unacknowledged
+            };
+
+            this.collection = databaseProvider.Create().GetCollection<ValidatedObject>(collectionName, settings);
 
             this.updateOptions = new UpdateOptions
             {

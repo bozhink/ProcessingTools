@@ -2,9 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class SimpleRepositorySeeder<TEntity>
         where TEntity : class

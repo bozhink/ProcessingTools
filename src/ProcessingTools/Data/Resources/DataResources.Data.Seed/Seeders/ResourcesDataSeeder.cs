@@ -24,12 +24,7 @@
 
         public ResourcesDataSeeder(IResourcesDbContextFactory contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
             this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
@@ -40,16 +35,13 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            var tasks = new List<Task>();
+            var tasks = new Task[]
+            {
+                this.SeedProducts(ConfigurationManager.AppSettings[AppSettingsKeys.ProductsSeedFileName]),
+                this.SeedInstitutions(ConfigurationManager.AppSettings[AppSettingsKeys.InstitutionsSeedFileName])
+            };
 
-            tasks.Add(
-                this.SeedProducts(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ProductsSeedFileName]));
-            tasks.Add(
-                this.SeedInstitutions(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.InstitutionsSeedFileName]));
-
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks);
 
             if (this.exceptions.Count > 0)
             {
@@ -69,7 +61,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         context.Products.AddOrUpdate(new Product
@@ -94,7 +86,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         context.Institutions.AddOrUpdate(new Institution

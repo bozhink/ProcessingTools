@@ -24,12 +24,7 @@
 
         public BioDataSeeder(IBioDbContextFactory contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
             this.seeder = new FileByLineDbContextSeeder<BioDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
@@ -40,16 +35,13 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            var tasks = new List<Task>();
+            var tasks = new Task[]
+            {
+                this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[AppSettingsKeys.MorphologicalEpithetsFileName]),
+                this.SeedTypeStatuses(ConfigurationManager.AppSettings[AppSettingsKeys.TypeStatusesFileName])
+            };
 
-            tasks.Add(
-                this.SeedMorphologicalEpithets(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.MorphologicalEpithetsFileName]));
-            tasks.Add(
-                this.SeedTypeStatuses(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.TypeStatusesFileName]));
-
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks);
 
             if (this.exceptions.Count > 0)
             {
@@ -69,7 +61,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         context.MorphologicalEpithets.AddOrUpdate(new MorphologicalEpithet
@@ -94,7 +86,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         context.TypesStatuses.AddOrUpdate(new TypeStatus

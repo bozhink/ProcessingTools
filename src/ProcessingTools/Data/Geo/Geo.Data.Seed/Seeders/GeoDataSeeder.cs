@@ -28,12 +28,7 @@
 
         public GeoDataSeeder(IGeoDbContextFactory contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
             this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(this.contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
@@ -45,22 +40,15 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            var tasks = new List<Task>();
+            var tasks = new Task[]
+            {
+                this.SeedGeoNames(ConfigurationManager.AppSettings[AppSettingsKeys.GeoNamesSeedFileName]),
+                this.SeedGeoEpithets(ConfigurationManager.AppSettings[AppSettingsKeys.GeoEpithetsSeedFileName]),
+                this.SeedContinents(ConfigurationManager.AppSettings[AppSettingsKeys.ContinentsCodesSeedFileName]),
+                this.SeedCountryCodes(ConfigurationManager.AppSettings[AppSettingsKeys.CountryCodesSeedFileName])
+            };
 
-            tasks.Add(
-                this.SeedGeoNames(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.GeoNamesSeedFileName]));
-            tasks.Add(
-                this.SeedGeoEpithets(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.GeoEpithetsSeedFileName]));
-            tasks.Add(
-                this.SeedContinents(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ContinentsCodesSeedFileName]));
-            tasks.Add(
-                this.SeedCountryCodes(
-                    ConfigurationManager.AppSettings[AppSettingsKeys.CountryCodesSeedFileName]));
-
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks);
 
             if (this.exceptions.Count > 0)
             {
@@ -80,7 +68,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         context.GeoNames.AddOrUpdate(new GeoName
@@ -109,7 +97,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         context.GeoEpithets.AddOrUpdate(new GeoEpithet
@@ -138,7 +126,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         var data = line.Split('\t');
@@ -171,7 +159,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         var data = line.Split('\t');

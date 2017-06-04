@@ -10,10 +10,10 @@
     using System.Xml.Serialization;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
 
     public class XmlTaxaContext : IXmlTaxaContext
     {
@@ -74,8 +74,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            ITaxonRankEntity taxon;
-            this.Taxa.TryRemove(id.ToString(), out taxon);
+            this.Taxa.TryRemove(id.ToString(), out ITaxonRankEntity taxon);
             return Task.FromResult<object>(taxon);
         }
 
@@ -86,8 +85,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            ITaxonRankEntity taxon;
-            this.Taxa.TryGetValue(id.ToString(), out taxon);
+            this.Taxa.TryGetValue(id.ToString(), out ITaxonRankEntity taxon);
             return Task.FromResult(taxon);
         }
 

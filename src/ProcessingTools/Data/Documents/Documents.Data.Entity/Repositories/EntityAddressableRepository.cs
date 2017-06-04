@@ -5,12 +5,12 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Documents.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Models;
-    using ProcessingTools.Common.Exceptions;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
         where TEntity : class, IAddressableEntity
@@ -60,8 +60,7 @@
                 throw new ArgumentNullException(nameof(addressId));
             }
 
-            Guid addressIdAsGuid;
-            if (!Guid.TryParse(addressId.ToString(), out addressIdAsGuid))
+            if (!Guid.TryParse(addressId.ToString(), out Guid addressIdAsGuid))
             {
                 throw new ArgumentException($"Parameter '{nameof(addressId)}' should be valid GUID", nameof(addressId));
             }

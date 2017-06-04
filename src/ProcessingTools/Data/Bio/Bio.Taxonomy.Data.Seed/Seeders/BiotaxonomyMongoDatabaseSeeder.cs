@@ -7,12 +7,12 @@
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
 
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder
     {
@@ -36,31 +36,11 @@
                 throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            if (mongoTaxonRankRepositoryFactory == null)
-            {
-                throw new ArgumentNullException(nameof(mongoTaxonRankRepositoryFactory));
-            }
-
-            if (taxonRankRepositoryFactory == null)
-            {
-                throw new ArgumentNullException(nameof(taxonRankRepositoryFactory));
-            }
-
-            if (mongoBiotaxonomicBlackListRepositoryFactory == null)
-            {
-                throw new ArgumentNullException(nameof(mongoBiotaxonomicBlackListRepositoryFactory));
-            }
-
-            if (biotaxonomicBlackListIterableRepositoryFactory == null)
-            {
-                throw new ArgumentNullException(nameof(biotaxonomicBlackListIterableRepositoryFactory));
-            }
-
             this.db = databaseProvider.Create();
-            this.mongoTaxonRankRepositoryFactory = mongoTaxonRankRepositoryFactory;
-            this.taxonRankRepositoryFactory = taxonRankRepositoryFactory;
-            this.mongoBiotaxonomicBlackListRepositoryFactory = mongoBiotaxonomicBlackListRepositoryFactory;
-            this.biotaxonomicBlackListIterableRepositoryFactory = biotaxonomicBlackListIterableRepositoryFactory;
+            this.mongoTaxonRankRepositoryFactory = mongoTaxonRankRepositoryFactory ?? throw new ArgumentNullException(nameof(mongoTaxonRankRepositoryFactory));
+            this.taxonRankRepositoryFactory = taxonRankRepositoryFactory ?? throw new ArgumentNullException(nameof(taxonRankRepositoryFactory));
+            this.mongoBiotaxonomicBlackListRepositoryFactory = mongoBiotaxonomicBlackListRepositoryFactory ?? throw new ArgumentNullException(nameof(mongoBiotaxonomicBlackListRepositoryFactory));
+            this.biotaxonomicBlackListIterableRepositoryFactory = biotaxonomicBlackListIterableRepositoryFactory ?? throw new ArgumentNullException(nameof(biotaxonomicBlackListIterableRepositoryFactory));
         }
 
         public async Task<object> Seed()
@@ -100,13 +80,13 @@
                 })
                 .ToList();
 
-            await collection.InsertManyAsync(
-                entities,
-                new InsertManyOptions
-                {
-                    IsOrdered = false,
-                    BypassDocumentValidation = false
-                });
+            var options = new InsertManyOptions
+            {
+                IsOrdered = false,
+                BypassDocumentValidation = false
+            };
+
+            await collection.InsertManyAsync(entities, options);
         }
 
         private async Task SeedBlackListCollection()

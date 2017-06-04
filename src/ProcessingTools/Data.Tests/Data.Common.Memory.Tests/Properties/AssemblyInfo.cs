@@ -1,7 +1,7 @@
-﻿using Castle.Core.Internal;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Castle.Core.Internal;
 
 [assembly: AssemblyTitle("ProcessingTools.Data.Common.Memory.Tests")]
 [assembly: AssemblyDescription("")]

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Data.Common.Mongo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Data.Common.Mongo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MongoDB.Bson, Version=2.4.3.23, Culture=neutral, processorArchitecture=MSIL">
@@ -60,7 +62,7 @@
     <Compile Include="Contracts\Repositories\IMongoGenericRepository.cs" />
     <Compile Include="Contracts\Repositories\IMongoRepository.cs" />
     <Compile Include="Contracts\Repositories\IMongoSearchableRepository.cs" />
-    <Compile Include="Repositories\AbstractMongoCrudRepository.cs" />
+    <Compile Include="Repositories\MongoCrudRepository{TDbModel,TEntity}.cs" />
     <Compile Include="Repositories\MongoGenericRepository.cs" />
     <Compile Include="Repositories\MongoRepository.cs" />
   </ItemGroup>
@@ -88,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Data.Common.Mongo.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

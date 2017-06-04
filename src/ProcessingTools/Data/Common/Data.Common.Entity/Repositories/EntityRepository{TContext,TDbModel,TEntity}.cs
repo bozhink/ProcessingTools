@@ -142,7 +142,8 @@
             return await this.Update(entity);
         }
 
-        protected Task<T> Add<T>(T entity, IDbSet<T> set) where T : class => Task.Run(() =>
+        protected Task<T> Add<T>(T entity, IDbSet<T> set)
+            where T : class => Task.Run(() =>
         {
             if (entity == null)
             {
@@ -166,7 +167,8 @@
             }
         });
 
-        protected virtual Task<T> Get<T>(object id, IDbSet<T> set) where T : class => Task.Run(() =>
+        protected virtual Task<T> Get<T>(object id, IDbSet<T> set)
+            where T : class => Task.Run(() =>
         {
             if (id == null)
             {
@@ -182,7 +184,8 @@
             return entity;
         });
 
-        protected Task<T> Update<T>(T entity, IDbSet<T> set) where T : class => Task.Run(() =>
+        protected Task<T> Update<T>(T entity, IDbSet<T> set)
+            where T : class => Task.Run(() =>
         {
             if (entity == null)
             {

@@ -52,6 +52,7 @@
             return this.Context.Set<T>();
         }
 
-        protected DbEntityEntry<T> GetEntry<T>(T entity) where T : class => this.Context.Entry(entity);
+        protected DbEntityEntry<T> GetEntry<T>(T entity)
+            where T : class => this.Context.Entry(entity);
     }
 }

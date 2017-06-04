@@ -9,17 +9,12 @@
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
 
     public class GenericRepository<TContext, TEntity> : IRepository<TEntity>, IGenericRepository<TContext, TEntity>
-        where TContext : IDbContext
+        where TContext : class, IDbContext
         where TEntity : class
     {
         public GenericRepository(TContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            this.Context = context;
+            this.Context = context ?? throw new ArgumentNullException(nameof(context));
             this.DbSet = this.Context.Set<TEntity>();
         }
 
@@ -76,7 +71,8 @@
 
         public IQueryable<TEntity> Queryable() => this.DbSet.AsQueryable();
 
-        public IQueryable<T> Queryable<T>() where T : class => this.Context.Set<T>().AsQueryable();
+        public IQueryable<T> Queryable<T>()
+            where T : class => this.Context.Set<T>().AsQueryable();
 
         public virtual object SaveChanges() => this.Context.SaveChanges();
 

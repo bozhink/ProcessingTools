@@ -12,10 +12,10 @@
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
     using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Seed;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Serialization.Csv;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
@@ -35,6 +35,7 @@
         /// <summary>
         /// Seeds databases with data.
         /// </summary>
+        /// <returns>Object to be awaited</returns>
         public async Task<object> Seed()
         {
             this.exceptions = new ConcurrentQueue<Exception>();

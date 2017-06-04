@@ -25,10 +25,6 @@
             this.CollectionName = CollectionNameFactory.Create<TEntity>();
         }
 
-        public virtual object SaveChanges() => 0;
-
-        public virtual Task<object> SaveChangesAsync() => Task.FromResult(this.SaveChanges());
-
         protected IMongoCollection<TEntity> Collection => this.db.GetCollection<TEntity>(this.CollectionName);
 
         protected string CollectionName
@@ -48,6 +44,10 @@
                 this.collectionName = value;
             }
         }
+
+        public virtual object SaveChanges() => 0;
+
+        public virtual Task<object> SaveChangesAsync() => Task.FromResult(this.SaveChanges());
 
         protected FilterDefinition<TEntity> GetFilterById(object id)
         {

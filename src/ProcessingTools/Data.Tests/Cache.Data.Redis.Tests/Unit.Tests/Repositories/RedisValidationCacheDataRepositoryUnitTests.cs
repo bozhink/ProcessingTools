@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Common;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Cache.Data.Redis.Tests.Common;
+    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Tests.Library;
     using ServiceStack.Redis;

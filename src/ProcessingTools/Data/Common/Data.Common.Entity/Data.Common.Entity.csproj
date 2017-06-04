@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Data.Common.Entity.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Data.Common.Entity.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -59,12 +61,13 @@
     <Compile Include="Repositories\EntityPreJoinedGenericRepository.cs" />
     <Compile Include="Repositories\EntityRepository.cs" />
     <Compile Include="Repositories\Contracts\IEntityCrudRepository.cs" />
-    <Compile Include="Repositories\AbstractEntitySearchableRepository.cs" />
+    <Compile Include="Repositories\EntityRepository{TContext,TDbModel,TEntity}.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Seed\FileByLineDbContextSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data.Common.Entity.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

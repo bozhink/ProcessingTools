@@ -25,7 +25,8 @@
 
         IQueryable<TEntity> Queryable();
 
-        IQueryable<T> Queryable<T>() where T : class;
+        IQueryable<T> Queryable<T>()
+            where T : class;
 
         void Update(TEntity entity);
     }

@@ -5,9 +5,9 @@
     using System.Xml;
     using System.Xml.Serialization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
-    using ProcessingTools.Constants.Data.Bio.Taxonomy;
+    using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Constants.Data.Bio.Taxonomy;
 
     [TestClass]
     public class BlackListXmlModelTests

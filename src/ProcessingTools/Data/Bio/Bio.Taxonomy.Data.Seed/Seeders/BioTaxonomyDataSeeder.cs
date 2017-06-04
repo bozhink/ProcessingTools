@@ -11,11 +11,11 @@
     using ProcessingTools.Bio.Taxonomy.Data.Entity.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts.Repositories;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Seed;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder
     {
@@ -173,7 +173,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{dataFilesDirectoryPath}/{fileName}",
+                    $"{this.dataFilesDirectoryPath}/{fileName}",
                     (context, line) =>
                     {
                         context.TaxonRanks.AddOrUpdate(new TaxonRank
