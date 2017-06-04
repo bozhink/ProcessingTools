@@ -64,7 +64,7 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Tests.Library\Tests.Library.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
       <Name>Tests.Library</Name>
     </ProjectReference>

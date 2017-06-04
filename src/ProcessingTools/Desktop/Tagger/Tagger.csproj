@@ -297,11 +297,11 @@
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Geo\Geo.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
     </ProjectReference>

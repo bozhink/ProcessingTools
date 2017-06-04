@@ -270,15 +270,15 @@
       <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
       <Name>Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Geo\Geo.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Strings\Strings.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Strings\Strings.csproj">
       <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
       <Name>Strings</Name>
     </ProjectReference>

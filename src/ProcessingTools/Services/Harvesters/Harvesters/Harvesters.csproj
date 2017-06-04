@@ -92,7 +92,7 @@
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Strings\Strings.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Strings\Strings.csproj">
       <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
       <Name>Strings</Name>
     </ProjectReference>

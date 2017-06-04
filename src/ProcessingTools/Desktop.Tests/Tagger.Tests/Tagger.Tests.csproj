@@ -58,7 +58,7 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Tests.Library\Tests.Library.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
       <Name>Tests.Library</Name>
     </ProjectReference>

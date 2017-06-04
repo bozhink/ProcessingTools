@@ -104,11 +104,11 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Libraries\Strings\Strings.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Strings\Strings.csproj">
       <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
       <Name>Strings</Name>
     </ProjectReference>

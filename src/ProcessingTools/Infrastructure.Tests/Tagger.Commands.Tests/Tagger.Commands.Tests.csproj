@@ -83,7 +83,7 @@
       <Project>{6FD4843F-4B5D-412C-8101-396960FDDC21}</Project>
       <Name>Tagger.Commands</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Tests.Library\Tests.Library.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695AC2B9-464D-4034-8C28-8674C4E39EF8}</Project>
       <Name>Tests.Library</Name>
     </ProjectReference>

@@ -60,7 +60,7 @@
       <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Nlm.Publishing\Nlm.Publishing.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Nlm.Publishing\Nlm.Publishing.csproj">
       <Project>{853638aa-dd0d-45a6-a222-11d4c56ed859}</Project>
       <Name>Nlm.Publishing</Name>
     </ProjectReference>
