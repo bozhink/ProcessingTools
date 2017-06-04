@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Common.Extensions
 {
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Reflection;
-    using ProcessingTools.Common.Attributes;
 
-    public static class Extensions
+    public static class AttributeExtensions
     {
         /// <summary>
         /// Gets the value of the on an struct, including enums.
@@ -17,12 +17,12 @@
         /// <remarks>Based on http://stackoverflow.com/questions/479410/enum-tostring/479417#479417 and
         /// http://stackoverflow.com/questions/479410/enum-tostring-with-user-friendly-strings,
         /// but useful for any struct.</remarks>
-        public static string GetValue<T>(this T item)
+        public static string GetName<T>(this T item)
             where T : struct
         {
             return item.GetType()
                 .GetMember(item.ToString())
-                .SelectMany(m => m.GetCustomAttributes<ValueAttribute>(false), (m, v) => v.Value)
+                .SelectMany(m => m.GetCustomAttributes<DisplayAttribute>(false), (m, v) => v.Name)
                 .FirstOrDefault() ?? item.ToString();
         }
 

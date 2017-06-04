@@ -45,7 +45,7 @@
                 .Select(i => new ExternalLinkXmlModel
                 {
                     Href = i.Href,
-                    ExternalLinkType = i.Type.GetValue(),
+                    ExternalLinkType = i.Type.GetName(),
                     Value = i.Content
                 });
 

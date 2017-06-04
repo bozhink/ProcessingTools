@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Nlm.Publishing.Types
 {
-    using ProcessingTools.Common.Attributes;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Describes the type of external link — for example, the specific source to which the link points
@@ -12,103 +12,103 @@
         /// <summary>
         /// Astronomical Object Identifier
         /// </summary>
-        [Value("aoi")]
+        [Display(Name = "aoi")]
         Aoi,
 
         /// <summary>
         /// Digital Object Identifier
         /// </summary>
-        [Value("doi")]
+        [Display(Name = "doi")]
         Doi,
 
         /// <summary>
         /// Enzyme nomenclature
         /// </summary>
         /// <see cref="http://www.chem.qmw.ac.uk/iubmb/enzyme/"/>
-        [Value("ec")]
+        [Display(Name = "ec")]
         Ec,
 
         /// <summary>
         /// File Transfer Protocol
         /// </summary>
-        [Value("ftp")]
+        [Display(Name = "ftp")]
         Ftp,
 
         /// <summary>
         /// GenBank identifier
         /// </summary>
-        [Value("gen")]
+        [Display(Name = "gen")]
         Gen,
 
         /// <summary>
         /// Translated protein-encoding sequence database
         /// </summary>
-        [Value("genpept")]
+        [Display(Name = "genpept")]
         Genpept,
 
         /// <summary>
         /// HighWire Press intrajournal
         /// </summary>
-        [Value("highwire")]
+        [Display(Name = "highwire")]
         Highwire,
 
         /// <summary>
         /// NLM title abbreviation
         /// </summary>
-        [Value("nlm-ta")]
+        [Display(Name = "nlm-ta")]
         NlmTa,
 
         /// <summary>
         /// Protein Data Bank
         /// </summary>
         /// <see cref="http://www.rcsb.org/pdb/"/>
-        [Value("pdb")]
+        [Display(Name = "pdb")]
         Pdb,
 
         /// <summary>
         /// Plant Gene Register
         /// </summary>
         /// <see cref="http://www.tarweed.com/pgr/b"/>
-        [Value("pgr")]
+        [Display(Name = "pgr")]
         Pgr,
 
         /// <summary>
         /// Protein Information Resource
         /// </summary>
         /// <see cref="http://pir.georgetown.edu"/>
-        [Value("pir")]
+        [Display(Name = "pir")]
         Pir,
 
         /// <summary>
         /// Protein information resource
         /// </summary>
         /// <see cref="http://pir.georgetown.edu"/>
-        [Value("pirdb")]
+        [Display(Name = "pirdb")]
         Pirdb,
 
         /// <summary>
         /// PubMed Central identifier
         /// </summary>
-        [Value("pmcid")]
+        [Display(Name = "pmcid")]
         Pmcid,
 
         /// <summary>
         /// PubMed identifier
         /// </summary>
-        [Value("pmid")]
+        [Display(Name = "pmid")]
         Pmid,
 
         /// <summary>
         /// Swiss-Prot
         /// </summary>
         /// <see cref="http://www.ebi.ac.uk/swissprot/"/>
-        [Value("sprot")]
+        [Display(Name = "sprot")]
         Sprot,
 
         /// <summary>
         /// Website or web service
         /// </summary>
-        [Value("uri")]
+        [Display(Name = "uri")]
         Uri
     }
 }

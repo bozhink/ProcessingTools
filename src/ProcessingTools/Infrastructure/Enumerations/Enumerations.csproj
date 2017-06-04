@@ -38,6 +38,7 @@
     <Compile Include="LogType.cs" />
     <Compile Include="ManageMessageId.cs" />
     <Compile Include="MethodType.cs" />
+    <Compile Include="Nlm\XLinkType.cs" />
     <Compile Include="PostCodeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaType.cs" />
