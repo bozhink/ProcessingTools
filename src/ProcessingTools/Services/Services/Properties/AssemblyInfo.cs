@@ -1,9 +1,5 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-
-// General Information about an assembly is controlled through the following
-
 
 [assembly: AssemblyTitle("ProcessingTools.Services")]
 [assembly: AssemblyDescription("")]
@@ -13,24 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © 2017 Bozhin Karaivanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-
 [assembly: ComVisible(false)]
-
-
 [assembly: Guid("4b5a7dc2-bdcb-4602-8265-b02ef9b48d16")]
-
-
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.0.0.1")]
 [assembly: AssemblyFileVersion("0.0.0.1")]
