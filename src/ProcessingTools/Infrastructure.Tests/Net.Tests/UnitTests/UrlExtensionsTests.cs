@@ -1,8 +1,7 @@
 ﻿namespace ProcessingTools.Net.Tests.UnitTests
 {
     using NUnit.Framework;
-
-    using ProcessingTools.Net.Extensions;
+    using ProcessingTools.Common.Extensions;
 
     [TestFixture]
     public class UrlExtensionsTests

@@ -1,10 +1,8 @@
 ﻿namespace ProcessingTools.Bio.ServiceClient.ExtractHcmr.Tests
 {
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using ProcessingTools.Net.Factories;
+    using ProcessingTools.Net;
 
     [TestClass]
     public class ExtractHcmrDataRequesterTests

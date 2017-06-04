@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Net.Factories;
+    using ProcessingTools.Net;
 
     [TestClass]
     public class GbifDataRequesterTests

@@ -222,6 +222,8 @@
     <Compile Include="Models\IUrlLinkable.cs" />
     <Compile Include="Models\IValuable.cs" />
     <Compile Include="Models\Mediatypes\IMediatype.cs" />
+    <Compile Include="Net\INetConnector.cs" />
+    <Compile Include="Net\INetConnectorFactory.cs" />
     <Compile Include="Services.Data\Files\IStreamingFileContentDataService.cs" />
     <Compile Include="Services.Data\Files\IStreamingFilesDataService.cs" />
     <Compile Include="Services.Data\Geo\Filters\ICitiesFilter.cs" />

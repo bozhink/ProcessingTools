@@ -6,7 +6,7 @@
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
-    using ProcessingTools.Net.Factories;
+    using ProcessingTools.Net;
 
     [TestClass]
     public class MaterialCitationsParserIntegrationTests

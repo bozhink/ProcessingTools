@@ -4,7 +4,7 @@
     using NUnit.Framework;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Net.Factories;
+    using ProcessingTools.Net;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(CatalogueOfLifeTaxaClassificationResolver))]

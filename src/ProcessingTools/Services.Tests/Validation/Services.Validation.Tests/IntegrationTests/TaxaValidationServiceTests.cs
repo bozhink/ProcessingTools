@@ -8,7 +8,7 @@
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Net.Factories;
+    using ProcessingTools.Net;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;
     using ProcessingTools.Services.Providers;

@@ -4,10 +4,10 @@
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts;
-    using Models;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Models;
     using ProcessingTools.Constants;
-    using ProcessingTools.Net.Factories.Contracts;
+    using ProcessingTools.Contracts.Net;
 
     public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
     {

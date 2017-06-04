@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Net.Extensions
+﻿namespace ProcessingTools.Common.Extensions
 {
     using System.Net;
 

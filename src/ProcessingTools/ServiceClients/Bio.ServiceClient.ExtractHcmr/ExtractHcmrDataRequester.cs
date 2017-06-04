@@ -6,7 +6,7 @@
     using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Contracts;
     using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Models;
     using ProcessingTools.Constants;
-    using ProcessingTools.Net.Factories.Contracts;
+    using ProcessingTools.Contracts.Net;
 
     /// <summary>
     /// Request data from EXTRACT.

@@ -7,8 +7,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Net.Extensions;
-    using ProcessingTools.Net.Factories.Contracts;
+    using ProcessingTools.Contracts.Net;
 
     /// <summary>
     /// Implementations of some of the Catalogue Of Life (CoL) API-s.
@@ -20,12 +19,7 @@
 
         public CatalogueOfLifeDataRequester(INetConnectorFactory connectorFactory)
         {
-            if (connectorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(connectorFactory));
-            }
-
-            this.connectorFactory = connectorFactory;
+            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
         /// <summary>

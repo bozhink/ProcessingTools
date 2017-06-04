@@ -1,11 +1,9 @@
 ﻿namespace ProcessingTools.Net.Tests.UnitTests
 {
     using System;
-
     using NUnit.Framework;
-
+    using ProcessingTools.Contracts.Net;
     using ProcessingTools.Net;
-    using ProcessingTools.Net.Contracts;
 
     [TestFixture]
     public class NetConnectorUnitTests
@@ -36,8 +34,8 @@
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("         ")]
-        [TestCase(@"    
-       
+        [TestCase(@"
+
      ")]
         public void NetConnector_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullException(string baseAddress)
         {
@@ -54,8 +52,8 @@
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("         ")]
-        [TestCase(@"    
-       
+        [TestCase(@"
+
      ")]
         public void NetConnector_ConstructorWithNullOrWhiteSpaceBaseAddress_ShouldThrowArgumentNullExceptionWithCorrectParamName(string baseAddress)
         {

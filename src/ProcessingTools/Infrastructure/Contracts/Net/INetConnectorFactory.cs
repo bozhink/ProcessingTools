@@ -1,7 +1,5 @@
-﻿namespace ProcessingTools.Net.Factories.Contracts
+﻿namespace ProcessingTools.Contracts.Net
 {
-    using ProcessingTools.Net.Contracts;
-
     public interface INetConnectorFactory
     {
         INetConnector Create();

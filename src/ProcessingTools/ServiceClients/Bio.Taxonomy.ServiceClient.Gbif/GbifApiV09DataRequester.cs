@@ -2,11 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-
-    using Contracts;
-    using Models;
-   
-    using ProcessingTools.Net.Factories.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
+    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models;
+    using ProcessingTools.Contracts.Net;
 
     public class GbifApiV09DataRequester : IGbifApiV09DataRequester
     {
@@ -16,12 +14,7 @@
 
         public GbifApiV09DataRequester(INetConnectorFactory connectorFactory)
         {
-            if (connectorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(connectorFactory));
-            }
-
-            this.connectorFactory = connectorFactory;
+            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
         public async Task<GbifApiV09ResponseModel> RequestData(string scientificName)

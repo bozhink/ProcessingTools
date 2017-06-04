@@ -1,14 +1,13 @@
-﻿namespace ProcessingTools.Net.Extensions
+﻿namespace ProcessingTools.Common.Extensions
 {
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using ProcessingTools.Constants;
-    using ProcessingTools.Net.Constants;
 
-    public static class ClientExtensions
+    public static class HttpClientExtensions
     {
-        public static void AddCorsHeader(this HttpClient client)
+        public static HttpClient AddCorsHeader(this HttpClient client)
         {
             if (client == null)
             {
@@ -16,11 +15,13 @@
             }
 
             client.DefaultRequestHeaders.Add(
-                HeaderConstants.CorsHeaderName,
-                HeaderConstants.CorsHeaderDefaultValue);
+                HttpConstants.CorsHeaderName,
+                HttpConstants.CorsHeaderDefaultValue);
+
+            return client;
         }
 
-        public static void AddAcceptContentTypeHeader(this HttpClient client, string contentType)
+        public static HttpClient AddAcceptContentTypeHeader(this HttpClient client, string contentType)
         {
             if (client == null)
             {
@@ -31,16 +32,22 @@
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(contentType));
             }
+
+            return client;
         }
 
-        public static void AddAcceptXmlHeader(this HttpClient client)
+        public static HttpClient AddAcceptXmlHeader(this HttpClient client)
         {
             client.AddAcceptContentTypeHeader(ContentTypes.Xml);
+
+            return client;
         }
 
-        public static void AddAcceptJsonHeader(this HttpClient client)
+        public static HttpClient AddAcceptJsonHeader(this HttpClient client)
         {
             client.AddAcceptContentTypeHeader(ContentTypes.Json);
+
+            return client;
         }
     }
 }

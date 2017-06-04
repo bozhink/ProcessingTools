@@ -1,8 +1,6 @@
-﻿namespace ProcessingTools.Net.Factories
+﻿namespace ProcessingTools.Net
 {
-    using Contracts;
-    using ProcessingTools.Net;
-    using ProcessingTools.Net.Contracts;
+    using ProcessingTools.Contracts.Net;
 
     public class NetConnectorFactory : INetConnectorFactory
     {

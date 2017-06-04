@@ -56,6 +56,10 @@
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
+      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
       <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
       <Name>Net</Name>

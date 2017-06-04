@@ -8,9 +8,9 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
-    using ProcessingTools.Constants;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Net.Factories.Contracts;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Net;
 
     public class GlobalNamesResolverDataRequester : IGlobalNamesResolverDataRequester
     {

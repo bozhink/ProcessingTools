@@ -8,9 +8,8 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
-
-    using Contracts;
-    using Extensions;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts.Net;
 
     public class NetConnector : INetConnector
     {
@@ -58,8 +57,7 @@
             T result = null;
             using (var client = new HttpClient())
             {
-                client.AddCorsHeader();
-                client.AddAcceptXmlHeader();
+                client.AddCorsHeader().AddAcceptXmlHeader();
 
                 if (this.BaseAddressUri != null)
                 {
@@ -85,8 +83,7 @@
             T result = null;
             using (var client = new HttpClient())
             {
-                client.AddCorsHeader();
-                client.AddAcceptJsonHeader();
+                client.AddCorsHeader().AddAcceptJsonHeader();
 
                 if (this.BaseAddressUri != null)
                 {
@@ -110,8 +107,7 @@
 
             using (var client = new HttpClient())
             {
-                client.AddCorsHeader();
-                client.AddAcceptContentTypeHeader(acceptContentType);
+                client.AddCorsHeader().AddAcceptContentTypeHeader(acceptContentType);
 
                 if (this.BaseAddressUri != null)
                 {
@@ -197,8 +193,7 @@
             using (var client = new HttpClient())
             using (HttpContent content = new WeakFormUrlEncodedContent(values, encoding))
             {
-                client.AddCorsHeader();
-                client.AddAcceptXmlHeader();
+                client.AddCorsHeader().AddAcceptXmlHeader();
 
                 if (this.BaseAddressUri != null)
                 {

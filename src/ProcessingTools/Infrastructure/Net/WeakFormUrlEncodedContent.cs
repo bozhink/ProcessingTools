@@ -5,8 +5,8 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Net.Extensions;
 
     public class WeakFormUrlEncodedContent : ByteArrayContent
     {

@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Net.Constants
+﻿namespace ProcessingTools.Constants
 {
-    public static class HeaderConstants
+    public sealed class HttpConstants
     {
         public const string CorsHeaderName = "Access-Control-Allow-Origin";
         public const string CorsHeaderDefaultValue = "*";
