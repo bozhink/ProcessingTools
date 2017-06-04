@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Contracts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Contracts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -104,7 +106,6 @@
     <Compile Include="Data.Miners\IStringTextDataMiner.cs" />
     <Compile Include="Data.Miners\ITextDataMiner.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
-    <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
     <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Data\Repositories\IKeyValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
     <Compile Include="Data\Repositories\IRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IRepository{T}.cs" />
     <Compile Include="Data\Repositories\ISearchableRepository.cs" />
     <Compile Include="Data\Repositories\IStringKeyCollectionValuePairsRepository.cs" />
     <Compile Include="Data\Repositories\IStringKeyValuePairsRepository.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Harvesters\IHarvester.cs" />
     <Compile Include="Harvesters\IEnumerableHarvester.cs" />
     <Compile Include="Harvesters\IStringEnumerableXmlHarvester.cs" />
+    <Compile Include="IContextProcessor{TContext}.cs" />
     <Compile Include="IDocumentNormalizer.cs" />
     <Compile Include="IFilter.cs" />
     <Compile Include="ILoggerFactory.cs" />
@@ -152,7 +155,6 @@
     <Compile Include="IContextFormatter.cs" />
     <Compile Include="IContextParser.cs" />
     <Compile Include="IContextProcessor.cs" />
-    <Compile Include="IContextProcessorVoid.cs" />
     <Compile Include="IContextTagger.cs" />
     <Compile Include="IDataRequester.cs" />
     <Compile Include="IDateTimeProvider.cs" />
@@ -307,8 +309,8 @@
     <Compile Include="IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IService.cs" />
-    <Compile Include="ViewModels\IGenericPageViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
+    <Compile Include="ViewModels\IPageViewModel{T}.cs" />
     <Compile Include="ViewModels\IPagingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -325,7 +327,12 @@
     <Folder Include="Data\Bio\Environments\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Contracts.ruleset" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 using Castle.Core.Internal;
 
 // General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+
+
 [assembly: AssemblyTitle("ProcessingTools.Data.Common.Memory.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -17,13 +17,13 @@ using Castle.Core.Internal;
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
+
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
+
 [assembly: Guid("d020f512-3f57-4d3b-a6fb-49176064bcf5")]
 
-// Version information for an assembly consists of the following four values:
+
 //
 //      Major Version
 //      Minor Version

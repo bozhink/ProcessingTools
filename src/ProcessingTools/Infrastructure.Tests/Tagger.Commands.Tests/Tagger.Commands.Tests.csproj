@@ -61,7 +61,10 @@
     <Compile Include="Unit.Tests\Commands\ParseTreatmentMetaWithGbifCommandUnitTests.cs" />
     <Compile Include="Unit.Tests\Commands\ParseTreatmentMetaWithInternalInformationCommandUnitTests.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Processors;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Special.Processors.Contracts.Processors;
 
     public class QuentinFlora : IDocumentFormatter, IQuentinFlora
     {

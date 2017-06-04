@@ -2,8 +2,8 @@
 {
     using System;
     using System.Linq;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Common.Extensions.Linq.Expressions;
+    using ProcessingTools.Enumerations;
 
     public static class QueryableExtensions
     {

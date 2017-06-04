@@ -3,12 +3,10 @@
     using System;
     using System.Linq;
     using System.Reflection;
-
     using AutoMapper;
     using AutoMapper.Configuration;
-
-    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts.Models;
 
     public class MappingsRegistration
     {
