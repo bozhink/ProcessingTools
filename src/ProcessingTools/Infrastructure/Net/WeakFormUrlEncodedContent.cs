@@ -13,7 +13,7 @@
         public WeakFormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)
             : base(WeakFormUrlEncodedContent.GetContentByteArray(nameValueCollection, encoding))
         {
-            Headers.ContentType = new MediaTypeHeaderValue(ContentTypes.UrlEncoded);
+            this.Headers.ContentType = new MediaTypeHeaderValue(ContentTypes.UrlEncoded);
         }
 
         private static byte[] GetContentByteArray(IEnumerable<KeyValuePair<string, string>> nameValueCollection, Encoding encoding)

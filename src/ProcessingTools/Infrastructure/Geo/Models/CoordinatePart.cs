@@ -3,8 +3,8 @@
     using System;
     using System.Globalization;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Geo.Contracts.Models;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Geo.Contracts.Models;
     using ProcessingTools.Geo.Types;
 
     public class CoordinatePart : ICoordinatePart

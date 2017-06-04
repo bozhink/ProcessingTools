@@ -1,17 +1,14 @@
-﻿namespace ProcessingTools.Net.Tests.IntegrationTests
+﻿namespace ProcessingTools.Net.Tests.Integration.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
-
+    using System.Threading.Tasks;
     using Microsoft.Owin.Hosting;
-
-    using Models;
-
     using Newtonsoft.Json;
     using NUnit.Framework;
-
     using ProcessingTools.Net;
+    using ProcessingTools.Net.Tests.Models;
     using ProcessingTools.TestWebApiServer;
 
     [TestFixture]
@@ -38,10 +35,10 @@
         [TestCase("/api/products/3", @"{""Id"":3,")]
         [TestCase("/api/products", @"[{""Id"":1,")]
         [Timeout(1000)]
-        public void NetConnector_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
+        public async Task NetConnector_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             var connector = new NetConnector(BaseAddress);
-            var content = connector.GetAsync(url, "application/json").Result;
+            var content = await connector.GetAsync(url, "application/json");
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -49,10 +46,10 @@
         [TestCase("/api/products/2", 2, "Yo-yo", "Toys", 3.75)]
         [TestCase("/api/products/3", 3, "Hammer", "Hardware", 16.99)]
         [Timeout(5000)]
-        public void NetConnector_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
+        public async Task NetConnector_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = connector.GetJsonObjectAsync<Product>(url).Result;
+            var responseObject = await connector.GetJsonObjectAsync<Product>(url);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -62,10 +59,10 @@
 
         [TestCase("/api/products", 3)]
         [Timeout(1000)]
-        public void NetConnector_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
+        public async Task NetConnector_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = connector.GetJsonObjectAsync<Product[]>(url).Result;
+            var responseObject = await connector.GetJsonObjectAsync<Product[]>(url);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Length, "Number of items should match.");
 
@@ -80,10 +77,10 @@
         [TestCase("/api/products/3", @"<Id>3</Id>")]
         [TestCase("/api/products", @"</Product><Product")]
         [Timeout(1000)]
-        public void NetConnector_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
+        public async Task NetConnector_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             var connector = new NetConnector(BaseAddress);
-            var content = connector.GetAsync(url, "application/xml").Result;
+            var content = await connector.GetAsync(url, "application/xml");
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -91,10 +88,10 @@
         [TestCase("/api/products/2", 2, "Yo-yo", "Toys", 3.75)]
         [TestCase("/api/products/3", 3, "Hammer", "Hardware", 16.99)]
         [Timeout(1000)]
-        public void NetConnector_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
+        public async Task NetConnector_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = connector.GetXmlObjectAsync<Product>(url).Result;
+            var responseObject = await connector.GetXmlObjectAsync<Product>(url);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -104,11 +101,11 @@
 
         [TestCase("/api/products", 3)]
         [Timeout(1000)]
-        public void NetConnector_GetDeserializedXmlArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
+        public async Task NetConnector_GetDeserializedXmlArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
             var connector = new NetConnector(BaseAddress);
 
-            var responseObject = connector.GetXmlObjectAsync<ArrayOfProduct>(url).Result;
+            var responseObject = await connector.GetXmlObjectAsync<ArrayOfProduct>(url);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Products.Length, "Number of items should match.");
 
@@ -122,19 +119,17 @@
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
         [Timeout(1000)]
-        public void NetConnector_PostDictionary_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
+        public async Task NetConnector_PostDictionary_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
+            var values = new Dictionary<string, string>
+            {
+                { "name", name },
+                { "category", category },
+                { "price", price.ToString() }
+            };
 
-            var response = connector.PostAsync(
-                url,
-                new Dictionary<string, string>
-                {
-                    { "name", name },
-                    { "category", category },
-                    { "price", price.ToString() }
-                },
-                Encoding.UTF8).Result;
+            var response = await connector.PostAsync(url, values, Encoding.UTF8);
 
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
@@ -146,7 +141,7 @@
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
         [Timeout(1000)]
-        public void NetConnector_PostString_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
+        public async Task NetConnector_PostString_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
             var product = new Product
             {
@@ -158,7 +153,7 @@
             string content = JsonConvert.SerializeObject(product);
 
             var connector = new NetConnector(BaseAddress);
-            var response = connector.PostAsync(url, content, "application/json", Encoding.UTF8).Result;
+            var response = await connector.PostAsync(url, content, "application/json", Encoding.UTF8);
 
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
@@ -173,19 +168,17 @@
         [TestCase("/api/products/add", "Yo-yo - 1", "Toys", 3.75)]
         [TestCase("/api/products/add", "Hammer - 1", "Hardware", 16.99)]
         [Timeout(1000)]
-        public void NetConnector_PostAndDeserializeDictionaryAsXml_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
+        public async Task NetConnector_PostAndDeserializeDictionaryAsXml_WithValidParameters_ShouldWork(string url, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
+            var values = new Dictionary<string, string>
+            {
+                { "name", name },
+                { "category", category },
+                { "price", price.ToString() }
+            };
 
-            var responseObject = connector.PostXmlObjectAsync<Product>(
-                url,
-                new Dictionary<string, string>
-                {
-                    { "name", name },
-                    { "category", category },
-                    { "price", price.ToString() }
-                },
-                Encoding.UTF8).Result;
+            var responseObject = await connector.PostXmlObjectAsync<Product>(url, values, Encoding.UTF8);
 
             Assert.IsNotNull(responseObject, "Response should not be null.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");

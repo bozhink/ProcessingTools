@@ -3,13 +3,13 @@
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Contracts.Models;
-    using Contracts.Parsers;
-    using Contracts.Transformers;
-    using Models;
-    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Common.Extensions;
-    using Types;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Geo.Contracts.Models;
+    using ProcessingTools.Geo.Contracts.Parsers;
+    using ProcessingTools.Geo.Contracts.Transformers;
+    using ProcessingTools.Geo.Models;
+    using ProcessingTools.Geo.Types;
 
     public class Coordinate2DParser : ICoordinate2DParser
     {
@@ -35,12 +35,7 @@
 
         public Coordinate2DParser(IUtmCoordianesTransformer utmCoordianesTransformer)
         {
-            if (utmCoordianesTransformer == null)
-            {
-                throw new ArgumentNullException(nameof(utmCoordianesTransformer));
-            }
-
-            this.utmCoordianesTransformer = utmCoordianesTransformer;
+            this.utmCoordianesTransformer = utmCoordianesTransformer ?? throw new ArgumentNullException(nameof(utmCoordianesTransformer));
         }
 
         public void ParseCoordinateString(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
@@ -191,7 +186,6 @@
         private void ParseGeneralTypeCoordinate(string coordinateText, ICoordinatePart latitude, ICoordinatePart longitude)
         {
             var coordinate = new Coordinate();
-
             {
                 string leftPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$1");
                 string rightPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$16");

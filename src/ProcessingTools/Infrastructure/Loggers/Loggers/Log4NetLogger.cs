@@ -27,9 +27,9 @@ namespace ProcessingTools.Loggers.Loggers
         {
         }
 
-        public override void Log(object message) => logger.Info(message);
+        public override void Log(object message) => this.logger.Info(message);
 
-        public override void Log(string format, params object[] args) => logger.InfoFormat(format, args);
+        public override void Log(string format, params object[] args) => this.logger.InfoFormat(format, args);
 
         public override void Log(LogType type, object message)
         {

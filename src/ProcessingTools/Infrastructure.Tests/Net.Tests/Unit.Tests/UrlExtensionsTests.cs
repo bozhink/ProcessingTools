@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Net.Tests.UnitTests
+﻿namespace ProcessingTools.Net.Tests.Unit.Tests
 {
     using NUnit.Framework;
     using ProcessingTools.Common.Extensions;

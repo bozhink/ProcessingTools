@@ -24,7 +24,7 @@
             this.NamespaceManager.AddNamespace(Namespaces.MathMLNamespacePrefix, Namespaces.MathMLNamespaceUri);
             this.NamespaceManager.PushScope();
 
-            this.XmlDocument = new XmlDocument(NameTable)
+            this.XmlDocument = new XmlDocument(this.NameTable)
             {
                 PreserveWhitespace = true
             };
@@ -73,12 +73,7 @@
 
             private set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(this.Encoding));
-                }
-
-                this.encoding = value;
+                this.encoding = value ?? throw new ArgumentNullException(nameof(this.Encoding));
             }
         }
 
