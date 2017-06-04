@@ -41,7 +41,7 @@
         public void NetConnector_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             var connector = new NetConnector(BaseAddress);
-            var content = connector.Get(url, "application/json").Result;
+            var content = connector.GetAsync(url, "application/json").Result;
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -52,7 +52,7 @@
         public void NetConnector_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = connector.GetAndDeserializeDataContractJson<Product>(url).Result;
+            var responseObject = connector.GetJsonObjectAsync<Product>(url).Result;
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -65,7 +65,7 @@
         public void NetConnector_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = connector.GetAndDeserializeDataContractJson<Product[]>(url).Result;
+            var responseObject = connector.GetJsonObjectAsync<Product[]>(url).Result;
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Length, "Number of items should match.");
 
@@ -83,7 +83,7 @@
         public void NetConnector_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             var connector = new NetConnector(BaseAddress);
-            var content = connector.Get(url, "application/xml").Result;
+            var content = connector.GetAsync(url, "application/xml").Result;
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -94,7 +94,7 @@
         public void NetConnector_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = connector.GetAndDeserializeXml<Product>(url).Result;
+            var responseObject = connector.GetXmlObjectAsync<Product>(url).Result;
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -108,7 +108,7 @@
         {
             var connector = new NetConnector(BaseAddress);
 
-            var responseObject = connector.GetAndDeserializeXml<ArrayOfProduct>(url).Result;
+            var responseObject = connector.GetXmlObjectAsync<ArrayOfProduct>(url).Result;
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Products.Length, "Number of items should match.");
 
@@ -126,7 +126,7 @@
         {
             var connector = new NetConnector(BaseAddress);
 
-            var response = connector.Post(
+            var response = connector.PostAsync(
                 url,
                 new Dictionary<string, string>
                 {
@@ -158,7 +158,7 @@
             string content = JsonConvert.SerializeObject(product);
 
             var connector = new NetConnector(BaseAddress);
-            var response = connector.Post(url, content, "application/json", Encoding.UTF8).Result;
+            var response = connector.PostAsync(url, content, "application/json", Encoding.UTF8).Result;
 
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
@@ -177,7 +177,7 @@
         {
             var connector = new NetConnector(BaseAddress);
 
-            var responseObject = connector.PostAndDeserializeXml<Product>(
+            var responseObject = connector.PostXmlObjectAsync<Product>(
                 url,
                 new Dictionary<string, string>
                 {

@@ -43,7 +43,7 @@
             };
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.Post(ParserUrl, values, this.encoding);
+            var response = await connector.PostAsync(ParserUrl, values, this.encoding);
 
             return response;
         }

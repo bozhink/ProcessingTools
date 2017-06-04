@@ -38,7 +38,7 @@
             };
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var result = await connector.PostAndDeserializeXml<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.Encoding);
+            var result = await connector.PostXmlObjectAsync<ExtractHcmrResponseModel>(GetEntitiesApiUrl, values, Defaults.Encoding);
             return result;
         }
     }

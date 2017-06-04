@@ -39,7 +39,7 @@
             string url = $"col/webservice?name={scientificName}&response=full";
 
             var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            string response = await connector.Get(url, ContentTypes.Xml);
+            string response = await connector.GetAsync(url, ContentTypes.Xml);
             return response.ToXmlDocument();
         }
 
@@ -55,7 +55,7 @@
             string url = $"/col/webservice?name={requestName}&response=full";
 
             var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            var result = await connector.GetAndDeserializeXml<CatalogueOfLifeApiServiceResponse>(url);
+            var result = await connector.GetXmlObjectAsync<CatalogueOfLifeApiServiceResponse>(url);
             return result;
         }
     }
