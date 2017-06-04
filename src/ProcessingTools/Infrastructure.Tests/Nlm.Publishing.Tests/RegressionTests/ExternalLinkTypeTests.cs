@@ -2,7 +2,7 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Nlm.Publishing.Types;
+    using ProcessingTools.Enumerations.Nlm;
 
     [TestClass]
     public class ExternalLinkTypeTests

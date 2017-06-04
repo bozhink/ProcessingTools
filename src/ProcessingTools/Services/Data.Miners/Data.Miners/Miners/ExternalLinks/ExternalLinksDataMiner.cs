@@ -6,12 +6,12 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
     using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
     using ProcessingTools.Data.Miners.Models.ExternalLinks;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Nlm.Publishing.Types;
+    using ProcessingTools.Enumerations.Nlm;
 
     public class ExternalLinksDataMiner : IExternalLinksDataMiner
     {

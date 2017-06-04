@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Nlm.Publishing.Types
+﻿namespace ProcessingTools.Enumerations.Nlm
 {
     using System.ComponentModel.DataAnnotations;
 

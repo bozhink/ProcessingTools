@@ -38,6 +38,8 @@
     <Compile Include="LogType.cs" />
     <Compile Include="ManageMessageId.cs" />
     <Compile Include="MethodType.cs" />
+    <Compile Include="Nlm\ArticleType.cs" />
+    <Compile Include="Nlm\ExternalLinkType.cs" />
     <Compile Include="Nlm\XLinkType.cs" />
     <Compile Include="PostCodeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,6 +51,10 @@
     <Compile Include="UpdateStatus.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="ValidationStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

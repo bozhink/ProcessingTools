@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners.Models.ExternalLinks
 {
     using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
-    using ProcessingTools.Nlm.Publishing.Types;
+    using ProcessingTools.Enumerations.Nlm;
 
     public class ExternalLink : IExternalLink
     {
