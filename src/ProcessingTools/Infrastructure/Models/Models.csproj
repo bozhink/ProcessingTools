@@ -32,10 +32,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\ModelWithUserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\Nlm\ExternalLink.cs" />
     <Compile Include="ViewModels\ListWithPagingViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

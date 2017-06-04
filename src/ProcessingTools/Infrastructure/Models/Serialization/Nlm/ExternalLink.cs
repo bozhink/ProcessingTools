@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Models.ExternalLinks
+﻿namespace ProcessingTools.Models.Serialization.Nlm
 {
     using System.Xml.Schema;
     using System.Xml.Serialization;
@@ -6,7 +6,7 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementNames.ExtLink, Namespace = "", IsNullable = false)]
-    public class ExternalLinkSerializableModel
+    public class ExternalLink
     {
         [XmlAttribute(AttributeNames.ExtLinkType)]
         public string ExternalLinkType { get; set; }

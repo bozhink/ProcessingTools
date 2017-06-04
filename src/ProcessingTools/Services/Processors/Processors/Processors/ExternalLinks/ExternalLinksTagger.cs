@@ -9,8 +9,8 @@
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Models.Serialization.Nlm;
     using ProcessingTools.Processors.Contracts.Processors.ExternalLinks;
-    using ProcessingTools.Processors.Models.ExternalLinks;
 
     public class ExternalLinksTagger : IExternalLinksTagger
     {
@@ -18,13 +18,13 @@
 
         private readonly IExternalLinksDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
-        private readonly ISimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel> contentTagger;
+        private readonly ISimpleXmlSerializableObjectTagger<ExternalLink> contentTagger;
         private readonly ILogger logger;
 
         public ExternalLinksTagger(
             IExternalLinksDataMiner miner,
             ITextContentHarvester contentHarvester,
-            ISimpleXmlSerializableObjectTagger<ExternalLinkSerializableModel> contentTagger,
+            ISimpleXmlSerializableObjectTagger<ExternalLink> contentTagger,
             ILogger logger)
         {
             this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
@@ -42,7 +42,7 @@
 
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
-                .Select(i => new ExternalLinkSerializableModel
+                .Select(i => new ExternalLink
                 {
                     Href = i.Href,
                     ExternalLinkType = i.Type.GetValue(),
