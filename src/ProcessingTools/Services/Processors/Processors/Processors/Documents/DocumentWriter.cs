@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Processors.Documents;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Documents;
     using ProcessingTools.Services.Data.Contracts.Files;
 
     public class DocumentWriter : IDocumentWriter
@@ -12,12 +12,7 @@
 
         public DocumentWriter(IXmlFileContentDataService filesManager)
         {
-            if (filesManager == null)
-            {
-                throw new ArgumentNullException(nameof(filesManager));
-            }
-
-            this.filesManager = filesManager;
+            this.filesManager = filesManager ?? throw new ArgumentNullException(nameof(filesManager));
         }
 
         public Task<object> WriteDocument(string fileName, IDocument document)

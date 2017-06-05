@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Processors.Floats;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Floats;
 
     public class TableFootNotesTagger : ITableFootNotesTagger
     {

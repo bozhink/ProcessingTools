@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Formatters;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
     public class DocumentFinalFormatter : IDocumentFinalFormatter
     {

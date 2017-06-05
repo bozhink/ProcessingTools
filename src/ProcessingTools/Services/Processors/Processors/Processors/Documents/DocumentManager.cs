@@ -12,18 +12,8 @@
 
         public DocumentManager(IReadDocumentHelper documentReader, IWriteDocumentHelper documentWriter)
         {
-            if (documentReader == null)
-            {
-                throw new ArgumentNullException(nameof(documentReader));
-            }
-
-            if (documentWriter == null)
-            {
-                throw new ArgumentNullException(nameof(documentWriter));
-            }
-
-            this.documentReader = documentReader;
-            this.documentWriter = documentWriter;
+            this.documentReader = documentReader ?? throw new ArgumentNullException(nameof(documentReader));
+            this.documentWriter = documentWriter ?? throw new ArgumentNullException(nameof(documentWriter));
         }
 
         public async Task<IDocument> Read(bool mergeInputFiles, params string[] fileNames)

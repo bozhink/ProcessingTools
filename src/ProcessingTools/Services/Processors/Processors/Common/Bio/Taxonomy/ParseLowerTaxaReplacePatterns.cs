@@ -85,26 +85,31 @@
                 @"<tn-part type=""species"">$1</tn-part>"
             },
 
+            // species
             {
                 @"([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Ss]sp|[Ss]ubsp)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)",
                 @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""subspecies"">$4</tn-part>"
             },
 
+            // species
             {
                 @"([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Vv]ar|[Vv]|[Vv]ariety)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)",
                 @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""variety"">$4</tn-part>"
             },
 
+            // species
             {
                 @"([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Aa]b)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)",
                 @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""aberration"">$4</tn-part>"
             },
 
+            // species
             {
                 @"([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Ff]|[Ff]orma?)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)",
                 @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""form"">$4</tn-part>"
             },
 
+            // species
             {
                 @"([a-zçäöüëïâěôûêîæœ\.-]+)\s+([Ss]f|[Ss]ubforma?)(\.\s*|\s+)([A-Za-zçäöüëïâěôûêî-]+)",
                 @"<tn-part type=""species"">$1</tn-part> <tn-part type=""infraspecific-rank"">$2</tn-part>$3<tn-part type=""subform"">$4</tn-part>"

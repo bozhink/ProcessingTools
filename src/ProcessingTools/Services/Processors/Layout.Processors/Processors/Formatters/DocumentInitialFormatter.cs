@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Factories;
     using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
@@ -18,12 +18,7 @@
 
         public DocumentInitialFormatter(IInitialFormatTransformerFactory transformerFactory)
         {
-            if (transformerFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformerFactory));
-            }
-
-            this.transformerFactory = transformerFactory;
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
         public async Task<object> Format(IDocument document)

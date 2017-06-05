@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Processors.Dates
 {
-    using Contracts;
-    using Contracts.Processors.Dates;
-    using Contracts.Providers;
-    using Generics;
     using ProcessingTools.Data.Miners.Contracts.Miners.Dates;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Dates;
+    using ProcessingTools.Processors.Contracts.Providers;
+    using ProcessingTools.Processors.Generics;
 
     public class DatesTagger : GenericStringMinerTagger<IDatesDataMiner, IDateTagModelProvider>, IDatesTagger
     {

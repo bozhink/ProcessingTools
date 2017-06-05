@@ -19,30 +19,10 @@
             IDocumentReader documentReader,
             IDocumentPostReadNormalizer documentNormalizer)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            if (documentMerger == null)
-            {
-                throw new ArgumentNullException(nameof(documentMerger));
-            }
-
-            if (documentReader == null)
-            {
-                throw new ArgumentNullException(nameof(documentReader));
-            }
-
-            if (documentNormalizer == null)
-            {
-                throw new ArgumentNullException(nameof(documentNormalizer));
-            }
-
-            this.documentFactory = documentFactory;
-            this.documentMerger = documentMerger;
-            this.documentReader = documentReader;
-            this.documentNormalizer = documentNormalizer;
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
+            this.documentMerger = documentMerger ?? throw new ArgumentNullException(nameof(documentMerger));
+            this.documentReader = documentReader ?? throw new ArgumentNullException(nameof(documentReader));
+            this.documentNormalizer = documentNormalizer ?? throw new ArgumentNullException(nameof(documentNormalizer));
         }
 
         public async Task<IDocument> Read(bool mergeInputFiles, params string[] fileNames)

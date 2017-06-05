@@ -2,11 +2,11 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Processors.Bio.ZooBank;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Uri;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
     public class ZoobankJsonCloner : IZoobankJsonCloner
     {

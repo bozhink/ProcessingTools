@@ -5,15 +5,15 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Processors.Bio.Taxonomy.Taggers;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class HigherTaxaTagger : IHigherTaxaTagger
@@ -35,42 +35,12 @@
             IWhiteList whitelist,
             IStringTagger contentTagger)
         {
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            if (contentHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(contentHarvester));
-            }
-
-            if (personNamesHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(personNamesHarvester));
-            }
-
-            if (blacklist == null)
-            {
-                throw new ArgumentNullException(nameof(blacklist));
-            }
-
-            if (whitelist == null)
-            {
-                throw new ArgumentNullException(nameof(whitelist));
-            }
-
-            if (contentTagger == null)
-            {
-                throw new ArgumentNullException(nameof(contentTagger));
-            }
-
-            this.miner = miner;
-            this.contentHarvester = contentHarvester;
-            this.personNamesHarvester = personNamesHarvester;
-            this.blacklist = blacklist;
-            this.whitelist = whitelist;
-            this.contentTagger = contentTagger;
+            this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
+            this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
+            this.personNamesHarvester = personNamesHarvester ?? throw new ArgumentNullException(nameof(personNamesHarvester));
+            this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
+            this.whitelist = whitelist ?? throw new ArgumentNullException(nameof(whitelist));
+            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
         public async Task<object> Tag(IDocument document)

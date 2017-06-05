@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Documents;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Processors.Documents;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class DocumentMerger : IDocumentMerger
@@ -15,18 +15,8 @@
 
         public DocumentMerger(IDocumentReader documentReader, IDocumentWrapper documentWrapper)
         {
-            if (documentReader == null)
-            {
-                throw new ArgumentNullException(nameof(documentReader));
-            }
-
-            if (documentWrapper == null)
-            {
-                throw new ArgumentNullException(nameof(documentWrapper));
-            }
-
-            this.documentReader = documentReader;
-            this.documentWrapper = documentWrapper;
+            this.documentReader = documentReader ?? throw new ArgumentNullException(nameof(documentReader));
+            this.documentWrapper = documentWrapper ?? throw new ArgumentNullException(nameof(documentWrapper));
         }
 
         public async Task<IDocument> Merge(params string[] fileNames)

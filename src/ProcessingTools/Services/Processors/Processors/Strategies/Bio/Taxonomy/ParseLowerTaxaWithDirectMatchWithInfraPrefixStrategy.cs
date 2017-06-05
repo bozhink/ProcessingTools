@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Common.Bio.Taxonomy;
-    using Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Processors.Common.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy;
 
     public class ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy : IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy
     {

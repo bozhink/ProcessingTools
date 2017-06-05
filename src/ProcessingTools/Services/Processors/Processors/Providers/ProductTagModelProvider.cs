@@ -2,9 +2,9 @@
 {
     using System;
     using System.Xml;
-    using Contracts.Providers;
     using ProcessingTools.Constants.Content;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Processors.Contracts.Providers;
 
     public class ProductTagModelProvider : IProductTagModelProvider
     {

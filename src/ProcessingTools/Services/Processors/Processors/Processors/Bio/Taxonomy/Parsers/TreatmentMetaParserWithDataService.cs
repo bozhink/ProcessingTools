@@ -4,16 +4,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Bio.Taxonomy.Parsers;
-    using Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class TreatmentMetaParserWithDataService<TService> : ITreatmentMetaParserWithDataService<TService>
-        where TService : ITaxaClassificationResolver
+        where TService : class, ITaxaClassificationResolver
     {
         private const string SelectTreatmentGeneraXPathString = ".//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 
@@ -24,12 +24,7 @@
 
         public TreatmentMetaParserWithDataService(TService service, ILogger logger)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger;
         }
 

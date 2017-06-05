@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Factories;
-    using Contracts.Processors.Bio.ZooBank;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Factories;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
     public class ZooBankRegistrationXmlGenerator : IZooBankRegistrationXmlGenerator
     {
@@ -12,12 +12,7 @@
 
         public ZooBankRegistrationXmlGenerator(IRegistrationTransformersFactory transformerFactory)
         {
-            if (transformerFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformerFactory));
-            }
-
-            this.transformerFactory = transformerFactory;
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
         public async Task<object> Generate(IDocument document)

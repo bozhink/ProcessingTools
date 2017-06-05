@@ -2,10 +2,10 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Processors.Documents;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Processors.Documents;
     using ProcessingTools.Services.Data.Contracts.Files;
 
     public class DocumentReader : IDocumentReader
@@ -15,18 +15,8 @@
 
         public DocumentReader(IDocumentFactory documentFactory, IXmlFileContentDataService filesManager)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            if (filesManager == null)
-            {
-                throw new ArgumentNullException(nameof(filesManager));
-            }
-
-            this.documentFactory = documentFactory;
-            this.filesManager = filesManager;
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
+            this.filesManager = filesManager ?? throw new ArgumentNullException(nameof(filesManager));
         }
 
         public async Task<IDocument> ReadDocument(string fileName)

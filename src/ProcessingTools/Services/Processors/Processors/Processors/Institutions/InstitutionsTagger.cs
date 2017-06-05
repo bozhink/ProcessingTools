@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Processors.Institutions
 {
-    using Contracts;
-    using Contracts.Processors.Institutions;
-    using Contracts.Providers;
-    using Generics;
     using ProcessingTools.Data.Miners.Contracts.Miners.Institutions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Institutions;
+    using ProcessingTools.Processors.Contracts.Providers;
+    using ProcessingTools.Processors.Generics;
 
     public class InstitutionsTagger : GenericStringMinerTagger<IInstitutionsDataMiner, IInstitutionTagModelProvider>, IInstitutionsTagger
     {

@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Validation;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
+    using ProcessingTools.Processors.Contracts.Processors.Validation;
     using ProcessingTools.Services.Validation.Contracts.Services;
 
     public class ExternalLinksValidator : IExternalLinksValidator
@@ -18,18 +18,8 @@
             IExternalLinksHarvester harvester,
             IUrlValidationService validationService)
         {
-            if (harvester == null)
-            {
-                throw new ArgumentNullException(nameof(harvester));
-            }
-
-            if (validationService == null)
-            {
-                throw new ArgumentNullException(nameof(validationService));
-            }
-
-            this.harvester = harvester;
-            this.validationService = validationService;
+            this.harvester = harvester ?? throw new ArgumentNullException(nameof(harvester));
+            this.validationService = validationService ?? throw new ArgumentNullException(nameof(validationService));
         }
 
         public async Task<object> Validate(IDocument document, IReporter reporter)

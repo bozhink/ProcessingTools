@@ -7,11 +7,11 @@
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Linq;
-    using Contracts.Factories;
-    using Contracts.Models.References;
-    using Contracts.Processors.References;
-    using Models.References;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Factories;
+    using ProcessingTools.Processors.Contracts.Models.References;
+    using ProcessingTools.Processors.Contracts.Processors.References;
+    using ProcessingTools.Processors.Models.References;
 
     public class ReferencesTagger : IReferencesTagger
     {
@@ -22,12 +22,7 @@
 
         public ReferencesTagger(IReferencesTransformersFactory transformersFactory, ILogger logger)
         {
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.transformersFactory = transformersFactory;
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
             this.logger = logger;
         }
 
@@ -168,6 +163,7 @@
                 ////    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’'s]*\\s*[\\(\\[]*(\\d{4,4}[a-z]?[,;\\s–-]*(and|&amp;|[a-z])?\\s*)+([a-z][,;\\s–-]*(and|&amp;|[a-z])?\\s*)*)(" + reference.Year + ")",
                 ////    $"$1<xref ref-type=\"bibr\" rid=\"{reference.Id}\">$6</xref>");
             }
+
             //// TODO: Call here the two loops above
 
             context.InnerXml = xml;

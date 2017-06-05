@@ -3,9 +3,9 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
 
@@ -20,24 +20,9 @@
             IDocumentWriter documentWriter,
             IDocumentPreWriteNormalizer documentNormalizer)
         {
-            if (documentSplitter == null)
-            {
-                throw new ArgumentNullException(nameof(documentSplitter));
-            }
-
-            if (documentWriter == null)
-            {
-                throw new ArgumentNullException(nameof(documentWriter));
-            }
-
-            if (documentNormalizer == null)
-            {
-                throw new ArgumentNullException(nameof(documentNormalizer));
-            }
-
-            this.documentSplitter = documentSplitter;
-            this.documentWriter = documentWriter;
-            this.documentNormalizer = documentNormalizer;
+            this.documentSplitter = documentSplitter ?? throw new ArgumentNullException(nameof(documentSplitter));
+            this.documentWriter = documentWriter ?? throw new ArgumentNullException(nameof(documentWriter));
+            this.documentNormalizer = documentNormalizer ?? throw new ArgumentNullException(nameof(documentNormalizer));
         }
 
         public async Task<object> Write(string outputFileName, IDocument document, bool splitDocument)

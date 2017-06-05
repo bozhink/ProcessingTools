@@ -6,15 +6,15 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Common.Bio.Taxonomy;
-    using Comparers.Bio.Taxonomy;
-    using Contracts.Models.Bio.Taxonomy.Parsers;
-    using Contracts.Processors.Bio.Taxonomy.Parsers;
-    using Contracts.Providers.Bio.Taxonomy;
-    using Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Processors.Common.Bio.Taxonomy;
+    using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
+    using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
 
     public class LowerTaxaParser : ILowerTaxaParser
     {
@@ -26,12 +26,7 @@
 
         public LowerTaxaParser(IParseLowerTaxaStrategiesProvider strategiesProvider)
         {
-            if (strategiesProvider == null)
-            {
-                throw new ArgumentNullException(nameof(strategiesProvider));
-            }
-
-            this.strategiesProvider = strategiesProvider;
+            this.strategiesProvider = strategiesProvider ?? throw new ArgumentNullException(nameof(strategiesProvider));
         }
 
         public async Task<object> Parse(XmlNode context)
@@ -319,8 +314,7 @@
                 .ForAll(node =>
                 {
                     string taxonName = node.InnerText;
-                    string taxonRank = null;
-                    dictionary.TryGetValue(taxonName, out taxonRank);
+                    dictionary.TryGetValue(taxonName, out string taxonRank);
                     if (!string.IsNullOrEmpty(taxonRank))
                     {
                         node.SafeSetAttributeValue(AttributeNames.Type, taxonRank);

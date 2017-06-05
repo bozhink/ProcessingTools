@@ -4,14 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Bio.Codes;
-    using Models.Bio.Codes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Processors.Models.Bio.Codes;
 
     public class InstitutionalCodesTagger : IInstitutionalCodesTagger
     {
@@ -27,30 +27,10 @@
             ISimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionalCodeSerializableModel> institutionalCodesTagger,
             ISimpleXmlSerializableObjectTagger<BiorepositoriesInstitutionSerializableModel> institutionsTagger)
         {
-            if (contentHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(contentHarvester));
-            }
-
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            if (institutionalCodesTagger == null)
-            {
-                throw new ArgumentNullException(nameof(institutionalCodesTagger));
-            }
-
-            if (institutionsTagger == null)
-            {
-                throw new ArgumentNullException(nameof(institutionsTagger));
-            }
-
-            this.contentHarvester = contentHarvester;
-            this.miner = miner;
-            this.institutionalCodesTagger = institutionalCodesTagger;
-            this.institutionsTagger = institutionsTagger;
+            this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
+            this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
+            this.institutionalCodesTagger = institutionalCodesTagger ?? throw new ArgumentNullException(nameof(institutionalCodesTagger));
+            this.institutionsTagger = institutionsTagger ?? throw new ArgumentNullException(nameof(institutionsTagger));
         }
 
         public async Task<object> Tag(IDocument document)

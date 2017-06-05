@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Contracts.Processors.Documents;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Documents;
 
     public class DocumentSplitter : IDocumentSplitter
     {
@@ -13,12 +13,7 @@
 
         public DocumentSplitter(IDocumentFactory documentFactory)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            this.documentFactory = documentFactory;
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
         }
 
         public IEnumerable<IDocument> Split(IDocument document)

@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Processors.Processors.Coordinates
 {
-    using Contracts;
-    using Contracts.Processors.Coordinates;
-    using Contracts.Providers;
-    using Generics;
     using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors.Coordinates;
+    using ProcessingTools.Processors.Contracts.Providers;
+    using ProcessingTools.Processors.Generics;
 
     public class CoordinatesTagger : GenericStringMinerTagger<ICoordinatesDataMiner, ICoordinateTagModelProvider>, ICoordinatesTagger
     {

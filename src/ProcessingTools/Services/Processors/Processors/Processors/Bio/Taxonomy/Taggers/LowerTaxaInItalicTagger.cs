@@ -6,13 +6,13 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Processors.Bio.Taxonomy.Taggers;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
@@ -30,24 +30,9 @@
             IContentTagger contentTagger,
             ILogger logger)
         {
-            if (personNamesHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(personNamesHarvester));
-            }
-
-            if (blacklist == null)
-            {
-                throw new ArgumentNullException(nameof(blacklist));
-            }
-
-            if (contentTagger == null)
-            {
-                throw new ArgumentNullException(nameof(contentTagger));
-            }
-
-            this.personNamesHarvester = personNamesHarvester;
-            this.blacklist = blacklist;
-            this.contentTagger = contentTagger;
+            this.personNamesHarvester = personNamesHarvester ?? throw new ArgumentNullException(nameof(personNamesHarvester));
+            this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
+            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
             this.logger = logger;
         }
 

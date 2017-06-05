@@ -3,14 +3,14 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Bio.Codes;
-    using Models.Bio.Codes;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Processors.Models.Bio.Codes;
 
     public class SpecimenCodesByPatternTagger : ISpecimenCodesByPatternTagger
     {
@@ -23,24 +23,9 @@
             ISpecimenCodesByPatternDataMiner miner,
             ISimpleXmlSerializableObjectTagger<SpecimenCodeSerializableModel> tagger)
         {
-            if (contentHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(contentHarvester));
-            }
-
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            if (tagger == null)
-            {
-                throw new ArgumentNullException(nameof(tagger));
-            }
-
-            this.contentHarvester = contentHarvester;
-            this.miner = miner;
-            this.tagger = tagger;
+            this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
+            this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
+            this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
         public async Task<object> Tag(IDocument document)

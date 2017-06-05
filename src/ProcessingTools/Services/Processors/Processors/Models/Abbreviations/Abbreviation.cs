@@ -3,9 +3,9 @@
     using System;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Contracts.Models.Abbreviations;
-    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Processors.Contracts.Models.Abbreviations;
 
     internal class Abbreviation : IAbbreviation
     {

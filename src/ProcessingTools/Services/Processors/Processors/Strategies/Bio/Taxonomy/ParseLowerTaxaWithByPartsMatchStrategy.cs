@@ -5,10 +5,10 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Common.Bio.Taxonomy;
-    using Contracts.Strategies.Bio.Taxonomy;
-    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Processors.Common.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy;
 
     public class ParseLowerTaxaWithByPartsMatchStrategy : IParseLowerTaxaWithByPartsMatchStrategy
     {

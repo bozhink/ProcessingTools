@@ -6,11 +6,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Models.Floats;
-    using Contracts.Processors.Floats;
-    using Models.Floats;
-    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Processors.Contracts.Models.Floats;
+    using ProcessingTools.Processors.Contracts.Processors.Floats;
+    using ProcessingTools.Processors.Models.Floats;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
 
     public class MediatypesParser : IMediatypesParser
@@ -19,12 +19,7 @@
 
         public MediatypesParser(IMediatypesResolver mediatypesResolver)
         {
-            if (mediatypesResolver == null)
-            {
-                throw new ArgumentNullException(nameof(mediatypesResolver));
-            }
-
-            this.mediatypesResolver = mediatypesResolver;
+            this.mediatypesResolver = mediatypesResolver ?? throw new ArgumentNullException(nameof(mediatypesResolver));
         }
 
         public async Task<object> Parse(XmlNode context)

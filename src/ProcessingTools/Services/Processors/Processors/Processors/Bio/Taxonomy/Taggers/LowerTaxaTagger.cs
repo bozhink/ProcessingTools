@@ -7,14 +7,14 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Processors.Bio.Taxonomy.Taggers;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class LowerTaxaTagger : ILowerTaxaTagger
@@ -42,24 +42,9 @@
             IContentTagger contentTagger,
             ILogger logger)
         {
-            if (personNamesHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(personNamesHarvester));
-            }
-
-            if (blacklist == null)
-            {
-                throw new ArgumentNullException(nameof(blacklist));
-            }
-
-            if (contentTagger == null)
-            {
-                throw new ArgumentNullException(nameof(contentTagger));
-            }
-
-            this.personNamesHarvester = personNamesHarvester;
-            this.blacklist = blacklist;
-            this.contentTagger = contentTagger;
+            this.personNamesHarvester = personNamesHarvester ?? throw new ArgumentNullException(nameof(personNamesHarvester));
+            this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
+            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
             this.logger = logger;
         }
 
@@ -209,7 +194,6 @@
             const string Subpattern = @"(?!\s*[,\.:])(?!\s+and\b)(?!\s+w?as\b)(?!\s+from\b)(?!\s+w?remains\b)(?!\s+to\b)\s*([^<>\(\)\[\]:\+\\\/]{0,40}?)\s*(\(\s*)?(" + InfragenericRankSubpattern + @")\s*(?:<i>)?(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.-]+(?:\s+[a-z\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
             string result = node.InnerXml;
-
             {
                 const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([A-Za-z][A-Za-z\.-]+)</tn></i>" + Subpattern;
 
@@ -255,7 +239,6 @@
             const string InfraspecificRankNamePairSubpattern = @"\s*(" + InfraspecificRankSubpattern + @")\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([a-z][a-z-]+)(?:</tn>)?</i>";
 
             string result = node.InnerXml;
-
             {
                 const string InfraspecificPattern = @"(?:<i>|<i [^>]*>)<tn type=""lower""[^>]*>([^<>]*?)</tn></i>(?![,\.])\s*((?:[^<>\(\)\[\]:\+]{0,3}?\([^<>\(\)\[\]:\+\\\/]{0,30}?\)[^<>\(\)\[\]:\+]{0,30}?|[^<>\(\)\[\]:\+]{0,30}?)?)" + InfraspecificRankNamePairSubpattern;
                 Regex re = new Regex(InfraspecificPattern);

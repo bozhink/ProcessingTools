@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Comparers.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using Contracts.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
 
     internal class TaxonNamePartContentEqualityComparer : IEqualityComparer<ITaxonNamePart>
     {

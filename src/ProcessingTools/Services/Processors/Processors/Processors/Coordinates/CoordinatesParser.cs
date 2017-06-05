@@ -4,12 +4,12 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Processors.Coordinates;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Geo.Contracts.Parsers;
+    using ProcessingTools.Processors.Contracts.Processors.Coordinates;
 
     public class CoordinatesParser : ICoordinatesParser
     {
@@ -20,12 +20,7 @@
 
         public CoordinatesParser(ICoordinateParser coordinateParser, ILogger logger)
         {
-            if (coordinateParser == null)
-            {
-                throw new ArgumentNullException(nameof(coordinateParser));
-            }
-
-            this.coordinateParser = coordinateParser;
+            this.coordinateParser = coordinateParser ?? throw new ArgumentNullException(nameof(coordinateParser));
             this.logger = logger;
         }
 

@@ -12,16 +12,16 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Factories.Bio;
-    using Contracts.Models.Bio.Codes;
-    using Contracts.Processors.Bio.Codes;
-    using Models.Bio.Codes;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Factories.Bio;
+    using ProcessingTools.Processors.Contracts.Models.Bio.Codes;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Processors.Models.Bio.Codes;
 
     public class CodesTagger : ICodesTagger
     {
@@ -133,24 +133,9 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             IContentTagger contentTagger,
             ILogger logger)
         {
-            if (transformerFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformerFactory));
-            }
-
-            if (contentHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(contentHarvester));
-            }
-
-            if (contentTagger == null)
-            {
-                throw new ArgumentNullException(nameof(contentTagger));
-            }
-
-            this.transformerFactory = transformerFactory;
-            this.contentHarvester = contentHarvester;
-            this.contentTagger = contentTagger;
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
+            this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
+            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
             this.logger = logger;
         }
 
@@ -203,8 +188,11 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
         private async Task<IEnumerable<string>> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)
         {
-            XmlDocument cleanedXmlDocument = new XmlDocument();
-            cleanedXmlDocument.PreserveWhitespace = true;
+            XmlDocument cleanedXmlDocument = new XmlDocument()
+            {
+                PreserveWhitespace = true
+            };
+
             cleanedXmlDocument.LoadXml(document.Xml);
             cleanedXmlDocument.InnerXml = Regex.Replace(
                 cleanedXmlDocument.InnerXml,
@@ -257,6 +245,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         /// <summary>
         /// Gets all plausible specimen codes which contains a used in the article institutional code.
         /// </summary>
+        /// <param name="document">Document to be processed</param>
         /// <param name="potentialSpecimenCodes">The list of potential specimen codes.</param>
         /// <returns>Filtered list of plausible specimen codes.</returns>
         private IEnumerable<ISpecimenCode> GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(IDocument document, IEnumerable<string> potentialSpecimenCodes)
@@ -360,8 +349,10 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         /// <summary>
         /// Tags next specimen codes when we have some tagged ones.
         /// </summary>
+        /// <param name="document">Document to be processed</param>
         /// <param name="tagModel">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
+        /// <returns>Task</returns>
         private async Task GuessSequentalSpecimenCodes(IDocument document, XmlElement tagModel, string xpathTemplate)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456

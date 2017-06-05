@@ -5,12 +5,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Models.Abbreviations;
-    using Contracts.Processors.Abbreviations;
-    using Models.Abbreviations;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
+    using ProcessingTools.Processors.Contracts.Models.Abbreviations;
+    using ProcessingTools.Processors.Contracts.Processors.Abbreviations;
+    using ProcessingTools.Processors.Models.Abbreviations;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class AbbreviationsTagger : IAbbreviationsTagger
@@ -26,18 +26,8 @@
             IXmlContextWrapper contextWrapper,
             ILogger logger)
         {
-            if (abbreviationsHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(abbreviationsHarvester));
-            }
-
-            if (contextWrapper == null)
-            {
-                throw new ArgumentNullException(nameof(contextWrapper));
-            }
-
-            this.abbreviationsHarvester = abbreviationsHarvester;
-            this.contextWrapper = contextWrapper;
+            this.abbreviationsHarvester = abbreviationsHarvester ?? throw new ArgumentNullException(nameof(abbreviationsHarvester));
+            this.contextWrapper = contextWrapper ?? throw new ArgumentNullException(nameof(contextWrapper));
             this.logger = logger;
         }
 

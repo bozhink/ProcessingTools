@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Types
+﻿namespace ProcessingTools.Enumerations
 {
     public enum FloatsReferenceType
     {

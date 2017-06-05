@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Factories.Bio;
-    using Contracts.Processors.Bio.Taxonomy.Formatters;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Factories.Bio;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
 
     public class TaxonNamePartsRemover : ITaxonNamePartsRemover
     {
@@ -12,12 +12,7 @@
 
         public TaxonNamePartsRemover(IBioTaxonomyTransformersFactory transformersFactory)
         {
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.transformersFactory = transformersFactory;
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
         public async Task<object> Format(IDocument document)

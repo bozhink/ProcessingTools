@@ -3,12 +3,12 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Bio.EnvironmentTerms;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.EnvironmentTerms;
     using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
 
     public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
@@ -24,24 +24,9 @@
             ITextContentHarvester contentHarvester,
             ISimpleXmlSerializableObjectTagger<EnvoExtractHcmrSerializableModel> contentTagger)
         {
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            if (contentHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(contentHarvester));
-            }
-
-            if (contentTagger == null)
-            {
-                throw new ArgumentNullException(nameof(contentTagger));
-            }
-
-            this.miner = miner;
-            this.contentHarvester = contentHarvester;
-            this.contentTagger = contentTagger;
+            this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
+            this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
+            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
         public async Task<object> Tag(IDocument document)

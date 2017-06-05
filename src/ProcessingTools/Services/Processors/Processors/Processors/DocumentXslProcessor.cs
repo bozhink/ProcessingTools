@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Processors;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors;
     using ProcessingTools.Xml.Contracts.Factories;
 
     public class DocumentXslProcessor : IDocumentXslProcessor
@@ -12,12 +12,7 @@
 
         public DocumentXslProcessor(IXslTransformerFactory factory)
         {
-            if (factory == null)
-            {
-                throw new ArgumentNullException(nameof(factory));
-            }
-
-            this.factory = factory;
+            this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         public string XslFileFullName { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Contracts.Models.Floats
 {
-    using Types;
+    using ProcessingTools.Enumerations;
 
     internal interface IFloatObject
     {

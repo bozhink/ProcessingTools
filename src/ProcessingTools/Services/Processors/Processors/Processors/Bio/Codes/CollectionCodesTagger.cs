@@ -4,14 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Bio.Codes;
-    using Models.Bio.Codes;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Processors.Models.Bio.Codes;
 
     public class CollectionCodesTagger : ICollectionCodesTagger
     {
@@ -27,30 +27,10 @@
             ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionCodeSerializableModel> collectionCodesTagger,
             ISimpleXmlSerializableObjectTagger<BiorepositoriesCollectionSerializableModel> collectionsTagger)
         {
-            if (contentHarvester == null)
-            {
-                throw new ArgumentNullException(nameof(contentHarvester));
-            }
-
-            if (miner == null)
-            {
-                throw new ArgumentNullException(nameof(miner));
-            }
-
-            if (collectionCodesTagger == null)
-            {
-                throw new ArgumentNullException(nameof(collectionCodesTagger));
-            }
-
-            if (collectionsTagger == null)
-            {
-                throw new ArgumentNullException(nameof(collectionsTagger));
-            }
-
-            this.contentHarvester = contentHarvester;
-            this.miner = miner;
-            this.collectionCodesTagger = collectionCodesTagger;
-            this.collectionsTagger = collectionsTagger;
+            this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
+            this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
+            this.collectionCodesTagger = collectionCodesTagger ?? throw new ArgumentNullException(nameof(collectionCodesTagger));
+            this.collectionsTagger = collectionsTagger ?? throw new ArgumentNullException(nameof(collectionsTagger));
         }
 
         public async Task<object> Tag(IDocument document)

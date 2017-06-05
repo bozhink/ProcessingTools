@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Processors.Bio.Materials;
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Factories.Bio;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.Materials;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
@@ -18,18 +18,8 @@
             IMaterialCitationsParser materialCitationsParser,
             ITaxonTreatmentsTransformersFactory transformersFactory)
         {
-            if (materialCitationsParser == null)
-            {
-                throw new ArgumentNullException(nameof(materialCitationsParser));
-            }
-
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.materialCitationsParser = materialCitationsParser;
-            this.transformersFactory = transformersFactory;
+            this.materialCitationsParser = materialCitationsParser ?? throw new ArgumentNullException(nameof(materialCitationsParser));
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
         public async Task<object> Parse(IDocument document)

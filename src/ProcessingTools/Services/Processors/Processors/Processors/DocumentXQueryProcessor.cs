@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Processors;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Processors;
     using ProcessingTools.Xml.Contracts.Factories;
 
     public class DocumentXQueryProcessor : IDocumentXQueryProcessor
@@ -12,12 +12,7 @@
 
         public DocumentXQueryProcessor(IXQueryTransformerFactory factory)
         {
-            if (factory == null)
-            {
-                throw new ArgumentNullException(nameof(factory));
-            }
-
-            this.factory = factory;
+            this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         public string XQueryFileFullName { get; set; }

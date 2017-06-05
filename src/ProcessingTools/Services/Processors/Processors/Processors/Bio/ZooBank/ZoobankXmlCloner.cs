@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Processors.Bio.ZooBank;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
     public class ZoobankXmlCloner : IZoobankXmlCloner
     {

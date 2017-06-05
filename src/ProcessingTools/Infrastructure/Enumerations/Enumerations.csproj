@@ -36,6 +36,7 @@
     <Compile Include="CountryPartitionType.cs" />
     <Compile Include="DisposeStatus.cs" />
     <Compile Include="ExceptionSeverity.cs" />
+    <Compile Include="FloatsReferenceType.cs" />
     <Compile Include="IndexHerbariorumRecordType.cs" />
     <Compile Include="LogType.cs" />
     <Compile Include="ManageMessageId.cs" />
