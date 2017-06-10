@@ -18,9 +18,9 @@
             this.DbSet = this.Context.Set<TEntity>();
         }
 
-        public virtual TContext Context { get; private set; }
+        public TContext Context { get; private set; }
 
-        public virtual IDbSet<TEntity> DbSet { get; private set; }
+        public IDbSet<TEntity> DbSet { get; private set; }
 
         public virtual void Add(TEntity entity)
         {

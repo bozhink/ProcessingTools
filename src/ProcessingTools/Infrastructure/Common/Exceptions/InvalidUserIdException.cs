@@ -38,5 +38,10 @@
         }
 
         public override string Message => $"User Id '{this.userId}' not found." + (this.message ?? string.Empty);
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+        }
     }
 }

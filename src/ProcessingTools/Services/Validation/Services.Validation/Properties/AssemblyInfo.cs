@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ProcessingTools.Services.Validation")]
-[assembly: AssemblyCopyright("Copyright © 2016 Bozhin Karaivanov")]
+[assembly: AssemblyCopyright("Copyright © 2017 Bozhin Karaivanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

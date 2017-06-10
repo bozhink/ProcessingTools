@@ -34,5 +34,10 @@
         }
 
         public IEnumerable<string> FileNames => this.fileNames;
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+        }
     }
 }

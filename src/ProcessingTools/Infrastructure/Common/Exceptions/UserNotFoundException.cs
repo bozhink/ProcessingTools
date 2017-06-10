@@ -33,5 +33,10 @@
         }
 
         public override string Message => this.message ?? "User not found.";
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+        }
     }
 }

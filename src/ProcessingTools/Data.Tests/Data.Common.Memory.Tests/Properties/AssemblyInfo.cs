@@ -8,7 +8,7 @@ using Castle.Core.Internal;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ProcessingTools.Data.Common.Memory.Tests")]
-[assembly: AssemblyCopyright("Copyright © 2016 Bozhin Karaivanov")]
+[assembly: AssemblyCopyright("Copyright © 2017 Bozhin Karaivanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

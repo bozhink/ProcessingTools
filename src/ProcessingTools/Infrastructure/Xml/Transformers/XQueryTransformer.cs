@@ -20,13 +20,8 @@
                 throw new ArgumentNullException(nameof(xqueryFileName));
             }
 
-            if (cache == null)
-            {
-                throw new ArgumentNullException(nameof(cache));
-            }
-
             this.xqueryFileName = xqueryFileName;
-            this.cache = cache;
+            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
         public Task<string> Transform(XmlNode node)
@@ -71,9 +66,9 @@
 
                 return this.Transform(document.DocumentElement);
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                throw;
             }
             finally
             {

@@ -33,5 +33,10 @@
         }
 
         public override string Message => this.message ?? "Entity not found.";
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+        }
     }
 }
