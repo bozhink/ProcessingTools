@@ -6,8 +6,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
 
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {

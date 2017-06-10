@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
     using ProcessingTools.Contracts.Models.Mediatypes;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Models.Mediatypes;
 
@@ -17,12 +17,7 @@
 
         public MediatypesResolverWithDatabase(ISearchableMediatypesRepository repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public async Task<IEnumerable<IMediatype>> ResolveMediatype(string fileExtension)

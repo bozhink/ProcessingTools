@@ -5,8 +5,8 @@
     using System.Security.Principal;
     using System.Threading.Tasks;
     using System.Web;
-    using ProcessingTools.Contracts.Models.Files;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts.Models.Files;
     using ProcessingTools.Services.Data.Contracts.Files;
     using ProcessingTools.Services.Data.Models.Files;
 
@@ -16,12 +16,7 @@
 
         public StreamingSystemFilesDataService(IStreamingSystemFileContentDataService fileContentDataService)
         {
-            if (fileContentDataService == null)
-            {
-                throw new ArgumentNullException(nameof(fileContentDataService));
-            }
-
-            this.fileContentDataService = fileContentDataService;
+            this.fileContentDataService = fileContentDataService ?? throw new ArgumentNullException(nameof(fileContentDataService));
         }
 
         public Task<IFileMetadata> Create(IFileMetadata metadata, Stream stream) => this.Update(metadata, stream);

@@ -32,7 +32,7 @@
         {
             get
             {
-                return this.signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
 
             private set
@@ -45,7 +45,7 @@
         {
             get
             {
-                return this.userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
@@ -58,7 +58,7 @@
         {
             get
             {
-                return HttpContext.GetOwinContext().Authentication;
+                return this.HttpContext.GetOwinContext().Authentication;
             }
         }
 
@@ -84,7 +84,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
@@ -106,17 +106,11 @@
                     return this.View("Lockout");
 
                 case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction(
-                        "SendCode",
-                        new
-                        {
-                            ReturnUrl = returnUrl,
-                            RememberMe = model.RememberMe
-                        });
+                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
 
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return this.View(model);
             }
         }
@@ -146,7 +140,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
@@ -171,7 +165,7 @@
 
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError(string.Empty, "Invalid code.");
+                    this.ModelState.AddModelError(string.Empty, "Invalid code.");
                     return this.View(model);
             }
         }
@@ -190,7 +184,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var user = new User
                 {
@@ -250,7 +244,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var user = await this.UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id)))
@@ -293,7 +287,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
@@ -332,10 +326,7 @@
             // Request a redirect to the external login provider
             return new ChallengeResult(
                 provider,
-                Url.Action(
-                    "ExternalLoginCallback",
-                    "Account",
-                    new { ReturnUrl = returnUrl }));
+                this.Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
         // GET: /Account/SendCode
@@ -371,7 +362,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
@@ -382,14 +373,7 @@
                 return this.View(ViewNames.ErrorViewName);
             }
 
-            return this.RedirectToAction(
-                "VerifyCode",
-                new
-                {
-                    Provider = model.SelectedProvider,
-                    ReturnUrl = model.ReturnUrl,
-                    RememberMe = model.RememberMe
-                });
+            return this.RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
         // GET: /Account/ExternalLoginCallback
@@ -414,25 +398,14 @@
                     return this.View("Lockout");
 
                 case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction(
-                        "SendCode",
-                        new
-                        {
-                            ReturnUrl = returnUrl,
-                            RememberMe = false
-                        });
+                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
 
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return this.View(
-                        "ExternalLoginConfirmation",
-                        new ExternalLoginConfirmationViewModel
-                        {
-                            Email = loginInfo.Email
-                        });
+                    this.ViewBag.ReturnUrl = returnUrl;
+                    this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+                    return this.View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
 
@@ -442,12 +415,12 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
+            if (this.User.Identity.IsAuthenticated)
             {
                 return this.RedirectToAction("Index", "Manage");
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
                 var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
@@ -476,7 +449,7 @@
                 this.AddErrors(result);
             }
 
-            ViewBag.ReturnUrl = returnUrl;
+            this.ViewBag.ReturnUrl = returnUrl;
             return this.View(model);
         }
 
@@ -521,13 +494,13 @@
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError(string.Empty, error);
+                this.ModelState.AddModelError(string.Empty, error);
             }
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (this.Url.IsLocalUrl(returnUrl))
             {
                 return this.Redirect(returnUrl);
             }

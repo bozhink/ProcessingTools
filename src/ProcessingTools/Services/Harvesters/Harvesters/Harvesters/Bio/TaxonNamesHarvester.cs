@@ -7,10 +7,10 @@
     using System.Threading.Tasks;
     using System.Xml;
     using Contracts.Harvesters.Bio;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
 
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {

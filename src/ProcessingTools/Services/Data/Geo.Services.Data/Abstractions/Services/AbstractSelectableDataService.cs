@@ -5,13 +5,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
 
     public abstract class AbstractSelectableDataService<TServiceModel, TDataModel> : ISelectableDataService<TServiceModel>
@@ -22,12 +22,7 @@
 
         public AbstractSelectableDataService(IGeoDataRepository<TDataModel> repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         protected abstract Expression<Func<TDataModel, TServiceModel>> MapDataModelToServiceModel { get; }
@@ -53,7 +48,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (PagingConstants.MaximalItemsPerPageAllowed < take || take < 1)
+            if (take < 1 || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
             }

@@ -7,15 +7,15 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Core;
-    using Contracts.Factories;
-    using Contracts.Models;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Documents;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
     using ProcessingTools.Services.Data.Contracts.Files;
 
     public class FileProcessor : IFileProcessor

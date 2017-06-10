@@ -6,6 +6,7 @@
     using System.Web.Optimization;
     using System.Web.Routing;
 
+    [type: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileHeaderFileNameDocumentationMustMatchTypeName", Justification = "Global.asax.cs.")]
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()

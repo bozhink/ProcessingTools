@@ -18,12 +18,7 @@
 
         public CoordinatesCalculatorController(ICoordinateParser coordinateParser)
         {
-            if (coordinateParser == null)
-            {
-                throw new ArgumentNullException(nameof(coordinateParser));
-            }
-
-            this.coordinateParser = coordinateParser;
+            this.coordinateParser = coordinateParser ?? throw new ArgumentNullException(nameof(coordinateParser));
         }
 
         // GET: Data/CoordinatesCalculator
@@ -46,7 +41,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Calculate([Bind(Include = CoordinatesRequestModelValidationBindings)]CoordinatesRequestModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var coordinateStrings = model.Coordinates.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(c => c.Trim())

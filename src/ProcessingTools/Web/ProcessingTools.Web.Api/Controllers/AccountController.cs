@@ -45,7 +45,7 @@
         {
             get
             {
-                return this.userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
@@ -56,23 +56,20 @@
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        private IAuthenticationManager Authentication
-        {
-            get { return Request.GetOwinContext().Authentication; }
-        }
+        private IAuthenticationManager Authentication => this.Request.GetOwinContext().Authentication;
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
         {
-            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(this.User.Identity as ClaimsIdentity);
 
             return new UserInfoViewModel
             {
-                Email = User.Identity.GetUserName(),
+                Email = this.User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin?.LoginProvider
             };
         }
 
@@ -88,7 +85,7 @@
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
-            IdentityUser user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+            IdentityUser user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
 
             if (user == null)
             {
@@ -128,13 +125,13 @@
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
             IdentityResult result = await this.UserManager.ChangePasswordAsync(
-                User.Identity.GetUserId(),
+                this.User.Identity.GetUserId(),
                 model.OldPassword,
                 model.NewPassword);
 
@@ -150,12 +147,12 @@
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            IdentityResult result = await this.UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            IdentityResult result = await this.UserManager.AddPasswordAsync(this.User.Identity.GetUserId(), model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -169,7 +166,7 @@
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
@@ -193,7 +190,7 @@
             }
 
             IdentityResult result = await this.UserManager.AddLoginAsync(
-                User.Identity.GetUserId(),
+                this.User.Identity.GetUserId(),
                 new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
 
             if (!result.Succeeded)
@@ -208,7 +205,7 @@
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
@@ -217,12 +214,12 @@
 
             if (model.LoginProvider == LocalLoginProvider)
             {
-                result = await this.UserManager.RemovePasswordAsync(User.Identity.GetUserId());
+                result = await this.UserManager.RemovePasswordAsync(this.User.Identity.GetUserId());
             }
             else
             {
                 result = await this.UserManager.RemoveLoginAsync(
-                    User.Identity.GetUserId(),
+                    this.User.Identity.GetUserId(),
                     new UserLoginInfo(model.LoginProvider, model.ProviderKey));
             }
 
@@ -243,15 +240,15 @@
         {
             if (error != null)
             {
-                return this.Redirect(Url.Content("~/") + "#error=" + Uri.EscapeDataString(error));
+                return this.Redirect(this.Url.Content("~/") + "#error=" + Uri.EscapeDataString(error));
             }
 
-            if (!User.Identity.IsAuthenticated)
+            if (!this.User.Identity.IsAuthenticated)
             {
                 return new ChallengeResult(provider, this);
             }
 
-            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(this.User.Identity as ClaimsIdentity);
 
             if (externalLogin == null)
             {
@@ -316,19 +313,19 @@
 
             foreach (AuthenticationDescription description in descriptions)
             {
+                object routeValues = new
+                {
+                    provider = description.AuthenticationType,
+                    response_type = "token",
+                    client_id = Startup.PublicClientId,
+                    redirect_uri = new Uri(this.Request.RequestUri, returnUrl).AbsoluteUri,
+                    state = state
+                };
+
                 ExternalLoginViewModel login = new ExternalLoginViewModel
                 {
                     Name = description.Caption,
-                    Url = Url.Route(
-                        "ExternalLogin",
-                        new
-                        {
-                            provider = description.AuthenticationType,
-                            response_type = "token",
-                            client_id = Startup.PublicClientId,
-                            redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
-                            state = state
-                        }),
+                    Url = this.Url.Route("ExternalLogin", routeValues: routeValues),
                     State = state
                 };
 
@@ -343,7 +340,7 @@
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
@@ -370,7 +367,7 @@
         [Route("RegisterExternal")]
         public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
@@ -426,11 +423,11 @@
                 {
                     foreach (string error in result.Errors)
                     {
-                        ModelState.AddModelError(string.Empty, error);
+                        this.ModelState.AddModelError(string.Empty, error);
                     }
                 }
 
-                if (ModelState.IsValid)
+                if (this.ModelState.IsValid)
                 {
                     // No ModelState errors are available to send, so just return an empty BadRequest.
                     return this.BadRequest();
@@ -501,8 +498,10 @@
 
             public IList<Claim> GetClaims()
             {
-                IList<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, this.ProviderKey, null, this.LoginProvider));
+                IList<Claim> claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, this.ProviderKey, null, this.LoginProvider)
+                };
 
                 if (this.UserName != null)
                 {

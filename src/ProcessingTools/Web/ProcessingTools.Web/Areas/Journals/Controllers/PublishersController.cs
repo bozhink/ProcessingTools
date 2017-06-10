@@ -7,9 +7,9 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Newtonsoft.Json;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Web.Abstractions.Controllers;

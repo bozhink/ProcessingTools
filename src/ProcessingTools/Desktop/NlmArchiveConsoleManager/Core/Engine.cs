@@ -24,24 +24,9 @@
             IHelpProvider helpProvider,
             ILogger logger)
         {
-            if (processorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(processorFactory));
-            }
-
-            if (journalsMetaService == null)
-            {
-                throw new ArgumentNullException(nameof(journalsMetaService));
-            }
-
-            if (helpProvider == null)
-            {
-                throw new ArgumentNullException(nameof(helpProvider));
-            }
-
-            this.processorFactory = processorFactory;
-            this.journalsMetaService = journalsMetaService;
-            this.helpProvider = helpProvider;
+            this.processorFactory = processorFactory ?? throw new ArgumentNullException(nameof(processorFactory));
+            this.journalsMetaService = journalsMetaService ?? throw new ArgumentNullException(nameof(journalsMetaService));
+            this.helpProvider = helpProvider ?? throw new ArgumentNullException(nameof(helpProvider));
             this.logger = logger;
         }
 
@@ -65,7 +50,7 @@
                 }
                 else
                 {
-                    logger?.Log(LogType.Error, "'{0}' is not a valid path.", x);
+                    this.logger?.Log(LogType.Error, "'{0}' is not a valid path.", x);
                 }
 
                 return null;

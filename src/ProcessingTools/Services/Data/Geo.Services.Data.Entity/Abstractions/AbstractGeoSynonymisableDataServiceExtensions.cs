@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Entity.Abstractions
 {
     using System.Linq;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
@@ -8,7 +9,6 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Models;
 
     public abstract partial class AbstractGeoSynonymisableDataService<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>

@@ -10,12 +10,12 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
@@ -30,15 +30,10 @@
 
         public FilesController(IDocumentsDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        private string UserId => User.Identity.GetUserId();
+        private string UserId => this.User.Identity.GetUserId();
 
         // TODO: To be removed
         private int FakeArticleId => 0;
@@ -152,7 +147,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = DocumentValidationBinding)] FileDetailsViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;
@@ -189,7 +184,7 @@
         /// </summary>
         /// <param name="p">Page number.</param>
         /// <param name="n">Number of items per page.</param>
-        /// <returns></returns>
+        /// <returns>Paginated items</returns>
         /// <example>GET: /Articles/Files</example>
         [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)
@@ -237,7 +232,7 @@
                 throw new NoFilesSelectedException();
             }
 
-            var userId = User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
             var articleId = this.FakeArticleId;
 
             var tasks = new ConcurrentQueue<Task>();

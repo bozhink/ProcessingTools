@@ -16,12 +16,8 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
     /// </summary>
     public static class HelpPageConfig
     {
-        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-            MessageId = "ProcessingTools.Web.Api.Areas.HelpPage.TextSample.#ctor(System.String)",
-            Justification = "End users may choose to merge this string with existing localized resources.")]
-        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly",
-            MessageId = "bsonspec",
-            Justification = "Part of a URI.")]
+        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "ProcessingTools.Web.Api.Areas.HelpPage.TextSample.#ctor(System.String)", Justification = "End users may choose to merge this string with existing localized resources.")]
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "bsonspec", Justification = "Part of a URI.")]
         public static void Register(HttpConfiguration config)
         {
             ////// Uncomment the following to use the documentation from XML documentation file.
@@ -35,7 +31,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
             config.SetSampleObjects(new Dictionary<Type, object>
            {
                 { typeof(string), "sample string" },
-                { typeof(IEnumerable<string>), new string[]{"sample 1", "sample 2" }}
+                { typeof(IEnumerable<string>), new string[] { "sample 1", "sample 2" } }
            });
 
             // Extend the following to provide factories for types not handled automatically (those lacking parameterless

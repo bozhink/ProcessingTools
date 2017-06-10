@@ -7,6 +7,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Constants.Data.Documents;
@@ -16,9 +19,6 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts.Models;
     using ProcessingTools.Documents.Services.Data.Models;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.FileSystem.Contracts;
 
     public class DocumentsDataService : IDocumentsDataService
@@ -64,7 +64,7 @@
                 throw new InvalidPageNumberException();
             }
 
-            if (1 > itemsPerPage || itemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            if (itemsPerPage < 1 || itemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidItemsPerPageException();
             }

@@ -22,43 +22,58 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions
         // Modify this to support more data annotation attributes.
         private readonly IDictionary<Type, Func<object, string>> annotationTextGenerator = new Dictionary<Type, Func<object, string>>
         {
-            { typeof(RequiredAttribute), a => "Required" },
-            { typeof(RangeAttribute), a =>
+            {
+                typeof(RequiredAttribute),
+                a => "Required"
+            },
+            {
+                typeof(RangeAttribute),
+                a =>
                 {
                     RangeAttribute range = (RangeAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "Range: inclusive between {0} and {1}", range.Minimum, range.Maximum);
                 }
             },
-            { typeof(MaxLengthAttribute), a =>
+            {
+                typeof(MaxLengthAttribute),
+                a =>
                 {
                     MaxLengthAttribute maxLength = (MaxLengthAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "Max length: {0}", maxLength.Length);
                 }
             },
-            { typeof(MinLengthAttribute), a =>
+            {
+                typeof(MinLengthAttribute),
+                a =>
                 {
                     MinLengthAttribute minLength = (MinLengthAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "Min length: {0}", minLength.Length);
                 }
             },
-            { typeof(StringLengthAttribute), a =>
+            {
+                typeof(StringLengthAttribute),
+                a =>
                 {
                     StringLengthAttribute strLength = (StringLengthAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "String length: inclusive between {0} and {1}", strLength.MinimumLength, strLength.MaximumLength);
                 }
             },
-            { typeof(DataTypeAttribute), a =>
+            {
+                typeof(DataTypeAttribute),
+                a =>
                 {
                     DataTypeAttribute dataType = (DataTypeAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "Data type: {0}", dataType.CustomDataType ?? dataType.DataType.ToString());
                 }
             },
-            { typeof(RegularExpressionAttribute), a =>
+            {
+                typeof(RegularExpressionAttribute),
+                a =>
                 {
                     RegularExpressionAttribute regularExpression = (RegularExpressionAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "Matching regular expression pattern: {0}", regularExpression.Pattern);
                 }
-            },
+            }
         };
 
         // Modify this to add more default documentations.
@@ -122,9 +137,8 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions
                 modelType = underlyingType;
             }
 
-            ModelDescription modelDescription;
             string modelName = ModelNameHelper.GetModelName(modelType);
-            if (this.GeneratedModels.TryGetValue(modelName, out modelDescription))
+            if (this.GeneratedModels.TryGetValue(modelName, out ModelDescription modelDescription))
             {
                 if (modelType != modelDescription.ModelType)
                 {
@@ -256,8 +270,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions
 
         private string CreateDefaultDocumentation(Type type)
         {
-            string documentation;
-            if (this.defaultTypeDocumentation.TryGetValue(type, out documentation))
+            if (this.defaultTypeDocumentation.TryGetValue(type, out string documentation))
             {
                 return documentation;
             }
@@ -277,8 +290,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions
             IEnumerable<Attribute> attributes = property.GetCustomAttributes();
             foreach (Attribute attribute in attributes)
             {
-                Func<object, string> textGenerator;
-                if (this.annotationTextGenerator.TryGetValue(attribute.GetType(), out textGenerator))
+                if (this.annotationTextGenerator.TryGetValue(attribute.GetType(), out Func<object, string> textGenerator))
                 {
                     annotations.Add(
                         new ParameterAnnotation

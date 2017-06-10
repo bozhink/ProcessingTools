@@ -6,8 +6,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
 
@@ -167,7 +167,7 @@
         /// <param name="xpath">XPath string.</param>
         /// <param name="document">IDocument object to be tagged.</param>
         /// <param name="settings">Tagging settings.</param>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         private async Task TagContentInDocument(
             XmlElement item,
             string xpath,

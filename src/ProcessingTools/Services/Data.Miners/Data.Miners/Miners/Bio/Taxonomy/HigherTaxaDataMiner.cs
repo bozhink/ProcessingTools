@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts.Miners.Bio.Taxonomy;
-    using ProcessingTools.Constants;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {

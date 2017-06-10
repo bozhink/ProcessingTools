@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public abstract class AbstractDataServiceWithRepository<TDbModel, TServiceModel> : IDisposable
     {
@@ -17,12 +17,7 @@
 
         public AbstractDataServiceWithRepository(ICrudRepository<TDbModel> repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
@@ -108,7 +103,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            if (take < 1 || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
             }

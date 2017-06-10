@@ -8,6 +8,8 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Web;
@@ -15,8 +17,6 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
@@ -52,42 +52,12 @@
                 throw new ArgumentNullException(nameof(commandInfoProvider));
             }
 
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            if (documentReadNormalizer == null)
-            {
-                throw new ArgumentNullException(nameof(documentReadNormalizer));
-            }
-
-            if (documentWriteNormalizer == null)
-            {
-                throw new ArgumentNullException(nameof(documentWriteNormalizer));
-            }
-
-            if (commandFactory == null)
-            {
-                throw new ArgumentNullException(nameof(commandFactory));
-            }
-
-            if (commandSettingsFactory == null)
-            {
-                throw new ArgumentNullException(nameof(commandSettingsFactory));
-            }
-
-            this.service = service;
-            this.documentFactory = documentFactory;
-            this.documentReadNormalizer = documentReadNormalizer;
-            this.documentWriteNormalizer = documentWriteNormalizer;
-            this.commandFactory = commandFactory;
-            this.commandSettingsFactory = commandSettingsFactory;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
+            this.documentReadNormalizer = documentReadNormalizer ?? throw new ArgumentNullException(nameof(documentReadNormalizer));
+            this.documentWriteNormalizer = documentWriteNormalizer ?? throw new ArgumentNullException(nameof(documentWriteNormalizer));
+            this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
+            this.commandSettingsFactory = commandSettingsFactory ?? throw new ArgumentNullException(nameof(commandSettingsFactory));
 
             commandInfoProvider.ProcessInformation();
 
@@ -107,7 +77,7 @@
         // TODO: To be removed
         private int FakeArticleId => 0;
 
-        private string UserId => User.Identity.GetUserId();
+        private string UserId => this.User.Identity.GetUserId();
 
         // GET: /Articles/Tagger
         [HttpGet]
@@ -141,7 +111,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = DocumentValidationBinding)] FileModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;

@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.DocumentationProvider = this.Configuration.Services.GetDocumentationProvider();
+            this.ViewBag.DocumentationProvider = this.Configuration.Services.GetDocumentationProvider();
             return this.View(this.Configuration.Services.GetApiExplorer().ApiDescriptions);
         }
 
@@ -49,8 +49,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.Controllers
             if (!string.IsNullOrEmpty(modelName))
             {
                 ModelDescriptionGenerator modelDescriptionGenerator = this.Configuration.GetModelDescriptionGenerator();
-                ModelDescription modelDescription;
-                if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
+                if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out ModelDescription modelDescription))
                 {
                     return this.View(modelDescription);
                 }

@@ -4,13 +4,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Models;
 
     public abstract class BiorepositoriesDataServiceFactory<TDbModel, TServiceModel> : IBiorepositoriesDataService<TServiceModel>
         where TDbModel : class, IStringIdentifiable
@@ -20,12 +20,7 @@
 
         public BiorepositoriesDataServiceFactory(IBiorepositoriesRepositoryProvider<TDbModel> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
         protected abstract Expression<Func<TDbModel, bool>> Filter { get; }
@@ -39,7 +34,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            if (take < 1 || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
             }

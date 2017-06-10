@@ -6,11 +6,11 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
     using Strings = Resources.Strings;
 
@@ -46,7 +46,7 @@
                 return this.InvalidDocumentIdJsonResult();
             }
 
-            var userId = User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
             var document = new DocumentServiceModel
             {
                 Id = id,
@@ -66,7 +66,7 @@
                 return this.InvalidDocumentIdJsonResult();
             }
 
-            var userId = User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
             var document = new DocumentServiceModel
             {
                 Id = id,
@@ -86,7 +86,7 @@
                 return this.InvalidDocumentIdJsonResult();
             }
 
-            var userId = User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
             var content = await this.presenter.GetHtml(userId, this.fakeArticleId, id);
             return this.ContentJsonResult(id, content);
         }
@@ -99,7 +99,7 @@
                 return this.InvalidDocumentIdJsonResult();
             }
 
-            var userId = User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
             var content = await this.presenter.GetXml(userId, this.fakeArticleId, id);
             return this.ContentJsonResult(id, content);
         }

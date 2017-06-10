@@ -2,9 +2,9 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
     using ValidationConstants = ProcessingTools.Constants.Models.ValidationConstants;
 
     public class IndexViewModel

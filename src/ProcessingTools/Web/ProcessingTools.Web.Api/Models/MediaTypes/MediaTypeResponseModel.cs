@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Models.MediaTypes
 {
-    using ProcessingTools.Contracts.Models.Mediatypes;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Mediatypes;
 
     public class MediaTypeResponseModel : IMapFrom<IMediatype>
     {

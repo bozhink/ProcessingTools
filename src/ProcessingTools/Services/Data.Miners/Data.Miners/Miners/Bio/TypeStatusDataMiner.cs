@@ -6,9 +6,9 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Services.Data.Contracts;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Common.Extensions;
 
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {
@@ -18,12 +18,7 @@
 
         public TypeStatusDataMiner(ITypeStatusDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         public async Task<IEnumerable<string>> Mine(string content)

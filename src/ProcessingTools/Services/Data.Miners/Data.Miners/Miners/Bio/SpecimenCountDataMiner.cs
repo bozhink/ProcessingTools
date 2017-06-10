@@ -18,8 +18,8 @@ namespace ProcessingTools.Data.Miners.Miners.Bio
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
 
     public class SpecimenCountDataMiner : ISpecimenCountDataMiner
     {

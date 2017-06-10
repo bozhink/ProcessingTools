@@ -7,10 +7,10 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using Models;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Contracts.Models.Files;
     using ProcessingTools.Contracts.Services.Data.Files;
-    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Web.Documents.Areas.Files.Models;
 
     [Authorize]
     public class UploadController : Controller
@@ -19,12 +19,7 @@
 
         public UploadController(IStreamingFilesDataService filesDataService)
         {
-            if (filesDataService == null)
-            {
-                throw new ArgumentNullException(nameof(filesDataService));
-            }
-
-            this.filesDataService = filesDataService;
+            this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
         }
 
         // GET: Files/Upload
@@ -57,7 +52,7 @@
                 throw new NullOrEmptyFileException();
             }
 
-            var userId = User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
 
             var metadata = await this.UploadSingleFile(userId, file);
 
@@ -114,7 +109,7 @@
             };
 
             string fullName = Path.Combine(
-                Server.MapPath("~/App_Data/"),
+                this.Server.MapPath("~/App_Data/"),
                 $"{metadata.FileName}-{Guid.NewGuid().ToString()}.{metadata.FileExtension}");
 
             metadata.FullName = fullName;

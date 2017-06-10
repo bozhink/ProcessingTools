@@ -5,15 +5,15 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Abstractions.Bio.Taxonomy;
-    using Contracts.Bio.Taxonomy;
-    using Models.Bio.Taxonomy;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
 
     public class CatalogueOfLifeTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolver
     {
@@ -21,12 +21,7 @@
 
         public CatalogueOfLifeTaxaClassificationResolver(ICatalogueOfLifeDataRequester requester)
         {
-            if (requester == null)
-            {
-                throw new ArgumentNullException(nameof(requester));
-            }
-
-            this.requester = requester;
+            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
         protected override void Delay()

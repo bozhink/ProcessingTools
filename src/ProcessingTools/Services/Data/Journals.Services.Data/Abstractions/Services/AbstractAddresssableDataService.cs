@@ -6,6 +6,9 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Journals.Repositories;
@@ -13,9 +16,6 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Models.DataModels;
 
@@ -242,7 +242,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (PagingConstants.MaximalItemsPerPageAllowed < take || take < 1)
+            if (take > PagingConstants.MaximalItemsPerPageAllowed || take < 1)
             {
                 throw new InvalidTakeValuePagingException();
             }
@@ -271,7 +271,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (PagingConstants.MaximalItemsPerPageAllowed < take || take < 1)
+            if (take > PagingConstants.MaximalItemsPerPageAllowed || take < 1)
             {
                 throw new InvalidTakeValuePagingException();
             }

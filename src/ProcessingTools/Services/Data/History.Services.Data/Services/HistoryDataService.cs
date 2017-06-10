@@ -6,10 +6,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.History.Models;
     using ProcessingTools.Contracts.Data.History.Repositories;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.History.Services.Data.Contracts.Services;
     using ProcessingTools.History.Services.Data.Models;
 

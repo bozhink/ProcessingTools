@@ -6,7 +6,7 @@
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            this.ViewBag.Title = "Home Page";
 
             return this.View();
         }

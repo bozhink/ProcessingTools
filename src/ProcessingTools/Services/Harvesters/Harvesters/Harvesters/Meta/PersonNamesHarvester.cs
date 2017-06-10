@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Harvesters.Meta;
-    using Contracts.Models.Meta;
-    using Models.Meta;
-    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
+    using ProcessingTools.Harvesters.Contracts.Models.Meta;
+    using ProcessingTools.Harvesters.Models.Meta;
 
     public class PersonNamesHarvester : IPersonNamesHarvester
     {

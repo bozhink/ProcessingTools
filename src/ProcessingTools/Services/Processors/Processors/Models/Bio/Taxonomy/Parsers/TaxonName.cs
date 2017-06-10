@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using System.Xml;
-    using Contracts.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
 
     internal class TaxonName : ITaxonName
     {

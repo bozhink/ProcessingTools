@@ -5,13 +5,13 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.DataResources.Data.Entity.Contracts;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.DataResources.Services.Data.Contracts;
     using ProcessingTools.DataResources.Services.Data.Models;
     using ProcessingTools.DataResources.Services.Data.Models.Contracts;
-    using ProcessingTools.Common.Exceptions;
 
     public class ContentTypesDataService : IContentTypesDataService
     {
@@ -19,12 +19,7 @@
 
         public ContentTypesDataService(IResourcesDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
         }
 
         public async Task<object> Add(IContentTypeCreateServiceModel model)
@@ -77,7 +72,7 @@
                 throw new InvalidPageNumberException();
             }
 
-            if (1 > numberOfItemsPerPage || numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            if (numberOfItemsPerPage < 1 || numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidItemsPerPageException();
             }

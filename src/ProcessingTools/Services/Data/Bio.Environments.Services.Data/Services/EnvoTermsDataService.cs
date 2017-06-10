@@ -7,9 +7,9 @@
     using ProcessingTools.Bio.Environments.Data.Entity.Models;
     using ProcessingTools.Bio.Environments.Services.Data.Contracts;
     using ProcessingTools.Bio.Environments.Services.Data.Models;
-    using ProcessingTools.Constants;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Constants;
 
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
@@ -17,12 +17,7 @@
 
         public EnvoTermsDataService(IBioEnvironmentsRepository<EnvoName> repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public async Task<IQueryable<EnvoTermServiceModel>> All()
@@ -48,7 +43,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (1 > take || take > PagingConstants.MaximalItemsPerPageAllowed)
+            if (take < 1 || take > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
             }

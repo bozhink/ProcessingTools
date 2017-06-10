@@ -7,14 +7,14 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Abstractions;
-    using Contracts.Models;
-    using Contracts.Services;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Uri;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
+    using ProcessingTools.Services.Validation.Abstractions;
+    using ProcessingTools.Services.Validation.Contracts.Models;
+    using ProcessingTools.Services.Validation.Contracts.Services;
 
     public class TaxaValidationService : AbstractValidationService<string>, ITaxaValidationService
     {
@@ -24,12 +24,7 @@
         public TaxaValidationService(IValidationCacheService cacheService, IGlobalNamesResolverDataRequester requester)
             : base(cacheService)
         {
-            if (requester == null)
-            {
-                throw new ArgumentNullException(nameof(requester));
-            }
-
-            this.requester = requester;
+            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
         protected override Func<string, string> GetPermalink => item => string.Format(

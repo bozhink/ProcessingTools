@@ -3,14 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Common;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Contracts.Data.Cache.Repositories;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Services.Cache.Contracts.Models.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;
+    using ProcessingTools.Services.Cache.Tests.Common;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit", TestOf = typeof(ValidationCacheService))]

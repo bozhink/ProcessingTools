@@ -4,12 +4,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts;
-    using Contracts.Commands;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
 
     public class GenericParseHigherTaxaCommand<TService> : ITaggerCommand
@@ -22,18 +22,8 @@
             IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
             IReporter reporter)
         {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
-
-            if (reporter == null)
-            {
-                throw new ArgumentNullException(nameof(reporter));
-            }
-
-            this.parser = parser;
-            this.reporter = reporter;
+            this.parser = parser ?? throw new ArgumentNullException(nameof(parser));
+            this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

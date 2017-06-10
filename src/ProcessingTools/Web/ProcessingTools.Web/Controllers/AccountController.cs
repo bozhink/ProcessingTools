@@ -77,14 +77,14 @@
         private IAuthenticationManager AuthenticationManager => this.HttpContext.GetOwinContext().Authentication;
 
         // GET: /Account
-        [HttpGet, ActionName(AccountController.IndexActionName)]
+        [HttpGet, ActionName(IndexActionName)]
         public ActionResult Index()
         {
             return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName, routeValues: this.DefaultRouteValues);
         }
 
         // GET: /Account/Login
-        [HttpGet, ActionName(AccountController.LoginActionName)]
+        [HttpGet, ActionName(LoginActionName)]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -93,7 +93,7 @@
         }
 
         // POST: /Account/Login
-        [HttpPost, ActionName(AccountController.LoginActionName)]
+        [HttpPost, ActionName(LoginActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
@@ -116,13 +116,13 @@
                     return this.View(ViewNames.Lockout);
 
                 case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction(
-                        SendCodeActionName,
-                        new
-                        {
-                            ReturnUrl = returnUrl,
-                            RememberMe = model.RememberMe
-                        });
+                    object routeValues = new
+                    {
+                        ReturnUrl = returnUrl,
+                        RememberMe = model.RememberMe
+                    };
+
+                    return this.RedirectToAction(SendCodeActionName, routeValues: routeValues);
 
                 case SignInStatus.Failure:
                 default:
@@ -132,7 +132,7 @@
         }
 
         // GET: /Account/VerifyCode
-        [HttpGet, ActionName(AccountController.VerifyCodeActionName)]
+        [HttpGet, ActionName(VerifyCodeActionName)]
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
@@ -151,7 +151,7 @@
         }
 
         // POST: /Account/VerifyCode
-        [HttpPost, ActionName(AccountController.VerifyCodeActionName)]
+        [HttpPost, ActionName(VerifyCodeActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
@@ -183,7 +183,7 @@
         }
 
         // GET: /Account/Register
-        [HttpGet, ActionName(AccountController.RegisterActionName)]
+        [HttpGet, ActionName(RegisterActionName)]
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -191,7 +191,7 @@
         }
 
         // POST: /Account/Register
-        [HttpPost, ActionName(AccountController.RegisterActionName)]
+        [HttpPost, ActionName(RegisterActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
@@ -239,7 +239,7 @@
         }
 
         // GET: /Account/ConfirmEmail
-        [HttpGet, ActionName(AccountController.ConfirmEmailActionName)]
+        [HttpGet, ActionName(ConfirmEmailActionName)]
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -256,7 +256,7 @@
         }
 
         // GET: /Account/ForgotPassword
-        [HttpGet, ActionName(AccountController.ForgotPasswordActionName)]
+        [HttpGet, ActionName(ForgotPasswordActionName)]
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -264,7 +264,7 @@
         }
 
         // POST: /Account/ForgotPassword
-        [HttpPost, ActionName(AccountController.ForgotPasswordActionName)]
+        [HttpPost, ActionName(ForgotPasswordActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
@@ -281,16 +281,15 @@
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                 string code = await this.UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = this.Url.Action(
-                    ResetPasswordConfirmationActionName,
-                    ControllerName,
-                    routeValues: new
-                    {
-                        userId = user.Id,
-                        code = code,
-                        area = AreaNames.DefaultArea
-                    },
-                    protocol: Request.Url.Scheme);
+
+                object routeValues = new
+                {
+                    userId = user.Id,
+                    code = code,
+                    area = AreaNames.DefaultArea
+                };
+
+                var callbackUrl = this.Url.Action(ResetPasswordConfirmationActionName, ControllerName, routeValues: routeValues, protocol: this.Request.Url.Scheme);
 
                 await this.UserManager.SendEmailAsync(
                     userId: user.Id,
@@ -305,7 +304,7 @@
         }
 
         // GET: /Account/ForgotPasswordConfirmation
-        [HttpGet, ActionName(AccountController.ForgotPasswordConfirmationActionName)]
+        [HttpGet, ActionName(ForgotPasswordConfirmationActionName)]
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
@@ -313,7 +312,7 @@
         }
 
         // GET: /Account/ResetPassword
-        [HttpGet, ActionName(AccountController.ResetPasswordActionName)]
+        [HttpGet, ActionName(ResetPasswordActionName)]
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
@@ -321,7 +320,7 @@
         }
 
         // POST: /Account/ResetPassword
-        [HttpPost, ActionName(AccountController.ResetPasswordActionName)]
+        [HttpPost, ActionName(ResetPasswordActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
@@ -349,7 +348,7 @@
         }
 
         // GET: /Account/ResetPasswordConfirmation
-        [HttpGet, ActionName(AccountController.ResetPasswordConfirmationActionName)]
+        [HttpGet, ActionName(ResetPasswordConfirmationActionName)]
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
@@ -357,26 +356,28 @@
         }
 
         // POST: /Account/ExternalLogin
-        [HttpPost, ActionName(AccountController.ExternalLoginActionName)]
+        [HttpPost, ActionName(ExternalLoginActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
+            object routeValues = new
+            {
+                ReturnUrl = returnUrl,
+                area = AreaNames.DefaultArea
+            };
+
             return new ChallengeResult(
                 provider,
                 this.Url.Action(
                     ExternalLoginCallbackActionName,
                     ControllerName,
-                    new
-                    {
-                        ReturnUrl = returnUrl,
-                        area = AreaNames.DefaultArea
-                    }));
+                    routeValues: routeValues));
         }
 
         // GET: /Account/SendCode
-        [HttpGet, ActionName(AccountController.SendCodeActionName)]
+        [HttpGet, ActionName(SendCodeActionName)]
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
@@ -402,7 +403,7 @@
         }
 
         // POST: /Account/SendCode
-        [HttpPost, ActionName(AccountController.SendCodeActionName)]
+        [HttpPost, ActionName(SendCodeActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
@@ -418,18 +419,18 @@
                 return this.View(ViewNames.Error);
             }
 
-            return this.RedirectToAction(
-                VerifyCodeActionName,
-                new
-                {
-                    Provider = model.SelectedProvider,
-                    ReturnUrl = model.ReturnUrl,
-                    RememberMe = model.RememberMe
-                });
+            object routeValues = new
+            {
+                Provider = model.SelectedProvider,
+                ReturnUrl = model.ReturnUrl,
+                RememberMe = model.RememberMe
+            };
+
+            return this.RedirectToAction(VerifyCodeActionName, routeValues: routeValues);
         }
 
         // GET: /Account/ExternalLoginCallback
-        [HttpGet, ActionName(AccountController.ExternalLoginCallbackActionName)]
+        [HttpGet, ActionName(ExternalLoginCallbackActionName)]
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -450,30 +451,25 @@
                     return this.View(ViewNames.Lockout);
 
                 case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction(
-                        SendCodeActionName,
-                        new
-                        {
-                            ReturnUrl = returnUrl,
-                            RememberMe = false
-                        });
+                    object routeValues = new
+                    {
+                        ReturnUrl = returnUrl,
+                        RememberMe = false
+                    };
+
+                    return this.RedirectToAction(SendCodeActionName, routeValues: routeValues);
 
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     this.ViewBag.ReturnUrl = returnUrl;
                     this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return this.View(
-                        ExternalLoginConfirmationActionName,
-                        new ExternalLoginConfirmationViewModel
-                        {
-                            Email = loginInfo.Email
-                        });
+                    return this.View(ExternalLoginConfirmationActionName, new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
 
         // POST: /Account/ExternalLoginConfirmation
-        [HttpPost, ActionName(AccountController.ExternalLoginConfirmationActionName)]
+        [HttpPost, ActionName(ExternalLoginConfirmationActionName)]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
@@ -520,7 +516,7 @@
         }
 
         // POST: /Account/LogOff
-        [HttpPost, ActionName(AccountController.LogOffActionName)]
+        [HttpPost, ActionName(LogOffActionName)]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
@@ -532,7 +528,7 @@
         }
 
         // GET: /Account/ExternalLoginFailure
-        [HttpGet, ActionName(AccountController.ExternalLoginFailureActionName)]
+        [HttpGet, ActionName(ExternalLoginFailureActionName)]
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {

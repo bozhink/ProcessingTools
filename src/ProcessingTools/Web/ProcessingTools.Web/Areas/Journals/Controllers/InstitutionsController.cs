@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ProcessingTools.Journals.Data.Entity;
-using ProcessingTools.Journals.Data.Entity.Models;
-
-namespace ProcessingTools.Web.Areas.Journals.Controllers
+﻿namespace ProcessingTools.Web.Areas.Journals.Controllers
 {
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using ProcessingTools.Journals.Data.Entity;
+    using ProcessingTools.Journals.Data.Entity.Models;
+
     [Authorize]
     public class InstitutionsController : Controller
     {
@@ -19,7 +15,7 @@ namespace ProcessingTools.Web.Areas.Journals.Controllers
         // GET: Journals/Institutions
         public ActionResult Index()
         {
-            return View(db.Institutions.ToList());
+            return this.View(this.db.Institutions.ToList());
         }
 
         // GET: Journals/Institutions/Details/5
@@ -29,35 +25,37 @@ namespace ProcessingTools.Web.Areas.Journals.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Institution institution = db.Institutions.Find(id);
+
+            Institution institution = this.db.Institutions.Find(id);
             if (institution == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(institution);
+
+            return this.View(institution);
         }
 
         // GET: Journals/Institutions/Create
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         // POST: Journals/Institutions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,AbbreviatedName,Name,DateCreated,DateModified,CreatedByUser,ModifiedByUser")] Institution institution)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Institutions.Add(institution);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Institutions.Add(institution);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
 
-            return View(institution);
+            return this.View(institution);
         }
 
         // GET: Journals/Institutions/Edit/5
@@ -67,28 +65,31 @@ namespace ProcessingTools.Web.Areas.Journals.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Institution institution = db.Institutions.Find(id);
+
+            Institution institution = this.db.Institutions.Find(id);
             if (institution == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(institution);
+
+            return this.View(institution);
         }
 
         // POST: Journals/Institutions/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,AbbreviatedName,Name,DateCreated,DateModified,CreatedByUser,ModifiedByUser")] Institution institution)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(institution).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(institution).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(institution);
+
+            return this.View(institution);
         }
 
         // GET: Journals/Institutions/Delete/5
@@ -98,12 +99,14 @@ namespace ProcessingTools.Web.Areas.Journals.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Institution institution = db.Institutions.Find(id);
+
+            Institution institution = this.db.Institutions.Find(id);
             if (institution == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(institution);
+
+            return this.View(institution);
         }
 
         // POST: Journals/Institutions/Delete/5
@@ -111,18 +114,19 @@ namespace ProcessingTools.Web.Areas.Journals.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Institution institution = db.Institutions.Find(id);
-            db.Institutions.Remove(institution);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Institution institution = this.db.Institutions.Find(id);
+            this.db.Institutions.Remove(institution);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

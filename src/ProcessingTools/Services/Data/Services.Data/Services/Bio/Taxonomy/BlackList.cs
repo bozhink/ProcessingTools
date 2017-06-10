@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class BlackList : IBlackList
     {
@@ -15,12 +15,7 @@
 
         public BlackList(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
         public Task<IEnumerable<string>> Items

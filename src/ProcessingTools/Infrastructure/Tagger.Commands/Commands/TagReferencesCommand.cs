@@ -4,9 +4,9 @@
     using System.ComponentModel;
     using System.IO;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Processors.Contracts.Processors.References;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;

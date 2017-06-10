@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
     using ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
 
     public class SpecimenCodesByPatternDataMiner : ISpecimenCodesByPatternDataMiner
     {

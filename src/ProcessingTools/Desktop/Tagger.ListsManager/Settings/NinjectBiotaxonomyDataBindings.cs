@@ -3,14 +3,13 @@
     using System.Configuration;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Xml;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
-    using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;

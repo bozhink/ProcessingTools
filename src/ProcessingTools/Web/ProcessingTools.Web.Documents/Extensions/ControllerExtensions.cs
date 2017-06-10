@@ -8,8 +8,8 @@
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
-    using ProcessingTools.Constants.Web;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Constants.Web;
     using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Web.Documents.ViewModels.Error;
     using Strings = Resources.Strings;
@@ -136,18 +136,15 @@
             string instanceName,
             ActionMetaViewModel sourceAction)
         {
-            return controller.ErrorView(
-                viewName,
-                responseStatusCode,
-                instanceName,
-                sourceAction,
-                new ActionMetaViewModel
-                {
-                    ActionLinkText = Strings.DefaultBackToListActionLinkTitle,
-                    ActionName = ActionNames.DeafultIndexActionName,
-                    ControllerName = sourceAction.ControllerName,
-                    AreaName = sourceAction.AreaName
-                });
+            var viewModel = new ActionMetaViewModel
+            {
+                ActionLinkText = Strings.DefaultBackToListActionLinkTitle,
+                ActionName = ActionNames.DeafultIndexActionName,
+                ControllerName = sourceAction.ControllerName,
+                AreaName = sourceAction.AreaName
+            };
+
+            return controller.ErrorView(viewName, responseStatusCode, instanceName, sourceAction, viewModel);
         }
 
         public static ViewResult ErrorViewWithGoBackToIndexDestination(this Controller controller, string viewName, HttpStatusCode responseStatusCode, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)
@@ -162,25 +159,24 @@
                 linkText = Regex.Replace(actionName, @"(?<!\A)(?=[A-Z0-9]+)", " ");
             }
 
-            return controller.ErrorView(
-                viewName,
-                responseStatusCode,
-                instanceName,
-                new ActionMetaViewModel
-                {
-                    ActionLinkText = linkText,
-                    Message = message,
-                    AreaName = areaName,
-                    ControllerName = controllerName,
-                    ActionName = actionName
-                },
-                new ActionMetaViewModel
-                {
-                    ActionLinkText = Strings.DefaultBackToListActionLinkTitle,
-                    ActionName = ActionNames.DeafultIndexActionName,
-                    ControllerName = controllerName,
-                    AreaName = areaName
-                });
+            var linkViewModel = new ActionMetaViewModel
+            {
+                ActionLinkText = linkText,
+                Message = message,
+                AreaName = areaName,
+                ControllerName = controllerName,
+                ActionName = actionName
+            };
+
+            var backViewModel = new ActionMetaViewModel
+            {
+                ActionLinkText = Strings.DefaultBackToListActionLinkTitle,
+                ActionName = ActionNames.DeafultIndexActionName,
+                ControllerName = controllerName,
+                AreaName = areaName
+            };
+
+            return controller.ErrorView(viewName, responseStatusCode, instanceName, linkViewModel, backViewModel);
         }
 
         public static ViewResult NoFilesSelectedErrorView(this Controller controller, string instanceName, string message = DefaultText, string actionLinkText = DefaultText)

@@ -20,14 +20,14 @@
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<User>(context.Get<UsersDbContext>()));
-            
+
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
-            
+
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {

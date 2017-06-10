@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Documents.Repositories;
     using ProcessingTools.Contracts.Models.Documents;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Services.Data.Contracts.Meta;
     using ProcessingTools.Services.Data.Models.Meta;
 
@@ -16,12 +16,7 @@
 
         public JournalsMetaDataServiceWithDatabase(IJournalMetaRepository repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public async Task<IEnumerable<IJournalMeta>> GetAllJournalsMeta()

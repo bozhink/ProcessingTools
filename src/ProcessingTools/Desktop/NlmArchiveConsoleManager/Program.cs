@@ -4,7 +4,7 @@
     using System.Diagnostics;
     using Contracts.Core;
     using Ninject;
-    using Settings;
+    using ProcessingTools.NlmArchiveConsoleManager.Settings;
 
     public class Program
     {
