@@ -10,9 +10,9 @@
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
-    using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
 
     public class EntityGeoNamesRepository : AbstractGeoRepository<GeoName, IGeoName, IGeoNamesFilter>, IGeoNamesRepository
     {

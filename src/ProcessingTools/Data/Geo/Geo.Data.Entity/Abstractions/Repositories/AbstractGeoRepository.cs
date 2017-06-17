@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Services.Data.Entity.Abstractions
+﻿namespace ProcessingTools.Geo.Data.Entity.Abstractions.Repositories
 {
     using System;
     using System.Linq;
