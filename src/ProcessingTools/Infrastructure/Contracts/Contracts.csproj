@@ -103,6 +103,19 @@
     <Compile Include="Data.Miners\IStringDataMiner.cs" />
     <Compile Include="Data.Miners\IStringTextDataMiner.cs" />
     <Compile Include="Data.Miners\ITextDataMiner.cs" />
+    <Compile Include="Data\Repositories\Geo\ICitiesRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IContinentsRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\ICountiesRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\ICountriesRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IDistrictsRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IGeoEpithetsRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IGeoNamesRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IGeoSynonymisableRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IMunicipalitiesRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IPostCodesRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IProvincesRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IRegionsRepository.cs" />
+    <Compile Include="Data\Repositories\Geo\IStatesRepository.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IRepositoryAsync.cs" />
@@ -324,7 +337,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Bio\Environments\" />
-    <Folder Include="Data\Geo\Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Contracts.ruleset" />
