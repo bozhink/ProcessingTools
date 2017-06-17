@@ -15,7 +15,7 @@
 
         Task<object> InsertAsync(TModel model);
 
-        Task<long> SaveChangesAsync();
+        Task<object> SaveChangesAsync();
 
         Task<TModel[]> SelectAsync(TFilter filter);
 
