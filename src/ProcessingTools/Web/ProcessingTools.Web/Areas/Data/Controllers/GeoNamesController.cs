@@ -8,7 +8,7 @@
     using System.Web.Mvc;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data.Geo.Models;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.ViewModels;

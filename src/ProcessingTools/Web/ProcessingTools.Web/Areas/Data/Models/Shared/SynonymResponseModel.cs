@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Models.Shared
 {
-    using ProcessingTools.Contracts.Services.Data.Geo.Models;
+    using ProcessingTools.Contracts.Models.Geo;
 
     public class SynonymResponseModel : IGeoSynonym
     {

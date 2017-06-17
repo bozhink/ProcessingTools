@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo.Models;
+    using ProcessingTools.Contracts.Models.Geo;
 
     public class ContinentRequestModel : IContinent
     {

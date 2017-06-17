@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo.Models;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Enumerations;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.Shared.Models_Strings;
 

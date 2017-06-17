@@ -9,7 +9,7 @@
     using Newtonsoft.Json;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Services.Data.Geo.Models;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.ViewModels;

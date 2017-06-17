@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Models
+﻿namespace ProcessingTools.Contracts.Models.Geo
 {
     using System.Collections.Generic;
 
