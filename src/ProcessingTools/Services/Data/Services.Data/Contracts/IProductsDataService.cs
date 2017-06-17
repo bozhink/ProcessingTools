@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.Services.Data.Contracts
 {
-    using Models;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Services.Data.Contracts.Models;
 
-    public interface IProductsDataService : IMultiEntryDataService<IProduct>
+    public interface IProductsDataService : IMultiDataServiceAsync<IProduct, IFilter>
     {
     }
 }

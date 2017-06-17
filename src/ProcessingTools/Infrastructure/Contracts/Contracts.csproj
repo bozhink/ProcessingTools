@@ -305,7 +305,7 @@
     <Compile Include="Services.Data\IDeletableDataService.cs" />
     <Compile Include="Services.Data\IDetailedGenericDataService.cs" />
     <Compile Include="Services.Data\IGenericDataService.cs" />
-    <Compile Include="Services.Data\IMultiEntryDataService.cs" />
+    <Compile Include="Services.Data\IMultiDataServiceAsync.cs" />
     <Compile Include="Services.Data\ISelectableDataServiceAsync.cs" />
     <Compile Include="Services\IDateTimeProvider.cs" />
     <Compile Include="Services\IEnvironment.cs" />

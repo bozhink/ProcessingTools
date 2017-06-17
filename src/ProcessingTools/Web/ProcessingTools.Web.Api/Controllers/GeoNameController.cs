@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Abstractions;
-    using Geo.Services.Data.Contracts;
-    using Geo.Services.Data.Models;
-    using Models.GeoNames;
+    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Geo.Services.Data.Contracts;
+    using ProcessingTools.Geo.Services.Data.Models;
+    using ProcessingTools.Web.Api.Abstractions;
+    using ProcessingTools.Web.Api.Models.GeoNames;
 
-    public class GeoNameController : GenericDataServiceController<GeoNameServiceModel, GeoNameRequestModel, GeoNameResponseModel>
+    public class GeoNameController : GenericDataServiceController<IGeoNamesDataService, GeoNameServiceModel, GeoNameRequestModel, GeoNameResponseModel, IFilter>
     {
         public GeoNameController(IGeoNamesDataService service)
             : base(service)

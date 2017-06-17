@@ -6,25 +6,22 @@
     using System.Web.Http;
     using AutoMapper;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Services.Data;
 
-    public class GenericDataServiceController<TServiceModel, TRequestModel, TResponseModel> : ApiController
+    public class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
+        where TFilter : IFilter
         where TServiceModel : class
+        where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
         where TRequestModel : class
         where TResponseModel : class
     {
+        private readonly TService service;
         private readonly IMapper mapper;
 
-        private readonly IMultiEntryDataService<TServiceModel> service;
-
-        public GenericDataServiceController(IMultiEntryDataService<TServiceModel> service)
+        public GenericDataServiceController(TService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -51,8 +48,7 @@
 
         public async Task<IHttpActionResult> GetById(string id)
         {
-            int parsedId;
-            if (!int.TryParse(id, out parsedId))
+            if (!int.TryParse(id, out int parsedId))
             {
                 return this.BadRequest("Invalid id.");
             }
@@ -69,14 +65,12 @@
 
         public async Task<IHttpActionResult> GetPaged(string skip, string take = PagingConstants.DefaultTakeString)
         {
-            int skipItemsCount;
-            if (!int.TryParse(skip, out skipItemsCount))
+            if (!int.TryParse(skip, out int skipItemsCount))
             {
                 return this.BadRequest(Messages.InvalidValueForSkipQueryParameterMessage);
             }
 
-            int takeItemsCount;
-            if (!int.TryParse(take, out takeItemsCount))
+            if (!int.TryParse(take, out int takeItemsCount))
             {
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
@@ -160,8 +154,7 @@
         /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Delete(string id)
         {
-            int parsedId;
-            if (!int.TryParse(id, out parsedId))
+            if (!int.TryParse(id, out int parsedId))
             {
                 return this.BadRequest(id);
             }

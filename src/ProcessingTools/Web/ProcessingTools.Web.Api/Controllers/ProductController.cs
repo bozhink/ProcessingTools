@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Abstractions;
-    using Models.Products;
-    using Services.Data.Contracts;
-    using Services.Data.Contracts.Models;
+    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Services.Data.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Models;
+    using ProcessingTools.Web.Api.Abstractions;
+    using ProcessingTools.Web.Api.Models.Products;
 
-    public class ProductController : GenericDataServiceController<IProduct, ProductRequestModel, ProductResponseModel>
+    public class ProductController : GenericDataServiceController<IProductsDataService, IProduct, ProductRequestModel, ProductResponseModel, IFilter>
     {
         public ProductController(IProductsDataService service)
             : base(service)

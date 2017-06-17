@@ -8,18 +8,20 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Miners;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
 
-    public class SimpleServiceStringDataMiner<TDataService, TDataServiceModel> : IStringDataMiner
-        where TDataServiceModel : INameableIntegerIdentifiable
-        where TDataService : class, IMultiEntryDataService<TDataServiceModel>
+    public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
+        where TServiceModel : INameableIntegerIdentifiable
+        where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
+        where TFilter : class, IFilter
     {
         private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;
 
-        private TDataService service;
+        private TService service;
 
-        public SimpleServiceStringDataMiner(TDataService service)
+        public SimpleServiceStringDataMiner(TService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }

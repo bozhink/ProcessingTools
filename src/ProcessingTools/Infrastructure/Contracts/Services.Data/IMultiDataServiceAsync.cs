@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data
 {
-    using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts.Filters;
 
-    public interface IMultiEntryDataService<TModel>
+    public interface IMultiDataServiceAsync<TModel, TFilter>
+        where TFilter : IFilter
     {
         Task<object> DeleteAsync(params TModel[] models);
 

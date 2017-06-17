@@ -1,9 +1,10 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Contracts
 {
-    using Models;
+    using ProcessingTools.Bio.Services.Data.Models;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Services.Data;
 
-    public interface ITypeStatusDataService : IMultiEntryDataService<TypeStatusServiceModel>
+    public interface ITypeStatusDataService : IMultiDataServiceAsync<TypeStatusServiceModel, IFilter>
     {
     }
 }
