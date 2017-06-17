@@ -1,21 +1,23 @@
 ﻿namespace ProcessingTools.Geo.Services.Data.Entity.Abstractions
 {
+    using System.Data.Entity;
     using System.Linq;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
-        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonymisable<TSynonymEntity>
-        where TModel : class, IIntegerIdentifiable, ProcessingTools.Contracts.Models.Geo.IGeoSynonymisable<TSynonymModel>
+    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
+        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonymisable<TSynonymEntity>
+        where TModel : class, IIntegerIdentifiable, IGeoSynonymisable<TSynonymModel>
         where TFilter : IFilter
-        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonym
-        where TSynonymModel : class, ProcessingTools.Contracts.Models.Geo.IGeoSynonym
+        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonym
+        where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
         private IQueryable<TEntity> SelectQuery(IQueryable<TEntity> query, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)

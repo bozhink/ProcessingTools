@@ -4,15 +4,15 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IDataServiceAsync<TModel, TFilter>
+    public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IRepositoryAsync<TModel, TFilter>
         where TEntity : SystemInformation, IDataModel
         where TModel : class, IIntegerIdentifiable
         where TFilter : IFilter
@@ -53,8 +53,7 @@
             }
 
             this.repository.Delete(id: id);
-            await this.repository.SaveChangesAsync();
-            return id;
+            return await Task.FromResult(id);
         }
 
         public virtual Task<TModel> GetByIdAsync(object id)
@@ -84,6 +83,8 @@
             var entity = this.MapModelToEntity(model);
             return await this.InsertEntityAsync(entity);
         }
+
+        public virtual Task<object> SaveChangesAsync() => this.repository.SaveChangesAsync();
 
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
@@ -139,8 +140,7 @@
             entity.ModifiedOn = now;
 
             this.repository.Add(entity);
-            await this.repository.SaveChangesAsync();
-            return entity;
+            return await Task.FromResult(entity);
         }
 
         protected async Task<TEntity> UpdateEntityAsync(TEntity entity)
@@ -157,8 +157,7 @@
             entity.ModifiedOn = now;
 
             this.repository.Update(entity);
-            await this.repository.SaveChangesAsync();
-            return entity;
+            return await Task.FromResult(entity);
         }
 
         protected abstract IQueryable<TEntity> GetQuery(TFilter filter);

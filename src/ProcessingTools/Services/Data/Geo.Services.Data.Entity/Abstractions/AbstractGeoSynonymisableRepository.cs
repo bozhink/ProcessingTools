@@ -5,22 +5,23 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
-        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonymisable<TSynonymEntity>
-        where TModel : class, IIntegerIdentifiable, ProcessingTools.Contracts.Models.Geo.IGeoSynonymisable<TSynonymModel>
+    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
+        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonymisable<TSynonymEntity>
+        where TModel : class, IIntegerIdentifiable, IGeoSynonymisable<TSynonymModel>
         where TFilter : IFilter
-        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonym
-        where TSynonymModel : class, ProcessingTools.Contracts.Models.Geo.IGeoSynonym
+        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonym
+        where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
         private readonly IEnvironment environment;
@@ -42,7 +43,7 @@
 
         protected IGeoRepository<TSynonymEntity> SynonymRepository => this.synonymRepository;
 
-        public async Task<object> AddSynonymsAsync(int modelId, params TSynonymModel[] synonyms)
+        public virtual async Task<object> AddSynonymsAsync(int modelId, params TSynonymModel[] synonyms)
         {
             if (synonyms == null || synonyms.Length < 1)
             {
@@ -52,6 +53,7 @@
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
                 .FirstOrDefaultAsync(e => e.Id == modelId);
+
             if (entity == null)
             {
                 return null;
@@ -74,7 +76,6 @@
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
             this.repository.Update(entity);
-            await this.repository.SaveChangesAsync();
             return entity.Synonyms.Count;
         }
 
@@ -97,8 +98,7 @@
             }
 
             this.repository.Delete(id: id);
-            await this.repository.SaveChangesAsync();
-            return id;
+            return await Task.FromResult(id);
         }
 
         public virtual async Task<TModel> GetByIdAsync(object id)
@@ -111,6 +111,7 @@
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
                 .FirstOrDefaultAsync(e => (object)e.Id == id);
+
             if (entity == null)
             {
                 return null;
@@ -179,6 +180,7 @@
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
                 .FirstOrDefaultAsync(e => e.Id == modelId);
+
             if (entity == null)
             {
                 return null;
@@ -189,6 +191,7 @@
                 .Select(s => s.Id)
                 .Distinct()
                 .ToArray();
+
             foreach (var id in ids)
             {
                 this.synonymRepository.Delete(id: id);
@@ -199,9 +202,10 @@
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
             this.repository.Update(entity);
-            await this.repository.SaveChangesAsync();
             return ids.Length;
         }
+
+        public virtual Task<object> SaveChangesAsync() => this.repository.SaveChangesAsync();
 
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
@@ -262,6 +266,7 @@
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
                 .FirstOrDefaultAsync(e => e.Id == modelId);
+
             if (entity == null || synonyms.Any(s => s.ParentId != modelId))
             {
                 return null;
@@ -289,7 +294,6 @@
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
             this.repository.Update(entity);
-            await this.repository.SaveChangesAsync();
             return count;
         }
 
@@ -332,7 +336,6 @@
             }
 
             this.repository.Add(entity);
-            await this.repository.SaveChangesAsync();
             return await Task.FromResult(entity);
         }
 
@@ -357,8 +360,7 @@
 
             this.Mapper.Map<TEntity, TEntity>(entity, dbentity);
             this.repository.Update(dbentity);
-            await this.repository.SaveChangesAsync();
-            return dbentity;
+            return await Task.FromResult(dbentity);
         }
     }
 }
