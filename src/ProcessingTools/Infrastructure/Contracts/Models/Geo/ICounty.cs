@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;
 
-    public interface IMunicipality : ISynonymisable<IMunicipalitySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
+    public interface ICounty : IGeoSynonymisable<ICountySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
     {
         int CountryId { get; }
 
@@ -15,7 +15,7 @@
 
         int? DistrictId { get; }
 
-        ICollection<ICounty> Counties { get; }
+        int? MunicipalityId { get; }
 
         ICollection<ICity> Cities { get; }
     }

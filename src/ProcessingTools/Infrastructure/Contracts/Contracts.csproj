@@ -251,29 +251,29 @@
     <Compile Include="Filters\Geo\IStateSynonymsFilter.cs" />
     <Compile Include="Filters\Geo\ISynonymFilter.cs" />
     <Compile Include="Filters\Geo\ISynonymisableFilter.cs" />
-    <Compile Include="Services.Data\Geo\Models\ICity.cs" />
-    <Compile Include="Services.Data\Geo\Models\ICitySynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\IContinent.cs" />
-    <Compile Include="Services.Data\Geo\Models\IContinentSynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\ICountry.cs" />
-    <Compile Include="Services.Data\Geo\Models\ICountrySynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\ICounty.cs" />
-    <Compile Include="Services.Data\Geo\Models\ICountySynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\IDistrict.cs" />
-    <Compile Include="Services.Data\Geo\Models\IDistrictSynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\IGeoEpithet.cs" />
-    <Compile Include="Services.Data\Geo\Models\IGeoName.cs" />
-    <Compile Include="Services.Data\Geo\Models\IMunicipality.cs" />
-    <Compile Include="Services.Data\Geo\Models\IMunicipalitySynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\IPostCode.cs" />
-    <Compile Include="Services.Data\Geo\Models\IProvince.cs" />
-    <Compile Include="Services.Data\Geo\Models\IProvinceSynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\IRegion.cs" />
-    <Compile Include="Services.Data\Geo\Models\IRegionSynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\IState.cs" />
-    <Compile Include="Services.Data\Geo\Models\IStateSynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\ISynonym.cs" />
-    <Compile Include="Services.Data\Geo\Models\ISynonymisable.cs" />
+    <Compile Include="Models\Geo\ICity.cs" />
+    <Compile Include="Models\Geo\ICitySynonym.cs" />
+    <Compile Include="Models\Geo\IContinent.cs" />
+    <Compile Include="Models\Geo\IContinentSynonym.cs" />
+    <Compile Include="Models\Geo\ICountry.cs" />
+    <Compile Include="Models\Geo\ICountrySynonym.cs" />
+    <Compile Include="Models\Geo\ICounty.cs" />
+    <Compile Include="Models\Geo\ICountySynonym.cs" />
+    <Compile Include="Models\Geo\IDistrict.cs" />
+    <Compile Include="Models\Geo\IDistrictSynonym.cs" />
+    <Compile Include="Models\Geo\IGeoEpithet.cs" />
+    <Compile Include="Models\Geo\IGeoName.cs" />
+    <Compile Include="Models\Geo\IMunicipality.cs" />
+    <Compile Include="Models\Geo\IMunicipalitySynonym.cs" />
+    <Compile Include="Models\Geo\IPostCode.cs" />
+    <Compile Include="Models\Geo\IProvince.cs" />
+    <Compile Include="Models\Geo\IProvinceSynonym.cs" />
+    <Compile Include="Models\Geo\IRegion.cs" />
+    <Compile Include="Models\Geo\IRegionSynonym.cs" />
+    <Compile Include="Models\Geo\IState.cs" />
+    <Compile Include="Models\Geo\IStateSynonym.cs" />
+    <Compile Include="Models\Geo\IGeoSynonym.cs" />
+    <Compile Include="Models\Geo\IGeoSynonymisable.cs" />
     <Compile Include="Services.Data\Geo\Services\ICitiesDataService.cs" />
     <Compile Include="Services.Data\Geo\Services\IContinentsDataService.cs" />
     <Compile Include="Services.Data\Geo\Services\ICountiesDataService.cs" />
@@ -324,7 +324,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Bio\Environments\" />
-    <Folder Include="Data\Geo\" />
+    <Folder Include="Data\Geo\Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Contracts.ruleset" />

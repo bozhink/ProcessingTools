@@ -3,11 +3,19 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;
 
-    public interface IProvince : ISynonymisable<IProvinceSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
+    public interface ICountry : IGeoSynonymisable<ICountrySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
     {
-        int CountryId { get; }
+        string CallingCode { get; }
 
-        int? StateId { get; }
+        string LanguageCode { get; }
+
+        string Iso639xCode { get; }
+
+        ICollection<IContinent> Continents { get; }
+
+        ICollection<IState> States { get; }
+
+        ICollection<IProvince> Provinces { get; }
 
         ICollection<IRegion> Regions { get; }
 

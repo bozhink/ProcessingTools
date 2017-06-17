@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
 
-    public interface ISynonymisable<T>
-        where T : ISynonym
+    public interface IGeoSynonymisable<T>
+        where T : IGeoSynonym
     {
         ICollection<T> Synonyms { get; }
     }

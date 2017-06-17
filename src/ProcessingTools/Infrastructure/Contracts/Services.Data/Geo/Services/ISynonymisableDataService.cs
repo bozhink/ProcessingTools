@@ -5,8 +5,8 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
     public interface ISynonymisableDataService<TModel, TSynonym, TSynonymFilter>
-        where TModel : ISynonymisable<TSynonym>
-        where TSynonym : ISynonym
+        where TModel : IGeoSynonymisable<TSynonym>
+        where TSynonym : IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
         Task<object> InsertAsync(TModel model, params TSynonym[] synonyms);

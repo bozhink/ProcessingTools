@@ -17,10 +17,10 @@
 
     public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
         where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonymisable<TSynonymEntity>
-        where TModel : class, IIntegerIdentifiable, ProcessingTools.Contracts.Services.Data.Geo.Models.ISynonymisable<TSynonymModel>
+        where TModel : class, IIntegerIdentifiable, ProcessingTools.Contracts.Services.Data.Geo.Models.IGeoSynonymisable<TSynonymModel>
         where TFilter : IFilter
         where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonym
-        where TSynonymModel : class, ProcessingTools.Contracts.Services.Data.Geo.Models.ISynonym
+        where TSynonymModel : class, ProcessingTools.Contracts.Services.Data.Geo.Models.IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
         private readonly IEnvironment environment;

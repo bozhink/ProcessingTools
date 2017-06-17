@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Models;
 
-    public interface IDistrict : ISynonymisable<IDistrictSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
+    public interface IRegion : IGeoSynonymisable<IRegionSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
     {
         int CountryId { get; }
 
@@ -11,7 +11,7 @@
 
         int? ProvinceId { get; }
 
-        int? RegionId { get; }
+        ICollection<IDistrict> Districts { get; }
 
         ICollection<IMunicipality> Municipalities { get; }
 

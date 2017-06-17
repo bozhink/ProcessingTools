@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal abstract class SynonymModel : ISynonym
+    internal abstract class SynonymModel : IGeoSynonym
     {
         public int Id { get; set; }
 

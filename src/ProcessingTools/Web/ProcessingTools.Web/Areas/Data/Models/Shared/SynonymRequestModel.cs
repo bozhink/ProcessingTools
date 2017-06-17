@@ -6,7 +6,7 @@
     using ProcessingTools.Enumerations;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.Shared.Models_Strings;
 
-    public class SynonymRequestModel : ISynonym
+    public class SynonymRequestModel : IGeoSynonym
     {
         public int Id { get; set; }
 

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Models;
 
-    public interface ISynonym : INameableIntegerIdentifiable
+    public interface IGeoSynonym : INameableIntegerIdentifiable
     {
         int ParentId { get; }
 

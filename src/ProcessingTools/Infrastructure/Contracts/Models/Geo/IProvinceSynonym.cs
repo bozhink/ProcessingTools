@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Models
 {
-    public interface IStateSynonym : ISynonym
+    public interface IProvinceSynonym : IGeoSynonym
     {
     }
 }
