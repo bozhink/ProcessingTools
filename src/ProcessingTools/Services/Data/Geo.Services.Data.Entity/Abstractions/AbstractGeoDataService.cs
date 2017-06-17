@@ -9,7 +9,7 @@
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Geo.Data.Entity.Contracts;
+    using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
     public abstract class AbstractGeoDataService<TEntity, TModel, TFilter> : IDataServiceAsync<TModel, TFilter>

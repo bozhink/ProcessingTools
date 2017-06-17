@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Data.Entity.Contracts
+﻿namespace ProcessingTools.Geo.Data.Entity.Contracts.Repositories
 {
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
 
