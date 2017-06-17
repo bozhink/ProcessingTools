@@ -9,7 +9,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data;
-    using ProcessingTools.Contracts.Services.Data.Geo.Services;
+    using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
 
     public abstract class AbstractGeoSynonymisableDataService<TRepository, TModel, TFilter, TSynonym, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonym, TSynonymFilter>

@@ -10,7 +10,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo.Services;
+    using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Abstractions.Controllers;
