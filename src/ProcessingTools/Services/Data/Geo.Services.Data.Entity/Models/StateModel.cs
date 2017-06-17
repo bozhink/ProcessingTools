@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal class Municipality : IMunicipality
+    internal class StateModel : IState
     {
         public ICollection<ICity> Cities { get; set; } = new HashSet<ICity>();
 
@@ -11,20 +11,20 @@
 
         public int CountryId { get; set; }
 
-        public int? DistrictId { get; set; }
+        public ICollection<IDistrict> Districts { get; set; } = new HashSet<IDistrict>();
 
         public int Id { get; set; }
+
+        public ICollection<IMunicipality> Municipalities { get; set; } = new HashSet<IMunicipality>();
 
         public string Name { get; set; }
 
         public string AbbreviatedName { get; set; }
 
-        public int? ProvinceId { get; set; }
+        public ICollection<IProvince> Provinces { get; set; } = new HashSet<IProvince>();
 
-        public int? RegionId { get; set; }
+        public ICollection<IRegion> Regions { get; set; } = new HashSet<IRegion>();
 
-        public int? StateId { get; set; }
-
-        public ICollection<IMunicipalitySynonym> Synonyms { get; set; } = new HashSet<IMunicipalitySynonym>();
+        public ICollection<IStateSynonym> Synonyms { get; set; } = new HashSet<IStateSynonym>();
     }
 }

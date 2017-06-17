@@ -2,13 +2,9 @@
 {
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal abstract class Synonym : ISynonym
+    internal class GeoNameModel : IGeoName
     {
         public int Id { get; set; }
-
-        public int ParentId { get; set; }
-
-        public int? LanguageCode { get; set; }
 
         public string Name { get; set; }
     }

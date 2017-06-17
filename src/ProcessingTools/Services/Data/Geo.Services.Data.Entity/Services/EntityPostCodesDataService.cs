@@ -18,7 +18,7 @@
         {
         }
 
-        protected override Func<PostCode, IPostCode> MapEntityToModel => m => new ProcessingTools.Geo.Services.Data.Entity.Models.PostCode
+        protected override Func<PostCode, IPostCode> MapEntityToModel => m => new ProcessingTools.Geo.Services.Data.Entity.Models.PostCodeModel
         {
             Id = m.Id,
             CityId = m.CityId,

@@ -2,10 +2,7 @@
 {
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal class GeoName : IGeoName
+    internal class ContinentSynonymModel : SynonymModel, IContinentSynonym
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
     }
 }

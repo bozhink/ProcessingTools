@@ -32,7 +32,7 @@
             Name = m.Name
         };
 
-        private Expression<Func<GeoEpithet, IGeoEpithet>> MapEntityToModelExpression => m => new ProcessingTools.Geo.Services.Data.Entity.Models.GeoEpithet
+        private Expression<Func<GeoEpithet, IGeoEpithet>> MapEntityToModelExpression => m => new ProcessingTools.Geo.Services.Data.Entity.Models.GeoEpithetModel
         {
             Id = m.Id,
             Name = m.Name

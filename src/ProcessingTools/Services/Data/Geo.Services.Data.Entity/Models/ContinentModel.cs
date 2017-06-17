@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal class Continent : IContinent
+    internal class ContinentModel : IContinent
     {
         public ICollection<ICountry> Countries { get; set; } = new HashSet<ICountry>();
 

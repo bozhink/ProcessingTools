@@ -62,7 +62,7 @@
                     .ForMember(d => d.ModifiedOn, o => o.Ignore());
 
                 c.CreateMap<City, ICity>()
-                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.City
+                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.CityModel
                     {
                         Id = m.Id,
                         Name = m.Name,
@@ -74,7 +74,7 @@
                         ProvinceId = m.ProvinceId,
                         RegionId = m.RegionId,
                         StateId = m.StateId,
-                        Country = new ProcessingTools.Geo.Services.Data.Entity.Models.Country
+                        Country = new ProcessingTools.Geo.Services.Data.Entity.Models.CountryModel
                         {
                             Id = m.Country.Id,
                             Name = m.Country.Name,
@@ -83,7 +83,7 @@
                             LanguageCode = m.Country.LanguageCode
                         },
                         PostCodes = m.PostCodes
-                            .Select(p => new ProcessingTools.Geo.Services.Data.Entity.Models.PostCode
+                            .Select(p => new ProcessingTools.Geo.Services.Data.Entity.Models.PostCodeModel
                             {
                                 Id = p.Id,
                                 Code = p.Code,
@@ -92,7 +92,7 @@
                             })
                             .ToList<IPostCode>(),
                         Synonyms = m.Synonyms
-                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CitySynonym
+                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CitySynonymModel
                             {
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
@@ -103,7 +103,7 @@
                     });
 
                 c.CreateMap<CitySynonym, ICitySynonym>()
-                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CitySynonym
+                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CitySynonymModel
                     {
                         Id = s.Id,
                         Name = s.Name,

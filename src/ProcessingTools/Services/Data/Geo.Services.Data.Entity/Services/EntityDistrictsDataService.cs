@@ -60,7 +60,7 @@
                     .ForMember(d => d.ModifiedOn, o => o.Ignore());
 
                 c.CreateMap<District, IDistrict>()
-                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.District
+                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.DistrictModel
                     {
                         Id = m.Id,
                         Name = m.Name,
@@ -70,7 +70,7 @@
                         RegionId = m.RegionId,
                         StateId = m.StateId,
                         Synonyms = m.Synonyms
-                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.DistrictSynonym
+                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.DistrictSynonymModel
                             {
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
@@ -81,7 +81,7 @@
                     });
 
                 c.CreateMap<DistrictSynonym, IDistrictSynonym>()
-                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.DistrictSynonym
+                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.DistrictSynonymModel
                     {
                         Id = s.Id,
                         Name = s.Name,

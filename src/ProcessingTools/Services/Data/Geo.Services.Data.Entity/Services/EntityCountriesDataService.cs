@@ -60,7 +60,7 @@
                     .ForMember(d => d.ModifiedOn, o => o.Ignore());
 
                 c.CreateMap<Country, ICountry>()
-                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.Country
+                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.CountryModel
                     {
                         Id = m.Id,
                         Name = m.Name,
@@ -69,14 +69,14 @@
                         Iso639xCode = m.Iso639xCode,
                         LanguageCode = m.LanguageCode,
                         Continents = m.Continents
-                            .Select(x => new ProcessingTools.Geo.Services.Data.Entity.Models.Continent
+                            .Select(x => new ProcessingTools.Geo.Services.Data.Entity.Models.ContinentModel
                             {
                                 Id = x.Id,
                                 Name = x.Name
                             })
                             .ToList<IContinent>(),
                         Synonyms = m.Synonyms
-                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CountrySynonym
+                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CountrySynonymModel
                             {
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
@@ -87,7 +87,7 @@
                     });
 
                 c.CreateMap<CountrySynonym, ICountrySynonym>()
-                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CountrySynonym
+                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CountrySynonymModel
                     {
                         Id = s.Id,
                         Name = s.Name,

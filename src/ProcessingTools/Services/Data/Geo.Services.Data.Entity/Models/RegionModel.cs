@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal class Region : IRegion
+    internal class RegionModel : IRegion
     {
         public ICollection<ICity> Cities { get; set; } = new HashSet<ICity>();
 

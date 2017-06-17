@@ -48,13 +48,13 @@
                     .ForMember(d => d.ModifiedOn, o => o.Ignore());
 
                 c.CreateMap<Continent, IContinent>()
-                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.Continent
+                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.ContinentModel
                     {
                         Id = m.Id,
                         Name = m.Name,
                         AbbreviatedName = m.AbbreviatedName,
                         Synonyms = m.Synonyms
-                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.ContinentSynonym
+                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.ContinentSynonymModel
                             {
                                 Id = s.Id,
                                 Name = s.Name,
@@ -65,7 +65,7 @@
                     });
 
                 c.CreateMap<ContinentSynonym, IContinentSynonym>()
-                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.ContinentSynonym
+                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.ContinentSynonymModel
                     {
                         Id = s.Id,
                         Name = s.Name,

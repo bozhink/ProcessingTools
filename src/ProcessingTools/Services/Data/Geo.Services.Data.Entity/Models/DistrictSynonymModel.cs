@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal class ProvinceSynonym : Synonym, IProvinceSynonym
+    internal class DistrictSynonymModel : SynonymModel, IDistrictSynonym
     {
     }
 }

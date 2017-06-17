@@ -60,7 +60,7 @@
                     .ForMember(d => d.ModifiedOn, o => o.Ignore());
 
                 c.CreateMap<Municipality, IMunicipality>()
-                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.Municipality
+                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.MunicipalityModel
                     {
                         Id = m.Id,
                         Name = m.Name,
@@ -71,7 +71,7 @@
                         RegionId = m.RegionId,
                         StateId = m.StateId,
                         Synonyms = m.Synonyms
-                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.MunicipalitySynonym
+                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.MunicipalitySynonymModel
                             {
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
@@ -82,7 +82,7 @@
                     });
 
                 c.CreateMap<MunicipalitySynonym, IMunicipalitySynonym>()
-                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.MunicipalitySynonym
+                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.MunicipalitySynonymModel
                     {
                         Id = s.Id,
                         Name = s.Name,

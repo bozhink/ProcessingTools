@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
-    internal class RegionSynonym : Synonym, IRegionSynonym
+    internal class MunicipalitySynonymModel : SynonymModel, IMunicipalitySynonym
     {
     }
 }

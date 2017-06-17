@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Enumerations;
 
-    internal class PostCode : IPostCode
+    internal class PostCodeModel : IPostCode
     {
         public int CityId { get; set; }
 
