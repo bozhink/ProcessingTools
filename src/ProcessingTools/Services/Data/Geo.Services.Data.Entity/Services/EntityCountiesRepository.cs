@@ -3,15 +3,15 @@
     using System.Data.Entity;
     using System.Linq;
     using AutoMapper;
+    using ProcessingTools.Contracts.Data.Repositories.Geo;
     using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
-    using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityCountiesRepository : AbstractGeoSynonymisableRepository<County, ICounty, ICountiesFilter, CountySynonym, ICountySynonym, ICountySynonymsFilter>, IEntityCountiesRepository
+    public class EntityCountiesRepository : AbstractGeoSynonymisableRepository<County, ICounty, ICountiesFilter, CountySynonym, ICountySynonym, ICountySynonymsFilter>, ICountiesRepository
     {
         private readonly IMapper mapper;
 

@@ -71,10 +71,10 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model: model);
+            var result = await this.repository.InsertAsync(model: model) as INameableIntegerIdentifiable;
             await this.repository.SaveChangesAsync();
 
-            return result;
+            return result?.Id;
         }
 
         public virtual async Task<object> InsertAsync(TModel model, params TSynonym[] synonyms)
@@ -84,10 +84,10 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model, synonyms);
+            var result = await this.repository.InsertAsync(model, synonyms) as INameableIntegerIdentifiable;
             await this.repository.SaveChangesAsync();
 
-            return result;
+            return result?.Id;
         }
 
         public virtual async Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds)

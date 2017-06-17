@@ -5,6 +5,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Contracts.Data.Repositories.Geo;
     using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services;
@@ -12,9 +13,8 @@
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
-    using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityGeoEpithetsRepository : AbstractGeoRepository<GeoEpithet, IGeoEpithet, IGeoEpithetsFilter>, IEntityGeoEpithetsRepository
+    public class EntityGeoEpithetsRepository : AbstractGeoRepository<GeoEpithet, IGeoEpithet, IGeoEpithetsFilter>, IGeoEpithetsRepository
     {
         private readonly Func<GeoEpithet, IGeoEpithet> mapEntityToModel;
 

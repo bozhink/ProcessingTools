@@ -55,10 +55,10 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model);
+            var result = await this.repository.InsertAsync(model) as INameableIntegerIdentifiable;
             await this.repository.SaveChangesAsync();
 
-            return result;
+            return result?.Id;
         }
 
         public virtual Task<TModel[]> SelectAsync(TFilter filter) => this.repository.SelectAsync(filter);

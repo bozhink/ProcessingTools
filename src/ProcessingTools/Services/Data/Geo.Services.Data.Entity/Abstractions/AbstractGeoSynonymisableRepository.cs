@@ -6,17 +6,17 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories.Geo;
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
+    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableRepository<TModel, TSynonymModel, TSynonymFilter>
         where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonymisable<TSynonymEntity>
         where TModel : class, IIntegerIdentifiable, IGeoSynonymisable<TSynonymModel>
         where TFilter : IFilter
@@ -146,7 +146,7 @@
 
             var entity = this.Mapper.Map<TModel, TEntity>(model);
             var result = await this.InsertEntityAsync(entity);
-            return result.Id;
+            return result;
         }
 
         public virtual async Task<object> InsertAsync(TModel model, params TSynonymModel[] synonyms)
@@ -167,7 +167,7 @@
             }
 
             var result = await this.InsertEntityAsync(entity);
-            return result.Id;
+            return result;
         }
 
         public async Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds)
