@@ -10,8 +10,11 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Enumerations;
 
-    public abstract class AbstractDataServiceWithRepository<TDbModel, TServiceModel> : IDisposable
+    public abstract class AbstractDataServiceWithRepository<TDbModel, TServiceModel, TFilter> : IDisposable
+        where TFilter : IFilter
     {
         private readonly ICrudRepository<TDbModel> repository;
 
@@ -85,6 +88,47 @@
             await Task.WhenAll(tasks);
 
             return await this.repository.SaveChangesAsync();
+        }
+
+        public virtual async Task<TServiceModel[]> SelectAsync(TFilter filter)
+        {
+            // TODO: filter
+            var result = await this.repository.Query
+                .Select(this.MapDbModelToServiceModel)
+                .ToArrayAsync();
+
+            return result;
+        }
+
+        public virtual async Task<TServiceModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        {
+            // TODO: filter
+            if (skip < 0)
+            {
+                throw new InvalidSkipValuePagingException();
+            }
+
+            if (take < 1 || take > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidTakeValuePagingException();
+            }
+
+            var result = await this.repository.Query
+                .OrderByName(sortColumn, sortOrder)
+                .Skip(skip)
+                .Take(take)
+                .Select(this.MapDbModelToServiceModel)
+                .ToArrayAsync();
+
+            return result;
+        }
+
+        public virtual async Task<long> SelectCountAsync(TFilter filter)
+        {
+            // TODO: filter
+            var count = await this.repository.Query.LongCountAsync();
+
+            return count;
         }
 
         public virtual async Task<TServiceModel[]> SelectAllAsync()

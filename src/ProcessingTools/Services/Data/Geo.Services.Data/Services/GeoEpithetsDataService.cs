@@ -2,13 +2,14 @@
 {
     using System;
     using System.Linq.Expressions;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Contracts;
     using ProcessingTools.Geo.Services.Data.Models;
     using ProcessingTools.Services.Abstractions;
 
-    public class GeoEpithetsDataService : AbstractDataServiceWithRepository<GeoEpithet, GeoEpithetServiceModel>, IGeoEpithetsDataService
+    public class GeoEpithetsDataService : AbstractDataServiceWithRepository<GeoEpithet, GeoEpithetServiceModel, IFilter>, IGeoEpithetsDataService
     {
         public GeoEpithetsDataService(IGeoDataRepository<GeoEpithet> repository)
             : base(repository)

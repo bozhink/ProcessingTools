@@ -2,13 +2,14 @@
 {
     using System;
     using System.Linq.Expressions;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Contracts;
     using ProcessingTools.Geo.Services.Data.Models;
     using ProcessingTools.Services.Abstractions;
 
-    public class GeoNamesDataService : AbstractDataServiceWithRepository<GeoName, GeoNameServiceModel>, IGeoNamesDataService
+    public class GeoNamesDataService : AbstractDataServiceWithRepository<GeoName, GeoNameServiceModel, IFilter>, IGeoNamesDataService
     {
         public GeoNamesDataService(IGeoDataRepository<GeoName> repository)
             : base(repository)
