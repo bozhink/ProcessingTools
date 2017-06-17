@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models.Geo;
 
-    public interface IStatesDataService : IDataServiceAsync<IState, IStatesFilter>, ISynonymisableDataService<IState, IStateSynonym, IStateSynonymsFilter>
+    public interface IStatesDataService : IDataServiceAsync<IState, IStatesFilter>, IGeoSynonymisableDataService<IState, IStateSynonym, IStateSynonymsFilter>
     {
     }
 }

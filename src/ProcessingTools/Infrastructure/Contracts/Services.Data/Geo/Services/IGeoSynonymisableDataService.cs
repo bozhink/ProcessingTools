@@ -4,7 +4,7 @@
     using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models.Geo;
 
-    public interface ISynonymisableDataService<TModel, TSynonym, TSynonymFilter>
+    public interface IGeoSynonymisableDataService<TModel, TSynonym, TSynonymFilter>
         where TModel : IGeoSynonymisable<TSynonym>
         where TSynonym : IGeoSynonym
         where TSynonymFilter : ISynonymFilter

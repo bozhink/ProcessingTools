@@ -286,7 +286,7 @@
     <Compile Include="Services.Data\Geo\Services\IProvincesDataService.cs" />
     <Compile Include="Services.Data\Geo\Services\IRegionsDataService.cs" />
     <Compile Include="Services.Data\Geo\Services\IStatesDataService.cs" />
-    <Compile Include="Services.Data\Geo\Services\ISynonymisableDataService.cs" />
+    <Compile Include="Services.Data\Geo\Services\IGeoSynonymisableDataService.cs" />
     <Compile Include="Services.Data\IAddableDataService.cs" />
     <Compile Include="Services.Data\IDataServiceAsync.cs" />
     <Compile Include="Services.Data\IDeletableDataService.cs" />
