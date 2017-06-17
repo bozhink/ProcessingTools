@@ -2,10 +2,10 @@
 {
     using System.Linq;
     using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
-    using ProcessingTools.Contracts.Services.Data.Geo.Filters;
     using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;

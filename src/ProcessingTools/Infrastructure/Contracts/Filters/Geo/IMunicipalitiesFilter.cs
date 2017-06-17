@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Filters
+﻿namespace ProcessingTools.Contracts.Filters.Geo
 {
-    public interface IDistrictsFilter : ISynonymisableFilter
+    public interface IMunicipalitiesFilter : ISynonymisableFilter
     {
         string Country { get; }
 
@@ -10,7 +10,7 @@
 
         string Region { get; }
 
-        string Municipality { get; }
+        string District { get; }
 
         string County { get; }
 

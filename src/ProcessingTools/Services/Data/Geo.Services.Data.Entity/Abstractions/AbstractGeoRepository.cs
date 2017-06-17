@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data;

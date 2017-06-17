@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Filters
+﻿namespace ProcessingTools.Contracts.Filters.Geo
 {
     public interface IProvinceSynonymsFilter : ISynonymFilter
     {

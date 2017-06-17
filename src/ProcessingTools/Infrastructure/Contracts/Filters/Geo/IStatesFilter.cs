@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Filters
+﻿namespace ProcessingTools.Contracts.Filters.Geo
 {
-    public interface IRegionsFilter : ISynonymisableFilter
+    public interface IStatesFilter : ISynonymisableFilter
     {
         string Country { get; }
 
-        string State { get; }
-
         string Province { get; }
+
+        string Region { get; }
 
         string District { get; }
 

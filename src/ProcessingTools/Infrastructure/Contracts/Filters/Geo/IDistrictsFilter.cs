@@ -1,8 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Filters
+﻿namespace ProcessingTools.Contracts.Filters.Geo
 {
-    using ProcessingTools.Contracts.Models;
-
-    public interface IPostCodesFilter : IGenericIdentifiable<int?>, IFilter
+    public interface IDistrictsFilter : ISynonymisableFilter
     {
         string Country { get; }
 
@@ -11,8 +9,6 @@
         string Province { get; }
 
         string Region { get; }
-
-        string District { get; }
 
         string Municipality { get; }
 

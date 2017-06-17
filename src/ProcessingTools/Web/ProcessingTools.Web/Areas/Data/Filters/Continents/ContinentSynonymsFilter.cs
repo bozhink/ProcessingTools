@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Filters.Continents
 {
-    using ProcessingTools.Contracts.Services.Data.Geo.Filters;
+    using ProcessingTools.Contracts.Filters.Geo;
 
     public class ContinentSynonymsFilter : IContinentSynonymsFilter
     {

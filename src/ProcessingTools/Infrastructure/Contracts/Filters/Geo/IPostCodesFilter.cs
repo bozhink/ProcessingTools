@@ -1,10 +1,14 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Geo.Filters
+﻿namespace ProcessingTools.Contracts.Filters.Geo
 {
-    public interface IProvincesFilter : ISynonymisableFilter
+    using ProcessingTools.Contracts.Models;
+
+    public interface IPostCodesFilter : IGenericIdentifiable<int?>, IFilter
     {
         string Country { get; }
 
         string State { get; }
+
+        string Province { get; }
 
         string Region { get; }
 
