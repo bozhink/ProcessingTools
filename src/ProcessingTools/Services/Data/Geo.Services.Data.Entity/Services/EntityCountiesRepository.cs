@@ -11,39 +11,39 @@
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityProvincesDataService : AbstractGeoSynonymisableDataService<Province, IProvince, IProvincesFilter, ProvinceSynonym, IProvinceSynonym, IProvinceSynonymsFilter>, IEntityProvincesDataService
+    public class EntityCountiesRepository : AbstractGeoSynonymisableRepository<County, ICounty, ICountiesFilter, CountySynonym, ICountySynonym, ICountySynonymsFilter>, IEntityCountiesRepository
     {
         private readonly IMapper mapper;
 
-        public EntityProvincesDataService(IGeoRepository<Province> repository, IGeoRepository<ProvinceSynonym> synonymRepository, IEnvironment environment)
+        public EntityCountiesRepository(IGeoRepository<County> repository, IGeoRepository<CountySynonym> synonymRepository, IEnvironment environment)
             : base(repository, synonymRepository, environment)
         {
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<Province, Province>()
+                c.CreateMap<County, County>()
                     .ForMember(d => d.Country, o => o.Ignore())
                     .ForMember(d => d.State, o => o.Ignore())
-                    .ForMember(d => d.Regions, o => o.Ignore())
-                    .ForMember(d => d.Districts, o => o.Ignore())
-                    .ForMember(d => d.Municipalities, o => o.Ignore())
-                    .ForMember(d => d.Counties, o => o.Ignore())
+                    .ForMember(d => d.Province, o => o.Ignore())
+                    .ForMember(d => d.Region, o => o.Ignore())
+                    .ForMember(d => d.District, o => o.Ignore())
+                    .ForMember(d => d.Municipality, o => o.Ignore())
                     .ForMember(d => d.Cities, o => o.Ignore())
                     .ForMember(d => d.Synonyms, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 
-                c.CreateMap<ProvinceSynonym, ProvinceSynonym>()
-                    .ForMember(d => d.Province, o => o.Ignore())
+                c.CreateMap<CountySynonym, CountySynonym>()
+                    .ForMember(d => d.County, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore());
 
-                c.CreateMap<IProvince, Province>()
+                c.CreateMap<ICounty, County>()
                     .ForMember(d => d.Country, o => o.Ignore())
                     .ForMember(d => d.State, o => o.Ignore())
-                    .ForMember(d => d.Regions, o => o.Ignore())
-                    .ForMember(d => d.Districts, o => o.Ignore())
-                    .ForMember(d => d.Municipalities, o => o.Ignore())
-                    .ForMember(d => d.Counties, o => o.Ignore())
+                    .ForMember(d => d.Province, o => o.Ignore())
+                    .ForMember(d => d.Region, o => o.Ignore())
+                    .ForMember(d => d.District, o => o.Ignore())
+                    .ForMember(d => d.Municipality, o => o.Ignore())
                     .ForMember(d => d.Cities, o => o.Ignore())
                     .ForMember(d => d.Synonyms, o => o.Ignore())
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
@@ -51,40 +51,44 @@
                     .ForMember(d => d.ModifiedBy, o => o.Ignore())
                     .ForMember(d => d.ModifiedOn, o => o.Ignore());
 
-                c.CreateMap<IProvinceSynonym, ProvinceSynonym>()
-                    .ForMember(d => d.Province, o => o.Ignore())
-                    .ForMember(d => d.ProvinceId, o => o.ResolveUsing(x => x.ParentId))
+                c.CreateMap<ICountySynonym, CountySynonym>()
+                    .ForMember(d => d.County, o => o.Ignore())
+                    .ForMember(d => d.CountyId, o => o.ResolveUsing(x => x.ParentId))
                     .ForMember(d => d.CreatedBy, o => o.Ignore())
                     .ForMember(d => d.CreatedOn, o => o.Ignore())
                     .ForMember(d => d.ModifiedBy, o => o.Ignore())
                     .ForMember(d => d.ModifiedOn, o => o.Ignore());
 
-                c.CreateMap<Province, IProvince>()
-                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.ProvinceModel
+                c.CreateMap<County, ICounty>()
+                    .ConstructUsing(m => new ProcessingTools.Geo.Services.Data.Entity.Models.CountyModel
                     {
                         Id = m.Id,
                         Name = m.Name,
                         AbbreviatedName = m.AbbreviatedName,
                         CountryId = m.CountryId,
+                        DistrictId = m.DistrictId,
+                        MunicipalityId = m.MunicipalityId,
+                        ProvinceId = m.ProvinceId,
+                        RegionId = m.RegionId,
                         StateId = m.StateId,
                         Synonyms = m.Synonyms
-                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.ProvinceSynonymModel
+                            .Select(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CountySynonymModel
                             {
                                 Id = s.Id,
                                 LanguageCode = s.LanguageCode,
                                 Name = s.Name,
                                 ParentId = m.Id
                             })
-                            .ToList<IProvinceSynonym>()
+                            .ToList<ICountySynonym>()
                     });
 
-                c.CreateMap<ProvinceSynonym, IProvinceSynonym>()
-                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.ProvinceSynonymModel
+                c.CreateMap<CountySynonym, ICountySynonym>()
+                    .ConstructUsing(s => new ProcessingTools.Geo.Services.Data.Entity.Models.CountySynonymModel
                     {
                         Id = s.Id,
                         Name = s.Name,
                         LanguageCode = s.LanguageCode,
-                        ParentId = s.ProvinceId
+                        ParentId = s.CountyId
                     });
             });
 
@@ -93,7 +97,7 @@
 
         protected override IMapper Mapper => this.mapper;
 
-        protected override IQueryable<Province> GetQuery(IProvincesFilter filter)
+        protected override IQueryable<County> GetQuery(ICountiesFilter filter)
         {
             var query = this.Repository.Queryable()
                 .Include(e => e.Country)
@@ -106,11 +110,11 @@
                          (!filter.Id.HasValue || c.Id == filter.Id) &&
                          (string.IsNullOrEmpty(filter.Name) || c.Name.ToLower().Contains(filter.Name.ToLower())) &&
                          (string.IsNullOrEmpty(filter.Country) || c.Country.Name.ToLower().Contains(filter.Country.ToLower())) &&
+                         (string.IsNullOrEmpty(filter.District) || c.District.Name.ToLower().Contains(filter.District.ToLower())) &&
+                         (string.IsNullOrEmpty(filter.Municipality) || c.Municipality.Name.ToLower().Contains(filter.Municipality.ToLower())) &&
+                         (string.IsNullOrEmpty(filter.Province) || c.Province.Name.ToLower().Contains(filter.Province.ToLower())) &&
+                         (string.IsNullOrEmpty(filter.Region) || c.Region.Name.ToLower().Contains(filter.Region.ToLower())) &&
                          (string.IsNullOrEmpty(filter.State) || c.State.Name.ToLower().Contains(filter.State.ToLower())) &&
-                         (string.IsNullOrEmpty(filter.Region) || c.Regions.Any(s => s.Name.ToLower().Contains(filter.Region.ToLower()))) &&
-                         (string.IsNullOrEmpty(filter.District) || c.Districts.Any(s => s.Name.ToLower().Contains(filter.District.ToLower()))) &&
-                         (string.IsNullOrEmpty(filter.Municipality) || c.Municipalities.Any(s => s.Name.ToLower().Contains(filter.Municipality.ToLower()))) &&
-                         (string.IsNullOrEmpty(filter.County) || c.Counties.Any(s => s.Name.ToLower().Contains(filter.County.ToLower()))) &&
                          (string.IsNullOrEmpty(filter.City) || c.Cities.Any(s => s.Name.ToLower().Contains(filter.City.ToLower()))) &&
                          (string.IsNullOrEmpty(filter.Synonym) || c.Synonyms.Any(s => s.Name.ToLower().Contains(filter.Synonym.ToLower()))));
             }

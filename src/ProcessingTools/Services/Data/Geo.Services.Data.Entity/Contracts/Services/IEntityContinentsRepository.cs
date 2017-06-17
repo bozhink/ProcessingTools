@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
 
-    public interface IEntityCountiesDataService : ICountiesDataService
+    public interface IEntityContinentsRepository : IContinentsDataService
     {
     }
 }

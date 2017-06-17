@@ -11,11 +11,11 @@
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityContinentsDataService : AbstractGeoSynonymisableDataService<Continent, IContinent, IContinentsFilter, ContinentSynonym, IContinentSynonym, IContinentSynonymsFilter>, IEntityContinentsDataService
+    public class EntityContinentsRepository : AbstractGeoSynonymisableRepository<Continent, IContinent, IContinentsFilter, ContinentSynonym, IContinentSynonym, IContinentSynonymsFilter>, IEntityContinentsRepository
     {
         private readonly IMapper mapper;
 
-        public EntityContinentsDataService(IGeoRepository<Continent> repository, IGeoRepository<ContinentSynonym> synonymRepository, IEnvironment environment)
+        public EntityContinentsRepository(IGeoRepository<Continent> repository, IGeoRepository<ContinentSynonym> synonymRepository, IEnvironment environment)
             : base(repository, synonymRepository, environment)
         {
             var mapperConfiguration = new MapperConfiguration(c =>

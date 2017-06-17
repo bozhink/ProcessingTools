@@ -12,7 +12,7 @@
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract class AbstractGeoDataService<TEntity, TModel, TFilter> : IDataServiceAsync<TModel, TFilter>
+    public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IDataServiceAsync<TModel, TFilter>
         where TEntity : SystemInformation, IDataModel
         where TModel : class, IIntegerIdentifiable
         where TFilter : IFilter
@@ -20,7 +20,7 @@
         private readonly IGeoRepository<TEntity> repository;
         private readonly IEnvironment environment;
 
-        public AbstractGeoDataService(IGeoRepository<TEntity> repository, IEnvironment environment)
+        public AbstractGeoRepository(IGeoRepository<TEntity> repository, IEnvironment environment)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.environment = environment ?? throw new ArgumentNullException(nameof(environment));

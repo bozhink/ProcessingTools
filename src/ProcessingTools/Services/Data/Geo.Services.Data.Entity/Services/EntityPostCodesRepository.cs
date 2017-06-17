@@ -11,9 +11,9 @@
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityPostCodesDataService : AbstractGeoDataService<PostCode, IPostCode, IPostCodesFilter>, IEntityPostCodesDataService
+    public class EntityPostCodesRepository : AbstractGeoRepository<PostCode, IPostCode, IPostCodesFilter>, IEntityPostCodesRepository
     {
-        public EntityPostCodesDataService(IGeoRepository<PostCode> repository, IEnvironment environment)
+        public EntityPostCodesRepository(IGeoRepository<PostCode> repository, IEnvironment environment)
             : base(repository, environment)
         {
         }

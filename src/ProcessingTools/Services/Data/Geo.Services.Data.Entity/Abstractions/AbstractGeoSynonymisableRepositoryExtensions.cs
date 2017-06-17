@@ -11,7 +11,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract partial class AbstractGeoSynonymisableDataService<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
+    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
         where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Contracts.Data.Geo.Models.ISynonymisable<TSynonymEntity>
         where TModel : class, IIntegerIdentifiable, ISynonymisable<TSynonymModel>
         where TFilter : IFilter

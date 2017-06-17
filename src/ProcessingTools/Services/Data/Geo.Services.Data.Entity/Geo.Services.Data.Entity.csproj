@@ -47,21 +47,21 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\AbstractGeoDataService.cs" />
-    <Compile Include="Abstractions\AbstractGeoSynonymisableDataService.cs" />
-    <Compile Include="Abstractions\AbstractGeoSynonymisableDataServiceExtensions.cs" />
-    <Compile Include="Contracts\Services\IEntityCitiesDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityContinentsDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityCountiesDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityCountriesDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityDistrictsDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityGeoEpithetsDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityGeoNamesDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityMunicipalitiesDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityPostCodesDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityProvincesDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityRegionsDataService.cs" />
-    <Compile Include="Contracts\Services\IEntityStatesDataService.cs" />
+    <Compile Include="Abstractions\AbstractGeoRepository.cs" />
+    <Compile Include="Abstractions\AbstractGeoSynonymisableRepository.cs" />
+    <Compile Include="Abstractions\AbstractGeoSynonymisableRepositoryExtensions.cs" />
+    <Compile Include="Contracts\Services\IEntityCitiesRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityContinentsRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityCountiesRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityCountriesRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityDistrictsRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityGeoEpithetsRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityGeoNamesRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityMunicipalitiesRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityPostCodesRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityProvincesRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityRegionsRepository.cs" />
+    <Compile Include="Contracts\Services\IEntityStatesRepository.cs" />
     <Compile Include="Models\CityModel.cs" />
     <Compile Include="Models\CitySynonymModel.cs" />
     <Compile Include="Models\ContinentModel.cs" />
@@ -85,18 +85,18 @@
     <Compile Include="Models\StateSynonymModel.cs" />
     <Compile Include="Models\SynonymModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EntityCitiesDataService.cs" />
-    <Compile Include="Services\EntityContinentsDataService.cs" />
-    <Compile Include="Services\EntityCountiesDataService.cs" />
-    <Compile Include="Services\EntityCountriesDataService.cs" />
-    <Compile Include="Services\EntityDistrictsDataService.cs" />
-    <Compile Include="Services\EntityGeoEpithetsDataService.cs" />
-    <Compile Include="Services\EntityGeoNamesDataService.cs" />
-    <Compile Include="Services\EntityMunicipalitiesDataService.cs" />
-    <Compile Include="Services\EntityPostCodesDataService.cs" />
-    <Compile Include="Services\EntityProvincesDataService.cs" />
-    <Compile Include="Services\EntityRegionsDataService.cs" />
-    <Compile Include="Services\EntityStatesDataService.cs" />
+    <Compile Include="Services\EntityCitiesRepository.cs" />
+    <Compile Include="Services\EntityContinentsRepository.cs" />
+    <Compile Include="Services\EntityCountiesRepository.cs" />
+    <Compile Include="Services\EntityCountriesRepository.cs" />
+    <Compile Include="Services\EntityDistrictsRepository.cs" />
+    <Compile Include="Services\EntityGeoEpithetsRepository.cs" />
+    <Compile Include="Services\EntityGeoNamesRepository.cs" />
+    <Compile Include="Services\EntityMunicipalitiesRepository.cs" />
+    <Compile Include="Services\EntityPostCodesRepository.cs" />
+    <Compile Include="Services\EntityProvincesRepository.cs" />
+    <Compile Include="Services\EntityRegionsRepository.cs" />
+    <Compile Include="Services\EntityStatesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">

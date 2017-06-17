@@ -16,7 +16,7 @@
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public abstract partial class AbstractGeoSynonymisableDataService<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
+    public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
         where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Contracts.Data.Geo.Models.ISynonymisable<TSynonymEntity>
         where TModel : class, IIntegerIdentifiable, ISynonymisable<TSynonymModel>
         where TFilter : IFilter
@@ -28,7 +28,7 @@
         private readonly IGeoRepository<TEntity> repository;
         private readonly IGeoRepository<TSynonymEntity> synonymRepository;
 
-        public AbstractGeoSynonymisableDataService(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IEnvironment environment)
+        public AbstractGeoSynonymisableRepository(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IEnvironment environment)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.synonymRepository = synonymRepository ?? throw new ArgumentNullException(nameof(synonymRepository));

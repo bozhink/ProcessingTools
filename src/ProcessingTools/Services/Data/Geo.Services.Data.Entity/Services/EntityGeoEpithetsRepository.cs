@@ -14,11 +14,11 @@
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
     using ProcessingTools.Geo.Services.Data.Entity.Contracts.Services;
 
-    public class EntityGeoEpithetsDataService : AbstractGeoDataService<GeoEpithet, IGeoEpithet, IGeoEpithetsFilter>, IEntityGeoEpithetsDataService
+    public class EntityGeoEpithetsRepository : AbstractGeoRepository<GeoEpithet, IGeoEpithet, IGeoEpithetsFilter>, IEntityGeoEpithetsRepository
     {
         private readonly Func<GeoEpithet, IGeoEpithet> mapEntityToModel;
 
-        public EntityGeoEpithetsDataService(IGeoRepository<GeoEpithet> repository, IEnvironment environment)
+        public EntityGeoEpithetsRepository(IGeoRepository<GeoEpithet> repository, IEnvironment environment)
             : base(repository, environment)
         {
             this.mapEntityToModel = this.MapEntityToModelExpression.Compile();

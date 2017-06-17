@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
 
-    public interface IEntityPostCodesDataService : IPostCodesDataService
+    public interface IEntityCountiesRepository : ICountiesDataService
     {
     }
 }
