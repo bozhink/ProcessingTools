@@ -66,6 +66,8 @@
     <Compile Include="Models\DistrictSynonym.cs" />
     <Compile Include="Models\GeoEpithet.cs" />
     <Compile Include="Models\GeoName.cs" />
+    <Compile Include="Models\ISynonym.cs" />
+    <Compile Include="Models\ISynonymisable.cs" />
     <Compile Include="Models\Municipality.cs" />
     <Compile Include="Models\MunicipalitySynonym.cs" />
     <Compile Include="Models\PostCode.cs" />

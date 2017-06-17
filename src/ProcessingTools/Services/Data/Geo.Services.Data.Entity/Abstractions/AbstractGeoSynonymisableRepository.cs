@@ -10,18 +10,17 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data;
-    using ProcessingTools.Contracts.Services.Data.Geo.Models;
     using ProcessingTools.Contracts.Services.Data.Geo.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
     public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, ISynonymisableDataService<TModel, TSynonymModel, TSynonymFilter>
-        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Contracts.Data.Geo.Models.ISynonymisable<TSynonymEntity>
-        where TModel : class, IIntegerIdentifiable, ISynonymisable<TSynonymModel>
+        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonymisable<TSynonymEntity>
+        where TModel : class, IIntegerIdentifiable, ProcessingTools.Contracts.Services.Data.Geo.Models.ISynonymisable<TSynonymModel>
         where TFilter : IFilter
-        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Contracts.Data.Geo.Models.ISynonym
-        where TSynonymModel : class, ISynonym
+        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ProcessingTools.Geo.Data.Entity.Models.ISynonym
+        where TSynonymModel : class, ProcessingTools.Contracts.Services.Data.Geo.Models.ISynonym
         where TSynonymFilter : ISynonymFilter
     {
         private readonly IEnvironment environment;

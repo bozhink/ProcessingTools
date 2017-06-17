@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Models.Shared
 {
-    using ProcessingTools.Contracts.Data.Geo.Models;
+    using ProcessingTools.Contracts.Services.Data.Geo.Models;
 
     public class SynonymResponseModel : ISynonym
     {
@@ -9,5 +9,7 @@
         public string Name { get; set; }
 
         public int? LanguageCode { get; set; }
+
+        public int ParentId { get; set; }
     }
 }

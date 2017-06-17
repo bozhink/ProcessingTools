@@ -84,8 +84,6 @@
     <Compile Include="Data\Documents\Repositories\IJournalMetaRepository.cs" />
     <Compile Include="Data\Documents\Repositories\IJournalsRepository.cs" />
     <Compile Include="Data\Documents\Repositories\IPublishersRepository.cs" />
-    <Compile Include="Data\Geo\Models\ISynonym.cs" />
-    <Compile Include="Data\Geo\Models\ISynonymisable.cs" />
     <Compile Include="Data\History\Models\IHistoryItem.cs" />
     <Compile Include="Data\History\Repositories\IHistoryRepository.cs" />
     <Compile Include="Data\IDatabaseInitializer.cs" />
@@ -325,6 +323,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Bio\Environments\" />
+    <Folder Include="Data\Geo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Contracts.ruleset" />

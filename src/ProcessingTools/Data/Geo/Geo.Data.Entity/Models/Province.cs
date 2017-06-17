@@ -4,7 +4,6 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Contracts.Data.Geo.Models;
     using ProcessingTools.Contracts.Models;
 
     public class Province : SystemInformation, ISynonymisable<ProvinceSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
