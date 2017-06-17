@@ -4,8 +4,8 @@
     using System.Linq;
     using AutoMapper;
     using ProcessingTools.Contracts.Filters.Geo;
-    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;

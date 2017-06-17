@@ -3,11 +3,9 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using System.Threading.Tasks;
     using ProcessingTools.Contracts.Filters.Geo;
-    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Entity.Abstractions;
