@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts.Services.Data;
 
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
-        where TServiceModel : INameableIntegerIdentifiable
+        where TServiceModel : class, INameableIntegerIdentifiable
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
         where TFilter : class, IFilter
     {
@@ -37,8 +37,9 @@
 
             for (int i = 0; true; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.SelectAsync(i, NumberOfItemsToTake))
+                var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INameableIntegerIdentifiable.Name)))
                     .Select(t => t.Name)
+                    .Distinct()
                     .ToList();
 
                 if (items.Count < 1)

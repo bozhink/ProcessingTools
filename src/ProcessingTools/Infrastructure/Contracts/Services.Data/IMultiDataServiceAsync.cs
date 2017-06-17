@@ -12,10 +12,6 @@
 
         Task<object> InsertAsync(params TModel[] models);
 
-        Task<TModel[]> SelectAllAsync();
-
-        Task<TModel[]> SelectAsync(int skip, int take);
-
         Task<object> UpdateAsync(params TModel[] models);
     }
 }

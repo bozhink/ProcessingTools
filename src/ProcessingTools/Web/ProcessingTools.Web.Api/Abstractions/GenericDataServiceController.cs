@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts.Services.Data;
 
     public class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
-        where TFilter : IFilter
+        where TFilter : class, IFilter
         where TServiceModel : class
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
         where TRequestModel : class
@@ -34,7 +34,7 @@
 
         public async Task<IHttpActionResult> GetAll()
         {
-            var result = (await this.service.SelectAllAsync())
+            var result = (await this.service.SelectAsync(null))
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 
@@ -63,8 +63,13 @@
             return this.Ok(result);
         }
 
-        public async Task<IHttpActionResult> GetPaged(string skip, string take = PagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetPaged(string sortKey, string skip, string take = PagingConstants.DefaultTakeString)
         {
+            if (string.IsNullOrWhiteSpace(sortKey))
+            {
+                return this.BadRequest(Messages.InvalidValueForSortKeyQueryParameterMessage);
+            }
+
             if (!int.TryParse(skip, out int skipItemsCount))
             {
                 return this.BadRequest(Messages.InvalidValueForSkipQueryParameterMessage);
@@ -75,7 +80,7 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = (await this.service.SelectAsync(skipItemsCount, takeItemsCount))
+            var result = (await this.service.SelectAsync(null, skipItemsCount, takeItemsCount, sortKey))
                 .Select(this.mapper.Map<TResponseModel>)
                 .ToList();
 

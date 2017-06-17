@@ -70,6 +70,15 @@ namespace ProcessingTools.Web.Api {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid value for &apos;sortKey&apos; query parameter..
+        /// </summary>
+        internal static string InvalidValueForSortKeyQueryParameterMessage {
+            get {
+                return ResourceManager.GetString("InvalidValueForSortKeyQueryParameterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid value for &apos;take&apos; query parameter..
         /// </summary>
         internal static string InvalidValueForTakeQueryParameterMessage {

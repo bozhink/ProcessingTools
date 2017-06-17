@@ -120,6 +120,9 @@
   <data name="InvalidValueForSkipQueryParameterMessage" xml:space="preserve">
     <value>Invalid value for 'skip' query parameter.</value>
   </data>
+  <data name="InvalidValueForSortKeyQueryParameterMessage" xml:space="preserve">
+    <value>Invalid value for 'sortKey' query parameter.</value>
+  </data>
   <data name="InvalidValueForTakeQueryParameterMessage" xml:space="preserve">
     <value>Invalid value for 'take' query parameter.</value>
   </data>

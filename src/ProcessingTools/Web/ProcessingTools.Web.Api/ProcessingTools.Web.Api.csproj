@@ -444,6 +444,10 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Enumerations\Enumerations.csproj">
+      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
       <Name>Bio.ServiceClient.ExtractHcmr</Name>

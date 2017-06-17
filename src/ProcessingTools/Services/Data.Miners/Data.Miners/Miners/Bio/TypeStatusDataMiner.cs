@@ -28,7 +28,7 @@
                 throw new ArgumentNullException(nameof(content));
             }
 
-            var matchers = (await this.service.SelectAllAsync())
+            var matchers = (await this.service.SelectAsync(null))
                 .Select(t => t.Name)
                 .ToList()
                 .Select(t => new Regex(@"(?i)\b" + t + @"s?\b"));

@@ -131,37 +131,6 @@
             return count;
         }
 
-        public virtual async Task<TServiceModel[]> SelectAllAsync()
-        {
-            var result = await this.repository.Query
-                .Select(this.MapDbModelToServiceModel)
-                .ToArrayAsync();
-
-            return result;
-        }
-
-        public virtual async Task<TServiceModel[]> SelectAsync(int skip, int take)
-        {
-            if (skip < 0)
-            {
-                throw new InvalidSkipValuePagingException();
-            }
-
-            if (take < 1 || take > PagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidTakeValuePagingException();
-            }
-
-            var result = await this.repository.Query
-                .OrderBy(this.SortExpression)
-                .Skip(skip)
-                .Take(take)
-                .Select(this.MapDbModelToServiceModel)
-                .ToArrayAsync();
-
-            return result;
-        }
-
         public virtual async Task<object> UpdateAsync(params TServiceModel[] models)
         {
             if (models == null || models.Length < 1)
