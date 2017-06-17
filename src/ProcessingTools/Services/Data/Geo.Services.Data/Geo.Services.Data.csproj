@@ -50,6 +50,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\AbstractGeoDataService.cs" />
     <Compile Include="Abstractions\AbstractGeoSynonymisableDataService.cs" />
     <Compile Include="Abstractions\Services\AbstractSelectableDataService.cs" />
     <Compile Include="Assembly.cs" />
