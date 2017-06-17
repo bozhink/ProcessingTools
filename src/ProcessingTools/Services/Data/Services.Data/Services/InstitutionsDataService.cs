@@ -28,7 +28,5 @@
             Id = m.Id,
             Name = m.Name
         };
-
-        protected override Expression<Func<Institution, object>> SortExpression => i => i.Name;
     }
 }

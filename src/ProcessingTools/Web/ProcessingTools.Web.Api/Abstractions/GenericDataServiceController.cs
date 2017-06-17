@@ -80,16 +80,23 @@
                 return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
             }
 
-            var result = (await this.service.SelectAsync(null, skipItemsCount, takeItemsCount, sortKey))
-                .Select(this.mapper.Map<TResponseModel>)
-                .ToList();
-
-            if (result == null)
+            try
             {
-                return this.NotFound();
-            }
+                var result = (await this.service.SelectAsync(null, skipItemsCount, takeItemsCount, sortKey))
+                    .Select(this.mapper.Map<TResponseModel>)
+                    .ToList();
 
-            return this.Ok(result);
+                if (result == null)
+                {
+                    return this.NotFound();
+                }
+
+                return this.Ok(result);
+            }
+            catch
+            {
+                return this.BadRequest();
+            }
         }
 
         /// <summary>

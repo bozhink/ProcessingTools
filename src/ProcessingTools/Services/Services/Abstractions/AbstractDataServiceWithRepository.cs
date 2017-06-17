@@ -27,8 +27,6 @@
 
         protected abstract Expression<Func<TServiceModel, TDbModel>> MapServiceModelToDbModel { get; }
 
-        protected abstract Expression<Func<TDbModel, object>> SortExpression { get; }
-
         public virtual async Task<object> DeleteAsync(params object[] ids)
         {
             if (ids == null || ids.Length < 1)

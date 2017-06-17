@@ -27,7 +27,5 @@
             Id = m.Id,
             Name = m.Name
         };
-
-        protected override Expression<Func<MorphologicalEpithet, object>> SortExpression => m => m.Name;
     }
 }
