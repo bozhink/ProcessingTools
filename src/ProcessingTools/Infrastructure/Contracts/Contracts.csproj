@@ -105,6 +105,7 @@
     <Compile Include="Data.Miners\ITextDataMiner.cs" />
     <Compile Include="Data\Repositories\ICrudRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepositoryProvider.cs" />
+    <Compile Include="Data\Repositories\IRepositoryAsync.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
     <Compile Include="Data\Repositories\ICrudRepositoryProvider.cs" />
     <Compile Include="Data\Repositories\IIterableRepository.cs" />
