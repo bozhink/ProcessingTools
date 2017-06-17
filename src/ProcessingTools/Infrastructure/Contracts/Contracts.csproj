@@ -128,6 +128,7 @@
     <Compile Include="Files\IO\ITextFileWriter.cs" />
     <Compile Include="Files\IO\IXmlFileReader.cs" />
     <Compile Include="Files\IO\IXmlFileWriter.cs" />
+    <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Harvesters\IGenericDocumentHarvester.cs" />
     <Compile Include="Harvesters\IGenericEnumerableXmlHarvester.cs" />
     <Compile Include="Harvesters\IGenericXmlHarvester.cs" />
