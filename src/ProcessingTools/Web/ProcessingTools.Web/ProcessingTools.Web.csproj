@@ -848,10 +848,6 @@
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Geo.Services.Data.Entity\Geo.Services.Data.Entity.csproj">
-      <Project>{a4357125-c8f2-46a1-808b-3861792b564e}</Project>
-      <Name>Geo.Services.Data.Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
       <Project>{C9AFD557-6559-4059-9287-65CA567F57EB}</Project>
       <Name>Geo.Services.Data</Name>
