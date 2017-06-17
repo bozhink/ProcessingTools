@@ -134,10 +134,6 @@
       <Project>{C9AFD557-6559-4059-9287-65CA567F57EB}</Project>
       <Name>Geo.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>

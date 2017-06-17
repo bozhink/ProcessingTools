@@ -218,10 +218,6 @@
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />

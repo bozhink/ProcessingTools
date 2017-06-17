@@ -7,7 +7,7 @@
     using Models;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
-    using ProcessingTools.Services.Common.Abstractions;
+    using ProcessingTools.Services.Abstractions;
 
     public class InstitutionsDataService : AbstractDataServiceWithRepository<Institution, IInstitution>, IInstitutionsDataService
     {

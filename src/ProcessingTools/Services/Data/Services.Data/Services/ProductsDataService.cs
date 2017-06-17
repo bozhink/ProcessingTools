@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq.Expressions;
-    using Contracts;
-    using Contracts.Models;
-    using Models;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
-    using ProcessingTools.Services.Common.Abstractions;
+    using ProcessingTools.Services.Abstractions;
+    using ProcessingTools.Services.Data.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Models;
+    using ProcessingTools.Services.Data.Models;
 
     public class ProductsDataService : AbstractDataServiceWithRepository<Product, IProduct>, IProductsDataService
     {

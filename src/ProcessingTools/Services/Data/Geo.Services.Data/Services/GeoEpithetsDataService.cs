@@ -6,7 +6,7 @@
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Geo.Services.Data.Contracts;
     using ProcessingTools.Geo.Services.Data.Models;
-    using ProcessingTools.Services.Common.Abstractions;
+    using ProcessingTools.Services.Abstractions;
 
     public class GeoEpithetsDataService : AbstractDataServiceWithRepository<GeoEpithet, GeoEpithetServiceModel>, IGeoEpithetsDataService
     {

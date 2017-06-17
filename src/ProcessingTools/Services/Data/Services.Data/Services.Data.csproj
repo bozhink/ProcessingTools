@@ -168,9 +168,9 @@
       <Project>{344310AE-C162-4159-AEC1-91821190546F}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
+    <ProjectReference Include="..\..\Services\Services.csproj">
+      <Project>{4b5a7dc2-bdcb-4602-8265-b02ef9b48d16}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

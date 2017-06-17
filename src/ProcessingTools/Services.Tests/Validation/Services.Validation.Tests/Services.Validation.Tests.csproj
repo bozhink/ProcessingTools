@@ -98,10 +98,6 @@
       <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
       <Name>Services.Cache</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Services\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Services\Services.csproj">
       <Project>{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}</Project>
       <Name>Services</Name>

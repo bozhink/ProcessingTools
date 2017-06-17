@@ -61,10 +61,6 @@
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

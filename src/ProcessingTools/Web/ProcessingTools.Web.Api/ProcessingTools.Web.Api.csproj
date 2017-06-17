@@ -488,10 +488,6 @@
       <Project>{237D4CAF-98A4-4C86-91A6-46AE3E27E965}</Project>
       <Name>Processors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.Common\Services.Common.csproj">
-      <Project>{826165f0-f7fd-486f-b302-fcf7350c0888}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>

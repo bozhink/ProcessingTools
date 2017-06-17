@@ -6,7 +6,7 @@
     using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Bio.Services.Data.Contracts;
     using ProcessingTools.Bio.Services.Data.Models;
-    using ProcessingTools.Services.Common.Abstractions;
+    using ProcessingTools.Services.Abstractions;
 
     public class TypeStatusDataService : AbstractDataServiceWithRepository<TypeStatus, TypeStatusServiceModel>, ITypeStatusDataService
     {

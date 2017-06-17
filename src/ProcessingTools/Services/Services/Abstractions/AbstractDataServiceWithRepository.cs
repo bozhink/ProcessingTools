@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Common.Abstractions
+﻿namespace ProcessingTools.Services.Abstractions
 {
     using System;
     using System.Collections.Generic;
