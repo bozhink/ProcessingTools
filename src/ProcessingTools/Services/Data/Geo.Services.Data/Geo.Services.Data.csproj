@@ -54,8 +54,6 @@
     <Compile Include="Abstractions\AbstractGeoMultiDataService.cs" />
     <Compile Include="Abstractions\AbstractGeoSynonymisableDataService.cs" />
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IGeoEpithetsDataService.cs" />
-    <Compile Include="Contracts\IGeoNamesDataService.cs" />
     <Compile Include="Services\CitiesDataService.cs" />
     <Compile Include="Services\ContinentsDataService.cs" />
     <Compile Include="Services\CountiesDataService.cs" />
@@ -63,10 +61,6 @@
     <Compile Include="Services\DistrictsDataService.cs" />
     <Compile Include="Services\EntityGeoEpithetsDataService.cs" />
     <Compile Include="Services\EntityGeoNamesDataService.cs" />
-    <Compile Include="Services\GeoEpithetsDataService.cs" />
-    <Compile Include="Services\GeoNamesDataService.cs" />
-    <Compile Include="Models\GeoEpithetServiceModel.cs" />
-    <Compile Include="Models\GeoNameServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MunicipalitiesDataService.cs" />
     <Compile Include="Services\PostCodesDataService.cs" />
