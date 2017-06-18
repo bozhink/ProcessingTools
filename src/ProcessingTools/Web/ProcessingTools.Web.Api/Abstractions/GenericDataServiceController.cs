@@ -94,14 +94,19 @@
         /// <summary>
         /// Adds new entity.
         /// </summary>
-        /// <param name="entity">Entity to be added.</param>
+        /// <param name="entities">Entity to be added.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Post(TRequestModel entity)
+        public async Task<IHttpActionResult> Post([FromBody]TRequestModel[] entities)
         {
+            if (entities == null || entities.Length < 1)
+            {
+                return this.BadRequest();
+            }
+
             try
             {
-                var item = this.Mapper.Map<TServiceModel>(entity);
-                var result = await this.service.InsertAsync(item);
+                var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
+                var result = await this.service.InsertAsync(items);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -113,13 +118,41 @@
         /// <summary>
         /// Updates an entity.
         /// </summary>
-        /// <param name="entity">Entity to be updated.</param>
+        /// <param name="entities">Entity to be updated.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Put(TRequestModel entity)
+        public async Task<IHttpActionResult> Put([FromBody]TRequestModel[] entities)
         {
+            if (entities == null || entities.Length < 1)
+            {
+                return this.BadRequest();
+            }
+
+            try
+            {
+                var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
+                var result = await this.service.UpdateAsync(items);
+                return this.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return this.BadRequest(ex.ToString());
+            }
+        }
+
+        public async Task<IHttpActionResult> Put(int id, [FromBody]TRequestModel entity)
+        {
+            if (entity == null)
+            {
+                return this.BadRequest();
+            }
+
             try
             {
                 var item = this.Mapper.Map<TServiceModel>(entity);
+
+                var property = item.GetType().GetProperty(nameof(IIntegerIdentifiable.Id));
+                property.SetValue(item, id);
+
                 var result = await this.service.UpdateAsync(item);
                 return this.Ok(result);
             }
@@ -132,14 +165,19 @@
         /// <summary>
         /// Deletes an entity.
         /// </summary>
-        /// <param name="entity">Entity to be deleted.</param>
+        /// <param name="entities">Entity to be deleted.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Delete(TRequestModel entity)
+        public async Task<IHttpActionResult> Delete([FromBody]TRequestModel[] entities)
         {
+            if (entities == null || entities.Length < 1)
+            {
+                return this.BadRequest();
+            }
+
             try
             {
-                var item = this.Mapper.Map<TServiceModel>(entity);
-                var result = await this.service.DeleteAsync(item);
+                var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
+                var result = await this.service.DeleteAsync(items);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -158,6 +196,19 @@
             try
             {
                 var result = await this.service.DeleteAsync(id);
+                return this.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return this.BadRequest(ex.ToString());
+            }
+        }
+
+        public async Task<IHttpActionResult> Delete([FromBody]int[] ids)
+        {
+            try
+            {
+                var result = await this.service.DeleteAsync(ids.Cast<object>().ToArray());
                 return this.Ok(result);
             }
             catch (Exception ex)
