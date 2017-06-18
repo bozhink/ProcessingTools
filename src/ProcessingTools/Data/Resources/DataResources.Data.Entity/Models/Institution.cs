@@ -12,8 +12,8 @@
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [Index(IsUnique = true)]
+        [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.InstitutionNameMaximalLength)]
         public string Name
         {

@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.Web.Api.Models.Institutions
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Services.Data.Models;
+    using ProcessingTools.Constants.Data.DataResources;
+    using ProcessingTools.Services.Data.Contracts.Models;
 
-    public class InstitutionRequestModel : IMapFrom<InstitutionServiceModel>
+    public class InstitutionRequestModel : IInstitution
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
-        [Required]
-        [MaxLength(500)]
+        [Required(AllowEmptyStrings = false)]
+        [MaxLength(ValidationConstants.InstitutionNameMaximalLength)]
         public string Name { get; set; }
     }
 }

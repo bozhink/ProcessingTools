@@ -7,95 +7,87 @@
     using AutoMapper;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
 
-    public class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
+    public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
         where TFilter : class, IFilter
-        where TServiceModel : class
+        where TServiceModel : class, IIntegerIdentifiable
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
         where TRequestModel : class
         where TResponseModel : class
     {
         private readonly TService service;
-        private readonly IMapper mapper;
 
         public GenericDataServiceController(TService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<TServiceModel, TResponseModel>();
-                c.CreateMap<TRequestModel, TServiceModel>();
-            });
-
-            this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        protected abstract IMapper Mapper { get; }
 
         public async Task<IHttpActionResult> GetAll()
         {
-            var result = (await this.service.SelectAsync(null))
-                .Select(this.mapper.Map<TResponseModel>)
-                .ToList();
-
-            if (result == null)
+            try
             {
-                return this.NotFound();
-            }
+                var data = await this.service.SelectAsync(null);
+                if (data == null)
+                {
+                    return this.NotFound();
+                }
 
-            return this.Ok(result);
+                var result = data.Select(this.Mapper.Map<TResponseModel>).ToList();
+
+                return this.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return this.BadRequest(ex.ToString());
+            }
         }
 
-        public async Task<IHttpActionResult> GetById(string id)
+        public async Task<IHttpActionResult> GetById(int id)
         {
-            if (!int.TryParse(id, out int parsedId))
+            try
             {
-                return this.BadRequest("Invalid id.");
+                var model = await this.service.GetByIdAsync(id);
+                if (model == null)
+                {
+                    return this.NotFound();
+                }
+
+                var result = this.Mapper.Map<TResponseModel>(model);
+
+                return this.Ok(result);
             }
-
-            var result = this.mapper.Map<TResponseModel>(await this.service.GetByIdAsync(parsedId));
-
-            if (result == null)
+            catch (Exception ex)
             {
-                return this.NotFound();
+                return this.BadRequest(ex.ToString());
             }
-
-            return this.Ok(result);
         }
 
-        public async Task<IHttpActionResult> GetPaged(string sortKey, string skip, string take = PagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetPaged(string sortKey, int skip = PagingConstants.DefaultSkip, int take = PagingConstants.DefaultTake)
         {
             if (string.IsNullOrWhiteSpace(sortKey))
             {
                 return this.BadRequest(Messages.InvalidValueForSortKeyQueryParameterMessage);
             }
 
-            if (!int.TryParse(skip, out int skipItemsCount))
-            {
-                return this.BadRequest(Messages.InvalidValueForSkipQueryParameterMessage);
-            }
-
-            if (!int.TryParse(take, out int takeItemsCount))
-            {
-                return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
-            }
-
             try
             {
-                var result = (await this.service.SelectAsync(null, skipItemsCount, takeItemsCount, sortKey))
-                    .Select(this.mapper.Map<TResponseModel>)
-                    .ToList();
-
-                if (result == null)
+                var data = await this.service.SelectAsync(null, skip, take, sortKey);
+                if (data == null)
                 {
                     return this.NotFound();
                 }
 
+                var result = data.Select(this.Mapper.Map<TResponseModel>).ToList();
+
                 return this.Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
-                return this.BadRequest();
+                return this.BadRequest(ex.ToString());
             }
         }
 
@@ -106,17 +98,16 @@
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Post(TRequestModel entity)
         {
-            var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                await this.service.InsertAsync(item);
+                var item = this.Mapper.Map<TServiceModel>(entity);
+                var result = await this.service.InsertAsync(item);
+                return this.Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
-                return this.BadRequest();
+                return this.BadRequest(ex.ToString());
             }
-
-            return this.Ok();
         }
 
         /// <summary>
@@ -126,17 +117,16 @@
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Put(TRequestModel entity)
         {
-            var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                await this.service.UpdateAsync(item);
+                var item = this.Mapper.Map<TServiceModel>(entity);
+                var result = await this.service.UpdateAsync(item);
+                return this.Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
-                return this.BadRequest();
+                return this.BadRequest(ex.ToString());
             }
-
-            return this.Ok();
         }
 
         /// <summary>
@@ -146,17 +136,16 @@
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Delete(TRequestModel entity)
         {
-            var item = this.mapper.Map<TServiceModel>(entity);
             try
             {
-                await this.service.DeleteAsync(item);
+                var item = this.Mapper.Map<TServiceModel>(entity);
+                var result = await this.service.DeleteAsync(item);
+                return this.Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
-                return this.BadRequest();
+                return this.BadRequest(ex.ToString());
             }
-
-            return this.Ok();
         }
 
         /// <summary>
@@ -164,23 +153,17 @@
         /// </summary>
         /// <param name="id">Id of the entity to be deleted.</param>
         /// <returns>OK if there is no errors; BadRequest on exception.</returns>
-        public async Task<IHttpActionResult> Delete(string id)
+        public async Task<IHttpActionResult> Delete(int id)
         {
-            if (!int.TryParse(id, out int parsedId))
-            {
-                return this.BadRequest(id);
-            }
-
             try
             {
-                await this.service.DeleteAsync(id);
+                var result = await this.service.DeleteAsync(id);
+                return this.Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
-                return this.BadRequest();
+                return this.BadRequest(ex.ToString());
             }
-
-            return this.Ok();
         }
     }
 }

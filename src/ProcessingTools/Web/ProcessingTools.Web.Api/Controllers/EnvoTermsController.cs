@@ -16,38 +16,27 @@
 
         public EnvoTermsController(IEnvoTermsDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task<IHttpActionResult> GetEnvoTerms(string skip = "0", string take = PagingConstants.DefaultTakeString)
+        public async Task<IHttpActionResult> GetEnvoTerms(int skip = PagingConstants.DefaultSkip, int take = PagingConstants.DefaultTake)
         {
-            int skipItemsCount;
-            if (!int.TryParse(skip, out skipItemsCount))
+            try
             {
-                return this.BadRequest(Messages.InvalidValueForSkipQueryParameterMessage);
-            }
+                var data = await this.service.Get(skip, take);
+                if (data == null)
+                {
+                    return this.NotFound();
+                }
 
-            int takeItemsCount;
-            if (!int.TryParse(take, out takeItemsCount))
+                var result = data.Select(AutoMapperConfig.Mapper.Map<EnvoTermResponseModel>).ToList();
+
+                return this.Ok(result);
+            }
+            catch (Exception ex)
             {
-                return this.BadRequest(Messages.InvalidValueForTakeQueryParameterMessage);
+                return this.BadRequest(ex.ToString());
             }
-
-            var result = (await this.service.Get(skipItemsCount, takeItemsCount))
-                .Select(AutoMapperConfig.Mapper.Map<EnvoTermResponseModel>)
-                .ToList();
-
-            if (result == null)
-            {
-                return this.InternalServerError();
-            }
-
-            return this.Ok(result);
         }
     }
 }

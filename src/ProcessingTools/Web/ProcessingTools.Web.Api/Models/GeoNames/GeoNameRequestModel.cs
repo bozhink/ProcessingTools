@@ -1,13 +1,16 @@
 ﻿namespace ProcessingTools.Web.Api.Models.GeoNames
 {
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Constants.Data.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
-    public class GeoNameRequestModel
+    public class GeoNameRequestModel : IGeoName
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
-        [Required]
-        [MaxLength(300)]
+        [Required(AllowEmptyStrings = false)]
+        [MinLength(ValidationConstants.MinimalLengthOfGeoName)]
+        [MaxLength(ValidationConstants.MaximalLengthOfGeoName)]
         public string Name { get; set; }
     }
 }
