@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Contracts.Filters.Geo;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
@@ -14,7 +14,7 @@
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
 
-    public class EntityGeoEpithetsRepository : AbstractGeoRepository<GeoEpithet, IGeoEpithet, IGeoEpithetsFilter>, IGeoEpithetsRepository
+    public class EntityGeoEpithetsRepository : AbstractGeoRepository<GeoEpithet, IGeoEpithet, ITextFilter>, IGeoEpithetsRepository
     {
         private readonly Func<GeoEpithet, IGeoEpithet> mapEntityToModel;
 
@@ -38,7 +38,7 @@
             Name = m.Name
         };
 
-        public override async Task<IGeoEpithet[]> SelectAsync(IGeoEpithetsFilter filter)
+        public override async Task<IGeoEpithet[]> SelectAsync(ITextFilter filter)
         {
             var query = this.GetQuery(filter)
                 .Select(this.MapEntityToModelExpression);
@@ -46,7 +46,7 @@
             return await query.ToArrayAsync();
         }
 
-        public override async Task<IGeoEpithet[]> SelectAsync(IGeoEpithetsFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        public override async Task<IGeoEpithet[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
         {
             var query = this.GetQuery(filter)
                 .OrderByName(sortColumn, sortOrder)
@@ -75,7 +75,7 @@
             return await this.UpdateEntityAsync(entity);
         }
 
-        protected override IQueryable<GeoEpithet> GetQuery(IGeoEpithetsFilter filter)
+        protected override IQueryable<GeoEpithet> GetQuery(ITextFilter filter)
         {
             var query = this.Repository.Queryable();
 
@@ -83,8 +83,7 @@
             {
                 query = query.Where(
                     n =>
-                        (!filter.Id.HasValue || n.Id == filter.Id) &&
-                        (string.IsNullOrEmpty(filter.Name) || n.Name.ToLower().Contains(filter.Name.ToLower())));
+                        (string.IsNullOrEmpty(filter.Text) || n.Name.ToLower().Contains(filter.Text.ToLower())));
             }
 
             return query;

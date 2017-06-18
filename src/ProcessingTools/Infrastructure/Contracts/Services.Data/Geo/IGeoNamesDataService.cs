@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Geo
 {
-    using ProcessingTools.Contracts.Filters.Geo;
+    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Models.Geo;
 
-    public interface IGeoNamesDataService : IDataServiceAsync<IGeoName, IGeoNamesFilter>
+    public interface IGeoNamesDataService : IDataServiceAsync<IGeoName, ITextFilter>
     {
     }
 }
