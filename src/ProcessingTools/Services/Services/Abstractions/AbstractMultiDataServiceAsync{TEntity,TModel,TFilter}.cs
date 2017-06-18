@@ -11,21 +11,22 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
 
-    public abstract class AbstractDataServiceWithRepository<TDbModel, TServiceModel, TFilter> : IDisposable
+    public abstract class AbstractMultiDataServiceAsync<TEntity, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>, IDisposable
         where TFilter : IFilter
     {
-        private readonly ICrudRepository<TDbModel> repository;
+        private readonly ICrudRepository<TEntity> repository;
 
-        public AbstractDataServiceWithRepository(ICrudRepository<TDbModel> repository)
+        public AbstractMultiDataServiceAsync(ICrudRepository<TEntity> repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        protected abstract Expression<Func<TDbModel, TServiceModel>> MapDbModelToServiceModel { get; }
+        protected abstract Expression<Func<TEntity, TModel>> MapEntityToModel { get; }
 
-        protected abstract Expression<Func<TServiceModel, TDbModel>> MapServiceModelToDbModel { get; }
+        protected abstract Expression<Func<TModel, TEntity>> MapModelToEntity { get; }
 
         public virtual async Task<object> DeleteAsync(params object[] ids)
         {
@@ -41,14 +42,14 @@
             return await this.repository.SaveChangesAsync();
         }
 
-        public virtual async Task<object> DeleteAsync(params TServiceModel[] models)
+        public virtual async Task<object> DeleteAsync(params TModel[] models)
         {
             if (models == null || models.Length < 1)
             {
                 throw new ArgumentNullException(nameof(models));
             }
 
-            var entities = this.MapServiceModelsToEntities(models);
+            var entities = this.MapModelsToEntities(models);
 
             var tasks = entities.Select(e => this.repository.Delete(e)).ToArray();
 
@@ -57,14 +58,14 @@
             return await this.repository.SaveChangesAsync();
         }
 
-        public virtual async Task<TServiceModel> GetByIdAsync(object id)
+        public virtual async Task<TModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var mapping = this.MapDbModelToServiceModel.Compile();
+            var mapping = this.MapEntityToModel.Compile();
 
             var entity = await this.repository.GetById(id);
             var result = mapping.Invoke(entity);
@@ -72,14 +73,14 @@
             return result;
         }
 
-        public virtual async Task<object> InsertAsync(params TServiceModel[] models)
+        public virtual async Task<object> InsertAsync(params TModel[] models)
         {
             if (models == null || models.Length < 1)
             {
                 throw new ArgumentNullException(nameof(models));
             }
 
-            var entities = this.MapServiceModelsToEntities(models);
+            var entities = this.MapModelsToEntities(models);
 
             var tasks = entities.Select(e => this.repository.Add(e)).ToArray();
 
@@ -88,17 +89,17 @@
             return await this.repository.SaveChangesAsync();
         }
 
-        public virtual async Task<TServiceModel[]> SelectAsync(TFilter filter)
+        public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
             // TODO: filter
             var result = await this.repository.Query
-                .Select(this.MapDbModelToServiceModel)
+                .Select(this.MapEntityToModel)
                 .ToArrayAsync();
 
             return result;
         }
 
-        public virtual async Task<TServiceModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
         {
             // TODO: filter
             if (skip < 0)
@@ -115,7 +116,7 @@
                 .OrderByName(sortColumn, sortOrder)
                 .Skip(skip)
                 .Take(take)
-                .Select(this.MapDbModelToServiceModel)
+                .Select(this.MapEntityToModel)
                 .ToArrayAsync();
 
             return result;
@@ -129,14 +130,14 @@
             return count;
         }
 
-        public virtual async Task<object> UpdateAsync(params TServiceModel[] models)
+        public virtual async Task<object> UpdateAsync(params TModel[] models)
         {
             if (models == null || models.Length < 1)
             {
                 throw new ArgumentNullException(nameof(models));
             }
 
-            var entities = this.MapServiceModelsToEntities(models);
+            var entities = this.MapModelsToEntities(models);
 
             var tasks = entities.Select(e => this.repository.Update(e)).ToArray();
 
@@ -159,10 +160,10 @@
             }
         }
 
-        private IEnumerable<TDbModel> MapServiceModelsToEntities(TServiceModel[] models)
+        private IEnumerable<TEntity> MapModelsToEntities(TModel[] models)
         {
             return models.AsQueryable()
-                .Select(this.MapServiceModelToDbModel)
+                .Select(this.MapModelToEntity)
                 .ToList();
         }
     }

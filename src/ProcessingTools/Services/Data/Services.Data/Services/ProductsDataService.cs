@@ -10,20 +10,20 @@
     using ProcessingTools.Services.Data.Contracts.Models;
     using ProcessingTools.Services.Data.Models;
 
-    public class ProductsDataService : AbstractDataServiceWithRepository<Product, IProduct, IFilter>, IProductsDataService
+    public class ProductsDataService : AbstractMultiDataServiceAsync<Product, IProduct, IFilter>, IProductsDataService
     {
         public ProductsDataService(IResourcesRepository<Product> repository)
             : base(repository)
         {
         }
 
-        protected override Expression<Func<Product, IProduct>> MapDbModelToServiceModel => e => new ProductServiceModel
+        protected override Expression<Func<Product, IProduct>> MapEntityToModel => e => new ProductServiceModel
         {
             Id = e.Id,
             Name = e.Name
         };
 
-        protected override Expression<Func<IProduct, Product>> MapServiceModelToDbModel => m => new Product
+        protected override Expression<Func<IProduct, Product>> MapModelToEntity => m => new Product
         {
             Id = m.Id,
             Name = m.Name

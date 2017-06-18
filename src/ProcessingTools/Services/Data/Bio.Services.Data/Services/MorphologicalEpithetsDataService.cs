@@ -9,20 +9,20 @@
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Services.Abstractions;
 
-    public class MorphologicalEpithetsDataService : AbstractDataServiceWithRepository<MorphologicalEpithet, MorphologicalEpithetServiceModel, IFilter>, IMorphologicalEpithetsDataService
+    public class MorphologicalEpithetsDataService : AbstractMultiDataServiceAsync<MorphologicalEpithet, MorphologicalEpithetServiceModel, IFilter>, IMorphologicalEpithetsDataService
     {
         public MorphologicalEpithetsDataService(IBioDataRepository<MorphologicalEpithet> repository)
             : base(repository)
         {
         }
 
-        protected override Expression<Func<MorphologicalEpithet, MorphologicalEpithetServiceModel>> MapDbModelToServiceModel => e => new MorphologicalEpithetServiceModel
+        protected override Expression<Func<MorphologicalEpithet, MorphologicalEpithetServiceModel>> MapEntityToModel => e => new MorphologicalEpithetServiceModel
         {
             Id = e.Id,
             Name = e.Name
         };
 
-        protected override Expression<Func<MorphologicalEpithetServiceModel, MorphologicalEpithet>> MapServiceModelToDbModel => m => new MorphologicalEpithet
+        protected override Expression<Func<MorphologicalEpithetServiceModel, MorphologicalEpithet>> MapModelToEntity => m => new MorphologicalEpithet
         {
             Id = m.Id,
             Name = m.Name

@@ -35,7 +35,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\AbstractDataServiceWithRepository.cs" />
+    <Compile Include="Abstractions\AbstractMultiDataServiceAsync{TEntity,TModel,TFilter}.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
     <Compile Include="Providers\GuidProvider.cs" />

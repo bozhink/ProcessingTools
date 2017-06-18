@@ -9,20 +9,20 @@
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Services.Abstractions;
 
-    public class TypeStatusDataService : AbstractDataServiceWithRepository<TypeStatus, TypeStatusServiceModel, IFilter>, ITypeStatusDataService
+    public class TypeStatusDataService : AbstractMultiDataServiceAsync<TypeStatus, TypeStatusServiceModel, IFilter>, ITypeStatusDataService
     {
         public TypeStatusDataService(IBioDataRepository<TypeStatus> repository)
             : base(repository)
         {
         }
 
-        protected override Expression<Func<TypeStatus, TypeStatusServiceModel>> MapDbModelToServiceModel => e => new TypeStatusServiceModel
+        protected override Expression<Func<TypeStatus, TypeStatusServiceModel>> MapEntityToModel => e => new TypeStatusServiceModel
         {
             Id = e.Id,
             Name = e.Name
         };
 
-        protected override Expression<Func<TypeStatusServiceModel, TypeStatus>> MapServiceModelToDbModel => m => new TypeStatus
+        protected override Expression<Func<TypeStatusServiceModel, TypeStatus>> MapModelToEntity => m => new TypeStatus
         {
             Id = m.Id,
             Name = m.Name

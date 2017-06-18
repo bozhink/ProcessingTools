@@ -9,20 +9,20 @@
     using ProcessingTools.Geo.Services.Data.Models;
     using ProcessingTools.Services.Abstractions;
 
-    public class GeoEpithetsDataService : AbstractDataServiceWithRepository<GeoEpithet, GeoEpithetServiceModel, IFilter>, IGeoEpithetsDataService
+    public class GeoEpithetsDataService : AbstractMultiDataServiceAsync<GeoEpithet, GeoEpithetServiceModel, IFilter>, IGeoEpithetsDataService
     {
         public GeoEpithetsDataService(IGeoDataRepository<GeoEpithet> repository)
             : base(repository)
         {
         }
 
-        protected override Expression<Func<GeoEpithet, GeoEpithetServiceModel>> MapDbModelToServiceModel => e => new GeoEpithetServiceModel
+        protected override Expression<Func<GeoEpithet, GeoEpithetServiceModel>> MapEntityToModel => e => new GeoEpithetServiceModel
         {
             Id = e.Id,
             Name = e.Name
         };
 
-        protected override Expression<Func<GeoEpithetServiceModel, GeoEpithet>> MapServiceModelToDbModel => m => new GeoEpithet
+        protected override Expression<Func<GeoEpithetServiceModel, GeoEpithet>> MapModelToEntity => m => new GeoEpithet
         {
             Id = m.Id,
             Name = m.Name
