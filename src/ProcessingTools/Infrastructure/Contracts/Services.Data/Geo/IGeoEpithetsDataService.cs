@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Models.Geo;
 
-    public interface IGeoEpithetsDataService : IDataServiceAsync<IGeoEpithet, ITextFilter>
+    public interface IGeoEpithetsDataService : IMultiDataServiceAsync<IGeoEpithet, ITextFilter>
     {
     }
 }

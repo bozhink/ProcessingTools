@@ -6,7 +6,7 @@
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Geo.Services.Data.Abstractions;
 
-    public class EntityGeoNamesDataService : AbstractGeoDataService<IGeoNamesRepository, IGeoName, ITextFilter>, IGeoNamesDataService
+    public class EntityGeoNamesDataService : AbstractGeoMultiDataService<IGeoNamesRepository, IGeoName, ITextFilter>, IGeoNamesDataService
     {
         public EntityGeoNamesDataService(IGeoNamesRepository repository)
             : base(repository)

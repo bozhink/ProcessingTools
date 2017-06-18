@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Models.Geo;
 
-    public interface IGeoNamesDataService : IDataServiceAsync<IGeoName, ITextFilter>
+    public interface IGeoNamesDataService : IMultiDataServiceAsync<IGeoName, ITextFilter>
     {
     }
 }

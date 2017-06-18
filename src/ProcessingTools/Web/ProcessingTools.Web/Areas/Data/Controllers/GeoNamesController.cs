@@ -225,7 +225,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await this.service.DeleteAsync(id: id);
+            await this.service.DeleteAsync(ids: id);
 
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
             if (!string.IsNullOrWhiteSpace(returnUrl))
