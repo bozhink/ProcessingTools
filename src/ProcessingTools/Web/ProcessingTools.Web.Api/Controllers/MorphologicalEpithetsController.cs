@@ -7,11 +7,11 @@
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Api.Models.MorphologicalEpithets;
 
-    public class MorphologicalEpithetController : GenericDataServiceController<IMorphologicalEpithetsDataService, MorphologicalEpithetServiceModel, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel, IFilter>
+    public class MorphologicalEpithetsController : GenericDataServiceController<IMorphologicalEpithetsDataService, MorphologicalEpithetServiceModel, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel, IFilter>
     {
         private readonly IMapper mapper;
 
-        public MorphologicalEpithetController(IMorphologicalEpithetsDataService service)
+        public MorphologicalEpithetsController(IMorphologicalEpithetsDataService service)
             : base(service)
         {
             var mapperConfiguration = new MapperConfiguration(c =>

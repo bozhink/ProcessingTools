@@ -5,19 +5,19 @@
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Web.Api.Abstractions;
-    using ProcessingTools.Web.Api.Models.GeoEpithets;
+    using ProcessingTools.Web.Api.Models.GeoNames;
 
-    public class GeoEpithetController : GenericDataServiceController<IGeoEpithetsDataService, IGeoEpithet, GeoEpithetRequestModel, GeoEpithetResponseModel, ITextFilter>
+    public class GeoNamesController : GenericDataServiceController<IGeoNamesDataService, IGeoName, GeoNameRequestModel, GeoNameResponseModel, ITextFilter>
     {
         private readonly IMapper mapper;
 
-        public GeoEpithetController(IGeoEpithetsDataService service)
+        public GeoNamesController(IGeoNamesDataService service)
             : base(service)
         {
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IGeoEpithet, GeoEpithetResponseModel>();
-                c.CreateMap<GeoEpithetRequestModel, IGeoEpithet>().ConvertUsing(g => g);
+                c.CreateMap<IGeoName, GeoNameResponseModel>();
+                c.CreateMap<GeoNameRequestModel, IGeoName>().ConvertUsing(g => g);
             });
 
             this.mapper = mapperConfiguration.CreateMapper();

@@ -7,11 +7,11 @@
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Api.Models.Institutions;
 
-    public class InstitutionController : GenericDataServiceController<IInstitutionsDataService, IInstitution, InstitutionRequestModel, InstitutionResponseModel, IFilter>
+    public class InstitutionsController : GenericDataServiceController<IInstitutionsDataService, IInstitution, InstitutionRequestModel, InstitutionResponseModel, IFilter>
     {
         private readonly IMapper mapper;
 
-        public InstitutionController(IInstitutionsDataService service)
+        public InstitutionsController(IInstitutionsDataService service)
             : base(service)
         {
             var mapperConfiguration = new MapperConfiguration(c =>

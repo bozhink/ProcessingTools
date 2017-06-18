@@ -7,11 +7,11 @@
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
     using ProcessingTools.Web.Api.Models.MediaTypes;
 
-    public class MediaTypeController : ApiController
+    public class MediaTypesController : ApiController
     {
         private IMediatypesResolver mediatypesResolver;
 
-        public MediaTypeController(IMediatypesResolver mediatypesResolver)
+        public MediaTypesController(IMediatypesResolver mediatypesResolver)
         {
             if (mediatypesResolver == null)
             {

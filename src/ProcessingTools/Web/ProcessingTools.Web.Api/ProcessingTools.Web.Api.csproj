@@ -331,12 +331,12 @@
     <Compile Include="Controllers\CoLController.cs" />
     <Compile Include="Controllers\EnvoTermsController.cs" />
     <Compile Include="Controllers\GbifController.cs" />
-    <Compile Include="Controllers\GeoEpithetController.cs" />
-    <Compile Include="Controllers\GeoNameController.cs" />
+    <Compile Include="Controllers\GeoEpithetsController.cs" />
+    <Compile Include="Controllers\GeoNamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InstitutionController.cs" />
-    <Compile Include="Controllers\MediaTypeController.cs" />
-    <Compile Include="Controllers\MorphologicalEpithetController.cs" />
+    <Compile Include="Controllers\InstitutionsController.cs" />
+    <Compile Include="Controllers\MediaTypesController.cs" />
+    <Compile Include="Controllers\MorphologicalEpithetsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TypeStatusController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
