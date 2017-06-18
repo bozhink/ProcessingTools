@@ -3,8 +3,6 @@
 namespace ProcessingTools.Web.Api
 {
     using System.Web.Http;
-    using Ninject.Web.Common.OwinHost;
-    using Ninject.Web.WebApi.OwinHost;
     using Owin;
     using ProcessingTools.Constants;
 
@@ -21,10 +19,6 @@ namespace ProcessingTools.Web.Api
             WebApiConfig.Register(httpConfig);
 
             httpConfig.EnsureInitialized();
-
-            app
-                .UseNinjectMiddleware(NinjectConfig.CreateKernel)
-                .UseNinjectWebApi(httpConfig);
         }
     }
 }

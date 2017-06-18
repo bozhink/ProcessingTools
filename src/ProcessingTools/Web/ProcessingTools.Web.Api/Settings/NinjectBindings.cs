@@ -1,8 +1,7 @@
-﻿namespace ProcessingTools.Web.Settings
+﻿namespace ProcessingTools.Web.Api.Settings
 {
     using System.Configuration;
     using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using Ninject.Web.Common;
     using ProcessingTools.Constants;
@@ -24,37 +23,9 @@
                 .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
                 .InTransientScope();
 
-            this.Bind<ProcessingTools.Contracts.ILoggerFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
             this.Bind<ProcessingTools.Contracts.Services.IEnvironment>()
-                .To<ProcessingTools.Web.Services.EnvironmentService>()
+                .To<ProcessingTools.Web.Api.Services.EnvironmentService>()
                 .InSingletonScope();
-
-            this.Bind<ProcessingTools.History.Data.Entity.Contracts.IHistoryDbContext>()
-                .To<ProcessingTools.History.Data.Entity.HistoryDbContext>()
-                .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
-                .InRequestScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.HistoryDatabaseConnection].ConnectionString);
-
-            this.Bind<ProcessingTools.Contracts.Data.History.Repositories.IHistoryRepository>()
-                .To<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
-                .InRequestScope();
-
-            this.Bind<ProcessingTools.Journals.Data.Entity.Contracts.IJournalsDbContext>()
-                .To<ProcessingTools.Journals.Data.Entity.JournalsDbContext>()
-                .WhenInjectedInto(typeof(ProcessingTools.Data.Common.Entity.Repositories.GenericRepository<,>))
-                .InRequestScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.JournalsDatabaseConnection].ConnectionString);
-
-            this.Bind<ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository>()
-                .To<ProcessingTools.Journals.Data.Entity.Repositories.EntityPublishersRepository>()
-                .InRequestScope();
 
             this.Bind<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDbContext>()
                 .To<ProcessingTools.Geo.Data.Entity.GeoDbContext>()
