@@ -6,9 +6,9 @@
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Geo.Services.Data.Abstractions;
 
-    public class EntityGeoEpithetsDataService : AbstractGeoMultiDataService<IGeoEpithetsRepository, IGeoEpithet, ITextFilter>, IGeoEpithetsDataService
+    public class GeoEpithetsDataService : AbstractGeoMultiDataService<IGeoEpithetsRepository, IGeoEpithet, ITextFilter>, IGeoEpithetsDataService
     {
-        public EntityGeoEpithetsDataService(IGeoEpithetsRepository repository)
+        public GeoEpithetsDataService(IGeoEpithetsRepository repository)
             : base(repository)
         {
         }
