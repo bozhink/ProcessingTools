@@ -58,7 +58,6 @@
     <Compile Include="Contracts\IGeoNamesDataService.cs" />
     <Compile Include="Contracts\Models\ICityListableModel.cs" />
     <Compile Include="Contracts\Models\ICountryListableModel.cs" />
-    <Compile Include="Models\CityListableModel.cs" />
     <Compile Include="Models\CountryListableModel.cs" />
     <Compile Include="Services\CitiesDataService.cs" />
     <Compile Include="Services\ContinentsDataService.cs" />
