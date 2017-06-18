@@ -103,7 +103,7 @@
         /// Adds new entity.
         /// </summary>
         /// <param name="entity">Entity to be added.</param>
-        /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
+        /// <returns>OK if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Post(TRequestModel entity)
         {
             var item = this.mapper.Map<TServiceModel>(entity);
@@ -123,7 +123,7 @@
         /// Updates an entity.
         /// </summary>
         /// <param name="entity">Entity to be updated.</param>
-        /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
+        /// <returns>OK if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Put(TRequestModel entity)
         {
             var item = this.mapper.Map<TServiceModel>(entity);
@@ -143,7 +143,7 @@
         /// Deletes an entity.
         /// </summary>
         /// <param name="entity">Entity to be deleted.</param>
-        /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
+        /// <returns>OK if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Delete(TRequestModel entity)
         {
             var item = this.mapper.Map<TServiceModel>(entity);
@@ -163,7 +163,7 @@
         /// Deletes an entity.
         /// </summary>
         /// <param name="id">Id of the entity to be deleted.</param>
-        /// <returns>Ok if there is no errors; BadRequest on exception.</returns>
+        /// <returns>OK if there is no errors; BadRequest on exception.</returns>
         public async Task<IHttpActionResult> Delete(string id)
         {
             if (!int.TryParse(id, out int parsedId))
