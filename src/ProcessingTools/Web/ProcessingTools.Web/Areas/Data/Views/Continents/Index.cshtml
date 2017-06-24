@@ -30,9 +30,11 @@
                         <div class="col-xs-6 col-sm-4 col-md-4">@Html.DisplayFor(i => item.Name)</div>
                         <div class="col-xs-6 col-sm-3 col-md-3">@Html.DisplayFor(i => item.NumberOfCountries)</div>
                         <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
-                            @Html.ActionLink(Strings.EditActionLinkText, ContinentsController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                            @Html.ActionLink(Strings.DetailsActionLinkText, ContinentsController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                            @Html.ActionLink(Strings.DeleteActionLinkText, ContinentsController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
+                            <ul class="navigation">
+                                <li>@Html.ActionLink(Strings.EditActionLinkText, ContinentsController.EditActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                                <li>@Html.ActionLink(Strings.DetailsActionLinkText, ContinentsController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                                <li>@Html.ActionLink(Strings.DeleteActionLinkText, ContinentsController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                            </ul>
                         </div>
                     </div>
                 }

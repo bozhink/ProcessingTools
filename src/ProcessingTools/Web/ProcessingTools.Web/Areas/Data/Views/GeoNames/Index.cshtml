@@ -29,9 +29,11 @@
                         <div class="col-xs-1 col-sm-1 col-md-1">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
                         <div class="col-xs-11 col-sm-7 col-md-7">@Html.DisplayFor(i => item.Name)</div>
                         <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
-                            @Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                            @Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                            @Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
+                            <ul class="navigation">
+                                <li>@Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                                <li>@Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                                <li>@Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                            </ul>
                         </div>
                     </div>
                 }
