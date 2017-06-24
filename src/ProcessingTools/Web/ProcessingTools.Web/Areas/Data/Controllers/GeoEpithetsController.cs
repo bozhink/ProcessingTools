@@ -21,6 +21,7 @@
     public class GeoEpithetsController : BaseMvcController
     {
         public const string ControllerName = "GeoEpithets";
+        public const string AreaName = AreaNames.Data;
         public const string IndexActionName = RouteValues.IndexActionName;
         public const string DetailsActionName = nameof(GeoEpithetsController.Details);
         public const string CreateActionName = nameof(GeoEpithetsController.Create);
@@ -60,9 +61,13 @@
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
             var items = data.Select(this.mapper.Map<GeoEpithetViewModel>).ToArray();
 
-            var viewModel = new ListWithPagingViewModel<GeoEpithetViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var model = new ListWithPagingViewModel<GeoEpithetViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new GeoEpithetsIndexPageViewModel
+            {
+                Model = model,
+                PageTitle = Strings.IndexPageTitle
+            };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(IndexActionName, viewModel);
         }
 
@@ -88,7 +93,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DetailsActionName, viewModel);
         }
 
@@ -103,7 +107,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -134,7 +137,6 @@
                 ReturnUrl = returnUrl
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -160,7 +162,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -190,7 +191,6 @@
                 ReturnUrl = returnUrl
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -216,7 +216,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DeleteActionName, viewModel);
         }
 

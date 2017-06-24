@@ -369,6 +369,7 @@
     <Compile Include="Areas\Data\Models\Continents\ContinentRequestModel.cs" />
     <Compile Include="Areas\Data\Models\Continents\ContinentSynonymRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoEpithets\GeoEpithetRequestModel.cs" />
+    <Compile Include="Areas\Data\Models\GeoEpithets\GeoEpithetsIndexPageViewModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNamesIndexPageViewModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymisableViewModel.cs" />

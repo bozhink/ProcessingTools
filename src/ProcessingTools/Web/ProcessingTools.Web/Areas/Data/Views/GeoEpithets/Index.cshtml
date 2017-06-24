@@ -1,48 +1,44 @@
 ﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Views_Strings
-@model ProcessingTools.Models.ViewModels.ListWithPagingViewModel<ProcessingTools.Web.Areas.Data.Models.GeoEpithets.GeoEpithetViewModel>
+@model ProcessingTools.Web.Areas.Data.Models.GeoEpithets.GeoEpithetsIndexPageViewModel
+
 @{
-    this.ViewBag.Title = Strings.IndexPageTitle;
+    ViewBag.Title = Strings.IndexPageTitle;
+    var model = Model.Model;
 }
 
-<h2>@this.ViewBag.Title</h2>
-
-<p>
-    @Html.ActionLink(Strings.CreateActionLinkText, GeoEpithetsController.CreateActionName)
-</p>
-
-@if (Model.Items.Count() > 0)
-{
-
-    <table class="table grid">
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Items.First().Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @{
-            string returnUrl = Url.Action(Model.ActionName, routeValues: new { p = Model.CurrentPage, n = Model.NumberOfItemsPerPage });
-            int counter = 0;
-            foreach (var item in Model.Items)
-            {
-                ++counter;
-                <tr>
-                    <td>@counter</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.ActionLink(Strings.EditActionLinkText, GeoEpithetsController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                        @Html.ActionLink(Strings.DetailsActionLinkText, GeoEpithetsController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
-                        @Html.ActionLink(Strings.DeleteActionLinkText, GeoEpithetsController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
-                    </td>
-                </tr>
+<section role="main">
+    <header>
+        <h2>@Model.PageHeading</h2>
+    </header>
+    <p>@Html.ActionLink(Strings.CreateActionLinkText, GeoEpithetsController.CreateActionName)</p>
+    @if (model.Items.Count() > 0)
+    {
+        <div class="container grid">
+            <div class="row grid-header">
+                <div class="col-xs-1 col-sm-1 col-md-1"></div>
+                <div class="col-xs-7 col-sm-7 col-md-7 bold">@Html.DisplayNameFor(m => m.Model.Items.First().Name)</div>
+                <div class="col-xs-4 col-sm-4 col-md-4"></div>
+            </div>
+            @{
+                string returnUrl = Url.Action(model.ActionName, routeValues: new { p = model.CurrentPage, n = model.NumberOfItemsPerPage });
+                int counter = 0;
+                foreach (var item in model.Items)
+                {
+                    ++counter;
+                    <div class="row grid-row">
+                        <div class="col-xs-1 col-sm-1 col-md-1">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
+                        <div class="col-xs-11 col-sm-7 col-md-7">@Html.DisplayFor(i => item.Name)</div>
+                        <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
+                            @Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                            @Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
+                            @Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
+                        </div>
+                    </div>
+                }
             }
-        }
-    </table>
-    <footer>
-        @Html.Partial(ProcessingTools.Web.Constants.ViewNames.NavigationFootPartial)
-    </footer>
-}
+        </div>
+        <footer>
+            @Html.Partial(ProcessingTools.Web.Constants.ViewNames.NavigationFootPartial)
+        </footer>
+    }
+</section>
