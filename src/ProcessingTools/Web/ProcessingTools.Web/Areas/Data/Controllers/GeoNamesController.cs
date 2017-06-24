@@ -21,6 +21,7 @@
     public class GeoNamesController : BaseMvcController
     {
         public const string ControllerName = "GeoNames";
+        public const string AreaName = AreaNames.Data;
         public const string IndexActionName = RouteValues.IndexActionName;
         public const string DetailsActionName = nameof(GeoNamesController.Details);
         public const string CreateActionName = nameof(GeoNamesController.Create);
@@ -60,9 +61,17 @@
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
             var items = data.Select(this.mapper.Map<GeoNameViewModel>).ToArray();
 
-            var viewModel = new ListWithPagingViewModel<GeoNameViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var model = new ListWithPagingViewModel<GeoNameViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
+            var viewModel = new GeoNamesIndexPageViewModel
+            {
+                Model = model,
+                PageTitle = Strings.IndexPageTitle
+            };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            this.ViewData[ContextKeys.AreaName] = AreaName;
+            this.ViewData[ContextKeys.ControllerName] = ControllerName;
+            this.ViewData[ContextKeys.ActionName] = IndexActionName;
+            this.ViewData[ContextKeys.BackActionName] = IndexActionName;
             return this.View(IndexActionName, viewModel);
         }
 
@@ -88,7 +97,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DetailsActionName, viewModel);
         }
 
@@ -103,7 +111,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -134,7 +141,6 @@
                 ReturnUrl = returnUrl
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -160,7 +166,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -190,7 +195,6 @@
                 ReturnUrl = returnUrl
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(EditActionName, viewModel);
         }
 
@@ -216,7 +220,6 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(DeleteActionName, viewModel);
         }
 

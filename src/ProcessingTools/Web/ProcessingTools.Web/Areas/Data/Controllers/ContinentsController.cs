@@ -106,13 +106,11 @@
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
 
             long numberOfItems = await this.service.SelectCountAsync(null);
-
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IContinent.Name), SortOrder.Ascending);
-
             var items = data.Select(this.mapper.Map<ContinentViewModel>).ToArray();
 
             var model = new ListWithPagingViewModel<ContinentViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
-            var viewModel = new ContinentIndexPageViewModel
+            var viewModel = new ContinentsIndexPageViewModel
             {
                 Model = model,
                 PageTitle = Strings.IndexPageTitle

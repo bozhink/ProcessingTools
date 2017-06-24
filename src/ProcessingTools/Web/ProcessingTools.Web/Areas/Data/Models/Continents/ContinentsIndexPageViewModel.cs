@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.ViewModels;
     using ProcessingTools.Models.ViewModels;
 
-    public class ContinentIndexPageViewModel : IPageViewModel<ListWithPagingViewModel<ContinentViewModel>>
+    public class ContinentsIndexPageViewModel : IPageViewModel<ListWithPagingViewModel<ContinentViewModel>>
     {
         public ListWithPagingViewModel<ContinentViewModel> Model { get; set; }
 

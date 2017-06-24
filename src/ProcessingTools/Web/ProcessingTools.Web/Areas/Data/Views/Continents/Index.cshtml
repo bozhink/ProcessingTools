@@ -1,31 +1,34 @@
 ﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings
-@model ProcessingTools.Web.Areas.Data.Models.Continents.ContinentIndexPageViewModel
+@model ProcessingTools.Web.Areas.Data.Models.Continents.ContinentsIndexPageViewModel
+
 @{
-    this.ViewBag.Title = Model.PageTitle;
+    ViewBag.Title = Model.PageTitle;
+    var model = Model.Model;
 }
+
 <section role="main">
     <header>
         <h2>@Model.PageHeading</h2>
     </header>
     <p>@Html.ActionLink(Strings.CreateActionLinkText, ContinentsController.CreateActionName)</p>
-    @if (Model.Model.Items.Count() > 0)
+    @if (model.Items.Count() > 0)
     {
         <div class="container grid">
             <div class="row grid-header">
                 <div class="hidden-xs col-sm-1 col-md-1"></div>
-                <div class="col-xs-6 col-sm-4 col-md-4"><strong>@Html.DisplayNameFor(m => m.Model.Items.First().Name)</strong></div>
-                <div class="col-xs-6 col-sm-7 col-md-7"><strong>@Html.DisplayNameFor(m => m.Model.Items.First().NumberOfCountries)</strong></div>
+                <div class="col-xs-6 col-sm-4 col-md-4 bold">@Html.DisplayNameFor(m => m.Model.Items.First().Name)</div>
+                <div class="col-xs-6 col-sm-7 col-md-7 bold">@Html.DisplayNameFor(m => m.Model.Items.First().NumberOfCountries)</div>
             </div>
             @{
-                string returnUrl = Url.Action(Model.Model.ActionName, routeValues: new { p = Model.Model.CurrentPage, n = Model.Model.NumberOfItemsPerPage });
+                string returnUrl = Url.Action(model.ActionName, routeValues: new { p = model.CurrentPage, n = model.NumberOfItemsPerPage });
                 int counter = 0;
-                foreach (var item in Model.Model.Items)
+                foreach (var item in model.Items)
                 {
                     ++counter;
                     <div class="row grid-row">
-                        <div class="hidden-xs col-sm-1 col-md-1">@(Model.Model.CurrentPage * Model.Model.NumberOfItemsPerPage + counter)</div>
-                        <div class="col-xs-6 col-sm-4 col-md-4">@Html.DisplayFor(modelItem => item.Name)</div>
-                        <div class="col-xs-6 col-sm-3 col-md-3">@Html.DisplayFor(modelItem => item.NumberOfCountries)</div>
+                        <div class="hidden-xs col-sm-1 col-md-1">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
+                        <div class="col-xs-6 col-sm-4 col-md-4">@Html.DisplayFor(i => item.Name)</div>
+                        <div class="col-xs-6 col-sm-3 col-md-3">@Html.DisplayFor(i => item.NumberOfCountries)</div>
                         <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
                             @Html.ActionLink(Strings.EditActionLinkText, ContinentsController.EditActionName, new { id = item.Id, returnUrl = returnUrl }) |
                             @Html.ActionLink(Strings.DetailsActionLinkText, ContinentsController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl }) |
