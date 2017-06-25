@@ -31,7 +31,9 @@
                         <ul class="navigation">
                             <li>@Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl })</li>
                             <li>@Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl })</li>
-                            <li>@Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                            <li>@Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })
+                                @*<a href="javascript:void(0);" data-toggle="modal" data-target="#deleteModal" data-content="@item.Name">@Strings.DeleteActionLinkText</a>*@
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -42,3 +44,24 @@
         </footer>
     }
 </section>
+@*<aside>
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.CreateModalPartial)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DeleteModalPartial)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DetailsModalPartial)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial)
+</aside>
+
+
+@section Scripts
+{
+<script>
+    $('#deleteModal')/*.on('shown.bs.modal', function () {
+      $('#myInput').focus()
+    }))*/.on('show.bs.modal', function (event) {
+         var button = $(event.relatedTarget),
+             content = button.data('content'),
+             modal = $(this);
+         modal.find('.modal-body .deleteModal-content').html(content);
+})
+</script>
+}*@

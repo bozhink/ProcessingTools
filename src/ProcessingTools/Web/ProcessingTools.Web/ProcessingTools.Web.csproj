@@ -709,6 +709,22 @@
     <Content Include="Areas\Data\Views\Continents\Partials\_ViewCommonData.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Partials\_ViewCountries.cshtml" />
     <Content Include="Content\Styles\site.less" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_CreateModal.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_EditModal.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_DeleteModal.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_DetailsModal.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Create.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Edit.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Delete.cshtml" />
+    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Details.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_Create.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_CreateModal.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_Delete.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_DeleteModal.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_Details.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_DetailsModal.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_Edit.cshtml" />
+    <Content Include="Areas\Data\Views\GeoNames\Partials\_EditModal.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
