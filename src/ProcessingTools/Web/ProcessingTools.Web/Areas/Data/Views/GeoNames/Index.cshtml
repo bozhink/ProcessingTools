@@ -13,30 +13,28 @@
     <p>@Html.ActionLink(Strings.CreateActionLinkText, GeoNamesController.CreateActionName)</p>
     @if (model.Items.Count() > 0)
     {
+        string returnUrl = Url.Action(model.ActionName, routeValues: new { p = model.CurrentPage, n = model.NumberOfItemsPerPage });
+        int counter = 0;
         <div class="container grid">
             <div class="row grid-header">
-                <div class="col-xs-1 col-sm-1 col-md-1"></div>
-                <div class="col-xs-7 col-sm-7 col-md-7 bold">@Html.DisplayNameFor(m => m.Model.Items.First().Name)</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 counter">#</div>
+                <div class="col-xs-7 col-sm-7 col-md-7">@Html.DisplayNameFor(m => m.Model.Items.First().Name)</div>
                 <div class="col-xs-4 col-sm-4 col-md-4"></div>
             </div>
-            @{
-                string returnUrl = Url.Action(model.ActionName, routeValues: new { p = model.CurrentPage, n = model.NumberOfItemsPerPage });
-                int counter = 0;
-                foreach (var item in model.Items)
-                {
-                    ++counter;
-                    <div class="row grid-row">
-                        <div class="col-xs-1 col-sm-1 col-md-1">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
-                        <div class="col-xs-11 col-sm-7 col-md-7">@Html.DisplayFor(i => item.Name)</div>
-                        <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
-                            <ul class="navigation">
-                                <li>@Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl })</li>
-                                <li>@Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl })</li>
-                                <li>@Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })</li>
-                            </ul>
-                        </div>
+            @foreach (var item in model.Items)
+            {
+                ++counter;
+                <div class="row grid-row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 counter">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
+                    <div class="col-xs-11 col-sm-7 col-md-7">@Html.DisplayFor(i => item.Name)</div>
+                    <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
+                        <ul class="navigation">
+                            <li>@Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                            <li>@Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                            <li>@Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                        </ul>
                     </div>
-                }
+                </div>
             }
         </div>
         <footer>

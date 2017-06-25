@@ -781,6 +781,7 @@
     <Content Include="Scripts\knockout.validation.min.js.map" />
     <Content Include="Views\Shared\Buttons\_EditButtons.cshtml" />
     <Content Include="Views\Shared\Partials\_NavigationFoot.cshtml" />
+    <Content Include="Views\Shared\Partials\_HelpMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

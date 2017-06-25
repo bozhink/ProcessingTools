@@ -1,0 +1,34 @@
+﻿@using ProcessingTools.Web.Constants
+@using ProcessingTools.Web.Controllers
+@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Strings.HelpActionLinkTitle <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink(
+                    linkText: Strings.HelpActionLinkTitle,
+                    actionName: RouteValues.HelpActionName,
+                    routeValues: null,
+                    htmlAttributes: new { target = "_blank" })
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+                @Html.ActionLink(
+                    linkText: Strings.ContactActionLinkTitle,
+                    actionName: HomeController.ContactActionName,
+                    controllerName: HomeController.ControllerName,
+                    routeValues: new { area = AreaNames.DefaultArea },
+                    htmlAttributes: null)
+            </li>
+            <li>
+                @Html.ActionLink(
+                    linkText: Strings.AboutActionLinkTitle,
+                    actionName: HomeController.AboutActionName,
+                    controllerName: HomeController.ControllerName,
+                    routeValues: new { area = AreaNames.DefaultArea },
+                    htmlAttributes: null)
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -11,6 +11,7 @@
         public const string EditCommonDataPartial = "Partials/_EditCommonData";
         public const string EditSynonymsPartial = "_EditSynonyms";
         public const string Error = "Error";
+        public const string HelpMenuPartial = "~/Views/Shared/Partials/_HelpMenu.cshtml";
         public const string Lockout = "Lockout";
         public const string NavigationFootPartial = "~/Views/Shared/Partials/_NavigationFoot.cshtml";
         public const string SharedEditButtonsPartial = "~/Views/Shared/Buttons/_EditButtons.cshtml";

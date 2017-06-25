@@ -58,7 +58,24 @@ section[role=main] footer {
   margin-top: 3.0rem;
   border-top: 1px solid rgba(0, 0, 0, 0.075);
 }
+.grid .counter {
+  margin-right: 1rem;
+  width: 1rem;
+  max-width: 2rem;
+  text-align: right;
+  font-weight: 600;
+}
+.grid .grid-check {
+  display: none !important;
+}
+.grid .grid-check:checked + .grid-row {
+  background-color: aqua;
+}
 .grid > .grid-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
   font-size: 1.5rem;
   border-bottom: 1px solid #e8e8e8;
   padding: 5px 0 5px 0;
@@ -70,9 +87,15 @@ section[role=main] footer {
   background-color: #eee;
 }
 .grid > .grid-row > div:last-child {
-  text-align: right;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .grid > .grid-header {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
   font-size: 1.6rem;
   font-weight: bold;
   border-bottom: 2px solid #dddddd;

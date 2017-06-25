@@ -15,9 +15,9 @@
     {
         <div class="container grid">
             <div class="row grid-header">
-                <div class="hidden-xs col-sm-1 col-md-1"></div>
-                <div class="col-xs-6 col-sm-4 col-md-4 bold">@Html.DisplayNameFor(m => m.Model.Items.First().Name)</div>
-                <div class="col-xs-6 col-sm-7 col-md-7 bold">@Html.DisplayNameFor(m => m.Model.Items.First().NumberOfCountries)</div>
+                <div class="hidden-xs col-sm-1 col-md-1 counter">#</div>
+                <div class="col-xs-6 col-sm-4 col-md-4">@Html.DisplayNameFor(m => m.Model.Items.First().Name)</div>
+                <div class="col-xs-6 col-sm-7 col-md-7">@Html.DisplayNameFor(m => m.Model.Items.First().NumberOfCountries)</div>
             </div>
             @{
                 string returnUrl = Url.Action(model.ActionName, routeValues: new { p = model.CurrentPage, n = model.NumberOfItemsPerPage });
@@ -26,7 +26,7 @@
                 {
                     ++counter;
                     <div class="row grid-row">
-                        <div class="hidden-xs col-sm-1 col-md-1">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
+                        <div class="hidden-xs col-sm-1 col-md-1 counter">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
                         <div class="col-xs-6 col-sm-4 col-md-4">@Html.DisplayFor(i => item.Name)</div>
                         <div class="col-xs-6 col-sm-3 col-md-3">@Html.DisplayFor(i => item.NumberOfCountries)</div>
                         <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
