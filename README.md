@@ -1,6 +1,9 @@
 # ProcessingTools
 Tools for layout editing and bio-semantic tagging
 
+[![Build status](https://ci.appveyor.com/api/projects/status/17d0o7pu3hjtqabd?svg=true)](https://ci.appveyor.com/project/bozhink/processingtools)
+[![Build status](https://ci.appveyor.com/api/projects/status/17d0o7pu3hjtqabd/branch/master?svg=true)](https://ci.appveyor.com/project/bozhink/processingtools/branch/master)
+
 ## License
 
 This library is licensed under [GNU General Public License v3](https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)) (full terms and conditions [here](https://www.gnu.org/licenses/gpl.html)). Basically:
