@@ -7,6 +7,7 @@
         public const string BackActionName = "BackActionName";
         public const string ControllerName = "ControllerName";
         public const string ErrorMessage = "ErrorMessage";
+        public const string Id = "id";
         public const string ReturnUrl = "ReturnUrl";
         public const string Url = "url";
     }

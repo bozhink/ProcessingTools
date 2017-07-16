@@ -11,8 +11,14 @@
                 <div class="deleteModal-content"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger">@Strings.DeleteButtonText</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.CancelButtonText</button>
+                @using (Html.BeginForm(GeoEpithetsController.DeleteActionName, GeoEpithetsController.ControllerName))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.Id)
+                    @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.ReturnUrl, Request.Url)
+                    <input type="submit" class="btn btn-danger" value="@Strings.DeleteButtonText" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.CancelButtonText</button>
+                }
             </div>
         </div>
     </div>

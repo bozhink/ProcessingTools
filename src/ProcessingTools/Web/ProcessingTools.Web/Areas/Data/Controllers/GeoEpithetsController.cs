@@ -26,7 +26,7 @@
         public const string DetailsActionName = nameof(GeoEpithetsController.Details);
         public const string CreateActionName = nameof(GeoEpithetsController.Create);
         public const string EditActionName = nameof(GeoEpithetsController.Edit);
-        public const string DeleteActionName = nameof(GeoEpithetsController.Delete);
+        public const string DeleteActionName = ActionNames.Delete;
 
         private readonly IGeoEpithetsDataService service;
         private readonly IMapper mapper;
@@ -192,31 +192,6 @@
             };
 
             return this.View(EditActionName, viewModel);
-        }
-
-        // GET: Data/GeoNames/Delete/5
-        [HttpGet, ActionName(DeleteActionName)]
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var model = await this.service.GetByIdAsync(id);
-            if (model == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var viewModel = new GeoEpithetPageViewModel
-            {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
-                PageTitle = Strings.DeletePageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(DeleteActionName, viewModel);
         }
 
         // POST: Data/GeoNames/Delete/5
