@@ -3,6 +3,7 @@ Tools for layout editing and bio-semantic tagging
 
 [![Build status](https://ci.appveyor.com/api/projects/status/17d0o7pu3hjtqabd?svg=true)](https://ci.appveyor.com/project/bozhink/processingtools)
 [![Build status](https://ci.appveyor.com/api/projects/status/17d0o7pu3hjtqabd/branch/master?svg=true)](https://ci.appveyor.com/project/bozhink/processingtools/branch/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/434c239404554d0c8266062be1bc8b27)](https://www.codacy.com/app/bozhink/ProcessingTools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bozhink/ProcessingTools&amp;utm_campaign=Badge_Grade)
 
 ## License
 
