@@ -694,7 +694,6 @@
     <Content Include="Areas\Data\Views\GeoNames\Details.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Edit.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Index.cshtml" />
-    <Content Include="Areas\Data\Views\GeoEpithets\Details.cshtml" />
     <Content Include="Areas\Data\Views\GeoEpithets\Edit.cshtml" />
     <Content Include="Areas\Data\Views\GeoEpithets\Index.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Delete.cshtml" />
@@ -716,8 +715,6 @@
     <Content Include="Areas\Data\Views\GeoEpithets\Partials\_DetailsModal.cshtml" />
     <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Create.cshtml" />
     <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Edit.cshtml" />
-    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Delete.cshtml" />
-    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Details.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Partials\_Create.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Partials\_CreateModal.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Partials\_Delete.cshtml" />

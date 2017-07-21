@@ -23,7 +23,6 @@
         public const string ControllerName = "GeoEpithets";
         public const string AreaName = AreaNames.Data;
         public const string IndexActionName = RouteValues.IndexActionName;
-        public const string DetailsActionName = nameof(GeoEpithetsController.Details);
         public const string CreateActionName = nameof(GeoEpithetsController.Create);
         public const string EditActionName = nameof(GeoEpithetsController.Edit);
         public const string DeleteActionName = ActionNames.Delete;
@@ -69,31 +68,6 @@
             };
 
             return this.View(IndexActionName, viewModel);
-        }
-
-        // GET: Data/GeoNames/Details/5
-        [HttpGet, ActionName(DetailsActionName)]
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var model = await this.service.GetByIdAsync(id);
-            if (model == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var viewModel = new GeoEpithetPageViewModel
-            {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
-                PageTitle = Strings.DetailsPageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(DetailsActionName, viewModel);
         }
 
         // GET: Data/GeoNames/Create
