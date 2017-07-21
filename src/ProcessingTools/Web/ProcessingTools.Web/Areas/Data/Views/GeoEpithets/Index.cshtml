@@ -30,7 +30,7 @@
                     <div class="col-xs-11 col-sm-7 col-md-7 data-content" data-id="@item.Id">@Html.DisplayFor(i => item.Name)</div>
                     <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
                         <ul class="navigation">
-                            <li>@Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#editModal">@Strings.EditActionLinkText</a></li>
                             <li><a href="javascript:void(0);" data-toggle="modal" data-target="#detailsModal">@Strings.DetailsActionLinkText</a></li>
                             <li><a href="javascript:void(0);" data-toggle="modal" data-target="#deleteModal">@Strings.DeleteActionLinkText</a></li>
                         </ul>
@@ -47,7 +47,7 @@
     @Html.Partial(ProcessingTools.Web.Constants.ViewNames.CreateModalPartial)
     @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DeleteModalPartial)
     @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DetailsModalPartial, new GeoEpithetViewModel())
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial, new GeoEpithetViewModel())
 </aside>
 
 @section Scripts

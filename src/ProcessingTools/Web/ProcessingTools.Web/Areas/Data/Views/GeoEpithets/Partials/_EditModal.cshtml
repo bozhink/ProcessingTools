@@ -1,1 +1,36 @@
-﻿
+﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Views_Strings
+@model ProcessingTools.Web.Areas.Data.Models.GeoEpithets.GeoEpithetViewModel
+<div class="modal fade" tabindex="-1" role="dialog" id="editModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">@Strings.EditPageTitle</h4>
+            </div>
+            @using (Html.BeginForm(GeoEpithetsController.EditActionName, GeoEpithetsController.ControllerName))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.Id)
+                @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.ReturnUrl, Request.Url)
+                <div class="modal-body">
+                    <div class="editModal-content form-horizontal">
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-10">
+                                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(m => m.Name, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="@Strings.SaveButtonText" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.CancelButtonText</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

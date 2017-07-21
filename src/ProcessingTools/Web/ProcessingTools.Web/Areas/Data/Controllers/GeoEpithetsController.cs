@@ -114,31 +114,6 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Edit/5
-        [HttpGet, ActionName(EditActionName)]
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var model = await this.service.GetByIdAsync(id);
-            if (model == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var viewModel = new GeoEpithetPageViewModel
-            {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
-                PageTitle = Strings.EditPageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(EditActionName, viewModel);
-        }
-
         // POST: Data/GeoNames/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
