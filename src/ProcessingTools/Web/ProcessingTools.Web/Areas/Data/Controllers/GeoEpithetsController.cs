@@ -3,7 +3,6 @@
     using System;
     using System.Data;
     using System.Linq;
-    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AutoMapper;
@@ -70,48 +69,23 @@
             return this.View(IndexActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Create
-        [HttpGet, ActionName(CreateActionName)]
-        public ActionResult Create()
-        {
-            var viewModel = new GeoEpithetPageViewModel
-            {
-                Model = new GeoEpithetViewModel { Id = -1 },
-                PageTitle = Strings.CreatePageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(EditActionName, viewModel);
-        }
-
         // POST: Data/GeoNames/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Name")] GeoEpithetRequestModel model)
         {
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-
             if (this.ModelState.IsValid)
             {
                 await this.service.InsertAsync(model);
-
-                if (!string.IsNullOrWhiteSpace(returnUrl))
-                {
-                    return this.Redirect(returnUrl);
-                }
-
-                return this.RedirectToAction(IndexActionName);
             }
 
-            model.Id = -1;
-            var viewModel = new GeoEpithetPageViewModel
+            string returnUrl = this.Request[ContextKeys.ReturnUrl];
+            if (!string.IsNullOrWhiteSpace(returnUrl))
             {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
-                PageTitle = Strings.CreatePageTitle,
-                ReturnUrl = returnUrl
-            };
+                return this.Redirect(returnUrl);
+            }
 
-            return this.View(EditActionName, viewModel);
+            return this.RedirectToAction(IndexActionName);
         }
 
         // POST: Data/GeoNames/Edit/5
@@ -119,28 +93,18 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoEpithetRequestModel model)
         {
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-
             if (this.ModelState.IsValid)
             {
                 await this.service.UpdateAsync(model);
-
-                if (!string.IsNullOrWhiteSpace(returnUrl))
-                {
-                    return this.Redirect(returnUrl);
-                }
-
-                return this.RedirectToAction(IndexActionName);
             }
 
-            var viewModel = new GeoEpithetPageViewModel
+            string returnUrl = this.Request[ContextKeys.ReturnUrl];
+            if (!string.IsNullOrWhiteSpace(returnUrl))
             {
-                Model = this.mapper.Map<GeoEpithetViewModel>(model),
-                PageTitle = Strings.EditPageTitle,
-                ReturnUrl = returnUrl
-            };
+                return this.Redirect(returnUrl);
+            }
 
-            return this.View(EditActionName, viewModel);
+            return this.RedirectToAction(IndexActionName);
         }
 
         // POST: Data/GeoNames/Delete/5

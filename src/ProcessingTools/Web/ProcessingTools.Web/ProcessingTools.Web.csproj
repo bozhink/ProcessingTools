@@ -712,7 +712,6 @@
     <Content Include="Areas\Data\Views\GeoEpithets\Partials\_EditModal.cshtml" />
     <Content Include="Areas\Data\Views\GeoEpithets\Partials\_DeleteModal.cshtml" />
     <Content Include="Areas\Data\Views\GeoEpithets\Partials\_DetailsModal.cshtml" />
-    <Content Include="Areas\Data\Views\GeoEpithets\Partials\_Create.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Partials\_Create.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Partials\_CreateModal.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Partials\_Delete.cshtml" />

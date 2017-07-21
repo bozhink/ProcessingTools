@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Areas.Data.Resources.GeoEpithets {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create new Geo Epithet.
+        ///   Looks up a localized string similar to Add new Geo Epithets.
         /// </summary>
         public static string CreateActionLinkText {
             get {
@@ -97,7 +97,7 @@ namespace ProcessingTools.Web.Areas.Data.Resources.GeoEpithets {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create new Geo Epithet.
+        ///   Looks up a localized string similar to Add new Geo Epithets.
         /// </summary>
         public static string CreatePageTitle {
             get {

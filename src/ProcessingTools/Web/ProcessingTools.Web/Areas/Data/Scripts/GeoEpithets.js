@@ -27,4 +27,11 @@
         $modal.find('input[name=Name]').val($data.html());
     });
 
+    $('#createModal').on('show.bs.modal', function (event) {
+        var $button = $(event.relatedTarget),
+            $modal = $(this);
+
+        $modal.find('textarea').val('');
+    });
+
 }(window, window.$))

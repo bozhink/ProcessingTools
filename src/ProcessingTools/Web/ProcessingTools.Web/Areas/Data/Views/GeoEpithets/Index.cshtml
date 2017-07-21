@@ -1,17 +1,19 @@
 ﻿@using ProcessingTools.Web.Areas.Data.Models.GeoEpithets
+@using Bundles = ProcessingTools.Constants.Web.BundleNames
 @using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Views_Strings
 @model GeoEpithetsIndexPageViewModel
 
 @{
     ViewBag.Title = Strings.IndexPageTitle;
     var model = Model.Model;
+    var modalModel = new GeoEpithetViewModel();
 }
 
 <section role="main">
     <header>
         <h2>@Model.PageHeading</h2>
     </header>
-    <p>@Html.ActionLink(Strings.CreateActionLinkText, GeoEpithetsController.CreateActionName)</p>
+    <p><a href="javascript:void(0);" data-toggle="modal" data-target="#createModal">@Strings.CreateActionLinkText</a></p>
     @if (model.Items.Count() > 0)
     {
         string returnUrl = Url.Action(model.ActionName, routeValues: new { p = model.CurrentPage, n = model.NumberOfItemsPerPage });
@@ -44,13 +46,14 @@
     }
 </section>
 <aside>
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.CreateModalPartial)
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DeleteModalPartial)
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DetailsModalPartial, new GeoEpithetViewModel())
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial, new GeoEpithetViewModel())
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.CreateModalPartial, modalModel)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DeleteModalPartial, modalModel)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DetailsModalPartial, modalModel)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial, modalModel)
 </aside>
 
 @section Scripts
 {
+    @Scripts.Render(Bundles.JQueryValidationScripts)
     <script src="~/Areas/Data/Scripts/GeoEpithets.js"></script>
 }

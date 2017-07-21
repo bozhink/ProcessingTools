@@ -124,13 +124,13 @@
     <value>Отказ</value>
   </data>
   <data name="CreateActionLinkText" xml:space="preserve">
-    <value>Създаване на нов географски епитет</value>
+    <value>Добавяне на нови географски епитети</value>
   </data>
   <data name="CreateButtonText" xml:space="preserve">
     <value>Създаване</value>
   </data>
   <data name="CreatePageTitle" xml:space="preserve">
-    <value>Нов географски епитет</value>
+    <value>Добавяне на нови географски епитети</value>
   </data>
   <data name="DeleteActionLinkText" xml:space="preserve">
     <value>Изтриване</value>
