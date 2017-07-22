@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AutoMapper;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Geo;
@@ -45,7 +46,6 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        // GET: Data/GeoNames
         [HttpGet, ActionName(IndexActionName)]
         public async Task<ActionResult> Index(int? p, int? n)
         {
@@ -56,7 +56,16 @@
             }
 
             int currentPage = p ?? PagingConstants.DefaultPageNumber;
+            if (currentPage < PagingConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            if (numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
 
             long numberOfItems = await this.service.SelectCountAsync(null);
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
@@ -72,7 +81,6 @@
             return this.View(IndexActionName, viewModel);
         }
 
-        // POST: Data/GeoNames/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = nameof(GeoEpithetsRequestModel.Names))] GeoEpithetsRequestModel model)
@@ -98,7 +106,6 @@
             return this.RedirectToAction(IndexActionName);
         }
 
-        // POST: Data/GeoNames/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = nameof(GeoEpithetRequestModel.Id) + "," + nameof(GeoEpithetRequestModel.Name))] GeoEpithetRequestModel model)
@@ -124,7 +131,6 @@
             return this.RedirectToAction(IndexActionName);
         }
 
-        // POST: Data/GeoNames/Delete/5
         [HttpPost, ActionName(DeleteActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

@@ -9,5 +9,6 @@
         public const int DefaultSkip = 0;
         public const int DefaultTake = 10;
         public const int MaximalItemsPerPageAllowed = 100;
+        public const int MinimalPageNumber = 0;
     }
 }
