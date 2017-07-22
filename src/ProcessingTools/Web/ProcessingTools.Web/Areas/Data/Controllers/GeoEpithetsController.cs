@@ -72,11 +72,11 @@
         // POST: Data/GeoNames/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name")] GeoEpithetRequestModel model)
+        public async Task<ActionResult> Create([Bind(Include = nameof(GeoEpithetsRequestModel.Names))] GeoEpithetsRequestModel model)
         {
             if (this.ModelState.IsValid)
             {
-                await this.service.InsertAsync(model);
+                await this.service.InsertAsync(model.ToArray());
             }
 
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -91,7 +91,7 @@
         // POST: Data/GeoNames/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoEpithetRequestModel model)
+        public async Task<ActionResult> Edit([Bind(Include = nameof(GeoEpithetRequestModel.Id) + "," + nameof(GeoEpithetRequestModel.Name))] GeoEpithetRequestModel model)
         {
             if (this.ModelState.IsValid)
             {

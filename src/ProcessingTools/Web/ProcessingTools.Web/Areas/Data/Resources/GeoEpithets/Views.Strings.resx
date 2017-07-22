@@ -132,6 +132,9 @@
   <data name="CreatePageTitle" xml:space="preserve">
     <value>Add new Geo Epithets</value>
   </data>
+  <data name="CreateTextPlaceholder" xml:space="preserve">
+    <value>add new geo epithets - one per row</value>
+  </data>
   <data name="DeleteActionLinkText" xml:space="preserve">
     <value>Delete</value>
   </data>

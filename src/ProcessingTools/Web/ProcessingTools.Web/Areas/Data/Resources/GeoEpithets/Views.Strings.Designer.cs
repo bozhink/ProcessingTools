@@ -106,6 +106,15 @@ namespace ProcessingTools.Web.Areas.Data.Resources.GeoEpithets {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add new geo epithets - one per row.
+        /// </summary>
+        public static string CreateTextPlaceholder {
+            get {
+                return ResourceManager.GetString("CreateTextPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteActionLinkText {

@@ -1,5 +1,5 @@
 ﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Views_Strings
-@model ProcessingTools.Web.Areas.Data.Models.GeoEpithets.GeoEpithetViewModel
+@model ProcessingTools.Web.Areas.Data.Models.GeoEpithets.GeoEpithetsViewModel
 <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -13,10 +13,7 @@
                 @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.ReturnUrl, Request.Url)
                 <div class="modal-body">
                     <div class="createModal-content form-horizontal">
-                        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-                        @Html.TextAreaFor(m => m.Name, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Name, string.Empty, new { @class = "text-danger" })
-                        <textarea cols="20" rows="15" class="form-control"></textarea>
+                        @Html.TextAreaFor(m => m.Names, htmlAttributes: new { @class = "form-control full-width", placeholder = Strings.CreateTextPlaceholder, rows = "10" })
                     </div>
                 </div>
                 <div class="modal-footer">

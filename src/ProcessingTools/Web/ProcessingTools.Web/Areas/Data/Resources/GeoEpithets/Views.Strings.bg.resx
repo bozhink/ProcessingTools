@@ -132,6 +132,9 @@
   <data name="CreatePageTitle" xml:space="preserve">
     <value>Добавяне на нови географски епитети</value>
   </data>
+  <data name="CreateTextPlaceholder" xml:space="preserve">
+    <value>добавете нови географски епитети (по един на ред)</value>
+  </data>
   <data name="DeleteActionLinkText" xml:space="preserve">
     <value>Изтриване</value>
   </data>

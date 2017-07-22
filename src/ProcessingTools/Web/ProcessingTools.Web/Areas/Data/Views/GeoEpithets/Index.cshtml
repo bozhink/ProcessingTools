@@ -6,7 +6,6 @@
 @{
     ViewBag.Title = Strings.IndexPageTitle;
     var model = Model.Model;
-    var modalModel = new GeoEpithetViewModel();
 }
 
 <section role="main">
@@ -46,10 +45,10 @@
     }
 </section>
 <aside>
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.CreateModalPartial, modalModel)
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DeleteModalPartial, modalModel)
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DetailsModalPartial, modalModel)
-    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial, modalModel)
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.CreateModalPartial, new GeoEpithetsViewModel())
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DeleteModalPartial, new GeoEpithetViewModel())
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DetailsModalPartial, new GeoEpithetViewModel())
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial, new GeoEpithetViewModel())
 </aside>
 
 @section Scripts

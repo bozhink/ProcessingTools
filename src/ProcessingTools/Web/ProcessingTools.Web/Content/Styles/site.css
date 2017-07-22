@@ -24,6 +24,9 @@ select,
 textarea {
   max-width: 280px;
 }
+.full-width {
+  max-width: 100%;
+}
 .edit-buttons {
   margin: 0 0 2rem 0;
 }
