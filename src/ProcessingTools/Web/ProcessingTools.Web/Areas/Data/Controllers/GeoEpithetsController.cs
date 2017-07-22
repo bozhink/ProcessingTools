@@ -7,6 +7,7 @@
     using System.Web.Mvc;
     using AutoMapper;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
@@ -27,11 +28,13 @@
         public const string DeleteActionName = ActionNames.Delete;
 
         private readonly IGeoEpithetsDataService service;
+        private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        public GeoEpithetsController(IGeoEpithetsDataService service)
+        public GeoEpithetsController(IGeoEpithetsDataService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger;
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -74,15 +77,22 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = nameof(GeoEpithetsRequestModel.Names))] GeoEpithetsRequestModel model)
         {
-            if (this.ModelState.IsValid)
+            try
             {
-                await this.service.InsertAsync(model.ToArray());
-            }
+                if (this.ModelState.IsValid)
+                {
+                    await this.service.InsertAsync(model.ToArray());
+                }
 
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-            if (!string.IsNullOrWhiteSpace(returnUrl))
+                string returnUrl = this.Request[ContextKeys.ReturnUrl];
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return this.Redirect(returnUrl);
+                }
+            }
+            catch (Exception ex)
             {
-                return this.Redirect(returnUrl);
+                this.logger?.Log(ex);
             }
 
             return this.RedirectToAction(IndexActionName);
@@ -93,15 +103,22 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = nameof(GeoEpithetRequestModel.Id) + "," + nameof(GeoEpithetRequestModel.Name))] GeoEpithetRequestModel model)
         {
-            if (this.ModelState.IsValid)
+            try
             {
-                await this.service.UpdateAsync(model);
-            }
+                if (this.ModelState.IsValid)
+                {
+                    await this.service.UpdateAsync(model);
+                }
 
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-            if (!string.IsNullOrWhiteSpace(returnUrl))
+                string returnUrl = this.Request[ContextKeys.ReturnUrl];
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return this.Redirect(returnUrl);
+                }
+            }
+            catch (Exception ex)
             {
-                return this.Redirect(returnUrl);
+                this.logger?.Log(ex);
             }
 
             return this.RedirectToAction(IndexActionName);
@@ -112,12 +129,19 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await this.service.DeleteAsync(ids: id);
-
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-            if (!string.IsNullOrWhiteSpace(returnUrl))
+            try
             {
-                return this.Redirect(returnUrl);
+                await this.service.DeleteAsync(ids: id);
+
+                string returnUrl = this.Request[ContextKeys.ReturnUrl];
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return this.Redirect(returnUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(ex);
             }
 
             return this.RedirectToAction(IndexActionName);
