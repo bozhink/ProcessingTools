@@ -3,12 +3,12 @@
     using System;
     using System.Data;
     using System.Linq;
-    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AutoMapper;
     using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
@@ -24,17 +24,18 @@
         public const string AreaName = AreaNames.Data;
         public const string ControllerName = "GeoNames";
         public const string IndexActionName = RouteValues.IndexActionName;
-        public const string DetailsActionName = nameof(GeoNamesController.Details);
-        public const string CreateActionName = nameof(GeoNamesController.Create);
-        public const string EditActionName = nameof(GeoNamesController.Edit);
-        public const string DeleteActionName = nameof(GeoNamesController.Delete);
+        public const string CreateActionName = ActionNames.Create;
+        public const string EditActionName = ActionNames.Edit;
+        public const string DeleteActionName = ActionNames.Delete;
 
         private readonly IGeoNamesDataService service;
+        private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        public GeoNamesController(IGeoNamesDataService service)
+        public GeoNamesController(IGeoNamesDataService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger;
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -61,7 +62,7 @@
             }
 
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
-            if (numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            if (numberOfItemsPerPage < PagingConstants.MinimalItemsPerPage || numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidItemsPerPageException();
             }
@@ -84,158 +85,73 @@
             return this.View(IndexActionName, viewModel);
         }
 
-        [HttpGet, ActionName(DetailsActionName)]
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var model = await this.service.GetByIdAsync(id);
-            if (model == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var viewModel = new GeoNamePageViewModel
-            {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = Strings.DetailsPageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(DetailsActionName, viewModel);
-        }
-
-        [HttpGet, ActionName(CreateActionName)]
-        public ActionResult Create()
-        {
-            var viewModel = new GeoNamePageViewModel
-            {
-                Model = new GeoNameViewModel { Id = -1 },
-                PageTitle = Strings.CreatePageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(EditActionName, viewModel);
-        }
-
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name")] GeoNameRequestModel model)
+        public async Task<ActionResult> Create([Bind(Include = nameof(GeoNamesRequestModel.Names))] GeoNamesRequestModel model)
         {
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-
-            if (this.ModelState.IsValid)
+            try
             {
-                await this.service.InsertAsync(model);
+                if (this.ModelState.IsValid)
+                {
+                    await this.service.InsertAsync(model.ToArray());
+                }
 
+                string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
                     return this.Redirect(returnUrl);
                 }
-
-                return this.RedirectToAction(IndexActionName);
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(ex, ControllerName);
             }
 
-            model.Id = -1;
-            var viewModel = new GeoNamePageViewModel
-            {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = Strings.CreatePageTitle,
-                ReturnUrl = returnUrl
-            };
-
-            return this.View(EditActionName, viewModel);
-        }
-
-        [HttpGet, ActionName(EditActionName)]
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var model = await this.service.GetByIdAsync(id);
-            if (model == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var viewModel = new GeoNamePageViewModel
-            {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = Strings.EditPageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(EditActionName, viewModel);
+            return this.RedirectToAction(IndexActionName);
         }
 
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoNameRequestModel model)
+        public async Task<ActionResult> Edit([Bind(Include = nameof(GeoNameRequestModel.Id) + "," + nameof(GeoNameRequestModel.Name))] GeoNameRequestModel model)
         {
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-
-            if (this.ModelState.IsValid)
+            try
             {
-                await this.service.UpdateAsync(model);
+                if (this.ModelState.IsValid)
+                {
+                    await this.service.UpdateAsync(model);
+                }
 
+                string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                 {
                     return this.Redirect(returnUrl);
                 }
-
-                return this.RedirectToAction(IndexActionName);
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(ex, ControllerName);
             }
 
-            var viewModel = new GeoNamePageViewModel
-            {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = Strings.EditPageTitle,
-                ReturnUrl = returnUrl
-            };
-
-            return this.View(EditActionName, viewModel);
-        }
-
-        [HttpGet, ActionName(DeleteActionName)]
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var model = await this.service.GetByIdAsync(id);
-            if (model == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var viewModel = new GeoNamePageViewModel
-            {
-                Model = this.mapper.Map<GeoNameViewModel>(model),
-                PageTitle = Strings.DeletePageTitle,
-                ReturnUrl = this.Request[ContextKeys.ReturnUrl]
-            };
-
-            return this.View(DeleteActionName, viewModel);
+            return this.RedirectToAction(IndexActionName);
         }
 
         [HttpPost, ActionName(DeleteActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await this.service.DeleteAsync(ids: id);
-
-            string returnUrl = this.Request[ContextKeys.ReturnUrl];
-            if (!string.IsNullOrWhiteSpace(returnUrl))
+            try
             {
-                return this.Redirect(returnUrl);
+                await this.service.DeleteAsync(ids: id);
+
+                string returnUrl = this.Request[ContextKeys.ReturnUrl];
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                {
+                    return this.Redirect(returnUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(ex, ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);

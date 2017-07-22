@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">@Strings.CreatePageTitle</h4>
             </div>
-            @using (Html.BeginForm(GeoEpithetsController.CreateActionName, GeoEpithetsController.ControllerName))
+            @using (Html.BeginForm(GeoNamesController.CreateActionName, GeoNamesController.ControllerName))
             {
                 @Html.AntiForgeryToken()
                 @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.ReturnUrl, Request.Url)

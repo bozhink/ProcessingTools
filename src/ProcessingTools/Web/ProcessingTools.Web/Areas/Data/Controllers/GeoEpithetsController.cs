@@ -24,8 +24,8 @@
         public const string AreaName = AreaNames.Data;
         public const string ControllerName = "GeoEpithets";
         public const string IndexActionName = RouteValues.IndexActionName;
-        public const string CreateActionName = nameof(GeoEpithetsController.Create);
-        public const string EditActionName = nameof(GeoEpithetsController.Edit);
+        public const string CreateActionName = ActionNames.Create;
+        public const string EditActionName = ActionNames.Edit;
         public const string DeleteActionName = ActionNames.Delete;
 
         private readonly IGeoEpithetsDataService service;
@@ -62,7 +62,7 @@
             }
 
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
-            if (numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            if (numberOfItemsPerPage < PagingConstants.MinimalItemsPerPage || numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidItemsPerPageException();
             }

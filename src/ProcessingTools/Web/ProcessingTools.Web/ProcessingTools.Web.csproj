@@ -648,6 +648,7 @@
     <Compile Include="ViewModels\Shared\Route.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Data\Scripts\GeoNames.js" />
     <Content Include="Areas\Data\Scripts\GeoEpithets.js" />
     <Content Include="Content\Styles\site.css">
       <DependentUpon>site.less</DependentUpon>
@@ -695,9 +696,6 @@
     <Content Include="Areas\Journals\Views\Institutions\Index.cshtml" />
     <Content Include="Areas\Data\Views\web.config" />
     <Content Include="Areas\Data\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Data\Views\GeoNames\Delete.cshtml" />
-    <Content Include="Areas\Data\Views\GeoNames\Details.cshtml" />
-    <Content Include="Areas\Data\Views\GeoNames\Edit.cshtml" />
     <Content Include="Areas\Data\Views\GeoNames\Index.cshtml" />
     <Content Include="Areas\Data\Views\GeoEpithets\Index.cshtml" />
     <Content Include="Areas\Data\Views\Continents\Delete.cshtml" />

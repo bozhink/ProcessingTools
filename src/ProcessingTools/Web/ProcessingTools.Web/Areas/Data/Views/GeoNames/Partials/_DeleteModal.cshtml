@@ -11,7 +11,7 @@
                 <div class="deleteModal-content"></div>
             </div>
             <div class="modal-footer">
-                @using (Html.BeginForm(GeoEpithetsController.DeleteActionName, GeoEpithetsController.ControllerName))
+                @using (Html.BeginForm(GeoNamesController.DeleteActionName, GeoNamesController.ControllerName))
                 {
                     @Html.AntiForgeryToken()
                     @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.Id)

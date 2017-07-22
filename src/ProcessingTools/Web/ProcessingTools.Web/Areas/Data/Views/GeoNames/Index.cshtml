@@ -1,5 +1,7 @@
-﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoNames.Views_Strings
-@model ProcessingTools.Web.Areas.Data.Models.GeoNames.GeoNamesIndexPageViewModel
+﻿@using ProcessingTools.Web.Areas.Data.Models.GeoNames
+@using Bundles = ProcessingTools.Constants.Web.BundleNames
+@using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoNames.Views_Strings
+@model GeoNamesIndexPageViewModel
 
 @{
     ViewBag.Title = Strings.IndexPageTitle;
@@ -10,7 +12,7 @@
     <header>
         <h2>@Model.PageHeading</h2>
     </header>
-    <p>@Html.ActionLink(Strings.CreateActionLinkText, GeoNamesController.CreateActionName)</p>
+    <p><a href="javascript:void(0);" data-toggle="modal" data-target="#createModal">@Strings.CreateActionLinkText</a></p>
     @if (model.Items.Count() > 0)
     {
         string returnUrl = Url.Action(model.ActionName, routeValues: new { p = model.CurrentPage, n = model.NumberOfItemsPerPage });
@@ -26,12 +28,12 @@
                 ++counter;
                 <div class="row grid-row">
                     <div class="col-xs-1 col-sm-1 col-md-1 counter">@(model.CurrentPage * model.NumberOfItemsPerPage + counter)</div>
-                    <div class="col-xs-11 col-sm-7 col-md-7">@Html.DisplayFor(i => item.Name)</div>
+                    <div class="col-xs-11 col-sm-7 col-md-7 data-content" data-id="@item.Id">@Html.DisplayFor(i => item.Name)</div>
                     <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
                         <ul class="navigation">
-                            <li>@Html.ActionLink(Strings.EditActionLinkText, GeoNamesController.EditActionName, new { id = item.Id, returnUrl = returnUrl })</li>
-                            <li>@Html.ActionLink(Strings.DetailsActionLinkText, GeoNamesController.DetailsActionName, new { id = item.Id, returnUrl = returnUrl })</li>
-                            <li>@Html.ActionLink(Strings.DeleteActionLinkText, GeoNamesController.DeleteActionName, new { id = item.Id, returnUrl = returnUrl })</li>
+                            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#editModal">@Strings.EditActionLinkText</a></li>
+                            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#detailsModal">@Strings.DetailsActionLinkText</a></li>
+                            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#deleteModal">@Strings.DeleteActionLinkText</a></li>
                         </ul>
                     </div>
                 </div>
@@ -42,3 +44,15 @@
         </footer>
     }
 </section>
+<aside>
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.CreateModalPartial, new GeoNamesViewModel())
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DeleteModalPartial, new GeoNameViewModel())
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.DetailsModalPartial, new GeoNameViewModel())
+    @Html.Partial(ProcessingTools.Web.Constants.ViewNames.EditModalPartial, new GeoNameViewModel())
+</aside>
+
+@section Scripts
+{
+    @Scripts.Render(Bundles.JQueryValidationScripts)
+    <script src="~/Areas/Data/Scripts/GeoNames.js"></script>
+}
