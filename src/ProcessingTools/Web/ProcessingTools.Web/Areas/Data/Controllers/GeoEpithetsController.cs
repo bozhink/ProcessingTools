@@ -1,22 +1,14 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Controllers
 {
     using System;
-    using System.Data;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using AutoMapper;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Data.Models.GeoEpithets;
+    using ProcessingTools.Web.Areas.Data.Services;
     using ProcessingTools.Web.Constants;
-    using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Views_Strings;
 
     [Authorize]
     public class GeoEpithetsController : BaseMvcController
@@ -28,22 +20,13 @@
         public const string EditActionName = ActionNames.Edit;
         public const string DeleteActionName = ActionNames.Delete;
 
-        private readonly IGeoEpithetsDataService service;
+        private readonly IGeoEpithetsService service;
         private readonly ILogger logger;
-        private readonly IMapper mapper;
 
-        public GeoEpithetsController(IGeoEpithetsDataService service, ILogger logger)
+        public GeoEpithetsController(IGeoEpithetsService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger;
-
-            var mapperConfiguration = new MapperConfiguration(c =>
-            {
-                c.CreateMap<IGeoEpithet, GeoEpithetViewModel>();
-                c.CreateMap<GeoEpithetRequestModel, GeoEpithetViewModel>();
-            });
-
-            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         [HttpGet, ActionName(IndexActionName)]
@@ -56,27 +39,9 @@
             }
 
             int currentPage = p ?? PagingConstants.DefaultPageNumber;
-            if (currentPage < PagingConstants.MinimalPageNumber)
-            {
-                throw new InvalidPageNumberException();
-            }
-
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
-            if (numberOfItemsPerPage < PagingConstants.MinimalItemsPerPage || numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
-            {
-                throw new InvalidItemsPerPageException();
-            }
 
-            long numberOfItems = await this.service.SelectCountAsync(null);
-            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
-            var items = data.Select(this.mapper.Map<GeoEpithetViewModel>).ToArray();
-
-            var model = new ListWithPagingViewModel<GeoEpithetViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
-            var viewModel = new GeoEpithetsIndexPageViewModel
-            {
-                Model = model,
-                PageTitle = Strings.IndexPageTitle
-            };
+            var viewModel = await this.service.SelectAsync(currentPage, numberOfItemsPerPage);
 
             return this.View(IndexActionName, viewModel);
         }
@@ -89,7 +54,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    await this.service.InsertAsync(model.ToArray());
+                    await this.service.InsertAsync(model);
                 }
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -137,7 +102,7 @@
         {
             try
             {
-                await this.service.DeleteAsync(ids: id);
+                await this.service.DeleteAsync(id);
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))

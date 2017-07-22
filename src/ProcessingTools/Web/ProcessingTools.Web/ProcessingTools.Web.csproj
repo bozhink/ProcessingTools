@@ -388,7 +388,9 @@
     <Compile Include="Areas\Data\Models\GeoNames\GeoNamePageViewModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameViewModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymViewModel.cs" />
+    <Compile Include="Areas\Data\Services\GeoEpithetsService.cs" />
     <Compile Include="Areas\Data\Services\GeoNamesService.cs" />
+    <Compile Include="Areas\Data\Services\IGeoEpithetsService.cs" />
     <Compile Include="Areas\Data\Services\IGeoNamesService.cs" />
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
