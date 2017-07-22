@@ -1,0 +1,16 @@
+﻿@using Strings = ProcessingTools.Web.Resources.Views.Shared.Strings
+@model System.Exception
+@{
+    ViewBag.Title = Strings.ErrorPageTitle;
+}
+
+<section role="main">
+    <header>
+        <h1 class="text-danger">@Strings.ErrorPageHeading</h1>
+        <h2 class="text-danger">@Strings.ErrorMessage</h2>
+    </header>
+    @if (Model != null)
+    {
+        <pre><code>@Model.ToString()</code></pre>
+    }
+</section>
