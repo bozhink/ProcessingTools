@@ -124,13 +124,16 @@
     <value>Cancel</value>
   </data>
   <data name="CreateActionLinkText" xml:space="preserve">
-    <value>Create new Geo Name</value>
+    <value>Add new Geo Names</value>
   </data>
   <data name="CreateButtonText" xml:space="preserve">
     <value>Create</value>
   </data>
   <data name="CreatePageTitle" xml:space="preserve">
-    <value>Create new Geo Name</value>
+    <value>Add new Geo Names</value>
+  </data>
+  <data name="CreateTextPlaceholder" xml:space="preserve">
+    <value>add new geo names - one per row</value>
   </data>
   <data name="DeleteActionLinkText" xml:space="preserve">
     <value>Delete</value>

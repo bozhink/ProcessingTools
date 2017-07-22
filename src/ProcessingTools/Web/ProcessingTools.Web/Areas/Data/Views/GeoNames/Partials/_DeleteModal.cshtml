@@ -1,1 +1,25 @@
-﻿
+﻿@using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoNames.Views_Strings
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-danger">@Strings.DeletePageTitle</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-danger">@Strings.DeleteMessage</h5>
+                <div class="deleteModal-content"></div>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm(GeoEpithetsController.DeleteActionName, GeoEpithetsController.ControllerName))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.Id)
+                    @Html.Hidden(ProcessingTools.Web.Constants.ContextKeys.ReturnUrl, Request.Url)
+                    <input type="submit" class="btn btn-danger" value="@Strings.DeleteButtonText" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.CancelButtonText</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

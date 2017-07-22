@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Areas.Data.Resources.GeoNames {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create new Geo Name.
+        ///   Looks up a localized string similar to Add new Geo Names.
         /// </summary>
         public static string CreateActionLinkText {
             get {
@@ -97,11 +97,20 @@ namespace ProcessingTools.Web.Areas.Data.Resources.GeoNames {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create new Geo Name.
+        ///   Looks up a localized string similar to Add new Geo Names.
         /// </summary>
         public static string CreatePageTitle {
             get {
                 return ResourceManager.GetString("CreatePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add new geo names - one per row.
+        /// </summary>
+        public static string CreateTextPlaceholder {
+            get {
+                return ResourceManager.GetString("CreateTextPlaceholder", resourceCulture);
             }
         }
         
