@@ -374,6 +374,7 @@
     <Compile Include="Areas\Data\Models\GeoEpithets\GeoEpithetsViewModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Areas\Data\Models\GeoNames\GeoNamesIndexPageViewModel.cs" />
+    <Compile Include="Areas\Data\Models\GeoNames\GeoNamesRequestModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymisableViewModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymRequestModel.cs" />
     <Compile Include="Areas\Data\Models\Shared\SynonymResponseModel.cs" />
