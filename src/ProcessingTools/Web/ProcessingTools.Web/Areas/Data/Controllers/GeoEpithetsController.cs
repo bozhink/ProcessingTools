@@ -21,8 +21,8 @@
     [Authorize]
     public class GeoEpithetsController : BaseMvcController
     {
-        public const string ControllerName = "GeoEpithets";
         public const string AreaName = AreaNames.Data;
+        public const string ControllerName = "GeoEpithets";
         public const string IndexActionName = RouteValues.IndexActionName;
         public const string CreateActionName = nameof(GeoEpithetsController.Create);
         public const string EditActionName = nameof(GeoEpithetsController.Edit);

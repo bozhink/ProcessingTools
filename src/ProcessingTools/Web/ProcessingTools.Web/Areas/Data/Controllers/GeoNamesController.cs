@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AutoMapper;
+    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
@@ -20,8 +21,8 @@
     [Authorize]
     public class GeoNamesController : BaseMvcController
     {
-        public const string ControllerName = "GeoNames";
         public const string AreaName = AreaNames.Data;
+        public const string ControllerName = "GeoNames";
         public const string IndexActionName = RouteValues.IndexActionName;
         public const string DetailsActionName = nameof(GeoNamesController.Details);
         public const string CreateActionName = nameof(GeoNamesController.Create);
@@ -44,7 +45,6 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        // GET: Data/GeoNames
         [HttpGet, ActionName(IndexActionName)]
         public async Task<ActionResult> Index(int? p, int? n)
         {
@@ -55,7 +55,16 @@
             }
 
             int currentPage = p ?? PagingConstants.DefaultPageNumber;
+            if (currentPage < PagingConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
             int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            if (numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
 
             long numberOfItems = await this.service.SelectCountAsync(null);
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
@@ -75,7 +84,6 @@
             return this.View(IndexActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Details/5
         [HttpGet, ActionName(DetailsActionName)]
         public async Task<ActionResult> Details(int? id)
         {
@@ -100,7 +108,6 @@
             return this.View(DetailsActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Create
         [HttpGet, ActionName(CreateActionName)]
         public ActionResult Create()
         {
@@ -114,7 +121,6 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // POST: Data/GeoNames/Create
         [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Name")] GeoNameRequestModel model)
@@ -144,7 +150,6 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Edit/5
         [HttpGet, ActionName(EditActionName)]
         public async Task<ActionResult> Edit(int? id)
         {
@@ -169,7 +174,6 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // POST: Data/GeoNames/Edit/5
         [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] GeoNameRequestModel model)
@@ -198,7 +202,6 @@
             return this.View(EditActionName, viewModel);
         }
 
-        // GET: Data/GeoNames/Delete/5
         [HttpGet, ActionName(DeleteActionName)]
         public async Task<ActionResult> Delete(int? id)
         {
@@ -223,7 +226,6 @@
             return this.View(DeleteActionName, viewModel);
         }
 
-        // POST: Data/GeoNames/Delete/5
         [HttpPost, ActionName(DeleteActionName)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
