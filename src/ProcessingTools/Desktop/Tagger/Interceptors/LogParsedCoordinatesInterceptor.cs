@@ -31,7 +31,7 @@
 
                 invocation.Proceed();
 
-                this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type);
+                this.logger?.Log("{2} =\t{0};\t{3} =\t{1}\n", latitude.Value, longitude.Value, latitude.Type, longitude.Type, coordinateString, coordinateType);
             }
             else
             {

@@ -10,8 +10,8 @@
 
     public class ProgramSettingsBuilder
     {
-        private ILogger logger;
-        private ICommandInfoProvider commandInfoProvider;
+        private readonly ILogger logger;
+        private readonly ICommandInfoProvider commandInfoProvider;
 
         public ProgramSettingsBuilder(ILogger logger, string[] args)
         {
@@ -36,7 +36,7 @@
 
             var arguments = args.Where(a => matchNonOptions.IsMatch(a));
 
-            if (arguments.Count() < 1)
+            if (!arguments.Any())
             {
                 this.PrintHelp();
             }
@@ -147,6 +147,9 @@
 
                         case 'S':
                             this.Settings.SplitDocument = true;
+                            break;
+
+                        default:
                             break;
                     }
                 }
@@ -317,7 +320,7 @@
 
         private void PrintHelp()
         {
-            this.logger?.Log(Messages.HelpMessage);
+            this.logger?.Log(message: Messages.HelpMessage);
 
             // Print commands’ information
             foreach (var commandType in this.commandInfoProvider.CommandsInformation.Keys.OrderBy(k => k.Name))

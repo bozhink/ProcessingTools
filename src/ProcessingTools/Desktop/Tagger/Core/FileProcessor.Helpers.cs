@@ -19,20 +19,20 @@
 
             try
             {
-                logger?.Log(message);
+                logger?.Log(message: message);
                 await action.Invoke();
             }
             catch (AggregateException e)
             {
                 foreach (var exception in e.InnerExceptions)
                 {
-                    logger?.Log(exception, string.Empty);
+                    logger?.Log(exception, message: string.Empty);
                     logger?.Log();
                 }
             }
             catch (Exception e)
             {
-                logger?.Log(e, string.Empty);
+                logger?.Log(e, message: string.Empty);
             }
 
             logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
@@ -49,7 +49,7 @@
             var command = this.commandFactory(commandType);
             var document = this.documentWrapper.Create(context, this.settings.ArticleSchemaType);
 
-            var isNotAwaitableCommand = commandType.GetInterfaces().Count(t => t == typeof(INotAwaitableCommand)) > 0;
+            var isNotAwaitableCommand = commandType.GetInterfaces().Any(t => t == typeof(INotAwaitableCommand));
             if (isNotAwaitableCommand)
             {
                 // Validation commands should not overwrite the content of this.document.XmlDocument,

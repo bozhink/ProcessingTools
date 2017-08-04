@@ -34,30 +34,10 @@
             Func<Type, ITaggerCommand> commandFactory,
             ILogger logger)
         {
-            if (fileNameGenerator == null)
-            {
-                throw new ArgumentNullException(nameof(fileNameGenerator));
-            }
-
-            if (documentWrapper == null)
-            {
-                throw new ArgumentNullException(nameof(documentWrapper));
-            }
-
-            if (documentManager == null)
-            {
-                throw new ArgumentNullException(nameof(documentManager));
-            }
-
-            if (commandFactory == null)
-            {
-                throw new ArgumentNullException(nameof(commandFactory));
-            }
-
-            this.fileNameGenerator = fileNameGenerator;
-            this.documentWrapper = documentWrapper;
-            this.documentManager = documentManager;
-            this.commandFactory = commandFactory;
+            this.fileNameGenerator = fileNameGenerator ?? throw new ArgumentNullException(nameof(fileNameGenerator));
+            this.documentWrapper = documentWrapper ?? throw new ArgumentNullException(nameof(documentWrapper));
+            this.documentManager = documentManager ?? throw new ArgumentNullException(nameof(documentManager));
+            this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
             this.logger = logger;
 
             this.tasks = new ConcurrentQueue<Task>();
@@ -65,12 +45,7 @@
 
         public async Task Run(IProgramSettings settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
-
-            this.settings = settings;
+            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
 
             try
             {
@@ -86,7 +61,7 @@
                 }
                 catch
                 {
-                    this.logger?.Log(LogType.Error, "One or more input files cannot be read.");
+                    this.logger?.Log(LogType.Error, message: "One or more input files cannot be read.");
                     return;
                 }
 
@@ -101,7 +76,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(e, message: string.Empty);
                 throw;
             }
         }

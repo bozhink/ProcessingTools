@@ -16,19 +16,13 @@
 
         public Engine(IFileProcessor fileProcessor, ILogger logger)
         {
-            if (fileProcessor == null)
-            {
-                throw new ArgumentNullException(nameof(fileProcessor));
-            }
-
-            this.fileProcessor = fileProcessor;
+            this.fileProcessor = fileProcessor ?? throw new ArgumentNullException(nameof(fileProcessor));
             this.logger = logger;
         }
 
         public void Run(string[] args)
         {
-            int timeSpanInMunutesValue = 0;
-            if (!int.TryParse(ConfigurationManager.AppSettings[AppSettingsKeys.MaximalTimeInMinutesToWaitTheMainThread], out timeSpanInMunutesValue))
+            if (!int.TryParse(ConfigurationManager.AppSettings[AppSettingsKeys.MaximalTimeInMinutesToWaitTheMainThread], out int timeSpanInMunutesValue))
             {
                 throw new SystemException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
             }
@@ -38,7 +32,7 @@
             var succeeded = this.RunAsync(args).Wait(ts);
             if (!succeeded)
             {
-                this.logger.Log(LogType.Error, "The timeout interval elapsed.");
+                this.logger.Log(LogType.Error, message: "The timeout interval elapsed.");
             }
         }
 
@@ -53,7 +47,7 @@
             }
             catch (Exception e)
             {
-                this.logger.Log(e, string.Empty);
+                this.logger.Log(e, message: string.Empty);
             }
         }
     }
