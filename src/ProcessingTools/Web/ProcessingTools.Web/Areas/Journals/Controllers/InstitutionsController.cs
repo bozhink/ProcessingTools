@@ -10,7 +10,7 @@
     [Authorize]
     public class InstitutionsController : Controller
     {
-        private JournalsDbContext db = new JournalsDbContext("JournalsDatabaseConnection");
+        private readonly JournalsDbContext db = new JournalsDbContext("JournalsDatabaseConnection");
 
         // GET: Journals/Institutions
         public ActionResult Index()

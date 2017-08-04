@@ -227,7 +227,7 @@
         [HttpPost]
         public async Task<ActionResult> Upload(IEnumerable<HttpPostedFileBase> files)
         {
-            if (files == null || files.Count() < 1 || files.All(f => f == null))
+            if (files == null || !files.Any() || files.All(f => f == null))
             {
                 throw new NoFilesSelectedException();
             }
@@ -291,10 +291,10 @@
                     filterContext.Exception.Message,
                     Strings.DefaultUploadNewFileActionLinkTitle);
             }
-            else if (filterContext.Exception is InvalidOrEmptyFilesException)
+            else if (filterContext.Exception is InvalidOrEmptyFilesException ex)
             {
                 // TODO: Remove ViewBag
-                this.ViewBag.InvalidFiles = ((InvalidOrEmptyFilesException)filterContext.Exception).FileNames;
+                this.ViewBag.InvalidFiles = ex?.FileNames;
                 filterContext.Result = this.InvalidOrEmptyFilesErrorView(InstanceNames.FilesControllerInstanceName);
             }
             else if (filterContext.Exception is InvalidIdException)

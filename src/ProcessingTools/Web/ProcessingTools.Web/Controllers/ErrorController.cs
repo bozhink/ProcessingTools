@@ -30,7 +30,7 @@
 
             if (ex != null)
             {
-                this.logger?.Log(ex, ControllerName);
+                this.logger?.Log(exception: ex, message: ControllerName);
             }
 
             return this.View(model: ex);

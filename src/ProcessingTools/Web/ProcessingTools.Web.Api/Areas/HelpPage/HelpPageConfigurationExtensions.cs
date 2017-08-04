@@ -31,9 +31,8 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         /// </returns>
         public static HelpPageApiModel GetHelpPageApiModel(this HttpConfiguration config, string apiDescriptionId)
         {
-            object model;
             string modelId = ApiModelPrefix + apiDescriptionId;
-            if (!config.Properties.TryGetValue(modelId, out model))
+            if (!config.Properties.TryGetValue(modelId, out object model))
             {
                 Collection<ApiDescription> apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
                 ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => string.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
@@ -357,25 +356,6 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
                         complexTypeDescription = typeDescription as ComplexTypeModelDescription;
                     }
 
-                    // Example:
-                    // [TypeConverter(typeof(PointConverter))]
-                    // public class Point
-                    // {
-                    //     public Point(int x, int y)
-                    //     {
-                    //         X = x;
-                    //         Y = y;
-                    //     }
-                    //     public int X { get; set; }
-                    //     public int Y { get; set; }
-                    // }
-                    // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
-                    //
-                    // public class Point
-                    // {
-                    //     public int X { get; set; }
-                    //     public int Y { get; set; }
-                    // }
                     // Regular complex class Point will have properties X and Y added to UriParameters collection.
                     if (complexTypeDescription != null
                         && !IsBindableWithTypeConverter(parameterType))
@@ -421,9 +401,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
             Collection<ApiDescription> apis = config.Services.GetApiExplorer().ApiDescriptions;
             foreach (ApiDescription api in apis)
             {
-                ApiParameterDescription parameterDescription;
-                Type parameterType;
-                if (TryGetResourceParameter(api, config, out parameterDescription, out parameterType))
+                if (TryGetResourceParameter(api, config, out ApiParameterDescription parameterDescription, out Type parameterType))
                 {
                     modelGenerator.GetOrCreateModelDescription(parameterType);
                 }
@@ -444,8 +422,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
 
         private static void LogInvalidSampleAsError(HelpPageApiModel apiModel, object sample)
         {
-            InvalidSample invalidSample = sample as InvalidSample;
-            if (invalidSample != null)
+            if (sample is InvalidSample invalidSample)
             {
                 apiModel.ErrorMessages.Add(invalidSample.ErrorMessage);
             }

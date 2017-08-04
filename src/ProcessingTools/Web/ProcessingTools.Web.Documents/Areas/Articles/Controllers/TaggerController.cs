@@ -117,7 +117,7 @@
                 var articleId = this.FakeArticleId;
 
                 var xmldocument = await this.ReadDocument(model, userId, articleId);
-                var result = await this.RunCommand(model, xmldocument)
+                await this.RunCommand(model, xmldocument)
                     .ContinueWith(_ =>
                     {
                         _.Wait();

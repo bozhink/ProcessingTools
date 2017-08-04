@@ -203,7 +203,8 @@
 
             return this.View(new VerifyPhoneNumberViewModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Code = code
             });
         }
 
@@ -389,17 +390,6 @@
             if (user != null)
             {
                 return user.PasswordHash != null;
-            }
-
-            return false;
-        }
-
-        private bool HasPhoneNumber()
-        {
-            var user = this.UserManager.FindById(this.UserId);
-            if (user != null)
-            {
-                return user.PhoneNumber != null;
             }
 
             return false;

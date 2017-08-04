@@ -57,7 +57,7 @@
             }
 
             var foundTaxa = await this.searchService.Search(searchString);
-            if (foundTaxa == null || foundTaxa.Count() < 1)
+            if (foundTaxa == null || !foundTaxa.Any())
             {
                 this.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 return this.GetEmptyJsonResult();

@@ -100,7 +100,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions
             { typeof(bool), "boolean" },
         };
 
-        private Lazy<IModelDocumentationProvider> documentationProvider;
+        private readonly Lazy<IModelDocumentationProvider> documentationProvider;
 
         public ModelDescriptionGenerator(HttpConfiguration config)
         {

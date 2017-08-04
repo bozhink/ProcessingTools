@@ -19,7 +19,7 @@
     {
         private readonly TService service;
 
-        public GenericDataServiceController(TService service)
+        protected GenericDataServiceController(TService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }

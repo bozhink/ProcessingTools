@@ -229,10 +229,10 @@
                     this.AddErrors(Strings.InvalidDataErrorMessage);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                this.logger?.Log(e, string.Empty);
-                this.AddErrors(e.Message);
+                this.logger?.Log(exception: ex, message: ControllerName);
+                this.AddErrors(ex.Message);
             }
 
             model.Id = -1;
@@ -331,10 +331,10 @@
                     this.AddErrors(Strings.InvalidDataErrorMessage);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                this.logger?.Log(e, string.Empty);
-                this.AddErrors(e.Message);
+                this.logger?.Log(exception: ex, message: ControllerName);
+                this.AddErrors(ex.Message);
             }
 
             var viewModel = new ContinentPageViewModel
@@ -397,10 +397,10 @@
                     return this.Redirect(returnUrl);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                this.logger?.Log(e, string.Empty);
-                this.AddErrors(e.Message);
+                this.logger?.Log(exception: ex, message: ControllerName);
+                this.AddErrors(ex.Message);
             }
 
             return this.RedirectToAction(IndexActionName);
@@ -428,7 +428,7 @@
             return result;
         }
 
-        private async Task<object> InsertModel(ContinentRequestModel model, string synonyms)
+        private async Task<object> InsertModel(IContinent model, string synonyms)
         {
             object id = null;
             bool inserted = false;
@@ -441,9 +441,9 @@
                     id = await this.service.InsertAsync(model, addedSynonyms);
                     inserted = true;
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    this.logger?.Log(e, string.Empty);
+                    this.logger?.Log(exception: ex, message: ControllerName);
                     inserted = false;
                 }
             }
@@ -465,9 +465,9 @@
                     var synonymsArray = JsonConvert.DeserializeObject<ContinentSynonymRequestModel[]>(synonyms);
                     await this.UpdateSynonyms(modelId, synonymsArray);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    this.logger?.Log(e, string.Empty);
+                    this.logger?.Log(exception: ex, message: ControllerName);
                 }
             }
         }
@@ -501,9 +501,9 @@
                         await this.service.RemoveSynonymsAsync(modelId, removedSynonyms);
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    this.logger?.Log(e, string.Empty);
+                    this.logger?.Log(exception: ex, message: ControllerName);
                 }
             }
         }

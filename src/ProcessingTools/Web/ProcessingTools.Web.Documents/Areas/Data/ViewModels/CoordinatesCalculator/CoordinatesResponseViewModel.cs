@@ -4,7 +4,7 @@
 
     public class CoordinatesResponseViewModel : ICoordinates
     {
-        private ICollection<ICoordinate> coordinates;
+        private readonly ICollection<ICoordinate> coordinates;
 
         public CoordinatesResponseViewModel()
         {

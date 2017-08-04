@@ -4,15 +4,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-
-    using Models.EnvoTerms;
-
     using ProcessingTools.Bio.Environments.Services.Data.Contracts;
     using ProcessingTools.Constants;
+    using ProcessingTools.Web.Api.Models.EnvoTerms;
 
     public class EnvoTermsController : ApiController
     {
-        private IEnvoTermsDataService service;
+        private readonly IEnvoTermsDataService service;
 
         public EnvoTermsController(IEnvoTermsDataService service)
         {

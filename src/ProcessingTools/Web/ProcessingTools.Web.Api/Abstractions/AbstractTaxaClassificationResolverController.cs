@@ -12,14 +12,9 @@
     {
         private readonly ITaxaClassificationResolver resolver;
 
-        public AbstractTaxaClassificationResolverController(ITaxaClassificationResolver resolver)
+        protected AbstractTaxaClassificationResolverController(ITaxaClassificationResolver resolver)
         {
-            if (resolver == null)
-            {
-                throw new ArgumentNullException(nameof(resolver));
-            }
-
-            this.resolver = resolver;
+            this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
         [EnableCors("*", "*", "*")]

@@ -69,7 +69,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(ex, ControllerName);
+                this.logger?.Log(exception: ex, message: ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);
@@ -94,7 +94,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(ex, ControllerName);
+                this.logger?.Log(exception: ex, message: ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);
@@ -116,7 +116,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(ex, ControllerName);
+                this.logger?.Log(exception: ex, message: ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);

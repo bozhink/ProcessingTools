@@ -58,7 +58,7 @@
 
             try
             {
-                // https://apps.dev.microsoft.com
+                // See https://apps.dev.microsoft.com
                 string microsoftClientId = ConfigurationManager.AppSettings[AppSettingsKeys.MicrosoftClientId];
                 string microsoftClientSecret = ConfigurationManager.AppSettings[AppSettingsKeys.MicrosoftClientSecret];
                 if (!string.IsNullOrWhiteSpace(microsoftClientId) && !string.IsNullOrWhiteSpace(microsoftClientSecret))
@@ -73,6 +73,7 @@
             }
             catch
             {
+                // Ignore if Microsoft api fails
             }
 
             try
@@ -92,6 +93,7 @@
             }
             catch
             {
+                // Ignore if Twitter api fails
             }
 
             try
@@ -110,6 +112,7 @@
             }
             catch
             {
+                // Ignore if Facebook api fails
             }
 
             try
@@ -128,6 +131,7 @@
             }
             catch
             {
+                // Ignore if Google api fails
             }
         }
     }

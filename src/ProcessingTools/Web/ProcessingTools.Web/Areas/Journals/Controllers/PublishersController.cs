@@ -9,6 +9,7 @@
     using Newtonsoft.Json;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
@@ -32,10 +33,12 @@
         public const string AddressesActionName = nameof(PublishersController.Addresses);
 
         private readonly IPublishersDataService service;
+        private readonly ILogger logger;
 
-        public PublishersController(IPublishersDataService service)
+        public PublishersController(IPublishersDataService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger;
             this.service.SaveToHistory = true;
         }
 
@@ -64,13 +67,6 @@
                     CountryId = a.CountryId
                 })
             .ToList()
-        };
-
-        private Func<PublisherViewModel, Publisher> MapViewModelToModel => p => new Publisher
-        {
-            Id = p.Id,
-            Name = p.Name,
-            AbbreviatedName = p.AbbreviatedName
         };
 
         private Func<IAddress, Address> MapAddress => a => new Address
@@ -308,15 +304,6 @@
             return await this.Addresses(id);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-            }
-
-            base.Dispose(disposing);
-        }
-
         private async Task UpdateAddressesFromJson(object modelId, string addresses)
         {
             if (!string.IsNullOrWhiteSpace(addresses) && addresses != "[]")
@@ -326,8 +313,9 @@
                     var addressesArray = JsonConvert.DeserializeObject<Address[]>(addresses);
                     await this.UpdateAddresses(modelId, addressesArray);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    this.logger?.Log(exception: ex, message: ControllerName);
                 }
             }
         }
@@ -358,8 +346,9 @@
                                 break;
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        this.logger?.Log(exception: ex, message: ControllerName);
                     }
                 }
             }

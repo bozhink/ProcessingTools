@@ -9,16 +9,11 @@
 
     public class MediaTypesController : ApiController
     {
-        private IMediatypesResolver mediatypesResolver;
+        private readonly IMediatypesResolver mediatypesResolver;
 
         public MediaTypesController(IMediatypesResolver mediatypesResolver)
         {
-            if (mediatypesResolver == null)
-            {
-                throw new ArgumentNullException(nameof(mediatypesResolver));
-            }
-
-            this.mediatypesResolver = mediatypesResolver;
+            this.mediatypesResolver = mediatypesResolver ?? throw new ArgumentNullException(nameof(mediatypesResolver));
         }
 
         public async Task<IHttpActionResult> Get(string id)
