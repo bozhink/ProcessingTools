@@ -211,7 +211,7 @@
         // Replace references in the xml document.
         private void UpdateContentInDocument(IDocument document, IEnumerable<IFileReplacementModel> referencesNamesReplacements)
         {
-            foreach (XmlAttribute hrefAttribute in document.SelectNodes(XPathStrings.XLinkHref))
+            foreach (var hrefAttribute in document.SelectNodes(XPathStrings.XLinkHref))
             {
                 string content = hrefAttribute.InnerText;
 

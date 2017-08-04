@@ -18,24 +18,9 @@
             ITypesProvider typesProvider,
             Func<Type, IDbSeeder> seederFactory)
         {
-            if (commandNamesProvider == null)
-            {
-                throw new ArgumentNullException(nameof(commandNamesProvider));
-            }
-
-            if (typesProvider == null)
-            {
-                throw new ArgumentNullException(nameof(typesProvider));
-            }
-
-            if (seederFactory == null)
-            {
-                throw new ArgumentNullException(nameof(seederFactory));
-            }
-
-            this.commandNamesProvider = commandNamesProvider;
-            this.typesProvider = typesProvider;
-            this.seederFactory = seederFactory;
+            this.commandNamesProvider = commandNamesProvider ?? throw new ArgumentNullException(nameof(commandNamesProvider));
+            this.typesProvider = typesProvider ?? throw new ArgumentNullException(nameof(typesProvider));
+            this.seederFactory = seederFactory ?? throw new ArgumentNullException(nameof(seederFactory));
         }
 
         public async Task<object> Run(string commandName)
@@ -57,7 +42,7 @@
             else
             {
                 name = matchedNames.Single(n => n.ToLower() == name.ToLower());
-                var seederType = this.typesProvider.Types
+                var seederType = this.typesProvider.GetTypes()
                     .Single(t => t.Name == $"I{name}DbSeeder");
 
                 var seeder = this.seederFactory(seederType);

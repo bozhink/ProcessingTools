@@ -6,26 +6,16 @@
     using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     public abstract class GenericDbSeeder<TInitializer, TSeeder> : IDbSeeder
-        where TInitializer : IDatabaseInitializer
-        where TSeeder : IDatabaseSeeder
+        where TInitializer : class, IDatabaseInitializer
+        where TSeeder : class, IDatabaseSeeder
     {
         private readonly TInitializer initializer;
         private readonly TSeeder seeder;
 
-        public GenericDbSeeder(TInitializer initializer, TSeeder seeder)
+        protected GenericDbSeeder(TInitializer initializer, TSeeder seeder)
         {
-            if (initializer == null)
-            {
-                throw new ArgumentNullException(nameof(initializer));
-            }
-
-            if (seeder == null)
-            {
-                throw new ArgumentNullException(nameof(seeder));
-            }
-
-            this.initializer = initializer;
-            this.seeder = seeder;
+            this.initializer = initializer ?? throw new ArgumentNullException(nameof(initializer));
+            this.seeder = seeder ?? throw new ArgumentNullException(nameof(seeder));
         }
 
         public virtual async Task Seed()

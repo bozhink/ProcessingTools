@@ -25,12 +25,12 @@
         }
 
         /// <summary>
-        /// Get or set the boolean value which designates whether current views are rank-related or not
+        /// Gets or sets a value indicating whether get or set the boolean value which designates whether current views are rank-related or not
         /// </summary>
         public bool IsRankList { get; set; }
 
         /// <summary>
-        /// Get or set the name of the main group box of this control
+        /// Gets or sets get or set the name of the main group box of this control
         /// </summary>
         public string ListGroupBoxLabel
         {
@@ -132,7 +132,7 @@
 
         private void ListImportButton_Click(object sender, EventArgs e)
         {
-            var awaiter = this.ImportData().GetAwaiter();
+            this.ImportData().GetAwaiter();
         }
 
         private async Task ImportData()
@@ -208,14 +208,14 @@
 
         private void ListSearchButton_Click(object sender, EventArgs e)
         {
-            var awaiter = this.Search().GetAwaiter();
+            this.Search().GetAwaiter();
         }
 
         private void ListSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var awaiter = this.Search().GetAwaiter();
+                this.Search().GetAwaiter();
             }
         }
 

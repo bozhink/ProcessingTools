@@ -10,39 +10,36 @@
     internal class SeederTypesProvider : ITypesProvider
     {
         private readonly string baseName = typeof(IDbSeeder).FullName;
+        private readonly object lockKey = new object();
         private IEnumerable<Type> types;
 
-        public IEnumerable<Type> Types
+        public IEnumerable<Type> GetTypes()
         {
-            get
+            if (this.types == null)
             {
-                if (this.types == null)
+                lock (this.lockKey)
                 {
-                    var lockKey = new object();
-                    lock (lockKey)
+                    if (this.types == null)
                     {
-                        if (this.types == null)
+                        var assembly = Assembly.GetExecutingAssembly();
+                        var types = assembly.GetTypes()
+                            .Where(t => t.IsInterface &&
+                                        !t.IsGenericType &&
+                                        t.GetInterfaces()
+                                            .Any(i => i.FullName == this.baseName))
+                            .ToArray();
+
+                        if (types == null || types.Length < 1)
                         {
-                            var assembly = Assembly.GetExecutingAssembly();
-                            var types = assembly.GetTypes()
-                                .Where(t => t.IsInterface &&
-                                            !t.IsGenericType &&
-                                            t.GetInterfaces()
-                                                .Any(i => i.FullName == this.baseName))
-                                .ToArray();
-
-                            if (types == null || types.Length < 1)
-                            {
-                                throw new ApplicationException("No seeders are found");
-                            }
-
-                            this.types = types;
+                            throw new ApplicationException("No seeders are found");
                         }
+
+                        this.types = types;
                     }
                 }
-
-                return this.types;
             }
+
+            return this.types;
         }
     }
 }

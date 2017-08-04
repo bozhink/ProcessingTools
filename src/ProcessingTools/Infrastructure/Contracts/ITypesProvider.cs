@@ -5,6 +5,6 @@
 
     public interface ITypesProvider
     {
-        IEnumerable<Type> Types { get; }
+        IEnumerable<Type> GetTypes();
     }
 }

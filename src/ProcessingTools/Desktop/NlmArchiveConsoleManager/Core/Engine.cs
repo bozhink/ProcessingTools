@@ -73,7 +73,7 @@
 
             if (journalMeta == null)
             {
-                this.logger?.Log(LogType.Error, "Journal not found");
+                this.logger?.Log(type: LogType.Error, message: "Journal not found");
                 return;
             }
 
@@ -89,7 +89,7 @@
 
             foreach (var directoryName in directories)
             {
-                this.logger?.Log(directoryName);
+                this.logger?.Log(message: directoryName);
 
                 var direcoryProcessor = this.processorFactory.CreateDirectoryProcessor(directoryName, journalMeta);
 
