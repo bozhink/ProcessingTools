@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Configuration
 {
-    public sealed class ParameterNames
+    public static class ParameterNames
     {
         public const string ConnectionString = "connectionString";
         public const string DatabaseName = "databaseName";

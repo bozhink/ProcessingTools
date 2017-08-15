@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants
 {
-    public sealed class FileConstants
+    public static class FileConstants
     {
         public const string DllFileExtension = "dll";
         public const int MaximalLengthOfGeneratedNewFileName = 50;

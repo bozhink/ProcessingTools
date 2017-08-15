@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Data
 {
-    public interface IDatabaseProvider<T>
+    public interface IDatabaseProvider<out T>
     {
         T Create();
     }

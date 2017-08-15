@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Web
 {
-    public sealed class BundleNames
+    public static class BundleNames
     {
         public const string AddressListScripts = "~/bundles/address-list";
         public const string AddressListStyles = "~/Content/address-list";

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants
 {
-    public sealed class PagingConstants
+    public static class PagingConstants
     {
         public const int DefaultLargeNumberOfItemsPerPage = 10;
         public const int DefaultNumberOfItemsPerPage = 10;

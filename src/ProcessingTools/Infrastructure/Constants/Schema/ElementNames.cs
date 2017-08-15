@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Schema
 {
-    public sealed class ElementNames
+    public static class ElementNames
     {
         public const string Abbrev = "abbrev";
         public const string Article = "article";

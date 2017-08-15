@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Data.Geo
 {
-    public sealed class ValidationConstants
+    public static class ValidationConstants
     {
         public const string ContinentNameRegexPattern = @"^[^<>;:]+$";
         public const string CountryNameRegexPattern = ContinentNameRegexPattern;

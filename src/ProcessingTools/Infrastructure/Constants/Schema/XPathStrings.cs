@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Schema
 {
-    public sealed class XPathStrings
+    public static class XPathStrings
     {
         public const string ArticleIdOfTypeDoi = ".//front/article-meta/article-id[@pub-id-type='doi']";
         public const string ArticleJournalMetaIssnEPub = ".//front/journal-meta/issn[@pub-type='epub']";

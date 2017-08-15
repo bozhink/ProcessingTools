@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants
 {
-    public sealed class ContentTypes
+    public static class ContentTypes
     {
         public const string Default = "text/plain; encoding='utf-8'";
         public const string Jpeg = "image/jpeg";

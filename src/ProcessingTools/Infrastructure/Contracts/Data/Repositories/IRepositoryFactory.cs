@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Data.Repositories
 {
-    public interface IRepositoryFactory<TRepository>
+    public interface IRepositoryFactory<out TRepository>
         where TRepository : IRepository
     {
         TRepository Create();

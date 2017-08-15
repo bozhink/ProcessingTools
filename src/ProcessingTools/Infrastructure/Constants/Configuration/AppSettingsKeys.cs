@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Configuration
 {
-    public sealed class AppSettingsKeys
+    public static class AppSettingsKeys
     {
         public const string AbbreviationsXQueryFileName = "AbbreviationsXQueryFileName";
         public const string AppDataDirectoryName = "AppDataDirectoryName";

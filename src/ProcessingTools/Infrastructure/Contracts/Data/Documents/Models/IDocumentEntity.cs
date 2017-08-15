@@ -8,11 +8,11 @@
     {
         Guid ArticleId { get; }
 
-        // TODO: add
-        // Guid FileId { get; }
+        //// TODO: add
+        //// Guid FileId { get; }
 
-        // TODO: add
-        // string Description { get; }
+        //// TODO: add
+        //// string Description { get; }
 
         // TODO: remove
         string FilePath { get; }

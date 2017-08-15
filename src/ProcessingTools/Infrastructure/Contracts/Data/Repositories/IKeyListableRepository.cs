@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IKeyListableRepository<TKey> : IRepository
+    public interface IKeyListableRepository<out TKey> : IRepository
     {
         IEnumerable<TKey> Keys { get; }
     }

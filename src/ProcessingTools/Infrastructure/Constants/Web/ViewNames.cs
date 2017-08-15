@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Web
 {
-    public sealed class ViewNames
+    public static class ViewNames
     {
         public const string DefaultLayoutViewName = "~/Views/Shared/_Layout.cshtml";
 

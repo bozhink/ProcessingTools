@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Configuration
 {
-    public sealed class FactoryKeys
+    public static class FactoryKeys
     {
         public const string AbbreviationsTransformerName = "AbbreviationsTransformer";
         public const string CodesRemoveNonCodeNodesTransformerName = "CodesRemoveNonCodeNodesTransformer";

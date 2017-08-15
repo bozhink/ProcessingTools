@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Schema
 {
-    public sealed class AttributeNames
+    public static class AttributeNames
     {
         public const string ContentType = "content-type";
         public const string Delete = "delete";

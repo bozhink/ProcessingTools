@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants
 {
-    public sealed class ImagingConstants
+    public static class ImagingConstants
     {
         public const int DefaultBarcodeHeight = 150;
         public const int DefaultBarcodeWidth = 300;

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Web
 {
-    public sealed class InstanceNames
+    public static class InstanceNames
     {
         public const string DocumentsControllerInstanceName = "Document";
         public const string DocumentContentControllerInstanceName = "Document Content";

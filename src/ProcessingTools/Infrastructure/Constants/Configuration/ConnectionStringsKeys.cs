@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Configuration
 {
-    public sealed class ConnectionStringsKeys
+    public static class ConnectionStringsKeys
     {
         public const string BioDatabaseConnection = "BioDatabaseConnection";
         public const string BioEnvironmentsDatabaseConnection = "BioEnvironmentsDatabaseConnection";

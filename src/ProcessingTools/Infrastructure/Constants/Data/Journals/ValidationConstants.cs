@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Data.Journals
 {
-    public sealed class ValidationConstants
+    public static class ValidationConstants
     {
         public const int IssnLength = 9;
         public const int MaximalLengthOfAbbreviatedInstitutionName = 40;

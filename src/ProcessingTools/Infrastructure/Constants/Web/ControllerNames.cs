@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Web
 {
-    public sealed class ControllerNames
+    public static class ControllerNames
     {
         public const string AbbreviationsControllerName = "Abbreviations";
         public const string AccountControllerName = "Account";

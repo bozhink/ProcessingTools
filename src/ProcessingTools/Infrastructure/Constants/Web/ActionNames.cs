@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Web
 {
-    public sealed class ActionNames
+    public static class ActionNames
     {
         public const string DeafulHelpActionName = "Help";
         public const string DeafultCalculateActionName = "Calculate";

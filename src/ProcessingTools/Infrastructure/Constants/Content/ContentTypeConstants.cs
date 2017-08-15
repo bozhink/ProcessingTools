@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Constants.Content
 {
-    public sealed class ContentTypeConstants
+    public static class ContentTypeConstants
     {
         public const string AltitudeContentType = "altitude";
         public const string DateContentType = "date";
