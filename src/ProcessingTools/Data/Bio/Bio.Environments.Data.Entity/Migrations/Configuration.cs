@@ -14,6 +14,7 @@ namespace ProcessingTools.Bio.Environments.Data.Entity.Migrations
 
         protected override void Seed(BioEnvironmentsDbContext context)
         {
+            // Skip
         }
     }
 }

@@ -52,12 +52,7 @@
 
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(this.ReaderSettings));
-                }
-
-                this.readerSettings = value;
+                this.readerSettings = value ?? throw new ArgumentNullException(nameof(value));
             }
         }
 
@@ -70,12 +65,7 @@
 
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(this.WriterSettings));
-                }
-
-                this.writerSettings = value;
+                this.writerSettings = value ?? throw new ArgumentNullException(nameof(value));
             }
         }
 

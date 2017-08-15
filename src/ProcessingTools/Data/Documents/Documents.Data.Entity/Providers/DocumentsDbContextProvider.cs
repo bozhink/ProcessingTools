@@ -5,16 +5,11 @@
 
     public class DocumentsDbContextProvider : IDocumentsDbContextProvider
     {
-        private IDocumentsDbContextFactory contextFactory;
+        private readonly IDocumentsDbContextFactory contextFactory;
 
         public DocumentsDbContextProvider(IDocumentsDbContextFactory contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
         }
 
         public DocumentsDbContext Create()

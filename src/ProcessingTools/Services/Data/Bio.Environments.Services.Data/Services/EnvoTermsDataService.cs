@@ -13,7 +13,7 @@
 
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
-        private IBioEnvironmentsRepository<EnvoName> repository;
+        private readonly IBioEnvironmentsRepository<EnvoName> repository;
 
         public EnvoTermsDataService(IBioEnvironmentsRepository<EnvoName> repository)
         {

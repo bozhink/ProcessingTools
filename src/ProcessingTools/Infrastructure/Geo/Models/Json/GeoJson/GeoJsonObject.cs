@@ -7,16 +7,17 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    /// <para>GeoJSON always consists of a single object.
-    /// This object represents a geometry, feature, or collection of features.</para>
+    /// <para>GeoJSON always consists of a single object.</para>
+    /// <para>This object represents a geometry, feature, or collection of features.</para>
     /// </summary>
+    /// <typeparam name="TEnum">Type of the enumeration</typeparam>
     [JsonObject]
     public abstract class GeoJsonObject<TEnum>
         where TEnum : struct, IComparable, IConvertible, IFormattable
     {
         private string type;
 
-        public GeoJsonObject()
+        protected GeoJsonObject()
         {
             if (!typeof(TEnum).IsEnum)
             {
@@ -25,6 +26,7 @@
         }
 
         /// <summary>
+        /// Gets or sets the GeoJSON type.
         /// <para>The GeoJSON object must have a member with the name "type".
         /// This member's value is a string that determines the type of the GeoJSON object.</para>
         /// <para>The value of the type member must be one of:
@@ -56,12 +58,14 @@
         }
 
         /// <summary>
+        /// Gets or sets "crs" value of the member.
         /// <para>A GeoJSON object may have an optional "crs" member, the value of which must be a coordinate reference system object.</para>
         /// </summary>
         [JsonProperty(propertyName: "crs", NullValueHandling = NullValueHandling.Ignore)]
         public GeoJsonCoordinateReferenceSystem Crs { get; set; }
 
         /// <summary>
+        /// Gets or sets the "bbox" value of the member.
         /// <para>A GeoJSON object may have a "bbox" member, the value of which must be a bounding box array.</para>
         /// <para>To include information on the coordinate range for geometries, features, or feature collections,
         /// a GeoJSON object may have a member named "bbox". The value of the bbox member must be a 2*n array

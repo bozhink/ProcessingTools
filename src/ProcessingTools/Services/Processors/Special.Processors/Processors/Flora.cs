@@ -109,7 +109,6 @@
                 {
                     XmlNode taxon = root.ChildNodes.Item(i);
                     XmlNode find = taxon.FirstChild;
-                    XmlNode replace = taxon.LastChild;
 
                     string pattern = Regex.Escape(find.InnerXml)
                         .RegexReplace(@"(\W)\\ ", "$1?\\s*")

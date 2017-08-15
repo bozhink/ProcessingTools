@@ -73,7 +73,7 @@
 
             private set
             {
-                this.encoding = value ?? throw new ArgumentNullException(nameof(this.Encoding));
+                this.encoding = value ?? throw new ArgumentNullException(nameof(value));
             }
         }
 
@@ -92,7 +92,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.Xml));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.XmlDocument.LoadXml(value);

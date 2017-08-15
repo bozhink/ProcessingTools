@@ -16,7 +16,7 @@
         where TEntity : class, IAddressableEntity
         where TDbModel : AddressableEntity, TEntity
     {
-        public EntityAddressableRepository(IDocumentsDbContextProvider contextProvider)
+        protected EntityAddressableRepository(IDocumentsDbContextProvider contextProvider)
             : base(contextProvider)
         {
             this.AddressSet = this.GetDbSet<Address>();
@@ -91,25 +91,28 @@
             return dbaddress;
         }
 
-        protected virtual Task<object> RemoveAddressFromDbModel(TDbModel dbmodel, Guid addressId) => Task.Run<object>(() =>
+        protected virtual async Task<object> RemoveAddressFromDbModel(TDbModel dbmodel, Guid addressId)
         {
             if (dbmodel == null)
             {
                 throw new ArgumentNullException(nameof(dbmodel));
             }
 
-            var addressToBeRemoved = dbmodel.Addresses.FirstOrDefault(a => a.Id == addressId);
-            if (addressToBeRemoved == null)
+            return await Task.Run(() =>
             {
-                return null;
-            }
+                var addressToBeRemoved = dbmodel.Addresses.FirstOrDefault(a => a.Id == addressId);
+                if (addressToBeRemoved == null)
+                {
+                    return null;
+                }
 
-            this.RemoveAddressFromAddressSetIfOneOrLessEntityReferencesIt(addressToBeRemoved);
+                this.RemoveAddressFromAddressSetIfOneOrLessEntityReferencesIt(addressToBeRemoved);
 
-            dbmodel.Addresses.Remove(addressToBeRemoved);
+                dbmodel.Addresses.Remove(addressToBeRemoved);
 
-            return dbmodel;
-        });
+                return dbmodel;
+            });
+        }
 
         private async Task<T> AddOrGet<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
             where T : class

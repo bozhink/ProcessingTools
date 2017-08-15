@@ -179,17 +179,17 @@
 
             foreach (string species in speciesGenusPairs.Keys)
             {
-                this.logger?.Log(species);
+                this.logger?.Log(message: species);
 
                 switch (speciesGenusPairs[species].Length)
                 {
                     case 0:
-                        this.logger?.Log(LogType.Warning, "No matches.");
+                        this.logger?.Log(type: LogType.Warning, message: "No matches.");
                         break;
 
                     case 1:
                         string genus = speciesGenusPairs[species].FirstOrDefault();
-                        this.logger?.Log(genus);
+                        this.logger?.Log(message: genus);
 
                         context.SelectNodes($"{XPathStrings.LowerTaxonNames}[normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})='{species}'][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus})=''][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus}/@full-name)='']/{XPathStrings.TaxonNamePartOfTypeGenus}")
                             .Cast<XmlElement>()
@@ -210,7 +210,7 @@
                         break;
 
                     default:
-                        this.logger?.Log(LogType.Warning, "Multiple matches:");
+                        this.logger?.Log(type: LogType.Warning, message: "Multiple matches:");
                         speciesGenusPairs[species].ToList().ForEach(g => this.logger?.Log("--> {0}", g));
                         break;
                 }
@@ -333,7 +333,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(exception: e, message: string.Empty);
             }
 
             this.RemoveIdAndPositionAttributesToTaxonNameElements(context);
@@ -431,12 +431,13 @@
                 }
                 catch
                 {
+                    // Skip
                 }
 
                 messageBag.AppendLine();
             }
 
-            this.logger?.Log(messageBag?.ToString());
+            this.logger?.Log(message: messageBag?.ToString());
         }
 
         private void StableExpand(IQueryable<ITaxonName> taxonNames)
@@ -527,7 +528,7 @@
 
             foreach (var message in messages)
             {
-                this.logger?.Log(message);
+                this.logger?.Log(message: message);
             }
         }
 
@@ -565,7 +566,7 @@
 
             foreach (var message in messages)
             {
-                this.logger?.Log(message);
+                this.logger?.Log(message: message);
             }
         }
     }

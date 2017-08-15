@@ -9,7 +9,7 @@
     {
         private ICollection<SourceId> sources;
 
-        public EntityWithSources()
+        protected EntityWithSources()
         {
             this.sources = new HashSet<SourceId>();
         }

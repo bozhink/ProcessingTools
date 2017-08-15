@@ -4,26 +4,21 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Models;
-    using Contracts.Services;
-    using Models;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Models.Validation;
+    using ProcessingTools.Services.Validation.Contracts.Models;
+    using ProcessingTools.Services.Validation.Contracts.Services;
+    using ProcessingTools.Services.Validation.Models;
 
     public abstract class AbstractValidationService<T> : IValidationService<T>
     {
         private readonly IValidationCacheService cacheService;
 
-        public AbstractValidationService(IValidationCacheService cacheService)
+        protected AbstractValidationService(IValidationCacheService cacheService)
         {
-            if (cacheService == null)
-            {
-                throw new ArgumentNullException(nameof(cacheService));
-            }
-
-            this.cacheService = cacheService;
+            this.cacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
             this.CacheServiceIsUsable = true;
         }
 

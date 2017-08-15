@@ -16,7 +16,7 @@
         where TEntity : class
         where TDbModel : class, TEntity
     {
-        public EntityRepository(IDbContextProvider<TContext> contextProvider)
+        protected EntityRepository(IDbContextProvider<TContext> contextProvider)
             : base(contextProvider)
         {
         }
@@ -80,8 +80,7 @@
         }
 
         // TODO
-        public virtual Task<IEnumerable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
+        public virtual async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -89,8 +88,8 @@
             }
 
             var query = this.DbSet.Where(filter).AsEnumerable();
-            return query;
-        });
+            return await Task.FromResult(query);
+        }
 
         public virtual async Task<TEntity> FindFirst(
             Expression<Func<TEntity, bool>> filter)
@@ -142,8 +141,8 @@
             return await this.Update(entity);
         }
 
-        protected Task<T> Add<T>(T entity, IDbSet<T> set)
-            where T : class => Task.Run(() =>
+        protected async Task<T> Add<T>(T entity, IDbSet<T> set)
+            where T : class
         {
             if (entity == null)
             {
@@ -163,12 +162,12 @@
             }
             else
             {
-                return set.Add(entity);
+                return await Task.FromResult(set.Add(entity));
             }
-        });
+        }
 
-        protected virtual Task<T> Get<T>(object id, IDbSet<T> set)
-            where T : class => Task.Run(() =>
+        protected virtual async Task<T> Get<T>(object id, IDbSet<T> set)
+            where T : class
         {
             if (id == null)
             {
@@ -180,12 +179,11 @@
                 throw new ArgumentNullException(nameof(set));
             }
 
-            var entity = set.Find(id);
-            return entity;
-        });
+            return await Task.Run(() => set.Find(id));
+        }
 
-        protected Task<T> Update<T>(T entity, IDbSet<T> set)
-            where T : class => Task.Run(() =>
+        protected async Task<T> Update<T>(T entity, IDbSet<T> set)
+            where T : class
         {
             if (entity == null)
             {
@@ -204,7 +202,7 @@
             }
 
             entry.State = EntityState.Modified;
-            return entity;
-        });
+            return await Task.FromResult(entity);
+        }
     }
 }

@@ -5,13 +5,16 @@
     /// <summary>
     /// Contains approximate string matching
     /// </summary>
-    public class LevenshteinDistance
+    public static class LevenshteinDistance
     {
         public const int DefaultFuzzynessRadius = 3;
 
         /// <summary>
         /// Compute the distance between two strings.
         /// </summary>
+        /// <param name="string1">Left string to compare</param>
+        /// <param name="string2">Right string to compare</param>
+        /// <returns>Levenstein distance</returns>
         public static int Compute(string string1, string string2)
         {
             int string1Length = string1.Length;
@@ -32,10 +35,12 @@
             // Step 2
             for (int i = 0; i <= string1Length; distanceMatrix[i, 0] = i++)
             {
+                // Skip
             }
 
             for (int j = 0; j <= string2Length; distanceMatrix[0, j] = j++)
             {
+                // Skip
             }
 
             // Step 3

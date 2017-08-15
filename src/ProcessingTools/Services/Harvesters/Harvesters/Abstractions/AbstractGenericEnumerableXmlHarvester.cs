@@ -11,14 +11,9 @@
     {
         private readonly IXmlContextWrapper contextWrapper;
 
-        public AbstractGenericEnumerableXmlHarvester(IXmlContextWrapper contextWrapper)
+        protected AbstractGenericEnumerableXmlHarvester(IXmlContextWrapper contextWrapper)
         {
-            if (contextWrapper == null)
-            {
-                throw new ArgumentNullException(nameof(contextWrapper));
-            }
-
-            this.contextWrapper = contextWrapper;
+            this.contextWrapper = contextWrapper ?? throw new ArgumentNullException(nameof(contextWrapper));
         }
 
         public Task<IEnumerable<T>> Harvest(XmlNode context)

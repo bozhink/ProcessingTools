@@ -85,7 +85,7 @@
 
         private async Task ProcessItemsToCheck(ConcurrentQueue<IValidationServiceModel<string>> result, HashSet<string> items)
         {
-            int numberOfItemsToCheck = items.Count();
+            int numberOfItemsToCheck = items.Count;
             for (int i = 0; i < numberOfItemsToCheck + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
             {
                 string[] itemsToSend = null;
@@ -117,6 +117,7 @@
                 }
                 catch
                 {
+                    // Skip
                 }
             }
         }
@@ -129,6 +130,7 @@
             }
             catch
             {
+                // Skip
             }
         }
     }

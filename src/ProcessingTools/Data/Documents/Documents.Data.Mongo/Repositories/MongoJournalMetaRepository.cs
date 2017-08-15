@@ -142,7 +142,7 @@
             var updateCommands = update.UpdateCommands.ToArray();
             if (updateCommands.Length < 1)
             {
-                throw new ArgumentNullException(nameof(update.UpdateCommands));
+                throw new ArgumentNullException(nameof(update));
             }
 
             var updateCommand = updateCommands[0];

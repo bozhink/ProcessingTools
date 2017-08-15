@@ -21,7 +21,7 @@
     {
         private readonly TRepository repository;
 
-        public AbstractGeoSynonymisableDataService(TRepository repository)
+        protected AbstractGeoSynonymisableDataService(TRepository repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

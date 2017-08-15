@@ -13,9 +13,7 @@
                 throw new ArgumentNullException(nameof(entityType));
             }
 
-            var collectioNameAttribute = entityType.GetCustomAttributes(typeof(CollectionNameAttribute), false)?.SingleOrDefault() as CollectionNameAttribute;
-
-            if (collectioNameAttribute != null)
+            if (entityType.GetCustomAttributes(typeof(CollectionNameAttribute), false)?.SingleOrDefault() is CollectionNameAttribute collectioNameAttribute)
             {
                 return collectioNameAttribute.Name;
             }
@@ -23,7 +21,7 @@
             {
                 string name = entityType.Name.ToLower();
                 int nameLength = name.Length;
-                if (name.ToCharArray()[nameLength - 1] == 'y')
+                if (name[nameLength - 1] == 'y')
                 {
                     return $"{name.Substring(0, nameLength - 1)}ies";
                 }

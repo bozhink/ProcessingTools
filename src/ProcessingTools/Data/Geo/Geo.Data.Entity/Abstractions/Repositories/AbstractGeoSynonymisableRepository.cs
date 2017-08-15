@@ -28,7 +28,7 @@
         private readonly IGeoRepository<TEntity> repository;
         private readonly IGeoRepository<TSynonymEntity> synonymRepository;
 
-        public AbstractGeoSynonymisableRepository(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IEnvironment environment)
+        protected AbstractGeoSynonymisableRepository(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IEnvironment environment)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.synonymRepository = synonymRepository ?? throw new ArgumentNullException(nameof(synonymRepository));

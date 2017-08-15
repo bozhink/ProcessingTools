@@ -111,47 +111,50 @@
             await Task.WhenAll(tasks);
         }
 
-        private Task<object> TagAbbreviations(XmlNode context, IEnumerable<IAbbreviation> abbreviationDefinitions) => Task.Run<object>(() =>
+        private async Task<object> TagAbbreviations(XmlNode context, IEnumerable<IAbbreviation> abbreviationDefinitions)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            if (abbreviationDefinitions == null || abbreviationDefinitions.Count() < 1)
+            if (abbreviationDefinitions == null || !abbreviationDefinitions.Any())
             {
                 return 0;
             }
 
-            var document = this.contextWrapper.Create(context);
+            return await Task.Run(() =>
+            {
+                var document = this.contextWrapper.Create(context);
 
-            var abbreviationSet = new HashSet<IAbbreviation>(abbreviationDefinitions);
-            abbreviationSet.OrderByDescending(a => a.Content.Length)
-                .ToList()
-                .ForEach(abbreviation =>
-                {
-                    string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
-                    foreach (XmlNode node in document.SelectNodes(xpath))
+                var abbreviationSet = new HashSet<IAbbreviation>(abbreviationDefinitions);
+                abbreviationSet.OrderByDescending(a => a.Content.Length)
+                    .ToList()
+                    .ForEach(abbreviation =>
                     {
-                        bool canPerformReplace = node.CheckIfIsPossibleToPerformReplaceInXmlNode();
-                        if (canPerformReplace)
+                        string xpath = string.Format(SelectNodesToTagAbbreviationsXPathTemplate, abbreviation.Content);
+                        foreach (XmlNode node in document.SelectNodes(xpath))
                         {
-                            try
+                            bool canPerformReplace = node.CheckIfIsPossibleToPerformReplaceInXmlNode();
+                            if (canPerformReplace)
                             {
-                                node.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
-                            }
-                            catch (XmlException)
-                            {
-                                this.logger?.Log("Exception in abbreviation {0}", abbreviation.Content);
+                                try
+                                {
+                                    node.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
+                                }
+                                catch (XmlException)
+                                {
+                                    this.logger?.Log("Exception in abbreviation {0}", abbreviation.Content);
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
-            context.InnerXml = document.DocumentElement.InnerXml;
+                context.InnerXml = document.DocumentElement.InnerXml;
 
-            return abbreviationSet.Count;
-        });
+                return abbreviationSet.Count;
+            });
+        }
 
         private async Task<IEnumerable<IAbbreviation>> GetAbbreviationCollection(XmlNode contextToHarvest)
         {

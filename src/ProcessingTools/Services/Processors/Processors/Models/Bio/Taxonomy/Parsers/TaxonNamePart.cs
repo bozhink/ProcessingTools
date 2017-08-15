@@ -134,5 +134,10 @@
         {
             return (this.FullName + this.Rank + this.Name).GetHashCode();
         }
+
+        public override bool Equals(object obj)
+        {
+            return this.GetHashCode() == obj.GetHashCode();
+        }
     }
 }

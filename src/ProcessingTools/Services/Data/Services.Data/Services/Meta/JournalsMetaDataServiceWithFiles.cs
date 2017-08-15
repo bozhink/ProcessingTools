@@ -15,13 +15,8 @@
 
         public JournalsMetaDataServiceWithFiles(string journalMetaFilesDirectory, IJournalMetaDataService journalMetaDataService)
         {
-            if (journalMetaDataService == null)
-            {
-                throw new ArgumentNullException(nameof(journalMetaDataService));
-            }
-
             this.JournalMetaFilesDirectory = journalMetaFilesDirectory;
-            this.journalMetaDataService = journalMetaDataService;
+            this.journalMetaDataService = journalMetaDataService ?? throw new ArgumentNullException(nameof(journalMetaDataService));
         }
 
         private string JournalMetaFilesDirectory
@@ -35,7 +30,7 @@
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException(nameof(this.JournalMetaFilesDirectory));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 if (!Directory.Exists(value))

@@ -11,14 +11,9 @@
     {
         private readonly IDbContextFactory<TContext> contextFactory;
 
-        public GenericDbContextInitializer(IDbContextFactory<TContext> contextFactory)
+        protected GenericDbContextInitializer(IDbContextFactory<TContext> contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
         }
 
         public async Task<object> Initialize()

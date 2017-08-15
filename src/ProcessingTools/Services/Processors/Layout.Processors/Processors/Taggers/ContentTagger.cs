@@ -95,7 +95,7 @@
 
         public async Task TagContentInDocument(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items)
         {
-            if (nodeList == null || nodeList.Count() < 1)
+            if (nodeList == null || !nodeList.Any())
             {
                 return;
             }
@@ -153,7 +153,7 @@
             }
         }
 
-        private string GetReplacementOfTagNode(XmlElement item)
+        private string GetReplacementOfTagNode(XmlNode item)
         {
             XmlElement replacementNode = (XmlElement)item.CloneNode(true);
             replacementNode.InnerText = "$1";

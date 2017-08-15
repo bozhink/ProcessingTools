@@ -4,7 +4,7 @@
     using System.Runtime.CompilerServices;
     using System.Text;
 
-    public class Tracer
+    public static class Tracer
     {
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetCurrentMethod()

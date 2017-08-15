@@ -14,6 +14,7 @@ namespace ProcessingTools.Mediatypes.Data.Entity.Migrations
 
         protected override void Seed(MediatypesDbContext context)
         {
+            // Skip
         }
     }
 }

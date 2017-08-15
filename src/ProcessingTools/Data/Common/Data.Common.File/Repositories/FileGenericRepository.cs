@@ -11,11 +11,11 @@
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Data.Common.File.Contracts.Repositories;
 
-    public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>, IFileCrudRepository<TEntity>
+    public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
         where TEntity : class
     {
-        public FileGenericRepository(IFactory<TContext> contextFactory)
+        protected FileGenericRepository(IFactory<TContext> contextFactory)
             : base(contextFactory)
         {
         }

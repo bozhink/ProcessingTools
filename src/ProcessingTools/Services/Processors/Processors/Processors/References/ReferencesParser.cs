@@ -9,14 +9,14 @@
 
     public class ReferencesParser : IReferencesParser
     {
-        private ILogger logger;
+        private readonly ILogger logger;
 
         public ReferencesParser(ILogger logger)
         {
             this.logger = logger;
         }
 
-        public Task<object> Parse(XmlNode context) => Task.Run(() => this.ParseSync(context));
+        public async Task<object> Parse(XmlNode context) => await Task.Run(() => this.ParseSync(context));
 
         private object ParseSync(XmlNode context)
         {
@@ -37,7 +37,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(exception: e, message: string.Empty);
             }
 
             return true;
@@ -66,7 +66,6 @@
 
         private string ReferenceJournalMatch(XmlNode reference)
         {
-            string result = reference.InnerXml;
             XmlNodeList nodeList = reference.SelectNodes("//fake_tag_1");
             foreach (XmlNode node in nodeList)
             {
@@ -175,46 +174,44 @@
 
             reference.InnerXml = Regex.Replace(reference.InnerXml, "</?fake_tag>", string.Empty);
 
-            result = reference.InnerXml;
-
-            return result;
+            return reference.InnerXml;
         }
 
         private string ReferencePersonGroupSplit(string reference)
         {
-            string result = reference;
+            ////string result = reference;
 
-            // Reference person group split
-            /*
-             * Article references person-group match
-             * /(?<=\A|,)\s*(((van|von|Van|Von|fon|Fon|de|De|Le|Jr|Jr\.|jr|jr\.|den|Den)\s)*(\S+))\s(.*?)\s*(?=,|\Z)/musi
-             * <name><surname>$1</surname> <given-names>$5</given-names></name>
-             */
-            /*
-            if (node["person-group"] != null)
-            {
-                node["person-group"].InnerXml = Regex.Replace(node["person-group"].InnerXml,
-                    @"\s*\bet\b\W*\bal\b\.?",
-                    "<etal> et al.</etal>");
-                node["person-group"].InnerXml = Regex.Replace(node["person-group"].InnerXml,
-                    @"\s*([\w\s\.’‘'-]{2,50})\s+([\w\s\.-]{1,10})\s*",
-                    "<name><surname>$1</surname> <given-names>$2</given-names></name>");
-            }
-            */
+            ////// Reference person group split
+            /////*
+            //// * Article references person-group match
+            //// * /(?<=\A|,)\s*(((van|von|Van|Von|fon|Fon|de|De|Le|Jr|Jr\.|jr|jr\.|den|Den)\s)*(\S+))\s(.*?)\s*(?=,|\Z)/musi
+            //// * <name><surname>$1</surname> <given-names>$5</given-names></name>
+            //// */
+            /////*
+            ////if (node["person-group"] != null)
+            ////{
+            ////    node["person-group"].InnerXml = Regex.Replace(node["person-group"].InnerXml,
+            ////        @"\s*\bet\b\W*\bal\b\.?",
+            ////        "<etal> et al.</etal>");
+            ////    node["person-group"].InnerXml = Regex.Replace(node["person-group"].InnerXml,
+            ////        @"\s*([\w\s\.’‘'-]{2,50})\s+([\w\s\.-]{1,10})\s*",
+            ////        "<name><surname>$1</surname> <given-names>$2</given-names></name>");
+            ////}
+            ////*/
 
-            // Reference person group split2
-            /*
-             * Article references person-group match
-             * /(?<=\A|,)\s*(((van|von|Van|Von|fon|Fon|de|De|Le|Jr|Jr\.|jr|jr\.|den|Den)\s)*(\S+))\s(.*?)\s*(?=,|\Z)/musi
-             * <name><surname>$1</surname> <given-names>$5</given-names></name>
-             */
-            /*
-             *  foreach person-group:
-             *      replace "(<person-group>[^<>]+,)\s*" by "$1<name name-style="western">"
-             *      replace "(<person-group>)(?!<)\s*" by "$1<name name-style="western">"
-             *      replace "(?<!>),<name" by "</name>,<name"
-             *      replace "(?<!>)</person-group>" by "</name></person-group>"
-             */
+            ////// Reference person group split2
+            /////*
+            //// * Article references person-group match
+            //// * /(?<=\A|,)\s*(((van|von|Van|Von|fon|Fon|de|De|Le|Jr|Jr\.|jr|jr\.|den|Den)\s)*(\S+))\s(.*?)\s*(?=,|\Z)/musi
+            //// * <name><surname>$1</surname> <given-names>$5</given-names></name>
+            //// */
+            /////*
+            //// *  foreach person-group:
+            //// *      replace "(<person-group>[^<>]+,)\s*" by "$1<name name-style="western">"
+            //// *      replace "(<person-group>)(?!<)\s*" by "$1<name name-style="western">"
+            //// *      replace "(?<!>),<name" by "</name>,<name"
+            //// *      replace "(?<!>)</person-group>" by "</name></person-group>"
+            //// */
 
             return reference;
         }

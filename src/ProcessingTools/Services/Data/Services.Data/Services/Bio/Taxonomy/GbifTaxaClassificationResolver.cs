@@ -37,21 +37,19 @@
 
             if ((response != null) &&
                 (!string.IsNullOrWhiteSpace(response.CanonicalName) ||
-                 !string.IsNullOrWhiteSpace(response.ScientificName)))
+                 !string.IsNullOrWhiteSpace(response.ScientificName)) &&
+                (response.CanonicalName.Equals(scientificName) ||
+                    response.ScientificName.Contains(scientificName)))
             {
-                if (response.CanonicalName.Equals(scientificName) ||
-                    response.ScientificName.Contains(scientificName))
-                {
-                    result.Add(this.MapGbifTaxonToTaxonClassification(response));
+                result.Add(this.MapGbifTaxonToTaxonClassification(response));
 
-                    if (response.Alternatives != null)
-                    {
-                        response.Alternatives
-                            .Where(a => a.CanonicalName.Equals(scientificName) || a.ScientificName.Contains(scientificName))
-                            .Select(this.MapGbifTaxonToTaxonClassification)
-                            .ToList()
-                            .ForEach(a => result.Add(a));
-                    }
+                if (response.Alternatives != null)
+                {
+                    response.Alternatives
+                        .Where(a => a.CanonicalName.Equals(scientificName) || a.ScientificName.Contains(scientificName))
+                        .Select(this.MapGbifTaxonToTaxonClassification)
+                        .ToList()
+                        .ForEach(a => result.Add(a));
                 }
             }
 

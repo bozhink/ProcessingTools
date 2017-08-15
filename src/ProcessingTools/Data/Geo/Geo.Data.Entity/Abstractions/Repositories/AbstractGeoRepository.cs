@@ -20,7 +20,7 @@
         private readonly IGeoRepository<TEntity> repository;
         private readonly IEnvironment environment;
 
-        public AbstractGeoRepository(IGeoRepository<TEntity> repository, IEnvironment environment)
+        protected AbstractGeoRepository(IGeoRepository<TEntity> repository, IEnvironment environment)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.environment = environment ?? throw new ArgumentNullException(nameof(environment));

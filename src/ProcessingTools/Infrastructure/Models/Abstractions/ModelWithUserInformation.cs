@@ -7,7 +7,7 @@
 
     public abstract class ModelWithUserInformation : IModelWithUserInformation
     {
-        public ModelWithUserInformation()
+        protected ModelWithUserInformation()
         {
             this.DateModified = DateTime.UtcNow;
             this.DateCreated = this.DateModified;

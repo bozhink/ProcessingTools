@@ -74,7 +74,7 @@
                     switch (numberOfRanks)
                     {
                         case 0:
-                            this.ProcessZeroRanksCase(scientificName, ranks, context);
+                            this.ProcessZeroRanksCase(scientificName);
                             break;
 
                         case 1:
@@ -82,7 +82,7 @@
                             break;
 
                         default:
-                            this.ProcessMultipleRanksCase(scientificName, ranks, context);
+                            this.ProcessMultipleRanksCase(scientificName, ranks);
                             break;
                     }
                 }
@@ -91,7 +91,7 @@
             return numberOfResolvedTaxa;
         }
 
-        private void ProcessMultipleRanksCase(string scientificName, IEnumerable<string> ranks, XmlNode context)
+        private void ProcessMultipleRanksCase(string scientificName, IEnumerable<string> ranks)
         {
             this.logger?.Log(LogType.Warning, "{0} --> Multiple matches.", scientificName);
             foreach (var rank in ranks)
@@ -120,7 +120,7 @@
                 });
         }
 
-        private void ProcessZeroRanksCase(string scientificName, IEnumerable<string> ranks, XmlNode context)
+        private void ProcessZeroRanksCase(string scientificName)
         {
             this.logger?.Log(LogType.Warning, "{0} --> No match or error.\n", scientificName);
         }

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Xml.Contracts.Cache
 {
-    public interface IGenericTransformCache<T>
+    public interface IGenericTransformCache<out T>
     {
         T this[string fileName] { get; }
 

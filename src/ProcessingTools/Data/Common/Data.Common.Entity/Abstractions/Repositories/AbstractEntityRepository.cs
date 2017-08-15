@@ -19,14 +19,9 @@
     {
         private readonly IGenericRepository<TContext, TDbModel> repository;
 
-        public AbstractEntityRepository(IGenericRepository<TContext, TDbModel> repository)
+        protected AbstractEntityRepository(IGenericRepository<TContext, TDbModel> repository)
         {
-            if (repository == null)
-            {
-                throw new ArgumentNullException(nameof(repository));
-            }
-
-            this.repository = repository;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public virtual IQueryable<TEntity> Query => this.repository.DbSet.AsQueryable<TEntity>();

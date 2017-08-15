@@ -14,6 +14,7 @@ namespace ProcessingTools.History.Data.Entity.Migrations
 
         protected override void Seed(HistoryDbContext context)
         {
+            // Skip
         }
     }
 }

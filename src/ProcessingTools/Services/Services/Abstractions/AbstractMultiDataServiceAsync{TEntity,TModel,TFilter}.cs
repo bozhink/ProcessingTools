@@ -19,7 +19,7 @@
     {
         private readonly ICrudRepository<TEntity> repository;
 
-        public AbstractMultiDataServiceAsync(ICrudRepository<TEntity> repository)
+        protected AbstractMultiDataServiceAsync(ICrudRepository<TEntity> repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

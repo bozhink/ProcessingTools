@@ -18,7 +18,7 @@
     {
         private readonly IBiorepositoriesRepositoryProvider<TDbModel> repositoryProvider;
 
-        public BiorepositoriesDataServiceFactory(IBiorepositoriesRepositoryProvider<TDbModel> repositoryProvider)
+        protected BiorepositoriesDataServiceFactory(IBiorepositoriesRepositoryProvider<TDbModel> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }

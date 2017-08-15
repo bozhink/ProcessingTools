@@ -10,14 +10,9 @@
     {
         private readonly ITaxaClassificationResolver classificationResolver;
 
-        public AbstractTaxaRankResolverOverTaxaClassificationResolver(ITaxaClassificationResolver classificationResolver)
+        protected AbstractTaxaRankResolverOverTaxaClassificationResolver(ITaxaClassificationResolver classificationResolver)
         {
-            if (classificationResolver == null)
-            {
-                throw new ArgumentNullException(nameof(classificationResolver));
-            }
-
-            this.classificationResolver = classificationResolver;
+            this.classificationResolver = classificationResolver ?? throw new ArgumentNullException(nameof(classificationResolver));
         }
 
         public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)

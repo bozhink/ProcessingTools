@@ -11,14 +11,9 @@
     {
         private readonly IRedisClientProvider clientProvider;
 
-        public AbstractSavableRedisRepository(IRedisClientProvider clientProvider)
+        protected AbstractSavableRedisRepository(IRedisClientProvider clientProvider)
         {
-            if (clientProvider == null)
-            {
-                throw new ArgumentNullException(nameof(clientProvider));
-            }
-
-            this.clientProvider = clientProvider;
+            this.clientProvider = clientProvider ?? throw new ArgumentNullException(nameof(clientProvider));
         }
 
         public IEnumerable<string> Keys

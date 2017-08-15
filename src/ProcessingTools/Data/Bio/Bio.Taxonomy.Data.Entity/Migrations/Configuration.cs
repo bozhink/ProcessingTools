@@ -14,6 +14,7 @@ namespace ProcessingTools.Bio.Taxonomy.Data.Entity.Migrations
 
         protected override void Seed(BioTaxonomyDbContext context)
         {
+            // Skip
         }
     }
 }

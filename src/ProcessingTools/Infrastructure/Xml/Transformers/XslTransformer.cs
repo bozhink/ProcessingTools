@@ -47,13 +47,9 @@
                     stream.Close();
                 }
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
             finally
             {
-                if (closeReader && reader != null && reader.ReadState != ReadState.Closed)
+                if (closeReader && reader?.ReadState != ReadState.Closed)
                 {
                     try
                     {
@@ -62,6 +58,7 @@
                     }
                     catch
                     {
+                        // Skip
                     }
                 }
             }

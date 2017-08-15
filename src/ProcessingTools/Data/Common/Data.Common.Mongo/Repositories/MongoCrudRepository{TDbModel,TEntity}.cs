@@ -14,7 +14,7 @@
         where TEntity : class
         where TDbModel : class, TEntity
     {
-        public MongoCrudRepository(IMongoDatabaseProvider provider)
+        protected MongoCrudRepository(IMongoDatabaseProvider provider)
             : base(provider)
         {
         }
@@ -48,31 +48,30 @@
         }
 
         // TODO
-        public virtual Task<IEnumerable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
+        public virtual async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
             {
-                if (filter == null)
-                {
-                    throw new ArgumentNullException(nameof(filter));
-                }
+                throw new ArgumentNullException(nameof(filter));
+            }
 
-                var query = this.Collection.AsQueryable().Where(filter).AsEnumerable();
-                return query;
-            });
+            var query = this.Collection.AsQueryable().Where(filter).AsEnumerable();
+            return await Task.FromResult(query);
+        }
 
-        public virtual Task<TEntity> FindFirst(
-            Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
+        public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
             {
-                if (filter == null)
-                {
-                    throw new ArgumentNullException(nameof(filter));
-                }
+                throw new ArgumentNullException(nameof(filter));
+            }
 
-                var entity = this.Collection
-                    .AsQueryable()
-                    .FirstOrDefault(filter);
-                return entity;
-            });
+            // TODO
+            var entity = this.Collection
+                 .AsQueryable()
+                 .FirstOrDefault(filter);
+            return await Task.FromResult(entity);
+        }
 
         public async Task<TEntity> GetById(object id)
         {
@@ -111,7 +110,7 @@
             var updateCommands = update.UpdateCommands.ToArray();
             if (updateCommands.Length < 1)
             {
-                throw new ArgumentNullException(nameof(update.UpdateCommands));
+                throw new ArgumentNullException(nameof(update));
             }
 
             var updateCommand = updateCommands[0];

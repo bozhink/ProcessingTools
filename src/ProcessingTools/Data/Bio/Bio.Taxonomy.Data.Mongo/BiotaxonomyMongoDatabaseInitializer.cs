@@ -56,12 +56,12 @@
                 Sparse = false
             };
 
-            var result = await collection.Indexes
+            await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.RankType),
                     indexOptions);
 
-            result = await collection.Indexes
+            var result = await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.Name),
                     indexOptions);

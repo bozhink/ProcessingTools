@@ -14,7 +14,7 @@
         private readonly IMongoDatabase db;
         private string collectionName;
 
-        public MongoRepository(IMongoDatabaseProvider databaseProvider)
+        protected MongoRepository(IMongoDatabaseProvider databaseProvider)
         {
             if (databaseProvider == null)
             {
@@ -38,7 +38,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.CollectionName));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.collectionName = value;

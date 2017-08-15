@@ -10,7 +10,6 @@
     internal class Abbreviation : IAbbreviation
     {
         private string content;
-        private string contentType;
         private string definition;
 
         public Abbreviation(string content, string contentType, string definition)
@@ -38,25 +37,14 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.Content));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.content = value;
             }
         }
 
-        public string ContentType
-        {
-            get
-            {
-                return this.contentType;
-            }
-
-            set
-            {
-                this.contentType = value;
-            }
-        }
+        public string ContentType { get; set; }
 
         public string Definition
         {
@@ -69,7 +57,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.Definition));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.definition = value;

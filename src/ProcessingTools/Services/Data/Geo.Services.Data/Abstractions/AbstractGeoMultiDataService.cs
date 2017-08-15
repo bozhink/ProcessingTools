@@ -17,7 +17,7 @@
     {
         private readonly TRepository repository;
 
-        public AbstractGeoMultiDataService(TRepository repository)
+        protected AbstractGeoMultiDataService(TRepository repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

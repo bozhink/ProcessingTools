@@ -10,14 +10,9 @@
     {
         private readonly IXmlTransformer transformer;
 
-        public AbstractXmlNormalizer(IXmlTransformer transformer)
+        protected AbstractXmlNormalizer(IXmlTransformer transformer)
         {
-            if (transformer == null)
-            {
-                throw new ArgumentNullException(nameof(transformer));
-            }
-
-            this.transformer = transformer;
+            this.transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
         }
 
         public Task<string> Normalize(XmlNode context)

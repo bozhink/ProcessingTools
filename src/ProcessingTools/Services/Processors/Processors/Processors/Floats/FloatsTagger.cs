@@ -17,20 +17,19 @@
 
     public class FloatsTagger : IFloatsTagger
     {
-        private const int MaxNumberOfPunctuationSigns = 10;
         private const int MaxNumberOfSequentalFloats = 60;
         private const string SubfloatsPattern = "\\s*(([A-Za-z]\\d?|[ivx]+)[,\\s]*([,;‒–—−-]|and|\\&amp;)\\s*)*([A-Za-z]\\d?|[ivx]+)";
 
         private readonly Regex selectDash = new Regex("[‒–—−-]");
         private readonly Regex selectNaNChar = new Regex(@"\D");
 
-        private ConcurrentDictionary<Type, IFloatObject> floatObjects;
+        private readonly ConcurrentDictionary<Type, IFloatObject> floatObjects;
+        private readonly ILogger logger;
 
         private Hashtable floatIdByLabel = null;
         private Hashtable floatLabelById = null;
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
-        private ILogger logger;
 
         public FloatsTagger(ILogger logger)
         {
@@ -232,7 +231,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(exception: e, message: string.Empty);
             }
         }
 
@@ -254,7 +253,7 @@
                         }
                         catch (Exception e)
                         {
-                            this.logger?.Log(e, "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
+                            this.logger?.Log(exception: e, message: "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
                         }
 
                         break;
@@ -308,7 +307,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(exception: e, message: string.Empty);
             }
 
             this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
@@ -383,11 +382,11 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, "Cannot print the table of floats.");
+                this.logger?.Log(exception: e, message: "Cannot print the table of floats.");
             }
         }
 
-        private void ProcessFloatsRid(XmlNode context, int floatsNumber, string refType)
+        private void ProcessFloatsRid(XmlNode context, string refType)
         {
             string xml = context.InnerXml;
 
@@ -416,7 +415,7 @@
             {
                 this.TagFloatsOfType(context, floatObject.InternalReferenceType, floatObject.MatchCitationPattern);
                 this.FormatXref(context);
-                this.ProcessFloatsRid(context, numberOfFloatsOfType, floatObject.InternalReferenceType);
+                this.ProcessFloatsRid(context, floatObject.InternalReferenceType);
                 this.FormatXrefGroup(context, floatObject.InternalReferenceType);
             }
         }

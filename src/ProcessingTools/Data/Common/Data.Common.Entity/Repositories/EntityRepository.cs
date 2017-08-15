@@ -13,7 +13,7 @@
         where TContext : DbContext
         where TEntity : class
     {
-        public EntityRepository(IDbContextProvider<TContext> contextProvider)
+        protected EntityRepository(IDbContextProvider<TContext> contextProvider)
         {
             if (contextProvider == null)
             {
@@ -28,15 +28,15 @@
 
         private TContext Context { get; set; }
 
+        public virtual object SaveChanges() => this.Context.SaveChanges();
+
+        public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync();
+
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        public virtual object SaveChanges() => this.Context.SaveChanges();
-
-        public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync();
 
         protected virtual void Dispose(bool disposing)
         {
