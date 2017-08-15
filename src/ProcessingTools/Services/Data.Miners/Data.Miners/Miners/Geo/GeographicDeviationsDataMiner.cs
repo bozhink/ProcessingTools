@@ -17,16 +17,16 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
-        public async Task<IEnumerable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
             const string Pattern = DistancePattern + @"\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|notrh)+)";
 
-            var items = await content.GetMatchesAsync(new Regex(Pattern));
+            var items = await context.GetMatchesAsync(new Regex(Pattern));
             var result = new HashSet<string>(items);
 
             return result;

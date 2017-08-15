@@ -15,18 +15,18 @@
             this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<object> Parse(IDocument document)
+        public async Task<object> Parse(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             var content = await this.transformersFactory
                 .GetParseTreatmentMetaWithInternalInformationTransformer()
-                .Transform(document.Xml);
+                .Transform(context.Xml);
 
-            document.Xml = content;
+            context.Xml = content;
 
             return true;
         }

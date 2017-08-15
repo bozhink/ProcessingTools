@@ -33,19 +33,19 @@
             this.collectionsTagger = collectionsTagger ?? throw new ArgumentNullException(nameof(collectionsTagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
                 .ToArray();
 
-            await this.TagCollectionCodes(document, data);
-            await this.TagCollections(document, data);
+            await this.TagCollectionCodes(context, data);
+            await this.TagCollections(context, data);
 
             return true;
         }

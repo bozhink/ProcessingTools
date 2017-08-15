@@ -22,7 +22,7 @@
 
         private const string MonthArabicSubpattern = @"(?<!\d)(?:0?[1-9]|1[0-2])(?!\d)";
 
-        public async Task<IEnumerable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string context)
         {
             var patterns = new string[]
             {
@@ -63,7 +63,7 @@
                 @"(?i)(?:(?:" + DayRangeSubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"\W{0,4}){1,2}" + YearSubpattern
             };
 
-            var result = await this.GetMatches(content, patterns);
+            var result = await this.GetMatches(context, patterns);
 
             return result;
         }

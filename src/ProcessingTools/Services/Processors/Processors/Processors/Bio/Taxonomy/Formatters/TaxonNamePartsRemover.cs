@@ -15,18 +15,18 @@
             this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<object> Format(IDocument document)
+        public async Task<object> Format(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             var content = await this.transformersFactory
                 .GetRemoveTaxonNamePartsTransformer()
-                .Transform(document.Xml);
+                .Transform(context.Xml);
 
-            document.Xml = content;
+            context.Xml = content;
 
             return true;
         }

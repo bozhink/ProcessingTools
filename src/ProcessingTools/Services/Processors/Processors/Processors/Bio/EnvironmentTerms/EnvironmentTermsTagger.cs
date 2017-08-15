@@ -18,28 +18,25 @@
         private readonly IEnvoTermsDataMiner miner;
         private readonly ITextContentHarvester contentHarvester;
         private readonly ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger;
-        private readonly ILogger logger;
 
         public EnvironmentTermsTagger(
             IEnvoTermsDataMiner miner,
             ITextContentHarvester contentHarvester,
-            ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger,
-            ILogger logger)
+            ISimpleXmlSerializableObjectTagger<EnvoTermSerializableModel> contentTagger)
         {
             this.miner = miner ?? throw new ArgumentNullException(nameof(miner));
             this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
-            this.logger = logger;
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
                 .Select(t => new EnvoTermResponseModel
                 {
@@ -61,7 +58,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, data, XPath, settings);
+            await this.contentTagger.Tag(context.XmlDocument.DocumentElement, context.NamespaceManager, data, XPath, settings);
 
             return true;
         }

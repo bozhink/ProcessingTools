@@ -21,28 +21,28 @@
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
-        public async Task<object> Format(IDocument document)
+        public async Task<object> Format(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var transformer = this.transformerFactory.Create(document.SchemaType);
-            document.Xml = await transformer.Transform(document.Xml);
+            var transformer = this.transformerFactory.Create(context.SchemaType);
+            context.Xml = await transformer.Transform(context.Xml);
 
-            this.TrimBlockElements(document);
+            this.TrimBlockElements(context);
 
-            document.Xml = document.Xml
+            context.Xml = context.Xml
                 .RegexReplace(@"[^\S\r\n ]+", " ")
                 .RegexReplace(@"\&lt;\s*br\s*/\s*\&gt;", "<break />");
 
-            document.XmlDocument.RemoveXmlNodes("//break[count(ancestor::aff) + count(ancestor::alt-title) + count(ancestor::article-title) + count(ancestor::chem-struct) + count(ancestor::disp-formula) + count(ancestor::product) + count(ancestor::sig) + count(ancestor::sig-block) + count(ancestor::subtitle) + count(ancestor::td) + count(ancestor::th) + count(ancestor::title) + count(ancestor::trans-subtitle) + count(ancestor::trans-title) = 0]");
+            context.XmlDocument.RemoveXmlNodes("//break[count(ancestor::aff) + count(ancestor::alt-title) + count(ancestor::article-title) + count(ancestor::chem-struct) + count(ancestor::disp-formula) + count(ancestor::product) + count(ancestor::sig) + count(ancestor::sig-block) + count(ancestor::subtitle) + count(ancestor::td) + count(ancestor::th) + count(ancestor::title) + count(ancestor::trans-subtitle) + count(ancestor::trans-title) = 0]");
 
-            this.InitialRefactor(document);
-            this.RefactorEmailTags(document);
-            this.FinalRefactor(document);
-            this.TrimBlockElements(document);
+            this.InitialRefactor(context);
+            this.RefactorEmailTags(context);
+            this.FinalRefactor(context);
+            this.TrimBlockElements(context);
 
             return true;
         }
@@ -238,6 +238,7 @@
                     }
                     catch
                     {
+                        // Skip
                     }
                 }
             }

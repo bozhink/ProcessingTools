@@ -26,15 +26,15 @@ namespace ProcessingTools.Data.Miners.Miners.Bio
         private const string RangeOfItemsSubPattern = @"(?:\d+(?:\s*[–—−‒-]?\s*))+";
         private const string Pattern = @"((?i)" + RangeOfItemsSubPattern + @"[^\w<>\(\)\[\]]{0,5}(?:(?:[♀♂]|[fmij]\b|\bexx?\b\.?|\bspp\b\.?|\bmales?\b|\bfemales?\b|\bjuveniles?\b|\blarvae?\b|\badults?\b|(?:\bdry\b\s*|\bwet\b\s*)?\bspecimens?\b|\bspec\b\.?|\bsex undetermined\b|\bunsexed\b(?:\s+specimens?\b)?)\s*?)+)";
 
-        public async Task<IEnumerable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
             Regex matchSpecimenCount = new Regex(Pattern);
-            var result = new HashSet<string>(await content.GetMatchesAsync(matchSpecimenCount));
+            var result = new HashSet<string>(await context.GetMatchesAsync(matchSpecimenCount));
             return result;
         }
     }

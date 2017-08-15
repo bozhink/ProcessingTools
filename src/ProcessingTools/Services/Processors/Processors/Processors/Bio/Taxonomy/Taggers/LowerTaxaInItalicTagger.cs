@@ -11,7 +11,6 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
@@ -20,37 +19,29 @@
         private const string ItalicXPath = ".//i[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//Italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]";
 
         private readonly IPersonNamesHarvester personNamesHarvester;
-        private readonly IContentTagger contentTagger;
         private readonly IBlackList blacklist;
-        private readonly ILogger logger;
 
-        public LowerTaxaInItalicTagger(
-            IPersonNamesHarvester personNamesHarvester,
-            IBlackList blacklist,
-            IContentTagger contentTagger,
-            ILogger logger)
+        public LowerTaxaInItalicTagger(IPersonNamesHarvester personNamesHarvester, IBlackList blacklist)
         {
             this.personNamesHarvester = personNamesHarvester ?? throw new ArgumentNullException(nameof(personNamesHarvester));
             this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
-            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
-            this.logger = logger;
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var knownLowerTaxaNames = this.GetKnownLowerTaxa(document);
+            var knownLowerTaxaNames = this.GetKnownLowerTaxa(context);
 
-            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(document).Concat(knownLowerTaxaNames));
+            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownLowerTaxaNames));
 
-            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(document, plausibleLowerTaxa))
+            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(context, plausibleLowerTaxa))
                 .Select(name => name.ToLower()));
 
-            this.TagDirectTaxonomicMatches(document, plausibleLowerTaxa);
+            this.TagDirectTaxonomicMatches(context, plausibleLowerTaxa);
 
             return true;
         }

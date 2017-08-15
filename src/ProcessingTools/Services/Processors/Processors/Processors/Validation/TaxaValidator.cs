@@ -22,11 +22,11 @@
             this.validationService = validationService ?? throw new ArgumentNullException(nameof(validationService));
         }
 
-        public async Task<object> Validate(IDocument document, IReporter reporter)
+        public async Task<object> Validate(IDocument context, IReporter reporter)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (reporter == null)
@@ -34,7 +34,7 @@
                 throw new ArgumentNullException(nameof(reporter));
             }
 
-            var data = await this.harvester.Harvest(document.XmlDocument);
+            var data = await this.harvester.Harvest(context.XmlDocument);
             var scientificNames = data?.Distinct().ToArray();
 
             if (scientificNames == null || scientificNames.Length < 1)

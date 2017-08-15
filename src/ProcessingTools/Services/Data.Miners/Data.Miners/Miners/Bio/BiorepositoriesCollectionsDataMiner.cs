@@ -20,18 +20,8 @@
             IBiorepositoriesInstitutionalCollectionsDataService institutionalCollectionsDataService,
             IBiorepositoriesPersonalCollectionsDataService personalCollectionsDataService)
         {
-            if (institutionalCollectionsDataService == null)
-            {
-                throw new ArgumentNullException(nameof(institutionalCollectionsDataService));
-            }
-
-            if (personalCollectionsDataService == null)
-            {
-                throw new ArgumentNullException(nameof(personalCollectionsDataService));
-            }
-
-            this.institutionalCollectionsDataService = institutionalCollectionsDataService;
-            this.personalCollectionsDataService = personalCollectionsDataService;
+            this.institutionalCollectionsDataService = institutionalCollectionsDataService ?? throw new ArgumentNullException(nameof(institutionalCollectionsDataService));
+            this.personalCollectionsDataService = personalCollectionsDataService ?? throw new ArgumentNullException(nameof(personalCollectionsDataService));
         }
 
         protected override Func<BiorepositoriesCollectionServiceModel, BiorepositoriesCollection> Project => x => new BiorepositoriesCollection
@@ -41,14 +31,14 @@
             Url = x.Url
         };
 
-        public async Task<IEnumerable<IBiorepositoriesCollection>> Mine(string content)
+        public async Task<IEnumerable<IBiorepositoriesCollection>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            Func<BiorepositoriesCollectionServiceModel, bool> filter = x => Regex.IsMatch(content, Regex.Escape(x.CollectionCode) + "|" + Regex.Escape(x.CollectionName));
+            Func<BiorepositoriesCollectionServiceModel, bool> filter = x => Regex.IsMatch(context, Regex.Escape(x.CollectionCode) + "|" + Regex.Escape(x.CollectionName));
 
             var matches = new List<BiorepositoriesCollection>();
 

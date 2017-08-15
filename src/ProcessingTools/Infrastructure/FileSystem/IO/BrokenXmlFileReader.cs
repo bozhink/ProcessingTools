@@ -16,12 +16,7 @@
 
         public BrokenXmlFileReader(IXmlFileReader reader, ILogger logger)
         {
-            if (reader == null)
-            {
-                throw new ArgumentNullException(nameof(reader));
-            }
-
-            this.reader = reader;
+            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
             this.logger = logger;
         }
 
@@ -38,41 +33,41 @@
             }
         }
 
-        public XmlReader GetReader(string fileName)
+        public XmlReader GetReader(string fullName)
         {
-            if (string.IsNullOrWhiteSpace(fileName))
+            if (string.IsNullOrWhiteSpace(fullName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                throw new ArgumentNullException(nameof(fullName));
             }
 
-            return this.reader.GetReader(fileName);
+            return this.reader.GetReader(fullName);
         }
 
-        public async Task<XmlDocument> ReadXml(string fileName)
+        public async Task<XmlDocument> ReadXml(string fullName)
         {
-            if (string.IsNullOrWhiteSpace(fileName))
+            if (string.IsNullOrWhiteSpace(fullName))
             {
-                throw new ArgumentNullException(nameof(fileName));
+                throw new ArgumentNullException(nameof(fullName));
             }
 
             XmlDocument document;
             try
             {
-                document = await this.reader.ReadXml(fileName);
+                document = await this.reader.ReadXml(fullName);
             }
             catch (XmlException e)
             {
-                document = this.ProcessXmlException(fileName, e);
+                document = this.ProcessXmlException(fullName, e);
             }
             catch (AggregateException e)
             {
                 if (e.InnerExceptions.Count == 1 && e.InnerExceptions[0] is XmlException)
                 {
-                    document = this.ProcessXmlException(fileName, e.InnerExceptions[0]);
+                    document = this.ProcessXmlException(fullName, e.InnerExceptions[0]);
                 }
                 else
                 {
-                    throw e;
+                    throw;
                 }
             }
 

@@ -66,12 +66,12 @@
         /// <summary>
         /// Search scientific name in The Paleobiology Database (PBDB).
         /// </summary>
-        /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
+        /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>PbdbAllParents object which provides information about the scientific name.</returns>
         /// <example>https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents</example>
-        public async Task<PbdbAllParents> RequestData(string scientificName)
+        public async Task<PbdbAllParents> RequestData(string content)
         {
-            string url = $"data1.1/taxa/list.json?name={scientificName}&rel=all_parents";
+            string url = $"data1.1/taxa/list.json?name={content}&rel=all_parents";
 
             var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
             var result = await connector.GetJsonObjectAsync<PbdbAllParents>(url);

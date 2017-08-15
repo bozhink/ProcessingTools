@@ -15,18 +15,18 @@
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
-        public async Task<object> Generate(IDocument document)
+        public async Task<object> Generate(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             var content = await this.transformerFactory
                 .GetZooBankRegistrationTransformer()
-                .Transform(document.Xml);
+                .Transform(context.Xml);
 
-            document.Xml = content;
+            context.Xml = content;
 
             return true;
         }

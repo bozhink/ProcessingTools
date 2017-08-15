@@ -17,19 +17,19 @@
                 .Trim();
         };
 
-        public Task<object> Format(IDocument document)
+        public async Task<object> Format(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            return Task.Run<object>(() =>
+            return await Task.Run(() =>
             {
-                this.InitialFormat(document);
-                this.Split1(document);
-                this.Split2(document);
-                this.FinalFormat(document);
+                this.InitialFormat(context);
+                this.Split1(context);
+                this.Split2(context);
+                this.FinalFormat(context);
 
                 return true;
             });

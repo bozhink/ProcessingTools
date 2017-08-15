@@ -20,15 +20,15 @@ namespace ProcessingTools.Common.Extensions.Linq.Expressions
             return new ParameterRebinder(map).Visit(expression);
         }
 
-        protected override Expression VisitParameter(ParameterExpression p)
+        protected override Expression VisitParameter(ParameterExpression node)
         {
             ParameterExpression replacement;
-            if (this.map.TryGetValue(p, out replacement))
+            if (this.map.TryGetValue(node, out replacement))
             {
-                p = replacement;
+                node = replacement;
             }
 
-            return base.VisitParameter(p);
+            return base.VisitParameter(node);
         }
     }
 }

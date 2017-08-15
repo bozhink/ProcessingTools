@@ -43,23 +43,23 @@
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement);
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
+            var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement);
             var seed = await this.whitelist.Items;
 
             var data = await this.miner.Mine(textContent, seed, stopWords);
 
             var taxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));
 
-            var tagModel = document.CreateTaxonNameXmlElement(TaxonType.Higher);
-            await this.contentTagger.Tag(document, taxaNames, tagModel, HigherTaxaXPath);
+            var tagModel = context.CreateTaxonNameXmlElement(TaxonType.Higher);
+            await this.contentTagger.Tag(context, taxaNames, tagModel, HigherTaxaXPath);
 
             return true;
         }

@@ -40,12 +40,12 @@
         /// <summary>
         /// Search scientific name in Catalogue Of Life (CoL).
         /// </summary>
-        /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
+        /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>CatalogueOfLifeApiServiceResponse of the CoL API response.</returns>
         /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
-        public async Task<CatalogueOfLifeApiServiceResponse> RequestData(string scientificName)
+        public async Task<CatalogueOfLifeApiServiceResponse> RequestData(string content)
         {
-            string requestName = scientificName.UrlEncode();
+            string requestName = content.UrlEncode();
             string url = $"/col/webservice?name={requestName}&response=full";
 
             var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);

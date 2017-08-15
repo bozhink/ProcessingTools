@@ -19,18 +19,18 @@
     {
         private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;
 
-        private TService service;
+        private readonly TService service;
 
         public SimpleServiceStringDataMiner(TService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task<IEnumerable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
             var matches = new List<string>();
@@ -51,7 +51,7 @@
 
                 foreach (var matcher in matchers)
                 {
-                    matches.AddRange(await content.GetMatchesAsync(matcher));
+                    matches.AddRange(await context.GetMatchesAsync(matcher));
                 }
             }
 

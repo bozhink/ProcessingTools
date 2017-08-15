@@ -11,26 +11,21 @@
 
     public class ExtractHcmrDataMiner : IExtractHcmrDataMiner
     {
-        private IExtractHcmrDataRequester requester;
+        private readonly IExtractHcmrDataRequester requester;
 
         public ExtractHcmrDataMiner(IExtractHcmrDataRequester requester)
         {
-            if (requester == null)
-            {
-                throw new ArgumentNullException(nameof(requester));
-            }
-
-            this.requester = requester;
+            this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
-        public async Task<IEnumerable<IExtractHcmrEnvoTerm>> Mine(string content)
+        public async Task<IEnumerable<IExtractHcmrEnvoTerm>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var response = await this.requester?.RequestData(content);
+            var response = await this.requester?.RequestData(context);
 
             if (response == null || response.Items == null)
             {

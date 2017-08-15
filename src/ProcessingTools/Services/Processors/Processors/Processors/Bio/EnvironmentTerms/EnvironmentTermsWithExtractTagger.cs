@@ -29,14 +29,14 @@
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
                 .Select(t => new EnvoExtractHcmrSerializableModel
                 {
@@ -51,7 +51,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.Tag(document.XmlDocument, document.NamespaceManager, data, XPath, settings);
+            await this.contentTagger.Tag(context.XmlDocument, context.NamespaceManager, data, XPath, settings);
 
             return true;
         }

@@ -11,7 +11,7 @@
 
     public class GenericStringMinerTagger<TMiner, TTagModelProvider> : IDocumentTagger
         where TMiner : IStringDataMiner
-        where TTagModelProvider : IXmlTagModelProvider
+        where TTagModelProvider : class, IXmlTagModelProvider
     {
         private readonly IGenericStringDataMinerEvaluator<TMiner> evaluator;
         private readonly IStringTagger tagger;
@@ -22,38 +22,23 @@
             IStringTagger tagger,
             TTagModelProvider tagModelProvider)
         {
-            if (evaluator == null)
-            {
-                throw new ArgumentNullException(nameof(evaluator));
-            }
-
-            if (tagger == null)
-            {
-                throw new ArgumentNullException(nameof(tagger));
-            }
-
-            if (tagModelProvider == null)
-            {
-                throw new ArgumentNullException(nameof(tagModelProvider));
-            }
-
-            this.evaluator = evaluator;
-            this.tagger = tagger;
-            this.tagModelProvider = tagModelProvider;
+            this.evaluator = evaluator ?? throw new ArgumentNullException(nameof(evaluator));
+            this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
+            this.tagModelProvider = tagModelProvider ?? throw new ArgumentNullException(nameof(tagModelProvider));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var tagModel = this.tagModelProvider.TagModel(document.XmlDocument);
+            var tagModel = this.tagModelProvider.TagModel(context.XmlDocument);
 
-            var data = await this.evaluator.Evaluate(document);
+            var data = await this.evaluator.Evaluate(context);
 
-            return await this.tagger.Tag(document, data, tagModel, XPathStrings.ContentNodes);
+            return await this.tagger.Tag(context, data, tagModel, XPathStrings.ContentNodes);
         }
     }
 }

@@ -12,23 +12,18 @@
 
         public GavinLaurensParser(ISpecialTransformersFactory transformersFactory)
         {
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.transformersFactory = transformersFactory;
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<object> Parse(IDocument document)
+        public async Task<object> Parse(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             var transformer = this.transformersFactory.GetGavinLaurensTransformer();
-            document.Xml = await transformer.Transform(document.Xml);
+            context.Xml = await transformer.Transform(context.Xml);
 
             return true;
         }

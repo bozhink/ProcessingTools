@@ -48,15 +48,15 @@
             };
         }
 
-        public async Task<IEnumerable<ISpecimenCode>> Mine(string content)
+        public async Task<IEnumerable<ISpecimenCode>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
                 return new ISpecimenCode[] { };
             }
 
             var data = await this.patterns.AsParallel()
-                .SelectMany(p => Regex.Match(content, p.Key).AsEnumerable()
+                .SelectMany(p => Regex.Match(context, p.Key).AsEnumerable()
                     .Select(m => new SpecimenCodeResponseModel
                     {
                         Content = m,

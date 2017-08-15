@@ -29,16 +29,16 @@ namespace ProcessingTools.Data.Miners.Miners.Quantities
 
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
-        public async Task<IEnumerable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
             const string Pattern = @"(?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b";
 
-            var items = await content.GetMatchesAsync(new Regex(Pattern));
+            var items = await context.GetMatchesAsync(new Regex(Pattern));
             var result = new HashSet<string>(items);
 
             return result;

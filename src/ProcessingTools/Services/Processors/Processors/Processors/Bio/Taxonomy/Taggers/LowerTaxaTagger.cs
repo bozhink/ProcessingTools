@@ -48,38 +48,38 @@
             this.logger = logger;
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            await this.MainTag(document);
+            await this.MainTag(context);
 
-            await this.DeepTag(document);
+            await this.DeepTag(context);
 
             return true;
         }
 
-        private async Task MainTag(IDocument document)
+        private async Task MainTag(IDocument context)
         {
-            var knownLowerTaxaNames = this.GetKnownLowerTaxa(document);
+            var knownLowerTaxaNames = this.GetKnownLowerTaxa(context);
 
-            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(document).Concat(knownLowerTaxaNames));
+            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownLowerTaxaNames));
 
-            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(document, plausibleLowerTaxa))
+            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(context, plausibleLowerTaxa))
                 .Select(name => name.ToLower()));
 
-            this.TagDirectTaxonomicMatches(document, plausibleLowerTaxa);
+            this.TagDirectTaxonomicMatches(context, plausibleLowerTaxa);
 
             // TODO: move to format
-            document.Xml = Regex.Replace(
-                document.Xml,
+            context.Xml = Regex.Replace(
+                context.Xml,
                 @"‘<i>(<tn type=""lower""[^>]*>)([A-Z][a-z\.×]+)(</tn>)(?:</i>)?’\s*(?:<i>)?([a-z\.×-]+)</i>",
                 "$1‘$2’ $4$3");
 
-            this.AdvancedTagLowerTaxa(document);
+            this.AdvancedTagLowerTaxa(context);
             //// this.Xml = this.TagInfraspecificTaxa(this.Xml);
         }
 

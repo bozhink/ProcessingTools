@@ -11,9 +11,9 @@
 
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {
-        public async Task<IEnumerable<string>> Mine(string content)
+        public async Task<IEnumerable<string>> Mine(string context)
         {
-            var internalMiner = new InternalMiner(Regex.Replace(content, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°"));
+            var internalMiner = new InternalMiner(Regex.Replace(context, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°"));
 
             var result = new ConcurrentQueue<string>();
             var methods = typeof(InternalMiner).GetMethods()

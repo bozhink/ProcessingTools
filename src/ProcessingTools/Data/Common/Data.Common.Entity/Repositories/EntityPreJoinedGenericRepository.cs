@@ -14,7 +14,7 @@
         where TContext : DbContext
         where TEntity : class, IEntityWithPreJoinedFields
     {
-        private IEnumerable<string> prejoinFields;
+        private readonly IEnumerable<string> prejoinFields;
 
         public EntityPreJoinedGenericRepository(IDbContextProvider<TContext> contextProvider)
             : base(contextProvider)

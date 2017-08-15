@@ -14,7 +14,7 @@
         where TEntity : class, IAddressable
         where TDbModel : Addressable, TEntity, ProcessingTools.Contracts.Models.IStringIdentifiable
     {
-        public AbstractEntityAddressableRepository(IGenericRepository<IJournalsDbContext, TDbModel> repository)
+        protected AbstractEntityAddressableRepository(IGenericRepository<IJournalsDbContext, TDbModel> repository)
             : base(repository)
         {
         }

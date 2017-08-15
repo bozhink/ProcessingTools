@@ -28,14 +28,14 @@
             this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
                 .ToArray();
 
@@ -53,8 +53,8 @@
             };
 
             return await this.tagger.Tag(
-                document.XmlDocument.DocumentElement,
-                document.NamespaceManager,
+                context.XmlDocument.DocumentElement,
+                context.NamespaceManager,
                 specimenCodes,
                 XPathStrings.RootNodesOfContext,
                 settings);

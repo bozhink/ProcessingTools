@@ -13,14 +13,14 @@
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        public async Task<IEnumerable<string>> Mine(string content, IEnumerable<string> seed, IEnumerable<string> stopWords)
+        public async Task<IEnumerable<string>> Mine(string context, IEnumerable<string> seed, IEnumerable<string> stopWords)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
                 return new string[] { };
             }
 
-            var words = await content.ExtractWordsFromText()
+            var words = await context.ExtractWordsFromText()
                 .DistinctWithStopWords(stopWords)
                 .ToArrayAsync();
 

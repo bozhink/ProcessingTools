@@ -15,17 +15,11 @@
     public class TaxonRankDataService : ITaxonRankDataService
     {
         private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
-
-        private Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
+        private readonly Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
         public TaxonRankDataService(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
         private Func<ITaxonRank, ITaxonRankEntity> MapServiceModelToDbModel => t =>
@@ -41,9 +35,9 @@
             return taxon;
         };
 
-        public virtual async Task<object> Add(params ITaxonRank[] taxa)
+        public virtual async Task<object> Add(params ITaxonRank[] items)
         {
-            var validTaxa = this.ValidateTaxa(taxa);
+            var validTaxa = this.ValidateTaxa(items);
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
@@ -58,9 +52,9 @@
             });
         }
 
-        public virtual async Task<object> Delete(params ITaxonRank[] taxa)
+        public virtual async Task<object> Delete(params ITaxonRank[] items)
         {
-            var validTaxa = this.ValidateTaxa(taxa);
+            var validTaxa = this.ValidateTaxa(items);
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {

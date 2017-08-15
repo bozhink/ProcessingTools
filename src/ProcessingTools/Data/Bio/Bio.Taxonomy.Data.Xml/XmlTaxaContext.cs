@@ -65,7 +65,7 @@
             return taxon;
         };
 
-        public Task<object> Add(ITaxonRankEntity taxon) => Task.Run<object>(() => this.Upsert(taxon));
+        public async Task<object> Add(ITaxonRankEntity entity) => await Task.Run(() => this.Upsert(entity));
 
         public Task<object> Delete(object id)
         {
@@ -89,7 +89,7 @@
             return Task.FromResult(taxon);
         }
 
-        public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
+        public async Task<long> LoadFromFile(string fileName) => await Task.Run(() =>
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -110,7 +110,7 @@
             return taxa.LongCount();
         });
 
-        public Task<object> Update(ITaxonRankEntity taxon) => Task.Run<object>(() => this.Upsert(taxon));
+        public async Task<object> Update(ITaxonRankEntity entity) => await Task.Run(() => this.Upsert(entity));
 
         public async Task<long> WriteToFile(string fileName)
         {

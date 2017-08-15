@@ -33,19 +33,19 @@
             this.institutionsTagger = institutionsTagger ?? throw new ArgumentNullException(nameof(institutionsTagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> Tag(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
             var data = (await this.miner.Mine(textContent))
                 .ToArray();
 
-            await this.TagInstitutionalCodes(document, data);
-            await this.TagInstitutions(document, data);
+            await this.TagInstitutionalCodes(context, data);
+            await this.TagInstitutions(context, data);
 
             return true;
         }

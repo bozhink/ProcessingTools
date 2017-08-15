@@ -9,14 +9,14 @@
 
     public class DocumentFinalFormatter : IDocumentFinalFormatter
     {
-        public async Task<object> Format(IDocument document)
+        public async Task<object> Format(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            document.SelectNodes("//kwd")
+            context.SelectNodes("//kwd")
                 .AsParallel()
                 .ForAll(node =>
                 {
@@ -26,7 +26,7 @@
                         .Trim();
                 });
 
-            document.Xml = document.Xml.RegexReplace(@"\s*(</tp:taxon-name>)\s+(?=<comment>[,;:\.])", "$1");
+            context.Xml = context.Xml.RegexReplace(@"\s*(</tp:taxon-name>)\s+(?=<comment>[,;:\.])", "$1");
 
             return await Task.FromResult(true);
         }

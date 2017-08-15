@@ -17,12 +17,7 @@
 
         public BiorepositoriesInstitutionsDataMiner(IBiorepositoriesInstitutionsDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         protected override Func<BiorepositoriesInstitutionServiceModel, BiorepositoriesInstitution> Project => x => new BiorepositoriesInstitution
@@ -32,14 +27,14 @@
             Url = x.Url
         };
 
-        public async Task<IEnumerable<IBiorepositoriesInstitution>> Mine(string content)
+        public async Task<IEnumerable<IBiorepositoriesInstitution>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            Func<BiorepositoriesInstitutionServiceModel, bool> filter = x => Regex.IsMatch(content, Regex.Escape(x.InstitutionalCode) + "|" + Regex.Escape(x.NameOfInstitution));
+            Func<BiorepositoriesInstitutionServiceModel, bool> filter = x => Regex.IsMatch(context, Regex.Escape(x.InstitutionalCode) + "|" + Regex.Escape(x.NameOfInstitution));
 
             var matches = new List<BiorepositoriesInstitution>();
 

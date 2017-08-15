@@ -17,9 +17,9 @@
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
-        public async Task<GbifApiV09ResponseModel> RequestData(string scientificName)
+        public async Task<GbifApiV09ResponseModel> RequestData(string content)
         {
-            string url = $"v0.9/species/match?verbose=true&name={scientificName}";
+            string url = $"v0.9/species/match?verbose=true&name={content}";
             var connector = this.connectorFactory.Create(BaseAddress);
             var result = await connector.GetJsonObjectAsync<GbifApiV09ResponseModel>(url);
             return result;

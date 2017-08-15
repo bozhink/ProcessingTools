@@ -22,13 +22,13 @@
             var appSettingsReader = new AppSettingsReader();
             try
             {
-                string taxPubDtdPath = appSettingsReader.GetValue(TaxPubDtdPathKey, typeof(string)).ToString();
-                if (string.IsNullOrWhiteSpace(taxPubDtdPath) || !File.Exists(taxPubDtdPath))
+                string dtdPath = appSettingsReader.GetValue(TaxPubDtdPathKey, typeof(string)).ToString();
+                if (string.IsNullOrWhiteSpace(dtdPath) || !File.Exists(dtdPath))
                 {
                     throw new ApplicationException("TaxPub DTD Path is invalid.");
                 }
 
-                this.taxPubDtdPath = taxPubDtdPath;
+                this.taxPubDtdPath = dtdPath;
             }
             catch (Exception e)
             {
@@ -36,18 +36,18 @@
             }
         }
 
-        public async Task<object> Validate(IDocument document, IReporter reporter)
+        public async Task<object> Validate(IDocument context, IReporter reporter)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             string fileName = Path.GetTempFileName() + ".xml";
 
             reporter.AppendContent(string.Format("File name = {0}", fileName));
 
-            await this.WriteXmlFileWithDoctype(document, fileName);
+            await this.WriteXmlFileWithDoctype(context, fileName);
 
             await this.ReadXmlFileWithDtdValidation(fileName);
 
@@ -76,6 +76,7 @@
             var reader = XmlReader.Create(fileName, readerSettings);
             while (await reader.ReadAsync())
             {
+                // Skip
             }
 
             reader.Close();

@@ -28,14 +28,14 @@
             this.logger = logger;
         }
 
-        public async Task<object> Parse(IDocument document)
+        public async Task<object> Parse(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var genusList = document.SelectNodes(SelectTreatmentGeneraXPathString)
+            var genusList = context.SelectNodes(SelectTreatmentGeneraXPathString)
                 .Select(node => new TaxonNamePart(node))
                 .Select(t => t.FullName)
                 .Where(t => !string.IsNullOrWhiteSpace(t))
@@ -52,9 +52,9 @@
                 {
                     var classification = response.Where(r => r.Classification.Single(c => c.Rank == TaxonRankType.Genus).ScientificName == genus);
 
-                    this.ReplaceTreatmentMetaClassificationItem(document, classification, genus, TaxonRankType.Kingdom);
-                    this.ReplaceTreatmentMetaClassificationItem(document, classification, genus, TaxonRankType.Order);
-                    this.ReplaceTreatmentMetaClassificationItem(document, classification, genus, TaxonRankType.Family);
+                    this.ReplaceTreatmentMetaClassificationItem(context, classification, genus, TaxonRankType.Kingdom);
+                    this.ReplaceTreatmentMetaClassificationItem(context, classification, genus, TaxonRankType.Order);
+                    this.ReplaceTreatmentMetaClassificationItem(context, classification, genus, TaxonRankType.Family);
                 }
                 catch (Exception e)
                 {
@@ -77,7 +77,7 @@
                 .Distinct()
                 .ToList();
 
-            var higherTaxaCount = matchingHigherTaxa.Count();
+            var higherTaxaCount = matchingHigherTaxa.Count;
             switch (higherTaxaCount)
             {
                 case 0:

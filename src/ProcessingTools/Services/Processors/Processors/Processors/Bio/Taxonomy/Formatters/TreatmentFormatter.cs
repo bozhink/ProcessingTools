@@ -14,7 +14,7 @@
     {
         private const string TaxonAuthorityStatusNodeName = "AuthorityStatus";
 
-        public Task<object> Format(IDocument document) => Task.Run(() => this.FormatSync(document));
+        public async Task<object> Format(IDocument context) => await Task.Run(() => this.FormatSync(context));
 
         private object FormatSync(IDocument document)
         {

@@ -22,16 +22,16 @@
             this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<object> Parse(IDocument document)
+        public async Task<object> Parse(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            await this.FormatTaxonTreatments(document.XmlDocument);
+            await this.FormatTaxonTreatments(context.XmlDocument);
 
-            var queryDocument = await this.GenerateQueryDocument(document.XmlDocument);
+            var queryDocument = await this.GenerateQueryDocument(context.XmlDocument);
 
             string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml);
 
@@ -42,7 +42,7 @@
                 .ForAll(p =>
                 {
                     string id = p.Attributes["id"].InnerText;
-                    var paragraph = document.SelectSingleNode($"//p[@id='{id}']");
+                    var paragraph = context.SelectSingleNode($"//p[@id='{id}']");
                     if (paragraph != null)
                     {
                         paragraph.InnerXml = p.InnerXml;
@@ -63,7 +63,7 @@
             return responseDocument;
         }
 
-        private async Task<XmlDocument> GenerateQueryDocument(XmlDocument document)
+        private async Task<XmlDocument> GenerateQueryDocument(XmlDocument context)
         {
             XmlDocument queryDocument = new XmlDocument
             {
@@ -72,7 +72,7 @@
 
             var text = await this.transformersFactory
                 .GetTaxonTreatmentExtractMaterialsTransformer()
-                .Transform(document);
+                .Transform(context);
 
             queryDocument.LoadXml(text);
             return queryDocument;

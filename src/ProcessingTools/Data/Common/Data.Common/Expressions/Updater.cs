@@ -13,17 +13,12 @@
 
         public Updater(IUpdateExpression<T> updateExpression)
         {
-            if (updateExpression == null)
-            {
-                throw new ArgumentNullException(nameof(updateExpression));
-            }
-
-            this.updateExpression = updateExpression;
+            this.updateExpression = updateExpression ?? throw new ArgumentNullException(nameof(updateExpression));
         }
 
         public IUpdateExpression<T> UpdateExpression => this.updateExpression;
 
-        public Task Invoke(T obj) => Task.Run(() =>
+        public async Task Invoke(T obj) => await Task.Run(() =>
         {
             if (obj == null)
             {

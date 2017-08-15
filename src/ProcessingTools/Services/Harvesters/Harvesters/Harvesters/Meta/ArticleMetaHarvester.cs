@@ -10,21 +10,21 @@
 
     public class ArticleMetaHarvester : IArticleMetaHarvester
     {
-        public Task<IArticle> Harvest(IDocument document)
+        public Task<IArticle> Harvest(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             var article = new Article
             {
-                Doi = document.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText,
-                Volume = document.SelectSingleNode(XPathStrings.ArticleMetaVolume)?.InnerText,
-                Issue = document.SelectSingleNode(XPathStrings.ArticleMetaIssue)?.InnerText,
-                FirstPage = document.SelectSingleNode(XPathStrings.ArticleMetaFirstPage)?.InnerText,
-                LastPage = document.SelectSingleNode(XPathStrings.ArticleMetaLastPage)?.InnerText,
-                Id = document.SelectSingleNode(XPathStrings.ArticleMetaElocationId)?.InnerText
+                Doi = context.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText,
+                Volume = context.SelectSingleNode(XPathStrings.ArticleMetaVolume)?.InnerText,
+                Issue = context.SelectSingleNode(XPathStrings.ArticleMetaIssue)?.InnerText,
+                FirstPage = context.SelectSingleNode(XPathStrings.ArticleMetaFirstPage)?.InnerText,
+                LastPage = context.SelectSingleNode(XPathStrings.ArticleMetaLastPage)?.InnerText,
+                Id = context.SelectSingleNode(XPathStrings.ArticleMetaElocationId)?.InnerText
             };
 
             return Task.FromResult<IArticle>(article);

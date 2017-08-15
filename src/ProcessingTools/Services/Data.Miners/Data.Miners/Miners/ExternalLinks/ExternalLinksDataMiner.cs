@@ -34,11 +34,11 @@
         private const string PmcidPattern = @"(?i)\bpmc\W*\d+|(?i)(?<=\bpmcid\W*)\d+";
         private const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
 
-        public async Task<IEnumerable<IExternalLink>> Mine(string content)
+        public async Task<IEnumerable<IExternalLink>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
             var patterns = new Dictionary<string, ExternalLinkType>()
@@ -50,7 +50,7 @@
                 { PmcidPattern, ExternalLinkType.Pmcid }
             };
 
-            var data = await this.ExtractData(content, patterns).ToListAsync();
+            var data = await this.ExtractData(context, patterns).ToListAsync();
 
             this.DataCleansing(data);
 
@@ -60,7 +60,7 @@
 
         private void DataCleansing(IEnumerable<ExternalLink> data)
         {
-            var matchDoiPrefixRegex = new Regex(MatchUrlDoiPrefixPattern);
+            //// var matchDoiPrefixRegex = new Regex(MatchUrlDoiPrefixPattern);
             foreach (var item in data)
             {
                 var matchDoiPrefix = Regex.Match(item.Href, MatchUrlDoiPrefixPattern);

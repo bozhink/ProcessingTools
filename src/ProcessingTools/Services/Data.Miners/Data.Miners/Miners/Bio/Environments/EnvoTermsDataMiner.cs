@@ -15,22 +15,17 @@
 
         public EnvoTermsDataMiner(IEnvoTermsDataService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task<IEnumerable<IEnvoTerm>> Mine(string content)
+        public async Task<IEnumerable<IEnvoTerm>> Mine(string context)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(context))
             {
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            string text = content.ToLower();
+            string text = context.ToLower();
 
             var terms = (await this.service.All())
                 .Select(t => new EnvoTerm
