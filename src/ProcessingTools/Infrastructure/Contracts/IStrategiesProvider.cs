@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IStrategiesProvider<TStrategy>
+    public interface IStrategiesProvider<out TStrategy>
         where TStrategy : IStrategy
     {
         IEnumerable<TStrategy> Strategies { get; }

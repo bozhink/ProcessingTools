@@ -6,8 +6,8 @@
     [Serializable]
     public class InvalidUserIdException : ApplicationException
     {
-        private string message;
-        private object userId;
+        private readonly string message;
+        private readonly object userId;
 
         public InvalidUserIdException(object userId)
             : base()

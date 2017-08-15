@@ -6,7 +6,7 @@
     /// Processor for context object.
     /// </summary>
     /// <typeparam name="TContext">Type of the context object.</typeparam>
-    public interface IContextProcessor<TContext>
+    public interface IContextProcessor<in TContext>
     {
         /// <summary>
         /// Executes processing operation over the context.

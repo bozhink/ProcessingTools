@@ -52,7 +52,7 @@
                 () =>
                 {
                     var connectorFactory = new NetConnectorFactory();
-                    var connector = connectorFactory.Create(baseAddress);
+                    connectorFactory.Create(baseAddress);
                 },
                 "Constructor With Null BaseAddress should throw {0}",
                 nameof(ArgumentNullException));
@@ -70,7 +70,7 @@
             try
             {
                 var connectorFactory = new NetConnectorFactory();
-                var connector = connectorFactory.Create(baseAddress);
+                connectorFactory.Create(baseAddress);
             }
             catch (ArgumentNullException e)
             {
@@ -87,7 +87,7 @@
                 () =>
                 {
                     var connectorFactory = new NetConnectorFactory();
-                    var connector = connectorFactory.Create(baseAddress);
+                    connectorFactory.Create(baseAddress);
                 },
                 "Constructor should throw UriFormatException");
         }

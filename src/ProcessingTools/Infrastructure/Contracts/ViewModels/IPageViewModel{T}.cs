@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.ViewModels
 {
-    public interface IPageViewModel<T> : IPageViewModel
+    public interface IPageViewModel<out T> : IPageViewModel
     {
         T Model { get; }
     }

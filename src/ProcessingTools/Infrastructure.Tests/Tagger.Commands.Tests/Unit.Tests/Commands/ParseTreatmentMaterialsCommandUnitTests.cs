@@ -23,7 +23,7 @@
             // Arrange + Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var command = new ParseTreatmentMaterialsCommand(null);
+                new ParseTreatmentMaterialsCommand(null);
             });
 
             Assert.AreEqual(ParameterNames.Parser, exception.ParamName, "ParamName is not correct.");
@@ -62,7 +62,7 @@
             var command = new ParseTreatmentMaterialsCommand(parserMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
                 return command.Run(null, null);
             });
@@ -121,7 +121,7 @@
             var documentMock = new Mock<IDocument>();
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object);
 
             // Assert
             parserMock.Verify(p => p.Parse(It.IsAny<IDocument>()), Times.Once);

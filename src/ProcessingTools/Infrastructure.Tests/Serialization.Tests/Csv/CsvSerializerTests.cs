@@ -18,7 +18,7 @@
             const string CsvText = "Name,Year,Description\nJohn Smith,2015,No desription here\nJane Smith,2016,Desription here!";
 
             var serializer = new CsvSerializer();
-            var result = serializer.Deserialize(typeof(NameYearDescriptionSampleObject), CsvText);
+            serializer.Deserialize(typeof(NameYearDescriptionSampleObject), CsvText);
         }
 
         [TestMethod]

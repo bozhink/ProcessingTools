@@ -124,7 +124,7 @@
         {
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var presenter = new XmlPresenter(null, this.transformersFactoryMock.Object);
+                new XmlPresenter(null, this.transformersFactoryMock.Object);
             });
 
             Assert.AreEqual(
@@ -164,25 +164,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetHtml(this.userId, null, this.documentId).Result;
+                await presenter.GetHtml(this.userId, null, this.documentId);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 ArticleIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(ArticleIdParamName));
         }
 
@@ -194,9 +183,9 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetHtml(this.userId, null, this.documentId).Result;
+                await presenter.GetHtml(this.userId, null, this.documentId);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, null, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -210,25 +199,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetHtml(this.userId, this.articleId, null).Result;
+                await presenter.GetHtml(this.userId, this.articleId, null);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 DocumentIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(DocumentIdParamName));
         }
 
@@ -240,9 +218,9 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetHtml(this.userId, this.articleId, null).Result;
+                await presenter.GetHtml(this.userId, this.articleId, null);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, null), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -256,25 +234,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetHtml(null, this.articleId, this.documentId).Result;
+                await presenter.GetHtml(null, this.articleId, this.documentId);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 UserIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(UserIdParamName));
         }
 
@@ -286,9 +253,9 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetHtml(null, this.articleId, this.documentId).Result;
+                await presenter.GetHtml(null, this.articleId, this.documentId);
             });
 
             this.serviceMock.Verify(s => s.GetReader(null, this.articleId, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -296,13 +263,13 @@
 
         [Test(Description = @"XmlPresenter.GetHtml with valid parameters should invoke service.GetReader exactly once", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         [Timeout(1000)]
-        public void XmlPresenter_GetHtml_WithValidParameters_ShouldInvokeServiceGetReaderExactlyOnce()
+        public async Task XmlPresenter_GetHtml_WithValidParameters_ShouldInvokeServiceGetReaderExactlyOnce()
         {
             // Arrange
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            var result = presenter.GetHtml(this.userId, this.articleId, this.documentId).Result;
+            await presenter.GetHtml(this.userId, this.articleId, this.documentId);
 
             // Assert
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, this.documentId), Times.Once, ServiceGetReaderShouldBeInvokedExactlyOnceMessage);
@@ -406,25 +373,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetXml(this.userId, null, this.documentId).Result;
+                await presenter.GetXml(this.userId, null, this.documentId);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 ArticleIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(ArticleIdParamName));
         }
 
@@ -436,9 +392,9 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetXml(this.userId, null, this.documentId).Result;
+                await presenter.GetXml(this.userId, null, this.documentId);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, null, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -452,25 +408,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetXml(this.userId, this.articleId, null).Result;
+                await presenter.GetXml(this.userId, this.articleId, null);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 DocumentIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(DocumentIdParamName));
         }
 
@@ -482,9 +427,9 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetXml(this.userId, this.articleId, null).Result;
+                await presenter.GetXml(this.userId, this.articleId, null);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, null), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -498,25 +443,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetXml(null, this.articleId, this.documentId).Result;
+                await presenter.GetXml(null, this.articleId, this.documentId);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 UserIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(UserIdParamName));
         }
 
@@ -528,9 +462,9 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.GetXml(null, this.articleId, this.documentId).Result;
+                await presenter.GetXml(null, this.articleId, this.documentId);
             });
 
             this.serviceMock.Verify(s => s.GetReader(null, this.articleId, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -538,13 +472,13 @@
 
         [Test(Description = @"XmlPresenter.GetXml with valid parameters should invoke service.GetReader exactly once", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         [Timeout(1000)]
-        public void XmlPresenter_GetXml_WithValidParameters_ShouldInvokeServiceGetReaderExactlyOnce()
+        public async Task XmlPresenter_GetXml_WithValidParameters_ShouldInvokeServiceGetReaderExactlyOnce()
         {
             // Arrange
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            var result = presenter.GetXml(this.userId, this.articleId, this.documentId).Result;
+            await presenter.GetXml(this.userId, this.articleId, this.documentId);
 
             // Assert
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, this.documentId), Times.Once, ServiceGetReaderShouldBeInvokedExactlyOnceMessage);
@@ -612,25 +546,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
+                await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 ContentParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(ContentParamName));
         }
 
@@ -661,20 +584,10 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<XmlException>(async () =>
             {
-                var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
+                await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
             });
-
-            Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<XmlException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeXmlExceptionMessage);
         }
 
         [TestCase(InvalidContent, Description = @"XmlPresenter.SaveHtml with invalid xml content should not invoke service.Update", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -702,25 +615,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveHtml(this.userId, null, this.document, ValidContent).Result;
+                await presenter.SaveHtml(this.userId, null, this.document, ValidContent);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 ArticleIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(ArticleIdParamName));
         }
 
@@ -749,25 +651,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveHtml(this.userId, this.articleId, null, ValidContent).Result;
+                await presenter.SaveHtml(this.userId, this.articleId, null, ValidContent);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 DocumentParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(DocumentParamName));
         }
 
@@ -796,25 +687,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveHtml(null, this.articleId, this.document, ValidContent).Result;
+                await presenter.SaveHtml(null, this.articleId, this.document, ValidContent);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 UserIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(UserIdParamName));
         }
 
@@ -853,13 +733,13 @@
         [TestCase(@"<p elem-name=""p"">1</p>", @"<?xml version=""1.0"" encoding=""utf-8""?><p>1</p>", Description = @"XmlPresenter.SaveHtml with valid html content should invoke service.Update exactly once", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         [TestCase(@"<div elem-name=""sec""><h1 elem-name=""title"">1</h1></div>", @"<?xml version=""1.0"" encoding=""utf-8""?><sec><title>1</title></sec>", Description = @"XmlPresenter.SaveHtml with valid html content should invoke service.Update exactly once", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         [Timeout(10000)]
-        public void XmlPresenter_SaveHtml_WithValidHtmlContent_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
+        public async Task XmlPresenter_SaveHtml_WithValidHtmlContent_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
         {
             // Arrange
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
+            await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
 
             // Assert
             this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
@@ -876,20 +756,10 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<XmlException>(async () =>
             {
-                var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
+                await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
             });
-
-            Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<XmlException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeXmlExceptionMessage);
         }
 
         [TestCase(@"<p>1</p>", Description = @"XmlPresenter.SaveHtml with valid html content ""<p>1</p>"" should not invoke service.Update", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -929,13 +799,13 @@
 
         [TestCase(@"<p elem-name=""p"">&nbsp;</p>", @"<?xml version=""1.0"" encoding=""utf-8""?><p> </p>", Description = @"XmlPresenter.SaveHtml with valid html content with &nbsp; should invoke service.Update exactly once", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         [Timeout(10000)]
-        public void XmlPresenter_SaveHtml_WithValidHtmlContentWithNbsp_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
+        public async Task XmlPresenter_SaveHtml_WithValidHtmlContentWithNbsp_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
         {
             // Arrange
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            var result = presenter.SaveHtml(this.userId, this.articleId, this.document, content).Result;
+            await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
 
             // Assert
             this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
@@ -955,25 +825,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result;
+                await presenter.SaveXml(this.userId, this.articleId, this.document, content);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 ContentParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(ContentParamName));
         }
 
@@ -1004,20 +863,10 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            Assert.ThrowsAsync<XmlException>(async () =>
             {
-                var result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result;
+                await presenter.SaveXml(this.userId, this.articleId, this.document, content);
             });
-
-            Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<XmlException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeXmlExceptionMessage);
         }
 
         [TestCase(InvalidContent, Description = @"XmlPresenter.SaveXml with invalid xml content should not invoke service.Update", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
@@ -1045,25 +894,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveXml(this.userId, null, this.document, ValidContent).Result;
+                await presenter.SaveXml(this.userId, null, this.document, ValidContent);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 ArticleIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(ArticleIdParamName));
         }
 
@@ -1092,25 +930,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveXml(this.userId, this.articleId, null, ValidContent).Result;
+                await presenter.SaveXml(this.userId, this.articleId, null, ValidContent);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 DocumentParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(DocumentParamName));
         }
 
@@ -1139,25 +966,14 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act + Assert
-            var exception = Assert.Throws<AggregateException>(() =>
+            var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var result = presenter.SaveXml(null, this.articleId, this.document, ValidContent).Result;
+                await presenter.SaveXml(null, this.articleId, this.document, ValidContent);
             });
 
             Assert.AreEqual(
-                NumberOfInnerExceptions,
-                exception.InnerExceptions.Count(),
-                NumberOfInnerExceptionsShouldBeMessage);
-
-            var innerException = exception.InnerExceptions.Single();
-            Assert.IsInstanceOf<ArgumentNullException>(
-                innerException,
-                InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage);
-
-            var argumentNullException = innerException as ArgumentNullException;
-            Assert.AreEqual(
                 UserIdParamName,
-                argumentNullException.ParamName,
+                exception.ParamName,
                 this.GetParamNameShouldBeMessage(UserIdParamName));
         }
 
@@ -1196,13 +1012,13 @@
         [TestCase(@"<p elem-name=""p"">1</p>", @"<p elem-name=""p"">1</p>", Description = @"XmlPresenter.SaveXml with valid xml content should invoke service.Update exactly once", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         [TestCase(@"<div elem-name=""sec""><h1 elem-name=""title"">1</h1></div>", @"<div elem-name=""sec""><h1 elem-name=""title"">1</h1></div>", Description = @"XmlPresenter.SaveXml with valid xml content should invoke service.Update exactly once", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
         [Timeout(10000)]
-        public void XmlPresenter_SaveXml_WithValidHtmlContent_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
+        public async Task XmlPresenter_SaveXml_WithValidHtmlContent_ShouldInvokeServiceUpdateExactlyOnce(string content, string expectedResult)
         {
             // Arrange
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            var result = presenter.SaveXml(this.userId, this.articleId, this.document, content).Result;
+            await presenter.SaveXml(this.userId, this.articleId, this.document, content);
 
             // Assert
             this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);

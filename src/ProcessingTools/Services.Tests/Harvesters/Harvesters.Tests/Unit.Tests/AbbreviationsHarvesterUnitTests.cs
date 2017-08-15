@@ -59,7 +59,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new AbbreviationsHarvester(null, serializerMock.Object, transformersFactoryMock.Object);
+                new AbbreviationsHarvester(null, serializerMock.Object, transformersFactoryMock.Object);
             });
 
             Assert.AreEqual(ContextWrapperFieldName, exception.ParamName);
@@ -75,7 +75,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new AbbreviationsHarvester(contextWrapperMock.Object, serializerMock.Object, null);
+                new AbbreviationsHarvester(contextWrapperMock.Object, serializerMock.Object, null);
             });
 
             Assert.AreEqual(TransformersFactoryFieldName, exception.ParamName);
@@ -91,7 +91,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new AbbreviationsHarvester(contextWrapperMock.Object, null, transformersFactoryMock.Object);
+                new AbbreviationsHarvester(contextWrapperMock.Object, null, transformersFactoryMock.Object);
             });
 
             Assert.AreEqual(SerializerFieldName, exception.ParamName);

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts
 {
-    public interface IGenericFactory<T>
+    public interface IGenericFactory<out T>
     {
         T Create();
     }

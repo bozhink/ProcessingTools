@@ -42,7 +42,7 @@
             Assert.Catch<ArgumentNullException>(
                 () =>
                 {
-                    var connector = new NetConnector(baseAddress);
+                    new NetConnector(baseAddress);
                 },
                 "Constructor With Null BaseAddress should throw {0}",
                 nameof(ArgumentNullException));
@@ -59,7 +59,7 @@
         {
             try
             {
-                var connector = new NetConnector(baseAddress);
+                new NetConnector(baseAddress);
             }
             catch (ArgumentNullException e)
             {
@@ -75,7 +75,7 @@
             Assert.Catch<UriFormatException>(
                 () =>
                 {
-                    var connector = new NetConnector(baseAddress);
+                    new NetConnector(baseAddress);
                 },
                 "Constructor should throw UriFormatException");
         }

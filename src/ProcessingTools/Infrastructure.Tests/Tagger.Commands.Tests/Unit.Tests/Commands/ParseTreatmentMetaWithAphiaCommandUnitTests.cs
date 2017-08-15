@@ -24,7 +24,7 @@
             // Arrange + Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var command = new ParseTreatmentMetaWithAphiaCommand(null);
+                new ParseTreatmentMetaWithAphiaCommand(null);
             });
 
             Assert.AreEqual(ParameterNames.Parser, exception.ParamName, "ParamName is not correct.");
@@ -63,7 +63,7 @@
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
                 return command.Run(null, null);
             });
@@ -122,7 +122,7 @@
             var documentMock = new Mock<IDocument>();
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object);
 
             // Assert
             parserMock.Verify(p => p.Parse(It.IsAny<IDocument>()), Times.Once);

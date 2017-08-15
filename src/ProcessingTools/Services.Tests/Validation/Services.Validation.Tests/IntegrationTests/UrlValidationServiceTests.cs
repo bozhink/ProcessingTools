@@ -35,7 +35,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void UrlValidationService_WithNullConstructor_ShouldThrow()
         {
-            var service = new UrlValidationService(null);
+            new UrlValidationService(null);
         }
 
         [TestMethod]

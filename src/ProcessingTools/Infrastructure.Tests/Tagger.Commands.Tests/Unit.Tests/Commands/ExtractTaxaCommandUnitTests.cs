@@ -22,9 +22,9 @@
         public void ExtractTaxaCommand_WithNullHarvesterAndNullReporter_ShouldThrowArgumentNullException()
         {
             // Arrange + Act + Assert
-            var exception = Assert.Throws<ArgumentNullException>(() =>
+            Assert.Throws<ArgumentNullException>(() =>
             {
-                var command = new ExtractTaxaCommand(null, null);
+                new ExtractTaxaCommand(null, null);
             });
         }
 
@@ -38,7 +38,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var command = new ExtractTaxaCommand(null, reporterMock.Object);
+                new ExtractTaxaCommand(null, reporterMock.Object);
             });
 
             Assert.AreEqual(ParameterNames.Harvester, exception.ParamName, "ParamName is not correct.");
@@ -56,7 +56,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var command = new ExtractTaxaCommand(harvesterMock.Object, null);
+                new ExtractTaxaCommand(harvesterMock.Object, null);
             });
 
             Assert.AreEqual(ParameterNames.Reporter, exception.ParamName, "ParamName is not correct.");
@@ -114,7 +114,7 @@
             var command = new ExtractTaxaCommand(harvesterMock.Object, reporterMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
                 return command.Run(null, null);
             });
@@ -208,7 +208,7 @@
                 .Returns(true);
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -254,7 +254,7 @@
                 .Returns(true);
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -299,7 +299,7 @@
                 .Returns(false);
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -348,7 +348,7 @@
                 .Returns(extractHigherTaxa);
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -393,7 +393,7 @@
                 .Returns(false);
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);

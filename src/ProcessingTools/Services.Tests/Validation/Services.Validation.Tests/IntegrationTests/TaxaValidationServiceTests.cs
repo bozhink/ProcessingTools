@@ -40,7 +40,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
         {
-            var service = new TaxaValidationService(null, this.requester);
+            new TaxaValidationService(null, this.requester);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@
             {
                 Assert.AreEqual(
                     1,
-                    result.Where(r => r.ValidatedObject == items[i]).Count(),
+                    result.Count(r => r.ValidatedObject == items[i]),
                     $"Result should contain Item #{i} only once.");
                 Assert.IsTrue(result[i].ValidationStatus == ValidationStatus.Valid, $"Item #{i} should be valid.");
                 Assert.IsNull(result[i].ValidationException, $"Item #{i} should have null exception.");

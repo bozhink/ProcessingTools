@@ -69,7 +69,7 @@
             const string CsvText = "Name,Year,Description\nSmith\\, John,2015,No desription here\\";
 
             var csv = new CsvTableReader();
-            var result = csv.ReadToTable(CsvText);
+            csv.ReadToTable(CsvText);
 
             Assert.Fail();
         }

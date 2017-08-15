@@ -57,7 +57,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new ExternalLinksHarvester(null, serializerMock.Object, transformersFactoryMock.Object);
+                new ExternalLinksHarvester(null, serializerMock.Object, transformersFactoryMock.Object);
             });
 
             Assert.AreEqual(ContextWrapperFieldName, exception.ParamName);
@@ -73,7 +73,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new ExternalLinksHarvester(contextWrapperMock.Object, serializerMock.Object, null);
+                new ExternalLinksHarvester(contextWrapperMock.Object, serializerMock.Object, null);
             });
 
             Assert.AreEqual(TransformersFactoryFieldName, exception.ParamName);
@@ -89,7 +89,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var harvester = new ExternalLinksHarvester(contextWrapperMock.Object, null, transformersFactoryMock.Object);
+                new ExternalLinksHarvester(contextWrapperMock.Object, null, transformersFactoryMock.Object);
             });
 
             Assert.AreEqual(SerializerFieldName, exception.ParamName);
