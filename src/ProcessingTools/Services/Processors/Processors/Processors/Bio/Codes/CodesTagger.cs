@@ -15,6 +15,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
@@ -25,8 +26,6 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
     public class CodesTagger : ICodesTagger
     {
-        private const string InstitutionalCodeTagName = "institutional_code";
-        private const string InstitutionTagName = "institution";
         private const string SpecimenCodeTagName = "specimen_code";
 
         /*
@@ -71,7 +70,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
 
-        private string[] codePrefixes = new string[]
+        private readonly string[] codePrefixes = new string[]
         {
             @"ALP",
             @"AMNH",
@@ -170,13 +169,13 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             var potentialSpecimenCodes = await this.ExtractPotentialSpecimenCodes(document, CodePattern);
 
-            this.logger?.Log("\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
+            this.logger?.Log(message: "\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
             foreach (string word in potentialSpecimenCodes)
             {
-                this.logger?.Log(word);
+                this.logger?.Log(message: word);
             }
 
-            this.logger?.Log("\n\nPlausible specimen codes\n\n");
+            this.logger?.Log(message: "\n\nPlausible specimen codes\n\n");
 
             var plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(document, potentialSpecimenCodes);
 
@@ -212,6 +211,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         /// <summary>
         /// Gets all matches of Janzen specimen codes in the text of the XmlDocument.
         /// </summary>
+        /// <param name="document">Context document</param>
         /// <returns>ICollection of found different Janzen specimen codes.</returns>
         /// <example>
         /// Janzen codes:
@@ -305,7 +305,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
         private XmlElement GetTagModel(IDocument document) => document.XmlDocument.CreateElement(SpecimenCodeTagName);
 
-        private async Task GuessNextSpecimenCodesByRegex(IDocument document, string xpathTemplate, XmlElement tagModel, Regex guessNextCode, string xpathToSelectSpecimenCodeTags)
+        private async Task GuessNextSpecimenCodesByRegex(IDocument document, string xpathTemplate, XmlNode tagModel, Regex guessNextCode, string xpathToSelectSpecimenCodeTags)
         {
             XmlNode replacementNode = tagModel.CloneNode(true);
             replacementNode.InnerText = "$1";
@@ -332,7 +332,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             }
         }
 
-        private async Task GuessSequentalPrefixNumericSpecimenCodes(IDocument document, string xpathTemplate, XmlElement tagModel)
+        private async Task GuessSequentalPrefixNumericSpecimenCodes(IDocument document, string xpathTemplate, XmlNode tagModel)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
@@ -353,7 +353,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         /// <param name="tagModel">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
         /// <returns>Task</returns>
-        private async Task GuessSequentalSpecimenCodes(IDocument document, XmlElement tagModel, string xpathTemplate)
+        private async Task GuessSequentalSpecimenCodes(IDocument document, XmlNode tagModel, string xpathTemplate)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
@@ -367,7 +367,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, string.Format("//{0}[count(@*)!=0]", tagModel.Name));
         }
 
-        private async Task ReplaceSpecimenCodesInXml(IDocument document, string xpathTemplate, IEnumerable<ISpecimenCode> specimenCodes, XmlElement tagModel)
+        private async Task ReplaceSpecimenCodesInXml(IDocument document, string xpathTemplate, IEnumerable<ISpecimenCode> specimenCodes, XmlNode tagModel)
         {
             foreach (var specimenCode in specimenCodes)
             {
@@ -391,7 +391,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                 string nestedSpecimenCodesXpath = string.Format(".//{0}[{0}]", tagModel.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in document.SelectNodes(nestedSpecimenCodesXpath))
                 {
-                    this.logger?.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
+                    this.logger?.Log(type: LogType.Warning, message: "WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
             }
         }
@@ -436,7 +436,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                             next.Attributes.Append(attr);
                         }
 
-                        this.logger?.Log(next.OuterXml);
+                        this.logger?.Log(message: next.OuterXml);
                     }
                 }
             }

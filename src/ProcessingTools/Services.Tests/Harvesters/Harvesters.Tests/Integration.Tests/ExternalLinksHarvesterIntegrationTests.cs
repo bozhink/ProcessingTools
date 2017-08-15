@@ -55,12 +55,12 @@
 
             // Assert
             Assert.IsNotNull(externalLinks);
-            externalLinks.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.BaseAddress, i.Uri, i.Value));
+            externalLinks?.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.BaseAddress, i.Uri, i.Value));
 
-            Assert.AreEqual(ExpectedNumberOfExternalLinks, externalLinks.Count);
+            Assert.AreEqual(ExpectedNumberOfExternalLinks, externalLinks?.Count);
 
-            var doiExternalLinks = externalLinks.Where(i => i.BaseAddress.Contains("doi.org")).ToList();
-            Assert.AreEqual(ExpectedNumberOfExternalLinksOfTypeDoi, doiExternalLinks.Count);
+            var doiExternalLinks = externalLinks?.Where(i => i.BaseAddress.Contains("doi.org")).ToList();
+            Assert.AreEqual(ExpectedNumberOfExternalLinksOfTypeDoi, doiExternalLinks?.Count);
         }
     }
 }

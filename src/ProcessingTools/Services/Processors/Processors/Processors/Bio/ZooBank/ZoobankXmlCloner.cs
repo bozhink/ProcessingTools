@@ -41,7 +41,7 @@
 
         private void CloneArticleLsid(IDocument target, IDocument source)
         {
-            this.logger?.Log("Reference:");
+            this.logger?.Log(message: "Reference:");
             try
             {
                 var sourceArticleSelfUriList = source.SelectNodes(XPathStrings.ArticleZooBankSelfUri);
@@ -59,25 +59,25 @@
 
                         targetSelfUriNode.InnerText = sourceSelfUriNode.InnerText.Trim();
 
-                        this.logger?.Log(targetSelfUriNode.InnerText);
+                        this.logger?.Log(message: targetSelfUriNode.InnerText);
                     }
 
                     this.logger?.Log();
                 }
                 else
                 {
-                    this.logger?.Log(LogType.Warning, "Number of ZooBank self-uri tags in these files does not match.");
+                    this.logger?.Log(type: LogType.Warning, message: "Number of ZooBank self-uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(exception: e, message: string.Empty);
             }
         }
 
         private void CloneAuthorsLsid(IDocument target, IDocument source)
         {
-            this.logger?.Log("Author(s):");
+            this.logger?.Log(message: "Author(s):");
             try
             {
                 var sourceContributorUriList = source.SelectNodes(XPathStrings.ContributorZooBankUri);
@@ -95,25 +95,25 @@
 
                         targetContributorUriNode.InnerText = sourceContributorUriNode.InnerText.Trim();
 
-                        this.logger?.Log(targetContributorUriNode.InnerText);
+                        this.logger?.Log(message: targetContributorUriNode.InnerText);
                     }
 
                     this.logger?.Log();
                 }
                 else
                 {
-                    this.logger?.Log(LogType.Warning, "Number of ZooBank uri tags in these files does not match.");
+                    this.logger?.Log(type: LogType.Warning, message: "Number of ZooBank uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(exception: e, message: string.Empty);
             }
         }
 
         private void CloneTaxonomicActsLsid(IDocument target, IDocument source)
         {
-            this.logger?.Log("Taxonomic acts:");
+            this.logger?.Log(message: "Taxonomic acts:");
             try
             {
                 var sourceNomenclaturesList = source.SelectNodes(XPathStrings.TaxonTreatmentNomenclature);
@@ -144,12 +144,12 @@
                                 {
                                     targetObjecIdList[j].InnerText = sourceObjecIdList[j].InnerText.Trim();
 
-                                    this.logger?.Log(targetObjecIdList[j].InnerXml);
+                                    this.logger?.Log(message: targetObjecIdList[j].InnerXml);
                                 }
                             }
                             else
                             {
-                                this.logger?.Log(LogType.Warning, "Number of ZooBank object-id tags does not match.");
+                                this.logger?.Log(type: LogType.Warning, message: "Number of ZooBank object-id tags does not match.");
                             }
                         }
                     }
@@ -158,12 +158,12 @@
                 }
                 else
                 {
-                    this.logger?.Log(LogType.Warning, "Number of nomenclatures tags in these files does not match.");
+                    this.logger?.Log(type: LogType.Warning, message: "Number of nomenclatures tags in these files does not match.");
                 }
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, string.Empty);
+                this.logger?.Log(exception: e, message: string.Empty);
             }
         }
     }

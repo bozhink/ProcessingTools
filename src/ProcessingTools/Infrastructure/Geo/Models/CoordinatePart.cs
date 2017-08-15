@@ -20,7 +20,7 @@
         {
             this.decimalCoordinatePartSign = 1;
             this.DecimalValue = 0.0;
-            this.coordinatePartString = string.Empty;
+            this.CoordinatePartString = string.Empty;
             this.Type = CoordinatePartType.Undefined;
 
             this.numberDecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;

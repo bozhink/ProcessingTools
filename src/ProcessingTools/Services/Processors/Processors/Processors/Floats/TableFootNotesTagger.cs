@@ -31,7 +31,7 @@
 
             if (tableWrapList.Count < 1)
             {
-                this.logger?.Log("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                this.logger?.Log(message: "There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
 
                 return false;
             }

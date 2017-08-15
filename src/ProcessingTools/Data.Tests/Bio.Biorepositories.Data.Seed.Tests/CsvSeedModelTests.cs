@@ -39,7 +39,7 @@
                 var items = serializer.Deserialize(modelType, csvText)?.ToList();
 
                 Assert.IsNotNull(items, "Deserialized items should not be null.");
-                Assert.IsTrue(items.Count > 0, "Number of deserialized items should be greater than 0.");
+                Assert.IsTrue(items?.Count > 0, "Number of deserialized items should be greater than 0.");
             }
         }
     }

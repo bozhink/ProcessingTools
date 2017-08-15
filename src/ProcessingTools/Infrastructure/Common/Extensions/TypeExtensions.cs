@@ -59,7 +59,7 @@
         /// See http://stackoverflow.com/questions/28099669/intercept-async-method-that-returns-generic-task-via-dynamicproxy
         /// </summary>
         /// <param name="method">MethodInfo object.</param>
-        /// <returns></returns>
+        /// <returns>MethodType</returns>
         public static MethodType GetDelegateType(this MethodInfo method)
         {
             if (method == null)

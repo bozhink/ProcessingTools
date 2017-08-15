@@ -36,19 +36,22 @@
             return count;
         }
 
-        public override Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter) => Task.Run(() =>
+        public override async Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var count = this.Collection.AsQueryable()
-                .Cast<ITaxonRankEntity>()
-                .LongCount(filter);
+            return await Task.Run(() =>
+            {
+                var count = this.Collection.AsQueryable()
+                    .Cast<ITaxonRankEntity>()
+                    .LongCount(filter);
 
-            return count;
-        });
+                return count;
+            });
+        }
 
         public override async Task<object> Update(ITaxonRankEntity entity)
         {

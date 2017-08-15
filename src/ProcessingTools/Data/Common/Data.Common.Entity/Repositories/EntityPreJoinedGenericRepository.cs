@@ -10,7 +10,7 @@
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
-    public class EntityPreJoinedGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
+    public class EntityPreJoinedGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>
         where TContext : DbContext
         where TEntity : class, IEntityWithPreJoinedFields
     {

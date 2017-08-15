@@ -46,7 +46,7 @@ namespace ProcessingTools.Interceptors
                     e.Message);
 
                 this.logger?.Log(e, message: sb.ToString());
-                throw e;
+                throw;
             }
         }
     }

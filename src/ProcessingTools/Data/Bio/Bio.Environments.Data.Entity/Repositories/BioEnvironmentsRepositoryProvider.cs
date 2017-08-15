@@ -8,7 +8,7 @@
     public class BioEnvironmentsRepositoryProvider<T> : IBioEnvironmentsRepositoryProvider<T>
         where T : class
     {
-        private IBioEnvironmentsDbContextProvider contextProvider;
+        private readonly IBioEnvironmentsDbContextProvider contextProvider;
 
         public BioEnvironmentsRepositoryProvider(IBioEnvironmentsDbContextProvider contextProvider)
         {

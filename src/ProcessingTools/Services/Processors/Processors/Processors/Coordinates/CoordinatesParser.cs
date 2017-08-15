@@ -41,7 +41,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(LogType.Warning, e, CurrentCoordinateWillNotBeProcessedErrorMessage);
+                    this.logger?.Log(type: LogType.Warning, exception: e, message: CurrentCoordinateWillNotBeProcessedErrorMessage);
                 }
             }
 

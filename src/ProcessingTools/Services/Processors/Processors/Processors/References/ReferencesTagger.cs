@@ -102,7 +102,7 @@
                             }
                             catch (Exception e)
                             {
-                                this.logger?.Log(e, string.Empty);
+                                this.logger?.Log(exception: e, message: string.Empty);
                             }
                         }
 
@@ -142,7 +142,7 @@
                             }
                             catch (Exception e)
                             {
-                                this.logger?.Log(e, string.Empty);
+                                this.logger?.Log(exception: e, message: string.Empty);
                             }
                         }
 

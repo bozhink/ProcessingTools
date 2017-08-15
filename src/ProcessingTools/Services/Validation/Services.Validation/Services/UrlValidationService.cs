@@ -32,7 +32,7 @@
 
             var result = items.Distinct().Select(this.MapToResponseModel).ToList();
 
-            int numberOfItemsToCheck = result.Count();
+            int numberOfItemsToCheck = result.Count;
             for (int i = 0; i < numberOfItemsToCheck + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
             {
                 IValidationServiceModel<string>[] itemsToSend = null;

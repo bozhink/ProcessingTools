@@ -19,17 +19,17 @@
 
             Assert.IsNotNull(response, "Response should not be null.");
 
-            Assert.IsNotNull(response.Items, "Response items should not be null");
+            Assert.IsNotNull(response?.Items, "Response items should not be null");
 
-            Assert.IsTrue(response.Items.Length > 0, "The number of response items should be greater than 0.");
+            Assert.IsTrue(response?.Items.Length > 0, "The number of response items should be greater than 0.");
 
-            var volcanoItem = response.Items.FirstOrDefault(i => i.Name == "Volcano");
+            var volcanoItem = response?.Items.FirstOrDefault(i => i.Name == "Volcano");
 
             Assert.IsNotNull(volcanoItem, "Volcano item should not be null");
 
             Assert.AreEqual(
                 "ENVO:00000247",
-                volcanoItem.Entities.FirstOrDefault().Identifier,
+                volcanoItem?.Entities.FirstOrDefault().Identifier,
                 "Volcano identifier should match.");
 
             ////// This is valid only if entity type = -2 is used.
@@ -42,13 +42,13 @@
             ////    zetaproteobacteriaItem.Entities.FirstOrDefault().Identifier,
             ////    "Zetaproteobacteria identifier should match.");
 
-            var sedimentsItem = response.Items.FirstOrDefault(i => i.Name == "sediments");
+            var sedimentsItem = response?.Items.FirstOrDefault(i => i.Name == "sediments");
 
             Assert.IsNotNull(sedimentsItem, "Sediments item should not be null.");
 
             Assert.AreEqual(
                 "ENVO:00002007",
-                sedimentsItem.Entities.FirstOrDefault().Identifier,
+                sedimentsItem?.Entities.FirstOrDefault().Identifier,
                 "Sediments identifier should match.");
         }
     }

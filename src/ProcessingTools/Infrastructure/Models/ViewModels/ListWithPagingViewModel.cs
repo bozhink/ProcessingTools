@@ -6,10 +6,10 @@
 
     public class ListWithPagingViewModel<T> : IPagingViewModel
     {
-        private long numberOfItems;
-        private long numberOfItemsPerPage;
-        private long currentPage;
-        private IEnumerable<T> items;
+        private readonly long numberOfItems;
+        private readonly long numberOfItemsPerPage;
+        private readonly long currentPage;
+        private readonly IEnumerable<T> items;
 
         public ListWithPagingViewModel(string actionName, long numberOfItems, long numberOfItemsPerPage, long currentPage, IEnumerable<T> items)
         {

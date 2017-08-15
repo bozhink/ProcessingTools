@@ -8,7 +8,7 @@
 
     public class QueryReplacer : IQueryReplacer
     {
-        public Task<string> Replace(string content, string queryFilePath) => Task.Run(() =>
+        public async Task<string> Replace(string content, string queryFilePath)
         {
             if (string.IsNullOrWhiteSpace(queryFilePath))
             {
@@ -20,35 +20,38 @@
                 return content;
             }
 
-            var queryDocument = new XmlDocument
+            return await Task.Run(() =>
             {
-                PreserveWhitespace = true
-            };
-
-            queryDocument.Load(queryFilePath);
-
-            var namespaceManager = new XmlNamespaceManager(queryDocument.NameTable);
-            namespaceManager.AddNamespace("query", "urn:processing-tools-query:query-replacer");
-            namespaceManager.PushScope();
-
-            string result = content;
-
-            var replaceNodeList = queryDocument.SelectNodes("//query:replace", namespaceManager);
-            foreach (XmlNode replaceNode in replaceNodeList)
-            {
-                string pattern = replaceNode.SelectSingleNode("query:pattern", namespaceManager).InnerXml;
-                string replacement = replaceNode.SelectSingleNode("query:replacement", namespaceManager).InnerXml;
-                if (replaceNode.Attributes.Count > 0)
+                var queryDocument = new XmlDocument
                 {
-                    result = Regex.Replace(result, pattern: pattern, replacement: replacement);
-                }
-                else
-                {
-                    result = Regex.Replace(result, pattern: Regex.Escape(pattern), replacement: replacement);
-                }
-            }
+                    PreserveWhitespace = true
+                };
 
-            return result;
-        });
+                queryDocument.Load(queryFilePath);
+
+                var namespaceManager = new XmlNamespaceManager(queryDocument.NameTable);
+                namespaceManager.AddNamespace("query", "urn:processing-tools-query:query-replacer");
+                namespaceManager.PushScope();
+
+                string result = content;
+
+                var replaceNodeList = queryDocument.SelectNodes("//query:replace", namespaceManager);
+                foreach (XmlNode replaceNode in replaceNodeList)
+                {
+                    string pattern = replaceNode.SelectSingleNode("query:pattern", namespaceManager).InnerXml;
+                    string replacement = replaceNode.SelectSingleNode("query:replacement", namespaceManager).InnerXml;
+                    if (replaceNode.Attributes.Count > 0)
+                    {
+                        result = Regex.Replace(result, pattern: pattern, replacement: replacement);
+                    }
+                    else
+                    {
+                        result = Regex.Replace(result, pattern: Regex.Escape(pattern), replacement: replacement);
+                    }
+                }
+
+                return result;
+            });
+        }
     }
 }

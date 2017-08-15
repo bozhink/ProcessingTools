@@ -53,9 +53,9 @@
             var abbreviations = harvester.Harvest(document.DocumentElement).Result?.ToList();
 
             Assert.IsNotNull(abbreviations);
-            abbreviations.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.Value, i.ContentType, i.Definition));
+            abbreviations?.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.Value, i.ContentType, i.Definition));
 
-            Assert.AreEqual(ExpectedNumberOfAbbreviations, abbreviations.Count);
+            Assert.AreEqual(ExpectedNumberOfAbbreviations, abbreviations?.Count);
         }
     }
 }

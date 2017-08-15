@@ -11,7 +11,7 @@
 
     public class EnvoTermsDataMiner : IEnvoTermsDataMiner
     {
-        private IEnvoTermsDataService service;
+        private readonly IEnvoTermsDataService service;
 
         public EnvoTermsDataMiner(IEnvoTermsDataService service)
         {

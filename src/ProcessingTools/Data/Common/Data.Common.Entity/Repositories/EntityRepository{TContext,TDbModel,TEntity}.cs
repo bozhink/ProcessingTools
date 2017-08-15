@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
     using ProcessingTools.Data.Common.Expressions;
 
-    public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IEntityCrudRepository<TEntity>, IDisposable
+    public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IEntityCrudRepository<TEntity>
         where TContext : DbContext
         where TEntity : class
         where TDbModel : class, TEntity

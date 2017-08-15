@@ -108,7 +108,7 @@
                 Taxa = taxa
             };
 
-            using (var stream = new FileStream(fileName, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+            using (var stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write))
             {
                 var serializer = new XmlSerializer(typeof(RankListXmlModel));
                 serializer.Serialize(stream, rankList);

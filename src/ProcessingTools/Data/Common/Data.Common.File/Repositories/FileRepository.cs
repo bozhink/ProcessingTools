@@ -5,11 +5,12 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Data.Common.File.Contracts.Repositories;
 
-    public class FileRepository<TContext, TEntity> : IFileRepository<TEntity>, IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
+    public class FileRepository<TContext, TEntity> : IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
     {
         public FileRepository(IFactory<TContext> contextFactory)
@@ -29,30 +30,27 @@
         protected virtual TContext Context { get; private set; }
 
         // TODO
-        public virtual Task<IEnumerable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
+        public virtual async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
             {
-                if (filter == null)
-                {
-                    throw new ArgumentNullException(nameof(filter));
-                }
+                throw new ArgumentNullException(nameof(filter));
+            }
 
-                var query = this.Context.DataSet;
-                query = query.Where(filter);
-                return query.AsEnumerable();
-            });
+            var query = this.Context.DataSet.Where(filter);
+            return await Task.FromResult(query.AsEnumerable());
+        }
 
-        public virtual Task<TEntity> FindFirst(
-            Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
+        public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
             {
-                if (filter == null)
-                {
-                    throw new ArgumentNullException(nameof(filter));
-                }
+                throw new ArgumentNullException(nameof(filter));
+            }
 
-                var entity = this.Context.DataSet.FirstOrDefault(filter);
-                return entity;
-            });
+            var entity = await this.Context.DataSet.FirstOrDefaultAsync(filter);
+            return entity;
+        }
 
         public virtual Task<TEntity> GetById(object id)
         {

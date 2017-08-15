@@ -24,11 +24,11 @@
         [TestCase("aunt", "ant")]
         [TestCase("Sam", "Samantha")]
         [TestCase("flomax", "volmax")]
-        public void LevenshteinDistance_Compute_IsCommutative(string string1, string string2)
+        public void LevenshteinDistance_Compute_IsCommutative(string leftString, string rightString)
         {
             // Act
-            var distanceLeft = LevenshteinDistance.Compute(string1, string2);
-            var distanceRight = LevenshteinDistance.Compute(string2, string1);
+            var distanceLeft = LevenshteinDistance.Compute(leftString, rightString);
+            var distanceRight = LevenshteinDistance.Compute(rightString, leftString);
 
             // Assert
             Assert.AreEqual(distanceLeft, distanceRight);

@@ -79,7 +79,7 @@
             {
                 if (zoobankRegistrationList.Count > 1)
                 {
-                    this.logger?.Log(LogType.Warning, "More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
+                    this.logger?.Log(type: LogType.Warning, message: "More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
                 }
 
                 zoobankRegistration = zoobankRegistrationList[0];

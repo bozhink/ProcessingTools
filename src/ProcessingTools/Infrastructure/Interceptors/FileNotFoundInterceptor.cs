@@ -26,7 +26,7 @@
             if (!File.Exists(fileName))
             {
                 string message = $"File '{fileName}' does not exist.";
-                this.logger?.Log(LogType.Error, message);
+                this.logger?.Log(type: LogType.Error, message: message);
                 throw new FileNotFoundException(message: message, fileName: fileName);
             }
 
