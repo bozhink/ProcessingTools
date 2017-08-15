@@ -272,29 +272,21 @@
         /// <param name="replace">Replacement string.</param>
         /// <param name="logger">ILogger object to log exceptions.</param>
         /// <returns>Status value: is the replacement performed or not.</returns>
-        public static Task<bool> SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
+        public static async Task<bool> SafeReplaceInnerXml(this XmlNode node, string replace, ILogger logger)
         {
             string nodeInnerXml = node.InnerXml;
-            bool reset = false;
             try
             {
-                reset = true;
                 node.InnerXml = replace;
-                reset = false;
+                return true;
             }
             catch (Exception e)
             {
                 logger?.Log(e, "\nInvalid replacement string:\n{0}\n\n", replace.Substring(0, Math.Min(replace.Length, 300)));
-            }
-            finally
-            {
-                if (reset)
-                {
-                    node.InnerXml = nodeInnerXml;
-                }
+                node.InnerXml = nodeInnerXml;
             }
 
-            return Task.FromResult(!reset);
+            return await Task.FromResult(false);
         }
 
         /// <summary>
@@ -320,6 +312,7 @@
             }
             catch
             {
+                // Skip
             }
         }
 

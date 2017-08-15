@@ -10,11 +10,11 @@
 
     public class CrossReferencesValidator : ICrossReferencesValidator
     {
-        public Task<object> Validate(IDocument document, IReporter reporter)
+        public Task<object> Validate(IDocument context, IReporter reporter)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
             if (reporter == null)
@@ -22,7 +22,7 @@
                 throw new ArgumentNullException(nameof(reporter));
             }
 
-            var histogram = this.GetHistogramOfIdValues(document);
+            var histogram = this.GetHistogramOfIdValues(context);
 
             var nonUniqueIds = histogram.Where(p => p.Value > 1L).Select(p => p.Key).ToList();
             if (nonUniqueIds.Count > 0)
@@ -30,7 +30,7 @@
                 reporter.AppendContent(string.Format("Duplicated ID definitions: {0}", string.Join(", ", nonUniqueIds)));
             }
 
-            var invalidReferences = this.GetInvalidReferences(document, histogram).ToList();
+            var invalidReferences = this.GetInvalidReferences(context, histogram).ToList();
             if (invalidReferences.Count > 0)
             {
                 reporter.AppendContent(string.Format("Invalid ID references: {0}", string.Join(", ", invalidReferences)));
@@ -63,8 +63,7 @@
                 .ToList()
                 .ForEach(id =>
                 {
-                    long number = 0L;
-                    if (histogram.TryGetValue(id, out number))
+                    if (histogram.TryGetValue(id, out long number))
                     {
                         histogram[id] = number + 1;
                     }

@@ -6,7 +6,7 @@
     [Serializable]
     public class UserNotFoundException : ApplicationException
     {
-        private string message;
+        private readonly string message;
 
         public UserNotFoundException()
             : base()

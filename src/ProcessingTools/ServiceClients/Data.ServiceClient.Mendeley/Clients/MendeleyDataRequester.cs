@@ -16,7 +16,7 @@
         /// Get information about a document by its DOI.
         /// </summary>
         /// <param name="doi">DOI to search.</param>
-        /// <returns></returns>
+        /// <returns>Catalog data</returns>
         /// <remarks>
         /// See http://dev.mendeley.com/methods/#catalog-document-views
         /// </remarks>
@@ -31,9 +31,12 @@
 
                 string url = $"/catalog?doi={doi}";
                 var stream = await client.GetStreamAsync(url);
+                if (stream != null && stream.CanRead)
+                {
+                    // TODO: serialization model
+                    //// ...
+                }
 
-                // TODO: serialization model
-                //// ...
                 return null;
             }
         }

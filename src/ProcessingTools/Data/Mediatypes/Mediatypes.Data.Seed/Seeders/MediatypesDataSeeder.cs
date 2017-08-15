@@ -23,12 +23,7 @@
 
         public MediatypesDataSeeder(IMediatypesDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 

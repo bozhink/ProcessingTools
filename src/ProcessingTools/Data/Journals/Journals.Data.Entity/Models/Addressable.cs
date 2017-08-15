@@ -10,7 +10,7 @@
     {
         private ICollection<Address> addresses;
 
-        public Addressable()
+        protected Addressable()
             : base()
         {
             this.addresses = new HashSet<Address>();

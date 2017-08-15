@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts
 {
-    public interface IGenericProvider<T> : IGenericFactory<T>
+    public interface IGenericProvider<out T> : IGenericFactory<T>
     {
     }
 }

@@ -6,7 +6,7 @@
     [Serializable]
     public class EntityNotFoundException : ApplicationException
     {
-        private string message;
+        private readonly string message;
 
         public EntityNotFoundException()
             : base()

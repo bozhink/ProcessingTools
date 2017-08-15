@@ -6,7 +6,7 @@
 
     public class CsvTableReader
     {
-        private Queue<string[]> rows;
+        private readonly Queue<string[]> rows;
 
         public CsvTableReader()
             : this(new CsvObjectConfiguration())
@@ -35,8 +35,8 @@
                 if (ch == this.Configuration.SingleCharEscapeSymbol)
                 {
                     // Do not include the escape char in output
-                    // stringBuilder.Append(ch);
-                    if (!(i < len - 1))
+                    //// stringBuilder.Append(ch);
+                    if (i >= len - 1)
                     {
                         throw new ApplicationException("Invalid escape of last character of the text.");
                     }
@@ -46,13 +46,13 @@
                 else if (ch == this.Configuration.TerminatorEscapeLeftWrapSymbol && ch == this.Configuration.TerminatorEscapeRightWrapSymbol)
                 {
                     // Do not include the escape char in output
-                    // stringBuilder.Append(ch);
+                    //// stringBuilder.Append(ch);
                     escapeState = !escapeState;
                 }
                 else if (ch == this.Configuration.TerminatorEscapeLeftWrapSymbol)
                 {
                     // Do not include the escape char in output
-                    // stringBuilder.Append(ch);
+                    //// stringBuilder.Append(ch);
                     if (!escapeState)
                     {
                         escapeState = true;
@@ -61,7 +61,7 @@
                 else if (ch == this.Configuration.TerminatorEscapeRightWrapSymbol)
                 {
                     // Do not include the escape char in output
-                    // stringBuilder.Append(ch);
+                    //// stringBuilder.Append(ch);
                     if (escapeState)
                     {
                         escapeState = false;

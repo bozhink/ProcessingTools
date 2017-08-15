@@ -15,17 +15,18 @@
 
     public class ResourcesDataSeeder : IResourcesDataSeeder
     {
-        private readonly IResourcesDbContextFactory contextFactory;
-        private readonly Type stringType = typeof(string);
-
-        private FileByLineDbContextSeeder<ResourcesDbContext> seeder;
-        private string dataFilesDirectoryPath;
+        private readonly FileByLineDbContextSeeder<ResourcesDbContext> seeder;
+        private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
         public ResourcesDataSeeder(IResourcesDbContextFactory contextFactory)
         {
-            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
-            this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(this.contextFactory);
+            if (contextFactory == null)
+            {
+                throw new ArgumentNullException(nameof(contextFactory));
+            }
+
+            this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();

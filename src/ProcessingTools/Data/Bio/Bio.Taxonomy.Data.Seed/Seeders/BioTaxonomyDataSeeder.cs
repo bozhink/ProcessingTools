@@ -23,11 +23,10 @@
 
         private readonly IRepositoryFactory<IXmlBiotaxonomicBlackListRepository> blackListRepositoryFactory;
         private readonly IBioTaxonomyDbContextFactory contextFactory;
-        private readonly Type stringType = typeof(string);
         private readonly IRepositoryFactory<IXmlTaxonRankRepository> taxonomicRepositoryFactory;
-        private string dataFilesDirectoryPath;
+        private readonly FileByLineDbContextSeeder<BioTaxonomyDbContext> seeder;
+        private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
-        private FileByLineDbContextSeeder<BioTaxonomyDbContext> seeder;
 
         public BioTaxonomyDataSeeder(
             IBioTaxonomyDbContextFactory contextFactory,

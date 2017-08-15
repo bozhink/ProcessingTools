@@ -54,7 +54,7 @@
             var result = await miner.Mine(content);
 
             // Assert
-            Assert.IsTrue(result.Count() > 0, "Number of dates found should be greater than 0.");
+            Assert.IsTrue(result.Any(), "Number of dates found should be greater than 0.");
 
             var bestMatch = result.OrderByDescending(i => i.Length).First();
             Assert.AreEqual(dateText, bestMatch);

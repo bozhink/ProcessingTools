@@ -10,7 +10,7 @@
     public class XmlSerializer<T> : IXmlSerializer<T>
     {
         private readonly XmlSerializer serializer;
-        private XmlDocument bufferXml;
+        private readonly XmlDocument bufferXml;
         private XmlSerializerNamespaces xmlns;
 
         public XmlSerializer()

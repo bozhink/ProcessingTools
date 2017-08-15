@@ -384,7 +384,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(null);
+                new MemoryKeyCollectionValuePairsRepository<ITweet>(null);
             });
 
             Assert.AreEqual(Constants.DataStoreParamName, exception.ParamName);

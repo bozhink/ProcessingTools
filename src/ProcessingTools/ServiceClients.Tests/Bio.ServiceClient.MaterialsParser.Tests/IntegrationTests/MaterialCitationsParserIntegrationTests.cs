@@ -11,7 +11,7 @@
     [TestClass]
     public class MaterialCitationsParserIntegrationTests
     {
-        private Regex matchWhitespace = new Regex(@"\s+");
+        private readonly Regex matchWhitespace = new Regex(@"\s+");
 
         [TestMethod]
         [Timeout(5000)]

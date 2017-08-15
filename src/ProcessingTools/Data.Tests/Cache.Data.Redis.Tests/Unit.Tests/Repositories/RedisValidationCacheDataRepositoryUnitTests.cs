@@ -155,7 +155,8 @@
             Assert.That(result.Count(), Is.EqualTo(0));
             listMock.Verify(l => l.GetEnumerator(), Times.Once);
 
-            result.ToList();
+            var resultValue = result.ToList();
+            Assert.IsNotNull(resultValue, "Result List should not be null");
             listMock.Verify(l => l.GetEnumerator(), Times.Exactly(2));
 
             clientProviderMock.Verify(p => p.Create(), Times.Once);
@@ -254,7 +255,7 @@
             // Arrange
             string key = "some key";
 
-            // JsonStringSerializer does not work with mock? var valueMock = new Mock<IValidationCacheEntity>();
+            //// JsonStringSerializer does not work with mock? var valueMock = new Mock<IValidationCacheEntity>();
             var value = new ValidationCacheEntity();
 
             var listMock = new Mock<IRedisList>();
@@ -443,7 +444,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var repository = new RedisValidationCacheDataRepository(null);
+                new RedisValidationCacheDataRepository(null);
             });
 
             Assert.AreEqual(Constants.ClientProviderFieldName, exception.ParamName);

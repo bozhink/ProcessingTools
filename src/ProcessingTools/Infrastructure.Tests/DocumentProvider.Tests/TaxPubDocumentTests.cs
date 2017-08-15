@@ -6,6 +6,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Contracts;
 
     [TestClass]
     public class TaxPubDocumentTests
@@ -114,7 +115,7 @@
         public void TaxPubDocument_ConstructorWithNullEncoding_ShouldThrow()
         {
             Encoding encoding = null;
-            var document = new TaxPubDocument(encoding);
+            new TaxPubDocument(encoding);
         }
 
         #endregion ConstructorWithEncoding
@@ -126,7 +127,7 @@
         public void TaxPubDocument_WithEmptyStringInConstructor_ShouldThrow()
         {
             string content = string.Empty;
-            var document = new TaxPubDocument(content);
+            new TaxPubDocument(content);
         }
 
         [TestMethod]
@@ -135,7 +136,7 @@
         {
             string content = string.Empty;
             Encoding encoding = new UTF32Encoding();
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -144,7 +145,7 @@
         {
             string content = string.Empty;
             Encoding encoding = null;
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -152,7 +153,7 @@
         public void TaxPubDocument_WithNullStringInConstructor_ShouldThrow()
         {
             string content = null;
-            var document = new TaxPubDocument(content);
+            new TaxPubDocument(content);
         }
 
         [TestMethod]
@@ -161,7 +162,7 @@
         {
             string content = null;
             Encoding encoding = new UTF32Encoding();
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -170,7 +171,7 @@
         {
             string content = null;
             Encoding encoding = null;
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -179,7 +180,7 @@
         {
             string content = @"
                               ";
-            var document = new TaxPubDocument(content);
+            new TaxPubDocument(content);
         }
 
         [TestMethod]
@@ -189,7 +190,7 @@
             string content = @"
                               ";
             Encoding encoding = new UTF32Encoding();
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -199,7 +200,7 @@
             string content = @"
                               ";
             Encoding encoding = null;
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -207,7 +208,7 @@
         public void TaxPubDocument_WithInvalidXmlStringInConstructor_ShouldThrow()
         {
             string content = "a";
-            var document = new TaxPubDocument(content);
+            new TaxPubDocument(content);
         }
 
         [TestMethod]
@@ -216,7 +217,7 @@
         {
             string content = "a";
             Encoding encoding = new UTF32Encoding();
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -225,7 +226,7 @@
         {
             string content = "a";
             Encoding encoding = null;
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -251,7 +252,7 @@
         {
             string content = "<a/>";
             Encoding encoding = null;
-            var document = new TaxPubDocument(content, encoding);
+            new TaxPubDocument(content, encoding);
         }
 
         [TestMethod]
@@ -381,7 +382,7 @@
 
             Encoding encoding = null;
 
-            var document = new TaxPubDocument(xmlDocument, encoding);
+            new TaxPubDocument(xmlDocument, encoding);
         }
 
         [TestMethod]
@@ -513,7 +514,7 @@
         public void TaxPubDocument_WithNullXmlDocumentInConstructor_ShouldThrow()
         {
             XmlDocument xml = null;
-            var document = new TaxPubDocument(xml);
+            new TaxPubDocument(xml);
         }
 
         [TestMethod]
@@ -522,7 +523,7 @@
         {
             XmlDocument xml = null;
             Encoding encoding = new UTF32Encoding();
-            var document = new TaxPubDocument(xml, encoding);
+            new TaxPubDocument(xml, encoding);
         }
 
         [TestMethod]
@@ -531,7 +532,7 @@
         {
             XmlDocument xml = null;
             Encoding encoding = null;
-            var document = new TaxPubDocument(xml, encoding);
+            new TaxPubDocument(xml, encoding);
         }
 
         [TestMethod]
@@ -539,7 +540,7 @@
         public void TaxPubDocument_WithEmptyXmlDocumentInConstructor_ShouldThrow()
         {
             XmlDocument xml = new XmlDocument();
-            var document = new TaxPubDocument(xml);
+            new TaxPubDocument(xml);
         }
 
         [TestMethod]
@@ -548,7 +549,7 @@
         {
             XmlDocument xml = new XmlDocument();
             Encoding encoding = new UTF32Encoding();
-            var document = new TaxPubDocument(xml, encoding);
+            new TaxPubDocument(xml, encoding);
         }
 
         [TestMethod]
@@ -557,7 +558,7 @@
         {
             XmlDocument xml = new XmlDocument();
             Encoding encoding = null;
-            var document = new TaxPubDocument(xml, encoding);
+            new TaxPubDocument(xml, encoding);
         }
 
         #endregion ConstuctorWithXmlDocumentAndEncoding
@@ -585,7 +586,7 @@
         public void TaxPubDocument_SetWhitespaceXmlString_ShouldThrow()
         {
             var document = new TaxPubDocument();
-            document.Xml = @"  
+            document.Xml = @"
                             ";
         }
 
@@ -640,17 +641,17 @@
 
         #region Helpers
 
-        private void CheckNamespaceManager(TaxPubDocument document)
+        private void CheckNamespaceManager(IDocument document)
         {
             Assert.IsNotNull(document.NamespaceManager, "NamespaceManager should not be null.");
         }
 
-        private void CheckNameTable(TaxPubDocument document)
+        private void CheckNameTable(IDocument document)
         {
             Assert.IsNotNull(document.NameTable, "NameTable should not be null.");
         }
 
-        private void CheckTaxPubNamespaces(TaxPubDocument document)
+        private void CheckTaxPubNamespaces(IDocument document)
         {
             var namespaceManager = document.NamespaceManager;
             Assert.IsFalse(string.IsNullOrWhiteSpace(namespaceManager.LookupNamespace("tp")), "tp namespace is null or whitespace.");

@@ -16,20 +16,12 @@
     public class BioEnvironmentsDataSeeder : IBioEnvironmentsDataSeeder
     {
         private readonly IBioEnvironmentsDbContextProvider contextProvider;
-        private readonly Type stringType = typeof(string);
-
-        private string dataFilesDirectoryPath;
+        private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
         public BioEnvironmentsDataSeeder(IBioEnvironmentsDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
-
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
         }

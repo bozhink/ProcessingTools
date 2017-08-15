@@ -18,7 +18,7 @@
             var exception = Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var updater = new Updater<ITweet>(null);
+                    new Updater<ITweet>(null);
                 },
                 "Updater with null updateExpression should throw ArgumentNullException.");
 

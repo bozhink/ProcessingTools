@@ -23,7 +23,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void MaterialCitationsParser_WithNullConnectorInDefaultConstructor_ShouldThrowArgumentNullException()
         {
-            var parser = new MaterialCitationsParser(null);
+            new MaterialCitationsParser(null);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@
         {
             try
             {
-                var parser = new MaterialCitationsParser(null);
+                new MaterialCitationsParser(null);
             }
             catch (ArgumentNullException e)
             {
@@ -51,7 +51,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void MaterialCitationsParser_WithNullConnectorAndValidEncodingInConstructor_ShouldThrowArgumentNullException()
         {
-            var parser = new MaterialCitationsParser(null, Encoding.UTF32);
+            new MaterialCitationsParser(null, Encoding.UTF32);
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@
         {
             try
             {
-                var parser = new MaterialCitationsParser(null, Encoding.UTF32);
+                new MaterialCitationsParser(null, Encoding.UTF32);
             }
             catch (ArgumentNullException e)
             {
@@ -72,7 +72,7 @@
         public void MaterialCitationsParser_WithValidConnectorAndNullEncodingInConstructor_ShouldThrowArgumentNullException()
         {
             var connectorMock = new Mock<INetConnectorFactory>();
-            var parser = new MaterialCitationsParser(connectorMock.Object, null);
+            new MaterialCitationsParser(connectorMock.Object, null);
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@
             try
             {
                 var connectorMock = new Mock<INetConnectorFactory>();
-                var parser = new MaterialCitationsParser(connectorMock.Object, null);
+                new MaterialCitationsParser(connectorMock.Object, null);
             }
             catch (ArgumentNullException e)
             {
@@ -97,7 +97,7 @@
             var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
-            var result = parser.Invoke(null).Result;
+            parser.Invoke(null).Wait();
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@
 
             try
             {
-                var result = parser.Invoke(null).Result;
+                parser.Invoke(null).Wait();
             }
             catch (AggregateException e)
             {
@@ -130,9 +130,9 @@
             var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
-            var result = parser.Invoke(@"
+            parser.Invoke(@"
 
-").Result;
+").Wait();
         }
 
         [TestMethod]
@@ -144,7 +144,7 @@
 
             try
             {
-                var result = parser.Invoke("  ").Result;
+                parser.Invoke("  ").Wait();
             }
             catch (AggregateException e)
             {

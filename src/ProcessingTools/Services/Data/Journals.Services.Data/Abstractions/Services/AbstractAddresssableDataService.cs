@@ -30,7 +30,7 @@
         private readonly TRepository repository;
         private readonly IDateTimeProvider datetimeProvider;
 
-        public AbstractAddresssableDataService(TRepository repository, IDateTimeProvider datetimeProvider)
+        protected AbstractAddresssableDataService(TRepository repository, IDateTimeProvider datetimeProvider)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.datetimeProvider = datetimeProvider ?? throw new ArgumentNullException(nameof(datetimeProvider));
@@ -300,6 +300,7 @@
             }
             catch
             {
+                // Skip
             }
 
             var query = await this.repository.Find(dataFilter);
@@ -328,6 +329,7 @@
             }
             catch
             {
+                // Skip
             }
 
             query = query.Skip(skip).Take(take);

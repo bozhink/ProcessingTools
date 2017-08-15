@@ -11,8 +11,8 @@
         /// </summary>
         /// <param name="wordList">IEnumerable object to be distincted.</param>
         /// <param name="compareList">IEnumerable object of patterns which must not be contained in the wordList.</param>
-        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
         /// <param name="treatAsRegex">Treat compareList items as regex patterns or not.</param>
+        /// <param name="caseSensitive">Perform case-sensitive search or not.</param>
         /// <param name="strictMode">Specify if whole-phrase-match is expected.</param>
         /// <returns>IEnumerable object of all non-matching with compareList string items in wordList.</returns>
         public static IEnumerable<string> DistinctWithStringList(
@@ -24,7 +24,7 @@
         {
             var list = new HashSet<string>(wordList);
             var result = from word in list
-                         where word.MatchWithStringList(compareList, treatAsRegex, caseSensitive, strictMode).Count() == 0
+                         where !word.MatchWithStringList(compareList, treatAsRegex, caseSensitive, strictMode).Any()
                          select word;
 
             return new HashSet<string>(result);
@@ -134,7 +134,7 @@
         {
             var list = new HashSet<string>(compareList);
             var result = from word in wordList
-                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive, strictMode).Count() > 0
+                         where word.MatchWithStringList(list, treatAsRegex, caseSensitive, strictMode).Any()
                          select word;
 
             return new HashSet<string>(result);

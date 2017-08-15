@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -19,17 +18,18 @@
         private const string UserName = "system";
         private static readonly DateTime Now = DateTime.UtcNow;
 
-        private readonly IGeoDbContextFactory contextFactory;
-        private readonly Type stringType = typeof(string);
-
-        private FileByLineDbContextSeeder<GeoDbContext> seeder;
-        private string dataFilesDirectoryPath;
+        private readonly FileByLineDbContextSeeder<GeoDbContext> seeder;
+        private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
         public GeoDataSeeder(IGeoDbContextFactory contextFactory)
         {
-            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
-            this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(this.contextFactory);
+            if (contextFactory == null)
+            {
+                throw new ArgumentNullException(nameof(contextFactory));
+            }
+
+            this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(contextFactory);
 
             this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
             this.exceptions = new ConcurrentQueue<Exception>();
