@@ -45,9 +45,9 @@
             return result;
         }
 
-        public async Task PrintNonParsedTaxa(XmlDocument xmlDocument)
+        private async Task PrintNonParsedTaxa(XmlNode node)
         {
-            var uniqueHigherTaxaList = xmlDocument.ExtractUniqueNonParsedHigherTaxa()
+            var uniqueHigherTaxaList = node.ExtractUniqueNonParsedHigherTaxa()
                 .Distinct()
                 .OrderBy(s => s)
                 .ToArray();

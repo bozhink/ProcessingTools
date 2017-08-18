@@ -274,11 +274,9 @@
                     }
 
                     return taxonNameElement;
-                })
-                .ToList<XmlNode>()
-                .Select(c => c.InnerXml);
+                });
 
-            return new HashSet<string>(result);
+            return new HashSet<string>(result.Select(c => c.InnerXml));
         }
 
         private IEnumerable<string> GetListOfShortenedTaxa(XmlNode node)

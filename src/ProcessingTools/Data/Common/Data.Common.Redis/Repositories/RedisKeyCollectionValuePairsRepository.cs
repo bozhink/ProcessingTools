@@ -107,8 +107,8 @@
             });
         }
 
-        private void AddValueToList(IRedisList list, T value) => list.Add(this.Serialize(value));
+        private void AddValueToList(ICollection<string> list, T value) => list.Add(this.Serialize(value));
 
-        private bool RemoveValueFromList(IRedisList list, T value) => list.Remove(this.Serialize(value));
+        private bool RemoveValueFromList(ICollection<string> list, T value) => list.Remove(this.Serialize(value));
     }
 }

@@ -63,7 +63,7 @@
             return responseDocument;
         }
 
-        private async Task<XmlDocument> GenerateQueryDocument(XmlDocument context)
+        private async Task<XmlDocument> GenerateQueryDocument(XmlNode context)
         {
             XmlDocument queryDocument = new XmlDocument
             {

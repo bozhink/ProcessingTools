@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Processors.Floats
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -57,7 +58,7 @@
             return true;
         }
 
-        private IEnumerable<string> GetExtensions(XmlNodeList mediaNodes)
+        private IEnumerable<string> GetExtensions(IEnumerable mediaNodes)
         {
             return mediaNodes.Cast<XmlNode>()
                 .Select(this.GetFileName)

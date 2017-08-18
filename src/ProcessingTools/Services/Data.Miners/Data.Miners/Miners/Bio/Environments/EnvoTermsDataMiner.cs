@@ -27,17 +27,15 @@
 
             string text = context.ToLower();
 
-            var terms = (await this.service.All())
+            var query = (await this.service.All())
                 .Select(t => new EnvoTerm
                 {
                     EntityId = t.EntityId,
                     EnvoId = t.EnvoId,
                     Content = t.Content
-                })
-                .ToList()
-                .Where(t => text.Contains(t.Content.ToLower()));
-
-            var result = new HashSet<EnvoTerm>(terms);
+                });
+            var data = query.ToList();
+            var result = new HashSet<EnvoTerm>(data.Where(t => text.Contains(t.Content.ToLower())));
             return result;
         }
     }

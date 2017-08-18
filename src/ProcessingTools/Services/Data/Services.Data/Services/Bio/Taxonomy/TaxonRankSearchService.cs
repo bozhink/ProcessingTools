@@ -17,12 +17,7 @@
 
         public TaxonRankSearchService(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
         public async Task<IEnumerable<ITaxonRank>> Search(string filter)
@@ -37,9 +32,9 @@
                 var searchString = filter.ToLower();
 
                 var query = await repository.Find(t => t.Name.ToLower().Contains(searchString));
-
-                var result = query.ToList()
-                    .SelectMany(t => t.Ranks.Select(rank => new TaxonRankServiceModel
+                var data = query.ToList();
+                var result = data.SelectMany(
+                    t => t.Ranks.Select(rank => new TaxonRankServiceModel
                     {
                         ScientificName = t.Name,
                         Rank = rank

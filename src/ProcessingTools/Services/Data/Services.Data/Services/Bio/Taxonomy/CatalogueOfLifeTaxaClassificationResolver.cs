@@ -75,7 +75,7 @@
             return taxonClassification;
         }
 
-        private ITaxonRank GetClassificationItem(Result result, TaxonRankType rank)
+        private ITaxonRank GetClassificationItem(AcceptedName result, TaxonRankType rank)
         {
             try
             {

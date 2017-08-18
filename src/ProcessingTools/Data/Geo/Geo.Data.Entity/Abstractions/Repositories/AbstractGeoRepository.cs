@@ -90,11 +90,9 @@
         {
             var query = this.GetQuery(filter);
 
-            var data = await query.ToList()
-                .Select(this.MapEntityToModel)
-                .ToArrayAsync();
-
-            return data;
+            var data = query.ToList();
+            var result = await data.Select(this.MapEntityToModel).ToArrayAsync();
+            return result;
         }
 
         public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
@@ -104,11 +102,10 @@
                 .Skip(skip)
                 .Take(take);
 
-            var data = await query.ToList()
-                .Select(this.MapEntityToModel)
-                .ToArrayAsync();
+            var data = query.ToList();
+            var ressult = await data.Select(this.MapEntityToModel).ToArrayAsync();
 
-            return data;
+            return ressult;
         }
 
         public virtual async Task<long> SelectCountAsync(TFilter filter)
