@@ -70,11 +70,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Common\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Common\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
@@ -86,7 +86,7 @@
       <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
       <Name>DocumentProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
+    <ProjectReference Include="..\..\..\Common\Enumerations\Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>

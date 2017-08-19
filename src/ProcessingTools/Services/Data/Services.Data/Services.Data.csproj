@@ -139,11 +139,11 @@
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Common\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Common\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
@@ -151,7 +151,7 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
+    <ProjectReference Include="..\..\..\Common\Enumerations\Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>

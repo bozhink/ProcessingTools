@@ -57,7 +57,7 @@
     <Compile Include="Repositories\EntityHistoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Common\Constants\Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>

@@ -105,7 +105,7 @@
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>

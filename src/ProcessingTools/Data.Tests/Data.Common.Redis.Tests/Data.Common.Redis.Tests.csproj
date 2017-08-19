@@ -95,7 +95,7 @@
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
+    <ProjectReference Include="..\..\Common\Common\Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>Common</Name>
     </ProjectReference>

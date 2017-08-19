@@ -64,7 +64,7 @@
     <None Include="Processors.Tests.ruleset" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
+    <ProjectReference Include="..\..\..\Common\Enumerations\Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
       <Name>Enumerations</Name>
     </ProjectReference>

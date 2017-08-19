@@ -52,7 +52,7 @@
     <Compile Include="Seeders\BioDataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Common\Constants\Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>Constants</Name>
     </ProjectReference>
