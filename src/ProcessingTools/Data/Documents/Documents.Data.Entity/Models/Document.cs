@@ -12,7 +12,6 @@
     public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields, IDocumentEntity
     {
         public Document()
-            : base()
         {
             this.Id = Guid.NewGuid();
         }

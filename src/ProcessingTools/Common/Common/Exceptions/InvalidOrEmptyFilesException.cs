@@ -11,7 +11,6 @@
         private readonly IEnumerable<string> fileNames;
 
         public InvalidOrEmptyFilesException(IEnumerable<string> fileNames)
-            : base()
         {
             this.fileNames = fileNames;
         }

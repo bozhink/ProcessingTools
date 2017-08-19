@@ -10,7 +10,6 @@
     public class File : ModelWithUserInformation, IFileEntity
     {
         public File()
-            : base()
         {
             this.Id = Guid.NewGuid();
         }

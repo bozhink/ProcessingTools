@@ -8,7 +8,6 @@
     public class InvalidSkipValuePagingException : ArgumentException
     {
         public InvalidSkipValuePagingException()
-            : base()
         {
         }
 

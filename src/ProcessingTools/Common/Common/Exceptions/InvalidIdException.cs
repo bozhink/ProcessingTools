@@ -8,7 +8,6 @@
     public class InvalidIdException : ArgumentException
     {
         public InvalidIdException()
-            : base()
         {
         }
 

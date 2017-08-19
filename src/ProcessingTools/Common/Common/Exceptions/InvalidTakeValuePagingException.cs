@@ -8,7 +8,6 @@
     public class InvalidTakeValuePagingException : ArgumentException
     {
         public InvalidTakeValuePagingException()
-            : base()
         {
         }
 

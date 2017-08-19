@@ -13,7 +13,6 @@
         private ICollection<Affiliation> affiliations;
 
         public Institution()
-            : base()
         {
             this.Id = Guid.NewGuid();
             this.affiliations = new HashSet<Affiliation>();

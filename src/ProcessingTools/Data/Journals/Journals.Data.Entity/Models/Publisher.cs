@@ -8,7 +8,6 @@
     public class Publisher : Addressable, IPublisher
     {
         public Publisher()
-            : base()
         {
             this.Id = Guid.NewGuid().ToString();
         }

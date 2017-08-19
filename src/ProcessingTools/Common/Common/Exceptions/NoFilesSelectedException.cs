@@ -8,7 +8,6 @@
     public class NoFilesSelectedException : ApplicationException
     {
         public NoFilesSelectedException()
-            : base()
         {
         }
 

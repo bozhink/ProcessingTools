@@ -13,7 +13,6 @@
         private ICollection<Journal> journals;
 
         public Publisher()
-            : base()
         {
             this.Id = Guid.NewGuid();
             this.journals = new HashSet<Journal>();

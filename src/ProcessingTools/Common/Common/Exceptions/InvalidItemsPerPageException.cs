@@ -8,7 +8,6 @@
     public class InvalidItemsPerPageException : ArgumentException
     {
         public InvalidItemsPerPageException()
-            : base()
         {
         }
 

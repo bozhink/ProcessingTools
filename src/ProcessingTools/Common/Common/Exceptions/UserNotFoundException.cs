@@ -10,7 +10,6 @@
         private readonly string message;
 
         public UserNotFoundException()
-            : base()
         {
             this.message = null;
         }

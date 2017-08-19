@@ -10,7 +10,6 @@
         private readonly string message;
 
         public EntityNotFoundException()
-            : base()
         {
             this.message = null;
         }

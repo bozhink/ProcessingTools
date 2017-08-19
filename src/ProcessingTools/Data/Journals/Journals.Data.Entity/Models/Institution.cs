@@ -8,7 +8,6 @@
     public class Institution : Addressable, IInstitution
     {
         public Institution()
-            : base()
         {
             this.Id = Guid.NewGuid().ToString();
         }

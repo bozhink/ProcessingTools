@@ -11,7 +11,6 @@
         private ICollection<Address> addresses;
 
         protected Addressable()
-            : base()
         {
             this.addresses = new HashSet<Address>();
         }

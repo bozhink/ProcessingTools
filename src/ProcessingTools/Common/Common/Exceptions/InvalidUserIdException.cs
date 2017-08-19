@@ -11,7 +11,6 @@
         private readonly object userId;
 
         public InvalidUserIdException(object userId)
-            : base()
         {
             this.message = null;
             this.userId = userId;

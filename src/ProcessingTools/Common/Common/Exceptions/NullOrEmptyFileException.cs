@@ -8,7 +8,6 @@
     public class NullOrEmptyFileException : ApplicationException
     {
         public NullOrEmptyFileException()
-            : base()
         {
         }
 

@@ -8,7 +8,6 @@
     public class InvalidPageNumberException : ArgumentException
     {
         public InvalidPageNumberException()
-            : base()
         {
         }
 
