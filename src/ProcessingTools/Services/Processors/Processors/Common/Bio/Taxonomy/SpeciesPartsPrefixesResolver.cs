@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Common.Bio.Taxonomy
 {
     using System.Collections.Generic;
+    using System.Collections.Immutable;
     using System.Linq;
     using ProcessingTools.Enumerations;
 
@@ -75,7 +76,7 @@
                 { "v", SpeciesPartType.Variety },
                 { "var", SpeciesPartType.Variety },
                 { "×", SpeciesPartType.Species }
-            };
+            }.ToImmutableDictionary();
 
         public static readonly IEnumerable<string> UncertaintyPrefixes = new HashSet<string>
         {
@@ -94,7 +95,7 @@
             "sp. cf",
             "sp. near",
             "sp. nr"
-        };
+        }.ToImmutableHashSet();
 
         private const string DefaultRank = "species";
 

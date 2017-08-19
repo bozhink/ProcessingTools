@@ -37,7 +37,7 @@
 
             set
             {
-                this.coordinatePartString = value;
+                this.coordinatePartString = value?.Trim() ?? throw new ArgumentNullException(nameof(value));
             }
         }
 

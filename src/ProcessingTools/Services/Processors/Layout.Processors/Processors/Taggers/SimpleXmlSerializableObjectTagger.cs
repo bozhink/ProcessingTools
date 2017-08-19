@@ -18,18 +18,8 @@
             IXmlSerializer<T> serializer,
             IContentTagger contentTagger)
         {
-            if (serializer == null)
-            {
-                throw new ArgumentNullException(nameof(serializer));
-            }
-
-            if (contentTagger == null)
-            {
-                throw new ArgumentNullException(nameof(contentTagger));
-            }
-
-            this.serializer = serializer;
-            this.contentTagger = contentTagger;
+            this.serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
         public async Task<object> Tag(XmlNode context, XmlNamespaceManager namespaceManager, IEnumerable<T> data, string contentNodesXPath, IContentTaggerSettings settings)
@@ -61,11 +51,10 @@
 
             this.serializer.SetNamespaces(namespaceManager);
 
-            var nodeList = context.SelectNodes(contentNodesXPath, namespaceManager)
-                .Cast<XmlNode>();
+            var nodeList = context.SelectNodes(contentNodesXPath, namespaceManager).Cast<XmlNode>().ToList();
 
-            var items = data.ToList()
-                .Select(x => this.serializer.Serialize(x).Result)
+            var dataList = data.ToList();
+            var items = dataList.Select(x => this.serializer.Serialize(x).Result)
                 .Cast<XmlElement>()
                 .OrderByDescending(i => i.InnerText.Length)
                 .ToArray();

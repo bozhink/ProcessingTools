@@ -49,9 +49,11 @@
         /// <summary>
         /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool
         /// </summary>
-        public static Expression<Func<T, bool>> AndAlso<T>(
-            this Expression<Func<T, bool>> expression1,
-            Expression<Func<T, bool>> expression2)
+        /// <typeparam name="T">Input type</typeparam>
+        /// <param name="expression1">Left expression to be concatenated</param>
+        /// <param name="expression2">Right expression to be concatenated</param>
+        /// <returns>Concatenated expressions with AndAlso operator</returns>
+        public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> expression1, Expression<Func<T, bool>> expression2)
         {
             var parameter = Expression.Parameter(typeof(T));
 
@@ -67,6 +69,9 @@
         /// <summary>
         /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool
         /// </summary>
+        /// <typeparam name="T">Input type</typeparam>
+        /// <param name="expression">Input expression</param>
+        /// <returns>Not operator over expression</returns>
         public static Expression<Func<T, bool>> Not<T>(
             this Expression<Func<T, bool>> expression)
         {
@@ -77,6 +82,10 @@
         /// <summary>
         /// See http://stackoverflow.com/questions/457316/combining-two-expressions-expressionfunct-bool
         /// </summary>
+        /// <typeparam name="T">Input type</typeparam>
+        /// <param name="expression1">Left expression to be concatenated</param>
+        /// <param name="expression2">Right expression to be concatenated</param>
+        /// <returns>Concatenated expressions with OrElse operator</returns>
         public static Expression<Func<T, bool>> OrElse<T>(
             this Expression<Func<T, bool>> expression1,
             Expression<Func<T, bool>> expression2)
@@ -92,17 +101,13 @@
             return Expression.Lambda<Func<T, bool>>(Expression.OrElse(left, right), parameter);
         }
 
-        /// <summary>
-        /// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
-        /// </summary>
+        // See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
         public static Expression<Func<B, T>> Convert<S, B, T>(this Expression<Func<S, T>> from)
         {
             return ConvertImpl<Func<S, T>, Func<B, T>>(from);
         }
 
-        /// <summary>
-        /// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
-        /// </summary>
+        // See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
         private static Expression<B> ConvertImpl<S, B>(Expression<S> from)
             where S : class
             where B : class

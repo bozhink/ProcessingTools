@@ -246,7 +246,7 @@
             this.ParseCoordinateObject(latitude, longitude, coordinate);
         }
 
-        private void ParseCoordinateObject(ICoordinatePart latitude, ICoordinatePart longitude, Coordinate coordinate)
+        private void ParseCoordinateObject(ICoordinatePart latitude, ICoordinatePart longitude, ICoordinate coordinate)
         {
             this.ParseSinglePartTypeCoordinate(
                 coordinate.Latitude,

@@ -39,16 +39,16 @@
 
         public static object DeepCopy(this object source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             Type type = source.GetType();
 
             if (!type.IsSerializable)
             {
                 throw new ArgumentException("The type must be serializable.", nameof(source));
-            }
-
-            if (object.ReferenceEquals(source, null))
-            {
-                return type.Default();
             }
 
             using (var stream = new MemoryStream())

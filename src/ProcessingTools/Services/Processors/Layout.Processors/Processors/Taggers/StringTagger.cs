@@ -15,12 +15,7 @@
 
         public StringTagger(IContentTagger contentTagger)
         {
-            if (contentTagger == null)
-            {
-                throw new ArgumentNullException(nameof(contentTagger));
-            }
-
-            this.contentTagger = contentTagger;
+            this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
         public async Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPath)
@@ -45,8 +40,8 @@
                 throw new ArgumentNullException(nameof(contentNodesXPath));
             }
 
-            var itemsToTag = data.ToList()
-                .Select(d => this.XmlEncode(document, d))
+            var dataList = data.ToList();
+            var itemsToTag = dataList.Select(d => this.XmlEncode(document, d))
                 .OrderByDescending(i => i.Length)
                 .ToList();
 
