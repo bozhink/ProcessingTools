@@ -181,11 +181,9 @@
         /// </summary>
         /// <param name="node">XmlNode object which content will be changed.</param>
         /// <param name="re">Regex object to match content to be wrapped in XmlElement.</param>
-        /// <param name="preReplacementPattern">Replacement pattern to be applied in regex before the XmlElement.</param>
-        /// <param name="replacementPattern">Replacement pattern to be applied in regex in the XmlElement.</param>
-        /// <param name="postReplacementPattern">Replacement pattern to be applied in regex after the XmlElement.</param>
+        /// <param name="patterns">Replacement patterns in the following order: 1 - Replacement pattern to be applied in regex before the XmlElement; 2 - Replacement pattern to be applied in regex in the XmlElement; 3 - Replacement pattern to be applied in regex after the XmlElement.</param>
         /// <param name="replacementElementName">The name of the XmlElement which will be inserted in the node.</param>
-        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, string preReplacementPattern, string replacementPattern, string postReplacementPattern, string replacementElementName)
+        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, Tuple<string, string, string> patterns, string replacementElementName)
         {
             if (node == null)
             {
@@ -197,6 +195,11 @@
                 throw new ArgumentNullException(nameof(re));
             }
 
+            if (patterns == null)
+            {
+                throw new ArgumentNullException(nameof(patterns));
+            }
+
             if (string.IsNullOrWhiteSpace(replacementElementName))
             {
                 throw new ArgumentNullException(nameof(replacementElementName));
@@ -206,11 +209,11 @@
             if (re.IsMatch(content))
             {
                 var replacementElement = node.OwnerDocument.CreateElement(replacementElementName);
-                replacementElement.InnerText = replacementPattern;
+                replacementElement.InnerText = patterns.Item2 ?? string.Empty;
 
                 try
                 {
-                    node.InnerXml = re.Replace(content, preReplacementPattern + replacementElement.OuterXml + postReplacementPattern);
+                    node.InnerXml = re.Replace(content, patterns.Item1 ?? string.Empty + replacementElement.OuterXml + patterns.Item3 ?? string.Empty);
                 }
                 catch
                 {
@@ -225,13 +228,11 @@
         /// </summary>
         /// <param name="node">XmlNode object which content will be changed.</param>
         /// <param name="re">Regex object to match content to be wrapped in XmlElement.</param>
-        /// <param name="preReplacementPattern">Replacement pattern to be applied in regex before the XmlElement.</param>
-        /// <param name="replacementPattern">Replacement pattern to be applied in regex in the XmlElement.</param>
-        /// <param name="postReplacementPattern">Replacement pattern to be applied in regex after the XmlElement.</param>
+        /// <param name="patterns">Replacement patterns in the following order: 1 - Replacement pattern to be applied in regex before the XmlElement; 2 - Replacement pattern to be applied in regex in the XmlElement; 3 - Replacement pattern to be applied in regex after the XmlElement.</param>
         /// <param name="replacementElementName">The name of the XmlElement which will be inserted in the node.</param>
         /// <param name="repmacementElementNamePrefix">Prefix for the replacement XmlElement.</param>
         /// <param name="namespaceUri">Namespace uri for the replacement XmlElement.</param>
-        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, string preReplacementPattern, string replacementPattern, string postReplacementPattern, string replacementElementName, string repmacementElementNamePrefix, string namespaceUri)
+        public static void ReplaceXmlNodeContentByRegex(this XmlNode node, Regex re, Tuple<string, string, string> patterns, string replacementElementName, string repmacementElementNamePrefix, string namespaceUri)
         {
             if (node == null)
             {
@@ -243,6 +244,11 @@
                 throw new ArgumentNullException(nameof(re));
             }
 
+            if (patterns == null)
+            {
+                throw new ArgumentNullException(nameof(patterns));
+            }
+
             if (string.IsNullOrWhiteSpace(replacementElementName))
             {
                 throw new ArgumentNullException(nameof(replacementElementName));
@@ -252,11 +258,11 @@
             if (re.IsMatch(content))
             {
                 var replacementElement = node.OwnerDocument.CreateElement(repmacementElementNamePrefix, replacementElementName, namespaceUri);
-                replacementElement.InnerText = replacementPattern;
+                replacementElement.InnerText = patterns.Item2 ?? string.Empty;
 
                 try
                 {
-                    node.InnerXml = re.Replace(content, preReplacementPattern + replacementElement.OuterXml + postReplacementPattern);
+                    node.InnerXml = re.Replace(content, patterns.Item1 ?? string.Empty + replacementElement.OuterXml + patterns.Item3 ?? string.Empty);
                 }
                 catch
                 {

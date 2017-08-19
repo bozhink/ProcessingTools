@@ -138,9 +138,7 @@
             var matchRightPartAsStatus = new Regex(@"(?<=(?:\A|\W\s*))\b([Ii]ncertae\s+[Ss]edis|nom\.?\s+cons\.?|new record|(?:n\.\s*[a-z]+)\b|(?:[a-z]+\.\s*)?spp\b\.?|[a-z]+\.\s*\b(?:n|nov|r|rev|stat)\b\.?)\Z");
             authorityStatusNode.ReplaceXmlNodeContentByRegex(
                 matchRightPartAsStatus,
-                string.Empty,
-                "$1",
-                string.Empty,
+                Tuple.Create(string.Empty, "$1", string.Empty),
                 ElementNames.TaxonStatus,
                 Namespaces.TaxPubNamespacePrefix,
                 Namespaces.TaxPubNamespaceUri);
@@ -163,9 +161,7 @@
                 var matchAuthoriry = new Regex(@"\A([\s\S]+)(?=" + Regex.Escape(statusNode.OuterXml) + @")");
                 authorityStatusNode.ReplaceXmlNodeContentByRegex(
                     matchAuthoriry,
-                    string.Empty,
-                    "$1",
-                    string.Empty,
+                    Tuple.Create(string.Empty, "$1", string.Empty),
                     ElementNames.TaxonAuthority,
                     Namespaces.TaxPubNamespacePrefix,
                     Namespaces.TaxPubNamespaceUri);
@@ -227,7 +223,7 @@
             }
 
             var matchAuthorityStatus = new Regex(@"(?<=" + Regex.Escape(taxonNameNode.OuterXml) + @")\s*(\S[\s\S]*?)\s*\Z");
-            titleNode.ReplaceXmlNodeContentByRegex(matchAuthorityStatus, string.Empty, "$1", string.Empty, TaxonAuthorityStatusNodeName);
+            titleNode.ReplaceXmlNodeContentByRegex(matchAuthorityStatus, Tuple.Create(string.Empty, "$1", string.Empty), TaxonAuthorityStatusNodeName);
 
             var authorityStatusNode = this.SelectAuthorityStatusNode(titleNode);
             if (authorityStatusNode != null)
@@ -244,7 +240,7 @@
             }
 
             var matchLabel = new Regex(@"\A\s*(\S[\s\S]*?)\s*(?=" + Regex.Escape(taxonNameNode.OuterXml) + @")");
-            titleNode.ReplaceXmlNodeContentByRegex(matchLabel, string.Empty, "$1", string.Empty, ElementNames.Label);
+            titleNode.ReplaceXmlNodeContentByRegex(matchLabel, Tuple.Create(string.Empty, "$1", string.Empty), ElementNames.Label);
 
             var labelNode = this.SelectLabelNode(titleNode);
             if (labelNode != null)
