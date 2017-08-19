@@ -42,7 +42,7 @@
                 lowerTaxon.InnerXml = xml;
             }
 
-            return await Task.FromResult(true);
+            return await Task.FromResult(true).ConfigureAwait(false);
         }
 
         private void ProcessBasionymAuthorityElements(XmlNode context)

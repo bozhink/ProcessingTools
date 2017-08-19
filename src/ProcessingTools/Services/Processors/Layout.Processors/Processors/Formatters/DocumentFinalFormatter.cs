@@ -28,7 +28,7 @@
 
             context.Xml = context.Xml.RegexReplace(@"\s*(</tp:taxon-name>)\s+(?=<comment>[,;:\.])", "$1");
 
-            return await Task.FromResult(true);
+            return await Task.FromResult(true).ConfigureAwait(false);
         }
     }
 }

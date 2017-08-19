@@ -16,12 +16,7 @@
 
         public ApplicationOAuthProvider(string publicClientId)
         {
-            if (publicClientId == null)
-            {
-                throw new ArgumentNullException(nameof(publicClientId));
-            }
-
-            this.publicClientId = publicClientId;
+            this.publicClientId = publicClientId ?? throw new ArgumentNullException(nameof(publicClientId));
         }
 
         public static AuthenticationProperties CreateProperties(string userName)

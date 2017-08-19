@@ -53,7 +53,7 @@
             }
 
             this.repository.Delete(id: id);
-            return await Task.FromResult(id);
+            return await Task.FromResult(id).ConfigureAwait(false);
         }
 
         public virtual Task<TModel> GetByIdAsync(object id)
@@ -137,7 +137,7 @@
             entity.ModifiedOn = now;
 
             this.repository.Add(entity);
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
         protected async Task<TEntity> UpdateEntityAsync(TEntity entity)
@@ -154,7 +154,7 @@
             entity.ModifiedOn = now;
 
             this.repository.Update(entity);
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
         protected abstract IQueryable<TEntity> GetQuery(TFilter filter);

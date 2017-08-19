@@ -292,7 +292,7 @@
                 node.InnerXml = nodeInnerXml;
             }
 
-            return await Task.FromResult(false);
+            return await Task.FromResult(false).ConfigureAwait(false);
         }
 
         /// <summary>

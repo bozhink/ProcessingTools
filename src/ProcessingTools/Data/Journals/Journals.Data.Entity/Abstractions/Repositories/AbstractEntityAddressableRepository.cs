@@ -52,7 +52,7 @@
 
             this.Repository.Update(entity);
 
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
         public virtual async Task<object> UpdateAddress(object entityId, IAddress address)
@@ -94,7 +94,7 @@
 
             entry.State = EntityState.Modified;
 
-            return await Task.FromResult(dbaddress.Id);
+            return await Task.FromResult(dbaddress.Id).ConfigureAwait(false);
         }
 
         public virtual async Task<object> RemoveAddress(object entityId, object addressId)

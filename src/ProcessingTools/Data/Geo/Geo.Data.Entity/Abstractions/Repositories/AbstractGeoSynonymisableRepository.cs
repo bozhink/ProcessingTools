@@ -98,7 +98,7 @@
             }
 
             this.repository.Delete(id: id);
-            return await Task.FromResult(id);
+            return await Task.FromResult(id).ConfigureAwait(false);
         }
 
         public virtual async Task<TModel> GetByIdAsync(object id)
@@ -336,7 +336,7 @@
             }
 
             this.repository.Add(entity);
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
         protected async Task<TEntity> UpdateEntityAsync(TEntity entity)
@@ -360,7 +360,7 @@
 
             this.Mapper.Map<TEntity, TEntity>(entity, dbentity);
             this.repository.Update(dbentity);
-            return await Task.FromResult(dbentity);
+            return await Task.FromResult(dbentity).ConfigureAwait(false);
         }
     }
 }

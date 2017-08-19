@@ -88,7 +88,7 @@
             }
 
             var query = this.DbSet.Where(filter).AsEnumerable();
-            return await Task.FromResult(query);
+            return await Task.FromResult(query).ConfigureAwait(false);
         }
 
         public virtual async Task<TEntity> FindFirst(
@@ -162,7 +162,7 @@
             }
             else
             {
-                return await Task.FromResult(set.Add(entity));
+                return await Task.FromResult(set.Add(entity)).ConfigureAwait(false);
             }
         }
 
@@ -202,7 +202,7 @@
             }
 
             entry.State = EntityState.Modified;
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
     }
 }

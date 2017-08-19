@@ -45,7 +45,7 @@
                 node.ReplaceXmlNodeByItsInnerXml();
             }
 
-            return await Task.FromResult(true);
+            return await Task.FromResult(true).ConfigureAwait(false);
         }
 
         /// <summary>

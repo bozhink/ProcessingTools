@@ -30,7 +30,7 @@
                     node.InnerXml = this.ParseLeftStringMatch(node.InnerXml);
                 });
 
-            return await Task.FromResult(true);
+            return await Task.FromResult(true).ConfigureAwait(false);
         }
 
         private string ParseLeftStringMatch(string text)

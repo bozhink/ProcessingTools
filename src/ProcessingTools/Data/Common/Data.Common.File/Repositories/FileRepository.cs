@@ -38,7 +38,7 @@
             }
 
             var query = this.Context.DataSet.Where(filter);
-            return await Task.FromResult(query.AsEnumerable());
+            return await Task.FromResult(query.AsEnumerable()).ConfigureAwait(false);
         }
 
         public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)

@@ -56,7 +56,7 @@
             }
 
             var query = this.Collection.AsQueryable().Where(filter).AsEnumerable();
-            return await Task.FromResult(query);
+            return await Task.FromResult(query).ConfigureAwait(false);
         }
 
         public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
@@ -70,7 +70,7 @@
             var entity = this.Collection
                  .AsQueryable()
                  .FirstOrDefault(filter);
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
         public async Task<TEntity> GetById(object id)

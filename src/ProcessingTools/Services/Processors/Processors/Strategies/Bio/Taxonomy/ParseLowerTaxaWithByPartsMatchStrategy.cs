@@ -34,7 +34,7 @@
                     node.InnerXml = this.ParseDifferentPartsOfTaxonomicNames(node.InnerXml);
                 });
 
-            return await Task.FromResult(true);
+            return await Task.FromResult(true).ConfigureAwait(false);
         }
 
         /// <summary>

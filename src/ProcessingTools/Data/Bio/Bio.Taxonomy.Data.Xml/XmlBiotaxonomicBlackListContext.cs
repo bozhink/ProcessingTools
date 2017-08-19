@@ -40,7 +40,7 @@
                 this.Items.Enqueue(entity);
             }
 
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
         public Task<object> Delete(object id)

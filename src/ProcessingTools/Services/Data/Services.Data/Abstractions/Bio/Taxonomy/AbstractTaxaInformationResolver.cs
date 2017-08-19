@@ -41,7 +41,7 @@
 
             var result = new HashSet<T>(queue);
 
-            return await Task.FromResult(result);
+            return await Task.FromResult(result).ConfigureAwait(false);
         }
 
         protected abstract void Delay();
