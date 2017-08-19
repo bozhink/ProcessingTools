@@ -134,13 +134,18 @@
             var newParameters = new ParameterExpression[from.Parameters.Count];
             for (int i = 0; i < newParameters.Length; i++)
             {
-                if (typeMap.TryGetValue(from.Parameters[i].Type, out Type newType))
+                var parameter = from.Parameters[i];
+                if (parameter != null)
                 {
-                    parameterMap[from.Parameters[i]] = newParameters[i] = Expression.Parameter(newType, from.Parameters[i].Name);
-                }
-                else
-                {
-                    newParameters[i] = from.Parameters[i];
+                    if (typeMap.TryGetValue(parameter.Type, out Type newType))
+                    {
+                        newParameters[i] = Expression.Parameter(newType, parameter.Name);
+                        parameterMap[parameter] = newParameters[i];
+                    }
+                    else
+                    {
+                        newParameters[i] = parameter;
+                    }
                 }
             }
 
