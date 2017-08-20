@@ -23,46 +23,50 @@
 
         protected override Func<string, string> GetPermalink => item => item;
 
-        protected override async Task<IEnumerable<IValidationServiceModel<string>>> Validate(IEnumerable<string> items) => await Task.Run(() =>
+        protected override async Task<IEnumerable<IValidationServiceModel<string>>> Validate(IEnumerable<string> items)
         {
             if (items == null)
             {
                 return null;
             }
 
-            var result = items.Distinct().Select(this.MapToResponseModel).ToList();
-
-            int numberOfItemsToCheck = result.Count;
-            for (int i = 0; i < numberOfItemsToCheck + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
+            return await Task.Run(() =>
             {
-                IValidationServiceModel<string>[] itemsToSend = null;
+                var result = items.Distinct().Select(this.MapToResponseModel).ToList();
 
-                try
+                int numberOfItemsToCheck = result.Count;
+                for (int i = 0; i < numberOfItemsToCheck + MaximalNumberOfItemsToSendAtOnce; i += MaximalNumberOfItemsToSendAtOnce)
                 {
-                    itemsToSend = result.Skip(i)?.Take(MaximalNumberOfItemsToSendAtOnce)?.ToArray();
-                }
-                catch
-                {
-                    continue;
+                    IValidationServiceModel<string>[] itemsToSend = null;
+
+                    try
+                    {
+                        itemsToSend = result.Skip(i)?.Take(MaximalNumberOfItemsToSendAtOnce)?.ToArray();
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+
+                    if (itemsToSend?.Length < 1)
+                    {
+                        continue;
+                    }
+
+                    try
+                    {
+                        itemsToSend.AsParallel().ForAll(item => this.MakeRequest(item).Wait());
+                    }
+                    catch
+                    {
+                        // Skip
+                    }
                 }
 
-                if (itemsToSend?.Length < 1)
-                {
-                    continue;
-                }
-
-                try
-                {
-                    itemsToSend.AsParallel().ForAll(item => this.MakeRequest(item).Wait());
-                }
-                catch
-                {
-                    // Skip
-                }
-            }
-
-            return result;
-        });
+                return result;
+            })
+            .ConfigureAwait(false);
+        }
 
         private async Task MakeRequest(IValidationServiceModel<string> item)
         {
@@ -71,12 +75,12 @@
                 var validatedObject = item.ValidatedObject;
                 if (string.IsNullOrWhiteSpace(validatedObject))
                 {
-                    throw new ApplicationException($"URL address is null or whitespace: '{validatedObject}'.");
+                    throw new UriFormatException($"URL address is null or whitespace: '{validatedObject}'.");
                 }
 
                 using (var client = new HttpClient())
                 {
-                    var response = await client.GetAsync(validatedObject);
+                    var response = await client.GetAsync(validatedObject).ConfigureAwait(false);
                     item.ValidationStatus = this.MapHttpStatusCodeToValidationStatus(response.StatusCode);
                 }
             }
