@@ -5,6 +5,7 @@
     using System.Text.RegularExpressions;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Geo.Contracts.Models;
     using ProcessingTools.Geo.Contracts.Parsers;
     using ProcessingTools.Geo.Contracts.Transformers;
@@ -115,7 +116,7 @@
                     }
                 }
             }
-            catch (ApplicationException)
+            catch (CoordinateException)
             {
                 string coordinateText = this.SimplifyCoordinateString(coordinateString);
                 var latitudeString = Regex.Replace(coordinateText, @"\A.*([NS])\W?(\d{1,3})\W{1,3}(\d{1,3})\W{1,3}(\d{1,3}).*\Z", "$1$2 $3 $4");
@@ -204,7 +205,7 @@
                 if (leftPart.Contains("E") || leftPart.Contains("W") || leftPart.Contains("O") ||
                     rightPart.Contains("N") || rightPart.Contains("S"))
                 {
-                    throw new ApplicationException(RepeatedDirectionsErrorMessage);
+                    throw new CoordinateException(RepeatedDirectionsErrorMessage);
                 }
                 else
                 {
@@ -216,7 +217,7 @@
             {
                 if (leftPart.Contains("N") || leftPart.Contains("S") || rightPart.Contains("E") || rightPart.Contains("W") || rightPart.Contains("O"))
                 {
-                    throw new ApplicationException(RepeatedDirectionsErrorMessage);
+                    throw new CoordinateException(RepeatedDirectionsErrorMessage);
                 }
                 else
                 {
@@ -279,7 +280,7 @@
             {
                 if (matchPart.NextMatch().Success)
                 {
-                    throw new ApplicationException($"Multiple matches of {coordinatePart.Type}");
+                    throw new CoordinateException($"Multiple matches of {coordinatePart.Type}");
                 }
                 else
                 {
