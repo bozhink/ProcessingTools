@@ -26,19 +26,19 @@
             }
 
             var response = await this.requester?.RequestData(context);
-
             if (response == null || response.Items == null)
             {
-                throw new ApplicationException("No information found.");
+                return null;
             }
 
-            var result = new HashSet<ExtractHcmrEnvoTerm>(response.Items
+            var result = response.Items
                 .Select(i => new ExtractHcmrEnvoTerm
                 {
                     Content = i.Name,
                     Types = i.Entities?.Select(e => e.Type)?.ToArray(),
                     Identifiers = i.Entities?.Select(e => e.Identifier)?.ToArray()
-                }));
+                })
+                .ToArray();
 
             return result;
         }
