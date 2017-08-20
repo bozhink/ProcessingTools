@@ -19,7 +19,6 @@ namespace ProcessingTools.Exceptions
         /// error message.
         /// </summary>
         public CoordinateException()
-            : base()
         {
         }
 
