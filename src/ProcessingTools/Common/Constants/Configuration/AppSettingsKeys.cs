@@ -56,6 +56,7 @@
         public const string RemoveTaxonNamePartsXslFileName = "RemoveTaxonNamePartsXslFileName";
         public const string SystemInitialFormatXslFileName = "SystemInitialFormatXslFileName";
         public const string TaxonTreatmentExtractMaterialsXslFileName = "TaxonTreatmentExtractMaterialsXslFileName";
+        public const string TaxPubDtdPath = "TaxPubDtdPath";
         public const string TextContentXslFileName = "TextContentXslFileName";
         public const string TwitterConsumerKey = "TwitterConsumerKey";
         public const string TwitterConsumerSecret = "TwitterConsumerSecret";
