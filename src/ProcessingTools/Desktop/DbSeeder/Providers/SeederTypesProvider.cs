@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using Contracts.Seeders;
     using ProcessingTools.Contracts;
+    using ProcessingTools.DbSeeder.Contracts.Seeders;
 
     internal class SeederTypesProvider : ITypesProvider
     {
@@ -23,18 +23,21 @@
                     {
                         var assembly = Assembly.GetExecutingAssembly();
                         var types = assembly.GetTypes()
-                            .Where(t => t.IsInterface &&
-                                        !t.IsGenericType &&
-                                        t.GetInterfaces()
-                                            .Any(i => i.FullName == this.baseName))
+                            .Where(
+                                t =>
+                                    t.IsInterface &&
+                                    !t.IsGenericType &&
+                                    t.GetInterfaces().Any(i => i.FullName == this.baseName))
                             .ToArray();
 
                         if (types == null || types.Length < 1)
                         {
-                            throw new ApplicationException("No seeders are found");
+                            this.types = new Type[] { };
                         }
-
-                        this.types = types;
+                        else
+                        {
+                            this.types = types;
+                        }
                     }
                 }
             }
