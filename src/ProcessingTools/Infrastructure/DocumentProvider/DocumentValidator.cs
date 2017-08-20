@@ -1,63 +1,24 @@
 ﻿namespace ProcessingTools.DocumentProvider
 {
     using System;
-    using System.Configuration;
     using System.IO;
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Schema;
-
+    using ProcessingTools.Constants;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
 
     public class DocumentValidator : IDocumentValidator
     {
-        private const string TaxPubDtdPathKey = "TaxPubDtdPath";
-        private readonly string taxPubDtdPath;
-        private readonly StringBuilder reportBuilder = new StringBuilder();
+        private readonly XmlReaderSettings readerSettings;
+        private readonly XmlWriterSettings writerSettings;
+        private readonly StringBuilder reportBuilder;
 
         public DocumentValidator()
         {
-            // TODO: AppSettingsReader
-            var appSettingsReader = new AppSettingsReader();
-            try
-            {
-                string dtdPath = appSettingsReader.GetValue(TaxPubDtdPathKey, typeof(string)).ToString();
-                if (string.IsNullOrWhiteSpace(dtdPath) || !File.Exists(dtdPath))
-                {
-                    throw new ApplicationException("TaxPub DTD Path is invalid.");
-                }
-
-                this.taxPubDtdPath = dtdPath;
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Invalid application settings.", e);
-            }
-        }
-
-        public async Task<object> Validate(IDocument context, IReporter reporter)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            string fileName = Path.GetTempFileName() + ".xml";
-
-            reporter.AppendContent(string.Format("File name = {0}", fileName));
-
-            await this.WriteXmlFileWithDoctype(context, fileName);
-
-            await this.ReadXmlFileWithDtdValidation(fileName);
-
-            reporter.AppendContent(this.reportBuilder.ToString());
-            return true;
-        }
-
-        private async Task ReadXmlFileWithDtdValidation(string fileName)
-        {
-            var readerSettings = new XmlReaderSettings
+            this.readerSettings = new XmlReaderSettings
             {
                 Async = true,
                 CheckCharacters = true,
@@ -71,20 +32,9 @@
                 ValidationFlags = XmlSchemaValidationFlags.ReportValidationWarnings
             };
 
-            readerSettings.ValidationEventHandler += new ValidationEventHandler(this.ValidationCallBack);
+            this.readerSettings.ValidationEventHandler += new ValidationEventHandler(this.ValidationCallBack);
 
-            var reader = XmlReader.Create(fileName, readerSettings);
-            while (await reader.ReadAsync())
-            {
-                // Skip
-            }
-
-            reader.Close();
-        }
-
-        private async Task WriteXmlFileWithDoctype(IDocument document, string fileName)
-        {
-            var writerSettings = new XmlWriterSettings
+            this.writerSettings = new XmlWriterSettings
             {
                 Async = true,
                 CheckCharacters = true,
@@ -102,17 +52,58 @@
                 WriteEndDocumentOnClose = true,
             };
 
-            var writer = XmlWriter.Create(fileName, writerSettings);
-            await writer.WriteStartDocumentAsync();
-            await writer.WriteDocTypeAsync(
-                "article",
-                "-//TaxonX//DTD Taxonomic Treatment Publishing DTD v0 20100105//EN",
-                this.taxPubDtdPath,
-                null);
+            this.reportBuilder = new StringBuilder();
+        }
 
-            document.XmlDocument.DocumentElement.WriteTo(writer);
-            await writer.FlushAsync();
-            writer.Close();
+        public async Task<object> Validate(IDocument context, IReporter reporter)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            string fileName = Path.GetTempFileName() + "." + FileConstants.XmlFileExtension;
+
+            reporter.AppendContent(string.Format("File name = {0}", fileName));
+
+            await this.WriteXmlFileWithDoctype(context, fileName);
+
+            await this.ReadXmlFileWithDtdValidation(fileName);
+
+            reporter.AppendContent(this.reportBuilder.ToString());
+            return true;
+        }
+
+        private async Task ReadXmlFileWithDtdValidation(string fileName)
+        {
+            using (var reader = XmlReader.Create(fileName, this.readerSettings))
+            {
+                while (await reader.ReadAsync().ConfigureAwait(false))
+                {
+                    // Skip
+                }
+
+                reader.Close();
+            }
+        }
+
+        private async Task WriteXmlFileWithDoctype(IDocument document, string fileName)
+        {
+            using (var writer = XmlWriter.Create(fileName, this.writerSettings))
+            {
+                await writer.WriteStartDocumentAsync().ConfigureAwait(false);
+                await writer.WriteDocTypeAsync(
+                    DocTypeConstants.TaxPubName,
+                    DocTypeConstants.TaxPubPublicId,
+                    DocTypeConstants.TaxPubDtdPath,
+                    null)
+                    .ConfigureAwait(false);
+
+                document.XmlDocument.DocumentElement.WriteTo(writer);
+
+                await writer.FlushAsync().ConfigureAwait(false);
+                writer.Close();
+            }
         }
 
         private void ValidationCallBack(object sender, ValidationEventArgs e)

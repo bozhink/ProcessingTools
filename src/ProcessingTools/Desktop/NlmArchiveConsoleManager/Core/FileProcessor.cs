@@ -76,7 +76,7 @@
             var document = await this.ReadDocument();
             if (document.XmlDocument.DocumentElement.Name != ElementNames.Article)
             {
-                throw new ApplicationException($"'{this.FileName}' is not a NLM xml file.");
+                throw new ApplicationException($"'{this.FileName}' is not a NLM XML file.");
             }
 
             string fileNameReplacementPrefix = await this.ComposeFileNameReplacementPrefix(document);
@@ -208,7 +208,7 @@
             return document;
         }
 
-        // Replace references in the xml document.
+        // Replace references in the XML document.
         private void UpdateContentInDocument(IDocument document, IEnumerable<IFileReplacementModel> referencesNamesReplacements)
         {
             foreach (var hrefAttribute in document.SelectNodes(XPathStrings.XLinkHref))
@@ -247,9 +247,9 @@
         private async Task<object> WriteDocument(IDocument document, string outputFileName)
         {
             var taxpubDtd = document.XmlDocument.CreateDocumentType(
-                ElementNames.Article,
-                DocumentTypes.TaxPubPublicId,
-                DocumentTypes.TaxPubSystemId,
+                DocTypeConstants.TaxPubName,
+                DocTypeConstants.TaxPubPublicId,
+                DocTypeConstants.TaxPubSystemId,
                 null);
 
             return await this.fileManager.WriteXmlFile(outputFileName, document.XmlDocument, taxpubDtd);
