@@ -6,6 +6,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
+    using ProcessingTools.Exceptions;
 
     internal class SeedCommandRunner : ICommandRunner
     {
@@ -28,25 +29,24 @@
             var name = commandName ?? " ";
 
             var matchedNames = this.commandNamesProvider.CommandNames
-                .Where(n => n.ToLower().IndexOf(name.ToLower()) == 0)
+                .Where(n => n.IndexOf(name, StringComparison.InvariantCultureIgnoreCase) == 0)
                 .ToArray();
 
             if (matchedNames.Length < 1)
             {
-                throw new Exception($"Invalid command '{commandName}'");
+                throw new CommandNotFoundException(commandName);
             }
-            else if (matchedNames.Length > 1 && matchedNames.Count(n => n.ToLower() == name.ToLower()) != 1)
+            else if (matchedNames.Length > 1 && matchedNames.Count(n => string.Compare(n, name, true) == 0) != 1)
             {
-                throw new Exception($"Ambiguous command '{commandName}'. Possible matches: {string.Join(", ", matchedNames)}");
+                throw new AmbiguousCommandException(commandName, matchedNames);
             }
             else
             {
-                name = matchedNames.Single(n => n.ToLower() == name.ToLower());
-                var seederType = this.typesProvider.GetTypes()
-                    .Single(t => t.Name == $"I{name}DbSeeder");
+                name = matchedNames.Single(n => string.Compare(n, name, true) == 0);
+                var seederType = this.typesProvider.GetTypes().Single(t => t.Name == $"I{name}DbSeeder");
 
                 var seeder = this.seederFactory(seederType);
-                await seeder.Seed();
+                await seeder.Seed().ConfigureAwait(false);
             }
 
             return true;

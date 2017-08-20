@@ -22,7 +22,7 @@ namespace ProcessingTools.Exceptions
         /// </summary>
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         public CommandNotFoundException(string commandName)
-            : base($"{DefaultMessage} {commandName}")
+            : base($"{DefaultMessage} '{commandName}'")
         {
             this.CommandName = commandName;
         }
@@ -34,7 +34,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public CommandNotFoundException(string commandName, string message)
-            : base($"{DefaultMessage} {commandName}{Environment.NewLine}{message ?? string.Empty}")
+            : base($"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}")
         {
             this.CommandName = commandName;
         }
@@ -48,7 +48,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public CommandNotFoundException(string commandName, string message, Exception innerException)
-            : base($"{DefaultMessage} {commandName}{Environment.NewLine}{message ?? string.Empty}", innerException)
+            : base($"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}", innerException)
         {
             this.CommandName = commandName;
         }
