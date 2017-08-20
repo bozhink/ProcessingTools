@@ -30,7 +30,7 @@
         {
             if (!Attribute.IsDefined(type, typeof(CsvObjectAttribute)))
             {
-                throw new ArgumentException("Type schould contain CsvObjectAttribute", "type");
+                throw new ArgumentException("Type should contain CsvObjectAttribute", nameof(type));
             }
 
             var table = this.CsvToTable(csvText);
@@ -57,7 +57,7 @@
         {
             if (this.numberOfRowsToSkip < 1)
             {
-                throw new ApplicationException("This CSV is not supposed to have header row. Current method is not applicable in this case.");
+                throw new InvalidOperationException("This CSV is not supposed to have header row. Current method is not applicable in this case.");
             }
 
             var mappings = new ColumnIndexToPropertyNameMapping();
