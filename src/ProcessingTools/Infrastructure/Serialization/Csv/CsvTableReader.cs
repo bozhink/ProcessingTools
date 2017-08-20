@@ -15,7 +15,7 @@
 
         public CsvTableReader(CsvObjectConfiguration configuration)
         {
-            this.Configuration = configuration;
+            this.Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             this.rows = new Queue<string[]>();
         }
 
@@ -38,7 +38,7 @@
                     //// stringBuilder.Append(ch);
                     if (i >= len - 1)
                     {
-                        throw new ApplicationException("Invalid escape of last character of the text.");
+                        throw new FormatException("Invalid escape of last character of the text.");
                     }
 
                     stringBuilder.Append(textChars[++i]);
