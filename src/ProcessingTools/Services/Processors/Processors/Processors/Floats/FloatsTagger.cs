@@ -257,6 +257,9 @@
                         }
 
                         break;
+
+                    default:
+                        break;
                 }
             }
 
