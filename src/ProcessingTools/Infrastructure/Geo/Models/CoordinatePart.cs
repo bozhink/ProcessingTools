@@ -4,6 +4,7 @@
     using System.Globalization;
     using System.Text.RegularExpressions;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Geo.Contracts.Models;
     using ProcessingTools.Geo.Types;
 
@@ -157,7 +158,7 @@
             }
             catch (Exception e)
             {
-                throw new ApplicationException($"Exception in Coordinate parameter = {this.coordinatePartString}", e);
+                throw new CoordinateException($"Exception in Coordinate parameter = {this.coordinatePartString}", e);
             }
         }
     }
