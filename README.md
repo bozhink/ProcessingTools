@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/bozhink/ProcessingTools.png?label=ready&title=Ready)](https://waffle.io/bozhink/ProcessingTools?utm_source=badge)
 # ProcessingTools
 Tools for layout editing and bio-semantic tagging
 
