@@ -73,10 +73,10 @@
 
         public async Task Process()
         {
-            var document = await this.ReadDocument();
+            var document = await this.ReadDocumentAsync().ConfigureAwait(false);
             if (document.XmlDocument.DocumentElement.Name != ElementNames.Article)
             {
-                throw new ApplicationException($"'{this.FileName}' is not a NLM XML file.");
+                throw new XmlException($"'{this.FileName}' is not a NLM XML file.");
             }
 
             string fileNameReplacementPrefix = await this.ComposeFileNameReplacementPrefix(document);
@@ -88,7 +88,7 @@
             this.MoveNonXmlFile(fileNameReplacementPrefix);
             this.UpdateJournalMetaInDocument(document);
 
-            await this.WriteDocument(document, outputFileName);
+            await this.WriteDocumentAsync(document, outputFileName).ConfigureAwait(false);
 
             // Remove original file
             if (outputFileName != Path.GetFileName(this.FileName))
@@ -106,7 +106,7 @@
 
         private async Task<string> ComposeFileNameReplacementPrefix(IDocument document)
         {
-            var articleMeta = await this.articleMetaHarvester.Harvest(document);
+            var articleMeta = await this.articleMetaHarvester.Harvest(document).ConfigureAwait(false);
 
             string fileNameReplacementPrefix = string.Format(
                 this.journalMeta.FileNamePattern,
@@ -157,12 +157,15 @@
         private void MoveNonXmlFile(string fileNameReplacementPrefix)
         {
             var filesToMove = Directory.GetFiles(Directory.GetCurrentDirectory())
-                .Where(f => Path.GetFileNameWithoutExtension(f) == this.fileNameWithoutExtension &&
-                            Path.GetExtension(f).TrimStart('.').ToLower() != FileConstants.XmlFileExtension)
-                .Select(f => this.modelFactory.CreateFileReplacementModel(
-                    destination: fileNameReplacementPrefix + Path.GetExtension(f),
-                    originalFileName: f,
-                    source: f))
+                .Where(
+                    f =>
+                        Path.GetFileNameWithoutExtension(f) == this.fileNameWithoutExtension &&
+                        Path.GetExtension(f).TrimStart('.').ToLower() != FileConstants.XmlFileExtension)
+                .Select(
+                    f => this.modelFactory.CreateFileReplacementModel(
+                        destination: fileNameReplacementPrefix + Path.GetExtension(f),
+                        originalFileName: f,
+                        source: f))
                 .ToList();
 
             foreach (var file in filesToMove)
@@ -181,70 +184,81 @@
         private void ProcessReferencedFiles(IDocument document, string orginalPrefix, string fileNameReplacementPrefix)
         {
             // Get file references.
-            var referencedFileNames = new HashSet<string>(document.SelectNodes(XPathStrings.XLinkHref)
-                .Cast<XmlAttribute>()
-                .Select(h => h.InnerText));
+            var referencedFileNames = new HashSet<string>(document.SelectNodes(XPathStrings.XLinkHref).Select(h => h.InnerText));
 
             var matchXmlFileName = new Regex($"\\A{Regex.Escape(orginalPrefix)}");
             var referencesNamesReplacements = new HashSet<IFileReplacementModel>(referencedFileNames
-                .Select(f =>
-                {
-                    string externalFileName = Path.GetFileName(f);
-                    return this.modelFactory.CreateFileReplacementModel(
-                        destination: matchXmlFileName.Replace(externalFileName, fileNameReplacementPrefix),
-                        originalFileName: externalFileName,
-                        source: f);
-                }));
+                .Select(
+                    f =>
+                    {
+                        string externalFileName = Path.GetFileName(f);
+                        return this.modelFactory.CreateFileReplacementModel(
+                            destination: matchXmlFileName.Replace(externalFileName, fileNameReplacementPrefix),
+                            originalFileName: externalFileName,
+                            source: f);
+                    }));
 
             this.MoveReferencedFiles(referencesNamesReplacements);
 
             this.UpdateContentInDocument(document, referencesNamesReplacements);
         }
 
-        private async Task<IDocument> ReadDocument()
+        private async Task<IDocument> ReadDocumentAsync()
         {
-            var xml = await this.fileManager.ReadXmlFile(this.FileName);
+            var xml = await this.fileManager.ReadXmlFile(this.FileName).ConfigureAwait(false);
             var document = this.documentFactory.Create(xml.DocumentElement.OuterXml);
             return document;
         }
 
         // Replace references in the XML document.
-        private void UpdateContentInDocument(IDocument document, IEnumerable<IFileReplacementModel> referencesNamesReplacements)
+        private void UpdateContentInDocument(IDocument document, IEnumerable<IFileReplacementModel> replacements)
         {
             foreach (var hrefAttribute in document.SelectNodes(XPathStrings.XLinkHref))
             {
                 string content = hrefAttribute.InnerText;
 
-                hrefAttribute.InnerText = referencesNamesReplacements
-                    .FirstOrDefault(r => r.Source == content)
-                    .Destination;
+                hrefAttribute.InnerText = replacements.FirstOrDefault(r => r.Source == content)?.Destination;
             }
         }
 
         private void UpdateJournalMetaInDocument(IDocument document)
         {
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalId, this.journalMeta.JournalId);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalTitle, this.journalMeta.JournalTitle);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaJournalAbbreviatedTitle, this.journalMeta.AbbreviatedJournalTitle);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnPPub, this.journalMeta.IssnPPub);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaIssnEPub, this.journalMeta.IssnEPub);
-            this.UpdateMetaNodeContent(document, XPathStrings.ArticleJournalMetaPublisherName, this.journalMeta.PublisherName);
+            this.UpdateMetaNodeContent(
+                document,
+                XPathStrings.ArticleJournalMetaJournalId,
+                this.journalMeta.JournalId);
+            this.UpdateMetaNodeContent(
+                document,
+                XPathStrings.ArticleJournalMetaJournalTitle,
+                this.journalMeta.JournalTitle);
+            this.UpdateMetaNodeContent(
+                document,
+                XPathStrings.ArticleJournalMetaJournalAbbreviatedTitle,
+                this.journalMeta.AbbreviatedJournalTitle);
+            this.UpdateMetaNodeContent(
+                document,
+                XPathStrings.ArticleJournalMetaIssnPPub,
+                this.journalMeta.IssnPPub);
+            this.UpdateMetaNodeContent(
+                document,
+                XPathStrings.ArticleJournalMetaIssnEPub,
+                this.journalMeta.IssnEPub);
+            this.UpdateMetaNodeContent(
+                document,
+                XPathStrings.ArticleJournalMetaPublisherName,
+                this.journalMeta.PublisherName);
         }
 
         private void UpdateMetaNodeContent(IDocument document, string xpath, string content)
         {
-            this.UpdateMetaNodeContent(document.SelectSingleNode(xpath), content);
-        }
-
-        private void UpdateMetaNodeContent(XmlNode node, string content)
-        {
+            var node = document.SelectSingleNode(xpath);
             if (node != null)
             {
                 node.InnerXml = content;
             }
         }
 
-        private async Task<object> WriteDocument(IDocument document, string outputFileName)
+        private async Task<object> WriteDocumentAsync(IDocument document, string outputFileName)
         {
             var taxpubDtd = document.XmlDocument.CreateDocumentType(
                 DocTypeConstants.TaxPubName,
@@ -252,7 +266,9 @@
                 DocTypeConstants.TaxPubSystemId,
                 null);
 
-            return await this.fileManager.WriteXmlFile(outputFileName, document.XmlDocument, taxpubDtd);
+            return await this.fileManager
+                .WriteXmlFile(outputFileName, document.XmlDocument, taxpubDtd)
+                .ConfigureAwait(false);
         }
     }
 }
