@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="AmbiguousCommandException.cs" />
     <Compile Include="CommandNotFoundException.cs" />
+    <Compile Include="CoordinateException.cs" />
     <Compile Include="InvalidCommandException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

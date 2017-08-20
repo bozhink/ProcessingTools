@@ -8,7 +8,7 @@ namespace ProcessingTools.Exceptions
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Represents error that occur when invalid command name is provided.
+    /// Represents error that occur when ambiguous command name is provided.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3925: Update this implementation of 'ISerializable' to conform to the recommended serialization pattern", Justification = "Not Applicable")]
     [Serializable]
