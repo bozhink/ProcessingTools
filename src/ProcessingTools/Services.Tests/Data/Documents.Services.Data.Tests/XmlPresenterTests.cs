@@ -39,16 +39,11 @@
         private const string DocumentIdParamName = "documentId";
         private const string DocumentParamName = "document";
         private const string InvalidContent = "Invalid content";
-        private const int NumberOfInnerExceptions = 1;
-        private const string NumberOfInnerExceptionsShouldBeMessage = "Number of inner Exceptions should be 1";
         private const string TextContentShouldNotBeNullOrWhitespace = "Text content should not be null or whitespace";
         private const string ServiceGetReaderShouldBeInvokedExactlyOnceMessage = "service.GetReader should be invoked exactly once";
         private const string ServiceUpdateShouldBeInvokedExactlyOnceMessage = "service.Update should be invoked exactly once";
         private const string ServiceGetReaderShouldNotBeInvokedMessage = "service.GetReader should not be invoked";
         private const string ServiceUpdateShouldNotBeInvokedMessage = "service.Update should not be invoked";
-
-        private const string InnerExceptionShouldBeOfTypeXmlExceptionMessage = "Inner exception should be of type XmlException";
-        private const string InnerExceptionShouldBeOfTypeArgumentNullExceptionMessage = "Inner exception should be of type ArgumentNullException";
 
         private const string ObjectShouldNotBeNullMessage = "Object should not be null";
         private const string ServiceMockShouldReturnPassedContentForUpdateMethodMessage = @"Service mock should return passed content for update method";
@@ -134,7 +129,7 @@
         }
 
         [Test(Description = @"XmlPresenter.ctor with valid service should not throw", Author = "Bozhin Karaivanov", TestOf = typeof(XmlPresenter))]
-        public void XmlPresenter_Constructor_WithValidService_ShouldNotThow()
+        public void XmlPresenter_Constructor_WithValidService_ShouldNotThrow()
         {
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
             Assert.IsNotNull(presenter, ObjectShouldNotBeNullMessage);
