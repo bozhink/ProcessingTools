@@ -21,7 +21,7 @@
 
             if (string.IsNullOrWhiteSpace(message))
             {
-                var name = Regex.Replace((string)type.FullName, @".*?([^\.]+)\Z", "$1");
+                var name = Regex.Replace(type.FullName, @".*?([^\.]+)\Z", "$1");
                 name = Regex.Replace(name, @"Command\Z", string.Empty);
 
                 message = Regex.Replace(name, "(?=[A-Z])", " ").Trim();
