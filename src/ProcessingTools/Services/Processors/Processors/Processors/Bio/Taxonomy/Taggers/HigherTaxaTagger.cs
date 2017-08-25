@@ -56,7 +56,7 @@
 
             var data = await this.miner.Mine(textContent, seed, stopWords);
 
-            var taxaNames = new HashSet<string>(data.Where(s => s[0] == s.ToUpper()[0]));
+            var taxaNames = new HashSet<string>(data.Where(s => s?.Length > 0 && s[0] == s.ToUpperInvariant()[0]));
 
             var tagModel = context.CreateTaxonNameXmlElement(TaxonType.Higher);
             await this.contentTagger.Tag(context, taxaNames, tagModel, HigherTaxaXPath);

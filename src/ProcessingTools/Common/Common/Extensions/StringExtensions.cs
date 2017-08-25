@@ -102,7 +102,7 @@
             }
 
             int length = text.Length;
-            return text.Substring(0, 1).ToUpper() + text.Substring(1, length - 1).ToLower();
+            return text.Substring(0, 1).ToUpperInvariant() + text.Substring(1, length - 1).ToLowerInvariant();
         }
 
         public static Stream ToStream(this string content)
