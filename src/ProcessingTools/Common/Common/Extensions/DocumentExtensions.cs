@@ -15,10 +15,10 @@
 
             string articleId = document.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText ?? string.Empty;
 
-            string referencesFileName = articleId.ToLower()
+            string referencesFileName = articleId.ToLowerInvariant()
                 .RegexReplace(@"\A.*/", string.Empty)
                 .RegexReplace(@"\W+", "-")
-                .Trim(new char[] { ' ', '-' });
+                .Trim(new[] { ' ', '-' });
 
             if (string.IsNullOrWhiteSpace(referencesFileName))
             {

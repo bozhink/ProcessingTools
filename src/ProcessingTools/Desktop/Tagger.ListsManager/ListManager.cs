@@ -79,7 +79,7 @@
                     {
                         var taxonRankPair = new KeyValuePair<string, string>(
                             Regex.Match(entriesMatch.Value, @"\S+").Value,
-                            Regex.Match(entriesMatch.Value, @"\S+").NextMatch().Value.ToLower());
+                            Regex.Match(entriesMatch.Value, @"\S+").NextMatch().Value.ToLowerInvariant());
 
                         items.Add(taxonRankPair);
                     }

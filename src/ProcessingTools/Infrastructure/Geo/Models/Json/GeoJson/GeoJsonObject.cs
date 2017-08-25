@@ -85,9 +85,8 @@
                 throw new ArgumentNullException(GeoJsonMessages.NullTypeExceptionMessage);
             }
 
-            string inputType = type.ToLower();
-            string thisType = Enum.GetNames(enumType)
-                .FirstOrDefault(t => t.ToLower() == inputType);
+            string inputType = type.ToLowerInvariant();
+            string thisType = Enum.GetNames(enumType).FirstOrDefault(t => t.ToLowerInvariant() == inputType);
 
             if (string.IsNullOrEmpty(thisType))
             {

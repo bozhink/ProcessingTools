@@ -271,11 +271,11 @@
 
             foreach (var commandName in commandNames)
             {
-                string commandNameLowerCase = commandName.ToLower();
+                string commandNameLowerCase = commandName.ToLowerInvariant();
 
                 var matchingCommands = this.commandInfoProvider
                     .CommandsInformation
-                    .Where(i => i.Value.Name.ToLower().IndexOf(commandNameLowerCase) == 0)
+                    .Where(i => i.Value.Name.ToLowerInvariant().StartsWith(commandNameLowerCase))
                     .ToArray();
 
                 switch (matchingCommands.Length)
@@ -298,7 +298,7 @@
                     default:
                         {
                             // Get direct full-name match from a list of ‘like’-matches
-                            var commandInfo = matchingCommands.Select(c => c.Value).FirstOrDefault(c => c.Name.ToLower() == commandNameLowerCase);
+                            var commandInfo = matchingCommands.Select(c => c.Value).FirstOrDefault(c => c.Name.ToLowerInvariant() == commandNameLowerCase);
                             if (commandInfo != null)
                             {
                                 this.Settings.CalledCommands.Add(commandInfo.CommandType);
