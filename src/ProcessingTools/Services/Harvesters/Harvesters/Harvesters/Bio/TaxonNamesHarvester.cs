@@ -6,11 +6,11 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Harvesters.Bio;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
 
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {
@@ -51,7 +51,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            string typeString = type.ToString().ToLower();
+            string typeString = type.ToString().ToLowerInvariant();
             string xpath = string.Empty;
             switch (type)
             {
