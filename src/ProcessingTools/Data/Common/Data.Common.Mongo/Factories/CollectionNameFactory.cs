@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using Attributes;
+    using ProcessingTools.Data.Common.Mongo.Attributes;
 
     public static class CollectionNameFactory
     {
@@ -19,7 +19,7 @@
             }
             else
             {
-                string name = entityType.Name.ToLower();
+                string name = entityType.Name.ToLowerInvariant();
                 int nameLength = name.Length;
                 if (name[nameLength - 1] == 'y')
                 {
