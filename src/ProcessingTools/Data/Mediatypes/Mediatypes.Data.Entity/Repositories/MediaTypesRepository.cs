@@ -16,12 +16,12 @@
 
         public MediatypesRepository(IMediatypesDbContext db)
         {
-            if (db == null)
-            {
-                throw new ArgumentNullException(nameof(db));
-            }
+            this.db = db ?? throw new ArgumentNullException(nameof(db));
+        }
 
-            this.db = db;
+        ~MediatypesRepository()
+        {
+            this.Dispose(false);
         }
 
         public async Task<object> Add(IMediatype mediatype)
