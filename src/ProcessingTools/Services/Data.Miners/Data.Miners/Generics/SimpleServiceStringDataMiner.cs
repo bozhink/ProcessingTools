@@ -35,7 +35,7 @@
 
             var matches = new List<string>();
 
-            for (int i = 0; true; i += NumberOfItemsToTake)
+            for (int i = 0; ; i += NumberOfItemsToTake)
             {
                 var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INameableIntegerIdentifiable.Name)))
                     .Select(t => t.Name)
