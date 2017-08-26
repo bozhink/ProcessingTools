@@ -41,7 +41,7 @@
         private string GetNomenclatureTaxonObjectIdXPath(NomenclaturalAct nomenclaturalAct)
         {
             const string XPathFormat = ".//tp:taxon-treatment/tp:nomenclature/tn[string(../tp:taxon-status)='{0}']{1}/object-id[@content-type='zoobank']";
-            switch (nomenclaturalAct.RankGroup.ToLower())
+            switch (nomenclaturalAct.RankGroup.ToLowerInvariant())
             {
                 case "family":
                     return string.Format(XPathFormat, "fam. n.", $"[tn-part[@type='family']='{nomenclaturalAct.NameString}']");
