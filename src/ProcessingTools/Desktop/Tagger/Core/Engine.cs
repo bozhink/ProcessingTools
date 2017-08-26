@@ -3,11 +3,10 @@
     using System;
     using System.Configuration;
     using System.Threading.Tasks;
-    using Contracts;
-    using Core;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Tagger.Contracts;
 
     public class Engine : IEngine
     {
@@ -24,7 +23,7 @@
         {
             if (!int.TryParse(ConfigurationManager.AppSettings[AppSettingsKeys.MaximalTimeInMinutesToWaitTheMainThread], out int timeSpanInMunutesValue))
             {
-                throw new SystemException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
+                throw new ConfigurationErrorsException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
             }
 
             var ts = TimeSpan.FromMinutes(timeSpanInMunutesValue);
