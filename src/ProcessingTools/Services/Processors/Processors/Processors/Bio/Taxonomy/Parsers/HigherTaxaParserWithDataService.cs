@@ -63,10 +63,11 @@
             {
                 foreach (var scientificName in uniqueHigherTaxaList)
                 {
-                    var ranks = resolvedTaxa
-                        .Where(t => t.ScientificName.ToLower() == scientificName.ToLower())
-                        .Where(t => !string.IsNullOrWhiteSpace(t.Rank))
-                        .Select(t => t.Rank.ToLower())
+                    var ranks = resolvedTaxa.Where(
+                        t =>
+                            !string.IsNullOrWhiteSpace(t.Rank) &&
+                            string.Compare(t.ScientificName, scientificName, true) == 0)
+                        .Select(t => t.Rank.ToLowerInvariant())
                         .Distinct()
                         .ToList();
 
