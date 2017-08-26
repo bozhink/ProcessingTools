@@ -10,6 +10,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
@@ -39,16 +40,15 @@
                 .Select(n => n.ToFirstLetterUpperCase()))
                 .ToArray();
 
-            long numberOfUniqueHigherTaxa = uniqueHigherTaxaList.LongLength;
-            if (numberOfUniqueHigherTaxa < 1L)
+            if (uniqueHigherTaxaList.Length < 1)
             {
-                return numberOfUniqueHigherTaxa;
+                return uniqueHigherTaxaList.LongLength;
             }
 
             var response = await this.taxaRankDataService.Resolve(uniqueHigherTaxaList);
             if (response == null)
             {
-                throw new ApplicationException("Current taxa rank data service instance returned null.");
+                throw new ServiceReturnedNullException("Current taxa rank data service instance returned null.");
             }
 
             var resolvedTaxa = response

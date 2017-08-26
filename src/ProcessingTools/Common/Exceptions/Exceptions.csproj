@@ -42,6 +42,7 @@
     <Compile Include="CoordinateException.cs" />
     <Compile Include="InvalidCommandException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceReturnedNullException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
