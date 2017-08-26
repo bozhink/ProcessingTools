@@ -4,10 +4,8 @@
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Threading.Tasks;
-
-    using Contracts;
-
     using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
     public abstract class EntityRepository<TContext, TEntity> : IEntityRepository<TEntity>, IDisposable
         where TContext : DbContext
@@ -22,6 +20,11 @@
 
             this.Context = contextProvider.Create();
             this.DbSet = this.GetDbSet<TEntity>();
+        }
+
+        ~EntityRepository()
+        {
+            this.Dispose(false);
         }
 
         protected IDbSet<TEntity> DbSet { get; private set; }
