@@ -77,7 +77,7 @@
                 string fileName = string.Format("{0}/{1}", this.dataFilesDirectoryPath, fileNameAttribute.Name);
                 if (!File.Exists(fileName))
                 {
-                    throw new ApplicationException($"File {fileName} does not exist.");
+                    throw new FileNotFoundException($"File {fileName} does not exist.");
                 }
 
                 string csvText = File.ReadAllText(fileName);

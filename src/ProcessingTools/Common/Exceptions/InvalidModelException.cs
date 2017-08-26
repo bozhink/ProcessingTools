@@ -1,4 +1,4 @@
-﻿// <copyright file="InvalidDocumentException.cs" company="ProcessingTools">
+﻿// <copyright file="InvalidModelException.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,50 +8,50 @@ namespace ProcessingTools.Exceptions
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Represents error that occur when document is invalid or has missing data.
+    /// Represents error that occur when model is invalid.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3925: Update this implementation of 'ISerializable' to conform to the recommended serialization pattern", Justification = "Not Applicable")]
     [Serializable]
-    public class InvalidDocumentException : Exception
+    public class InvalidModelException : Exception
     {
-        private const string DefaultMessage = "Invalid document.";
+        private const string DefaultMessage = "Invalid model.";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidDocumentException"/> class with default
+        /// Initializes a new instance of the <see cref="InvalidModelException"/> class with default
         /// error message.
         /// </summary>
-        public InvalidDocumentException()
+        public InvalidModelException()
             : base(DefaultMessage)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidDocumentException"/> class with a specified
+        /// Initializes a new instance of the <see cref="InvalidModelException"/> class with a specified
         /// error message.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        public InvalidDocumentException(string message)
+        public InvalidModelException(string message)
             : base($"{DefaultMessage}{Environment.NewLine}{message}")
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidDocumentException"/> class with a specified
+        /// Initializes a new instance of the <see cref="InvalidModelException"/> class with a specified
         /// error message and a reference to the inner exception that is the cause of this exception.
         /// </summary>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
-        public InvalidDocumentException(string message, Exception innerException)
+        public InvalidModelException(string message, Exception innerException)
             : base($"{DefaultMessage}{Environment.NewLine}{message}", innerException)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidDocumentException"/> class with serialized data.
+        /// Initializes a new instance of the <see cref="InvalidModelException"/> class with serialized data.
         /// </summary>
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
-        public InvalidDocumentException(SerializationInfo info, StreamingContext context)
+        public InvalidModelException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
