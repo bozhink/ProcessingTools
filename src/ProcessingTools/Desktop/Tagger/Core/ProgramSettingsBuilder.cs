@@ -51,10 +51,11 @@
         private void ParseSingleDashedOptions(string[] args)
         {
             Regex matchSingleDashedOption = new Regex(@"\A\-[^\-]|\A/[^/]");
+            IEnumerable<string> oprions = new HashSet<string>(args.Where(a => matchSingleDashedOption.IsMatch(a)));
 
-            foreach (string item in args.Where(a => matchSingleDashedOption.IsMatch(a)))
+            foreach (string option in oprions)
             {
-                char[] arg = item.ToCharArray();
+                char[] arg = option.ToCharArray();
                 int length = arg.Length;
                 if (length < 2)
                 {
