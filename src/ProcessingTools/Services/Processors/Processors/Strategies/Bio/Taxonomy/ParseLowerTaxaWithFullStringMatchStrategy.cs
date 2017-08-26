@@ -36,7 +36,7 @@
                 .AsParallel()
                 .ForAll(element =>
                 {
-                    element.SetAttribute(AttributeNames.Delete, true.ToString().ToLower());
+                    element.SetAttribute(AttributeNames.Delete, true.ToString().ToLowerInvariant());
                     element.InnerXml = this.ParseFullStringMatch(element.InnerXml);
                 });
 
