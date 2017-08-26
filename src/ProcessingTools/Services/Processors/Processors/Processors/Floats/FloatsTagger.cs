@@ -358,7 +358,7 @@
                 }
                 else
                 {
-                    throw new Exception($"Error in multiple-float's label '{labelText}': Label numbers must be strictly increasing.");
+                    throw new InvalidOperationException($"Error in multiple-float's label '{labelText}': Label numbers must be strictly increasing.");
                 }
             }
         }
