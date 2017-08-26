@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public class WhiteList : IWhiteList
     {
@@ -14,12 +14,7 @@
 
         public WhiteList(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
         public Task<IEnumerable<string>> Items
@@ -28,10 +23,9 @@
             {
                 return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
                 {
-                    var query = await repository.Find(t => t.IsWhiteListed == true);
+                    var query = await repository.Find(t => t.IsWhiteListed);
 
-                    var result = query.Select(t => t.Name)
-                        .ToList();
+                    var result = query.Select(t => t.Name).ToList();
 
                     return new HashSet<string>(result);
                 });
