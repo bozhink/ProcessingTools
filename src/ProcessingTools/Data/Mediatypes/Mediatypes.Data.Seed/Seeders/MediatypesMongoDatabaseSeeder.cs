@@ -40,7 +40,7 @@
 
             if (mediatypesJson.Length < 1)
             {
-                throw new ApplicationException("Mediatypes data json file is empty or invalid.");
+                throw new ProcessingTools.Exceptions.InvalidDataException("Mediatypes data json file is empty or invalid.");
             }
 
             await this.ImportMediatypesToDatabase(mediatypesJson);
