@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.FileSystem.Contracts;
 
     public class XmlFileReaderWriter : IXmlFileReaderWriter
@@ -114,9 +115,9 @@
             return contentLength;
         }
 
-        public Task<string> GetNewFilePath(string fileName, string basePath, int length)
+        public async Task<string> GetNewFilePath(string fileName, string basePath, int length)
         {
-            return Task.Run(() =>
+            return await Task.Run(() =>
             {
                 string path = this.CombineFileName(this.GenerateFileName(fileName, length), basePath);
                 int pathLength = path.Length;
@@ -131,11 +132,11 @@
 
                 if (File.Exists(result))
                 {
-                    throw new ApplicationException("Can not generate unique file name.");
+                    throw new CanNotGenerateUniqueFileNameException();
                 }
 
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         private string GenerateFileName(string prefix, int length)

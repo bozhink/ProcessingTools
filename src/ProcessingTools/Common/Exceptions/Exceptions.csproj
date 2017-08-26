@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmbiguousCommandException.cs" />
+    <Compile Include="CanNotGenerateUniqueFileNameException.cs" />
     <Compile Include="CommandNotFoundException.cs" />
     <Compile Include="CoordinateException.cs" />
     <Compile Include="InvalidCommandException.cs" />
