@@ -24,6 +24,11 @@
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        ~AbstractMultiDataServiceAsync()
+        {
+            this.Dispose(false);
+        }
+
         protected abstract Expression<Func<TEntity, TModel>> MapEntityToModel { get; }
 
         protected abstract Expression<Func<TModel, TEntity>> MapModelToEntity { get; }
