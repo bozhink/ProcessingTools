@@ -17,7 +17,7 @@
 
         protected async Task GetMatches(IBiorepositoriesDataService<TServiceModel> service, ICollection<TModel> matches, Func<TServiceModel, bool> filter)
         {
-            for (int i = 0; true; i += NumberOfItemsToTake)
+            for (int i = 0; ; i += NumberOfItemsToTake)
             {
                 var items = (await service.Get(i, NumberOfItemsToTake)).ToList();
 
