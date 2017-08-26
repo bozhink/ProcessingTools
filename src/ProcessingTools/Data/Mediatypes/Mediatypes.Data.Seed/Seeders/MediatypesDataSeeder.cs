@@ -61,9 +61,9 @@
             var mediatypesJson = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
             return mediatypesJson?.Select(m => new ExtensionJson
             {
-                Extension = m.Extension.ToLower(),
-                Mimetype = m.Mimetype.ToLower(),
-                Mimesubtype = m.Mimesubtype.ToLower(),
+                Extension = m.Extension.ToLowerInvariant(),
+                Mimetype = m.Mimetype.ToLowerInvariant(),
+                Mimesubtype = m.Mimesubtype.ToLowerInvariant(),
                 Description = m.Description
             })
             .ToArray();
