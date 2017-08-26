@@ -29,7 +29,7 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var searchString = filter.ToLower();
+                var searchString = filter.ToLowerInvariant();
 
                 var query = await repository.Find(t => t.Name.ToLower().Contains(searchString));
                 var data = query.ToList();
