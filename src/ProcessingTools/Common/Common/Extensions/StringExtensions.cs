@@ -62,13 +62,13 @@
                 return words;
             }
 
-            var compareSet = new HashSet<string>(stopWords.Select(w => w.ToLower()));
+            var compareSet = new HashSet<string>(stopWords.Select(w => w.ToLowerInvariant()));
             if (compareSet.Count < 1)
             {
                 return words;
             }
 
-            var result = new HashSet<string>(words.Where(w => !compareSet.Contains(w.ToLower())));
+            var result = new HashSet<string>(words.Where(w => !compareSet.Contains(w.ToLowerInvariant())));
             return result;
         }
 
@@ -79,13 +79,13 @@
                 return new string[] { };
             }
 
-            var compareSet = new HashSet<string>(seed.Select(w => w.ToLower()));
+            var compareSet = new HashSet<string>(seed.Select(w => w.ToLowerInvariant()));
             if (compareSet.Count < 1)
             {
                 return new string[] { };
             }
 
-            var result = new HashSet<string>(words.Where(w => compareSet.Contains(w.ToLower())));
+            var result = new HashSet<string>(words.Where(w => compareSet.Contains(w.ToLowerInvariant())));
             return result;
         }
 
