@@ -11,7 +11,7 @@
         {
             get
             {
-                return ProcessingTools.Enumerations.Nlm.XLinkType.Simple.ToString().ToLower();
+                return ProcessingTools.Enumerations.Nlm.XLinkType.Simple.ToString().ToLowerInvariant();
             }
 
             set
