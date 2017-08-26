@@ -58,7 +58,7 @@
         {
             return string.Format(
                 "{0} {1}",
-                this.Rank.ToString().ToLower(),
+                this.Rank.ToString().ToLowerInvariant(),
                 string.IsNullOrWhiteSpace(this.FullName) ? this.Name : this.FullName);
         }
 
