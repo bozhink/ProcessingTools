@@ -27,10 +27,10 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var searchString = filter.ToLower();
+                var searchString = filter.ToLowerInvariant();
 
                 var result = await repository.Entities
-                    .Where(s => s.Content.ToLower().Contains(searchString))
+                    .Where(s => s.Content.ToLowerInvariant().Contains(searchString))
                     .Select(s => s.Content)
                     .ToListAsync();
 
