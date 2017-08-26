@@ -71,9 +71,9 @@
                     }
                     else
                     {
-                        string wordLowerCase = word.ToLower();
+                        string wordLowerCase = word.ToLowerInvariant();
                         result = list
-                            .Select(c => c.ToLower())
+                            .Select(c => c.ToLowerInvariant())
                             .Where(c => wordLowerCase == c);
                     }
                 }
@@ -105,9 +105,9 @@
                     }
                     else
                     {
-                        string wordLowerCase = word.ToLower();
+                        string wordLowerCase = word.ToLowerInvariant();
                         result = from stringToCompare in list
-                                 where wordLowerCase.Contains(stringToCompare.ToLower())
+                                 where wordLowerCase.Contains(stringToCompare.ToLowerInvariant())
                                  select stringToCompare;
                     }
                 }
