@@ -30,7 +30,7 @@
         protected override Func<string, string> GetPermalink => item => string.Format(
             "{0}:{1}",
             PermalinkPrefixes.ValidationCacheTaxonName,
-            item.Trim().RegexReplace(@"\W+", "_").ToLower());
+            item.Trim().RegexReplace(@"\W+", "_").ToLowerInvariant());
 
         protected override async Task<IEnumerable<IValidationServiceModel<string>>> Validate(IEnumerable<string> items)
         {
@@ -55,7 +55,7 @@
             try
             {
                 IEnumerable<string> nameParts = Regex.Replace(suppliedNameString, @"\W+", " ")
-                    .ToLower()
+                    .ToLowerInvariant()
                     .Split(' ')
                     .Select(s => s.Trim());
 
@@ -126,7 +126,7 @@
         {
             try
             {
-                gnrXmlResponse.Save($"{System.IO.Path.GetTempPath()}/gnr-{Guid.NewGuid().ToString()}.xml");
+                gnrXmlResponse.Save($"{System.IO.Path.GetTempPath()}/gnr-{DateTime.UtcNow.Ticks}-{Guid.NewGuid().ToString()}.xml");
             }
             catch
             {
