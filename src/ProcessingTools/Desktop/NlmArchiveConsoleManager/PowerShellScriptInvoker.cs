@@ -139,7 +139,7 @@
 
                 // do something else until execution has completed.
                 // this could be sleep/wait, or perhaps some other work
-                while (result.IsCompleted == false)
+                while (!result.IsCompleted)
                 {
                     Console.WriteLine("Waiting for pipeline to finish...");
                     Thread.Sleep(1000);
@@ -179,7 +179,7 @@
 
                 // do something else until execution has completed.
                 // this could be sleep/wait, or perhaps some other work
-                while (result.IsCompleted == false)
+                while (!result.IsCompleted)
                 {
                     Console.WriteLine("Waiting for pipeline to finish...");
                     Thread.Sleep(1000);
