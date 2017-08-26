@@ -14,7 +14,7 @@
         public static XmlElement CreateTaxonNameXmlElement(this IDocument document, TaxonType type)
         {
             XmlElement tn = document.XmlDocument.CreateElement(ElementNames.TaxonName);
-            tn.SetAttribute(AttributeNames.Type, type.ToString().ToLower());
+            tn.SetAttribute(AttributeNames.Type, type.ToString().ToLowerInvariant());
             return tn;
         }
 
@@ -40,7 +40,7 @@
 
             if (!string.IsNullOrWhiteSpace(rank))
             {
-                switch (rank.ToLower())
+                switch (rank.ToLowerInvariant())
                 {
                     case TaxaClassificationConstants.AboveGenusTaxonRankStringValue:
                         rankType = TaxonRankType.AboveGenus;
@@ -70,18 +70,18 @@
                     return TaxaClassificationConstants.AboveFamilyTaxonRankStringValue;
 
                 default:
-                    return rank.ToString().ToLower();
+                    return rank.ToString().ToLowerInvariant();
             }
         }
 
         public static string MapTaxonTypeToTaxonTypeString(this TaxonType type)
         {
-            return type.ToString().ToLower();
+            return type.ToString().ToLowerInvariant();
         }
 
         public static TaxonType MapTaxonTypeStringToTaxonType(this string type)
         {
-            string typeLowerCase = type.ToLower();
+            string typeLowerCase = type.ToLowerInvariant();
             switch (typeLowerCase)
             {
                 case AttributeValues.TaxonTypeAny:
@@ -100,17 +100,17 @@
 
         public static SpeciesPartType ToSpeciesPartType(this string type)
         {
-            string typeLowerCase = type.ToLower();
+            string typeLowerCase = type.ToLowerInvariant();
             var result = Enum.GetValues(typeof(SpeciesPartType))
                 .Cast<SpeciesPartType>()
-                .FirstOrDefault(r => r.ToString().ToLower() == typeLowerCase);
+                .FirstOrDefault(r => r.ToString().ToLowerInvariant() == typeLowerCase);
 
             return result;
         }
 
         public static string ToRankString(this SpeciesPartType type)
         {
-            return type.ToString().ToLower();
+            return type.ToString().ToLowerInvariant();
         }
     }
 }
