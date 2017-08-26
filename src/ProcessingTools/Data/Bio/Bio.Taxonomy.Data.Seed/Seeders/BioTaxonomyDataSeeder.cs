@@ -68,7 +68,7 @@
 
                 var context = this.contextFactory.Create();
 
-                for (int i = 0; true; ++i)
+                for (int i = 0; ; ++i)
                 {
                     try
                     {
@@ -117,7 +117,7 @@
 
                 var context = this.contextFactory.Create();
 
-                for (int i = 0; true; ++i)
+                for (int i = 0; ; ++i)
                 {
                     try
                     {
