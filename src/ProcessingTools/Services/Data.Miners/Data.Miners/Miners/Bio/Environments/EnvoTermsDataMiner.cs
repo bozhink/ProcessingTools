@@ -25,7 +25,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            string text = context.ToLower();
+            string text = context.ToLowerInvariant();
 
             var query = (await this.service.All())
                 .Select(t => new EnvoTerm
@@ -35,7 +35,7 @@
                     Content = t.Content
                 });
             var data = query.ToList();
-            var result = new HashSet<EnvoTerm>(data.Where(t => text.Contains(t.Content.ToLower())));
+            var result = new HashSet<EnvoTerm>(data.Where(t => text.Contains(t.Content.ToLowerInvariant())));
             return result;
         }
     }
