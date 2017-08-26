@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts.Mediatypes;
-    using Models.Mediatypes;
     using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Services.Data.Contracts.Mediatypes;
+    using ProcessingTools.Services.Data.Models.Mediatypes;
 
     public class MediatypesResolverWithMediatypeStringResolver : IMediatypesResolver
     {
@@ -13,12 +13,7 @@
 
         public MediatypesResolverWithMediatypeStringResolver(IMediatypeStringResolver mediatypeStringResolver)
         {
-            if (mediatypeStringResolver == null)
-            {
-                throw new ArgumentNullException(nameof(mediatypeStringResolver));
-            }
-
-            this.mediatypeStringResolver = mediatypeStringResolver;
+            this.mediatypeStringResolver = mediatypeStringResolver ?? throw new ArgumentNullException(nameof(mediatypeStringResolver));
         }
 
         public async Task<IEnumerable<IMediatype>> ResolveMediatype(string fileExtension)
@@ -29,7 +24,7 @@
                 throw new ArgumentNullException(nameof(fileExtension));
             }
 
-            string mediatype = await this.mediatypeStringResolver.Resolve($".{extension.ToLower()}");
+            string mediatype = await this.mediatypeStringResolver.Resolve($".{extension.ToLowerInvariant()}");
 
             return new IMediatype[]
             {
