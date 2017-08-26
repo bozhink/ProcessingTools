@@ -6,6 +6,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Uri;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
     public class ZoobankJsonCloner : IZoobankJsonCloner
@@ -63,7 +64,7 @@
             var selfUriNode = target.SelectSingleNode(XPathStrings.ArticleZooBankSelfUri);
             if (selfUriNode == null)
             {
-                throw new ApplicationException("article-meta/self-uri/@content-type='zoobank' is missing.");
+                throw new InvalidDocumentException("article-meta/self-uri/@content-type='zoobank' is missing.");
             }
 
             selfUriNode.InnerText = articleLsid;
