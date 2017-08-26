@@ -37,7 +37,7 @@
             }
 
             var names = scientificNames.Where(s => !string.IsNullOrWhiteSpace(s))
-                .Select(s => s.ToLower())
+                .Select(s => s.ToLowerInvariant())
                 .Distinct()
                 .ToList();
 
