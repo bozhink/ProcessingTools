@@ -37,7 +37,7 @@
         public string JournalTitle { get; set; }
 
         [BsonIgnore]
-        public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLower();
+        public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLowerInvariant();
 
         [BsonIgnoreIfDefault]
         public string PublisherName { get; set; }
