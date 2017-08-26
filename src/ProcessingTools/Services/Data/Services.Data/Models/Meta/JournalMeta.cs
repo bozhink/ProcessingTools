@@ -10,7 +10,7 @@
         public string ArchiveNamePattern { get; set; }
 
         /// <summary>
-        /// Structure must be: {0} = volume, {1} = issue, {2} = id, {3} = first page.
+        /// Gets or sets the file name pattern. Pattern is: {0} = volume, {1} = issue, {2} = id, {3} = first page.
         /// </summary>
         public string FileNamePattern { get; set; }
 
@@ -22,7 +22,7 @@
 
         public string JournalTitle { get; set; }
 
-        public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLower();
+        public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLowerInvariant();
 
         public string PublisherName { get; set; }
     }
