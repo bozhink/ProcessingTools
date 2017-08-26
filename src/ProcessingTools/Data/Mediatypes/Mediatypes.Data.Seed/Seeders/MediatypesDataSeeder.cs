@@ -10,6 +10,7 @@
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;
@@ -35,7 +36,7 @@
 
             if (mediatypesJson.Length < 1)
             {
-                throw new ApplicationException("Mediatypes data json file is empty or invalid.");
+                throw new InvalidModelException("Mediatypes data json file is empty or invalid.");
             }
 
             await this.ImportMimeTypesToDatabase(mediatypesJson);
