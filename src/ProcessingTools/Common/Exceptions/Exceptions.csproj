@@ -41,6 +41,7 @@
     <Compile Include="CommandNotFoundException.cs" />
     <Compile Include="CoordinateException.cs" />
     <Compile Include="InvalidCommandException.cs" />
+    <Compile Include="InvalidDataException.cs" />
     <Compile Include="InvalidDocumentException.cs" />
     <Compile Include="InvalidModelException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
