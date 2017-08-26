@@ -35,7 +35,7 @@
         {
             Regex matchNonOptions = new Regex(@"\A[^/\-\+]");
 
-            var arguments = args.Where(a => matchNonOptions.IsMatch(a));
+            var arguments = args.Where(a => matchNonOptions.IsMatch(a)).ToArray();
 
             if (!arguments.Any())
             {
