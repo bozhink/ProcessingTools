@@ -250,7 +250,7 @@
                 }
 
                 string taxonName = taxonRankPair[0];
-                string taxonRank = taxonRankPair[1].ToLower();
+                string taxonRank = taxonRankPair[1].ToLowerInvariant();
                 if (dictionary.ContainsKey(taxonName))
                 {
                     if (dictionary[taxonName] != taxonRank)
