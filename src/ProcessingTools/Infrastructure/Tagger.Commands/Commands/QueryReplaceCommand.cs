@@ -33,7 +33,7 @@
             int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 3)
             {
-                throw new ApplicationException("The query file name should be set.");
+                throw new InvalidOperationException("The query file name should be set.");
             }
 
             string queryFileName = settings.FileNames[2];
