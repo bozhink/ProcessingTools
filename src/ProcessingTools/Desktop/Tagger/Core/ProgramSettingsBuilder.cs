@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using ProcessingTools.Contracts;
@@ -159,103 +160,116 @@
         private void ParseDoubleDashedOptions(string[] args)
         {
             Regex matchDoubleDashedOption = new Regex(@"\A\-\-");
-            foreach (string item in args.Where(a => matchDoubleDashedOption.IsMatch(a)))
+            IEnumerable<string> options = new HashSet<string>(args.Where(a => matchDoubleDashedOption.IsMatch(a)));
+
+            foreach (string option in options)
             {
-                if (item.CompareTo("--split-aphia") == 0)
+                switch (option)
                 {
-                    this.Settings.ParseHigherWithAphia = true;
-                }
-                else if (item.CompareTo("--split-col") == 0)
-                {
-                    this.Settings.ParseHigherWithCoL = true;
-                }
-                else if (item.CompareTo("--split-gbif") == 0)
-                {
-                    this.Settings.ParseHigherWithGbif = true;
-                }
-                else if (item.CompareTo("--split-suffix") == 0)
-                {
-                    this.Settings.ParseHigherBySuffix = true;
-                }
-                else if (item.CompareTo("--above-genus") == 0)
-                {
-                    this.Settings.ParseHigherAboveGenus = true;
-                }
-                else if (item.CompareTo("--system") == 0)
-                {
-                    this.Settings.ArticleSchemaType = SchemaType.System;
-                }
-                else if (item.CompareTo("--nlm") == 0)
-                {
-                    this.Settings.ArticleSchemaType = SchemaType.Nlm;
-                }
-                else if (item.CompareTo("--extract-taxa") == 0 || item.CompareTo("--et") == 0)
-                {
-                    this.Settings.ExtractTaxa = true;
-                }
-                else if (item.CompareTo("--extract-lower-taxa") == 0 || item.CompareTo("--elt") == 0)
-                {
-                    this.Settings.ExtractLowerTaxa = true;
-                }
-                else if (item.CompareTo("--extract-higher-taxa") == 0 || item.CompareTo("--eht") == 0)
-                {
-                    this.Settings.ExtractHigherTaxa = true;
-                }
-                else if (item.CompareTo("--zoobank-nlm") == 0)
-                {
-                    this.Settings.ZoobankGenerateRegistrationXml = true;
-                }
-                else if (item.CompareTo("--zoobank-json") == 0)
-                {
-                    this.Settings.ZoobankCloneJson = true;
-                }
-                else if (item.CompareTo("--zoobank-clone") == 0)
-                {
-                    this.Settings.ZoobankCloneXml = true;
-                }
-                else if (item.CompareTo("--parse-treatment-meta-with-aphia") == 0 || item.CompareTo("--ptm-aphia") == 0)
-                {
-                    this.Settings.ParseTreatmentMetaWithAphia = true;
-                }
-                else if (item.CompareTo("--parse-treatment-meta-with-gbif") == 0 || item.CompareTo("--ptm-gbif") == 0)
-                {
-                    this.Settings.ParseTreatmentMetaWithGbif = true;
-                }
-                else if (item.CompareTo("--parse-treatment-meta-with-col") == 0 || item.CompareTo("--ptm-col") == 0)
-                {
-                    this.Settings.ParseTreatmentMetaWithCol = true;
-                }
-                else if (item.CompareTo("--table-fn") == 0)
-                {
-                    this.Settings.TagTableFn = true;
-                }
-                else if (item.CompareTo("--environments") == 0)
-                {
-                    this.Settings.TagEnvironmentTerms = true;
-                }
-                else if (item.CompareTo("--codes") == 0)
-                {
-                    this.Settings.TagCodes = true;
-                }
-                else if (item.CompareTo("--abbrev") == 0)
-                {
-                    this.Settings.TagAbbreviations = true;
-                }
-                else if (item.CompareTo("--envo") == 0)
-                {
-                    this.Settings.TagEnvironmentTermsWithExtract = true;
-                }
-                else if (item.CompareTo("--xsl") == 0)
-                {
-                    this.Settings.RunXslTransform = true;
-                }
-                else if (item.CompareTo("--merge") == 0)
-                {
-                    this.Settings.MergeInputFiles = true;
-                }
-                else if (item.CompareTo("--split") == 0)
-                {
-                    this.Settings.SplitDocument = true;
+                    case "--split-aphia":
+                        this.Settings.ParseHigherWithAphia = true;
+                        break;
+
+                    case "--split-col":
+                        this.Settings.ParseHigherWithCoL = true;
+                        break;
+
+                    case "--split-gbif":
+                        this.Settings.ParseHigherWithGbif = true;
+                        break;
+
+                    case "--split-suffix":
+                        this.Settings.ParseHigherBySuffix = true;
+                        break;
+
+                    case "--above-genus":
+                        this.Settings.ParseHigherAboveGenus = true;
+                        break;
+
+                    case "--system":
+                        this.Settings.ArticleSchemaType = SchemaType.System;
+                        break;
+
+                    case "--nlm":
+                        this.Settings.ArticleSchemaType = SchemaType.Nlm;
+                        break;
+
+                    case "--extract-taxa":
+                    case "--et":
+                        this.Settings.ExtractTaxa = true;
+                        break;
+
+                    case "--extract-lower-taxa":
+                    case "--elt":
+                        this.Settings.ExtractLowerTaxa = true;
+                        break;
+
+                    case "--extract-higher-taxa":
+                    case "--eht":
+                        this.Settings.ExtractHigherTaxa = true;
+                        break;
+
+                    case "--zoobank-nlm":
+                        this.Settings.ZoobankGenerateRegistrationXml = true;
+                        break;
+
+                    case "--zoobank-json":
+                        this.Settings.ZoobankCloneJson = true;
+                        break;
+
+                    case "--zoobank-clone":
+                        this.Settings.ZoobankCloneXml = true;
+                        break;
+
+                    case "--parse-treatment-meta-with-aphia":
+                    case "--ptm-aphia":
+                        this.Settings.ParseTreatmentMetaWithAphia = true;
+                        break;
+
+                    case "--parse-treatment-meta-with-gbif":
+                    case "--ptm-gbif":
+                        this.Settings.ParseTreatmentMetaWithGbif = true;
+                        break;
+
+                    case "--parse-treatment-meta-with-col":
+                    case "--ptm-col":
+                        this.Settings.ParseTreatmentMetaWithCol = true;
+                        break;
+
+                    case "--table-fn":
+                        this.Settings.TagTableFn = true;
+                        break;
+
+                    case "--environments":
+                        this.Settings.TagEnvironmentTerms = true;
+                        break;
+
+                    case "--codes":
+                        this.Settings.TagCodes = true;
+                        break;
+
+                    case "--abbrev":
+                        this.Settings.TagAbbreviations = true;
+                        break;
+
+                    case "--envo":
+                        this.Settings.TagEnvironmentTermsWithExtract = true;
+                        break;
+
+                    case "--xsl":
+                        this.Settings.RunXslTransform = true;
+                        break;
+
+                    case "--merge":
+                        this.Settings.MergeInputFiles = true;
+                        break;
+
+                    case "--split":
+                        this.Settings.SplitDocument = true;
+                        break;
+
+                    default:
+                        break;
                 }
             }
         }
