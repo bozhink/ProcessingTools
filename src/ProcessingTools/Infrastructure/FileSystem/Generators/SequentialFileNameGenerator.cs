@@ -3,9 +3,9 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Constants;
-    using Contracts.Generators;
     using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.FileSystem.Constants;
+    using ProcessingTools.FileSystem.Contracts.Generators;
 
     public class SequentialFileNameGenerator : ISequentialFileNameGenerator
     {
@@ -35,7 +35,8 @@
                 }
 
                 string extension = Path.GetExtension(baseFileName);
-                string fileName, fullName;
+                string fileName;
+                string fullName;
                 int i = 0;
                 do
                 {
