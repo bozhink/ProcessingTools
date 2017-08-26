@@ -40,12 +40,12 @@
             int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 2)
             {
-                throw new ApplicationException("Output file name should be set.");
+                throw new InvalidOperationException("Output file name should be set.");
             }
 
             if (numberOfFileNames < 3)
             {
-                throw new ApplicationException("The file path to json-file-to-clone should be set.");
+                throw new InvalidOperationException("The file path to json-file-to-clone should be set.");
             }
 
             string sourceFileName = settings.FileNames[2];
@@ -73,7 +73,7 @@
 
             if (zoobankRegistrationList == null || zoobankRegistrationList.Count < 1)
             {
-                throw new ApplicationException("No valid ZooBank registration records in JSON file");
+                throw new ProcessingTools.Exceptions.InvalidDataException("No valid ZooBank registration records in JSON file");
             }
             else
             {

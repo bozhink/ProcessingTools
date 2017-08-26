@@ -176,6 +176,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Exceptions\Exceptions.csproj">
+      <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
       <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>
       <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
