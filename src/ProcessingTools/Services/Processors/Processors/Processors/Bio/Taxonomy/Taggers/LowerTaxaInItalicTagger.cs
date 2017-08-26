@@ -39,7 +39,7 @@
             var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownLowerTaxaNames));
 
             plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(context, plausibleLowerTaxa))
-                .Select(name => name.ToLower()));
+                .Select(name => name.ToLowerInvariant()));
 
             this.TagDirectTaxonomicMatches(context, plausibleLowerTaxa);
 
@@ -127,10 +127,10 @@
             var blacklistItems = await this.blacklist.Items;
 
             var stopWords = await personNames
-                .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
+                .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
                 .Where(n => !string.IsNullOrWhiteSpace(n))
                 .Union(blacklistItems)
-                .Select(w => w.ToLower())
+                .Select(w => w.ToLowerInvariant())
                 .Distinct()
                 .ToArrayAsync();
 

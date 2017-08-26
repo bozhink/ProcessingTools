@@ -55,23 +55,21 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            await this.MainTag(context);
-
-            await this.DeepTag(context);
+            await this.MainTagAsync(context).ConfigureAwait(false);
+            await this.DeepTagAsync(context).ConfigureAwait(false);
 
             return true;
         }
 
-        private async Task MainTag(IDocument context)
+        private async Task MainTagAsync(IDocument context)
         {
-            var knownLowerTaxaNames = this.GetKnownLowerTaxa(context);
+            var knownTaxa = this.GetKnownLowerTaxa(context);
+            var plausibleTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownTaxa));
+            var cleanedLowerTaxa = await this.ClearFakeTaxaNames(context, plausibleTaxa);
 
-            var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownLowerTaxaNames));
+            plausibleTaxa = new HashSet<string>(cleanedLowerTaxa.Select(t => t.ToLowerInvariant()));
 
-            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(context, plausibleLowerTaxa))
-                .Select(name => name.ToLower()));
-
-            this.TagDirectTaxonomicMatches(context, plausibleLowerTaxa);
+            this.TagDirectTaxonomicMatches(context, plausibleTaxa);
 
             // TODO: move to format
             context.Xml = Regex.Replace(
@@ -327,7 +325,7 @@
             return result;
         }
 
-        private async Task DeepTag(IDocument document)
+        private async Task DeepTagAsync(IDocument document)
         {
             var knownLowerTaxaNamesXml = new HashSet<string>(document.SelectNodes(".//tn[@type='lower']").Select(x => x.InnerXml));
 
