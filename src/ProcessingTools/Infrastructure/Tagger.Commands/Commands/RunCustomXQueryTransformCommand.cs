@@ -33,7 +33,7 @@
             int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 3)
             {
-                throw new ApplicationException("The name of the XQuey file should be set.");
+                throw new InvalidOperationException("The name of the XQuey file should be set.");
             }
 
             this.processor.XQueryFileFullName = settings.FileNames[2];
