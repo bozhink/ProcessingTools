@@ -189,7 +189,7 @@
             }
             else
             {
-                return x => x.InnerText.ToLower().Contains(value.ToLower());
+                return x => x.InnerText.ToLowerInvariant().Contains(value.ToLowerInvariant());
             }
         }
     }
