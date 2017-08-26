@@ -160,7 +160,7 @@
                 .Where(
                     f =>
                         Path.GetFileNameWithoutExtension(f) == this.fileNameWithoutExtension &&
-                        Path.GetExtension(f).TrimStart('.').ToLower() != FileConstants.XmlFileExtension)
+                        Path.GetExtension(f).TrimStart('.').ToLowerInvariant() != FileConstants.XmlFileExtension)
                 .Select(
                     f => this.modelFactory.CreateFileReplacementModel(
                         destination: fileNameReplacementPrefix + Path.GetExtension(f),
