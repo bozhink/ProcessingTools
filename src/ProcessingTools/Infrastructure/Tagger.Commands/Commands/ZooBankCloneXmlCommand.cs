@@ -38,12 +38,12 @@
             int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 2)
             {
-                throw new ApplicationException("Output file name should be set.");
+                throw new InvalidOperationException("Output file name should be set.");
             }
 
             if (numberOfFileNames < 3)
             {
-                throw new ApplicationException("The file path to xml-file-to-clone should be set.");
+                throw new InvalidOperationException("The file path to xml-file-to-clone should be set.");
             }
 
             string sourceFileName = settings.FileNames[2];
