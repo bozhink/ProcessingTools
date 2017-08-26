@@ -56,7 +56,7 @@
 
                 if (changeToLowerCase)
                 {
-                    words.Add(word.ToLower());
+                    words.Add(word.ToLowerInvariant());
                 }
                 else
                 {
