@@ -29,7 +29,7 @@
                 const string InfraPattern = @"<tn-part type=""infraspecific-rank"">(?<rank>[^<>]*)</tn-part>\s*<tn-part type=""infraspecific"">([^<>]*)</tn-part>";
                 for (Match m = Regex.Match(xml, InfraPattern); m.Success; m = m.NextMatch())
                 {
-                    string infraSpecificRank = m.Groups["rank"].Value.ToLower().Trim(new char[] { ' ', '.' });
+                    string infraSpecificRank = m.Groups["rank"].Value.ToLowerInvariant().Trim(new[] { ' ', '.' });
 
                     string rank = SpeciesPartsPrefixesResolver.Resolve(infraSpecificRank);
                     string replacement = m.Value.RegexReplace(
