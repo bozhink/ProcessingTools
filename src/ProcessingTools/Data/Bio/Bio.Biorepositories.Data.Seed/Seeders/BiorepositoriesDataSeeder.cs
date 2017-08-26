@@ -16,6 +16,7 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Seed;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Serialization.Csv;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
@@ -71,7 +72,7 @@
                 var fileNameAttribute = seedModelType.GetCustomAttributes(typeof(FileNameAttribute), false)?.FirstOrDefault() as FileNameAttribute;
                 if (fileNameAttribute == null)
                 {
-                    throw new ApplicationException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
+                    throw new InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
                 }
 
                 string fileName = string.Format("{0}/{1}", this.dataFilesDirectoryPath, fileNameAttribute.Name);
@@ -86,7 +87,7 @@
                     .ToArray();
                 if (items == null || items.Length < 1)
                 {
-                    throw new ApplicationException("De-serialized items are not valid.");
+                    throw new InvalidModelException("De-serialized items are not valid.");
                 }
 
                 var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);
