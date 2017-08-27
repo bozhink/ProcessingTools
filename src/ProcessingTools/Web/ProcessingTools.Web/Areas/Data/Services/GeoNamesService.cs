@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Areas.Data.Controllers;
     using ProcessingTools.Web.Areas.Data.Models.GeoNames;

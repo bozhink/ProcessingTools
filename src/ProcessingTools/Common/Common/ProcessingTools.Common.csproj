@@ -49,22 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\FileNameAttribute.cs" />
-    <Compile Include="Exceptions\FileNameIsNullOrWhitespaceException.cs" />
-    <Compile Include="Exceptions\InvalidIdException.cs" />
-    <Compile Include="Exceptions\InvalidItemsPerPageException.cs" />
-    <Compile Include="Exceptions\InvalidOrEmptyFilesException.cs" />
-    <Compile Include="Exceptions\InvalidPageNumberException.cs" />
-    <Compile Include="Exceptions\InvalidSkipValuePagingException.cs" />
-    <Compile Include="Exceptions\InvalidTakeValuePagingException.cs" />
-    <Compile Include="Exceptions\InvalidUserIdException.cs" />
-    <Compile Include="Exceptions\KeyExistsException.cs" />
-    <Compile Include="Exceptions\KeyNotFoundException.cs" />
-    <Compile Include="Exceptions\MaximalLengthOfFileNameExceededException.cs" />
-    <Compile Include="Exceptions\MaximalNumberOfIterationsExceededException.cs" />
-    <Compile Include="Exceptions\NoFilesSelectedException.cs" />
-    <Compile Include="Exceptions\NullOrEmptyFileException.cs" />
-    <Compile Include="Exceptions\StreamCannotBeReadException.cs" />
-    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
@@ -120,6 +104,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Constants;
@@ -16,6 +15,7 @@
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Models.DataModels;
 

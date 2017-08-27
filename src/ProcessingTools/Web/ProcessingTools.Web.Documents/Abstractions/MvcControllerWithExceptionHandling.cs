@@ -2,7 +2,6 @@
 {
     using System;
     using System.Web.Mvc;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Documents.Extensions;
 

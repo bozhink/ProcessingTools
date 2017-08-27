@@ -3,7 +3,7 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.FileSystem.Constants;
     using ProcessingTools.FileSystem.Contracts.Generators;
 
