@@ -14,7 +14,7 @@ namespace ProcessingTools.Exceptions
     [Serializable]
     public class CommandNotFoundException : Exception
     {
-        private const string DefaultMessage = "Command not found";
+        private const string DefaultMessage = "Command not found.";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandNotFoundException"/> class with
@@ -22,7 +22,7 @@ namespace ProcessingTools.Exceptions
         /// </summary>
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         public CommandNotFoundException(string commandName)
-            : base($"{DefaultMessage} '{commandName}'")
+            : base(message: $"{DefaultMessage} '{commandName}'")
         {
             this.CommandName = commandName;
         }
@@ -34,7 +34,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public CommandNotFoundException(string commandName, string message)
-            : base($"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}")
+            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}")
         {
             this.CommandName = commandName;
         }
@@ -48,7 +48,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public CommandNotFoundException(string commandName, string message, Exception innerException)
-            : base($"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}", innerException)
+            : base(message: $"{DefaultMessage} '{commandName}'{Environment.NewLine}{message ?? string.Empty}", innerException: innerException)
         {
             this.CommandName = commandName;
         }
@@ -59,7 +59,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
         public CommandNotFoundException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+            : base(info: info, context: context)
         {
         }
 
@@ -71,7 +71,7 @@ namespace ProcessingTools.Exceptions
         /// <inheritdoc/>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            base.GetObjectData(info, context);
+            base.GetObjectData(info: info, context: context);
         }
     }
 }

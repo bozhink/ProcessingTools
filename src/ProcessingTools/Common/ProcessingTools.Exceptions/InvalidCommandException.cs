@@ -14,14 +14,14 @@ namespace ProcessingTools.Exceptions
     [Serializable]
     public class InvalidCommandException : Exception
     {
-        private const string DefaultMessage = "Invalid command";
+        private const string DefaultMessage = "Invalid command.";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidCommandException"/> class with default
         /// error message.
         /// </summary>
         public InvalidCommandException()
-            : base(DefaultMessage)
+            : base(message: DefaultMessage)
         {
         }
 
@@ -31,7 +31,7 @@ namespace ProcessingTools.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public InvalidCommandException(string message)
-            : base(message)
+            : base(message: message)
         {
         }
 
@@ -42,7 +42,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         public InvalidCommandException(string message, string commandName)
-            : base($"{message}{Environment.NewLine}{DefaultMessage} '{commandName}'")
+            : base(message: $"{message}{Environment.NewLine}{DefaultMessage} '{commandName}'")
         {
             this.CommandName = commandName;
         }
@@ -54,7 +54,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public InvalidCommandException(string message, Exception innerException)
-            : base(message, innerException)
+            : base(message: message, innerException: innerException)
         {
         }
 
@@ -67,7 +67,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="commandName">The name of the command that caused the current exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public InvalidCommandException(string message, string commandName, Exception innerException)
-            : base($"{message}{Environment.NewLine}{DefaultMessage} '{commandName}'", innerException)
+            : base(message: $"{message}{Environment.NewLine}{DefaultMessage} '{commandName}'", innerException: innerException)
         {
             this.CommandName = commandName;
         }
@@ -78,7 +78,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
         public InvalidCommandException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+            : base(info: info, context: context)
         {
         }
 
@@ -90,7 +90,7 @@ namespace ProcessingTools.Exceptions
         /// <inheritdoc/>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            base.GetObjectData(info, context);
+            base.GetObjectData(info: info, context: context);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace ProcessingTools.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public ServiceReturnedNullException(string message)
-            : base(message)
+            : base(message: message)
         {
         }
 
@@ -39,7 +39,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public ServiceReturnedNullException(string message, Exception innerException)
-            : base(message, innerException)
+            : base(message: message, innerException: innerException)
         {
         }
 
@@ -49,14 +49,14 @@ namespace ProcessingTools.Exceptions
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
         public ServiceReturnedNullException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+            : base(info: info, context: context)
         {
         }
 
         /// <inheritdoc/>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            base.GetObjectData(info, context);
+            base.GetObjectData(info: info, context: context);
         }
     }
 }

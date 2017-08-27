@@ -12,7 +12,7 @@ namespace ProcessingTools.Exceptions
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3925: Update this implementation of 'ISerializable' to conform to the recommended serialization pattern", Justification = "Not Applicable")]
     [Serializable]
-    public class EntityNotFoundException : ApplicationException
+    public class EntityNotFoundException : Exception
     {
         private const string DefaultMessage = "Entity not found.";
 
@@ -21,7 +21,7 @@ namespace ProcessingTools.Exceptions
         /// error message.
         /// </summary>
         public EntityNotFoundException()
-            : base(DefaultMessage)
+            : base(message: DefaultMessage)
         {
         }
 
@@ -31,7 +31,7 @@ namespace ProcessingTools.Exceptions
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         public EntityNotFoundException(string message)
-            : base($"{DefaultMessage}{Environment.NewLine}{message}")
+            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}")
         {
         }
 
@@ -42,7 +42,7 @@ namespace ProcessingTools.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public EntityNotFoundException(string message, Exception innerException)
-            : base($"{DefaultMessage}{Environment.NewLine}{message}", innerException)
+            : base(message: $"{DefaultMessage}{Environment.NewLine}{message}", innerException: innerException)
         {
         }
 
@@ -52,14 +52,14 @@ namespace ProcessingTools.Exceptions
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
         public EntityNotFoundException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+            : base(info: info, context: context)
         {
         }
 
         /// <inheritdoc/>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            base.GetObjectData(info, context);
+            base.GetObjectData(info: info, context: context);
         }
     }
 }
