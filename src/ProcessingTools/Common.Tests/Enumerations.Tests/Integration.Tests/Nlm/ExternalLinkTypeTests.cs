@@ -7,102 +7,100 @@
     [TestClass]
     public class ExternalLinkTypeTests
     {
-        private const string UnexpectedValueMessage = "Unexpected Value.";
-
         [TestMethod]
-        public void ExternalLinkType_AoiMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_AoiMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("aoi", ExternalLinkType.Aoi.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("aoi", ExternalLinkType.Aoi.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_DoiMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_DoiMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("doi", ExternalLinkType.Doi.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("doi", ExternalLinkType.Doi.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_EcMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_EcMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("ec", ExternalLinkType.Ec.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("ec", ExternalLinkType.Ec.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_FtpMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_FtpMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("ftp", ExternalLinkType.Ftp.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("ftp", ExternalLinkType.Ftp.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_GenMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_GenMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("gen", ExternalLinkType.Gen.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("gen", ExternalLinkType.Gen.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_GenpeptMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_GenpeptMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("genpept", ExternalLinkType.Genpept.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("genpept", ExternalLinkType.Genpept.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_HighwireMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_HighwireMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("highwire", ExternalLinkType.Highwire.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("highwire", ExternalLinkType.Highwire.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_NlmTaMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_NlmTaMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("nlm-ta", ExternalLinkType.NlmTa.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("nlm-ta", ExternalLinkType.NlmTa.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_PdbMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_PdbMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("pdb", ExternalLinkType.Pdb.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("pdb", ExternalLinkType.Pdb.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_PgrMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_PgrMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("pgr", ExternalLinkType.Pgr.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("pgr", ExternalLinkType.Pgr.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_PirMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_PirMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("pir", ExternalLinkType.Pir.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("pir", ExternalLinkType.Pir.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_PirdbMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_PirdbMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("pirdb", ExternalLinkType.Pirdb.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("pirdb", ExternalLinkType.Pirdb.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_PmcidMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_PmcidMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("pmcid", ExternalLinkType.Pmcid.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("pmcid", ExternalLinkType.Pmcid.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_PmidMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_PmidMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("pmid", ExternalLinkType.Pmid.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("pmid", ExternalLinkType.Pmid.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_SprotMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_SprotMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("sprot", ExternalLinkType.Sprot.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("sprot", ExternalLinkType.Sprot.GetName());
         }
 
         [TestMethod]
-        public void ExternalLinkType_UriMember_ShouldHaveCorrectStringValue()
+        public void ExternalLinkType_UriMember_ShouldHaveCorrectDisplayName()
         {
-            Assert.AreEqual("uri", ExternalLinkType.Uri.GetName(), UnexpectedValueMessage);
+            Assert.AreEqual("uri", ExternalLinkType.Uri.GetName());
         }
     }
 }
