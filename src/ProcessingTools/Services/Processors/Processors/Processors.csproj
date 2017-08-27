@@ -245,17 +245,17 @@
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithFullStringMatchStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
       <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
-      <Name>Common</Name>
+      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Common\Constants\ProcessingTools.Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
-      <Name>Constants</Name>
+      <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Exceptions\Exceptions.csproj">
+    <ProjectReference Include="..\..\..\Common\Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
-      <Name>Exceptions</Name>
+      <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
@@ -265,9 +265,9 @@
       <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
       <Name>DocumentProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Enumerations\Enumerations.csproj">
+    <ProjectReference Include="..\..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>Enumerations</Name>
+      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>

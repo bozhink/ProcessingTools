@@ -60,21 +60,21 @@
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
+      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Constants\Constants.csproj">
+    <ProjectReference Include="..\..\..\Common\Constants\ProcessingTools.Constants.csproj">
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
-      <Name>Constants</Name>
+      <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Enumerations\Enumerations.csproj">
+    <ProjectReference Include="..\..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>Enumerations</Name>
+      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Api", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{21C98DC0-B35C-414E-BC02-D90AF3494DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common\Common.csproj", "{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common", "Common\Common\ProcessingTools.Common.csproj", "{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NlmArchiveConsoleManager", "Desktop\NlmArchiveConsoleManager\NlmArchiveConsoleManager.csproj", "{44BF1EF0-8900-4AC8-8F89-4526AF34DBF2}"
 EndProject
@@ -171,7 +171,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processors", "Services\Proc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResources.Services.Data", "Services\Data\DataResources.Services.Data\DataResources.Services.Data.csproj", "{0AF6537B-C198-49DD-A858-5247E24F0179}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Constants", "Common\Constants\Constants.csproj", "{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Constants", "Common\Constants\ProcessingTools.Constants.csproj", "{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Layout.Processors", "Services\Processors\Layout.Processors\Layout.Processors.csproj", "{FC880066-D413-4E16-9F46-23ACD5E30C2D}"
 EndProject
@@ -187,7 +187,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Library", "Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.Aphia.Tests", "ServiceClients.Tests\Bio.Taxonomy.ServiceClient.Aphia.Tests\Bio.Taxonomy.ServiceClient.Aphia.Tests.csproj", "{2738EAFE-70C9-4D7F-B490-D8C22D42B531}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enumerations", "Common\Enumerations\Enumerations.csproj", "{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Enumerations", "Common\Enumerations\ProcessingTools.Enumerations.csproj", "{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache.Data.Redis.Tests", "Data.Tests\Cache.Data.Redis.Tests\Cache.Data.Redis.Tests.csproj", "{21228A7C-5E15-4F23-9699-E90D1AE1967A}"
 EndProject
@@ -303,15 +303,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Infrastructure\Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services\Services.csproj", "{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enumerations.Tests", "Common.Tests\Enumerations.Tests\Enumerations.Tests.csproj", "{4F13EA51-B010-44F1-9A80-8BBF636DD105}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Enumerations.Tests", "Common.Tests\Enumerations.Tests\ProcessingTools.Enumerations.Tests.csproj", "{4F13EA51-B010-44F1-9A80-8BBF636DD105}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{789C4203-7CD8-45FC-A182-D4C395F76530}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common.Tests", "Common.Tests", "{27A96BEF-4F22-4E41-9B98-D381339E6D94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "Common.Tests\Common.Tests\Common.Tests.csproj", "{EF47A1D3-63DF-4A22-9ADB-859F1BB319DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common.Tests", "Common.Tests\Common.Tests\ProcessingTools.Common.Tests.csproj", "{EF47A1D3-63DF-4A22-9ADB-859F1BB319DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Common\Exceptions\Exceptions.csproj", "{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Exceptions", "Common\Exceptions\ProcessingTools.Exceptions.csproj", "{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1413,7 +1413,7 @@ Global
 		{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal

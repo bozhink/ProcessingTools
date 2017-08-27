@@ -80,9 +80,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common\Common.csproj">
+    <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
+      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
