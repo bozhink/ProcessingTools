@@ -60,8 +60,8 @@
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Exceptions\ProcessingTools.Exceptions.csproj">
-      <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
+      <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">

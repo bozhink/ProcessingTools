@@ -311,7 +311,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common.Tests", "Common.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common.Tests", "Common.Tests\Common.Tests\ProcessingTools.Common.Tests.csproj", "{EF47A1D3-63DF-4A22-9ADB-859F1BB319DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Exceptions", "Common\Exceptions\ProcessingTools.Exceptions.csproj", "{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Exceptions", "Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj", "{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1413,7 +1413,7 @@ Global
 		{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
