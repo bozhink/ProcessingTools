@@ -40,6 +40,7 @@
     <Compile Include="CanNotGenerateUniqueFileNameException.cs" />
     <Compile Include="CommandNotFoundException.cs" />
     <Compile Include="CoordinateException.cs" />
+    <Compile Include="EntityNotFoundException.cs" />
     <Compile Include="InvalidCommandException.cs" />
     <Compile Include="InvalidDataException.cs" />
     <Compile Include="InvalidDocumentException.cs" />

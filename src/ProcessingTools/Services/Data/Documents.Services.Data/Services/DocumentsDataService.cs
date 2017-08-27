@@ -19,6 +19,7 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts.Models;
     using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.FileSystem.Contracts;
 
     public class DocumentsDataService : IDocumentsDataService
