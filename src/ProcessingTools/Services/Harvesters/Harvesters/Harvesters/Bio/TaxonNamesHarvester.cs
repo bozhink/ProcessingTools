@@ -63,6 +63,9 @@
                 case TaxonType.Any:
                     xpath = "//tn|//tp:taxon-name";
                     break;
+
+                default:
+                    throw new NotImplementedException();
             }
 
             var result = new List<string>();
