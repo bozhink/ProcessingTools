@@ -13,35 +13,18 @@
 
     public class NetConnector : INetConnector
     {
-        private string baseAddress;
-
         public NetConnector()
         {
-            this.baseAddress = null;
         }
 
         public NetConnector(string baseAddress)
         {
-            this.BaseAddress = baseAddress;
-        }
-
-        private string BaseAddress
-        {
-            get
+            if (string.IsNullOrWhiteSpace(baseAddress))
             {
-                return this.baseAddress;
+                throw new ArgumentNullException(nameof(baseAddress));
             }
 
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentNullException(value);
-                }
-
-                this.baseAddress = value;
-                this.BaseAddressUri = new Uri(this.baseAddress);
-            }
+            this.BaseAddressUri = new Uri(baseAddress);
         }
 
         private Uri BaseAddressUri { get; set; }

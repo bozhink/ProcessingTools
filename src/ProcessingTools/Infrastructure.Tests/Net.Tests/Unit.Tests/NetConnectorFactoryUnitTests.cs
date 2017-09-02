@@ -74,7 +74,7 @@
             }
             catch (ArgumentNullException e)
             {
-                Assert.AreEqual("BaseAddress", e.ParamName, "ParamName should be BaseAddress");
+                Assert.AreEqual(nameof(baseAddress), e.ParamName, "ParamName should be baseAddress");
             }
         }
 

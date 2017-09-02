@@ -63,7 +63,7 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ApplicationException), AllowDerivedTypes = true)]
+        [ExpectedException(exceptionType: typeof(FormatException), AllowDerivedTypes = true)]
         public void CsvObject_WithCsvTextWithSingleEscapeCharInLastPosition_ShouldThrow()
         {
             const string CsvText = "Name,Year,Description\nSmith\\, John,2015,No desription here\\";
