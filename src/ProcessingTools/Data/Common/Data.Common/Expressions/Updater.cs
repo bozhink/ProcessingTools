@@ -42,7 +42,7 @@
                         throw new InvalidOperationException($"Set method of property {updateCommand.FieldName} is not found in type {type.FullName}");
                     }
 
-                    method.Invoke(obj, new object[] { updateCommand.Value });
+                    method.Invoke(obj, new[] { updateCommand.Value });
                 }
             });
         }
