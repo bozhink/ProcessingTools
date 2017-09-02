@@ -21,7 +21,7 @@
 
         public IQueryable<IHistoryItem> Query => this.DbSet.AsQueryable<IHistoryItem>();
 
-        public Task<object> Add(IHistoryItem entity)
+        public Task<object> AddAsync(IHistoryItem entity)
         {
             if (entity == null)
             {
@@ -37,38 +37,38 @@
                 UserId = entity.UserId
             };
 
-            base.Add(model);
+            this.Add(model);
 
             return Task.FromResult<object>(model.Id);
         }
 
-        public Task<long> Count()
+        public Task<long> CountAsync()
         {
             var result = this.DbSet.LongCount();
 
             return Task.FromResult(result);
         }
 
-        public Task<long> Count(Expression<Func<IHistoryItem, bool>> filter)
+        public Task<long> CountAsync(Expression<Func<IHistoryItem, bool>> filter)
         {
             var result = this.DbSet.AsQueryable<IHistoryItem>().LongCount(filter);
 
             return Task.FromResult(result);
         }
 
-        public new Task<object> Delete(object id)
+        public Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            base.Delete(id: id);
+            this.Delete(id: id);
 
             return Task.FromResult(id);
         }
 
-        public Task<IEnumerable<IHistoryItem>> Find(Expression<Func<IHistoryItem, bool>> filter)
+        public Task<IEnumerable<IHistoryItem>> FindAsync(Expression<Func<IHistoryItem, bool>> filter)
         {
             if (filter == null)
             {
@@ -81,7 +81,7 @@
             return Task.FromResult(result);
         }
 
-        public Task<IHistoryItem> FindFirst(Expression<Func<IHistoryItem, bool>> filter)
+        public Task<IHistoryItem> FindFirstAsync(Expression<Func<IHistoryItem, bool>> filter)
         {
             if (filter == null)
             {
@@ -94,18 +94,18 @@
             return Task.FromResult(result);
         }
 
-        public Task<IHistoryItem> GetById(object id)
+        public Task<IHistoryItem> GetByIdAsync(object id)
         {
             var entity = this.DbSet.Find(id);
             return Task.FromResult<IHistoryItem>(entity);
         }
 
-        public Task<object> Update(IHistoryItem entity)
+        public Task<object> UpdateAsync(IHistoryItem entity)
         {
             throw new InvalidOperationException();
         }
 
-        public Task<object> Update(object id, IUpdateExpression<IHistoryItem> update)
+        public Task<object> UpdateAsync(object id, IUpdateExpression<IHistoryItem> updateExpression)
         {
             throw new InvalidOperationException();
         }

@@ -10,10 +10,10 @@
     {
         IQueryable<T> Query { get; }
 
-        Task<T> GetById(object id);
+        Task<T> GetByIdAsync(object id);
 
-        Task<T> FindFirst(Expression<Func<T, bool>> filter);
+        Task<T> FindFirstAsync(Expression<Func<T, bool>> filter);
 
-        Task<IEnumerable<T>> Find(Expression<Func<T, bool>> filter);
+        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> filter);
     }
 }

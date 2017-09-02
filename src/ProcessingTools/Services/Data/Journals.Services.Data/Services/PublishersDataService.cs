@@ -23,12 +23,7 @@
         public PublishersDataService(TRepository repository, IDateTimeProvider datetimeProvider, IHistoryDataService historyService)
             : base(repository, datetimeProvider)
         {
-            if (historyService == null)
-            {
-                throw new ArgumentNullException(nameof(historyService));
-            }
-
-            this.historyService = historyService;
+            this.historyService = historyService ?? throw new ArgumentNullException(nameof(historyService));
         }
 
         public bool SaveToHistory { get; set; } = true;
@@ -84,14 +79,13 @@
                 DateModified = now
             };
 
-            await this.Repository.Add(dataModel);
-
-            await this.Repository.SaveChangesAsync();
+            await this.Repository.AddAsync(dataModel).ConfigureAwait(false);
+            await this.Repository.SaveChangesAsync().ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {
-                var entity = await this.Repository.GetById(dataModel.Id);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+                var entity = await this.Repository.GetByIdAsync(dataModel.Id).ConfigureAwait(false);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
             }
 
             return dataModel.Id;
@@ -112,21 +106,22 @@
             var now = this.DatetimeProvider.Now;
             var user = userId.ToString();
 
-            await this.Repository.Update(
+            await this.Repository.UpdateAsync(
                 model.Id,
                 ExpressionBuilder<TDataModel>
                     .UpdateExpression
                     .Set(p => p.Name, model.Name)
                     .Set(p => p.AbbreviatedName, model.AbbreviatedName)
                     .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now));
+                    .Set(p => p.DateModified, now))
+                .ConfigureAwait(false);
 
-            await this.Repository.SaveChangesAsync();
+            await this.Repository.SaveChangesAsync().ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {
-                var entity = await this.Repository.GetById(model.Id);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+                var entity = await this.Repository.GetByIdAsync(model.Id).ConfigureAwait(false);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
             }
 
             return model.Id;
@@ -134,12 +129,12 @@
 
         public override async Task<object> AddAddress(object userId, object modelId, IAddress address)
         {
-            var result = await base.AddAddress(userId, modelId, address);
+            var result = await base.AddAddress(userId, modelId, address).ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {
-                var entity = await this.Repository.GetById(modelId);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+                var entity = await this.Repository.GetByIdAsync(modelId).ConfigureAwait(false);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
             }
 
             return result;
@@ -147,12 +142,12 @@
 
         public override async Task<object> UpdateAddress(object userId, object modelId, IAddress address)
         {
-            var result = await base.UpdateAddress(userId, modelId, address);
+            var result = await base.UpdateAddress(userId, modelId, address).ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {
-                var entity = await this.Repository.GetById(modelId);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+                var entity = await this.Repository.GetByIdAsync(modelId).ConfigureAwait(false);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
             }
 
             return result;
@@ -160,12 +155,12 @@
 
         public override async Task<object> RemoveAddress(object userId, object modelId, object addressId)
         {
-            var result = await base.RemoveAddress(userId, modelId, addressId);
+            var result = await base.RemoveAddress(userId, modelId, addressId).ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {
-                var entity = await this.Repository.GetById(modelId);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity);
+                var entity = await this.Repository.GetByIdAsync(modelId).ConfigureAwait(false);
+                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
             }
 
             return result;

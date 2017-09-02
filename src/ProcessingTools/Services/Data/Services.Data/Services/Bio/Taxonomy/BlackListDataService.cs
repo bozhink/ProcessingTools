@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
-    using Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
 
     public class BlackListDataService : IBlackListDataService
     {
@@ -15,12 +15,7 @@
 
         public BlackListDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
         public async Task<object> Add(params string[] items)
@@ -33,14 +28,13 @@
                 {
                     Content = s
                 })
-                .Select(b => repository.Add(b))
+                .Select(b => repository.AddAsync(b))
                 .ToArray();
 
-                await Task.WhenAll(tasks);
-
-                var result = await repository.SaveChangesAsync();
-                return result;
-            });
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+                return await repository.SaveChangesAsync().ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
         }
 
         public async Task<object> Delete(params string[] items)
@@ -49,13 +43,11 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var tasks = validItems.Select(b => repository.Delete(b)).ToArray();
-
-                await Task.WhenAll(tasks);
-
-                var result = await repository.SaveChangesAsync();
-                return result;
-            });
+                var tasks = validItems.Select(b => repository.DeleteAsync(b)).ToArray();
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+                return await repository.SaveChangesAsync().ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
         }
 
         private IEnumerable<string> ValidateInputItems(params string[] items)

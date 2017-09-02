@@ -41,14 +41,14 @@
             }
         }
 
-        public override async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        public override Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            return await this.Query.FirstOrDefaultAsync(filter);
+            return this.Query.FirstOrDefaultAsync(filter);
         }
     }
 }

@@ -60,9 +60,9 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.repository.Delete(id);
+            var result = await this.repository.DeleteAsync(id).ConfigureAwait(false);
 
-            await this.repository.SaveChangesAsync();
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -91,19 +91,20 @@
                 CountryId = address.CountryId
             };
 
-            await this.repository.AddAddress(modelId, dataModel);
+            await this.repository.AddAddress(modelId, dataModel).ConfigureAwait(false);
 
             var now = this.datetimeProvider.Now;
             var user = userId.ToString();
 
-            await this.repository.Update(
+            await this.repository.UpdateAsync(
                 modelId,
                 ExpressionBuilder<TDataModel>
                     .UpdateExpression
                     .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now));
+                    .Set(p => p.DateModified, now))
+                .ConfigureAwait(false);
 
-            await this.repository.SaveChangesAsync();
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return dataModel.Id;
         }
@@ -133,19 +134,20 @@
                 CountryId = address.CountryId
             };
 
-            await this.repository.UpdateAddress(modelId, dataModel);
+            await this.repository.UpdateAddress(modelId, dataModel).ConfigureAwait(false);
 
             var now = this.datetimeProvider.Now;
             var user = userId.ToString();
 
-            await this.repository.Update(
+            await this.repository.UpdateAsync(
                 modelId,
                 ExpressionBuilder<TDataModel>
                     .UpdateExpression
                     .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now));
+                    .Set(p => p.DateModified, now))
+                .ConfigureAwait(false);
 
-            await this.repository.SaveChangesAsync();
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return dataModel.Id;
         }
@@ -172,14 +174,15 @@
             var now = this.datetimeProvider.Now;
             var user = userId.ToString();
 
-            await this.repository.Update(
+            await this.repository.UpdateAsync(
                 modelId,
                 ExpressionBuilder<TDataModel>
                     .UpdateExpression
                     .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now));
+                    .Set(p => p.DateModified, now))
+                .ConfigureAwait(false);
 
-            await this.repository.SaveChangesAsync();
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return addressId;
         }
@@ -196,7 +199,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var dataModel = await this.repository.GetById(id);
+            var dataModel = await this.repository.GetByIdAsync(id).ConfigureAwait(false);
             if (dataModel == null)
             {
                 return null;
@@ -219,7 +222,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var dataModel = await this.repository.GetById(id);
+            var dataModel = await this.repository.GetByIdAsync(id).ConfigureAwait(false);
             if (dataModel == null)
             {
                 return null;
@@ -252,9 +255,9 @@
                 throw new ArgumentNullException(nameof(sort));
             }
 
-            var query = await this.BuildQuery(skip, take, sort, order, filter);
+            var query = await this.BuildQuery(skip, take, sort, order, filter).ConfigureAwait(false);
 
-            var data = await query.Select(this.MapDataModelToServiceModel).ToListAsync();
+            var data = await query.Select(this.MapDataModelToServiceModel).ToListAsync().ConfigureAwait(false);
 
             return data;
         }
@@ -281,9 +284,9 @@
                 throw new ArgumentNullException(nameof(sort));
             }
 
-            var query = await this.BuildQuery(skip, take, sort, order, filter);
+            var query = await this.BuildQuery(skip, take, sort, order, filter).ConfigureAwait(false);
 
-            var data = await query.Select(this.MapDataModelToDetailedServiceModel).ToListAsync();
+            var data = await query.Select(this.MapDataModelToDetailedServiceModel).ToListAsync().ConfigureAwait(false);
 
             return data;
         }
@@ -303,7 +306,7 @@
                 // Skip
             }
 
-            var query = await this.repository.Find(dataFilter);
+            var query = await this.repository.FindAsync(dataFilter).ConfigureAwait(false);
 
             try
             {

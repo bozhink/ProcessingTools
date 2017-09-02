@@ -63,8 +63,8 @@
                 UserId = userId.ToString()
             };
 
-            var result = await this.repository.Add(model);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.AddAsync(model).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -91,12 +91,13 @@
                 throw new ArgumentOutOfRangeException(nameof(take), take, "Value should be positive");
             }
 
-            var query = await this.GetQuery(objectId, objectType);
+            var query = await this.GetQueryAsync(objectId, objectType).ConfigureAwait(false);
 
             var data = await query.Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
                 .Skip(skip)
                 .Take(take)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return data;
         }
@@ -119,7 +120,7 @@
             }
 
             string id = objectId.ToString();
-            var query = await this.repository.Find(h => h.ObjectId == id);
+            var query = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
 
             var data = await query.OrderBy(h => h.DateModified)
                 .Skip(skip)
@@ -133,7 +134,8 @@
                     DateModified = h.DateModified,
                     UserId = h.UserId
                 })
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return data;
         }
@@ -150,10 +152,11 @@
                 throw new ArgumentNullException(nameof(objectType));
             }
 
-            var query = await this.GetQuery(objectId, objectType);
+            var query = await this.GetQueryAsync(objectId, objectType).ConfigureAwait(false);
 
             var data = await query.Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return data;
         }
@@ -166,7 +169,7 @@
             }
 
             string id = objectId.ToString();
-            var query = await this.repository.Find(h => h.ObjectId == id);
+            var query = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
 
             var data = await query.OrderBy(h => h.DateModified)
                 .Select(h => new HistoryItem
@@ -178,17 +181,18 @@
                     DateModified = h.DateModified,
                     UserId = h.UserId
                 })
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return data;
         }
 
-        private async Task<IEnumerable<IHistoryItem>> GetQuery(object objectId, Type objectType)
+        private async Task<IEnumerable<IHistoryItem>> GetQueryAsync(object objectId, Type objectType)
         {
             string id = objectId.ToString();
             string typeName = objectType.FullName;
 
-            var query = await this.repository.Find(h => h.ObjectId == id && h.ObjectType == typeName);
+            var query = await this.repository.FindAsync(h => h.ObjectId == id && h.ObjectType == typeName).ConfigureAwait(false);
             return query.OrderBy(h => h.DateModified);
         }
     }

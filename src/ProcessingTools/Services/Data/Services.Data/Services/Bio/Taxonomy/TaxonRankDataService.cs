@@ -41,15 +41,11 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var tasks = validTaxa.Select(this.MapServiceModelToDbModel)
-                    .Select(t => repository.Add(t))
-                    .ToArray();
-
-                await Task.WhenAll(tasks);
-
-                var result = await repository.SaveChangesAsync();
-                return result;
-            });
+                var tasks = validTaxa.Select(this.MapServiceModelToDbModel).Select(t => repository.AddAsync(t)).ToArray();
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+                return await repository.SaveChangesAsync().ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
         }
 
         public virtual async Task<object> Delete(params ITaxonRank[] items)
@@ -58,13 +54,11 @@
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
-                var tasks = validTaxa.Select(t => repository.Delete(t.ScientificName)).ToArray();
-
-                await Task.WhenAll(tasks);
-
-                var result = await repository.SaveChangesAsync();
-                return result;
-            });
+                var tasks = validTaxa.Select(t => repository.DeleteAsync(t.ScientificName)).ToArray();
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+                return await repository.SaveChangesAsync().ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
         }
 
         private ITaxonRank[] ValidateTaxa(ITaxonRank[] taxa)

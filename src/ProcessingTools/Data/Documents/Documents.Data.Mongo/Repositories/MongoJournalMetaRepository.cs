@@ -36,7 +36,7 @@
             PublisherName = m.PublisherName
         };
 
-        public async Task<object> Add(IJournalMeta entity)
+        public async Task<object> AddAsync(IJournalMeta entity)
         {
             if (entity == null)
             {
@@ -44,24 +44,24 @@
             }
 
             var dbmodel = this.MapContractToModel(entity);
-            await this.Collection.InsertOneAsync(dbmodel);
+            await this.Collection.InsertOneAsync(dbmodel).ConfigureAwait(false);
 
             return dbmodel;
         }
 
-        public virtual Task<long> Count()
+        public virtual Task<long> CountAsync()
         {
             var result = this.Query.LongCount();
             return Task.FromResult(result);
         }
 
-        public virtual Task<long> Count(Expression<Func<IJournalMeta, bool>> filter)
+        public virtual Task<long> CountAsync(Expression<Func<IJournalMeta, bool>> filter)
         {
             var result = this.Query.LongCount(filter);
             return Task.FromResult(result);
         }
 
-        public async Task<object> Delete(object id)
+        public async Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -69,11 +69,11 @@
             }
 
             var filter = this.GetFilterById(id);
-            var result = await this.Collection.DeleteOneAsync(filter);
+            var result = await this.Collection.DeleteOneAsync(filter).ConfigureAwait(false);
             return result;
         }
 
-        public Task<IEnumerable<IJournalMeta>> Find(Expression<Func<IJournalMeta, bool>> filter)
+        public Task<IEnumerable<IJournalMeta>> FindAsync(Expression<Func<IJournalMeta, bool>> filter)
         {
             if (filter == null)
             {
@@ -83,7 +83,7 @@
             return Task.FromResult(this.Collection.AsQueryable().AsQueryable<IJournalMeta>().Where(filter).AsEnumerable());
         }
 
-        public Task<IJournalMeta> FindFirst(Expression<Func<IJournalMeta, bool>> filter)
+        public Task<IJournalMeta> FindFirstAsync(Expression<Func<IJournalMeta, bool>> filter)
         {
             if (filter == null)
             {
@@ -93,7 +93,7 @@
             return Task.FromResult(this.Collection.AsQueryable().AsQueryable<IJournalMeta>().FirstOrDefault(filter));
         }
 
-        public async Task<IJournalMeta> GetById(object id)
+        public async Task<IJournalMeta> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -101,11 +101,11 @@
             }
 
             var filter = this.GetFilterById(id);
-            var entity = await this.Collection.Find(filter).FirstOrDefaultAsync();
+            var entity = await this.Collection.Find(filter).FirstOrDefaultAsync().ConfigureAwait(false);
             return entity;
         }
 
-        public async Task<object> Update(IJournalMeta entity)
+        public async Task<object> UpdateAsync(IJournalMeta entity)
         {
             if (entity == null)
             {
@@ -115,34 +115,34 @@
             var dbmodel = this.MapContractToModel(entity);
             var id = dbmodel.GetIdValue<BsonIdAttribute>();
             var filter = this.GetFilterById(id);
-            var result = await this.Collection.ReplaceOneAsync(filter, dbmodel);
+            var result = await this.Collection.ReplaceOneAsync(filter, dbmodel).ConfigureAwait(false);
             return result;
         }
 
-        public async Task<object> Update(object id, IUpdateExpression<IJournalMeta> update)
+        public async Task<object> UpdateAsync(object id, IUpdateExpression<IJournalMeta> updateExpression)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (update == null)
+            if (updateExpression == null)
             {
-                throw new ArgumentNullException(nameof(update));
+                throw new ArgumentNullException(nameof(updateExpression));
             }
 
-            var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(update);
+            var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(updateExpression);
             var filter = this.GetFilterById(id);
-            var result = await this.Collection.UpdateOneAsync(filter, updateQuery);
+            var result = await this.Collection.UpdateOneAsync(filter, updateQuery).ConfigureAwait(false);
             return result;
         }
 
-        protected UpdateDefinition<JournalMeta> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<IJournalMeta> update)
+        protected UpdateDefinition<JournalMeta> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<IJournalMeta> updateExpression)
         {
-            var updateCommands = update.UpdateCommands.ToArray();
+            var updateCommands = updateExpression.UpdateCommands.ToArray();
             if (updateCommands.Length < 1)
             {
-                throw new ArgumentNullException(nameof(update));
+                throw new ArgumentNullException(nameof(updateExpression));
             }
 
             var updateCommand = updateCommands[0];

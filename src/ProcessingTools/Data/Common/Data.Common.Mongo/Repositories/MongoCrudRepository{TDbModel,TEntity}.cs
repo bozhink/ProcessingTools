@@ -21,21 +21,17 @@
 
         public virtual IQueryable<TEntity> Query => this.Collection.AsQueryable().AsQueryable<TEntity>();
 
-        public abstract Task<object> Add(TEntity entity);
+        public abstract Task<object> AddAsync(TEntity entity);
 
-        public virtual async Task<long> Count()
-        {
-            var result = await this.Collection.CountAsync(m => true);
-            return result;
-        }
+        public virtual Task<long> CountAsync() => this.Collection.CountAsync(m => true);
 
-        public virtual Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<long> CountAsync(Expression<Func<TEntity, bool>> filter)
         {
             var result = this.Query.LongCount(filter);
             return Task.FromResult(result);
         }
 
-        public virtual async Task<object> Delete(object id)
+        public virtual async Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -43,12 +39,12 @@
             }
 
             var filter = this.GetFilterById(id);
-            var result = await this.Collection.DeleteOneAsync(filter);
+            var result = await this.Collection.DeleteOneAsync(filter).ConfigureAwait(false);
             return result;
         }
 
         // TODO
-        public virtual async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -56,10 +52,10 @@
             }
 
             var query = this.Collection.AsQueryable().Where(filter).AsEnumerable();
-            return await Task.FromResult(query).ConfigureAwait(false);
+            return Task.FromResult(query);
         }
 
-        public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -70,10 +66,10 @@
             var entity = this.Collection
                  .AsQueryable()
                  .FirstOrDefault(filter);
-            return await Task.FromResult(entity).ConfigureAwait(false);
+            return Task.FromResult(entity);
         }
 
-        public async Task<TEntity> GetById(object id)
+        public async Task<TEntity> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -81,36 +77,36 @@
             }
 
             var filter = this.GetFilterById(id);
-            var entity = await this.Collection.Find(filter).FirstOrDefaultAsync();
+            var entity = await this.Collection.Find(filter).FirstOrDefaultAsync().ConfigureAwait(false);
             return entity;
         }
 
-        public abstract Task<object> Update(TEntity entity);
+        public abstract Task<object> UpdateAsync(TEntity entity);
 
-        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (update == null)
+            if (updateExpression == null)
             {
-                throw new ArgumentNullException(nameof(update));
+                throw new ArgumentNullException(nameof(updateExpression));
             }
 
-            var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(update);
+            var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(updateExpression);
             var filter = this.GetFilterById(id);
-            var result = await this.Collection.UpdateOneAsync(filter, updateQuery);
+            var result = await this.Collection.UpdateOneAsync(filter, updateQuery).ConfigureAwait(false);
             return result;
         }
 
-        protected UpdateDefinition<TDbModel> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<TEntity> update)
+        protected UpdateDefinition<TDbModel> ConvertUpdateExpressionToMongoUpdateQuery(IUpdateExpression<TEntity> updateExpression)
         {
-            var updateCommands = update.UpdateCommands.ToArray();
+            var updateCommands = updateExpression.UpdateCommands.ToArray();
             if (updateCommands.Length < 1)
             {
-                throw new ArgumentNullException(nameof(update));
+                throw new ArgumentNullException(nameof(updateExpression));
             }
 
             var updateCommand = updateCommands[0];

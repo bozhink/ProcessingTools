@@ -20,7 +20,7 @@
         {
         }
 
-        public virtual Task<object> Add(TEntity entity)
+        public virtual Task<object> AddAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -30,11 +30,11 @@
             return this.Context.Add(entity);
         }
 
-        public virtual Task<long> Count() => Task.FromResult(this.Context.DataSet.LongCount());
+        public virtual Task<long> CountAsync() => Task.FromResult(this.Context.DataSet.LongCount());
 
-        public virtual Task<long> Count(Expression<Func<TEntity, bool>> filter) => Task.FromResult(this.Context.DataSet.LongCount(filter));
+        public virtual Task<long> CountAsync(Expression<Func<TEntity, bool>> filter) => Task.FromResult(this.Context.DataSet.LongCount(filter));
 
-        public virtual Task<object> Delete(object id)
+        public virtual Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -44,7 +44,7 @@
             return this.Context.Delete(id);
         }
 
-        public virtual Task<object> Update(TEntity entity)
+        public virtual Task<object> UpdateAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -54,26 +54,26 @@
             return this.Context.Update(entity);
         }
 
-        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (update == null)
+            if (updateExpression == null)
             {
-                throw new ArgumentNullException(nameof(update));
+                throw new ArgumentNullException(nameof(updateExpression));
             }
 
-            var entity = await this.GetById(id);
+            var entity = await this.GetByIdAsync(id);
             if (entity == null)
             {
                 throw new EntityNotFoundException();
             }
 
             // TODO : Updater
-            var updater = new Updater<TEntity>(update);
+            var updater = new Updater<TEntity>(updateExpression);
             await updater.Invoke(entity);
 
             return await this.Context.Update(entity);

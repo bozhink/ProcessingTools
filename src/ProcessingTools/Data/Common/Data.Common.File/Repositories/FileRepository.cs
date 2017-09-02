@@ -30,7 +30,7 @@
         protected virtual TContext Context { get; private set; }
 
         // TODO
-        public virtual async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -38,21 +38,20 @@
             }
 
             var query = this.Context.DataSet.Where(filter);
-            return await Task.FromResult(query.AsEnumerable()).ConfigureAwait(false);
+            return Task.FromResult(query.AsEnumerable());
         }
 
-        public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var entity = await this.Context.DataSet.FirstOrDefaultAsync(filter);
-            return entity;
+            return this.Context.DataSet.FirstOrDefaultAsync(filter);
         }
 
-        public virtual Task<TEntity> GetById(object id)
+        public virtual Task<TEntity> GetByIdAsync(object id)
         {
             if (id == null)
             {

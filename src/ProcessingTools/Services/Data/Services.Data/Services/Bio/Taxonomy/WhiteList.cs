@@ -23,7 +23,7 @@
             {
                 return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
                 {
-                    var query = await repository.Find(t => t.IsWhiteListed);
+                    var query = await repository.FindAsync(t => t.IsWhiteListed).ConfigureAwait(false);
 
                     var result = query.Select(t => t.Name).ToList();
 

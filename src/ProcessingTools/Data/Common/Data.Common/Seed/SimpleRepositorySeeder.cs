@@ -14,12 +14,7 @@
 
         public SimpleRepositorySeeder(ICrudRepositoryProvider<TEntity> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
         public async Task Seed(params TEntity[] data)
@@ -34,12 +29,12 @@
             int numberOfInsertedItems = 0;
             foreach (var entity in data)
             {
-                await repository.Add(entity);
+                await repository.AddAsync(entity).ConfigureAwait(false);
                 ++numberOfInsertedItems;
 
                 if (numberOfInsertedItems >= NumberOfItemsToInsertBeforeRepositoryReset)
                 {
-                    await repository.SaveChangesAsync();
+                    await repository.SaveChangesAsync().ConfigureAwait(false);
                     repository.TryDispose();
                     repository = this.repositoryProvider.Create();
 
@@ -47,7 +42,7 @@
                 }
             }
 
-            await repository.SaveChangesAsync();
+            await repository.SaveChangesAsync().ConfigureAwait(false);
             repository.TryDispose();
         }
     }

@@ -76,7 +76,7 @@
                     .Skip(0)
                     .Take(1));
 
-            var dbaddress = await query.FirstOrDefaultAsync();
+            var dbaddress = await query.FirstOrDefaultAsync().ConfigureAwait(false);
             if (dbaddress == null)
             {
                 return null;
@@ -140,7 +140,7 @@
             return addressId;
         }
 
-        public override Task<object> Delete(object id)
+        public override Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {

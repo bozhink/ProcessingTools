@@ -27,8 +27,8 @@
 
         public override object SaveChanges() => this.Context.WriteToFile(this.dataFileName).Result;
 
-        public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFile(this.dataFileName);
+        public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFile(this.dataFileName).ConfigureAwait(false);
 
-        public override Task<object> Update(IBlackListEntity entity) => this.Add(entity);
+        public override Task<object> UpdateAsync(IBlackListEntity entity) => this.AddAsync(entity);
     }
 }

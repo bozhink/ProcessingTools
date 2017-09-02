@@ -7,16 +7,16 @@
 
     public interface ICrudRepository<T> : ISearchableRepository<T>
     {
-        Task<long> Count();
+        Task<long> CountAsync();
 
-        Task<long> Count(Expression<Func<T, bool>> filter);
+        Task<long> CountAsync(Expression<Func<T, bool>> filter);
 
-        Task<object> Add(T entity);
+        Task<object> AddAsync(T entity);
 
-        Task<object> Delete(object id);
+        Task<object> DeleteAsync(object id);
 
-        Task<object> Update(T entity);
+        Task<object> UpdateAsync(T entity);
 
-        Task<object> Update(object id, IUpdateExpression<T> update);
+        Task<object> UpdateAsync(object id, IUpdateExpression<T> updateExpression);
     }
 }

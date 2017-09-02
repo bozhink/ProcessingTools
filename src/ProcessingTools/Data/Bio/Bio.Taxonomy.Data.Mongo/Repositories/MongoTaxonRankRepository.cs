@@ -25,18 +25,18 @@
             };
         }
 
-        public override Task<object> Add(ITaxonRankEntity entity)
+        public override Task<object> AddAsync(ITaxonRankEntity entity)
         {
-            return this.Update(entity);
+            return this.UpdateAsync(entity);
         }
 
-        public override async Task<long> Count()
+        public override async Task<long> CountAsync()
         {
-            var count = await this.Collection.CountAsync("{}");
+            var count = await this.Collection.CountAsync("{}").ConfigureAwait(false);
             return count;
         }
 
-        public override async Task<long> Count(Expression<Func<ITaxonRankEntity, bool>> filter)
+        public override async Task<long> CountAsync(Expression<Func<ITaxonRankEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -50,10 +50,11 @@
                     .LongCount(filter);
 
                 return count;
-            });
+            })
+            .ConfigureAwait(false);
         }
 
-        public override async Task<object> Update(ITaxonRankEntity entity)
+        public override async Task<object> UpdateAsync(ITaxonRankEntity entity)
         {
             if (entity == null)
             {
@@ -66,7 +67,8 @@
                 Builders<MongoTaxonRankEntity>.Update
                     .Set(t => t.IsWhiteListed, entity.IsWhiteListed)
                     .AddToSetEach(t => t.Ranks, entity.Ranks),
-                this.updateOptions);
+                this.updateOptions)
+                .ConfigureAwait(false);
 
             return result;
         }

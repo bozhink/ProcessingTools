@@ -29,9 +29,9 @@
            .ToCursor()
            .ToEnumerable<IBlackListEntity>();
 
-        public override Task<object> Add(IBlackListEntity entity) => this.Update(entity);
+        public override Task<object> AddAsync(IBlackListEntity entity) => this.UpdateAsync(entity);
 
-        public override async Task<object> Update(IBlackListEntity entity)
+        public override async Task<object> UpdateAsync(IBlackListEntity entity)
         {
             if (entity == null)
             {
@@ -43,7 +43,8 @@
                     .Eq(t => t.Content, entity.Content),
                 Builders<MongoBlackListEntity>.Update
                     .Set(t => t.Content, entity.Content),
-                this.updateOptions);
+                this.updateOptions)
+                .ConfigureAwait(false);
 
             return result;
         }

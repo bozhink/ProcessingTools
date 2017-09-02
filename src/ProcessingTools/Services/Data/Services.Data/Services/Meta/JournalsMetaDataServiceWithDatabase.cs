@@ -21,7 +21,7 @@
 
         public async Task<IEnumerable<IJournalMeta>> GetAllJournalsMeta()
         {
-            var query = await this.repository.Find(j => true);
+            var query = await this.repository.FindAsync(j => true).ConfigureAwait(false);
             var result = await query.Select(j => new JournalMeta
             {
                 AbbreviatedJournalTitle = j.AbbreviatedJournalTitle,
@@ -33,7 +33,8 @@
                 JournalTitle = j.JournalTitle,
                 PublisherName = j.PublisherName
             })
-            .ToListAsync();
+            .ToListAsync()
+            .ConfigureAwait(false);
 
             return result;
         }

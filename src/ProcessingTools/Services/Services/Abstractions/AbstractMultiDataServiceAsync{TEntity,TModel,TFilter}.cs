@@ -40,11 +40,11 @@
                 throw new ArgumentNullException(nameof(ids));
             }
 
-            var tasks = ids.Select(id => this.repository.Delete(id)).ToArray();
+            var tasks = ids.Select(id => this.repository.DeleteAsync(id)).ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
-            return await this.repository.SaveChangesAsync();
+            return await this.repository.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public virtual async Task<object> DeleteAsync(params TModel[] models)
@@ -56,11 +56,11 @@
 
             var entities = this.MapModelsToEntities(models);
 
-            var tasks = entities.Select(e => this.repository.Delete(e)).ToArray();
+            var tasks = entities.Select(e => this.repository.DeleteAsync(e)).ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
-            return await this.repository.SaveChangesAsync();
+            return await this.repository.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public virtual async Task<TModel> GetByIdAsync(object id)
@@ -72,7 +72,7 @@
 
             var mapping = this.MapEntityToModel.Compile();
 
-            var entity = await this.repository.GetById(id);
+            var entity = await this.repository.GetByIdAsync(id).ConfigureAwait(false);
             var result = mapping.Invoke(entity);
 
             return result;
@@ -87,11 +87,11 @@
 
             var entities = this.MapModelsToEntities(models);
 
-            var tasks = entities.Select(e => this.repository.Add(e)).ToArray();
+            var tasks = entities.Select(e => this.repository.AddAsync(e)).ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
-            return await this.repository.SaveChangesAsync();
+            return await this.repository.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
@@ -99,7 +99,8 @@
             // TODO: filter
             var result = await this.repository.Query
                 .Select(this.MapEntityToModel)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return result;
         }
@@ -122,7 +123,8 @@
                 .Skip(skip)
                 .Take(take)
                 .Select(this.MapEntityToModel)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return result;
         }
@@ -130,7 +132,7 @@
         public virtual async Task<long> SelectCountAsync(TFilter filter)
         {
             // TODO: filter
-            var count = await this.repository.Query.LongCountAsync();
+            var count = await this.repository.Query.LongCountAsync().ConfigureAwait(false);
 
             return count;
         }
@@ -144,11 +146,11 @@
 
             var entities = this.MapModelsToEntities(models);
 
-            var tasks = entities.Select(e => this.repository.Update(e)).ToArray();
+            var tasks = entities.Select(e => this.repository.UpdateAsync(e)).ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
-            return await this.repository.SaveChangesAsync();
+            return await this.repository.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public void Dispose()

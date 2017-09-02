@@ -24,7 +24,7 @@
         {
             var result = new ConcurrentQueue<ITaxonRank>();
 
-            await this.Resolve(scientificNames, result);
+            await this.Resolve(scientificNames, result).ConfigureAwait(false);
 
             return new HashSet<ITaxonRank>(result);
         }
@@ -50,8 +50,9 @@
                     tasks.Enqueue(this.FindRankForSingleTaxon(repository, name, outputCollection));
                 }
 
-                await Task.WhenAll(tasks);
-            });
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
         }
 
         private async Task FindRankForSingleTaxon(ITaxonRankRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
@@ -61,7 +62,7 @@
                 return;
             }
 
-            var entity = await repository.FindFirst(t => t.Name.ToLower() == name.ToLower());
+            var entity = await repository.FindFirstAsync(t => t.Name.ToLower() == name.ToLower()).ConfigureAwait(false);
             if (entity == null)
             {
                 return;

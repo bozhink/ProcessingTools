@@ -16,18 +16,18 @@
         {
         }
 
-        public override async Task<object> Add(T entity)
+        public override async Task<object> AddAsync(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            await this.Collection.InsertOneAsync(entity);
+            await this.Collection.InsertOneAsync(entity).ConfigureAwait(false);
             return entity;
         }
 
-        public override async Task<object> Update(T entity)
+        public override async Task<object> UpdateAsync(T entity)
         {
             if (entity == null)
             {
@@ -36,25 +36,23 @@
 
             var id = entity.GetIdValue<BsonIdAttribute>();
             var filter = this.GetFilterById(id);
-            var result = await this.Collection.ReplaceOneAsync(filter, entity);
+            var result = await this.Collection.ReplaceOneAsync(filter, entity).ConfigureAwait(false);
             return result;
         }
 
-        public override async Task<long> Count()
+        public override Task<long> CountAsync()
         {
-            var count = await this.Collection.CountAsync("{}");
-            return count;
+            return this.Collection.CountAsync("{}");
         }
 
-        public override async Task<long> Count(Expression<Func<T, bool>> filter)
+        public override Task<long> CountAsync(Expression<Func<T, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var count = await this.Collection.CountAsync(filter);
-            return count;
+            return this.Collection.CountAsync(filter);
         }
     }
 }

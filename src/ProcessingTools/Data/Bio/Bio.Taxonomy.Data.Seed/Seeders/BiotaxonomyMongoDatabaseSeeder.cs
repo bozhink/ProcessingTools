@@ -61,7 +61,7 @@
 
             foreach (var entity in query)
             {
-                await mongoTaxonRankRepository.Add(entity);
+                await mongoTaxonRankRepository.AddAsync(entity).ConfigureAwait(false);
             }
 
             repository.TryDispose();
@@ -86,7 +86,7 @@
                 BypassDocumentValidation = false
             };
 
-            await collection.InsertManyAsync(entities, options);
+            await collection.InsertManyAsync(entities, options).ConfigureAwait(false);
         }
 
         private async Task SeedBlackListCollection()
@@ -97,7 +97,7 @@
             var entities = repository.Entities;
             foreach (var entity in entities)
             {
-                await mongoBiotaxonomicBlackListRepository.Add(entity);
+                await mongoBiotaxonomicBlackListRepository.AddAsync(entity).ConfigureAwait(false);
             }
 
             repository.TryDispose();

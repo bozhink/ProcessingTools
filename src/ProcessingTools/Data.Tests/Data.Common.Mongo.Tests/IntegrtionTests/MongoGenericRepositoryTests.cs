@@ -27,7 +27,7 @@
             var book = new Book("How Old Holly Came To Be", "978-0-9847136-3-9", author);
             Console.WriteLine(book);
 
-            repository.Add(book).Wait();
+            repository.AddAsync(book).Wait();
 
             var books = repository.Query.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
@@ -43,7 +43,7 @@
             Assert.AreEqual(book.Author.FirstName, bookFromDb.Author.FirstName, "Author.FirstName should match.");
             Assert.AreEqual(book.Author.LastName, bookFromDb.Author.LastName, "Author.LastName should match.");
 
-            repository.Delete(bookFromDb).Wait();
+            repository.DeleteAsync(bookFromDb).Wait();
 
             var booksAfterDeletion = repository.Query?.ToList();
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");
@@ -62,9 +62,9 @@
             var book = new Book("How Old Holly Came To Be", "978-0-9847136-3-9", author);
             Console.WriteLine(book);
 
-            repository.Add(book).Wait();
+            repository.AddAsync(book).Wait();
 
-            var books = repository.Find(b => true).Result.ToList();
+            var books = repository.FindAsync(b => true).Result.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
             Assert.AreEqual(1, books.Count, "Number of books in db should be 1.");
 
@@ -78,7 +78,7 @@
             Assert.AreEqual(book.Author.FirstName, bookFromDb.Author.FirstName, "Author.FirstName should match.");
             Assert.AreEqual(book.Author.LastName, bookFromDb.Author.LastName, "Author.LastName should match.");
 
-            repository.Delete(bookFromDb).Wait();
+            repository.DeleteAsync(bookFromDb).Wait();
 
             var booksAfterDeletion = repository.Query?.ToList();
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");
@@ -97,7 +97,7 @@
             var book = new Book("How Old Holly Came To Be", "978-0-9847136-3-9", author);
             Console.WriteLine(book);
 
-            repository.Add(book).Wait();
+            repository.AddAsync(book).Wait();
 
             var books = repository.Query.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
@@ -115,7 +115,7 @@
 
             /* Update */
             bookFromDb.Author.FirstName = bookFromDb.Author.FirstName + "1";
-            repository.Update(bookFromDb).Wait();
+            repository.UpdateAsync(bookFromDb).Wait();
 
             books = repository.Query.ToList();
             Assert.IsNotNull(books, "Books should not be null.");
@@ -131,7 +131,7 @@
             Assert.AreEqual(book.Author.FirstName + "1", bookFromDb.Author.FirstName, "Author.FirstName should match.");
             Assert.AreEqual(book.Author.LastName, bookFromDb.Author.LastName, "Author.LastName should match.");
 
-            repository.Delete(bookFromDb).Wait();
+            repository.DeleteAsync(bookFromDb).Wait();
 
             var booksAfterDeletion = repository.Query?.ToList();
             Assert.IsFalse(booksAfterDeletion?.Count > 0, "Number of books after deletion should be 0.");

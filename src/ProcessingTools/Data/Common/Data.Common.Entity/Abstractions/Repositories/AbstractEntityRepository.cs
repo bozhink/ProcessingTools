@@ -30,7 +30,7 @@
 
         protected IGenericRepository<TContext, TDbModel> Repository => this.repository;
 
-        public virtual Task<object> Add(TEntity entity)
+        public virtual Task<object> AddAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -44,24 +44,22 @@
             return Task.FromResult<object>(model);
         }
 
-        public virtual async Task<long> Count()
+        public virtual Task<long> CountAsync()
         {
-            var count = await this.repository.DbSet.LongCountAsync();
-            return count;
+            return this.repository.DbSet.LongCountAsync();
         }
 
-        public virtual async Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<long> CountAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var count = await this.repository.DbSet.LongCountAsync(filter);
-            return count;
+            return this.repository.DbSet.LongCountAsync(filter);
         }
 
-        public virtual Task<object> Delete(object id)
+        public virtual Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -72,7 +70,7 @@
             return Task.FromResult(id);
         }
 
-        public virtual Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -84,19 +82,17 @@
             return Task.FromResult(query.AsEnumerable());
         }
 
-        public virtual async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var entity = await this.repository.DbSet.FirstOrDefaultAsync(filter);
-
-            return entity;
+            return this.repository.DbSet.FirstOrDefaultAsync(filter);
         }
 
-        public virtual Task<TEntity> GetById(object id)
+        public virtual Task<TEntity> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -109,9 +105,9 @@
 
         public virtual object SaveChanges() => this.repository.Context.SaveChanges();
 
-        public virtual async Task<object> SaveChangesAsync() => await this.repository.Context.SaveChangesAsync();
+        public virtual async Task<object> SaveChangesAsync() => await this.repository.Context.SaveChangesAsync().ConfigureAwait(false);
 
-        public virtual Task<object> Update(TEntity entity)
+        public virtual Task<object> UpdateAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -125,7 +121,7 @@
             return Task.FromResult<object>(model);
         }
 
-        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> update)
         {
             if (id == null)
             {

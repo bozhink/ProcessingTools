@@ -19,7 +19,7 @@
 
         protected override Func<IPublisherEntity, Publisher> MapEntityToDbModel => e => new Publisher(e);
 
-        public override async Task<object> Add(IPublisherEntity entity)
+        public override async Task<object> AddAsync(IPublisherEntity entity)
         {
             if (entity == null)
             {
@@ -29,16 +29,16 @@
             var dbmodel = new Publisher(entity);
             foreach (var entityAddress in entity.Addresses)
             {
-                var dbaddress = await this.AddOrGetAddress(entityAddress);
+                var dbaddress = await this.AddOrGetAddressAsync(entityAddress);
                 dbmodel.Addresses.Add(dbaddress);
             }
 
-            return await this.Add(dbmodel, this.DbSet);
+            return await this.AddAsync(dbmodel, this.DbSet);
         }
 
-        public override Task<long> Count() => this.DbSet.LongCountAsync();
+        public override Task<long> CountAsync() => this.DbSet.LongCountAsync();
 
-        public override Task<long> Count(Expression<Func<IPublisherEntity, bool>> filter)
+        public override Task<long> CountAsync(Expression<Func<IPublisherEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -49,7 +49,7 @@
             return query.LongCountAsync(filter);
         }
 
-        public override async Task<IPublisherEntity> GetById(object id)
+        public override async Task<IPublisherEntity> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -60,7 +60,7 @@
                 .Include(p => p.Addresses)
                 .Where(p => p.Id.ToString() == id.ToString());
 
-            var entity = await query.FirstOrDefaultAsync();
+            var entity = await query.FirstOrDefaultAsync().ConfigureAwait(false);
 
             return entity;
         }
