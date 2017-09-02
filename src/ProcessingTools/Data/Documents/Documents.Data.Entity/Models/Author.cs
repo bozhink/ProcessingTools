@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
@@ -72,9 +71,9 @@
         };
 
         [NotMapped]
-        ICollection<IAffiliationEntity> IAuthorEntity.Affiliations => this.Affiliations.ToList<IAffiliationEntity>();
+        IEnumerable<IAffiliationEntity> IAuthorEntity.Affiliations => this.Affiliations;
 
         [NotMapped]
-        ICollection<IArticleEntity> IAuthorEntity.Articles => this.Articles.ToList<IArticleEntity>();
+        IEnumerable<IArticleEntity> IAuthorEntity.Articles => this.Articles;
     }
 }

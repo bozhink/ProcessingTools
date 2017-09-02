@@ -26,8 +26,8 @@
 
         Guid JournalId { get; }
 
-        ICollection<IDocumentEntity> Documents { get; }
+        IEnumerable<IDocumentEntity> Documents { get; }
 
-        ICollection<IAuthorEntity> Authors { get; }
+        IEnumerable<IAuthorEntity> Authors { get; }
     }
 }

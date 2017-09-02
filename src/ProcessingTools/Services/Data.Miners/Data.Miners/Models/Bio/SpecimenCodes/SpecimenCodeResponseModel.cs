@@ -51,9 +51,11 @@
             }
         }
 
+        private int HashCode => this.hashCode;
+
         public override bool Equals(object obj) => this.GetHashCode() == obj.GetHashCode();
 
-        public override int GetHashCode() => this.hashCode;
+        public override int GetHashCode() => this.HashCode;
 
         private void RecalculateHash()
         {

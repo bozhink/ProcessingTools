@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Models.Abstractions;
 
@@ -29,6 +28,6 @@
         }
 
         [NotMapped]
-        ICollection<IAddressEntity> IAddressableEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
+        IEnumerable<IAddressEntity> IAddressableEntity.Addresses => this.Addresses;
     }
 }

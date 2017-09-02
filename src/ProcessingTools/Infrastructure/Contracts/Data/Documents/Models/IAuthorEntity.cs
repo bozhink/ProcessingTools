@@ -5,8 +5,8 @@
 
     public interface IAuthorEntity : IPerson, IGuidIdentifiable, IModelWithUserInformation
     {
-        ICollection<IAffiliationEntity> Affiliations { get; }
+        IEnumerable<IAffiliationEntity> Affiliations { get; }
 
-        ICollection<IArticleEntity> Articles { get; }
+        IEnumerable<IArticleEntity> Articles { get; }
     }
 }

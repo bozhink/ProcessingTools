@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
@@ -84,9 +83,9 @@
         };
 
         [NotMapped]
-        ICollection<IDocumentEntity> IArticleEntity.Documents => this.Documents.ToList<IDocumentEntity>();
+        IEnumerable<IDocumentEntity> IArticleEntity.Documents => this.Documents;
 
         [NotMapped]
-        ICollection<IAuthorEntity> IArticleEntity.Authors => this.Authors.ToList<IAuthorEntity>();
+        IEnumerable<IAuthorEntity> IArticleEntity.Authors => this.Authors;
     }
 }

@@ -4,6 +4,6 @@
 
     public interface IAddressableEntity
     {
-        ICollection<IAddressEntity> Addresses { get; }
+        IEnumerable<IAddressEntity> Addresses { get; }
     }
 }
