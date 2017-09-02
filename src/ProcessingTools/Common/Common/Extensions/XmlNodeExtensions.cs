@@ -20,87 +20,16 @@
         /// <returns>Returns true if the XmlNode is a named XmlNode (*) or a text node. Returns false if the node is a comment, proceeding instruction, DOCTYPE or CDATA element.</returns>
         public static bool CheckIfIsPossibleToPerformReplaceInXmlNode(this XmlNode node)
         {
-            bool performReplace = false;
             switch (node.NodeType)
             {
-                case XmlNodeType.None:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.Element:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.Attribute:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.Text:
-                    performReplace = true;
-                    break;
-
-                case XmlNodeType.CDATA:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.EntityReference:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.Entity:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.ProcessingInstruction:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.Comment:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.Document:
-                    performReplace = true;
-                    break;
-
-                case XmlNodeType.DocumentType:
-                    performReplace = false;
-                    break;
-
                 case XmlNodeType.DocumentFragment:
-                    performReplace = true;
-                    break;
-
-                case XmlNodeType.Notation:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.Whitespace:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.SignificantWhitespace:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.EndElement:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.EndEntity:
-                    performReplace = false;
-                    break;
-
-                case XmlNodeType.XmlDeclaration:
-                    performReplace = false;
-                    break;
+                case XmlNodeType.Document:
+                case XmlNodeType.Text:
+                    return true;
 
                 default:
-                    performReplace = false;
-                    break;
+                    return false;
             }
-
-            return performReplace;
         }
 
         public static XmlDocument OwnerDocument(this XmlNode node)
