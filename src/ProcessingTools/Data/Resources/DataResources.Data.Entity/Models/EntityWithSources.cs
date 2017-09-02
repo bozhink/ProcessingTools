@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using ProcessingTools.Contracts.Data.DataResources.Models;
 
     public abstract class EntityWithSources : IEntityWithSources
@@ -28,6 +27,6 @@
         }
 
         [NotMapped]
-        ICollection<ISourceIdEntity> IEntityWithSources.Sources => this.Sources.ToList<ISourceIdEntity>();
+        IEnumerable<ISourceIdEntity> IEntityWithSources.Sources => this.Sources;
     }
 }

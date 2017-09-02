@@ -3,9 +3,8 @@
     using System;
     using System.Collections.Generic;
     using ProcessingTools.Contracts.Data.Journals.Models;
-    using ProcessingTools.Contracts.Models;
 
-    internal class InstitutionDataModel : IInstitution, IDataModel
+    internal class InstitutionDataModel : IInstitution
     {
         public InstitutionDataModel()
         {
@@ -15,7 +14,7 @@
 
         public string AbbreviatedName { get; set; }
 
-        public ICollection<IAddress> Addresses { get; set; }
+        public IEnumerable<IAddress> Addresses { get; set; }
 
         public string CreatedByUser { get; set; }
 

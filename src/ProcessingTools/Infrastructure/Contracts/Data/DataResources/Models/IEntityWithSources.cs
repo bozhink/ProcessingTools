@@ -4,6 +4,6 @@
 
     public interface IEntityWithSources
     {
-        ICollection<ISourceIdEntity> Sources { get; }
+        IEnumerable<ISourceIdEntity> Sources { get; }
     }
 }

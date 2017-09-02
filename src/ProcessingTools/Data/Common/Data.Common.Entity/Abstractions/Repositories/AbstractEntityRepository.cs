@@ -121,16 +121,16 @@
             return Task.FromResult<object>(model);
         }
 
-        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> update)
+        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (update == null)
+            if (updateExpression == null)
             {
-                throw new ArgumentNullException(nameof(update));
+                throw new ArgumentNullException(nameof(updateExpression));
             }
 
             var model = this.repository.Get(id);
@@ -140,7 +140,7 @@
             }
 
             // TODO : Updater
-            var updater = new Updater<TEntity>(update);
+            var updater = new Updater<TEntity>(updateExpression);
             await updater.Invoke(model);
 
             this.repository.Update(model);

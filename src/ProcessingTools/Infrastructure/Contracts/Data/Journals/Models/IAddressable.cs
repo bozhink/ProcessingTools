@@ -5,6 +5,6 @@
 
     public interface IAddressable : IDataModel
     {
-        ICollection<IAddress> Addresses { get; }
+        IEnumerable<IAddress> Addresses { get; }
     }
 }
