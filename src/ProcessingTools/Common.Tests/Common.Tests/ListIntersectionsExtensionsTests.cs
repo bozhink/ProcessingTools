@@ -8,13 +8,12 @@
     [TestClass]
     public class ListIntersectionsExtensionsTests
     {
-        private static string[] words;
         private static List<string> wordList;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            words = new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "City", "city", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England", "FA", "far", "fire", "football", "Football", "football", "for", "from" };
+            var words = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "City", "city", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England", "FA", "far", "fire", "football", "Football", "football", "for", "from" };
 
             wordList = words.ToList();
         }
@@ -26,8 +25,7 @@
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseInsensitive_StrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseInsensitive = wordList
                 .MatchWithStringList(matches, false, false, true);
 
@@ -40,8 +38,7 @@
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseSensitive_StrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseSesitive = wordList
                 .MatchWithStringList(matches, false, true, true);
 
@@ -54,8 +51,7 @@
         [TestMethod]
         public void MatchWithStringList_Regex_CaseInsensitive_StrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseInsensitive = wordList
                 .MatchWithStringList(matches, true, false, true);
 
@@ -68,8 +64,7 @@
         [TestMethod]
         public void MatchWithStringList_Regex_CaseSensitive_StrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseSesitive = wordList
                 .MatchWithStringList(matches, true, true, true);
 
@@ -86,8 +81,7 @@
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseInsensitive_NonStrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseInsensitive = wordList
                 .MatchWithStringList(matches, false, false, false);
 
@@ -100,8 +94,7 @@
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseSensitive_NonStrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseSesitive = wordList
                 .MatchWithStringList(matches, false, true, false);
 
@@ -114,8 +107,7 @@
         [TestMethod]
         public void MatchWithStringList_Regex_CaseInsensitive_NonStrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseInsensitive = wordList
                 .MatchWithStringList(matches, true, false, false);
 
@@ -128,8 +120,7 @@
         [TestMethod]
         public void MatchWithStringList_Regex_CaseSensitive_NonStrictMode()
         {
-            var matches = (new string[] { "east", "football" })
-                .ToList();
+            var matches = new[] { "east", "football" };
             var matchedValuesCaseSesitive = wordList
                 .MatchWithStringList(matches, true, true, false);
 
@@ -146,8 +137,7 @@
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseInsensitive_StrictMode()
         {
-            var matches = (new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" })
-                .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseInsensitive = wordList
                 .DistinctWithStringList(matches, false, false, true);
 
@@ -160,8 +150,7 @@
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseSensitive_StrictMode()
         {
-            var matches = (new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" })
-                .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseSesitive = wordList
                 .DistinctWithStringList(matches, false, true, true);
 
@@ -174,8 +163,7 @@
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseInsensitive_StrictMode()
         {
-            var matches = (new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" })
-                .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseInsensitive = wordList
                 .DistinctWithStringList(matches, true, false, true);
 
@@ -188,8 +176,7 @@
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseSensitive_StrictMode()
         {
-            var matches = (new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" })
-                .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseSesitive = wordList
                 .DistinctWithStringList(matches, true, true, true);
 
@@ -206,8 +193,7 @@
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseInsensitive_NonStrictMode()
         {
-            var matches = new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" }
-               .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseInsensitive = wordList
                 .DistinctWithStringList(matches, false, false, false);
 
@@ -220,8 +206,7 @@
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseSensitive_NonStrictMode()
         {
-            var matches = new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" }
-                .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseSesitive = wordList
                 .DistinctWithStringList(matches, false, true, false);
 
@@ -234,8 +219,7 @@
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseInsensitive_NonStrictMode()
         {
-            var matches = new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" }
-                .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseInsensitive = wordList
                 .DistinctWithStringList(matches, true, false, false);
 
@@ -248,8 +232,7 @@
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseSensitive_NonStrictMode()
         {
-            var matches = new string[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" }
-                .ToList();
+            var matches = new[] { "a", "accommodated", "after", "all", "also", "altered", "an", "and", "article", "at", "attendance", "attracting", "August", "becoming", "been", "before", "built", "by", "capacity", "Carrow", "club", "Club", "concerts", "crowd", "crowds", "Crystal", "Cup", "current", "days", "deemed", "destroyed", "devastating", "during", "east", "Elton", "England" };
             var matchedValuesCaseSesitive = wordList
                 .DistinctWithStringList(matches, true, true, false);
 

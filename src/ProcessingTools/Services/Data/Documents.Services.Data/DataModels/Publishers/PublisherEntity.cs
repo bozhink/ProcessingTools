@@ -19,6 +19,6 @@
 
         public string Name { get; set; }
 
-        public ICollection<IAddressEntity> Addresses { get; set; }
+        public IEnumerable<IAddressEntity> Addresses { get; set; }
     }
 }

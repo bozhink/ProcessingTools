@@ -25,60 +25,39 @@
 
         public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
         {
-            try
-            {
-                string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
-                string url = $"{ApiUrl}?{searchString}";
+            string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
+            string url = $"{ApiUrl}?{searchString}";
 
-                var connector = this.connectorFactory.Create(BaseAddress);
-                string response = await connector.GetAsync(url, ContentTypes.Xml);
-                return response.ToXmlDocument();
-            }
-            catch
-            {
-                throw;
-            }
+            var connector = this.connectorFactory.Create(BaseAddress);
+            string response = await connector.GetAsync(url, ContentTypes.Xml);
+            return response.ToXmlDocument();
         }
 
         public async Task<XmlDocument> SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId = null)
         {
-            try
-            {
-                string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
-                string contentType = "application/x-www-form-urlencoded";
+            string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
+            string contentType = "application/x-www-form-urlencoded";
 
-                var connector = this.connectorFactory.Create(BaseAddress);
-                var response = await connector.PostAsync(ApiUrl, postData, contentType, Defaults.Encoding);
-                return response.ToXmlDocument();
-            }
-            catch
-            {
-                throw;
-            }
+            var connector = this.connectorFactory.Create(BaseAddress);
+            var response = await connector.PostAsync(ApiUrl, postData, contentType, Defaults.Encoding);
+            return response.ToXmlDocument();
         }
 
         public async Task<XmlDocument> SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId = null)
         {
-            try
-            {
-                Dictionary<string, string> values = new Dictionary<string, string>
+            Dictionary<string, string> values = new Dictionary<string, string>
                 {
                     { "data", string.Join("\r\n", scientificNames) }
                 };
 
-                if (sourceId != null)
-                {
-                    values.Add("data_source_ids", string.Join("|", sourceId));
-                }
-
-                var connector = this.connectorFactory.Create(BaseAddress);
-                var response = await connector.PostAsync(ApiUrl, values, Defaults.Encoding);
-                return response.ToXmlDocument();
-            }
-            catch
+            if (sourceId != null)
             {
-                throw;
+                values.Add("data_source_ids", string.Join("|", sourceId));
             }
+
+            var connector = this.connectorFactory.Create(BaseAddress);
+            var response = await connector.PostAsync(ApiUrl, values, Defaults.Encoding);
+            return response.ToXmlDocument();
         }
 
         private string BuildGlobalNamesResolverSearchString(string[] scientificNames, int[] sourceId)
