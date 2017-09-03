@@ -1,0 +1,15 @@
+﻿// <copyright file="IEmailService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Contracts.Services
+{
+    using Microsoft.AspNet.Identity;
+
+    /// <summary>
+    /// Expose a way to send email messages
+    /// </summary>
+    public interface IEmailService : IIdentityMessageService
+    {
+    }
+}
