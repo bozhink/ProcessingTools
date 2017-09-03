@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="Services\ISmsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="packages.config" />
