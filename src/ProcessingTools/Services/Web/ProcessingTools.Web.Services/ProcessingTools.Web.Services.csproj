@@ -71,6 +71,8 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSignInManager.cs" />
+    <Compile Include="ApplicationUserManager.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmsService.cs" />
@@ -95,6 +97,10 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Web.Contracts\ProcessingTools.Web.Contracts.csproj">
       <Project>{00fccc5a-d81f-4c05-9082-023837220f69}</Project>
       <Name>ProcessingTools.Web.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
+      <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
+      <Name>Users.Data.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj">
       <Project>{667d4391-17f1-4433-bc96-685aee89650a}</Project>
