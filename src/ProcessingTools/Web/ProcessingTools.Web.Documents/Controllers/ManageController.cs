@@ -8,8 +8,9 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Services.Web.Managers;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Documents.ViewModels.Manage;
+    using ProcessingTools.Web.Services;
 
     [Authorize]
     public class ManageController : Controller
@@ -28,17 +29,6 @@
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
-        }
-
-        public enum ManageMessageId
-        {
-            AddPhoneSuccess,
-            ChangePasswordSuccess,
-            SetTwoFactorSuccess,
-            SetPasswordSuccess,
-            RemoveLoginSuccess,
-            RemovePhoneSuccess,
-            Error
         }
 
         public ApplicationSignInManager SignInManager

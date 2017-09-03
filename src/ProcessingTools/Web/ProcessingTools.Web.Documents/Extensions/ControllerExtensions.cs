@@ -10,8 +10,8 @@
     using Microsoft.AspNet.Identity.Owin;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Web.Documents.ViewModels.Error;
+    using ProcessingTools.Web.Services;
     using Strings = Resources.Strings;
 
     public static class ControllerExtensions

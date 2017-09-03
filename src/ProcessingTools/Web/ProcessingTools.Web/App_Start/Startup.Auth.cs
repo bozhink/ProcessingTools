@@ -13,10 +13,10 @@
     using Microsoft.Owin.Security.Twitter;
     using Owin;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Services.Web.Contracts.Factories;
-    using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
+    using ProcessingTools.Web.Contracts.Security;
+    using ProcessingTools.Web.Services;
 
     public partial class Startup
     {

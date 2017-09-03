@@ -824,6 +824,10 @@
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Web.Contracts\ProcessingTools.Web.Contracts.csproj">
+      <Project>{00fccc5a-d81f-4c05-9082-023837220f69}</Project>
+      <Name>ProcessingTools.Web.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
@@ -868,6 +872,10 @@
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj">
+      <Project>{667d4391-17f1-4433-bc96-685aee89650a}</Project>
+      <Name>ProcessingTools.Web.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
       <Project>{C9AFD557-6559-4059-9287-65CA567F57EB}</Project>
       <Name>Geo.Services.Data</Name>
@@ -880,9 +888,13 @@
       <Project>{DC1A2B54-0B9B-422F-A401-90026EE48DE7}</Project>
       <Name>Journals.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Web\Services.Web\Services.Web.csproj">
-      <Project>{CE9F3A6E-C793-4046-8768-3DEE63CA35E4}</Project>
-      <Name>Services.Web</Name>
+    <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Security\ProcessingTools.Web.Security.csproj">
+      <Project>{7e793b3d-6932-43d4-8529-f3476e405f8e}</Project>
+      <Name>ProcessingTools.Web.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj">
+      <Project>{6a2f0be3-c1cf-4a5f-9354-39462c6a068a}</Project>
+      <Name>ProcessingTools.Web.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

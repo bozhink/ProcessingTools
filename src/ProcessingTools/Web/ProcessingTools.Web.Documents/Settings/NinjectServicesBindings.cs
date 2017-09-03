@@ -12,62 +12,38 @@
         {
             this.Bind(b =>
             {
-                b.From(Bio.Biorepositories.Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Bio.Biorepositories.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
-                b.From(Bio.Environments.Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Bio.Environments.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
-                b.From(Bio.Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Bio.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
-                b.From(DataResources.Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.DataResources.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
-                b.From(Geo.Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Geo.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
-                b.From(Services.Data.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
-                b.From(Services.Cache.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Services.Cache.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
-                b.From(Services.Validation.Assembly.Assembly.GetType().Assembly)
+                b.From(ProcessingTools.Services.Validation.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
                 b.From(ProcessingTools.Documents.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

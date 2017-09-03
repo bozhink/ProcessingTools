@@ -8,9 +8,9 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.Services;
     using ProcessingTools.Web.ViewModels.Manage;
     using Strings = ProcessingTools.Web.Resources.Controllers.Manage.Strings;
 

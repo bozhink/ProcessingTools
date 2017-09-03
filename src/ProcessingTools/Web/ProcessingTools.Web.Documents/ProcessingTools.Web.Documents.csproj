@@ -549,6 +549,10 @@
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Web.Contracts\ProcessingTools.Web.Contracts.csproj">
+      <Project>{00fccc5a-d81f-4c05-9082-023837220f69}</Project>
+      <Name>ProcessingTools.Web.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>
@@ -628,6 +632,10 @@
     <ProjectReference Include="..\..\Infrastructure\Models\Models.csproj">
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj">
+      <Project>{667d4391-17f1-4433-bc96-685aee89650a}</Project>
+      <Name>ProcessingTools.Web.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Reporters\Reporters.csproj">
       <Project>{7351B164-F80A-4FA2-A3E3-9B3DBB2FDAAD}</Project>
@@ -725,9 +733,13 @@
       <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
       <Name>Services.Validation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Web\Services.Web\Services.Web.csproj">
-      <Project>{CE9F3A6E-C793-4046-8768-3DEE63CA35E4}</Project>
-      <Name>Services.Web</Name>
+    <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Security\ProcessingTools.Web.Security.csproj">
+      <Project>{7e793b3d-6932-43d4-8529-f3476e405f8e}</Project>
+      <Name>ProcessingTools.Web.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj">
+      <Project>{6a2f0be3-c1cf-4a5f-9354-39462c6a068a}</Project>
+      <Name>ProcessingTools.Web.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

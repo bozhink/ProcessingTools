@@ -21,13 +21,10 @@
             this.Bind(b =>
             {
                 b.FromThisAssembly()
-                 .SelectAllClasses()
-                 .BindDefaultInterface();
-            });
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
 
-            this.Bind(b =>
-            {
-                b.From(nameof(ProcessingTools.Services.Web))
+                b.FromAssembliesMatching("ProcessingTools.Web.*")
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

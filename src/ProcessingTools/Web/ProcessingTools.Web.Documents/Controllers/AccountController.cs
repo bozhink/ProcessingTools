@@ -8,9 +8,9 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Documents.ViewModels.Account;
+    using ProcessingTools.Web.Services;
 
     [Authorize]
     public class AccountController : Controller
