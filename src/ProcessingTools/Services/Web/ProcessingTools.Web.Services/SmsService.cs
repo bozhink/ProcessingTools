@@ -1,4 +1,4 @@
-﻿// <copyright file="EmailService.cs" company="ProcessingTools">
+﻿// <copyright file="SmsService.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -9,18 +9,18 @@ namespace ProcessingTools.Web.Services
     using ProcessingTools.Web.Contracts.Services;
 
     /// <summary>
-    /// Default email sending service.
+    /// Default SMS sending service.
     /// </summary>
-    public class EmailService : IEmailService
+    public class SmsService : ISmsService
     {
         /// <summary>
-        /// Sends an email message
+        /// Sends a SMS message
         /// </summary>
         /// <param name="message">Message to be sent</param>
         /// <returns>Task</returns>
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
+            // Plug in your SMS service here to send a text message.
             return Task.FromResult(0);
         }
     }
