@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using ProcessingTools.Contracts.Services.Data.Geo;
-    using ProcessingTools.Web.Models.Cities;
+    using ProcessingTools.Web.Models.Geo.Cities;
 
     [Authorize]
     public class CitiesController : ApiController
