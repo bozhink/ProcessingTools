@@ -42,6 +42,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AddExternalLoginBindingModel.cs" />
+    <Compile Include="Account\ChangePasswordBindingModel.cs" />
+    <Compile Include="Account\ExternalLoginViewModel.cs" />
+    <Compile Include="Account\ManageInfoViewModel.cs" />
+    <Compile Include="Account\RegisterBindingModel.cs" />
+    <Compile Include="Account\RegisterExternalBindingModel.cs" />
+    <Compile Include="Account\RemoveLoginBindingModel.cs" />
+    <Compile Include="Account\SetPasswordBindingModel.cs" />
+    <Compile Include="Account\UserInfoViewModel.cs" />
+    <Compile Include="Account\UserLoginInfoViewModel.cs" />
     <Compile Include="Bio\EnvoTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Bio\MorphologicalEpithets\MorphologicalEpithetRequestModel.cs" />
     <Compile Include="Bio\MorphologicalEpithets\MorphologicalEpithetResponseModel.cs" />
