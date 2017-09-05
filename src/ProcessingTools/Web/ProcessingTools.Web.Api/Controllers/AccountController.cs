@@ -15,9 +15,9 @@
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Web.Api.Providers;
     using ProcessingTools.Web.Api.Results;
     using ProcessingTools.Web.Models.Account;
+    using ProcessingTools.Web.Services;
 
     [Authorize]
     [RoutePrefix("api/Account")]
