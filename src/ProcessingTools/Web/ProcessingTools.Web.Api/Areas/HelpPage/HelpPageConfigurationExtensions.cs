@@ -13,9 +13,9 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
     using System.Web.Http;
     using System.Web.Http.Controllers;
     using System.Web.Http.Description;
-
-    using ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions;
-    using ProcessingTools.Web.Api.Areas.HelpPage.Models;
+    using ProcessingTools.Web.Models.HelpPage.Help;
+    using ProcessingTools.Web.Models.HelpPage.ModelDescriptions;
+    using ProcessingTools.Web.Services.HelpPage;
 
     public static class HelpPageConfigurationExtensions
     {

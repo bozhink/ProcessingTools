@@ -9,12 +9,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
     {
         public InvalidSample(string errorMessage)
         {
-            if (errorMessage == null)
-            {
-                throw new ArgumentNullException(nameof(errorMessage));
-            }
-
-            this.ErrorMessage = errorMessage;
+            this.ErrorMessage = errorMessage ?? throw new ArgumentNullException(nameof(errorMessage));
         }
 
         public string ErrorMessage { get; private set; }

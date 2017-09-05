@@ -2,8 +2,9 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.Controllers
 {
     using System.Web.Http;
     using System.Web.Mvc;
-    using ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions;
-    using ProcessingTools.Web.Api.Areas.HelpPage.Models;
+    using ProcessingTools.Web.Models.HelpPage.Help;
+    using ProcessingTools.Web.Models.HelpPage.ModelDescriptions;
+    using ProcessingTools.Web.Services.HelpPage;
 
     /// <summary>
     /// The controller that will handle requests for the help page.

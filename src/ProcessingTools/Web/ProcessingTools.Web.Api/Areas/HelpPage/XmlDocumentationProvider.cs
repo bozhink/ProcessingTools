@@ -7,8 +7,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
     using System.Web.Http.Controllers;
     using System.Web.Http.Description;
     using System.Xml.XPath;
-
-    using ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions;
+    using ProcessingTools.Web.Contracts.Services.HelpPage;
 
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

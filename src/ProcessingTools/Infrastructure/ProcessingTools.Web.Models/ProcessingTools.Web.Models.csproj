@@ -35,6 +35,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Web.Tests\ProcessingTools.Web.Api.Tests\bin\Debug\System.Web.Http.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bio\EnvoTerms\EnvoTermResponseModel.cs" />
@@ -48,6 +53,7 @@
     <Compile Include="Geo\GeoEpithets\GeoEpithetResponseModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameResponseModel.cs" />
+    <Compile Include="HelpPage\Help\HelpPageApiModel.cs" />
     <Compile Include="HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
     <Compile Include="HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
     <Compile Include="HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />

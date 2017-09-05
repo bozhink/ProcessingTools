@@ -1,10 +1,14 @@
-namespace ProcessingTools.Web.Api.Areas.HelpPage.Models
+﻿// <copyright file="HelpPageApiModel.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Models.HelpPage.Help
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Net.Http.Headers;
     using System.Web.Http.Description;
-    using ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions;
+    using ProcessingTools.Web.Models.HelpPage.ModelDescriptions;
 
     /// <summary>
     /// The model that represents an API displayed on the help page.
@@ -28,7 +32,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.Models
         public ApiDescription ApiDescription { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="ParameterDescription"/> collection that describes the URI parameters for the API.
+        /// Gets the <see cref="ParameterDescription"/> collection that describes the URI parameters for the API.
         /// </summary>
         public Collection<ParameterDescription> UriParameters { get; private set; }
 
@@ -86,14 +90,12 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.Models
 
         private static IList<ParameterDescription> GetParameterDescriptions(ModelDescription modelDescription)
         {
-            ComplexTypeModelDescription complexTypeModelDescription = modelDescription as ComplexTypeModelDescription;
-            if (complexTypeModelDescription != null)
+            if (modelDescription is ComplexTypeModelDescription complexTypeModelDescription)
             {
                 return complexTypeModelDescription.Properties;
             }
 
-            CollectionModelDescription collectionModelDescription = modelDescription as CollectionModelDescription;
-            if (collectionModelDescription != null)
+            if (modelDescription is CollectionModelDescription collectionModelDescription)
             {
                 complexTypeModelDescription = collectionModelDescription.ElementDescription as ComplexTypeModelDescription;
                 if (complexTypeModelDescription != null)
@@ -102,7 +104,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage.Models
                 }
             }
 
-            return null;
+            return new List<ParameterDescription>();
         }
     }
 }

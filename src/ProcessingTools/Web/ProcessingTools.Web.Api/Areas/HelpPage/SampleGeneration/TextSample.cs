@@ -3,18 +3,13 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
     using System;
 
     /// <summary>
-    /// This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+    /// This represents a pre-formatted text sample on the help page. There's a display template named TextSample associated with this class.
     /// </summary>
     public class TextSample
     {
         public TextSample(string text)
         {
-            if (text == null)
-            {
-                throw new ArgumentNullException(nameof(text));
-            }
-
-            this.Text = text;
+            this.Text = text ?? throw new ArgumentNullException(nameof(text));
         }
 
         public string Text { get; private set; }
