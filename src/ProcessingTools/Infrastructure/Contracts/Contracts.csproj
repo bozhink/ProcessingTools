@@ -155,6 +155,7 @@
     <Compile Include="IRandomDataProvider.cs" />
     <Compile Include="IStrategiesProvider.cs" />
     <Compile Include="IStrategy.cs" />
+    <Compile Include="Models\Bio\Environments\IEnvoTermServiceModel.cs" />
     <Compile Include="Models\Bio\IMorphologicalEpithet.cs" />
     <Compile Include="Models\Bio\ITypeStatus.cs" />
     <Compile Include="Models\Documents\IJournalMeta.cs" />
