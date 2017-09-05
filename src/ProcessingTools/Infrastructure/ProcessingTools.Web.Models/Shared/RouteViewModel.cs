@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Web.ViewModels.Shared
+﻿namespace ProcessingTools.Web.Models.Shared
 {
-    public class Route
+    public class RouteViewModel
     {
         public string ActionName { get; set; }
 

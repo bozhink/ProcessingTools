@@ -84,6 +84,8 @@
     <Compile Include="Resources\MediaTypes\MediaTypeResponseModel.cs" />
     <Compile Include="Resources\Products\ProductRequestModel.cs" />
     <Compile Include="Resources\Products\ProductResponseModel.cs" />
+    <Compile Include="Shared\EditButtonsViewModel.cs" />
+    <Compile Include="Shared\RouteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -642,8 +642,6 @@
     <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
-    <Compile Include="ViewModels\Shared\EditButtonsViewModel.cs" />
-    <Compile Include="ViewModels\Shared\Route.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Data\Scripts\GeoNames.js" />

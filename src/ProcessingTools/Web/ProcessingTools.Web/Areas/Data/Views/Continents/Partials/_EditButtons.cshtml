@@ -7,11 +7,11 @@
     string controllerName = this.ViewData[ContextKeys.ControllerName].ToString();
     string areaName = this.ViewData[ContextKeys.AreaName].ToString();
 }
-@Html.Partial(ViewNames.SharedEditButtonsPartial, new ProcessingTools.Web.ViewModels.Shared.EditButtonsViewModel
+@Html.Partial(ViewNames.SharedEditButtonsPartial, new ProcessingTools.Web.Models.Shared.EditButtonsViewModel
 {
     ButtonSaveIsVisible = true,
     ButtonSaveText = Strings.ButtonSaveText,
-    ButtonSaveRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    ButtonSaveRoute = new ProcessingTools.Web.Models.Shared.RouteViewModel
     {
         ActionName = actionName,
         ControllerName = controllerName,
@@ -24,7 +24,7 @@
 
     ButtonSaveAndExitIsVisible = true,
     ButtonSaveAndExitText = Strings.ButtonSaveAndExitText,
-    ButtonSaveAndExitRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    ButtonSaveAndExitRoute = new ProcessingTools.Web.Models.Shared.RouteViewModel
     {
         ActionName = actionName,
         ControllerName = controllerName,
@@ -38,7 +38,7 @@
 
     ButtonSaveAndNewIsVisible = true,
     ButtonSaveAndNewText = Strings.ButtonSaveAndNewText,
-    ButtonSaveAndNewRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    ButtonSaveAndNewRoute = new ProcessingTools.Web.Models.Shared.RouteViewModel
     {
         ActionName = actionName,
         ControllerName = controllerName,
@@ -52,7 +52,7 @@
 
     ButtonCancelIsVisible = true,
     ButtonCancelText = Strings.ButtonCancelText,
-    ButtonCancelRoute = new ProcessingTools.Web.ViewModels.Shared.Route
+    ButtonCancelRoute = new ProcessingTools.Web.Models.Shared.RouteViewModel
     {
         ActionName = backActionName,
         ControllerName = controllerName,
