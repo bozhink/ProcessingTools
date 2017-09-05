@@ -6,10 +6,10 @@
     using System.Web.Http;
     using System.Web.Http.Cors;
     using AutoMapper;
-    using Models.TaxonClassifications;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Web.Models.Bio.Taxonomy;
 
     public abstract class AbstractTaxaClassificationResolverController<TResolver> : ApiController
         where TResolver : ITaxaClassificationResolver
