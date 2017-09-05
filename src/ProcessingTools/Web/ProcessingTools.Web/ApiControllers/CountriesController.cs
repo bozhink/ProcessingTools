@@ -1,35 +1,36 @@
 ﻿namespace ProcessingTools.Web.ApiControllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-    using ProcessingTools.Contracts.Services.Data.Geo;
-    using ProcessingTools.Web.Models.Geo.Countries;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Web.Contracts.Services.Geo;
 
     [Authorize]
     public class CountriesController : ApiController
     {
-        private readonly ICountriesDataService service;
+        private readonly ICountriesApiService service;
+        private readonly ILogger logger;
 
-        public CountriesController(ICountriesDataService service)
+        public CountriesController(ICountriesApiService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger;
         }
 
         // GET: api/Countries
-        public async Task<IEnumerable<CountryResponseModel>> Get()
+        public async Task<IHttpActionResult> Get()
         {
-            var items = await this.service.SelectAsync(null);
-
-            return items.Select(c => new CountryResponseModel
+            try
             {
-                Id = c.Id,
-                Name = c.Name,
-                LanguageCode = c.LanguageCode
-            })
-            .ToArray();
+                var data = await this.service.GetAllAsync().ConfigureAwait(false);
+                return this.Ok(data);
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(exception: ex, message: nameof(this.Get));
+                return this.InternalServerError();
+            }
         }
     }
 }
