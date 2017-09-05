@@ -37,6 +37,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bio\MorphologicalEpithets\MorphologicalEpithetRequestModel.cs" />
+    <Compile Include="Bio\MorphologicalEpithets\MorphologicalEpithetResponseModel.cs" />
     <Compile Include="Geo\Cities\CityResponseModel.cs" />
     <Compile Include="Geo\Cities\CountryResponseModel.cs" />
     <Compile Include="Geo\GeoEpithets\GeoEpithetRequestModel.cs" />
