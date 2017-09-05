@@ -39,6 +39,8 @@
   <ItemGroup>
     <Compile Include="Geo\Cities\CityResponseModel.cs" />
     <Compile Include="Geo\Cities\CountryResponseModel.cs" />
+    <Compile Include="Geo\GeoEpithets\GeoEpithetRequestModel.cs" />
+    <Compile Include="Geo\GeoEpithets\GeoEpithetResponseModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
