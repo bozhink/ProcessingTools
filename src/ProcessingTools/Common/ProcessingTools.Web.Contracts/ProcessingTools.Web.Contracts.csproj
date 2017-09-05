@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ICertificateValidatorFactory.cs" />
     <Compile Include="Services\Geo\ICitiesApiService.cs" />
+    <Compile Include="Services\HelpPage\IModelDocumentationProvider.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\ISmsService.cs" />
   </ItemGroup>
