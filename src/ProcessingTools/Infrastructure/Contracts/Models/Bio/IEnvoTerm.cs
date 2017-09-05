@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Models.Bio.Environments
+﻿namespace ProcessingTools.Contracts.Models.Bio
 {
-    public interface IEnvoTermServiceModel
+    public interface IEnvoTerm
     {
         string Content { get; }
 

@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Environments.Services.Data.Models
 {
-    using ProcessingTools.Contracts.Models.Bio.Environments;
+    using ProcessingTools.Contracts.Models.Bio;
 
-    public class EnvoTermServiceModel : IEnvoTermServiceModel
+    public class EnvoTermServiceModel : IEnvoTerm
     {
         public string EntityId { get; set; }
 
