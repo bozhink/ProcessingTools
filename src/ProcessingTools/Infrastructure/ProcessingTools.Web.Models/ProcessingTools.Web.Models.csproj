@@ -37,6 +37,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bio\EnvoTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Bio\MorphologicalEpithets\MorphologicalEpithetRequestModel.cs" />
     <Compile Include="Bio\MorphologicalEpithets\MorphologicalEpithetResponseModel.cs" />
     <Compile Include="Bio\TypeStatuses\TypeStatusRequestModel.cs" />
