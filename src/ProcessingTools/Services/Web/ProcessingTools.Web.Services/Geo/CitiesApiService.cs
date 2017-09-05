@@ -50,6 +50,10 @@ namespace ProcessingTools.Web.Services.Geo
         public async Task<CityResponseModel[]> GetAllAsync()
         {
             var items = await this.service.SelectAsync(null).ConfigureAwait(false);
+            if (items == null || !items.Any())
+            {
+                return new CityResponseModel[] { };
+            }
 
             return items.Select(this.mapper.Map<ICity, CityResponseModel>).ToArray();
         }
