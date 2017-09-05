@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using ProcessingTools.Contracts.Services.Data.Geo;
-    using ProcessingTools.Web.Models.Countries;
+    using ProcessingTools.Web.Models.Geo.Countries;
 
     [Authorize]
     public class CountriesController : ApiController
