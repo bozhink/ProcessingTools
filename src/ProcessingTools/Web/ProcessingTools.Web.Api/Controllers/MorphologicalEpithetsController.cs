@@ -5,7 +5,7 @@
     using ProcessingTools.Bio.Services.Data.Models;
     using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Web.Api.Abstractions;
-    using ProcessingTools.Web.Api.Models.MorphologicalEpithets;
+    using ProcessingTools.Web.Models.Bio.MorphologicalEpithets;
 
     public class MorphologicalEpithetsController : GenericDataServiceController<IMorphologicalEpithetsDataService, MorphologicalEpithetServiceModel, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel, IFilter>
     {
