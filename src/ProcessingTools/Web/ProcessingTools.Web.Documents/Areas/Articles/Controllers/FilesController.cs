@@ -16,9 +16,9 @@
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Models.Shared;
     using Strings = Resources.Strings;
 
     [Authorize]

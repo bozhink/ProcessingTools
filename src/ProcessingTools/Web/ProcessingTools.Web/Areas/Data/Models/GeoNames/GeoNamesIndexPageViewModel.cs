@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Models.GeoNames
 {
     using ProcessingTools.Contracts.ViewModels;
-    using ProcessingTools.Models.ViewModels;
+    using ProcessingTools.Web.Models.Shared;
 
     public class GeoNamesIndexPageViewModel : IPageViewModel<ListWithPagingViewModel<GeoNameViewModel>>
     {

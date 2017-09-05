@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Models.ViewModels;
+    using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Areas.Data.Controllers;
     using ProcessingTools.Web.Areas.Data.Models.GeoNames;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoNames.Views_Strings;

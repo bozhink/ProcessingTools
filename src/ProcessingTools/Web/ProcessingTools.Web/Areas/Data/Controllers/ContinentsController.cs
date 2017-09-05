@@ -12,11 +12,11 @@
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.ViewModels;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Data.Models.Continents;
     using ProcessingTools.Web.Areas.Data.Models.Shared;
     using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.Models.Shared;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings;
 
     [Authorize]

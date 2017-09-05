@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Models.GeoEpithets
 {
     using ProcessingTools.Contracts.ViewModels;
-    using ProcessingTools.Models.ViewModels;
+    using ProcessingTools.Web.Models.Shared;
 
     public class GeoEpithetsIndexPageViewModel : IPageViewModel<ListWithPagingViewModel<GeoEpithetViewModel>>
     {
