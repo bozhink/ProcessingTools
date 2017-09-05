@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Contracts.Services.Geo
     using ProcessingTools.Web.Models.Geo.Cities;
 
     /// <summary>
-    /// Web API service for managing of city objects.
+    /// Web API service for management of city objects.
     /// </summary>
     public interface ICitiesApiService
     {
