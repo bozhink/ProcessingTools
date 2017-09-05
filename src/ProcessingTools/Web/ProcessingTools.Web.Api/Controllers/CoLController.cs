@@ -2,13 +2,14 @@
 {
     using System.Web.Http.Cors;
     using Abstractions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     [EnableCors("*", "*", "*")]
-    public class CoLController : AbstractTaxaClassificationResolverController
+    public class CoLController : AbstractTaxaClassificationResolverController<ICatalogueOfLifeTaxaClassificationResolver>
     {
-        public CoLController(ICatalogueOfLifeTaxaClassificationResolver resolver)
-            : base(resolver)
+        protected CoLController(ITaxaClassificationResolver resolver, ILogger logger)
+            : base(resolver, logger)
         {
         }
     }
