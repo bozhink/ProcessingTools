@@ -8,19 +8,16 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Http;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
-
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Web.Api.Models.Account;
     using ProcessingTools.Web.Api.Providers;
     using ProcessingTools.Web.Api.Results;
-    using ProcessingTools.Web.Api.ViewModels.Account;
+    using ProcessingTools.Web.Models.Account;
 
     [Authorize]
     [RoutePrefix("api/Account")]
@@ -33,9 +30,7 @@
         {
         }
 
-        public AccountController(
-            ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountController(ApplicationUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             this.UserManager = userManager;
             this.AccessTokenFormat = accessTokenFormat;
