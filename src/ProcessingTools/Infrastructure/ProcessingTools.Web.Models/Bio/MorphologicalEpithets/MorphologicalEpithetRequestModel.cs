@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Models.Bio.MorphologicalEpithets
 {
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Constants.Data.Bio;
     using ProcessingTools.Contracts.Models.Bio;
 
     /// <summary>
@@ -21,7 +22,7 @@ namespace ProcessingTools.Web.Models.Bio.MorphologicalEpithets
         /// Gets or sets the Name of the morphological epithet object.
         /// </summary>
         [Required]
-        [MaxLength(100)]
+        [MaxLength(ValidationConstants.MaximalLengthOfMorphologicalEpithetName)]
         public string Name { get; set; }
     }
 }
