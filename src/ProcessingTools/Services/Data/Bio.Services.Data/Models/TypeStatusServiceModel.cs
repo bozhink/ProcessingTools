@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Services.Data.Models
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Bio;
 
-    public class TypeStatusServiceModel : INameableIntegerIdentifiable
+    public class TypeStatusServiceModel : ITypeStatus
     {
         public int Id { get; set; }
 
