@@ -2,10 +2,10 @@
 {
     using AutoMapper;
     using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Contracts.Models.Resources;
     using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Contracts.Models;
     using ProcessingTools.Web.Api.Abstractions;
-    using ProcessingTools.Web.Api.Models.Institutions;
+    using ProcessingTools.Web.Models.Resources.Institutions;
 
     public class InstitutionsController : GenericDataServiceController<IInstitutionsDataService, IInstitution, InstitutionRequestModel, InstitutionResponseModel, IFilter>
     {

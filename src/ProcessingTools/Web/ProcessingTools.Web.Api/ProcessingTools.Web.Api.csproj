@@ -359,13 +359,9 @@
     <Compile Include="ViewModels\Account\UserInfoViewModel.cs" />
     <Compile Include="ViewModels\Account\UserLoginInfoViewModel.cs" />
     <Compile Include="Models\EnvoTerms\EnvoTermResponseModel.cs" />
-    <Compile Include="Models\Institutions\InstitutionRequestModel.cs" />
-    <Compile Include="Models\Institutions\InstitutionResponseModel.cs" />
     <Compile Include="Models\MediaTypes\MediaTypeResponseModel.cs" />
     <Compile Include="Models\MorphologicalEpithets\MorphologicalEpithetRequestModel.cs" />
     <Compile Include="Models\MorphologicalEpithets\MorphologicalEpithetResponseModel.cs" />
-    <Compile Include="Models\Products\ProductRequestModel.cs" />
-    <Compile Include="Models\Products\ProductResponseModel.cs" />
     <Compile Include="Models\TaxonClassifications\TaxonClassificationResponseModel.cs" />
     <Compile Include="Models\TypeStatuses\TypeStatusRequestModel.cs" />
     <Compile Include="Models\TypeStatuses\TypeStatusResponseModel.cs" />
