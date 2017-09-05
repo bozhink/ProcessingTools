@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Geo.Cities
     public class CountryResponseModel : INameableIntegerIdentifiable
     {
         /// <summary>
-        /// Gets or sets the ID of the country object.
+        /// Gets or sets the Identifier (ID) of the country object.
         /// </summary>
         public int Id { get; set; }
 

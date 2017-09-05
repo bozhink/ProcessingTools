@@ -361,8 +361,6 @@
     <Compile Include="Models\EnvoTerms\EnvoTermResponseModel.cs" />
     <Compile Include="Models\GeoEpithets\GeoEpithetRequestModel.cs" />
     <Compile Include="Models\GeoEpithets\GeoEpithetResponseModel.cs" />
-    <Compile Include="Models\GeoNames\GeoNameRequestModel.cs" />
-    <Compile Include="Models\GeoNames\GeoNameResponseModel.cs" />
     <Compile Include="Models\Institutions\InstitutionRequestModel.cs" />
     <Compile Include="Models\Institutions\InstitutionResponseModel.cs" />
     <Compile Include="Models\MediaTypes\MediaTypeResponseModel.cs" />
@@ -470,6 +468,10 @@
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj">
+      <Project>{667D4391-17F1-4433-BC96-685AEE89650A}</Project>
+      <Name>ProcessingTools.Web.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.ExtractHcmr\Bio.ServiceClient.ExtractHcmr.csproj">
       <Project>{e78c97c4-837f-4c72-8751-970aa744d3a8}</Project>
