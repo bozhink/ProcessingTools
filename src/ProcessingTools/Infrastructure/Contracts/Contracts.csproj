@@ -156,6 +156,7 @@
     <Compile Include="IStrategiesProvider.cs" />
     <Compile Include="IStrategy.cs" />
     <Compile Include="Models\Bio\IMorphologicalEpithet.cs" />
+    <Compile Include="Models\Bio\ITypeStatus.cs" />
     <Compile Include="Models\Documents\IJournalMeta.cs" />
     <Compile Include="Models\IAbbreviatedNameable.cs" />
     <Compile Include="Models\IAbbreviatedNameableGuidIdentifiable.cs" />
