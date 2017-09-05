@@ -4,28 +4,49 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using AutoMapper;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Mediatypes;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
-    using ProcessingTools.Web.Api.Models.MediaTypes;
+    using ProcessingTools.Web.Models.Resources.MediaTypes;
 
     public class MediaTypesController : ApiController
     {
         private readonly IMediatypesResolver mediatypesResolver;
+        private readonly IMapper mapper;
+        private readonly ILogger logger;
 
-        public MediaTypesController(IMediatypesResolver mediatypesResolver)
+        public MediaTypesController(IMediatypesResolver mediatypesResolver, ILogger logger)
         {
             this.mediatypesResolver = mediatypesResolver ?? throw new ArgumentNullException(nameof(mediatypesResolver));
+            this.logger = logger;
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<IMediatype, MediaTypeResponseModel>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         public async Task<IHttpActionResult> Get(string id)
         {
-            var result = (await this.mediatypesResolver.ResolveMediatype(id))?.Select(AutoMapperConfig.Mapper.Map<MediaTypeResponseModel>).ToList();
-
-            if (result == null)
+            try
             {
-                return this.NotFound();
-            }
+                var result = await this.mediatypesResolver.ResolveMediatype(id).ConfigureAwait(false);
+                if (result == null)
+                {
+                    return this.NotFound();
+                }
 
-            return this.Ok(result);
+                var data = result.Select(this.mapper.Map<IMediatype, MediaTypeResponseModel>).ToArray();
+                return this.Ok(data);
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(exception: ex, message: string.Empty);
+                return this.InternalServerError();
+            }
         }
     }
 }

@@ -359,7 +359,6 @@
     <Compile Include="ViewModels\Account\UserInfoViewModel.cs" />
     <Compile Include="ViewModels\Account\UserLoginInfoViewModel.cs" />
     <Compile Include="Models\EnvoTerms\EnvoTermResponseModel.cs" />
-    <Compile Include="Models\MediaTypes\MediaTypeResponseModel.cs" />
     <Compile Include="Models\TaxonClassifications\TaxonClassificationResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
