@@ -21,7 +21,7 @@ namespace ProcessingTools.Web.Models.Bio.MorphologicalEpithets
         /// <summary>
         /// Gets or sets the Name of the morphological epithet object.
         /// </summary>
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfMorphologicalEpithetName)]
         public string Name { get; set; }
     }
