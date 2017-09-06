@@ -10,7 +10,7 @@
             if (anchorElement) {
                 href = anchorElement.href || null;
                 if (href) {
-                    document.location = href;
+                    document.location.href = href;
                 }
             }
         }
