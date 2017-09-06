@@ -21,5 +21,5 @@ module.exports = function ToastrConfig(toastr) {
         'hideEasing': 'linear',
         'showMethod': 'fadeIn',
         'hideMethod': 'fadeOut'
-    }
+    };
 };

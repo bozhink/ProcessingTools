@@ -29,9 +29,7 @@ function AddressesViewModel(addresses) {
                     done();
                 }
             },
-            error: function (error) {
-                console.log(error);
-
+            error: function () {
                 if (typeof done === 'function') {
                     done();
                 }
