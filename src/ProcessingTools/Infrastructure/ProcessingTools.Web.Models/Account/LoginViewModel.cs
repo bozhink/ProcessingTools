@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Models.Account
         /// Gets or sets the email.
         /// </summary>
         [Required]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.Email), ResourceType = typeof(Strings))]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -24,13 +24,13 @@ namespace ProcessingTools.Web.Models.Account
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.Password), ResourceType = typeof(Strings))]
         public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to remember this login.
         /// </summary>
-        [Display(Name = "Remember Me", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.RememberMe), ResourceType = typeof(Strings))]
         public bool RememberMe { get; set; }
     }
 }

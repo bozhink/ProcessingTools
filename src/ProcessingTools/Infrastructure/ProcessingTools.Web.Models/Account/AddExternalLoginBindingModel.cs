@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Models.Account
         /// Gets or sets the external access token.
         /// </summary>
         [Required]
-        [Display(Name = nameof(ExternalAccessToken), ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.ExternalAccessToken), ResourceType = typeof(Strings))]
         public string ExternalAccessToken { get; set; }
     }
 }

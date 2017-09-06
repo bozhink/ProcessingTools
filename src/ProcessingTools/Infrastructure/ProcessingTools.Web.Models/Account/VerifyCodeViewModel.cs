@@ -21,7 +21,7 @@ namespace ProcessingTools.Web.Models.Account
         /// Gets or sets the code.
         /// </summary>
         [Required]
-        [Display(Name = "Code", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.Code), ResourceType = typeof(Strings))]
         public string Code { get; set; }
 
         /// <summary>
@@ -32,13 +32,13 @@ namespace ProcessingTools.Web.Models.Account
         /// <summary>
         /// Gets or sets a value indicating whether to remember the browser.
         /// </summary>
-        [Display(Name = "Remember browser", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.RememberBrowser), ResourceType = typeof(Strings))]
         public bool RememberBrowser { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to remember this login.
         /// </summary>
-        [Display(Name = "Remember Me", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.RememberMe), ResourceType = typeof(Strings))]
         public bool RememberMe { get; set; }
     }
 }

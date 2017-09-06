@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Models.Account
         /// Gets or sets email.
         /// </summary>
         [Required]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.Email), ResourceType = typeof(Strings))]
         public string Email { get; set; }
     }
 }

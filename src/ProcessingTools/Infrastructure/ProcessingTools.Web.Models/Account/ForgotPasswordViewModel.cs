@@ -16,7 +16,7 @@ namespace ProcessingTools.Web.Models.Account
         /// </summary>
         [Required]
         [EmailAddress]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.Email), ResourceType = typeof(Strings))]
         public string Email { get; set; }
     }
 }

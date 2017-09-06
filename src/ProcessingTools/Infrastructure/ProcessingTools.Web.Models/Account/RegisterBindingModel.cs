@@ -16,7 +16,7 @@ namespace ProcessingTools.Web.Models.Account
         /// Gets or sets the email.
         /// </summary>
         [Required]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.Email), ResourceType = typeof(Strings))]
         public string Email { get; set; }
 
         /// <summary>
@@ -25,14 +25,14 @@ namespace ProcessingTools.Web.Models.Account
         [Required]
         [StringLength(ValidationConstants.PasswordMaximalLength, ErrorMessageResourceName = nameof(Strings.PasswordErrorMessage), ErrorMessageResourceType = typeof(Strings), MinimumLength = ValidationConstants.PasswordMinimalLength)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.Password), ResourceType = typeof(Strings))]
         public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets the password confirmation value.
         /// </summary>
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(Strings.ConfirmPassword), ResourceType = typeof(Strings))]
         [Compare(nameof(Password), ErrorMessageResourceName = nameof(Strings.ConfirmPasswordErrorMessage), ErrorMessageResourceType = typeof(Strings))]
         public string ConfirmPassword { get; set; }
     }
