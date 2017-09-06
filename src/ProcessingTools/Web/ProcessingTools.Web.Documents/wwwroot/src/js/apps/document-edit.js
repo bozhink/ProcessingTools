@@ -93,7 +93,7 @@ monacoEditorConfig.init(document.getElementById(EDITOR_CONTAINER_ID), '../../../
                     $monacoEditor = $('.monaco-editor');
 
                 theme = themes[index].themeId;
-                storage.setItem(keys.theme, theme)
+                storage.setItem(keys.theme, theme);
                 monacoEditorConfig.changeTheme(editor, theme);
 
                 if (index > 0) {

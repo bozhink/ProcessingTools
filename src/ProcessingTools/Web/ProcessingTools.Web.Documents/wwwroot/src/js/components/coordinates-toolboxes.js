@@ -21,7 +21,7 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
                     toolbox.style.height = '60px';
                 }
             } catch (ex) {
-                console.error(ex);
+                // skip
             }
         }
     }
@@ -46,7 +46,7 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
                     toolbox.style.height = '400px';
                 }
             } catch (ex) {
-                console.error(ex);
+                // skip
             }
         }
     }
@@ -66,7 +66,7 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
                     document.body.style.cursor = 'auto';
                 }
             } catch (ex) {
-                console.error(ex);
+                // skip
             }
         }
     }
