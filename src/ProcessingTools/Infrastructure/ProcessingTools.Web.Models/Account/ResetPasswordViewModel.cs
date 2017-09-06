@@ -1,4 +1,4 @@
-﻿// <copyright file="RegisterBindingModel.cs" company="ProcessingTools">
+﻿// <copyright file="ResetPasswordViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,14 +8,15 @@ namespace ProcessingTools.Web.Models.Account
     using ProcessingTools.Constants.Web;
 
     /// <summary>
-    /// Binding model for registration.
+    /// Reset password view model
     /// </summary>
-    public class RegisterBindingModel
+    public class ResetPasswordViewModel
     {
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
         [Required]
+        [EmailAddress]
         [Display(Name = "Email", ResourceType = typeof(Strings))]
         public string Email { get; set; }
 
@@ -35,5 +36,11 @@ namespace ProcessingTools.Web.Models.Account
         [Display(Name = "Confirm password", ResourceType = typeof(Strings))]
         [Compare(nameof(Password), ErrorMessageResourceName = nameof(Strings.ConfirmPasswordErrorMessage), ErrorMessageResourceType = typeof(Strings))]
         public string ConfirmPassword { get; set; }
+
+        /// <summary>
+        /// Gets or sets the code.
+        /// </summary>
+        [Display(Name = "Code", ResourceType = typeof(Strings))]
+        public string Code { get; set; }
     }
 }

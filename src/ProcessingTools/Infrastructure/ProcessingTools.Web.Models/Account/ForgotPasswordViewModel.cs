@@ -1,4 +1,4 @@
-﻿// <copyright file="RegisterExternalBindingModel.cs" company="ProcessingTools">
+﻿// <copyright file="ForgotPasswordViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -7,14 +7,15 @@ namespace ProcessingTools.Web.Models.Account
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// Binding model for registration of external login.
+    /// Forgot password view model
     /// </summary>
-    public class RegisterExternalBindingModel
+    public class ForgotPasswordViewModel
     {
         /// <summary>
-        /// Gets or sets email.
+        /// Gets or sets the email.
         /// </summary>
         [Required]
+        [EmailAddress]
         [Display(Name = "Email", ResourceType = typeof(Strings))]
         public string Email { get; set; }
     }

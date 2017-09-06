@@ -1,4 +1,4 @@
-﻿// <copyright file="RegisterBindingModel.cs" company="ProcessingTools">
+﻿// <copyright file="RegisterViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,15 +8,16 @@ namespace ProcessingTools.Web.Models.Account
     using ProcessingTools.Constants.Web;
 
     /// <summary>
-    /// Binding model for registration.
+    /// Register view model
     /// </summary>
-    public class RegisterBindingModel
+    public class RegisterViewModel
     {
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
         [Required]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
+        [EmailAddress]
+        [Display(Name = nameof(Strings.Email), ResourceType = typeof(Strings))]
         public string Email { get; set; }
 
         /// <summary>

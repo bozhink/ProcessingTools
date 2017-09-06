@@ -1,4 +1,4 @@
-﻿// <copyright file="RegisterExternalBindingModel.cs" company="ProcessingTools">
+﻿// <copyright file="ExternalLoginConfirmationViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -7,12 +7,12 @@ namespace ProcessingTools.Web.Models.Account
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// Binding model for registration of external login.
+    /// External login confirmation view model
     /// </summary>
-    public class RegisterExternalBindingModel
+    public class ExternalLoginConfirmationViewModel
     {
         /// <summary>
-        /// Gets or sets email.
+        /// Gets or sets the email.
         /// </summary>
         [Required]
         [Display(Name = "Email", ResourceType = typeof(Strings))]
