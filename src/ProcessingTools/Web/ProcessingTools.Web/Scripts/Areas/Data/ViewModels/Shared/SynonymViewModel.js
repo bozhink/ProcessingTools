@@ -94,7 +94,7 @@ function SynonymViewModel(synonyms) {
 
                 self.isModified(isModified || self.isModified());
             } catch (e) {
-                console.log(e);
+                // skip
             }
         }
 
