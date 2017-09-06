@@ -1,3 +1,5 @@
+/* globals ko Country Synonym */
+
 function SynonymViewModel(synonyms) {
     var self = this;
 

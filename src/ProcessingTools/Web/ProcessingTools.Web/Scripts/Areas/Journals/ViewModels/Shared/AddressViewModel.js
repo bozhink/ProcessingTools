@@ -1,4 +1,6 @@
-﻿function AddressesViewModel(addresses) {
+﻿/* globals ko Country Address */
+
+function AddressesViewModel(addresses) {
     var self = this, count = 0;
 
     self.isModified = ko.observable(false);

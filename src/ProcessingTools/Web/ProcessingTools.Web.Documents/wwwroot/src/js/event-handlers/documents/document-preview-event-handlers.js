@@ -49,7 +49,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                     parentElement = parentElement.parentNode;
                 }
             }
-        } else if ((selection = document.selection) && selection.type != 'Control') {
+        } else if ((selection = document.selection) && selection.type !== 'Control') {
             parentElement = selection.createRange().parentElement();
         }
         return parentElement;
