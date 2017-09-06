@@ -10,8 +10,8 @@
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.Models.Account;
     using ProcessingTools.Web.Services;
-    using ProcessingTools.Web.ViewModels.Account;
     using Strings = ProcessingTools.Web.Resources.Controllers.Account.Strings;
 
     [RequireHttps]
