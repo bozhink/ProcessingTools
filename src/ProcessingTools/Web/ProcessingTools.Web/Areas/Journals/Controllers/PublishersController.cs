@@ -283,7 +283,7 @@
             };
 
             var model = await this.service.GetDetails(this.UserId, id);
-            if (model?.Addresses?.Count > 0)
+            if (model != null && model.Addresses != null && model.Addresses.Count > 0)
             {
                 result.Data = model.Addresses.Select(this.MapAddress).ToArray();
             }
