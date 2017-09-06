@@ -1,4 +1,6 @@
-﻿db.taxa.aggregate([{
+﻿/* globals db */
+
+db.taxa.aggregate([{
     $unwind: '$ranks'
 }, {
     $lookup: {

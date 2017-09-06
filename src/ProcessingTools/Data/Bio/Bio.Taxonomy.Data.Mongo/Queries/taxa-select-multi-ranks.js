@@ -1,3 +1,5 @@
+/* globals db */
+
 db.getCollection('taxa').aggregate([
 
     {$project: {'_id': 0}},
