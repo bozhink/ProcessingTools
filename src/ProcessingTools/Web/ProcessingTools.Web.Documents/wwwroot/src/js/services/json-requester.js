@@ -10,7 +10,7 @@ module.exports = function JsonRequester($) {
 
         options = options || {};
         headers = options.headers || {};
-        data = options.data || undefined;
+        data = options.data || {};
 
         promise = new Promise(function (resolve, reject) {
             $.ajax({
