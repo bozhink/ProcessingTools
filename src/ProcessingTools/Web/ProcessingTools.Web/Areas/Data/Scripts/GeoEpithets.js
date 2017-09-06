@@ -33,5 +33,4 @@
 
         $modal.find('textarea').val('');
     });
-
-}(window, window.$))
+}(window, window.$));

@@ -1,4 +1,4 @@
-/* globals ko Country Synonym */
+/* globals ko Country Synonym Language */
 
 function SynonymViewModel(synonyms) {
     var self = this;
