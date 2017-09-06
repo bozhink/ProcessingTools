@@ -41,7 +41,8 @@
     "angular": "^1.6.6",
     "angular-route": "^1.6.6",
     "awesome-bootstrap-checkbox": "^0.3.7",
-    "knockout": "knockoutjs#^3.4.2"
+    "knockout": "knockoutjs#^3.4.2",
+    "knockout-validation": "^2.0.3"
   },
   "resolutions": {
     "jquery-validation": ">=1.8",

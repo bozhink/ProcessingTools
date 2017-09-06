@@ -18,8 +18,8 @@
                 "~/bower_components/modernizr/modernizr.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.KnockoutScripts).Include(
-                "~/Scripts/knockout-{version}.js",
-                "~/Scripts/knockout.validation.js"));
+                "~/bower_components/knockout/dist/knockout.js",
+                "~/bower_components/knockout-validation/dist/knockout.validation.js"));
 
             bundles.Add(new ScriptBundle(BundleNames.BootstrapScripts).Include(
                 "~/bower_components/tether/dist/js/tether.min.js",
