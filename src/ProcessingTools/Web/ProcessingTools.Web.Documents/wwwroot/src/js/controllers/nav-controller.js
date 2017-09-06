@@ -15,4 +15,4 @@ module.exports = function NavigationController($location, pages) {
         var path = $location.path();
         self.activePage = path;
     }
-}
+};

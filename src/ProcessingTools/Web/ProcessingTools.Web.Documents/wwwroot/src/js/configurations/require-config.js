@@ -4,4 +4,4 @@ module.exports = function (require, pathToNodeModules) {
             'vs': pathToNodeModules + '/monaco-editor/min/vs'
         }
     });
-}
+};

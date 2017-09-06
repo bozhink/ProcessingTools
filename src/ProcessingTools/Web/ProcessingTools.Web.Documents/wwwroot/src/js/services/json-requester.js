@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 module.exports = function JsonRequester($) {
-
     function send(method, url, options) {
         var headers, data, promise;
 
@@ -55,4 +54,4 @@ module.exports = function JsonRequester($) {
         put: put,
         delete: del
     };
-}
+};

@@ -19,7 +19,6 @@ var config = require('./require-config'),
     }];
 
 module.exports = function MonacoEditorConfig(window, require) {
-
     function getModes(monaco, selected) {
         return (function () {
             var modesIds = monaco.languages.getLanguages().map(function (lang) {
@@ -133,4 +132,4 @@ module.exports = function MonacoEditorConfig(window, require) {
         changeMode: changeMode,
         changeTheme: changeTheme
     };
-}
+};

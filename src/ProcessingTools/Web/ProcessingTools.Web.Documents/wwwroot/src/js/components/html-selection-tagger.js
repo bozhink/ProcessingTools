@@ -4,7 +4,7 @@ module.exports = function HtmlSelectionTagger(window, document) {
     function clearTagsInSelection() {
         var selection = window.getSelection().getRangeAt(0),
             selectedText = selection.extractContents(),
-            span = document.createElement("span");
+            span = document.createElement('span');
         span.appendChild(selectedText);
 
         span.innerHTML = span.innerHTML.replace(/<\/?[^!<>]+>/g, '');
@@ -113,4 +113,4 @@ module.exports = function HtmlSelectionTagger(window, document) {
         tagInUnderline: tagInUnderline,
         tagInMonospace: tagInMonospace
     };
-}
+};

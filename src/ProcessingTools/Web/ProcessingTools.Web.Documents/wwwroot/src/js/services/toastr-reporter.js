@@ -27,4 +27,4 @@ module.exports = function ToastrReporter(toastr) {
     return {
         raiseMessage: raiseMessage
     };
-}
+};

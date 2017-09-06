@@ -3,7 +3,6 @@ const
     ARTICLE_FIGS_AND_TABLES = 'article_figs_and_tables';
 
 module.exports = function (window, document, $, factory, tagger, coordinatesToolboxes) {
-
     function createBaloon(event, contentSelector) {
         var e = event || window.event,
             rid = e.target.getAttribute('href'),
@@ -50,7 +49,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
                     parentElement = parentElement.parentNode;
                 }
             }
-        } else if ((selection = document.selection) && selection.type != "Control") {
+        } else if ((selection = document.selection) && selection.type != 'Control') {
             parentElement = selection.createRange().parentElement();
         }
         return parentElement;
@@ -114,7 +113,7 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
             var $selection,
                 $anchorElement,
                 rid = e.target.getAttribute('rid');
-            
+
             if (!rid) {
                 return false;
             }
@@ -374,4 +373,4 @@ module.exports = function (window, document, $, factory, tagger, coordinatesTool
             coordinatesToolboxes.genrateCoordinatesMapToolbox('#' + MAIN_ASIDE_ID);
         })
     };
-}
+};

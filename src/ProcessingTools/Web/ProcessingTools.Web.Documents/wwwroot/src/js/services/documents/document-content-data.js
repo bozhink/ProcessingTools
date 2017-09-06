@@ -63,7 +63,6 @@ module.exports = function DocumentContentData(storage, keys, jsonRequester, sha1
         return promise;
     }
 
-
     function save(url, content) {
         var promise = new Promise(function (resolve, reject) {
             var remainingTimeToNextSaveInSeconds,
@@ -107,4 +106,4 @@ module.exports = function DocumentContentData(storage, keys, jsonRequester, sha1
         get: get,
         save: save
     };
-}
+};

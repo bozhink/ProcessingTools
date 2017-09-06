@@ -3,4 +3,4 @@ exports.navigationTabs = function () {
         controller: 'NavigationController as nav',
         templateUrl: 'navigation-tabs.tpl.html'
     }
-}
+};

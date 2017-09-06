@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProvider) {
-
     function clickMinimizeButtonEventHandler(event) {
         var e = event || window.event,
             target = e.target,
@@ -203,4 +202,4 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
         genrateCoordinatesListToolbox,
         genrateCoordinatesMapToolbox
     };
-}
+};
