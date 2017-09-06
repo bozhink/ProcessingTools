@@ -85,6 +85,7 @@
     <Compile Include="Web\InstanceNames.cs" />
     <Compile Include="Web\RouteConstants.cs" />
     <Compile Include="Web\SectionNames.cs" />
+    <Compile Include="Web\ValidationConstants.cs" />
     <Compile Include="Web\ViewNames.cs" />
   </ItemGroup>
   <ItemGroup>
