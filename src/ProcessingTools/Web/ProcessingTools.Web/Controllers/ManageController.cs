@@ -10,8 +10,8 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.Models.Manage;
     using ProcessingTools.Web.Services;
-    using ProcessingTools.Web.ViewModels.Manage;
     using Strings = ProcessingTools.Web.Resources.Controllers.Manage.Strings;
 
     [RequireHttps]

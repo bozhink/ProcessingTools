@@ -625,14 +625,6 @@
     <Compile Include="Services\EnvironmentService.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
-    <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
-    <Compile Include="ViewModels\Manage\FactorViewModel.cs" />
-    <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
-    <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
-    <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Data\Scripts\GeoNames.js" />
