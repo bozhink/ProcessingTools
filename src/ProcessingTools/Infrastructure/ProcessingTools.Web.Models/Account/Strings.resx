@@ -132,6 +132,12 @@
   <data name="LoginProvider" xml:space="preserve">
     <value>Login provider</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Current password</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>

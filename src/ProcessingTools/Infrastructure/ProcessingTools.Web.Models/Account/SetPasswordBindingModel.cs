@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Models.Account
 {
     using System.ComponentModel.DataAnnotations;
+    using ProcessingTools.Constants.Web;
 
     /// <summary>
     /// Binding model for password creation.
@@ -15,17 +16,17 @@ namespace ProcessingTools.Web.Models.Account
         /// Gets or sets the value of the password.
         /// </summary>
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(ValidationConstants.PasswordMaximalLength, ErrorMessageResourceName = nameof(Strings.PasswordErrorMessage), ErrorMessageResourceType = typeof(Strings), MinimumLength = ValidationConstants.PasswordMinimalLength)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "New password", ResourceType = typeof(Strings))]
         public string NewPassword { get; set; }
 
         /// <summary>
         /// Gets or sets the confirmation value for the password.
         /// </summary>
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Confirm new password", ResourceType = typeof(Strings))]
+        [Compare(nameof(NewPassword), ErrorMessageResourceName = nameof(Strings.ConfirmPasswordErrorMessage), ErrorMessageResourceType = typeof(Strings))]
         public string ConfirmPassword { get; set; }
     }
 }

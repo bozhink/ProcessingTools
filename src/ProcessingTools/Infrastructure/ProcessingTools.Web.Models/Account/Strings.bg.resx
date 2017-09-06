@@ -132,6 +132,12 @@
   <data name="LoginProvider" xml:space="preserve">
     <value>Доставчик</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Нова парола</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Текуща парола</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Парола</value>
   </data>
