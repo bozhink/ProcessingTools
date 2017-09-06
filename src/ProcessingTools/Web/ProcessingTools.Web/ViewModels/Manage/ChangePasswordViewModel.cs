@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.ViewModels.Manage
 {
     using System.ComponentModel.DataAnnotations;
-    using Constants;
+    using ProcessingTools.Constants.Web;
     using Strings = Resources.ViewModels.Manage.Strings;
 
     public class ChangePasswordViewModel

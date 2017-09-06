@@ -752,7 +752,6 @@
     <Folder Include="Areas\Journals\Resources\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Content\Styles\inc\" />
-    <Folder Include="ViewModels\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
