@@ -54,9 +54,9 @@
             var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement);
             var seed = await this.whitelist.Items;
 
-            var data = await this.miner.Mine(textContent, seed, stopWords);
+            var data = await this.miner.Mine(textContent, seed, stopWords) ?? new string[] { };
 
-            var taxaNames = new HashSet<string>(data.Where(s => s?.Length > 0 && s[0] == s.ToUpperInvariant()[0]));
+            var taxaNames = new HashSet<string>(data.Where(s => s != null && s.Length > 0 && s[0] == s.ToUpperInvariant()[0]));
 
             var tagModel = context.CreateTaxonNameXmlElement(TaxonType.Higher);
             await this.contentTagger.Tag(context, taxaNames, tagModel, HigherTaxaXPath);
