@@ -17,7 +17,7 @@ namespace ProcessingTools.Web.Models.Account
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(OldPassword), ResourceType = typeof(Strings))]
         public string OldPassword { get; set; }
 
         /// <summary>
@@ -26,14 +26,14 @@ namespace ProcessingTools.Web.Models.Account
         [Required]
         [StringLength(ValidationConstants.PasswordMaximalLength, ErrorMessageResourceName = nameof(Strings.PasswordErrorMessage), ErrorMessageResourceType = typeof(Strings), MinimumLength = ValidationConstants.PasswordMinimalLength)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(NewPassword), ResourceType = typeof(Strings))]
         public string NewPassword { get; set; }
 
         /// <summary>
         /// Gets or sets the confirmation value for the new password.
         /// </summary>
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password", ResourceType = typeof(Strings))]
+        [Display(Name = nameof(ConfirmPassword), ResourceType = typeof(Strings))]
         [Compare(nameof(NewPassword), ErrorMessageResourceName = nameof(Strings.ConfirmPasswordErrorMessage), ErrorMessageResourceType = typeof(Strings))]
         public string ConfirmPassword { get; set; }
     }

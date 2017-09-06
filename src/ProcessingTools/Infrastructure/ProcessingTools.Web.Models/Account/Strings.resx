@@ -129,6 +129,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="ExternalAccessToken" xml:space="preserve">
+    <value>External access token</value>
+  </data>
   <data name="LoginProvider" xml:space="preserve">
     <value>Login provider</value>
   </data>
