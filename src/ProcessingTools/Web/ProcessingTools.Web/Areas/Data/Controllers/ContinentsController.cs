@@ -419,8 +419,7 @@
             };
 
             var data = await this.service.SelectSynonymsAsync(id, null);
-
-            if (data?.Length > 0)
+            if (data != null && data.Length > 0)
             {
                 result.Data = data.Select(s => this.mapper.Map<SynonymResponseModel>(s)).ToArray();
             }
