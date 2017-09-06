@@ -87,8 +87,6 @@ function importAllFiles(db) {
     }
 }
 
-console.log(getSeedFiles(config.pathToWordNetDictionary));
-
 MongoClient.connect(config.connectionString, function (error, db) {
     if (error) {
         throw error;
