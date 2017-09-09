@@ -13,9 +13,9 @@
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Areas.Data.Models.Continents;
-    using ProcessingTools.Web.Areas.Data.Models.Shared;
     using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.Models.Geo.Continents;
+    using ProcessingTools.Web.Models.Geo.Shared;
     using ProcessingTools.Web.Models.Shared;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.Continents.Views_Strings;
 

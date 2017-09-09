@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Services
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Web.Areas.Data.Models.GeoNames;
+    using ProcessingTools.Web.Models.Geo.GeoNames;
 
     public interface IGeoNamesService
     {

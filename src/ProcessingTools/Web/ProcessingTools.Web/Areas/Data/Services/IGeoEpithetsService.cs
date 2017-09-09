@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Areas.Data.Services
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Web.Areas.Data.Models.GeoEpithets;
+    using ProcessingTools.Web.Models.Geo.GeoEpithets;
 
     public interface IGeoEpithetsService
     {
