@@ -118,8 +118,23 @@
     <Compile Include="Geo\Cities\CityResponseModel.cs" />
     <Compile Include="Geo\Cities\CountryResponseModel.cs" />
     <Compile Include="Geo\Countries\CountryResponseModel.cs" />
+    <Compile Include="Geo\GeoEpithets\GeoEpithetPageViewModel.cs" />
     <Compile Include="Geo\GeoEpithets\GeoEpithetRequestModel.cs" />
     <Compile Include="Geo\GeoEpithets\GeoEpithetResponseModel.cs" />
+    <Compile Include="Geo\GeoEpithets\GeoEpithetsIndexPageViewModel.cs" />
+    <Compile Include="Geo\GeoEpithets\GeoEpithetsRequestModel.cs" />
+    <Compile Include="Geo\GeoEpithets\GeoEpithetsViewModel.cs" />
+    <Compile Include="Geo\GeoEpithets\GeoEpithetViewModel.cs" />
+    <Compile Include="Geo\GeoEpithets\Strings.bg.Designer.cs">
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Geo\GeoEpithets\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Geo\GeoNames\GeoNamePageViewModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameResponseModel.cs" />
@@ -214,6 +229,14 @@
       <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Account\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Geo\GeoEpithets\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Geo\GeoEpithets\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
