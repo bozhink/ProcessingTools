@@ -122,6 +122,20 @@
     <Compile Include="Geo\GeoEpithets\GeoEpithetResponseModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameRequestModel.cs" />
     <Compile Include="Geo\GeoNames\GeoNameResponseModel.cs" />
+    <Compile Include="Geo\Shared\Strings.bg.Designer.cs">
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Geo\Shared\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Geo\Shared\SynonymisableViewModel.cs" />
+    <Compile Include="Geo\Shared\SynonymRequestModel.cs" />
+    <Compile Include="Geo\Shared\SynonymResponseModel.cs" />
+    <Compile Include="Geo\Shared\SynonymViewModel.cs" />
     <Compile Include="HelpPage\Help\HelpPageApiModel.cs" />
     <Compile Include="HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
     <Compile Include="HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
@@ -188,6 +202,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Geo\Shared\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Geo\Shared\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Manage\Strings.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
@@ -201,6 +223,10 @@
     <ProjectReference Include="..\..\Common\Constants\ProcessingTools.Constants.csproj">
       <Project>{c85ddad3-2bbe-4dfe-95fb-2e8dee682601}</Project>
       <Name>ProcessingTools.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
