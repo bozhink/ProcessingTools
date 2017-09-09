@@ -15,12 +15,12 @@
     using ProcessingTools.Web.Models.Shared;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoEpithets.Views_Strings;
 
-    public class GeoEpithetsService : IGeoEpithetsService
+    public class GeoEpithetsWebService : IGeoEpithetsWebService
     {
         private readonly IGeoEpithetsDataService service;
         private readonly IMapper mapper;
 
-        public GeoEpithetsService(IGeoEpithetsDataService service)
+        public GeoEpithetsWebService(IGeoEpithetsDataService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
 

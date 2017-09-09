@@ -20,10 +20,10 @@
         public const string EditActionName = ActionNames.Edit;
         public const string DeleteActionName = ActionNames.Delete;
 
-        private readonly IGeoEpithetsService service;
+        private readonly IGeoEpithetsWebService service;
         private readonly ILogger logger;
 
-        public GeoEpithetsController(IGeoEpithetsService service, ILogger logger)
+        public GeoEpithetsController(IGeoEpithetsWebService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger;

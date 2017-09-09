@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Web.Models.Geo.GeoEpithets;
 
-    public interface IGeoEpithetsService
+    public interface IGeoEpithetsWebService
     {
         Task<GeoEpithetsIndexPageViewModel> SelectAsync(int currentPage, int numberOfItemsPerPage);
 

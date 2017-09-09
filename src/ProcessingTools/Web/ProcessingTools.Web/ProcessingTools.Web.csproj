@@ -363,9 +363,9 @@
     <Compile Include="Areas\Data\Controllers\GeoEpithetsController.cs" />
     <Compile Include="Areas\Data\Controllers\GeoNamesController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
-    <Compile Include="Areas\Data\Services\GeoEpithetsService.cs" />
+    <Compile Include="Areas\Data\Services\GeoEpithetsWebService.cs" />
     <Compile Include="Areas\Data\Services\GeoNamesService.cs" />
-    <Compile Include="Areas\Data\Services\IGeoEpithetsService.cs" />
+    <Compile Include="Areas\Data\Services\IGeoEpithetsWebService.cs" />
     <Compile Include="Areas\Data\Services\IGeoNamesService.cs" />
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />
