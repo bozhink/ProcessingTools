@@ -365,7 +365,6 @@
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\Data\Services\GeoEpithetsWebService.cs" />
     <Compile Include="Areas\Data\Services\GeoNamesWebService.cs" />
-    <Compile Include="Areas\Data\Services\IGeoEpithetsWebService.cs" />
     <Compile Include="Areas\Data\Services\IGeoNamesWebService.cs" />
     <Compile Include="Areas\Journals\Controllers\InstitutionsController.cs" />
     <Compile Include="Areas\Journals\Controllers\PublishersController.cs" />

@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Contracts.Services.Geo
     using ProcessingTools.Web.Models.Geo.Countries;
 
     /// <summary>
-    /// Web API service for management of country city objects.
+    /// Web API service for management of country objects.
     /// </summary>
     public interface ICountriesApiService
     {
