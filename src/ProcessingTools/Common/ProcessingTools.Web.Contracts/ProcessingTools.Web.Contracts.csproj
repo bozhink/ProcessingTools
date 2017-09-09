@@ -54,6 +54,7 @@
     <Compile Include="Services\Geo\ICitiesApiService.cs" />
     <Compile Include="Services\Geo\ICountriesApiService.cs" />
     <Compile Include="Services\Geo\IGeoEpithetsWebService.cs" />
+    <Compile Include="Services\Geo\IGeoNamesWebService.cs" />
     <Compile Include="Services\HelpPage\IModelDocumentationProvider.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\ISmsService.cs" />

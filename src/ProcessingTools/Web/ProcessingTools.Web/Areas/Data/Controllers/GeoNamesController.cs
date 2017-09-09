@@ -6,8 +6,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Areas.Data.Services;
     using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.Contracts.Services.Geo;
     using ProcessingTools.Web.Models.Geo.GeoNames;
 
     [Authorize]
