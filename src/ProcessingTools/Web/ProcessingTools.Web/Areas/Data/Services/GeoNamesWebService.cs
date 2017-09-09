@@ -15,12 +15,12 @@
     using ProcessingTools.Web.Models.Shared;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoNames.Views_Strings;
 
-    public class GeoNamesService : IGeoNamesService
+    public class GeoNamesWebService : IGeoNamesWebService
     {
         private readonly IGeoNamesDataService service;
         private readonly IMapper mapper;
 
-        public GeoNamesService(IGeoNamesDataService service)
+        public GeoNamesWebService(IGeoNamesDataService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
 

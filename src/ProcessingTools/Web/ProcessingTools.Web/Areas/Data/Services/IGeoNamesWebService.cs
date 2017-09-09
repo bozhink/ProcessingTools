@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Web.Models.Geo.GeoNames;
 
-    public interface IGeoNamesService
+    public interface IGeoNamesWebService
     {
         Task<GeoNamesIndexPageViewModel> SelectAsync(int currentPage, int numberOfItemsPerPage);
 

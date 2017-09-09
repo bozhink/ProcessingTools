@@ -20,10 +20,10 @@
         public const string EditActionName = ActionNames.Edit;
         public const string DeleteActionName = ActionNames.Delete;
 
-        private readonly IGeoNamesService service;
+        private readonly IGeoNamesWebService service;
         private readonly ILogger logger;
 
-        public GeoNamesController(IGeoNamesService service, ILogger logger)
+        public GeoNamesController(IGeoNamesWebService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger;
