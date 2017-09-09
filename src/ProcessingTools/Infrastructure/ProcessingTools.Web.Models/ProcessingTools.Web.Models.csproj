@@ -117,6 +117,23 @@
     <Compile Include="Bio\TypeStatuses\TypeStatusResponseModel.cs" />
     <Compile Include="Geo\Cities\CityResponseModel.cs" />
     <Compile Include="Geo\Cities\CountryResponseModel.cs" />
+    <Compile Include="Geo\Continents\ContinentPageViewModel.cs" />
+    <Compile Include="Geo\Continents\ContinentRequestModel.cs" />
+    <Compile Include="Geo\Continents\ContinentsIndexPageViewModel.cs" />
+    <Compile Include="Geo\Continents\ContinentSynonymRequestModel.cs" />
+    <Compile Include="Geo\Continents\ContinentSynonymsFilter.cs" />
+    <Compile Include="Geo\Continents\ContinentViewModel.cs" />
+    <Compile Include="Geo\Continents\CountryViewModel.cs" />
+    <Compile Include="Geo\Continents\Strings.bg.Designer.cs">
+      <DependentUpon>Strings.bg.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Geo\Continents\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Geo\Countries\CountryResponseModel.cs" />
     <Compile Include="Geo\GeoEpithets\GeoEpithetPageViewModel.cs" />
     <Compile Include="Geo\GeoEpithets\GeoEpithetRequestModel.cs" />
@@ -229,6 +246,14 @@
       <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Account\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Geo\Continents\Strings.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.bg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Geo\Continents\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
