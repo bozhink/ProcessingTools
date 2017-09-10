@@ -58,13 +58,13 @@
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>

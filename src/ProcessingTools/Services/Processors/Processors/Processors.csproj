@@ -253,6 +253,10 @@
       <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
@@ -264,10 +268,6 @@
     <ProjectReference Include="..\..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
       <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
       <Name>DocumentProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>

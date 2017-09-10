@@ -12,6 +12,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Processors.Contracts.Models.Floats;
     using ProcessingTools.Processors.Contracts.Processors.Floats;
 
@@ -235,7 +236,7 @@
             }
         }
 
-        private string GetFloatId(FloatsReferenceType floatReferenceType, XmlNode node)
+        private string GetFloatId(ReferenceType floatReferenceType, XmlNode node)
         {
             string id = string.Empty;
             if (node.Attributes[AttributeNames.Id] != null)
@@ -246,7 +247,7 @@
             {
                 switch (floatReferenceType)
                 {
-                    case FloatsReferenceType.Table:
+                    case ReferenceType.Table:
                         try
                         {
                             id = node[ElementNames.Table].Attributes[AttributeNames.Id].InnerText;

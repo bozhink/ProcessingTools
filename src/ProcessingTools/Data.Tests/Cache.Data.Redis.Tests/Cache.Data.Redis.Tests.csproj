@@ -73,6 +73,10 @@
     <Compile Include="Unit.Tests\Repositories\RedisValidationCacheDataRepositoryUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Cache\Cache.Data.Redis\Cache.Data.Redis.csproj">
       <Project>{9fafd7d9-7917-484e-b08e-b6d0c1bb02c6}</Project>
       <Name>Cache.Data.Redis</Name>
@@ -84,10 +88,6 @@
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695AC2B9-464D-4034-8C28-8674C4E39EF8}</Project>

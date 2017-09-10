@@ -63,8 +63,8 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
   </ItemGroup>

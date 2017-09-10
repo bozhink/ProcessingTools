@@ -13,12 +13,7 @@
 
         public DocumentSchemaNormalizer(INormalizationTransformerFactory transformerFactory)
         {
-            if (transformerFactory == null)
-            {
-                throw new ArgumentOutOfRangeException(nameof(transformerFactory));
-            }
-
-            this.transformerFactory = transformerFactory;
+            this.transformerFactory = transformerFactory ?? throw new ArgumentOutOfRangeException(nameof(transformerFactory));
         }
 
         public Task<object> NormalizeToDocumentSchema(IDocument document) => this.Normalize(document, document.SchemaType);

@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44385</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -358,7 +359,9 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -381,6 +384,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Web.Contracts\ProcessingTools.Web.Contracts.csproj">
       <Project>{00FCCC5A-D81F-4C05-9082-023837220F69}</Project>
       <Name>ProcessingTools.Web.Contracts</Name>
@@ -420,10 +427,6 @@
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>

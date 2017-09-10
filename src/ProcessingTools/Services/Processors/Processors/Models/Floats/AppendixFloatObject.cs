@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Processors.Contracts.Models.Floats;
 
     /// <summary>
@@ -11,7 +11,7 @@
     {
         public string FloatObjectXPath => $".//app[contains(string(title),'{this.FloatTypeNameInLabel}')]";
 
-        public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Appendix;
+        public ReferenceType FloatReferenceType => ReferenceType.Appendix;
 
         public string FloatTypeNameInLabel => "Append";
 

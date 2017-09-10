@@ -42,13 +42,13 @@
     <Compile Include="Repositories\RedisValidationCacheDataRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>

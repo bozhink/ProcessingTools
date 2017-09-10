@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Enumerations
+﻿// <copyright file="ValidationStatus.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Enumerations
 {
     /// <summary>
     /// Represents validation status code returned by a ValidationService.

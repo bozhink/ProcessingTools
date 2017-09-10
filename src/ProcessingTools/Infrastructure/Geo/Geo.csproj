@@ -103,10 +103,6 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

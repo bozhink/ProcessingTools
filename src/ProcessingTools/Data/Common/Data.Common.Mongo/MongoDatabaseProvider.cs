@@ -29,8 +29,10 @@
 
         public IMongoDatabase Create()
         {
-            var conventionPack = new ConventionPack();
-            conventionPack.Add(new CamelCaseElementNameConvention());
+            var conventionPack = new ConventionPack
+            {
+                new CamelCaseElementNameConvention()
+            };
             ConventionRegistry.Register(ConfigurationConstants.CamelCaseConventionPackName, conventionPack, t => true);
 
             var client = new MongoClient(this.connectionString);

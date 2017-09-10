@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Processors.Contracts.Models.Floats;
 
     /// <summary>
@@ -11,7 +11,7 @@
     {
         public string FloatObjectXPath => $".//supplementary-material[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
-        public FloatsReferenceType FloatReferenceType => FloatsReferenceType.SupplementaryMaterial;
+        public ReferenceType FloatReferenceType => ReferenceType.SupplementaryMaterial;
 
         public string FloatTypeNameInLabel => "Supplementary material";
 

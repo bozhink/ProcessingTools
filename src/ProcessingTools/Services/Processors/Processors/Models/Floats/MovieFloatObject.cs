@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Processors.Contracts.Models.Floats;
 
     /// <summary>
@@ -11,7 +11,7 @@
     {
         public string FloatObjectXPath => $".//fig[contains(string(label),'{this.FloatTypeNameInLabel}')]";
 
-        public FloatsReferenceType FloatReferenceType => FloatsReferenceType.Figure;
+        public ReferenceType FloatReferenceType => ReferenceType.Figure;
 
         public string FloatTypeNameInLabel => "Movie";
 

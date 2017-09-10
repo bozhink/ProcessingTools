@@ -69,13 +69,13 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
       <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>

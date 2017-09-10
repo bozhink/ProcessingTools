@@ -12,12 +12,7 @@
 
         public DocumentWrapper(IDocumentFactory documentFactory)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            this.documentFactory = documentFactory;
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
         }
 
         public IDocument Create()

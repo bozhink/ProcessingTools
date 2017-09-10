@@ -692,6 +692,10 @@
     <Analyzer Include="..\..\packages\System.Runtime.InteropServices.Analyzers.1.1.0\analyzers\dotnet\cs\System.Runtime.InteropServices.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
@@ -731,10 +735,6 @@
     <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Enumerations\ProcessingTools.Enumerations.csproj">
-      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>

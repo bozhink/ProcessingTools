@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Contracts.Models.Floats
 {
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Enumerations.Nlm;
 
     internal interface IFloatObject
     {
@@ -12,7 +12,7 @@
         /// <summary>
         /// Gets the reference type of the floating object according to NLM schema.
         /// </summary>
-        FloatsReferenceType FloatReferenceType { get; }
+        ReferenceType FloatReferenceType { get; }
 
         /// <summary>
         /// Gets the name in the label of the floating object.
