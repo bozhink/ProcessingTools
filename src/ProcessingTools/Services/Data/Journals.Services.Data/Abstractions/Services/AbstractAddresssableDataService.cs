@@ -245,7 +245,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (take > PagingConstants.MaximalItemsPerPageAllowed || take < 1)
+            if (take > PaginationConstants.MaximalItemsPerPageAllowed || take < 1)
             {
                 throw new InvalidTakeValuePagingException();
             }
@@ -274,7 +274,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (take > PagingConstants.MaximalItemsPerPageAllowed || take < 1)
+            if (take > PaginationConstants.MaximalItemsPerPageAllowed || take < 1)
             {
                 throw new InvalidTakeValuePagingException();
             }

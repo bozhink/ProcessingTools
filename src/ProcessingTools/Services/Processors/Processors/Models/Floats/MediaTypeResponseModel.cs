@@ -1,14 +1,14 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
-    using Contracts.Models.Floats;
     using ProcessingTools.Constants;
+    using ProcessingTools.Processors.Contracts.Models.Floats;
 
     internal class MediatypeResponseModel : IMediaType
     {
         public string FileExtension { get; set; }
 
-        public string MimeType { get; set; } = MediaTypes.DefaultMimetype;
+        public string MimeType { get; set; } = ContentTypes.DefaultMimetype;
 
-        public string MimeSubtype { get; set; } = MediaTypes.DefaultMimesubtype;
+        public string MimeSubtype { get; set; } = ContentTypes.DefaultMimesubtype;
     }
 }

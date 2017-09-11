@@ -102,8 +102,8 @@
                 return this.Redirect(returnUrl);
             }
 
-            int currentPage = p ?? PagingConstants.DefaultPageNumber;
-            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            int currentPage = p ?? PaginationConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PaginationConstants.DefaultLargeNumberOfItemsPerPage;
 
             long numberOfItems = await this.service.SelectCountAsync(null);
             var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IContinent.Name), SortOrder.Ascending);

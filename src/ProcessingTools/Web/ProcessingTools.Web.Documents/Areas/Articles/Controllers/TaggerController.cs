@@ -249,7 +249,7 @@
                 {
                     Comment = comment,
                     ContentLength = stream.Length,
-                    ContentType = ContentTypes.Xml,
+                    ContentType = ProcessingTools.Constants.ContentTypes.Xml,
                     FileExtension = FileConstants.XmlFileExtension,
                     FileName = model.FileName
                 };

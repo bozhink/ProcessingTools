@@ -30,7 +30,7 @@
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public async Task<IHttpActionResult> Get(int skip = PagingConstants.DefaultSkip, int take = PagingConstants.DefaultTake)
+        public async Task<IHttpActionResult> Get(int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
         {
             try
             {

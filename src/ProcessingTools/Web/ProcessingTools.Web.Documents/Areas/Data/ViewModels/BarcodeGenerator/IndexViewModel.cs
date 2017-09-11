@@ -5,7 +5,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ValidationConstants = ProcessingTools.Constants.Models.ValidationConstants;
+    using ValidationConstants = ProcessingTools.Constants.ValidationConstants;
 
     public class IndexViewModel
     {

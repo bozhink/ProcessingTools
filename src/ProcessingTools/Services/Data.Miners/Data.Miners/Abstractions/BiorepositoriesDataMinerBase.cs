@@ -11,7 +11,7 @@
         where TServiceModel : class
         where TModel : class
     {
-        private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;
+        private const int NumberOfItemsToTake = PaginationConstants.MaximalItemsPerPageAllowed;
 
         protected abstract Func<TServiceModel, TModel> Project { get; }
 

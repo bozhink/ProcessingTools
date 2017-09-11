@@ -11,7 +11,6 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
@@ -64,7 +63,7 @@
                 throw new InvalidPageNumberException();
             }
 
-            if (itemsPerPage < 1 || itemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            if (itemsPerPage < 1 || itemsPerPage > PaginationConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidItemsPerPageException();
             }
@@ -143,7 +142,7 @@
                 throw new ArgumentNullException(nameof(inputStream));
             }
 
-            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ValidationConstants.MaximalLengthOfFullFileName);
+            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ProcessingTools.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName);
 
             var entity = new Document
             {

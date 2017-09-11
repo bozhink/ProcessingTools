@@ -66,7 +66,7 @@
             }
         }
 
-        public async Task<IHttpActionResult> GetPaged(string sortKey, int skip = PagingConstants.DefaultSkip, int take = PagingConstants.DefaultTake)
+        public async Task<IHttpActionResult> GetPaged(string sortKey, int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
         {
             if (string.IsNullOrWhiteSpace(sortKey))
             {

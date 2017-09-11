@@ -36,12 +36,12 @@
 
         public async Task<GeoEpithetsIndexPageViewModel> SelectAsync(int currentPage, int numberOfItemsPerPage)
         {
-            if (currentPage < PagingConstants.MinimalPageNumber)
+            if (currentPage < PaginationConstants.MinimalPageNumber)
             {
                 throw new InvalidPageNumberException();
             }
 
-            if (numberOfItemsPerPage < PagingConstants.MinimalItemsPerPage || numberOfItemsPerPage > PagingConstants.MaximalItemsPerPageAllowed)
+            if (numberOfItemsPerPage < PaginationConstants.MinimalItemsPerPage || numberOfItemsPerPage > PaginationConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidItemsPerPageException();
             }

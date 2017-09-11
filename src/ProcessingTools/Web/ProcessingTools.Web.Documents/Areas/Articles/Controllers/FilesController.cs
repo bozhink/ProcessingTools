@@ -189,8 +189,8 @@
         [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)
         {
-            int currentPage = p ?? PagingConstants.DefaultPageNumber;
-            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            int currentPage = p ?? PaginationConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PaginationConstants.DefaultLargeNumberOfItemsPerPage;
 
             var userId = this.UserId;
             var articleId = this.FakeArticleId;

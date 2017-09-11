@@ -34,7 +34,7 @@
                 throw new InvalidSkipValuePagingException();
             }
 
-            if (take < 1 || take > PagingConstants.MaximalItemsPerPageAllowed)
+            if (take < 1 || take > PaginationConstants.MaximalItemsPerPageAllowed)
             {
                 throw new InvalidTakeValuePagingException();
             }

@@ -20,12 +20,12 @@
         public DateTime DateModified { get; set; }
 
         [Required]
-        [MaxLength(ModelValidationConstants.MaximalLengthOfUserIdentifier)]
+        [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         [Display(Name = "Created By User")]
         public string CreatedByUser { get; set; }
 
         [Required]
-        [MaxLength(ModelValidationConstants.MaximalLengthOfUserIdentifier)]
+        [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         [Display(Name = "Modified By User")]
         public string ModifiedByUser { get; set; }
     }

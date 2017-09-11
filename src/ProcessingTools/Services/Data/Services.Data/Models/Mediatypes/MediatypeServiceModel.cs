@@ -32,7 +32,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    this.mimetype = MediaTypes.DefaultMimetype;
+                    this.mimetype = ContentTypes.DefaultMimetype;
                 }
                 else
                 {
@@ -52,7 +52,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    this.mimesubtype = MediaTypes.DefaultMimesubtype;
+                    this.mimesubtype = ContentTypes.DefaultMimesubtype;
                 }
                 else
                 {

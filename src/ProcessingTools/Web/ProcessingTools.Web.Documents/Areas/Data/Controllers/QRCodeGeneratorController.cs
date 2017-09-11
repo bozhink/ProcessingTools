@@ -19,12 +19,7 @@
 
         public QRCodeGeneratorController(IQRCodeEncoderService encoder)
         {
-            if (encoder == null)
-            {
-                throw new ArgumentNullException(nameof(encoder));
-            }
-
-            this.encoder = encoder;
+            this.encoder = encoder ?? throw new ArgumentNullException(nameof(encoder));
         }
 
         [HttpGet]
@@ -32,7 +27,7 @@
         {
             var viewModel = new IndexViewModel
             {
-                PixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule
+                PixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule
             };
 
             return this.View(viewModel);

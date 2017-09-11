@@ -38,8 +38,8 @@
                 return this.Redirect(returnUrl);
             }
 
-            int currentPage = p ?? PagingConstants.DefaultPageNumber;
-            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            int currentPage = p ?? PaginationConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PaginationConstants.DefaultLargeNumberOfItemsPerPage;
 
             var viewModel = await this.service.SelectAsync(currentPage, numberOfItemsPerPage);
 

@@ -39,7 +39,7 @@
                         ScientificName = t.Name,
                         Rank = rank
                     }))
-                    .Take(PagingConstants.DefaultLargeNumberOfItemsPerPage)
+                    .Take(PaginationConstants.DefaultLargeNumberOfItemsPerPage)
                     .ToList();
 
                 return result;

@@ -7,12 +7,12 @@
 
     public interface IQRCodeEncoderService : IProcessor
     {
-        Task<byte[]> Encode(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule);
+        Task<byte[]> Encode(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule);
 
-        Task<Image> EncodeImage(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule);
+        Task<Image> EncodeImage(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule);
 
-        Task<string> EncodeSvg(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule);
+        Task<string> EncodeSvg(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule);
 
-        Task<string> EncodeBase64(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule);
+        Task<string> EncodeBase64(string content, int pixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule);
     }
 }

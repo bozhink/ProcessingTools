@@ -2,17 +2,17 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants;
-    using ValidationConstants = ProcessingTools.Constants.Models.ValidationConstants;
+    using ValidationConstants = ProcessingTools.Constants.ValidationConstants;
 
     public class IndexViewModel
     {
         public IndexViewModel()
         {
-            this.PixelPerModule = ImagingConstants.DefaultQRCodePixelPerModule;
+            this.PixelPerModule = ImagingConstants.DefaultQRCodePixelsPerModule;
         }
 
         [Required]
-        [Range(ImagingConstants.MinimalQRCodePixelPerModule, ImagingConstants.MaximalQRCodePixelPerModule)]
+        [Range(ImagingConstants.MinimalQRCodePixelsPerModule, ImagingConstants.MaximalQRCodePixelsPerModule)]
         [Display(Name = "Pixels per module", Description = "Pixels per module")]
         public int PixelPerModule { get; set; }
 

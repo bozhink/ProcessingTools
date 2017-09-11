@@ -34,7 +34,7 @@
 
                 if (response == null || response.Count < 1)
                 {
-                    return this.GetStaticResult(MediaTypes.DefaultMimetype, MediaTypes.DefaultMimesubtype);
+                    return this.GetStaticResult(ContentTypes.DefaultMimetype, ContentTypes.DefaultMimesubtype);
                 }
                 else
                 {
@@ -43,7 +43,7 @@
             }
             catch
             {
-                return this.GetStaticResult(MediaTypes.DefaultMimetypeOnException, MediaTypes.DefaultMimesubtypeOnException);
+                return this.GetStaticResult(ContentTypes.DefaultMimetypeOnException, ContentTypes.DefaultMimesubtypeOnException);
             }
         }
 

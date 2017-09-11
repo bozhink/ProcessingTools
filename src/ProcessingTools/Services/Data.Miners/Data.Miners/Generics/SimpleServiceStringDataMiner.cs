@@ -17,7 +17,7 @@
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
         where TFilter : class, IFilter
     {
-        private const int NumberOfItemsToTake = PagingConstants.MaximalItemsPerPageAllowed;
+        private const int NumberOfItemsToTake = PaginationConstants.MaximalItemsPerPageAllowed;
 
         private readonly TService service;
 
