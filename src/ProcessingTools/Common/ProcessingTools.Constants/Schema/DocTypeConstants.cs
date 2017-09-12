@@ -4,7 +4,6 @@
 
 namespace ProcessingTools.Constants.Schema
 {
-    using System.Configuration;
     using ProcessingTools.Constants.Configuration;
 
     /// <summary>
@@ -30,6 +29,6 @@ namespace ProcessingTools.Constants.Schema
         /// <summary>
         /// TaxPub DTD file path.
         /// </summary>
-        public static readonly string TaxPubDtdPath = ConfigurationManager.AppSettings[AppSettingsKeys.TaxPubDtdPath];
+        public static readonly string TaxPubDtdPath = AppSettings.TaxPubDtdPath;
     }
 }

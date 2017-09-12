@@ -310,5 +310,20 @@ namespace ProcessingTools.Constants.Configuration
         /// ZooBankRegistrationNlmXslFileName
         /// </summary>
         public static readonly string ZooBankRegistrationNlmXslFileName = ConfigurationManager.AppSettings[AppSettingsKeys.ZooBankRegistrationNlmXslFileName];
+
+        /// <summary>
+        /// BlackListSampleFileName
+        /// </summary>
+        public static readonly string BlackListSampleFileName = ConfigurationManager.AppSettings[AppSettingsKeys.BlackListSampleFileName];
+
+        /// <summary>
+        /// RankListSampleFileName
+        /// </summary>
+        public static readonly string RankListSampleFileName = ConfigurationManager.AppSettings[AppSettingsKeys.RankListSampleFileName];
+
+        /// <summary>
+        /// SampleFiles
+        /// </summary>
+        public static readonly string SampleFiles = ConfigurationManager.AppSettings[AppSettingsKeys.SampleFiles];
     }
 }

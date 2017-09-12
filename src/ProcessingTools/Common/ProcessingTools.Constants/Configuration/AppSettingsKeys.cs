@@ -308,5 +308,20 @@ namespace ProcessingTools.Constants.Configuration
         /// ZooBankRegistrationNlmXslFileName
         /// </summary>
         public const string ZooBankRegistrationNlmXslFileName = "ZooBankRegistrationNlmXslFileName";
+
+        /// <summary>
+        /// BlackListSampleFileName
+        /// </summary>
+        public const string BlackListSampleFileName = "BlackListSampleFileName";
+
+        /// <summary>
+        /// RankListSampleFileName
+        /// </summary>
+        public const string RankListSampleFileName = "RankListSampleFileName";
+
+        /// <summary>
+        /// SampleFiles
+        /// </summary>
+        public const string SampleFiles = "SampleFiles";
     }
 }
