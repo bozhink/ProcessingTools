@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Configuration;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -55,7 +54,7 @@
 
         private ExtensionJson[] ParseDataJsonFile()
         {
-            string jsonFilePath = ConfigurationManager.AppSettings[AppSettingsKeys.MediaTypeDataJsonFileName];
+            string jsonFilePath = AppSettings.MediaTypeDataJsonFileName;
 
             string jsonString = File.ReadAllText(jsonFilePath);
 

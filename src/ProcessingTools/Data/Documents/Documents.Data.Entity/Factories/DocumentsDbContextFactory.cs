@@ -10,7 +10,7 @@
 
         public DocumentsDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.DocumentsDatabaseConnection;
+            this.ConnectionString = ConnectionStrings.DocumentsDatabaseConnection;
         }
 
         public string ConnectionString

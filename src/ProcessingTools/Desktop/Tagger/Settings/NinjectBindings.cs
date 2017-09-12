@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
-    using System.Configuration;
     using Interceptors;
     using Ninject;
     using Ninject.Extensions.Conventions;
@@ -118,10 +117,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoConnection])
+                    AppSettings.CacheMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoDabaseName]);
+                    AppSettings.CacheMongoDabaseName);
 
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
                 .To<ProcessingTools.Services.Providers.DateTimeProvider>()

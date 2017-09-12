@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.DbSeeder.Settings
 {
     using System;
-    using System.Configuration;
     using System.Reflection;
     using Ninject;
     using Ninject.Extensions.Conventions;
@@ -74,10 +73,7 @@
                 b.From(ProcessingTools.Geo.Data.Entity.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-            });
 
-            this.Bind(b =>
-            {
                 b.From(ProcessingTools.Geo.Data.Seed.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
@@ -108,10 +104,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoConnection])
+                    AppSettings.MediatypesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDabaseName]);
+                    AppSettings.MediatypesMongoDabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                .To<MongoDatabaseProvider>()
@@ -119,10 +115,10 @@
                .InSingletonScope()
                .WithConstructorArgument(
                    ParameterNames.ConnectionString,
-                   ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoConnection])
+                   AppSettings.MediatypesMongoConnection)
                .WithConstructorArgument(
                    ParameterNames.DatabaseName,
-                   ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDabaseName]);
+                   AppSettings.MediatypesMongoDabaseName);
 
             // DataResources
             this.Bind(b =>
@@ -146,10 +142,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                    AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+                    AppSettings.BiorepositoriesMongoDabaseName);
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
@@ -157,10 +153,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                    AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+                    AppSettings.BiorepositoriesMongoDabaseName);
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
@@ -168,10 +164,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                    AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+                    AppSettings.BiorepositoriesMongoDabaseName);
 
             this.Bind(b =>
             {

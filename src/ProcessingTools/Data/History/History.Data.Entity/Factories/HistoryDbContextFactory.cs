@@ -7,7 +7,7 @@
     {
         public HistoryDbContext Create()
         {
-            return new HistoryDbContext(ConnectionStringsKeys.HistoryDatabaseConnection);
+            return new HistoryDbContext(ConnectionStrings.HistoryDatabaseConnection);
         }
     }
 }

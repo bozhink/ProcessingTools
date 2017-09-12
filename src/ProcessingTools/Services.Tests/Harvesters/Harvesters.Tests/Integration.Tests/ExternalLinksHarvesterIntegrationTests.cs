@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
 {
     using System;
-    using System.Configuration;
+    using System.IO;
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -26,7 +26,7 @@
             const int ExpectedNumberOfExternalLinks = 10;
             const int ExpectedNumberOfExternalLinksOfTypeDoi = 9;
 
-            var xmlFileName = $"{ConfigurationManager.AppSettings["SampleFiles"]}/article-with-external-links.xml";
+            var xmlFileName = Path.Combine(AppSettings.SampleFiles, "article-with-external-links.xml");
             var document = new XmlDocument
             {
                 PreserveWhitespace = true
@@ -41,7 +41,7 @@
 
             var xslCache = new XslTransformCache();
             var transformer = new XslTransformer(
-                ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFileName],
+                AppSettings.ExternalLinksXslFileName,
                 xslCache);
             var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
             transformersFactoryMock

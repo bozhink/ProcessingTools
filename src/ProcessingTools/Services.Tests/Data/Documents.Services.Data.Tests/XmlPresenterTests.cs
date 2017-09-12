@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Tests
 {
     using System;
-    using System.Configuration;
     using System.IO;
     using System.Text;
     using System.Threading.Tasks;
@@ -94,8 +93,8 @@
             this.service = this.serviceMock.Object;
 
             var xslCache = new XslTransformCache();
-            var htmlToXmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFileName], xslCache);
-            var xmlToHtmlTransformer = new XslTransformer(ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFileName], xslCache);
+            var htmlToXmlTransformer = new XslTransformer(AppSettings.FormatHtmlToXmlXslFileName, xslCache);
+            var xmlToHtmlTransformer = new XslTransformer(AppSettings.FormatXmlToHtmlXslFileName, xslCache);
 
             this.transformersFactoryMock = new Mock<IDocumentsFormatTransformersFactory>();
             this.transformersFactoryMock

@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using System.Configuration;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
@@ -25,16 +24,16 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoConnection])
+                    AppSettings.MediatypesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDabaseName]);
+                    AppSettings.MediatypesMongoDabaseName);
 
             this.Bind<IMediatypesDbContext>()
                 .To<MediatypesDbContext>()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConnectionStringsKeys.MediatypesDatabaseConnection);
+                    ConnectionStrings.MediatypesDatabaseConnection);
 
             this.Bind<IMediatypesDbContextFactory>()
                 .To<MediatypesDbContextFactory>()

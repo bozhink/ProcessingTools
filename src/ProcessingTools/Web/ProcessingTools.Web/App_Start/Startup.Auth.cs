@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Web
 {
     using System;
-    using System.Configuration;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
@@ -59,8 +58,8 @@
             try
             {
                 // See https://apps.dev.microsoft.com
-                string microsoftClientId = ConfigurationManager.AppSettings[AppSettingsKeys.MicrosoftClientId];
-                string microsoftClientSecret = ConfigurationManager.AppSettings[AppSettingsKeys.MicrosoftClientSecret];
+                string microsoftClientId = AppSettings.MicrosoftClientId;
+                string microsoftClientSecret = AppSettings.MicrosoftClientSecret;
                 if (!string.IsNullOrWhiteSpace(microsoftClientId) && !string.IsNullOrWhiteSpace(microsoftClientSecret))
                 {
                     app.UseMicrosoftAccountAuthentication(new MicrosoftAccountAuthenticationOptions
@@ -78,8 +77,8 @@
 
             try
             {
-                string twitterConsumerKey = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerKey];
-                string twitterConsumerSecret = ConfigurationManager.AppSettings[AppSettingsKeys.TwitterConsumerSecret];
+                string twitterConsumerKey = AppSettings.TwitterConsumerKey;
+                string twitterConsumerSecret = AppSettings.TwitterConsumerSecret;
                 if (!string.IsNullOrWhiteSpace(twitterConsumerKey) && !string.IsNullOrWhiteSpace(twitterConsumerSecret))
                 {
                     app.UseTwitterAuthentication(new TwitterAuthenticationOptions
@@ -98,8 +97,8 @@
 
             try
             {
-                string facebookAppId = ConfigurationManager.AppSettings[AppSettingsKeys.FacebookAppId];
-                string facebookAppSecret = ConfigurationManager.AppSettings[AppSettingsKeys.FacebookAppSecret];
+                string facebookAppId = AppSettings.FacebookAppId;
+                string facebookAppSecret = AppSettings.FacebookAppSecret;
                 if (!string.IsNullOrWhiteSpace(facebookAppId) && !string.IsNullOrWhiteSpace(facebookAppSecret))
                 {
                     app.UseFacebookAuthentication(new FacebookAuthenticationOptions
@@ -117,8 +116,8 @@
 
             try
             {
-                string googleClientId = ConfigurationManager.AppSettings[AppSettingsKeys.GoogleClientId];
-                string googleClientSecret = ConfigurationManager.AppSettings[AppSettingsKeys.GoogleClientSecret];
+                string googleClientId = AppSettings.GoogleClientId;
+                string googleClientSecret = AppSettings.GoogleClientSecret;
                 if (!string.IsNullOrWhiteSpace(googleClientId) && !string.IsNullOrWhiteSpace(googleClientSecret))
                 {
                     app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions

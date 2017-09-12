@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
 {
     using System;
-    using System.Configuration;
+    using System.IO;
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -25,7 +25,7 @@
             // Arrange
             const int ExpectedNumberOfAbbreviations = 22;
 
-            var xmlFileName = $"{ConfigurationManager.AppSettings["SampleFiles"]}/article-with-abbrev.xml";
+            var xmlFileName = Path.Combine(AppSettings.SampleFiles, "article-with-abbrev.xml");
             XmlDocument document = new XmlDocument
             {
                 PreserveWhitespace = true
@@ -40,7 +40,7 @@
 
             var xqueryCache = new XQueryTransformCache();
             var transformer = new XQueryTransformer(
-                ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFileName],
+                AppSettings.AbbreviationsXQueryFileName,
                 xqueryCache);
             var transformersFactoryMock = new Mock<IAbbreviationsTransformersFactory>();
             transformersFactoryMock

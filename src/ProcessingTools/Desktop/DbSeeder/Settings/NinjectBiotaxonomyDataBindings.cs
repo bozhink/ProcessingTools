@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.DbSeeder.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo;
@@ -35,10 +34,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
@@ -46,10 +45,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDabaseName);
 
             // Seeder
             this.Bind<IBiotaxonomyMongoDatabaseInitializer>()
@@ -62,10 +61,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
@@ -73,10 +72,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDabaseName);
 
             this.Bind<IRepositoryFactory<IMongoTaxonRankRepository>>()
                 .ToFactory()
@@ -108,13 +107,13 @@
                 .To<XmlTaxonRankRepository>()
                 .WithConstructorArgument(
                     ParameterNames.DataFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyRankListXmlFileName]);
+                    AppSettings.BiotaxonomyRankListXmlFileName);
 
             this.Bind<IBiotaxonomicBlackListRepository>()
                 .To<XmlBiotaxonomicBlackListRepository>()
                 .WithConstructorArgument(
                     ParameterNames.DataFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyBlackListXmlFileName]);
+                    AppSettings.BiotaxonomyBlackListXmlFileName);
 
             this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
                 .ToFactory()

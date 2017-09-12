@@ -7,7 +7,7 @@
     {
         public JournalsDbContext Create()
         {
-            return new JournalsDbContext(ConnectionStringsKeys.JournalsDatabaseConnection);
+            return new JournalsDbContext(ConnectionStrings.JournalsDatabaseConnection);
         }
     }
 }

@@ -10,7 +10,7 @@
 
         public GeoDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.GeoDatabseConnection;
+            this.ConnectionString = ConnectionStrings.GeoDatabseConnection;
         }
 
         public string ConnectionString

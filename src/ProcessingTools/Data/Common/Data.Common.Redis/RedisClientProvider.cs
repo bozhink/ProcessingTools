@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Data.Common.Redis
 {
-    using System.Configuration;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Redis;
@@ -9,7 +8,7 @@
     {
         public IRedisClient Create()
         {
-            string connectionString = ConfigurationManager.AppSettings[AppSettingsKeys.RedisConnection];
+            string connectionString = AppSettings.RedisConnection;
             return new RedisClient(connectionString);
         }
     }

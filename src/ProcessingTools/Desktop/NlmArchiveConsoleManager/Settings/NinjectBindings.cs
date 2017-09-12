@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Settings
 {
-    using System.Configuration;
     using System.Reflection;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
@@ -64,13 +63,11 @@
                 .To<ProcessingTools.Reporters.LogReporter>()
                 .InSingletonScope();
 
-            var appSettingsReader = new AppSettingsReader();
-
             this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalMetaDataServiceWithFiles>();
 
 #if UseFileDirectory
-            string journalMetaFilesDirectory = appSettingsReader.GetValue(AppSettingsKeys.JournalsJsonFilesDirectoryName, typeof(string)).ToString();
+            string journalMetaFilesDirectory = AppSettings.JournalsJsonFilesDirectoryName;
 
             this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithFiles>()
@@ -97,8 +94,8 @@
             this.Bind<ProcessingTools.Contracts.Data.Documents.Repositories.IJournalMetaRepository>()
                 .To<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>();
 
-            string documentsMongoConnection = appSettingsReader.GetValue(AppSettingsKeys.DocumentsMongoConnection, typeof(string)).ToString();
-            string documentsMongoDabaseName = appSettingsReader.GetValue(AppSettingsKeys.DocumentsMongoDabaseName, typeof(string)).ToString();
+            string documentsMongoConnection = AppSettings.DocumentsMongoConnection;
+            string documentsMongoDabaseName = AppSettings.DocumentsMongoDabaseName;
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()

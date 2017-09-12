@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
@@ -38,7 +37,7 @@
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.HistoryDatabaseConnection].ConnectionString);
+                    ConnectionStrings.HistoryDatabaseConnection);
 
             this.Bind<ProcessingTools.Contracts.Data.History.Repositories.IHistoryRepository>()
                 .To<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
@@ -50,7 +49,7 @@
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.JournalsDatabaseConnection].ConnectionString);
+                    ConnectionStrings.JournalsDatabaseConnection);
 
             this.Bind<ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository>()
                 .To<ProcessingTools.Journals.Data.Entity.Repositories.EntityPublishersRepository>()
@@ -62,7 +61,7 @@
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.GeoDatabseConnection].ConnectionString);
+                    ConnectionStrings.GeoDatabseConnection);
 
             this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.ICitiesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityCitiesRepository>()

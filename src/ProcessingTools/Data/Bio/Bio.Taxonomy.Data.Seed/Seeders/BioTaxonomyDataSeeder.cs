@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Configuration;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.Data.Entity;
@@ -38,7 +38,7 @@
             this.blackListRepositoryFactory = blackListRepositoryFactory ?? throw new ArgumentNullException(nameof(blackListRepositoryFactory));
             this.seeder = new FileByLineDbContextSeeder<BioTaxonomyDbContext>(this.contextFactory);
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
+            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -46,11 +46,9 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            await this.SeedTaxaRanks(ConfigurationManager.AppSettings[AppSettingsKeys.RanksDataFileName]);
-
-            await this.SeedTaxaNames();
-
-            await this.SeedBlackList();
+            await this.SeedTaxaRanksAsync(AppSettings.RanksDataFileName).ConfigureAwait(false);
+            await this.SeedTaxaNamesAsync().ConfigureAwait(false);
+            await this.SeedBlackListAsync().ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -60,7 +58,7 @@
             return true;
         }
 
-        private async Task SeedBlackList()
+        private async Task SeedBlackListAsync()
         {
             try
             {
@@ -89,7 +87,7 @@
 
                         context.BlackListedItems.AddOrUpdate(blackListItems);
 
-                        await context.SaveChangesAsync();
+                        await context.SaveChangesAsync().ConfigureAwait(false);
                         context.Dispose();
                         context = this.contextFactory.Create();
                     }
@@ -100,7 +98,7 @@
                     }
                 }
 
-                await context.SaveChangesAsync();
+                await context.SaveChangesAsync().ConfigureAwait(false);
                 context.Dispose();
             }
             catch (Exception e)
@@ -109,7 +107,7 @@
             }
         }
 
-        private async Task SeedTaxaNames()
+        private async Task SeedTaxaNamesAsync()
         {
             try
             {
@@ -133,7 +131,8 @@
                                 Ranks = taxon.Ranks.Select(rank => ranks.FirstOrDefault(r => r.Name == rank.MapTaxonRankTypeToTaxonRankString())).ToList(),
                                 WhiteListed = taxon.IsWhiteListed
                             })
-                            .ToArrayAsync();
+                            .ToArrayAsync()
+                            .ConfigureAwait(false);
 
                         if (taxa == null || taxa.Length < 1)
                         {
@@ -142,7 +141,7 @@
 
                         context.TaxonNames.AddOrUpdate(taxa);
 
-                        await context.SaveChangesAsync();
+                        await context.SaveChangesAsync().ConfigureAwait(false);
                         context.Dispose();
                         context = this.contextFactory.Create();
                     }
@@ -153,7 +152,7 @@
                     }
                 }
 
-                await context.SaveChangesAsync();
+                await context.SaveChangesAsync().ConfigureAwait(false);
                 context.Dispose();
             }
             catch (Exception e)
@@ -162,7 +161,7 @@
             }
         }
 
-        private async Task SeedTaxaRanks(string fileName)
+        private async Task SeedTaxaRanksAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -172,14 +171,15 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         context.TaxonRanks.AddOrUpdate(new TaxonRank
                         {
                             Name = line
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
 
                 var repository = this.taxonomicRepositoryFactory.Create();
 
@@ -187,7 +187,8 @@
                     .SelectMany(t => t.Ranks)
                     .Select(r => r.MapTaxonRankTypeToTaxonRankString())
                     .Distinct()
-                    .ToArrayAsync();
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
 
                 using (var context = this.contextFactory.Create())
                 {
@@ -211,7 +212,7 @@
                         });
                     }
 
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception e)

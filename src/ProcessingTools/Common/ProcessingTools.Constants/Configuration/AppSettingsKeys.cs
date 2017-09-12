@@ -7,321 +7,321 @@ namespace ProcessingTools.Constants.Configuration
     /// <summary>
     /// AppSettings keys.
     /// </summary>
-    public static class AppSettingsKeys
+    internal static class AppSettingsKeys
     {
         /// <summary>
         /// AbbreviationsXQueryFileName
         /// </summary>
-        public const string AbbreviationsXQueryFileName = "AbbreviationsXQueryFileName";
+        internal const string AbbreviationsXQueryFileName = "AbbreviationsXQueryFileName";
 
         /// <summary>
         /// AppDataDirectoryName
         /// </summary>
-        public const string AppDataDirectoryName = "AppDataDirectoryName";
+        internal const string AppDataDirectoryName = "AppDataDirectoryName";
 
         /// <summary>
         /// BiorepositoriesMongoConnection
         /// </summary>
-        public const string BiorepositoriesMongoConnection = "BiorepositoriesMongoConnection";
+        internal const string BiorepositoriesMongoConnection = "BiorepositoriesMongoConnection";
 
         /// <summary>
         /// BiorepositoriesMongoDabaseName
         /// </summary>
-        public const string BiorepositoriesMongoDabaseName = "BiorepositoriesMongoDabaseName";
+        internal const string BiorepositoriesMongoDabaseName = "BiorepositoriesMongoDabaseName";
 
         /// <summary>
         /// BiorepositoriesSeedCsvDataFilesDirectoryName
         /// </summary>
-        public const string BiorepositoriesSeedCsvDataFilesDirectoryName = "BiorepositoriesSeedCsvDataFilesDirectoryName";
+        internal const string BiorepositoriesSeedCsvDataFilesDirectoryName = "BiorepositoriesSeedCsvDataFilesDirectoryName";
 
         /// <summary>
         /// BiotaxonomyBlackListXmlFileName
         /// </summary>
-        public const string BiotaxonomyBlackListXmlFileName = "BiotaxonomyBlackListXmlFileName";
+        internal const string BiotaxonomyBlackListXmlFileName = "BiotaxonomyBlackListXmlFileName";
 
         /// <summary>
         /// BiotaxonomyMongoConnection
         /// </summary>
-        public const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
+        internal const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
 
         /// <summary>
         /// BiotaxonomyMongoDabaseName
         /// </summary>
-        public const string BiotaxonomyMongoDabaseName = "BiotaxonomyMongoDabaseName";
+        internal const string BiotaxonomyMongoDabaseName = "BiotaxonomyMongoDabaseName";
 
         /// <summary>
         /// BiotaxonomyRankListXmlFileName
         /// </summary>
-        public const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
+        internal const string BiotaxonomyRankListXmlFileName = "BiotaxonomyRankListXmlFileName";
 
         /// <summary>
         /// CacheMongoConnection
         /// </summary>
-        public const string CacheMongoConnection = "CacheMongoConnection";
+        internal const string CacheMongoConnection = "CacheMongoConnection";
 
         /// <summary>
         /// CacheMongoDabaseName
         /// </summary>
-        public const string CacheMongoDabaseName = "CacheMongoDabaseName";
+        internal const string CacheMongoDabaseName = "CacheMongoDabaseName";
 
         /// <summary>
         /// ClientSettingsProvider
         /// </summary>
-        public const string ClientSettingsProvider = "ClientSettingsProvider";
+        internal const string ClientSettingsProvider = "ClientSettingsProvider";
 
         /// <summary>
         /// CodesRemoveNonCodeNodesXslFileName
         /// </summary>
-        public const string CodesRemoveNonCodeNodesXslFileName = "CodesRemoveNonCodeNodesXslFileName";
+        internal const string CodesRemoveNonCodeNodesXslFileName = "CodesRemoveNonCodeNodesXslFileName";
 
         /// <summary>
         /// ContinentsCodesSeedFileName
         /// </summary>
-        public const string ContinentsCodesSeedFileName = "ContinentsCodesSeedFileName";
+        internal const string ContinentsCodesSeedFileName = "ContinentsCodesSeedFileName";
 
         /// <summary>
         /// CountryCodesSeedFileName
         /// </summary>
-        public const string CountryCodesSeedFileName = "CountryCodesSeedFileName";
+        internal const string CountryCodesSeedFileName = "CountryCodesSeedFileName";
 
         /// <summary>
         /// DataFilesDirectoryName
         /// </summary>
-        public const string DataFilesDirectoryName = "DataFilesDirectoryName";
+        internal const string DataFilesDirectoryName = "DataFilesDirectoryName";
 
         /// <summary>
         /// DocumentsMongoConnection
         /// </summary>
-        public const string DocumentsMongoConnection = "DocumentsMongoConnection";
+        internal const string DocumentsMongoConnection = "DocumentsMongoConnection";
 
         /// <summary>
         /// DocumentsMongoDabaseName
         /// </summary>
-        public const string DocumentsMongoDabaseName = "DocumentsMongoDabaseName";
+        internal const string DocumentsMongoDabaseName = "DocumentsMongoDabaseName";
 
         /// <summary>
         /// EnvironmentsEntitiesFileName
         /// </summary>
-        public const string EnvironmentsEntitiesFileName = "EnvironmentsEntitiesFileName";
+        internal const string EnvironmentsEntitiesFileName = "EnvironmentsEntitiesFileName";
 
         /// <summary>
         /// EnvironmentsGlobalFileName
         /// </summary>
-        public const string EnvironmentsGlobalFileName = "EnvironmentsGlobalFileName";
+        internal const string EnvironmentsGlobalFileName = "EnvironmentsGlobalFileName";
 
         /// <summary>
         /// EnvironmentsGroupsFileName
         /// </summary>
-        public const string EnvironmentsGroupsFileName = "EnvironmentsGroupsFileName";
+        internal const string EnvironmentsGroupsFileName = "EnvironmentsGroupsFileName";
 
         /// <summary>
         /// EnvironmentsNamesFileName
         /// </summary>
-        public const string EnvironmentsNamesFileName = "EnvironmentsNamesFileName";
+        internal const string EnvironmentsNamesFileName = "EnvironmentsNamesFileName";
 
         /// <summary>
         /// ExternalLinksXslFileName
         /// </summary>
-        public const string ExternalLinksXslFileName = "ExternalLinksXslFileName";
+        internal const string ExternalLinksXslFileName = "ExternalLinksXslFileName";
 
         /// <summary>
         /// FacebookAppId
         /// </summary>
-        public const string FacebookAppId = "FacebookAppId";
+        internal const string FacebookAppId = "FacebookAppId";
 
         /// <summary>
         /// FacebookAppSecret
         /// </summary>
-        public const string FacebookAppSecret = "FacebookAppSecret";
+        internal const string FacebookAppSecret = "FacebookAppSecret";
 
         /// <summary>
         /// FormatHtmlToXmlXslFileName
         /// </summary>
-        public const string FormatHtmlToXmlXslFileName = "FormatHtmlToXmlXslFileName";
+        internal const string FormatHtmlToXmlXslFileName = "FormatHtmlToXmlXslFileName";
 
         /// <summary>
         /// FormatNlmToSystemXslFileName
         /// </summary>
-        public const string FormatNlmToSystemXslFileName = "FormatNlmToSystemXslFileName";
+        internal const string FormatNlmToSystemXslFileName = "FormatNlmToSystemXslFileName";
 
         /// <summary>
         /// FormatSystemToNlmXslFileName
         /// </summary>
-        public const string FormatSystemToNlmXslFileName = "FormatSystemToNlmXslFileName";
+        internal const string FormatSystemToNlmXslFileName = "FormatSystemToNlmXslFileName";
 
         /// <summary>
         /// FormatTaxonTreatmentsXslFileName
         /// </summary>
-        public const string FormatTaxonTreatmentsXslFileName = "FormatTaxonTreatmentsXslFileName";
+        internal const string FormatTaxonTreatmentsXslFileName = "FormatTaxonTreatmentsXslFileName";
 
         /// <summary>
         /// FormatXmlToHtmlXslFileName
         /// </summary>
-        public const string FormatXmlToHtmlXslFileName = "FormatXmlToHtmlXslFileName";
+        internal const string FormatXmlToHtmlXslFileName = "FormatXmlToHtmlXslFileName";
 
         /// <summary>
         /// GavinLaurensXslFileName
         /// </summary>
-        public const string GavinLaurensXslFileName = "GavinLaurensXslFileName";
+        internal const string GavinLaurensXslFileName = "GavinLaurensXslFileName";
 
         /// <summary>
         /// GeoEpithetsSeedFileName
         /// </summary>
-        public const string GeoEpithetsSeedFileName = "GeoEpithetsSeedFileName";
+        internal const string GeoEpithetsSeedFileName = "GeoEpithetsSeedFileName";
 
         /// <summary>
         /// GeoNamesSeedFileName
         /// </summary>
-        public const string GeoNamesSeedFileName = "GeoNamesSeedFileName";
+        internal const string GeoNamesSeedFileName = "GeoNamesSeedFileName";
 
         /// <summary>
         /// GoogleClientId
         /// </summary>
-        public const string GoogleClientId = "GoogleClientId";
+        internal const string GoogleClientId = "GoogleClientId";
 
         /// <summary>
         /// GoogleClientSecret
         /// </summary>
-        public const string GoogleClientSecret = "GoogleClientSecret";
+        internal const string GoogleClientSecret = "GoogleClientSecret";
 
         /// <summary>
         /// InstitutionsSeedFileName
         /// </summary>
-        public const string InstitutionsSeedFileName = "InstitutionsSeedFileName";
+        internal const string InstitutionsSeedFileName = "InstitutionsSeedFileName";
 
         /// <summary>
         /// JournalsJsonFilesDirectoryName
         /// </summary>
-        public const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectoryName";
+        internal const string JournalsJsonFilesDirectoryName = "JournalsJsonFilesDirectoryName";
 
         /// <summary>
         /// MaximalTimeInMinutesToWaitTheMainThread
         /// </summary>
-        public const string MaximalTimeInMinutesToWaitTheMainThread = "MaximalTimeInMinutesToWaitTheMainThread";
+        internal const string MaximalTimeInMinutesToWaitTheMainThread = "MaximalTimeInMinutesToWaitTheMainThread";
 
         /// <summary>
         /// MediaTypeDataJsonFileName
         /// </summary>
-        public const string MediaTypeDataJsonFileName = "MediaTypeDataJsonFileName";
+        internal const string MediaTypeDataJsonFileName = "MediaTypeDataJsonFileName";
 
         /// <summary>
         /// MediatypesMongoConnection
         /// </summary>
-        public const string MediatypesMongoConnection = "MediatypesMongoConnection";
+        internal const string MediatypesMongoConnection = "MediatypesMongoConnection";
 
         /// <summary>
         /// MediatypesMongoDabaseName
         /// </summary>
-        public const string MediatypesMongoDabaseName = "MediatypesMongoDabaseName";
+        internal const string MediatypesMongoDabaseName = "MediatypesMongoDabaseName";
 
         /// <summary>
         /// MicrosoftClientId
         /// </summary>
-        public const string MicrosoftClientId = "MicrosoftClientId";
+        internal const string MicrosoftClientId = "MicrosoftClientId";
 
         /// <summary>
         /// MicrosoftClientSecret
         /// </summary>
-        public const string MicrosoftClientSecret = "MicrosoftClientSecret";
+        internal const string MicrosoftClientSecret = "MicrosoftClientSecret";
 
         /// <summary>
         /// MorphologicalEpithetsFileName
         /// </summary>
-        public const string MorphologicalEpithetsFileName = "MorphologicalEpithetsFileName";
+        internal const string MorphologicalEpithetsFileName = "MorphologicalEpithetsFileName";
 
         /// <summary>
         /// NlmInitialFormatXslFileName
         /// </summary>
-        public const string NlmInitialFormatXslFileName = "NlmInitialFormatXslFileName";
+        internal const string NlmInitialFormatXslFileName = "NlmInitialFormatXslFileName";
 
         /// <summary>
         /// ParseTreatmentMetaWithInternalInformationXslFileName
         /// </summary>
-        public const string ParseTreatmentMetaWithInternalInformationXslFileName = "ParseTreatmentMetaWithInternalInformationXslFileName";
+        internal const string ParseTreatmentMetaWithInternalInformationXslFileName = "ParseTreatmentMetaWithInternalInformationXslFileName";
 
         /// <summary>
         /// ProductsSeedFileName
         /// </summary>
-        public const string ProductsSeedFileName = "ProductsSeedFileName";
+        internal const string ProductsSeedFileName = "ProductsSeedFileName";
 
         /// <summary>
         /// RanksDataFileName
         /// </summary>
-        public const string RanksDataFileName = "RanksDataFileName";
+        internal const string RanksDataFileName = "RanksDataFileName";
 
         /// <summary>
         /// RedisConnection
         /// </summary>
-        public const string RedisConnection = "RedisConnection";
+        internal const string RedisConnection = "RedisConnection";
 
         /// <summary>
         /// ReferencesGetReferencesXslFileName
         /// </summary>
-        public const string ReferencesGetReferencesXslFileName = "ReferencesGetReferencesXslFileName";
+        internal const string ReferencesGetReferencesXslFileName = "ReferencesGetReferencesXslFileName";
 
         /// <summary>
         /// ReferencesTagTemplateXslFileName
         /// </summary>
-        public const string ReferencesTagTemplateXslFileName = "ReferencesTagTemplateXslFileName";
+        internal const string ReferencesTagTemplateXslFileName = "ReferencesTagTemplateXslFileName";
 
         /// <summary>
         /// RemoveTaxonNamePartsXslFileName
         /// </summary>
-        public const string RemoveTaxonNamePartsXslFileName = "RemoveTaxonNamePartsXslFileName";
+        internal const string RemoveTaxonNamePartsXslFileName = "RemoveTaxonNamePartsXslFileName";
 
         /// <summary>
         /// SystemInitialFormatXslFileName
         /// </summary>
-        public const string SystemInitialFormatXslFileName = "SystemInitialFormatXslFileName";
+        internal const string SystemInitialFormatXslFileName = "SystemInitialFormatXslFileName";
 
         /// <summary>
         /// TaxonTreatmentExtractMaterialsXslFileName
         /// </summary>
-        public const string TaxonTreatmentExtractMaterialsXslFileName = "TaxonTreatmentExtractMaterialsXslFileName";
+        internal const string TaxonTreatmentExtractMaterialsXslFileName = "TaxonTreatmentExtractMaterialsXslFileName";
 
         /// <summary>
         /// TaxPubDtdPath
         /// </summary>
-        public const string TaxPubDtdPath = "TaxPubDtdPath";
+        internal const string TaxPubDtdPath = "TaxPubDtdPath";
 
         /// <summary>
         /// TextContentXslFileName
         /// </summary>
-        public const string TextContentXslFileName = "TextContentXslFileName";
+        internal const string TextContentXslFileName = "TextContentXslFileName";
 
         /// <summary>
         /// TwitterConsumerKey
         /// </summary>
-        public const string TwitterConsumerKey = "TwitterConsumerKey";
+        internal const string TwitterConsumerKey = "TwitterConsumerKey";
 
         /// <summary>
         /// TwitterConsumerSecret
         /// </summary>
-        public const string TwitterConsumerSecret = "TwitterConsumerSecret";
+        internal const string TwitterConsumerSecret = "TwitterConsumerSecret";
 
         /// <summary>
         /// TypeStatusesFileName
         /// </summary>
-        public const string TypeStatusesFileName = "TypeStatusesFileName";
+        internal const string TypeStatusesFileName = "TypeStatusesFileName";
 
         /// <summary>
         /// ZooBankRegistrationNlmXslFileName
         /// </summary>
-        public const string ZooBankRegistrationNlmXslFileName = "ZooBankRegistrationNlmXslFileName";
+        internal const string ZooBankRegistrationNlmXslFileName = "ZooBankRegistrationNlmXslFileName";
 
         /// <summary>
         /// BlackListSampleFileName
         /// </summary>
-        public const string BlackListSampleFileName = "BlackListSampleFileName";
+        internal const string BlackListSampleFileName = "BlackListSampleFileName";
 
         /// <summary>
         /// RankListSampleFileName
         /// </summary>
-        public const string RankListSampleFileName = "RankListSampleFileName";
+        internal const string RankListSampleFileName = "RankListSampleFileName";
 
         /// <summary>
         /// SampleFiles
         /// </summary>
-        public const string SampleFiles = "SampleFiles";
+        internal const string SampleFiles = "SampleFiles";
     }
 }

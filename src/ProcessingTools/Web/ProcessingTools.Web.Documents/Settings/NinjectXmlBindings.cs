@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Documents.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
@@ -16,109 +15,109 @@
                 .Named(FactoryKeys.ReferencesTagTemplateTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ReferencesTagTemplateXslFileName]);
+                    AppSettings.ReferencesTagTemplateXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.ReferencesGetReferencesTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ReferencesGetReferencesXslFileName]);
+                    AppSettings.ReferencesGetReferencesXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.CodesRemoveNonCodeNodesTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.CodesRemoveNonCodeNodesXslFileName]);
+                    AppSettings.CodesRemoveNonCodeNodesXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.TaxonTreatmentFormatTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatTaxonTreatmentsXslFileName]);
+                    AppSettings.FormatTaxonTreatmentsXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.TaxonTreatmentExtractMaterialsTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.TaxonTreatmentExtractMaterialsXslFileName]);
+                    AppSettings.TaxonTreatmentExtractMaterialsXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.ZooBankRegistrationTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ZooBankRegistrationNlmXslFileName]);
+                    AppSettings.ZooBankRegistrationNlmXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.FormatToNlmTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatSystemToNlmXslFileName]);
+                    AppSettings.FormatSystemToNlmXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.FormatToSystemTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatNlmToSystemXslFileName]);
+                    AppSettings.FormatNlmToSystemXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.NlmInitialFormatTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.NlmInitialFormatXslFileName]);
+                    AppSettings.NlmInitialFormatXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.SystemInitialFormatTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.SystemInitialFormatXslFileName]);
+                    AppSettings.SystemInitialFormatXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.ExternalLinksTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ExternalLinksXslFileName]);
+                    AppSettings.ExternalLinksXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.TextContentTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.TextContentXslFileName]);
+                    AppSettings.TextContentXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.RemoveTaxonNamePartsTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.RemoveTaxonNamePartsXslFileName]);
+                    AppSettings.RemoveTaxonNamePartsXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.ParseTreatmentMetaWithInternalInformationTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.ParseTreatmentMetaWithInternalInformationXslFileName]);
+                    AppSettings.ParseTreatmentMetaWithInternalInformationXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.GavinLaurensTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.GavinLaurensXslFileName]);
+                    AppSettings.GavinLaurensXslFileName);
 
             this.Bind<IXmlTransformer>().To<XQueryTransformer>().InSingletonScope()
                 .Named(FactoryKeys.AbbreviationsTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XQueyFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.AbbreviationsXQueryFileName]);
+                    AppSettings.AbbreviationsXQueryFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.FormatXmlToHtmlTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatXmlToHtmlXslFileName]);
+                    AppSettings.FormatXmlToHtmlXslFileName);
 
             this.Bind<IXmlTransformer>().To<XslTransformer>().InSingletonScope()
                 .Named(FactoryKeys.FormatHtmlToXmlTransformerName)
                 .WithConstructorArgument(
                     ParameterNames.XslFileName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.FormatHtmlToXmlXslFileName]);
+                    AppSettings.FormatHtmlToXmlXslFileName);
 
             // Factories
             this.Bind<ProcessingTools.Processors.Contracts.Factories.IReferencesTransformersFactory>()

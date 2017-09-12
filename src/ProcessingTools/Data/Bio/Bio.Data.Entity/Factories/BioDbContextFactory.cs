@@ -10,7 +10,7 @@
 
         public BioDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.BioDatabaseConnection;
+            this.ConnectionString = ConnectionStrings.BioDatabaseConnection;
         }
 
         public string ConnectionString

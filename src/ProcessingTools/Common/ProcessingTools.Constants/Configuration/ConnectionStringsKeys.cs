@@ -7,61 +7,61 @@ namespace ProcessingTools.Constants.Configuration
     /// <summary>
     /// ConnectionStrings keys.
     /// </summary>
-    public static class ConnectionStringsKeys
+    internal static class ConnectionStringsKeys
     {
         /// <summary>
         /// BioDatabaseConnection
         /// </summary>
-        public const string BioDatabaseConnection = "BioDatabaseConnection";
+        internal const string BioDatabaseConnection = "BioDatabaseConnection";
 
         /// <summary>
         /// BioEnvironmentsDatabaseConnection
         /// </summary>
-        public const string BioEnvironmentsDatabaseConnection = "BioEnvironmentsDatabaseConnection";
+        internal const string BioEnvironmentsDatabaseConnection = "BioEnvironmentsDatabaseConnection";
 
         /// <summary>
         /// BioTaxonomyDatabaseConnection
         /// </summary>
-        public const string BioTaxonomyDatabaseConnection = "BioTaxonomyDatabaseConnection";
+        internal const string BioTaxonomyDatabaseConnection = "BioTaxonomyDatabaseConnection";
 
         /// <summary>
         /// DataDatabseConnection
         /// </summary>
-        public const string DataDatabseConnection = "DataDatabseConnection";
+        internal const string DataDatabseConnection = "DataDatabseConnection";
 
         /// <summary>
         /// DataResourcesDatabaseConnection
         /// </summary>
-        public const string DataResourcesDatabaseConnection = "DataResourcesDatabaseConnection";
+        internal const string DataResourcesDatabaseConnection = "DataResourcesDatabaseConnection";
 
         /// <summary>
         /// DefaultConnection
         /// </summary>
-        public const string DefaultConnection = "DefaultConnection";
+        internal const string DefaultConnection = "DefaultConnection";
 
         /// <summary>
         /// DocumentsDatabaseConnection
         /// </summary>
-        public const string DocumentsDatabaseConnection = "DocumentsDatabaseConnection";
+        internal const string DocumentsDatabaseConnection = "DocumentsDatabaseConnection";
 
         /// <summary>
         /// GeoDatabseConnection
         /// </summary>
-        public const string GeoDatabseConnection = "GeoDatabseConnection";
+        internal const string GeoDatabseConnection = "GeoDatabseConnection";
 
         /// <summary>
         /// HistoryDatabaseConnection
         /// </summary>
-        public const string HistoryDatabaseConnection = "HistoryDatabaseConnection";
+        internal const string HistoryDatabaseConnection = "HistoryDatabaseConnection";
 
         /// <summary>
         /// JournalsDatabaseConnection
         /// </summary>
-        public const string JournalsDatabaseConnection = "JournalsDatabaseConnection";
+        internal const string JournalsDatabaseConnection = "JournalsDatabaseConnection";
 
         /// <summary>
         /// MediatypesDatabaseConnection
         /// </summary>
-        public const string MediatypesDatabaseConnection = "MediatypesDatabaseConnection";
+        internal const string MediatypesDatabaseConnection = "MediatypesDatabaseConnection";
     }
 }

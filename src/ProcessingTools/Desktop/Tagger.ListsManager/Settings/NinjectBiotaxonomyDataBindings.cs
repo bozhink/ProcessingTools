@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.ListsManager.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
@@ -31,10 +30,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
@@ -42,10 +41,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDabaseName);
 
             // Xml
             this.Bind<IXmlTaxaContext>()
@@ -69,13 +68,13 @@
             ////    .To<XmlTaxonRankRepository>()
             ////    .WithConstructorArgument(
             ////        ParameterNames.DataFileName,
-            ////        ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyRankListXmlFileName]);
+            ////        AppSettings.BiotaxonomyRankListXmlFileName);
 
             ////this.Bind<IBiotaxonomicBlackListRepository>()
             ////    .To<XmlBiotaxonomicBlackListRepository>()
             ////    .WithConstructorArgument(
             ////        ParameterNames.DataFileName,
-            ////        ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyBlackListXmlFileName]);
+            ////        AppSettings.BiotaxonomyBlackListXmlFileName);
 
             this.Bind<ITaxonRankRepository>()
                 .To<MongoTaxonRankRepository>();

@@ -10,7 +10,7 @@
 
         public BioEnvironmentsDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.BioEnvironmentsDatabaseConnection;
+            this.ConnectionString = ConnectionStrings.BioEnvironmentsDatabaseConnection;
         }
 
         public string ConnectionString

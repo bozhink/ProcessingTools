@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Api.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
     using Ninject.Web.Common;
@@ -33,7 +32,7 @@
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.GeoDatabseConnection].ConnectionString);
+                    ConnectionStrings.GeoDatabseConnection);
 
             this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.ICitiesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityCitiesRepository>()

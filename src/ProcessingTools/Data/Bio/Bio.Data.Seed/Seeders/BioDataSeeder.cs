@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Data.Entity;
@@ -27,7 +26,7 @@
 
             this.seeder = new FileByLineDbContextSeeder<BioDbContext>(contextFactory);
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
+            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -37,8 +36,8 @@
 
             var tasks = new Task[]
             {
-                this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[AppSettingsKeys.MorphologicalEpithetsFileName]),
-                this.SeedTypeStatuses(ConfigurationManager.AppSettings[AppSettingsKeys.TypeStatusesFileName])
+                this.SeedMorphologicalEpithets(AppSettings.MorphologicalEpithetsFileName),
+                this.SeedTypeStatuses(AppSettings.TypeStatusesFileName)
             };
 
             await Task.WhenAll(tasks);

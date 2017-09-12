@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
-    using System.Configuration;
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
@@ -21,9 +20,9 @@
 
         public void Run(string[] args)
         {
-            if (!int.TryParse(ConfigurationManager.AppSettings[AppSettingsKeys.MaximalTimeInMinutesToWaitTheMainThread], out int timeSpanInMunutesValue))
+            if (!int.TryParse(AppSettings.MaximalTimeInMinutesToWaitTheMainThread, out int timeSpanInMunutesValue))
             {
-                throw new ConfigurationErrorsException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
+                throw new InvalidCastException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
             }
 
             var ts = TimeSpan.FromMinutes(timeSpanInMunutesValue);

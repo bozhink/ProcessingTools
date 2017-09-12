@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -28,7 +27,7 @@
         {
             this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesSeedCsvDataFilesDirectoryName];
+            this.dataFilesDirectoryPath = AppSettings.BiorepositoriesSeedCsvDataFilesDirectoryName;
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
