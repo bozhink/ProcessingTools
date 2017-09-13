@@ -17,7 +17,7 @@
             this.logger = logger;
         }
 
-        public Task<object> Clone(IDocument target, IDocument source)
+        public Task<object> CloneAsync(IDocument target, IDocument source)
         {
             if (target == null)
             {

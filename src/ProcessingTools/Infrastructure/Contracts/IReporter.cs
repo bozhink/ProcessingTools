@@ -6,6 +6,6 @@
     {
         void AppendContent(string content);
 
-        Task MakeReport();
+        Task MakeReportAsync();
     }
 }

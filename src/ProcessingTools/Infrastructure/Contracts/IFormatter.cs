@@ -4,6 +4,6 @@
 
     public interface IFormatter
     {
-        Task Format();
+        Task FormatAsync();
     }
 }

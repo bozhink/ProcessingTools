@@ -25,7 +25,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var response = await this.requester.RequestData(context).ConfigureAwait(false);
+            var response = await this.requester.RequestDataAsync(context).ConfigureAwait(false);
             if (response == null || response.Items == null)
             {
                 return null;

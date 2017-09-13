@@ -6,11 +6,11 @@
 
     public interface IXmlTransformer : ITransformer
     {
-        Task<string> Transform(string xml);
+        Task<string> TransformAsync(string xml);
 
-        Task<string> Transform(XmlNode node);
+        Task<string> TransformAsync(XmlNode node);
 
-        Task<string> Transform(XmlReader reader, bool closeReader);
+        Task<string> TransformAsync(XmlReader reader, bool closeReader);
 
         Stream TransformToStream(string xml);
 

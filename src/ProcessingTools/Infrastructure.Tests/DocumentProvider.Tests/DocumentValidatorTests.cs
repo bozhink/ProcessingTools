@@ -17,7 +17,7 @@
             var validator = new DocumentValidator();
             var reporter = new LogReporter(new ConsoleLogger());
 
-            validator.Validate(document, reporter).Wait();
+            validator.ValidateAsync(document, reporter).Wait();
         }
     }
 }

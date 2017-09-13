@@ -69,7 +69,7 @@
         /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>PbdbAllParents object which provides information about the scientific name.</returns>
         /// <example>https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents</example>
-        public async Task<PbdbAllParents> RequestData(string content)
+        public async Task<PbdbAllParents> RequestDataAsync(string content)
         {
             string url = $"data1.1/taxa/list.json?name={content}&rel=all_parents";
 

@@ -5,10 +5,10 @@
 
     public interface ISandbox
     {
-        Task Run(Action action);
+        Task RunAsync(Action action);
 
-        Task Run(Func<Task> function);
+        Task RunAsync(Func<Task> function);
 
-        Task<T> Run<T>(Func<Task<T>> function);
+        Task<T> RunAsync<T>(Func<Task<T>> function);
     }
 }

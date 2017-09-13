@@ -15,7 +15,7 @@
             this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<object> Format(IDocument context)
+        public async Task<object> FormatAsync(IDocument context)
         {
             if (context == null)
             {
@@ -24,7 +24,7 @@
 
             var content = await this.transformersFactory
                 .GetRemoveTaxonNamePartsTransformer()
-                .Transform(context.Xml)
+                .TransformAsync(context.Xml)
                 .ConfigureAwait(false);
 
             context.Xml = content;

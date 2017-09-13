@@ -4,6 +4,6 @@
 
     public interface IDataRequester<T>
     {
-        Task<T> RequestData(string content);
+        Task<T> RequestDataAsync(string content);
     }
 }

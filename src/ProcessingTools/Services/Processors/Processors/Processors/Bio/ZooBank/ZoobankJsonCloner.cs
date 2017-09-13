@@ -18,7 +18,7 @@
             this.logger = logger;
         }
 
-        public Task<object> Clone(IDocument target, ZooBankRegistration source)
+        public Task<object> CloneAsync(IDocument target, ZooBankRegistration source)
         {
             if (target == null)
             {

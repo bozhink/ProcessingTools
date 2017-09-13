@@ -38,7 +38,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            var result = await this.parser.Parse(document.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var result = await this.parser.ParseAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
             await this.PrintNonParsedTaxa(document.XmlDocument).ConfigureAwait(false);
 
@@ -60,7 +60,7 @@
                     this.reporter.AppendContent(string.Format("\t{0}", taxonName));
                 }
 
-                await this.reporter.MakeReport().ConfigureAwait(false);
+                await this.reporter.MakeReportAsync().ConfigureAwait(false);
             }
         }
     }

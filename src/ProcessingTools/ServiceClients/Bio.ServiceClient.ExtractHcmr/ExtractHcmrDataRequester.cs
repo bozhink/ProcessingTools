@@ -23,7 +23,7 @@
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
-        public async Task<ExtractHcmrResponseModel> RequestData(string content)
+        public async Task<ExtractHcmrResponseModel> RequestDataAsync(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

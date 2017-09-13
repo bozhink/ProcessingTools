@@ -35,7 +35,7 @@
 
             this.SetReferencesOutputFileName(document, settings);
 
-            return this.tagger.Tag(document.XmlDocument.DocumentElement);
+            return this.tagger.TagAsync(document.XmlDocument.DocumentElement);
         }
 
         private void SetReferencesOutputFileName(IDocument document, ICommandSettings settings)

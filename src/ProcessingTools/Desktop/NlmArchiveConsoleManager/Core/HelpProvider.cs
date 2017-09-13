@@ -27,7 +27,7 @@
             this.service = service;
         }
 
-        public async Task GetHelp()
+        public async Task GetHelpAsync()
         {
             var journalsMeta = await this.service.GetAllJournalsMeta().ConfigureAwait(false);
 
@@ -40,7 +40,7 @@
                     this.reporter.AppendContent($"\t--{j.Permalink}");
                 });
 
-            await this.reporter.MakeReport().ConfigureAwait(false);
+            await this.reporter.MakeReportAsync().ConfigureAwait(false);
         }
     }
 }

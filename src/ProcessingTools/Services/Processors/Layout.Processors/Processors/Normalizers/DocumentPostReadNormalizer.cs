@@ -19,7 +19,7 @@
             this.documentNormalizer = documentNormalizer;
         }
 
-        public async Task<object> Normalize(IDocument document)
+        public async Task<object> NormalizeAsync(IDocument document)
         {
             if (document == null)
             {

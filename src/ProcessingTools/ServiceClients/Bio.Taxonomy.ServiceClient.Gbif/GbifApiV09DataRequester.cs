@@ -17,7 +17,7 @@
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
-        public async Task<GbifApiV09ResponseModel> RequestData(string content)
+        public async Task<GbifApiV09ResponseModel> RequestDataAsync(string content)
         {
             string url = $"v0.9/species/match?verbose=true&name={content}";
             var connector = this.connectorFactory.Create(BaseAddress);

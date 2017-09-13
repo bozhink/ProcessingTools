@@ -43,7 +43,7 @@
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
-        public async Task<object> Tag(IDocument context)
+        public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {
@@ -52,7 +52,7 @@
 
             var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
             var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var seed = await this.whitelist.Items.ConfigureAwait(false);
+            var seed = await this.whitelist.ItemsAsync.ConfigureAwait(false);
 
             var data = await this.miner.Mine(textContent, seed, stopWords).ConfigureAwait(false) ?? new string[] { };
 
@@ -67,7 +67,7 @@
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
             var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
-            var blacklistItems = await this.blacklist.Items.ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.ItemsAsync.ConfigureAwait(false);
 
             var stopWords = await personNames
                 .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })

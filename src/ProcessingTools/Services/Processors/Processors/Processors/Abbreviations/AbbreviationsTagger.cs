@@ -31,7 +31,7 @@
             this.logger = logger;
         }
 
-        public async Task<object> Tag(XmlNode context)
+        public async Task<object> TagAsync(XmlNode context)
         {
             // Do not change this sequence
             await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(

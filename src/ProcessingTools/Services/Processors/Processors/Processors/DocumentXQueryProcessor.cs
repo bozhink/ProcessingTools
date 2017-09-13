@@ -17,7 +17,7 @@
 
         public string XQueryFileFullName { get; set; }
 
-        public async Task Process(IDocument context)
+        public async Task ProcessAsync(IDocument context)
         {
             if (context == null)
             {
@@ -26,7 +26,7 @@
 
             var content = await this.factory
                 .CreateTransformer(xqueryFileName: this.XQueryFileFullName)
-                .Transform(context.Xml)
+                .TransformAsync(context.Xml)
                 .ConfigureAwait(false);
 
             context.Xml = content;

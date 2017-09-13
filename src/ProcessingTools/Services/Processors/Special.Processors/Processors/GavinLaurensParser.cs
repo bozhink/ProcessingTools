@@ -15,7 +15,7 @@
             this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<object> Parse(IDocument context)
+        public async Task<object> ParseAsync(IDocument context)
         {
             if (context == null)
             {
@@ -23,7 +23,7 @@
             }
 
             var transformer = this.transformersFactory.GetGavinLaurensTransformer();
-            context.Xml = await transformer.Transform(context.Xml).ConfigureAwait(false);
+            context.Xml = await transformer.TransformAsync(context.Xml).ConfigureAwait(false);
 
             return true;
         }

@@ -28,7 +28,7 @@
             this.logger = logger;
         }
 
-        public async Task<object> Parse(IDocument context)
+        public async Task<object> ParseAsync(IDocument context)
         {
             if (context == null)
             {

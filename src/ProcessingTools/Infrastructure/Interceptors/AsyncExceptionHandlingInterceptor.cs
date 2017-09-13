@@ -29,7 +29,7 @@ namespace ProcessingTools.Interceptors
             switch (delegateType)
             {
                 case MethodType.Synchronous:
-                    this.handler.HandleExceptions(() => invocation.Proceed());
+                    this.handler.HandleExceptionsAsync(() => invocation.Proceed());
                     break;
 
                 case MethodType.AsyncAction:
@@ -56,12 +56,12 @@ namespace ProcessingTools.Interceptors
 
         private async Task HandleAsync(Task task)
         {
-            await this.handler.HandleExceptions(async () => await task.ConfigureAwait(false));
+            await this.handler.HandleExceptionsAsync(async () => await task.ConfigureAwait(false));
         }
 
         private async Task<T> HandleAsyncWithResult<T>(Task<T> task)
         {
-            return await this.handler.HandleExceptions(async () => await task.ConfigureAwait(false));
+            return await this.handler.HandleExceptionsAsync(async () => await task.ConfigureAwait(false));
         }
     }
 }

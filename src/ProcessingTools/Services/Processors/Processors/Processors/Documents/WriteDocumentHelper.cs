@@ -67,7 +67,7 @@
             }
 
             // Due to some XSL characteristics, double normalization is better than a single one.
-            var result = await this.documentNormalizer.Normalize(document)
+            var result = await this.documentNormalizer.NormalizeAsync(document)
                 .ContinueWith(
                     _ =>
                     {

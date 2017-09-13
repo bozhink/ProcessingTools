@@ -5,10 +5,10 @@
 
     public interface IExceptionHandler
     {
-        Task HandleExceptions(Action action);
+        Task HandleExceptionsAsync(Action action);
 
-        Task HandleExceptions(Func<Task> function);
+        Task HandleExceptionsAsync(Func<Task> function);
 
-        Task<T> HandleExceptions<T>(Func<Task<T>> function);
+        Task<T> HandleExceptionsAsync<T>(Func<Task<T>> function);
     }
 }

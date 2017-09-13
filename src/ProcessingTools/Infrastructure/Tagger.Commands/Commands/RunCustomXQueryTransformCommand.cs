@@ -38,7 +38,7 @@
 
             this.processor.XQueryFileFullName = settings.FileNames[2];
 
-            await this.processor.Process(document).ConfigureAwait(false);
+            await this.processor.ProcessAsync(document).ConfigureAwait(false);
 
             return true;
         }

@@ -27,7 +27,7 @@
             this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
         }
 
-        public async Task<object> Tag(IDocument context)
+        public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {
@@ -125,7 +125,7 @@
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
             var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
-            var blacklistItems = await this.blacklist.Items.ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.ItemsAsync.ConfigureAwait(false);
 
             var stopWords = await personNames
                 .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })

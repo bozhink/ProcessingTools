@@ -43,7 +43,7 @@
                 document = await this.documentReader.ReadDocument(fileNames[0]).ConfigureAwait(false);
             }
 
-            await this.documentNormalizer.Normalize(document).ConfigureAwait(false);
+            await this.documentNormalizer.NormalizeAsync(document).ConfigureAwait(false);
 
             return document;
         }

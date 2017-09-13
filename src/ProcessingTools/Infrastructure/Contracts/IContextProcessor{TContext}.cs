@@ -13,6 +13,6 @@
         /// </summary>
         /// <param name="context">Context object to be processed.</param>
         /// <returns>Task.</returns>
-        Task Process(TContext context);
+        Task ProcessAsync(TContext context);
     }
 }

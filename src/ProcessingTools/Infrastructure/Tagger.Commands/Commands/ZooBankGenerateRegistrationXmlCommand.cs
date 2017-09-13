@@ -30,7 +30,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return this.generator.Generate(document);
+            return this.generator.GenerateAsync(document);
         }
     }
 }

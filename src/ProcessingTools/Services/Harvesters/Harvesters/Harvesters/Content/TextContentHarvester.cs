@@ -30,7 +30,7 @@
 
             var content = await this.transformersFactory
                 .GetTextContentTransformer()
-                .Transform(context)
+                .TransformAsync(context)
                 .ConfigureAwait(false);
             content = Regex.Replace(content, @"(?<=\n)\s+", string.Empty);
 

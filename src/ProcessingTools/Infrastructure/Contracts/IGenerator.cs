@@ -4,6 +4,6 @@
 
     public interface IGenerator<TContext, TResult>
     {
-        Task<TResult> Generate(TContext context);
+        Task<TResult> GenerateAsync(TContext context);
     }
 }

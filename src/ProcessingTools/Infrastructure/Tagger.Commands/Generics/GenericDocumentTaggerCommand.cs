@@ -33,7 +33,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return await this.tagger.Tag(document).ConfigureAwait(false);
+            return await this.tagger.TagAsync(document).ConfigureAwait(false);
         }
     }
 }

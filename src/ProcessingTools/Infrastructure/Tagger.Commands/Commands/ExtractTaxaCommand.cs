@@ -54,7 +54,7 @@
                 }
             }
 
-            await this.reporter.MakeReport().ConfigureAwait(false);
+            await this.reporter.MakeReportAsync().ConfigureAwait(false);
 
             return true;
         }

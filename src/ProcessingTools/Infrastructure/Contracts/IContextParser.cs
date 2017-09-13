@@ -14,6 +14,6 @@
         /// </summary>
         /// <param name="context">Context object to be processed.</param>
         /// <returns>Task of result.</returns>
-        Task<TResult> Parse(TContext context);
+        Task<TResult> ParseAsync(TContext context);
     }
 }

@@ -4,6 +4,6 @@
 
     public interface IDocumentNormalizer
     {
-        Task<object> Normalize(IDocument document);
+        Task<object> NormalizeAsync(IDocument document);
     }
 }

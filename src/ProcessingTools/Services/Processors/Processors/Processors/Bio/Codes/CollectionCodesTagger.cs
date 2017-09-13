@@ -33,7 +33,7 @@
             this.collectionsTagger = collectionsTagger ?? throw new ArgumentNullException(nameof(collectionsTagger));
         }
 
-        public async Task<object> Tag(IDocument context)
+        public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {

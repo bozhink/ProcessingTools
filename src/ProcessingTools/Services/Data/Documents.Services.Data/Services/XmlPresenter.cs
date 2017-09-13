@@ -50,7 +50,7 @@
             var reader = await this.service.GetReader(userId, articleId, documentId).ConfigureAwait(false);
             var content = await this.transformersFactory
                 .GetFormatXmlToHtmlTransformer()
-                .Transform(reader, true)
+                .TransformAsync(reader, true)
                 .ConfigureAwait(false);
 
             return content;
@@ -119,7 +119,7 @@
 
             var xmlContent = await this.transformersFactory
                 .GetFormatHtmlToXmlTransformer()
-                .Transform(xmlDocument)
+                .TransformAsync(xmlDocument)
                 .ConfigureAwait(false);
 
             xmlDocument.LoadXml(xmlContent);

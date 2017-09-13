@@ -67,7 +67,7 @@
                 return command.Run(null, null);
             });
 
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Never);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
@@ -87,7 +87,7 @@
 
             Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
 
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Never);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
@@ -107,7 +107,7 @@
 
             Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
 
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Never);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with valid document and valid program settings should call formatter with correct parameter.")]
@@ -124,8 +124,8 @@
             await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Once);
-            formatterMock.Verify(p => p.Format(documentMock.Object), Times.Once);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Once);
+            formatterMock.Verify(p => p.FormatAsync(documentMock.Object), Times.Once);
         }
 
         #endregion ExecutionTests

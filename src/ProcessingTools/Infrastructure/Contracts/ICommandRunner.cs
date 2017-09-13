@@ -4,6 +4,6 @@
 
     public interface ICommandRunner
     {
-        Task<object> Run(string commandName);
+        Task<object> RunAsync(string commandName);
     }
 }

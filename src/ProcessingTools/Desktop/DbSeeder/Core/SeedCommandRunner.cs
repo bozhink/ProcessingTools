@@ -24,7 +24,7 @@
             this.seederFactory = seederFactory ?? throw new ArgumentNullException(nameof(seederFactory));
         }
 
-        public async Task<object> Run(string commandName)
+        public async Task<object> RunAsync(string commandName)
         {
             var name = commandName ?? " ";
 

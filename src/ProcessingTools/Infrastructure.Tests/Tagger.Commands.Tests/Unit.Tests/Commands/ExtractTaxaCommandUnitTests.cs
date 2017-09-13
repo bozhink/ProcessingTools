@@ -43,7 +43,7 @@
 
             Assert.AreEqual(ParameterNames.Harvester, exception.ParamName, "ParamName is not correct.");
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
-            reporterMock.Verify(r => r.MakeReport(), Times.Never);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand with valid harvester and null reporter should throw ArgumentNullException with correct ParamName.")]
@@ -97,7 +97,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
-            reporterMock.Verify(r => r.MakeReport(), Times.Never);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
         #endregion ConstructorTests
@@ -124,7 +124,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
-            reporterMock.Verify(r => r.MakeReport(), Times.Never);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
@@ -150,7 +150,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
-            reporterMock.Verify(r => r.MakeReport(), Times.Never);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
@@ -176,7 +176,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
-            reporterMock.Verify(r => r.MakeReport(), Times.Never);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract lower and higher taxa - should work.")]
@@ -222,7 +222,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(xmldocumentStub.DocumentElement), Times.Once);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Exactly(2));
-            reporterMock.Verify(r => r.MakeReport(), Times.Once);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract only higher taxa - should work.")]
@@ -267,7 +267,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(xmldocumentStub.DocumentElement), Times.Once);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Once);
-            reporterMock.Verify(r => r.MakeReport(), Times.Once);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract only lower taxa - should work.")]
@@ -312,7 +312,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Once);
-            reporterMock.Verify(r => r.MakeReport(), Times.Once);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - extract taxa - should work.")]
@@ -361,7 +361,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Once);
-            reporterMock.Verify(r => r.MakeReport(), Times.Once);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand Run with valid document and valid program settings - with no extract parameter - should work.")]
@@ -405,7 +405,7 @@
             harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
-            reporterMock.Verify(r => r.MakeReport(), Times.Once);
+            reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
         }
 
         #endregion ExecutionTests

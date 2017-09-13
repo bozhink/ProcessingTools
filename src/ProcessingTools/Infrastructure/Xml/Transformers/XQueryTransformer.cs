@@ -24,7 +24,7 @@
             this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
-        public Task<string> Transform(XmlNode node)
+        public Task<string> TransformAsync(XmlNode node)
         {
             if (node == null)
             {
@@ -37,7 +37,7 @@
             });
         }
 
-        public Task<string> Transform(string xml)
+        public Task<string> TransformAsync(string xml)
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
@@ -45,10 +45,10 @@
             }
 
             var document = xml.ToXmlDocument();
-            return this.Transform(document.DocumentElement);
+            return this.TransformAsync(document.DocumentElement);
         }
 
-        public Task<string> Transform(XmlReader reader, bool closeReader)
+        public Task<string> TransformAsync(XmlReader reader, bool closeReader)
         {
             if (reader == null)
             {
@@ -64,7 +64,7 @@
 
                 document.Load(reader);
 
-                return this.Transform(document.DocumentElement);
+                return this.TransformAsync(document.DocumentElement);
             }
             catch
             {

@@ -49,7 +49,7 @@
             string sourceFileName = settings.FileNames[2];
             var sourceDocument = await this.ReadSourceDocument(sourceFileName).ConfigureAwait(false);
 
-            return await this.cloner.Clone(document, sourceDocument).ConfigureAwait(false);
+            return await this.cloner.CloneAsync(document, sourceDocument).ConfigureAwait(false);
         }
 
         private async Task<IDocument> ReadSourceDocument(string sourceFileName)

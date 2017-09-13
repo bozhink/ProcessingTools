@@ -17,7 +17,7 @@
                 .Trim();
         };
 
-        public async Task<object> Format(IDocument context)
+        public async Task<object> FormatAsync(IDocument context)
         {
             if (context == null)
             {

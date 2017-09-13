@@ -14,7 +14,7 @@
             const string ScientificName = "Coleoptera";
 
             var requester = new GbifApiV09DataRequester(new NetConnectorFactory());
-            var result = requester.RequestData(ScientificName).Result;
+            var result = requester.RequestDataAsync(ScientificName).Result;
 
             Assert.IsNotNull(result, "Result should not be null.");
             Assert.AreEqual(ScientificName, result.CanonicalName, "CanonicalName should match.");

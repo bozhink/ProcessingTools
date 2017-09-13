@@ -10,7 +10,7 @@
 
     public class CrossReferencesValidator : ICrossReferencesValidator
     {
-        public Task<object> Validate(IDocument context, IReporter reporter)
+        public Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)
             {

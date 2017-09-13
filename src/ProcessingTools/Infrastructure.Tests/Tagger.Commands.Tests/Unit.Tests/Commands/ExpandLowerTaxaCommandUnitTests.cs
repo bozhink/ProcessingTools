@@ -68,7 +68,7 @@
                 return command.Run(null, null);
             });
 
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExpandLowerTaxaCommand), Description = "ExpandLowerTaxaCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
@@ -88,7 +88,7 @@
 
             Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
 
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExpandLowerTaxaCommand), Description = "ExpandLowerTaxaCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
@@ -108,7 +108,7 @@
 
             Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
 
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExpandLowerTaxaCommand), Description = "ExpandLowerTaxaCommand Run with valid document and valid program settings should call parser with correct parameter.")]
@@ -132,8 +132,8 @@
             await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Once);
-            parserMock.Verify(p => p.Parse(xmldocumentStub.DocumentElement), Times.Once);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Once);
+            parserMock.Verify(p => p.ParseAsync(xmldocumentStub.DocumentElement), Times.Once);
         }
 
         #endregion ExecutionTests

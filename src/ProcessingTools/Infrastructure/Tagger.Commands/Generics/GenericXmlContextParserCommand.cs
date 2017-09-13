@@ -33,7 +33,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return await this.parser.Parse(document.XmlDocument.DocumentElement).ConfigureAwait(false);
+            return await this.parser.ParseAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
         }
     }
 }

@@ -4,6 +4,6 @@
 
     public interface ICloner<TTarget, TSource, TResult>
     {
-        Task<TResult> Clone(TTarget target, TSource source);
+        Task<TResult> CloneAsync(TTarget target, TSource source);
     }
 }

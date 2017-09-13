@@ -4,6 +4,6 @@
 
     public interface IHelpProvider
     {
-        Task GetHelp();
+        Task GetHelpAsync();
     }
 }

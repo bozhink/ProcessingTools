@@ -43,7 +43,7 @@
         /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>CatalogueOfLifeApiServiceResponse of the CoL API response.</returns>
         /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
-        public async Task<CatalogueOfLifeApiServiceResponse> RequestData(string content)
+        public async Task<CatalogueOfLifeApiServiceResponse> RequestDataAsync(string content)
         {
             string requestName = content.UrlEncode();
             string url = $"/col/webservice?name={requestName}&response=full";

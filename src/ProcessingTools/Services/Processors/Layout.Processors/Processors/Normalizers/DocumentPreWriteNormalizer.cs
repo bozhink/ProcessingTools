@@ -27,7 +27,7 @@
             this.documentFinalFormatter = documentFinalFormatter;
         }
 
-        public async Task<object> Normalize(IDocument document)
+        public async Task<object> NormalizeAsync(IDocument document)
         {
             if (document == null)
             {
@@ -46,7 +46,7 @@
                     _ =>
                     {
                         _.Wait();
-                        return this.documentFinalFormatter.Format(document).Result;
+                        return this.documentFinalFormatter.FormatAsync(document).Result;
                     })
                 .ConfigureAwait(false);
 

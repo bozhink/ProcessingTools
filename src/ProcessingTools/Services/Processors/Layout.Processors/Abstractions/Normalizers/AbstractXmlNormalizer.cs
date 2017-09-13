@@ -15,14 +15,14 @@
             this.transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
         }
 
-        public Task<string> Normalize(XmlNode context)
+        public Task<string> NormalizeAsync(XmlNode context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            return this.transformer.Transform(context);
+            return this.transformer.TransformAsync(context);
         }
     }
 }

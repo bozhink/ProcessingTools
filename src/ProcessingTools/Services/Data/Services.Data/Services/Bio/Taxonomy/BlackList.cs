@@ -18,7 +18,7 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public Task<IEnumerable<string>> Items
+        public Task<IEnumerable<string>> ItemsAsync
         {
             get
             {

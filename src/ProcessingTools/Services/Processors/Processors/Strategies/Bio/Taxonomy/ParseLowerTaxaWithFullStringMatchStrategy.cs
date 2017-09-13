@@ -16,7 +16,7 @@
 
         public int ExecutionPriority => 300;
 
-        public async Task<object> Parse(XmlNode context)
+        public async Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {

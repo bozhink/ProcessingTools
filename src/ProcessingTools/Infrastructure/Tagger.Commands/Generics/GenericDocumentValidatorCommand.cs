@@ -40,9 +40,9 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            var result = await this.validator.Validate(document, this.reporter).ConfigureAwait(false);
+            var result = await this.validator.ValidateAsync(document, this.reporter).ConfigureAwait(false);
 
-            await this.reporter.MakeReport().ConfigureAwait(false);
+            await this.reporter.MakeReportAsync().ConfigureAwait(false);
 
             return result;
         }

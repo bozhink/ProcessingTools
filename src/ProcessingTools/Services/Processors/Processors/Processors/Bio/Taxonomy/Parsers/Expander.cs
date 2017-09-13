@@ -32,7 +32,7 @@
             this.logger = logger;
         }
 
-        public Task<object> Parse(XmlNode context)
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {

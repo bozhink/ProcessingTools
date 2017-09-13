@@ -29,7 +29,7 @@
             this.strategiesProvider = strategiesProvider ?? throw new ArgumentNullException(nameof(strategiesProvider));
         }
 
-        public async Task<object> Parse(XmlNode context)
+        public async Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -44,7 +44,7 @@
             {
                 try
                 {
-                    await strategy.Parse(context).ConfigureAwait(false);
+                    await strategy.ParseAsync(context).ConfigureAwait(false);
                 }
                 catch
                 {

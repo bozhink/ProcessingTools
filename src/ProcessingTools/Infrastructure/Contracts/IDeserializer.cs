@@ -5,6 +5,6 @@
 
     public interface IDeserializer
     {
-        Task<T> Deserialize<T>(Stream stream);
+        Task<T> DeserializeAsync<T>(Stream stream);
     }
 }

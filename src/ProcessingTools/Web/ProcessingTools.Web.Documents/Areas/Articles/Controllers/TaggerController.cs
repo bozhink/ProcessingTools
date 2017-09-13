@@ -213,7 +213,7 @@
                 document.SchemaType = SchemaType.System;
             }
 
-            await this.documentReadNormalizer.Normalize(document).ConfigureAwait(false);
+            await this.documentReadNormalizer.NormalizeAsync(document).ConfigureAwait(false);
 
             var commandType = this.commandsInformation
                 .First(p => p.Value.Name == model.CommandId)
@@ -226,7 +226,7 @@
                 .ContinueWith(_ =>
                 {
                     _.Wait();
-                    return this.documentWriteNormalizer.Normalize(document);
+                    return this.documentWriteNormalizer.NormalizeAsync(document);
                 })
                 .ContinueWith(_ =>
                 {

@@ -33,14 +33,14 @@
         {
             if (args == null || args.Length < 1)
             {
-                await this.helpProvider.GetHelp().ConfigureAwait(false);
+                await this.helpProvider.GetHelpAsync().ConfigureAwait(false);
                 return;
             }
 
             var tasks = new ConcurrentQueue<Task>();
             foreach (var arg in args)
             {
-                tasks.Enqueue(this.sandbox.Run(action: () => this.commandRunner.Run(arg).Wait()));
+                tasks.Enqueue(this.sandbox.RunAsync(action: () => this.commandRunner.RunAsync(arg).Wait()));
             }
 
             await Task.WhenAll(tasks).ConfigureAwait(false);

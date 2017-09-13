@@ -4,6 +4,6 @@
 
     public interface INormalizer<TContext, TResult> : ITransformer
     {
-        Task<TResult> Normalize(TContext context);
+        Task<TResult> NormalizeAsync(TContext context);
     }
 }

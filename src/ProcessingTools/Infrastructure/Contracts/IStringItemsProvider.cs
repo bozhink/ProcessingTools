@@ -5,6 +5,6 @@
 
     public interface IStringItemsProvider
     {
-        Task<IEnumerable<string>> Items { get; }
+        Task<IEnumerable<string>> ItemsAsync { get; }
     }
 }

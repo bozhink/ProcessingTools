@@ -28,7 +28,7 @@
 
         public string ReferencesGetReferencesXmlPath { get; set; }
 
-        public async Task<object> Tag(XmlNode context)
+        public async Task<object> TagAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -175,7 +175,7 @@
         {
             var text = await this.transformersFactory
                 .GetReferencesTagTemplateTransformer()
-                .Transform(context)
+                .TransformAsync(context)
                 .ConfigureAwait(false);
 
             var referencesTemplatesXml = XDocument.Parse(text);
@@ -204,7 +204,7 @@
 
             var text = await this.transformersFactory
                 .GetReferencesGetReferencesTransformer()
-                .Transform(context)
+                .TransformAsync(context)
                 .ConfigureAwait(false);
 
             var referencesList = XDocument.Parse(text);

@@ -30,7 +30,7 @@
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
-        public async Task<object> Tag(IDocument context)
+        public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
             {

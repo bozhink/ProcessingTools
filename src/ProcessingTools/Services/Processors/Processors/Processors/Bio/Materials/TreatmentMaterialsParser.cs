@@ -22,7 +22,7 @@
             this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<object> Parse(IDocument context)
+        public async Task<object> ParseAsync(IDocument context)
         {
             if (context == null)
             {
@@ -72,7 +72,7 @@
 
             var text = await this.transformersFactory
                 .GetTaxonTreatmentExtractMaterialsTransformer()
-                .Transform(context)
+                .TransformAsync(context)
                 .ConfigureAwait(false);
 
             queryDocument.LoadXml(text);
@@ -83,7 +83,7 @@
         {
             var text = await this.transformersFactory
                 .GetTaxonTreatmentFormatTransformer()
-                .Transform(document)
+                .TransformAsync(document)
                 .ConfigureAwait(false);
 
             document.LoadXml(text);

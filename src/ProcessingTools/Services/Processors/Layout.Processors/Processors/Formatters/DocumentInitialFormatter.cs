@@ -21,7 +21,7 @@
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
-        public async Task<object> Format(IDocument context)
+        public async Task<object> FormatAsync(IDocument context)
         {
             if (context == null)
             {
@@ -29,7 +29,7 @@
             }
 
             var transformer = this.transformerFactory.Create(context.SchemaType);
-            context.Xml = await transformer.Transform(context.Xml).ConfigureAwait(false);
+            context.Xml = await transformer.TransformAsync(context.Xml).ConfigureAwait(false);
 
             this.TrimBlockElements(context);
 

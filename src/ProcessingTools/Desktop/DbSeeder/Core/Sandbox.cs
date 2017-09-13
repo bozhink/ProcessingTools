@@ -13,7 +13,7 @@
             this.logger = logger;
         }
 
-        public async Task Run(Action action)
+        public async Task RunAsync(Action action)
         {
             if (action == null)
             {
@@ -41,7 +41,7 @@
             .ConfigureAwait(false);
         }
 
-        public async Task Run(Func<Task> function)
+        public async Task RunAsync(Func<Task> function)
         {
             if (function == null)
             {
@@ -69,7 +69,7 @@
             .ConfigureAwait(false);
         }
 
-        public async Task<T> Run<T>(Func<Task<T>> function)
+        public async Task<T> RunAsync<T>(Func<Task<T>> function)
         {
             if (function == null)
             {

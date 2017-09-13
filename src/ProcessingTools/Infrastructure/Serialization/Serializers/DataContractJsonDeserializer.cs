@@ -8,7 +8,7 @@
 
     public class DataContractJsonDeserializer : IDataContractJsonDeserializer
     {
-        public Task<T> Deserialize<T>(Stream stream)
+        public Task<T> DeserializeAsync<T>(Stream stream)
         {
             if (stream == null)
             {

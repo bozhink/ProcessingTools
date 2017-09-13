@@ -35,7 +35,7 @@
 
             var stream = transformer.TransformToStream(xml);
 
-            var result = await this.deserializer.Deserialize<T>(stream).ConfigureAwait(false);
+            var result = await this.deserializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
 
             stream.Close();
             stream.Dispose();
@@ -57,7 +57,7 @@
 
             var stream = transformer.TransformToStream(node);
 
-            var result = await this.deserializer.Deserialize<T>(stream).ConfigureAwait(false);
+            var result = await this.deserializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
 
             stream.Close();
             stream.Dispose();

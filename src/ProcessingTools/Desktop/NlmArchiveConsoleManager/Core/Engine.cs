@@ -62,7 +62,7 @@
             int numberOfDoubleDashedArguments = args.Count(this.FilterDoubleDashedOption);
             if (numberOfDoubleDashedArguments != 1)
             {
-                await this.helpProvider.GetHelp().ConfigureAwait(false);
+                await this.helpProvider.GetHelpAsync().ConfigureAwait(false);
                 return;
             }
 

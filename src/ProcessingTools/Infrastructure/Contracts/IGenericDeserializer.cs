@@ -5,6 +5,6 @@
 
     public interface IGenericDeserializer<T>
     {
-        Task<T> Deserialize(Stream stream);
+        Task<T> DeserializeAsync(Stream stream);
     }
 }

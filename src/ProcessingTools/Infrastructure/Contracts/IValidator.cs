@@ -4,6 +4,6 @@
 
     public interface IValidator<TContext, TResult>
     {
-        Task<TResult> Validate(TContext context, IReporter reporter);
+        Task<TResult> ValidateAsync(TContext context, IReporter reporter);
     }
 }

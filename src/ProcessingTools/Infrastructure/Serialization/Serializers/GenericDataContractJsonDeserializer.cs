@@ -15,7 +15,7 @@
             this.serializer = new DataContractJsonSerializer(typeof(T));
         }
 
-        public Task<T> Deserialize(Stream stream)
+        public Task<T> DeserializeAsync(Stream stream)
         {
             if (stream == null)
             {

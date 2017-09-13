@@ -40,7 +40,7 @@
             this.floatObjects = new ConcurrentDictionary<Type, IFloatObject>();
         }
 
-        public Task<object> Tag(XmlNode context) => Task.Run(() => this.TagSync(context));
+        public Task<object> TagAsync(XmlNode context) => Task.Run(() => this.TagSync(context));
 
         private object TagSync(XmlNode context)
         {

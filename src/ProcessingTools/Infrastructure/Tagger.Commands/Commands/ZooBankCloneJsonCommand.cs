@@ -51,7 +51,7 @@
             string sourceFileName = settings.FileNames[2];
             var source = this.GetZoobankRegistrationObject(sourceFileName);
 
-            return await this.cloner.Clone(document, source).ConfigureAwait(false);
+            return await this.cloner.CloneAsync(document, source).ConfigureAwait(false);
         }
 
         private ZooBankRegistration GetZoobankRegistrationObject(string sourceFileName)

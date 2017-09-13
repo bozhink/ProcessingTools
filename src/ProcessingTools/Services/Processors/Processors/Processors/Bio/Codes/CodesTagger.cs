@@ -200,7 +200,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             var cleanedContent = await this.transformerFactory
                 .GetCodesRemoveNonCodeNodesTransformer()
-                .Transform(cleanedXmlDocument)
+                .TransformAsync(cleanedXmlDocument)
                 .ConfigureAwait(false);
 
             cleanedXmlDocument.LoadXml(cleanedContent);

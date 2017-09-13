@@ -28,7 +28,7 @@
             this.logger = logger;
         }
 
-        public async Task<long> Parse(XmlNode context)
+        public async Task<long> ParseAsync(XmlNode context)
         {
             if (context == null)
             {

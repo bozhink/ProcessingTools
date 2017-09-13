@@ -4,6 +4,6 @@
 
     public interface ITagger
     {
-        Task Tag();
+        Task TagAsync();
     }
 }

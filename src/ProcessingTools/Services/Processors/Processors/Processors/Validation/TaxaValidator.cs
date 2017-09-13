@@ -22,7 +22,7 @@
             this.validationService = validationService ?? throw new ArgumentNullException(nameof(validationService));
         }
 
-        public async Task<object> Validate(IDocument context, IReporter reporter)
+        public async Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)
             {

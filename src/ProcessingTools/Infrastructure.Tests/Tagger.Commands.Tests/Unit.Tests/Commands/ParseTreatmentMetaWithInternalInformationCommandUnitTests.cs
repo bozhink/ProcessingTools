@@ -67,7 +67,7 @@
                 return command.Run(null, null);
             });
 
-            parserMock.Verify(p => p.Parse(It.IsAny<IDocument>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
@@ -87,7 +87,7 @@
 
             Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
 
-            parserMock.Verify(p => p.Parse(It.IsAny<IDocument>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
@@ -107,7 +107,7 @@
 
             Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
 
-            parserMock.Verify(p => p.Parse(It.IsAny<IDocument>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseTreatmentMetaWithInternalInformationCommand), Description = "ParseTreatmentMetaWithInternalInformationCommand Run with valid document and valid program settings should call parser with correct parameter.")]
@@ -124,8 +124,8 @@
             await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
-            parserMock.Verify(p => p.Parse(It.IsAny<IDocument>()), Times.Once);
-            parserMock.Verify(p => p.Parse(documentMock.Object), Times.Once);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<IDocument>()), Times.Once);
+            parserMock.Verify(p => p.ParseAsync(documentMock.Object), Times.Once);
         }
 
         #endregion ExecutionTests

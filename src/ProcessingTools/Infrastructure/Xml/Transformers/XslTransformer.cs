@@ -28,7 +28,7 @@
             this.xslCompiledTransform = cache[xslFileName];
         }
 
-        public async Task<string> Transform(XmlReader reader, bool closeReader)
+        public async Task<string> TransformAsync(XmlReader reader, bool closeReader)
         {
             if (reader == null)
             {
@@ -66,24 +66,24 @@
             return result;
         }
 
-        public Task<string> Transform(XmlNode node)
+        public Task<string> TransformAsync(XmlNode node)
         {
             if (node == null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            return this.Transform(node.OuterXml);
+            return this.TransformAsync(node.OuterXml);
         }
 
-        public Task<string> Transform(string xml)
+        public Task<string> TransformAsync(string xml)
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            return this.Transform(xml.ToXmlReader(), true);
+            return this.TransformAsync(xml.ToXmlReader(), true);
         }
 
         public Stream TransformToStream(XmlReader reader)
