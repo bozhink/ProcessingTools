@@ -22,11 +22,13 @@
 
             var words = await context.ExtractWordsFromText()
                 .DistinctWithStopWords(stopWords)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             var result = await words.Where(w => this.matchHigherTaxa.IsMatch(w))
                 .Union(words.MatchWithSeedWords(seed))
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return new HashSet<string>(result);
         }

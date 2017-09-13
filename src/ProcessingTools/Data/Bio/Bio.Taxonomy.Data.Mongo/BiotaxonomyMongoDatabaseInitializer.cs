@@ -24,9 +24,9 @@
 
         public async Task<object> Initialize()
         {
-            await this.CreateIndicesToTaxonRankCollection();
-            await this.CreateIndicesToTaxonRankTypesCollection();
-            await this.CreateIndicesToBlackListCollection();
+            await this.CreateIndicesToTaxonRankCollection().ConfigureAwait(false);
+            await this.CreateIndicesToTaxonRankTypesCollection().ConfigureAwait(false);
+            await this.CreateIndicesToBlackListCollection().ConfigureAwait(false);
 
             return true;
         }
@@ -39,7 +39,8 @@
 
             var result = await collection.Indexes
                 .CreateOneAsync(
-                    Builders<MongoTaxonRankEntity>.IndexKeys.Ascending(t => t.Name));
+                    Builders<MongoTaxonRankEntity>.IndexKeys.Ascending(t => t.Name))
+                .ConfigureAwait(false);
 
             return result;
         }
@@ -59,12 +60,14 @@
             await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.RankType),
-                    indexOptions);
+                    indexOptions)
+                .ConfigureAwait(false);
 
             var result = await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.Name),
-                    indexOptions);
+                    indexOptions)
+                .ConfigureAwait(false);
 
             return result;
         }
@@ -84,7 +87,8 @@
             var result = await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoBlackListEntity>.IndexKeys.Ascending(t => t.Content),
-                    indexOptions);
+                    indexOptions)
+                .ConfigureAwait(false);
 
             return result;
         }

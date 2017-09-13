@@ -23,7 +23,7 @@
             }
 
             var transformer = this.transformersFactory.GetGavinLaurensTransformer();
-            context.Xml = await transformer.Transform(context.Xml);
+            context.Xml = await transformer.Transform(context.Xml).ConfigureAwait(false);
 
             return true;
         }

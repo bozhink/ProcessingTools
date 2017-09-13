@@ -34,30 +34,35 @@
         public async Task<object> Tag(XmlNode context)
         {
             // Do not change this sequence
-            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(
                 context,
-                "//graphic | //media | //disp-formula-group");
+                "//graphic | //media | //disp-formula-group")
+                .ConfigureAwait(false);
 
-            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(
                 context,
-                "//chem-struct-wrap | //fig | //supplementary-material | //table-wrap");
+                "//chem-struct-wrap | //fig | //supplementary-material | //table-wrap")
+                .ConfigureAwait(false);
 
-            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(
                 context,
-                "//fig-group | //table-wrap-group");
+                "//fig-group | //table-wrap-group")
+                .ConfigureAwait(false);
 
-            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(
                 context,
-                "//boxed-text");
+                "//boxed-text")
+                .ConfigureAwait(false);
 
-            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestContext(
+            await this.TagAbbreviationsInSubContextSelectedByXPathWithHarvestContextAsync(
                 context,
-                "//alt-title | //article-title | //attrib | //award-id | //comment | //conf-theme | //def-head | //funding-source | //license-p | //meta-value | //p | //preformat | //product | //subtitle | //supplement | //td | //term | //term-head | //th | //title | //trans-subtitle | //trans-title | //verse-line");
+                "//alt-title | //article-title | //attrib | //award-id | //comment | //conf-theme | //def-head | //funding-source | //license-p | //meta-value | //p | //preformat | //product | //subtitle | //supplement | //td | //term | //term-head | //th | //title | //trans-subtitle | //trans-title | //verse-line")
+                .ConfigureAwait(false);
 
             return true;
         }
 
-        private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContext(XmlNode context, string selectContextToTagXPath)
+        private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestSubContextAsync(XmlNode context, string selectContextToTagXPath)
         {
             if (context == null)
             {
@@ -71,25 +76,25 @@
 
             var tasks = context.SelectNodes(selectContextToTagXPath)
                 .Cast<XmlNode>()
-                .Select(n => this.TagAbbreviationsWithHarvestWholeContext(n))
+                .Select(n => this.TagAbbreviationsWithHarvestWholeContextAsync(n))
                 .ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
 
-        private async Task<object> TagAbbreviationsWithHarvestWholeContext(XmlNode context)
+        private async Task<object> TagAbbreviationsWithHarvestWholeContextAsync(XmlNode context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var abbreviationDefinitions = await this.GetAbbreviationCollection(context);
-            var result = await this.TagAbbreviations(context, abbreviationDefinitions);
+            var abbreviationDefinitions = await this.GetAbbreviationCollectionAsync(context).ConfigureAwait(false);
+            var result = await this.TagAbbreviationsAsync(context, abbreviationDefinitions).ConfigureAwait(false);
             return result;
         }
 
-        private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestContext(XmlNode context, string selectContextToTagXPath)
+        private async Task TagAbbreviationsInSubContextSelectedByXPathWithHarvestContextAsync(XmlNode context, string selectContextToTagXPath)
         {
             if (context == null)
             {
@@ -101,17 +106,17 @@
                 throw new ArgumentNullException(nameof(selectContextToTagXPath));
             }
 
-            var abbreviationDefinitions = await this.GetAbbreviationCollection(context);
+            var abbreviationDefinitions = await this.GetAbbreviationCollectionAsync(context).ConfigureAwait(false);
 
             var tasks = context.SelectNodes(selectContextToTagXPath)
                  .Cast<XmlNode>()
-                 .Select(n => this.TagAbbreviations(n, abbreviationDefinitions))
+                 .Select(n => this.TagAbbreviationsAsync(n, abbreviationDefinitions))
                  .ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
 
-        private async Task<object> TagAbbreviations(XmlNode context, IEnumerable<IAbbreviation> abbreviationDefinitions)
+        private async Task<object> TagAbbreviationsAsync(XmlNode context, IEnumerable<IAbbreviation> abbreviationDefinitions)
         {
             if (context == null)
             {
@@ -156,14 +161,14 @@
             });
         }
 
-        private async Task<IEnumerable<IAbbreviation>> GetAbbreviationCollection(XmlNode contextToHarvest)
+        private async Task<IEnumerable<IAbbreviation>> GetAbbreviationCollectionAsync(XmlNode contextToHarvest)
         {
             if (contextToHarvest == null)
             {
                 throw new ArgumentNullException(nameof(contextToHarvest));
             }
 
-            var abbreviations = await this.abbreviationsHarvester.Harvest(contextToHarvest);
+            var abbreviations = await this.abbreviationsHarvester.Harvest(contextToHarvest).ConfigureAwait(false);
             if (abbreviations != null)
             {
                 var result = abbreviations

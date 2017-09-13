@@ -119,7 +119,8 @@
 
             var xmlContent = await this.transformersFactory
                 .GetFormatHtmlToXmlTransformer()
-                .Transform(xmlDocument);
+                .Transform(xmlDocument)
+                .ConfigureAwait(false);
 
             xmlDocument.LoadXml(xmlContent);
 

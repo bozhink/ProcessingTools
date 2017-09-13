@@ -29,11 +29,11 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            await this.FormatTaxonTreatments(context.XmlDocument);
+            await this.FormatTaxonTreatments(context.XmlDocument).ConfigureAwait(false);
 
-            var queryDocument = await this.GenerateQueryDocument(context.XmlDocument);
+            var queryDocument = await this.GenerateQueryDocument(context.XmlDocument).ConfigureAwait(false);
 
-            string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml);
+            string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml).ConfigureAwait(false);
 
             var responseDocument = this.GenerateResponseDocument(response);
             responseDocument.SelectNodes("//p[@id]")
@@ -72,7 +72,8 @@
 
             var text = await this.transformersFactory
                 .GetTaxonTreatmentExtractMaterialsTransformer()
-                .Transform(context);
+                .Transform(context)
+                .ConfigureAwait(false);
 
             queryDocument.LoadXml(text);
             return queryDocument;
@@ -82,7 +83,8 @@
         {
             var text = await this.transformersFactory
                 .GetTaxonTreatmentFormatTransformer()
-                .Transform(document);
+                .Transform(document)
+                .ConfigureAwait(false);
 
             document.LoadXml(text);
         }

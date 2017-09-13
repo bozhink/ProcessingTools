@@ -47,14 +47,14 @@
             }
 
             string sourceFileName = settings.FileNames[2];
-            var sourceDocument = await this.ReadSourceDocument(sourceFileName);
+            var sourceDocument = await this.ReadSourceDocument(sourceFileName).ConfigureAwait(false);
 
-            return await this.cloner.Clone(document, sourceDocument);
+            return await this.cloner.Clone(document, sourceDocument).ConfigureAwait(false);
         }
 
         private async Task<IDocument> ReadSourceDocument(string sourceFileName)
         {
-            var xml = await this.fileReader.ReadXml(sourceFileName);
+            var xml = await this.fileReader.ReadXml(sourceFileName).ConfigureAwait(false);
             var document = this.documentFactory.Create(xml.OuterXml);
             return document;
         }

@@ -33,7 +33,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return await this.parser.Parse(document);
+            return await this.parser.Parse(document).ConfigureAwait(false);
         }
     }
 }

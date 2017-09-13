@@ -44,7 +44,7 @@
             {
                 try
                 {
-                    await strategy.Parse(context);
+                    await strategy.Parse(context).ConfigureAwait(false);
                 }
                 catch
                 {

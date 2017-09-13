@@ -132,9 +132,9 @@
 
             // TODO : Updater
             var updater = new Updater<TEntity>(updateExpression);
-            await updater.Invoke(entity);
+            await updater.Invoke(entity).ConfigureAwait(false);
 
-            return await this.UpdateAsync(entity);
+            return await this.UpdateAsync(entity).ConfigureAwait(false);
         }
 
         protected Task<T> AddAsync<T>(T entity, IDbSet<T> set)

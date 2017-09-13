@@ -29,11 +29,11 @@
             var dbmodel = new Publisher(entity);
             foreach (var entityAddress in entity.Addresses)
             {
-                var dbaddress = await this.AddOrGetAddressAsync(entityAddress);
+                var dbaddress = await this.AddOrGetAddressAsync(entityAddress).ConfigureAwait(false);
                 dbmodel.Addresses.Add(dbaddress);
             }
 
-            return await this.AddAsync(dbmodel, this.DbSet);
+            return await this.AddAsync(dbmodel, this.DbSet).ConfigureAwait(false);
         }
 
         public override Task<long> CountAsync() => this.DbSet.LongCountAsync();

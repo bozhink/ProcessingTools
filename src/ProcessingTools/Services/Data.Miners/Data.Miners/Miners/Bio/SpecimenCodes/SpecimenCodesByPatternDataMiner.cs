@@ -63,7 +63,8 @@
                         ContentType = p.Value
                     }))
                 .Distinct()
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return data;
         }

@@ -42,7 +42,7 @@
                 .Distinct()
                 .ToArray();
 
-            var response = await this.service.Resolve(genusList);
+            var response = await this.service.Resolve(genusList).ConfigureAwait(false);
 
             foreach (string genus in genusList)
             {

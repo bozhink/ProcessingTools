@@ -27,7 +27,7 @@
 
             string text = context.ToLowerInvariant();
 
-            var query = (await this.service.All())
+            var query = (await this.service.All().ConfigureAwait(false))
                 .Select(t => new EnvoTerm
                 {
                     EntityId = t.EntityId,

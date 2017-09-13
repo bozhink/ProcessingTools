@@ -162,7 +162,8 @@
                         ContentType = model.ContentType,
                         FileExtension = model.FileExtension,
                         FileName = model.FileName
-                    });
+                    })
+                    .ConfigureAwait(false);
 
                 this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
@@ -195,7 +196,7 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage))
+            var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage).ConfigureAwait(false))
                 .Select(d => new FileViewModel
                 {
                     ArticleId = articleId.ToString(),

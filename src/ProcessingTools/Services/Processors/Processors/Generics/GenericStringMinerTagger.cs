@@ -36,9 +36,9 @@
 
             var tagModel = this.tagModelProvider.TagModel(context.XmlDocument);
 
-            var data = await this.evaluator.Evaluate(context);
+            var data = await this.evaluator.Evaluate(context).ConfigureAwait(false);
 
-            return await this.tagger.Tag(context, data, tagModel, XPathStrings.ContentNodes);
+            return await this.tagger.Tag(context, data, tagModel, XPathStrings.ContentNodes).ConfigureAwait(false);
         }
     }
 }

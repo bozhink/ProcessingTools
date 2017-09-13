@@ -66,7 +66,7 @@
                 throw new ArgumentNullException(nameof(updateExpression));
             }
 
-            var entity = await this.GetByIdAsync(id);
+            var entity = await this.GetByIdAsync(id).ConfigureAwait(false);
             if (entity == null)
             {
                 throw new EntityNotFoundException();
@@ -74,9 +74,9 @@
 
             // TODO : Updater
             var updater = new Updater<TEntity>(updateExpression);
-            await updater.Invoke(entity);
+            await updater.Invoke(entity).ConfigureAwait(false);
 
-            return await this.Context.Update(entity);
+            return await this.Context.Update(entity).ConfigureAwait(false);
         }
     }
 }

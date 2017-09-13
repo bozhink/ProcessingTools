@@ -24,7 +24,8 @@
 
             var content = await this.transformersFactory
                 .GetParseTreatmentMetaWithInternalInformationTransformer()
-                .Transform(context.Xml);
+                .Transform(context.Xml)
+                .ConfigureAwait(false);
 
             context.Xml = content;
 

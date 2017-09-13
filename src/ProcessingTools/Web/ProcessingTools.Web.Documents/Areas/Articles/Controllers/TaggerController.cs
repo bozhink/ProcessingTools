@@ -122,7 +122,8 @@
                     {
                         _.Wait();
                         return this.WriteDocument(model, userId, articleId, _.Result).Result;
-                    });
+                    })
+                    .ConfigureAwait(false);
 
                 this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
@@ -231,7 +232,8 @@
                 {
                     _.Wait();
                     return document.XmlDocument;
-                });
+                })
+                .ConfigureAwait(false);
 
             return result;
         }

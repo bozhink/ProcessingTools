@@ -65,7 +65,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.DataSet.FirstOrDefaultAsync(e => e.Content == id.ToString());
+            var entity = await this.DataSet.FirstOrDefaultAsync(e => e.Content == id.ToString()).ConfigureAwait(false);
             return entity;
         }
 
@@ -96,7 +96,8 @@
                 this.lastUpdated = DateTime.Now;
 
                 return this.Items.Count;
-            });
+            })
+            .ConfigureAwait(false);
         }
 
         public Task<object> Update(IBlackListEntity entity) => this.Add(entity);
@@ -108,14 +109,15 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            await this.LoadFromFile(fileName);
+            await this.LoadFromFile(fileName).ConfigureAwait(false);
 
             var comparer = new BlackListEntityEqualityComparer();
 
             var items = await this.DataSet
                 .Distinct(comparer)
                 .Select(item => new XElement(ItemNodeName, item.Content))
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             XElement list = new XElement(RootNodeName, items);
 
@@ -138,7 +140,8 @@
                 this.Items = new ConcurrentQueue<IBlackListEntity>(items);
 
                 return entity;
-            });
+            })
+            .ConfigureAwait(false);
         }
     }
 }

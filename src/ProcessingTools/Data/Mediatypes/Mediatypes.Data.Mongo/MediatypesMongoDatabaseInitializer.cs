@@ -24,7 +24,7 @@
 
         public async Task<object> Initialize()
         {
-            await this.CreateIndicesToMediatypesCollection();
+            await this.CreateIndicesToMediatypesCollection().ConfigureAwait(false);
 
             return true;
         }
@@ -36,7 +36,8 @@
 
             var result = await collection.Indexes
                 .CreateOneAsync(
-                    Builders<Mediatype>.IndexKeys.Ascending(t => t.FileExtension));
+                    Builders<Mediatype>.IndexKeys.Ascending(t => t.FileExtension))
+                .ConfigureAwait(false);
 
             return result;
         }

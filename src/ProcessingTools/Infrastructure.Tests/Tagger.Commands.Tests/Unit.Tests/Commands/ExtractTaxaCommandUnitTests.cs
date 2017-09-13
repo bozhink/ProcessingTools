@@ -208,7 +208,7 @@
                 .Returns(true);
 
             // Act
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -254,7 +254,7 @@
                 .Returns(true);
 
             // Act
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -299,7 +299,7 @@
                 .Returns(false);
 
             // Act
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -348,7 +348,7 @@
                 .Returns(extractHigherTaxa);
 
             // Act
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);
@@ -393,7 +393,7 @@
                 .Returns(false);
 
             // Act
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
             settingsMock.VerifyGet(s => s.ExtractTaxa, Times.Once);

@@ -47,7 +47,8 @@
                     {
                         _.Wait();
                         return this.documentFinalFormatter.Format(document).Result;
-                    });
+                    })
+                .ConfigureAwait(false);
 
             return result;
         }

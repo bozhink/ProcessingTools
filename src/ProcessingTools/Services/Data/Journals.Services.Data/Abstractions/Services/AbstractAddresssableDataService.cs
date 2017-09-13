@@ -169,7 +169,7 @@
                 throw new ArgumentNullException(nameof(addressId));
             }
 
-            await this.repository.RemoveAddress(modelId, addressId);
+            await this.repository.RemoveAddress(modelId, addressId).ConfigureAwait(false);
 
             var now = this.datetimeProvider.Now;
             var user = userId.ToString();

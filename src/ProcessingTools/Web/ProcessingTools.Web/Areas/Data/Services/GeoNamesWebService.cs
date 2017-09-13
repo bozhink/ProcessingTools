@@ -46,8 +46,8 @@
                 throw new InvalidItemsPerPageException();
             }
 
-            long numberOfItems = await this.service.SelectCountAsync(null);
-            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending);
+            long numberOfItems = await this.service.SelectCountAsync(null).ConfigureAwait(false);
+            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IGeoName.Name), SortOrder.Ascending).ConfigureAwait(false);
             var items = data.Select(this.mapper.Map<GeoNameViewModel>).ToArray();
 
             var model = new ListWithPagingViewModel<GeoNameViewModel>(GeoNamesController.IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
@@ -62,17 +62,17 @@
 
         public async Task InsertAsync(GeoNamesRequestModel model)
         {
-            await this.service.InsertAsync(model.ToArray());
+            await this.service.InsertAsync(model.ToArray()).ConfigureAwait(false);
         }
 
         public async Task UpdateAsync(GeoNameRequestModel model)
         {
-            await this.service.UpdateAsync(model);
+            await this.service.UpdateAsync(model).ConfigureAwait(false);
         }
 
         public async Task DeleteAsync(int id)
         {
-            await this.service.DeleteAsync(ids: id);
+            await this.service.DeleteAsync(ids: id).ConfigureAwait(false);
         }
     }
 }

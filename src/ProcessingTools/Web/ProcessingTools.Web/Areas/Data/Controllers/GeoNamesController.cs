@@ -41,7 +41,7 @@
             int currentPage = p ?? PaginationConstants.DefaultPageNumber;
             int numberOfItemsPerPage = n ?? PaginationConstants.DefaultLargeNumberOfItemsPerPage;
 
-            var viewModel = await this.service.SelectAsync(currentPage, numberOfItemsPerPage);
+            var viewModel = await this.service.SelectAsync(currentPage, numberOfItemsPerPage).ConfigureAwait(false);
 
             this.ViewData[ContextKeys.AreaName] = AreaName;
             this.ViewData[ContextKeys.ControllerName] = ControllerName;
@@ -58,7 +58,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    await this.service.InsertAsync(model);
+                    await this.service.InsertAsync(model).ConfigureAwait(false);
                 }
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -83,7 +83,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    await this.service.UpdateAsync(model);
+                    await this.service.UpdateAsync(model).ConfigureAwait(false);
                 }
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -106,7 +106,7 @@
         {
             try
             {
-                await this.service.DeleteAsync(id);
+                await this.service.DeleteAsync(id).ConfigureAwait(false);
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))

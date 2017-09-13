@@ -159,7 +159,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetHtml(this.userId, null, this.documentId);
+                await presenter.GetHtml(this.userId, null, this.documentId).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -178,7 +178,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetHtml(this.userId, null, this.documentId);
+                await presenter.GetHtml(this.userId, null, this.documentId).ConfigureAwait(false);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, null, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -194,7 +194,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetHtml(this.userId, this.articleId, null);
+                await presenter.GetHtml(this.userId, this.articleId, null).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -213,7 +213,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetHtml(this.userId, this.articleId, null);
+                await presenter.GetHtml(this.userId, this.articleId, null).ConfigureAwait(false);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, null), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -229,7 +229,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetHtml(null, this.articleId, this.documentId);
+                await presenter.GetHtml(null, this.articleId, this.documentId).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -248,7 +248,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetHtml(null, this.articleId, this.documentId);
+                await presenter.GetHtml(null, this.articleId, this.documentId).ConfigureAwait(false);
             });
 
             this.serviceMock.Verify(s => s.GetReader(null, this.articleId, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -262,7 +262,7 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            await presenter.GetHtml(this.userId, this.articleId, this.documentId);
+            await presenter.GetHtml(this.userId, this.articleId, this.documentId).ConfigureAwait(false);
 
             // Assert
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, this.documentId), Times.Once, ServiceGetReaderShouldBeInvokedExactlyOnceMessage);
@@ -368,7 +368,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetXml(this.userId, null, this.documentId);
+                await presenter.GetXml(this.userId, null, this.documentId).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -387,7 +387,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetXml(this.userId, null, this.documentId);
+                await presenter.GetXml(this.userId, null, this.documentId).ConfigureAwait(false);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, null, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -403,7 +403,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetXml(this.userId, this.articleId, null);
+                await presenter.GetXml(this.userId, this.articleId, null).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -422,7 +422,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetXml(this.userId, this.articleId, null);
+                await presenter.GetXml(this.userId, this.articleId, null).ConfigureAwait(false);
             });
 
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, null), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -438,7 +438,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetXml(null, this.articleId, this.documentId);
+                await presenter.GetXml(null, this.articleId, this.documentId).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -457,7 +457,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.GetXml(null, this.articleId, this.documentId);
+                await presenter.GetXml(null, this.articleId, this.documentId).ConfigureAwait(false);
             });
 
             this.serviceMock.Verify(s => s.GetReader(null, this.articleId, this.documentId), Times.Never, ServiceGetReaderShouldNotBeInvokedMessage);
@@ -471,7 +471,7 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            await presenter.GetXml(this.userId, this.articleId, this.documentId);
+            await presenter.GetXml(this.userId, this.articleId, this.documentId).ConfigureAwait(false);
 
             // Assert
             this.serviceMock.Verify(s => s.GetReader(this.userId, this.articleId, this.documentId), Times.Once, ServiceGetReaderShouldBeInvokedExactlyOnceMessage);
@@ -541,7 +541,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
+                await presenter.SaveHtml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -579,7 +579,7 @@
             // Act + Assert
             Assert.ThrowsAsync<XmlException>(async () =>
             {
-                await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
+                await presenter.SaveHtml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
             });
         }
 
@@ -610,7 +610,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveHtml(this.userId, null, this.document, ValidContent);
+                await presenter.SaveHtml(this.userId, null, this.document, ValidContent).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -646,7 +646,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveHtml(this.userId, this.articleId, null, ValidContent);
+                await presenter.SaveHtml(this.userId, this.articleId, null, ValidContent).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -682,7 +682,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveHtml(null, this.articleId, this.document, ValidContent);
+                await presenter.SaveHtml(null, this.articleId, this.document, ValidContent).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -732,7 +732,7 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
+            await presenter.SaveHtml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
 
             // Assert
             this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
@@ -751,7 +751,7 @@
             // Act + Assert
             Assert.ThrowsAsync<XmlException>(async () =>
             {
-                await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
+                await presenter.SaveHtml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
             });
         }
 
@@ -798,7 +798,7 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            await presenter.SaveHtml(this.userId, this.articleId, this.document, content);
+            await presenter.SaveHtml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
 
             // Assert
             this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);
@@ -820,7 +820,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveXml(this.userId, this.articleId, this.document, content);
+                await presenter.SaveXml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -858,7 +858,7 @@
             // Act + Assert
             Assert.ThrowsAsync<XmlException>(async () =>
             {
-                await presenter.SaveXml(this.userId, this.articleId, this.document, content);
+                await presenter.SaveXml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
             });
         }
 
@@ -889,7 +889,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveXml(this.userId, null, this.document, ValidContent);
+                await presenter.SaveXml(this.userId, null, this.document, ValidContent).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -925,7 +925,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveXml(this.userId, this.articleId, null, ValidContent);
+                await presenter.SaveXml(this.userId, this.articleId, null, ValidContent).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -961,7 +961,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await presenter.SaveXml(null, this.articleId, this.document, ValidContent);
+                await presenter.SaveXml(null, this.articleId, this.document, ValidContent).ConfigureAwait(false);
             });
 
             Assert.AreEqual(
@@ -1011,7 +1011,7 @@
             var presenter = new XmlPresenter(this.service, this.transformersFactoryMock.Object);
 
             // Act
-            await presenter.SaveXml(this.userId, this.articleId, this.document, content);
+            await presenter.SaveXml(this.userId, this.articleId, this.document, content).ConfigureAwait(false);
 
             // Assert
             this.serviceMock.Verify(s => s.UpdateContent(this.userId, this.articleId, this.document, expectedResult), Times.Once, ServiceUpdateShouldBeInvokedExactlyOnceMessage);

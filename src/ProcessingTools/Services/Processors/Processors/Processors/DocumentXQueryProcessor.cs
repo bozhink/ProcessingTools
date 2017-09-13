@@ -26,7 +26,8 @@
 
             var content = await this.factory
                 .CreateTransformer(xqueryFileName: this.XQueryFileFullName)
-                .Transform(context.Xml);
+                .Transform(context.Xml)
+                .ConfigureAwait(false);
 
             context.Xml = content;
         }

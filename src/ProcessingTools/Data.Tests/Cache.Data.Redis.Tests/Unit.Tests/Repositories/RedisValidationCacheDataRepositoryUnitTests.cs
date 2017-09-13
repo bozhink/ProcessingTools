@@ -41,7 +41,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Add(key, value);
+            var result = await repository.Add(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -237,7 +237,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.Remove(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -275,7 +275,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key, value);
+            var result = await repository.Remove(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -309,7 +309,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.Remove(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -427,7 +427,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.SaveChangesAsync();
+            var result = await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(0L));

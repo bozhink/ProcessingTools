@@ -76,7 +76,7 @@
 
         public virtual object SaveChanges() => this.Context.SaveChanges();
 
-        public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync();
+        public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync().ConfigureAwait(false);
 
         public virtual void Update(TEntity entity)
         {

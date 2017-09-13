@@ -40,12 +40,12 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
-            var data = (await this.miner.Mine(textContent))
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = (await this.miner.Mine(textContent).ConfigureAwait(false))
                 .ToArray();
 
-            await this.TagInstitutionalCodes(context, data);
-            await this.TagInstitutions(context, data);
+            await this.TagInstitutionalCodes(context, data).ConfigureAwait(false);
+            await this.TagInstitutions(context, data).ConfigureAwait(false);
 
             return true;
         }
@@ -67,7 +67,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.institutionalCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings);
+            await this.institutionalCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings).ConfigureAwait(false);
         }
 
         private async Task TagInstitutions(
@@ -86,7 +86,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.institutionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutions, XPath, settings);
+            await this.institutionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutions, XPath, settings).ConfigureAwait(false);
         }
     }
 }

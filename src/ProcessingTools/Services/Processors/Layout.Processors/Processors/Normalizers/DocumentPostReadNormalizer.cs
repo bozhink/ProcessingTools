@@ -26,7 +26,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var result = await this.documentNormalizer.NormalizeToSystem(document);
+            var result = await this.documentNormalizer.NormalizeToSystem(document).ConfigureAwait(false);
 
             return result;
         }

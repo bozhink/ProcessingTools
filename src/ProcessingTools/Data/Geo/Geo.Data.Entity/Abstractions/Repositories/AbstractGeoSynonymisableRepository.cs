@@ -52,7 +52,8 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => e.Id == modelId);
+                .FirstOrDefaultAsync(e => e.Id == modelId)
+                .ConfigureAwait(false);
 
             if (entity == null)
             {
@@ -110,7 +111,8 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => (object)e.Id == id);
+                .FirstOrDefaultAsync(e => (object)e.Id == id)
+                .ConfigureAwait(false);
 
             if (entity == null)
             {
@@ -127,7 +129,9 @@
             var entity = await this.repository.Queryable()
                 .Where(e => e.Id == modelId)
                 .SelectMany(e => e.Synonyms)
-                .FirstOrDefaultAsync(s => s.Id == id);
+                .FirstOrDefaultAsync(s => s.Id == id)
+                .ConfigureAwait(false);
+
             if (entity == null)
             {
                 return null;
@@ -145,7 +149,7 @@
             }
 
             var entity = this.Mapper.Map<TModel, TEntity>(model);
-            var result = await this.InsertEntityAsync(entity);
+            var result = await this.InsertEntityAsync(entity).ConfigureAwait(false);
             return result;
         }
 
@@ -166,7 +170,7 @@
                 }
             }
 
-            var result = await this.InsertEntityAsync(entity);
+            var result = await this.InsertEntityAsync(entity).ConfigureAwait(false);
             return result;
         }
 
@@ -179,7 +183,8 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => e.Id == modelId);
+                .FirstOrDefaultAsync(e => e.Id == modelId)
+                .ConfigureAwait(false);
 
             if (entity == null)
             {
@@ -210,7 +215,7 @@
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-            var data = await query.ToListAsync();
+            var data = await query.ToListAsync().ConfigureAwait(false);
             var result = data.Select(e => this.Mapper.Map<TEntity, TModel>(e)).ToArray();
             return result;
         }
@@ -218,7 +223,7 @@
         public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
         {
             var query = this.SelectQuery(this.GetQuery(filter), skip, take, sortColumn, sortOrder);
-            var data = await query.ToListAsync();
+            var data = await query.ToListAsync().ConfigureAwait(false);
             var result = data.Select(e => this.Mapper.Map<TEntity, TModel>(e)).ToArray();
             return result;
         }
@@ -226,21 +231,21 @@
         public virtual async Task<long> SelectCountAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-            var count = await query.LongCountAsync();
+            var count = await query.LongCountAsync().ConfigureAwait(false);
             return count;
         }
 
         public virtual async Task<long> SelectSynonymCountAsync(int modelId, TSynonymFilter filter)
         {
             var query = this.GetQuery(modelId, filter);
-            var count = await query.LongCountAsync();
+            var count = await query.LongCountAsync().ConfigureAwait(false);
             return count;
         }
 
         public virtual async Task<TSynonymModel[]> SelectSynonymsAsync(int modelId, TSynonymFilter filter)
         {
             var query = this.GetQuery(modelId, filter);
-            var data = await query.ToListAsync();
+            var data = await query.ToListAsync().ConfigureAwait(false);
             var result = data.Select(e => this.Mapper.Map<TSynonymEntity, TSynonymModel>(e)).ToArray();
             return result;
         }
@@ -253,7 +258,7 @@
             }
 
             var entity = this.Mapper.Map<TModel, TEntity>(model);
-            return await this.UpdateEntityAsync(entity);
+            return await this.UpdateEntityAsync(entity).ConfigureAwait(false);
         }
 
         public async Task<object> UpdateSynonymsAsync(int modelId, params TSynonymModel[] synonyms)
@@ -265,7 +270,8 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => e.Id == modelId);
+                .FirstOrDefaultAsync(e => e.Id == modelId)
+                .ConfigureAwait(false);
 
             if (entity == null || synonyms.Any(s => s.ParentId != modelId))
             {

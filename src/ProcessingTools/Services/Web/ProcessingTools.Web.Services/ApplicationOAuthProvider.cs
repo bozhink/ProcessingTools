@@ -49,7 +49,7 @@ namespace ProcessingTools.Web.Services
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            var user = await userManager.FindAsync(context.UserName, context.Password);
+            var user = await userManager.FindAsync(context.UserName, context.Password).ConfigureAwait(false);
 
             if (user == null)
             {
@@ -63,7 +63,8 @@ namespace ProcessingTools.Web.Services
 
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(
                 userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+                CookieAuthenticationDefaults.AuthenticationType)
+                .ConfigureAwait(false);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oauthIdentity, properties);

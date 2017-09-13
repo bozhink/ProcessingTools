@@ -13,15 +13,18 @@
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Documents.Data.Entity.Contracts.IDocumentsDataInitializer>()
-                .Initialize();
+                .Initialize()
+                .ConfigureAwait(false);
 
             await DependencyResolver.Current
                .GetService<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDataInitializer>()
-               .Initialize();
+               .Initialize()
+               .ConfigureAwait(false);
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Bio.Data.Entity.Contracts.IBioDataInitializer>()
-                .Initialize();
+                .Initialize()
+                .ConfigureAwait(false);
 
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ProcessingTools.DataResources.Data.Entity.ResourcesDbContext, ProcessingTools.DataResources.Data.Entity.Migrations.Configuration>());

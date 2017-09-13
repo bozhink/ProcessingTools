@@ -51,7 +51,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.TagContentInDocument(itemsToTag, tagModel, contentNodesXPath, document, settings);
+            await this.contentTagger.TagContentInDocument(itemsToTag, tagModel, contentNodesXPath, document, settings).ConfigureAwait(false);
 
             return true;
         }

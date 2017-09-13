@@ -35,9 +35,9 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            await this.ExportReferences(context);
+            await this.ExportReferences(context).ConfigureAwait(false);
 
-            var referencesTemplates = await this.GetReferencesTemplates(context);
+            var referencesTemplates = await this.GetReferencesTemplates(context).ConfigureAwait(false);
 
             /*
              * Tag references using generated template
@@ -175,7 +175,8 @@
         {
             var text = await this.transformersFactory
                 .GetReferencesTagTemplateTransformer()
-                .Transform(context);
+                .Transform(context)
+                .ConfigureAwait(false);
 
             var referencesTemplatesXml = XDocument.Parse(text);
 
@@ -203,7 +204,8 @@
 
             var text = await this.transformersFactory
                 .GetReferencesGetReferencesTransformer()
-                .Transform(context);
+                .Transform(context)
+                .ConfigureAwait(false);
 
             var referencesList = XDocument.Parse(text);
 

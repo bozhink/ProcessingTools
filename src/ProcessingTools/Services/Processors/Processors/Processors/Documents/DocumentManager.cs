@@ -18,12 +18,12 @@
 
         public async Task<IDocument> Read(bool mergeInputFiles, params string[] fileNames)
         {
-            return await this.documentReader.Read(mergeInputFiles, fileNames);
+            return await this.documentReader.Read(mergeInputFiles, fileNames).ConfigureAwait(false);
         }
 
         public async Task<object> Write(string outputFileName, IDocument document, bool splitDocument)
         {
-            return await this.documentWriter.Write(outputFileName, document, splitDocument);
+            return await this.documentWriter.Write(outputFileName, document, splitDocument).ConfigureAwait(false);
         }
     }
 }

@@ -37,7 +37,8 @@
                 {
                     this.logger?.Log(exception: e, message: string.Empty);
                 }
-            });
+            })
+            .ConfigureAwait(false);
         }
 
         public async Task Run(Func<Task> function)
@@ -64,7 +65,8 @@
                 {
                     this.logger?.Log(exception: e, message: string.Empty);
                 }
-            });
+            })
+            .ConfigureAwait(false);
         }
 
         public async Task<T> Run<T>(Func<Task<T>> function)
@@ -94,7 +96,8 @@
                     this.logger?.Log(exception: e, message: string.Empty);
                     throw;
                 }
-            });
+            })
+            .ConfigureAwait(false);
         }
     }
 }

@@ -43,7 +43,7 @@
             var query = this.GetQuery(filter)
                 .Select(this.MapEntityToModelExpression);
 
-            return await query.ToArrayAsync();
+            return await query.ToArrayAsync().ConfigureAwait(false);
         }
 
         public override async Task<IGeoName[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
@@ -54,7 +54,7 @@
                 .Take(take)
                 .Select(this.MapEntityToModelExpression);
 
-            return await query.ToArrayAsync();
+            return await query.ToArrayAsync().ConfigureAwait(false);
         }
 
         public override async Task<object> UpdateAsync(IGeoName model)
@@ -72,7 +72,7 @@
 
             entity.Name = model.Name;
 
-            return await this.UpdateEntityAsync(entity);
+            return await this.UpdateEntityAsync(entity).ConfigureAwait(false);
         }
 
         protected override IQueryable<GeoName> GetQuery(ITextFilter filter)

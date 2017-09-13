@@ -121,7 +121,7 @@
             var documentMock = new Mock<IDocument>();
 
             // Act
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
             formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Once);

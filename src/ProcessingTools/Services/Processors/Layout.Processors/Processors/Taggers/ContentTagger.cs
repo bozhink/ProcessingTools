@@ -51,7 +51,7 @@
             {
                 try
                 {
-                    await this.TagContentInDocument(textToTag, tagModel, xpath, document, settings);
+                    await this.TagContentInDocument(textToTag, tagModel, xpath, document, settings).ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {
@@ -90,7 +90,7 @@
             XmlElement item = (XmlElement)tagModel.CloneNode(true);
             item.InnerText = textToTag;
 
-            await this.TagContentInDocument(item, xpath, document, settings);
+            await this.TagContentInDocument(item, xpath, document, settings).ConfigureAwait(false);
         }
 
         public async Task TagContentInDocument(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items)
@@ -148,7 +148,7 @@
                         replace = textToTagPatternRegex.Replace(replace, replacement);
                     }
 
-                    await node.SafeReplaceInnerXml(replace, this.logger);
+                    await node.SafeReplaceInnerXml(replace, this.logger).ConfigureAwait(false);
                 }
             }
         }
@@ -178,7 +178,7 @@
                 .AsEnumerable()
                 .Where(this.GetMatchNodePredicate(item.InnerText, settings.CaseSensitive));
 
-            await this.TagContentInDocument(nodeList, settings, item);
+            await this.TagContentInDocument(nodeList, settings, item).ConfigureAwait(false);
         }
 
         private Func<XmlNode, bool> GetMatchNodePredicate(string value, bool caseSensitive)

@@ -42,7 +42,7 @@
                 throw new ProcessingTools.Exceptions.InvalidDataException("Mediatypes data json file is empty or invalid.");
             }
 
-            await this.ImportMediatypesToDatabase(mediatypesJson);
+            await this.ImportMediatypesToDatabase(mediatypesJson).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -84,7 +84,8 @@
                         Description = mediatype.Description,
                         Mimetype = mediatype.Mimetype,
                         Mimesubtype = mediatype.Mimesubtype
-                    });
+                    })
+                    .ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {

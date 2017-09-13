@@ -32,7 +32,8 @@
                 this.FinalFormat(context);
 
                 return true;
-            });
+            })
+            .ConfigureAwait(false);
         }
 
         private void FinalFormat(IDocument document)

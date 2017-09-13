@@ -21,6 +21,6 @@
             this.stringBuilder.AppendLine(content);
         }
 
-        public async Task MakeReport() => await Task.Run(() => this.logger?.Log(message: this.stringBuilder.ToString()));
+        public Task MakeReport() => Task.Run(() => this.logger?.Log(message: this.stringBuilder.ToString()));
     }
 }

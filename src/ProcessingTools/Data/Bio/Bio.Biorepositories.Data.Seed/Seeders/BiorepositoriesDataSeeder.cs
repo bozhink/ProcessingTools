@@ -50,7 +50,7 @@
                 this.ImportCsvFileToMongo<StaffCsv, Staff>(),
                 this.ImportCsvFileToMongo<StaffLabelCsv, StaffLabel>()
             };
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -90,7 +90,7 @@
 
                 var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);
                 var seeder = new SimpleRepositorySeeder<TEntityModel>(repositoryProvider);
-                await seeder.Seed(items);
+                await seeder.Seed(items).ConfigureAwait(false);
             }
             catch (Exception e)
             {

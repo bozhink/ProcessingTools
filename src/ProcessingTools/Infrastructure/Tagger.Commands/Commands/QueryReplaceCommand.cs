@@ -38,7 +38,7 @@
 
             string queryFileName = settings.FileNames[2];
 
-            var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName);
+            var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName).ConfigureAwait(false);
 
             document.Xml = processedContent;
 

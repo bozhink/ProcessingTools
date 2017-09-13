@@ -25,7 +25,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var data = (await this.service.SelectAsync(null))
+            var data = (await this.service.SelectAsync(null).ConfigureAwait(false))
                 .Select(t => t.Name)
                 .Distinct()
                 .ToList();

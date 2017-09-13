@@ -29,7 +29,7 @@
 
             var transformer = this.transformerFactory.Create(schemaType);
 
-            document.Xml = await transformer.Transform(document.Xml);
+            document.Xml = await transformer.Transform(document.Xml).ConfigureAwait(false);
 
             return true;
         }

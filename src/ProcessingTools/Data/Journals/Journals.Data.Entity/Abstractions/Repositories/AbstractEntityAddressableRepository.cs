@@ -120,7 +120,7 @@
                     .Skip(0)
                     .Take(1));
 
-            var dbaddress = await query.FirstOrDefaultAsync();
+            var dbaddress = await query.FirstOrDefaultAsync().ConfigureAwait(false);
             if (dbaddress == null)
             {
                 return null;

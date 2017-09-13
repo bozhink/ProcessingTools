@@ -141,7 +141,7 @@
 
             // TODO : Updater
             var updater = new Updater<TEntity>(updateExpression);
-            await updater.Invoke(model);
+            await updater.Invoke(model).ConfigureAwait(false);
 
             this.repository.Update(model);
 

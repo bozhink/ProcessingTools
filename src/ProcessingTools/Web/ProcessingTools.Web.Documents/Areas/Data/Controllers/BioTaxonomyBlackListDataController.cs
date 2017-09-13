@@ -50,7 +50,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundItems = (await this.searchService.Search(searchString))
+            var foundItems = (await this.searchService.Search(searchString).ConfigureAwait(false))
                 .ToList();
 
             if (foundItems.Count < 1)

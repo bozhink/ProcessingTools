@@ -36,14 +36,14 @@
 
             if (mergeInputFiles)
             {
-                document = await this.documentMerger.Merge(fileNames);
+                document = await this.documentMerger.Merge(fileNames).ConfigureAwait(false);
             }
             else
             {
-                document = await this.documentReader.ReadDocument(fileNames[0]);
+                document = await this.documentReader.ReadDocument(fileNames[0]).ConfigureAwait(false);
             }
 
-            await this.documentNormalizer.Normalize(document);
+            await this.documentNormalizer.Normalize(document).ConfigureAwait(false);
 
             return document;
         }

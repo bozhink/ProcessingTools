@@ -51,7 +51,8 @@
                 }
 
                 return result;
-            });
+            })
+            .ConfigureAwait(false);
         }
     }
 }

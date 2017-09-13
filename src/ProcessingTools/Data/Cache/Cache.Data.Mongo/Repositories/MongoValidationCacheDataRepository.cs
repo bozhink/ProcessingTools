@@ -58,7 +58,8 @@
                     .Eq(o => o.Id, key),
                 Builders<ValidatedObject>.Update
                     .AddToSet(o => o.Values, new ValidationCacheEntity(value)),
-                this.updateOptions);
+                this.updateOptions)
+                .ConfigureAwait(false);
         }
 
         public IEnumerable<IValidationCacheEntity> GetAll(string key)
@@ -79,7 +80,7 @@
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return await this.collection.DeleteOneAsync(o => o.Id == key);
+            return await this.collection.DeleteOneAsync(o => o.Id == key).ConfigureAwait(false);
         }
 
         public async Task<object> Remove(string key, IValidationCacheEntity value)
@@ -94,7 +95,7 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            var dbmodel = await this.collection.Find(o => o.Id == key).FirstOrDefaultAsync();
+            var dbmodel = await this.collection.Find(o => o.Id == key).FirstOrDefaultAsync().ConfigureAwait(false);
             if (dbmodel == null)
             {
                 return false;
@@ -102,7 +103,7 @@
 
             var result = dbmodel.Values.Remove(new ValidationCacheEntity(value));
 
-            var response = await this.collection.ReplaceOneAsync(o => o.Id == key, dbmodel);
+            var response = await this.collection.ReplaceOneAsync(o => o.Id == key, dbmodel).ConfigureAwait(false);
 
             return result && response.IsAcknowledged;
         }

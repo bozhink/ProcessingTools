@@ -29,7 +29,7 @@
             }
 
             var transformer = this.transformerFactory.Create(context.SchemaType);
-            context.Xml = await transformer.Transform(context.Xml);
+            context.Xml = await transformer.Transform(context.Xml).ConfigureAwait(false);
 
             this.TrimBlockElements(context);
 

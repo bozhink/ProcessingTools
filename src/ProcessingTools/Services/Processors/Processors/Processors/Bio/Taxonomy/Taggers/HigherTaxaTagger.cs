@@ -50,31 +50,32 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
-            var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement);
-            var seed = await this.whitelist.Items;
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var seed = await this.whitelist.Items.ConfigureAwait(false);
 
-            var data = await this.miner.Mine(textContent, seed, stopWords) ?? new string[] { };
+            var data = await this.miner.Mine(textContent, seed, stopWords).ConfigureAwait(false) ?? new string[] { };
 
             var taxaNames = new HashSet<string>(data.Where(s => s != null && s.Length > 0 && s[0] == s.ToUpperInvariant()[0]));
 
             var tagModel = context.CreateTaxonNameXmlElement(TaxonType.Higher);
-            await this.contentTagger.Tag(context, taxaNames, tagModel, HigherTaxaXPath);
+            await this.contentTagger.Tag(context, taxaNames, tagModel, HigherTaxaXPath).ConfigureAwait(false);
 
             return true;
         }
 
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
-            var personNames = await this.personNamesHarvester.Harvest(context);
-            var blacklistItems = await this.blacklist.Items;
+            var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.Items.ConfigureAwait(false);
 
             var stopWords = await personNames
                 .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
                 .Where(n => !string.IsNullOrWhiteSpace(n))
                 .Union(blacklistItems)
                 .Distinct()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return stopWords;
         }

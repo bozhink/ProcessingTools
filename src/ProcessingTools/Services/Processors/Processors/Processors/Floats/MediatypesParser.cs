@@ -38,7 +38,7 @@
 
             var extensions = this.GetExtensions(mediaElementList);
 
-            var mediatypes = await this.ResolveMediatypes(extensions);
+            var mediatypes = await this.ResolveMediatypes(extensions).ConfigureAwait(false);
 
             foreach (XmlNode mediaNode in mediaElementList)
             {
@@ -105,7 +105,7 @@
                 FileExtension = extension
             };
 
-            var response = (await this.mediatypesResolver.ResolveMediatype(extension))
+            var response = (await this.mediatypesResolver.ResolveMediatype(extension).ConfigureAwait(false))
                 .FirstOrDefault();
 
             if (response != null)
@@ -122,7 +122,7 @@
             var result = new HashSet<IMediaType>();
             foreach (var extension in extensions)
             {
-                var mediatype = await this.ResolveFileExtensionToMediatype(extension);
+                var mediatype = await this.ResolveFileExtensionToMediatype(extension).ConfigureAwait(false);
                 result.Add(mediatype);
             }
 

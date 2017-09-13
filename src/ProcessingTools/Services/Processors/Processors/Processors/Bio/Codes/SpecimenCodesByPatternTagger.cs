@@ -35,8 +35,8 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
-            var data = (await this.miner.Mine(textContent))
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = (await this.miner.Mine(textContent).ConfigureAwait(false))
                 .ToArray();
 
             var specimenCodes = data.Select(s => new SpecimenCodeSerializableModel
@@ -57,7 +57,8 @@
                 context.NamespaceManager,
                 specimenCodes,
                 XPathStrings.RootNodesOfContext,
-                settings);
+                settings)
+                .ConfigureAwait(false);
         }
     }
 }

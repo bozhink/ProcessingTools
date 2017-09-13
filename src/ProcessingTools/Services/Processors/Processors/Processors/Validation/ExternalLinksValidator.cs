@@ -34,7 +34,7 @@
                 throw new ArgumentNullException(nameof(reporter));
             }
 
-            var data = await this.harvester.Harvest(context.XmlDocument.DocumentElement);
+            var data = await this.harvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
             var externalLinks = data?.Select(e => e.FullAddress)
                 .Distinct()
                 .ToArray();
@@ -44,7 +44,7 @@
                 return false;
             }
 
-            var result = await this.validationService.Validate(externalLinks);
+            var result = await this.validationService.Validate(externalLinks).ConfigureAwait(false);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => $"{r.ValidatedObject} / {r.ValidationStatus.ToString()} /")

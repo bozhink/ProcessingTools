@@ -129,7 +129,7 @@
                 .Returns(xmldocumentStub);
 
             // Act
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
             parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Once);

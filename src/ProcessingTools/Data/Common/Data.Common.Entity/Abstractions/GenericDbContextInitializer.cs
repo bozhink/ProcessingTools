@@ -22,7 +22,7 @@
             {
                 if (context.Database.CreateIfNotExists())
                 {
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
 

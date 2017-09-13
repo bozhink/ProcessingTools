@@ -56,12 +56,12 @@ namespace ProcessingTools.Interceptors
 
         private async Task HandleAsync(Task task)
         {
-            await this.handler.HandleExceptions(async () => await task);
+            await this.handler.HandleExceptions(async () => await task.ConfigureAwait(false));
         }
 
         private async Task<T> HandleAsyncWithResult<T>(Task<T> task)
         {
-            return await this.handler.HandleExceptions(async () => await task);
+            return await this.handler.HandleExceptions(async () => await task.ConfigureAwait(false));
         }
     }
 }

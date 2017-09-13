@@ -105,8 +105,8 @@
             int currentPage = p ?? PaginationConstants.DefaultPageNumber;
             int numberOfItemsPerPage = n ?? PaginationConstants.DefaultLargeNumberOfItemsPerPage;
 
-            long numberOfItems = await this.service.SelectCountAsync(null);
-            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IContinent.Name), SortOrder.Ascending);
+            long numberOfItems = await this.service.SelectCountAsync(null).ConfigureAwait(false);
+            var data = await this.service.SelectAsync(null, currentPage * numberOfItemsPerPage, numberOfItemsPerPage, nameof(IContinent.Name), SortOrder.Ascending).ConfigureAwait(false);
             var items = data.Select(this.mapper.Map<ContinentViewModel>).ToArray();
 
             var model = new ListWithPagingViewModel<ContinentViewModel>(IndexActionName, numberOfItems, numberOfItemsPerPage, currentPage, items);
@@ -133,7 +133,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = await this.service.GetByIdAsync(id);
+            var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
             if (model == null)
             {
                 this.logger?.Log(LogType.Error, id);
@@ -147,7 +147,7 @@
                 ReturnUrl = this.Request[ContextKeys.ReturnUrl]
             };
 
-            var countries = await this.countriesService.SelectAsync(null);
+            var countries = await this.countriesService.SelectAsync(null).ConfigureAwait(false);
             foreach (var synonym in viewModel.Model.Synonyms)
             {
                 synonym.LanguageCode = countries.Where(c => c.Id.ToString() == synonym.LanguageCode)
@@ -203,7 +203,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    var id = await this.InsertModel(model, synonyms);
+                    var id = await this.InsertModelAsync(model, synonyms).ConfigureAwait(false);
 
                     if (createNew)
                     {
@@ -260,7 +260,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = await this.service.GetByIdAsync(id);
+            var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
             if (model == null)
             {
                 this.logger?.Log(LogType.Error, id);
@@ -304,8 +304,8 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    await this.service.UpdateAsync(model);
-                    await this.UpdateSynonymsFromJson(model.Id, synonyms);
+                    await this.service.UpdateAsync(model).ConfigureAwait(false);
+                    await this.UpdateSynonymsFromJsonAsync(model.Id, synonyms).ConfigureAwait(false);
 
                     if (createNew)
                     {
@@ -361,7 +361,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = await this.service.GetByIdAsync(id);
+            var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
             if (model == null)
             {
                 this.logger?.Log(LogType.Error, id);
@@ -389,7 +389,7 @@
         {
             try
             {
-                await this.service.DeleteAsync(id: id);
+                await this.service.DeleteAsync(id: id).ConfigureAwait(false);
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))
@@ -418,7 +418,7 @@
                 Data = new SynonymResponseModel[] { }
             };
 
-            var data = await this.service.SelectSynonymsAsync(id, null);
+            var data = await this.service.SelectSynonymsAsync(id, null).ConfigureAwait(false);
             if (data != null && data.Length > 0)
             {
                 result.Data = data.Select(s => this.mapper.Map<SynonymResponseModel>(s)).ToArray();
@@ -427,7 +427,7 @@
             return result;
         }
 
-        private async Task<object> InsertModel(IContinent model, string synonyms)
+        private async Task<object> InsertModelAsync(IContinent model, string synonyms)
         {
             object id = null;
             bool inserted = false;
@@ -437,7 +437,7 @@
                 {
                     var synonymsArray = JsonConvert.DeserializeObject<ContinentSynonymRequestModel[]>(synonyms);
                     var addedSynonyms = synonymsArray.Where(s => s.Status == UpdateStatus.Added).ToArray();
-                    id = await this.service.InsertAsync(model, addedSynonyms);
+                    id = await this.service.InsertAsync(model, addedSynonyms).ConfigureAwait(false);
                     inserted = true;
                 }
                 catch (Exception ex)
@@ -449,20 +449,20 @@
 
             if (!inserted)
             {
-                id = await this.service.InsertAsync(model);
+                id = await this.service.InsertAsync(model).ConfigureAwait(false);
             }
 
             return id;
         }
 
-        private async Task UpdateSynonymsFromJson(int modelId, string synonyms)
+        private async Task UpdateSynonymsFromJsonAsync(int modelId, string synonyms)
         {
             if (!string.IsNullOrWhiteSpace(synonyms) && synonyms != "[]")
             {
                 try
                 {
                     var synonymsArray = JsonConvert.DeserializeObject<ContinentSynonymRequestModel[]>(synonyms);
-                    await this.UpdateSynonyms(modelId, synonymsArray);
+                    await this.UpdateSynonymsAsync(modelId, synonymsArray).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -471,7 +471,7 @@
             }
         }
 
-        private async Task UpdateSynonyms(int modelId, ContinentSynonymRequestModel[] synonyms)
+        private async Task UpdateSynonymsAsync(int modelId, ContinentSynonymRequestModel[] synonyms)
         {
             if (synonyms?.Length > 0)
             {
@@ -485,19 +485,19 @@
                     var modifiedSynonyms = synonyms.Where(s => s.Status == UpdateStatus.Modified).ToArray();
                     if (modifiedSynonyms.Length > 0)
                     {
-                        await this.service.UpdateSynonymsAsync(modelId, modifiedSynonyms);
+                        await this.service.UpdateSynonymsAsync(modelId, modifiedSynonyms).ConfigureAwait(false);
                     }
 
                     var addedSynonyms = synonyms.Where(s => s.Status == UpdateStatus.Added).ToArray();
                     if (addedSynonyms.Length > 0)
                     {
-                        await this.service.AddSynonymsAsync(modelId, addedSynonyms);
+                        await this.service.AddSynonymsAsync(modelId, addedSynonyms).ConfigureAwait(false);
                     }
 
                     var removedSynonyms = synonyms.Where(s => s.Status == UpdateStatus.Removed).Select(s => s.Id).ToArray();
                     if (removedSynonyms.Length > 0)
                     {
-                        await this.service.RemoveSynonymsAsync(modelId, removedSynonyms);
+                        await this.service.RemoveSynonymsAsync(modelId, removedSynonyms).ConfigureAwait(false);
                     }
                 }
                 catch (Exception ex)

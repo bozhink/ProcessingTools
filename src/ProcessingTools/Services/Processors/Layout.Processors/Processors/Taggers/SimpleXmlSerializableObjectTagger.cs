@@ -59,7 +59,7 @@
                 .OrderByDescending(i => i.InnerText.Length)
                 .ToArray();
 
-            await this.contentTagger.TagContentInDocument(nodeList, settings, items);
+            await this.contentTagger.TagContentInDocument(nodeList, settings, items).ConfigureAwait(false);
 
             return true;
         }

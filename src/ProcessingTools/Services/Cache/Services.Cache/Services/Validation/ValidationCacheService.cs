@@ -68,7 +68,8 @@
 
             var entity = await query.OrderByDescending(e => e.LastUpdate)
                 .Select(v => this.mapper.Map<ValidationCacheServiceModel>(v))
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
 
             return entity;
         }

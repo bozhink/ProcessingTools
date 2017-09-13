@@ -51,7 +51,7 @@
             var miner = new DatesDataMiner();
 
             // Act
-            var result = await miner.Mine(content);
+            var result = await miner.Mine(content).ConfigureAwait(false);
 
             // Assert
             Assert.IsTrue(result.Any(), "Number of dates found should be greater than 0.");

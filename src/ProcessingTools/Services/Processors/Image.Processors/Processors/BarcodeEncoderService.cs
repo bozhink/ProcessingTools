@@ -12,7 +12,7 @@
     {
         public async Task<byte[]> Encode(BarcodeType type, string content, int width, int height)
         {
-            var image = await this.EncodeImage(type, content, width, height);
+            var image = await this.EncodeImage(type, content, width, height).ConfigureAwait(false);
 
             var result = image.ToByteArray(ImageFormat.Bmp);
 
@@ -21,7 +21,7 @@
 
         public async Task<string> EncodeBase64(BarcodeType type, string content, int width, int height)
         {
-            var image = await this.EncodeImage(type, content, width, height);
+            var image = await this.EncodeImage(type, content, width, height).ConfigureAwait(false);
 
             var result = image.ToBase64String(ImageFormat.Bmp);
 

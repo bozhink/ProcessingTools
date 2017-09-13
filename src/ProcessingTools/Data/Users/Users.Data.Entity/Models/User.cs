@@ -14,7 +14,7 @@
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {
-            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType).ConfigureAwait(false);
             userIdentity.AddClaim(new Claim(ClaimTypes.Email, this.Email));
             return userIdentity;
         }

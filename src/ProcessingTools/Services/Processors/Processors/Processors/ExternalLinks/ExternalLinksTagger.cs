@@ -37,8 +37,8 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
-            var data = (await this.miner.Mine(textContent))
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = (await this.miner.Mine(textContent).ConfigureAwait(false))
                 .Select(i => new ExternalLinkXmlModel
                 {
                     Href = i.Href,
@@ -52,7 +52,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.Tag(context.XmlDocument.DocumentElement, context.NamespaceManager, data, XPath, settings);
+            await this.contentTagger.Tag(context.XmlDocument.DocumentElement, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);
 
             return true;
         }

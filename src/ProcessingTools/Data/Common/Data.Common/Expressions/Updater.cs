@@ -44,7 +44,8 @@
 
                     method.Invoke(obj, new[] { updateCommand.Value });
                 }
-            });
+            })
+            .ConfigureAwait(false);
         }
     }
 }

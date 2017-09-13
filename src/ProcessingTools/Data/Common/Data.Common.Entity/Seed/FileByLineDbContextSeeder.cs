@@ -73,7 +73,7 @@
                     {
                         try
                         {
-                            await context.SaveChangesAsync();
+                            await context.SaveChangesAsync().ConfigureAwait(false);
                             numberOfImportedObjects += localNumberOfImportedObjects;
                             localNumberOfImportedObjects = 0;
                         }
@@ -89,7 +89,7 @@
 
                 try
                 {
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                     numberOfImportedObjects += localNumberOfImportedObjects;
                 }
                 catch (Exception e)

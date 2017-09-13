@@ -136,7 +136,8 @@
                 }
 
                 return result;
-            }).ConfigureAwait(false);
+            })
+            .ConfigureAwait(false);
         }
 
         private string GenerateFileName(string prefix, int length)

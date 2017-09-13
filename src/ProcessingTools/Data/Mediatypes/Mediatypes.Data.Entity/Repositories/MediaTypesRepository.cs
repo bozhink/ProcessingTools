@@ -32,7 +32,9 @@
             }
 
             var mimetype = await this.db.Mimetypes
-                .FirstOrDefaultAsync(m => m.Name.ToLower() == mediatype.Mimetype.ToLower());
+                .FirstOrDefaultAsync(m => m.Name.ToLower() == mediatype.Mimetype.ToLower())
+                .ConfigureAwait(false);
+
             if (mimetype == null)
             {
                 mimetype = new Mimetype
@@ -42,7 +44,9 @@
             }
 
             var mimesubtype = await this.db.Mimesubtypes
-                .FirstOrDefaultAsync(s => s.Name.ToLower() == mediatype.Mimesubtype.ToLower());
+                .FirstOrDefaultAsync(s => s.Name.ToLower() == mediatype.Mimesubtype.ToLower())
+                .ConfigureAwait(false);
+
             if (mimesubtype == null)
             {
                 mimesubtype = new Mimesubtype
@@ -52,7 +56,9 @@
             }
 
             var mimetypePair = await this.db.MimetypePairs
-                .FirstOrDefaultAsync(p => p.Mimetype == mimetype && p.Mimesubtype == mimesubtype);
+                .FirstOrDefaultAsync(p => p.Mimetype == mimetype && p.Mimesubtype == mimesubtype)
+                .ConfigureAwait(false);
+
             if (mimetypePair == null)
             {
                 mimetypePair = new MimetypePair
@@ -63,7 +69,9 @@
             }
 
             var entity = await this.db.FileExtensions
-                .FirstOrDefaultAsync(e => e.Name.ToLower() == mediatype.FileExtension.ToLower());
+                .FirstOrDefaultAsync(e => e.Name.ToLower() == mediatype.FileExtension.ToLower())
+                .ConfigureAwait(false);
+
             if (entity == null)
             {
                 entity = new FileExtension
@@ -117,7 +125,8 @@
             }
 
             var entity = await this.db.FileExtensions
-                .FirstOrDefaultAsync(e => e.Name.ToLower() == fileExtension.ToLower());
+                .FirstOrDefaultAsync(e => e.Name.ToLower() == fileExtension.ToLower())
+                .ConfigureAwait(false);
 
             if (entity == null)
             {
@@ -140,7 +149,7 @@
             return true;
         }
 
-        public async Task<long> SaveChanges() => await this.db.SaveChangesAsync();
+        public async Task<long> SaveChanges() => await this.db.SaveChangesAsync().ConfigureAwait(false);
 
         public async Task<object> UpdateDescription(string fileExtension, string description)
         {
@@ -150,7 +159,8 @@
             }
 
             var entity = await this.db.FileExtensions
-                .FirstOrDefaultAsync(e => e.Name.ToLower() == fileExtension.ToLower());
+                .FirstOrDefaultAsync(e => e.Name.ToLower() == fileExtension.ToLower())
+                .ConfigureAwait(false);
 
             if (entity == null)
             {

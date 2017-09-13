@@ -40,12 +40,12 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement);
-            var data = (await this.miner.Mine(textContent))
+            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = (await this.miner.Mine(textContent).ConfigureAwait(false))
                 .ToArray();
 
-            await this.TagCollectionCodes(context, data);
-            await this.TagCollections(context, data);
+            await this.TagCollectionCodes(context, data).ConfigureAwait(false);
+            await this.TagCollections(context, data).ConfigureAwait(false);
 
             return true;
         }
@@ -67,7 +67,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.collectionCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings);
+            await this.collectionCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings).ConfigureAwait(false);
         }
 
         private async Task TagCollections(
@@ -86,7 +86,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.collectionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collections, XPath, settings);
+            await this.collectionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collections, XPath, settings).ConfigureAwait(false);
         }
     }
 }

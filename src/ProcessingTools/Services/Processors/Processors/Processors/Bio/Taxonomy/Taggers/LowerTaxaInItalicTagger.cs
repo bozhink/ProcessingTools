@@ -38,7 +38,7 @@
 
             var plausibleLowerTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownLowerTaxaNames));
 
-            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(context, plausibleLowerTaxa))
+            plausibleLowerTaxa = new HashSet<string>((await this.ClearFakeTaxaNames(context, plausibleLowerTaxa).ConfigureAwait(false))
                 .Select(name => name.ToLowerInvariant()));
 
             this.TagDirectTaxonomicMatches(context, plausibleLowerTaxa);
@@ -103,7 +103,7 @@
 
         private async Task<IEnumerable<string>> ClearFakeTaxaNames(IDocument document, IEnumerable<string> taxaNames)
         {
-            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWord(document, taxaNames);
+            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWord(document, taxaNames).ConfigureAwait(false);
 
             var result = taxaNames.Where(tn => taxaNamesFirstWord.Contains(tn.GetFirstWord()));
             return result;
@@ -111,20 +111,21 @@
 
         private async Task<IEnumerable<string>> GetTaxaNamesFirstWord(IDocument document, IEnumerable<string> taxaNames)
         {
-            var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement);
+            var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
             var taxaNamesFirstWord = await taxaNames.GetFirstWord()
                 .Distinct()
                 .DistinctWithStopWords(stopWords)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return new HashSet<string>(taxaNamesFirstWord);
         }
 
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
-            var personNames = await this.personNamesHarvester.Harvest(context);
-            var blacklistItems = await this.blacklist.Items;
+            var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.Items.ConfigureAwait(false);
 
             var stopWords = await personNames
                 .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
@@ -132,7 +133,8 @@
                 .Union(blacklistItems)
                 .Select(w => w.ToLowerInvariant())
                 .Distinct()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return stopWords;
         }

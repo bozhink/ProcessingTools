@@ -81,7 +81,7 @@
             }
 
             var entity = this.MapModelToEntity(model);
-            return await this.InsertEntityAsync(entity);
+            return await this.InsertEntityAsync(entity).ConfigureAwait(false);
         }
 
         public virtual Task<object> SaveChangesAsync() => this.repository.SaveChangesAsync();
@@ -91,7 +91,7 @@
             var query = this.GetQuery(filter);
 
             var data = query.ToList();
-            var result = await data.Select(this.MapEntityToModel).ToArrayAsync();
+            var result = await data.Select(this.MapEntityToModel).ToArrayAsync().ConfigureAwait(false);
             return result;
         }
 
@@ -103,7 +103,7 @@
                 .Take(take);
 
             var data = query.ToList();
-            var ressult = await data.Select(this.MapEntityToModel).ToArrayAsync();
+            var ressult = await data.Select(this.MapEntityToModel).ToArrayAsync().ConfigureAwait(false);
 
             return ressult;
         }
@@ -111,7 +111,7 @@
         public virtual async Task<long> SelectCountAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-            var count = await query.LongCountAsync();
+            var count = await query.LongCountAsync().ConfigureAwait(false);
             return count;
         }
 
@@ -123,7 +123,7 @@
             }
 
             var entity = this.MapModelToEntity(model);
-            return await this.UpdateEntityAsync(entity);
+            return await this.UpdateEntityAsync(entity).ConfigureAwait(false);
         }
 
         protected async Task<TEntity> InsertEntityAsync(TEntity entity)

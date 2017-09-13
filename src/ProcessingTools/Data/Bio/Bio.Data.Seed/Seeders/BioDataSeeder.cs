@@ -40,7 +40,7 @@
                 this.SeedTypeStatuses(AppSettings.TypeStatusesFileName)
             };
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -67,7 +67,8 @@
                         {
                             Name = line
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -92,7 +93,8 @@
                         {
                             Name = line
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {

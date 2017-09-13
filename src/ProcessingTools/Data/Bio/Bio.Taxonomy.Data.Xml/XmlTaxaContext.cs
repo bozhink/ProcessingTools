@@ -44,7 +44,7 @@
             }
         };
 
-        public async Task<object> Add(ITaxonRankEntity entity) => await Task.Run(() => this.Upsert(entity));
+        public Task<object> Add(ITaxonRankEntity entity) => Task.Run<object>(() => this.Upsert(entity));
 
         public Task<object> Delete(object id)
         {
@@ -89,10 +89,11 @@
                 taxa.AsParallel().ForAll(taxon => this.Upsert(taxon));
 
                 return taxa.LongCount();
-            });
+            })
+            .ConfigureAwait(false);
         }
 
-        public async Task<object> Update(ITaxonRankEntity entity) => await Task.Run(() => this.Upsert(entity));
+        public Task<object> Update(ITaxonRankEntity entity) => Task.Run<object>(() => this.Upsert(entity));
 
         public async Task<long> WriteToFile(string fileName)
         {
@@ -112,7 +113,7 @@
             {
                 var serializer = new XmlSerializer(typeof(RankListXmlModel));
                 serializer.Serialize(stream, rankList);
-                await stream.FlushAsync();
+                await stream.FlushAsync().ConfigureAwait(false);
             }
 
             return rankList.Taxa.Length;

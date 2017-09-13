@@ -65,7 +65,7 @@
         {
             var knownTaxa = this.GetKnownLowerTaxa(context);
             var plausibleTaxa = new HashSet<string>(this.GetPlausibleLowerTaxa(context).Concat(knownTaxa));
-            var cleanedLowerTaxa = await this.ClearFakeTaxaNames(context, plausibleTaxa);
+            var cleanedLowerTaxa = await this.ClearFakeTaxaNamesAsync(context, plausibleTaxa).ConfigureAwait(false);
 
             plausibleTaxa = new HashSet<string>(cleanedLowerTaxa.Select(t => t.ToLowerInvariant()));
 
@@ -148,20 +148,15 @@
 
         private async Task TagInfrarankTaxa(XmlNode node)
         {
-            await this.TagSensu(node);
-
-            await this.TagBindedInfragenericTaxa(node);
-
-            await this.TagBareInfragenericTaxa(node);
-
-            await this.TagBindedInfraspecificTaxa(node);
-
-            await this.TagBareInfraspecificTaxa(node);
-
-            await this.TagInfraspecicTaxaFinalize(node);
+            await this.TagSensuAsync(node).ConfigureAwait(false);
+            await this.TagBindedInfragenericTaxaAsync(node).ConfigureAwait(false);
+            await this.TagBareInfragenericTaxaAsync(node).ConfigureAwait(false);
+            await this.TagBindedInfraspecificTaxaAsync(node).ConfigureAwait(false);
+            await this.TagBareInfraspecificTaxaAsync(node).ConfigureAwait(false);
+            await this.TagInfraspecicTaxaFinalizeAsync(node).ConfigureAwait(false);
         }
 
-        private async Task TagInfraspecicTaxaFinalize(XmlNode node)
+        private async Task TagInfraspecicTaxaFinalizeAsync(XmlNode node)
         {
             // Here we must extract species+subspecies in <infraspecific/>, which comes from tagging of subgenera and [sub]sections
             string replace = node.InnerXml;
@@ -169,11 +164,11 @@
 
             replace = Regex.Replace(replace, @" (?:<(?:[a-z-]+)?authority></(?:[a-z-]+)?authority>|<(?:[a-z-]+)?authority\s*/>)", string.Empty);
 
-            await node.SafeReplaceInnerXml(replace, this.logger);
+            await node.SafeReplaceInnerXml(replace, this.logger).ConfigureAwait(false);
         }
 
         // Neoserica (s. l.) abnormoides, Neoserica (sensu lato) abnormis
-        private async Task TagSensu(XmlNode node)
+        private async Task TagSensuAsync(XmlNode node)
         {
             const string InfraspecificPattern = @"<i><tn type=""lower""[^>]*>([^<>]*?)</tn></i>\s*(" + SensuSubpattern + @")\s*<i>(?:<tn type=""lower""[^>]*>)?([a-z][a-z\s-]+)(?:</tn>)?</i>";
             Regex re = new Regex(InfraspecificPattern);
@@ -183,11 +178,11 @@
                 result,
                 @"<tn type=""lower""><basionym>$1</basionym> <sensu>$2</sensu> <specific>$3</specific></tn>");
 
-            await node.SafeReplaceInnerXml(result, this.logger);
+            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
         }
 
         // Genus subgen(us)?. Subgenus sect(ion)?. Section subsect(ion)?. Subsection
-        private async Task TagBindedInfragenericTaxa(XmlNode node)
+        private async Task TagBindedInfragenericTaxaAsync(XmlNode node)
         {
             const string Subpattern = @"(?!\s*[,\.:])(?!\s+and\b)(?!\s+w?as\b)(?!\s+from\b)(?!\s+w?remains\b)(?!\s+to\b)\s*([^<>\(\)\[\]:\+\\\/]{0,40}?)\s*(\(\s*)?(" + InfragenericRankSubpattern + @")\s*(?:<i>)?(?:<tn type=""lower""[^>]*>)?([A-Za-z][A-Za-z\.-]+(?:\s+[a-z\.-]+){0,3})(?:</tn>)?(?:</i>)?(\s*\))?";
 
@@ -224,7 +219,7 @@
                 result = Regex.Replace(result, @"(?<=\(\s*<infraspecific[^\)]*?)(</tn>)(\s*\))", "$2$1");
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger);
+            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
         }
 
         // <i><tn>A. herbacea</tn></i> Walter var. <i>herbacea</i>
@@ -232,7 +227,7 @@
         // <i>Melitaea phoebe</i> Knoch rassa <i>occitanica</i> Staudinger 2-gen. <i>francescoi</i>
         // <i>Melitaea phoebe</i> Knoch sbsp. n. <i>canellina</i> Stauder, 1922
         // <i>Melitaea phoebe</i> mod. <i>nimbula</i> Higgins, 1941
-        private async Task TagBindedInfraspecificTaxa(XmlNode node)
+        private async Task TagBindedInfraspecificTaxaAsync(XmlNode node)
         {
             const string InfraspecificRankNamePairSubpattern = @"\s*(" + InfraspecificRankSubpattern + @")\s*(?:<i>|<i [^>]*>)(?:<tn type=""lower""[^>]*>)?([a-z][a-z-]+)(?:</tn>)?</i>";
 
@@ -269,12 +264,12 @@
                 }
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger);
+            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
         }
 
         // Tag bare infraspecific citations in text
         // var. <italic>schischkinii</italic>
-        private async Task TagBareInfraspecificTaxa(XmlNode node)
+        private async Task TagBareInfraspecificTaxaAsync(XmlNode node)
         {
             const string BareInfraspecificPattern = @"(" + InfraspecificRankSubpattern + @")\s*<i>([A-Za-z][A-Za-z\.\-]+)</i>";
             Regex re = new Regex(BareInfraspecificPattern);
@@ -288,12 +283,12 @@
                     @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger);
+            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
         }
 
         // Tag bare infraspecific citations in text
         // section <italic>Stenodiptera</italic>
-        private async Task TagBareInfragenericTaxa(XmlNode node)
+        private async Task TagBareInfragenericTaxaAsync(XmlNode node)
         {
             const string BareInfragenericPattern = @"(" + InfragenericRankSubpattern + @")\s*<i>(?:<tn type=""lower"">)?([A-Za-z][A-Za-z\.\-]+)(?:</tn>)?</i>";
             Regex re = new Regex(BareInfragenericPattern);
@@ -307,7 +302,7 @@
                     @"<tn type=""lower""><infraspecific-rank>$1</infraspecific-rank> <infraspecific>$2</infraspecific></tn>");
             }
 
-            await node.SafeReplaceInnerXml(result, this.logger);
+            await node.SafeReplaceInnerXml(result, this.logger).ConfigureAwait(false);
         }
 
         private bool IsMatchingLowerTaxaFormat(string textToCheck)
@@ -370,7 +365,7 @@
                         MinimalTextSelect = true
                     };
 
-                    await this.contentTagger.TagContentInDocument(item, tagModel, LowerTaxaXPath, document, settings);
+                    await this.contentTagger.TagContentInDocument(item, tagModel, LowerTaxaXPath, document, settings).ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {
@@ -431,30 +426,31 @@
             return Regex.Replace(textValue, @"\s+", string.Empty);
         }
 
-        private async Task<IEnumerable<string>> ClearFakeTaxaNames(IDocument document, IEnumerable<string> taxaNames)
+        private async Task<IEnumerable<string>> ClearFakeTaxaNamesAsync(IDocument document, IEnumerable<string> taxaNames)
         {
-            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWord(document, taxaNames);
+            var taxaNamesFirstWord = await this.GetTaxaNamesFirstWordAsync(document, taxaNames).ConfigureAwait(false);
 
             var result = taxaNames.Where(tn => taxaNamesFirstWord.Contains(tn.GetFirstWord()));
             return result;
         }
 
-        private async Task<IEnumerable<string>> GetTaxaNamesFirstWord(IDocument document, IEnumerable<string> taxaNames)
+        private async Task<IEnumerable<string>> GetTaxaNamesFirstWordAsync(IDocument document, IEnumerable<string> taxaNames)
         {
-            var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement);
+            var stopWords = await this.GetStopWordsAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
             var taxaNamesFirstWord = await taxaNames.GetFirstWord()
                 .Distinct()
                 .DistinctWithStopWords(stopWords)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return new HashSet<string>(taxaNamesFirstWord);
         }
 
-        private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
+        private async Task<IEnumerable<string>> GetStopWordsAsync(XmlNode context)
         {
-            var personNames = await this.personNamesHarvester.Harvest(context);
-            var blacklistItems = await this.blacklist.Items;
+            var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.Items.ConfigureAwait(false);
 
             var stopWords = await personNames
                 .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
@@ -462,7 +458,8 @@
                 .Union(blacklistItems)
                 .Select(w => w.ToLowerInvariant())
                 .Distinct()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return stopWords;
         }

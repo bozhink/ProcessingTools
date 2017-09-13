@@ -41,8 +41,8 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            var result = await this.tagger.Tag(document);
-            await this.documentNormalizer.NormalizeToSystem(document);
+            var result = await this.tagger.Tag(document).ConfigureAwait(false);
+            await this.documentNormalizer.NormalizeToSystem(document).ConfigureAwait(false);
 
             return result;
         }

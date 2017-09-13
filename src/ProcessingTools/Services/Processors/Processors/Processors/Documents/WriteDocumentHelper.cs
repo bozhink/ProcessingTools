@@ -48,18 +48,18 @@
                         Path.GetDirectoryName(outputFileName),
                         $"{fileName}.{FileConstants.XmlFileExtension}");
 
-                    await this.WriteSingleDocument(path, subdocument);
+                    await this.WriteSingleDocumentAsync(path, subdocument).ConfigureAwait(false);
                 }
             }
             else
             {
-                await this.WriteSingleDocument(outputFileName, document);
+                await this.WriteSingleDocumentAsync(outputFileName, document).ConfigureAwait(false);
             }
 
             return true;
         }
 
-        private async Task<object> WriteSingleDocument(string fileName, IDocument document)
+        private async Task<object> WriteSingleDocumentAsync(string fileName, IDocument document)
         {
             if (document == null)
             {
@@ -73,7 +73,8 @@
                     {
                         _.Wait();
                         return this.documentWriter.WriteDocument(fileName, document).Result;
-                    });
+                    })
+                .ConfigureAwait(false);
 
             return result;
         }

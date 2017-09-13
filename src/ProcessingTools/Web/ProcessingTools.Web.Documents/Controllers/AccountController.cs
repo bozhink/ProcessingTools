@@ -95,7 +95,8 @@
                 model.Email,
                 model.Password,
                 model.RememberMe,
-                shouldLockout: false);
+                shouldLockout: false)
+                .ConfigureAwait(false);
 
             switch (result)
             {
@@ -121,7 +122,7 @@
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
-            if (!await this.SignInManager.HasBeenVerifiedAsync())
+            if (!await this.SignInManager.HasBeenVerifiedAsync().ConfigureAwait(false))
             {
                 return this.View(ViewNames.ErrorViewName);
             }
@@ -153,7 +154,8 @@
                 model.Provider,
                 model.Code,
                 isPersistent: model.RememberMe,
-                rememberBrowser: model.RememberBrowser);
+                rememberBrowser: model.RememberBrowser)
+                .ConfigureAwait(false);
 
             switch (result)
             {
@@ -369,7 +371,7 @@
             }
 
             // Generate the token and send it
-            if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider).ConfigureAwait(false))
             {
                 return this.View(ViewNames.ErrorViewName);
             }

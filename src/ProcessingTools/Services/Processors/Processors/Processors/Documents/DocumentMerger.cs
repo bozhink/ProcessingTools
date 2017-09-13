@@ -39,7 +39,7 @@
 
             foreach (var fileName in cleanedFileNames)
             {
-                var readDocument = await this.documentReader.ReadDocument(fileName);
+                var readDocument = await this.documentReader.ReadDocument(fileName).ConfigureAwait(false);
                 var fragment = document.XmlDocument.CreateDocumentFragment();
                 fragment.InnerXml = readDocument.XmlDocument.DocumentElement.OuterXml;
                 document.XmlDocument.DocumentElement.AppendChild(fragment);

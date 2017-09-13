@@ -32,7 +32,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Add(key, valueMock.Object);
+            var result = await repository.Add(key, valueMock.Object).ConfigureAwait(false);
 
             // Asset
             Assert.AreSame(result, returnValueMock.Object);
@@ -205,7 +205,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Remove(key, valueMock.Object);
+            var result = await repository.Remove(key, valueMock.Object).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -234,7 +234,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.Remove(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -258,7 +258,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.Remove(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -369,7 +369,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.SaveChangesAsync();
+            var result = await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(0L));

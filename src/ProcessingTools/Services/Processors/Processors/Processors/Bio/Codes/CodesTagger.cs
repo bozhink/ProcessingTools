@@ -148,14 +148,14 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             var knownSpecimenCodes = new List<ISpecimenCode>();
 
             knownSpecimenCodes.AddRange(this.GetJanzenCodes(document));
-            knownSpecimenCodes.AddRange(await this.GetPrefixNumericCodes(document));
+            knownSpecimenCodes.AddRange(await this.GetPrefixNumericCodes(document).ConfigureAwait(false));
 
             knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
             var tagModel = this.GetTagModel(document);
 
-            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, knownSpecimenCodes, tagModel);
-            await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathStrings.ContentNodes, tagModel);
+            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, knownSpecimenCodes, tagModel).ConfigureAwait(false);
+            await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathStrings.ContentNodes, tagModel).ConfigureAwait(false);
         }
 
         public async Task TagSpecimenCodes(IDocument document)
@@ -167,7 +167,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
 
-            var potentialSpecimenCodes = await this.ExtractPotentialSpecimenCodes(document, CodePattern);
+            var potentialSpecimenCodes = await this.ExtractPotentialSpecimenCodes(document, CodePattern).ConfigureAwait(false);
 
             this.logger?.Log(message: "\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
             foreach (string word in potentialSpecimenCodes)
@@ -181,8 +181,8 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             var tagModel = this.GetTagModel(document);
 
-            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, plausibleSpecimenCodes, tagModel);
-            await this.GuessSequentalSpecimenCodes(document, tagModel, XPathStrings.ContentNodes);
+            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, plausibleSpecimenCodes, tagModel).ConfigureAwait(false);
+            await this.GuessSequentalSpecimenCodes(document, tagModel, XPathStrings.ContentNodes).ConfigureAwait(false);
         }
 
         private async Task<IEnumerable<string>> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)
@@ -200,7 +200,8 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             var cleanedContent = await this.transformerFactory
                 .GetCodesRemoveNonCodeNodesTransformer()
-                .Transform(cleanedXmlDocument);
+                .Transform(cleanedXmlDocument)
+                .ConfigureAwait(false);
 
             cleanedXmlDocument.LoadXml(cleanedContent);
 
@@ -280,7 +281,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         private async Task<IEnumerable<ISpecimenCode>> GetPrefixNumericCodes(IDocument document)
         {
             var prefixNumericSpecimenCodes = new List<ISpecimenCode>();
-            string textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            string textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
             for (int i = 0, length = this.codePrefixes.Length; i < length; ++i)
             {
@@ -320,7 +321,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                     nodeInnerXml = guessNextCode.Replace(nodeInnerXml, replacement);
                 }
 
-                await node.SafeReplaceInnerXml(nodeInnerXml, this.logger);
+                await node.SafeReplaceInnerXml(nodeInnerXml, this.logger).ConfigureAwait(false);
 
                 if (xpathToSelectSpecimenCodeTags != null && xpathToSelectSpecimenCodeTags.Length > 0)
                 {
@@ -343,7 +344,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             string guessNextCodePattern = @"(?<=" + closeTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:\d[\/\.]?(?:<[^>]*>)*){1,20}(?:(?i)[a-z]\b)?)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");
+            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, ".//*[@prefix][@type='prefix-numeric']").ConfigureAwait(false);
         }
 
         /// <summary>
@@ -364,7 +365,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             string guessNextCodePattern = "(?<=" + closeTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, string.Format("//{0}[count(@*)!=0]", tagModel.Name));
+            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, string.Format("//{0}[count(@*)!=0]", tagModel.Name)).ConfigureAwait(false);
         }
 
         private async Task ReplaceSpecimenCodesInXml(IDocument document, string xpathTemplate, IEnumerable<ISpecimenCode> specimenCodes, XmlNode tagModel)
@@ -381,7 +382,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                     MinimalTextSelect = false
                 };
 
-                await this.contentTagger.TagContentInDocument(specimenCode.Code, codeElement, xpathTemplate, document, settings);
+                await this.contentTagger.TagContentInDocument(specimenCode.Code, codeElement, xpathTemplate, document, settings).ConfigureAwait(false);
             }
 
             /*

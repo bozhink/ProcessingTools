@@ -39,7 +39,7 @@
                 };
 
                 db.ContentTypes.Add(entity);
-                result = await db.SaveChangesAsync();
+                result = await db.SaveChangesAsync().ConfigureAwait(false);
             }
 
             return result;
@@ -59,7 +59,7 @@
                         Name = e.Name
                     });
 
-                result = await query.ToListAsync();
+                result = await query.ToListAsync().ConfigureAwait(false);
             }
 
             return result;
@@ -91,7 +91,7 @@
                         Name = e.Name
                     });
 
-                result = await query.ToListAsync();
+                result = await query.ToListAsync().ConfigureAwait(false);
             }
 
             return result;
@@ -102,7 +102,7 @@
             long result = 0L;
             using (var db = this.contextProvider.Create())
             {
-                result = await db.ContentTypes.LongCountAsync();
+                result = await db.ContentTypes.LongCountAsync().ConfigureAwait(false);
             }
 
             return result;
@@ -120,7 +120,7 @@
             {
                 var entity = db.ContentTypes.Find(id);
                 db.ContentTypes.Remove(entity);
-                result = await db.SaveChangesAsync();
+                result = await db.SaveChangesAsync().ConfigureAwait(false);
             }
 
             return result;
@@ -144,7 +144,7 @@
                         Name = e.Name
                     });
 
-                result = await query.FirstOrDefaultAsync();
+                result = await query.FirstOrDefaultAsync().ConfigureAwait(false);
             }
 
             return result;
@@ -167,7 +167,7 @@
                 };
 
                 db.Entry(entity).State = EntityState.Modified;
-                result = await db.SaveChangesAsync();
+                result = await db.SaveChangesAsync().ConfigureAwait(false);
             }
 
             return result;

@@ -47,7 +47,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -86,7 +86,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -125,7 +125,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -164,7 +164,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -203,7 +203,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object);
+            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 

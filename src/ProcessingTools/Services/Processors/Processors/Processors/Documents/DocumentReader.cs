@@ -26,7 +26,7 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            var xmldocument = await this.filesManager.ReadXmlFile(fileName);
+            var xmldocument = await this.filesManager.ReadXmlFile(fileName).ConfigureAwait(false);
 
             var document = this.documentFactory.Create(xmldocument.OuterXml);
             switch (document.XmlDocument.DocumentElement.Name)

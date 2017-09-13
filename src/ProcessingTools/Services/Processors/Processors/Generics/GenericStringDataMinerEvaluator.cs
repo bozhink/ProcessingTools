@@ -37,8 +37,8 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var data = await this.miner.Mine(textContent);
+            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = await this.miner.Mine(textContent).ConfigureAwait(false);
 
             return data;
         }

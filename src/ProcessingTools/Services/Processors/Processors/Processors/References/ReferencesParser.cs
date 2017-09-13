@@ -16,7 +16,7 @@
             this.logger = logger;
         }
 
-        public async Task<object> Parse(XmlNode context) => await Task.Run(() => this.ParseSync(context));
+        public Task<object> Parse(XmlNode context) => Task.Run(() => this.ParseSync(context));
 
         private object ParseSync(XmlNode context)
         {
