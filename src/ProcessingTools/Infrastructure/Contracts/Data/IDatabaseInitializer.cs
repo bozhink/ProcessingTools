@@ -4,6 +4,6 @@
 
     public interface IDatabaseInitializer
     {
-        Task<object> Initialize();
+        Task<object> InitializeAsync();
     }
 }

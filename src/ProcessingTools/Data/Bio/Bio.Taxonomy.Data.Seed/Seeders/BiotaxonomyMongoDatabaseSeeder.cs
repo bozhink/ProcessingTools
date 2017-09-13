@@ -43,7 +43,7 @@
             this.biotaxonomicBlackListIterableRepositoryFactory = biotaxonomicBlackListIterableRepositoryFactory ?? throw new ArgumentNullException(nameof(biotaxonomicBlackListIterableRepositoryFactory));
         }
 
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             await this.SeedTaxonRankTypeCollectionAsync().ConfigureAwait(false);
             await this.SeedTaxonRankCollectionAsync().ConfigureAwait(false);

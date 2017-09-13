@@ -5,6 +5,6 @@
 
     public interface IDataMiner<TContext, T>
     {
-        Task<IEnumerable<T>> Mine(TContext context);
+        Task<IEnumerable<T>> MineAsync(TContext context);
     }
 }

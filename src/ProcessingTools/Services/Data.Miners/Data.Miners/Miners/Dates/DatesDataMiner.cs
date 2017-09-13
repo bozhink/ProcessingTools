@@ -22,7 +22,7 @@
 
         private const string MonthArabicSubpattern = @"(?<!\d)(?:0?[1-9]|1[0-2])(?!\d)";
 
-        public async Task<IEnumerable<string>> Mine(string context)
+        public async Task<IEnumerable<string>> MineAsync(string context)
         {
             var patterns = new string[]
             {

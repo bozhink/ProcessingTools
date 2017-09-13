@@ -31,7 +31,7 @@
             Url = x.Url
         };
 
-        public async Task<IEnumerable<IBiorepositoriesCollection>> Mine(string context)
+        public async Task<IEnumerable<IBiorepositoriesCollection>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

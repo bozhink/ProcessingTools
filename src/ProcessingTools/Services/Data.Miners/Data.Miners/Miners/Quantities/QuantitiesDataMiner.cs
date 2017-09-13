@@ -29,7 +29,7 @@ namespace ProcessingTools.Data.Miners.Miners.Quantities
 
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
-        public async Task<IEnumerable<string>> Mine(string context)
+        public async Task<IEnumerable<string>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

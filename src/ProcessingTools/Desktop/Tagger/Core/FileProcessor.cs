@@ -99,7 +99,7 @@
 
             if (this.settings.MergeInputFiles)
             {
-                outputFileName = await this.fileNameGenerator.Generate(
+                outputFileName = await this.fileNameGenerator.GenerateAsync(
                     Path.Combine(Path.GetDirectoryName(inputFileName), FileConstants.DefaultBundleXmlFileName),
                     FileConstants.MaximalLengthOfGeneratedNewFileName,
                     true)
@@ -109,7 +109,7 @@
             {
                 outputFileName = numberOfFileNames > 1 ?
                     this.settings.FileNames[1] :
-                    await this.fileNameGenerator.Generate(
+                    await this.fileNameGenerator.GenerateAsync(
                         inputFileName,
                         FileConstants.MaximalLengthOfGeneratedNewFileName,
                         true)

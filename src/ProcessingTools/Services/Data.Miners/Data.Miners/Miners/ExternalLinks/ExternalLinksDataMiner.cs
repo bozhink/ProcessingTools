@@ -34,7 +34,7 @@
         private const string PmcidPattern = @"(?i)\bpmc\W*\d+|(?i)(?<=\bpmcid\W*)\d+";
         private const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
 
-        public async Task<IEnumerable<IExternalLink>> Mine(string context)
+        public async Task<IEnumerable<IExternalLink>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

@@ -38,7 +38,7 @@
             }
 
             var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var data = await this.miner.Mine(textContent).ConfigureAwait(false);
+            var data = await this.miner.MineAsync(textContent).ConfigureAwait(false);
 
             return data;
         }

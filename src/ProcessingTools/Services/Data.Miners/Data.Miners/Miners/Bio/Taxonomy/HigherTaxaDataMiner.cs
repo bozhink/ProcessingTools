@@ -13,7 +13,7 @@
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        public async Task<IEnumerable<string>> Mine(string context, IEnumerable<string> seed, IEnumerable<string> stopWords)
+        public async Task<IEnumerable<string>> MineAsync(string context, IEnumerable<string> seed, IEnumerable<string> stopWords)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

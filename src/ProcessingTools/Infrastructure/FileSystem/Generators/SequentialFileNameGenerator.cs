@@ -9,15 +9,15 @@
 
     public class SequentialFileNameGenerator : ISequentialFileNameGenerator
     {
-        public Task<string> Generate(string baseFileFullName, int maximalFileNameLength, bool returnFullName = true)
+        public Task<string> GenerateAsync(string baseFileFullName, int maximalFileNameLength, bool returnFullName = true)
         {
             string directoryPath = Path.GetDirectoryName(baseFileFullName);
             string fileName = Path.GetFileName(baseFileFullName);
 
-            return this.Generate(directoryPath, fileName, maximalFileNameLength, returnFullName);
+            return this.GenerateAsync(directoryPath, fileName, maximalFileNameLength, returnFullName);
         }
 
-        public Task<string> Generate(string directoryPath, string baseFileName, int maximalFileNameLength, bool returnFullName = false)
+        public Task<string> GenerateAsync(string directoryPath, string baseFileName, int maximalFileNameLength, bool returnFullName = false)
         {
             return Task.Run(() =>
             {

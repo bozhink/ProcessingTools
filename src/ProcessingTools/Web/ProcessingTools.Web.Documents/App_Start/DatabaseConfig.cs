@@ -13,17 +13,17 @@
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Documents.Data.Entity.Contracts.IDocumentsDataInitializer>()
-                .Initialize()
+                .InitializeAsync()
                 .ConfigureAwait(false);
 
             await DependencyResolver.Current
                .GetService<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDataInitializer>()
-               .Initialize()
+               .InitializeAsync()
                .ConfigureAwait(false);
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Bio.Data.Entity.Contracts.IBioDataInitializer>()
-                .Initialize()
+                .InitializeAsync()
                 .ConfigureAwait(false);
 
             Database.SetInitializer(

@@ -37,7 +37,7 @@
             }
 
             var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var data = (await this.miner.Mine(textContent).ConfigureAwait(false))
+            var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
                 .Select(t => new EnvoTermResponseModel
                 {
                     EntityId = t.EntityId,

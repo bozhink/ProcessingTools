@@ -16,7 +16,7 @@
             this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
         }
 
-        public async Task<object> Initialize()
+        public async Task<object> InitializeAsync()
         {
             using (var context = this.contextFactory.Create())
             {

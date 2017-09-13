@@ -48,7 +48,7 @@
             };
         }
 
-        public async Task<IEnumerable<ISpecimenCode>> Mine(string context)
+        public async Task<IEnumerable<ISpecimenCode>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

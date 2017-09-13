@@ -9,17 +9,17 @@
         {
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Users.Data.Entity.Contracts.IUsersDataInitializer>()
-                .Initialize()
+                .InitializeAsync()
                 .ConfigureAwait(false);
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.History.Data.Entity.Contracts.IHistoryDatabaseInitializer>()
-                .Initialize()
+                .InitializeAsync()
                 .ConfigureAwait(false);
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Journals.Data.Entity.Contracts.IJournalsDatabaseInitializer>()
-                .Initialize()
+                .InitializeAsync()
                 .ConfigureAwait(false);
 
             ////await DependencyResolver.Current
@@ -28,7 +28,7 @@
 
             await DependencyResolver.Current
                .GetService<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDataInitializer>()
-               .Initialize()
+               .InitializeAsync()
                .ConfigureAwait(false);
 
             ////await DependencyResolver.Current

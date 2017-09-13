@@ -36,7 +36,7 @@
         }
 
         // TODO: Link countries and continents
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 

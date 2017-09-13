@@ -31,7 +31,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 

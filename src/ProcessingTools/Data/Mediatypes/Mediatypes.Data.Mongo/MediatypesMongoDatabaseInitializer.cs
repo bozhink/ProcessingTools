@@ -22,7 +22,7 @@
             this.db = provider.Create();
         }
 
-        public async Task<object> Initialize()
+        public async Task<object> InitializeAsync()
         {
             await this.CreateIndicesToMediatypesCollection().ConfigureAwait(false);
 

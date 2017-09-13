@@ -5,6 +5,6 @@
 
     public interface ITextDataMiner<TContext, T>
     {
-        Task<IEnumerable<T>> Mine(TContext context, IEnumerable<string> seed, IEnumerable<string> stopWords);
+        Task<IEnumerable<T>> MineAsync(TContext context, IEnumerable<string> seed, IEnumerable<string> stopWords);
     }
 }

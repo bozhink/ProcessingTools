@@ -11,7 +11,7 @@
 
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {
-        public async Task<IEnumerable<string>> Mine(string context)
+        public async Task<IEnumerable<string>> MineAsync(string context)
         {
             var internalMiner = new InternalMiner(Regex.Replace(context, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°"));
 

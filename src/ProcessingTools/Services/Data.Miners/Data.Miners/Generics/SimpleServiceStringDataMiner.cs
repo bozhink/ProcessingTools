@@ -26,7 +26,7 @@
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task<IEnumerable<string>> Mine(string context)
+        public async Task<IEnumerable<string>> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

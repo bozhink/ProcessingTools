@@ -12,6 +12,6 @@
         /// Populates the database context with initial data (seed).
         /// </summary>
         /// <returns>Custom response.</returns>
-        Task<object> Seed();
+        Task<object> SeedAsync();
     }
 }

@@ -20,8 +20,8 @@
 
         public virtual async Task Seed()
         {
-            await this.initializer.Initialize().ConfigureAwait(false);
-            await this.seeder.Seed().ConfigureAwait(false);
+            await this.initializer.InitializeAsync().ConfigureAwait(false);
+            await this.seeder.SeedAsync().ConfigureAwait(false);
         }
     }
 }

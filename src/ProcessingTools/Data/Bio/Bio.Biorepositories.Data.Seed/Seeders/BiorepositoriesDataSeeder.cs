@@ -35,7 +35,7 @@
         /// Seeds databases with data.
         /// </summary>
         /// <returns>Object to be awaited</returns>
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 

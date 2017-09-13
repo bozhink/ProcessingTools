@@ -23,7 +23,7 @@
 
         public async Task Seed()
         {
-            await this.seeder.Seed().ConfigureAwait(false);
+            await this.seeder.SeedAsync().ConfigureAwait(false);
         }
     }
 }
