@@ -53,7 +53,7 @@
             XmlDocument document;
             try
             {
-                document = await this.reader.ReadXml(fullName);
+                document = await this.reader.ReadXml(fullName).ConfigureAwait(false);
             }
             catch (XmlException e)
             {

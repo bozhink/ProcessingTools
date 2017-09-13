@@ -62,13 +62,13 @@
             int numberOfDoubleDashedArguments = args.Count(this.FilterDoubleDashedOption);
             if (numberOfDoubleDashedArguments != 1)
             {
-                await this.helpProvider.GetHelp();
+                await this.helpProvider.GetHelp().ConfigureAwait(false);
                 return;
             }
 
             var journalId = args.Single(this.FilterDoubleDashedOption).Substring(2);
 
-            IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMeta())
+            IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMeta().ConfigureAwait(false))
                 .FirstOrDefault(j => j.Permalink == journalId);
 
             if (journalMeta == null)

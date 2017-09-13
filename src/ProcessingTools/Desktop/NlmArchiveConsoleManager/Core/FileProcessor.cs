@@ -79,7 +79,7 @@
                 throw new XmlException($"'{this.FileName}' is not a NLM XML file.");
             }
 
-            string fileNameReplacementPrefix = await this.ComposeFileNameReplacementPrefix(document);
+            string fileNameReplacementPrefix = await this.ComposeFileNameReplacementPrefix(document).ConfigureAwait(false);
             var outputFileName = $"{fileNameReplacementPrefix}.{FileConstants.XmlFileExtension}";
 
             this.logger?.Log("{0} / {1} / {2}", this.FileName, fileNameReplacementPrefix, outputFileName);

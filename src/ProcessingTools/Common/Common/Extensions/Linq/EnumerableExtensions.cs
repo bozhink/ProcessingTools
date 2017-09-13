@@ -99,7 +99,7 @@
 
             foreach (var item in source)
             {
-                await action.Invoke(item);
+                await action.Invoke(item).ConfigureAwait(false);
             }
         }
 
@@ -117,7 +117,7 @@
 
             foreach (var item in source)
             {
-                await action.Invoke(item);
+                await action.Invoke(item).ConfigureAwait(false);
             }
         }
     }

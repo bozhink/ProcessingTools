@@ -42,7 +42,7 @@
             var result = new ConcurrentQueue<IValidationServiceModel<string>>();
 
             var itemsToCheck = new HashSet<string>(items);
-            await this.ProcessItemsToCheck(result, itemsToCheck);
+            await this.ProcessItemsToCheck(result, itemsToCheck).ConfigureAwait(false);
 
             return result;
         }
@@ -106,7 +106,7 @@
 
                 try
                 {
-                    XmlDocument gnrXmlResponse = await this.requester.SearchWithGlobalNamesResolverPost(itemsToSend);
+                    XmlDocument gnrXmlResponse = await this.requester.SearchWithGlobalNamesResolverPost(itemsToSend).ConfigureAwait(false);
 
                     this.SaveResponseToTempDirectory(gnrXmlResponse);
 

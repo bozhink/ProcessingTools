@@ -26,7 +26,8 @@
                 {
                     var result = await repository.Entities
                         .Select(s => s.Content)
-                        .ToListAsync();
+                        .ToListAsync()
+                        .ConfigureAwait(false);
 
                     return new HashSet<string>(result);
                 });

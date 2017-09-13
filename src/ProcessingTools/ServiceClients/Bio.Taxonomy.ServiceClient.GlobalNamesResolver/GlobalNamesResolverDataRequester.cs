@@ -29,7 +29,7 @@
             string url = $"{ApiUrl}?{searchString}";
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            string response = await connector.GetAsync(url, ContentTypes.Xml);
+            string response = await connector.GetAsync(url, ContentTypes.Xml).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 
@@ -39,7 +39,7 @@
             string contentType = "application/x-www-form-urlencoded";
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostAsync(ApiUrl, postData, contentType, Defaults.Encoding);
+            var response = await connector.PostAsync(ApiUrl, postData, contentType, Defaults.Encoding).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 
@@ -56,7 +56,7 @@
             }
 
             var connector = this.connectorFactory.Create(BaseAddress);
-            var response = await connector.PostAsync(ApiUrl, values, Defaults.Encoding);
+            var response = await connector.PostAsync(ApiUrl, values, Defaults.Encoding).ConfigureAwait(false);
             return response.ToXmlDocument();
         }
 

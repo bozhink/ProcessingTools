@@ -33,7 +33,7 @@
         {
             if (args == null || args.Length < 1)
             {
-                await this.helpProvider?.GetHelp();
+                await this.helpProvider.GetHelp().ConfigureAwait(false);
                 return;
             }
 
@@ -43,7 +43,7 @@
                 tasks.Enqueue(this.sandbox.Run(action: () => this.commandRunner.Run(arg).Wait()));
             }
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
     }
 }

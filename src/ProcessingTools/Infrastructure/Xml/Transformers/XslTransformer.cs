@@ -43,7 +43,7 @@
                 {
                     stream.Position = 0;
                     var streamReader = new StreamReader(stream);
-                    result = await streamReader.ReadToEndAsync();
+                    result = await streamReader.ReadToEndAsync().ConfigureAwait(false);
                     stream.Close();
                 }
             }

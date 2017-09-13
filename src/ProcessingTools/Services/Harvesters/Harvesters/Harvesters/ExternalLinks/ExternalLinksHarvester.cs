@@ -40,7 +40,7 @@
         protected override async Task<IEnumerable<IExternalLinkModel>> Run(XmlDocument document)
         {
             var transformer = this.transformersFactory.GetExternalLinksTransformer();
-            var items = await this.serializer.Deserialize<ExternalLinksModel>(transformer, document.OuterXml);
+            var items = await this.serializer.Deserialize<ExternalLinksModel>(transformer, document.OuterXml).ConfigureAwait(false);
 
             return items.ExternalLinks;
         }

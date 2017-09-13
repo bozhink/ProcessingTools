@@ -66,9 +66,9 @@
 
             reporter.AppendContent(string.Format("File name = {0}", fileName));
 
-            await this.WriteXmlFileWithDoctype(context, fileName);
+            await this.WriteXmlFileWithDoctype(context, fileName).ConfigureAwait(false);
 
-            await this.ReadXmlFileWithDtdValidation(fileName);
+            await this.ReadXmlFileWithDtdValidation(fileName).ConfigureAwait(false);
 
             reporter.AppendContent(this.reportBuilder.ToString());
             return true;

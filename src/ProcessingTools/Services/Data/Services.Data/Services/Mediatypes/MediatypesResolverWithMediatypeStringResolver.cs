@@ -24,7 +24,7 @@
                 throw new ArgumentNullException(nameof(fileExtension));
             }
 
-            string mediatype = await this.mediatypeStringResolver.Resolve($".{extension.ToLowerInvariant()}");
+            string mediatype = await this.mediatypeStringResolver.Resolve($".{extension.ToLowerInvariant()}").ConfigureAwait(false);
 
             return new IMediatype[]
             {

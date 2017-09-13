@@ -61,7 +61,8 @@
 #if CreateZip
                     this.CreateZipFile();
 #endif
-                });
+                })
+                .ConfigureAwait(false);
 
             Directory.SetCurrentDirectory(initialDirectory);
         }

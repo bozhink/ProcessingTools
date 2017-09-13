@@ -83,8 +83,8 @@
             long writtenStreamLength = 0L;
             using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
             {
-                await stream.CopyToAsync(fileStream);
-                await fileStream.FlushAsync();
+                await stream.CopyToAsync(fileStream).ConfigureAwait(false);
+                await fileStream.FlushAsync().ConfigureAwait(false);
                 writtenStreamLength = fileStream.Length;
                 fileStream.Close();
             }

@@ -46,7 +46,7 @@
                 .GetOwinContext()
                 .GetUserManager<ApplicationUserManager>();
 
-            var user = await userManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id).ConfigureAwait(false);
             if (user == null)
             {
                 throw new InvalidUserIdException(id);

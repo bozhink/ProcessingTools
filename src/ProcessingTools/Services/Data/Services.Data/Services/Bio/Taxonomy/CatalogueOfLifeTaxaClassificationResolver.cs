@@ -33,7 +33,7 @@
         {
             var result = new HashSet<ITaxonClassification>();
 
-            var response = await this.requester.RequestData(scientificName);
+            var response = await this.requester.RequestData(scientificName).ConfigureAwait(false);
 
             try
             {

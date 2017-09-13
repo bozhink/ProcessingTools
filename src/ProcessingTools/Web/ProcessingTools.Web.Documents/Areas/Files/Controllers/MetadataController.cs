@@ -37,7 +37,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var metadata = await this.filesDataService.GetMetadata(id);
+            var metadata = await this.filesDataService.GetMetadata(id).ConfigureAwait(false);
 
             var viewmodel = new FileMetadataViewModel
             {

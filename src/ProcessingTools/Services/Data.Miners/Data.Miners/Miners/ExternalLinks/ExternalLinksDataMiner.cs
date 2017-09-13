@@ -50,7 +50,7 @@
                 { PmcidPattern, ExternalLinkType.Pmcid }
             };
 
-            var data = await this.ExtractData(context, patterns).ToListAsync();
+            var data = await this.ExtractData(context, patterns).ToListAsync().ConfigureAwait(false);
 
             this.DataCleansing(data);
 

@@ -27,8 +27,8 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.DeleteAsync(model: model);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.DeleteAsync(model: model).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -40,8 +40,8 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.repository.DeleteAsync(id: id);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.DeleteAsync(id: id).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -55,8 +55,8 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model) as INameableIntegerIdentifiable;
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.InsertAsync(model).ConfigureAwait(false) as INameableIntegerIdentifiable;
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result?.Id;
         }
@@ -74,8 +74,8 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.UpdateAsync(model: model);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.UpdateAsync(model: model).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }

@@ -47,7 +47,8 @@
                 .Skip(skip)
                 .Take(take)
                 .Select(this.Project)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             repository.TryDispose();
 

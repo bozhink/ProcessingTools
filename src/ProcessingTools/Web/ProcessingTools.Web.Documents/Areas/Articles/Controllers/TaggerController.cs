@@ -100,7 +100,7 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var viewModel = await this.GetDetails(userId, articleId, id);
+            var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
@@ -116,7 +116,7 @@
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;
 
-                var xmldocument = await this.ReadDocument(model, userId, articleId);
+                var xmldocument = await this.ReadDocument(model, userId, articleId).ConfigureAwait(false);
                 await this.RunCommand(model, xmldocument)
                     .ContinueWith(_ =>
                     {
@@ -164,7 +164,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var document = await this.service.Get(userId, articleId, id);
+            var document = await this.service.Get(userId, articleId, id).ConfigureAwait(false);
             if (document == null)
             {
                 throw new EntityNotFoundException();
@@ -194,7 +194,7 @@
                 PreserveWhitespace = true
             };
 
-            var reader = await this.service.GetReader(userId, articleId, model.DocumentId);
+            var reader = await this.service.GetReader(userId, articleId, model.DocumentId).ConfigureAwait(false);
 
             document.Load(reader);
             return document;
@@ -212,7 +212,7 @@
                 document.SchemaType = SchemaType.System;
             }
 
-            await this.documentReadNormalizer.Normalize(document);
+            await this.documentReadNormalizer.Normalize(document).ConfigureAwait(false);
 
             var commandType = this.commandsInformation
                 .First(p => p.Value.Name == model.CommandId)
@@ -254,7 +254,7 @@
                     FileName = model.FileName
                 };
 
-                var result = await this.service.Create(userId, articleId, documentMetadata, stream);
+                var result = await this.service.Create(userId, articleId, documentMetadata, stream).ConfigureAwait(false);
 
                 stream.Close();
 

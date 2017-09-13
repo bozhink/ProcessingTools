@@ -20,7 +20,7 @@
             try
             {
                 logger?.Log(message: message);
-                await action.Invoke();
+                await action.Invoke().ConfigureAwait(false);
             }
             catch (AggregateException e)
             {
@@ -41,7 +41,7 @@
         private async Task InvokeProcessor<TCommand>(XmlNode context)
             where TCommand : ITaggerCommand
         {
-            await this.InvokeProcessor(typeof(TCommand), context);
+            await this.InvokeProcessor(typeof(TCommand), context).ConfigureAwait(false);
         }
 
         private async Task InvokeProcessor(Type commandType, XmlNode context)
@@ -59,7 +59,7 @@
             }
             else
             {
-                await this.InvokeCommand(command, document);
+                await this.InvokeCommand(command, document).ConfigureAwait(false);
                 context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
         }
@@ -75,7 +75,8 @@
             await InvokeProcessor(
                 message,
                 () => command.Run(document, this.settings),
-                this.logger);
+                this.logger)
+                .ConfigureAwait(false);
         }
     }
 }

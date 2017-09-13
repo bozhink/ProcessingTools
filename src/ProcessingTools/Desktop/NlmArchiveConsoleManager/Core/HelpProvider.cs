@@ -29,7 +29,7 @@
 
         public async Task GetHelp()
         {
-            var journalsMeta = await this.service.GetAllJournalsMeta();
+            var journalsMeta = await this.service.GetAllJournalsMeta().ConfigureAwait(false);
 
             this.reporter.AppendContent("Select a journal with one of these options:");
 
@@ -40,7 +40,7 @@
                     this.reporter.AppendContent($"\t--{j.Permalink}");
                 });
 
-            await this.reporter.MakeReport();
+            await this.reporter.MakeReport().ConfigureAwait(false);
         }
     }
 }

@@ -63,7 +63,7 @@
                 @"(?i)(?:(?:" + DayRangeSubpattern + @"\W{0,4}(?:\bof\b\W{0,4})?)?" + MonthSubpattern + @"\W{0,4}){1,2}" + YearSubpattern
             };
 
-            var result = await this.GetMatches(context, patterns);
+            var result = await this.GetMatches(context, patterns).ConfigureAwait(false);
 
             return result;
         }
@@ -84,7 +84,7 @@
                 }));
             }
 
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
 
             var result = new HashSet<string>(matches);
             return result;

@@ -37,7 +37,7 @@
 
             for (int i = 0; ; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INameableIntegerIdentifiable.Name)))
+                var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INameableIntegerIdentifiable.Name)).ConfigureAwait(false))
                     .Select(t => t.Name)
                     .Distinct()
                     .ToList();
@@ -51,7 +51,7 @@
 
                 foreach (var matcher in matchers)
                 {
-                    matches.AddRange(await context.GetMatchesAsync(matcher));
+                    matches.AddRange(await context.GetMatchesAsync(matcher).ConfigureAwait(false));
                 }
             }
 

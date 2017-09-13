@@ -34,13 +34,13 @@
             var tasks = models.Select(
                 async model =>
                 {
-                    var result = await this.repository.DeleteAsync(model: model);
+                    var result = await this.repository.DeleteAsync(model: model).ConfigureAwait(false);
                     queue.Enqueue(result);
                 })
                 .ToArray();
 
-            await Task.WhenAll(tasks);
-            await this.repository.SaveChangesAsync();
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return queue.ToArray<object>();
         }
@@ -57,13 +57,13 @@
             var tasks = ids.Select(
                 async id =>
                 {
-                    var result = await this.repository.DeleteAsync(id: id);
+                    var result = await this.repository.DeleteAsync(id: id).ConfigureAwait(false);
                     queue.Enqueue(result);
                 })
                 .ToArray();
 
-            await Task.WhenAll(tasks);
-            await this.repository.SaveChangesAsync();
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return queue.ToArray<object>();
         }
@@ -82,13 +82,13 @@
             var tasks = models.Select(
                 async model =>
                 {
-                    var result = await this.repository.InsertAsync(model);
+                    var result = await this.repository.InsertAsync(model).ConfigureAwait(false);
                     queue.Enqueue(result);
                 })
                 .ToArray();
 
-            await Task.WhenAll(tasks);
-            await this.repository.SaveChangesAsync();
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return queue.Select(r => (r as INameableIntegerIdentifiable)?.Id).ToArray();
         }
@@ -111,13 +111,13 @@
             var tasks = models.Select(
                 async model =>
                 {
-                    var result = await this.repository.UpdateAsync(model);
+                    var result = await this.repository.UpdateAsync(model).ConfigureAwait(false);
                     queue.Enqueue(result);
                 })
                 .ToArray();
 
-            await Task.WhenAll(tasks);
-            await this.repository.SaveChangesAsync();
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return queue.Select(r => (r as INameableIntegerIdentifiable)?.Id).ToArray();
         }

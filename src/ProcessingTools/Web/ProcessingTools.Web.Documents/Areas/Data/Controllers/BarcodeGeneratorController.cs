@@ -56,7 +56,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    viewModel.Image = await this.encoder.EncodeBase64((BarcodeType)model.Type, model.Content, model.Width, model.Height);
+                    viewModel.Image = await this.encoder.EncodeBase64((BarcodeType)model.Type, model.Content, model.Width, model.Height).ConfigureAwait(false);
                 }
                 else
                 {

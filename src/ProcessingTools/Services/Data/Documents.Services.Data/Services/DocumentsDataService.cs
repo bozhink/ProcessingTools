@@ -141,7 +141,7 @@
                 throw new ArgumentNullException(nameof(inputStream));
             }
 
-            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ProcessingTools.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName);
+            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ProcessingTools.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName).ConfigureAwait(false);
 
             var entity = new Document
             {

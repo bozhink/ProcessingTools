@@ -39,7 +39,7 @@
                     this.reporter.AppendContent($"\t{c}");
                 });
 
-            await this.reporter.MakeReport();
+            await this.reporter.MakeReport().ConfigureAwait(false);
         }
     }
 }

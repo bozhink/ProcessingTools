@@ -75,7 +75,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            return await this.writer.Write(fullName: fullName, document: document, documentType: documentType);
+            return await this.writer.Write(fullName: fullName, document: document, documentType: documentType).ConfigureAwait(false);
         }
     }
 }

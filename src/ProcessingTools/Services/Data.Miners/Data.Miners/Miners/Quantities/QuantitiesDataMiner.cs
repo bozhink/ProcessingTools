@@ -38,7 +38,7 @@ namespace ProcessingTools.Data.Miners.Miners.Quantities
 
             const string Pattern = @"(?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b";
 
-            var items = await context.GetMatchesAsync(new Regex(Pattern));
+            var items = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
             var result = new HashSet<string>(items);
 
             return result;

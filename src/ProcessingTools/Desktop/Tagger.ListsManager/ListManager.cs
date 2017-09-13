@@ -153,7 +153,7 @@
                         }))
                         .ToArray();
 
-                    await service.Add(taxa);
+                    await service.Add(taxa).ConfigureAwait(false);
                 }
                 else
                 {
@@ -164,7 +164,7 @@
                         .Select(i => i.Text))
                         .ToArray();
 
-                    await service.Add(items);
+                    await service.Add(items).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)
@@ -234,7 +234,7 @@
                 {
                     var service = this.kernel.Get<ITaxonRankSearchService>();
 
-                    var foundTaxa = await service.Search(textToSearch);
+                    var foundTaxa = await service.Search(textToSearch).ConfigureAwait(false);
                     foreach (var taxon in foundTaxa)
                     {
                         string scientificName = taxon.ScientificName;
@@ -249,7 +249,7 @@
                 {
                     var service = this.kernel.Get<IBlackListSearchService>();
 
-                    var items = await service.Search(textToSearch);
+                    var items = await service.Search(textToSearch).ConfigureAwait(false);
                     foreach (var item in items)
                     {
                         this.listView.Items.Add(item);

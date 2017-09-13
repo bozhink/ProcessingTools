@@ -19,7 +19,7 @@
         {
             for (int i = 0; ; i += NumberOfItemsToTake)
             {
-                var items = (await service.Get(i, NumberOfItemsToTake)).ToList();
+                var items = (await service.Get(i, NumberOfItemsToTake).ConfigureAwait(false)).ToList();
 
                 if (items.Count < 1)
                 {

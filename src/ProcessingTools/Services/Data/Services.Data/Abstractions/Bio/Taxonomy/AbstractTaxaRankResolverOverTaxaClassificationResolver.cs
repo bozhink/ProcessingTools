@@ -17,7 +17,7 @@
 
         public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
-            return await this.classificationResolver.Resolve(scientificNames);
+            return await this.classificationResolver.Resolve(scientificNames).ConfigureAwait(false);
         }
     }
 }

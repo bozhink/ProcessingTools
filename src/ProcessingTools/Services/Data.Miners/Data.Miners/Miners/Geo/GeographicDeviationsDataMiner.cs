@@ -26,7 +26,7 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
 
             const string Pattern = DistancePattern + @"\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|notrh)+)";
 
-            var items = await context.GetMatchesAsync(new Regex(Pattern));
+            var items = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
             var result = new HashSet<string>(items);
 
             return result;

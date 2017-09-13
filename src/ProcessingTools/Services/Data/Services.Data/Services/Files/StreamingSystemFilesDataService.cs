@@ -90,7 +90,7 @@
 
             var fullName = id.ToString();
 
-            await this.fileContentDataService.Write(fullName, stream);
+            await this.fileContentDataService.Write(fullName, stream).ConfigureAwait(false);
 
             return this.GetSystemFileMetadata(fullName);
         }

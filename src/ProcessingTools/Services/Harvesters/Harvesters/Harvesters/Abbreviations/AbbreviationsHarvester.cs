@@ -40,7 +40,7 @@
         protected override async Task<IEnumerable<IAbbreviationModel>> Run(XmlDocument document)
         {
             var transformer = this.transformersFactory.GetAbbreviationsTransformer();
-            var items = await this.serializer.Deserialize<AbbreviationsXmlModel>(transformer, document.DocumentElement);
+            var items = await this.serializer.Deserialize<AbbreviationsXmlModel>(transformer, document.DocumentElement).ConfigureAwait(false);
 
             if (items?.Abbreviations == null)
             {

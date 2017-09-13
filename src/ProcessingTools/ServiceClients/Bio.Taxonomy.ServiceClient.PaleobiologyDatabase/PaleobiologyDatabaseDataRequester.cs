@@ -39,7 +39,7 @@
             string url = $"data1.1/taxa/single.txt?name={scientificName}";
 
             var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
-            string responseString = await connector.GetAsync(url, ContentTypes.Xml);
+            string responseString = await connector.GetAsync(url, ContentTypes.Xml).ConfigureAwait(false);
 
             string keys = Regex.Match(responseString, "\\A[^\r\n]+").Value;
             string values = Regex.Match(responseString, "\n[^\r\n]+").Value;
@@ -74,7 +74,7 @@
             string url = $"data1.1/taxa/list.json?name={content}&rel=all_parents";
 
             var connector = this.connectorFactory.Create(PaleobiologyDatabaseBaseAddress);
-            var result = await connector.GetJsonObjectAsync<PbdbAllParents>(url);
+            var result = await connector.GetJsonObjectAsync<PbdbAllParents>(url).ConfigureAwait(false);
             return result;
         }
     }

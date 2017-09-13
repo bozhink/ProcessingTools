@@ -54,7 +54,7 @@
 
             var userId = this.User.Identity.GetUserId();
 
-            var metadata = await this.UploadSingleFile(userId, file);
+            var metadata = await this.UploadSingleFile(userId, file).ConfigureAwait(false);
 
             this.Response.StatusCode = (int)HttpStatusCode.Created;
 

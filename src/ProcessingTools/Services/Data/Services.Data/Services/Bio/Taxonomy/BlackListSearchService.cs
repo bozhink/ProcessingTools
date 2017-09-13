@@ -32,10 +32,12 @@
                 var result = await repository.Entities
                     .Where(s => s.Content.ToLowerInvariant().Contains(searchString))
                     .Select(s => s.Content)
-                    .ToListAsync();
+                    .ToListAsync()
+                    .ConfigureAwait(false);
 
                 return new HashSet<string>(result);
-            });
+            })
+            .ConfigureAwait(false);
         }
     }
 }

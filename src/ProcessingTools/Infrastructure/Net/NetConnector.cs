@@ -47,7 +47,7 @@
                     client.BaseAddress = this.BaseAddressUri;
                 }
 
-                var stream = await client.GetStreamAsync(url);
+                var stream = await client.GetStreamAsync(url).ConfigureAwait(false);
                 var serializer = new XmlSerializer(typeof(T));
                 result = (T)serializer.Deserialize(stream);
             }
@@ -73,7 +73,7 @@
                     client.BaseAddress = this.BaseAddressUri;
                 }
 
-                var stream = await client.GetStreamAsync(url);
+                var stream = await client.GetStreamAsync(url).ConfigureAwait(false);
                 var serializer = new DataContractJsonSerializer(typeof(T));
                 result = (T)serializer.ReadObject(stream);
             }
@@ -97,7 +97,7 @@
                     client.BaseAddress = this.BaseAddressUri;
                 }
 
-                return await client.GetStringAsync(url);
+                return await client.GetStringAsync(url).ConfigureAwait(false);
             }
         }
 
@@ -128,8 +128,8 @@
                     client.BaseAddress = this.BaseAddressUri;
                 }
 
-                var response = await client.PostAsync(url, postContent);
-                return await response.Content.ReadAsStringAsync();
+                var response = await client.PostAsync(url, postContent).ConfigureAwait(false);
+                return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
         }
 
@@ -155,8 +155,8 @@
                     client.BaseAddress = this.BaseAddressUri;
                 }
 
-                var response = await client.PostAsync(url, content);
-                return await response.Content.ReadAsStringAsync();
+                var response = await client.PostAsync(url, content).ConfigureAwait(false);
+                return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
         }
 
@@ -183,8 +183,8 @@
                     client.BaseAddress = this.BaseAddressUri;
                 }
 
-                var response = await client.PostAsync(url, content);
-                var stream = await response.Content.ReadAsStreamAsync();
+                var response = await client.PostAsync(url, content).ConfigureAwait(false);
+                var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
                 var serializer = new XmlSerializer(typeof(T));
                 return (T)serializer.Deserialize(stream);
             }

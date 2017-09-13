@@ -49,7 +49,7 @@
             var result = new HashSet<IJournalMeta>();
             foreach (var fileName in journalMetaFiles)
             {
-                var journalMeta = await this.journalMetaDataService.GetJournalMeta(fileName);
+                var journalMeta = await this.journalMetaDataService.GetJournalMeta(fileName).ConfigureAwait(false);
                 result.Add(journalMeta);
             }
 

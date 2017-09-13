@@ -43,7 +43,8 @@
                 }
 
                 return result;
-            });
+            })
+            .ConfigureAwait(false);
         }
 
         private ITaxonClassification MapAphiaRecordToTaxonClassification(AphiaRecord record)

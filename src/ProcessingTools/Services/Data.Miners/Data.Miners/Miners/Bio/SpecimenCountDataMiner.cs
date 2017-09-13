@@ -34,7 +34,7 @@ namespace ProcessingTools.Data.Miners.Miners.Bio
             }
 
             Regex matchSpecimenCount = new Regex(Pattern);
-            var result = new HashSet<string>(await context.GetMatchesAsync(matchSpecimenCount));
+            var result = new HashSet<string>(await context.GetMatchesAsync(matchSpecimenCount).ConfigureAwait(false));
             return result;
         }
     }

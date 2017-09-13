@@ -28,8 +28,8 @@
 
         public virtual async Task<object> AddSynonymsAsync(int modelId, params TSynonym[] synonyms)
         {
-            var result = await this.repository.AddSynonymsAsync(modelId, synonyms);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.AddSynonymsAsync(modelId, synonyms).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -41,8 +41,8 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.DeleteAsync(model: model);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.DeleteAsync(model: model).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -54,8 +54,8 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.repository.DeleteAsync(id: id);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.DeleteAsync(id: id).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -71,8 +71,8 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model: model) as INameableIntegerIdentifiable;
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.InsertAsync(model: model).ConfigureAwait(false) as INameableIntegerIdentifiable;
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result?.Id;
         }
@@ -84,16 +84,16 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.InsertAsync(model, synonyms) as INameableIntegerIdentifiable;
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.InsertAsync(model, synonyms).ConfigureAwait(false) as INameableIntegerIdentifiable;
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result?.Id;
         }
 
         public virtual async Task<object> RemoveSynonymsAsync(int modelId, params int[] synonymIds)
         {
-            var result = await this.repository.RemoveSynonymsAsync(modelId, synonymIds);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.RemoveSynonymsAsync(modelId, synonymIds).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -115,16 +115,16 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var result = await this.repository.UpdateAsync(model: model);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.UpdateAsync(model: model).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
 
         public virtual async Task<object> UpdateSynonymsAsync(int modelId, params TSynonym[] synonyms)
         {
-            var result = await this.repository.UpdateSynonymsAsync(modelId, synonyms);
-            await this.repository.SaveChangesAsync();
+            var result = await this.repository.UpdateSynonymsAsync(modelId, synonyms).ConfigureAwait(false);
+            await this.repository.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }

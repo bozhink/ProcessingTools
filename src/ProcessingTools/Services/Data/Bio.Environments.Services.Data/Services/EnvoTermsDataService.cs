@@ -31,7 +31,8 @@
                     Content = n.Content,
                     EnvoId = n.EnvoEntity.EnvoId
                 })
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return result.AsQueryable();
         }
@@ -59,7 +60,8 @@
                     Content = n.Content,
                     EnvoId = n.EnvoEntity.EnvoId
                 })
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
 
             return result.AsQueryable();
         }

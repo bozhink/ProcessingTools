@@ -22,7 +22,7 @@
             foreach (var method in methods)
             {
                 var task = (Task<IEnumerable<string>>)method.Invoke(internalMiner, null);
-                var items = await task;
+                var items = await task.ConfigureAwait(false);
                 items.AsParallel()
                     .ForAll(item => result.Enqueue(item.Trim(' ', ';', ',', ':')));
             }
@@ -48,28 +48,28 @@
             {
                 const string Pattern = @"((?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2})\s*?\W{0,3}?\s*(?:[NSEWO](?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*)(?:(?<!\d)[0-6]?[0-9](?:\s*[,\.]\s*\d+)?\W*?){0,2}))";
 
-                return await this.content.GetMatchesAsync(new Regex(Pattern));
+                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
             }
 
             public async Task<IEnumerable<string>> GetDecimalNumberDirectionCoordinates()
             {
                 const string Pattern = @"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?)\W{0,3}[NSEWO]))";
 
-                return await this.content.GetMatchesAsync(new Regex(Pattern));
+                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
             }
 
             public async Task<IEnumerable<string>> GetDecimalNumberDegDirectionCoordinates()
             {
                 const string Pattern = @"((?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO])\s*\W{0,3}?\s*(?:(?:(?<!\d)[0-1]?[0-9]{1,2}(?:\s*[,\.]\s*\d+)?\s*°\s*).{0,20}?[NSEWO]))";
 
-                return await this.content.GetMatchesAsync(new Regex(Pattern));
+                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
             }
 
             public async Task<IEnumerable<string>> GetDecimalNumberCoordinates()
             {
                 const string Pattern = @"((?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b)\s*[;,\s]\s*(?:[–—−-]?\s{0,2}\b[0-1]?[0-9]{1,2}[,\.][0-9]{1,6}\b))";
 
-                return await this.content.GetMatchesAsync(new Regex(Pattern));
+                return await this.content.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
             }
         }
     }

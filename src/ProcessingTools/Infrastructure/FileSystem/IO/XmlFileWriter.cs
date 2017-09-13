@@ -52,7 +52,7 @@
                 }
 
                 document.DocumentElement.WriteTo(writer);
-                await writer.FlushAsync();
+                await writer.FlushAsync().ConfigureAwait(false);
                 writer.Close();
             }
 
@@ -82,8 +82,8 @@
                         documentType.InternalSubset);
                 }
 
-                await writer.WriteNodeAsync(reader, true);
-                await writer.FlushAsync();
+                await writer.WriteNodeAsync(reader, true).ConfigureAwait(false);
+                await writer.FlushAsync().ConfigureAwait(false);
                 writer.Close();
             }
 

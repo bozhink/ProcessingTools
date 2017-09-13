@@ -13,11 +13,13 @@
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDataInitializer>()
-                .Initialize();
+                .Initialize()
+                .ConfigureAwait(false);
 
             await DependencyResolver.Current
                 .GetService<ProcessingTools.Bio.Data.Entity.Contracts.IBioDataInitializer>()
-                .Initialize();
+                .Initialize()
+                .ConfigureAwait(false);
         }
     }
 }

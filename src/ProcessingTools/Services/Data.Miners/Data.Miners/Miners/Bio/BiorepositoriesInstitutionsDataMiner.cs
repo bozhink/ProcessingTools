@@ -38,7 +38,7 @@
 
             var matches = new List<BiorepositoriesInstitution>();
 
-            await this.GetMatches(this.service, matches, filter);
+            await this.GetMatches(this.service, matches, filter).ConfigureAwait(false);
 
             var result = new HashSet<BiorepositoriesInstitution>(matches);
             return result;

@@ -103,11 +103,11 @@
             {
                 using (var reader = XmlReader.Create(stream, this.ReaderSettings))
                 {
-                    await writer.WriteNodeAsync(reader, true);
+                    await writer.WriteNodeAsync(reader, true).ConfigureAwait(false);
                     reader.Close();
                 }
 
-                await writer.FlushAsync();
+                await writer.FlushAsync().ConfigureAwait(false);
                 writer.Close();
             }
 

@@ -42,8 +42,8 @@
 
             var matches = new List<BiorepositoriesCollection>();
 
-            await this.GetMatches(this.institutionalCollectionsDataService, matches, filter);
-            await this.GetMatches(this.personalCollectionsDataService, matches, filter);
+            await this.GetMatches(this.institutionalCollectionsDataService, matches, filter).ConfigureAwait(false);
+            await this.GetMatches(this.personalCollectionsDataService, matches, filter).ConfigureAwait(false);
 
             var result = new HashSet<BiorepositoriesCollection>(matches);
             return result;

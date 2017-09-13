@@ -33,7 +33,7 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
                 @"(?:(?i)a\W*l\W*t(?:[^\w<>]{0,3}c\W*a)?)[^\w<>]{0,5}" + DistancePattern
             };
 
-            var data = await this.ExtractData(context, patterns).ToListAsync();
+            var data = await this.ExtractData(context, patterns).ToListAsync().ConfigureAwait(false);
 
             var result = new HashSet<string>(data);
             return result;

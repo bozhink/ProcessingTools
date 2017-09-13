@@ -34,7 +34,7 @@
             var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
 
             // Act
-            var result = await service.Add(key, valueMock.Object);
+            var result = await service.Add(key, valueMock.Object).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -129,7 +129,7 @@
             var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.Get(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNull(result);
@@ -157,7 +157,7 @@
             var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.Get(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNull(result);
@@ -210,7 +210,7 @@
             var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.Get(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNotNull(result);
@@ -256,7 +256,7 @@
             var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.Get(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNotNull(result);

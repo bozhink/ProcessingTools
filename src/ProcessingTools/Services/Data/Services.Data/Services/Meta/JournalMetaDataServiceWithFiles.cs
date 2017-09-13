@@ -31,7 +31,7 @@
 
             using (var stream = new FileStream(journalJsonFileName, FileMode.Open))
             {
-                var journalJsonObject = await this.deserializer.Deserialize<JournalMetaDataContract>(stream);
+                var journalJsonObject = await this.deserializer.Deserialize<JournalMetaDataContract>(stream).ConfigureAwait(false);
 
                 return new JournalMeta
                 {

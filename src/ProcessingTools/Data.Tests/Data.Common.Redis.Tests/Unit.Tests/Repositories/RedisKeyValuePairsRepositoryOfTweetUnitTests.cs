@@ -41,7 +41,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Add(key, value);
+            var result = await repository.Add(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -242,7 +242,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Get(key);
+            var result = await repository.Get(key).ConfigureAwait(false);
 
             // Asset
             Assert.AreSame(value, result);
@@ -296,7 +296,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.Remove(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -330,7 +330,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.Remove(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -379,7 +379,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.SaveChangesAsync();
+            var result = await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(0L));
@@ -449,7 +449,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Update(key, value);
+            var result = await repository.Update(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -555,7 +555,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Upsert(key, value);
+            var result = await repository.Upsert(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -592,7 +592,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Upsert(key, value);
+            var result = await repository.Upsert(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));

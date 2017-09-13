@@ -48,7 +48,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    viewModel.Image = await this.encoder.EncodeBase64(model.Content, viewModel.PixelPerModule);
+                    viewModel.Image = await this.encoder.EncodeBase64(model.Content, viewModel.PixelPerModule).ConfigureAwait(false);
                 }
                 else
                 {

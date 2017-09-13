@@ -43,7 +43,8 @@
                 ApiUrl,
                 this.AphiaSoapXml(scientificName).OuterXml,
                 ContentTypes.Xml,
-                Defaults.Encoding);
+                Defaults.Encoding)
+                .ConfigureAwait(false);
 
             return response.ToXmlDocument();
         }

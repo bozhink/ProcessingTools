@@ -21,7 +21,7 @@
         {
             string url = $"v0.9/species/match?verbose=true&name={content}";
             var connector = this.connectorFactory.Create(BaseAddress);
-            var result = await connector.GetJsonObjectAsync<GbifApiV09ResponseModel>(url);
+            var result = await connector.GetJsonObjectAsync<GbifApiV09ResponseModel>(url).ConfigureAwait(false);
             return result;
         }
     }

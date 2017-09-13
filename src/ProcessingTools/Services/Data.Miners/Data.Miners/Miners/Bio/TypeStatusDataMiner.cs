@@ -34,7 +34,7 @@
             var matches = new List<string>();
             foreach (var matcher in matchers)
             {
-                matches.AddRange(await context.GetMatchesAsync(matcher));
+                matches.AddRange(await context.GetMatchesAsync(matcher).ConfigureAwait(false));
             }
 
             return new HashSet<string>(matches);

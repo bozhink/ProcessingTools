@@ -41,7 +41,7 @@
                 })
                 .ToArray();
 
-            await this.dataService.Add(taxa);
+            await this.dataService.Add(taxa).ConfigureAwait(false);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();
@@ -56,7 +56,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundTaxa = await this.searchService.Search(searchString);
+            var foundTaxa = await this.searchService.Search(searchString).ConfigureAwait(false);
             if (foundTaxa == null || !foundTaxa.Any())
             {
                 this.Response.StatusCode = (int)HttpStatusCode.NotFound;

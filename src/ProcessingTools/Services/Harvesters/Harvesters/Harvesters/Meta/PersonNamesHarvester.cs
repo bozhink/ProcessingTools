@@ -29,7 +29,8 @@
                     Prefix = n[ElementNames.Prefix]?.InnerText,
                     Suffix = n[ElementNames.Suffix]?.InnerText
                 })
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return new HashSet<IPersonNameModel>(items);
         }

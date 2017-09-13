@@ -32,10 +32,10 @@
             var added = repository.Add(key, value);
 
             // Assert: Add
-            Assert.That(async () => await added, Is.EqualTo(true));
+            Assert.That(async () => await added.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L));
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L));
 
             // Act: Get
             var valueFromDb = repository.Get(key).Result;
@@ -50,11 +50,11 @@
             var removed = repository.Remove(key);
 
             // Assert: Remove
-            Assert.That(async () => await removed, Is.EqualTo(true));
+            Assert.That(async () => await removed.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
             // Expected internal catch of "ServiceStack.Redis.RedisResponseException : Background save already in progress"
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(1L));
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(1L));
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Get Keys should work.")]
@@ -81,7 +81,7 @@
             // Act: Add
             foreach (var key in listOfKeys)
             {
-                await repository.Add(key, value);
+                await repository.Add(key, value).ConfigureAwait(false);
             }
 
             // Act: Get Keys
@@ -99,7 +99,7 @@
             // Act: Remove
             foreach (var key in listOfKeys)
             {
-                await repository.Remove(key);
+                await repository.Remove(key).ConfigureAwait(false);
             }
 
             // Act: Get Keys

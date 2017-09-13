@@ -30,7 +30,7 @@
                 client.BaseAddress = new Uri(MendeleyApiBaseAddress);
 
                 string url = $"/catalog?doi={doi}";
-                var stream = await client.GetStreamAsync(url);
+                var stream = await client.GetStreamAsync(url).ConfigureAwait(false);
                 if (stream != null && stream.CanRead)
                 {
                     // TODO: serialization model

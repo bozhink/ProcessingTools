@@ -49,7 +49,7 @@
 
             try
             {
-                this.settings.OutputFileName = await this.GetOutputFileName();
+                this.settings.OutputFileName = await this.GetOutputFileName().ConfigureAwait(false);
 
                 IDocument document;
 
@@ -57,7 +57,8 @@
                 {
                     document = await this.documentManager.Read(
                         this.settings.MergeInputFiles,
-                        this.settings.FileNames.ToArray());
+                        this.settings.FileNames.ToArray())
+                        .ConfigureAwait(false);
                 }
                 catch
                 {
@@ -68,11 +69,11 @@
                 settings.ArticleSchemaType = document.SchemaType;
                 document.SchemaType = settings.ArticleSchemaType;
 
-                await this.ProcessDocument(document.XmlDocument.DocumentElement);
+                await this.ProcessDocument(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
                 this.tasks.Enqueue(this.WriteOutputFile(document));
 
-                await Task.WhenAll(this.tasks.ToArray());
+                await Task.WhenAll(this.tasks.ToArray()).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -101,7 +102,8 @@
                 outputFileName = await this.fileNameGenerator.Generate(
                     Path.Combine(Path.GetDirectoryName(inputFileName), FileConstants.DefaultBundleXmlFileName),
                     FileConstants.MaximalLengthOfGeneratedNewFileName,
-                    true);
+                    true)
+                    .ConfigureAwait(false);
             }
             else
             {
@@ -110,7 +112,8 @@
                     await this.fileNameGenerator.Generate(
                         inputFileName,
                         FileConstants.MaximalLengthOfGeneratedNewFileName,
-                        true);
+                        true)
+                        .ConfigureAwait(false);
 
                 inputFileNameMessage = inputFileName;
             }
@@ -132,19 +135,19 @@
         {
             if (this.settings.TagFloats)
             {
-                await this.InvokeProcessor<ITagFloatsCommand>(context);
+                await this.InvokeProcessor<ITagFloatsCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.TagReferences)
             {
-                await this.InvokeProcessor<ITagReferencesCommand>(context);
+                await this.InvokeProcessor<ITagReferencesCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ExpandLowerTaxa)
             {
                 for (int i = 0; i < ProcessingConstants.NumberOfExpandIterations; ++i)
                 {
-                    await this.InvokeProcessor<IExpandLowerTaxaCommand>(context);
+                    await this.InvokeProcessor<IExpandLowerTaxaCommand>(context).ConfigureAwait(false);
                 }
             }
         }
@@ -153,182 +156,182 @@
         {
             if (this.settings.ZoobankCloneXml)
             {
-                await this.InvokeProcessor<IZooBankCloneXmlCommand>(context);
+                await this.InvokeProcessor<IZooBankCloneXmlCommand>(context).ConfigureAwait(false);
                 return;
             }
 
             if (this.settings.ZoobankCloneJson)
             {
-                await this.InvokeProcessor<IZooBankCloneJsonCommand>(context);
+                await this.InvokeProcessor<IZooBankCloneJsonCommand>(context).ConfigureAwait(false);
                 return;
             }
 
             if (this.settings.ZoobankGenerateRegistrationXml)
             {
-                await this.InvokeProcessor<IZooBankGenerateRegistrationXmlCommand>(context);
+                await this.InvokeProcessor<IZooBankGenerateRegistrationXmlCommand>(context).ConfigureAwait(false);
                 return;
             }
 
             if (this.settings.QueryReplace)
             {
-                await this.InvokeProcessor<IQueryReplaceCommand>(context);
+                await this.InvokeProcessor<IQueryReplaceCommand>(context).ConfigureAwait(false);
                 return;
             }
 
             if (this.settings.RunXslTransform)
             {
-                await this.InvokeProcessor<IRunCustomXslTransformCommand>(context);
+                await this.InvokeProcessor<IRunCustomXslTransformCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.InitialFormat)
             {
-                await this.InvokeProcessor<IInitialFormatCommand>(context);
+                await this.InvokeProcessor<IInitialFormatCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseReferences)
             {
-                await this.InvokeProcessor<IParseReferencesCommand>(context);
+                await this.InvokeProcessor<IParseReferencesCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.TagDoi || this.settings.TagWebLinks)
             {
-                await this.InvokeProcessor<ITagWebLinksCommand>(context);
+                await this.InvokeProcessor<ITagWebLinksCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ResolveMediaTypes)
             {
-                await this.InvokeProcessor<IResolveMediaTypesCommand>(context);
+                await this.InvokeProcessor<IResolveMediaTypesCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.TagTableFn)
             {
-                await this.InvokeProcessor<ITagTableFootnoteCommand>(context);
+                await this.InvokeProcessor<ITagTableFootnoteCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.TagCoordinates)
             {
-                await this.InvokeProcessor<ITagCoordinatesCommand>(context);
+                await this.InvokeProcessor<ITagCoordinatesCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseCoordinates)
             {
-                await this.InvokeProcessor<IParseCoordinatesCommand>(context);
+                await this.InvokeProcessor<IParseCoordinatesCommand>(context).ConfigureAwait(false);
             }
 
             foreach (var commandType in this.settings.CalledCommands)
             {
-                await this.InvokeProcessor(commandType, context);
+                await this.InvokeProcessor(commandType, context).ConfigureAwait(false);
             }
 
             if (this.settings.TagEnvironmentTermsWithExtract)
             {
-                await this.InvokeProcessor<ITagEnvironmentTermsWithExtractCommand>(context);
+                await this.InvokeProcessor<ITagEnvironmentTermsWithExtractCommand>(context).ConfigureAwait(false);
             }
 
             // Tag envo terms using environment database
             if (this.settings.TagEnvironmentTerms)
             {
-                await this.InvokeProcessor<ITagEnvironmentTermsCommand>(context);
+                await this.InvokeProcessor<ITagEnvironmentTermsCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.TagAbbreviations)
             {
-                await this.InvokeProcessor<ITagAbbreviationsCommand>(context);
+                await this.InvokeProcessor<ITagAbbreviationsCommand>(context).ConfigureAwait(false);
             }
 
             // Tag institutions, institutional codes, and specimen codes
             if (this.settings.TagCodes)
             {
-                await this.InvokeProcessor<ITagInstitutionalCodesCommand>(context);
+                await this.InvokeProcessor<ITagInstitutionalCodesCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.TagLowerTaxa)
             {
-                await this.InvokeProcessor<ITagLowerTaxaCommand>(context);
+                await this.InvokeProcessor<ITagLowerTaxaCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.TagHigherTaxa)
             {
-                await this.InvokeProcessor<ITagHigherTaxaCommand>(context);
+                await this.InvokeProcessor<ITagHigherTaxaCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseLowerTaxa)
             {
-                await this.InvokeProcessor<IParseLowerTaxaCommand>(context);
+                await this.InvokeProcessor<IParseLowerTaxaCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseHigherTaxa)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithLocalDbCommand>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithLocalDbCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseHigherWithAphia)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithAphiaCommand>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithAphiaCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseHigherWithCoL)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeCommand>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithCatalogueOfLifeCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseHigherWithGbif)
             {
-                await this.InvokeProcessor<IParseHigherTaxaWithGbifCommand>(context);
+                await this.InvokeProcessor<IParseHigherTaxaWithGbifCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseHigherBySuffix)
             {
-                await this.InvokeProcessor<IParseHigherTaxaBySuffixCommand>(context);
+                await this.InvokeProcessor<IParseHigherTaxaBySuffixCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseHigherAboveGenus)
             {
-                await this.InvokeProcessor<IParseHigherTaxaAboveGenusCommand>(context);
+                await this.InvokeProcessor<IParseHigherTaxaAboveGenusCommand>(context).ConfigureAwait(false);
             }
 
             // Contextual processing
             var subcontextNodeList = context.SelectNodes(XPathStrings.HigherDocumentStructure);
             if (subcontextNodeList.Count < 1)
             {
-                await this.ContextProcessing(context);
+                await this.ContextProcessing(context).ConfigureAwait(false);
             }
             else
             {
                 foreach (XmlNode subcontext in subcontextNodeList)
                 {
-                    await this.ContextProcessing(subcontext);
+                    await this.ContextProcessing(subcontext).ConfigureAwait(false);
                 }
             }
 
             if (this.settings.ExtractTaxa || this.settings.ExtractLowerTaxa || this.settings.ExtractHigherTaxa)
             {
-                await this.InvokeProcessor<IExtractTaxaCommand>(context);
+                await this.InvokeProcessor<IExtractTaxaCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.UntagSplit)
             {
-                await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsCommand>(context);
+                await this.InvokeProcessor<IRemoveAllTaxonNamePartTagsCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.FormatTreat)
             {
-                await this.InvokeProcessor<IFormatTreatmentsCommand>(context);
+                await this.InvokeProcessor<IFormatTreatmentsCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseTreatmentMetaWithAphia)
             {
-                await this.InvokeProcessor<IParseTreatmentMetaWithAphiaCommand>(context);
+                await this.InvokeProcessor<IParseTreatmentMetaWithAphiaCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseTreatmentMetaWithGbif)
             {
-                await this.InvokeProcessor<IParseTreatmentMetaWithGbifCommand>(context);
+                await this.InvokeProcessor<IParseTreatmentMetaWithGbifCommand>(context).ConfigureAwait(false);
             }
 
             if (this.settings.ParseTreatmentMetaWithCol)
             {
-                await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeCommand>(context);
+                await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeCommand>(context).ConfigureAwait(false);
             }
 
             return;

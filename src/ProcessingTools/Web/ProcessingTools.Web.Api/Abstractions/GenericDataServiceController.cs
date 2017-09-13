@@ -30,7 +30,7 @@
         {
             try
             {
-                var data = await this.service.SelectAsync(null);
+                var data = await this.service.SelectAsync(null).ConfigureAwait(false);
                 if (data == null)
                 {
                     return this.NotFound();
@@ -50,7 +50,7 @@
         {
             try
             {
-                var model = await this.service.GetByIdAsync(id);
+                var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
                 if (model == null)
                 {
                     return this.NotFound();
@@ -75,7 +75,7 @@
 
             try
             {
-                var data = await this.service.SelectAsync(null, skip, take, sortKey);
+                var data = await this.service.SelectAsync(null, skip, take, sortKey).ConfigureAwait(false);
                 if (data == null)
                 {
                     return this.NotFound();
@@ -106,7 +106,7 @@
             try
             {
                 var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
-                var result = await this.service.InsertAsync(items);
+                var result = await this.service.InsertAsync(items).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -130,7 +130,7 @@
             try
             {
                 var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
-                var result = await this.service.UpdateAsync(items);
+                var result = await this.service.UpdateAsync(items).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -153,7 +153,7 @@
                 var property = item.GetType().GetProperty(nameof(IIntegerIdentifiable.Id));
                 property.SetValue(item, id);
 
-                var result = await this.service.UpdateAsync(item);
+                var result = await this.service.UpdateAsync(item).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -177,7 +177,7 @@
             try
             {
                 var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
-                var result = await this.service.DeleteAsync(items);
+                var result = await this.service.DeleteAsync(items).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -195,7 +195,7 @@
         {
             try
             {
-                var result = await this.service.DeleteAsync(id);
+                var result = await this.service.DeleteAsync(id).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -208,7 +208,7 @@
         {
             try
             {
-                var result = await this.service.DeleteAsync(ids.Cast<object>().ToArray());
+                var result = await this.service.DeleteAsync(ids.Cast<object>().ToArray()).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)

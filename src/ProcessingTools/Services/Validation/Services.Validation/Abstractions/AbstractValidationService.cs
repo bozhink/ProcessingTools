@@ -42,11 +42,11 @@
 
             var result = items.Select(this.MapToResponseModel).ToArray();
 
-            await this.ValidateWithCache(result);
+            await this.ValidateWithCache(result).ConfigureAwait(false);
 
             var itemsToCheck = this.GetItemsToCheck(result);
 
-            var validatedItems = await this.Validate(itemsToCheck.Select(i => i.ValidatedObject));
+            var validatedItems = await this.Validate(itemsToCheck.Select(i => i.ValidatedObject)).ConfigureAwait(false);
             validatedItems.ToList().ForEach(validatedItem =>
             {
                 string permalink = this.GetPermalink(validatedItem.ValidatedObject);
@@ -89,7 +89,7 @@
                     Status = item.ValidationStatus
                 };
 
-                await this.cacheService.Add(permalink, model);
+                await this.cacheService.Add(permalink, model).ConfigureAwait(false);
             }
             catch
             {
@@ -117,7 +117,7 @@
                 return DefaultStatus;
             }
 
-            var cachedItem = await this.cacheService.Get(permalink);
+            var cachedItem = await this.cacheService.Get(permalink).ConfigureAwait(false);
             if (cachedItem == null)
             {
                 return DefaultStatus;
@@ -139,7 +139,7 @@
             {
                 try
                 {
-                    var status = await this.ValidateSingleItemFromCache(item.ValidatedObject);
+                    var status = await this.ValidateSingleItemFromCache(item.ValidatedObject).ConfigureAwait(false);
                     item.ValidationStatus = status;
                 }
                 catch (Exception e)
@@ -151,7 +151,7 @@
             })
             .ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
             return true;
         }

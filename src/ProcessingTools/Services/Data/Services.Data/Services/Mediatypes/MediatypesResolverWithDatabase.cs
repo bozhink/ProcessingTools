@@ -30,7 +30,7 @@
 
             try
             {
-                var response = await this.repository.GetByFileExtension(extension).ToListAsync();
+                var response = await this.repository.GetByFileExtension(extension).ToListAsync().ConfigureAwait(false);
 
                 if (response == null || response.Count < 1)
                 {
