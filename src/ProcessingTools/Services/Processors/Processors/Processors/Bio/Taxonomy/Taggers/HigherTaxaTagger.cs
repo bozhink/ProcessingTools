@@ -70,7 +70,7 @@
             var blacklistItems = await this.blacklist.ItemsAsync.ConfigureAwait(false);
 
             var stopWords = await personNames
-                .SelectMany(n => new string[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
+                .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
                 .Where(n => !string.IsNullOrWhiteSpace(n))
                 .Union(blacklistItems)
                 .Distinct()

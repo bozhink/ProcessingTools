@@ -198,7 +198,7 @@
             string key = "some key";
             var valueMock = new Mock<IValidationCacheEntity>();
             var value = valueMock.Object;
-            var list = new IValidationCacheEntity[] { value };
+            var list = new[] { value };
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
@@ -244,7 +244,7 @@
 
             var expectedValue = value2Mock.Object;
 
-            var list = new IValidationCacheEntity[] { value1Mock.Object, value2Mock.Object };
+            var list = new[] { value1Mock.Object, value2Mock.Object };
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock

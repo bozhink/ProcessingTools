@@ -25,7 +25,7 @@
         public double[] TransformDecimal2Utm(double latitude, double longitude, string utmZone)
         {
             var transformation = this.CreateTransformation(utmZone);
-            var point = new double[] { latitude, longitude };
+            var point = new[] { latitude, longitude };
             var result = transformation.Transform(point);
             return result;
         }
@@ -35,7 +35,7 @@
             try
             {
                 var transformation = this.CreateTransformation(utmZone).Inverse();
-                var point = new double[] { utmEasting, utmNorthing };
+                var point = new[] { utmEasting, utmNorthing };
                 var retult = transformation.Transform(point);
                 return retult.Reverse().ToArray();
             }

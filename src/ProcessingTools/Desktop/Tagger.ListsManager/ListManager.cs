@@ -93,7 +93,7 @@
                     .ToList()
                     .ForEach(i =>
                     {
-                        var item = new ListViewItem(new string[] { i.Key, i.Value });
+                        var item = new ListViewItem(new[] { i.Key, i.Value });
                         this.listView.Items.Add(item);
                     });
             }
