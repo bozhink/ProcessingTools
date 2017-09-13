@@ -37,11 +37,11 @@
                 throw new ProcessingTools.Exceptions.InvalidDataException("Mediatypes data json file is empty or invalid.");
             }
 
-            await this.ImportMimeTypesToDatabaseAsync(mediatypesJson);
-            await this.ImportMimeSubtypesToDataBaseAsync(mediatypesJson);
-            await this.ImportFileExtensionsToDatabaseAsync(mediatypesJson);
-            await this.CreateMediaTypePairsInDatabaseAsync(mediatypesJson);
-            await this.ConnectMediaTypePairsToFileExtensionsAsync(mediatypesJson);
+            await this.ImportMimeTypesToDatabaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.ImportMimeSubtypesToDataBaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.ImportFileExtensionsToDatabaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.CreateMediaTypePairsInDatabaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.ConnectMediaTypePairsToFileExtensionsAsync(mediatypesJson).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
