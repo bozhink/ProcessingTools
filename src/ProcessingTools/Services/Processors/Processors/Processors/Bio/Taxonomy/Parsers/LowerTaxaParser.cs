@@ -107,7 +107,7 @@
                 .AsParallel()
                 .ForAll(node =>
                 {
-                    string value = node.InnerText.Trim(new char[] { ' ', '.' });
+                    string value = node.InnerText.Trim(new[] { ' ', '.' });
                     if (SpeciesPartsPrefixesResolver.UncertaintyPrefixes.Contains(value))
                     {
                         node.Attributes[AttributeNames.Type].InnerText = AttributeValues.UncertaintyRank;
@@ -243,7 +243,7 @@
 
             foreach (var item in items)
             {
-                var taxonRankPair = item.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                var taxonRankPair = item.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
                 if (taxonRankPair.Length < 2)
                 {
                     continue;

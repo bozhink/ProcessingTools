@@ -348,7 +348,7 @@
             foreach (string taxon in new HashSet<string>(taxa))
             {
                 taxa.AddRange(
-                    taxon.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                    taxon.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                         .Where(s => !string.IsNullOrWhiteSpace(s) && s.Length > 2));
             }
 

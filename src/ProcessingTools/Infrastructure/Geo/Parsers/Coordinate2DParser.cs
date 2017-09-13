@@ -313,7 +313,7 @@
                 .RegexReplace(@"(?<=\d)\s+°", "°") //// 164 °7.6444'E /see test case/
                 .RegexReplace(@"\A(\W*\d+)\.\W*([EWONS])", "$1.0$2") //// Lon. 151. E. Lat. 3. S. /see test case/
                 .RegexReplace(@"([EWONS]\W+\d+)\.\W*([EWONS])", "$1.0$2") //// Lon. 151. E. Lat. 3. S. /see test case/
-                .Trim(new char[] { ' ', '.', ',', ';' });
+                .Trim(new[] { ' ', '.', ',', ';' });
 
             return coordinateText;
         }

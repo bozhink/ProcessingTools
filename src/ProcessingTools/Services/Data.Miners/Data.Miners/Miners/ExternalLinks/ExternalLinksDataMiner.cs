@@ -88,7 +88,7 @@
                 .ForAll((key) =>
                 {
                     content.GetMatches(new Regex(key))
-                        .Select(m => m.Trim(new char[] { ' ', ',', ':', ';', '.' }))
+                        .Select(m => m.Trim(new[] { ' ', ',', ':', ';', '.' }))
                         .Distinct()
                         .Select(item => new ExternalLink
                         {

@@ -169,7 +169,7 @@
                 var authorityNode = this.SelectTaxonAuthorityNode(document, authorityStatusNode);
                 if (authorityNode != null)
                 {
-                    authorityNode.InnerXml = authorityNode.InnerXml.RegexReplace(@"\s+", " ").Trim().TrimEnd(new char[] { ',' });
+                    authorityNode.InnerXml = authorityNode.InnerXml.RegexReplace(@"\s+", " ").Trim().TrimEnd(new[] { ',' });
                 }
             }
 

@@ -71,7 +71,7 @@
         private void CreateZipFile()
         {
             var zipDestinationDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
-            var zipFileName = this.DirectoryName.Trim(new char[] { ':', '/', '\\' });
+            var zipFileName = this.DirectoryName.Trim(new[] { ':', '/', '\\' });
             var destinationArchiveFileName = Path.Combine(zipDestinationDirectory, $"{zipFileName}.{FileConstants.ZipFileExtension}");
 
             ZipFile.CreateFromDirectory(this.DirectoryName, destinationArchiveFileName, CompressionLevel.Optimal, false);

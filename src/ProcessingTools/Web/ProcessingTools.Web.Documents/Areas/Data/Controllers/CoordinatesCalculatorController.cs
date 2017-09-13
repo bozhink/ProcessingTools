@@ -43,7 +43,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var coordinateStrings = model.Coordinates.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                var coordinateStrings = model.Coordinates.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(c => c.Trim())
                     .Where(c => c.Length > 1)
                     .Distinct()
