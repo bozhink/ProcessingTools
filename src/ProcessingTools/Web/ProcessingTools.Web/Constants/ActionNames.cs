@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Constants
 {
-    public sealed class ActionNames
+    public static class ActionNames
     {
         public const string Create = "Create";
         public const string Delete = "Delete";

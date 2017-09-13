@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Constants
 {
-    public sealed class ViewNames
+    public static class ViewNames
     {
         public const string AddressesPartial = "_Addresses";
         public const string CreateModalPartial = "Partials/_CreateModal";
