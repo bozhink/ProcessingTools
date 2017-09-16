@@ -1,76 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessingTools.Exceptions</RootNamespace>
-    <AssemblyName>ProcessingTools.Exceptions</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>ProcessingTools</Company>
+    <Version>0.0.9</Version>
+    <Copyright>Copyright © 2017 ProcessingTools</Copyright>
+    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Exceptions</Description>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ProcessingTools.Exceptions.xml</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Exceptions.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;S1075;S3925</NoWarn>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AmbiguousCommandException.cs" />
-    <Compile Include="CanNotGenerateUniqueFileNameException.cs" />
-    <Compile Include="CommandNotFoundException.cs" />
-    <Compile Include="CoordinateException.cs" />
-    <Compile Include="EntityNotFoundException.cs" />
-    <Compile Include="FileNameIsNullOrWhitespaceException.cs" />
-    <Compile Include="InvalidCommandException.cs" />
-    <Compile Include="InvalidDataException.cs" />
-    <Compile Include="InvalidDocumentException.cs" />
-    <Compile Include="InvalidIdException.cs" />
-    <Compile Include="InvalidItemsPerPageException.cs" />
-    <Compile Include="InvalidModelException.cs" />
-    <Compile Include="InvalidOrEmptyFilesException.cs" />
-    <Compile Include="InvalidPageNumberException.cs" />
-    <Compile Include="InvalidSkipValuePagingException.cs" />
-    <Compile Include="InvalidTakeValuePagingException.cs" />
-    <Compile Include="InvalidUserIdException.cs" />
-    <Compile Include="KeyExistsException.cs" />
-    <Compile Include="KeyNotFoundException.cs" />
-    <Compile Include="MaximalLengthOfFileNameExceededException.cs" />
-    <Compile Include="MaximalNumberOfIterationsExceededException.cs" />
-    <Compile Include="NoFilesSelectedException.cs" />
-    <Compile Include="NullOrEmptyFileException.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceReturnedNullException.cs" />
-    <Compile Include="StreamCannotBeReadException.cs" />
-    <Compile Include="UserNotFoundException.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
+
   <ItemGroup>
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.0.3347" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

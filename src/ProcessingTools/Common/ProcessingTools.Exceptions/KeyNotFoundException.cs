@@ -10,7 +10,6 @@ namespace ProcessingTools.Exceptions
     /// <summary>
     /// Represents error that occur when key is not found.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3925: Update this implementation of 'ISerializable' to conform to the recommended serialization pattern", Justification = "Not Applicable")]
     [Serializable]
     public class KeyNotFoundException : Exception
     {

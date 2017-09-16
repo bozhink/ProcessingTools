@@ -10,7 +10,6 @@ namespace ProcessingTools.Exceptions
     /// <summary>
     /// Represents error that occur when invalid command in current executing context is provided.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3925: Update this implementation of 'ISerializable' to conform to the recommended serialization pattern", Justification = "Not Applicable")]
     [Serializable]
     public class InvalidCommandException : Exception
     {
