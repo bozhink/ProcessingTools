@@ -189,9 +189,6 @@
     <Compile Include="IFactory.cs" />
     <Compile Include="IGenericDeserializer.cs" />
     <Compile Include="IGenericDocumentCloner.cs" />
-    <Compile Include="IGenericDocumentFactory.cs" />
-    <Compile Include="IGenericFactory.cs" />
-    <Compile Include="IGenericProvider.cs" />
     <Compile Include="IGenericXmlContextNormalizer.cs" />
     <Compile Include="IGenericXmlContextParser.cs" />
     <Compile Include="IGenericXmlContextTagger.cs" />
