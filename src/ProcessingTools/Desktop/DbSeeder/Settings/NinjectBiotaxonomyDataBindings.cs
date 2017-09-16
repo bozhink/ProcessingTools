@@ -37,7 +37,7 @@
                     AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiotaxonomyMongoDabaseName);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
@@ -48,7 +48,7 @@
                     AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiotaxonomyMongoDabaseName);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             // Seeder
             this.Bind<IBiotaxonomyMongoDatabaseInitializer>()
@@ -64,7 +64,7 @@
                     AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiotaxonomyMongoDabaseName);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
@@ -75,7 +75,7 @@
                     AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiotaxonomyMongoDabaseName);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             this.Bind<IRepositoryFactory<IMongoTaxonRankRepository>>()
                 .ToFactory()

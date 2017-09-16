@@ -42,7 +42,7 @@ namespace ProcessingTools.Constants.Schema
         /// <summary>
         /// aff
         /// </summary>
-        public const string RefTypeAffifliation = "aff";
+        public const string RefTypeAffiliation = "aff";
 
         /// <summary>
         /// app

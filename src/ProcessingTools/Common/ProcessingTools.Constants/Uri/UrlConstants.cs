@@ -5,12 +5,12 @@
 namespace ProcessingTools.Constants.Uri
 {
     /// <summary>
-    /// Url constants
+    /// URL constants
     /// </summary>
     public static class UrlConstants
     {
         /// <summary>
-        /// Doi prefix
+        /// DOI prefix
         /// </summary>
         public const string DoiPrefix = "https://doi.org/";
 

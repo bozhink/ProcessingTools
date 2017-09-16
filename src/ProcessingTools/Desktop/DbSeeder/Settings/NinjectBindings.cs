@@ -107,7 +107,7 @@
                     AppSettings.MediatypesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.MediatypesMongoDabaseName);
+                    AppSettings.MediatypesMongoDatabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                .To<MongoDatabaseProvider>()
@@ -118,7 +118,7 @@
                    AppSettings.MediatypesMongoConnection)
                .WithConstructorArgument(
                    ParameterNames.DatabaseName,
-                   AppSettings.MediatypesMongoDabaseName);
+                   AppSettings.MediatypesMongoDatabaseName);
 
             // DataResources
             this.Bind(b =>
@@ -145,7 +145,7 @@
                     AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDabaseName);
+                    AppSettings.BiorepositoriesMongoDatabaseName);
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
@@ -156,7 +156,7 @@
                     AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDabaseName);
+                    AppSettings.BiorepositoriesMongoDatabaseName);
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
@@ -167,7 +167,7 @@
                     AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDabaseName);
+                    AppSettings.BiorepositoriesMongoDatabaseName);
 
             this.Bind(b =>
             {

@@ -10,9 +10,9 @@ namespace ProcessingTools.Constants.Web
     public static class ActionNames
     {
         /// <summary>
-        /// DeafulHelpActionName
+        /// DeafultHelpActionName
         /// </summary>
-        public const string DeafulHelpActionName = "Help";
+        public const string DeafultHelpActionName = "Help";
 
         /// <summary>
         /// DeafultCalculateActionName

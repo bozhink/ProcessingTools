@@ -56,7 +56,7 @@
                     AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDabaseName);
+                    AppSettings.BiorepositoriesMongoDatabaseName);
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
@@ -67,7 +67,7 @@
                     AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiorepositoriesMongoDabaseName);
+                    AppSettings.BiorepositoriesMongoDatabaseName);
 
             this.Bind(b =>
             {

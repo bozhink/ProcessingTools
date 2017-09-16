@@ -27,9 +27,9 @@ namespace ProcessingTools.Constants.Configuration
         public static readonly string BiorepositoriesMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection];
 
         /// <summary>
-        /// BiorepositoriesMongoDabaseName
+        /// BiorepositoriesMongoDatabaseName
         /// </summary>
-        public static readonly string BiorepositoriesMongoDabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName];
+        public static readonly string BiorepositoriesMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDatabaseName];
 
         /// <summary>
         /// BiorepositoriesSeedCsvDataFilesDirectoryName
@@ -47,9 +47,9 @@ namespace ProcessingTools.Constants.Configuration
         public static readonly string BiotaxonomyMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection];
 
         /// <summary>
-        /// BiotaxonomyMongoDabaseName
+        /// BiotaxonomyMongoDatabaseName
         /// </summary>
-        public static readonly string BiotaxonomyMongoDabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName];
+        public static readonly string BiotaxonomyMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDatabaseName];
 
         /// <summary>
         /// BiotaxonomyRankListXmlFileName
@@ -62,9 +62,9 @@ namespace ProcessingTools.Constants.Configuration
         public static readonly string CacheMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoConnection];
 
         /// <summary>
-        /// CacheMongoDabaseName
+        /// CacheMongoDatabaseName
         /// </summary>
-        public static readonly string CacheMongoDabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoDabaseName];
+        public static readonly string CacheMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoDatabaseName];
 
         /// <summary>
         /// ClientSettingsProvider
@@ -97,9 +97,9 @@ namespace ProcessingTools.Constants.Configuration
         public static readonly string DocumentsMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.DocumentsMongoConnection];
 
         /// <summary>
-        /// DocumentsMongoDabaseName
+        /// DocumentsMongoDatabaseName
         /// </summary>
-        public static readonly string DocumentsMongoDabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.DocumentsMongoDabaseName];
+        public static readonly string DocumentsMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.DocumentsMongoDatabaseName];
 
         /// <summary>
         /// EnvironmentsEntitiesFileName
@@ -212,9 +212,9 @@ namespace ProcessingTools.Constants.Configuration
         public static readonly string MediatypesMongoConnection = ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoConnection];
 
         /// <summary>
-        /// MediatypesMongoDabaseName
+        /// MediatypesMongoDatabaseName
         /// </summary>
-        public static readonly string MediatypesMongoDabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDabaseName];
+        public static readonly string MediatypesMongoDatabaseName = ConfigurationManager.AppSettings[AppSettingsKeys.MediatypesMongoDatabaseName];
 
         /// <summary>
         /// MicrosoftClientId

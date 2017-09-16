@@ -33,7 +33,7 @@
                     AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiotaxonomyMongoDabaseName);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
@@ -44,7 +44,7 @@
                     AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.BiotaxonomyMongoDabaseName);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             // Xml
             this.Bind<IXmlTaxaContext>()

@@ -95,7 +95,7 @@
                 .To<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>();
 
             string documentsMongoConnection = AppSettings.DocumentsMongoConnection;
-            string documentsMongoDabaseName = AppSettings.DocumentsMongoDabaseName;
+            string documentsMongoDabaseName = AppSettings.DocumentsMongoDatabaseName;
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()

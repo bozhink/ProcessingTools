@@ -27,7 +27,7 @@
                     AppSettings.MediatypesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.MediatypesMongoDabaseName);
+                    AppSettings.MediatypesMongoDatabaseName);
 
             this.Bind<IMediatypesDbContext>()
                 .To<MediatypesDbContext>()

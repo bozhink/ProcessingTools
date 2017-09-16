@@ -120,7 +120,7 @@
                     AppSettings.CacheMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    AppSettings.CacheMongoDabaseName);
+                    AppSettings.CacheMongoDatabaseName);
 
             this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
                 .To<ProcessingTools.Services.Providers.DateTimeProvider>()

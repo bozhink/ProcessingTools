@@ -25,9 +25,9 @@ namespace ProcessingTools.Constants.Configuration
         internal const string BiorepositoriesMongoConnection = "BiorepositoriesMongoConnection";
 
         /// <summary>
-        /// BiorepositoriesMongoDabaseName
+        /// BiorepositoriesMongoDatabaseName
         /// </summary>
-        internal const string BiorepositoriesMongoDabaseName = "BiorepositoriesMongoDabaseName";
+        internal const string BiorepositoriesMongoDatabaseName = "BiorepositoriesMongoDatabaseName";
 
         /// <summary>
         /// BiorepositoriesSeedCsvDataFilesDirectoryName
@@ -45,9 +45,9 @@ namespace ProcessingTools.Constants.Configuration
         internal const string BiotaxonomyMongoConnection = "BiotaxonomyMongoConnection";
 
         /// <summary>
-        /// BiotaxonomyMongoDabaseName
+        /// BiotaxonomyMongoDatabaseName
         /// </summary>
-        internal const string BiotaxonomyMongoDabaseName = "BiotaxonomyMongoDabaseName";
+        internal const string BiotaxonomyMongoDatabaseName = "BiotaxonomyMongoDatabaseName";
 
         /// <summary>
         /// BiotaxonomyRankListXmlFileName
@@ -60,9 +60,9 @@ namespace ProcessingTools.Constants.Configuration
         internal const string CacheMongoConnection = "CacheMongoConnection";
 
         /// <summary>
-        /// CacheMongoDabaseName
+        /// CacheMongoDatabaseName
         /// </summary>
-        internal const string CacheMongoDabaseName = "CacheMongoDabaseName";
+        internal const string CacheMongoDatabaseName = "CacheMongoDatabaseName";
 
         /// <summary>
         /// ClientSettingsProvider
@@ -95,9 +95,9 @@ namespace ProcessingTools.Constants.Configuration
         internal const string DocumentsMongoConnection = "DocumentsMongoConnection";
 
         /// <summary>
-        /// DocumentsMongoDabaseName
+        /// DocumentsMongoDatabaseName
         /// </summary>
-        internal const string DocumentsMongoDabaseName = "DocumentsMongoDabaseName";
+        internal const string DocumentsMongoDatabaseName = "DocumentsMongoDatabaseName";
 
         /// <summary>
         /// EnvironmentsEntitiesFileName
@@ -210,9 +210,9 @@ namespace ProcessingTools.Constants.Configuration
         internal const string MediatypesMongoConnection = "MediatypesMongoConnection";
 
         /// <summary>
-        /// MediatypesMongoDabaseName
+        /// MediatypesMongoDatabaseName
         /// </summary>
-        internal const string MediatypesMongoDabaseName = "MediatypesMongoDabaseName";
+        internal const string MediatypesMongoDatabaseName = "MediatypesMongoDatabaseName";
 
         /// <summary>
         /// MicrosoftClientId

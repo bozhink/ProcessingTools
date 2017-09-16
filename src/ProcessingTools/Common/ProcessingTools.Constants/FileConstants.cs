@@ -25,7 +25,7 @@ namespace ProcessingTools.Constants
         public const string DllFileExtension = "dll";
 
         /// <summary>
-        /// XXML file extension.
+        /// XML file extension.
         /// </summary>
         public const string XmlFileExtension = "xml";
 
