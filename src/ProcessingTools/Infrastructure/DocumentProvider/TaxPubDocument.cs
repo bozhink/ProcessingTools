@@ -1,11 +1,12 @@
 ﻿namespace ProcessingTools.DocumentProvider
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Xml;
-    using Contracts;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.DocumentProvider.Contracts;
     using ProcessingTools.Enumerations;
 
     public class TaxPubDocument : ITaxPubDocument
@@ -123,7 +124,7 @@
 
         public SchemaType SchemaType { get; set; }
 
-        public IQueryable<XmlNode> SelectNodes(string xpath)
+        public IEnumerable<XmlNode> SelectNodes(string xpath)
         {
             if (string.IsNullOrWhiteSpace(xpath))
             {
