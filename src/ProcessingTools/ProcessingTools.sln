@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.ListsManager", "Desktop\Tagger.ListsManager\Tagger.ListsManager.csproj", "{337C1A6C-C0A7-4C44-938E-35D87757EF7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Infrastructure\Contracts\Contracts.csproj", "{4C455D90-7433-4853-BC6E-4A726786D253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts1", "Infrastructure\Contracts\Contracts1.csproj", "{4C455D90-7433-4853-BC6E-4A726786D253}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loggers", "Infrastructure\Loggers\Loggers.csproj", "{B6E6489B-65DF-4E51-B0F2-86CD7FECA313}"
 EndProject
