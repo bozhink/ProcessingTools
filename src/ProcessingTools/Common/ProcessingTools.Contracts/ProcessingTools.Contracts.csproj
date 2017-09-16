@@ -8,11 +8,11 @@
     <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Common code</Description>
+    <Description>Contracts</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Common.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Contracts.xml</DocumentationFile>
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
 
@@ -23,14 +23,6 @@
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.0.3347" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="AutoMapper" Version="6.1.1" />
-    <PackageReference Include="System.Linq.Dynamic" Version="1.0.7" />
-    <PackageReference Include="System.Reflection" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
   </ItemGroup>
 
 </Project>
