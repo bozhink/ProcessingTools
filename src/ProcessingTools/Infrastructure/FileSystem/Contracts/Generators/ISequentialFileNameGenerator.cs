@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.FileSystem.Contracts.Generators
 {
-    using ProcessingTools.Contracts.Files.Generators;
+    using ProcessingTools.Contracts;
 
     public interface ISequentialFileNameGenerator : IFileNameGenerator
     {
