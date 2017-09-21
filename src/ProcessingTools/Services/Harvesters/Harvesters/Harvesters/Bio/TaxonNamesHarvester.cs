@@ -8,7 +8,6 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.DocumentProvider.Extensions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
 
