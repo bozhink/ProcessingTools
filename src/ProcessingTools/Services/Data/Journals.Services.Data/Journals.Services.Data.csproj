@@ -78,10 +78,6 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\History.Services.Data\History.Services.Data.csproj">
       <Project>{66D22FE6-56AC-4754-BC2E-B534B62639C9}</Project>
       <Name>History.Services.Data</Name>

@@ -84,10 +84,6 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
       <Name>Serialization</Name>

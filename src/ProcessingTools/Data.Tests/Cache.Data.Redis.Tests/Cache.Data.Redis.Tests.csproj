@@ -90,10 +90,6 @@
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695AC2B9-464D-4034-8C28-8674C4E39EF8}</Project>
       <Name>Tests.Library</Name>

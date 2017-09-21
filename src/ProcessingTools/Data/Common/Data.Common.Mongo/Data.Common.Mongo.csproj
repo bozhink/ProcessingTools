@@ -68,10 +68,6 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>

@@ -211,10 +211,6 @@
       <Project>{f1202a6d-f30a-4f76-a7c5-69c6e84285a6}</Project>
       <Name>DataResources.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Interceptors\Interceptors.csproj">
       <Project>{ef204549-80d1-4665-8cfe-8e57c5c88ee6}</Project>
       <Name>Interceptors</Name>

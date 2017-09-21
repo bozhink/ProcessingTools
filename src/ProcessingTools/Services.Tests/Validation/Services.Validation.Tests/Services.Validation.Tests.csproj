@@ -95,10 +95,6 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Net\Net.csproj">
       <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
       <Name>Net</Name>

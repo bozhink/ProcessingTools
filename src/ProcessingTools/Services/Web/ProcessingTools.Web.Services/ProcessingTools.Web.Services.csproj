@@ -143,10 +143,6 @@
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Users.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj">
       <Project>{667d4391-17f1-4433-bc96-685aee89650a}</Project>
       <Name>ProcessingTools.Web.Models</Name>

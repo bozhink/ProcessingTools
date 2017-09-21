@@ -61,10 +61,6 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
       <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>

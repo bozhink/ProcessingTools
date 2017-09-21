@@ -56,10 +56,6 @@
       <Project>{2cee897b-f9d4-4d59-964a-4fc8ba7448f5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="logger.config">

@@ -82,10 +82,6 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>

@@ -82,10 +82,6 @@
       <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
