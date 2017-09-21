@@ -23,6 +23,7 @@
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.0.3347" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
