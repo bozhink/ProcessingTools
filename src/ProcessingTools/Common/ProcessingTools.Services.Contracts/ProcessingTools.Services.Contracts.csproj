@@ -28,4 +28,9 @@
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

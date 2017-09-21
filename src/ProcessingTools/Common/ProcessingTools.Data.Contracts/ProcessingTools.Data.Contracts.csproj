@@ -27,4 +27,13 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Bio\Environments\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>
