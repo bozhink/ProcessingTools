@@ -9,6 +9,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public class DocumentValidator : IDocumentValidator
     {

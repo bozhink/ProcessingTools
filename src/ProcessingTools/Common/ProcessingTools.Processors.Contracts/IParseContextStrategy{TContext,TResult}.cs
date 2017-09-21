@@ -2,8 +2,10 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
+namespace ProcessingTools.Processors.Contracts
 {
+    using ProcessingTools.Contracts;
+
     /// <summary>
     /// Strategy to parse specified context.
     /// </summary>
