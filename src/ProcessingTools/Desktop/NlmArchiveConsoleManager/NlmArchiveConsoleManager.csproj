@@ -125,10 +125,6 @@
       <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
-      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
-      <Name>DocumentProvider</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
       <Name>FileSystem</Name>

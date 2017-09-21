@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -34,8 +34,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{2D346903-DBD6-46C9-A53B-A33E0C215BB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.ZooBank", "ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj", "{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentProvider", "Infrastructure\DocumentProvider\DocumentProvider.csproj", "{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}"
 EndProject
@@ -427,14 +425,6 @@ Global
 		{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}.Release|x64.ActiveCfg = Release|Any CPU
 		{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}.Release|x64.Build.0 = Release|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Debug|x64.Build.0 = Debug|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Release|x64.ActiveCfg = Release|Any CPU
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE}.Release|x64.Build.0 = Release|Any CPU
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1332,7 +1322,6 @@ Global
 		{E78C97C4-837F-4C72-8751-970AA744D3A8} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
 		{AEF34763-8DC4-4519-A8FC-F76D6C9C1006} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
-		{EE6CF295-22F5-4FB5-8099-BE4BA9E232DE} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
 		{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 		{44BF1EF0-8900-4AC8-8F89-4526AF34DBF2} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
@@ -1468,7 +1457,7 @@ Global
 		{AA4714BA-02CE-487E-AF9F-1F7C9112FA13} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal

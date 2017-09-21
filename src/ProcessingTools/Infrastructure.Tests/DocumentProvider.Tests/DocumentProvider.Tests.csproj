@@ -79,13 +79,13 @@
     <Compile Include="TaxPubDocumentTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
+      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
-      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
-      <Name>DocumentProvider</Name>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
+      <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{B6E6489B-65DF-4E51-B0F2-86CD7FECA313}</Project>

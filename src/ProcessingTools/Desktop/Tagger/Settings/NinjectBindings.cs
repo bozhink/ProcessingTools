@@ -104,9 +104,9 @@
             this.Bind<ProcessingTools.Contracts.IReporter>()
                 .To<Reporters.LogReporter>();
 
-            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
-                .InSingletonScope();
+            //this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+            //    .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+            //    .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.Data.Cache.Repositories.IValidationCacheDataRepository>()
                 ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();

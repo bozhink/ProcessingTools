@@ -29,9 +29,9 @@
                 .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
-                .InSingletonScope();
+            //this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+            //    .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+            //    .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ConsoleLogger>()

@@ -102,9 +102,9 @@
             this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
 
-            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
-                .InSingletonScope();
+            //this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+            //    .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+            //    .InSingletonScope();
 
             this.Bind<Func<Type, ITaggerCommand>>()
                 .ToMethod(context => t => context.Kernel.Get(t) as ITaggerCommand)

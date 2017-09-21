@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.DocumentProvider.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Common;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Reporters;
 

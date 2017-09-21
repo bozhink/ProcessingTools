@@ -7,6 +7,7 @@
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Common;
 
     [TestClass]
     public class TaxPubDocumentTests

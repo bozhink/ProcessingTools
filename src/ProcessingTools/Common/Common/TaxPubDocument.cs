@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DocumentProvider
+﻿namespace ProcessingTools.Common
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using System.Text;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.DocumentProvider.Contracts;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
     public class TaxPubDocument : ITaxPubDocument

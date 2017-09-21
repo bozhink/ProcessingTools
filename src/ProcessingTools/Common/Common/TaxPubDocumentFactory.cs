@@ -1,7 +1,6 @@
-﻿namespace ProcessingTools.DocumentProvider.Factories
+﻿namespace ProcessingTools.Common
 {
     using System;
-    using Contracts;
     using ProcessingTools.Contracts;
 
     public class TaxPubDocumentFactory : ITaxPubDocumentFactory

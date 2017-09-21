@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.DocumentProvider
+﻿namespace ProcessingTools.Common
 {
     using System;
     using System.IO;
