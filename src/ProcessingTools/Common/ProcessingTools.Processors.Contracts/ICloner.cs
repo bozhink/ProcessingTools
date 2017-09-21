@@ -12,7 +12,7 @@ namespace ProcessingTools.Contracts
     /// <typeparam name="TTarget">Type of the target of cloning</typeparam>
     /// <typeparam name="TSource">Type of the source of information</typeparam>
     /// <typeparam name="TResult">Type of the result</typeparam>
-    public interface ICloner<TTarget, TSource, TResult>
+    public interface ICloner<in TTarget, in TSource, TResult>
     {
         /// <summary>
         /// Clones information from source to target.

@@ -11,7 +11,7 @@ namespace ProcessingTools.Contracts
     /// </summary>
     /// <typeparam name="TContext">Type of the context object.</typeparam>
     /// <typeparam name="TResult">Type of the result.</typeparam>
-    public interface IContextFormatter<TContext, TResult>
+    public interface IContextFormatter<in TContext, TResult>
     {
         /// <summary>
         /// Executes formatting operation over the context.

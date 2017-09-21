@@ -1,6 +1,13 @@
-﻿namespace ProcessingTools.Contracts
+﻿// <copyright file="IXmlContextParser.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts
 {
-    public interface IXmlContextParser : IGenericXmlContextParser<object>
+    /// <summary>
+    /// Context parser for XML context.
+    /// </summary>
+    public interface IXmlContextParser : IXmlContextParser<object>
     {
     }
 }

@@ -11,7 +11,7 @@ namespace ProcessingTools.Contracts
     /// </summary>
     /// <typeparam name="TContext">Type of the context object.</typeparam>
     /// <typeparam name="TResult">Type of the result.</typeparam>
-    public interface IContextTagger<TContext, TResult>
+    public interface IContextTagger<in TContext, TResult>
     {
         /// <summary>
         /// Executes tagging operation over the context.

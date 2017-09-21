@@ -11,7 +11,7 @@ namespace ProcessingTools.Contracts
     /// </summary>
     /// <typeparam name="TContext">Type of the context object.</typeparam>
     /// <typeparam name="TResult">Type of the result.</typeparam>
-    public interface IContextParser<TContext, TResult>
+    public interface IContextParser<in TContext, TResult>
     {
         /// <summary>
         /// Executes parsing operation over the context.
