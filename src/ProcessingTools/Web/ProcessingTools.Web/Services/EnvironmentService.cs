@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Web.Services
 {
+    using System;
     using System.Security.Claims;
     using System.Web;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
@@ -11,16 +11,12 @@
     public class EnvironmentService : IEnvironment
     {
         private readonly IEnvironmentUser user = new EnvironmentUser();
-        private readonly IDateTimeProvider datetimeProvider = new DateTimeProvider();
 
         public IEnvironmentUser User => this.user;
 
-        public IDateTimeProvider DateTime => this.datetimeProvider;
+        public Func<Guid> GuidProvider => () => Guid.NewGuid();
 
-        private class DateTimeProvider : IDateTimeProvider
-        {
-            public System.DateTime Now => System.DateTime.UtcNow;
-        }
+        public Func<DateTime> DateTimeProvider => () => DateTime.UtcNow;
 
         private class EnvironmentUser : IEnvironmentUser
         {

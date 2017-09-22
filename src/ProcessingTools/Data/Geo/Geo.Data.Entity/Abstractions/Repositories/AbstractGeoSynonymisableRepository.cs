@@ -61,7 +61,7 @@
             }
 
             string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            var now = this.environment.DateTimeProvider.Invoke();
 
             foreach (var synonym in synonyms)
             {
@@ -203,7 +203,7 @@
             }
 
             string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            var now = this.environment.DateTimeProvider.Invoke();
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
             this.repository.Update(entity);
@@ -279,7 +279,7 @@
             }
 
             string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            var now = this.environment.DateTimeProvider.Invoke();
 
             int count = 0;
             foreach (var synonym in synonyms)
@@ -326,7 +326,7 @@
         protected async Task<TEntity> InsertEntityAsync(TEntity entity)
         {
             string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            var now = this.environment.DateTimeProvider.Invoke();
 
             entity.CreatedBy = user;
             entity.CreatedOn = now;
@@ -353,7 +353,7 @@
             }
 
             string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            var now = this.environment.DateTimeProvider.Invoke();
 
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
