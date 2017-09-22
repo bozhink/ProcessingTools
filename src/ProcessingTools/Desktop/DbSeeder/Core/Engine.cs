@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Core;
+    using ProcessingTools.Processors.Contracts;
 
     public class Engine : IEngine
     {
@@ -14,18 +15,8 @@
 
         public Engine(ICommandRunner commandRunner, ISandbox sandbox, IHelpProvider helpProvider)
         {
-            if (commandRunner == null)
-            {
-                throw new ArgumentNullException(nameof(commandRunner));
-            }
-
-            if (sandbox == null)
-            {
-                throw new ArgumentNullException(nameof(sandbox));
-            }
-
-            this.commandRunner = commandRunner;
-            this.sandbox = sandbox;
+            this.commandRunner = commandRunner ?? throw new ArgumentNullException(nameof(commandRunner));
+            this.sandbox = sandbox ?? throw new ArgumentNullException(nameof(sandbox));
             this.helpProvider = helpProvider;
         }
 

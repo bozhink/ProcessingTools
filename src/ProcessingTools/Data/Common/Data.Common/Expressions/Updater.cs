@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Expressions.Contracts;
 
     public class Updater<T> : IUpdater<T>

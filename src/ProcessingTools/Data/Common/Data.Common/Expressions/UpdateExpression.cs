@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq.Expressions;
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts;
 
     public class UpdateExpression<T> : IUpdateExpression<T>
     {

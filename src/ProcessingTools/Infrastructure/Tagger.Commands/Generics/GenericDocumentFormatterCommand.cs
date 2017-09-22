@@ -5,20 +5,16 @@
     using Contracts;
     using Contracts.Commands;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public class GenericDocumentFormatterCommand<TFormatter> : ITaggerCommand
-        where TFormatter : IDocumentFormatter
+        where TFormatter : class, IDocumentFormatter
     {
         private readonly TFormatter formatter;
 
         public GenericDocumentFormatterCommand(TFormatter formatter)
         {
-            if (formatter == null)
-            {
-                throw new ArgumentNullException(nameof(formatter));
-            }
-
-            this.formatter = formatter;
+            this.formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

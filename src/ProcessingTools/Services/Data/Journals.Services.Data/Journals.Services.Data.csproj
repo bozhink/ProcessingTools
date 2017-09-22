@@ -62,6 +62,14 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
@@ -69,6 +77,14 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Common\Data.Common\Data.Common.csproj">
       <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>

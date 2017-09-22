@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Expressions
 {
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts;
 
     public sealed class UpdateCommand : IUpdateCommand
     {

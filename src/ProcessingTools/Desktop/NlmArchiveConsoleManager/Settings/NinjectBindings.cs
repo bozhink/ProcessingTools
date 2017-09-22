@@ -29,9 +29,9 @@
                 .BindDefaultInterface();
             });
 
-            //this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-            //    .To<ProcessingTools.Common.TaxPubDocumentFactory>()
-            //    .InSingletonScope();
+            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+                .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ConsoleLogger>()
@@ -47,7 +47,7 @@
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.IDeserializer>()
+            this.Bind<ProcessingTools.Processors.Contracts.IDeserializer>()
                 .To<ProcessingTools.Serialization.Serializers.DataContractJsonDeserializer>()
                 .InSingletonScope();
 

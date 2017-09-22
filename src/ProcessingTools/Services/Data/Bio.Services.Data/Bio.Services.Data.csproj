@@ -59,6 +59,18 @@
     <Compile Include="Services\TypeStatusDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Bio\Bio.Data.Entity\Bio.Data.Entity.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data.Entity</Name>

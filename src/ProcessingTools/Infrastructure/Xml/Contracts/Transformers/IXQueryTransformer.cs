@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Xml.Contracts.Transformers
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
-    public interface IXQueryTransformer : IProcessor, IXmlTransformer
+    public interface IXQueryTransformer : IXmlTransformer
     {
     }
 }

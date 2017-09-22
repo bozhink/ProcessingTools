@@ -22,18 +22,8 @@
             IDateTimeProvider dateTimeProvider)
             : base(contextProvider)
         {
-            if (guidProvider == null)
-            {
-                throw new ArgumentNullException(nameof(guidProvider));
-            }
-
-            if (dateTimeProvider == null)
-            {
-                throw new ArgumentNullException(nameof(dateTimeProvider));
-            }
-
-            this.guidProvider = guidProvider;
-            this.dateTimeProvider = dateTimeProvider;
+            this.guidProvider = guidProvider ?? throw new ArgumentNullException(nameof(guidProvider));
+            this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
         }
 
         public Task<object> Add(IFileEntity entity)

@@ -710,6 +710,14 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{44a79257-570b-4877-b636-c7e7cc20f606}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
@@ -717,6 +725,18 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{d9f81e90-e064-4113-8c94-be11cdd2482e}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{aa4714ba-02ce-487e-af9f-1f7c9112fa13}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Web.Contracts\ProcessingTools.Web.Contracts.csproj">
       <Project>{00fccc5a-d81f-4c05-9082-023837220f69}</Project>

@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     public class GbifApiV09DataRequester : IGbifApiV09DataRequester
     {

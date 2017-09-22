@@ -52,6 +52,10 @@
     <Compile Include="Diagnostics\Tracer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2cee897b-f9d4-4d59-964a-4fc8ba7448f5}</Project>
       <Name>ProcessingTools.Enumerations</Name>

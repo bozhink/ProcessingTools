@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Contracts.Factories
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public interface IDocumentsFormatTransformersFactory
     {

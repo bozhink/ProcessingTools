@@ -1,8 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Expressions.Contracts
 {
     using System.Threading.Tasks;
-
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts;
 
     public interface IUpdater<T>
     {

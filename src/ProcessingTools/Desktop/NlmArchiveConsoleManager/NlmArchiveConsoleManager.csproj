@@ -105,9 +105,29 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{44a79257-570b-4877-b636-c7e7cc20f606}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{aa4714ba-02ce-487e-af9f-1f7c9112fa13}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
       <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>

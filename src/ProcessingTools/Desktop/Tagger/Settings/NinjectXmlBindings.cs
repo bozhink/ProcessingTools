@@ -3,7 +3,7 @@
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Xml.Transformers;
 
     public class NinjectXmlBindings : NinjectModule

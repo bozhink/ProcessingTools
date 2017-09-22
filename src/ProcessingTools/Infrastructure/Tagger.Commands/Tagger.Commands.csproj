@@ -180,6 +180,10 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2cee897b-f9d4-4d59-964a-4fc8ba7448f5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
@@ -187,6 +191,18 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{d9f81e90-e064-4113-8c94-be11cdd2482e}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{aa4714ba-02ce-487e-af9f-1f7c9112fa13}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
       <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>

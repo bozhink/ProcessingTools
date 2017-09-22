@@ -5,15 +5,15 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Models;
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
+    using ProcessingTools.Documents.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Mongo.Models;
 
     public class MongoJournalMetaRepository : MongoRepository<JournalMeta>, IMongoJournalMetaRepository
     {

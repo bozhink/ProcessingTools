@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Layout.Processors.Contracts.Normalizers
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public interface IDocumentPreWriteNormalizer : IDocumentNormalizer
     {

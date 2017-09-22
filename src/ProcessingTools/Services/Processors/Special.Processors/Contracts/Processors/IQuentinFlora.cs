@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Special.Processors.Contracts.Processors
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public interface IQuentinFlora : IDocumentFormatter
     {

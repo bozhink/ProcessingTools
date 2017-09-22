@@ -7,6 +7,7 @@
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Processors.Contracts;
 
     internal class SeedCommandRunner : ICommandRunner
     {

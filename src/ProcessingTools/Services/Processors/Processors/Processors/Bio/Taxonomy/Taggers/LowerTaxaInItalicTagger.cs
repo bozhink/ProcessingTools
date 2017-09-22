@@ -125,7 +125,7 @@
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
             var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
-            var blacklistItems = await this.blacklist.ItemsAsync.ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.GetItemsAsync().ConfigureAwait(false);
 
             var stopWords = await personNames
                 .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })

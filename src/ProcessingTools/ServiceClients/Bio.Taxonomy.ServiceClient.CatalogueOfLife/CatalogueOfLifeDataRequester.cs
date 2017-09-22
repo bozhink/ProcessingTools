@@ -7,7 +7,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     /// <summary>
     /// Implementations of some of the Catalogue Of Life (CoL) API-s.

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Layout.Processors.Contracts.Factories
 {
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts;
 
     public interface ITransformerFactory
     {

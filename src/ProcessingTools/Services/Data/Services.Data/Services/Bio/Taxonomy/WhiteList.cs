@@ -17,19 +17,21 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public Task<IEnumerable<string>> ItemsAsync
+        public IEnumerable<string> GetItems()
         {
-            get
+            return this.GetItemsAsync().Result;
+        }
+
+        public Task<IEnumerable<string>> GetItemsAsync()
+        {
+            return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
             {
-                return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
-                {
-                    var query = await repository.FindAsync(t => t.IsWhiteListed).ConfigureAwait(false);
+                var query = await repository.FindAsync(t => t.IsWhiteListed).ConfigureAwait(false);
 
-                    var result = query.Select(t => t.Name).ToList();
+                var result = query.Select(t => t.Name).ToList();
 
-                    return new HashSet<string>(result);
-                });
-            }
+                return new HashSet<string>(result);
+            });
         }
     }
 }

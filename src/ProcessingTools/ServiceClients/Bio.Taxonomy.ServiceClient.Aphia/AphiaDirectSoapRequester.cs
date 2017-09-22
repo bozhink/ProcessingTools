@@ -5,7 +5,7 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     public class AphiaDirectSoapRequester
     {

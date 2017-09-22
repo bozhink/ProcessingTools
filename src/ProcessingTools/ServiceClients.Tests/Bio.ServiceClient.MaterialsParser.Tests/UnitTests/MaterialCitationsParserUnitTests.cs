@@ -6,7 +6,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     [TestClass]
     public class MaterialCitationsParserUnitTests

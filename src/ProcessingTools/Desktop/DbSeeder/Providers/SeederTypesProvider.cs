@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
 
@@ -43,6 +44,11 @@
             }
 
             return this.types;
+        }
+
+        public Task<IEnumerable<Type>> GetTypesAsync()
+        {
+            return Task.Run(() => this.GetTypes());
         }
     }
 }

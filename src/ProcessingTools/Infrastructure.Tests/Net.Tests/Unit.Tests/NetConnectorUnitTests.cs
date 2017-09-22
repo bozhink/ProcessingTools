@@ -2,7 +2,7 @@
 {
     using System;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Net;
 
     [TestFixture]

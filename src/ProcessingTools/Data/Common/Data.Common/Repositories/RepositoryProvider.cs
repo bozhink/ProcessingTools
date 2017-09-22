@@ -12,12 +12,7 @@
 
         public RepositoryProvider(IRepositoryFactory<TRepository> repositoryFactory)
         {
-            if (repositoryFactory == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryFactory));
-            }
-
-            this.repositoryFactory = repositoryFactory;
+            this.repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
         }
 
         public Task Execute(Func<TRepository, Task> function)

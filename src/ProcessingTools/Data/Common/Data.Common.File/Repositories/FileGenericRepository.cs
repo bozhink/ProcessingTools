@@ -5,7 +5,6 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Data.Common.File.Contracts.Repositories;

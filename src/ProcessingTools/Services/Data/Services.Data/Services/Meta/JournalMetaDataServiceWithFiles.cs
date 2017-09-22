@@ -3,10 +3,10 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using Contracts.Meta;
-    using Models.Meta;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Services.Data.Contracts.Meta;
+    using ProcessingTools.Services.Data.Models.Meta;
 
     public class JournalMetaDataServiceWithFiles : IJournalMetaDataService
     {

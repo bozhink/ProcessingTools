@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Serialization.Contracts
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
-    public interface IGenericDataContractJsonDeserializer<T> : IGenericDeserializer<T>
+    public interface IGenericDataContractJsonDeserializer<T> : IDeserializer<T>
     {
     }
 }

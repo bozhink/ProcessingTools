@@ -16,6 +16,7 @@
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Reporters;
 
     /// <summary>

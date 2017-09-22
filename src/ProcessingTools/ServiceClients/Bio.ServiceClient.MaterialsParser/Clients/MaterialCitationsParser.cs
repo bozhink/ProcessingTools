@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     public class MaterialCitationsParser : IMaterialCitationsParser
     {

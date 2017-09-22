@@ -5,20 +5,16 @@
     using Contracts;
     using Contracts.Commands;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public class GenericXmlContextParserCommand<TParser> : ITaggerCommand
-        where TParser : IXmlContextParser
+        where TParser : class, IXmlContextParser
     {
         private readonly TParser parser;
 
         public GenericXmlContextParserCommand(TParser parser)
         {
-            if (parser == null)
-            {
-                throw new ArgumentNullException(nameof(parser));
-            }
-
-            this.parser = parser;
+            this.parser = parser ?? throw new ArgumentNullException(nameof(parser));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

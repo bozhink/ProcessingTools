@@ -3,7 +3,6 @@
     using System;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Expressions;
 
     public interface ICrudRepository<T> : ISearchableRepository<T>
     {

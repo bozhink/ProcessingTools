@@ -104,9 +104,9 @@
             this.Bind<ProcessingTools.Contracts.IReporter>()
                 .To<Reporters.LogReporter>();
 
-            //this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-            //    .To<ProcessingTools.Common.TaxPubDocumentFactory>()
-            //    .InSingletonScope();
+            this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
+                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
+                .InSingletonScope();
 
             this.Bind<ProcessingTools.Contracts.Data.Cache.Repositories.IValidationCacheDataRepository>()
                 ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
@@ -144,7 +144,7 @@
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.Files.Generators.IFileNameGenerator>()
+            this.Bind<ProcessingTools.Contracts.IFileNameGenerator>()
                 .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
                 .InSingletonScope();
 

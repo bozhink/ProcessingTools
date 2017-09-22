@@ -6,7 +6,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Contracts.Repositories;
 

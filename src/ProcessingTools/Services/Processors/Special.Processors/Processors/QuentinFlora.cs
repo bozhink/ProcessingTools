@@ -6,6 +6,7 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Special.Processors.Contracts.Processors;
 
     public class QuentinFlora : IDocumentFormatter, IQuentinFlora

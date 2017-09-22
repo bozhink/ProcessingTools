@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Special.Processors.Contracts.Factories
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public interface ISpecialTransformersFactory
     {

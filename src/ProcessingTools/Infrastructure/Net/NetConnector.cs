@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using System.Xml.Serialization;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     public class NetConnector : INetConnector
     {

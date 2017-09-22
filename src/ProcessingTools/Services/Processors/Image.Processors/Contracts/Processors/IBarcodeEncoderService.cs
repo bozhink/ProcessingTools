@@ -2,7 +2,7 @@
 {
     using System.Drawing;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
 
     public interface IBarcodeEncoderService : IProcessor

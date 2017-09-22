@@ -40,7 +40,7 @@
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.countriesService = countriesService ?? throw new ArgumentNullException(nameof(countriesService));
-            this.logger = loggerFactory?.CreateLogger(this.GetType());
+            this.logger = loggerFactory?.Create(this.GetType());
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {

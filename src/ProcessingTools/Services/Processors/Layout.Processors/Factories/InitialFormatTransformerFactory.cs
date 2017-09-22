@@ -2,8 +2,8 @@
 {
     using System;
     using Contracts.Factories;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts;
 
     public class InitialFormatTransformerFactory : IInitialFormatTransformerFactory
     {

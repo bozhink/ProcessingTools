@@ -13,18 +13,8 @@
 
         public XmlFileContentDataService(IXmlFileReader reader, IXmlFileWriter writer)
         {
-            if (reader == null)
-            {
-                throw new ArgumentNullException(nameof(reader));
-            }
-
-            if (writer == null)
-            {
-                throw new ArgumentNullException(nameof(writer));
-            }
-
-            this.reader = reader;
-            this.writer = writer;
+            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
+            this.writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
         public XmlReaderSettings ReaderSettings

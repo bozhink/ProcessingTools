@@ -7,7 +7,7 @@
     using ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Contracts;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Models;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
     {
@@ -16,12 +16,7 @@
 
         public PaleobiologyDatabaseDataRequester(INetConnectorFactory connectorFactory)
         {
-            if (connectorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(connectorFactory));
-            }
-
-            this.connectorFactory = connectorFactory;
+            this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
         /// <summary>

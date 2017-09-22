@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
 
     public interface IImageProcessorService : IProcessor
     {

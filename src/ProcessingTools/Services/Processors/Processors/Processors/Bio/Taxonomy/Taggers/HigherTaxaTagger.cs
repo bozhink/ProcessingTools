@@ -52,7 +52,7 @@
 
             var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
             var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var seed = await this.whitelist.ItemsAsync.ConfigureAwait(false);
+            var seed = await this.whitelist.GetItemsAsync().ConfigureAwait(false);
 
             var data = await this.miner.MineAsync(textContent, seed, stopWords).ConfigureAwait(false) ?? new string[] { };
 
@@ -67,7 +67,7 @@
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
             var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
-            var blacklistItems = await this.blacklist.ItemsAsync.ConfigureAwait(false);
+            var blacklistItems = await this.blacklist.GetItemsAsync().ConfigureAwait(false);
 
             var stopWords = await personNames
                 .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })

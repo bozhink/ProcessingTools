@@ -5,20 +5,16 @@
     using Contracts;
     using Contracts.Commands;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
     public class GenericXmlContextTaggerCommand<TTagger> : ITaggerCommand
-        where TTagger : IXmlContextTagger
+        where TTagger : class, IXmlContextTagger
     {
         private readonly TTagger tagger;
 
         public GenericXmlContextTaggerCommand(TTagger tagger)
         {
-            if (tagger == null)
-            {
-                throw new ArgumentNullException(nameof(tagger));
-            }
-
-            this.tagger = tagger;
+            this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
         public async Task<object> Run(IDocument document, ICommandSettings settings)

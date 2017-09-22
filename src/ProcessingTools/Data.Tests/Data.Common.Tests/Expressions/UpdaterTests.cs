@@ -5,7 +5,7 @@
     using Models;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Expressions;
 
     [TestFixture]

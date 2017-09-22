@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.History.Models;
-    using ProcessingTools.Contracts.Expressions;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.History.Data.Entity.Contracts;
     using ProcessingTools.History.Data.Entity.Contracts.Repositories;

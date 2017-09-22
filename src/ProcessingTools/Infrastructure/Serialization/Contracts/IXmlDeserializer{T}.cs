@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Serialization.Contracts
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts;
 
-    public interface IXmlDeserializer<T> : IGenericDeserializer<T>
+    public interface IXmlDeserializer<T> : IDeserializer<T>
     {
     }
 }
