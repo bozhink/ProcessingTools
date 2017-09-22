@@ -3,6 +3,7 @@
     using System.Security.Claims;
     using System.Web;
     using Microsoft.AspNet.Identity;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
@@ -29,8 +30,7 @@
 
             public EnvironmentUser()
             {
-                var claimsIdentity = HttpContext.Current.User?.Identity as ClaimsIdentity;
-                if (claimsIdentity != null)
+                if (HttpContext.Current.User?.Identity is ClaimsIdentity claimsIdentity)
                 {
                     this.id = claimsIdentity.FindFirstValue(ClaimTypes.NameIdentifier);
                     this.name = claimsIdentity.FindFirstValue(ClaimTypes.Name);
