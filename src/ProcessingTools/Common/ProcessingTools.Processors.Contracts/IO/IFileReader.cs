@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Files.IO
+namespace ProcessingTools.Processors.Contracts.IO
 {
     using System.IO;
 

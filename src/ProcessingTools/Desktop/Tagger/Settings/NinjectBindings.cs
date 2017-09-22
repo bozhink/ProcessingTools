@@ -130,16 +130,16 @@
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+            this.Bind<ProcessingTools.Processors.Contracts.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+            this.Bind<ProcessingTools.Processors.Contracts.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
                 .Intercept()
                 .With<FileNotFoundInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
+            this.Bind<ProcessingTools.Processors.Contracts.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();

@@ -4,13 +4,13 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Files.IO;
+    using ProcessingTools.Processors.Contracts.IO;
 
     public class XmlFileWriter : IXmlFileWriter
     {
         public XmlFileWriter()
         {
-            this.WriterSettings = new XmlWriterSettings()
+            this.WriterSettings = new XmlWriterSettings
             {
                 Async = true,
                 Encoding = Defaults.Encoding,
@@ -28,11 +28,16 @@
 
         public XmlWriterSettings WriterSettings { get; set; }
 
-        public async Task<object> Write(string fullName, XmlDocument document, XmlDocumentType documentType = null)
+        public Task<object> WriteAsync(string fileName, XmlDocument document)
         {
-            if (string.IsNullOrWhiteSpace(fullName))
+            return this.WriteAsync(fileName: fileName, document: document, documentType: null);
+        }
+
+        public async Task<object> WriteAsync(string fileName, XmlDocument document, XmlDocumentType documentType)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fullName));
+                throw new ArgumentNullException(nameof(fileName));
             }
 
             if (document == null)
@@ -40,7 +45,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            using (XmlWriter writer = XmlWriter.Create(fullName, this.WriterSettings))
+            using (XmlWriter writer = XmlWriter.Create(fileName, this.WriterSettings))
             {
                 if (documentType != null)
                 {
@@ -59,11 +64,16 @@
             return true;
         }
 
-        public async Task<object> Write(string fullName, XmlReader reader, XmlDocumentType documentType = null)
+        public Task<object> WriteAsync(string fileName, XmlReader reader)
         {
-            if (string.IsNullOrWhiteSpace(fullName))
+            return this.WriteAsync(fileName: fileName, reader: reader, documentType: null);
+        }
+
+        public async Task<object> WriteAsync(string fileName, XmlReader reader, XmlDocumentType documentType)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fullName));
+                throw new ArgumentNullException(nameof(fileName));
             }
 
             if (reader == null)
@@ -71,7 +81,7 @@
                 throw new ArgumentNullException(nameof(reader));
             }
 
-            using (XmlWriter writer = XmlWriter.Create(fullName, this.WriterSettings))
+            using (XmlWriter writer = XmlWriter.Create(fileName, this.WriterSettings))
             {
                 if (documentType != null)
                 {

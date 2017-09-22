@@ -37,11 +37,11 @@
                 .To<ConsoleLogger>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+            this.Bind<ProcessingTools.Processors.Contracts.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
+            this.Bind<ProcessingTools.Processors.Contracts.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
                 .WhenInjectedInto<XmlFileContentDataService>()
                 .Intercept()

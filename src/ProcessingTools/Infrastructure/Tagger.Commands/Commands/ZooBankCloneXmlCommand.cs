@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Files.IO;
+    using ProcessingTools.Processors.Contracts.IO;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
@@ -54,7 +54,7 @@
 
         private async Task<IDocument> ReadSourceDocument(string sourceFileName)
         {
-            var xml = await this.fileReader.ReadXml(sourceFileName).ConfigureAwait(false);
+            var xml = await this.fileReader.ReadXmlAsync(sourceFileName).ConfigureAwait(false);
             var document = this.documentFactory.Create(xml.OuterXml);
             return document;
         }

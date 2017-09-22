@@ -6,8 +6,8 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Files.IO;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.IO;
 
     public class BrokenXmlFileReader : IXmlFileReader
     {
@@ -43,7 +43,7 @@
             return this.reader.GetReader(fullName);
         }
 
-        public async Task<XmlDocument> ReadXml(string fullName)
+        public async Task<XmlDocument> ReadXmlAsync(string fullName)
         {
             if (string.IsNullOrWhiteSpace(fullName))
             {
@@ -53,7 +53,7 @@
             XmlDocument document;
             try
             {
-                document = await this.reader.ReadXml(fullName).ConfigureAwait(false);
+                document = await this.reader.ReadXmlAsync(fullName).ConfigureAwait(false);
             }
             catch (XmlException e)
             {

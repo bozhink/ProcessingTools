@@ -3,13 +3,13 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Files.IO;
+    using ProcessingTools.Processors.Contracts.IO;
 
     public class XmlFileReader : IXmlFileReader
     {
         public XmlFileReader()
         {
-            this.ReaderSettings = new XmlReaderSettings()
+            this.ReaderSettings = new XmlReaderSettings
             {
                 Async = true,
                 IgnoreComments = false,
@@ -31,11 +31,10 @@
                 throw new ArgumentNullException(nameof(fullName));
             }
 
-            var reader = XmlReader.Create(fullName, this.ReaderSettings);
-            return reader;
+            return XmlReader.Create(fullName, this.ReaderSettings);
         }
 
-        public Task<XmlDocument> ReadXml(string fullName)
+        public Task<XmlDocument> ReadXmlAsync(string fullName)
         {
             if (string.IsNullOrWhiteSpace(fullName))
             {
