@@ -1,13 +1,26 @@
-﻿namespace ProcessingTools.FileSystem.Contracts
+﻿// <copyright file="IXmlFileReaderWriter.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.IO
 {
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
 
+    /// <summary>
+    /// Reader and writer for XML files.
+    /// </summary>
     public interface IXmlFileReaderWriter
     {
+        /// <summary>
+        /// Gets or sets the settings of the reader.
+        /// </summary>
         XmlReaderSettings ReaderSettings { get; set; }
 
+        /// <summary>
+        /// Gets or sets the settings of the writer.
+        /// </summary>
         XmlWriterSettings WriterSettings { get; set; }
 
         /// <summary>
@@ -24,7 +37,7 @@
         /// <param name="fileName">Name of the output file. Should be full-path name or relative.</param>
         /// <param name="basePath">Path to directory in which fileName should be.</param>
         /// <param name="length">Length of the file name part of the new file path.</param>
-        /// <returns>Unique file path based on the <paramref name="path"/>.</returns>
+        /// <returns>Unique file path based on the path.</returns>
         Task<string> GetNewFilePathAsync(string fileName, string basePath, int length);
 
         /// <summary>

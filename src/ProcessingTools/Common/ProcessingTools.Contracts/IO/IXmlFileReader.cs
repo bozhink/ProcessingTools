@@ -13,7 +13,7 @@ namespace ProcessingTools.Contracts.IO
     public interface IXmlFileReader
     {
         /// <summary>
-        /// Gets or sets the setting of the reader.
+        /// Gets or sets the settings of the reader.
         /// </summary>
         XmlReaderSettings ReaderSettings { get; set; }
 

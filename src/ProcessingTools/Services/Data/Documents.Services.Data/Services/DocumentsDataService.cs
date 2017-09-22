@@ -11,13 +11,13 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts.Models;
     using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.FileSystem.Contracts;
 
     public class DocumentsDataService : IDocumentsDataService
     {

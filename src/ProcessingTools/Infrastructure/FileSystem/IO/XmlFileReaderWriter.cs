@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.FileSystem
+﻿namespace ProcessingTools.FileSystem.IO
 {
     using System;
     using System.IO;
@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.FileSystem.Contracts;
 
     public class XmlFileReaderWriter : IXmlFileReaderWriter
     {
