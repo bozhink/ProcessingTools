@@ -6,6 +6,7 @@
     using AutoMapper;
     using AutoMapper.Configuration;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Contracts.Models;
 
     public class MappingsRegistration
     {
@@ -73,15 +74,6 @@
             {
                 map.CreateMappings(this.MapperConfigurationExpression);
             }
-        }
-
-        private interface IMapFrom<T>
-        {
-        }
-
-        private interface IHaveCustomMappings
-        {
-            void CreateMappings(IMapperConfigurationExpression configuration);
         }
     }
 }
