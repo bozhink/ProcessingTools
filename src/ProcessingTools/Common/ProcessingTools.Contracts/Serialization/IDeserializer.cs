@@ -2,13 +2,13 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Processors.Contracts
+namespace ProcessingTools.Contracts.Serialization
 {
     using System.IO;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// De-serializer
+    /// Deserializer
     /// </summary>
     public interface IDeserializer
     {

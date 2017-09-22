@@ -6,8 +6,8 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.IO;
 
     public class BrokenXmlFileReader : IXmlFileReader
     {

@@ -4,7 +4,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml.Serialization;
-    using Contracts;
+    using ProcessingTools.Contracts.Serialization;
 
     public class XmlDeserializer<T> : IXmlDeserializer<T>
     {

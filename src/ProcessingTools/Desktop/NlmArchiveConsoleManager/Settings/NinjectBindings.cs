@@ -37,17 +37,17 @@
                 .To<ConsoleLogger>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Processors.Contracts.IO.IXmlFileReader>()
+            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Processors.Contracts.IO.IXmlFileWriter>()
+            this.Bind<ProcessingTools.Contracts.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
                 .WhenInjectedInto<XmlFileContentDataService>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Processors.Contracts.IDeserializer>()
+            this.Bind<ProcessingTools.Contracts.Serialization.IDeserializer>()
                 .To<ProcessingTools.Serialization.Serializers.DataContractJsonDeserializer>()
                 .InSingletonScope();
 

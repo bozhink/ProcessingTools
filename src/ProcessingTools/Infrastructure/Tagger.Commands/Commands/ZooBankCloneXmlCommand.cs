@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.IO;
+    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;

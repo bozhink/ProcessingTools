@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants;
-    using ProcessingTools.Processors.Contracts.IO;
+    using ProcessingTools.Contracts.IO;
 
     public class XmlFileWriter : IXmlFileWriter
     {

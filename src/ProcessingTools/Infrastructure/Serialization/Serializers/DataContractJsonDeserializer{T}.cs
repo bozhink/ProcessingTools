@@ -4,13 +4,13 @@
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
-    using Contracts;
+    using ProcessingTools.Contracts.Serialization;
 
-    public class GenericDataContractJsonDeserializer<T> : IGenericDataContractJsonDeserializer<T>
+    public class DataContractJsonDeserializer<T> : IDataContractJsonDeserializer<T>
     {
         private readonly DataContractJsonSerializer serializer;
 
-        public GenericDataContractJsonDeserializer()
+        public DataContractJsonDeserializer()
         {
             this.serializer = new DataContractJsonSerializer(typeof(T));
         }

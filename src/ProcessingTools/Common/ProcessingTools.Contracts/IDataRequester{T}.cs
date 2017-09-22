@@ -2,12 +2,12 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Processors.Contracts
+namespace ProcessingTools.Contracts
 {
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Data requester.
+    /// Generic data requester.
     /// </summary>
     /// <typeparam name="T">Type of returned object</typeparam>
     public interface IDataRequester<T>

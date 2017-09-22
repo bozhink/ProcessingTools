@@ -4,7 +4,7 @@
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
-    using Contracts;
+    using ProcessingTools.Contracts.Serialization;
 
     public class DataContractJsonDeserializer : IDataContractJsonDeserializer
     {

@@ -4,7 +4,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Documents;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Serialization;
     using ProcessingTools.Services.Data.Contracts.Meta;
     using ProcessingTools.Services.Data.Models.Meta;
 
@@ -14,12 +14,7 @@
 
         public JournalMetaDataServiceWithFiles(IDeserializer deserializer)
         {
-            if (deserializer == null)
-            {
-                throw new ArgumentNullException(nameof(deserializer));
-            }
-
-            this.deserializer = deserializer;
+            this.deserializer = deserializer ?? throw new ArgumentNullException(nameof(deserializer));
         }
 
         public async Task<IJournalMeta> GetJournalMeta(string journalJsonFileName)

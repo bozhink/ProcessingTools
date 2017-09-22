@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Serialization;
-    using Contracts;
+    using ProcessingTools.Contracts.Serialization;
 
     public class XmlSerializer<T> : IXmlSerializer<T>
     {
@@ -24,7 +24,7 @@
             };
         }
 
-        public Task<XmlNode> Serialize(T @object)
+        public Task<XmlNode> SerializeAsync(T @object)
         {
             if (@object == null)
             {

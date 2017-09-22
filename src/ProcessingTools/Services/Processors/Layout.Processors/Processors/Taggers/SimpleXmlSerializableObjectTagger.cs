@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Serialization;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Serialization.Contracts;
 
     public class SimpleXmlSerializableObjectTagger<T> : ISimpleXmlSerializableObjectTagger<T>
     {
@@ -54,7 +54,7 @@
             var nodeList = context.SelectNodes(contentNodesXPath, namespaceManager).Cast<XmlNode>().ToList();
 
             var dataList = data.ToList();
-            var items = dataList.Select(x => this.serializer.Serialize(x).Result)
+            var items = dataList.Select(x => this.serializer.SerializeAsync(x).Result)
                 .Cast<XmlElement>()
                 .OrderByDescending(i => i.InnerText.Length)
                 .ToArray();
