@@ -3,12 +3,13 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.FileSystem.Constants;
-    using ProcessingTools.FileSystem.Contracts.Generators;
 
     public class SequentialFileNameGenerator : ISequentialFileNameGenerator
     {
+        private const int MaximalNumberOfIterationsToFindNewFileName = 200;
+
         public Task<string> GenerateAsync(string baseFileFullName, int maximalFileNameLength, bool returnFullName = true)
         {
             string directoryPath = Path.GetDirectoryName(baseFileFullName);
@@ -48,9 +49,9 @@
 
                     fullName = Path.Combine(directoryPath, fileName);
 
-                    if (i > GeneratorsConstants.MaximalNumberOfIterationsToFindNewFileName)
+                    if (i > MaximalNumberOfIterationsToFindNewFileName)
                     {
-                        throw new MaximalNumberOfIterationsExceededException(GeneratorsConstants.MaximalNumberOfIterationsExceedeExceptionMessage);
+                        throw new MaximalNumberOfIterationsExceededException("Maximal number of iterations to find a new unique file name is exceeded");
                     }
                 }
                 while (File.Exists(fullName));

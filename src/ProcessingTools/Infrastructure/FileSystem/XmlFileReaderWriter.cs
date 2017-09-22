@@ -70,19 +70,19 @@
             }
         }
 
-        public XmlReader GetXmlReader(string fileName, string basePath = null)
+        public XmlReader GetXmlReader(string fileName, string basePath)
         {
             return XmlReader.Create(this.ReadToStream(fileName, basePath), this.ReaderSettings);
         }
 
-        public Stream ReadToStream(string fileName, string basePath = null)
+        public Stream ReadToStream(string fileName, string basePath)
         {
             string path = this.CombineFileName(fileName, basePath);
             var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
             return stream;
         }
 
-        public Task Delete(string fileName, string basePath = null)
+        public Task DeleteAsync(string fileName, string basePath)
         {
             return Task.Run(() =>
             {
@@ -91,7 +91,7 @@
             });
         }
 
-        public async Task<long> Write(Stream stream, string fileName, string basePath = null)
+        public async Task<long> WriteAsync(Stream stream, string fileName, string basePath)
         {
             if (stream == null)
             {
@@ -115,7 +115,7 @@
             return contentLength;
         }
 
-        public async Task<string> GetNewFilePath(string fileName, string basePath, int length)
+        public async Task<string> GetNewFilePathAsync(string fileName, string basePath, int length)
         {
             return await Task.Run(() =>
             {

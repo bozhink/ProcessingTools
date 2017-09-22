@@ -141,7 +141,7 @@
                 throw new ArgumentNullException(nameof(inputStream));
             }
 
-            string path = await this.xmlFileReaderWriter.GetNewFilePath(document.FileName, this.DataDirectory, ProcessingTools.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName).ConfigureAwait(false);
+            string path = await this.xmlFileReaderWriter.GetNewFilePathAsync(document.FileName, this.DataDirectory, ProcessingTools.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName).ConfigureAwait(false);
 
             var entity = new Document
             {
@@ -166,7 +166,7 @@
             var repository = this.repositoryProvider.Create();
 
             entity.FilePath = Path.GetFileNameWithoutExtension(path);
-            entity.ContentLength = await this.xmlFileReaderWriter.Write(inputStream, entity.FilePath, this.DataDirectory).ConfigureAwait(false);
+            entity.ContentLength = await this.xmlFileReaderWriter.WriteAsync(inputStream, entity.FilePath, this.DataDirectory).ConfigureAwait(false);
 
             await repository.AddAsync(entity).ConfigureAwait(false);
             await repository.SaveChangesAsync().ConfigureAwait(false);
@@ -197,7 +197,7 @@
 
             var entity = await this.GetEntityAsync(userId, articleId, documentId, repository).ConfigureAwait(false);
 
-            await this.xmlFileReaderWriter.Delete(entity.FilePath, this.DataDirectory).ConfigureAwait(false);
+            await this.xmlFileReaderWriter.DeleteAsync(entity.FilePath, this.DataDirectory).ConfigureAwait(false);
 
             await repository.DeleteAsync(entity.Id).ConfigureAwait(false);
             await repository.SaveChangesAsync().ConfigureAwait(false);
@@ -228,7 +228,7 @@
 
             foreach (var entity in entities)
             {
-                await this.xmlFileReaderWriter.Delete(entity.FilePath, this.DataDirectory).ConfigureAwait(false);
+                await this.xmlFileReaderWriter.DeleteAsync(entity.FilePath, this.DataDirectory).ConfigureAwait(false);
                 await repository.DeleteAsync(entity.Id).ConfigureAwait(false);
             }
 
@@ -290,7 +290,7 @@
 
             using (var stream = new MemoryStream(Defaults.Encoding.GetBytes(content)))
             {
-                entity.ContentLength = await this.xmlFileReaderWriter.Write(stream, entity.FilePath, this.DataDirectory).ConfigureAwait(false);
+                entity.ContentLength = await this.xmlFileReaderWriter.WriteAsync(stream, entity.FilePath, this.DataDirectory).ConfigureAwait(false);
                 entity.ModifiedByUser = userId.ToString();
                 entity.DateModified = DateTime.UtcNow;
                 entity.ContentType = document.ContentType;
