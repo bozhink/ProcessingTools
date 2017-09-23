@@ -12,7 +12,7 @@
 
     public abstract class AbstractEntityAddressableRepository<TEntity, TDbModel> : AbstractEntityRepository<TEntity, IJournalsDbContext, TDbModel>
         where TEntity : class, IAddressable
-        where TDbModel : Addressable, TEntity, ProcessingTools.Contracts.Models.IStringIdentifiable
+        where TDbModel : Addressable, TEntity, ProcessingTools.Models.Contracts.IStringIdentifiable
     {
         protected AbstractEntityAddressableRepository(IGenericRepository<IJournalsDbContext, TDbModel> repository)
             : base(repository)

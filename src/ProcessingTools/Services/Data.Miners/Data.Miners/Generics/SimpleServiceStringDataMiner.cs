@@ -9,7 +9,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services.Data;
 
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner

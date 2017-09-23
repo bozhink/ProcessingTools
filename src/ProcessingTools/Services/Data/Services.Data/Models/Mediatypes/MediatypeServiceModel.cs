@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Mediatypes
 {
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     internal class MediatypeServiceModel : IMediatype
     {

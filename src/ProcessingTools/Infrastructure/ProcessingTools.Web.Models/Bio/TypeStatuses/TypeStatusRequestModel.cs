@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Bio.TypeStatuses
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Bio;
-    using ProcessingTools.Contracts.Models.Bio;
+    using ProcessingTools.Models.Contracts.Bio;
 
     /// <summary>
     /// Represents request model for the type statuses API.

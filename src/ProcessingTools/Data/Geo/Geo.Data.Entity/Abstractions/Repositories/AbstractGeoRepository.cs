@@ -6,7 +6,7 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
@@ -103,9 +103,9 @@
                 .Take(take);
 
             var data = query.ToList();
-            var ressult = await data.Select(this.MapEntityToModel).ToArrayAsync().ConfigureAwait(false);
+            var result = await data.Select(this.MapEntityToModel).ToArrayAsync().ConfigureAwait(false);
 
-            return ressult;
+            return result;
         }
 
         public virtual async Task<long> SelectCountAsync(TFilter filter)

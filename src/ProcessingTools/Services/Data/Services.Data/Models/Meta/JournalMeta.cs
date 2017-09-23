@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Meta
 {
     using System.Text.RegularExpressions;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
 
     internal class JournalMeta : IJournalMeta
     {

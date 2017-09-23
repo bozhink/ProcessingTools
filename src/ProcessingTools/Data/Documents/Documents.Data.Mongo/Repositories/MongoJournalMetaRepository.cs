@@ -8,7 +8,7 @@
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;

@@ -9,7 +9,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Exceptions;
 
     public abstract class BiorepositoriesDataServiceFactory<TDbModel, TServiceModel> : IBiorepositoriesDataService<TServiceModel>

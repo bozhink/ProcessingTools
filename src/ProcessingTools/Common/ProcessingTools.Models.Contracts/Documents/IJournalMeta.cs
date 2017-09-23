@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Models.Documents
+﻿namespace ProcessingTools.Models.Contracts.Documents
 {
     public interface IJournalMeta : IPermalinkable
     {

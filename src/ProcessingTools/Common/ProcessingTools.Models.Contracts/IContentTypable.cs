@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Models
+﻿namespace ProcessingTools.Models.Contracts
 {
-    public interface IContentTypable
+    public interface IContentTypeable
     {
         string ContentType { get; }
     }

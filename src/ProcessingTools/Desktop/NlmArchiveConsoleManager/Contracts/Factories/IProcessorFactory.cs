@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories
 {
     using Contracts.Core;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public interface IProcessorFactory
     {

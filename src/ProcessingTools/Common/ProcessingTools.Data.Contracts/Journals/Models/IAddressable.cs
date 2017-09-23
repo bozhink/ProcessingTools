@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Contracts.Data.Journals.Models
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public interface IAddressable : IDataModel
     {

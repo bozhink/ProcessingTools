@@ -6,7 +6,7 @@
     using AutoMapper;
     using AutoMapper.Configuration;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public class MappingsRegistration
     {

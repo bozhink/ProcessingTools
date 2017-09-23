@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Models.Geo
+﻿namespace ProcessingTools.Models.Contracts.Geo
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public interface IGeoName : INameableIntegerIdentifiable, IServiceModel
     {

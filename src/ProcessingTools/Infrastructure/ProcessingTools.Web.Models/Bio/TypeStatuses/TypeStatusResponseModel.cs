@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Bio.TypeStatuses
 {
-    using ProcessingTools.Contracts.Models.Bio;
+    using ProcessingTools.Models.Contracts.Bio;
 
     /// <summary>
     /// Represents response model for the type statuses API.

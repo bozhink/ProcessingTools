@@ -7,7 +7,7 @@
     using Contracts.Core;
     using Contracts.Factories;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Data.Contracts.Meta;
 

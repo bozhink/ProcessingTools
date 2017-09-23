@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Services.Geo
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Web.Contracts.Services.Geo;
     using ProcessingTools.Web.Models.Geo.Countries;

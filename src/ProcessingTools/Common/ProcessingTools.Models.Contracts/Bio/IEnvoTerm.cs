@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Models.Bio
+﻿namespace ProcessingTools.Models.Contracts.Bio
 {
     public interface IEnvoTerm
     {

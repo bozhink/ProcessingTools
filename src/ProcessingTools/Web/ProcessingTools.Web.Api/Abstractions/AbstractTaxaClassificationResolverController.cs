@@ -7,7 +7,7 @@
     using System.Web.Http.Cors;
     using AutoMapper;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 

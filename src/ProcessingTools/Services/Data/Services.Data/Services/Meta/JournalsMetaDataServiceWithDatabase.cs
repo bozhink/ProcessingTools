@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Documents.Repositories;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Services.Data.Contracts.Meta;
     using ProcessingTools.Services.Data.Models.Meta;
 

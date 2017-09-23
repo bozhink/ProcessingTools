@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Contracts.Models
 {
     using System;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
-    public interface IDocumentServiceModel : IStringIdentifiable, IContentTypable, ICommentable
+    public interface IDocumentServiceModel : IStringIdentifiable, IContentTypeable, ICommentable
     {
         long ContentLength { get; }
 

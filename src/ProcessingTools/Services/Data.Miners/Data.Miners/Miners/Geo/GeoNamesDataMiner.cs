@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Geo
 {
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
     using ProcessingTools.Data.Miners.Generics;

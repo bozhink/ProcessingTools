@@ -11,7 +11,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
@@ -181,12 +181,12 @@
             }
         }
 
-        private void ProcessReferencedFiles(IDocument document, string orginalPrefix, string fileNameReplacementPrefix)
+        private void ProcessReferencedFiles(IDocument document, string originalPrefix, string fileNameReplacementPrefix)
         {
             // Get file references.
             var referencedFileNames = new HashSet<string>(document.SelectNodes(XPathStrings.XLinkHref).Select(h => h.InnerText));
 
-            var matchXmlFileName = new Regex($"\\A{Regex.Escape(orginalPrefix)}");
+            var matchXmlFileName = new Regex($"\\A{Regex.Escape(originalPrefix)}");
             var referencesNamesReplacements = new HashSet<IFileReplacementModel>(referencedFileNames
                 .Select(
                     f =>

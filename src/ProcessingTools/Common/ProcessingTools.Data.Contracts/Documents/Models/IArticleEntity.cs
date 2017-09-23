@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public interface IArticleEntity : IGuidIdentifiable, IModelWithUserInformation
     {

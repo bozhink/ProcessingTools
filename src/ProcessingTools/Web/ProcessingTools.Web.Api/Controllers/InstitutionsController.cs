@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Resources.Institutions;

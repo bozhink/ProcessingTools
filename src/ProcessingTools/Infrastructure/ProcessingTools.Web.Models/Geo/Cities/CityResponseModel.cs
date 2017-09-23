@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Geo.Cities
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// City response model

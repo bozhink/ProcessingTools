@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Filters.Geo;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
 
     public interface IGeoSynonymisableRepository<TModel, TSynonym, TSynonymFilter>
         where TModel : IGeoSynonymisable<TSynonym>

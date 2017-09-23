@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Contracts.Data.Documents.Models
 {
     using System;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public interface IJournalEntity : IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
     {

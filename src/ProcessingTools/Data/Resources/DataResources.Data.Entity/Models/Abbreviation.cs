@@ -5,7 +5,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.DataResources;
     using ProcessingTools.Contracts.Data.DataResources.Models;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public class Abbreviation : EntityWithSources, IAbbreviationEntity
     {
@@ -25,6 +25,6 @@
         public virtual ContentType ContentType { get; set; }
 
         [NotMapped]
-        string IContentTypable.ContentType => this.ContentType.Name;
+        string IContentTypeable.ContentType => this.ContentType.Name;
     }
 }

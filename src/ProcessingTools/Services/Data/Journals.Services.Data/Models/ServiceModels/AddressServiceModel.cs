@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Journals.Services.Data.Models.ServiceModels
 {
     using Contracts.Models;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     internal class AddressServiceModel : IAddress, IServiceModel
     {

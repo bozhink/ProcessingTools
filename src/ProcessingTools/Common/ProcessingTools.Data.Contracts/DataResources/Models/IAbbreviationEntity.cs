@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Contracts.Data.DataResources.Models
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
-    public interface IAbbreviationEntity : INameableGuidIdentifiable, IDefinable, IContentTypable, IEntityWithSources
+    public interface IAbbreviationEntity : INameableGuidIdentifiable, IDefinable, IContentTypeable, IEntityWithSources
     {
     }
 }

@@ -12,7 +12,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Journals.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;

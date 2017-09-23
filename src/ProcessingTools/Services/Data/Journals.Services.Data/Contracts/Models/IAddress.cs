@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Journals.Services.Data.Contracts.Models
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
-    public interface IAddress : IStringIdentifiable, ProcessingTools.Contracts.Models.IAddressable, IServiceModel
+    public interface IAddress : IStringIdentifiable, ProcessingTools.Models.Contracts.IAddressable, IServiceModel
     {
         int? CityId { get; }
 

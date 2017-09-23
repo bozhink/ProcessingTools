@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Models.Resources
+﻿namespace ProcessingTools.Models.Contracts.Resources
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public interface IProduct : INameableIntegerIdentifiable
     {

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Products
 {
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Data.Miners.Contracts.Miners.Products;
     using ProcessingTools.Data.Miners.Generics;
     using ProcessingTools.Services.Data.Contracts;

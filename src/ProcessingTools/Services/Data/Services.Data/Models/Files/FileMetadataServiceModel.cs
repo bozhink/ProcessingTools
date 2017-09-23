@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Data.Models.Files
 {
     using System;
-    using ProcessingTools.Contracts.Models.Files;
+    using ProcessingTools.Models.Contracts.Files;
 
     internal class FileMetadataServiceModel : IFileMetadata
     {

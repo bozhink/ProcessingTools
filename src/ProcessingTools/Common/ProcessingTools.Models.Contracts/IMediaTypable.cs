@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Models
+﻿namespace ProcessingTools.Models.Contracts
 {
-    public interface IMediaTypable
+    public interface IMediaTypeable
     {
         string MediaType { get; }
     }

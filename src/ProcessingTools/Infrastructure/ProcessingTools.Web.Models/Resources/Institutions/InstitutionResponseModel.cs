@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Resources.Institutions
 {
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts.Resources;
 
     /// <summary>
     /// Represents response model for the institutions API.

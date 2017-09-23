@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.Contracts.Models.Geo
+﻿namespace ProcessingTools.Models.Contracts.Geo
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public interface ICity : IGeoSynonymisable<ICitySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IServiceModel
     {

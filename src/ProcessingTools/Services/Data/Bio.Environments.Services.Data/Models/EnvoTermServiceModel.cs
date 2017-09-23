@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Environments.Services.Data.Models
 {
-    using ProcessingTools.Contracts.Models.Bio;
+    using ProcessingTools.Models.Contracts.Bio;
 
     public class EnvoTermServiceModel : IEnvoTerm
     {

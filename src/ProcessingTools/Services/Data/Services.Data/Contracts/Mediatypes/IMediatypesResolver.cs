@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     public interface IMediatypesResolver
     {

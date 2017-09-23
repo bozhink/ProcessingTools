@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Models.Geo
+﻿namespace ProcessingTools.Models.Contracts.Geo
 {
     public interface IStateSynonym : IGeoSynonym
     {

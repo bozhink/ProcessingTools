@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Geo.GeoNames
 {
     using System;
     using System.Linq;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
 
     /// <summary>
     /// GeoNames request model

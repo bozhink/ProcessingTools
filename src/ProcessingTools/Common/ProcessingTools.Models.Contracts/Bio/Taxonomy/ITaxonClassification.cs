@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Models.Bio.Taxonomy
+﻿namespace ProcessingTools.Models.Contracts.Bio.Taxonomy
 {
     using System.Collections.Generic;
 

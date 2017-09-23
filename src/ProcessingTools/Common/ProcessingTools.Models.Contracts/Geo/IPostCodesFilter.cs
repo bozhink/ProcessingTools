@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Filters.Geo
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public interface IPostCodesFilter : IGenericIdentifiable<int?>, IFilter
     {

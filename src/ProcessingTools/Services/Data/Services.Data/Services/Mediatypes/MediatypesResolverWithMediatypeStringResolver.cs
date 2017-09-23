@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Models.Mediatypes;
 

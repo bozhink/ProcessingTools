@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Contracts.Models;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     internal class InstitutionDetailsServiceModel : IInstitutionDetails, IServiceModel
     {

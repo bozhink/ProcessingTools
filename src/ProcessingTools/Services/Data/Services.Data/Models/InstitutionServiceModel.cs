@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Services.Data.Models
 {
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts.Resources;
 
     public class InstitutionServiceModel : IInstitution
     {

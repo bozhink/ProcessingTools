@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Models
+﻿namespace ProcessingTools.Models.Contracts
 {
     public interface IMapFrom<T>
     {

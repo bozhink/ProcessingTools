@@ -8,7 +8,7 @@
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
 

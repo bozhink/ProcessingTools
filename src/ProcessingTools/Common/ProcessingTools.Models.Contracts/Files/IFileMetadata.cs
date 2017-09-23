@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Contracts.Models.Files
+﻿namespace ProcessingTools.Models.Contracts.Files
 {
-    public interface IFileMetadata : IObjectIdentifiable, IDescribable, IContentTypable, IModelWithUserInformation, IFileNameable
+    public interface IFileMetadata : IObjectIdentifiable, IDescribable, IContentTypeable, IModelWithUserInformation, IFileNameable
     {
         long ContentLength { get; }
 

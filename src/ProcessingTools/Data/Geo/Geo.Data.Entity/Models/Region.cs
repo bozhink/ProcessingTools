@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public class Region : SystemInformation, ISynonymisable<RegionSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {

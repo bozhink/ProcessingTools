@@ -3,7 +3,7 @@
     using System;
     using System.Linq.Expressions;
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Services.Abstractions;
