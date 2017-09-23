@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Models.Contracts;
 
-    public interface IPostCodesFilter : IGenericIdentifiable<int?>, IFilter
+    public interface IPostCodesFilter : IIdentifiable<int?>, IFilter
     {
         string Country { get; }
 

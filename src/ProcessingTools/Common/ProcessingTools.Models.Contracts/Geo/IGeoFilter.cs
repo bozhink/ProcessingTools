@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Models.Contracts;
 
-    public interface IGeoFilter : INameable, IGenericIdentifiable<int?>, IFilter
+    public interface IGeoFilter : INameable, IIdentifiable<int?>, IFilter
     {
     }
 }

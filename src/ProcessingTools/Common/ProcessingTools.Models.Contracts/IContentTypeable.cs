@@ -1,17 +1,17 @@
-﻿// <copyright file="IContent.cs" company="ProcessingTools">
+﻿// <copyright file="IContentTypeable.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Models.Contracts
 {
     /// <summary>
-    /// Model with content.
+    /// Model with content type.
     /// </summary>
-    public interface IContent
+    public interface IContentTypeable
     {
         /// <summary>
-        /// Gets the content.
+        /// Gets the content type.
         /// </summary>
-        string Content { get; }
+        string ContentType { get; }
     }
 }

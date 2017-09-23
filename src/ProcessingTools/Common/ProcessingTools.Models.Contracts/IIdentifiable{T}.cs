@@ -1,17 +1,17 @@
-﻿// <copyright file="IContent.cs" company="ProcessingTools">
+﻿// <copyright file="IIdentifiable{T}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Models.Contracts
 {
     /// <summary>
-    /// Model with content.
+    /// Model with generic ID.
     /// </summary>
-    public interface IContent
+    public interface IIdentifiable<out T>
     {
         /// <summary>
-        /// Gets the content.
+        /// Gets the ID.
         /// </summary>
-        string Content { get; }
+        T Id { get; }
     }
 }

@@ -1,13 +1,13 @@
-﻿// <copyright file="IIdentifiable.cs" company="ProcessingTools">
+﻿// <copyright file="IMapFrom{T}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Models.Contracts
 {
     /// <summary>
-    /// Model with object ID.
+    /// Generic mapping model.
     /// </summary>
-    public interface IIdentifiable : IIdentifiable<object>
+    public interface IMapFrom<T>
     {
     }
 }
