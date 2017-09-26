@@ -10,16 +10,16 @@
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
 
-    public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisherEntity>, IEntityPublishersRepository
+    public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisher>, IEntityPublishersRepository
     {
         public EntityPublishersRepository(IDocumentsDbContextProvider contextProvider)
             : base(contextProvider)
         {
         }
 
-        protected override Func<IPublisherEntity, Publisher> MapEntityToDbModel => e => new Publisher(e);
+        protected override Func<IPublisher, Publisher> MapEntityToDbModel => e => new Publisher(e);
 
-        public override async Task<object> AddAsync(IPublisherEntity entity)
+        public override async Task<object> AddAsync(IPublisher entity)
         {
             if (entity == null)
             {
@@ -38,18 +38,18 @@
 
         public override Task<long> CountAsync() => this.DbSet.LongCountAsync();
 
-        public override Task<long> CountAsync(Expression<Func<IPublisherEntity, bool>> filter)
+        public override Task<long> CountAsync(Expression<Func<IPublisher, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var query = this.DbSet.AsQueryable<IPublisherEntity>();
+            var query = this.DbSet.AsQueryable<IPublisher>();
             return query.LongCountAsync(filter);
         }
 
-        public override async Task<IPublisherEntity> GetByIdAsync(object id)
+        public override async Task<IPublisher> GetByIdAsync(object id)
         {
             if (id == null)
             {

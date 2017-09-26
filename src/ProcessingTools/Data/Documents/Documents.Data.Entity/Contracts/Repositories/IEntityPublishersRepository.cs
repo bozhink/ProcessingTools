@@ -4,7 +4,7 @@
     using ProcessingTools.Contracts.Data.Documents.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
-    public interface IEntityPublishersRepository : IPublishersRepository, IEntityGenericRepository<IPublisherEntity>
+    public interface IEntityPublishersRepository : IPublishersRepository, IEntityGenericRepository<IPublisher>
     {
     }
 }

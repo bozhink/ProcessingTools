@@ -4,7 +4,7 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Models.Abstractions;
 
-    public class AddressEntity : ModelWithUserInformation, IAddressEntity
+    public class AddressEntity : ModelWithUserInformation, IAddress
     {
         public AddressEntity()
         {

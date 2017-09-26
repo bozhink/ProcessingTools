@@ -8,7 +8,7 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
 
-    public class Institution : AddressableEntity, IEntityWithPreJoinedFields, IInstitutionEntity
+    public class Institution : AddressableEntity, IEntityWithPreJoinedFields, IInstitution
     {
         private ICollection<Affiliation> affiliations;
 

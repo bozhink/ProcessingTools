@@ -5,7 +5,7 @@
     using ProcessingTools.Constants.Data.DataResources;
     using ProcessingTools.Contracts.Data.DataResources.Models;
 
-    public class ContentType : IContentTypeEntity
+    public class ContentType : IContentType
     {
         [Key]
         public int Id { get; set; }

@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
 
-    public class Journal : ModelWithUserInformation, IEntityWithPreJoinedFields, IJournalEntity
+    public class Journal : ModelWithUserInformation, IEntityWithPreJoinedFields, IJournal
     {
         private ICollection<Article> articles;
 

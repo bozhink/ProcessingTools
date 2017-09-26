@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
 
-    public class Author : ModelWithUserInformation, IEntityWithPreJoinedFields, IAuthorEntity
+    public class Author : ModelWithUserInformation, IEntityWithPreJoinedFields, IAuthor
     {
         private ICollection<Affiliation> affiliations;
         private ICollection<Article> articles;
@@ -71,9 +71,9 @@
         };
 
         [NotMapped]
-        IEnumerable<IAffiliationEntity> IAuthorEntity.Affiliations => this.Affiliations;
+        IEnumerable<IAffiliation> IAuthor.Affiliations => this.Affiliations;
 
         [NotMapped]
-        IEnumerable<IArticleEntity> IAuthorEntity.Articles => this.Articles;
+        IEnumerable<IArticle> IAuthor.Articles => this.Articles;
     }
 }

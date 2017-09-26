@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Models.Abstractions;
 
-    public class File : ModelWithUserInformation, IFileEntity
+    public class File : ModelWithUserInformation, IFile
     {
         public File()
         {

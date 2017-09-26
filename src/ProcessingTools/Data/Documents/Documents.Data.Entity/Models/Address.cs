@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
 
-    public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddressEntity
+    public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddress
     {
         private ICollection<Publisher> publishers;
         private ICollection<Institution> institutions;
@@ -23,7 +23,7 @@
             this.affiliations = new HashSet<Affiliation>();
         }
 
-        public Address(IAddressEntity entity)
+        public Address(IAddress entity)
             : this()
         {
             if (entity == null)

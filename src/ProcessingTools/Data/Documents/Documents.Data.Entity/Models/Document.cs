@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
 
-    public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields, IDocumentEntity
+    public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields, IDocument
     {
         public Document()
         {

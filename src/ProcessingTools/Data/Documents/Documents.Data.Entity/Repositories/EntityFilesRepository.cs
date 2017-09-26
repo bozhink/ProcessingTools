@@ -26,7 +26,7 @@
             this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
         }
 
-        public Task<object> Add(IFileEntity entity)
+        public Task<object> Add(IFile entity)
         {
             if (entity == null)
             {
@@ -70,14 +70,14 @@
             });
         }
 
-        public Task<IFileEntity> Get(object id)
+        public Task<IFile> Get(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            return Task.Run<IFileEntity>(() =>
+            return Task.Run<IFile>(() =>
             {
                 var dbentity = this.DbSet.Find(id);
                 return dbentity;
@@ -89,7 +89,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<object> Update(IFileEntity entity)
+        public Task<object> Update(IFile entity)
         {
             throw new NotImplementedException();
         }

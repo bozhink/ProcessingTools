@@ -13,7 +13,7 @@
     using ProcessingTools.Exceptions;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
-        where TEntity : class, IAddressableEntity
+        where TEntity : class, IAddressable
         where TDbModel : AddressableEntity, TEntity
     {
         protected EntityAddressableRepository(IDocumentsDbContextProvider contextProvider)
@@ -24,7 +24,7 @@
 
         private IDbSet<Address> AddressSet { get; set; }
 
-        public virtual async Task<object> AddAddress(object entityId, IAddressEntity address)
+        public virtual async Task<object> AddAddress(object entityId, IAddress address)
         {
             if (entityId == null)
             {
@@ -74,7 +74,7 @@
             return this.RemoveAddressFromDbModelAsync(dbmodel, addressIdAsGuid);
         }
 
-        protected virtual async Task<Address> AddOrGetAddressAsync(IAddressEntity address)
+        protected virtual async Task<Address> AddOrGetAddressAsync(IAddress address)
         {
             if (address == null)
             {

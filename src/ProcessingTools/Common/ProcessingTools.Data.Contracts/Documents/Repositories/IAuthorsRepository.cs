@@ -4,9 +4,9 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IAuthorsRepository : ICrudRepository<IAuthorEntity>
+    public interface IAuthorsRepository : ICrudRepository<IAuthor>
     {
-        Task<object> AddAffiliation(object entityId, IAffiliationEntity affiliation, IAddressEntity address);
+        Task<object> AddAffiliation(object entityId, IAffiliation affiliation, IAddress address);
 
         Task<object> RemoveAffiliation(object entityId, object affiliationId);
 

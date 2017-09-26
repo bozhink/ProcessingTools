@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IDocumentsRepository : ICrudRepository<IDocumentEntity>
+    public interface IDocumentsRepository : ICrudRepository<IDocument>
     {
     }
 }

@@ -5,7 +5,7 @@
     using ProcessingTools.Constants.Data.DataResources;
     using ProcessingTools.Contracts.Data.DataResources.Models;
 
-    public class Institution : EntityWithSources, IInstitutionEntity
+    public class Institution : EntityWithSources, IInstitution
     {
         private string name;
 

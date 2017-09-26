@@ -4,9 +4,9 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IArticlesRepository : ICrudRepository<IArticleEntity>
+    public interface IArticlesRepository : ICrudRepository<IArticle>
     {
-        Task<object> AddDocument(object entityId, IDocumentEntity document);
+        Task<object> AddDocument(object entityId, IDocument document);
 
         Task<object> RemoveDocument(object entityId, object documentId);
 

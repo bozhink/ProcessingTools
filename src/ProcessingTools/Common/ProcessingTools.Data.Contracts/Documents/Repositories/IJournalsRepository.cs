@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IJournalsRepository : ICrudRepository<IJournalEntity>
+    public interface IJournalsRepository : ICrudRepository<IJournal>
     {
     }
 }

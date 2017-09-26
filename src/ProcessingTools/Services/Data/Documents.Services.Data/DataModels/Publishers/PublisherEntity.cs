@@ -5,12 +5,12 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Models.Abstractions;
 
-    public class PublisherEntity : ModelWithUserInformation, IPublisherEntity
+    public class PublisherEntity : ModelWithUserInformation, IPublisher
     {
         public PublisherEntity()
         {
             this.Id = Guid.NewGuid();
-            this.Addresses = new HashSet<IAddressEntity>();
+            this.Addresses = new HashSet<IAddress>();
         }
 
         public Guid Id { get; set; }
@@ -19,6 +19,6 @@
 
         public string Name { get; set; }
 
-        public IEnumerable<IAddressEntity> Addresses { get; set; }
+        public IEnumerable<IAddress> Addresses { get; set; }
     }
 }

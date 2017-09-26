@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Models.Abstractions;
 
-    public abstract class AddressableEntity : ModelWithUserInformation, IAddressableEntity
+    public abstract class AddressableEntity : ModelWithUserInformation, IAddressable
     {
         private ICollection<Address> addresses;
 
@@ -28,6 +28,6 @@
         }
 
         [NotMapped]
-        IEnumerable<IAddressEntity> IAddressableEntity.Addresses => this.Addresses;
+        IEnumerable<IAddress> IAddressable.Addresses => this.Addresses;
     }
 }

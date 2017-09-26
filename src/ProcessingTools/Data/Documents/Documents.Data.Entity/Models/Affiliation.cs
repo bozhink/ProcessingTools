@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
 
-    public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliationEntity
+    public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliation
     {
         private ICollection<Author> authors;
 

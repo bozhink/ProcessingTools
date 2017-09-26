@@ -6,12 +6,12 @@
 
     public interface IFilesRepository : IRepository
     {
-        Task<object> Add(IFileEntity entity);
+        Task<object> Add(IFile entity);
 
-        Task<IFileEntity> Get(object id);
+        Task<IFile> Get(object id);
 
         Task<object> Remove(object id);
 
-        Task<object> Update(IFileEntity entity);
+        Task<object> Update(IFile entity);
     }
 }

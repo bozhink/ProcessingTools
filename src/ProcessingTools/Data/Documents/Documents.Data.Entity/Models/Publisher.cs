@@ -8,7 +8,7 @@
     using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
 
-    public class Publisher : AddressableEntity, IEntityWithPreJoinedFields, IPublisherEntity
+    public class Publisher : AddressableEntity, IEntityWithPreJoinedFields, IPublisher
     {
         private ICollection<Journal> journals;
 
@@ -18,7 +18,7 @@
             this.journals = new HashSet<Journal>();
         }
 
-        public Publisher(IPublisherEntity entity)
+        public Publisher(IPublisher entity)
             : this()
         {
             if (entity == null)
