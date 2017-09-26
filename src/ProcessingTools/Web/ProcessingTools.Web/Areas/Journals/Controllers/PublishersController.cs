@@ -87,7 +87,7 @@
                 return this.Redirect(returnUrl);
             }
 
-            var data = await this.service.SelectDetails(this.UserId, p * n, n, x => x.Name).ConfigureAwait(false);
+            var data = await this.service.SelectDetailsAsync(this.UserId, p * n, n, x => x.Name).ConfigureAwait(false);
 
             var viewModel = await data.Select(this.MapDetailedModelToViewModel).ToListAsync().ConfigureAwait(false);
 
@@ -104,7 +104,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = await this.service.GetDetails(this.UserId, id).ConfigureAwait(false);
+            var model = await this.service.GetDetailsAsync(this.UserId, id).ConfigureAwait(false);
             if (model == null)
             {
                 return this.HttpNotFound();
@@ -137,7 +137,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    var modelId = await this.service.Add(this.UserId, model).ConfigureAwait(false);
+                    var modelId = await this.service.AddAsync(this.UserId, model).ConfigureAwait(false);
                     await this.UpdateAddressesFromJsonAsync(modelId, addresses).ConfigureAwait(false);
 
                     return this.RedirectToAction(IndexActionName);
@@ -169,7 +169,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.service.Get(this.UserId, id).ConfigureAwait(false);
+            var data = await this.service.GetAsync(this.UserId, id).ConfigureAwait(false);
             if (data == null)
             {
                 return this.HttpNotFound();
@@ -197,7 +197,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    var modelId = await this.service.Update(this.UserId, model).ConfigureAwait(false);
+                    var modelId = await this.service.UpdateAsync(this.UserId, model).ConfigureAwait(false);
                     await this.UpdateAddressesFromJsonAsync(modelId, addresses).ConfigureAwait(false);
 
                     if (exit)
@@ -239,7 +239,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.service.GetDetails(this.UserId, id).ConfigureAwait(false);
+            var data = await this.service.GetDetailsAsync(this.UserId, id).ConfigureAwait(false);
             if (data == null)
             {
                 return this.HttpNotFound();
@@ -261,7 +261,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            await this.service.Delete(this.UserId, id).ConfigureAwait(false);
+            await this.service.DeleteAsync(this.UserId, id).ConfigureAwait(false);
 
             return this.RedirectToAction(IndexActionName);
         }
@@ -282,7 +282,7 @@
                 Data = new Address[] { }
             };
 
-            var model = await this.service.GetDetails(this.UserId, id).ConfigureAwait(false);
+            var model = await this.service.GetDetailsAsync(this.UserId, id).ConfigureAwait(false);
             if (model != null && model.Addresses != null && model.Addresses.Count > 0)
             {
                 result.Data = model.Addresses.Select(this.MapAddress).ToArray();
@@ -331,15 +331,15 @@
                         switch (address.Status)
                         {
                             case UpdateStatus.Modified:
-                                await this.service.UpdateAddress(this.UserId, modelId, address).ConfigureAwait(false);
+                                await this.service.UpdateAddressAsync(this.UserId, modelId, address).ConfigureAwait(false);
                                 break;
 
                             case UpdateStatus.Added:
-                                await this.service.AddAddress(this.UserId, modelId, address).ConfigureAwait(false);
+                                await this.service.AddAddressAsync(this.UserId, modelId, address).ConfigureAwait(false);
                                 break;
 
                             case UpdateStatus.Removed:
-                                await this.service.RemoveAddress(this.UserId, modelId, address.Id).ConfigureAwait(false);
+                                await this.service.RemoveAddressAsync(this.UserId, modelId, address.Id).ConfigureAwait(false);
                                 break;
 
                             default:

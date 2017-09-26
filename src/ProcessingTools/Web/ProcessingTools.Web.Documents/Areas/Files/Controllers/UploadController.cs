@@ -114,7 +114,7 @@
 
             metadata.FullName = fullName;
 
-            return this.filesDataService.Create(metadata, file.InputStream);
+            return this.filesDataService.CreateAsync(metadata, file.InputStream);
         }
     }
 }

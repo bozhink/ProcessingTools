@@ -1,23 +1,64 @@
 ﻿namespace ProcessingTools.Contracts.Services.Data.Files
 {
+    using ProcessingTools.Models.Contracts.Files;
     using System.IO;
     using System.Threading.Tasks;
-    using Models.Files;
 
+    /// <summary>
+    /// Streaming files data service.
+    /// </summary>
     public interface IStreamingFilesDataService
     {
-        Task<IFileMetadata> Create(IFileMetadata metadata, Stream stream);
+        /// <summary>
+        /// Creates a file by file metadata and stream.
+        /// </summary>
+        /// <param name="metadata">Metadata of the file.</param>
+        /// <param name="stream">Stream of the content of the file.</param>
+        /// <returns>Task of the file metadata.</returns>
+        Task<IFileMetadata> CreateAsync(IFileMetadata metadata, Stream stream);
 
-        Task<bool> Delete(object id);
+        /// <summary>
+        /// Deletes a file by ID.
+        /// </summary>
+        /// <param name="id">ID of the file to be deleted.</param>
+        /// <returns>Task of deletion status.</returns>
+        Task<bool> DeleteAsync(object id);
 
-        Task<IFileMetadata> GetMetadata(object id);
+        /// <summary>
+        /// Gets metadata of a file by ID.
+        /// </summary>
+        /// <param name="id">ID of the file.</param>
+        /// <returns>Task of file metadata.</returns>
+        Task<IFileMetadata> GetMetadataAsync(object id);
 
+        /// <summary>
+        /// Gets stream reader of a file by ID.
+        /// </summary>
+        /// <param name="id">ID of the file.</param>
+        /// <returns><see cref="StreamReader"/> of the file.</returns>
         StreamReader GetReader(object id);
 
+        /// <summary>
+        /// Reads a file to a stream.
+        /// </summary>
+        /// <param name="id">ID of the file.</param>
+        /// <returns><see cref="Stream"/> of the file.</returns>
         Stream ReadToStream(object id);
 
-        Task<IFileMetadata> Update(object id, Stream stream);
+        /// <summary>
+        /// Updates file content by ID.
+        /// </summary>
+        /// <param name="id">ID of the file.</param>
+        /// <param name="stream">Stream of the file.</param>
+        /// <returns>Task of file metadata.</returns>
+        Task<IFileMetadata> UpdateAsync(object id, Stream stream);
 
-        Task<IFileMetadata> Update(IFileMetadata metadata, Stream stream);
+        /// <summary>
+        /// Updates file metadata and file content.
+        /// </summary>
+        /// <param name="metadata">Metadata of the file to be updated.</param>
+        /// <param name="stream">Stream of the file.</param>
+        /// <returns>Task of file metadata.</returns>
+        Task<IFileMetadata> UpdateAsync(IFileMetadata metadata, Stream stream);
     }
 }

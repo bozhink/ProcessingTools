@@ -5,8 +5,8 @@
     using System.Security.Principal;
     using System.Threading.Tasks;
     using System.Web;
-    using ProcessingTools.Models.Contracts.Files;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts.Files;
     using ProcessingTools.Services.Data.Contracts.Files;
     using ProcessingTools.Services.Data.Models.Files;
 
@@ -19,9 +19,9 @@
             this.fileContentDataService = fileContentDataService ?? throw new ArgumentNullException(nameof(fileContentDataService));
         }
 
-        public Task<IFileMetadata> Create(IFileMetadata metadata, Stream stream) => this.Update(metadata, stream);
+        public Task<IFileMetadata> CreateAsync(IFileMetadata metadata, Stream stream) => this.UpdateAsync(metadata, stream);
 
-        public Task<bool> Delete(object id)
+        public Task<bool> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -41,7 +41,7 @@
             });
         }
 
-        public Task<IFileMetadata> GetMetadata(object id)
+        public Task<IFileMetadata> GetMetadataAsync(object id)
         {
             if (id == null)
             {
@@ -61,7 +61,7 @@
 
         public Stream ReadToStream(object id) => this.fileContentDataService.ReadToStream(id);
 
-        public Task<IFileMetadata> Update(IFileMetadata metadata, Stream stream)
+        public Task<IFileMetadata> UpdateAsync(IFileMetadata metadata, Stream stream)
         {
             if (metadata == null)
             {
@@ -73,10 +73,10 @@
                 throw new ArgumentNullException(nameof(stream));
             }
 
-            return this.Update(metadata.FullName, stream);
+            return this.UpdateAsync(metadata.FullName, stream);
         }
 
-        public async Task<IFileMetadata> Update(object id, Stream stream)
+        public async Task<IFileMetadata> UpdateAsync(object id, Stream stream)
         {
             if (id == null)
             {

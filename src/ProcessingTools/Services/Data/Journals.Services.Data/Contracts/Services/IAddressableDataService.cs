@@ -1,15 +1,15 @@
 ﻿namespace ProcessingTools.Journals.Services.Data.Contracts.Services
 {
     using System.Threading.Tasks;
-    using Models;
+    using ProcessingTools.Journals.Services.Data.Contracts.Models;
 
     public interface IAddressableDataService<T>
         where T : IAddressable
     {
-        Task<object> AddAddress(object userId, object modelId, IAddress address);
+        Task<object> AddAddressAsync(object userId, object modelId, IAddress address);
 
-        Task<object> UpdateAddress(object userId, object modelId, IAddress address);
+        Task<object> UpdateAddressAsync(object userId, object modelId, IAddress address);
 
-        Task<object> RemoveAddress(object userId, object modelId, object addressId);
+        Task<object> RemoveAddressAsync(object userId, object modelId, object addressId);
     }
 }

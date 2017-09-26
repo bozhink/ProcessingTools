@@ -55,7 +55,7 @@
             Name = dataModel.Name
         };
 
-        public override async Task<object> Add(object userId, TServiceModel model)
+        public override async Task<object> AddAsync(object userId, TServiceModel model)
         {
             if (userId == null)
             {
@@ -91,7 +91,7 @@
             return dataModel.Id;
         }
 
-        public override async Task<object> Update(object userId, TServiceModel model)
+        public override async Task<object> UpdateAsync(object userId, TServiceModel model)
         {
             if (userId == null)
             {
@@ -127,9 +127,9 @@
             return model.Id;
         }
 
-        public override async Task<object> AddAddress(object userId, object modelId, IAddress address)
+        public override async Task<object> AddAddressAsync(object userId, object modelId, IAddress address)
         {
-            var result = await base.AddAddress(userId, modelId, address).ConfigureAwait(false);
+            var result = await base.AddAddressAsync(userId, modelId, address).ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {
@@ -140,9 +140,9 @@
             return result;
         }
 
-        public override async Task<object> UpdateAddress(object userId, object modelId, IAddress address)
+        public override async Task<object> UpdateAddressAsync(object userId, object modelId, IAddress address)
         {
-            var result = await base.UpdateAddress(userId, modelId, address).ConfigureAwait(false);
+            var result = await base.UpdateAddressAsync(userId, modelId, address).ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {
@@ -153,9 +153,9 @@
             return result;
         }
 
-        public override async Task<object> RemoveAddress(object userId, object modelId, object addressId)
+        public override async Task<object> RemoveAddressAsync(object userId, object modelId, object addressId)
         {
-            var result = await base.RemoveAddress(userId, modelId, addressId).ConfigureAwait(false);
+            var result = await base.RemoveAddressAsync(userId, modelId, addressId).ConfigureAwait(false);
 
             if (this.SaveToHistory)
             {

@@ -44,11 +44,11 @@
 
         protected TRepository Repository => this.repository;
 
-        public abstract Task<object> Add(object userId, TServiceModel model);
+        public abstract Task<object> AddAsync(object userId, TServiceModel model);
 
-        public abstract Task<object> Update(object userId, TServiceModel model);
+        public abstract Task<object> UpdateAsync(object userId, TServiceModel model);
 
-        public virtual async Task<object> Delete(object userId, object id)
+        public virtual async Task<object> DeleteAsync(object userId, object id)
         {
             if (userId == null)
             {
@@ -67,7 +67,7 @@
             return result;
         }
 
-        public virtual async Task<object> AddAddress(object userId, object modelId, IAddress address)
+        public virtual async Task<object> AddAddressAsync(object userId, object modelId, IAddress address)
         {
             if (userId == null)
             {
@@ -109,7 +109,7 @@
             return dataModel.Id;
         }
 
-        public virtual async Task<object> UpdateAddress(object userId, object modelId, IAddress address)
+        public virtual async Task<object> UpdateAddressAsync(object userId, object modelId, IAddress address)
         {
             if (userId == null)
             {
@@ -152,7 +152,7 @@
             return dataModel.Id;
         }
 
-        public virtual async Task<object> RemoveAddress(object userId, object modelId, object addressId)
+        public virtual async Task<object> RemoveAddressAsync(object userId, object modelId, object addressId)
         {
             if (userId == null)
             {
@@ -187,7 +187,7 @@
             return addressId;
         }
 
-        public virtual async Task<TServiceModel> Get(object userId, object id)
+        public virtual async Task<TServiceModel> GetAsync(object userId, object id)
         {
             if (userId == null)
             {
@@ -210,7 +210,7 @@
             return model;
         }
 
-        public async Task<TDetailedServiceModel> GetDetails(object userId, object id)
+        public async Task<TDetailedServiceModel> GetDetailsAsync(object userId, object id)
         {
             if (userId == null)
             {
@@ -233,7 +233,7 @@
             return model;
         }
 
-        public async Task<IEnumerable<TServiceModel>> Select(object userId, int skip, int take, Expression<Func<TServiceModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TServiceModel, bool>> filter = null)
+        public async Task<IEnumerable<TServiceModel>> SelectAsync(object userId, int skip, int take, Expression<Func<TServiceModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TServiceModel, bool>> filter = null)
         {
             if (userId == null)
             {
@@ -255,14 +255,14 @@
                 throw new ArgumentNullException(nameof(sort));
             }
 
-            var query = await this.BuildQuery(skip, take, sort, order, filter).ConfigureAwait(false);
+            var query = await this.BuildQueryAsync(skip, take, sort, order, filter).ConfigureAwait(false);
 
             var data = await query.Select(this.MapDataModelToServiceModel).ToListAsync().ConfigureAwait(false);
 
             return data;
         }
 
-        public async Task<IEnumerable<TDetailedServiceModel>> SelectDetails(object userId, int skip, int take, Expression<Func<TDetailedServiceModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TDetailedServiceModel, bool>> filter = null)
+        public async Task<IEnumerable<TDetailedServiceModel>> SelectDetailsAsync(object userId, int skip, int take, Expression<Func<TDetailedServiceModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TDetailedServiceModel, bool>> filter = null)
         {
             if (userId == null)
             {
@@ -284,14 +284,14 @@
                 throw new ArgumentNullException(nameof(sort));
             }
 
-            var query = await this.BuildQuery(skip, take, sort, order, filter).ConfigureAwait(false);
+            var query = await this.BuildQueryAsync(skip, take, sort, order, filter).ConfigureAwait(false);
 
             var data = await query.Select(this.MapDataModelToDetailedServiceModel).ToListAsync().ConfigureAwait(false);
 
             return data;
         }
 
-        private async Task<IEnumerable<TDataModel>> BuildQuery(int skip, int take, LambdaExpression sort, SortOrder order, LambdaExpression filter)
+        private async Task<IEnumerable<TDataModel>> BuildQueryAsync(int skip, int take, LambdaExpression sort, SortOrder order, LambdaExpression filter)
         {
             Expression<Func<TDataModel, bool>> dataFilter = x => true;
             try
