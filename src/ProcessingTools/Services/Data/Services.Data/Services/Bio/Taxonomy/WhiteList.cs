@@ -10,9 +10,9 @@
 
     public class WhiteList : IWhiteList
     {
-        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
-        public WhiteList(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
+        public WhiteList(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }

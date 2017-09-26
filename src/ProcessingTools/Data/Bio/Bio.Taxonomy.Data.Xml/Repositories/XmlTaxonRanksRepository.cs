@@ -8,11 +8,11 @@
     using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.File.Repositories;
 
-    public class XmlTaxonRankRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
+    public class XmlTaxonRanksRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
     {
         private readonly string dataFileName;
 
-        public XmlTaxonRankRepository(string dataFileName, IFactory<IXmlTaxaContext> contextFactory)
+        public XmlTaxonRanksRepository(string dataFileName, IFactory<IXmlTaxaContext> contextFactory)
             : base(contextFactory)
         {
             if (string.IsNullOrWhiteSpace(dataFileName))

@@ -53,7 +53,7 @@
     <Compile Include="Contracts\Repositories\IXmlBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Contracts\Repositories\IXmlTaxonRankRepository.cs" />
     <Compile Include="Repositories\XmlBiotaxonomicBlackListRepository.cs" />
-    <Compile Include="Repositories\XmlTaxonRankRepository.cs" />
+    <Compile Include="Repositories\XmlTaxonRanksRepository.cs" />
     <Compile Include="XmlTaxaContext.cs" />
     <Compile Include="XmlBiotaxonomicBlackListContext.cs" />
   </ItemGroup>

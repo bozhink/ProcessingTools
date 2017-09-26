@@ -13,9 +13,9 @@
 
     public class TaxonRankSearchService : ITaxonRankSearchService
     {
-        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
-        public TaxonRankSearchService(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
+        public TaxonRankSearchService(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }

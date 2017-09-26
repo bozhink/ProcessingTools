@@ -50,7 +50,7 @@
             var entity = this.mapper.Map<ValidationCacheServiceModel>(value);
             entity.LastUpdate = this.dateTimeProvider.Now;
 
-            return this.repository.Add(key, entity);
+            return this.repository.AddAsync(key, entity);
         }
 
         public async Task<IValidationCacheServiceModel> Get(string key)

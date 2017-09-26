@@ -26,7 +26,7 @@
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
-                .Setup(r => r.Add(key, It.IsAny<IValidationCacheEntity>()))
+                .Setup(r => r.AddAsync(key, It.IsAny<IValidationCacheEntity>()))
                 .Returns(Task.FromResult<object>(true));
 
             var dateTimeProviderMock = new Mock<IDateTimeProvider>();
@@ -39,7 +39,7 @@
             // Asset
             Assert.That(result, Is.EqualTo(true));
 
-            repositoryMock.Verify(r => r.Add(key, It.IsAny<IValidationCacheEntity>()), Times.Once);
+            repositoryMock.Verify(r => r.AddAsync(key, It.IsAny<IValidationCacheEntity>()), Times.Once);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Once);
         }
 
@@ -61,7 +61,7 @@
                 return service.Add(key, null);
             });
 
-            repositoryMock.Verify(p => p.Add(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
         }
 
@@ -86,7 +86,7 @@
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.Add(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
         }
 
@@ -108,7 +108,7 @@
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.Add(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
         }
 

@@ -22,7 +22,7 @@
             Status = e.Status
         };
 
-        public override Task<object> Add(string key, IValidationCacheEntity value)
+        public override Task<object> AddAsync(string key, IValidationCacheEntity value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -36,10 +36,10 @@
 
             var entity = this.MapToEntity(value);
 
-            return base.Add(key, entity);
+            return base.AddAsync(key, entity);
         }
 
-        public override Task<object> Remove(string key, IValidationCacheEntity value)
+        public override Task<object> RemoveAsync(string key, IValidationCacheEntity value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -53,7 +53,7 @@
 
             var entity = this.MapToEntity(value);
 
-            return base.Remove(key, entity);
+            return base.RemoveAsync(key, entity);
         }
     }
 }

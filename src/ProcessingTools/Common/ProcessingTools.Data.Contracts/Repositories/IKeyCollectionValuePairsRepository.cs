@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.Data.Repositories
+﻿// <copyright file="IKeyCollectionValuePairsRepository.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Data.Repositories
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -15,8 +19,8 @@
         /// </summary>
         /// <param name="key">The key-object to be created.</param>
         /// <param name="value">The value-object to be set as value to the key.</param>
-        /// <returns></returns>
-        Task<object> Add(TKey key, TValue value);
+        /// <returns>Task</returns>
+        Task<object> AddAsync(TKey key, TValue value);
 
         /// <summary>
         /// Gets all values under the key-object.
@@ -29,15 +33,15 @@
         /// Removes the key-object and its underlying collection of values.
         /// </summary>
         /// <param name="key">The key object to be removed.</param>
-        /// <returns></returns>
-        Task<object> Remove(TKey key);
+        /// <returns>Task</returns>
+        Task<object> RemoveAsync(TKey key);
 
         /// <summary>
         /// Removes a value from the collection of values under a key.
         /// </summary>
         /// <param name="key">The key-object to be requested.</param>
         /// <param name="value">The value-object to be removed from the collection of values.</param>
-        /// <returns></returns>
-        Task<object> Remove(TKey key, TValue value);
+        /// <returns>Task</returns>
+        Task<object> RemoveAsync(TKey key, TValue value);
     }
 }

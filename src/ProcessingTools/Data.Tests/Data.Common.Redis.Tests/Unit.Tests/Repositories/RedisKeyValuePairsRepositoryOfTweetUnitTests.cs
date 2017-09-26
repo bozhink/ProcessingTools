@@ -41,7 +41,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Add(key, value).ConfigureAwait(false);
+            var result = await repository.AddAsync(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -77,7 +77,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyExistsException>(() =>
             {
-                return repository.Add(key, value);
+                return repository.AddAsync(key, value);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Once);
@@ -101,7 +101,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, null);
+                return repository.AddAsync(key, null);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Never);
@@ -125,7 +125,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, value);
+                return repository.AddAsync(key, value);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -147,7 +147,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, null);
+                return repository.AddAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
@@ -207,7 +207,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
             {
-                return repository.Get(key);
+                return repository.GetAsync(key);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Once);
@@ -242,7 +242,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Get(key).ConfigureAwait(false);
+            var result = await repository.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.AreSame(value, result);
@@ -268,7 +268,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Get(key);
+                return repository.GetAsync(key);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -296,7 +296,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key).ConfigureAwait(false);
+            var result = await repository.RemoveAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -330,7 +330,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key).ConfigureAwait(false);
+            var result = await repository.RemoveAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -356,7 +356,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key);
+                return repository.RemoveAsync(key);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -414,7 +414,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ProcessingTools.Exceptions.KeyNotFoundException>(() =>
             {
-                return repository.Update(key, value);
+                return repository.UpdateAsync(key, value);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Once);
@@ -449,7 +449,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Update(key, value).ConfigureAwait(false);
+            var result = await repository.UpdateAsync(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -475,7 +475,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Update(key, null);
+                return repository.UpdateAsync(key, null);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Never);
@@ -499,7 +499,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Update(key, value);
+                return repository.UpdateAsync(key, value);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -521,7 +521,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Update(key, null);
+                return repository.UpdateAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
@@ -555,7 +555,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Upsert(key, value).ConfigureAwait(false);
+            var result = await repository.UpsertAsync(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -592,7 +592,7 @@
             var repository = new RedisKeyValuePairsRepository<ITweet>(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Upsert(key, value).ConfigureAwait(false);
+            var result = await repository.UpsertAsync(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -618,7 +618,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Upsert(key, null);
+                return repository.UpsertAsync(key, null);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Never);
@@ -642,7 +642,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Upsert(key, value);
+                return repository.UpsertAsync(key, value);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -664,7 +664,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Upsert(key, null);
+                return repository.UpsertAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);

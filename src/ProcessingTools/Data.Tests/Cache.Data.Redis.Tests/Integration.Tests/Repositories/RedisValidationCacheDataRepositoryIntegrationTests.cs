@@ -34,11 +34,11 @@
             };
 
             // Act: Clean-up database
-            await repository.Remove(key).ConfigureAwait(false);
+            await repository.RemoveAsync(key).ConfigureAwait(false);
             await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act: Add
-            await repository.Add(key, value).ConfigureAwait(false);
+            await repository.AddAsync(key, value).ConfigureAwait(false);
             await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act + Assert: Retrieve data
@@ -51,7 +51,7 @@
             Assert.AreEqual(value.Content, valueFromDb.Content);
 
             // Act: Remove
-            await repository.Remove(key).ConfigureAwait(false);
+            await repository.RemoveAsync(key).ConfigureAwait(false);
             Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
@@ -72,7 +72,7 @@
             var values = new List<IValidationCacheEntity>(NumberOfItems);
 
             // Act: Clean-up database
-            await repository.Remove(key).ConfigureAwait(false);
+            await repository.RemoveAsync(key).ConfigureAwait(false);
             await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act: Add
@@ -88,7 +88,7 @@
                 };
 
                 values.Add(value);
-                await repository.Add(key, value).ConfigureAwait(false);
+                await repository.AddAsync(key, value).ConfigureAwait(false);
             }
 
             var valueToBeDeleted = new ValidationCacheEntity
@@ -98,7 +98,7 @@
                 Status = ValidationStatus.Undefined
             };
 
-            await repository.Add(key, valueToBeDeleted).ConfigureAwait(false);
+            await repository.AddAsync(key, valueToBeDeleted).ConfigureAwait(false);
 
             values.TrimExcess();
             await repository.SaveChangesAsync().ConfigureAwait(false);
@@ -108,7 +108,7 @@
             Assert.AreEqual(NumberOfItems + 1, repository.GetAll(key).ToList().Count);
 
             // Act: Remove value
-            var removed = await repository.Remove(key, valueToBeDeleted).ConfigureAwait(false);
+            var removed = await repository.RemoveAsync(key, valueToBeDeleted).ConfigureAwait(false);
 
             // Assert: Remove value
             Assert.That(removed, Is.EqualTo(true));
@@ -133,7 +133,7 @@
             }
 
             // Act: Remove
-            await repository.Remove(key).ConfigureAwait(false);
+            await repository.RemoveAsync(key).ConfigureAwait(false);
             Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
@@ -154,7 +154,7 @@
             var values = new List<IValidationCacheEntity>(NumberOfItems);
 
             // Act: Clean-up database
-            await repository.Remove(key).ConfigureAwait(false);
+            await repository.RemoveAsync(key).ConfigureAwait(false);
             await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act: Add
@@ -170,7 +170,7 @@
                 };
 
                 values.Add(value);
-                await repository.Add(key, value).ConfigureAwait(false);
+                await repository.AddAsync(key, value).ConfigureAwait(false);
             }
 
             values.TrimExcess();
@@ -194,7 +194,7 @@
             }
 
             // Act: Remove
-            await repository.Remove(key).ConfigureAwait(false);
+            await repository.RemoveAsync(key).ConfigureAwait(false);
             Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
@@ -218,7 +218,7 @@
             };
 
             // Act: Add
-            var added = repository.Add(key, value);
+            var added = repository.AddAsync(key, value);
 
             // Assert: Add
             Assert.That(async () => await added.ConfigureAwait(false), Is.EqualTo(true));
@@ -241,13 +241,13 @@
             Assert.AreEqual(value.LastUpdate.ToLongTimeString(), valueFromDb.LastUpdate.ToLongTimeString());
 
             // Act: Remove value
-            var removedValue = repository.Remove(key, value);
+            var removedValue = repository.RemoveAsync(key, value);
 
             // Assert: Remove value
             Assert.That(async () => await removedValue.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act: Remove
-            var removed = repository.Remove(key);
+            var removed = repository.RemoveAsync(key);
 
             // Assert: Remove
             Assert.That(async () => await removed.ConfigureAwait(false), Is.EqualTo(true));
@@ -281,7 +281,7 @@
             // Act: Add
             foreach (var key in listOfKeys)
             {
-                await repository.Add(key, value).ConfigureAwait(false);
+                await repository.AddAsync(key, value).ConfigureAwait(false);
             }
 
             // Act: Get Keys
@@ -299,7 +299,7 @@
             // Act: Remove
             foreach (var key in listOfKeys)
             {
-                await repository.Remove(key).ConfigureAwait(false);
+                await repository.RemoveAsync(key).ConfigureAwait(false);
             }
 
             // Act: Get Keys

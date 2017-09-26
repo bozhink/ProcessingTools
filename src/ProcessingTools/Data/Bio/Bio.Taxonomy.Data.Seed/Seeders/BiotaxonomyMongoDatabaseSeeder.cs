@@ -19,7 +19,7 @@
         private readonly IMongoDatabase db;
 
         private readonly IRepositoryFactory<IMongoTaxonRankRepository> mongoTaxonRankRepositoryFactory;
-        private readonly IRepositoryFactory<ITaxonRankRepository> taxonRankRepositoryFactory;
+        private readonly IRepositoryFactory<ITaxonRanksRepository> taxonRankRepositoryFactory;
 
         private readonly IRepositoryFactory<IMongoBiotaxonomicBlackListRepository> mongoBiotaxonomicBlackListRepositoryFactory;
         private readonly IRepositoryFactory<IBiotaxonomicBlackListRepository> biotaxonomicBlackListIterableRepositoryFactory;
@@ -27,7 +27,7 @@
         public BiotaxonomyMongoDatabaseSeeder(
             IMongoDatabaseProvider databaseProvider,
             IRepositoryFactory<IMongoTaxonRankRepository> mongoTaxonRankRepositoryFactory,
-            IRepositoryFactory<ITaxonRankRepository> taxonRankRepositoryFactory,
+            IRepositoryFactory<ITaxonRanksRepository> taxonRankRepositoryFactory,
             IRepositoryFactory<IMongoBiotaxonomicBlackListRepository> mongoBiotaxonomicBlackListRepositoryFactory,
             IRepositoryFactory<IBiotaxonomicBlackListRepository> biotaxonomicBlackListIterableRepositoryFactory)
         {

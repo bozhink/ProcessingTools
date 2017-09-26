@@ -11,11 +11,11 @@
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
 
-    public class MongoTaxonRankRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository
+    public class MongoTaxonRanksRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository
     {
         private readonly UpdateOptions updateOptions;
 
-        public MongoTaxonRankRepository(IMongoDatabaseProvider provider)
+        public MongoTaxonRanksRepository(IMongoDatabaseProvider provider)
             : base(provider)
         {
             this.updateOptions = new UpdateOptions

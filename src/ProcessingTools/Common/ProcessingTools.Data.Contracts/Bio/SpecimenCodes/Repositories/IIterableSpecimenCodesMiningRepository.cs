@@ -3,7 +3,7 @@
     using ProcessingTools.Contracts.Data.Bio.SpecimenCodes.Models;
     using ProcessingTools.Contracts.Data.Repositories;
 
-    public interface IIterableSpecimenCodesMiningRepository : IIterableRepository<ISpecimenCodeMiningModel>
+    public interface IIterableSpecimenCodesMiningRepository : IIterableRepository<ISpecimenCode>
     {
     }
 }

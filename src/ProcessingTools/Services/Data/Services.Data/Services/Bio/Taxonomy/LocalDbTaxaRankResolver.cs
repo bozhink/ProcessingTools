@@ -13,9 +13,9 @@
 
     public class LocalDbTaxaRankResolver : ILocalDbTaxaRankResolver
     {
-        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
-        public LocalDbTaxaRankResolver(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
+        public LocalDbTaxaRankResolver(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
@@ -55,7 +55,7 @@
             .ConfigureAwait(false);
         }
 
-        private async Task FindRankForSingleTaxon(ITaxonRankRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task FindRankForSingleTaxon(ITaxonRanksRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
         {
             if (string.IsNullOrWhiteSpace(name))
             {

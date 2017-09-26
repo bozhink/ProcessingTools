@@ -19,14 +19,14 @@
         {
             // MongoDB
             this.Bind<IMongoTaxonRankRepository>()
-                .To<MongoTaxonRankRepository>();
+                .To<MongoTaxonRanksRepository>();
 
             this.Bind<IMongoBiotaxonomicBlackListRepository>()
                 .To<MongoBiotaxonomicBlackListRepository>();
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
-                .WhenInjectedInto<MongoTaxonRankRepository>()
+                .WhenInjectedInto<MongoTaxonRanksRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
@@ -76,13 +76,13 @@
             ////        ParameterNames.DataFileName,
             ////        AppSettings.BiotaxonomyBlackListXmlFileName);
 
-            this.Bind<ITaxonRankRepository>()
-                .To<MongoTaxonRankRepository>();
+            this.Bind<ITaxonRanksRepository>()
+                .To<MongoTaxonRanksRepository>();
 
             this.Bind<IBiotaxonomicBlackListRepository>()
                 .To<MongoBiotaxonomicBlackListRepository>();
 
-            this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
+            this.Bind<IRepositoryFactory<ITaxonRanksRepository>>()
                 .ToFactory()
                 .InSingletonScope();
 

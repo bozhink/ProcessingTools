@@ -12,17 +12,12 @@
 
         public MemoryKeyCollectionValuePairsRepository(IMemoryStringKeyCollectionValueDataStore<T> dataStore)
         {
-            if (dataStore == null)
-            {
-                throw new ArgumentNullException(nameof(dataStore));
-            }
-
-            this.dataStore = dataStore;
+            this.dataStore = dataStore ?? throw new ArgumentNullException(nameof(dataStore));
         }
 
         public IEnumerable<string> Keys => this.dataStore.Keys;
 
-        public Task<object> Add(string key, T value)
+        public Task<object> AddAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -38,8 +33,10 @@
                 key,
                 k =>
                 {
-                    var collection = new HashSet<T>();
-                    collection.Add(value);
+                    var collection = new HashSet<T>
+                    {
+                        value
+                    };
                     return collection;
                 },
                 (k, l) =>
@@ -61,7 +58,7 @@
             return this.dataStore[key];
         }
 
-        public Task<object> Remove(string key)
+        public Task<object> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -71,7 +68,7 @@
             return Task.FromResult<object>(this.dataStore.Remove(key));
         }
 
-        public Task<object> Remove(string key, T value)
+        public Task<object> RemoveAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {

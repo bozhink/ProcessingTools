@@ -14,10 +14,10 @@
 
     public class TaxonRankDataService : ITaxonRankDataService
     {
-        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
         private readonly Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        public TaxonRankDataService(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
+        public TaxonRankDataService(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }

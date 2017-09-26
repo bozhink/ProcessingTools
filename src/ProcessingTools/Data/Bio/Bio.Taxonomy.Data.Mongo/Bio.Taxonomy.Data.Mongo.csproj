@@ -54,7 +54,7 @@
     <Compile Include="Contracts\Repositories\IMongoBiotaxonomicBlackListRepository.cs" />
     <Compile Include="Contracts\Repositories\IMongoTaxonRankRepository.cs" />
     <Compile Include="Repositories\MongoBiotaxonomicBlackListRepository.cs" />
-    <Compile Include="Repositories\MongoTaxonRankRepository.cs" />
+    <Compile Include="Repositories\MongoTaxonRanksRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Queries\get-taxa-with-named-ranks.js" />

@@ -14,7 +14,7 @@
         {
         }
 
-        public virtual Task<object> Add(string key, T value)
+        public virtual Task<object> AddAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -40,7 +40,7 @@
             });
         }
 
-        public virtual Task<T> Get(string key)
+        public virtual Task<T> GetAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -61,7 +61,7 @@
             });
         }
 
-        public virtual Task<object> Remove(string key)
+        public virtual Task<object> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -82,7 +82,7 @@
             });
         }
 
-        public virtual Task<object> Update(string key, T value)
+        public virtual Task<object> UpdateAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -108,7 +108,7 @@
             });
         }
 
-        public virtual Task<object> Upsert(string key, T value)
+        public virtual Task<object> UpsertAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {

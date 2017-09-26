@@ -32,7 +32,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Add(key, valueMock.Object).ConfigureAwait(false);
+            var result = await repository.AddAsync(key, valueMock.Object).ConfigureAwait(false);
 
             // Asset
             Assert.AreSame(result, returnValueMock.Object);
@@ -61,7 +61,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, null);
+                return repository.AddAsync(key, null);
             });
 
             dataStoreMock.Verify(
@@ -86,7 +86,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, valueMock.Object);
+                return repository.AddAsync(key, valueMock.Object);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -110,7 +110,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, null);
+                return repository.AddAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
@@ -205,7 +205,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Remove(key, valueMock.Object).ConfigureAwait(false);
+            var result = await repository.RemoveAsync(key, valueMock.Object).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -234,7 +234,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Remove(key).ConfigureAwait(false);
+            var result = await repository.RemoveAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -258,7 +258,7 @@
             var repository = new MemoryKeyCollectionValuePairsRepository<ITweet>(dataStoreMock.Object);
 
             // Act
-            var result = await repository.Remove(key).ConfigureAwait(false);
+            var result = await repository.RemoveAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -282,7 +282,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key);
+                return repository.RemoveAsync(key);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -305,7 +305,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key, null);
+                return repository.RemoveAsync(key, null);
             });
 
             dataStoreMock.Verify(s => s.Remove(It.IsAny<string>()), Times.Never);
@@ -329,7 +329,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key, value);
+                return repository.RemoveAsync(key, value);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -351,7 +351,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key, null);
+                return repository.RemoveAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
