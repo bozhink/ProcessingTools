@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Documents.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Exceptions;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
@@ -24,7 +24,7 @@
 
         private IDbSet<Address> AddressSet { get; set; }
 
-        public virtual async Task<object> AddAddress(object entityId, IAddress address)
+        public virtual async Task<object> AddAddressAsync(object entityId, IAddress address)
         {
             if (entityId == null)
             {
@@ -48,7 +48,7 @@
             return dbmodel;
         }
 
-        public virtual async Task<object> RemoveAddress(object entityId, object addressId)
+        public virtual async Task<object> RemoveAddressAsync(object entityId, object addressId)
         {
             if (entityId == null)
             {

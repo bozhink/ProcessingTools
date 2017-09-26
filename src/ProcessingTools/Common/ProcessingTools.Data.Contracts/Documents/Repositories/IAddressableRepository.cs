@@ -1,12 +1,31 @@
-﻿namespace ProcessingTools.Contracts.Data.Documents.Repositories
+﻿// <copyright file="IAddressableRepository.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Data.Documents.Repositories
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Documents.Models;
+    using ProcessingTools.Models.Contracts.Documents;
 
+    /// <summary>
+    /// Repository related to entities with addresses.
+    /// </summary>
     public interface IAddressableRepository
     {
-        Task<object> AddAddress(object entityId, IAddress address);
+        /// <summary>
+        /// Adds address to object.
+        /// </summary>
+        /// <param name="entityId">ID of the entity to be updated.</param>
+        /// <param name="address">Address to be added.</param>
+        /// <returns>Task</returns>
+        Task<object> AddAddressAsync(object entityId, IAddress address);
 
-        Task<object> RemoveAddress(object entityId, object addressId);
+        /// <summary>
+        /// Removes address of object.
+        /// </summary>
+        /// <param name="entityId">ID of the entity to be updated.</param>
+        /// <param name="addressId">Address ID to be removed.</param>
+        /// <returns>Task</returns>
+        Task<object> RemoveAddressAsync(object entityId, object addressId);
     }
 }

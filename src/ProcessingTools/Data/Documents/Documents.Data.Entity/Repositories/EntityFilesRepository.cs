@@ -4,11 +4,11 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Documents;
 
     // TODO
     public class EntityFilesRepository : EntityRepository<DocumentsDbContext, File>, IEntityFilesRepository
@@ -26,7 +26,7 @@
             this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
         }
 
-        public Task<object> Add(IFile entity)
+        public Task<object> AddAsync(IFile entity)
         {
             if (entity == null)
             {
@@ -70,7 +70,7 @@
             });
         }
 
-        public Task<IFile> Get(object id)
+        public Task<IFile> GetAsync(object id)
         {
             if (id == null)
             {
@@ -84,12 +84,12 @@
             });
         }
 
-        public Task<object> Remove(object id)
+        public Task<object> RemoveAsync(object id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<object> Update(IFile entity)
+        public Task<object> UpdateAsync(IFile entity)
         {
             throw new NotImplementedException();
         }

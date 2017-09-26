@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Contracts.Data.Documents.Repositories
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public interface IAuthorsRepository : ICrudRepository<IAuthor>
     {

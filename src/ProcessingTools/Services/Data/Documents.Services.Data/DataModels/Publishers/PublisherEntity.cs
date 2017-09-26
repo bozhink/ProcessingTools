@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public class PublisherEntity : ModelWithUserInformation, IPublisher
     {

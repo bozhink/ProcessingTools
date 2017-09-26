@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddress
     {

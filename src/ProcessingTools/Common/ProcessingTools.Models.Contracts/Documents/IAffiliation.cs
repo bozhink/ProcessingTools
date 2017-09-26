@@ -2,10 +2,10 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Documents.Models
+namespace ProcessingTools.Models.Contracts.Documents
 {
-    using ProcessingTools.Models.Contracts;
     using System;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Affiliation.
