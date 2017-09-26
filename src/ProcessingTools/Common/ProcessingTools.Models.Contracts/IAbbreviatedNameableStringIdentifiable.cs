@@ -1,4 +1,4 @@
-﻿// <copyright file="IAbbreviatedNameableGuidIdentifiable.cs" company="ProcessingTools">
+﻿// <copyright file="IAbbreviatedNameableStringIdentifiable.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 

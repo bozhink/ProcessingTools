@@ -7,6 +7,7 @@ namespace ProcessingTools.Models.Contracts
     /// <summary>
     /// Generic mapping model.
     /// </summary>
+    /// <typeparam name="T">Type of the target object.</typeparam>
     public interface IMapFrom<T>
     {
     }

@@ -1,14 +1,30 @@
-﻿namespace ProcessingTools.Models.Contracts.Geo
-{
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Enumerations;
+﻿// <copyright file="IPostCode.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Models.Contracts.Geo
+{
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
+
+    /// <summary>
+    /// Post code.
+    /// </summary>
     public interface IPostCode : IIntegerIdentifiable
     {
+        /// <summary>
+        /// Gets post code.
+        /// </summary>
         string Code { get; }
 
+        /// <summary>
+        /// Gets post code type.
+        /// </summary>
         PostCodeType Type { get; }
 
+        /// <summary>
+        /// Gets city ID.
+        /// </summary>
         int CityId { get; }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.ViewModels
+﻿// <copyright file="IPagingViewModel.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.ViewModels
 {
     /// <summary>
     /// View model with paging

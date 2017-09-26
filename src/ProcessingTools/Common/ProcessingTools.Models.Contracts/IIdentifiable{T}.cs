@@ -7,6 +7,7 @@ namespace ProcessingTools.Models.Contracts
     /// <summary>
     /// Model with generic ID.
     /// </summary>
+    /// <typeparam name="T">Type of the ID.</typeparam>
     public interface IIdentifiable<out T>
     {
         /// <summary>

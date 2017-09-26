@@ -1,4 +1,4 @@
-﻿// <copyright file="IAddressable.cs" company="ProcessingTools">
+﻿// <copyright file="IFullAddressable.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
