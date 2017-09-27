@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.Harvesters
+﻿// <copyright file="IGenericEnumerableXmlHarvester.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Harvesters
 {
     using System.Collections.Generic;
     using System.Xml;

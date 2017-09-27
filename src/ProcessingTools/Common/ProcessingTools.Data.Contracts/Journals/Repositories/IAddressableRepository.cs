@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.Data.Journals.Repositories
+﻿// <copyright file="IAddressableRepository.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Data.Journals.Repositories
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Journals.Models;

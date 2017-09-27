@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.Services
+﻿// <copyright file="ISearchService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

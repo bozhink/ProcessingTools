@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.Services.Data
+﻿// <copyright file="IDetailedGenericDataService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Services.Data
 {
     using System;
     using System.Collections.Generic;

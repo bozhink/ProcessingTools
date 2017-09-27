@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.Data.Documents.Repositories
+﻿// <copyright file="IAuthorsRepository.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Data.Documents.Repositories
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;

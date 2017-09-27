@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Contracts.Data.Miners
+﻿// <copyright file="ITextDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Data.Miners
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
