@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Geo.GeoEpithets
 {
-    using ProcessingTools.Contracts.ViewModels;
+    using ProcessingTools.Models.Contracts.ViewModels;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
