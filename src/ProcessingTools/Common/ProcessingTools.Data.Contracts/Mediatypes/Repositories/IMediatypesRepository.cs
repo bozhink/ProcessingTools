@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Data.Mediatypes.Repositories
 
     public interface IMediatypesRepository
     {
-        Task<object> Add(IMediatype mediatype);
+        Task<object> Add(IMediatypeEntity mediatype);
 
         Task<object> Remove(string fileExtension);
 

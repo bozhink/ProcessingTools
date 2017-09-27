@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Data.Mediatypes.Models;
 
-    internal class Mediatype : IMediatype
+    internal class Mediatype : IMediatypeEntity
     {
         public string Description { get; set; }
 

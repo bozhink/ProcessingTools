@@ -24,7 +24,7 @@
             this.Dispose(false);
         }
 
-        public async Task<object> Add(IMediatype mediatype)
+        public async Task<object> Add(IMediatypeEntity mediatype)
         {
             if (mediatype == null)
             {
@@ -96,7 +96,7 @@
             return true;
         }
 
-        public IEnumerable<IMediatype> GetByFileExtension(string fileExtension)
+        public IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension)
         {
             if (string.IsNullOrWhiteSpace(fileExtension))
             {
@@ -112,7 +112,7 @@
                     Mimetype = p.Mimetype.Name,
                     Mimesubtype = p.Mimesubtype.Name
                 }))
-                .AsEnumerable<IMediatype>();
+                .AsEnumerable<IMediatypeEntity>();
 
             return result;
         }

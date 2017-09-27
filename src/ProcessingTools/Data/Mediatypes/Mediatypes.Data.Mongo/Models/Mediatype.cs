@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts.Data.Mediatypes.Models;
     using ProcessingTools.Models.Contracts;
 
-    public class Mediatype : IStringIdentifiable, IMediatype
+    public class Mediatype : IStringIdentifiable, IMediatypeEntity
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

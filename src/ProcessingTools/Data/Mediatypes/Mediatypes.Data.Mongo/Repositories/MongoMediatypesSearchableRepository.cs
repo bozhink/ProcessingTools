@@ -24,7 +24,7 @@
             this.collection = databaseProvider.Create().GetCollection<Mediatype>(collectionName);
         }
 
-        public IEnumerable<IMediatype> GetByFileExtension(string fileExtension)
+        public IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension)
         {
             var extension = fileExtension?.ToLower().Trim(' ', '.');
             var cursor = this.collection.Find(e => e.FileExtension.ToLower() == extension).ToCursor();

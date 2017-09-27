@@ -9,6 +9,6 @@ namespace ProcessingTools.Contracts.Data.Mediatypes.Repositories
 
     public interface ISearchableMediatypesRepository
     {
-        IEnumerable<IMediatype> GetByFileExtension(string fileExtension);
+        IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension);
     }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="IMediatype.cs" company="ProcessingTools">
+﻿// <copyright file="IMediatypeEntity.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Data.Mediatypes.Models
     /// <summary>
     /// Media-type.
     /// </summary>
-    public interface IMediatype
+    public interface IMediatypeEntity
     {
         /// <summary>
         /// Gets description.
