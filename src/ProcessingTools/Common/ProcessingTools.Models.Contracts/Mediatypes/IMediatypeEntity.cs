@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Mediatypes.Models
+namespace ProcessingTools.Models.Contracts.Mediatypes
 {
     /// <summary>
     /// Media-type.

@@ -5,10 +5,10 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Mediatypes.Models;
     using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     public class MediatypesRepository : IMediatypesRepository, ISearchableMediatypesRepository, IDisposable
     {

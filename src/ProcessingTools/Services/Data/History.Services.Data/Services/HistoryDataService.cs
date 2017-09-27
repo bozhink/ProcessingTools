@@ -8,10 +8,10 @@
     using Newtonsoft.Json;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.History.Models;
     using ProcessingTools.Contracts.Data.History.Repositories;
     using ProcessingTools.History.Services.Data.Contracts.Services;
     using ProcessingTools.History.Services.Data.Models;
+    using ProcessingTools.Models.Contracts.History;
 
     public class HistoryDataService : IHistoryDataService
     {

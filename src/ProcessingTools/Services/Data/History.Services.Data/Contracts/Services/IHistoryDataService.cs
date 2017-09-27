@@ -4,7 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.History.Models;
+    using ProcessingTools.Models.Contracts.History;
 
     public interface IHistoryDataService
     {

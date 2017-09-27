@@ -4,8 +4,8 @@
 
 namespace ProcessingTools.Contracts.Data.History.Repositories
 {
-    using ProcessingTools.Contracts.Data.History.Models;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Models.Contracts.History;
 
     /// <summary>
     /// History repository.

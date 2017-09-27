@@ -6,11 +6,11 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.History.Models;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.History.Data.Entity.Contracts;
     using ProcessingTools.History.Data.Entity.Contracts.Repositories;
     using ProcessingTools.History.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.History;
 
     public class EntityHistoryRepository : GenericRepository<IHistoryDbContext, HistoryItem>, IEntityHistoryRepository
     {

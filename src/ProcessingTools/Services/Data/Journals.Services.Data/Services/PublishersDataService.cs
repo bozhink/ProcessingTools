@@ -11,7 +11,7 @@
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Journals.Services.Data.Models.DataModels;
     using ProcessingTools.Journals.Services.Data.Models.ServiceModels;
-    using TDataModel = ProcessingTools.Contracts.Data.Journals.Models.IPublisher;
+    using TDataModel = ProcessingTools.Models.Contracts.Journals.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisherDetails;
     using TRepository = ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository;
     using TServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisher;

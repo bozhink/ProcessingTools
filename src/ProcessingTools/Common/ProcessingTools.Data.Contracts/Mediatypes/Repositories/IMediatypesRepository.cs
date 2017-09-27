@@ -5,8 +5,11 @@
 namespace ProcessingTools.Contracts.Data.Mediatypes.Repositories
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Mediatypes.Models;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
+    /// <summary>
+    /// Mediatypes repository.
+    /// </summary>
     public interface IMediatypesRepository
     {
         Task<object> Add(IMediatypeEntity mediatype);

@@ -22,7 +22,7 @@
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
         where TDetailedServiceModel : class, TServiceModel, IDetailedModel, Contracts.Models.IAddressable
-        where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Contracts.Data.Journals.Models.IAddressable
+        where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Models.Contracts.Journals.IAddressable
         where TRepository : class, ICrudRepository<TDataModel>, IAddressableRepository
     {
         private static readonly ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();

@@ -5,8 +5,11 @@
 namespace ProcessingTools.Contracts.Data.Journals.Repositories
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Journals.Models;
+    using ProcessingTools.Models.Contracts.Journals;
 
+    /// <summary>
+    /// Addressable repository.
+    /// </summary>
     public interface IAddressableRepository
     {
         Task<object> AddAddress(object entityId, IAddress address);

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.History.Services.Data.Models
 {
     using System;
-    using ProcessingTools.Contracts.Data.History.Models;
+    using ProcessingTools.Models.Contracts.History;
 
     internal class HistoryItem : IHistoryItem
     {
