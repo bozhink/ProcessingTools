@@ -8,6 +8,9 @@ namespace ProcessingTools.Contracts.Data.Documents.Repositories
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Models.Contracts.Documents;
 
+    /// <summary>
+    /// Authors repository.
+    /// </summary>
     public interface IAuthorsRepository : ICrudRepository<IAuthor>
     {
         Task<object> AddAffiliation(object entityId, IAffiliation affiliation, IAddress address);
