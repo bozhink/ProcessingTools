@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Filters.Geo
+namespace ProcessingTools.Models.Contracts.Geo
 {
     /// <summary>
     /// Country synonyms filter.

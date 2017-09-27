@@ -5,7 +5,6 @@
 namespace ProcessingTools.Contracts.Services.Data.Geo
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Models.Contracts.Geo;
 
     public interface IGeoSynonymisableDataService<TModel, TSynonym, TSynonymFilter>

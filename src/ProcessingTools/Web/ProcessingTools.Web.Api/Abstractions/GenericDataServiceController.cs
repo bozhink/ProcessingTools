@@ -6,7 +6,6 @@
     using System.Web.Http;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Models.Contracts;
 

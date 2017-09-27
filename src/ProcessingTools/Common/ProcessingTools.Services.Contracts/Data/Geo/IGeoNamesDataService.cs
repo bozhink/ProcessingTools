@@ -4,9 +4,12 @@
 
 namespace ProcessingTools.Contracts.Services.Data.Geo
 {
-    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;
 
+    /// <summary>
+    /// Geo names data service.
+    /// </summary>
     public interface IGeoNamesDataService : IMultiDataServiceAsync<IGeoName, ITextFilter>
     {
     }

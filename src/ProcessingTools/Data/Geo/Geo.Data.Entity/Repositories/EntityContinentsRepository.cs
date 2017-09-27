@@ -4,7 +4,6 @@
     using System.Linq;
     using AutoMapper;
     using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;

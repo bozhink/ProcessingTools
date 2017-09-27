@@ -5,8 +5,8 @@
 namespace ProcessingTools.Contracts.Services.Data
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Selectable data service.

@@ -5,8 +5,8 @@
 namespace ProcessingTools.Contracts.Data.Repositories
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
 
     public interface IRepositoryAsync<TModel, TFilter>
         where TFilter : IFilter

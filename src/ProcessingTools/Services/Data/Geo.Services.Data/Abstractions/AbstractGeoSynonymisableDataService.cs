@@ -4,8 +4,6 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;

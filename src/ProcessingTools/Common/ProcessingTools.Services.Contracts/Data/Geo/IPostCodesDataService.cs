@@ -4,9 +4,11 @@
 
 namespace ProcessingTools.Contracts.Services.Data.Geo
 {
-    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Models.Contracts.Geo;
 
+    /// <summary>
+    /// Post codes data service.
+    /// </summary>
     public interface IPostCodesDataService : IDataServiceAsync<IPostCode, IPostCodesFilter>
     {
     }

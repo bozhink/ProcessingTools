@@ -5,8 +5,6 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Models.Contracts;

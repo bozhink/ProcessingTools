@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Data.Repositories.Geo
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Models.Contracts.Geo;
 
     public interface IGeoSynonymisableRepository<TModel, TSynonym, TSynonymFilter>

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Services.Data
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Models.Contracts;
 
     public interface IMultiDataServiceAsync<TModel, TFilter> : ISelectableDataServiceAsync<TModel, TFilter>
         where TFilter : IFilter

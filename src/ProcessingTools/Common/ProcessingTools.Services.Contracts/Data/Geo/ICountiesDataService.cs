@@ -4,9 +4,11 @@
 
 namespace ProcessingTools.Contracts.Services.Data.Geo
 {
-    using ProcessingTools.Contracts.Filters.Geo;
     using ProcessingTools.Models.Contracts.Geo;
 
+    /// <summary>
+    /// Counties data service.
+    /// </summary>
     public interface ICountiesDataService : IDataServiceAsync<ICounty, ICountiesFilter>, IGeoSynonymisableDataService<ICounty, ICountySynonym, ICountySynonymsFilter>
     {
     }

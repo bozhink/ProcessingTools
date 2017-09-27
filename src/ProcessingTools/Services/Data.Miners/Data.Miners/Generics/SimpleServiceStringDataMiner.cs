@@ -8,7 +8,6 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Miners;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Models.Contracts;
 

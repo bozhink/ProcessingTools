@@ -2,9 +2,9 @@
 {
     using ProcessingTools.Bio.Services.Data.Contracts;
     using ProcessingTools.Bio.Services.Data.Models;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Data.Miners.Generics;
+    using ProcessingTools.Models.Contracts;
 
     public class MorphologicalEpithetsDataMiner : SimpleServiceStringDataMiner<IMorphologicalEpithetsDataService, MorphologicalEpithetServiceModel, IFilter>, IMorphologicalEpithetsDataMiner
     {

@@ -9,10 +9,10 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts;
 
     public abstract class AbstractMultiDataServiceAsync<TEntity, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>, IDisposable
         where TFilter : IFilter

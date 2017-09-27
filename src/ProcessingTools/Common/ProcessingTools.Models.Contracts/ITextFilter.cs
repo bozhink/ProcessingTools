@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Filters
+namespace ProcessingTools.Models.Contracts
 {
     /// <summary>
     /// Filter with simple text field.

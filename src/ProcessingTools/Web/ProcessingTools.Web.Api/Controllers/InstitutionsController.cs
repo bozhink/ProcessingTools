@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
-    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Data.Contracts;
     using ProcessingTools.Web.Api.Abstractions;
