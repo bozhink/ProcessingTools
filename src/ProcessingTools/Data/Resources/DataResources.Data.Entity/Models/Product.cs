@@ -5,7 +5,7 @@
     using ProcessingTools.Constants.Data.DataResources;
     using ProcessingTools.Contracts.Data.DataResources.Models;
 
-    public class Product : EntityWithSources, IProduct
+    public class Product : EntityWithSources, IProductEntity
     {
         private string name;
 
