@@ -1,4 +1,4 @@
-﻿// <copyright file="IProduct.cs" company="ProcessingTools">
+﻿// <copyright file="IProductEntity.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
