@@ -1,4 +1,4 @@
-﻿// <copyright file="ISpecimenCodeMiningModel.cs" company="ProcessingTools">
+﻿// <copyright file="ISpecimenCode.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
