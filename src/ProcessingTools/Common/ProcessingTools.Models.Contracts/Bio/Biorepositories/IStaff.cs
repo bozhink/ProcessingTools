@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
+namespace ProcessingTools.Models.Contracts.Bio.Biorepositories
 {
     /// <summary>
     /// Biorepositories staff.

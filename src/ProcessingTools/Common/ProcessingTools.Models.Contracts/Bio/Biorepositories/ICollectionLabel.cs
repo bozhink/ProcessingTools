@@ -1,18 +1,23 @@
-﻿// <copyright file="IStaffLabel.cs" company="ProcessingTools">
+﻿// <copyright file="ICollectionLabel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
+namespace ProcessingTools.Models.Contracts.Bio.Biorepositories
 {
     /// <summary>
-    /// Biorepositories staff label.
+    /// Biorepositories collection label.
     /// </summary>
-    public interface IStaffLabel
+    public interface ICollectionLabel
     {
         /// <summary>
         /// Gets city or town.
         /// </summary>
         string CityTown { get; }
+
+        /// <summary>
+        /// Gets collection name.
+        /// </summary>
+        string CollectionName { get; }
 
         /// <summary>
         /// Gets country.
@@ -25,17 +30,12 @@ namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
         string PostalZipCode { get; }
 
         /// <summary>
-        /// Gets primary institution.
+        /// Gets primary contact.
         /// </summary>
-        string PrimaryInstitution { get; }
+        string PrimaryContact { get; }
 
         /// <summary>
-        /// Gets staff member full name.
-        /// </summary>
-        string StaffMemberFullName { get; }
-
-        /// <summary>
-        /// Gets state or province.
+        /// Gets state province.
         /// </summary>
         string StateProvince { get; }
     }

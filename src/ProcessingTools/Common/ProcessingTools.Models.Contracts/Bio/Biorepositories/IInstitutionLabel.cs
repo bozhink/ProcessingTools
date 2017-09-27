@@ -1,13 +1,13 @@
-﻿// <copyright file="ICollectionLabel.cs" company="ProcessingTools">
+﻿// <copyright file="IInstitutionLabel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
+namespace ProcessingTools.Models.Contracts.Bio.Biorepositories
 {
     /// <summary>
-    /// Biorepositories collection label.
+    /// Biorepositories institution label.
     /// </summary>
-    public interface ICollectionLabel
+    public interface IInstitutionLabel
     {
         /// <summary>
         /// Gets city or town.
@@ -15,14 +15,14 @@ namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
         string CityTown { get; }
 
         /// <summary>
-        /// Gets collection name.
-        /// </summary>
-        string CollectionName { get; }
-
-        /// <summary>
         /// Gets country.
         /// </summary>
         string Country { get; }
+
+        /// <summary>
+        /// Gets name of institution.
+        /// </summary>
+        string NameOfInstitution { get; }
 
         /// <summary>
         /// Gets postal or ZIP code.
@@ -35,7 +35,7 @@ namespace ProcessingTools.Contracts.Data.Bio.Biorepositories.Models
         string PrimaryContact { get; }
 
         /// <summary>
-        /// Gets state province.
+        /// Gets state or province.
         /// </summary>
         string StateProvince { get; }
     }
