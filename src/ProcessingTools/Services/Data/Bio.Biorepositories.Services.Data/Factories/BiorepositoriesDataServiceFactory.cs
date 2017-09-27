@@ -9,8 +9,8 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts;
 
     public abstract class BiorepositoriesDataServiceFactory<TDbModel, TServiceModel> : IBiorepositoriesDataService<TServiceModel>
         where TDbModel : class, IStringIdentifiable

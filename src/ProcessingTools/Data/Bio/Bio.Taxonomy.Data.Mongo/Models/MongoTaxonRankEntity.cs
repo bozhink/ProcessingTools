@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     [CollectionName("taxa")]
     public class MongoTaxonRankEntity : ITaxonRankEntity

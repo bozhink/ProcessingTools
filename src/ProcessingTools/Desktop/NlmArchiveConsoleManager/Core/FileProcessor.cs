@@ -11,8 +11,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;

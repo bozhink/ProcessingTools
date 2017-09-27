@@ -5,8 +5,8 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts.Repositories;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.File.Repositories;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class XmlTaxonRanksRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
     {

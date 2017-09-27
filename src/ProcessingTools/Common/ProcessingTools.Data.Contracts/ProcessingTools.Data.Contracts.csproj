@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Bio\Environments\" />
+    <Folder Include="Bio\Taxonomy\Models\" />
   </ItemGroup>
 
   <ItemGroup>

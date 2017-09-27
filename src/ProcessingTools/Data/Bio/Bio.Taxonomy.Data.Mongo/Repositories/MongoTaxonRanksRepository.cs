@@ -7,9 +7,9 @@
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class MongoTaxonRanksRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository
     {

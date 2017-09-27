@@ -7,8 +7,8 @@
     using AutoMapper;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Models.Contracts;
 
     public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
         where TFilter : class, IFilter

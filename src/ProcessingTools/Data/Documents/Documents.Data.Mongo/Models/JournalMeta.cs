@@ -3,9 +3,9 @@
     using System.Text.RegularExpressions;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
+    using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents;
-    using ProcessingTools.Data.Common.Mongo.Attributes;
 
     [CollectionName("journalsMeta")]
     public class JournalMeta : IStringIdentifiable, IJournalMeta

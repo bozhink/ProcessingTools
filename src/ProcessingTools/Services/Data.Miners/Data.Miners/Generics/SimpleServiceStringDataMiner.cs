@@ -9,8 +9,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Models.Contracts;
 
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
         where TServiceModel : class, INameableIntegerIdentifiable

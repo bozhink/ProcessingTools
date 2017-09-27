@@ -3,8 +3,8 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Contracts.Serialization;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Services.Data.Contracts.Meta;
     using ProcessingTools.Services.Data.Models.Meta;
 

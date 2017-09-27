@@ -12,12 +12,12 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Journals.Repositories;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Models.DataModels;
+    using ProcessingTools.Models.Contracts;
 
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel

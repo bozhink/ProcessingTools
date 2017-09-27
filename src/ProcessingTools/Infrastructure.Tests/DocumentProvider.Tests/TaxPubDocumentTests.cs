@@ -6,8 +6,8 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Common;
+    using ProcessingTools.Contracts;
 
     [TestClass]
     public class TaxPubDocumentTests

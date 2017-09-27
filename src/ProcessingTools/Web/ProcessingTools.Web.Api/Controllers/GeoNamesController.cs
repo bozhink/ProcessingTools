@@ -2,8 +2,8 @@
 {
     using AutoMapper;
     using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Geo.GeoNames;
 

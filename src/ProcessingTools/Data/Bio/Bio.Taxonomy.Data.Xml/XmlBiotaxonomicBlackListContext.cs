@@ -10,7 +10,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
     {

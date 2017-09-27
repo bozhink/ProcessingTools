@@ -3,8 +3,8 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Journals;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using Strings = ProcessingTools.Web.Resources.Areas.Journals.ViewModels.Publishers.Strings;
 
     public class Publisher : IPublisher, IServiceModel

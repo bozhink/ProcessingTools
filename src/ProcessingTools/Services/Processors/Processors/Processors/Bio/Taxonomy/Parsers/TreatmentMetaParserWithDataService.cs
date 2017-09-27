@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;

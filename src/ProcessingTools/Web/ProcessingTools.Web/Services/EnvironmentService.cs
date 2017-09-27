@@ -4,9 +4,9 @@
     using System.Security.Claims;
     using System.Web;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
 
     public class EnvironmentService : IEnvironment
     {

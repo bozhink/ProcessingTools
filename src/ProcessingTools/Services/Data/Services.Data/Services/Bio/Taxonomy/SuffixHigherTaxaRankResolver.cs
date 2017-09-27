@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
-    using Models.Bio.Taxonomy;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
 
     public class SuffixHigherTaxaRankResolver : ISuffixHigherTaxaRankResolver
     {
