@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Models;
     using MongoDB.Driver;
     using MongoDB.Driver.Linq;
-    using ProcessingTools.Contracts.Data.Cache.Models;
+    using ProcessingTools.Cache.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Cache.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Models.Contracts.Cache;
 
     public class MongoValidationCacheDataRepository : IMongoValidationCacheDataRepository
     {

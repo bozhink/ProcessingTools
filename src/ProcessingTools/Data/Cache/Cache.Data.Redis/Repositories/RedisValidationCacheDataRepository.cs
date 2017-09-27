@@ -2,11 +2,11 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Models;
-    using ProcessingTools.Contracts.Data.Cache.Models;
+    using ProcessingTools.Cache.Data.Redis.Contracts.Repositories;
+    using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Data.Common.Redis.Repositories;
+    using ProcessingTools.Models.Contracts.Cache;
 
     public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheEntity>, IRedisValidationCacheDataRepository
     {

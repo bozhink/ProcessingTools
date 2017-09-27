@@ -4,9 +4,12 @@
 
 namespace ProcessingTools.Contracts.Data.Cache.Repositories
 {
-    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Models.Contracts.Cache;
 
+    /// <summary>
+    /// Validation cache data repository.
+    /// </summary>
     public interface IValidationCacheDataRepository : IStringKeyCollectionValuePairsRepository<IValidationCacheEntity>
     {
     }
