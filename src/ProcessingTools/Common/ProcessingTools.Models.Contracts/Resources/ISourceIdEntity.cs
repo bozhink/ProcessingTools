@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.DataResources.Models
+namespace ProcessingTools.Models.Contracts.Resources
 {
     /// <summary>
     /// Entity with source ID.

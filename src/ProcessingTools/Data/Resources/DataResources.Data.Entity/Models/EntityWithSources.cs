@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Contracts.Data.DataResources.Models;
+    using ProcessingTools.Models.Contracts.Resources;
 
     public abstract class EntityWithSources : IEntityWithSources
     {

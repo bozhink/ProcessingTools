@@ -4,8 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.DataResources;
-    using ProcessingTools.Contracts.Data.DataResources.Models;
     using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Resources;
 
     public class Abbreviation : EntityWithSources, IAbbreviation
     {
