@@ -39,7 +39,7 @@
                     ParameterNames.ConnectionString,
                     ConnectionStrings.HistoryDatabaseConnection);
 
-            this.Bind<ProcessingTools.Contracts.Data.History.Repositories.IHistoryRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.History.IHistoryRepository>()
                 .To<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
                 .InRequestScope();
 
@@ -51,7 +51,7 @@
                     ParameterNames.ConnectionString,
                     ConnectionStrings.JournalsDatabaseConnection);
 
-            this.Bind<ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.Journals.IPublishersRepository>()
                 .To<ProcessingTools.Journals.Data.Entity.Repositories.EntityPublishersRepository>()
                 .InRequestScope();
 
@@ -63,23 +63,23 @@
                     ParameterNames.ConnectionString,
                     ConnectionStrings.GeoDatabseConnection);
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.ICitiesRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.Geo.ICitiesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityCitiesRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.IGeoNamesRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.Geo.IGeoNamesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityGeoNamesRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.IGeoEpithetsRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.Geo.IGeoEpithetsRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityGeoEpithetsRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.IContinentsRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.Geo.IContinentsRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityContinentsRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.ICountriesRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.Geo.ICountriesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityCountriesRepository>()
                 .InRequestScope();
         }

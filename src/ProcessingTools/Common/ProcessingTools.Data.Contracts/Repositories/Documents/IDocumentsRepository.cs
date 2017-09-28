@@ -2,9 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Documents.Repositories
+namespace ProcessingTools.Data.Contracts.Repositories.Documents
 {
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Models.Contracts.Documents;
 
     public interface IDocumentsRepository : ICrudRepository<IDocument>

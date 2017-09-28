@@ -3,8 +3,8 @@
     using System.Data.Entity;
     using System.Linq;
     using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories.Geo;
+    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Models;
     using ProcessingTools.Models.Contracts;

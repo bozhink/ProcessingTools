@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
+    using ProcessingTools.Data.Contracts.Repositories;
 
     public class BlackListSearchService : IBlackListSearchService
     {

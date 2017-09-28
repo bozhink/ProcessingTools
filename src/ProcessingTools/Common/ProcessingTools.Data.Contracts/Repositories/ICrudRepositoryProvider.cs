@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories
+namespace ProcessingTools.Data.Contracts.Repositories
 {
     public interface ICrudRepositoryProvider<T> : IRepositoryProvider<ICrudRepository<T>>
     {

@@ -13,7 +13,7 @@
     using ProcessingTools.Journals.Services.Data.Models.ServiceModels;
     using TDataModel = ProcessingTools.Models.Contracts.Journals.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisherDetails;
-    using TRepository = ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository;
+    using TRepository = ProcessingTools.Data.Contracts.Repositories.Journals.IPublishersRepository;
     using TServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisher;
 
     public class PublishersDataService : AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>, IPublishersDataService

@@ -2,9 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.History.Repositories
+namespace ProcessingTools.Data.Contracts.Repositories.History
 {
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Models.Contracts.History;
 
     /// <summary>

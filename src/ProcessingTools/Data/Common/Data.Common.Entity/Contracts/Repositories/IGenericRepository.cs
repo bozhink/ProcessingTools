@@ -2,7 +2,7 @@
 {
     using System.Data.Entity;
     using System.Linq;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
 
     public interface IGenericRepository<TContext, TEntity> : IRepository<TEntity>

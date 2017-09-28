@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using ProcessingTools.Contracts.Data.Repositories.Geo;
+    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;

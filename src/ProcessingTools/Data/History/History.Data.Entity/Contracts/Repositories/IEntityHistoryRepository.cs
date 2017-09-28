@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.History.Data.Entity.Contracts.Repositories
 {
-    using ProcessingTools.Contracts.Data.History.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.History;
 
     public interface IEntityHistoryRepository : IHistoryRepository
     {

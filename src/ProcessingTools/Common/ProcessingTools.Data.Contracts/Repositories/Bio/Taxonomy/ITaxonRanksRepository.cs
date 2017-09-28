@@ -2,9 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories
+namespace ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy
 {
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>

@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories.Geo
+namespace ProcessingTools.Data.Contracts.Repositories.Geo
 {
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;

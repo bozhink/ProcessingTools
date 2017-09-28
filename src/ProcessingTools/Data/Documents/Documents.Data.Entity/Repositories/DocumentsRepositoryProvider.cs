@@ -3,7 +3,7 @@
     using System;
     using Contracts;
     using Contracts.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
 
     public class DocumentsRepositoryProvider<T> : IDocumentsRepositoryProvider<T>

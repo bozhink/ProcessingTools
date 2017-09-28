@@ -5,7 +5,7 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Mediatypes;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
     using ProcessingTools.Models.Contracts.Mediatypes;

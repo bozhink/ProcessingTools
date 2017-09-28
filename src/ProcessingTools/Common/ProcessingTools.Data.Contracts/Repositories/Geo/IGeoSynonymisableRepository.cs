@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Data.Repositories.Geo
+﻿namespace ProcessingTools.Data.Contracts.Repositories.Geo
 {
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Geo;

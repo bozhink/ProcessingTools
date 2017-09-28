@@ -2,11 +2,12 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories
+namespace ProcessingTools.Data.Contracts.Repositories
 {
     using System;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Contracts;
 
     public interface ICrudRepository<T> : ISearchableRepository<T>
     {

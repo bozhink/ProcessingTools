@@ -10,8 +10,8 @@
     using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Journals.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Journals;
+    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;

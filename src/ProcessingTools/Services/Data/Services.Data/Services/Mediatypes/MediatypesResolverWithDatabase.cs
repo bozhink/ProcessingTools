@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Mediatypes;
     using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Models.Mediatypes;

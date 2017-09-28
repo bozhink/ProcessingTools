@@ -6,7 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Cache.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Cache;
     using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Services.Cache.Contracts.Models.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;
