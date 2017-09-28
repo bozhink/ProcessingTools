@@ -17,9 +17,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Bio\Environments\**" />
-    <EmbeddedResource Remove="Bio\Environments\**" />
-    <None Remove="Bio\Environments\**" />
+    <Compile Remove="Repositories\Bio\Environments\**" />
+    <EmbeddedResource Remove="Repositories\Bio\Environments\**" />
+    <None Remove="Repositories\Bio\Environments\**" />
   </ItemGroup>
 
   <ItemGroup>
