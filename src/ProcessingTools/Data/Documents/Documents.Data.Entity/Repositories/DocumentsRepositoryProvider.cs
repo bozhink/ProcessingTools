@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity.Repositories
 {
     using System;
-    using Contracts;
-    using Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
+    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
 
     public class DocumentsRepositoryProvider<T> : IDocumentsRepositoryProvider<T>
         where T : class, IEntityWithPreJoinedFields
@@ -13,12 +13,7 @@
 
         public DocumentsRepositoryProvider(IDocumentsDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
         }
 
         public ICrudRepository<T> Create()

@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
 

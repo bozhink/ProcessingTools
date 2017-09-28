@@ -4,9 +4,9 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories;
 
     public class GenericRepository<TContext, TEntity> : IRepository<TEntity>, IGenericRepository<TContext, TEntity>
         where TContext : class, IDbContext

@@ -5,8 +5,8 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;

@@ -2,8 +2,8 @@
 {
     using System;
     using Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts.Repositories;
 
     public class BiorepositoriesRepositoryProvider<T> : IBiorepositoriesRepositoryProvider<T>
         where T : class
@@ -12,12 +12,7 @@
 
         public BiorepositoriesRepositoryProvider(IMongoDatabaseProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
         }
 
         public ICrudRepository<T> Create()

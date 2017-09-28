@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
     using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
 

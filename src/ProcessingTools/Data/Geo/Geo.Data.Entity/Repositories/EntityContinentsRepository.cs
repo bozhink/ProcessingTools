@@ -3,8 +3,8 @@
     using System.Data.Entity;
     using System.Linq;
     using AutoMapper;
-    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;

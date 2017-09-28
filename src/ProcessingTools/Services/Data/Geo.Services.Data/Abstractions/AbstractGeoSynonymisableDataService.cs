@@ -2,10 +2,10 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Contracts.Services.Data.Geo;
+    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Data.Contracts.Repositories.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;
