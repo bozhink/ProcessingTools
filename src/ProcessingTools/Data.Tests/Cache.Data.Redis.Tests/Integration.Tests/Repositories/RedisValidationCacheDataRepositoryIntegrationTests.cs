@@ -69,7 +69,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProvider);
             var key = Guid.NewGuid().ToString();
 
-            var values = new List<IValidationCacheEntity>(NumberOfItems);
+            var values = new List<IValidationCacheModel>(NumberOfItems);
 
             // Act: Clean-up database
             await repository.RemoveAsync(key).ConfigureAwait(false);
@@ -151,7 +151,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProvider);
             var key = Guid.NewGuid().ToString();
 
-            var values = new List<IValidationCacheEntity>(NumberOfItems);
+            var values = new List<IValidationCacheModel>(NumberOfItems);
 
             // Act: Clean-up database
             await repository.RemoveAsync(key).ConfigureAwait(false);

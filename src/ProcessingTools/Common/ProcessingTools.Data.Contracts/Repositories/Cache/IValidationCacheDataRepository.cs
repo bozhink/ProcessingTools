@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts.Repositories.Cache
     /// <summary>
     /// Validation cache data repository.
     /// </summary>
-    public interface IValidationCacheDataRepository : IStringKeyCollectionValuePairsRepository<IValidationCacheEntity>
+    public interface IValidationCacheDataRepository : IStringKeyCollectionValuePairsRepository<IValidationCacheModel>
     {
     }
 }

@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Services\Validation\IValidationCacheService.cs" />
-    <Compile Include="Contracts\Models\Validation\IValidationCacheServiceModel.cs" />
     <Compile Include="Models\Validation\ValidationCacheServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Validation\ValidationCacheService.cs" />

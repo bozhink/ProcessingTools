@@ -41,7 +41,7 @@
 
         public IEnumerable<string> Keys => this.collection.AsQueryable().Select(o => o.Id);
 
-        public async Task<object> AddAsync(string key, IValidationCacheEntity value)
+        public async Task<object> AddAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -62,7 +62,7 @@
                 .ConfigureAwait(false);
         }
 
-        public IEnumerable<IValidationCacheEntity> GetAll(string key)
+        public IEnumerable<IValidationCacheModel> GetAll(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -83,7 +83,7 @@
             return await this.collection.DeleteOneAsync(o => o.Id == key).ConfigureAwait(false);
         }
 
-        public async Task<object> RemoveAsync(string key, IValidationCacheEntity value)
+        public async Task<object> RemoveAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {

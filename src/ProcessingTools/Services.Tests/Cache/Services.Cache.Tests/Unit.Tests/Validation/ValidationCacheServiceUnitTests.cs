@@ -8,7 +8,6 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Repositories.Cache;
     using ProcessingTools.Models.Contracts.Cache;
-    using ProcessingTools.Services.Cache.Contracts.Models.Validation;
     using ProcessingTools.Services.Cache.Services.Validation;
     using ProcessingTools.Services.Cache.Tests.Common;
     using ProcessingTools.Tests.Library;
@@ -22,11 +21,11 @@
         {
             // Arrange
             string key = "some key";
-            var valueMock = new Mock<IValidationCacheServiceModel>();
+            var valueMock = new Mock<IValidationCacheModel>();
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
-                .Setup(r => r.AddAsync(key, It.IsAny<IValidationCacheEntity>()))
+                .Setup(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()))
                 .Returns(Task.FromResult<object>(true));
 
             var dateTimeProviderMock = new Mock<IDateTimeProvider>();
@@ -39,7 +38,7 @@
             // Asset
             Assert.That(result, Is.EqualTo(true));
 
-            repositoryMock.Verify(r => r.AddAsync(key, It.IsAny<IValidationCacheEntity>()), Times.Once);
+            repositoryMock.Verify(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()), Times.Once);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Once);
         }
 
@@ -61,7 +60,7 @@
                 return service.Add(key, null);
             });
 
-            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
         }
 
@@ -73,7 +72,7 @@
         public void ValidationCacheService_AddWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
-            var valueMock = new Mock<IValidationCacheServiceModel>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             var dateTimeProviderMock = new Mock<IDateTimeProvider>();
             var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
@@ -86,7 +85,7 @@
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
         }
 
@@ -108,7 +107,7 @@
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
             dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
         }
 
@@ -145,7 +144,7 @@
             // Arrange
             string key = "some key";
 
-            var list = new List<IValidationCacheEntity>();
+            var list = new List<IValidationCacheModel>();
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
@@ -196,7 +195,7 @@
         {
             // Arrange
             string key = "some key";
-            var valueMock = new Mock<IValidationCacheEntity>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var value = valueMock.Object;
             var list = new[] { value };
 
@@ -232,12 +231,12 @@
             string key = "some key";
             var now = DateTime.Now;
 
-            var value1Mock = new Mock<IValidationCacheEntity>();
+            var value1Mock = new Mock<IValidationCacheModel>();
             value1Mock
                 .SetupGet(v => v.LastUpdate)
                 .Returns(now);
 
-            var value2Mock = new Mock<IValidationCacheEntity>();
+            var value2Mock = new Mock<IValidationCacheModel>();
             value2Mock
                 .SetupGet(v => v.LastUpdate)
                 .Returns(now + TimeSpan.FromHours(1));

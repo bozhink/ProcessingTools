@@ -1,4 +1,4 @@
-﻿// <copyright file="IValidationCacheEntity.cs" company="ProcessingTools">
+﻿// <copyright file="IValidationCacheModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace ProcessingTools.Models.Contracts.Cache
     /// <summary>
     /// Validation cache entity.
     /// </summary>
-    public interface IValidationCacheEntity
+    public interface IValidationCacheModel
     {
         /// <summary>
         /// Gets content.

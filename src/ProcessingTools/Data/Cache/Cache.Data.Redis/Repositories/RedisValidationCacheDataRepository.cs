@@ -8,21 +8,21 @@
     using ProcessingTools.Data.Common.Redis.Repositories;
     using ProcessingTools.Models.Contracts.Cache;
 
-    public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheEntity>, IRedisValidationCacheDataRepository
+    public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheModel>, IRedisValidationCacheDataRepository
     {
         public RedisValidationCacheDataRepository(IRedisClientProvider provider)
             : base(provider)
         {
         }
 
-        private Func<IValidationCacheEntity, ValidationCacheEntity> MapToEntity => e => new ValidationCacheEntity
+        private Func<IValidationCacheModel, ValidationCacheEntity> MapToEntity => e => new ValidationCacheEntity
         {
             Content = e.Content,
             LastUpdate = e.LastUpdate,
             Status = e.Status
         };
 
-        public override Task<object> AddAsync(string key, IValidationCacheEntity value)
+        public override Task<object> AddAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -39,7 +39,7 @@
             return base.AddAsync(key, entity);
         }
 
-        public override Task<object> RemoveAsync(string key, IValidationCacheEntity value)
+        public override Task<object> RemoveAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {

@@ -81,7 +81,7 @@
         public void RedisValidationCacheDataRepository_AddWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
-            var valueMock = new Mock<IValidationCacheEntity>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var value = valueMock.Object;
 
             var clientProviderMock = new Mock<IRedisClientProvider>();
@@ -255,7 +255,7 @@
             // Arrange
             string key = "some key";
 
-            //// JsonStringSerializer does not work with mock? var valueMock = new Mock<IValidationCacheEntity>();
+            //// JsonStringSerializer does not work with mock? Mock objects are recursive.
             var value = new ValidationCacheEntity();
 
             var listMock = new Mock<IRedisList>();
@@ -372,7 +372,7 @@
         public void RedisValidationCacheDataRepository_RemoveWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
-            var valueMock = new Mock<IValidationCacheEntity>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var value = valueMock.Object;
 
             var clientProviderMock = new Mock<IRedisClientProvider>();

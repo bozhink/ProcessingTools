@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Services.Cache.Models.Validation
 {
     using System;
-    using Contracts.Models.Validation;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Cache;
 
-    public class ValidationCacheServiceModel : IValidationCacheServiceModel
+    public class ValidationCacheServiceModel : IValidationCacheModel
     {
         public string Content { get; set; }
 

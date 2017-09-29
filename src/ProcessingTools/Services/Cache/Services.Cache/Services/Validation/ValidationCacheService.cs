@@ -8,7 +8,6 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Repositories.Cache;
     using ProcessingTools.Models.Contracts.Cache;
-    using ProcessingTools.Services.Cache.Contracts.Models.Validation;
     using ProcessingTools.Services.Cache.Contracts.Services.Validation;
     using ProcessingTools.Services.Cache.Models.Validation;
 
@@ -25,17 +24,17 @@
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IValidationCacheServiceModel, ValidationCacheServiceModel>();
-                c.CreateMap<ValidationCacheServiceModel, IValidationCacheServiceModel>();
+                c.CreateMap<IValidationCacheModel, ValidationCacheServiceModel>();
+                c.CreateMap<ValidationCacheServiceModel, IValidationCacheModel>();
 
-                c.CreateMap<IValidationCacheEntity, ValidationCacheServiceModel>();
-                c.CreateMap<ValidationCacheServiceModel, IValidationCacheEntity>();
+                c.CreateMap<IValidationCacheModel, ValidationCacheServiceModel>();
+                c.CreateMap<ValidationCacheServiceModel, IValidationCacheModel>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public Task<object> Add(string key, IValidationCacheServiceModel value)
+        public Task<object> Add(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -53,7 +52,7 @@
             return this.repository.AddAsync(key, entity);
         }
 
-        public async Task<IValidationCacheServiceModel> Get(string key)
+        public async Task<IValidationCacheModel> Get(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
