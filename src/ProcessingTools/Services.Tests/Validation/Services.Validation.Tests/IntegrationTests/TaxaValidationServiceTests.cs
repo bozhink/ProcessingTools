@@ -3,16 +3,17 @@
     using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
-    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
-    using ProcessingTools.Services.Cache.Services.Validation;
-    using ProcessingTools.Services.Providers;
-    using ProcessingTools.Services.Validation.Services;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Contracts.Cache;
+    using ProcessingTools.Services.Validation;
 
     [TestClass]
     public class TaxaValidationServiceTests
@@ -24,8 +25,11 @@
         public void Initialize()
         {
             var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
-            var dateTimeProvider = new DateTimeProvider();
-            this.cacheService = new ValidationCacheService(repository, dateTimeProvider);
+            var environmentMock = new Mock<IEnvironment>();
+            environmentMock
+                .SetupGet(e => e.DateTimeProvider)
+                .Returns(() => DateTime.UtcNow);
+            this.cacheService = new ValidationCacheService(repository, environmentMock.Object);
             this.requester = new GlobalNamesResolverDataRequester(new NetConnectorFactory());
         }
 
@@ -53,7 +57,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 
@@ -80,7 +84,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 

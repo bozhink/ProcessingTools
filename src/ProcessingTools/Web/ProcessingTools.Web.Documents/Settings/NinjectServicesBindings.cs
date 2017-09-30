@@ -36,11 +36,7 @@
                     .SelectAllClasses()
                     .BindDefaultInterface();
 
-                b.From(ProcessingTools.Services.Cache.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-
-                b.From(ProcessingTools.Services.Validation.Assembly.Assembly.GetType().Assembly)
+                b.From(typeof(ProcessingTools.Services.Cache.ValidationCacheService).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
 

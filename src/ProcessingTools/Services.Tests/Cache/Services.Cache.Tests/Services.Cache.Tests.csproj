@@ -94,13 +94,17 @@
       <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
       <Name>Tests.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Services\Cache\Services.Cache\Services.Cache.csproj">
-      <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
-      <Name>Services.Cache</Name>
+    <ProjectReference Include="..\..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
+      <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>
+      <Name>ProcessingTools.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Processors.Contracts.Processors.Validation;
-    using ProcessingTools.Services.Validation.Contracts.Services;
+    using ProcessingTools.Services.Contracts.Validation;
 
     public class ExternalLinksValidator : IExternalLinksValidator
     {
@@ -44,7 +44,7 @@
                 return false;
             }
 
-            var result = await this.validationService.Validate(externalLinks).ConfigureAwait(false);
+            var result = await this.validationService.ValidateAsync(externalLinks).ConfigureAwait(false);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => $"{r.ValidatedObject} / {r.ValidationStatus.ToString()} /")

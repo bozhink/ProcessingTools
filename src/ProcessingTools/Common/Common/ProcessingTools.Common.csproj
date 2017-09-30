@@ -55,7 +55,6 @@
     <Compile Include="Extensions\DisposableExtensions.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Extensions\HttpClientExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\Linq\AsyncLinqExtensions.cs" />
     <Compile Include="Extensions\Linq\EnumerableExtensions.cs" />

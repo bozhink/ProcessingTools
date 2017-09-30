@@ -3,13 +3,13 @@
     using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
-    using ProcessingTools.Services.Cache.Services.Validation;
-    using ProcessingTools.Services.Providers;
-    using ProcessingTools.Services.Validation.Services;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Contracts.Cache;
 
     [TestClass]
     public class UrlValidationServiceTests
@@ -20,8 +20,12 @@
         public void Initialize()
         {
             var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
-            var dateTimeProvider = new DateTimeProvider();
-            this.cacheService = new ValidationCacheService(repository, dateTimeProvider);
+            var environmentMock = new Mock<IEnvironment>();
+            environmentMock
+                .SetupGet(e => e.DateTimeProvider)
+                .Returns(() => DateTime.UtcNow);
+
+            this.cacheService = new ValidationCacheService(repository, environmentMock.Object);
         }
 
         [TestMethod]
@@ -47,7 +51,7 @@
             var items = (new int[2]).Select(item => $"https://www.google.com/search?q={++i}").ToArray();
 
             var service = new UrlValidationService(this.cacheService);
-            var result = service.Validate(items.ToArray()).Result
+            var result = service.ValidateAsync(items.ToArray()).Result
                 .OrderBy(u => u.ValidatedObject)
                 .ToList();
 

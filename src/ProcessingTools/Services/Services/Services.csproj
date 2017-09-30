@@ -37,9 +37,6 @@
   <ItemGroup>
     <Compile Include="Abstractions\AbstractMultiDataServiceAsync{TEntity,TModel,TFilter}.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\DateTimeProvider.cs" />
-    <Compile Include="Providers\GuidProvider.cs" />
-    <Compile Include="Providers\RandomDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
@@ -82,6 +79,9 @@
   <ItemGroup>
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Providers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

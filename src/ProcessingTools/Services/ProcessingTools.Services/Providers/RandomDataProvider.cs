@@ -1,9 +1,16 @@
-﻿namespace ProcessingTools.Services.Providers
+﻿// <copyright file="RandomDataProvider.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Providers
 {
     using System;
     using System.Text;
     using ProcessingTools.Contracts;
 
+    /// <summary>
+    /// Random data provider.
+    /// </summary>
     public class RandomDataProvider : IRandomDataProvider
     {
         private const string StringCharacters = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890-=[]';,./~!@#$%^&*()_+ ";
@@ -19,11 +26,13 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
         private readonly int loremIpsumLength = LoremIpsum.Length;
 
+        /// <inheritdoc/>
         public int GetRandomNumber(int min, int max)
         {
             return Random.Next(min, max + 1);
         }
 
+        /// <inheritdoc/>
         public string GetRandomString(int length)
         {
             char[] chars = StringCharacters.ToCharArray();
@@ -38,11 +47,13 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
             return builder.ToString();
         }
 
+        /// <inheritdoc/>
         public string GetRandomString(int minLength, int maxLength)
         {
             return this.GetRandomString(this.GetRandomNumber(minLength, maxLength));
         }
 
+        /// <inheritdoc/>
         public string GetRandomText(params string[] phrases)
         {
             var builder = new StringBuilder();

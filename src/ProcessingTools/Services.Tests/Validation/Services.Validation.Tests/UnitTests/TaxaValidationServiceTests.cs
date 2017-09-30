@@ -3,10 +3,9 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
-    using ProcessingTools.Services.Validation.Services;
+    using ProcessingTools.Services.Contracts.Cache;
 
     [TestClass]
     public class TaxaValidationServiceTests
@@ -47,7 +46,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 
@@ -73,7 +72,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 

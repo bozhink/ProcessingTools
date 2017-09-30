@@ -7,7 +7,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
     using ProcessingTools.Processors.Contracts.Processors.Validation;
-    using ProcessingTools.Services.Validation.Contracts.Services;
+    using ProcessingTools.Services.Contracts.Validation;
 
     public class TaxaValidator : ITaxaValidator
     {
@@ -43,7 +43,7 @@
                 return false;
             }
 
-            var result = await this.validationService.Validate(scientificNames).ConfigureAwait(false);
+            var result = await this.validationService.ValidateAsync(scientificNames).ConfigureAwait(false);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => r.ValidatedObject)

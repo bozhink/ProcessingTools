@@ -670,6 +670,10 @@
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
+      <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
+      <Name>ProcessingTools.Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj">
       <Project>{667d4391-17f1-4433-bc96-685aee89650a}</Project>
       <Name>ProcessingTools.Web.Models</Name>
@@ -702,10 +706,6 @@
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
       <Name>FileSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
-      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
-      <Name>Net</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
@@ -734,9 +734,9 @@
       <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
       <Name>Geo.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Cache\Services.Cache\Services.Cache.csproj">
-      <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
-      <Name>Services.Cache</Name>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
+      <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>
+      <Name>ProcessingTools.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Image.Processors\Imaging.csproj">
       <Project>{D3890589-8338-42AE-9A1D-4FD746978BF5}</Project>
@@ -757,14 +757,6 @@
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services\Services.csproj">
-      <Project>{4b5a7dc2-bdcb-4602-8265-b02ef9b48d16}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Validation\Services.Validation\Services.Validation.csproj">
-      <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
-      <Name>Services.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Security\ProcessingTools.Web.Security.csproj">
       <Project>{7e793b3d-6932-43d4-8529-f3476e405f8e}</Project>

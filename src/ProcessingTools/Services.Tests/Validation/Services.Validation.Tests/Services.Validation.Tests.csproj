@@ -79,6 +79,10 @@
     <Compile Include="IntegrationTests\UrlValidationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
+      <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
+      <Name>ProcessingTools.Clients.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -90,6 +94,10 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
@@ -107,25 +115,17 @@
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Net\Net.csproj">
-      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
-      <Name>Net</Name>
+    <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
+      <Project>{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}</Project>
+      <Name>ProcessingTools.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
       <Project>{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}</Project>
       <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Services\Cache\Services.Cache\Services.Cache.csproj">
-      <Project>{5bd3c5fe-1e74-439d-be32-d37bf6f25d66}</Project>
-      <Name>Services.Cache</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Services\Services\Services.csproj">
-      <Project>{4B5A7DC2-BDCB-4602-8265-B02EF9B48D16}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Services\Validation\Services.Validation\Services.Validation.csproj">
-      <Project>{aa7ab2a8-dac5-4f5c-8838-0fdc4d22e66c}</Project>
-      <Name>Services.Validation</Name>
+    <ProjectReference Include="..\..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
+      <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>
+      <Name>ProcessingTools.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

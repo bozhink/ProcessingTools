@@ -8,12 +8,11 @@ namespace ProcessingTools.Services.Cache
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Data.Contracts.Repositories.Cache;
     using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Models.Cache;
-    using ProcessingTools.Contracts.Services;
 
     /// <summary>
     /// Validation cache service.

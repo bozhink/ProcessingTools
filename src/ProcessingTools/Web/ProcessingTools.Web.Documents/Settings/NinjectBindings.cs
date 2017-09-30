@@ -41,7 +41,7 @@
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Net.Assembly.Assembly.GetType().Assembly)
+                b.From(typeof(ProcessingTools.Net.NetConnector).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
