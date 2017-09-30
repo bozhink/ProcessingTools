@@ -7,7 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
@@ -23,7 +23,7 @@
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
-        public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId = null)
+        public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId)
         {
             string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
             string url = $"{ApiUrl}?{searchString}";
@@ -33,7 +33,7 @@
             return response.ToXmlDocument();
         }
 
-        public async Task<XmlDocument> SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId = null)
+        public async Task<XmlDocument> SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId)
         {
             string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
             string contentType = "application/x-www-form-urlencoded";
@@ -43,7 +43,7 @@
             return response.ToXmlDocument();
         }
 
-        public async Task<XmlDocument> SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId = null)
+        public async Task<XmlDocument> SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId)
         {
             Dictionary<string, string> values = new Dictionary<string, string>
                 {

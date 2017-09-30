@@ -82,9 +82,9 @@
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Net\Net.csproj">
-      <Project>{b06bf303-2a6c-4fbe-aee4-26e7a73c2db1}</Project>
-      <Name>Net</Name>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
+      <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
+      <Name>ProcessingTools.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
       <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
