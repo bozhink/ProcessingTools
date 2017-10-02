@@ -4,6 +4,9 @@
 
 namespace ProcessingTools.Contracts.Data.Miners
 {
+    /// <summary>
+    /// Text data miner with string context.
+    /// </summary>
     public interface IStringTextDataMiner : ITextDataMiner<string, string>
     {
     }
