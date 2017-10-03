@@ -3,7 +3,7 @@
     using System.Linq;
     using ProcessingTools.Enumerations;
 
-    internal interface ITaxonName
+    public interface ITaxonName
     {
         string Id { get; }
 

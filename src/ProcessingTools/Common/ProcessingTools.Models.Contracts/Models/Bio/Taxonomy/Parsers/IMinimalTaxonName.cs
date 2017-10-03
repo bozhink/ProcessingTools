@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    internal interface IMinimalTaxonName
+    public interface IMinimalTaxonName
     {
         IEnumerable<IMinimalTaxonNamePart> Parts { get; }
     }

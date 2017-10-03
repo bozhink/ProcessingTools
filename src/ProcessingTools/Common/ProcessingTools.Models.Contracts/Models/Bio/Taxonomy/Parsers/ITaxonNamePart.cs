@@ -3,7 +3,7 @@
     using System;
     using System.Linq.Expressions;
 
-    internal interface ITaxonNamePart : IMinimalTaxonNamePart
+    public interface ITaxonNamePart : IMinimalTaxonNamePart
     {
         string Id { get; }
 

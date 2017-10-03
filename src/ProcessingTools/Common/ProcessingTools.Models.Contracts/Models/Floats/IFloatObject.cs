@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Enumerations.Nlm;
 
-    internal interface IFloatObject
+    public interface IFloatObject
     {
         /// <summary>
         /// Gets description of the float object.

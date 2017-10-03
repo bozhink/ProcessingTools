@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Contracts.Models.Floats
 {
-    internal interface IMediaType
+    public interface IMediaType
     {
         string FileExtension { get; }
 

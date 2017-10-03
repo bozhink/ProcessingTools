@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Enumerations;
 
-    internal interface IMinimalTaxonNamePart
+    public interface IMinimalTaxonNamePart
     {
         string FullName { get; set; }
 

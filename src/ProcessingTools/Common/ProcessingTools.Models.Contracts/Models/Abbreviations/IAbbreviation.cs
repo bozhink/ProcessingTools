@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Contracts.Models.Abbreviations
 {
-    internal interface IAbbreviation
+    public interface IAbbreviation
     {
         string Content { get; }
 

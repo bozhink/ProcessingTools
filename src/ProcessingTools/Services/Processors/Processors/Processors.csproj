@@ -45,10 +45,6 @@
     <Compile Include="Comparers\Bio\Taxonomy\TaxonNameContentEqualityComparer.cs" />
     <Compile Include="Comparers\Bio\Taxonomy\TaxonNamePartContentEqualityComparer.cs" />
     <Compile Include="Contracts\Factories\Bio\IBioTaxonomyTransformersFactory.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\IMinimalTaxonName.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\IMinimalTaxonNamePart.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\ITaxonName.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\ITaxonNamePart.cs" />
     <Compile Include="Contracts\Processors\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICodesTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICollectionCodesTagger.cs" />
@@ -133,12 +129,10 @@
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
-    <Compile Include="Contracts\Models\Abbreviations\IAbbreviation.cs" />
     <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionCodeSerializableModel.cs" />
     <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionSerializableModel.cs" />
     <Compile Include="Models\Bio\Codes\BiorepositoriesInstitutionalCodeSerializableModel.cs" />
     <Compile Include="Models\Bio\Codes\BiorepositoriesInstitutionSerializableModel.cs" />
-    <Compile Include="Contracts\Models\Bio\Codes\ISpecimenCode.cs" />
     <Compile Include="Models\Bio\Codes\SpecimenCode.cs" />
     <Compile Include="Models\Bio\Codes\SpecimenCodeSerializableModel.cs" />
     <Compile Include="Models\Bio\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
@@ -150,8 +144,6 @@
     <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonName.cs" />
     <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonNamePart.cs" />
     <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonRankResponseModel.cs" />
-    <Compile Include="Contracts\Models\Floats\IFloatObject.cs" />
-    <Compile Include="Contracts\Models\Floats\IMediaType.cs" />
     <Compile Include="Models\Floats\AppendixFloatObject.cs" />
     <Compile Include="Models\Floats\FigureFloatObject.cs" />
     <Compile Include="Models\Floats\GraphicFloatObject.cs" />
@@ -167,7 +159,6 @@
     <Compile Include="Models\Floats\TableFloatObject.cs" />
     <Compile Include="Models\Floats\TextBoxFloatObject.cs" />
     <Compile Include="Models\NamedContentSerializableModel.cs" />
-    <Compile Include="Contracts\Models\References\IReferenceTemplateItem.cs" />
     <Compile Include="Models\References\ReferenceTemplateItem.cs" />
     <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
