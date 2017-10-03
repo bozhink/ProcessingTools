@@ -42,7 +42,7 @@
             }
         }
 
-        public async Task<IEnumerable<IJournalMeta>> GetAllJournalsMeta()
+        public async Task<IJournalMeta[]> GetAllJournalsMetaAsync()
         {
             var journalMetaFiles = Directory.GetFiles(this.JournalMetaFilesDirectory).ToArray();
 
@@ -53,7 +53,7 @@
                 result.Add(journalMeta);
             }
 
-            return result;
+            return result.ToArray();
         }
     }
 }

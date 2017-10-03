@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Data.Mongo.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
@@ -73,14 +72,14 @@
             return result;
         }
 
-        public Task<IEnumerable<IJournalMeta>> FindAsync(Expression<Func<IJournalMeta, bool>> filter)
+        public Task<IJournalMeta[]> FindAsync(Expression<Func<IJournalMeta, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            return Task.FromResult(this.Collection.AsQueryable().AsQueryable<IJournalMeta>().Where(filter).AsEnumerable());
+            return Task.FromResult(this.Collection.AsQueryable().AsQueryable<IJournalMeta>().Where(filter).ToArray());
         }
 
         public Task<IJournalMeta> FindFirstAsync(Expression<Func<IJournalMeta, bool>> filter)

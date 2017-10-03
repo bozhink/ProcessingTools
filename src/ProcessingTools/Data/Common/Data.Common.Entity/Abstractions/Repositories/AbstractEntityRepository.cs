@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Entity.Abstractions.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Linq.Expressions;
@@ -70,7 +69,7 @@
             return Task.FromResult(id);
         }
 
-        public virtual Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
+        public virtual async Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -78,8 +77,8 @@
             }
 
             var query = this.repository.DbSet.Where(filter);
-
-            return Task.FromResult(query.AsEnumerable());
+            var data = await query.ToArrayAsync().ConfigureAwait(false);
+            return data;
         }
 
         public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)

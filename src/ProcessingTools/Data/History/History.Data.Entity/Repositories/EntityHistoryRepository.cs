@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.History.Data.Entity.Repositories
 {
     using System;
-    using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
@@ -68,7 +68,7 @@
             return Task.FromResult(id);
         }
 
-        public Task<IEnumerable<IHistoryItem>> FindAsync(Expression<Func<IHistoryItem, bool>> filter)
+        public async Task<IHistoryItem[]> FindAsync(Expression<Func<IHistoryItem, bool>> filter)
         {
             if (filter == null)
             {
@@ -76,9 +76,8 @@
             }
 
             var query = this.DbSet.AsQueryable<IHistoryItem>().Where(filter);
-            var result = query.AsEnumerable();
-
-            return Task.FromResult(result);
+            var data = await query.ToArrayAsync().ConfigureAwait(false);
+            return data;
         }
 
         public Task<IHistoryItem> FindFirstAsync(Expression<Func<IHistoryItem, bool>> filter)

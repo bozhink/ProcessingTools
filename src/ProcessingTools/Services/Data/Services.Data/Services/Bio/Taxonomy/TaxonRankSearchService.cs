@@ -31,8 +31,7 @@
             {
                 var searchString = filter.ToLowerInvariant();
 
-                var query = await repository.FindAsync(t => t.Name.ToLower().Contains(searchString)).ConfigureAwait(false);
-                var data = query.ToList();
+                var data = await repository.FindAsync(t => t.Name.ToLower().Contains(searchString)).ConfigureAwait(false);
                 var result = data.SelectMany(
                     t => t.Ranks.Select(rank => new TaxonRankServiceModel
                     {

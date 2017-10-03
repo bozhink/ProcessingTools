@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts
 {
-    using ProcessingTools.Contracts.Data;
+    using ProcessingTools.Data.Contracts;
 
     public interface IBiorepositoriesDataSeeder : IDatabaseSeeder
     {

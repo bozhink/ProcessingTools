@@ -29,7 +29,7 @@
 
         public async Task GetHelpAsync()
         {
-            var journalsMeta = await this.service.GetAllJournalsMeta().ConfigureAwait(false);
+            var journalsMeta = await this.service.GetAllJournalsMetaAsync().ConfigureAwait(false);
 
             this.reporter.AppendContent("Select a journal with one of these options:");
 

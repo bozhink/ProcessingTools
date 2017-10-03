@@ -44,15 +44,16 @@
         }
 
         // TODO
-        public virtual Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var query = this.Collection.AsQueryable().Where(filter).AsEnumerable();
-            return Task.FromResult(query);
+            var query = this.Collection.AsQueryable().Where(filter);
+            var data = query.ToArray();
+            return Task.FromResult(data);
         }
 
         public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)

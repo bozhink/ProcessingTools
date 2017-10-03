@@ -68,7 +68,7 @@
 
             var journalId = args.Single(this.FilterDoubleDashedOption).Substring(2);
 
-            IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMeta().ConfigureAwait(false))
+            IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMetaAsync().ConfigureAwait(false))
                 .FirstOrDefault(j => j.Permalink == journalId);
 
             if (journalMeta == null)

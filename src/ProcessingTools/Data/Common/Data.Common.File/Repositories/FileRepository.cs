@@ -30,7 +30,7 @@
         protected virtual TContext Context { get; private set; }
 
         // TODO
-        public virtual Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
+        public virtual async Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
@@ -38,7 +38,8 @@
             }
 
             var query = this.Context.DataSet.Where(filter);
-            return Task.FromResult(query.AsEnumerable());
+            var data = await query.ToArrayAsync().ConfigureAwait(false);
+            return data;
         }
 
         public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)

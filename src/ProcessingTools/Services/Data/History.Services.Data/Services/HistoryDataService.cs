@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Repositories.History;
     using ProcessingTools.History.Services.Data.Contracts.Services;
@@ -91,15 +90,14 @@
                 throw new ArgumentOutOfRangeException(nameof(take), take, "Value should be positive");
             }
 
-            var query = await this.GetQueryAsync(objectId, objectType).ConfigureAwait(false);
+            var data = await this.GetQueryAsync(objectId, objectType).ConfigureAwait(false);
 
-            var data = await query.Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
+            var items = data.Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
                 .Skip(skip)
                 .Take(take)
-                .ToListAsync()
-                .ConfigureAwait(false);
+                .ToArray();
 
-            return data;
+            return items;
         }
 
         public async Task<IEnumerable<IHistoryItem>> Get(object objectId, int skip, int take)
@@ -120,9 +118,9 @@
             }
 
             string id = objectId.ToString();
-            var query = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
+            var data = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
 
-            var data = await query.OrderBy(h => h.DateModified)
+            var items = data.OrderBy(h => h.DateModified)
                 .Skip(skip)
                 .Take(take)
                 .Select(h => new HistoryItem
@@ -134,10 +132,9 @@
                     DateModified = h.DateModified,
                     UserId = h.UserId
                 })
-                .ToListAsync()
-                .ConfigureAwait(false);
+                .ToArray();
 
-            return data;
+            return items;
         }
 
         public async Task<IEnumerable> GetAll(object objectId, Type objectType)
@@ -152,13 +149,11 @@
                 throw new ArgumentNullException(nameof(objectType));
             }
 
-            var query = await this.GetQueryAsync(objectId, objectType).ConfigureAwait(false);
+            var data = await this.GetQueryAsync(objectId, objectType).ConfigureAwait(false);
 
-            var data = await query.Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
-                .ToListAsync()
-                .ConfigureAwait(false);
+            var items = data.Select(h => JsonConvert.DeserializeObject(h.Data, objectType)).ToArray();
 
-            return data;
+            return items;
         }
 
         public async Task<IEnumerable<IHistoryItem>> GetAll(object objectId)
@@ -169,9 +164,9 @@
             }
 
             string id = objectId.ToString();
-            var query = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
+            var data = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
 
-            var data = await query.OrderBy(h => h.DateModified)
+            var items = data.OrderBy(h => h.DateModified)
                 .Select(h => new HistoryItem
                 {
                     Id = h.Id,
@@ -181,10 +176,9 @@
                     DateModified = h.DateModified,
                     UserId = h.UserId
                 })
-                .ToListAsync()
-                .ConfigureAwait(false);
+                .ToArray();
 
-            return data;
+            return items;
         }
 
         private async Task<IEnumerable<IHistoryItem>> GetQueryAsync(object objectId, Type objectType)

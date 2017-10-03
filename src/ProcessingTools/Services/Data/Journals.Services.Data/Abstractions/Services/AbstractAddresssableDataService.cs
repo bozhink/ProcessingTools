@@ -306,7 +306,7 @@
                 // Skip
             }
 
-            var query = await this.repository.FindAsync(dataFilter).ConfigureAwait(false);
+            IEnumerable<TDataModel> query = await this.repository.FindAsync(dataFilter).ConfigureAwait(false);
 
             try
             {

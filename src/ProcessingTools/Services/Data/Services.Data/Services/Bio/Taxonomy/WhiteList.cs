@@ -26,9 +26,9 @@
         {
             return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
             {
-                var query = await repository.FindAsync(t => t.IsWhiteListed).ConfigureAwait(false);
+                var data = await repository.FindAsync(t => t.IsWhiteListed).ConfigureAwait(false);
 
-                var result = query.Select(t => t.Name).ToList();
+                var result = data.Select(t => t.Name).ToList();
 
                 return new HashSet<string>(result);
             });

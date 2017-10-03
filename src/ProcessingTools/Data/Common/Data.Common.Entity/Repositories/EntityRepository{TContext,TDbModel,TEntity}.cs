@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Entity.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Linq.Expressions;
@@ -78,15 +77,16 @@
         }
 
         // TODO
-        public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
+        public virtual async Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var query = this.DbSet.Where(filter).AsEnumerable();
-            return await Task.FromResult(query).ConfigureAwait(false);
+            var query = this.DbSet.Where(filter);
+            var data = await query.ToArrayAsync().ConfigureAwait(false);
+            return data;
         }
 
         public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
