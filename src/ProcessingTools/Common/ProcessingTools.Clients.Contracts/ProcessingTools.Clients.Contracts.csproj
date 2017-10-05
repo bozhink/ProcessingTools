@@ -23,4 +23,8 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+  </ItemGroup>
 </Project>
