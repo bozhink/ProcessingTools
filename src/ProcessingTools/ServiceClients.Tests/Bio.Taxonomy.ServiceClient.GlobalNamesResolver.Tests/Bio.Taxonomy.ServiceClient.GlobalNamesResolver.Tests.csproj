@@ -77,6 +77,10 @@
       <Project>{ef98ba2f-6469-4a5d-8b83-1636e98f3e48}</Project>
       <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
+      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
+      <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataFiles\gnr-sample-1.xml">

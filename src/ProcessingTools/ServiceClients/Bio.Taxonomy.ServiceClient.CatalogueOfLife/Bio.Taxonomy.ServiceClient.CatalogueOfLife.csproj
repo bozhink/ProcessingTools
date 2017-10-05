@@ -39,21 +39,16 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="CatalogueOfLifeDataRequester.cs" />
-    <Compile Include="Contracts\ICatalogueOfLifeDataRequester.cs" />
-    <Compile Include="Models\AcceptedName.cs" />
-    <Compile Include="Models\CatalogueOfLifeApiServiceResponse.cs" />
-    <Compile Include="Models\CommonName.cs" />
-    <Compile Include="Models\RecordScrutinyDate.cs" />
-    <Compile Include="Models\Reference.cs" />
-    <Compile Include="Models\Result.cs" />
-    <Compile Include="Models\SingleRecord.cs" />
-    <Compile Include="Models\Taxon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
+      <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
+      <Name>ProcessingTools.Clients.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
@@ -71,6 +66,10 @@
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
+      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
+      <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Bio.Taxonomy.ServiceClient.CatalogueOfLife.ruleset" />
@@ -80,6 +79,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

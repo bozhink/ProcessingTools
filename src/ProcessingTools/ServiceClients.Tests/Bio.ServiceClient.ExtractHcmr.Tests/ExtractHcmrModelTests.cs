@@ -3,9 +3,8 @@
     using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
+    using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
 
     [TestClass]
     public class ExtractHcmrModelTests

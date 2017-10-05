@@ -91,6 +91,10 @@
       <Project>{436a7881-3c88-4892-885d-29d487a42fa4}</Project>
       <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
+      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
+      <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests.ruleset" />

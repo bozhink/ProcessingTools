@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;

@@ -216,6 +216,10 @@
       <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>
       <Name>Harvesters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
+      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
+      <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Layout.Processors\Layout.Processors.csproj">
       <Project>{FC880066-D413-4E16-9F46-23ACD5E30C2D}</Project>
       <Name>Layout.Processors</Name>

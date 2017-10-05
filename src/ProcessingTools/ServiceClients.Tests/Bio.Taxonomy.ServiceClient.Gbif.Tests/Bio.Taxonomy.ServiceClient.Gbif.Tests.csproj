@@ -86,6 +86,10 @@
       <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
+      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
+      <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Bio.Taxonomy.ServiceClient.Gbif.Tests.ruleset" />

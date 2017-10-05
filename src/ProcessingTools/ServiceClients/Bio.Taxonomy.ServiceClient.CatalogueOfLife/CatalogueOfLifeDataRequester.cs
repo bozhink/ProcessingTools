@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Contracts;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Models;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
@@ -43,13 +43,13 @@
         /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>CatalogueOfLifeApiServiceResponse of the CoL API response.</returns>
         /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
-        public async Task<CatalogueOfLifeApiServiceResponse> RequestDataAsync(string content)
+        public async Task<CatalogueOfLifeApiServiceResponseModel> RequestDataAsync(string content)
         {
             string requestName = content.UrlEncode();
             string url = $"/col/webservice?name={requestName}&response=full";
 
             var connector = this.connectorFactory.Create(CatalogueOfLifeBaseAddress);
-            var result = await connector.GetXmlObjectAsync<CatalogueOfLifeApiServiceResponse>(url).ConfigureAwait(false);
+            var result = await connector.GetXmlObjectAsync<CatalogueOfLifeApiServiceResponseModel>(url).ConfigureAwait(false);
             return result;
         }
     }

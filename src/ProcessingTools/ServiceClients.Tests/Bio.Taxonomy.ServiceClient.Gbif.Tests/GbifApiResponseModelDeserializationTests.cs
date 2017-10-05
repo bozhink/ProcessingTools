@@ -3,9 +3,8 @@
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Text;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
 
     [TestClass]
     public class GbifApiResponseModelDeserializationTests

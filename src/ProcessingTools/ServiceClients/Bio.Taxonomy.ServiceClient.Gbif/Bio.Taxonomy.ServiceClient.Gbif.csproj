@@ -38,16 +38,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IGbifApiV09DataRequester.cs" />
     <Compile Include="GbifApiV09DataRequester.cs" />
-    <Compile Include="Models\Alternative.cs" />
-    <Compile Include="Models\GbifApiV09ResponseModel.cs" />
-    <Compile Include="Models\Contracts\IGbifTaxon.cs" />
-    <Compile Include="Models\GbifApiV1ResponseModel.cs" />
-    <Compile Include="Models\GbifApiV1ResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
+      <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
+      <Name>ProcessingTools.Clients.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -55,6 +53,10 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
       <Name>ProcessingTools.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
+      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
+      <Name>ProcessingTools.Clients.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

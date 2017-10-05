@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Data.ServiceClient.Mendeley.Clients
 {
     using System;
-    using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.ServiceClient.Mendeley.Contracts;
-    using ProcessingTools.Data.ServiceClient.Mendeley.Models;
+    using ProcessingTools.Clients.Contracts.References;
+    using ProcessingTools.Clients.Models.References.Mendeley;
 
     public class MendeleyDataRequester : IMendeleyDataRequester
     {
@@ -20,7 +19,7 @@
         /// <remarks>
         /// See http://dev.mendeley.com/methods/#catalog-document-views
         /// </remarks>
-        public async Task<IEnumerable<CatalogResponseModel>> GetDocumentInformationByDoi(string doi)
+        public async Task<CatalogResponseModel[]> GetDocumentInformationByDoi(string doi)
         {
             using (HttpClient client = new HttpClient())
             {

@@ -38,9 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Models\Json\Author.cs" />
-    <Compile Include="Models\Json\NomenclaturalAct.cs" />
-    <Compile Include="Models\Json\ZooBankRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

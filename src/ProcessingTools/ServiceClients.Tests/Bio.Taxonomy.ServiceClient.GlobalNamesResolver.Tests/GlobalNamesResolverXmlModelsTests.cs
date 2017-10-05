@@ -2,10 +2,8 @@
 {
     using System.IO;
     using System.Xml.Serialization;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using Models.Xml;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml;
 
     [TestClass]
     public class GlobalNamesResolverXmlModelsTests

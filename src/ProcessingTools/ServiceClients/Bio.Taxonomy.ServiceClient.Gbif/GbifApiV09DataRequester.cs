@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Contracts;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Contracts;
 
     public class GbifApiV09DataRequester : IGbifApiV09DataRequester

@@ -6,7 +6,7 @@
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;

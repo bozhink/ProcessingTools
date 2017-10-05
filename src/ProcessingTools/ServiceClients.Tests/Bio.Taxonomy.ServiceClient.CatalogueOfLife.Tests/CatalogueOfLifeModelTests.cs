@@ -3,9 +3,8 @@
     using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
 
     [TestClass]
     public class CatalogueOfLifeModelTests
@@ -13,12 +12,12 @@
         [TestMethod]
         public void CoLModel_Test_Deserialization()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponse));
-            CatalogueOfLifeApiServiceResponse response = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponseModel));
+            CatalogueOfLifeApiServiceResponseModel response = null;
 
             using (var stream = new FileStream(@"DataFiles\Coleoptera-example-response.xml", FileMode.Open))
             {
-                response = serializer.Deserialize(stream) as CatalogueOfLifeApiServiceResponse;
+                response = serializer.Deserialize(stream) as CatalogueOfLifeApiServiceResponseModel;
             }
 
             const string ScientificName = "Coleoptera";

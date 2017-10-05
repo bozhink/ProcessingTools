@@ -4,8 +4,8 @@
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Contracts;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Models;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.PaleobiologyDatabase.Json;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
 

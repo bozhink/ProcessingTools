@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Contracts;
-    using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Models;
+    using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
 

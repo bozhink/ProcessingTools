@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.ZooBank.Models.Json;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Uri;
     using ProcessingTools.Contracts;
