@@ -5,7 +5,7 @@
 namespace ProcessingTools.Clients.Contracts.References
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Data.ServiceClient.Mendeley.Models;
+    using ProcessingTools.Clients.Models.References.Mendeley;
 
     /// <summary>
     /// Mendeley data requester.

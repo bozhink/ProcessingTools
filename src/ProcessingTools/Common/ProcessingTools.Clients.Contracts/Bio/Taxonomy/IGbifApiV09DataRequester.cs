@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Clients.Contracts.Bio.Taxonomy
 {
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif.Models;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Contracts;
 
     /// <summary>

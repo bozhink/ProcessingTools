@@ -24,4 +24,9 @@
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bio\MaterialsParser\" />
+    <Folder Include="Bio\Taxonomy\Aphia\" />
+    <Folder Include="Bio\Taxonomy\UBio\" />
+  </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Clients.Contracts.Bio.Taxonomy
 {
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Models;
+    using ProcessingTools.Clients.Models.Bio.Taxonomy.PaleobiologyDatabase.Json;
     using ProcessingTools.Contracts;
 
     /// <summary>
