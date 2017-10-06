@@ -70,12 +70,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ServiceClients\Data.ServiceClient.Mendeley\Data.ServiceClient.Mendeley.csproj">
-      <Project>{add44f9b-035e-4335-87a6-22794f33cff1}</Project>
-      <Name>Data.ServiceClient.Mendeley</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Data.ServiceClient.Mendeley.Tests.ruleset" />
     <None Include="DataFiles\10.1016--j.molcel.2009.09.013.json" />
     <None Include="DataFiles\10.1371--journal.pone.0092567.json" />

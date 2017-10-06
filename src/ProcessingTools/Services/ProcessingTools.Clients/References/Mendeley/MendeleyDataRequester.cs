@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.ServiceClient.Mendeley.Clients
+﻿// <copyright file="MendeleyDataRequester.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.References.Mendeley
 {
     using System;
     using System.Net.Http;
@@ -7,6 +11,9 @@
     using ProcessingTools.Clients.Contracts.References;
     using ProcessingTools.Clients.Models.References.Mendeley;
 
+    /// <summary>
+    /// Mendeley data requester.
+    /// </summary>
     public class MendeleyDataRequester : IMendeleyDataRequester
     {
         private const string MendeleyApiBaseAddress = "https://api.mendeley.com";
