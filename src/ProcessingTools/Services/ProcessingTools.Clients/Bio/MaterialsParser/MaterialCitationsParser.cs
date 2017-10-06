@@ -1,13 +1,20 @@
-﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients
+﻿// <copyright file="MaterialCitationsParser.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Bio.MaterialsParser
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
 
+    /// <summary>
+    /// Material citations parser.
+    /// </summary>
     public class MaterialCitationsParser : IMaterialCitationsParser
     {
         private const string BaseAddress = "http://plazi2.cs.umb.edu";
@@ -16,18 +23,28 @@
         private readonly INetConnectorFactory connectorFactory;
         private readonly Encoding encoding;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MaterialCitationsParser"/> class.
+        /// </summary>
+        /// <param name="connectorFactory">Factory for base clients.</param>
         public MaterialCitationsParser(INetConnectorFactory connectorFactory)
             : this(connectorFactory, Defaults.Encoding)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MaterialCitationsParser"/> class.
+        /// </summary>
+        /// <param name="connectorFactory">Factory for base clients.</param>
+        /// <param name="encoding">Text encoding.</param>
         public MaterialCitationsParser(INetConnectorFactory connectorFactory, Encoding encoding)
         {
             this.encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
-        public async Task<string> Invoke(string content)
+        /// <inheritdoc/>
+        public async Task<string> ParseAsync(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
             {

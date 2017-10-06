@@ -86,9 +86,9 @@
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
       <Name>ProcessingTools.Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
-      <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
-      <Name>Bio.ServiceClient.MaterialsParser</Name>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
+      <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>
+      <Name>ProcessingTools.Clients</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

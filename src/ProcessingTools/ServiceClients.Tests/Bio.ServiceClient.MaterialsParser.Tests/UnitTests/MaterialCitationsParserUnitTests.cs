@@ -5,7 +5,7 @@
     using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
+    using ProcessingTools.Clients.Bio.MaterialsParser;
     using ProcessingTools.Contracts;
 
     [TestClass]
@@ -97,7 +97,7 @@
             var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
-            parser.Invoke(null).Wait();
+            parser.ParseAsync(null).Wait();
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@
 
             try
             {
-                parser.Invoke(null).Wait();
+                parser.ParseAsync(null).Wait();
             }
             catch (AggregateException e)
             {
@@ -130,7 +130,7 @@
             var connectorMock = new Mock<INetConnectorFactory>();
             var parser = new MaterialCitationsParser(connectorMock.Object, Encoding.UTF8);
 
-            parser.Invoke(@"
+            parser.ParseAsync(@"
 
 ").Wait();
         }
@@ -144,7 +144,7 @@
 
             try
             {
-                parser.Invoke("  ").Wait();
+                parser.ParseAsync("  ").Wait();
             }
             catch (AggregateException e)
             {

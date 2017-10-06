@@ -5,7 +5,7 @@
     using System.Text.RegularExpressions;
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Clients;
+    using ProcessingTools.Clients.Bio.MaterialsParser;
     using ProcessingTools.Net;
 
     [TestClass]
@@ -30,7 +30,7 @@
 
             requestXml.LoadXml(ZeroTestContent);
 
-            string result = parser.Invoke(requestXml.OuterXml).Result;
+            string result = parser.ParseAsync(requestXml.OuterXml).Result;
 
             var responseXml = new XmlDocument
             {
@@ -65,7 +65,7 @@
 
             requestXml.Load(ConfigurationManager.AppSettings["RequestXmlWithTwoMaterialCitations"]);
 
-            string result = parser.Invoke(requestXml.OuterXml).Result;
+            string result = parser.ParseAsync(requestXml.OuterXml).Result;
 
             var responseXml = new XmlDocument
             {

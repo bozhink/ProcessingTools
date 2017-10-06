@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Factories.Bio;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Materials;
@@ -33,7 +33,7 @@
 
             var queryDocument = await this.GenerateQueryDocument(context.XmlDocument).ConfigureAwait(false);
 
-            string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml).ConfigureAwait(false);
+            string response = await this.materialCitationsParser.ParseAsync(queryDocument.OuterXml).ConfigureAwait(false);
 
             var responseDocument = this.GenerateResponseDocument(response);
             responseDocument.SelectNodes("//p[@id]")
