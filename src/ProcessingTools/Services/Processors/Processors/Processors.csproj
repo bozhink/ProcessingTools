@@ -292,10 +292,6 @@
       <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
       <Name>Bio.ServiceClient.MaterialsParser</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
-      <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</Project>
       <Name>Data.Miners</Name>

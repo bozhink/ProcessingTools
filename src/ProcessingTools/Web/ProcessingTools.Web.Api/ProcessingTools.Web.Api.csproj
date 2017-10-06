@@ -490,10 +490,6 @@
       <Project>{690afa00-9efe-4757-a7dc-8273ca3dd11b}</Project>
       <Name>Bio.Taxonomy.ServiceClient.PaleobiologyDatabase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
-      <Project>{47acd088-5daa-4c7b-b802-cf871ffd5fc1}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
       <Name>Bio.Environments.Services.Data</Name>

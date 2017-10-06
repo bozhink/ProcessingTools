@@ -204,10 +204,6 @@
       <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
-      <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
