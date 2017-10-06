@@ -12,7 +12,7 @@
         {
             this.Bind(b =>
             {
-                b.From(Bio.ServiceClient.ExtractHcmr.Assembly.Assembly.GetType().Assembly)
+                b.From(typeof(ProcessingTools.Clients.Bio.ExtractHcmr.ExtractHcmrDataRequester).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

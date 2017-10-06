@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
     using ProcessingTools.Data.Miners.Models.Bio.Environments;

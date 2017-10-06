@@ -1,16 +1,20 @@
-﻿namespace ProcessingTools.Bio.ServiceClient.ExtractHcmr
+﻿// <copyright file="ExtractHcmrDataRequester.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Bio.ExtractHcmr
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.ServiceClient.ExtractHcmr.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
 
     /// <summary>
     /// Request data from EXTRACT.
-    /// <see cref="https://extract.hcmr.gr/"/>
+    /// See https://extract.hcmr.gr/
     /// </summary>
     public class ExtractHcmrDataRequester : IExtractHcmrDataRequester
     {
@@ -18,11 +22,16 @@
         private const string GetEntitiesApiUrl = "GetEntities";
         private readonly INetConnectorFactory connectorFactory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtractHcmrDataRequester"/> class.
+        /// </summary>
+        /// <param name="connectorFactory">Factory for base clients.</param>
         public ExtractHcmrDataRequester(INetConnectorFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
+        /// <inheritdoc/>
         public async Task<ExtractHcmrResponseModel> RequestDataAsync(string content)
         {
             if (string.IsNullOrWhiteSpace(content))
