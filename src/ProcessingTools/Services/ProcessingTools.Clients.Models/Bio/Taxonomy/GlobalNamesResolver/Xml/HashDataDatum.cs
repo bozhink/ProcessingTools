@@ -15,7 +15,6 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     [XmlRoot(ElementName = "datum", Namespace = "", IsNullable = false)]
     public class HashDataDatum
     {
-
         /// <summary>
         /// Gets or sets supplied-name-string.
         /// </summary>

@@ -7,6 +7,9 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System;
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// Hash Parameters Best Match Only.
+    /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = "best-match-only", Namespace = "", IsNullable = false)]

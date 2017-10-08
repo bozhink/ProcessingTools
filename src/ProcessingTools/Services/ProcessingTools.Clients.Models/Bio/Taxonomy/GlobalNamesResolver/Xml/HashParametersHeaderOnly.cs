@@ -7,6 +7,9 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System;
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// Hash Parameters Header Only.
+    /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = "header-only", Namespace = "", IsNullable = false)]

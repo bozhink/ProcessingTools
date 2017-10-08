@@ -7,6 +7,9 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System;
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// Hash Parameters With Vernaculars.
+    /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = "with-vernaculars", Namespace = "", IsNullable = false)]

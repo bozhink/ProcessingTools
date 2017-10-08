@@ -7,6 +7,9 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System;
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// Hash Status.
+    /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = "status", Namespace = "", IsNullable = false)]
