@@ -27,7 +27,7 @@
         /// </summary>
         /// <param name="scientificName">Scientific name of the taxon which rank is searched.</param>
         /// <returns>XmlDocument of the CoL API response.</returns>
-        /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
+        /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&amp;response=full</example>
         public async Task<XmlDocument> RequestXmlFromCatalogueOfLife(string scientificName)
         {
             string url = $"col/webservice?name={scientificName}&response=full";
@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>CatalogueOfLifeApiServiceResponse of the CoL API response.</returns>
-        /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&response=full</example>
+        /// <example>http://www.catalogueoflife.org/col/webservice?name=Tara+spinosa&ramp;esponse=full</example>
         public async Task<CatalogueOfLifeApiServiceResponseModel> RequestDataAsync(string content)
         {
             string requestName = content.UrlEncode();
