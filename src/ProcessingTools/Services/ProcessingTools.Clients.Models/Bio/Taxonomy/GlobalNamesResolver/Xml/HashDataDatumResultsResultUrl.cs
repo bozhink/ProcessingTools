@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
+﻿// <copyright file="HashDataDatumResultsResultUrl.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
 {
     using System;
     using System.Xml.Serialization;
@@ -8,6 +12,9 @@
     [XmlRoot(ElementName = "url", Namespace = "", IsNullable = false)]
     public class HashDataDatumResultsResultUrl
     {
+        /// <summary>
+        /// Gets or sets text value.
+        /// </summary>
         [XmlText]
         public string Value { get; set; }
     }

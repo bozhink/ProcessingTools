@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
+﻿// <copyright file="HashDataDatumResultsResultGlobalId.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
 {
     using System;
     using System.Xml.Serialization;
@@ -9,6 +13,9 @@
     [XmlRoot(ElementName = "data-sources", Namespace = "", IsNullable = false)]
     public class HashDataSources
     {
+        /// <summary>
+        /// Gets or sets text value.
+        /// </summary>
         [XmlAttribute("type")]
         public string Type { get; set; }
     }
