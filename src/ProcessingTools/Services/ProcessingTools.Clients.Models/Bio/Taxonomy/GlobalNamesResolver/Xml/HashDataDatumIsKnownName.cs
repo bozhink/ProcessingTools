@@ -8,7 +8,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System.Xml.Serialization;
 
     /// <summary>
-    /// Hash data datum is known name.
+    /// Hash Data Datum Is Known Name.
     /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true)]

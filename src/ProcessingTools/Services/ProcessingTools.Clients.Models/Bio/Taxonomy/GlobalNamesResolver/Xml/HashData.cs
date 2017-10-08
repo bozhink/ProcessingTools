@@ -8,7 +8,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System.Xml.Serialization;
 
     /// <summary>
-    /// Hash data.
+    /// HashData.
     /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true)]
