@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Processors.Contracts.Models.Abbreviations;
     using ProcessingTools.Processors.Contracts.Processors.Abbreviations;

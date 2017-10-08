@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife;
+    using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;

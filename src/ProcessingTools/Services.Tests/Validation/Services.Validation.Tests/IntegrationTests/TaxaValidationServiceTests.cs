@@ -4,8 +4,8 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Data.Common.Redis;

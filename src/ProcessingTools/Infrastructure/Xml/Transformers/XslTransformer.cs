@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Xsl;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Xml.Contracts.Cache;
     using ProcessingTools.Xml.Contracts.Transformers;
 

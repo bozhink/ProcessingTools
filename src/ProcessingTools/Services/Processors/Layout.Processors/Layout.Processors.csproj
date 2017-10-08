@@ -86,6 +86,10 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+      <Project>{720d359f-49d1-4126-a79b-f63cce9780a0}</Project>
+      <Name>ProcessingTools.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
       <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
       <Name>ProcessingTools.Processors.Contracts</Name>

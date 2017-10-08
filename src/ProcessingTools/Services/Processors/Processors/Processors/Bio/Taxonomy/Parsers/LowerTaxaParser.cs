@@ -9,6 +9,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
     using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;

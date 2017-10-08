@@ -12,6 +12,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;

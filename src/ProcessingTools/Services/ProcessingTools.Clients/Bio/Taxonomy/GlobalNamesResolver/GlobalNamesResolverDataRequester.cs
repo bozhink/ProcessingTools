@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver
+﻿// <copyright file="GlobalNamesResolverDataRequester.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
 {
     using System;
     using System.Collections.Generic;
@@ -8,21 +12,29 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Global Names Resolver data requester.
+    /// </summary>
     public class GlobalNamesResolverDataRequester : IGlobalNamesResolverDataRequester
     {
         private const string BaseAddress = "http://resolver.globalnames.org";
         private const string ApiUrl = "name_resolvers.xml";
         private readonly INetConnectorFactory connectorFactory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GlobalNamesResolverDataRequester"/> class.
+        /// </summary>
+        /// <param name="connectorFactory">Net connector factory.</param>
         public GlobalNamesResolverDataRequester(INetConnectorFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
         }
 
+        /// <inheritdoc/>
         public async Task<XmlDocument> SearchWithGlobalNamesResolverGet(string[] scientificNames, int[] sourceId)
         {
             string searchString = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
@@ -33,6 +45,7 @@
             return response.ToXmlDocument();
         }
 
+        /// <inheritdoc/>
         public async Task<XmlDocument> SearchWithGlobalNamesResolverPost(string[] scientificNames, int[] sourceId)
         {
             string postData = this.BuildGlobalNamesResolverSearchString(scientificNames, sourceId);
@@ -43,6 +56,7 @@
             return response.ToXmlDocument();
         }
 
+        /// <inheritdoc/>
         public async Task<XmlDocument> SearchWithGlobalNamesResolverPostNewerRequestVersion(string[] scientificNames, int[] sourceId)
         {
             Dictionary<string, string> values = new Dictionary<string, string>

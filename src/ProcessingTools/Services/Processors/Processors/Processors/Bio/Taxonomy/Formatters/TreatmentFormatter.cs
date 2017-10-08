@@ -8,6 +8,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
 
     public class TreatmentFormatter : ITreatmentFormatter

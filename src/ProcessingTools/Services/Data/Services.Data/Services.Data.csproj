@@ -177,10 +177,6 @@
       <Project>{F364BD78-29DE-48BE-9098-B6AE0C468008}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.CatalogueOfLife\Bio.Taxonomy.ServiceClient.CatalogueOfLife.csproj">
-      <Project>{436A7881-3C88-4892-885D-29D487A42FA4}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.CatalogueOfLife</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
       <Project>{344310AE-C162-4159-AEC1-91821190546F}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>

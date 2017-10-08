@@ -7,8 +7,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Models.Floats;
     using ProcessingTools.Processors.Contracts.Processors.Floats;
     using ProcessingTools.Processors.Models.Floats;

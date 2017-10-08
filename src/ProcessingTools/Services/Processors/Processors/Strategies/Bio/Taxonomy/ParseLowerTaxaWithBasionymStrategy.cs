@@ -6,6 +6,7 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy;
 

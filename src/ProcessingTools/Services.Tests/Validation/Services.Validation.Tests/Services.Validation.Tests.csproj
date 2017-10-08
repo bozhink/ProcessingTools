@@ -119,9 +119,9 @@
       <Project>{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}</Project>
       <Name>ProcessingTools.Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.GlobalNamesResolver\Bio.Taxonomy.ServiceClient.GlobalNamesResolver.csproj">
-      <Project>{EF98BA2F-6469-4A5D-8B83-1636E98F3E48}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.GlobalNamesResolver</Name>
+    <ProjectReference Include="..\..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
+      <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>
+      <Name>ProcessingTools.Clients</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
       <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>

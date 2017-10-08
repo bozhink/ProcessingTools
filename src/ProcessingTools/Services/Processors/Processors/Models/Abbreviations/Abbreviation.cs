@@ -5,6 +5,7 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Models.Abbreviations;
 
     internal class Abbreviation : IAbbreviation

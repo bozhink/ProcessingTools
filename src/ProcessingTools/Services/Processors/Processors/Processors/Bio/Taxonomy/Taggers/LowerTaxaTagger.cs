@@ -11,6 +11,7 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Factories;
     using ProcessingTools.Layout.Processors.Contracts.Formatters;
 
