@@ -22,7 +22,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets text value.
+        /// Gets or sets a value indicating whether vernaculars should be returned.
         /// </summary>
         [XmlText]
         public bool Value { get; set; }

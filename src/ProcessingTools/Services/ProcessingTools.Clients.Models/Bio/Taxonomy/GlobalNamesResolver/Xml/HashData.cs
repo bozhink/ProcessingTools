@@ -8,14 +8,13 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System.Xml.Serialization;
 
     /// <summary>
-    /// HashData.
+    /// Hash Data.
     /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = "data", Namespace = "", IsNullable = false)]
     public class HashData
     {
-
         /// <summary>
         /// Gets or sets type.
         /// </summary>

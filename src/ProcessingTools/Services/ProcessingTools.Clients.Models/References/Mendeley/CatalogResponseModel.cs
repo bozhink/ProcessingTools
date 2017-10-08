@@ -1,6 +1,6 @@
 ﻿// <copyright file="CatalogResponseModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
-// </copyright>            
+// </copyright>
 
 namespace ProcessingTools.Clients.Models.References.Mendeley
 {

@@ -9,6 +9,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json
 
     /// <summary>
     /// GBIF API v0.9 response model.
+    /// </summary>
     [DataContract]
     public class GbifApiV09ResponseModel : Alternative
     {

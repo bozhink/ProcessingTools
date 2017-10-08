@@ -13,7 +13,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json
     public class GbifApiV1ResponseModel
     {
         /// <summary>
-        /// Gets or sets end of records.
+        /// Gets or sets a value indicating whether end of records is reached.
         /// </summary>
         [DataMember(Name = "endOfRecords")]
         public bool EndOfRecords { get; set; }

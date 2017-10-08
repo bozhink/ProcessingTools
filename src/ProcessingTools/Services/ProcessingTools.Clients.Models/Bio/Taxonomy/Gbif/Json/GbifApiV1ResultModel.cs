@@ -13,7 +13,6 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json
     [DataContract]
     public class GbifApiV1ResultModel
     {
-
         /// <summary>
         /// Gets or sets according to.
         /// </summary>
@@ -243,7 +242,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json
         public int SpeciesKey { get; set; }
 
         /// <summary>
-        /// Gets or sets synonym.
+        /// Gets or sets a value indicating whether name is synonym.
         /// </summary>
         [DataMember(Name = "synonym")]
         public bool Synonym { get; set; }

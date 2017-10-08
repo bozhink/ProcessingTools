@@ -37,7 +37,7 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json
         public string Rank { get; set; }
 
         /// <summary>
-        /// Gets or sets synonym.
+        /// Gets or sets a value indicating whether alternative is synonym.
         /// </summary>
         [DataMember(Name = "synonym")]
         public bool Synonym { get; set; }

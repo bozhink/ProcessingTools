@@ -7,10 +7,10 @@ namespace ProcessingTools.Clients.Models.Bio.Taxonomy.GlobalNamesResolver.Xml
     using System;
     using System.Xml.Serialization;
 
-    // TODO: <data-sources type="array" />
     /// <summary>
     /// Hash Parameters Data Sources.
     /// </summary>
+    // TODO: <data-sources type="array" />
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(ElementName = "data-sources", Namespace = "", IsNullable = false)]
