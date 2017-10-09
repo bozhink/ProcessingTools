@@ -97,10 +97,6 @@
       <Project>{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}</Project>
       <Name>ProcessingTools.Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
-      <Project>{344310AE-C162-4159-AEC1-91821190546F}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>

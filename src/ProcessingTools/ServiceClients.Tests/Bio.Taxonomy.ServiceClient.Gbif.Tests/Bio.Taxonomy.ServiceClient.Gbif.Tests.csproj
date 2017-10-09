@@ -82,13 +82,13 @@
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
       <Name>ProcessingTools.Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj">
-      <Project>{344310ae-c162-4159-aec1-91821190546f}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Gbif</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
+      <Project>{a45e61b1-8c2a-4dbc-bd97-6c88e295c93b}</Project>
+      <Name>ProcessingTools.Clients</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

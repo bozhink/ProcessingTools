@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loggers", "Infrastructure\L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.Aphia", "ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj", "{F364BD78-29DE-48BE-9098-B6AE0C468008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.Gbif", "ServiceClients\Bio.Taxonomy.ServiceClient.Gbif\Bio.Taxonomy.ServiceClient.Gbif.csproj", "{344310AE-C162-4159-AEC1-91821190546F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bio.Taxonomy.ServiceClient.PaleobiologyDatabase", "ServiceClients\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.csproj", "{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo", "Infrastructure\Geo\Geo.csproj", "{AEF34763-8DC4-4519-A8FC-F76D6C9C1006}"
@@ -353,14 +351,6 @@ Global
 		{F364BD78-29DE-48BE-9098-B6AE0C468008}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F364BD78-29DE-48BE-9098-B6AE0C468008}.Release|x64.ActiveCfg = Release|Any CPU
 		{F364BD78-29DE-48BE-9098-B6AE0C468008}.Release|x64.Build.0 = Release|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Debug|x64.Build.0 = Debug|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Release|x64.ActiveCfg = Release|Any CPU
-		{344310AE-C162-4159-AEC1-91821190546F}.Release|x64.Build.0 = Release|Any CPU
 		{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{690AFA00-9EFE-4757-A7DC-8273CA3DD11B}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1290,7 +1280,6 @@ Global
 		{337C1A6C-C0A7-4C44-938E-35D87757EF7B} = {2D346903-DBD6-46C9-A53B-A33E0C215BB2}
 		{B6E6489B-65DF-4E51-B0F2-86CD7FECA313} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{F364BD78-29DE-48BE-9098-B6AE0C468008} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
-		{344310AE-C162-4159-AEC1-91821190546F} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
 		{690AFA00-9EFE-4757-A7DC-8273CA3DD11B} = {8D3D2D75-57E3-4A4A-818A-4DB83CA58575}
 		{AEF34763-8DC4-4519-A8FC-F76D6C9C1006} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{5DC32A9E-85A1-4E73-AA80-6E1EFC4D838C} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
@@ -1429,7 +1418,7 @@ Global
 		{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal

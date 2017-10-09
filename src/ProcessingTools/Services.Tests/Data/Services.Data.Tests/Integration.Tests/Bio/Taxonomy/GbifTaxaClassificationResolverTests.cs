@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
+    using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
