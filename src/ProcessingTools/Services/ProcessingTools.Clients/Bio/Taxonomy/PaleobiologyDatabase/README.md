@@ -1,1 +1,2 @@
-﻿# Paleobiology Database
+﻿# Paleobiology Database (PBDB)
+<https://paleobiodb.org>

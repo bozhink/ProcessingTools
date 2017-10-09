@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.PaleobiologyDatabase
+﻿// <copyright file="PaleobiologyDatabaseDataRequester.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Bio.Taxonomy.PaleobiologyDatabase
 {
     using System;
     using System.Collections;
@@ -9,11 +13,18 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
 
+    /// <summary>
+    /// Paleobiology Database (PBDB) data requester.
+    /// </summary>
     public class PaleobiologyDatabaseDataRequester : IPaleobiologyDatabaseDataRequester
     {
         private const string PaleobiologyDatabaseBaseAddress = "https://paleobiodb.org";
         private readonly INetConnectorFactory connectorFactory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaleobiologyDatabaseDataRequester"/> class.
+        /// </summary>
+        /// <param name="connectorFactory">Net connector factory.</param>
         public PaleobiologyDatabaseDataRequester(INetConnectorFactory connectorFactory)
         {
             this.connectorFactory = connectorFactory ?? throw new ArgumentNullException(nameof(connectorFactory));
@@ -63,7 +74,7 @@
         /// </summary>
         /// <param name="content">Scientific name of the taxon which rank is searched.</param>
         /// <returns>PbdbAllParents object which provides information about the scientific name.</returns>
-        /// <example>https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&rel=all_parents</example>
+        /// <example>https://paleobiodb.org/data1.1/taxa/list.json?name=Dascillidae&amp;rel=all_parents</example>
         public async Task<PbdbAllParents> RequestDataAsync(string content)
         {
             string url = $"data1.1/taxa/list.json?name={content}&rel=all_parents";

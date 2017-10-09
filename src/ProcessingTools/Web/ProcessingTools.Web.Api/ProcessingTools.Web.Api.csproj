@@ -470,10 +470,6 @@
       <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase\Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.csproj">
-      <Project>{690afa00-9efe-4757-a7dc-8273ca3dd11b}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.PaleobiologyDatabase</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
       <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
       <Name>Bio.Environments.Services.Data</Name>
