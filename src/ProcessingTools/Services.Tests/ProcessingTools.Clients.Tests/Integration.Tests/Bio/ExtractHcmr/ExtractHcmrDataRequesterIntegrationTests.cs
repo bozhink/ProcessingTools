@@ -1,16 +1,26 @@
-﻿namespace ProcessingTools.Bio.ServiceClient.ExtractHcmr.Tests
+﻿// <copyright file="ExtractHcmrDataRequesterIntegrationTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.ExtractHcmr
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Clients.Bio.ExtractHcmr;
     using ProcessingTools.Net;
 
+    /// <summary>
+    /// <see cref="ExtractHcmrDataRequester"/> integration tests.
+    /// </summary>
     [TestClass]
-    public class ExtractHcmrDataRequesterTests
+    public class ExtractHcmrDataRequesterIntegrationTests
     {
+        /// <summary>
+        /// <see cref="ExtractHcmrDataRequester"/> request data with valid content should work.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
-        [Ignore]
+        [Ignore(message: "Net dependent integration test")] // Net dependent integration test
         public void ExtractHcmrDataRequester_RequestData_WithValidContent_ShouldWork()
         {
             const string Content = "Both samples were dominated by Zetaproteobacteria Fe oxidizers. This group was most abundant at Volcano 1, where sediments were richer in Fe and contained more crystalline forms of Fe oxides.";

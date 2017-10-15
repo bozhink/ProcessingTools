@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Bio.ServiceClient.ExtractHcmr.Tests
+﻿// <copyright file="ExtractHcmrModelsTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.ExtractHcmr
 {
     using System.IO;
     using System.Linq;
@@ -6,16 +10,22 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
 
+    /// <summary>
+    /// EXTRACT HCMR models tests.
+    /// </summary>
     [TestClass]
-    public class ExtractHcmrModelTests
+    public class ExtractHcmrModelsTests
     {
+        /// <summary>
+        /// <see cref="ExtractHcmrResponseModel"/> deserialization tests.
+        /// </summary>
         [TestMethod]
-        public void ExtractHcmrModel_Test_Deserialization()
+        public void ExtractHcmrResponseModel_Deserialization_Tests()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(ExtractHcmrResponseModel));
             ExtractHcmrResponseModel response = null;
 
-            using (var stream = new FileStream(@"DataFiles\sample.xml", FileMode.Open))
+            using (var stream = new FileStream(@"DataFiles\Bio\ExtractHcmr\sample.xml", FileMode.Open))
             {
                 response = serializer.Deserialize(stream) as ExtractHcmrResponseModel;
             }

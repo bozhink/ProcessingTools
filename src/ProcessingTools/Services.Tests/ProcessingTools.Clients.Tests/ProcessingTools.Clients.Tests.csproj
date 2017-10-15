@@ -66,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration.Tests\Bio\ExtractHcmr\ExtractHcmrDataRequesterIntegrationTests.cs" />
+    <Compile Include="Integration.Tests\Bio\ExtractHcmr\ExtractHcmrModelsTests.cs" />
     <Compile Include="Integration.Tests\Bio\MaterialsParser\MaterialCitationsParserIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\Aphia\AphiaNameServiceIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\CatalogueOfLife\CatalogueOfLifeModelsTests.cs" />
@@ -121,6 +123,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataFiles\Bio\ExtractHcmr\sample.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Bio\ExtractHcmr\sample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DataFiles\Bio\MaterialsParser\request-xml-with-two-material-citations.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
