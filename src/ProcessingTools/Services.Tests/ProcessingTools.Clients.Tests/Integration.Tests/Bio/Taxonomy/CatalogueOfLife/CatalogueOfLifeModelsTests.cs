@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife.Tests
+﻿// <copyright file="CatalogueOfLifeModelsTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.CatalogueOfLife
 {
     using System.IO;
     using System.Linq;
@@ -6,16 +10,22 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
 
+    /// <summary>
+    /// Catalogue of Life models tests.
+    /// </summary>
     [TestClass]
-    public class CatalogueOfLifeModelTests
+    public class CatalogueOfLifeModelsTests
     {
+        /// <summary>
+        /// Catalogue of Life models tests deserialization.
+        /// </summary>
         [TestMethod]
         public void CoLModel_Test_Deserialization()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(CatalogueOfLifeApiServiceResponseModel));
             CatalogueOfLifeApiServiceResponseModel response = null;
 
-            using (var stream = new FileStream(@"DataFiles\Coleoptera-example-response.xml", FileMode.Open))
+            using (var stream = new FileStream(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\Coleoptera-example-response.xml", FileMode.Open))
             {
                 response = serializer.Deserialize(stream) as CatalogueOfLifeApiServiceResponseModel;
             }
@@ -29,13 +39,16 @@
             Assert.AreEqual(ScientificName, firstMatchingResult.Name, "firstMatchingResult.Name should match.");
         }
 
+        /// <summary>
+        /// Classification <see cref="Taxon"/> model deserialization should work.
+        /// </summary>
         [TestMethod]
         public void ClassificationTaxonModel_Deserialization_ShouldWork()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Taxon));
             Taxon response = null;
 
-            using (var reader = new StreamReader(@"DataFiles\classification-taxon.xml"))
+            using (var reader = new StreamReader(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\classification-taxon.xml"))
             {
                 response = (Taxon)serializer.Deserialize(reader);
             }
@@ -44,13 +57,16 @@
             Assert.AreEqual("Insecta", response.Name, "Name should match.");
         }
 
+        /// <summary>
+        /// <see cref="Reference"/> model deserialization should work.
+        /// </summary>
         [TestMethod]
         public void ReferenceModel_Deserialization_ShouldWork()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Reference));
             Reference response = null;
 
-            using (var reader = new StreamReader(@"DataFiles\reference.xml"))
+            using (var reader = new StreamReader(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\reference.xml"))
             {
                 response = (Reference)serializer.Deserialize(reader);
             }
@@ -60,13 +76,16 @@
             Assert.AreEqual("1999", response.Year, "Year should match.");
         }
 
+        /// <summary>
+        /// <see cref="Result"/> model deserialization should work.
+        /// </summary>
         [TestMethod]
         public void ResultModel_Deserialization_ShouldWork()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Result));
             Result response = null;
 
-            using (var reader = new StreamReader(@"DataFiles\default-result.xml"))
+            using (var reader = new StreamReader(@"DataFiles\Bio\Taxonomy\CatalogueOfLife\default-result.xml"))
             {
                 response = (Result)serializer.Deserialize(reader);
             }

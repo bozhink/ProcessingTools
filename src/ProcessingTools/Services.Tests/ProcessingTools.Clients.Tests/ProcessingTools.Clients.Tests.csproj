@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Integration.Tests\Bio\Taxonomy\Aphia\AphiaNameServiceIntegrationTests.cs" />
+    <Compile Include="Integration.Tests\Bio\Taxonomy\CatalogueOfLife\CatalogueOfLifeModelsTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\Gbif\GbifApiResponseModelDeserializationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\Gbif\GbifApiV09DataRequesterIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\GlobalNamesResolver\GlobalNamesResolverXmlModelsTests.cs" />
@@ -117,6 +118,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataFiles\Bio\Taxonomy\CatalogueOfLife\classification-taxon.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Bio\Taxonomy\CatalogueOfLife\Coleoptera-example-response.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Bio\Taxonomy\CatalogueOfLife\default-result.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataFiles\Bio\Taxonomy\CatalogueOfLife\reference.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DataFiles\Bio\Taxonomy\GlobalNamesResolver\gnr-sample-1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
