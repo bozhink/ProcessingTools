@@ -61,15 +61,24 @@
       <HintPath>..\..\packages\System.Configuration.ConfigurationManager.4.4.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Integration.Tests\Bio\Taxonomy\Aphia\AphiaNameServiceIntegrationTests.cs" />
+    <Compile Include="Integration.Tests\Bio\Taxonomy\Gbif\GbifApiResponseModelDeserializationTests.cs" />
+    <Compile Include="Integration.Tests\Bio\Taxonomy\Gbif\GbifApiV09DataRequesterIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\GlobalNamesResolver\GlobalNamesResolverXmlModelsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataFiles\Bio\Taxonomy\Gbif\Coleoptera-gbif-response.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataFiles\Bio\Taxonomy\Gbif\gbif-v1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DataFiles\References\Mendeley\10.1016--j.molcel.2009.09.013.json" />
     <None Include="DataFiles\References\Mendeley\10.1371--journal.pone.0092567.json" />
     <None Include="packages.config" />
@@ -85,6 +94,10 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
       <Project>{790c5e30-e903-40ae-a45e-ffd4e950c54d}</Project>
       <Name>ProcessingTools.Clients.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
+      <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
@@ -114,6 +127,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
