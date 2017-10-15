@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Bio.ServiceClient.MaterialsParser.Tests.IntegrationTests
+﻿// <copyright file="MaterialCitationsParserIntegrationTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.MaterialsParser
 {
     using System.Configuration;
     using System.Text;
@@ -8,14 +12,20 @@
     using ProcessingTools.Clients.Bio.MaterialsParser;
     using ProcessingTools.Net;
 
+    /// <summary>
+    /// <see cref="MaterialCitationsParser"/> integration tests.
+    /// </summary>
     [TestClass]
     public class MaterialCitationsParserIntegrationTests
     {
         private readonly Regex matchWhitespace = new Regex(@"\s+");
 
+        /// <summary>
+        /// <see cref="MaterialCitationsParser"/> with valid zero test content should return valid response.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
-        [Ignore]
+        [Ignore(message: "Net dependent integration test")] // Net dependent integration test
         public void MaterialCitationsParser_WithValidZeroTestContent_ShouldReturnValidResponse()
         {
             var connector = new NetConnectorFactory();
@@ -50,9 +60,12 @@
                 "ZeroTestContent should be unchanged.");
         }
 
+        /// <summary>
+        /// <see cref="MaterialCitationsParser"/> with valid real test content with comment in it should return valid response.
+        /// </summary>
         [TestMethod]
         [Timeout(5000)]
-        [Ignore]
+        [Ignore(message: "Net dependent integration test")] // Net dependent integration test
         public void MaterialCitationsParser_WithValidRealTestContentWithCommentInIt_ShouldReturnValidResponse()
         {
             var connector = new NetConnectorFactory();

@@ -66,14 +66,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration.Tests\Bio\MaterialsParser\MaterialCitationsParserIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\Aphia\AphiaNameServiceIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\CatalogueOfLife\CatalogueOfLifeModelsTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\Gbif\GbifApiResponseModelDeserializationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\Gbif\GbifApiV09DataRequesterIntegrationTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\GlobalNamesResolver\GlobalNamesResolverXmlModelsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit.Tests\Bio\MaterialsParser\MaterialCitationsParserUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="DataFiles\Bio\Taxonomy\Gbif\Coleoptera-gbif-response.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -118,6 +121,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataFiles\Bio\MaterialsParser\request-xml-with-two-material-citations.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DataFiles\Bio\Taxonomy\CatalogueOfLife\classification-taxon.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
