@@ -1,11 +1,10 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
     using System;
-    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Constants;
-    using ProcessingTools.Imaging.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts.Imaging;
     using ProcessingTools.Web.Documents.Areas.Data.Models.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Extensions;
@@ -15,9 +14,9 @@
     {
         private const string IndexRequestModelValidationIncludeBindings = nameof(IndexRequestModel.PixelPerModule) + "," + nameof(IndexRequestModel.Content);
 
-        private readonly IQRCodeEncoderService encoder;
+        private readonly IQRCodeEncoder encoder;
 
-        public QRCodeGeneratorController(IQRCodeEncoderService encoder)
+        public QRCodeGeneratorController(IQRCodeEncoder encoder)
         {
             this.encoder = encoder ?? throw new ArgumentNullException(nameof(encoder));
         }
@@ -66,7 +65,6 @@
         [HttpGet]
         public ActionResult Help()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
