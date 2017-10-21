@@ -4,24 +4,24 @@
     using System.Drawing;
     using System.IO;
     using System.Threading.Tasks;
-    using ImageProcessor;
-    using ImageProcessor.Imaging;
-    using ImageProcessor.Imaging.Formats;
+    using global::ImageProcessor;
+    using global::ImageProcessor.Imaging;
+    using global::ImageProcessor.Imaging.Formats;
     using ProcessingTools.Constants;
-    using ProcessingTools.Imaging.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts.Imaging;
 
-    public class ImageProcessorService : IImageProcessorService
+    public class ImageProcessor : IImageProcessor
     {
-        public Task<byte[]> Resize(byte[] originalImage, int width)
+        public Task<byte[]> ResizeAsync(byte[] sourceImage, int width)
         {
-            if (originalImage == null)
+            if (sourceImage == null)
             {
-                throw new ArgumentNullException(nameof(originalImage));
+                throw new ArgumentNullException(nameof(sourceImage));
             }
 
             return Task.Run(() =>
             {
-                using (var originalImageStream = new MemoryStream(originalImage))
+                using (var originalImageStream = new MemoryStream(sourceImage))
                 {
                     using (var resultImage = new MemoryStream())
                     {
@@ -37,15 +37,15 @@
             });
         }
 
-        public Stream Resize(Stream originalImage, int width)
+        public Stream Resize(Stream sourceImage, int width)
         {
-            if (originalImage == null)
+            if (sourceImage == null)
             {
-                throw new ArgumentNullException(nameof(originalImage));
+                throw new ArgumentNullException(nameof(sourceImage));
             }
 
             var resultImage = new MemoryStream();
-            this.Resize(originalImage, width, resultImage);
+            this.Resize(sourceImage, width, resultImage);
             return resultImage;
         }
 
