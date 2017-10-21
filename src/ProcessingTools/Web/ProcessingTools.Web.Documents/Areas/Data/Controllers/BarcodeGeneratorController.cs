@@ -6,7 +6,7 @@
     using System.Web.Mvc;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Imaging.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts.Imaging;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BarcodeGenerator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.BarcodeGenerator;
     using ProcessingTools.Web.Documents.Extensions;
@@ -16,9 +16,9 @@
     {
         private const string IndexRequestModelValidationIncludeBindings = nameof(IndexRequestModel.Width) + "," + nameof(IndexRequestModel.Height) + "," + nameof(IndexRequestModel.Type) + "," + nameof(IndexRequestModel.Content);
 
-        private readonly IBarcodeEncoderService encoder;
+        private readonly IBarcodeEncoder encoder;
 
-        public BarcodeGeneratorController(IBarcodeEncoderService encoder)
+        public BarcodeGeneratorController(IBarcodeEncoder encoder)
         {
             if (encoder == null)
             {
@@ -56,7 +56,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    viewModel.Image = await this.encoder.EncodeBase64((BarcodeType)model.Type, model.Content, model.Width, model.Height).ConfigureAwait(false);
+                    viewModel.Image = await this.encoder.EncodeBase64Async((BarcodeType)model.Type, model.Content, model.Width, model.Height).ConfigureAwait(false);
                 }
                 else
                 {

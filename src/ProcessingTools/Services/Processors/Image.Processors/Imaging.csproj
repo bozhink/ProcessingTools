@@ -59,10 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Processors\IBarcodeEncoderService.cs" />
     <Compile Include="Contracts\Processors\IImageProcessorService.cs" />
     <Compile Include="Contracts\Processors\IQRCodeEncoderService.cs" />
-    <Compile Include="Processors\BarcodeEncoderService.cs" />
+    <Compile Include="Processors\BarcodeEncoder.cs" />
     <Compile Include="Processors\ImageProcessorService.cs" />
     <Compile Include="Processors\QRCodeEncoderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +82,10 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
