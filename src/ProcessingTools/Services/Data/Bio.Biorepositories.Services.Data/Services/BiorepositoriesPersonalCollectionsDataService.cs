@@ -9,6 +9,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
 
     public class BiorepositoriesPersonalCollectionsDataService : IBiorepositoriesPersonalCollectionsDataService
     {
@@ -19,7 +20,7 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public Task<Models.Collection[]> GetAsync(int skip, int take)
+        public Task<ICollection[]> GetAsync(int skip, int take)
         {
             if (skip < 0)
             {
@@ -46,7 +47,7 @@
                         Name = c.CollectionName,
                         Url = c.Url
                     })
-                    .ToArray();
+                    .ToArray<ICollection>();
 
                 repository.TryDispose();
 

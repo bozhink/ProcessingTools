@@ -20,10 +20,16 @@
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.1.3596" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
-    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Bio\Environments\" />
+    <Folder Include="Data\Documents\" />
+    <Folder Include="Data\Geo\" />
+    <Folder Include="Data\History\" />
+    <Folder Include="Data\Journals\" />
+    <Folder Include="Data\Resources\" />
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
 
     public class BiorepositoriesInstitutionsDataService : IBiorepositoriesInstitutionsDataService
     {
@@ -18,7 +19,7 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public Task<Models.Institution[]> GetAsync(int skip, int take)
+        public Task<IInstitution[]> GetAsync(int skip, int take)
         {
             if (skip < 0)
             {
@@ -45,7 +46,7 @@
                         Name = i.InstitutionName,
                         Url = i.Url
                     })
-                    .ToArray();
+                    .ToArray<IInstitution>();
 
                 repository.TryDispose();
 

@@ -75,6 +75,14 @@
       <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{dd9dc75e-323a-49d9-ac70-eeb34c50e8a6}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>
@@ -82,6 +90,10 @@
     <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
+      <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
+      <Name>ProcessingTools.Services.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

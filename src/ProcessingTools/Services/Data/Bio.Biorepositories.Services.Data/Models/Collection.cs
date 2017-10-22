@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Models
 {
-    public class Collection
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
+
+    public class Collection : ICollection
     {
         public string Code { get; set; }
 

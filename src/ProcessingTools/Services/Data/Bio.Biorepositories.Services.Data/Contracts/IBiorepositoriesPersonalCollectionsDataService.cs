@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Bio.Biorepositories.Services.Data.Contracts
 {
-    using Models;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
 
-    public interface IBiorepositoriesPersonalCollectionsDataService : IBiorepositoriesDataService<Collection>
+    public interface IBiorepositoriesPersonalCollectionsDataService : IBiorepositoriesDataService<ICollection>
     {
     }
 }
