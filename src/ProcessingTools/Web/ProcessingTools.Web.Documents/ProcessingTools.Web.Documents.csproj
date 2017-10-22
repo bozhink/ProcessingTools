@@ -714,10 +714,6 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
-      <Project>{0b476257-30bc-4e11-b1a5-ec3de4acf702}</Project>
-      <Name>Bio.Environments.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Bio.Services.Data\Bio.Services.Data.csproj">
       <Project>{f80d5e4c-dc41-48c6-99c1-43387b0d1baf}</Project>
       <Name>Bio.Services.Data</Name>

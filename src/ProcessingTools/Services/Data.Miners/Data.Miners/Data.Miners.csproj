@@ -124,10 +124,6 @@
       <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
       <Name>Strings</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Bio.Environments.Services.Data\Bio.Environments.Services.Data.csproj">
-      <Project>{0B476257-30BC-4E11-B1A5-EC3DE4ACF702}</Project>
-      <Name>Bio.Environments.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio.Services.Data\Bio.Services.Data.csproj">
       <Project>{F80D5E4C-DC41-48C6-99C1-43387B0D1BAF}</Project>
       <Name>Bio.Services.Data</Name>
