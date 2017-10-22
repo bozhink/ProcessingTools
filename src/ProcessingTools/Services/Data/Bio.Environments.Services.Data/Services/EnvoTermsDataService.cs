@@ -5,11 +5,11 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Bio.Environments.Data.Entity.Models;
-    using ProcessingTools.Bio.Environments.Services.Data.Contracts;
-    using ProcessingTools.Bio.Environments.Services.Data.Models;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Contracts.Data.Bio.Environments;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Environments;
+    using ProcessingTools.Services.Models.Data.Bio.Environments;
 
     public class EnvoTermsDataService : IEnvoTermsDataService
     {
@@ -20,24 +20,26 @@
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public async Task<IQueryable<EnvoTermServiceModel>> All()
+        public Task<IEnvoTerm[]> AllAsync()
         {
-            var result = await this.repository.Query
-                .Where(n => !n.Content.Contains("ENVO"))
-                .OrderByDescending(n => n.Content.Length)
-                .Select(n => new EnvoTermServiceModel
-                {
-                    EntityId = n.EnvoEntityId,
-                    Content = n.Content,
-                    EnvoId = n.EnvoEntity.EnvoId
-                })
-                .ToListAsync()
-                .ConfigureAwait(false);
+            return Task.Run(() =>
+            {
+                var data = this.repository.Query
+                    .Where(n => !n.Content.Contains("ENVO"))
+                    .OrderByDescending(n => n.Content.Length)
+                    .Select(n => new EnvoTerm
+                    {
+                        EntityId = n.EnvoEntityId,
+                        Content = n.Content,
+                        EnvoId = n.EnvoEntity.EnvoId
+                    })
+                    .ToArray<IEnvoTerm>();
 
-            return result.AsQueryable();
+                return data;
+            });
         }
 
-        public async Task<IQueryable<EnvoTermServiceModel>> Get(int skip, int take)
+        public Task<IEnvoTerm[]> GetAsync(int skip, int take)
         {
             if (skip < 0)
             {
@@ -49,21 +51,23 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = await this.repository.Query
-                .Where(n => !n.Content.Contains("ENVO"))
-                .OrderByDescending(n => n.Content.Length)
-                .Skip(skip)
-                .Take(take)
-                .Select(n => new EnvoTermServiceModel
-                {
-                    EntityId = n.EnvoEntityId,
-                    Content = n.Content,
-                    EnvoId = n.EnvoEntity.EnvoId
-                })
-                .ToListAsync()
-                .ConfigureAwait(false);
+            return Task.Run(() =>
+            {
+                var data = this.repository.Query
+                    .Where(n => !n.Content.Contains("ENVO"))
+                    .OrderByDescending(n => n.Content.Length)
+                    .Skip(skip)
+                    .Take(take)
+                    .Select(n => new EnvoTerm
+                    {
+                        EntityId = n.EnvoEntityId,
+                        Content = n.Content,
+                        EnvoId = n.EnvoEntity.EnvoId
+                    })
+                    .ToArray<IEnvoTerm>();
 
-            return result.AsQueryable();
+                return data;
+            });
         }
     }
 }

@@ -5,10 +5,10 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using AutoMapper;
-    using ProcessingTools.Bio.Environments.Services.Data.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Bio;
+    using ProcessingTools.Services.Contracts.Data.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.EnvoTerms;
 
     public class EnvoTermsController : ApiController
@@ -34,7 +34,7 @@
         {
             try
             {
-                var result = await this.service.Get(skip, take).ConfigureAwait(false);
+                var result = await this.service.GetAsync(skip, take).ConfigureAwait(false);
                 if (result == null)
                 {
                     return this.NotFound();

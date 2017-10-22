@@ -1,13 +1,11 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Bio.Environments
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Environments.Services.Data.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
-    using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
-    using ProcessingTools.Data.Miners.Models.Bio.Environments;
+    using ProcessingTools.Services.Contracts.Data.Bio.Environments;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Environments;
 
     public class EnvoTermsDataMiner : IEnvoTermsDataMiner
     {
@@ -25,18 +23,10 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            string text = context.ToLowerInvariant();
+            string text = context.ToUpperInvariant();
 
-            var query = (await this.service.All().ConfigureAwait(false))
-                .Select(t => new EnvoTerm
-                {
-                    EntityId = t.EntityId,
-                    EnvoId = t.EnvoId,
-                    Content = t.Content
-                });
-            var data = query.ToList();
-            var result = new HashSet<EnvoTerm>(data.Where(t => text.Contains(t.Content.ToLowerInvariant())));
-            return result.ToArray();
+            var data = await this.service.AllAsync().ConfigureAwait(false);
+            return data.Where(t => text.Contains(t.Content.ToUpperInvariant())).ToArray();
         }
     }
 }

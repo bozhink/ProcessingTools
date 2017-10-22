@@ -46,9 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IEnvoTermsDataService.cs" />
     <Compile Include="Services\EnvoTermsDataService.cs" />
-    <Compile Include="Models\EnvoTermServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +73,14 @@
       <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{dd9dc75e-323a-49d9-ac70-eeb34c50e8a6}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Bio\Bio.Environments.Data.Entity\Bio.Environments.Data.Entity.csproj">
       <Project>{ee9f14f1-26a0-4885-9ed4-daff6d9275a7}</Project>
       <Name>Bio.Environments.Data.Entity</Name>
@@ -86,6 +92,10 @@
     <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
+      <Project>{11702307-F670-4A55-B936-3E468604A584}</Project>
+      <Name>ProcessingTools.Services.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
