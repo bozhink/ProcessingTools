@@ -12,6 +12,7 @@
     using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
 
     public class InstitutionalCodesTagger : IInstitutionalCodesTagger
     {
@@ -52,13 +53,13 @@
 
         private async Task TagInstitutionalCodes(
             IDocument document,
-            IEnumerable<IBiorepositoriesInstitution> data)
+            IEnumerable<IInstitution> data)
         {
             var institutionalCodes = data.Select(i => new BiorepositoriesInstitutionalCodeSerializableModel
             {
-                Description = i.NameOfInstitution,
+                Description = i.Name,
                 Url = i.Url,
-                Value = i.InstitutionalCode
+                Value = i.Code
             });
 
             var settings = new ContentTaggerSettings
@@ -72,12 +73,12 @@
 
         private async Task TagInstitutions(
             IDocument document,
-            IEnumerable<IBiorepositoriesInstitution> data)
+            IEnumerable<IInstitution> data)
         {
             var institutions = data.Select(i => new BiorepositoriesInstitutionSerializableModel
             {
                 Url = i.Url,
-                Value = i.NameOfInstitution
+                Value = i.Name
             });
 
             var settings = new ContentTaggerSettings

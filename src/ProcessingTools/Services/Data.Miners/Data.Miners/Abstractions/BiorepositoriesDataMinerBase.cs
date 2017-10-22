@@ -7,11 +7,10 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Services.Contracts.Data.Bio.Biorepositories;
 
-    public abstract class BiorepositoriesDataMinerBase<T, S>
-        where S : class
+    public abstract class BiorepositoriesDataMinerBase<T>
         where T : class
     {
-        protected async Task GetMatches(IBiorepositoriesDataService<S> service, ICollection<T> matches, Func<S, bool> filter, Func<S, T> projection)
+        protected async Task GetMatches(IBiorepositoriesDataService<T> service, ICollection<T> matches, Func<T, bool> filter)
         {
             int n = PaginationConstants.MaximalItemsPerPageAllowed;
             for (int i = 0; ; i += n)
@@ -23,11 +22,7 @@
                     break;
                 }
 
-                data
-                    .Where(filter)
-                    .Select(projection)
-                    .ToList()
-                    .ForEach(m => matches.Add(m));
+                data.Where(filter).ToList().ForEach(m => matches.Add(m));
             }
         }
     }

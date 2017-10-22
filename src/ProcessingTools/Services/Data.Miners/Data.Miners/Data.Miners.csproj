@@ -60,8 +60,6 @@
     <Compile Include="Contracts\Miners\Quantities\IQuantitiesDataMiner.cs" />
     <Compile Include="Contracts\Models\Bio\Environments\IEnvoTerm.cs" />
     <Compile Include="Contracts\Models\Bio\Environments\IExtractHcmrEnvoTerm.cs" />
-    <Compile Include="Contracts\Models\Bio\IBiorepositoriesCollection.cs" />
-    <Compile Include="Contracts\Models\Bio\IBiorepositoriesInstitution.cs" />
     <Compile Include="Contracts\Models\Bio\SpecimenCodes\ISpecimenCode.cs" />
     <Compile Include="Contracts\Models\ExternalLinks\IExternalLink.cs" />
     <Compile Include="Generics\SimpleServiceStringDataMiner.cs" />
@@ -85,8 +83,6 @@
     <Compile Include="Miners\Institutions\InstitutionsDataMiner.cs" />
     <Compile Include="Miners\Products\ProductsDataMiner.cs" />
     <Compile Include="Miners\Quantities\QuantitiesDataMiner.cs" />
-    <Compile Include="Models\Bio\BiorepositoriesCollection.cs" />
-    <Compile Include="Models\Bio\BiorepositoriesInstitution.cs" />
     <Compile Include="Models\Bio\Environments\EnvoTerm.cs" />
     <Compile Include="Models\Bio\Environments\ExtractHcmrEnvoTerm.cs" />
     <Compile Include="Models\Bio\SpecimenCodes\SpecimenCodeResponseModel.cs" />

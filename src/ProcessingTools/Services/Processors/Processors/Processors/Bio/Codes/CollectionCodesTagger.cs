@@ -6,12 +6,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Data.Miners.Contracts.Models.Bio;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
 
     public class CollectionCodesTagger : ICollectionCodesTagger
     {
@@ -41,8 +41,7 @@
             }
 
             var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
-                .ToArray();
+            var data = await this.miner.MineAsync(textContent).ConfigureAwait(false);
 
             await this.TagCollectionCodes(context, data).ConfigureAwait(false);
             await this.TagCollections(context, data).ConfigureAwait(false);
@@ -52,13 +51,13 @@
 
         private async Task TagCollectionCodes(
             IDocument document,
-            IEnumerable<IBiorepositoriesCollection> data)
+            IEnumerable<ICollection> data)
         {
             var collectionCodes = data.Select(c => new BiorepositoriesCollectionCodeSerializableModel
             {
                 Url = c.Url,
-                Value = c.CollectionCode,
-                XLinkTitle = c.CollectionName
+                Value = c.Code,
+                XLinkTitle = c.Name
             });
 
             var settings = new ContentTaggerSettings
@@ -72,12 +71,12 @@
 
         private async Task TagCollections(
             IDocument document,
-            IEnumerable<IBiorepositoriesCollection> data)
+            IEnumerable<ICollection> data)
         {
             var collections = data.Select(c => new BiorepositoriesCollectionSerializableModel
             {
                 Url = c.Url,
-                Value = c.CollectionName
+                Value = c.Name
             });
 
             var settings = new ContentTaggerSettings
