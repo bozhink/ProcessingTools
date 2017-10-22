@@ -95,6 +95,9 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Models\Meta\JournalMetaDataContract.cs" />
+    <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionalCollectionsDataService.cs" />
+    <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionsDataService.cs" />
+    <Compile Include="Services\Bio\Biorepositories\BiorepositoriesPersonalCollectionsDataService.cs" />
     <Compile Include="Services\Bio\Taxonomy\AboveGenusTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaClassificationResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaRankResolver.cs" />
@@ -161,6 +164,14 @@
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{dd9dc75e-323a-49d9-ac70-eeb34c50e8a6}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
+      <Project>{8039FB59-71F9-4D99-B2D2-FD0BDEECE3C2}</Project>
+      <Name>Bio.Biorepositories.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
@@ -180,6 +191,10 @@
     <ProjectReference Include="..\..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
+      <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
+      <Name>ProcessingTools.Services.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Services.csproj">
       <Project>{4b5a7dc2-bdcb-4602-8265-b02ef9b48d16}</Project>

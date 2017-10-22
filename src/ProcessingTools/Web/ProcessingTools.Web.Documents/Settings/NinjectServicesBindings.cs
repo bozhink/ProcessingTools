@@ -12,10 +12,6 @@
         {
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Bio.Biorepositories.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-
                 b.From(ProcessingTools.Bio.Environments.Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
