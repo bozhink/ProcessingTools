@@ -18,7 +18,7 @@
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
-        public async Task<IEnumerable<IExtractHcmrEnvoTerm>> MineAsync(string context)
+        public async Task<IExtractHcmrEnvoTerm[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

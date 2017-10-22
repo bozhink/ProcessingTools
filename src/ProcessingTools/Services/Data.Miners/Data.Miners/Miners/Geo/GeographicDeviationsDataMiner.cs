@@ -7,7 +7,7 @@
 namespace ProcessingTools.Data.Miners.Miners.Geo
 {
     using System;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
@@ -17,7 +17,7 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
-        public async Task<IEnumerable<string>> MineAsync(string context)
+        public async Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -26,10 +26,8 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
 
             const string Pattern = DistancePattern + @"\W{0,4}(?:[NSEW][NSEW\s\.-]{0,5}(?!\w)|(?i)(?:east|west|south|notrh)+)";
 
-            var items = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
-            var result = new HashSet<string>(items);
-
-            return result;
+            var data = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
+            return data.Distinct().ToArray();
         }
     }
 }

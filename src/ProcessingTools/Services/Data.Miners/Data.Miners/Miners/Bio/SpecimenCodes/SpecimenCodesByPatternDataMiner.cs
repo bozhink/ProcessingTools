@@ -48,7 +48,7 @@
             };
         }
 
-        public async Task<IEnumerable<ISpecimenCode>> MineAsync(string context)
+        public async Task<ISpecimenCode[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -63,7 +63,7 @@
                         ContentType = p.Value
                     }))
                 .Distinct()
-                .ToListAsync()
+                .ToArrayAsync()
                 .ConfigureAwait(false);
 
             return data;

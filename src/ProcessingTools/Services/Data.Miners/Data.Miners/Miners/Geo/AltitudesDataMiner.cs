@@ -20,7 +20,7 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
-        public async Task<IEnumerable<string>> MineAsync(string context)
+        public async Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -34,9 +34,7 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
             };
 
             var data = await this.ExtractData(context, patterns).ToListAsync().ConfigureAwait(false);
-
-            var result = new HashSet<string>(data);
-            return result;
+            return data.Distinct().ToArray();
         }
 
         private IEnumerable<string> ExtractData(string content, IEnumerable<string> patterns)

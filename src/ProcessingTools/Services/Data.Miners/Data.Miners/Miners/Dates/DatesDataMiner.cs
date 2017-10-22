@@ -2,10 +2,11 @@
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts.Miners.Dates;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Dates;
 
     public class DatesDataMiner : IDatesDataMiner
     {
@@ -22,7 +23,7 @@
 
         private const string MonthArabicSubpattern = @"(?<!\d)(?:0?[1-9]|1[0-2])(?!\d)";
 
-        public async Task<IEnumerable<string>> MineAsync(string context)
+        public async Task<string[]> MineAsync(string context)
         {
             var patterns = new string[]
             {
@@ -68,7 +69,7 @@
             return result;
         }
 
-        private async Task<IEnumerable<string>> GetMatches(string content, params string[] patterns)
+        private async Task<string[]> GetMatches(string content, params string[] patterns)
         {
             var matches = new ConcurrentQueue<string>();
 
@@ -86,8 +87,7 @@
 
             await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
 
-            var result = new HashSet<string>(matches);
-            return result;
+            return matches.Distinct().ToArray();
         }
     }
 }

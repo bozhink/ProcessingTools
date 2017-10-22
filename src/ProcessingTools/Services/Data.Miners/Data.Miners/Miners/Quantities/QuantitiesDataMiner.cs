@@ -21,7 +21,7 @@
 namespace ProcessingTools.Data.Miners.Miners.Quantities
 {
     using System;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
@@ -29,7 +29,7 @@ namespace ProcessingTools.Data.Miners.Miners.Quantities
 
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
-        public async Task<IEnumerable<string>> MineAsync(string context)
+        public async Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -38,10 +38,8 @@ namespace ProcessingTools.Data.Miners.Miners.Quantities
 
             const string Pattern = @"(?:(?:[\(\)\[\]\{\}–—−‒-]\s*)??\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?(?:[kdcmµnp][gmMlLVA]|[kdcmµ]mol|meters?|[º°˚]\s*[FC]|[M]?bp|ppt|fe*t|m|mi(?:le)|min(?:ute))\b";
 
-            var items = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
-            var result = new HashSet<string>(items);
-
-            return result;
+            var data = await context.GetMatchesAsync(new Regex(Pattern)).ConfigureAwait(false);
+            return data.Distinct().ToArray();
         }
     }
 }

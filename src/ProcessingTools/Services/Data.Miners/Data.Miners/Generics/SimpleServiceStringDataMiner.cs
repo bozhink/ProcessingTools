@@ -25,7 +25,7 @@
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task<IEnumerable<string>> MineAsync(string context)
+        public async Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -55,7 +55,7 @@
             }
 
             var result = new HashSet<string>(matches);
-            return result;
+            return result.ToArray();
         }
     }
 }

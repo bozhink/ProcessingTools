@@ -23,7 +23,7 @@
             this.personalCollectionsDataService = personalCollectionsDataService ?? throw new ArgumentNullException(nameof(personalCollectionsDataService));
         }
 
-        public async Task<IEnumerable<ICollection>> MineAsync(string context)
+        public async Task<ICollection[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {

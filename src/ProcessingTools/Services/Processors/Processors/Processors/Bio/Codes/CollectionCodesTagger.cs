@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Processors.Bio.Codes
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
@@ -49,9 +48,7 @@
             return true;
         }
 
-        private async Task TagCollectionCodes(
-            IDocument document,
-            IEnumerable<ICollection> data)
+        private async Task TagCollectionCodes(IDocument document, ICollection[] data)
         {
             var collectionCodes = data.Select(c => new BiorepositoriesCollectionCodeSerializableModel
             {
@@ -69,9 +66,7 @@
             await this.collectionCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings).ConfigureAwait(false);
         }
 
-        private async Task TagCollections(
-            IDocument document,
-            IEnumerable<ICollection> data)
+        private async Task TagCollections(IDocument document, ICollection[] data)
         {
             var collections = data.Select(c => new BiorepositoriesCollectionSerializableModel
             {

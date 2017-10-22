@@ -15,7 +15,7 @@
 namespace ProcessingTools.Data.Miners.Miners.Bio
 {
     using System;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
@@ -26,7 +26,7 @@ namespace ProcessingTools.Data.Miners.Miners.Bio
         private const string RangeOfItemsSubPattern = @"(?:\d+(?:\s*[–—−‒-]?\s*))+";
         private const string Pattern = @"((?i)" + RangeOfItemsSubPattern + @"[^\w<>\(\)\[\]]{0,5}(?:(?:[♀♂]|[fmij]\b|\bexx?\b\.?|\bspp\b\.?|\bmales?\b|\bfemales?\b|\bjuveniles?\b|\blarvae?\b|\badults?\b|(?:\bdry\b\s*|\bwet\b\s*)?\bspecimens?\b|\bspec\b\.?|\bsex undetermined\b|\bunsexed\b(?:\s+specimens?\b)?)\s*?)+)";
 
-        public async Task<IEnumerable<string>> MineAsync(string context)
+        public async Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -34,8 +34,8 @@ namespace ProcessingTools.Data.Miners.Miners.Bio
             }
 
             Regex matchSpecimenCount = new Regex(Pattern);
-            var result = new HashSet<string>(await context.GetMatchesAsync(matchSpecimenCount).ConfigureAwait(false));
-            return result;
+            var data = await context.GetMatchesAsync(matchSpecimenCount).ConfigureAwait(false);
+            return data.Distinct().ToArray();
         }
     }
 }

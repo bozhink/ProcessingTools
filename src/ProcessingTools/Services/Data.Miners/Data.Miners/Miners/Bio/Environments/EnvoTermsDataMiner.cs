@@ -18,7 +18,7 @@
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task<IEnumerable<IEnvoTerm>> MineAsync(string context)
+        public async Task<IEnvoTerm[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -36,7 +36,7 @@
                 });
             var data = query.ToList();
             var result = new HashSet<EnvoTerm>(data.Where(t => text.Contains(t.Content.ToLowerInvariant())));
-            return result;
+            return result.ToArray();
         }
     }
 }

@@ -51,9 +51,7 @@
             return true;
         }
 
-        private async Task TagInstitutionalCodes(
-            IDocument document,
-            IEnumerable<IInstitution> data)
+        private async Task TagInstitutionalCodes(IDocument document, IInstitution[] data)
         {
             var institutionalCodes = data.Select(i => new BiorepositoriesInstitutionalCodeSerializableModel
             {
@@ -71,9 +69,7 @@
             await this.institutionalCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings).ConfigureAwait(false);
         }
 
-        private async Task TagInstitutions(
-            IDocument document,
-            IEnumerable<IInstitution> data)
+        private async Task TagInstitutions(IDocument document, IInstitution[] data)
         {
             var institutions = data.Select(i => new BiorepositoriesInstitutionSerializableModel
             {
