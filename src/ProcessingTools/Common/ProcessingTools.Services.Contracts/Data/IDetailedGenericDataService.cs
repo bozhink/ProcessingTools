@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Services.Data
+namespace ProcessingTools.Services.Contracts.Data
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace ProcessingTools.Contracts.Services.Data
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
 
-    public interface IDetailedGenericDataService<TModel, TDetailedModel> : IGenericDataService<TModel>
+    public interface IDetailedGenericDataService<TModel, TDetailedModel> : IDataService<TModel>
         where TModel : IServiceModel
         where TDetailedModel : TModel, IDetailedModel
     {

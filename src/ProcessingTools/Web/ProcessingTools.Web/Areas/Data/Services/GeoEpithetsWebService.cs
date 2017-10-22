@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Services.Contracts.Data.Geo;
     using ProcessingTools.Web.Areas.Data.Controllers;
     using ProcessingTools.Web.Contracts.Services.Geo;
     using ProcessingTools.Web.Models.Geo.GeoEpithets;

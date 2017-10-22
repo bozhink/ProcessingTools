@@ -99,7 +99,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
+            this.Bind<ProcessingTools.Services.Contracts.Data.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()

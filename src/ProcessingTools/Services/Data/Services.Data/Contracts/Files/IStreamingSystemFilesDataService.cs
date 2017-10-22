@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Services.Data.Contracts.Files
 {
-    using ProcessingTools.Contracts.Services.Data.Files;
+    using ProcessingTools.Services.Contracts.Data.Files;
 
     public interface IStreamingSystemFilesDataService : IStreamingFilesDataService
     {

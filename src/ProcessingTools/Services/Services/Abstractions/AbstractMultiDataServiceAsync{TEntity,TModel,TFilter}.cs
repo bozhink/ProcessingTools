@@ -8,11 +8,11 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts.Data;
 
     public abstract class AbstractMultiDataServiceAsync<TEntity, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>, IDisposable
         where TFilter : IFilter

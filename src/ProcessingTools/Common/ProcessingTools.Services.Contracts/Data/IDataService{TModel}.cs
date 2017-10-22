@@ -1,8 +1,8 @@
-﻿// <copyright file="IGenericDataService.cs" company="ProcessingTools">
+﻿// <copyright file="IDataService{TModel}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Services.Data
+namespace ProcessingTools.Services.Contracts.Data
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,11 @@ namespace ProcessingTools.Contracts.Services.Data
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
 
-    public interface IGenericDataService<TModel>
+    /// <summary>
+    /// Generic data service.
+    /// </summary>
+    /// <typeparam name="TModel">Type of the service model.</typeparam>
+    public interface IDataService<TModel>
         where TModel : IServiceModel
     {
         Task<object> AddAsync(object userId, TModel model);

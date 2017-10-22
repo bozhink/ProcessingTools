@@ -7,9 +7,9 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Contracts.Services.Data.Files;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Services.Contracts.Data.Files;
     using ProcessingTools.Web.Documents.Areas.Files.Models;
 
     [Authorize]
@@ -26,21 +26,18 @@
         [HttpGet]
         public ActionResult Index()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
         [HttpGet]
         public ActionResult UploadSingleFile()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
         [HttpGet]
         public ActionResult UploadMultipleFiles()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 

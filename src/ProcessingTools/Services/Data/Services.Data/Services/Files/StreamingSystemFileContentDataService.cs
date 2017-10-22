@@ -42,7 +42,7 @@
             return stream;
         }
 
-        public Task<object> Write(object id, StreamReader streamReader)
+        public Task<object> WriteAsync(object id, StreamReader streamReader)
         {
             if (id == null)
             {
@@ -54,10 +54,10 @@
                 throw new ArgumentNullException(nameof(streamReader));
             }
 
-            return this.Write(id, streamReader.BaseStream);
+            return this.WriteAsync(id, streamReader.BaseStream);
         }
 
-        public async Task<object> Write(object id, Stream stream)
+        public async Task<object> WriteAsync(object id, Stream stream)
         {
             if (id == null)
             {

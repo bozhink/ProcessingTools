@@ -2,10 +2,10 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts.Data;
 
     public abstract class AbstractGeoDataService<TRepository, TModel, TFilter> : IDataServiceAsync<TModel, TFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>
