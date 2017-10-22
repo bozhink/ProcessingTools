@@ -4,29 +4,28 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Constants;
+    using ProcessingTools.Services.Contracts.Data.Bio.Biorepositories;
 
-    public abstract class BiorepositoriesDataMinerBase<TModel, TServiceModel>
-        where TServiceModel : class
-        where TModel : class
+    public abstract class BiorepositoriesDataMinerBase<T, S>
+        where S : class
+        where T : class
     {
-        private const int NumberOfItemsToTake = PaginationConstants.MaximalItemsPerPageAllowed;
-
-        protected abstract Func<TServiceModel, TModel> Project { get; }
-
-        protected async Task GetMatches(IBiorepositoriesDataService<TServiceModel> service, ICollection<TModel> matches, Func<TServiceModel, bool> filter)
+        protected async Task GetMatches(IBiorepositoriesDataService<S> service, ICollection<T> matches, Func<S, bool> filter, Func<S, T> projection)
         {
-            for (int i = 0; ; i += NumberOfItemsToTake)
+            int n = PaginationConstants.MaximalItemsPerPageAllowed;
+            for (int i = 0; ; i += n)
             {
-                var items = (await service.Get(i, NumberOfItemsToTake).ConfigureAwait(false)).ToList();
+                var data = await service.GetAsync(i, n).ConfigureAwait(false);
 
-                if (items.Count < 1)
+                if (data.Length < 1)
                 {
                     break;
                 }
 
-                items.Where(filter).Select(this.Project)
+                data
+                    .Where(filter)
+                    .Select(projection)
                     .ToList()
                     .ForEach(m => matches.Add(m));
             }

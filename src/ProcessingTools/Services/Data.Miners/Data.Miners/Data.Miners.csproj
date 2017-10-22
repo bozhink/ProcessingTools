@@ -122,6 +122,10 @@
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{dd9dc75e-323a-49d9-ac70-eeb34c50e8a6}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Strings\Strings.csproj">
       <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
       <Name>Strings</Name>

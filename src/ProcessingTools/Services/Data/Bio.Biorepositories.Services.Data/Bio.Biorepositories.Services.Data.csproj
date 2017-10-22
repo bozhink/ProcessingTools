@@ -38,14 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\IBiorepositoriesDataService.cs" />
-    <Compile Include="Contracts\IBiorepositoriesInstitutionalCollectionsDataService.cs" />
-    <Compile Include="Contracts\IBiorepositoriesPersonalCollectionsDataService.cs" />
-    <Compile Include="Models\Collection.cs" />
     <Compile Include="Services\BiorepositoriesInstitutionalCollectionsDataService.cs" />
     <Compile Include="Services\BiorepositoriesInstitutionsDataService.cs" />
-    <Compile Include="Contracts\IBiorepositoriesInstitutionsDataService.cs" />
-    <Compile Include="Models\Institution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BiorepositoriesPersonalCollectionsDataService.cs" />
   </ItemGroup>
@@ -103,6 +97,7 @@
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
-    using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Contracts.Data.Bio.Biorepositories;
     using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
 
     public class BiorepositoriesInstitutionalCollectionsDataService : IBiorepositoriesInstitutionalCollectionsDataService
@@ -40,7 +40,7 @@
                     .OrderBy(i => i.Id)
                     .Skip(skip)
                     .Take(take)
-                    .Select(c => new Models.Collection
+                    .Select(c => new ProcessingTools.Services.Models.Data.Bio.Biorepositories.Collection
                     {
                         Code = c.CollectionCode,
                         Name = c.CollectionName,
