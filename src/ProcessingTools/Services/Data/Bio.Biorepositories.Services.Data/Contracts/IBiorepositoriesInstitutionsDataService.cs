@@ -2,7 +2,7 @@
 {
     using Models;
 
-    public interface IBiorepositoriesInstitutionsDataService : IBiorepositoriesDataService<BiorepositoriesInstitutionServiceModel>
+    public interface IBiorepositoriesInstitutionsDataService : IBiorepositoriesDataService<Institution>
     {
     }
 }

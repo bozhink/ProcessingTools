@@ -24,4 +24,13 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Bio\Biorepositories\" />
+    <Folder Include="Data\Bio\Environments\" />
+    <Folder Include="Data\Documents\" />
+    <Folder Include="Data\Geo\" />
+    <Folder Include="Data\History\" />
+    <Folder Include="Data\Journals\" />
+    <Folder Include="Data\Resources\" />
+  </ItemGroup>
 </Project>

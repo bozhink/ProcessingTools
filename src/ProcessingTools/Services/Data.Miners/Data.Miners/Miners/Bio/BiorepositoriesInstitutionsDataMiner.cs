@@ -11,7 +11,7 @@
     using ProcessingTools.Data.Miners.Contracts.Models.Bio;
     using ProcessingTools.Data.Miners.Models.Bio;
 
-    public class BiorepositoriesInstitutionsDataMiner : BiorepositoriesDataMinerBase<BiorepositoriesInstitution, BiorepositoriesInstitutionServiceModel>, IBiorepositoriesInstitutionsDataMiner
+    public class BiorepositoriesInstitutionsDataMiner : BiorepositoriesDataMinerBase<BiorepositoriesInstitution, Institution>, IBiorepositoriesInstitutionsDataMiner
     {
         private readonly IBiorepositoriesInstitutionsDataService service;
 
@@ -20,10 +20,10 @@
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        protected override Func<BiorepositoriesInstitutionServiceModel, BiorepositoriesInstitution> Project => x => new BiorepositoriesInstitution
+        protected override Func<Institution, BiorepositoriesInstitution> Project => x => new BiorepositoriesInstitution
         {
-            InstitutionalCode = x.InstitutionalCode,
-            NameOfInstitution = x.NameOfInstitution,
+            InstitutionalCode = x.Code,
+            NameOfInstitution = x.Name,
             Url = x.Url
         };
 
@@ -34,7 +34,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            Func<BiorepositoriesInstitutionServiceModel, bool> filter = x => Regex.IsMatch(context, Regex.Escape(x.InstitutionalCode) + "|" + Regex.Escape(x.NameOfInstitution));
+            Func<Institution, bool> filter = x => Regex.IsMatch(context, Regex.Escape(x.Code) + "|" + Regex.Escape(x.Name));
 
             var matches = new List<BiorepositoriesInstitution>();
 
