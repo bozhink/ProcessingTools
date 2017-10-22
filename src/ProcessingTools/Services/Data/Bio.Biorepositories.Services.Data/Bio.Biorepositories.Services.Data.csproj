@@ -41,7 +41,6 @@
     <Compile Include="Contracts\IBiorepositoriesDataService.cs" />
     <Compile Include="Contracts\IBiorepositoriesInstitutionalCollectionsDataService.cs" />
     <Compile Include="Contracts\IBiorepositoriesPersonalCollectionsDataService.cs" />
-    <Compile Include="Factories\BiorepositoriesDataServiceFactory.cs" />
     <Compile Include="Models\Collection.cs" />
     <Compile Include="Services\BiorepositoriesInstitutionalCollectionsDataService.cs" />
     <Compile Include="Services\BiorepositoriesInstitutionsDataService.cs" />
