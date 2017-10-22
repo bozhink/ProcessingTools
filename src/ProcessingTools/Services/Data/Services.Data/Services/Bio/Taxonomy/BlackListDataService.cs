@@ -18,9 +18,9 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public async Task<object> Add(params string[] items)
+        public async Task<object> AddAsync(params string[] models)
         {
-            var validItems = this.ValidateInputItems(items);
+            var validItems = this.ValidateInputItems(models);
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
@@ -37,9 +37,9 @@
             .ConfigureAwait(false);
         }
 
-        public async Task<object> Delete(params string[] items)
+        public async Task<object> DeleteAsync(params string[] models)
         {
-            var validItems = this.ValidateInputItems(items);
+            var validItems = this.ValidateInputItems(models);
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {

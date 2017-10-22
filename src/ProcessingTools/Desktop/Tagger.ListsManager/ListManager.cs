@@ -153,7 +153,7 @@
                         }))
                         .ToArray();
 
-                    await service.Add(taxa).ConfigureAwait(false);
+                    await service.AddAsync(taxa).ConfigureAwait(false);
                 }
                 else
                 {
@@ -164,7 +164,7 @@
                         .Select(i => i.Text))
                         .ToArray();
 
-                    await service.Add(items).ConfigureAwait(false);
+                    await service.AddAsync(items).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)

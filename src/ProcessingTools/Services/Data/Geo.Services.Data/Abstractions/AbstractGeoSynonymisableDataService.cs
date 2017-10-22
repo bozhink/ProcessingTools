@@ -45,7 +45,7 @@
             return result;
         }
 
-        public virtual async Task<object> DeleteAsync(object id)
+        public virtual async Task<object> DeleteByIdAsync(object id)
         {
             if (id == null)
             {

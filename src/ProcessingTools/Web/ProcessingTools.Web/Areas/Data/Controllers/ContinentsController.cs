@@ -389,7 +389,7 @@
         {
             try
             {
-                await this.service.DeleteAsync(id: id).ConfigureAwait(false);
+                await this.service.DeleteByIdAsync(id: id).ConfigureAwait(false);
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))

@@ -1,4 +1,4 @@
-﻿// <copyright file="ISelectableDataServiceAsync.cs" company="ProcessingTools">
+﻿// <copyright file="ISelectableDataServiceAsync{TModel,TFilter}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Contracts.Data
     using ProcessingTools.Models.Contracts;
 
     /// <summary>
-    /// Selectable data service.
+    /// Generic selectable data service.
     /// </summary>
     /// <typeparam name="TModel">Type of the service model.</typeparam>
     /// <typeparam name="TFilter">Type of the search filter.</typeparam>

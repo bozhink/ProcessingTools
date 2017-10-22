@@ -34,9 +34,9 @@
             return taxon;
         };
 
-        public virtual async Task<object> Add(params ITaxonRank[] items)
+        public virtual async Task<object> AddAsync(params ITaxonRank[] models)
         {
-            var validTaxa = this.ValidateTaxa(items);
+            var validTaxa = this.ValidateTaxa(models);
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
@@ -47,9 +47,9 @@
             .ConfigureAwait(false);
         }
 
-        public virtual async Task<object> Delete(params ITaxonRank[] items)
+        public virtual async Task<object> DeleteAsync(params ITaxonRank[] models)
         {
-            var validTaxa = this.ValidateTaxa(items);
+            var validTaxa = this.ValidateTaxa(models);
 
             return await this.repositoryProvider.Execute(async (repository) =>
             {
