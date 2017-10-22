@@ -7,27 +7,26 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Biorepositories.Services.Data.Contracts;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Models.Contracts;
 
-    public abstract class BiorepositoriesDataServiceFactory<TDbModel, TServiceModel> : IBiorepositoriesDataService<TServiceModel>
-        where TDbModel : class, IStringIdentifiable
-        where TServiceModel : class
+    public abstract class BiorepositoriesDataServiceFactory<TEntity, TModel> : IBiorepositoriesDataService<TModel>
+        where TEntity : class, IStringIdentifiable
+        where TModel : class
     {
-        private readonly IBiorepositoriesRepositoryProvider<TDbModel> repositoryProvider;
+        private readonly IBiorepositoriesRepositoryProvider<TEntity> repositoryProvider;
 
-        protected BiorepositoriesDataServiceFactory(IBiorepositoriesRepositoryProvider<TDbModel> repositoryProvider)
+        protected BiorepositoriesDataServiceFactory(IBiorepositoriesRepositoryProvider<TEntity> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        protected abstract Expression<Func<TDbModel, bool>> Filter { get; }
+        protected abstract Expression<Func<TEntity, bool>> Filter { get; }
 
-        protected abstract Expression<Func<TDbModel, TServiceModel>> Project { get; }
+        protected abstract Expression<Func<TEntity, TModel>> Project { get; }
 
-        public async Task<IQueryable<TServiceModel>> Get(int skip, int take)
+        public Task<TModel[]> GetAsync(int skip, int take)
         {
             if (skip < 0)
             {
@@ -39,20 +38,22 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var repository = this.repositoryProvider.Create();
+            return Task.Run(() =>
+            {
+                var repository = this.repositoryProvider.Create();
 
-            var result = await repository.Query
-                .Where(this.Filter)
-                .OrderBy(i => i.Id)
-                .Skip(skip)
-                .Take(take)
-                .Select(this.Project)
-                .ToListAsync()
-                .ConfigureAwait(false);
+                var data = repository.Query
+                    .Where(this.Filter)
+                    .OrderBy(i => i.Id)
+                    .Skip(skip)
+                    .Take(take)
+                    .Select(this.Project)
+                    .ToArray();
 
-            repository.TryDispose();
+                repository.TryDispose();
 
-            return result.AsQueryable();
+                return data;
+            });
         }
     }
 }
