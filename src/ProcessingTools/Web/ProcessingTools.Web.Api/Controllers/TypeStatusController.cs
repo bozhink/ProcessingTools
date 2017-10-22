@@ -1,13 +1,13 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
-    using ProcessingTools.Bio.Services.Data.Contracts;
-    using ProcessingTools.Bio.Services.Data.Models;
     using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts.Data.Bio;
+    using ProcessingTools.Services.Models.Contracts.Data.Bio;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Bio.TypeStatuses;
 
-    public class TypeStatusController : GenericDataServiceController<ITypeStatusDataService, TypeStatusServiceModel, TypeStatusRequestModel, TypeStatusResponseModel, IFilter>
+    public class TypeStatusController : GenericDataServiceController<ITypeStatusDataService, ITypeStatus, TypeStatusRequestModel, TypeStatusResponseModel, IFilter>
     {
         private readonly IMapper mapper;
 
@@ -16,8 +16,8 @@
         {
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<TypeStatusServiceModel, TypeStatusResponseModel>();
-                c.CreateMap<TypeStatusRequestModel, TypeStatusServiceModel>();
+                c.CreateMap<ITypeStatus, TypeStatusResponseModel>();
+                c.CreateMap<TypeStatusRequestModel, ITypeStatus>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
