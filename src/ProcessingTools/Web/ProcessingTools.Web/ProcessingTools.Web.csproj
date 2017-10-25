@@ -781,10 +781,6 @@
       <Project>{667d4391-17f1-4433-bc96-685aee89650a}</Project>
       <Name>ProcessingTools.Web.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
-      <Project>{C9AFD557-6559-4059-9287-65CA567F57EB}</Project>
-      <Name>Geo.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\History.Services.Data\History.Services.Data.csproj">
       <Project>{66D22FE6-56AC-4754-BC2E-B534B62639C9}</Project>
       <Name>History.Services.Data</Name>

@@ -714,10 +714,6 @@
       <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
       <Name>Documents.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Geo.Services.Data\Geo.Services.Data.csproj">
-      <Project>{c9afd557-6559-4059-9287-65ca567f57eb}</Project>
-      <Name>Geo.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
       <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>
       <Name>ProcessingTools.Services</Name>

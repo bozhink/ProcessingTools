@@ -55,6 +55,9 @@
   <ItemGroup>
     <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaInformationResolver.cs" />
     <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaRankResolverOverTaxaClassificationResolver.cs" />
+    <Compile Include="Abstractions\Geo\AbstractGeoDataService.cs" />
+    <Compile Include="Abstractions\Geo\AbstractGeoMultiDataService.cs" />
+    <Compile Include="Abstractions\Geo\AbstractGeoSynonymisableDataService.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IAboveGenusTaxaRankResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IAphiaTaxaClassificationResolver.cs" />
@@ -119,6 +122,18 @@
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\Files\XmlFileContentDataService.cs" />
+    <Compile Include="Services\Geo\CitiesDataService.cs" />
+    <Compile Include="Services\Geo\ContinentsDataService.cs" />
+    <Compile Include="Services\Geo\CountiesDataService.cs" />
+    <Compile Include="Services\Geo\CountriesDataService.cs" />
+    <Compile Include="Services\Geo\DistrictsDataService.cs" />
+    <Compile Include="Services\Geo\GeoEpithetsDataService.cs" />
+    <Compile Include="Services\Geo\GeoNamesDataService.cs" />
+    <Compile Include="Services\Geo\MunicipalitiesDataService.cs" />
+    <Compile Include="Services\Geo\PostCodesDataService.cs" />
+    <Compile Include="Services\Geo\ProvincesDataService.cs" />
+    <Compile Include="Services\Geo\RegionsDataService.cs" />
+    <Compile Include="Services\Geo\StatesDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />

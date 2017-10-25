@@ -12,10 +12,6 @@
         {
             this.Bind(b =>
             {
-                b.From(Geo.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-
                 b.From(Services.Data.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
