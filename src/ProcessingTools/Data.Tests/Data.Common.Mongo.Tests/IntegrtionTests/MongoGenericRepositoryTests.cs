@@ -14,7 +14,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        [Ignore]
+        [Ignore] // Integration test
         public void MongoGenericRepository_AddAllDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
@@ -37,7 +37,7 @@
             Console.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
-            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "Isbn should match.");
+            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");
             Assert.AreEqual(book.Author.FirstName, bookFromDb.Author.FirstName, "Author.FirstName should match.");
             Assert.AreEqual(book.Author.LastName, bookFromDb.Author.LastName, "Author.LastName should match.");
 
@@ -49,7 +49,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        [Ignore]
+        [Ignore] // Integration test
         public void MongoGenericRepository_AddAllFindDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
@@ -72,7 +72,7 @@
             Console.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
-            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "Isbn should match.");
+            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");
             Assert.AreEqual(book.Author.FirstName, bookFromDb.Author.FirstName, "Author.FirstName should match.");
             Assert.AreEqual(book.Author.LastName, bookFromDb.Author.LastName, "Author.LastName should match.");
 
@@ -84,7 +84,7 @@
 
         [TestMethod]
         [Timeout(5000)]
-        [Ignore]
+        [Ignore] // Integration test
         public void MongoGenericRepository_AddAllUpdateDelete_ShouldWork()
         {
             string databaseName = DatabaseName;
@@ -107,7 +107,7 @@
             Console.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
-            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "Isbn should match.");
+            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");
             Assert.AreEqual(book.Author.FirstName, bookFromDb.Author.FirstName, "Author.FirstName should match.");
             Assert.AreEqual(book.Author.LastName, bookFromDb.Author.LastName, "Author.LastName should match.");
 
@@ -125,7 +125,7 @@
             Console.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
-            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "Isbn should match.");
+            Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");
             Assert.AreEqual(book.Author.FirstName + "1", bookFromDb.Author.FirstName, "Author.FirstName should match.");
             Assert.AreEqual(book.Author.LastName, bookFromDb.Author.LastName, "Author.LastName should match.");
 

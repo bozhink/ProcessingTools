@@ -38,7 +38,7 @@
         }
 
         [TestMethod]
-        [Ignore]
+        [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItems_SchouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "Homo sapiens" };
@@ -64,7 +64,7 @@
         }
 
         [TestMethod]
-        [Ignore]
+        [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItemsWithOneInvalid_SchouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "John Smith" };

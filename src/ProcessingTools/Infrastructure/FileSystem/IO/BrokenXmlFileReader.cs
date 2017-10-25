@@ -33,37 +33,37 @@
             }
         }
 
-        public XmlReader GetReader(string fullName)
+        public XmlReader GetReader(string fileName)
         {
-            if (string.IsNullOrWhiteSpace(fullName))
+            if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fullName));
+                throw new ArgumentNullException(nameof(fileName));
             }
 
-            return this.reader.GetReader(fullName);
+            return this.reader.GetReader(fileName);
         }
 
-        public async Task<XmlDocument> ReadXmlAsync(string fullName)
+        public async Task<XmlDocument> ReadXmlAsync(string fileName)
         {
-            if (string.IsNullOrWhiteSpace(fullName))
+            if (string.IsNullOrWhiteSpace(fileName))
             {
-                throw new ArgumentNullException(nameof(fullName));
+                throw new ArgumentNullException(nameof(fileName));
             }
 
             XmlDocument document;
             try
             {
-                document = await this.reader.ReadXmlAsync(fullName).ConfigureAwait(false);
+                document = await this.reader.ReadXmlAsync(fileName).ConfigureAwait(false);
             }
             catch (XmlException e)
             {
-                document = this.ProcessXmlException(fullName, e);
+                document = this.ProcessXmlException(fileName, e);
             }
             catch (AggregateException e)
             {
                 if (e.InnerExceptions.Count == 1 && e.InnerExceptions[0] is XmlException)
                 {
-                    document = this.ProcessXmlException(fullName, e.InnerExceptions[0]);
+                    document = this.ProcessXmlException(fileName, e.InnerExceptions[0]);
                 }
                 else
                 {
@@ -87,7 +87,7 @@
             return document;
         }
 
-        private XmlDocument RestoreXmlDocument(object fileName)
+        private XmlDocument RestoreXmlDocument(string fileName)
         {
             if (fileName == null)
             {
@@ -100,7 +100,7 @@
             };
 
             var body = document.CreateElement(ElementNames.Body);
-            foreach (var line in File.ReadLines(fileName.ToString()))
+            foreach (var line in File.ReadLines(fileName))
             {
                 var paragraph = document.CreateElement(ElementNames.Paragraph);
                 paragraph.InnerText = line;

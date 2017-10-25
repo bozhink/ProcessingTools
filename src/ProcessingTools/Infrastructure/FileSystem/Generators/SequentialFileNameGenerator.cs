@@ -18,7 +18,7 @@
             return this.GenerateAsync(directoryPath, fileName, maximalFileNameLength, returnFullName);
         }
 
-        public Task<string> GenerateAsync(string directoryPath, string baseFileName, int maximalFileNameLength, bool returnFullName = false)
+        public Task<string> GenerateAsync(string directoryName, string baseFileName, int maximalFileNameLength, bool returnFullName = false)
         {
             return Task.Run(() =>
             {
@@ -47,7 +47,7 @@
                         throw new MaximalLengthOfFileNameExceededException();
                     }
 
-                    fullName = Path.Combine(directoryPath, fileName);
+                    fullName = Path.Combine(directoryName, fileName);
 
                     if (i > MaximalNumberOfIterationsToFindNewFileName)
                     {

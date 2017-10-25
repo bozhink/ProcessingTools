@@ -12,7 +12,6 @@ namespace ProcessingTools.Services.Providers
     /// </summary>
     public class DateTimeProvider : IDateTimeProvider
     {
-
         /// <inheritdoc/>
         public DateTime Now => DateTime.UtcNow;
     }
