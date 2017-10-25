@@ -694,10 +694,6 @@
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\DataResources.Services.Data\DataResources.Services.Data.csproj">
-      <Project>{0af6537b-c198-49dd-a858-5247e24f0179}</Project>
-      <Name>DataResources.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
       <Name>Harvesters</Name>
