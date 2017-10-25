@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="Data\Documents\" />
     <Folder Include="Data\Geo\" />
-    <Folder Include="Data\History\" />
     <Folder Include="Data\Journals\" />
     <Folder Include="Data\Resources\" />
   </ItemGroup>
