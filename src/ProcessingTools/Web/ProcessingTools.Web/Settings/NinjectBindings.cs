@@ -33,14 +33,14 @@
 
             this.Bind<ProcessingTools.History.Data.Entity.Contracts.IHistoryDbContext>()
                 .To<ProcessingTools.History.Data.Entity.HistoryDbContext>()
-                .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
+                .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityObjectHistoriesRepository>()
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
                     ConnectionStrings.HistoryDatabaseConnection);
 
-            this.Bind<ProcessingTools.Data.Contracts.Repositories.History.IHistoryRepository>()
-                .To<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Repositories.History.IObjectHistoriesRepository>()
+                .To<ProcessingTools.History.Data.Entity.Repositories.EntityObjectHistoriesRepository>()
                 .InRequestScope();
 
             this.Bind<ProcessingTools.Journals.Data.Entity.Contracts.IJournalsDbContext>()

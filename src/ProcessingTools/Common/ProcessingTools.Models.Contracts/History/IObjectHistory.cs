@@ -1,26 +1,20 @@
-﻿// <copyright file="IHistoryItem.cs" company="ProcessingTools">
+﻿// <copyright file="IObjectHistory.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Models.Contracts.History
 {
-    using System;
     using ProcessingTools.Models.Contracts;
 
     /// <summary>
-    /// History item.
+    /// Object history model.
     /// </summary>
-    public interface IHistoryItem : IStringIdentifiable
+    public interface IObjectHistory : IStringIdentifiable, ICreated
     {
         /// <summary>
-        /// Gets data.
+        /// Gets serialized object data.
         /// </summary>
         string Data { get; }
-
-        /// <summary>
-        /// Gets date modified.
-        /// </summary>
-        DateTime DateModified { get; }
 
         /// <summary>
         /// Gets object ID.
@@ -33,8 +27,13 @@ namespace ProcessingTools.Models.Contracts.History
         string ObjectType { get; }
 
         /// <summary>
-        /// Gets user ID.
+        /// Gets assembly name.
         /// </summary>
-        string UserId { get; }
+        string AssemblyName { get; }
+
+        /// <summary>
+        /// Gets assembly version.
+        /// </summary>
+        string AssemblyVersion { get; }
     }
 }

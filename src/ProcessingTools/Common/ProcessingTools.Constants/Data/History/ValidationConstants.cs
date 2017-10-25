@@ -10,23 +10,33 @@ namespace ProcessingTools.Constants.Data.History
     public static class ValidationConstants
     {
         /// <summary>
-        /// MaximalLengthOfId
+        /// Maximal length of ID.
         /// </summary>
         public const int MaximalLengthOfId = 36;
 
         /// <summary>
-        /// MaximalLengthOfObjectId
+        /// Maximal length of objectId.
         /// </summary>
         public const int MaximalLengthOfObjectId = 36;
 
         /// <summary>
-        /// MaximalLengthOfObjectType
+        /// Maximal length of objectType.
         /// </summary>
         public const int MaximalLengthOfObjectType = 256;
 
         /// <summary>
-        /// MaximalLengthOfUserId
+        /// Maximal length of userId.
         /// </summary>
         public const int MaximalLengthOfUserId = 36;
+
+        /// <summary>
+        /// Maximal length of assembly name.
+        /// </summary>
+        public const int MaximalLengthOfAssemblyName = 2048;
+
+        /// <summary>
+        /// Maximal length of assembly version.
+        /// </summary>
+        public const int MaximalLengthOfAssemblyVersion = 32;
     }
 }

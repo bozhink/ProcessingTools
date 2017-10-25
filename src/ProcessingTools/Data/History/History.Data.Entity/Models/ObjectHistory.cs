@@ -6,12 +6,12 @@
     using ProcessingTools.Constants.Data.History;
     using ProcessingTools.Models.Contracts.History;
 
-    public class HistoryItem : IHistoryItem
+    public class ObjectHistory : IObjectHistory
     {
-        public HistoryItem()
+        public ObjectHistory()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.DateModified = DateTime.UtcNow;
+            this.CreatedOn = DateTime.UtcNow;
         }
 
         [Key]
@@ -22,21 +22,28 @@
         [Required]
         public string Data { get; set; }
 
-        [Required]
-        public DateTime DateModified { get; set; }
-
         [Index]
         [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfObjectId)]
         public string ObjectId { get; set; }
 
-        [Index]
         [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfObjectType)]
         public string ObjectType { get; set; }
 
         [Required]
+        [MaxLength(ValidationConstants.MaximalLengthOfAssemblyName)]
+        public string AssemblyName { get; set; }
+
+        [Required]
+        [MaxLength(ValidationConstants.MaximalLengthOfAssemblyVersion)]
+        public string AssemblyVersion { get; set; }
+
+        [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfUserId)]
-        public string UserId { get; set; }
+        public string CreatedBy { get; set; }
+
+        [Required]
+        public DateTime CreatedOn { get; set; }
     }
 }

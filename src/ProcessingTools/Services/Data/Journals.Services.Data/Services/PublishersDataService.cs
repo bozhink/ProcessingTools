@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.History.Services.Data.Contracts.Services;
     using ProcessingTools.Journals.Services.Data.Abstractions.Services;
     using ProcessingTools.Journals.Services.Data.Contracts.Models;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Journals.Services.Data.Models.DataModels;
     using ProcessingTools.Journals.Services.Data.Models.ServiceModels;
+    using ProcessingTools.Services.Contracts.Data.History;
     using TDataModel = ProcessingTools.Models.Contracts.Journals.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Journals.Services.Data.Contracts.Models.IPublisherDetails;
     using TRepository = ProcessingTools.Data.Contracts.Repositories.Journals.IPublishersRepository;
@@ -18,12 +18,12 @@
 
     public class PublishersDataService : AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>, IPublishersDataService
     {
-        private readonly IHistoryDataService historyService;
+        private readonly IObjectHistoriesDataService objectHistoriesService;
 
-        public PublishersDataService(TRepository repository, IDateTimeProvider datetimeProvider, IHistoryDataService historyService)
+        public PublishersDataService(TRepository repository, IDateTimeProvider datetimeProvider, IObjectHistoriesDataService objectHistoriesService)
             : base(repository, datetimeProvider)
         {
-            this.historyService = historyService ?? throw new ArgumentNullException(nameof(historyService));
+            this.objectHistoriesService = objectHistoriesService ?? throw new ArgumentNullException(nameof(objectHistoriesService));
         }
 
         public bool SaveToHistory { get; set; } = true;
@@ -85,7 +85,7 @@
             if (this.SaveToHistory)
             {
                 var entity = await this.Repository.GetByIdAsync(dataModel.Id).ConfigureAwait(false);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
+                await this.objectHistoriesService.AddAsync(entity.Id, entity).ConfigureAwait(false);
             }
 
             return dataModel.Id;
@@ -121,7 +121,7 @@
             if (this.SaveToHistory)
             {
                 var entity = await this.Repository.GetByIdAsync(model.Id).ConfigureAwait(false);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
+                await this.objectHistoriesService.AddAsync(entity.Id, entity).ConfigureAwait(false);
             }
 
             return model.Id;
@@ -134,7 +134,7 @@
             if (this.SaveToHistory)
             {
                 var entity = await this.Repository.GetByIdAsync(modelId).ConfigureAwait(false);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
+                await this.objectHistoriesService.AddAsync(entity.Id, entity).ConfigureAwait(false);
             }
 
             return result;
@@ -147,7 +147,7 @@
             if (this.SaveToHistory)
             {
                 var entity = await this.Repository.GetByIdAsync(modelId).ConfigureAwait(false);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
+                await this.objectHistoriesService.AddAsync(entity.Id, entity).ConfigureAwait(false);
             }
 
             return result;
@@ -160,7 +160,7 @@
             if (this.SaveToHistory)
             {
                 var entity = await this.Repository.GetByIdAsync(modelId).ConfigureAwait(false);
-                await this.historyService.AddItemToHistory(userId, entity.Id, entity).ConfigureAwait(false);
+                await this.objectHistoriesService.AddAsync(entity.Id, entity).ConfigureAwait(false);
             }
 
             return result;

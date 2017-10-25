@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.History.Data.Entity
 {
     using System.Data.Entity;
-    using Contracts;
-    using Models;
     using ProcessingTools.Data.Common.Entity;
+    using ProcessingTools.History.Data.Entity.Contracts;
+    using ProcessingTools.History.Data.Entity.Models;
 
     public class HistoryDbContext : EntityDbContext, IHistoryDbContext
     {
@@ -12,6 +12,6 @@
         {
         }
 
-        public IDbSet<HistoryItem> HistoryItems { get; set; }
+        public IDbSet<ObjectHistory> ObjectHistories { get; set; }
     }
 }

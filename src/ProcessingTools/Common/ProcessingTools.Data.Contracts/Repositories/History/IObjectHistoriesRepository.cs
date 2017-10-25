@@ -1,4 +1,4 @@
-﻿// <copyright file="IHistoryRepository.cs" company="ProcessingTools">
+﻿// <copyright file="IObjectHistoriesRepository.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Data.Contracts.Repositories.History
     using ProcessingTools.Models.Contracts.History;
 
     /// <summary>
-    /// History repository.
+    /// Object histories repository.
     /// </summary>
-    public interface IHistoryRepository : ICrudRepository<IHistoryItem>
+    public interface IObjectHistoriesRepository : ICrudRepository<IObjectHistory>
     {
     }
 }

@@ -225,8 +225,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "History", "History", "{47DD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "History.Data.Entity", "Data\History\History.Data.Entity\History.Data.Entity.csproj", "{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "History.Services.Data", "Services\Data\History.Services.Data\History.Services.Data.csproj", "{66D22FE6-56AC-4754-BC2E-B534B62639C9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journals.Data.Entity", "Data\Journals\Journals.Data.Entity\Journals.Data.Entity.csproj", "{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journals.Services.Data", "Services\Data\Journals.Services.Data\Journals.Services.Data.csproj", "{DC1A2B54-0B9B-422F-A401-90026EE48DE7}"
@@ -929,14 +927,6 @@ Global
 		{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}.Release|x64.ActiveCfg = Release|Any CPU
 		{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6}.Release|x64.Build.0 = Release|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Debug|x64.Build.0 = Debug|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Release|x64.ActiveCfg = Release|Any CPU
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9}.Release|x64.Build.0 = Release|Any CPU
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1274,7 +1264,6 @@ Global
 		{EE28DB83-9315-416D-8010-DC9A01029BBD} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{47DD9EDC-2F22-4C24-9857-434F335BBAE2} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{8378E5D9-C3CF-4029-B2FF-D9AD6B47ACC6} = {47DD9EDC-2F22-4C24-9857-434F335BBAE2}
-		{66D22FE6-56AC-4754-BC2E-B534B62639C9} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
 		{B5C4F9BD-8119-403D-B426-6807D9EBEFDE} = {EE28DB83-9315-416D-8010-DC9A01029BBD}
 		{DC1A2B54-0B9B-422F-A401-90026EE48DE7} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
 		{D3890589-8338-42AE-9A1D-4FD746978BF5} = {4DA970DE-6147-45AD-9DA6-AEA01FD07B93}
@@ -1306,7 +1295,7 @@ Global
 		{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal

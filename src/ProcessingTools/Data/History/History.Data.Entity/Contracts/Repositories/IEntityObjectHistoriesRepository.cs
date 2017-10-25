@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Contracts.Repositories.History;
 
-    public interface IEntityHistoryRepository : IHistoryRepository
+    public interface IEntityObjectHistoriesRepository : IObjectHistoriesRepository
     {
     }
 }
