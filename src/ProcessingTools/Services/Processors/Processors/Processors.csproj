@@ -254,6 +254,15 @@
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
     <Compile Include="Common\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
+    <Compile Include="Special\Contracts\Factories\ISpecialTransformersFactory.cs" />
+    <Compile Include="Special\Contracts\Processors\IFlora.cs" />
+    <Compile Include="Special\Contracts\Processors\IGavinLaurensParser.cs" />
+    <Compile Include="Special\Contracts\Processors\IQuentinFlora.cs" />
+    <Compile Include="Special\Contracts\Processors\ITestFeaturesProvider.cs" />
+    <Compile Include="Special\Processors\Flora.cs" />
+    <Compile Include="Special\Processors\GavinLaurensParser.cs" />
+    <Compile Include="Special\Processors\QuentinFlora.cs" />
+    <Compile Include="Special\Processors\TestFeaturesProvider.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaFromLeftStrategy.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithBasionymStrategy.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithByPartsMatchStrategy.cs" />
@@ -354,7 +363,9 @@
     <None Include="packages.config" />
     <None Include="Processors.ruleset" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Special\Processors\FloraReplace.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

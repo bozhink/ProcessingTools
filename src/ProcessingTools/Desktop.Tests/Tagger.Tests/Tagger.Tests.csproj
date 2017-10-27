@@ -112,10 +112,6 @@
       <Project>{237d4caf-98a4-4c86-91a6-46ae3e27e965}</Project>
       <Name>Processors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Processors\Special.Processors\Special.Processors.csproj">
-      <Project>{287bb38d-333e-4206-b0dc-7d87345ee2ae}</Project>
-      <Name>Special.Processors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Desktop\Tagger\Tagger.csproj">
       <Project>{553469ff-345b-4bcd-aaca-3d447b23d80a}</Project>
       <Name>Tagger</Name>
