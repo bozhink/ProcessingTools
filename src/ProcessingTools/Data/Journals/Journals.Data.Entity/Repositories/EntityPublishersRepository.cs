@@ -21,10 +21,10 @@
             Id = p.Id,
             Name = p.Name,
             AbbreviatedName = p.AbbreviatedName,
-            CreatedByUser = p.CreatedByUser,
-            ModifiedByUser = p.ModifiedByUser,
-            DateCreated = p.DateCreated,
-            DateModified = p.DateModified,
+            CreatedBy = p.CreatedBy,
+            ModifiedBy = p.ModifiedBy,
+            CreatedOn = p.CreatedOn,
+            ModifiedOn = p.ModifiedOn,
             Addresses = p.Addresses.Select(this.MapAddressToAddress).ToList()
         };
     }

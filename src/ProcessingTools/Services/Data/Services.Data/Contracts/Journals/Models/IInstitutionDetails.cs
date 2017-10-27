@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Models.Contracts;
 
-    public interface IInstitutionDetails : IInstitution, IAddressable, IModelWithUserInformation, IDetailedModel, IServiceModel
+    public interface IInstitutionDetails : IInstitution, IAddressable, ICreated, IModified, IDetailedModel, IServiceModel
     {
     }
 }

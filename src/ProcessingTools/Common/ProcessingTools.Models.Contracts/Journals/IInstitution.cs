@@ -9,7 +9,7 @@ namespace ProcessingTools.Models.Contracts.Journals
     /// <summary>
     /// Institution.
     /// </summary>
-    public interface IInstitution : IAddressable, IAbbreviatedNameableStringIdentifiable, IModelWithUserInformation
+    public interface IInstitution : IAddressable, IAbbreviatedNameableStringIdentifiable, ICreated, IModified
     {
     }
 }

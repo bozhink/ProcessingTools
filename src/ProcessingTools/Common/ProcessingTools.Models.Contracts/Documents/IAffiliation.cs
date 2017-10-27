@@ -10,7 +10,7 @@ namespace ProcessingTools.Models.Contracts.Documents
     /// <summary>
     /// Affiliation.
     /// </summary>
-    public interface IAffiliation : INameableGuidIdentifiable, IModelWithUserInformation
+    public interface IAffiliation : INameableGuidIdentifiable, ICreated, IModified
     {
         /// <summary>
         /// Gets institution ID.

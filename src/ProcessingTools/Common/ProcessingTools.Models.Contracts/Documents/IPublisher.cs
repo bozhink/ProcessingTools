@@ -9,7 +9,7 @@ namespace ProcessingTools.Models.Contracts.Documents
     /// <summary>
     /// Publisher.
     /// </summary>
-    public interface IPublisher : IAddressable, IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
+    public interface IPublisher : IAddressable, IAbbreviatedNameableGuidIdentifiable, ICreated, IModified
     {
     }
 }

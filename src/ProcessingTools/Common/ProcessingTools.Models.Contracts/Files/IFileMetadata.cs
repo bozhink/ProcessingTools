@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts.Files
     /// <summary>
     /// File metadata.
     /// </summary>
-    public interface IFileMetadata : IIdentifiable, IDescribable, IContentTypeable, IModelWithUserInformation, IFileNameable
+    public interface IFileMetadata : IIdentifiable, IDescribable, IContentTypeable, ICreated, IModified, IFileNameable
     {
         /// <summary>
         /// Gets content length.

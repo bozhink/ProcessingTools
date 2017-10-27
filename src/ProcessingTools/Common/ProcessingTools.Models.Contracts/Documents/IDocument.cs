@@ -11,7 +11,7 @@ namespace ProcessingTools.Models.Contracts.Documents
     /// Document.
     /// </summary>
     // TODO: separation with IFileEntity
-    public interface IDocument : IGuidIdentifiable, ICommentable, IModelWithUserInformation
+    public interface IDocument : IGuidIdentifiable, ICommentable, ICreated, IModified
     {
         /// <summary>
         /// Gets article IS.

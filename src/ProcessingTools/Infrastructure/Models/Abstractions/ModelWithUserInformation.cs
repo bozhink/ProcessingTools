@@ -5,28 +5,28 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Models.Contracts;
 
-    public abstract class ModelWithUserInformation : IModelWithUserInformation
+    public abstract class ModelWithUserInformation : ICreated, IModified
     {
         protected ModelWithUserInformation()
         {
-            this.DateModified = DateTime.UtcNow;
-            this.DateCreated = this.DateModified;
+            this.ModifiedOn = DateTime.UtcNow;
+            this.CreatedOn = this.ModifiedOn;
         }
 
         [Display(Name = "Date Created")]
-        public DateTime DateCreated { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [Display(Name = "Date Modified")]
-        public DateTime DateModified { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         [Display(Name = "Created By User")]
-        public string CreatedByUser { get; set; }
+        public string CreatedBy { get; set; }
 
         [Required]
         [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         [Display(Name = "Modified By User")]
-        public string ModifiedByUser { get; set; }
+        public string ModifiedBy { get; set; }
     }
 }

@@ -38,15 +38,15 @@
             {
                 ContentLength = metadata.ContentLength,
                 ContentType = metadata.ContentType,
-                CreatedByUser = metadata.CreatedByUser,
-                DateCreated = metadata.DateCreated,
-                DateModified = metadata.DateModified,
+                CreatedBy = metadata.CreatedBy,
+                CreatedOn = metadata.CreatedOn,
+                ModifiedOn = metadata.ModifiedOn,
                 Description = metadata.Description,
                 FileExtension = metadata.FileExtension,
                 FileName = metadata.FileName,
                 FullName = metadata.FullName,
                 Id = metadata.Id,
-                ModifiedByUser = metadata.ModifiedByUser
+                ModifiedBy = metadata.ModifiedBy
             };
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;

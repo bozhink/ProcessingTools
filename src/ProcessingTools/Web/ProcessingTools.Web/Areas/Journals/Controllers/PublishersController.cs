@@ -54,10 +54,10 @@
             Id = p.Id,
             Name = p.Name,
             AbbreviatedName = p.AbbreviatedName,
-            CreatedByUser = p.CreatedByUser,
-            DateCreated = p.DateCreated,
-            DateModified = p.DateModified,
-            ModifiedByUser = p.ModifiedByUser,
+            CreatedByUser = p.CreatedBy,
+            DateCreated = p.CreatedOn,
+            DateModified = p.ModifiedOn,
+            ModifiedByUser = p.ModifiedBy,
             Addresses = p.Addresses
                 .Select(a => new AddressViewModel
                 {

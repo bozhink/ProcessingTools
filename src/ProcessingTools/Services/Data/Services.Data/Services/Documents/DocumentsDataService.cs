@@ -70,9 +70,9 @@
             var repository = this.repositoryProvider.Create();
 
             var query = repository.Query
-                .Where(d => d.CreatedByUser == userId.ToString())
+                .Where(d => d.CreatedBy == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
-                .OrderByDescending(d => d.DateModified)
+                .OrderByDescending(d => d.ModifiedOn)
                 .Skip(pageNumber * itemsPerPage)
                 .Take(itemsPerPage)
                 .Select(d => new DocumentServiceModel
@@ -83,8 +83,8 @@
                     Comment = d.Comment,
                     ContentType = d.ContentType,
                     ContentLength = d.ContentLength,
-                    DateCreated = d.DateCreated,
-                    DateModified = d.DateModified
+                    DateCreated = d.CreatedOn,
+                    DateModified = d.ModifiedOn
                 });
 
             var documents = await query.ToListAsync().ConfigureAwait(false);
@@ -109,7 +109,7 @@
             var repository = this.repositoryProvider.Create();
 
             long count = await repository.Query
-                .Where(d => d.CreatedByUser == userId.ToString())
+                .Where(d => d.CreatedBy == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .LongCountAsync()
                 .ConfigureAwait(false);
@@ -159,8 +159,8 @@
 
                 Comment = document.Comment,
 
-                CreatedByUser = userId.ToString(),
-                ModifiedByUser = userId.ToString()
+                CreatedBy = userId.ToString(),
+                ModifiedBy = userId.ToString()
             };
 
             var repository = this.repositoryProvider.Create();
@@ -222,7 +222,7 @@
             var repository = this.repositoryProvider.Create();
 
             var entities = repository.Query
-                .Where(d => d.CreatedByUser == userId.ToString())
+                .Where(d => d.CreatedBy == userId.ToString())
                 //// TODO // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .AsEnumerable();
 
@@ -250,8 +250,8 @@
                 ContentLength = entity.ContentLength,
                 ContentType = entity.ContentType,
                 Comment = entity.Comment,
-                DateCreated = entity.DateCreated,
-                DateModified = entity.DateModified
+                DateCreated = entity.CreatedOn,
+                DateModified = entity.ModifiedOn
             };
         }
 
@@ -291,8 +291,8 @@
             using (var stream = new MemoryStream(Defaults.Encoding.GetBytes(content)))
             {
                 entity.ContentLength = await this.xmlFileReaderWriter.WriteAsync(stream, entity.FilePath, this.DataDirectory).ConfigureAwait(false);
-                entity.ModifiedByUser = userId.ToString();
-                entity.DateModified = DateTime.UtcNow;
+                entity.ModifiedBy = userId.ToString();
+                entity.ModifiedOn = DateTime.UtcNow;
                 entity.ContentType = document.ContentType;
                 stream.Close();
             }
@@ -330,8 +330,8 @@
             entity.ContentType = document.ContentType;
             entity.FileExtension = document.FileExtension;
             entity.FileName = document.FileName;
-            entity.ModifiedByUser = userId.ToString();
-            entity.DateModified = DateTime.UtcNow;
+            entity.ModifiedBy = userId.ToString();
+            entity.ModifiedOn = DateTime.UtcNow;
 
             await repository.UpdateAsync(entity: entity).ConfigureAwait(false);
             await repository.SaveChangesAsync().ConfigureAwait(false);
@@ -370,7 +370,7 @@
         private async Task<Document> GetEntityAsync(object userId, object articleId, object documentId, ICrudRepository<Document> repository)
         {
             var entity = await repository.Query
-                .Where(d => d.CreatedByUser == userId.ToString())
+                .Where(d => d.CreatedBy == userId.ToString())
                 //// TODO: // .Where(d => d.Article.Id.ToString() == articleId.ToString())
                 .FirstOrDefaultAsync(d => d.Id.ToString() == documentId.ToString())
                 .ConfigureAwait(false);

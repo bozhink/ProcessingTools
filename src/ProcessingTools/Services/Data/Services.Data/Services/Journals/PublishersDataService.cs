@@ -33,10 +33,10 @@
             Id = dataModel.Id,
             AbbreviatedName = dataModel.AbbreviatedName,
             Name = dataModel.Name,
-            CreatedByUser = dataModel.CreatedByUser,
-            DateCreated = dataModel.DateCreated,
-            DateModified = dataModel.DateModified,
-            ModifiedByUser = dataModel.ModifiedByUser,
+            CreatedBy = dataModel.CreatedBy,
+            CreatedOn = dataModel.CreatedOn,
+            ModifiedOn = dataModel.ModifiedOn,
+            ModifiedBy = dataModel.ModifiedBy,
             Addresses = dataModel.Addresses
                 .Select(a => new AddressServiceModel
                 {
@@ -73,10 +73,10 @@
             {
                 AbbreviatedName = model.AbbreviatedName,
                 Name = model.Name,
-                CreatedByUser = user,
-                ModifiedByUser = user,
-                DateCreated = now,
-                DateModified = now
+                CreatedBy = user,
+                ModifiedBy = user,
+                CreatedOn = now,
+                ModifiedOn = now
             };
 
             await this.Repository.AddAsync(dataModel).ConfigureAwait(false);
@@ -112,8 +112,8 @@
                     .UpdateExpression
                     .Set(p => p.Name, model.Name)
                     .Set(p => p.AbbreviatedName, model.AbbreviatedName)
-                    .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now))
+                    .Set(p => p.ModifiedBy, user)
+                    .Set(p => p.ModifiedOn, now))
                 .ConfigureAwait(false);
 
             await this.Repository.SaveChangesAsync().ConfigureAwait(false);

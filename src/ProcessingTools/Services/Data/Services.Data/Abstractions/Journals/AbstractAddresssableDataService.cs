@@ -22,7 +22,7 @@
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
         where TDetailedServiceModel : class, TServiceModel, IDetailedModel, Contracts.Models.IAddressable
-        where TDataModel : class, IDataModel, IModelWithUserInformation, ProcessingTools.Models.Contracts.Journals.IAddressable
+        where TDataModel : class, IDataModel, ICreated, IModified, ProcessingTools.Models.Contracts.Journals.IAddressable
         where TRepository : class, ICrudRepository<TDataModel>, IAddressableRepository
     {
         private static readonly ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();
@@ -100,8 +100,8 @@
                 modelId,
                 ExpressionBuilder<TDataModel>
                     .UpdateExpression
-                    .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now))
+                    .Set(p => p.ModifiedBy, user)
+                    .Set(p => p.ModifiedOn, now))
                 .ConfigureAwait(false);
 
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
@@ -143,8 +143,8 @@
                 modelId,
                 ExpressionBuilder<TDataModel>
                     .UpdateExpression
-                    .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now))
+                    .Set(p => p.ModifiedBy, user)
+                    .Set(p => p.ModifiedOn, now))
                 .ConfigureAwait(false);
 
             await this.repository.SaveChangesAsync().ConfigureAwait(false);
@@ -178,8 +178,8 @@
                 modelId,
                 ExpressionBuilder<TDataModel>
                     .UpdateExpression
-                    .Set(p => p.ModifiedByUser, user)
-                    .Set(p => p.DateModified, now))
+                    .Set(p => p.ModifiedBy, user)
+                    .Set(p => p.ModifiedOn, now))
                 .ConfigureAwait(false);
 
             await this.repository.SaveChangesAsync().ConfigureAwait(false);

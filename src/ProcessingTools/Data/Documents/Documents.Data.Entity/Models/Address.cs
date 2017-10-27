@@ -34,10 +34,10 @@
             this.AddressString = entity.AddressString;
             this.CountryId = entity.CountryId;
             this.CityId = entity.CityId;
-            this.CreatedByUser = entity.CreatedByUser;
-            this.ModifiedByUser = entity.ModifiedByUser;
-            this.DateCreated = entity.DateCreated;
-            this.DateModified = entity.DateModified;
+            this.CreatedBy = entity.CreatedBy;
+            this.ModifiedBy = entity.ModifiedBy;
+            this.CreatedOn = entity.CreatedOn;
+            this.ModifiedOn = entity.ModifiedOn;
         }
 
         [Key]

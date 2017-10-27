@@ -10,7 +10,7 @@ namespace ProcessingTools.Models.Contracts.Documents
     /// <summary>
     /// Author.
     /// </summary>
-    public interface IAuthor : IPerson, IGuidIdentifiable, IModelWithUserInformation
+    public interface IAuthor : IPerson, IGuidIdentifiable, ICreated, IModified
     {
         /// <summary>
         /// Gets affiliations.

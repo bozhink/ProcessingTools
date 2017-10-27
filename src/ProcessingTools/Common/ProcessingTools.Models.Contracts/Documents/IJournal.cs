@@ -10,7 +10,7 @@ namespace ProcessingTools.Models.Contracts.Documents
     /// <summary>
     /// Journal.
     /// </summary>
-    public interface IJournal : IAbbreviatedNameableGuidIdentifiable, IModelWithUserInformation
+    public interface IJournal : IAbbreviatedNameableGuidIdentifiable, ICreated, IModified
     {
         /// <summary>
         /// Gets Journal ID.

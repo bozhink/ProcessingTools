@@ -61,15 +61,15 @@
                 {
                     ContentLength = metadata.ContentLength,
                     ContentType = metadata.ContentType,
-                    CreatedByUser = metadata.CreatedByUser,
-                    DateCreated = metadata.DateCreated,
-                    DateModified = metadata.DateModified,
+                    CreatedBy = metadata.CreatedBy,
+                    CreatedOn = metadata.CreatedOn,
+                    ModifiedOn = metadata.ModifiedOn,
                     Description = metadata.Description,
                     FileExtension = metadata.FileExtension,
                     FileName = metadata.FileName,
                     FullName = metadata.FullName,
                     Id = metadata.Id,
-                    ModifiedByUser = metadata.ModifiedByUser
+                    ModifiedBy = metadata.ModifiedBy
                 });
 
             ////return this.RedirectToAction(
@@ -97,8 +97,8 @@
 
             var metadata = new FileMetadataModel
             {
-                CreatedByUser = user,
-                ModifiedByUser = user,
+                CreatedBy = user,
+                ModifiedBy = user,
                 ContentLength = file.ContentLength,
                 ContentType = file.ContentType,
                 FileExtension = Path.GetExtension(file.FileName).Trim('.'),

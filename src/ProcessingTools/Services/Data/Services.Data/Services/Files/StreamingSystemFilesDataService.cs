@@ -110,10 +110,10 @@
                 FullName = fileInfo.FullName,
                 ContentLength = fileInfo.Length,
                 ContentType = contentType,
-                DateCreated = fileInfo.CreationTimeUtc,
-                DateModified = fileInfo.LastWriteTimeUtc,
-                CreatedByUser = user,
-                ModifiedByUser = user
+                CreatedOn = fileInfo.CreationTimeUtc,
+                ModifiedOn = fileInfo.LastWriteTimeUtc,
+                CreatedBy = user,
+                ModifiedBy = user
             };
         }
     }

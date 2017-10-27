@@ -9,7 +9,7 @@ namespace ProcessingTools.Models.Contracts.Documents
     /// <summary>
     /// Address.
     /// </summary>
-    public interface IAddress : IGuidIdentifiable, IModelWithUserInformation
+    public interface IAddress : IGuidIdentifiable, ICreated, IModified
     {
         /// <summary>
         /// Gets address string.

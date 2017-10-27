@@ -11,7 +11,7 @@ namespace ProcessingTools.Models.Contracts.Documents
     /// <summary>
     /// Article.
     /// </summary>
-    public interface IArticle : IGuidIdentifiable, IModelWithUserInformation
+    public interface IArticle : IGuidIdentifiable, ICreated, IModified
     {
         /// <summary>
         /// Gets title.

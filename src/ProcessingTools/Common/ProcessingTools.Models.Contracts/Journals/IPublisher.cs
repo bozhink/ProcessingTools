@@ -9,7 +9,7 @@ namespace ProcessingTools.Models.Contracts.Journals
     /// <summary>
     /// Publisher.
     /// </summary>
-    public interface IPublisher : IAddressable, IAbbreviatedNameableStringIdentifiable, IModelWithUserInformation
+    public interface IPublisher : IAddressable, IAbbreviatedNameableStringIdentifiable, ICreated, IModified
     {
     }
 }
