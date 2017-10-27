@@ -722,10 +722,6 @@
       <Project>{D3890589-8338-42AE-9A1D-4FD746978BF5}</Project>
       <Name>Imaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Processors\Layout.Processors\Layout.Processors.csproj">
-      <Project>{fc880066-d413-4e16-9f46-23acd5e30c2d}</Project>
-      <Name>Layout.Processors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Processors\Processors.csproj">
       <Project>{237d4caf-98a4-4c86-91a6-46ae3e27e965}</Project>
       <Name>Processors</Name>

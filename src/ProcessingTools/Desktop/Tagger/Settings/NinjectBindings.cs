@@ -77,13 +77,6 @@
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Layout.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(ProcessingTools.Special.Processors.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();

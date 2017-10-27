@@ -128,6 +128,31 @@
     <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithFullStringMatchStrategy.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
+    <Compile Include="Layout\Abstractions\Normalizers\AbstractXmlNormalizer.cs" />
+    <Compile Include="Layout\Contracts\Factories\IFormatTransformersFactory.cs" />
+    <Compile Include="Layout\Contracts\Factories\IInitialFormatTransformerFactory.cs" />
+    <Compile Include="Layout\Contracts\Factories\INormalizationTransformerFactory.cs" />
+    <Compile Include="Layout\Contracts\Factories\ITransformerFactory.cs" />
+    <Compile Include="Layout\Contracts\Formatters\IDocumentFinalFormatter.cs" />
+    <Compile Include="Layout\Contracts\Formatters\IDocumentInitialFormatter.cs" />
+    <Compile Include="Layout\Contracts\Normalizers\IDocumentPostReadNormalizer.cs" />
+    <Compile Include="Layout\Contracts\Normalizers\IDocumentPreWriteNormalizer.cs" />
+    <Compile Include="Layout\Contracts\Normalizers\IDocumentSchemaNormalizer.cs" />
+    <Compile Include="Layout\Contracts\Taggers\IContentTagger.cs" />
+    <Compile Include="Layout\Contracts\Taggers\ISimpleXmlSerializableObjectTagger.cs" />
+    <Compile Include="Layout\Contracts\Taggers\IStringTagger.cs" />
+    <Compile Include="Layout\Factories\InitialFormatTransformerFactory.cs" />
+    <Compile Include="Layout\Factories\NormalizationTransformerFactory.cs" />
+    <Compile Include="Layout\Models\Taggers\ContentTaggerSettings.cs" />
+    <Compile Include="Layout\Models\Taggers\IContentTaggerSettings.cs" />
+    <Compile Include="Layout\Processors\Formatters\DocumentFinalFormatter.cs" />
+    <Compile Include="Layout\Processors\Formatters\DocumentInitialFormatter.cs" />
+    <Compile Include="Layout\Processors\Normalizers\DocumentPostReadNormalizer.cs" />
+    <Compile Include="Layout\Processors\Normalizers\DocumentPreWriteNormalizer.cs" />
+    <Compile Include="Layout\Processors\Normalizers\DocumentSchemaNormalizer.cs" />
+    <Compile Include="Layout\Processors\Taggers\ContentTagger.cs" />
+    <Compile Include="Layout\Processors\Taggers\SimpleXmlSerializableObjectTagger.cs" />
+    <Compile Include="Layout\Processors\Taggers\StringTagger.cs" />
     <Compile Include="Models\Abbreviations\Abbreviation.cs" />
     <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionCodeSerializableModel.cs" />
     <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionSerializableModel.cs" />
@@ -315,10 +340,6 @@
     <ProjectReference Include="..\..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Layout.Processors\Layout.Processors.csproj">
-      <Project>{FC880066-D413-4E16-9F46-23ACD5E30C2D}</Project>
-      <Name>Layout.Processors</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
