@@ -19,10 +19,6 @@
                 b.From(typeof(ProcessingTools.Services.Cache.ValidationCacheService).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
-
-                b.From(ProcessingTools.Documents.Services.Data.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
             });
         }
     }

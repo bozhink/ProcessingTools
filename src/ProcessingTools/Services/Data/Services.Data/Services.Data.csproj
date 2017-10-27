@@ -82,6 +82,10 @@
     <Compile Include="Contracts\Bio\Taxonomy\ITaxaRankResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\ITaxonRankSearchService.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IWhiteList.cs" />
+    <Compile Include="Contracts\Documents\Factories\IDocumentsFormatTransformersFactory.cs" />
+    <Compile Include="Contracts\Documents\IDocumentsDataService.cs" />
+    <Compile Include="Contracts\Documents\IXmlPresenter.cs" />
+    <Compile Include="Contracts\Documents\Models\IDocumentServiceModel.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFileContentDataService.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFilesDataService.cs" />
     <Compile Include="Contracts\Files\IXmlFileContentDataService.cs" />
@@ -105,6 +109,9 @@
     <Compile Include="Models\Bio\Taxonomy\TaxonRankEntity.cs" />
     <Compile Include="Models\Bio\Taxonomy\TaxonRankServiceModel.cs" />
     <Compile Include="Models\Bio\Taxonomy\TaxonRankWithWhiteListingServiceModel.cs" />
+    <Compile Include="Models\Documents\DataModels\Publishers\AddressEntity.cs" />
+    <Compile Include="Models\Documents\DataModels\Publishers\PublisherEntity.cs" />
+    <Compile Include="Models\Documents\Models\DocumentServiceModel.cs" />
     <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
     <Compile Include="Models\Journals\DataModels\AddressDataModel.cs" />
     <Compile Include="Models\Journals\DataModels\InstitutionDataModel.cs" />
@@ -140,6 +147,8 @@
     <Compile Include="Services\Bio\Taxonomy\TaxonRankSearchService.cs" />
     <Compile Include="Services\Bio\Taxonomy\WhiteList.cs" />
     <Compile Include="Services\Bio\TypeStatusDataService.cs" />
+    <Compile Include="Services\Documents\DocumentsDataService.cs" />
+    <Compile Include="Services\Documents\XmlPresenter.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\Files\XmlFileContentDataService.cs" />
@@ -201,6 +210,10 @@
       <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{aa4714ba-02ce-487e-af9f-1f7c9112fa13}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
@@ -229,6 +242,10 @@
       <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Documents\Documents.Data.Entity\Documents.Data.Entity.csproj">
+      <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
+      <Name>Documents.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
@@ -236,6 +253,18 @@
     <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
       <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
       <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\FileSystem\FileSystem.csproj">
+      <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
+      <Name>FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
+      <Project>{a9d115cf-cf42-4685-a4de-f6b1ab0c753f}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
+      <Name>Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
       <Project>{F364BD78-29DE-48BE-9098-B6AE0C468008}</Project>

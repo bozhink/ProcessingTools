@@ -94,9 +94,9 @@
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Services\Data\Documents.Services.Data\Documents.Services.Data.csproj">
-      <Project>{9bdbcaf3-e2fe-4148-b4c6-ec98054ddbc9}</Project>
-      <Name>Documents.Services.Data</Name>
+    <ProjectReference Include="..\..\..\Services\Data\Services.Data\Services.Data.csproj">
+      <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
+      <Name>Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
