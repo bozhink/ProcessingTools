@@ -781,9 +781,9 @@
       <Project>{667d4391-17f1-4433-bc96-685aee89650a}</Project>
       <Name>ProcessingTools.Web.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Journals.Services.Data\Journals.Services.Data.csproj">
-      <Project>{DC1A2B54-0B9B-422F-A401-90026EE48DE7}</Project>
-      <Name>Journals.Services.Data</Name>
+    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
+      <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
+      <Name>Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Security\ProcessingTools.Web.Security.csproj">
       <Project>{7e793b3d-6932-43d4-8529-f3476e405f8e}</Project>

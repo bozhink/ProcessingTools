@@ -31,7 +31,7 @@
         /// <param name="fullName">The full name of the file to be written.</param>
         /// <param name="document">XML as DOM to be written.</param>
         /// <param name="documentType">Custom DOCTYPE of the DOM to be set.</param>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         Task<object> WriteXmlFile(string fullName, XmlDocument document, XmlDocumentType documentType = null);
     }
 }

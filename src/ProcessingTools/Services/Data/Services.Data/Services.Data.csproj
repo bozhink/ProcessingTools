@@ -62,6 +62,7 @@
     <Compile Include="Abstractions\Geo\AbstractGeoDataService.cs" />
     <Compile Include="Abstractions\Geo\AbstractGeoMultiDataService.cs" />
     <Compile Include="Abstractions\Geo\AbstractGeoSynonymisableDataService.cs" />
+    <Compile Include="Abstractions\Journals\AbstractAddresssableDataService.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IAboveGenusTaxaRankResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IAphiaTaxaClassificationResolver.cs" />
@@ -86,6 +87,14 @@
     <Compile Include="Contracts\Files\IXmlFileContentDataService.cs" />
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
+    <Compile Include="Contracts\Journals\Models\IAddress.cs" />
+    <Compile Include="Contracts\Journals\Models\IAddressable.cs" />
+    <Compile Include="Contracts\Journals\Models\IInstitution.cs" />
+    <Compile Include="Contracts\Journals\Models\IInstitutionDetails.cs" />
+    <Compile Include="Contracts\Journals\Models\IPublisher.cs" />
+    <Compile Include="Contracts\Journals\Models\IPublisherDetails.cs" />
+    <Compile Include="Contracts\Journals\Services\IAddressableDataService.cs" />
+    <Compile Include="Contracts\Journals\Services\IPublishersDataService.cs" />
     <Compile Include="Contracts\Mediatypes\IMediatypesResolver.cs" />
     <Compile Include="Contracts\Mediatypes\IMediatypeStringResolver.cs" />
     <Compile Include="Contracts\Meta\IJournalMetaDataService.cs" />
@@ -97,6 +106,14 @@
     <Compile Include="Models\Bio\Taxonomy\TaxonRankServiceModel.cs" />
     <Compile Include="Models\Bio\Taxonomy\TaxonRankWithWhiteListingServiceModel.cs" />
     <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
+    <Compile Include="Models\Journals\DataModels\AddressDataModel.cs" />
+    <Compile Include="Models\Journals\DataModels\InstitutionDataModel.cs" />
+    <Compile Include="Models\Journals\DataModels\PublisherDataModel.cs" />
+    <Compile Include="Models\Journals\ServiceModels\AddressServiceModel.cs" />
+    <Compile Include="Models\Journals\ServiceModels\InstitutionDetailsServiceModel.cs" />
+    <Compile Include="Models\Journals\ServiceModels\InstitutionServiceModel.cs" />
+    <Compile Include="Models\Journals\ServiceModels\PublisherDetailsServiceModel.cs" />
+    <Compile Include="Models\Journals\ServiceModels\PublisherServiceModel.cs" />
     <Compile Include="Models\Mediatypes\MediatypeServiceModel.cs" />
     <Compile Include="Models\Meta\JournalMeta.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
@@ -142,6 +159,7 @@
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Models\InstitutionServiceModel.cs" />
     <Compile Include="Models\ProductServiceModel.cs" />
+    <Compile Include="Services\Journals\PublishersDataService.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithStaticDictionary.cs" />
@@ -207,6 +225,10 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\Common\Data.Common\Data.Common.csproj">
+      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
+      <Name>Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
@@ -240,6 +262,7 @@
     <None Include="packages.config" />
     <None Include="Services.Data.ruleset" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
