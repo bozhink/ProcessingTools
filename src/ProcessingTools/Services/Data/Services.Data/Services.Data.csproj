@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\AbstractMultiDataServiceAsync{TEntity,TModel,TFilter}.cs" />
     <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaInformationResolver.cs" />
     <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaRankResolverOverTaxaClassificationResolver.cs" />
     <Compile Include="Abstractions\Geo\AbstractGeoDataService.cs" />
@@ -225,10 +226,6 @@
     <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
       <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
       <Name>ProcessingTools.Services.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Services.csproj">
-      <Project>{4b5a7dc2-bdcb-4602-8265-b02ef9b48d16}</Project>
-      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
