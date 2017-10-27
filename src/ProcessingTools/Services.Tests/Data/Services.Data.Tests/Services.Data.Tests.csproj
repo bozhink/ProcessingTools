@@ -66,9 +66,12 @@
   <ItemGroup>
     <Compile Include="Integration.Tests\Bio\Taxonomy\CatalogueOfLifeTaxaClassificationResolverTests.cs" />
     <Compile Include="Integration.Tests\Bio\Taxonomy\GbifTaxaClassificationResolverTests.cs" />
+    <Compile Include="Integration.Tests\Documents\XmlPresenterTests.cs" />
+    <Compile Include="NUnitSetUpClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Services.Data.Tests.ruleset" />
   </ItemGroup>
@@ -76,6 +79,10 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
       <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
       <Name>ProcessingTools.Clients.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
+      <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
+      <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
@@ -96,6 +103,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}</Project>
       <Name>ProcessingTools.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
+      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
+      <Name>Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
