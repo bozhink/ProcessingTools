@@ -21,7 +21,7 @@
         {
             if (!typeof(TEnum).IsEnum)
             {
-                throw new ArgumentException(GeoJsonMessages.InvalidEnumTypeExceptionMessage);
+                throw new InvalidOperationException(nameof(TEnum));
             }
         }
 
@@ -82,7 +82,7 @@
         {
             if (string.IsNullOrEmpty(type))
             {
-                throw new ArgumentNullException(GeoJsonMessages.NullTypeExceptionMessage);
+                throw new ArgumentNullException(nameof(type));
             }
 
             string inputType = type.ToLowerInvariant();
@@ -90,7 +90,7 @@
 
             if (string.IsNullOrEmpty(thisType))
             {
-                throw new ArgumentException($"{GeoJsonMessages.InvalidTypeExceptionMessage} {type}.");
+                throw new ArgumentException(string.Empty, nameof(type));
             }
 
             return thisType;
