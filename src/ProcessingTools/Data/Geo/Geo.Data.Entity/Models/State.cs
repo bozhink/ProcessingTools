@@ -6,7 +6,7 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Models.Contracts;
 
-    public class State : SystemInformation, ISynonymisable<StateSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
+    public class State : BaseModel, ISynonymisable<StateSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {
         private ICollection<Province> provinces;
         private ICollection<Region> regions;

@@ -4,7 +4,7 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Models.Contracts;
 
-    public abstract class Synonym : SystemInformation, INameableIntegerIdentifiable, ISynonym, IDataModel
+    public abstract class Synonym : BaseModel, INameableIntegerIdentifiable, ISynonym, IDataModel
     {
         [Key]
         public int Id { get; set; }

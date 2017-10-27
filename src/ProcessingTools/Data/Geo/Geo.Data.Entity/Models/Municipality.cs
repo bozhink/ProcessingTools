@@ -6,7 +6,7 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Models.Contracts;
 
-    public class Municipality : SystemInformation, ISynonymisable<MunicipalitySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
+    public class Municipality : BaseModel, ISynonymisable<MunicipalitySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {
         private ICollection<County> counties;
         private ICollection<City> cities;

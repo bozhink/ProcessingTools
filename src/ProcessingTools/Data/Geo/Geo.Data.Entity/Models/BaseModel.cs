@@ -6,7 +6,7 @@
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Models.Contracts;
 
-    public abstract class SystemInformation : IModelWithSystemInformation
+    public abstract class BaseModel : ICreated, IModified
     {
         [Required(AllowEmptyStrings = false)]
         [MinLength(ValidationConstants.MinimalLengthOfUserIdentifier)]

@@ -15,10 +15,10 @@
     using ProcessingTools.Models.Contracts.Geo;
 
     public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableRepository<TModel, TSynonymModel, TSynonymFilter>
-        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonymisable<TSynonymEntity>
+        where TEntity : BaseModel, INameableIntegerIdentifiable, IDataModel, ISynonymisable<TSynonymEntity>
         where TModel : class, IIntegerIdentifiable, IGeoSynonymisable<TSynonymModel>
         where TFilter : IFilter
-        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonym
+        where TSynonymEntity : BaseModel, INameableIntegerIdentifiable, IDataModel, ISynonym
         where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {

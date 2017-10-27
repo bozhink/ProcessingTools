@@ -106,7 +106,7 @@
     <Compile Include="Models\StateSynonymModel.cs" />
     <Compile Include="Models\Synonym.cs" />
     <Compile Include="Models\SynonymModel.cs" />
-    <Compile Include="Models\SystemInformation.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Repositories\IGeoDataRepository.cs" />
     <Compile Include="Contracts\IGeoDbContextProvider.cs" />

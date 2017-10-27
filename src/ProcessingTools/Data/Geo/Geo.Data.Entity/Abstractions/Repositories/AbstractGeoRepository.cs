@@ -12,7 +12,7 @@
     using ProcessingTools.Models.Contracts;
 
     public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IRepositoryAsync<TModel, TFilter>
-        where TEntity : SystemInformation, IDataModel
+        where TEntity : BaseModel, IDataModel
         where TModel : class, IIntegerIdentifiable
         where TFilter : IFilter
     {
