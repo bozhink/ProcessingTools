@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
-    using ProcessingTools.Services.Data.Models.Mediatypes;
+    using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithMediatypeStringResolver : IMediatypesResolver
     {
@@ -28,7 +28,7 @@
 
             return new IMediatype[]
             {
-                new MediatypeServiceModel(mediatype)
+                new Mediatype(mediatype)
             };
         }
     }

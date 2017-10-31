@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Contracts.Repositories.Mediatypes;
     using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
-    using ProcessingTools.Services.Data.Models.Mediatypes;
+    using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithDatabase : IMediatypesResolver
     {
@@ -38,7 +38,7 @@
                 }
                 else
                 {
-                    return response.Select(e => new MediatypeServiceModel(e.Mimetype, e.Mimesubtype));
+                    return response.Select(e => new Mediatype(e.Mimetype, e.Mimesubtype));
                 }
             }
             catch
@@ -51,7 +51,7 @@
         {
             return new IMediatype[]
             {
-                new MediatypeServiceModel(mimetype, mimesubtype)
+                new Mediatype(mimetype, mimesubtype)
             };
         }
     }

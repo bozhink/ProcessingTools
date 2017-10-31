@@ -110,7 +110,6 @@
     <Compile Include="Models\Journals\ServiceModels\Institution.cs" />
     <Compile Include="Models\Journals\ServiceModels\PublisherDetails.cs" />
     <Compile Include="Models\Journals\ServiceModels\Publisher.cs" />
-    <Compile Include="Models\Mediatypes\MediatypeServiceModel.cs" />
     <Compile Include="Models\Meta\JournalMeta.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
