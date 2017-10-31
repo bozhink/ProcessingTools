@@ -7,7 +7,7 @@
     using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class BlackListDataService : IBlackListDataService
     {
@@ -18,11 +18,11 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public async Task<object> AddAsync(params string[] models)
+        public Task<object> AddAsync(params string[] models)
         {
             var validItems = this.ValidateInputItems(models);
 
-            return await this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validItems.Select(s => new BlackListEntity
                 {
@@ -33,21 +33,19 @@
 
                 await Task.WhenAll(tasks).ConfigureAwait(false);
                 return await repository.SaveChangesAsync().ConfigureAwait(false);
-            })
-            .ConfigureAwait(false);
+            });
         }
 
-        public async Task<object> DeleteAsync(params string[] models)
+        public Task<object> DeleteAsync(params string[] models)
         {
             var validItems = this.ValidateInputItems(models);
 
-            return await this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validItems.Select(b => repository.DeleteAsync(b)).ToArray();
                 await Task.WhenAll(tasks).ConfigureAwait(false);
                 return await repository.SaveChangesAsync().ConfigureAwait(false);
-            })
-            .ConfigureAwait(false);
+            });
         }
 
         private IEnumerable<string> ValidateInputItems(params string[] items)

@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class TaxonRankDataService : ITaxonRankDataService
     {
@@ -34,30 +34,28 @@
             return taxon;
         };
 
-        public virtual async Task<object> AddAsync(params ITaxonRank[] models)
+        public virtual Task<object> AddAsync(params ITaxonRank[] models)
         {
             var validTaxa = this.ValidateTaxa(models);
 
-            return await this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validTaxa.Select(this.MapServiceModelToDbModel).Select(t => repository.AddAsync(t)).ToArray();
                 await Task.WhenAll(tasks).ConfigureAwait(false);
                 return await repository.SaveChangesAsync().ConfigureAwait(false);
-            })
-            .ConfigureAwait(false);
+            });
         }
 
-        public virtual async Task<object> DeleteAsync(params ITaxonRank[] models)
+        public virtual Task<object> DeleteAsync(params ITaxonRank[] models)
         {
             var validTaxa = this.ValidateTaxa(models);
 
-            return await this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.Execute(async (repository) =>
             {
                 var tasks = validTaxa.Select(t => repository.DeleteAsync(t.ScientificName)).ToArray();
                 await Task.WhenAll(tasks).ConfigureAwait(false);
                 return await repository.SaveChangesAsync().ConfigureAwait(false);
-            })
-            .ConfigureAwait(false);
+            });
         }
 
         private ITaxonRank[] ValidateTaxa(ITaxonRank[] taxa)

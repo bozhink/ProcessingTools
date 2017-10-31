@@ -9,9 +9,9 @@
     using System.Windows.Forms;
     using Ninject;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.ListsManager.Settings;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
-    using Settings;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public partial class ListManagerControl : UserControl
     {
@@ -144,9 +144,9 @@
                 {
                     var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    var taxa = new HashSet<TaxonRankServiceModel>(this.listView.Items
+                    var taxa = new HashSet<TaxonRank>(this.listView.Items
                         .Cast<ListViewItem>()
-                        .Select(i => new TaxonRankServiceModel
+                        .Select(i => new TaxonRank
                         {
                             ScientificName = i.SubItems[0].Text,
                             Rank = i.SubItems[1].Text.MapTaxonRankStringToTaxonRankType()

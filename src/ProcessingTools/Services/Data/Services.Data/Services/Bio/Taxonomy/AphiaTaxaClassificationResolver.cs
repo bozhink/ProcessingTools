@@ -11,7 +11,7 @@
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class AphiaTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IAphiaTaxaClassificationResolver
     {
@@ -20,9 +20,9 @@
             Thread.Sleep(ConcurrencyConstants.DefaultDelayTime);
         }
 
-        protected override async Task<IEnumerable<ITaxonClassification>> ResolveScientificName(string scientificName)
+        protected override Task<IEnumerable<ITaxonClassification>> ResolveScientificName(string scientificName)
         {
-            return await Task.Run(() =>
+            return Task.Run<IEnumerable<ITaxonClassification>>(() =>
             {
                 var result = new HashSet<ITaxonClassification>();
 
@@ -43,13 +43,12 @@
                 }
 
                 return result;
-            })
-            .ConfigureAwait(false);
+            });
         }
 
         private ITaxonClassification MapAphiaRecordToTaxonClassification(AphiaRecord record)
         {
-            var result = new TaxonClassificationServiceModel
+            var result = new TaxonClassification
             {
                 Rank = record.rank.MapTaxonRankStringToTaxonRankType(),
                 ScientificName = record.scientificname,
@@ -57,37 +56,37 @@
                 CanonicalName = record.valid_name
             };
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Kingdom,
                 ScientificName = record.kingdom
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Phylum,
                 ScientificName = record.phylum
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Class,
                 ScientificName = record.@class
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Order,
                 ScientificName = record.order
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Family,
                 ScientificName = record.family
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Genus,
                 ScientificName = record.genus

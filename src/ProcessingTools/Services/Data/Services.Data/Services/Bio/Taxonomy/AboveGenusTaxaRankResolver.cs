@@ -6,20 +6,21 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class AboveGenusTaxaRankResolver : IAboveGenusTaxaRankResolver
     {
-        public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
         {
-            var result = new HashSet<ITaxonRank>(scientificNames
-                .Select(s => new TaxonRankServiceModel
+            var data = scientificNames
+                .Select(s => new TaxonRank
                 {
                     ScientificName = s,
                     Rank = TaxonRankType.AboveGenus
-                }));
+                })
+                .ToArray<ITaxonRank>();
 
-            return await Task.FromResult(result).ConfigureAwait(false);
+            return Task.FromResult<IEnumerable<ITaxonRank>>(data);
         }
     }
 }

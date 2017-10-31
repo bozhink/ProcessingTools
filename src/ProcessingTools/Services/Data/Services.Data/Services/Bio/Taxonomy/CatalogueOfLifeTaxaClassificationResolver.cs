@@ -13,7 +13,7 @@
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class CatalogueOfLifeTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolver
     {
@@ -55,7 +55,7 @@
 
         private ITaxonClassification MapResultToClassification(Result result)
         {
-            var taxonClassification = new TaxonClassificationServiceModel
+            var taxonClassification = new TaxonClassification
             {
                 ScientificName = result.Name,
                 Rank = result.Rank.MapTaxonRankStringToTaxonRankType(),
@@ -83,7 +83,7 @@
                     .FirstOrDefault(c => string.Compare(c.Rank, rank.MapTaxonRankTypeToTaxonRankString(), true) == 0)
                     .Name;
 
-                return new TaxonRankServiceModel
+                return new TaxonRank
                 {
                     ScientificName = name,
                     Rank = rank

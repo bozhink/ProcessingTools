@@ -13,7 +13,7 @@
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class GbifTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IGbifTaxaClassificationResolver
     {
@@ -58,44 +58,44 @@
 
         private ITaxonClassification MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)
         {
-            var result = new TaxonClassificationServiceModel
+            var result = new TaxonClassification
             {
                 ScientificName = taxon.ScientificName,
                 CanonicalName = taxon.CanonicalName,
                 Rank = taxon.Rank.MapTaxonRankStringToTaxonRankType()
             };
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Kingdom,
                 ScientificName = taxon.Kingdom
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Phylum,
                 ScientificName = taxon.Phylum
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Class,
                 ScientificName = taxon.Class
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Order,
                 ScientificName = taxon.Order
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Family,
                 ScientificName = taxon.Family
             });
 
-            result.Classification.Add(new TaxonRankServiceModel
+            result.Classification.Add(new TaxonRank
             {
                 Rank = TaxonRankType.Genus,
                 ScientificName = taxon.Genus

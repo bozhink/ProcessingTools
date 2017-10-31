@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class TaxonRankSearchService : ITaxonRankSearchService
     {
@@ -27,13 +27,13 @@
                 return new ITaxonRank[] { };
             }
 
-            return await this.repositoryProvider.Execute(async (repository) =>
+            return await this.repositoryProvider.Execute<IEnumerable<ITaxonRank>>(async (repository) =>
             {
                 var searchString = filter.ToLowerInvariant();
 
                 var data = await repository.FindAsync(t => t.Name.ToLower().Contains(searchString)).ConfigureAwait(false);
                 var result = data.SelectMany(
-                    t => t.Ranks.Select(rank => new TaxonRankServiceModel
+                    t => t.Ranks.Select(rank => new TaxonRank
                     {
                         ScientificName = t.Name,
                         Rank = rank

@@ -18,14 +18,14 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public async Task<IEnumerable<string>> Search(string filter)
+        public Task<IEnumerable<string>> Search(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
-                return new string[] { };
+                return Task.FromResult<IEnumerable<string>>(new string[] { });
             }
 
-            return await this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
             {
                 var searchString = filter.ToLowerInvariant();
 
@@ -36,8 +36,7 @@
                     .ConfigureAwait(false);
 
                 return new HashSet<string>(result);
-            })
-            .ConfigureAwait(false);
+            });
         }
     }
 }

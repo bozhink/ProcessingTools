@@ -8,7 +8,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyTaxaRanks;
 
     [Authorize]
@@ -34,7 +34,7 @@
             }
 
             var taxa = model.Taxa
-                .Select(i => new TaxonRankServiceModel
+                .Select(i => new TaxonRank
                 {
                     ScientificName = i.TaxonName,
                     Rank = i.Rank.MapTaxonRankStringToTaxonRankType()
@@ -43,7 +43,6 @@
 
             await this.dataService.AddAsync(taxa).ConfigureAwait(false);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();
         }
 
@@ -69,7 +68,6 @@
                 Rank = t.Rank.MapTaxonRankTypeToTaxonRankString()
             });
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetJsonResult(
                 new SearchResposeModel(
                     responseTaxa.ToArray()));

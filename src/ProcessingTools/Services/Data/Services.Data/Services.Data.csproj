@@ -103,12 +103,6 @@
     <Compile Include="Contracts\Mediatypes\IMediatypeStringResolver.cs" />
     <Compile Include="Contracts\Meta\IJournalMetaDataService.cs" />
     <Compile Include="Contracts\Meta\IJournalsMetaDataService.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\ITaxonRankWithWhiteListing.cs" />
-    <Compile Include="Models\Bio\Taxonomy\BlackListEntity.cs" />
-    <Compile Include="Models\Bio\Taxonomy\TaxonClassificationServiceModel.cs" />
-    <Compile Include="Models\Bio\Taxonomy\TaxonRankEntity.cs" />
-    <Compile Include="Models\Bio\Taxonomy\TaxonRankServiceModel.cs" />
-    <Compile Include="Models\Bio\Taxonomy\TaxonRankWithWhiteListingServiceModel.cs" />
     <Compile Include="Models\Documents\DataModels\Publishers\AddressEntity.cs" />
     <Compile Include="Models\Documents\DataModels\Publishers\PublisherEntity.cs" />
     <Compile Include="Models\Documents\Models\DocumentServiceModel.cs" />
