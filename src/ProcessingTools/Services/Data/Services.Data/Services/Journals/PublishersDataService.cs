@@ -28,7 +28,7 @@
 
         public bool SaveToHistory { get; set; } = true;
 
-        protected override Func<TDataModel, TDetailedServiceModel> MapDataModelToDetailedServiceModel => dataModel => new PublisherDetailsServiceModel
+        protected override Func<TDataModel, TDetailedServiceModel> MapDataModelToDetailedServiceModel => dataModel => new PublisherDetails
         {
             Id = dataModel.Id,
             AbbreviatedName = dataModel.AbbreviatedName,
@@ -38,7 +38,7 @@
             ModifiedOn = dataModel.ModifiedOn,
             ModifiedBy = dataModel.ModifiedBy,
             Addresses = dataModel.Addresses
-                .Select(a => new AddressServiceModel
+                .Select(a => new Address
                 {
                     AddressString = a.AddressString,
                     CityId = a.CityId,
@@ -48,7 +48,7 @@
                 .ToList<IAddress>()
         };
 
-        protected override Func<TDataModel, TServiceModel> MapDataModelToServiceModel => dataModel => new PublisherServiceModel
+        protected override Func<TDataModel, TServiceModel> MapDataModelToServiceModel => dataModel => new Publisher
         {
             Id = dataModel.Id,
             AbbreviatedName = dataModel.AbbreviatedName,

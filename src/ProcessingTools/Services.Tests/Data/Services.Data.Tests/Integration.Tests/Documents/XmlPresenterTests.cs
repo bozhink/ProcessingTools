@@ -10,8 +10,8 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Documents.Services.Data.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts.Factories;
-    using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Documents.Services.Data.Services;
+    using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Transformers;
 
@@ -51,7 +51,7 @@
         private Mock<IDocumentsDataService> serviceMock;
         private IDocumentsDataService service;
 
-        private DocumentServiceModel document;
+        private Document document;
 
         private object userId;
         private object articleId;
@@ -66,7 +66,7 @@
             this.serviceMock.Setup(s => s.UpdateContent(
                 It.IsAny<object>(),
                 It.IsAny<object>(),
-                It.IsAny<DocumentServiceModel>(),
+                It.IsAny<Document>(),
                 It.IsAny<string>()))
                 .Returns((object u, object a, object d, string c) => Task.FromResult<object>(c));
 
@@ -108,7 +108,7 @@
             this.articleId = Guid.NewGuid();
             this.documentId = Guid.NewGuid();
 
-            this.document = new DocumentServiceModel();
+            this.document = new Document();
         }
 
         // TODO: test factory

@@ -13,18 +13,17 @@
     using ProcessingTools.Contracts.IO;
     using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Documents.Services.Data.Contracts;
-    using ProcessingTools.Documents.Services.Data.Contracts.Models;
-    using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Models.Contracts.Data.Documents;
+    using ProcessingTools.Services.Models.Data.Documents;
 
     public class DocumentsDataService : IDocumentsDataService
     {
-        private readonly IDocumentsRepositoryProvider<Document> repositoryProvider;
+        private readonly IDocumentsRepositoryProvider<Documents.Data.Entity.Models.Document> repositoryProvider;
         private readonly IXmlFileReaderWriter xmlFileReaderWriter;
 
-        public DocumentsDataService(IDocumentsRepositoryProvider<Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
+        public DocumentsDataService(IDocumentsRepositoryProvider<Documents.Data.Entity.Models.Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
             this.xmlFileReaderWriter = xmlFileReaderWriter ?? throw new ArgumentNullException(nameof(xmlFileReaderWriter));
@@ -45,7 +44,7 @@
             }
         }
 
-        public async Task<IEnumerable<IDocumentServiceModel>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
+        public async Task<IEnumerable<IDocument>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
         {
             if (userId == null)
             {
@@ -75,7 +74,7 @@
                 .OrderByDescending(d => d.ModifiedOn)
                 .Skip(pageNumber * itemsPerPage)
                 .Take(itemsPerPage)
-                .Select(d => new DocumentServiceModel
+                .Select(d => new ProcessingTools.Services.Models.Data.Documents.Document
                 {
                     Id = d.Id.ToString(),
                     FileName = d.FileName,
@@ -119,7 +118,7 @@
             return count;
         }
 
-        public async Task<object> Create(object userId, object articleId, IDocumentServiceModel document, Stream inputStream)
+        public async Task<object> Create(object userId, object articleId, IDocument document, Stream inputStream)
         {
             if (userId == null)
             {
@@ -143,7 +142,7 @@
 
             string path = await this.xmlFileReaderWriter.GetNewFilePathAsync(document.FileName, this.DataDirectory, ProcessingTools.Constants.Data.Documents.ValidationConstants.MaximalLengthOfFullFileName).ConfigureAwait(false);
 
-            var entity = new Document
+            var entity = new Documents.Data.Entity.Models.Document
             {
                 FileName = document.FileName,
                 OriginalFileName = document.FileName,
@@ -239,10 +238,10 @@
             return result;
         }
 
-        public async Task<IDocumentServiceModel> Get(object userId, object articleId, object documentId)
+        public async Task<IDocument> Get(object userId, object articleId, object documentId)
         {
             var entity = await this.GetDocument(userId, articleId, documentId).ConfigureAwait(false);
-            return new DocumentServiceModel
+            return new ProcessingTools.Services.Models.Data.Documents.Document
             {
                 Id = entity.Id.ToString(),
                 FileName = entity.FileName,
@@ -267,7 +266,7 @@
             return this.xmlFileReaderWriter.ReadToStream(entity.FilePath, this.DataDirectory);
         }
 
-        public async Task<object> UpdateContent(object userId, object articleId, IDocumentServiceModel document, string content)
+        public async Task<object> UpdateContent(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
             {
@@ -305,7 +304,7 @@
             return entity.ContentLength;
         }
 
-        public async Task<object> UpdateMeta(object userId, object articleId, IDocumentServiceModel document)
+        public async Task<object> UpdateMeta(object userId, object articleId, IDocument document)
         {
             if (userId == null)
             {
@@ -341,7 +340,7 @@
             return entity.ContentLength;
         }
 
-        private async Task<Document> GetDocument(object userId, object articleId, object documentId)
+        private async Task<Documents.Data.Entity.Models.Document> GetDocument(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {
@@ -367,7 +366,7 @@
             return entity;
         }
 
-        private async Task<Document> GetEntityAsync(object userId, object articleId, object documentId, ICrudRepository<Document> repository)
+        private async Task<Documents.Data.Entity.Models.Document> GetEntityAsync(object userId, object articleId, object documentId, ICrudRepository<Documents.Data.Entity.Models.Document> repository)
         {
             var entity = await repository.Query
                 .Where(d => d.CreatedBy == userId.ToString())

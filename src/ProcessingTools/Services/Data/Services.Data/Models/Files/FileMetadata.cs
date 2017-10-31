@@ -3,7 +3,7 @@
     using System;
     using ProcessingTools.Models.Contracts.Files;
 
-    internal class FileMetadataServiceModel : IFileMetadata
+    public class FileMetadata : IFileMetadata
     {
         public long ContentLength { get; set; }
 

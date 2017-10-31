@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Journals.Services.Data.Models.ServiceModels
 {
     using Contracts.Models;
-    using ProcessingTools.Models.Contracts;
 
-    internal class PublisherServiceModel : IPublisher, IServiceModel
+    public class Institution : IInstitution
     {
         public string AbbreviatedName { get; set; }
 

@@ -5,9 +5,9 @@
     using System.Xml;
     using Contracts;
     using Contracts.Factories;
-    using Contracts.Models;
-    using Models;
     using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Services.Models.Contracts.Data.Documents;
+    using ProcessingTools.Services.Models.Data.Documents;
 
     public class XmlPresenter : IXmlPresenter
     {
@@ -86,7 +86,7 @@
             return xmlDocument.OuterXml;
         }
 
-        public async Task<object> SaveHtml(object userId, object articleId, IDocumentServiceModel document, string content)
+        public async Task<object> SaveHtml(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
             {
@@ -129,7 +129,7 @@
             return result;
         }
 
-        public async Task<object> SaveXml(object userId, object articleId, IDocumentServiceModel document, string content)
+        public async Task<object> SaveXml(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
             {

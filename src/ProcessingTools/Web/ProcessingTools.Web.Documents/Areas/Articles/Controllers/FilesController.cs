@@ -14,8 +14,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Documents.Services.Data.Contracts;
-    using ProcessingTools.Documents.Services.Data.Models;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Web.Models.Shared;
@@ -155,7 +155,7 @@
                 await this.service.UpdateMeta(
                     userId,
                     articleId,
-                    new DocumentServiceModel
+                    new Document
                     {
                         Id = model.DocumentId,
                         Comment = model.Comment,
@@ -349,7 +349,7 @@
                 throw new NullOrEmptyFileException();
             }
 
-            var document = new DocumentServiceModel
+            var document = new Document
             {
                 FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
                 FileExtension = Path.GetExtension(file.FileName).Trim('.'),

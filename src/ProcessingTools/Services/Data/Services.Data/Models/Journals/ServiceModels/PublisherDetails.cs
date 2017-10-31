@@ -3,10 +3,14 @@
     using System;
     using System.Collections.Generic;
     using Contracts.Models;
-    using ProcessingTools.Models.Contracts;
 
-    internal class InstitutionDetailsServiceModel : IInstitutionDetails, IServiceModel
+    public class PublisherDetails : IPublisherDetails
     {
+        public PublisherDetails()
+        {
+            this.Addresses = new HashSet<IAddress>();
+        }
+
         public string AbbreviatedName { get; set; }
 
         public ICollection<IAddress> Addresses { get; set; }

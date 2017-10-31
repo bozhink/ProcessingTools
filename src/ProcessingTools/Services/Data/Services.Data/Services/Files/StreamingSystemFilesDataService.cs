@@ -102,7 +102,7 @@
             string contentType = MimeMapping.GetMimeMapping(fileInfo.FullName);
             string user = File.GetAccessControl(fileInfo.FullName).GetOwner(typeof(NTAccount)).ToString();
 
-            return new FileMetadataServiceModel
+            return new FileMetadata
             {
                 Id = fileInfo.FullName,
                 FileExtension = fileInfo.Extension.Trim('.'),

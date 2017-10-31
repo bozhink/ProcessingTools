@@ -14,7 +14,7 @@
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts;
     using ProcessingTools.Documents.Services.Data.Contracts;
-    using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
@@ -247,7 +247,7 @@
                     .FirstOrDefault(i => i.Name == model.CommandId)
                     .Description;
 
-                var documentMetadata = new DocumentServiceModel
+                var documentMetadata = new Document
                 {
                     Comment = comment,
                     ContentLength = stream.Length,

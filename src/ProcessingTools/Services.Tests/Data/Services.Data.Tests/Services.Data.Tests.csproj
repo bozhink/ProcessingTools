@@ -100,6 +100,10 @@
       <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
       <Name>ProcessingTools.Processors.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{dd9dc75e-323a-49d9-ac70-eeb34c50e8a6}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}</Project>
       <Name>ProcessingTools.Net</Name>
@@ -115,6 +119,10 @@
     <ProjectReference Include="..\..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
       <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>
       <Name>ProcessingTools.Clients</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
+      <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
+      <Name>ProcessingTools.Services.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

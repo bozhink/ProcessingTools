@@ -82,10 +82,9 @@
     <Compile Include="Contracts\Bio\Taxonomy\ITaxaRankResolver.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\ITaxonRankSearchService.cs" />
     <Compile Include="Contracts\Bio\Taxonomy\IWhiteList.cs" />
-    <Compile Include="Contracts\Documents\Factories\IDocumentsFormatTransformersFactory.cs" />
+    <Compile Include="Contracts\Documents\IDocumentsFormatTransformersFactory.cs" />
     <Compile Include="Contracts\Documents\IDocumentsDataService.cs" />
     <Compile Include="Contracts\Documents\IXmlPresenter.cs" />
-    <Compile Include="Contracts\Documents\Models\IDocumentServiceModel.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFileContentDataService.cs" />
     <Compile Include="Contracts\Files\IStreamingSystemFilesDataService.cs" />
     <Compile Include="Contracts\Files\IXmlFileContentDataService.cs" />
@@ -103,16 +102,15 @@
     <Compile Include="Contracts\Mediatypes\IMediatypeStringResolver.cs" />
     <Compile Include="Contracts\Meta\IJournalMetaDataService.cs" />
     <Compile Include="Contracts\Meta\IJournalsMetaDataService.cs" />
-    <Compile Include="Models\Documents\Models\DocumentServiceModel.cs" />
-    <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
+    <Compile Include="Models\Files\FileMetadata.cs" />
     <Compile Include="Models\Journals\DataModels\AddressDataModel.cs" />
     <Compile Include="Models\Journals\DataModels\InstitutionDataModel.cs" />
     <Compile Include="Models\Journals\DataModels\PublisherDataModel.cs" />
-    <Compile Include="Models\Journals\ServiceModels\AddressServiceModel.cs" />
-    <Compile Include="Models\Journals\ServiceModels\InstitutionDetailsServiceModel.cs" />
-    <Compile Include="Models\Journals\ServiceModels\InstitutionServiceModel.cs" />
-    <Compile Include="Models\Journals\ServiceModels\PublisherDetailsServiceModel.cs" />
-    <Compile Include="Models\Journals\ServiceModels\PublisherServiceModel.cs" />
+    <Compile Include="Models\Journals\ServiceModels\Address.cs" />
+    <Compile Include="Models\Journals\ServiceModels\InstitutionDetails.cs" />
+    <Compile Include="Models\Journals\ServiceModels\Institution.cs" />
+    <Compile Include="Models\Journals\ServiceModels\PublisherDetails.cs" />
+    <Compile Include="Models\Journals\ServiceModels\Publisher.cs" />
     <Compile Include="Models\Mediatypes\MediatypeServiceModel.cs" />
     <Compile Include="Models\Meta\JournalMeta.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
