@@ -3,7 +3,7 @@
     using System.Text.RegularExpressions;
     using ProcessingTools.Models.Contracts.Documents;
 
-    internal class JournalMeta : IJournalMeta
+    public class JournalMeta : IJournalMeta
     {
         public string AbbreviatedJournalTitle { get; set; }
 
