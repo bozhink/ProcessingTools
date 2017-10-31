@@ -103,8 +103,6 @@
     <Compile Include="Contracts\Mediatypes\IMediatypeStringResolver.cs" />
     <Compile Include="Contracts\Meta\IJournalMetaDataService.cs" />
     <Compile Include="Contracts\Meta\IJournalsMetaDataService.cs" />
-    <Compile Include="Models\Documents\DataModels\Publishers\AddressEntity.cs" />
-    <Compile Include="Models\Documents\DataModels\Publishers\PublisherEntity.cs" />
     <Compile Include="Models\Documents\Models\DocumentServiceModel.cs" />
     <Compile Include="Models\Files\FileMetadataServiceModel.cs" />
     <Compile Include="Models\Journals\DataModels\AddressDataModel.cs" />
