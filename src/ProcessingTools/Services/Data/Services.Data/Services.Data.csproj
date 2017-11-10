@@ -96,10 +96,6 @@
     <Compile Include="Contracts\Mediatypes\IMediatypeStringResolver.cs" />
     <Compile Include="Contracts\Meta\IJournalMetaDataService.cs" />
     <Compile Include="Contracts\Meta\IJournalsMetaDataService.cs" />
-    <Compile Include="Models\Meta\JournalMeta.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Models\Meta\JournalMetaDataContract.cs" />
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionalCollectionsDataService.cs" />
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionsDataService.cs" />
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesPersonalCollectionsDataService.cs" />

@@ -6,7 +6,7 @@
     using ProcessingTools.Contracts.Serialization;
     using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Services.Data.Contracts.Meta;
-    using ProcessingTools.Services.Data.Models.Meta;
+    using ProcessingTools.Services.Models.Data.Meta;
 
     public class JournalMetaDataServiceWithFiles : IJournalMetaDataService
     {
