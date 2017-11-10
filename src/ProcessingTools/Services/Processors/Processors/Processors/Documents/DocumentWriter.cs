@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
-    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Services.Contracts.Data.Files;
 
     public class DocumentWriter : IDocumentWriter
     {

@@ -16,7 +16,7 @@
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
-    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Services.Contracts.Data.Files;
 
     public class FileProcessor : IFileProcessor
     {

@@ -7,7 +7,7 @@
     using System.Web;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Models.Contracts.Files;
-    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Services.Contracts.Data.Files;
     using ProcessingTools.Services.Models.Data.Files;
 
     public class StreamingSystemFilesDataService : IStreamingSystemFilesDataService

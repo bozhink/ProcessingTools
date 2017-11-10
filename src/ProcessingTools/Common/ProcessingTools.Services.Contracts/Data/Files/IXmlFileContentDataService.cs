@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Contracts.Files
+﻿namespace ProcessingTools.Services.Contracts.Data.Files
 {
     using System.Threading.Tasks;
     using System.Xml;

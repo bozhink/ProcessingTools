@@ -4,7 +4,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Services.Contracts.Data.Files;
 
     public class StreamingSystemFileContentDataService : IStreamingSystemFileContentDataService
     {

@@ -6,7 +6,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Processors.Documents;
-    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Services.Contracts.Data.Files;
 
     public class DocumentReader : IDocumentReader
     {

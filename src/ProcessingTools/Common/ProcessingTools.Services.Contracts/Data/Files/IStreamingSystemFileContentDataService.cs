@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Contracts.Files
+﻿namespace ProcessingTools.Services.Contracts.Data.Files
 {
     using ProcessingTools.Services.Contracts.Data.Files;
 
