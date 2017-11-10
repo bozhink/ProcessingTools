@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -274,6 +274,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Models.Contracts", "Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj", "{DD9DC75E-323A-49D9-AC70-EEB34C50E8A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Ninject.Modules", "Infrastructure\ProcessingTools.Ninject.Modules\ProcessingTools.Ninject.Modules.csproj", "{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.Entity", "Common\ProcessingTools.Extensions.Entity\ProcessingTools.Extensions.Entity.csproj", "{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1099,6 +1101,14 @@ Global
 		{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}.Release|x64.ActiveCfg = Release|Any CPU
 		{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}.Release|x64.Build.0 = Release|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Debug|x64.Build.0 = Debug|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Release|x64.ActiveCfg = Release|Any CPU
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1227,9 +1237,10 @@ Global
 		{1BDC50D1-BE9B-46E1-853C-ED94B58FC357} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
 		{DD9DC75E-323A-49D9-AC70-EEB34C50E8A6} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 		{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
