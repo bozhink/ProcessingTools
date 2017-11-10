@@ -8,8 +8,8 @@
     using ProcessingTools.Journals.Services.Data.Abstractions.Services;
     using ProcessingTools.Services.Models.Contracts.Data.Journals;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
-    using ProcessingTools.Journals.Services.Data.Models.DataModels;
-    using ProcessingTools.Journals.Services.Data.Models.ServiceModels;
+    using ProcessingTools.Services.Models.Data.Journals;
+    using ProcessingTools.Services.Models.Data.Journals;
     using ProcessingTools.Services.Contracts.Data.History;
     using TDataModel = ProcessingTools.Models.Contracts.Journals.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Services.Models.Contracts.Data.Journals.IPublisherDetails;

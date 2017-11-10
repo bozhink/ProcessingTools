@@ -15,9 +15,10 @@
     using ProcessingTools.Data.Contracts.Repositories.Journals;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Journals.Services.Data.Models.DataModels;
+    using ProcessingTools.Services.Models.Data.Journals;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Services.Models.Contracts.Data.Journals;
+    using ProcessingTools.Services.Models.Data.Journals;
 
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
