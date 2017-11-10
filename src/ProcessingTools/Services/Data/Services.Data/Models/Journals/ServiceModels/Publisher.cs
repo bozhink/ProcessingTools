@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Journals.Services.Data.Models.ServiceModels
 {
-    using Contracts.Models;
+    using ProcessingTools.Services.Models.Contracts.Data.Journals;
 
     public class Publisher : IPublisher
     {

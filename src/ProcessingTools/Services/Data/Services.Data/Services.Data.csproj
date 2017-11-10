@@ -90,12 +90,6 @@
     <Compile Include="Contracts\Files\IXmlFileContentDataService.cs" />
     <Compile Include="Contracts\IInstitutionsDataService.cs" />
     <Compile Include="Contracts\IProductsDataService.cs" />
-    <Compile Include="Contracts\Journals\Models\IAddress.cs" />
-    <Compile Include="Contracts\Journals\Models\IAddressable.cs" />
-    <Compile Include="Contracts\Journals\Models\IInstitution.cs" />
-    <Compile Include="Contracts\Journals\Models\IInstitutionDetails.cs" />
-    <Compile Include="Contracts\Journals\Models\IPublisher.cs" />
-    <Compile Include="Contracts\Journals\Models\IPublisherDetails.cs" />
     <Compile Include="Contracts\Journals\Services\IAddressableDataService.cs" />
     <Compile Include="Contracts\Journals\Services\IPublishersDataService.cs" />
     <Compile Include="Contracts\Mediatypes\IMediatypesResolver.cs" />
