@@ -16,18 +16,8 @@
 
         public XmlPresenter(IDocumentsDataService service, IDocumentsFormatTransformersFactory transformersFactory)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.service = service;
-            this.transformersFactory = transformersFactory;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
         public async Task<string> GetHtml(object userId, object articleId, object documentId)

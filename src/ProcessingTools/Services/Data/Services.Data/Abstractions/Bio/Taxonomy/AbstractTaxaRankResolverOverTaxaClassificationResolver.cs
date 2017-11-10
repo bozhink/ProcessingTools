@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
 
     public abstract class AbstractTaxaRankResolverOverTaxaClassificationResolver : ITaxaRankResolver
     {
