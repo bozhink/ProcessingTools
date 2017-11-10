@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Services.Data.Contracts.Factories
+﻿namespace ProcessingTools.Services.Contracts.Data.Documents
 {
     using ProcessingTools.Processors.Contracts;
 

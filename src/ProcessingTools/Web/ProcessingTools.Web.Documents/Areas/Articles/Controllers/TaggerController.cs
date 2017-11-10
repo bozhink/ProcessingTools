@@ -13,7 +13,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Services.Contracts.Data.Documents;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;

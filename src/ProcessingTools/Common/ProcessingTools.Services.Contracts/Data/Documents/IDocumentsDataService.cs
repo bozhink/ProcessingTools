@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Documents.Services.Data.Contracts
+﻿namespace ProcessingTools.Services.Contracts.Data.Documents
 {
     using System.Collections.Generic;
     using System.IO;

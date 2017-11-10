@@ -13,7 +13,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Documents.Services.Data.Contracts;
+    using ProcessingTools.Services.Contracts.Data.Documents;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
