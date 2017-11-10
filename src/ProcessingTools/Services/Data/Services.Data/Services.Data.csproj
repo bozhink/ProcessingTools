@@ -136,8 +136,6 @@
     <Compile Include="Services\Geo\StatesDataService.cs" />
     <Compile Include="Services\History\ObjectHistoriesDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
-    <Compile Include="Models\InstitutionServiceModel.cs" />
-    <Compile Include="Models\ProductServiceModel.cs" />
     <Compile Include="Services\Journals\PublishersDataService.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />

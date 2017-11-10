@@ -8,7 +8,7 @@
     using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Abstractions;
     using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Models;
+
 
     public class ProductsDataService : AbstractMultiDataServiceAsync<Product, IProduct, IFilter>, IProductsDataService
     {
@@ -17,7 +17,7 @@
         {
         }
 
-        protected override Expression<Func<Product, IProduct>> MapEntityToModel => e => new ProductServiceModel
+        protected override Expression<Func<Product, IProduct>> MapEntityToModel => e => new ProcessingTools.Services.Models.Data.Resources.Product
         {
             Id = e.Id,
             Name = e.Name

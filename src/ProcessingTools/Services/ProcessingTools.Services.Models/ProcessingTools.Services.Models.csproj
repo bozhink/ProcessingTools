@@ -28,6 +28,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Geo\" />
-    <Folder Include="Data\Resources\" />
   </ItemGroup>
 </Project>
