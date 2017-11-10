@@ -10,7 +10,7 @@
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
 
     public class TreatmentMetaParserWithDataService<TService> : ITreatmentMetaParserWithDataService<TService>
         where TService : class, ITaxaClassificationResolver

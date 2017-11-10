@@ -10,7 +10,7 @@
     using Ninject;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.ListsManager.Settings;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public partial class ListManagerControl : UserControl

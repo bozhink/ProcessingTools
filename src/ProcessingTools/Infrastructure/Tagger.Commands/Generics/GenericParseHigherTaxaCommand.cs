@@ -7,7 +7,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using Processors.Contracts.Processors.Bio.Taxonomy.Parsers;

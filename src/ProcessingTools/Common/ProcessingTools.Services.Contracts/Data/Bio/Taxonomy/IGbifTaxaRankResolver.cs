@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Contracts.Bio.Taxonomy
+﻿namespace ProcessingTools.Services.Contracts.Data.Bio.Taxonomy
 {
     public interface IGbifTaxaRankResolver : ITaxaRankResolver
     {

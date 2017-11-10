@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Data.Contracts.Repositories;
     using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
 
     public class WhiteList : IWhiteList
     {

@@ -8,7 +8,7 @@
     using AutoMapper;
     using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 
     public abstract class AbstractTaxaClassificationResolverController<TResolver> : ApiController

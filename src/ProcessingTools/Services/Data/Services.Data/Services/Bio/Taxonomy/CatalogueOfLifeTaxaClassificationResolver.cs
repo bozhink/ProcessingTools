@@ -12,7 +12,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class CatalogueOfLifeTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolver
