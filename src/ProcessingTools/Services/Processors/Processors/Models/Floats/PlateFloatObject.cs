@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations.Nlm;
-    using ProcessingTools.Processors.Contracts.Models.Floats;
+    using ProcessingTools.Processors.Models.Contracts.Floats;
 
     /// <summary>
     /// Plate.

@@ -21,9 +21,9 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Contracts.Models.Bio.Codes;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Codes;
 
     public class CodesTagger : ICodesTagger
     {

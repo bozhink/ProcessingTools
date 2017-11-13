@@ -6,7 +6,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Contracts.Models.Abbreviations;
+    using ProcessingTools.Processors.Models.Contracts.Abbreviations;
 
     internal class Abbreviation : IAbbreviation
     {

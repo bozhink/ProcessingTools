@@ -6,7 +6,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy.Parsers;
 
     internal class TaxonNamePart : MinimalTaxonNamePart, ITaxonNamePart
     {

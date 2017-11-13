@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Models.Bio.Codes
 {
-    using Contracts.Models.Bio.Codes;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Codes;
 
     public class SpecimenCode : ISpecimenCode
     {

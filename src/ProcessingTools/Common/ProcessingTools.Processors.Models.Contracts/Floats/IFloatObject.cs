@@ -1,7 +1,14 @@
-﻿namespace ProcessingTools.Processors.Contracts.Models.Floats
+﻿// <copyright file="IFloatObject.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Contracts.Floats
 {
     using ProcessingTools.Enumerations.Nlm;
 
+    /// <summary>
+    /// Floating object.
+    /// </summary>
     public interface IFloatObject
     {
         /// <summary>
@@ -30,7 +37,7 @@
         string InternalReferenceType { get; }
 
         /// <summary>
-        /// Gets the value of the xref/@ref-type wich will be used in the final XML.
+        /// Gets the value of the xref/@ref-type which will be used in the final XML.
         /// </summary>
         string ResultantReferenceType { get; }
 

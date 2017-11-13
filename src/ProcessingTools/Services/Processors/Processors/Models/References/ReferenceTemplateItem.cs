@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Processors.Models.References
 {
-    using Contracts.Models.References;
+    using ProcessingTools.Processors.Models.Contracts.References;
 
     internal class ReferenceTemplateItem : IReferenceTemplateItem
     {

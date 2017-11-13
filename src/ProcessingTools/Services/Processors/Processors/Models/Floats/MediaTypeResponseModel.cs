@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Models.Floats
 {
     using ProcessingTools.Constants;
-    using ProcessingTools.Processors.Contracts.Models.Floats;
+    using ProcessingTools.Processors.Models.Contracts.Floats;
 
     internal class MediatypeResponseModel : IMediaType
     {

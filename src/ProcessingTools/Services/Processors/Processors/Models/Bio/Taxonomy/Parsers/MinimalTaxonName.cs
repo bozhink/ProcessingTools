@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers
 {
     using System.Collections.Generic;
-    using Contracts.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy.Parsers;
 
     internal class MinimalTaxonName : IMinimalTaxonName
     {

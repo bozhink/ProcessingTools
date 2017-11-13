@@ -13,8 +13,8 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Enumerations.Nlm;
-    using ProcessingTools.Processors.Contracts.Models.Floats;
     using ProcessingTools.Processors.Contracts.Processors.Floats;
+    using ProcessingTools.Processors.Models.Contracts.Floats;
 
     public class FloatsTagger : IFloatsTagger
     {

@@ -9,8 +9,8 @@
     using System.Xml.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Factories;
-    using ProcessingTools.Processors.Contracts.Models.References;
     using ProcessingTools.Processors.Contracts.Processors.References;
+    using ProcessingTools.Processors.Models.Contracts.References;
     using ProcessingTools.Processors.Models.References;
 
     public class ReferencesTagger : IReferencesTagger

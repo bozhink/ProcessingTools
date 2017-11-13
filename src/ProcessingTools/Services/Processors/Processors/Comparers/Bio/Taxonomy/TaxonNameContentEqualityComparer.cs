@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy.Parsers;
 
     internal class TaxonNameContentEqualityComparer : IEqualityComparer<ITaxonName>
     {

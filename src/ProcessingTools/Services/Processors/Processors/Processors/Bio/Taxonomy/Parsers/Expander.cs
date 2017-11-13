@@ -14,9 +14,9 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Models.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy.Parsers;
 
     public class Expander : IExpander
     {

@@ -9,8 +9,8 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Contracts.Models.Floats;
     using ProcessingTools.Processors.Contracts.Processors.Floats;
+    using ProcessingTools.Processors.Models.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
 
