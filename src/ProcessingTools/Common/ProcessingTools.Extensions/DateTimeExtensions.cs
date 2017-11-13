@@ -12,7 +12,7 @@ namespace ProcessingTools.Extensions
     public static class DateTimeExtensions
     {
         /// <summary>
-        /// Converts a given DateTime into a Unix timestamp.
+        /// Converts a given <see cref="DateTime"/> into a Unix timestamp.
         /// </summary>
         /// <param name="value"><see cref="DateTime"/> object.</param>
         /// <returns>The given <see cref="DateTime"/> in Unix timestamp format.</returns>
@@ -22,6 +22,19 @@ namespace ProcessingTools.Extensions
         public static int ToUnixTimestamp(this DateTime value)
         {
             return (int)Math.Truncate(value.ToUniversalTime().Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
+        }
+
+        /// <summary>
+        /// Converts a given <see cref="int"/> as Unix timestamp into a <see cref="DateTime"/> object.
+        /// </summary>
+        /// <param name="timestamp"><see cref="int"/> as Unix timestamp.</param>
+        /// <returns><see cref="DateTime"/> value of the given <see cref="int"/> as Unix timestamp.</returns>
+        /// <remarks>
+        /// See https://www.unixtimeconverter.io/1924988400
+        /// </remarks>
+        public static DateTime ToUnixTimestamp(this int timestamp)
+        {
+            return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(timestamp);
         }
 
         /// <summary>
