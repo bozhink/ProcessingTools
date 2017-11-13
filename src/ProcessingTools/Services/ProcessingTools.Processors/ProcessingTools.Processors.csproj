@@ -20,4 +20,7 @@
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.1.3596" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
+  </ItemGroup>
 </Project>
