@@ -281,6 +281,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Models", "Services\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj", "{72EC8D88-76E5-4843-A98E-306BA6AD7F7F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Models.Contracts", "Common\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj", "{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1129,6 +1131,14 @@ Global
 		{72EC8D88-76E5-4843-A98E-306BA6AD7F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72EC8D88-76E5-4843-A98E-306BA6AD7F7F}.Release|x64.ActiveCfg = Release|Any CPU
 		{72EC8D88-76E5-4843-A98E-306BA6AD7F7F}.Release|x64.Build.0 = Release|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1260,9 +1270,10 @@ Global
 		{160CB6A2-2A81-48F5-9D02-C88234F9FFF6} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 		{32E4AD4E-0D8A-43C4-A284-2B051754EF40} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{72EC8D88-76E5-4843-A98E-306BA6AD7F7F} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{BE27E549-9873-4C79-86E9-A47BFDDB8E9D} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
