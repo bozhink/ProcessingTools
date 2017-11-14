@@ -3,7 +3,7 @@
     using System.Xml;
     using NUnit.Framework;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Processors.Models.Bio.Taxonomy;
 
     [TestFixture]
     public class TaxonNamePartTests

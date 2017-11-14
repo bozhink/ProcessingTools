@@ -49,11 +49,19 @@ namespace ProcessingTools.Processors.Models.Bio.Codes
         [XmlText]
         public string Value { get; set; }
 
+        /// <summary>
+        /// Conditional serialization for @xlink:href.
+        /// </summary>
+        /// <returns>Serialize if is not empty.</returns>
         public bool ShouldSerializeHref()
         {
             return !string.IsNullOrWhiteSpace(this.Href);
         }
 
+        /// <summary>
+        /// Conditional serialization for @xlink:title.
+        /// </summary>
+        /// <returns>Serialize if is not empty.</returns>
         public bool ShouldSerializeTitle()
         {
             return !string.IsNullOrWhiteSpace(this.Title);
