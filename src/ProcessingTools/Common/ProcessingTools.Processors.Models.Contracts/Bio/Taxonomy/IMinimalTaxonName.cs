@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy.Parsers
+namespace ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy
 {
     using System.Collections.Generic;
 
