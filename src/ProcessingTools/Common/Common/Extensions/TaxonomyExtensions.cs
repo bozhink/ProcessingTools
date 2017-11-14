@@ -79,35 +79,6 @@
             return type.ToString().ToLowerInvariant();
         }
 
-        public static TaxonType MapTaxonTypeStringToTaxonType(this string type)
-        {
-            string typeLowerCase = type.ToLowerInvariant();
-            switch (typeLowerCase)
-            {
-                case AttributeValues.TaxonTypeAny:
-                    return TaxonType.Any;
-
-                case AttributeValues.TaxonTypeLower:
-                    return TaxonType.Lower;
-
-                case AttributeValues.TaxonTypeHigher:
-                    return TaxonType.Higher;
-
-                default:
-                    return TaxonType.Undefined;
-            }
-        }
-
-        public static SpeciesPartType ToSpeciesPartType(this string type)
-        {
-            string typeLowerCase = type.ToLowerInvariant();
-            var result = Enum.GetValues(typeof(SpeciesPartType))
-                .Cast<SpeciesPartType>()
-                .FirstOrDefault(r => r.ToString().ToLowerInvariant() == typeLowerCase);
-
-            return result;
-        }
-
         public static string ToRankString(this SpeciesPartType type)
         {
             return type.ToString().ToLowerInvariant();

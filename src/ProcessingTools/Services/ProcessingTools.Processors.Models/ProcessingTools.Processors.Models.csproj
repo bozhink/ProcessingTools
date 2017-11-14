@@ -11,7 +11,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Processors.Models.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705</NoWarn>
+    <NoWarn>1701;1702;1705;S3237</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
@@ -19,5 +19,11 @@
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.1.3596" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
   </ItemGroup>
 </Project>

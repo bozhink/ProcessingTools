@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Models.Bio.Taxonomy.Parsers
+﻿// <copyright file="TaxonNamePart.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Bio.Taxonomy
 {
     using System;
     using System.Linq.Expressions;
@@ -8,8 +12,15 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy.Parsers;
 
-    internal class TaxonNamePart : MinimalTaxonNamePart, ITaxonNamePart
+    /// <summary>
+    /// Taxon name part.
+    /// </summary>
+    public class TaxonNamePart : MinimalTaxonNamePart, ITaxonNamePart
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxonNamePart"/> class.
+        /// </summary>
+        /// <param name="node"><see cref="XmlNode"/> for initialization.</param>
         public TaxonNamePart(XmlNode node)
         {
             if (node == null)
@@ -34,14 +45,19 @@
             this.FullName = node.Attributes[AttributeNames.FullName]?.InnerText;
         }
 
+        /// <inheritdoc/>
         public string Id { get; set; }
 
+        /// <inheritdoc/>
         public bool IsAbbreviated { get; private set; } = false;
 
+        /// <inheritdoc/>
         public bool IsResolved { get; private set; } = false;
 
+        /// <inheritdoc/>
         public bool IsModified { get; set; } = false;
 
+        /// <inheritdoc/>
         public override string Name
         {
             get
@@ -80,6 +96,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public override string FullName
         {
             get
@@ -109,8 +126,10 @@
             }
         }
 
+        /// <inheritdoc/>
         public string Pattern { get; private set; }
 
+        /// <inheritdoc/>
         public Expression<Func<ITaxonNamePart, bool>> MatchExpression
         {
             get
@@ -130,11 +149,13 @@
             }
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             return (this.FullName + this.Rank + this.Name).GetHashCode();
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             return this.GetHashCode() == obj.GetHashCode();
