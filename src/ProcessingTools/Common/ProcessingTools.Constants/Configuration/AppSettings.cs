@@ -325,5 +325,10 @@ namespace ProcessingTools.Constants.Configuration
         /// SampleFiles
         /// </summary>
         public static readonly string SampleFiles = ConfigurationManager.AppSettings[AppSettingsKeys.SampleFiles];
+
+        /// <summary>
+        /// BingMapKey
+        /// </summary>
+        public static readonly string BingMapKey = ConfigurationManager.AppSettings[AppSettingsKeys.BingMapKey];
     }
 }

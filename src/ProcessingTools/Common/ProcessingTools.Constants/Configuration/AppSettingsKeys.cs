@@ -323,5 +323,10 @@ namespace ProcessingTools.Constants.Configuration
         /// SampleFiles
         /// </summary>
         internal const string SampleFiles = "SampleFiles";
+
+        /// <summary>
+        /// BingMapKey
+        /// </summary>
+        internal const string BingMapKey = "BingMapKey";
     }
 }
