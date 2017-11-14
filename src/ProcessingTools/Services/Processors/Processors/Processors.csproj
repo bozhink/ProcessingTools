@@ -44,7 +44,7 @@
     <Compile Include="Common\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
     <Compile Include="Comparers\Bio\Taxonomy\TaxonNameContentEqualityComparer.cs" />
     <Compile Include="Comparers\Bio\Taxonomy\TaxonNamePartContentEqualityComparer.cs" />
-    <Compile Include="Contracts\Factories\Bio\IBioTaxonomyTransformersFactory.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\IBioTaxonomyTransformersFactory.cs" />
     <Compile Include="Contracts\Processors\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICodesTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICollectionCodesTagger.cs" />
@@ -83,10 +83,10 @@
     <Compile Include="Contracts\Processors\Documents\IReadDocumentHelper.cs" />
     <Compile Include="Contracts\Processors\Documents\IWriteDocumentHelper.cs" />
     <Compile Include="Contracts\Processors\ExternalLinks\IExternalLinksTagger.cs" />
-    <Compile Include="Contracts\Factories\Bio\ICodesTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\Bio\ITaxonTreatmentsTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\IReferencesTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\IRegistrationTransformersFactory.cs" />
+    <Compile Include="Contracts\Processors\Bio\Codes\ICodesTransformersFactory.cs" />
+    <Compile Include="Contracts\Processors\Bio\Taxonomy\ITaxonTreatmentsTransformersFactory.cs" />
+    <Compile Include="Contracts\Processors\References\IReferencesTransformersFactory.cs" />
+    <Compile Include="Contracts\Processors\Bio\ZooBank\IRegistrationTransformersFactory.cs" />
     <Compile Include="Contracts\Processors\Geo\IAltitudesTagger.cs" />
     <Compile Include="Contracts\Processors\Geo\IGeoEpithetsTagger.cs" />
     <Compile Include="Contracts\Processors\Geo\IGeographicDeviationsTagger.cs" />
@@ -129,10 +129,9 @@
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Processors\Layout\Normalizers\XmlContextNormalizer.cs" />
-    <Compile Include="Contracts\Factories\Layout\IFormatTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\Layout\IInitialFormatTransformerFactory.cs" />
-    <Compile Include="Contracts\Factories\Layout\INormalizationTransformerFactory.cs" />
-    <Compile Include="Contracts\Factories\Layout\ITransformerFactory.cs" />
+    <Compile Include="Contracts\Processors\Layout\Formatters\IFormatTransformersFactory.cs" />
+    <Compile Include="Contracts\Processors\Layout\Formatters\IInitialFormatTransformerFactory.cs" />
+    <Compile Include="Contracts\Processors\Layout\Normalizers\INormalizationTransformerFactory.cs" />
     <Compile Include="Contracts\Processors\Layout\Formatters\IDocumentFinalFormatter.cs" />
     <Compile Include="Contracts\Processors\Layout\Formatters\IDocumentInitialFormatter.cs" />
     <Compile Include="Contracts\Processors\Layout\Normalizers\IDocumentPostReadNormalizer.cs" />

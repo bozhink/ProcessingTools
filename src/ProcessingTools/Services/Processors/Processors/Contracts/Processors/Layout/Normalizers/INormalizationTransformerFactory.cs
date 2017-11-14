@@ -3,7 +3,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts;
 
-    public interface ITransformerFactory
+    public interface INormalizationTransformerFactory
     {
         IXmlTransformer Create(SchemaType schemaType);
     }
