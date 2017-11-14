@@ -10,7 +10,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Models.Contracts.Layout;
 
     public class ContentTagger : IContentTagger
     {

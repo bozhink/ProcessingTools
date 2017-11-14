@@ -7,9 +7,9 @@
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Processors.Models.Layout;
     using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
 
     public class CollectionCodesTagger : ICollectionCodesTagger

@@ -7,7 +7,7 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Models.Layout;
 
     public class StringTagger : IStringTagger
     {

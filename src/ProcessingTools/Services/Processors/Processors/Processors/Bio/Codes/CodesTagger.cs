@@ -19,11 +19,11 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Processors.Contracts.Factories.Bio;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
     using ProcessingTools.Processors.Models.Bio.Codes;
     using ProcessingTools.Processors.Models.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models.Layout;
 
     public class CodesTagger : ICodesTagger
     {

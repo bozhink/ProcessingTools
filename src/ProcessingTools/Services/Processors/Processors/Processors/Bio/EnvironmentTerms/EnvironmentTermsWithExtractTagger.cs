@@ -7,9 +7,9 @@
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
     using ProcessingTools.Processors.Contracts.Processors.Bio.EnvironmentTerms;
     using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
+    using ProcessingTools.Processors.Models.Layout;
 
     public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
     {

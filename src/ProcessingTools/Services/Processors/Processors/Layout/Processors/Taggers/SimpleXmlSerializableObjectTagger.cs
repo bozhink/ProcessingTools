@@ -7,7 +7,7 @@
     using System.Xml;
     using ProcessingTools.Contracts.Serialization;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
+    using ProcessingTools.Processors.Models.Contracts.Layout;
 
     public class SimpleXmlSerializableObjectTagger<T> : ISimpleXmlSerializableObjectTagger<T>
     {

@@ -143,8 +143,6 @@
     <Compile Include="Layout\Contracts\Taggers\IStringTagger.cs" />
     <Compile Include="Layout\Factories\InitialFormatTransformerFactory.cs" />
     <Compile Include="Layout\Factories\NormalizationTransformerFactory.cs" />
-    <Compile Include="Layout\Models\Taggers\ContentTaggerSettings.cs" />
-    <Compile Include="Layout\Models\Taggers\IContentTaggerSettings.cs" />
     <Compile Include="Layout\Processors\Formatters\DocumentFinalFormatter.cs" />
     <Compile Include="Layout\Processors\Formatters\DocumentInitialFormatter.cs" />
     <Compile Include="Layout\Processors\Normalizers\DocumentPostReadNormalizer.cs" />
