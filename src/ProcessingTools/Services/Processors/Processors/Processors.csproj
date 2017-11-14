@@ -128,29 +128,29 @@
     <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithFullStringMatchStrategy.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
-    <Compile Include="Layout\Abstractions\Normalizers\AbstractXmlNormalizer.cs" />
-    <Compile Include="Layout\Contracts\Factories\IFormatTransformersFactory.cs" />
-    <Compile Include="Layout\Contracts\Factories\IInitialFormatTransformerFactory.cs" />
-    <Compile Include="Layout\Contracts\Factories\INormalizationTransformerFactory.cs" />
-    <Compile Include="Layout\Contracts\Factories\ITransformerFactory.cs" />
-    <Compile Include="Layout\Contracts\Formatters\IDocumentFinalFormatter.cs" />
-    <Compile Include="Layout\Contracts\Formatters\IDocumentInitialFormatter.cs" />
-    <Compile Include="Layout\Contracts\Normalizers\IDocumentPostReadNormalizer.cs" />
-    <Compile Include="Layout\Contracts\Normalizers\IDocumentPreWriteNormalizer.cs" />
-    <Compile Include="Layout\Contracts\Normalizers\IDocumentSchemaNormalizer.cs" />
-    <Compile Include="Layout\Contracts\Taggers\IContentTagger.cs" />
-    <Compile Include="Layout\Contracts\Taggers\ISimpleXmlSerializableObjectTagger.cs" />
-    <Compile Include="Layout\Contracts\Taggers\IStringTagger.cs" />
-    <Compile Include="Layout\Factories\InitialFormatTransformerFactory.cs" />
-    <Compile Include="Layout\Factories\NormalizationTransformerFactory.cs" />
-    <Compile Include="Layout\Processors\Formatters\DocumentFinalFormatter.cs" />
-    <Compile Include="Layout\Processors\Formatters\DocumentInitialFormatter.cs" />
-    <Compile Include="Layout\Processors\Normalizers\DocumentPostReadNormalizer.cs" />
-    <Compile Include="Layout\Processors\Normalizers\DocumentPreWriteNormalizer.cs" />
-    <Compile Include="Layout\Processors\Normalizers\DocumentSchemaNormalizer.cs" />
-    <Compile Include="Layout\Processors\Taggers\ContentTagger.cs" />
-    <Compile Include="Layout\Processors\Taggers\SimpleXmlSerializableObjectTagger.cs" />
-    <Compile Include="Layout\Processors\Taggers\StringTagger.cs" />
+    <Compile Include="Processors\Layout\Normalizers\XmlContextNormalizer.cs" />
+    <Compile Include="Contracts\Factories\Layout\IFormatTransformersFactory.cs" />
+    <Compile Include="Contracts\Factories\Layout\IInitialFormatTransformerFactory.cs" />
+    <Compile Include="Contracts\Factories\Layout\INormalizationTransformerFactory.cs" />
+    <Compile Include="Contracts\Factories\Layout\ITransformerFactory.cs" />
+    <Compile Include="Contracts\Processors\Layout\Formatters\IDocumentFinalFormatter.cs" />
+    <Compile Include="Contracts\Processors\Layout\Formatters\IDocumentInitialFormatter.cs" />
+    <Compile Include="Contracts\Processors\Layout\Normalizers\IDocumentPostReadNormalizer.cs" />
+    <Compile Include="Contracts\Processors\Layout\Normalizers\IDocumentPreWriteNormalizer.cs" />
+    <Compile Include="Contracts\Processors\Layout\Normalizers\IDocumentSchemaNormalizer.cs" />
+    <Compile Include="Contracts\Processors\Layout\Taggers\IContentTagger.cs" />
+    <Compile Include="Contracts\Processors\Layout\Taggers\ISimpleXmlSerializableObjectTagger.cs" />
+    <Compile Include="Contracts\Processors\Layout\Taggers\IStringTagger.cs" />
+    <Compile Include="Factories\Layout\InitialFormatTransformerFactory.cs" />
+    <Compile Include="Factories\Layout\NormalizationTransformerFactory.cs" />
+    <Compile Include="Processors\Layout\Formatters\DocumentFinalFormatter.cs" />
+    <Compile Include="Processors\Layout\Formatters\DocumentInitialFormatter.cs" />
+    <Compile Include="Processors\Layout\Normalizers\DocumentPostReadNormalizer.cs" />
+    <Compile Include="Processors\Layout\Normalizers\DocumentPreWriteNormalizer.cs" />
+    <Compile Include="Processors\Layout\Normalizers\DocumentSchemaNormalizer.cs" />
+    <Compile Include="Processors\Layout\Taggers\ContentTagger.cs" />
+    <Compile Include="Processors\Layout\Taggers\SimpleXmlSerializableObjectTagger.cs" />
+    <Compile Include="Processors\Layout\Taggers\StringTagger.cs" />
     <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />
@@ -339,6 +339,7 @@
   <ItemGroup>
     <Content Include="Special\Processors\FloraReplace.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,11 +5,11 @@
     using System.Xml;
     using ProcessingTools.Processors.Contracts;
 
-    public abstract class AbstractXmlNormalizer : IXmlContextNormalizer
+    public class XmlContextNormalizer : IXmlContextNormalizer
     {
         private readonly IXmlTransformer transformer;
 
-        protected AbstractXmlNormalizer(IXmlTransformer transformer)
+        public XmlContextNormalizer(IXmlTransformer transformer)
         {
             this.transformer = transformer ?? throw new ArgumentNullException(nameof(transformer));
         }
