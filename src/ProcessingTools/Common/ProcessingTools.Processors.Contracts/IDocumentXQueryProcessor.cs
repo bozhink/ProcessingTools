@@ -10,7 +10,7 @@ namespace ProcessingTools.Processors.Contracts
     public interface IDocumentXQueryProcessor : IDocumentProcessor
     {
         /// <summary>
-        /// Gets or sets XQuery file full name.
+        /// Gets or sets XQuery file name.
         /// </summary>
         string XQueryFileName { get; set; }
     }

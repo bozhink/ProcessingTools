@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Xml.Contracts.Factories;
 
     public class DocumentXslProcessor : IDocumentXslProcessor
@@ -15,7 +15,7 @@
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
-        public string XslFileFullName { get; set; }
+        public string XslFileName { get; set; }
 
         public async Task ProcessAsync(IDocument context)
         {
@@ -25,9 +25,8 @@
             }
 
             var content = await this.factory
-                .CreateTransformer(xslFileName: this.XslFileFullName)
-                .TransformAsync(context.Xml)
-                .ConfigureAwait(false);
+                .CreateTransformer(xslFileName: this.XslFileName)
+                .TransformAsync(context.Xml);
 
             context.Xml = content;
         }

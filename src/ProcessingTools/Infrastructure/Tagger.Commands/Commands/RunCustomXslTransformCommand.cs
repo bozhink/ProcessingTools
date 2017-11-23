@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
@@ -36,9 +36,9 @@
                 throw new InvalidOperationException("The name of the XSLT file should be set.");
             }
 
-            this.processor.XslFileFullName = settings.FileNames[2];
+            this.processor.XslFileName = settings.FileNames[2];
 
-            await this.processor.ProcessAsync(document).ConfigureAwait(false);
+            await this.processor.ProcessAsync(document);
 
             return true;
         }
