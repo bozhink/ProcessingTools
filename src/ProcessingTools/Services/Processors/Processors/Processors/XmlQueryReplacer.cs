@@ -6,13 +6,13 @@
     using System.Xml;
     using ProcessingTools.Processors.Contracts;
 
-    public class QueryReplacer : IQueryReplacer
+    public class XmlQueryReplacer : IXmlQueryReplacer
     {
-        public Task<string> ReplaceAsync(string content, string queryFileName)
+        public Task<string> ReplaceAsync(string content, string query)
         {
-            if (string.IsNullOrWhiteSpace(queryFileName))
+            if (string.IsNullOrWhiteSpace(query))
             {
-                throw new ArgumentNullException(nameof(queryFileName));
+                throw new ArgumentNullException(nameof(query));
             }
 
             return Task.Run(() =>
@@ -27,7 +27,16 @@
                     PreserveWhitespace = true
                 };
 
-                queryDocument.Load(queryFileName);
+                if (Regex.IsMatch(query, @"<[^>]*>"))
+                {
+                    // Query is XML
+                    queryDocument.LoadXml(query);
+                }
+                else
+                {
+                    // Query is not XML
+                    queryDocument.Load(query);
+                }
 
                 var namespaceManager = new XmlNamespaceManager(queryDocument.NameTable);
                 namespaceManager.AddNamespace("query", "urn:processing-tools-query:query-replacer");

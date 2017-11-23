@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <query:query xmlns:query="urn:processing-tools-query:query-replacer">
-  <query:replace is-regex="false">
-    <query:pattern>(.*?)</query:pattern>
-    <query:replacement>$1</query:replacement>
-  </query:replace>
-  <query:replace>
-    <query:pattern>(.*?)</query:pattern>
-    <query:replacement>$1</query:replacement>
-  </query:replace>
-  <query:replace>
-    <query:pattern>(.*?)</query:pattern>
-    <query:replacement>$1</query:replacement>
-  </query:replace>
-  <query:replace>
-    <query:pattern>(.*?)</query:pattern>
-    <query:replacement>$1</query:replacement>
-  </query:replace>
-  <query:replace>
-    <query:pattern>(.*?)</query:pattern>
-    <query:replacement>$1</query:replacement>
-  </query:replace>
+    <query:replace is-regex="false">
+        <query:pattern>(.*?)</query:pattern>
+        <query:replacement>$1</query:replacement>
+    </query:replace>
+    <query:replace>
+        <query:pattern>(.*?)</query:pattern>
+        <query:replacement>$1</query:replacement>
+    </query:replace>
+    <query:replace>
+        <query:pattern>(.*?)</query:pattern>
+        <query:replacement>$1</query:replacement>
+    </query:replace>
+    <query:replace>
+        <query:pattern>(.*?)</query:pattern>
+        <query:replacement>$1</query:replacement>
+    </query:replace>
+    <query:replace>
+        <query:pattern>(.*?)</query:pattern>
+        <query:replacement>$1</query:replacement>
+    </query:replace>
 </query:query>

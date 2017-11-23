@@ -15,8 +15,8 @@ namespace ProcessingTools.Processors.Contracts
         /// Does multiple replaces using a valid XML query.
         /// </summary>
         /// <param name="content">Content to be processed.</param>
-        /// <param name="queryFileName">Valid XML file containing [multiple ]replace instructions.</param>
+        /// <param name="query">Query string or query file name containing [multiple ]replace instructions.</param>
         /// <returns>Task of the processed content.</returns>
-        Task<string> ReplaceAsync(string content, string queryFileName);
+        Task<string> ReplaceAsync(string content, string query);
     }
 }
