@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
@@ -36,7 +36,7 @@
                 throw new InvalidOperationException("The name of the XQuey file should be set.");
             }
 
-            this.processor.XQueryFileFullName = settings.FileNames[2];
+            this.processor.XQueryFileName = settings.FileNames[2];
 
             await this.processor.ProcessAsync(document).ConfigureAwait(false);
 

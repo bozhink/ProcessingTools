@@ -91,7 +91,6 @@
     <Compile Include="Contracts\Processors\Geo\IGeoEpithetsTagger.cs" />
     <Compile Include="Contracts\Processors\Geo\IGeographicDeviationsTagger.cs" />
     <Compile Include="Contracts\Processors\Geo\IGeoNamesTagger.cs" />
-    <Compile Include="Contracts\Processors\IDocumentXQueryProcessor.cs" />
     <Compile Include="Contracts\Processors\IDocumentXslProcessor.cs" />
     <Compile Include="Contracts\Processors\Floats\IFloatsTagger.cs" />
     <Compile Include="Contracts\Processors\Floats\IMediatypesParser.cs" />

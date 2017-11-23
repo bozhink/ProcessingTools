@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Xml.Contracts.Factories;
 
     public class DocumentXQueryProcessor : IDocumentXQueryProcessor
@@ -15,7 +15,7 @@
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
-        public string XQueryFileFullName { get; set; }
+        public string XQueryFileName { get; set; }
 
         public async Task ProcessAsync(IDocument context)
         {
@@ -25,7 +25,7 @@
             }
 
             var content = await this.factory
-                .CreateTransformer(xqueryFileName: this.XQueryFileFullName)
+                .CreateTransformer(xqueryFileName: this.XQueryFileName)
                 .TransformAsync(context.Xml)
                 .ConfigureAwait(false);
 
