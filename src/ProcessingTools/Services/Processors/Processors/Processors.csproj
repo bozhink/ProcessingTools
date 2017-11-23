@@ -94,7 +94,6 @@
     <Compile Include="Contracts\Processors\Floats\IFloatsTagger.cs" />
     <Compile Include="Contracts\Processors\Floats\IMediatypesParser.cs" />
     <Compile Include="Contracts\Processors\Institutions\IInstitutionsTagger.cs" />
-    <Compile Include="Contracts\Processors\IQueryReplacer.cs" />
     <Compile Include="Contracts\Processors\Floats\ITableFootNotesTagger.cs" />
     <Compile Include="Contracts\IGenericStringDataMinerEvaluator.cs" />
     <Compile Include="Contracts\Processors\Products\IProductsTagger.cs" />

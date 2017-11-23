@@ -4,30 +4,30 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
 
     public class QueryReplacer : IQueryReplacer
     {
-        public async Task<string> Replace(string content, string queryFilePath)
+        public Task<string> ReplaceAsync(string content, string queryFileName)
         {
-            if (string.IsNullOrWhiteSpace(queryFilePath))
+            if (string.IsNullOrWhiteSpace(queryFileName))
             {
-                throw new ArgumentNullException(nameof(queryFilePath));
+                throw new ArgumentNullException(nameof(queryFileName));
             }
 
-            if (string.IsNullOrEmpty(content))
+            return Task.Run(() =>
             {
-                return content;
-            }
+                if (string.IsNullOrEmpty(content))
+                {
+                    return content;
+                }
 
-            return await Task.Run(() =>
-            {
                 var queryDocument = new XmlDocument
                 {
                     PreserveWhitespace = true
                 };
 
-                queryDocument.Load(queryFilePath);
+                queryDocument.Load(queryFileName);
 
                 var namespaceManager = new XmlNamespaceManager(queryDocument.NameTable);
                 namespaceManager.AddNamespace("query", "urn:processing-tools-query:query-replacer");
@@ -51,8 +51,7 @@
                 }
 
                 return result;
-            })
-            .ConfigureAwait(false);
+            });
         }
     }
 }

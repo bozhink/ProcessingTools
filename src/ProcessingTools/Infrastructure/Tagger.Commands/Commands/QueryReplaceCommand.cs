@@ -7,6 +7,7 @@
     using ProcessingTools.Processors.Contracts.Processors;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Processors.Contracts;
 
     [Description("Query replace.")]
     public class QueryReplaceCommand : IQueryReplaceCommand
@@ -38,7 +39,7 @@
 
             string queryFileName = settings.FileNames[2];
 
-            var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName).ConfigureAwait(false);
+            var processedContent = await this.queryReplacer.ReplaceAsync(document.Xml, queryFileName);
 
             document.Xml = processedContent;
 
