@@ -2,9 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Factories;
-    using Contracts.Processors;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Processors.Contracts.Special;
 
     public class GavinLaurensParser : IGavinLaurensParser
     {
@@ -23,7 +22,7 @@
             }
 
             var transformer = this.transformersFactory.GetGavinLaurensTransformer();
-            context.Xml = await transformer.TransformAsync(context.Xml).ConfigureAwait(false);
+            context.Xml = await transformer.TransformAsync(context.Xml);
 
             return true;
         }

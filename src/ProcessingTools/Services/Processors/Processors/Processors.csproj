@@ -216,11 +216,6 @@
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
     <Compile Include="Common\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
-    <Compile Include="Special\Contracts\Factories\ISpecialTransformersFactory.cs" />
-    <Compile Include="Special\Contracts\Processors\IFlora.cs" />
-    <Compile Include="Special\Contracts\Processors\IGavinLaurensParser.cs" />
-    <Compile Include="Special\Contracts\Processors\IQuentinFlora.cs" />
-    <Compile Include="Special\Contracts\Processors\ITestFeaturesProvider.cs" />
     <Compile Include="Special\Processors\Flora.cs" />
     <Compile Include="Special\Processors\GavinLaurensParser.cs" />
     <Compile Include="Special\Processors\QuentinFlora.cs" />

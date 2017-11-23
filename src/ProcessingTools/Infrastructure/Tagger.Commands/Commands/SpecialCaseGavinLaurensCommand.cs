@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using ProcessingTools.Special.Processors.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts.Special;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Commands.Generics;
 

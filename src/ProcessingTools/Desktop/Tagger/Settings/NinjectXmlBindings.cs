@@ -152,7 +152,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Special.Processors.Contracts.Factories.ISpecialTransformersFactory>()
+            this.Bind<ProcessingTools.Processors.Contracts.Special.ISpecialTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }

@@ -7,9 +7,9 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Special.Processors.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts.Special;
 
-    public class QuentinFlora : IDocumentFormatter, IQuentinFlora
+    public class QuentinFlora : IQuentinFlora
     {
         private Action<XmlNode> ClearWhitespacingAction => n =>
         {
