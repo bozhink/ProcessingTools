@@ -20,6 +20,34 @@ namespace ProcessingTools.Extensions
         public static DateTime UnixStartDate => new DateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, millisecond: 0);
 
         /// <summary>
+        /// Parse string to formatted <see cref="DateTime" />.
+        /// </summary>
+        /// <param name="s">String to be parsed.</param>
+        /// <param name="format">Format string.</param>
+        /// <returns>Parsed date.</returns>
+        public static DateTime? ParseFormat(string s, string format)
+        {
+            if (DateTime.TryParseExact(s: s, format: format, provider: CultureInfo.InvariantCulture, style: DateTimeStyles.AllowWhiteSpaces, result: out DateTime result))
+            {
+                return result == DateTime.MinValue ? (DateTime?)null : result;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a Unix timestamp that represents the current moment.
+        /// </summary>
+        /// <returns>Now expressed as a Unix timestamp.</returns>
+        /// <remarks>
+        /// See https://stackoverflow.com/questions/17632584/how-to-get-the-unix-timestamp-in-c-sharp
+        /// </remarks>
+        public static int GetUnixTimestamp()
+        {
+            return (int)Math.Truncate(DateTime.UtcNow.Subtract(UnixStartDate).TotalSeconds);
+        }
+
+        /// <summary>
         /// Converts a given <see cref="DateTime"/> into a Unix timestamp.
         /// </summary>
         /// <param name="instance">This instance.</param>
@@ -43,19 +71,6 @@ namespace ProcessingTools.Extensions
         public static DateTime ToUnixTimestamp(this int timestamp)
         {
             return UnixStartDate.AddSeconds(timestamp);
-        }
-
-        /// <summary>
-        /// Returns a Unix timestamp that represents the current moment.
-        /// </summary>
-        /// <param name="ignored">Parameter ignored.</param>
-        /// <returns>Now expressed as a Unix timestamp.</returns>
-        /// <remarks>
-        /// See https://stackoverflow.com/questions/17632584/how-to-get-the-unix-timestamp-in-c-sharp
-        /// </remarks>
-        public static int UnixTimestamp(this DateTime ignored)
-        {
-            return (int)Math.Truncate(DateTime.UtcNow.Subtract(UnixStartDate).TotalSeconds);
         }
 
         /// <summary>
