@@ -6,6 +6,7 @@ namespace ProcessingTools.Extensions
 {
     using System;
     using System.Globalization;
+    using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
 
     /// <summary>
@@ -106,7 +107,7 @@ namespace ProcessingTools.Extensions
         {
             DateTime last = instance.Last();
 
-            last = last.AddDays(Math.Abs(dayOfWeek - last.DayOfWeek) * -1);
+            last = last.AddDays(-Math.Abs(dayOfWeek - last.DayOfWeek));
             return last;
         }
 
@@ -122,11 +123,10 @@ namespace ProcessingTools.Extensions
 
             if (offsetDays <= 0)
             {
-                offsetDays += 7;
+                offsetDays += DateTimeConstants.NumberOfDaysInWeek;
             }
 
-            DateTime result = instance.AddDays(offsetDays);
-            return result;
+            return instance.AddDays(offsetDays);
         }
 
         /// <summary>
@@ -140,19 +140,19 @@ namespace ProcessingTools.Extensions
             switch (dateType)
             {
                 case DateType.Day:
-                    return instance.AddDays(1);
+                    return instance.Date.AddDays(1);
 
                 case DateType.Week:
-                    return instance.Next(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
+                    return instance.Date.Next(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
 
                 case DateType.Month:
-                    return instance.Last().AddDays(1);
+                    return instance.Date.Last().AddDays(1);
 
                 case DateType.Year:
-                    return new DateTime(instance.Year + 1, 1, 1);
+                    return new DateTime(year: instance.Year + 1, month: 1, day: 1);
 
                 default:
-                    return instance;
+                    return instance.Date;
             }
         }
 
@@ -167,19 +167,19 @@ namespace ProcessingTools.Extensions
             switch (dateType)
             {
                 case DateType.Day:
-                    return instance.AddDays(-1);
+                    return instance.Date.AddDays(-1);
 
                 case DateType.Week:
-                    return instance.AddDays(-14).Next(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
+                    return instance.Date.AddDays(-2 * DateTimeConstants.NumberOfDaysInWeek).Next(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
 
                 case DateType.Month:
-                    return instance.First().AddDays(-1).First();
+                    return instance.Date.First().AddDays(-1).First();
 
                 case DateType.Year:
-                    return new DateTime(instance.Year - 1, 1, 1);
+                    return new DateTime(year: instance.Year - 1, month: 1, day: 1);
 
                 default:
-                    return instance;
+                    return instance.Date;
             }
         }
 
@@ -203,10 +203,10 @@ namespace ProcessingTools.Extensions
                     return instance.Date.First();
 
                 case DateType.Year:
-                    return new DateTime(instance.Year, 1, 1);
+                    return new DateTime(year: instance.Year, month: 1, day: 1);
 
                 default:
-                    return instance;
+                    return instance.Date;
             }
         }
 
@@ -218,7 +218,7 @@ namespace ProcessingTools.Extensions
         /// <returns>An object whose value is the sum of the date and time represented by this instance and the number of weeks represented by value.</returns>
         public static DateTime AddWeeks(this DateTime instance, double value)
         {
-            return instance.AddDays(value * 7);
+            return instance.AddDays(value * DateTimeConstants.NumberOfDaysInWeek);
         }
 
         /// <summary>
@@ -228,8 +228,7 @@ namespace ProcessingTools.Extensions
         /// <returns>New <see cref="DateTime"/> that represents midnight on the value of this instance.</returns>
         public static DateTime Midnight(this DateTime instance)
         {
-            DateTime midnight = new DateTime(instance.Year, instance.Month, instance.Day);
-            return midnight;
+            return new DateTime(year: instance.Year, month: instance.Month, day: instance.Day, hour: 0, minute: 0, second: 0, millisecond: 0);
         }
 
         /// <summary>
@@ -239,8 +238,7 @@ namespace ProcessingTools.Extensions
         /// <returns>New <see cref="DateTime"/> that represents noon on the value of this instance.</returns>
         public static DateTime Noon(this DateTime instance)
         {
-            DateTime noon = new DateTime(instance.Year, instance.Month, instance.Day, 12, 0, 0);
-            return noon;
+            return new DateTime(year: instance.Year, month: instance.Month, day: instance.Day, hour: 12, minute: 0, second: 0, millisecond: 0);
         }
 
         /// <summary>
@@ -252,7 +250,7 @@ namespace ProcessingTools.Extensions
         /// <returns>New <see cref="DateTime"/> with specified hour, and minute, and year, month, and day copied from this instance.</returns>
         public static DateTime SetTime(this DateTime instance, int hour, int minute)
         {
-            return new DateTime(instance.Year, instance.Month, instance.Day, hour, minute, 0, 0);
+            return new DateTime(year: instance.Year, month: instance.Month, day: instance.Day, hour: hour, minute: minute, second: 0, millisecond: 0);
         }
 
         /// <summary>
@@ -265,7 +263,7 @@ namespace ProcessingTools.Extensions
         /// <returns>New <see cref="DateTime"/> with specified hour, minute, and second, and year, month, and day copied from this instance.</returns>
         public static DateTime SetTime(this DateTime instance, int hour, int minute, int second)
         {
-            return new DateTime(instance.Year, instance.Month, instance.Day, hour, minute, second, 0);
+            return new DateTime(year: instance.Year, month: instance.Month, day: instance.Day, hour: hour, minute: minute, second: second, millisecond: 0);
         }
 
         /// <summary>
@@ -279,7 +277,41 @@ namespace ProcessingTools.Extensions
         /// <returns>New <see cref="DateTime"/> with specified hour, minute, second, and millisecond, and year, month, and day copied from this instance.</returns>
         public static DateTime SetTime(this DateTime instance, int hour, int minute, int second, int millisecond)
         {
-            return new DateTime(instance.Year, instance.Month, instance.Day, hour, minute, second, millisecond);
+            return new DateTime(year: instance.Year, month: instance.Month, day: instance.Day, hour: hour, minute: minute, second: second, millisecond: millisecond);
+        }
+
+        /// <summary>
+        /// Check whether the instance <see cref="DateTime"/> is in the same year with the reference.
+        /// </summary>
+        /// <param name="instance">This instance.</param>
+        /// <param name="reference">The reference.</param>
+        /// <returns>Are in the same year.</returns>
+        public static bool IsInSameYearWith(this DateTime instance, DateTime reference)
+        {
+            return instance.Year == reference.Year;
+        }
+
+        /// <summary>
+        /// Check whether the instance <see cref="DateTime"/> is in the same month with the reference.
+        /// </summary>
+        /// <param name="instance">This instance.</param>
+        /// <param name="reference">The reference.</param>
+        /// <returns>Are in the same month.</returns>
+        public static bool IsInSameMonthWith(this DateTime instance, DateTime reference)
+        {
+            return (instance.Year == reference.Year) && (instance.Month == reference.Month);
+        }
+
+        /// <summary>
+        /// Check whether the instance <see cref="DateTime"/> is in the same week with the reference.
+        /// </summary>
+        /// <param name="instance">This instance.</param>
+        /// <param name="reference">The reference.</param>
+        /// <returns>Are in the same week.</returns>
+        public static bool IsInSameWeekWith(this DateTime instance, DateTime reference)
+        {
+            DateTime beginningOfWeek = instance.This(DateType.Week);
+            return (beginningOfWeek - reference).TotalDays < DateTimeConstants.NumberOfDaysInWeek;
         }
     }
 }
