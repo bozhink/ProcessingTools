@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters.Harvesters.Meta
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
@@ -13,7 +12,7 @@
 
     public class PersonNamesHarvester : IPersonNamesHarvester
     {
-        public async Task<IEnumerable<IPersonNameModel>> Harvest(XmlNode context)
+        public async Task<IPersonNameModel[]> HarvestAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -29,10 +28,9 @@
                     Prefix = n[ElementNames.Prefix]?.InnerText,
                     Suffix = n[ElementNames.Suffix]?.InnerText
                 })
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                .ToArrayAsync();
 
-            return new HashSet<IPersonNameModel>(items);
+            return items;
         }
     }
 }

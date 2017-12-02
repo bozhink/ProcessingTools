@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Harvesters.Models.Meta
 {
     using System.Collections.Generic;
-    using Contracts.Models.Meta;
+    using ProcessingTools.Harvesters.Contracts.Models.Meta;
 
     internal class Article : IArticle
     {

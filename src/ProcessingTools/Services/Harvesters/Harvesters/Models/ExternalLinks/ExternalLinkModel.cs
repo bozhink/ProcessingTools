@@ -3,8 +3,8 @@
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
-    using Contracts.Models.ExternalLinks;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Harvesters.Contracts.Models.ExternalLinks;
 
     [Serializable]
     [DesignerCategory("code")]

@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Meta
 {
-    using Models.Meta;
-    using ProcessingTools.Contracts.Harvesters;
+    using ProcessingTools.Harvesters.Contracts.Models.Meta;
+    using ProcessingTools.Services.Contracts.Harvesters;
 
-    public interface IArticleMetaHarvester : IGenericDocumentHarvester<IArticle>
+    public interface IArticleMetaHarvester : IDocumentHarvester<IArticle>
     {
     }
 }

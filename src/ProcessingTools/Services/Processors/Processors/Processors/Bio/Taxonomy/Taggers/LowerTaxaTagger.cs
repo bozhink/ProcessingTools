@@ -442,25 +442,23 @@
             var taxaNamesFirstWord = await taxaNames.GetFirstWord()
                 .Distinct()
                 .DistinctWithStopWords(stopWords)
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                .ToArrayAsync();
 
             return new HashSet<string>(taxaNamesFirstWord);
         }
 
         private async Task<IEnumerable<string>> GetStopWordsAsync(XmlNode context)
         {
-            var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
-            var blacklistItems = await this.blacklist.GetItemsAsync().ConfigureAwait(false);
+            var personNames = await this.personNamesHarvester.HarvestAsync(context);
+            var blacklistItems = await this.blacklist.GetItemsAsync();
 
-            var stopWords = await personNames
+            var stopWords = personNames
                 .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
                 .Where(n => !string.IsNullOrWhiteSpace(n))
                 .Union(blacklistItems)
                 .Select(w => w.ToLowerInvariant())
                 .Distinct()
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                .ToArray();
 
             return stopWords;
         }

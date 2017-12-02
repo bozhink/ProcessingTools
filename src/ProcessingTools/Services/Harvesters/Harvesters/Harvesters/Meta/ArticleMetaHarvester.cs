@@ -2,15 +2,15 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Harvesters.Meta;
-    using Contracts.Models.Meta;
-    using Models.Meta;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
+    using ProcessingTools.Harvesters.Contracts.Models.Meta;
+    using ProcessingTools.Harvesters.Models.Meta;
 
     public class ArticleMetaHarvester : IArticleMetaHarvester
     {
-        public Task<IArticle> Harvest(IDocument context)
+        public Task<IArticle> HarvestAsync(IDocument context)
         {
             if (context == null)
             {

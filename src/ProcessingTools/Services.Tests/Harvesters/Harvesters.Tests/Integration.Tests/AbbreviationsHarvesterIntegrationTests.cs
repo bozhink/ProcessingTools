@@ -50,7 +50,7 @@
             var harvester = new AbbreviationsHarvester(contextWrapper, serializer, transformersFactoryMock.Object);
 
             // Act
-            var abbreviations = harvester.Harvest(document.DocumentElement).Result?.ToList();
+            var abbreviations = harvester.HarvestAsync(document.DocumentElement).Result?.ToList();
 
             Assert.IsNotNull(abbreviations);
             abbreviations?.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.Value, i.ContentType, i.Definition));

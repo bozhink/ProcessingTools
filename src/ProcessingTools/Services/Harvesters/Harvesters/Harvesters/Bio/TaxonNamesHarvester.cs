@@ -14,37 +14,13 @@
 
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {
-        public Task<IEnumerable<string>> Harvest(XmlNode context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+        public Task<string[]> HarvestAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Any));
 
-            return Task.FromResult(this.ExtractTaxa(context, TaxonType.Any));
-        }
+        public Task<string[]> HarvestHigherTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Higher));
 
-        public Task<IEnumerable<string>> HarvestHigherTaxa(XmlNode context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+        public Task<string[]> HarvestLowerTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Lower));
 
-            return Task.FromResult(this.ExtractTaxa(context, TaxonType.Higher));
-        }
-
-        public Task<IEnumerable<string>> HarvestLowerTaxa(XmlNode context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            return Task.FromResult(this.ExtractTaxa(context, TaxonType.Lower));
-        }
-
-        private IEnumerable<string> ExtractTaxa(XmlNode context, TaxonType type = TaxonType.Any)
+        private string[] ExtractTaxa(XmlNode context, TaxonType type)
         {
             if (context == null)
             {
@@ -65,7 +41,7 @@
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
             }
 
             var result = new List<string>();
@@ -74,21 +50,25 @@
                 result = context.SelectNodesWithTaxPubXmlNamespaceManager(xpath)
                     .Cast<XmlNode>()
                     .Select(this.TaxonNameXmlNodeToString)
-                    .Distinct()
+                    .Where(s => !string.IsNullOrEmpty(s))
                     .ToList();
             }
 
-            return new HashSet<string>(result);
+            return new HashSet<string>(result).ToArray();
         }
 
         private string TaxonNameXmlNodeToString(XmlNode node)
         {
             if (node == null)
             {
-                throw new ArgumentNullException(nameof(node));
+                return null;
             }
 
             XmlNode result = node.CloneNode(true).RemoveXmlNodes(".//object-id|.//tn-part[@type='uncertainty-rank']");
+            if (result == null)
+            {
+                return null;
+            }
 
             result.Attributes.RemoveAll();
             this.ReplaceXmlNodeInnerTextByItsFullNameAttribute(result);
@@ -113,11 +93,6 @@
 
         private void ReplaceXmlNodeInnerTextByItsFullNameAttribute(XmlNode node)
         {
-            if (node == null)
-            {
-                throw new ArgumentNullException(nameof(node));
-            }
-
             foreach (XmlNode fullNamedElement in node.SelectNodes(XPathStrings.ElementWithFullNameAttribute))
             {
                 fullNamedElement.InnerText = fullNamedElement.Attributes[AttributeNames.FullName].InnerText;

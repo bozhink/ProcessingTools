@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks
 {
-    using Models.ExternalLinks;
-    using ProcessingTools.Contracts.Harvesters;
+    using ProcessingTools.Harvesters.Contracts.Models.ExternalLinks;
+    using ProcessingTools.Services.Contracts.Harvesters;
 
-    public interface IExternalLinksHarvester : IGenericEnumerableXmlHarvester<IExternalLinkModel>
+    public interface IExternalLinksHarvester : IEnumerableXmlHarvester<IExternalLinkModel>
     {
     }
 }

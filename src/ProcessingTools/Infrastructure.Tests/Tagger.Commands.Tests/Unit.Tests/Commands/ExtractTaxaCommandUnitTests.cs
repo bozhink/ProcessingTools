@@ -61,9 +61,9 @@
 
             Assert.AreEqual(ParameterNames.Reporter, exception.ParamName, "ParamName is not correct.");
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExtractTaxaCommand), Description = "ExtractTaxaCommand with valid harvester and valid reporter should correctly initialize object.")]
@@ -92,9 +92,9 @@
             Assert.IsNotNull(reporter, "Private reporter field should not be null.");
             Assert.AreSame(reporterMock.Object, reporter, "Private reporter field should not be set correctly.");
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
@@ -119,9 +119,9 @@
                 return command.Run(null, null);
             });
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
@@ -145,9 +145,9 @@
 
             Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
@@ -171,9 +171,9 @@
 
             Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Never);
@@ -215,11 +215,11 @@
             settingsMock.VerifyGet(s => s.ExtractLowerTaxa, Times.Once);
             settingsMock.VerifyGet(s => s.ExtractHigherTaxa, Times.Once);
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Once);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(xmldocumentStub.DocumentElement), Times.Once);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Once);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(xmldocumentStub.DocumentElement), Times.Once);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Once);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(xmldocumentStub.DocumentElement), Times.Once);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Once);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(xmldocumentStub.DocumentElement), Times.Once);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Exactly(2));
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
@@ -261,10 +261,10 @@
             settingsMock.VerifyGet(s => s.ExtractLowerTaxa, Times.AtMostOnce);
             settingsMock.VerifyGet(s => s.ExtractHigherTaxa, Times.Once);
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Once);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(xmldocumentStub.DocumentElement), Times.Once);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Once);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(xmldocumentStub.DocumentElement), Times.Once);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Once);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
@@ -306,10 +306,10 @@
             settingsMock.VerifyGet(s => s.ExtractLowerTaxa, Times.Once);
             settingsMock.VerifyGet(s => s.ExtractHigherTaxa, Times.AtMostOnce);
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Once);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(xmldocumentStub.DocumentElement), Times.Once);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Once);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(xmldocumentStub.DocumentElement), Times.Once);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Once);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
@@ -355,10 +355,10 @@
             settingsMock.VerifyGet(s => s.ExtractLowerTaxa, Times.Never);
             settingsMock.VerifyGet(s => s.ExtractHigherTaxa, Times.Never);
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Once);
-            harvesterMock.Verify(r => r.Harvest(xmldocumentStub.DocumentElement), Times.Once);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Once);
+            harvesterMock.Verify(r => r.HarvestAsync(xmldocumentStub.DocumentElement), Times.Once);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Once);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);
@@ -400,9 +400,9 @@
             settingsMock.VerifyGet(s => s.ExtractLowerTaxa, Times.Once);
             settingsMock.VerifyGet(s => s.ExtractHigherTaxa, Times.Once);
 
-            harvesterMock.Verify(r => r.Harvest(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestLowerTaxa(It.IsAny<XmlNode>()), Times.Never);
-            harvesterMock.Verify(r => r.HarvestHigherTaxa(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestLowerTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
+            harvesterMock.Verify(r => r.HarvestHigherTaxaAsync(It.IsAny<XmlNode>()), Times.Never);
 
             reporterMock.Verify(r => r.AppendContent(It.IsAny<string>()), Times.Never);
             reporterMock.Verify(r => r.MakeReportAsync(), Times.Once);

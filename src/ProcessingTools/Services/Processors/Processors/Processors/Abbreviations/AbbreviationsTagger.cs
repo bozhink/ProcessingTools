@@ -168,7 +168,7 @@
                 throw new ArgumentNullException(nameof(contextToHarvest));
             }
 
-            var abbreviations = await this.abbreviationsHarvester.Harvest(contextToHarvest).ConfigureAwait(false);
+            var abbreviations = await this.abbreviationsHarvester.HarvestAsync(contextToHarvest).ConfigureAwait(false);
             if (abbreviations != null)
             {
                 var result = abbreviations

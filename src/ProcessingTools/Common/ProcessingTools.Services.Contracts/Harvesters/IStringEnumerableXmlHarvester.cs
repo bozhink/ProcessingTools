@@ -2,9 +2,12 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters
+namespace ProcessingTools.Services.Contracts.Harvesters
 {
-    public interface IStringEnumerableXmlHarvester : IGenericEnumerableXmlHarvester<string>
+    /// <summary>
+    /// Enumerable harvester with <see cref="System.Xml.XmlNode"/> context and string model.
+    /// </summary>
+    public interface IStringEnumerableXmlHarvester : IEnumerableXmlHarvester<string>
     {
     }
 }

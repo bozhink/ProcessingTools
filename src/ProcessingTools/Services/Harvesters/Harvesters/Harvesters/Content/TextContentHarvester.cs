@@ -4,8 +4,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Factories;
-    using Contracts.Harvesters.Content;
+    using ProcessingTools.Harvesters.Contracts.Factories;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
 
     public class TextContentHarvester : ITextContentHarvester
     {
@@ -13,15 +13,10 @@
 
         public TextContentHarvester(ITextContentTransformersFactory transformersFactory)
         {
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.transformersFactory = transformersFactory;
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<string> Harvest(XmlNode context)
+        public async Task<string> HarvestAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -30,8 +25,8 @@
 
             var content = await this.transformersFactory
                 .GetTextContentTransformer()
-                .TransformAsync(context)
-                .ConfigureAwait(false);
+                .TransformAsync(context);
+
             content = Regex.Replace(content, @"(?<=\n)\s+", string.Empty);
 
             return content;

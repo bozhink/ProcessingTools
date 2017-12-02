@@ -51,7 +51,7 @@
             var harvester = new ExternalLinksHarvester(contextWrapper, serializer, transformersFactoryMock.Object);
 
             // Act
-            var externalLinks = harvester.Harvest(document.DocumentElement).Result?.ToList();
+            var externalLinks = harvester.HarvestAsync(document.DocumentElement).Result?.ToList();
 
             // Assert
             Assert.IsNotNull(externalLinks);

@@ -38,7 +38,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\AbstractGenericEnumerableXmlHarvester.cs" />
+    <Compile Include="Abstractions\AbstractEnumerableXmlHarvester{TModel}.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\Harvesters\Abbreviations\IAbbreviationsHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Bio\ITaxonNamesHarvester.cs" />

@@ -50,9 +50,9 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement).ConfigureAwait(false);
-            var seed = await this.whitelist.GetItemsAsync().ConfigureAwait(false);
+            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement);
+            var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement);
+            var seed = await this.whitelist.GetItemsAsync();
 
             var data = await this.miner.MineAsync(textContent, seed, stopWords).ConfigureAwait(false) ?? new string[] { };
 
@@ -66,16 +66,15 @@
 
         private async Task<IEnumerable<string>> GetStopWords(XmlNode context)
         {
-            var personNames = await this.personNamesHarvester.Harvest(context).ConfigureAwait(false);
-            var blacklistItems = await this.blacklist.GetItemsAsync().ConfigureAwait(false);
+            var personNames = await this.personNamesHarvester.HarvestAsync(context);
+            var blacklistItems = await this.blacklist.GetItemsAsync();
 
-            var stopWords = await personNames
+            var stopWords = personNames
                 .SelectMany(n => new[] { n.GivenNames, n.Surname, n.Suffix, n.Prefix })
                 .Where(n => !string.IsNullOrWhiteSpace(n))
                 .Union(blacklistItems)
                 .Distinct()
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                .ToArray();
 
             return stopWords;
         }

@@ -34,7 +34,7 @@
                 throw new ArgumentNullException(nameof(reporter));
             }
 
-            var data = await this.harvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = await this.harvester.HarvestAsync(context.XmlDocument.DocumentElement);
             var externalLinks = data?.Select(e => e.FullAddress)
                 .Distinct()
                 .ToArray();

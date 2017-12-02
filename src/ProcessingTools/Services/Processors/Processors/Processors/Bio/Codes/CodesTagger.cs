@@ -282,7 +282,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         private async Task<IEnumerable<ISpecimenCode>> GetPrefixNumericCodes(IDocument document)
         {
             var prefixNumericSpecimenCodes = new List<ISpecimenCode>();
-            string textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement).ConfigureAwait(false);
+            string textContent = await this.contentHarvester.HarvestAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
             for (int i = 0, length = this.codePrefixes.Length; i < length; ++i)
             {

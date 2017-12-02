@@ -36,20 +36,20 @@
 
             if (settings.ExtractTaxa)
             {
-                var data = await this.harvester.Harvest(context).ConfigureAwait(false);
+                var data = await this.harvester.HarvestAsync(context);
                 this.BuildReport(Messages.ExtractAllTaxaMessage, data);
             }
             else
             {
                 if (settings.ExtractLowerTaxa)
                 {
-                    var data = await this.harvester.HarvestLowerTaxa(context).ConfigureAwait(false);
+                    var data = await this.harvester.HarvestLowerTaxaAsync(context).ConfigureAwait(false);
                     this.BuildReport(Messages.ExtractLowerTaxaMessage, data);
                 }
 
                 if (settings.ExtractHigherTaxa)
                 {
-                    var data = await this.harvester.HarvestHigherTaxa(context).ConfigureAwait(false);
+                    var data = await this.harvester.HarvestHigherTaxaAsync(context).ConfigureAwait(false);
                     this.BuildReport(Messages.ExtractHigherTaxaMessage, data);
                 }
             }

@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Bio
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Harvesters;
+    using ProcessingTools.Services.Contracts.Harvesters;
 
     public interface ITaxonNamesHarvester : IStringEnumerableXmlHarvester
     {
-        Task<IEnumerable<string>> HarvestLowerTaxa(XmlNode context);
+        Task<string[]> HarvestLowerTaxaAsync(XmlNode context);
 
-        Task<IEnumerable<string>> HarvestHigherTaxa(XmlNode context);
+        Task<string[]> HarvestHigherTaxaAsync(XmlNode context);
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations
 {
-    using Models.Abbreviations;
-    using ProcessingTools.Contracts.Harvesters;
+    using ProcessingTools.Harvesters.Contracts.Models.Abbreviations;
+    using ProcessingTools.Services.Contracts.Harvesters;
 
-    public interface IAbbreviationsHarvester : IGenericEnumerableXmlHarvester<IAbbreviationModel>
+    public interface IAbbreviationsHarvester : IEnumerableXmlHarvester<IAbbreviationModel>
     {
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Content
 {
-    using ProcessingTools.Contracts.Harvesters;
+    using ProcessingTools.Services.Contracts.Harvesters;
 
-    public interface ITextContentHarvester : IGenericXmlHarvester<string>
+    public interface ITextContentHarvester : IXmlHarvester<string>
     {
     }
 }

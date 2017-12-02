@@ -1,46 +1,32 @@
 ﻿namespace ProcessingTools.Harvesters.Harvesters.ExternalLinks
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
-    using Abstractions;
-    using Contracts.Factories;
-    using Contracts.Harvesters.ExternalLinks;
-    using Contracts.Models.ExternalLinks;
-    using Models.ExternalLinks;
+    using ProcessingTools.Harvesters.Abstractions;
+    using ProcessingTools.Harvesters.Contracts.Factories;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
+    using ProcessingTools.Harvesters.Contracts.Models.ExternalLinks;
+    using ProcessingTools.Harvesters.Models.ExternalLinks;
     using ProcessingTools.Xml.Contracts.Serialization;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
-    public class ExternalLinksHarvester : AbstractGenericEnumerableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
+    public class ExternalLinksHarvester : AbstractEnumerableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {
         private readonly IXmlTransformDeserializer serializer;
         private readonly IExternalLinksTransformersFactory transformersFactory;
 
-        public ExternalLinksHarvester(
-            IXmlContextWrapper contextWrapper,
-            IXmlTransformDeserializer serializer,
-            IExternalLinksTransformersFactory transformersFactory)
+        public ExternalLinksHarvester(IXmlContextWrapper contextWrapper, IXmlTransformDeserializer serializer, IExternalLinksTransformersFactory transformersFactory)
             : base(contextWrapper)
         {
-            if (serializer == null)
-            {
-                throw new ArgumentNullException(nameof(serializer));
-            }
-
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.serializer = serializer;
-            this.transformersFactory = transformersFactory;
+            this.serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        protected override async Task<IEnumerable<IExternalLinkModel>> Run(XmlDocument document)
+        protected override async Task<IExternalLinkModel[]> RunAsync(XmlDocument document)
         {
             var transformer = this.transformersFactory.GetExternalLinksTransformer();
-            var items = await this.serializer.Deserialize<ExternalLinksModel>(transformer, document.OuterXml).ConfigureAwait(false);
+            var items = await this.serializer.Deserialize<ExternalLinksModel>(transformer, document.OuterXml);
 
             return items.ExternalLinks;
         }

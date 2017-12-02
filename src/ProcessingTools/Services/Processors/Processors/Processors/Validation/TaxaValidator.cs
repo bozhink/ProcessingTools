@@ -34,7 +34,7 @@
                 throw new ArgumentNullException(nameof(reporter));
             }
 
-            var data = await this.harvester.Harvest(context.XmlDocument).ConfigureAwait(false);
+            var data = await this.harvester.HarvestAsync(context.XmlDocument);
             var scientificNames = data?.Distinct().ToArray();
 
             if (scientificNames == null || scientificNames.Length < 1)
@@ -43,7 +43,7 @@
                 return false;
             }
 
-            var result = await this.validationService.ValidateAsync(scientificNames).ConfigureAwait(false);
+            var result = await this.validationService.ValidateAsync(scientificNames);
 
             var nonValidItems = result.Where(r => r.ValidationStatus != ValidationStatus.Valid)
                 .Select(r => r.ValidatedObject)

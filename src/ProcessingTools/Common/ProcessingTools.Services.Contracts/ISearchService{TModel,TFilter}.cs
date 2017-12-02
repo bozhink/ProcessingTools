@@ -1,4 +1,4 @@
-﻿// <copyright file="ISearchService.cs" company="ProcessingTools">
+﻿// <copyright file="ISearchService{TModel,TFilter}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 

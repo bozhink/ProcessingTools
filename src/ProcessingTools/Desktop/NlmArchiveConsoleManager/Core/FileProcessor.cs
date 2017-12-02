@@ -106,7 +106,7 @@
 
         private async Task<string> ComposeFileNameReplacementPrefixAsync(ProcessingTools.Contracts.IDocument document)
         {
-            var articleMeta = await this.articleMetaHarvester.Harvest(document).ConfigureAwait(false);
+            var articleMeta = await this.articleMetaHarvester.HarvestAsync(document);
 
             string fileNameReplacementPrefix = string.Format(
                 this.journalMeta.FileNamePattern,

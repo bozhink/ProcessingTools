@@ -36,7 +36,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement);
             var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
                 .Select(t => new EnvoExtractHcmrSerializableModel
                 {
