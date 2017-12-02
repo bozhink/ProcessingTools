@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
@@ -18,24 +17,22 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public Task<IEnumerable<string>> Search(string filter)
+        public Task<string[]> SearchAsync(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
-                return Task.FromResult<IEnumerable<string>>(new string[] { });
+                return Task.FromResult(new string[] { });
             }
 
-            return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
+            return this.repositoryProvider.Execute((repository) =>
             {
-                var searchString = filter.ToLowerInvariant();
+                var searchString = filter.ToUpperInvariant();
 
-                var result = await repository.Entities
-                    .Where(s => s.Content.ToLowerInvariant().Contains(searchString))
+                return repository.Entities
+                    .Where(s => s.Content.ToUpperInvariant().Contains(searchString))
                     .Select(s => s.Content)
-                    .ToListAsync()
-                    .ConfigureAwait(false);
-
-                return new HashSet<string>(result);
+                    .Distinct()
+                    .ToArrayAsync();
             });
         }
     }

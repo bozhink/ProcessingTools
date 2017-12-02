@@ -35,7 +35,7 @@
                 .Select(i => i.Content)
                 .ToArray();
 
-            await this.dataService.AddAsync(taxa).ConfigureAwait(false);
+            await this.dataService.AddAsync(taxa);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();
@@ -50,7 +50,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundItems = (await this.searchService.Search(searchString).ConfigureAwait(false))
+            var foundItems = (await this.searchService.SearchAsync(searchString))
                 .ToList();
 
             if (foundItems.Count < 1)

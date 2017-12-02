@@ -82,7 +82,7 @@
     <Compile Include="Services\Bio\Taxonomy\LocalDbTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\SuffixHigherTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\TaxonRankDataService.cs" />
-    <Compile Include="Services\Bio\Taxonomy\TaxonRankSearchService.cs" />
+    <Compile Include="Services\Bio\Taxonomy\TaxonRanksSearchService.cs" />
     <Compile Include="Services\Bio\Taxonomy\WhiteList.cs" />
     <Compile Include="Services\Bio\TypeStatusDataService.cs" />
     <Compile Include="Services\Documents\DocumentsDataService.cs" />

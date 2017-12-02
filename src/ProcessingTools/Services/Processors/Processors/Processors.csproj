@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Common\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
     <Compile Include="Contracts\Processors\Bio\Taxonomy\IBioTaxonomyTransformersFactory.cs" />
     <Compile Include="Contracts\Processors\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICodesTagger.cs" />
@@ -213,7 +213,7 @@
     <Compile Include="Providers\QuantityTagModelProvider.cs" />
     <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
     <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
-    <Compile Include="Common\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
     <Compile Include="Special\Processors\Flora.cs" />
     <Compile Include="Special\Processors\GavinLaurensParser.cs" />
     <Compile Include="Special\Processors\QuentinFlora.cs" />

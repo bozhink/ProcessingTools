@@ -15,11 +15,11 @@
     public class BioTaxonomyTaxaRanksDataController : Controller
     {
         private readonly ITaxonRankDataService dataService;
-        private readonly ITaxonRankSearchService searchService;
+        private readonly ITaxonRanksSearchService searchService;
 
         public BioTaxonomyTaxaRanksDataController(
             ITaxonRankDataService dataService,
-            ITaxonRankSearchService searchService)
+            ITaxonRanksSearchService searchService)
         {
             this.dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
             this.searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
@@ -55,7 +55,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundTaxa = await this.searchService.Search(searchString).ConfigureAwait(false);
+            var foundTaxa = await this.searchService.SearchAsync(searchString);
             if (foundTaxa == null || !foundTaxa.Any())
             {
                 this.Response.StatusCode = (int)HttpStatusCode.NotFound;

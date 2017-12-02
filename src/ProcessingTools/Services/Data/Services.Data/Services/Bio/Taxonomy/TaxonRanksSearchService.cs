@@ -11,23 +11,23 @@
     using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
-    public class TaxonRankSearchService : ITaxonRankSearchService
+    public class TaxonRanksSearchService : ITaxonRanksSearchService
     {
         private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
-        public TaxonRankSearchService(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
+        public TaxonRanksSearchService(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public async Task<IEnumerable<ITaxonRank>> Search(string filter)
+        public Task<ITaxonRank[]> SearchAsync(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
-                return new ITaxonRank[] { };
+                return Task.FromResult(new ITaxonRank[] { });
             }
 
-            return await this.repositoryProvider.Execute<IEnumerable<ITaxonRank>>(async (repository) =>
+            return this.repositoryProvider.Execute<ITaxonRank[]>(async (repository) =>
             {
                 var searchString = filter.ToLowerInvariant();
 
@@ -39,11 +39,10 @@
                         Rank = rank
                     }))
                     .Take(PaginationConstants.DefaultLargeNumberOfItemsPerPage)
-                    .ToList();
+                    .ToArray();
 
                 return result;
-            })
-            .ConfigureAwait(false);
+            });
         }
     }
 }
