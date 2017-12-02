@@ -11,7 +11,6 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
-    using ProcessingTools.Processors.Comparers.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;

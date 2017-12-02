@@ -42,8 +42,6 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Common\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
-    <Compile Include="Comparers\Bio\Taxonomy\TaxonNameContentEqualityComparer.cs" />
-    <Compile Include="Comparers\Bio\Taxonomy\TaxonNamePartContentEqualityComparer.cs" />
     <Compile Include="Contracts\Processors\Bio\Taxonomy\IBioTaxonomyTransformersFactory.cs" />
     <Compile Include="Contracts\Processors\Abbreviations\IAbbreviationsTagger.cs" />
     <Compile Include="Contracts\Processors\Bio\Codes\ICodesTagger.cs" />
