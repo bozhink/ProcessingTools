@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Contracts
     /// </summary>
     /// <typeparam name="TModel">Type of model.</typeparam>
     /// <typeparam name="TFilter">Type of filter.</typeparam>
-    public interface ISearchService<TModel, TFilter>
+    public interface ISearchService<TModel, TFilter> : IService
     {
         /// <summary>
         /// Do search with a specified filter.

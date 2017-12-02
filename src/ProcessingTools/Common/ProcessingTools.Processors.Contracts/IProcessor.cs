@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Services
+namespace ProcessingTools.Processors.Contracts
 {
     /// <summary>
     /// Base processor.
