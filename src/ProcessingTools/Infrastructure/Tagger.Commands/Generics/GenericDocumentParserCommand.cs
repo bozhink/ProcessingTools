@@ -5,7 +5,7 @@
     using Contracts;
     using Contracts.Commands;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
 
     public class GenericDocumentParserCommand<TParser> : ITaggerCommand
         where TParser : class, IDocumentParser

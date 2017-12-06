@@ -1,0 +1,13 @@
+﻿// <copyright file="IAbbreviatedNameableStringIdentifiable.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Models
+{
+    /// <summary>
+    /// Model with abbreviated name and string id.
+    /// </summary>
+    public interface IAbbreviatedNameableStringIdentifiable : IAbbreviatedNameable, INameableStringIdentifiable
+    {
+    }
+}

@@ -2,7 +2,7 @@
 {
     using Abstractions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
 
     public class AphiaController : AbstractTaxaClassificationResolverController<IAphiaTaxaClassificationResolver>
     {

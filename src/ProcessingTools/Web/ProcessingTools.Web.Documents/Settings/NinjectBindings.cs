@@ -36,7 +36,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Data.Contracts.Repositories.IGenericRepositoryProvider<>))
+            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
 
             this.Bind(b =>
@@ -85,7 +85,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Services.Contracts.Data.Files.IStreamingFilesDataService>()
+            this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
@@ -111,17 +111,17 @@
                 .To<ProcessingTools.Services.Providers.DateTimeProvider>()
                 .InSingletonScope();
 
-            this.Bind<Func<Type, ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
+            this.Bind<Func<Type, ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
                 .ToMethod(context =>
                 {
-                    return t => context.Kernel.Get(t) as ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
+                    return t => context.Kernel.Get(t) as ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
 
-            this.Bind<ProcessingTools.Processors.Contracts.Imaging.IQRCodeEncoder>()
+            this.Bind<ProcessingTools.Contracts.Processors.Imaging.IQRCodeEncoder>()
                 .To<ProcessingTools.Imaging.Processors.QRCodeEncoder>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Processors.Contracts.Imaging.IBarcodeEncoder>()
+            this.Bind<ProcessingTools.Contracts.Processors.Imaging.IBarcodeEncoder>()
                 .To<ProcessingTools.Imaging.Processors.BarcodeEncoder>()
                 .InRequestScope();
         }

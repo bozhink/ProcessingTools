@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts
+﻿namespace ProcessingTools.Contracts.Processors
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

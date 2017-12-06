@@ -9,10 +9,10 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
+    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
-    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {

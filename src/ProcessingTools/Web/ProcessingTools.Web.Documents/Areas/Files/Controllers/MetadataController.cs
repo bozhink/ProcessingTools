@@ -4,7 +4,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using ProcessingTools.Services.Contracts.Data.Files;
+    using ProcessingTools.Contracts.Services.Data.Files;
     using ProcessingTools.Web.Documents.Areas.Files.ViewModels.Metadata;
 
     public class MetadataController : Controller

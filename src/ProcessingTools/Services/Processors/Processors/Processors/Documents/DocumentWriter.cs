@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
-    using ProcessingTools.Services.Contracts.Data.Files;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
+    using ProcessingTools.Contracts.Services.Data.Files;
 
     public class DocumentWriter : IDocumentWriter
     {

@@ -7,7 +7,7 @@ namespace ProcessingTools.Processors.Language
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Processors.Contracts.Language;
+    using ProcessingTools.Contracts.Processors.Language;
 
     /// <summary>
     /// Roman-to-Arabic transliteration.

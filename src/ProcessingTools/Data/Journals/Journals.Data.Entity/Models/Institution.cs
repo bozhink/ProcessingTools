@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Journals;
-    using ProcessingTools.Models.Contracts.Journals;
+    using ProcessingTools.Contracts.Models.Journals;
 
     public class Institution : Addressable, IInstitution
     {

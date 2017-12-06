@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Services
 {
     using System.Threading.Tasks;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Web.Contracts.Services;
+    using ProcessingTools.Contracts.Web.Services;
 
     /// <summary>
     /// Default SMS sending service.

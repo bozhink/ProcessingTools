@@ -81,13 +81,13 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj">
       <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
-      <Name>ProcessingTools.Processors.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Processors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
-      <Name>ProcessingTools.Services.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

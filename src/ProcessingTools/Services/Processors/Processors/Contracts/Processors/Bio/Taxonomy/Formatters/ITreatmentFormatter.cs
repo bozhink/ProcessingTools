@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters
+﻿namespace ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Formatters
 {
     using ProcessingTools.Contracts;
 

@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
 
     public abstract class AbstractTaxaInformationResolver<T> : ITaxaInformationResolver<T>
     {

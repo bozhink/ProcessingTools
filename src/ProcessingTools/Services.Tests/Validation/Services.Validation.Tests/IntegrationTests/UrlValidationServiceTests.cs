@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache;
-    using ProcessingTools.Services.Contracts.Cache;
+    using ProcessingTools.Contracts.Services.Cache;
 
     [TestClass]
     public class UrlValidationServiceTests

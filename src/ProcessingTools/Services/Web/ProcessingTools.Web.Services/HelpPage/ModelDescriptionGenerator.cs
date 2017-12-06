@@ -16,7 +16,7 @@ namespace ProcessingTools.Web.Services.HelpPage
     using System.Web.Http.Description;
     using System.Xml.Serialization;
     using Newtonsoft.Json;
-    using ProcessingTools.Web.Contracts.Services.HelpPage;
+    using ProcessingTools.Contracts.Web.Services.HelpPage;
     using ProcessingTools.Web.Models.HelpPage.ModelDescriptions;
 
     /// <summary>

@@ -21,6 +21,6 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj" />
   </ItemGroup>
 </Project>

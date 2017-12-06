@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Services.Contracts.Data.Bio;
-    using ProcessingTools.Services.Models.Contracts.Data.Bio;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Data.Bio;
+    using ProcessingTools.Contracts.Services.Models.Data.Bio;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Bio.MorphologicalEpithets;
 

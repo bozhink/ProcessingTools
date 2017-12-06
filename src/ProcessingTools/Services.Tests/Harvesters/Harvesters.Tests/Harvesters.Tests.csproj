@@ -88,13 +88,13 @@
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
       <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
-      <Name>ProcessingTools.Models.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj">
       <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
-      <Name>ProcessingTools.Processors.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Processors</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>

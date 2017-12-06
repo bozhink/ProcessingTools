@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Data.Miners.Abstractions;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Services.Contracts.Data.Bio.Biorepositories;
-    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Models.Data.Bio.Biorepositories;
 
     public class BiorepositoriesCollectionsDataMiner : BiorepositoriesDataMinerBase<ICollection>, IBiorepositoriesCollectionsDataMiner
     {

@@ -16,7 +16,7 @@
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Reporters;
 
     /// <summary>
@@ -33,7 +33,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Data.Contracts.Repositories.IGenericRepositoryProvider<>))
+            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
 
             this.Bind<ITypesProvider>()

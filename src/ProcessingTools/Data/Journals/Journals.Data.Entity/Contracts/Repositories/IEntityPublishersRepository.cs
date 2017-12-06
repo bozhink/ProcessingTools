@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Journals.Data.Entity.Contracts.Repositories
 {
-    using ProcessingTools.Data.Contracts.Repositories.Journals;
+    using ProcessingTools.Contracts.Data.Repositories.Journals;
 
     public interface IEntityPublishersRepository : IPublishersRepository
     {

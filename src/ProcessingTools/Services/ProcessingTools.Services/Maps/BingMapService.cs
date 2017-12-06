@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Maps
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Services.Contracts.Maps;
+    using ProcessingTools.Contracts.Services.Maps;
 
     /// <summary>
     /// Bing Maps service.

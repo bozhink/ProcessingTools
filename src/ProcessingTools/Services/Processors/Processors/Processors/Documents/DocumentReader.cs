@@ -4,9 +4,9 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
+    using ProcessingTools.Contracts.Services.Data.Files;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
-    using ProcessingTools.Services.Contracts.Data.Files;
 
     public class DocumentReader : IDocumentReader
     {
@@ -26,7 +26,7 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            var xmldocument = await this.filesManager.ReadXmlFile(fileName).ConfigureAwait(false);
+            var xmldocument = await this.filesManager.ReadXmlFile(fileName);
 
             var document = this.documentFactory.Create(xmldocument.OuterXml);
             switch (document.XmlDocument.DocumentElement.Name)

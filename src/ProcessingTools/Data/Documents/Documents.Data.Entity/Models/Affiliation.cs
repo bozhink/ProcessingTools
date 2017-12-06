@@ -7,7 +7,7 @@
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliation
     {

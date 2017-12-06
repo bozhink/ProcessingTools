@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Services.Contracts.Data.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
 
     public abstract class BiorepositoriesDataMinerBase<T>
         where T : class

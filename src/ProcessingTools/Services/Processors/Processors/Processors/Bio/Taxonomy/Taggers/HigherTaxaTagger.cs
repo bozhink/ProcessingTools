@@ -6,15 +6,14 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
+    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers;
-    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
 
     public class HigherTaxaTagger : IHigherTaxaTagger
     {

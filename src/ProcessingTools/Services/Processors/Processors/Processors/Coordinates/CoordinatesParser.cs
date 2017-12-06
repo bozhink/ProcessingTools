@@ -6,10 +6,10 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Coordinates;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Geo.Contracts.Parsers;
-    using ProcessingTools.Processors.Contracts.Processors.Coordinates;
 
     public class CoordinatesParser : ICoordinatesParser
     {

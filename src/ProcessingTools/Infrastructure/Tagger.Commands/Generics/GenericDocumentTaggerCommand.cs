@@ -5,7 +5,7 @@
     using Contracts;
     using Contracts.Commands;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
 
     public class GenericDocumentTaggerCommand<TTagger> : ITaggerCommand
         where TTagger : class, IDocumentTagger

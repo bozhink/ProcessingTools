@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Materials;
+    using ProcessingTools.Contracts.Clients.Bio;
+    using ProcessingTools.Contracts.Processors.Factories.Bio;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.Materials;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {

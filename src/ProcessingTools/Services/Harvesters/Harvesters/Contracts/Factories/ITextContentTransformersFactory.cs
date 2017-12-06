@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Factories
 {
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
 
     public interface ITextContentTransformersFactory
     {

@@ -6,7 +6,7 @@
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     [CollectionName("taxa")]
     public class MongoTaxonRankEntity : ITaxonRankEntity

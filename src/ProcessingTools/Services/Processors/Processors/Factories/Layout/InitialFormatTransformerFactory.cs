@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Layout.Processors.Factories
 {
     using System;
-    using Contracts.Factories;
+    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Layout.Processors.Contracts.Factories;
 
     public class InitialFormatTransformerFactory : IInitialFormatTransformerFactory
     {
@@ -11,12 +11,7 @@
 
         public InitialFormatTransformerFactory(IFormatTransformersFactory transformersFactory)
         {
-            if (transformersFactory == null)
-            {
-                throw new ArgumentNullException(nameof(transformersFactory));
-            }
-
-            this.transformersFactory = transformersFactory;
+            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
         public IXmlTransformer Create(SchemaType schemaType)

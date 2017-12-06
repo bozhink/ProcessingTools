@@ -14,7 +14,7 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Web.Contracts.Security;
+    using ProcessingTools.Contracts.Web.Security;
     using ProcessingTools.Web.Services;
 
     public partial class Startup

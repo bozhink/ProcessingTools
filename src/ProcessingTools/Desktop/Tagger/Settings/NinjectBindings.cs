@@ -34,7 +34,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Data.Contracts.Repositories.IGenericRepositoryProvider<>))
+            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
 
             this.Bind(b =>
@@ -94,7 +94,7 @@
                 .To<ProcessingTools.Common.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Data.Contracts.Repositories.Cache.IValidationCacheDataRepository>()
+            this.Bind<ProcessingTools.Contracts.Data.Repositories.Cache.IValidationCacheDataRepository>()
                 ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
                 .To<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>();
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
@@ -134,10 +134,10 @@
                 .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
                 .InSingletonScope();
 
-            this.Bind<Func<Type, ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
+            this.Bind<Func<Type, ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
                 .ToMethod(context =>
                 {
-                    return t => context.Kernel.Get(t) as ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
+                    return t => context.Kernel.Get(t) as ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
         }
     }

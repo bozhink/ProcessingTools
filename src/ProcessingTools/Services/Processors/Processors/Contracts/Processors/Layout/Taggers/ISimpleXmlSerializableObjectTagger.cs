@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Processors.Models.Contracts.Layout;
+    using ProcessingTools.Contracts.Processors.Models.Layout;
 
     public interface ISimpleXmlSerializableObjectTagger<T>
     {

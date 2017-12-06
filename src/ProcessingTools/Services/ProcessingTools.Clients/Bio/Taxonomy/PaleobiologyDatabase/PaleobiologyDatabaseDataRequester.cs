@@ -8,7 +8,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.PaleobiologyDatabase
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.PaleobiologyDatabase.Json;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;

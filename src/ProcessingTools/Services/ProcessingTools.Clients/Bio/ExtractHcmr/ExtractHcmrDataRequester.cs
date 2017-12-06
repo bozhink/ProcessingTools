@@ -7,7 +7,7 @@ namespace ProcessingTools.Clients.Bio.ExtractHcmr
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.Bio;
+    using ProcessingTools.Contracts.Clients.Bio;
     using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;

@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
 
     public class TextQueryReplacer : ITextQueryReplacer
     {

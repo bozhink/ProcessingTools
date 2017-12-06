@@ -5,11 +5,11 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IRepositoryAsync<TModel, TFilter>
         where TEntity : BaseModel, IDataModel

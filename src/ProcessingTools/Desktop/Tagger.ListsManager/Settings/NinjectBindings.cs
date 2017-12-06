@@ -17,7 +17,7 @@
                  .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Data.Contracts.Repositories.IGenericRepositoryProvider<>))
+            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
 
             this.Bind(b =>

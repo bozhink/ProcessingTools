@@ -8,9 +8,9 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts.Processors.Models.Floats;
+    using ProcessingTools.Contracts.Processors.Processors.Floats;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Contracts.Processors.Floats;
-    using ProcessingTools.Processors.Models.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
     using ProcessingTools.Services.Data.Contracts.Mediatypes;
 

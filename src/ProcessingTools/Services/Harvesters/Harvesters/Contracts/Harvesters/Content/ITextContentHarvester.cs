@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Content
 {
-    using ProcessingTools.Services.Contracts.Harvesters;
+    using ProcessingTools.Contracts.Services.Harvesters;
 
     public interface ITextContentHarvester : IXmlHarvester<string>
     {

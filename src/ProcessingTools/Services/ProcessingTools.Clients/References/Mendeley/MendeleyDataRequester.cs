@@ -8,7 +8,7 @@ namespace ProcessingTools.Clients.References.Mendeley
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.References;
+    using ProcessingTools.Contracts.Clients.References;
     using ProcessingTools.Clients.Models.References.Mendeley;
 
     /// <summary>

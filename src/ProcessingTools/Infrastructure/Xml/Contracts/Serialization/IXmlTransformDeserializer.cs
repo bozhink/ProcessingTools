@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
 
     public interface IXmlTransformDeserializer
     {

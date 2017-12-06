@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Geo.GeoEpithets
 {
     using System;
     using System.Linq;
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     /// <summary>
     /// GeoEpithets request model

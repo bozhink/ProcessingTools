@@ -3,23 +3,20 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
 
     public class ReadDocumentHelper : IReadDocumentHelper
     {
-        private readonly IDocumentFactory documentFactory;
         private readonly IDocumentMerger documentMerger;
         private readonly IDocumentReader documentReader;
         private readonly IDocumentPostReadNormalizer documentNormalizer;
 
         public ReadDocumentHelper(
-            IDocumentFactory documentFactory,
             IDocumentMerger documentMerger,
             IDocumentReader documentReader,
             IDocumentPostReadNormalizer documentNormalizer)
         {
-            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
             this.documentMerger = documentMerger ?? throw new ArgumentNullException(nameof(documentMerger));
             this.documentReader = documentReader ?? throw new ArgumentNullException(nameof(documentReader));
             this.documentNormalizer = documentNormalizer ?? throw new ArgumentNullException(nameof(documentNormalizer));
@@ -36,14 +33,14 @@
 
             if (mergeInputFiles)
             {
-                document = await this.documentMerger.Merge(fileNames).ConfigureAwait(false);
+                document = await this.documentMerger.Merge(fileNames);
             }
             else
             {
-                document = await this.documentReader.ReadDocument(fileNames[0]).ConfigureAwait(false);
+                document = await this.documentReader.ReadDocument(fileNames[0]);
             }
 
-            await this.documentNormalizer.NormalizeAsync(document).ConfigureAwait(false);
+            await this.documentNormalizer.NormalizeAsync(document);
 
             return document;
         }

@@ -6,7 +6,7 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Contracts;
 

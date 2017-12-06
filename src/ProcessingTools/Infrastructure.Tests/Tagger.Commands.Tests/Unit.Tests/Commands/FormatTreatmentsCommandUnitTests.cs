@@ -6,7 +6,7 @@
     using NUnit.Framework;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Formatters;
     using ProcessingTools.Tagger.Commands.Commands;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tests.Library;

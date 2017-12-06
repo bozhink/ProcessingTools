@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Files.Models
 {
     using System;
-    using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Contracts.Models.Files;
 
     internal class FileMetadataModel : IFileMetadata
     {

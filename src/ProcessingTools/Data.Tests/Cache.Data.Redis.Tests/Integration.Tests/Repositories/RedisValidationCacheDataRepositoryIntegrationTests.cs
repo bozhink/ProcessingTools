@@ -9,7 +9,7 @@
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Cache.Data.Redis.Tests.Common;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Integration", TestOf = typeof(RedisValidationCacheDataRepository))]

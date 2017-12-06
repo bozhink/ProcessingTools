@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Services.Contracts.Harvesters;
+    using ProcessingTools.Contracts.Services.Harvesters;
 
     public interface ITaxonNamesHarvester : IStringEnumerableXmlHarvester
     {

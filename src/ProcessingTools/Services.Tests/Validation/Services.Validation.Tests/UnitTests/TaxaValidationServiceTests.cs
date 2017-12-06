@@ -3,9 +3,9 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Contracts.Cache;
+    using ProcessingTools.Contracts.Services.Cache;
 
     [TestClass]
     public class TaxaValidationServiceTests

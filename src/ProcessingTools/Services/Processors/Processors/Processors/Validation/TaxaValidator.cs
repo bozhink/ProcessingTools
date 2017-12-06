@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Validation;
+    using ProcessingTools.Contracts.Services.Validation;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
-    using ProcessingTools.Processors.Contracts.Processors.Validation;
-    using ProcessingTools.Services.Contracts.Validation;
 
     public class TaxaValidator : ITaxaValidator
     {

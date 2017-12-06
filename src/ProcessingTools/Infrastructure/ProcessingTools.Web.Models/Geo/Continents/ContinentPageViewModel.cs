@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Geo.Continents
 {
-    using ProcessingTools.Models.Contracts.ViewModels;
+    using ProcessingTools.Contracts.Models.ViewModels;
 
     /// <summary>
     /// Continent page view model

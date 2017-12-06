@@ -2,9 +2,9 @@
 {
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Contracts.Repositories.Mediatypes;
     using ProcessingTools.Mediatypes.Data.Entity;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Factories;

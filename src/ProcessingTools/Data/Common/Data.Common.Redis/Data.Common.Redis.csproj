@@ -67,9 +67,9 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
       <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
-      <Name>ProcessingTools.Data.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>

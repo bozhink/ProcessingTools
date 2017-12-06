@@ -3,7 +3,7 @@
     using System;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Processors.Contracts.Providers;
+    using ProcessingTools.Contracts.Processors.Providers;
 
     public class GeoNameTagModelProvider : IGeoNameTagModelProvider
     {

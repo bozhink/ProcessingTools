@@ -2,9 +2,9 @@
 {
     using ProcessingTools.Data.Miners.Contracts.Miners.Institutions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Institutions;
-    using ProcessingTools.Processors.Contracts.Providers;
+    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Processors.Processors.Institutions;
+    using ProcessingTools.Contracts.Processors.Providers;
     using ProcessingTools.Processors.Generics;
 
     public class InstitutionsTagger : GenericStringMinerTagger<IInstitutionsDataMiner, IInstitutionTagModelProvider>, IInstitutionsTagger

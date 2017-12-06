@@ -8,11 +8,11 @@
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
     using ProcessingTools.Journals.Data.Entity.Contracts;
     using ProcessingTools.Journals.Data.Entity.Models;
-    using ProcessingTools.Models.Contracts.Journals;
+    using ProcessingTools.Contracts.Models.Journals;
 
     public abstract class AbstractEntityAddressableRepository<TEntity, TDbModel> : AbstractEntityRepository<TEntity, IJournalsDbContext, TDbModel>
         where TEntity : class, IAddressable
-        where TDbModel : Addressable, TEntity, ProcessingTools.Models.Contracts.IStringIdentifiable
+        where TDbModel : Addressable, TEntity, ProcessingTools.Contracts.Models.IStringIdentifiable
     {
         protected AbstractEntityAddressableRepository(IGenericRepository<IJournalsDbContext, TDbModel> repository)
             : base(repository)

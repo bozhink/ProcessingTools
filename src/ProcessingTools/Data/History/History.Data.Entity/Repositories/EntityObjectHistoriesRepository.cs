@@ -10,7 +10,7 @@
     using ProcessingTools.History.Data.Entity.Contracts;
     using ProcessingTools.History.Data.Entity.Contracts.Repositories;
     using ProcessingTools.History.Data.Entity.Models;
-    using ProcessingTools.Models.Contracts.History;
+    using ProcessingTools.Contracts.Models.History;
 
     public class EntityObjectHistoriesRepository : GenericRepository<IHistoryDbContext, ObjectHistory>, IEntityObjectHistoriesRepository
     {

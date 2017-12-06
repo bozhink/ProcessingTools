@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Geo.GeoEpithets
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     /// <summary>
     /// Represents request model for the geo epithets API.

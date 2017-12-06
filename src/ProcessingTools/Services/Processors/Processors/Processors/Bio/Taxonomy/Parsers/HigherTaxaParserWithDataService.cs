@@ -8,12 +8,12 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
-    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
 
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
         where TService : class, ITaxaRankResolver

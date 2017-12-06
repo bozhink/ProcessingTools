@@ -3,8 +3,8 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Repositories.Documents;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Data.Repositories.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Services.Data.Contracts.Meta;
     using ProcessingTools.Services.Models.Data.Meta;
 

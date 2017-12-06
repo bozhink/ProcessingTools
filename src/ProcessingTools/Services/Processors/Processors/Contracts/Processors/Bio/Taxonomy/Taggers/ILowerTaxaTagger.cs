@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Taggers
+﻿namespace ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers
 {
     using ProcessingTools.Contracts;
 

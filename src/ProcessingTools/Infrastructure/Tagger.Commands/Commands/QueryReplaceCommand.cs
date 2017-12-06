@@ -4,10 +4,9 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors;
+    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Processors.Contracts;
 
     [Description("Query replace.")]
     public class QueryReplaceCommand : IQueryReplaceCommand

@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Layout.Processors.Factories
 {
     using System;
+    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Layout.Processors.Contracts.Factories;
-    using ProcessingTools.Processors.Contracts;
 
     public class NormalizationTransformerFactory : INormalizationTransformerFactory
     {

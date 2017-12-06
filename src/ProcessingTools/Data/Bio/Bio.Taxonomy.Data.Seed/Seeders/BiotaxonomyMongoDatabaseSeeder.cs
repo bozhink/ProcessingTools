@@ -10,8 +10,8 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
-    using ProcessingTools.Data.Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
 
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder

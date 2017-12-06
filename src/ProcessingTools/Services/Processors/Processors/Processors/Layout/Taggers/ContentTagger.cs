@@ -8,9 +8,9 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Models.Layout;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Models.Contracts.Layout;
 
     public class ContentTagger : IContentTagger
     {

@@ -4,10 +4,10 @@
     using System.Collections.Concurrent;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Services.Contracts.Data;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Data;
 
     public abstract class AbstractGeoMultiDataService<TRepository, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>

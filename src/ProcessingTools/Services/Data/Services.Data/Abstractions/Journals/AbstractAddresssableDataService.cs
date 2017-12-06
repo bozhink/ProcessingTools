@@ -11,19 +11,19 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Data.Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories.Journals;
+    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories.Journals;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Models.Data.Journals;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Services.Models.Contracts.Data.Journals;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services.Models.Data.Journals;
     using ProcessingTools.Services.Models.Data.Journals;
 
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
-        where TDetailedServiceModel : class, TServiceModel, IDetailedModel, ProcessingTools.Services.Models.Contracts.Data.Journals.IAddressable
-        where TDataModel : class, IDataModel, ICreated, IModified, ProcessingTools.Models.Contracts.Journals.IAddressable
+        where TDetailedServiceModel : class, TServiceModel, IDetailedModel, ProcessingTools.Contracts.Services.Models.Data.Journals.IAddressable
+        where TDataModel : class, IDataModel, ICreated, IModified, ProcessingTools.Contracts.Models.Journals.IAddressable
         where TRepository : class, ICrudRepository<TDataModel>, IAddressableRepository
     {
         private static readonly ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();

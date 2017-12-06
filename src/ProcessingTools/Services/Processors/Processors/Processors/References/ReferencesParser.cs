@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.References;
+    using ProcessingTools.Contracts.Processors.Processors.References;
 
     public class ReferencesParser : IReferencesParser
     {

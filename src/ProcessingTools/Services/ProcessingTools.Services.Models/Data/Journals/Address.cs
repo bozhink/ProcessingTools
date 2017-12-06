@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Data.Journals
 {
-    using ProcessingTools.Services.Models.Contracts.Data.Journals;
+    using ProcessingTools.Contracts.Services.Models.Data.Journals;
 
     /// <summary>
     /// Address.

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Web.Security
 {
     using Microsoft.Owin.Security;
-    using ProcessingTools.Web.Contracts.Security;
+    using ProcessingTools.Contracts.Web.Security;
 
     /// <summary>
     /// Default implementation of <see cref="ICertificateValidatorFactory"/>

@@ -229,9 +229,9 @@
       <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Clients\ProcessingTools.Contracts.Clients.csproj">
       <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
-      <Name>ProcessingTools.Clients.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Clients</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
@@ -253,25 +253,25 @@
       <Project>{720d359f-49d1-4126-a79b-f63cce9780a0}</Project>
       <Name>ProcessingTools.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
       <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
-      <Name>ProcessingTools.Models.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj">
       <Project>{aa4714ba-02ce-487e-af9f-1f7c9112fa13}</Project>
-      <Name>ProcessingTools.Processors.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Processors</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Processors.Models\ProcessingTools.Contracts.Processors.Models.csproj">
       <Project>{be27e549-9873-4c79-86e9-a47bfddb8e9d}</Project>
-      <Name>ProcessingTools.Processors.Models.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Processors.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
-      <Name>ProcessingTools.Services.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj">
       <Project>{DD9DC75E-323A-49D9-AC70-EEB34C50E8A6}</Project>
-      <Name>ProcessingTools.Services.Models.Contracts</Name>
+      <Name>ProcessingTools.Contracts.Services.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>

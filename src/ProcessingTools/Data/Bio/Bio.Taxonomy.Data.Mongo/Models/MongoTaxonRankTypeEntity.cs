@@ -5,7 +5,7 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     [CollectionName("taxonRankType")]
     public class MongoTaxonRankTypeEntity : INameableStringIdentifiable

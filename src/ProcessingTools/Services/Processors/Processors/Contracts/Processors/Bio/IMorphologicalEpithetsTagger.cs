@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Processors.Bio
+﻿namespace ProcessingTools.Contracts.Processors.Processors.Bio
 {
     using ProcessingTools.Contracts;
 

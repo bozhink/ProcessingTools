@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Factories;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
+    using ProcessingTools.Contracts.Processors.Factories;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
 
     public class ZooBankRegistrationXmlGenerator : IZooBankRegistrationXmlGenerator
     {

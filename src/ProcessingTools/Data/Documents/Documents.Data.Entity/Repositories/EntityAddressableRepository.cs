@@ -6,11 +6,11 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Common.Entity.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories.Documents;
+    using ProcessingTools.Contracts.Data.Repositories.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
         where TEntity : class, IAddressable

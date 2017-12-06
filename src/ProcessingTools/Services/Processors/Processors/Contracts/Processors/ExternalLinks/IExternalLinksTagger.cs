@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Processors.ExternalLinks
+﻿namespace ProcessingTools.Contracts.Processors.Processors.ExternalLinks
 {
     using ProcessingTools.Contracts;
 

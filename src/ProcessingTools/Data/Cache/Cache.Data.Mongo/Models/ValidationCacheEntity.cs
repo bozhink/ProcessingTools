@@ -3,7 +3,7 @@
     using System;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
 
     public class ValidationCacheEntity : IValidationCacheModel
     {

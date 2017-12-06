@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Language
 {
     using System.Collections.Generic;
     using System.Linq;
-    using ProcessingTools.Processors.Contracts.Language;
+    using ProcessingTools.Contracts.Processors.Language;
 
     /// <summary>
     /// English-to-Bulgarian transliteration.

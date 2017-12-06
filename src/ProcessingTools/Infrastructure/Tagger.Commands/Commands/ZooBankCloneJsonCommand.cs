@@ -8,8 +8,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
 

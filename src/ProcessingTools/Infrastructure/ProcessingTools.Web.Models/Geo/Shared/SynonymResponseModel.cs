@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Geo.Shared
 {
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     /// <summary>
     /// Synonym response model

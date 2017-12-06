@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.EnvironmentTerms;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.EnvironmentTerms;
     using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
     using ProcessingTools.Processors.Models.Layout;
 

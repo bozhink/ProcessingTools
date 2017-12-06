@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Special;
+    using ProcessingTools.Contracts.Processors.Special;
 
     public class GavinLaurensParser : IGavinLaurensParser
     {

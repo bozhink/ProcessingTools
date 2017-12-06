@@ -2,7 +2,7 @@
 {
     using System;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
 

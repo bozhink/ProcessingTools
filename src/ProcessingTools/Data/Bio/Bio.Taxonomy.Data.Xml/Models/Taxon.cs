@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     public class Taxon : ITaxonRankEntity
     {

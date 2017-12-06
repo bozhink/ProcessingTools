@@ -2,8 +2,8 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Mediatypes;
 
     public class Mediatype : IStringIdentifiable, IMediatypeEntity
     {

@@ -2,11 +2,11 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts;
+    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     public class GenericDocumentTaggerWithNormalizationCommand<TTagger> : ITaggerCommand
         where TTagger : class, IDocumentTagger

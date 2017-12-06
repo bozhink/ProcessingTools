@@ -9,7 +9,7 @@
     using ProcessingTools.Cache.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
 
     public class MongoValidationCacheDataRepository : IMongoValidationCacheDataRepository
     {

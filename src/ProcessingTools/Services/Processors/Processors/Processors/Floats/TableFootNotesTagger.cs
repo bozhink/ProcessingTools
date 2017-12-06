@@ -6,7 +6,7 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Floats;
+    using ProcessingTools.Contracts.Processors.Processors.Floats;
 
     public class TableFootNotesTagger : ITableFootNotesTagger
     {

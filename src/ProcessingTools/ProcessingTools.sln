@@ -231,7 +231,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Common.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Exceptions", "Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj", "{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Contracts", "Common\ProcessingTools.Web.Contracts\ProcessingTools.Web.Contracts.csproj", "{00FCCC5A-D81F-4C05-9082-023837220F69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Contracts.Web", "Common\ProcessingTools.Contracts.Web\ProcessingTools.Contracts.Web.csproj", "{00FCCC5A-D81F-4C05-9082-023837220F69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Web.Services", "Services\Web\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj", "{6A2F0BE3-C1CF-4A5F-9354-39462C6A068A}"
 EndProject
@@ -247,13 +247,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions", "Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj", "{720D359F-49D1-4126-A79B-F63CCE9780A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Contracts", "Common\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj", "{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Processors", "Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj", "{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Contracts", "Common\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj", "{44A79257-570B-4877-B636-C7E7CC20F606}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Data", "Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj", "{44A79257-570B-4877-B636-C7E7CC20F606}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Models.Contracts", "Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj", "{D9F81E90-E064-4113-8C94-BE11CDD2482E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Models", "Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj", "{D9F81E90-E064-4113-8C94-BE11CDD2482E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Contracts", "Common\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj", "{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Services", "Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj", "{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Models", "Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj", "{11702307-F670-4A55-B936-3E468604A584}"
 EndProject
@@ -261,7 +261,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Net", "Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj", "{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Contracts", "Common\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj", "{790C5E30-E903-40AE-A45E-FFD4E950C54D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Clients", "Common\ProcessingTools.Contracts.Clients\ProcessingTools.Contracts.Clients.csproj", "{790C5E30-E903-40AE-A45E-FFD4E950C54D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients.Models", "Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj", "{5EB84CE6-3248-4237-979C-71D7A34A4C2B}"
 EndProject
@@ -269,7 +269,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Clients", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Clients.Tests", "Services.Tests\ProcessingTools.Clients.Tests\ProcessingTools.Clients.Tests.csproj", "{1BDC50D1-BE9B-46E1-853C-ED94B58FC357}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Services.Models.Contracts", "Common\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj", "{DD9DC75E-323A-49D9-AC70-EEB34C50E8A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Services.Models", "Common\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj", "{DD9DC75E-323A-49D9-AC70-EEB34C50E8A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Ninject.Modules", "Infrastructure\ProcessingTools.Ninject.Modules\ProcessingTools.Ninject.Modules.csproj", "{AB7FEBC5-90BB-4786-9CD2-9F7E8D255095}"
 EndProject
@@ -279,7 +279,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Models", "Services\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj", "{72EC8D88-76E5-4843-A98E-306BA6AD7F7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Models.Contracts", "Common\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj", "{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Contracts.Processors.Models", "Common\ProcessingTools.Contracts.Processors.Models\ProcessingTools.Contracts.Processors.Models.csproj", "{BE27E549-9873-4C79-86E9-A47BFDDB8E9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Enumerations.Tests", "Common.Tests\ProcessingTools.Enumerations.Tests\ProcessingTools.Enumerations.Tests.csproj", "{766FD77E-F07B-40A5-973D-37289B7190D5}"
 EndProject

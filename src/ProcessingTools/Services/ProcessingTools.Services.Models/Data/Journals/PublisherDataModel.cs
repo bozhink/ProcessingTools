@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Models.Contracts.Journals;
+    using ProcessingTools.Contracts.Models.Journals;
 
     /// <summary>
     /// Publisher data model.

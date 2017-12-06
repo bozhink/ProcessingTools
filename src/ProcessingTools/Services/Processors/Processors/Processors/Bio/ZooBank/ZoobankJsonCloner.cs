@@ -6,8 +6,8 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Uri;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
 
     public class ZoobankJsonCloner : IZoobankJsonCloner
     {

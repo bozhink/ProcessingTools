@@ -11,10 +11,10 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Models.Floats;
+    using ProcessingTools.Contracts.Processors.Processors.Floats;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Enumerations.Nlm;
-    using ProcessingTools.Processors.Contracts.Processors.Floats;
-    using ProcessingTools.Processors.Models.Contracts.Floats;
 
     public class FloatsTagger : IFloatsTagger
     {

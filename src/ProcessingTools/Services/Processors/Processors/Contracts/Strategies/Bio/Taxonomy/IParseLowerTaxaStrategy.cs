@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy
+﻿namespace ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy
 {
     using ProcessingTools.Contracts;
 

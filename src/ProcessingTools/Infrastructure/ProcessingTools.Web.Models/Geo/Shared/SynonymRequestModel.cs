@@ -7,7 +7,7 @@ namespace ProcessingTools.Web.Models.Geo.Shared
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Geo;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     /// <summary>
     /// Synonym request model

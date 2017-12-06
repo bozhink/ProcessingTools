@@ -6,13 +6,13 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Data.Contracts.Repositories.Geo;
+    using ProcessingTools.Contracts.Data.Repositories.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Geo;
 
     public class EntityGeoNamesRepository : AbstractGeoRepository<GeoName, IGeoName, ITextFilter>, IGeoNamesRepository
     {

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Common.Entity.Contracts
 {
     using System.Data.Entity;
-    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Contracts.Data;
 
     public interface IDbContextInitializer<TContext> : IDatabaseInitializer
         where TContext : DbContext

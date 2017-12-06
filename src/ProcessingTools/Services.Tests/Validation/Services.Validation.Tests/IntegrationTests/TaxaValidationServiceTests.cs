@@ -6,13 +6,13 @@
     using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
-    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Cache;
-    using ProcessingTools.Services.Contracts.Cache;
+    using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Services.Validation;
 
     [TestClass]

@@ -7,9 +7,9 @@
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
     using Owin;
+    using ProcessingTools.Contracts.Web.Security;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Web.Contracts.Security;
     using ProcessingTools.Web.Services;
 
     public partial class Startup

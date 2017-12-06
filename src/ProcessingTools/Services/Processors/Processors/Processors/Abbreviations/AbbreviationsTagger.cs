@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Models.Abbreviations;
+    using ProcessingTools.Contracts.Processors.Processors.Abbreviations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Processors.Contracts.Processors.Abbreviations;
     using ProcessingTools.Processors.Models.Abbreviations;
-    using ProcessingTools.Processors.Models.Contracts.Abbreviations;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class AbbreviationsTagger : IAbbreviationsTagger

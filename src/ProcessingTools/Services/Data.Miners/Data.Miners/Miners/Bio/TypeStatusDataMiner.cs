@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Services.Contracts.Data.Bio;
+    using ProcessingTools.Contracts.Services.Data.Bio;
 
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {

@@ -6,9 +6,9 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy;
 
     public class ParseLowerTaxaWithBasionymStrategy : IParseLowerTaxaWithBasionymStrategy
     {

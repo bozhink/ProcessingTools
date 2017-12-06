@@ -91,7 +91,7 @@
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<HelpProvider>();
 
-            this.Bind<ProcessingTools.Data.Contracts.Repositories.Documents.IJournalMetaRepository>()
+            this.Bind<ProcessingTools.Contracts.Data.Repositories.Documents.IJournalMetaRepository>()
                 .To<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>();
 
             string documentsMongoConnection = AppSettings.DocumentsMongoConnection;

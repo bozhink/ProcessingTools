@@ -7,7 +7,7 @@
     using System.Web.Mvc;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyTaxaRanks;
 

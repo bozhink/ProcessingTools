@@ -10,9 +10,9 @@ namespace ProcessingTools.Services.Abstractions
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Validation;
-    using ProcessingTools.Services.Contracts.Cache;
-    using ProcessingTools.Services.Contracts.Validation;
+    using ProcessingTools.Contracts.Models.Validation;
+    using ProcessingTools.Contracts.Services.Cache;
+    using ProcessingTools.Contracts.Services.Validation;
     using ProcessingTools.Services.Models.Cache;
     using ProcessingTools.Services.Models.Validation;
 

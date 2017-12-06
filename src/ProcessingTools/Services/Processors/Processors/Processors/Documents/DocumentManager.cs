@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
 
     public class DocumentManager : IDocumentManager
     {

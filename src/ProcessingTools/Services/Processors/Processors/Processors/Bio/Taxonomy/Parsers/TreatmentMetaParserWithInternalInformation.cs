@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Contracts.Processors.Factories.Bio;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
 
     public class TreatmentMetaParserWithInternalInformation : ITreatmentMetaParserWithInternalInformation
     {

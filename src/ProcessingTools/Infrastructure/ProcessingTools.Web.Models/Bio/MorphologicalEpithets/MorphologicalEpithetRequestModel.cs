@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Bio.MorphologicalEpithets
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Bio;
-    using ProcessingTools.Models.Contracts.Bio;
+    using ProcessingTools.Contracts.Models.Bio;
 
     /// <summary>
     /// Represents request model for the morphological epithets API.

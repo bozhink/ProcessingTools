@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class DocumentMerger : IDocumentMerger
@@ -39,7 +39,7 @@
 
             foreach (var fileName in cleanedFileNames)
             {
-                var readDocument = await this.documentReader.ReadDocument(fileName).ConfigureAwait(false);
+                var readDocument = await this.documentReader.ReadDocument(fileName);
                 var fragment = document.XmlDocument.CreateDocumentFragment();
                 fragment.InnerXml = readDocument.XmlDocument.DocumentElement.OuterXml;
                 document.XmlDocument.DocumentElement.AppendChild(fragment);

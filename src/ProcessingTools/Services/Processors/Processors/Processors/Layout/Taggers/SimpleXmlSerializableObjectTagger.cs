@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Processors.Models.Layout;
     using ProcessingTools.Contracts.Serialization;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Models.Contracts.Layout;
 
     public class SimpleXmlSerializableObjectTagger<T> : ISimpleXmlSerializableObjectTagger<T>
     {
@@ -59,7 +59,7 @@
                 .OrderByDescending(i => i.InnerText.Length)
                 .ToArray();
 
-            await this.contentTagger.TagContentInDocument(nodeList, settings, items).ConfigureAwait(false);
+            await this.contentTagger.TagContentInDocument(nodeList, settings, items);
 
             return true;
         }

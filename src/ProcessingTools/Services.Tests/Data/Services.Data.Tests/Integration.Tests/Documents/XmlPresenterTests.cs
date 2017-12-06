@@ -8,7 +8,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Services.Contracts.Data.Documents;
+    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Documents.Services.Data.Services;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Xml.Cache;

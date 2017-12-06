@@ -7,7 +7,7 @@
     using ProcessingTools.Journals.Data.Entity.Contracts;
     using ProcessingTools.Journals.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Journals.Data.Entity.Models;
-    using ProcessingTools.Models.Contracts.Journals;
+    using ProcessingTools.Contracts.Models.Journals;
 
     public class EntityPublishersRepository : AbstractEntityAddressableRepository<IPublisher, Publisher>, IEntityPublishersRepository
     {

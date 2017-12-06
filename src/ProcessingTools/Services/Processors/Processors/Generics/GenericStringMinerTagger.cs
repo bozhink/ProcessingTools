@@ -2,11 +2,11 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Providers;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Miners;
+    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Processors.Providers;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class GenericStringMinerTagger<TMiner, TTagModelProvider> : IDocumentTagger

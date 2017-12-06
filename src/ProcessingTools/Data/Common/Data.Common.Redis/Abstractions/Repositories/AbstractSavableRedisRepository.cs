@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Contracts;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ServiceStack.Redis;
 
     public abstract class AbstractSavableRedisRepository : IKeyListableRepository<string>

@@ -7,7 +7,7 @@
     using Ninject.Extensions.Interception;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
 
     public class CommandRunnerTimeLoggingInterceptor : IInterceptor
     {

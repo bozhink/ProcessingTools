@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Xml.Contracts.Factories;
 
     public class DocumentXQueryProcessor : IDocumentXQueryProcessor

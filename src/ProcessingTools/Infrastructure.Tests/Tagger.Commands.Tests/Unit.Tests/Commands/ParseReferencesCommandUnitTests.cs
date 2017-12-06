@@ -7,7 +7,7 @@
     using NUnit.Framework;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.References;
+    using ProcessingTools.Contracts.Processors.Processors.References;
     using ProcessingTools.Tagger.Commands.Commands;
     using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tests.Library;

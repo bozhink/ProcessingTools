@@ -6,8 +6,8 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
 
     public class WriteDocumentHelper : IWriteDocumentHelper
     {

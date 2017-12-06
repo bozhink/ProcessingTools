@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Data.Files
 {
     using System;
-    using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Contracts.Models.Files;
 
     /// <summary>
     /// File metadata service model.

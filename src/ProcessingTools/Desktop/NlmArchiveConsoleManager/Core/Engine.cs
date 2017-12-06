@@ -8,7 +8,7 @@
     using Contracts.Factories;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Services.Data.Contracts.Meta;
 
     public class Engine : IEngine

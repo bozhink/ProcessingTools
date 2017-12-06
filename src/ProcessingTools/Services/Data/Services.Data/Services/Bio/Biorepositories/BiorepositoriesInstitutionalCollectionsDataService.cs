@@ -7,8 +7,8 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Services.Contracts.Data.Bio.Biorepositories;
-    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Models.Data.Bio.Biorepositories;
 
     public class BiorepositoriesInstitutionalCollectionsDataService : IBiorepositoriesInstitutionalCollectionsDataService
     {

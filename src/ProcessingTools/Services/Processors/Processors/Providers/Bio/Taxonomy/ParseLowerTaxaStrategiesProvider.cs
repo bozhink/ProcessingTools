@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Processors.Providers.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy;
 
     public class ParseLowerTaxaStrategiesProvider : IParseLowerTaxaStrategiesProvider
     {

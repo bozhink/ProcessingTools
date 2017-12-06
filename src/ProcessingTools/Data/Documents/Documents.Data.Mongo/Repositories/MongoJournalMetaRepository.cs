@@ -12,7 +12,7 @@
     using ProcessingTools.Data.Common.Mongo.Repositories;
     using ProcessingTools.Documents.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Mongo.Models;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public class MongoJournalMetaRepository : MongoRepository<JournalMeta>, IMongoJournalMetaRepository
     {

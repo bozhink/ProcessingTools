@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Data.Bio.Biorepositories
 {
-    using ProcessingTools.Services.Models.Contracts.Data.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Models.Data.Bio.Biorepositories;
 
     /// <summary>
     /// Biorepositories collection service model.

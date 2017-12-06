@@ -5,9 +5,9 @@
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Data.Contracts.Repositories.History;
-    using ProcessingTools.Models.Contracts.History;
-    using ProcessingTools.Services.Contracts.Data.History;
+    using ProcessingTools.Contracts.Data.Repositories.History;
+    using ProcessingTools.Contracts.Models.History;
+    using ProcessingTools.Contracts.Services.Data.History;
     using ProcessingTools.Services.Models.Data.History;
 
     public class ObjectHistoriesDataService : IObjectHistoriesDataService

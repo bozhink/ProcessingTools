@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
     using ProcessingTools.Serialization.Csv;
 
     [FileName("grbio_institutions.csv")]

@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class GenericRepository<TContext, TEntity> : IRepository<TEntity>, IGenericRepository<TContext, TEntity>
         where TContext : class, IDbContext

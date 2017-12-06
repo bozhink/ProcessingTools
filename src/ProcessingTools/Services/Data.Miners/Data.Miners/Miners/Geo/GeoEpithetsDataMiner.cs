@@ -2,9 +2,9 @@
 {
     using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
     using ProcessingTools.Data.Miners.Generics;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
-    using ProcessingTools.Services.Contracts.Data.Geo;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Contracts.Services.Data.Geo;
 
     public class GeoEpithetsDataMiner : SimpleServiceStringDataMiner<IGeoEpithetsDataService, IGeoEpithet, ITextFilter>, IGeoEpithetsDataMiner
     {

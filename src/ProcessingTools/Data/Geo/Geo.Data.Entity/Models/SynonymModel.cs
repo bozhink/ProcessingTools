@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Geo.Data.Entity.Models
 {
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     internal abstract class SynonymModel : IGeoSynonym
     {

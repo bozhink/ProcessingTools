@@ -3,7 +3,7 @@
     using System;
     using Contracts.Repositories;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class BiorepositoriesRepositoryProvider<T> : IBiorepositoriesRepositoryProvider<T>
         where T : class

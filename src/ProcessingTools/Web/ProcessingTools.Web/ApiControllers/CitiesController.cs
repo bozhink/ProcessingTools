@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Web.Contracts.Services.Geo;
+    using ProcessingTools.Contracts.Web.Services.Geo;
 
     [Authorize]
     public class CitiesController : ApiController

@@ -8,13 +8,13 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts.Processors.Models.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
+    using ProcessingTools.Contracts.Processors.Providers.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Processors.Contracts.Providers.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
-    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 
     public class LowerTaxaParser : ILowerTaxaParser
     {

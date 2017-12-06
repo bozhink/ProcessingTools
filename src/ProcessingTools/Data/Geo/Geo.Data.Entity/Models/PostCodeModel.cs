@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Data.Entity.Models
 {
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Contracts.Models.Geo;
 
     internal class PostCodeModel : IPostCode
     {

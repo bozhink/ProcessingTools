@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Models.Bio.Taxonomy
 {
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Processors.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Minimal taxon name part.

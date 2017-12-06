@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Processors.Validation
+﻿namespace ProcessingTools.Contracts.Processors.Processors.Validation
 {
     using ProcessingTools.Contracts;
 

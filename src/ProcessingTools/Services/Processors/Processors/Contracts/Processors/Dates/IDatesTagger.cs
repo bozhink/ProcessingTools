@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Processors.Contracts.Processors.Dates
+﻿namespace ProcessingTools.Contracts.Processors.Processors.Dates
 {
     using ProcessingTools.Contracts;
 

@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class State : BaseModel, ISynonymisable<StateSynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {

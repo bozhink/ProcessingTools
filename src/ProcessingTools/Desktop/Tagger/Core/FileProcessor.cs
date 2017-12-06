@@ -9,8 +9,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Contracts;
     using ProcessingTools.Xml.Contracts.Wrappers;

@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Models.Floats
 {
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations.Nlm;
-    using ProcessingTools.Processors.Models.Contracts.Floats;
+    using ProcessingTools.Contracts.Processors.Models.Floats;
 
     /// <summary>
     /// Text-box of type table.

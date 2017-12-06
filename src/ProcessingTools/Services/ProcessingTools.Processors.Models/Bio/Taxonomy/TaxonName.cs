@@ -10,7 +10,7 @@ namespace ProcessingTools.Processors.Models.Bio.Taxonomy
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Processors.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon name.

@@ -3,7 +3,7 @@
     using System.Data.Entity;
     using System.Linq;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IGenericRepository<TContext, TEntity> : IRepository<TEntity>
         where TContext : IDbContext

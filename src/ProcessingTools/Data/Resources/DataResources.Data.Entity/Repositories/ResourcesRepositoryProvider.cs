@@ -3,7 +3,7 @@
     using System;
     using Contracts;
     using Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public class ResourcesRepositoryProvider<T> : IResourcesRepositoryProvider<T>
         where T : class

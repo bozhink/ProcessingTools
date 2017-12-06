@@ -5,7 +5,7 @@
     using System.Linq;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Documents;
+    using ProcessingTools.Contracts.Processors.Processors.Documents;
 
     public class DocumentSplitter : IDocumentSplitter
     {

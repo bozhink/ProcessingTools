@@ -6,7 +6,7 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Special;
+    using ProcessingTools.Contracts.Processors.Special;
 
     public class Flora : IFlora
     {

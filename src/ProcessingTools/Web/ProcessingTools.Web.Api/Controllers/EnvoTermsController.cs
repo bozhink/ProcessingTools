@@ -7,8 +7,8 @@
     using AutoMapper;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Bio;
-    using ProcessingTools.Services.Contracts.Data.Bio.Environments;
+    using ProcessingTools.Contracts.Models.Bio;
+    using ProcessingTools.Contracts.Services.Data.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.EnvoTerms;
 
     public class EnvoTermsController : ApiController

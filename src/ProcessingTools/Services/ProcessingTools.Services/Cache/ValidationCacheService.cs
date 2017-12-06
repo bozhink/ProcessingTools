@@ -9,9 +9,9 @@ namespace ProcessingTools.Services.Cache
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Data.Contracts.Repositories.Cache;
-    using ProcessingTools.Models.Contracts.Cache;
-    using ProcessingTools.Services.Contracts.Cache;
+    using ProcessingTools.Contracts.Data.Repositories.Cache;
+    using ProcessingTools.Contracts.Models.Cache;
+    using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Services.Models.Cache;
 
     /// <summary>

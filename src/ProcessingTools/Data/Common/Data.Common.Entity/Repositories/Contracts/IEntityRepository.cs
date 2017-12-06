@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Entity.Repositories.Contracts
 {
-    using ProcessingTools.Data.Contracts.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories;
 
     public interface IEntityRepository<T> : IRepository<T>
         where T : class

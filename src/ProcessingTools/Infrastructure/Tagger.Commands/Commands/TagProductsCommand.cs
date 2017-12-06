@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Products;
+    using ProcessingTools.Contracts.Processors.Processors.Products;
     using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Commands.Generics;
 

@@ -6,7 +6,7 @@
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Contracts.Models;
 
     public class EnvironmentService : IEnvironment
     {

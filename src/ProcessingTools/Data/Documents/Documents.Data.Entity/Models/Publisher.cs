@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
 
     public class Publisher : AddressableEntity, IEntityWithPreJoinedFields, IPublisher
     {

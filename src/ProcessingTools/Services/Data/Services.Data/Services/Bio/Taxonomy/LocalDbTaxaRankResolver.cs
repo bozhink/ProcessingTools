@@ -5,10 +5,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Contracts.Repositories;
-    using ProcessingTools.Data.Contracts.Repositories.Bio.Taxonomy;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Contracts.Data.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Data.Repositories.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class LocalDbTaxaRankResolver : ILocalDbTaxaRankResolver
