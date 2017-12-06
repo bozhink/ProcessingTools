@@ -15,10 +15,10 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.6",
-    "modernizr": "^3.3.1",
+    "bootstrap": "^3.3.7",
+    "modernizr": "^3.5.0",
     "respond": "^1.4.2",
-    "jquery": "^3.1.0"
+    "jquery": "^3.2.1"
   },
   "resolutions": {
     "jquery": "^3.1.0"
