@@ -25,25 +25,20 @@
   "dependencies": {
     "bootstrap": "3.3.7",
     "jquery": "3.2.1",
-    "jquery-form": "^4.2.1",
+    "jquery-form": "^4.2.2",
     "jquery-ui": "1.12.1",
-    "jquery-validation": "1.16.0",
+    "jquery-validation": "1.17.0",
     "jquery-validation-unobtrusive": "^3.2.6",
-    "interact": "1.2.8",
-    "handlebars": "^4.0.5",
+    "interact": "1.3.1",
+    "handlebars": "^4.0.11",
     "toastr": "^2.1.3",
     "modernizr": "^3.5.0",
     "respond": "^1.4.2",
     "cryptojs-sha1": "^1.0.0",
-    "leaflet": "^1.0.3",
-    "tether": "^1.4.0",
+    "leaflet": "^1.2.0",
+    "tether": "^1.4.3",
     "font-awesome": "^4.7.0",
-    "angular": "1.6.4",
-    "angular-route": "^1.6.4"
-  },
-  "resolutions": {
-    "jquery-validation": ">=1.8",
-    "jquery": ">=1.8",
-    "angular": "1.6.6"
+    "angular": "1.6.7",
+    "angular-route": "^1.6.7"
   }
 }
