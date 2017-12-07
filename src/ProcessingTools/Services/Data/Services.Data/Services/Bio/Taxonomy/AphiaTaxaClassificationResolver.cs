@@ -2,27 +2,20 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class AphiaTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IAphiaTaxaClassificationResolver
     {
-        protected override void Delay()
+        protected override Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
         {
-            Thread.Sleep(ConcurrencyConstants.DefaultDelayTime);
-        }
-
-        protected override Task<IEnumerable<ITaxonClassification>> ResolveScientificName(string scientificName)
-        {
-            return Task.Run<IEnumerable<ITaxonClassification>>(() =>
+            return Task.Run(() =>
             {
                 var result = new HashSet<ITaxonClassification>();
 
@@ -42,7 +35,7 @@
                     }
                 }
 
-                return result;
+                return result.ToArray();
             });
         }
 

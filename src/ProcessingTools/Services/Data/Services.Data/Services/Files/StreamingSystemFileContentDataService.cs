@@ -3,8 +3,8 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Contracts.Services.Data.Files;
+    using ProcessingTools.Exceptions;
 
     public class StreamingSystemFileContentDataService : IStreamingSystemFileContentDataService
     {

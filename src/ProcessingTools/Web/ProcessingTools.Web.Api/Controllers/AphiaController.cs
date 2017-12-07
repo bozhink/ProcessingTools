@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using Abstractions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Web.Api.Abstractions;
 
-    public class AphiaController : AbstractTaxaClassificationResolverController<IAphiaTaxaClassificationResolver>
+    public class AphiaController : AbstractTaxaClassificationResolverController
     {
-        protected AphiaController(ITaxaClassificationResolver resolver, ILogger logger)
+        protected AphiaController(IAphiaTaxaClassificationResolver resolver, ILogger logger)
             : base(resolver, logger)
         {
         }

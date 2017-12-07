@@ -10,13 +10,12 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Contracts.Services.Data.Documents;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Contracts.Services.Models.Data.Documents;
-    using ProcessingTools.Services.Models.Data.Documents;
+    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
+    using ProcessingTools.Exceptions;
 
     public class DocumentsDataService : IDocumentsDataService
     {

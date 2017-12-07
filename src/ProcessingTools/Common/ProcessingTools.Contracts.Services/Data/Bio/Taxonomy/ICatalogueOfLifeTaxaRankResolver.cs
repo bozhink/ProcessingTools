@@ -1,4 +1,4 @@
-﻿// <copyright file="ICatalogueOfLifeTaxaClassificationResolver.cs" company="ProcessingTools">
+﻿// <copyright file="ICatalogueOfLifeTaxaRankResolver.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 

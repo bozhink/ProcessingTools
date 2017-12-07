@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
 {
-    using Abstractions.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
 
     public class AphiaTaxaRankResolver : AbstractTaxaRankResolverOverTaxaClassificationResolver, IAphiaTaxaRankResolver
     {

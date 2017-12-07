@@ -45,7 +45,7 @@
                 return uniqueHigherTaxaList.LongLength;
             }
 
-            var response = await this.taxaRankDataService.Resolve(uniqueHigherTaxaList).ConfigureAwait(false);
+            var response = await this.taxaRankDataService.ResolveAsync(uniqueHigherTaxaList);
             if (response == null)
             {
                 throw new ServiceReturnedNullException("Current taxa rank data service instance returned null.");

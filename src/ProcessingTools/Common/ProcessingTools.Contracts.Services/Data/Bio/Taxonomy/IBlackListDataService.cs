@@ -1,4 +1,4 @@
-﻿// <copyright file="IAboveGenusTaxaRankResolver.cs" company="ProcessingTools">
+﻿// <copyright file="IBlackListDataService.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 

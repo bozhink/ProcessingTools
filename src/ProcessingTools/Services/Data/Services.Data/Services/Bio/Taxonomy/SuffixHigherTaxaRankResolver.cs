@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class SuffixHigherTaxaRankResolver : ISuffixHigherTaxaRankResolver
@@ -34,7 +34,7 @@
             };
         }
 
-        public Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
             var result = new HashSet<ITaxonRank>();
 
@@ -54,7 +54,7 @@
                 }
             }
 
-            return Task.FromResult<IEnumerable<ITaxonRank>>(result);
+            return Task.FromResult(result.ToArray());
         }
     }
 }

@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Data.Repositories.History;
     using ProcessingTools.Contracts.Models.History;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data.History;
     using ProcessingTools.Services.Models.Data.History;
 

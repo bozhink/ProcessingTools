@@ -28,7 +28,7 @@
 
             var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
             var service = new CatalogueOfLifeTaxaClassificationResolver(requester);
-            var response = service.Resolve(ScientificName).Result;
+            var response = service.ResolveAsync(ScientificName).Result;
 
             Assert.IsNotNull(response, "Response should not be null.");
 

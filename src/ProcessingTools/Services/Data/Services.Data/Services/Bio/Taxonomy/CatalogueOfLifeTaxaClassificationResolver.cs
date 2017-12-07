@@ -1,18 +1,15 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class CatalogueOfLifeTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolver
@@ -24,33 +21,25 @@
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
-        protected override void Delay()
+        protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
         {
-            Thread.Sleep(ConcurrencyConstants.DefaultDelayTime);
-        }
-
-        protected override async Task<IEnumerable<ITaxonClassification>> ResolveScientificName(string scientificName)
-        {
-            var result = new HashSet<ITaxonClassification>();
-
             var response = await this.requester.RequestDataAsync(scientificName).ConfigureAwait(false);
 
             try
             {
-                var matchingResults = new HashSet<Result>(response.Results
-                    .Where(r => r.Name == scientificName));
-
-                matchingResults
+                return response.Results
+                    .Where(r => r.Name == scientificName)
+                    .DefaultIfEmpty()
+                    .Where(r => r != null)
                     .Select(this.MapResultToClassification)
-                    .ToList()
-                    .ForEach(r => result.Add(r));
+                    .ToArray();
             }
             catch (ArgumentNullException)
             {
                 // Linq queries failed. There are no matching response items.
             }
 
-            return result;
+            return new ITaxonClassification[] { };
         }
 
         private ITaxonClassification MapResultToClassification(Result result)

@@ -3,9 +3,9 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Enumerations;
 
     public abstract class AbstractGeoDataService<TRepository, TModel, TFilter> : IDataServiceAsync<TModel, TFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>

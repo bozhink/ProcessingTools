@@ -11,8 +11,7 @@
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 
-    public abstract class AbstractTaxaClassificationResolverController<TResolver> : ApiController
-        where TResolver : ITaxaClassificationResolver
+    public abstract class AbstractTaxaClassificationResolverController : ApiController
     {
         private readonly ITaxaClassificationResolver resolver;
         private readonly ILogger logger;
@@ -36,7 +35,7 @@
         {
             try
             {
-                var result = await this.resolver.Resolve(id).ConfigureAwait(false);
+                var result = await this.resolver.ResolveAsync(id).ConfigureAwait(false);
                 if (result == null)
                 {
                     return this.NotFound();

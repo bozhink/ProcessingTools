@@ -2,50 +2,46 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
 
     public abstract class AbstractTaxaInformationResolver<T> : ITaxaInformationResolver<T>
     {
-        public async Task<IEnumerable<T>> Resolve(params string[] scientificNames)
+        public async Task<T[]> ResolveAsync(params string[] scientificNames)
         {
             var queue = new ConcurrentQueue<T>();
             var exceptions = new ConcurrentQueue<Exception>();
+            var tasks = scientificNames
+                .Select(scientificName => this.ResolveScientificName(scientificName, queue, exceptions))
+                .ToArray();
 
-            Parallel.ForEach(
-                scientificNames,
-                (scientificName, state) =>
-                {
-                    this.Delay();
-                    try
-                    {
-                        var data = this.ResolveScientificName(scientificName).Result;
-                        foreach (var item in data)
-                        {
-                            queue.Enqueue(item);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        exceptions.Enqueue(e);
-                        state.Break();
-                    }
-                });
+            await Task.WhenAll(tasks);
 
             if (exceptions.Count > 0)
             {
                 throw new AggregateException(exceptions.ToList());
             }
 
-            var result = new HashSet<T>(queue);
-
-            return await Task.FromResult(result).ConfigureAwait(false);
+            return queue.ToArray();
         }
 
-        protected abstract void Delay();
+        protected abstract Task<T[]> ResolveScientificNameAsync(string scientificName);
 
-        protected abstract Task<IEnumerable<T>> ResolveScientificName(string scientificName);
+        private async Task ResolveScientificName(string scientificName, ConcurrentQueue<T> queue, ConcurrentQueue<Exception> exceptions)
+        {
+            try
+            {
+                var data = await this.ResolveScientificNameAsync(scientificName).ConfigureAwait(false);
+                foreach (var item in data)
+                {
+                    queue.Enqueue(item);
+                }
+            }
+            catch (Exception e)
+            {
+                exceptions.Enqueue(e);
+            }
+        }
     }
 }

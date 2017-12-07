@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Enumerations;
 
     public abstract class AbstractGeoMultiDataService<TRepository, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>

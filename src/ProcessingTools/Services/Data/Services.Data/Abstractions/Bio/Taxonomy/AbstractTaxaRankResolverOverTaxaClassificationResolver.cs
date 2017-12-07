@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
@@ -15,9 +14,9 @@
             this.classificationResolver = classificationResolver ?? throw new ArgumentNullException(nameof(classificationResolver));
         }
 
-        public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public async Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
-            return await this.classificationResolver.Resolve(scientificNames).ConfigureAwait(false);
+            return await this.classificationResolver.ResolveAsync(scientificNames);
         }
     }
 }

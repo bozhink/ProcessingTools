@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
@@ -20,20 +19,20 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public async Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
             var result = new ConcurrentQueue<ITaxonRank>();
 
-            await this.Resolve(scientificNames, result).ConfigureAwait(false);
+            await this.ResolveAsync(scientificNames, result).ConfigureAwait(false);
 
-            return new HashSet<ITaxonRank>(result);
+            return result.ToArray();
         }
 
-        private async Task Resolve(string[] scientificNames, ConcurrentQueue<ITaxonRank> outputCollection)
+        private Task ResolveAsync(string[] scientificNames, ConcurrentQueue<ITaxonRank> outputCollection)
         {
             if (scientificNames == null || scientificNames.Length < 1)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             var names = scientificNames.Where(s => !string.IsNullOrWhiteSpace(s))
@@ -41,21 +40,15 @@
                 .Distinct()
                 .ToList();
 
-            await this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.Execute(async (repository) =>
             {
-                var tasks = new ConcurrentQueue<Task>();
-
-                foreach (var name in names)
-                {
-                    tasks.Enqueue(this.FindRankForSingleTaxon(repository, name, outputCollection));
-                }
+                var tasks = names.Select(name => this.FindRankForSingleTaxonAsync(repository, name, outputCollection)).ToArray();
 
                 await Task.WhenAll(tasks).ConfigureAwait(false);
-            })
-            .ConfigureAwait(false);
+            });
         }
 
-        private async Task FindRankForSingleTaxon(ITaxonRanksRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task FindRankForSingleTaxonAsync(ITaxonRanksRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
         {
             if (string.IsNullOrWhiteSpace(name))
             {

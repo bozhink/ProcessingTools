@@ -3,16 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class GbifTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IGbifTaxaClassificationResolver
@@ -24,22 +22,15 @@
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
-        protected override void Delay()
-        {
-            Thread.Sleep(ConcurrencyConstants.DefaultDelayTime);
-        }
-
-        protected override async Task<IEnumerable<ITaxonClassification>> ResolveScientificName(string scientificName)
+        protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
         {
             var result = new HashSet<ITaxonClassification>();
 
             var response = await this.requester.RequestDataAsync(scientificName).ConfigureAwait(false);
 
             if ((response != null) &&
-                (!string.IsNullOrWhiteSpace(response.CanonicalName) ||
-                 !string.IsNullOrWhiteSpace(response.ScientificName)) &&
-                (response.CanonicalName.Equals(scientificName) ||
-                    response.ScientificName.Contains(scientificName)))
+                (!string.IsNullOrWhiteSpace(response.CanonicalName) || !string.IsNullOrWhiteSpace(response.ScientificName)) &&
+                (response.CanonicalName.Equals(scientificName) || response.ScientificName.Contains(scientificName)))
             {
                 result.Add(this.MapGbifTaxonToTaxonClassification(response));
 
@@ -53,7 +44,7 @@
                 }
             }
 
-            return result;
+            return result.ToArray();
         }
 
         private ITaxonClassification MapGbifTaxonToTaxonClassification(IGbifTaxon taxon)

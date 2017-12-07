@@ -55,7 +55,6 @@
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\Linq\AsyncLinqExtensions.cs" />
-    <Compile Include="Extensions\Linq\EnumerableExtensions.cs" />
     <Compile Include="Extensions\Linq\Expressions\ExpressionCompositionUtility.cs" />
     <Compile Include="Extensions\Linq\Expressions\ExpressionExtensions.cs" />
     <Compile Include="Extensions\Linq\Expressions\GenericExpressionVisitor.cs" />

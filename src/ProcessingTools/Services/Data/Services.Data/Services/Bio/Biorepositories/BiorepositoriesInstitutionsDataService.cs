@@ -6,9 +6,9 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Models.Data.Bio.Biorepositories;
+    using ProcessingTools.Exceptions;
 
     public class BiorepositoriesInstitutionsDataService : IBiorepositoriesInstitutionsDataService
     {
