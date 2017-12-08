@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
     using ProcessingTools.Contracts.Services.Data.Bio.Environments;
     using ProcessingTools.Contracts.Services.Models.Data.Bio.Environments;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
 
     public class EnvoTermsDataMiner : IEnvoTermsDataMiner
     {

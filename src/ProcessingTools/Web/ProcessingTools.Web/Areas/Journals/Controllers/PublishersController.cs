@@ -10,8 +10,8 @@
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Services.Models.Data.Journals;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Journals.Models.Publishers;

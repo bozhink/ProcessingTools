@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity.Repositories
 {
     using System;
-    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
 

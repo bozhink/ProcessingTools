@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
-    using ProcessingTools.Contracts.Models.Documents;
 
     public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliation
     {
@@ -47,6 +47,6 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => null;
+        public IEnumerable<string> PreJoinFieldNames => new string[] { };
     }
 }

@@ -9,8 +9,8 @@
     using System.Windows.Forms;
     using Ninject;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.ListsManager.Settings;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.ListsManager.Settings;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public partial class ListManagerControl : UserControl

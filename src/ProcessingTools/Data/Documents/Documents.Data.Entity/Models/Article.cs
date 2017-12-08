@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
-    using ProcessingTools.Contracts.Models.Documents;
 
     public class Article : ModelWithUserInformation, IEntityWithPreJoinedFields, IArticle
     {

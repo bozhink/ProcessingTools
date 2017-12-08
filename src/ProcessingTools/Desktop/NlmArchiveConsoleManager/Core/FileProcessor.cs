@@ -11,12 +11,12 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Contracts.Services.Data.Files;
+    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;
-    using ProcessingTools.Contracts.Services.Data.Files;
 
     public class FileProcessor : IFileProcessor
     {

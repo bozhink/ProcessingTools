@@ -8,8 +8,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Services.Data.Bio.Environments;
     using ProcessingTools.Contracts.Services.Models.Data.Bio.Environments;
-    using ProcessingTools.Services.Models.Data.Bio.Environments;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Models.Data.Bio.Environments;
 
     public class EnvoTermsDataService : IEnvoTermsDataService
     {

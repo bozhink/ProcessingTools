@@ -8,8 +8,8 @@ namespace ProcessingTools.Contracts.Services.Data
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Generic data service.

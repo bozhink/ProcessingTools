@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Journals.Services.Data.Contracts.Services
+﻿// <copyright file="IAddressableDataService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Journals.Services.Data.Contracts.Services
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Models.Data.Journals;

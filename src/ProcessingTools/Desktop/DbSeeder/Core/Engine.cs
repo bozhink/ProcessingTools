@@ -4,8 +4,8 @@
     using System.Collections.Concurrent;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.DbSeeder.Contracts.Core;
     using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.DbSeeder.Contracts.Core;
 
     public class Engine : IEngine
     {

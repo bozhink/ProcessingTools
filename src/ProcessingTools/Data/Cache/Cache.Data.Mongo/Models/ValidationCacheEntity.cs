@@ -2,8 +2,8 @@
 {
     using System;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Cache;
+    using ProcessingTools.Enumerations;
 
     public class ValidationCacheEntity : IValidationCacheModel
     {

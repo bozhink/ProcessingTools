@@ -4,12 +4,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
-    using ProcessingTools.Contracts.Models;
 
     public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IRepositoryAsync<TModel, TFilter>
         where TEntity : BaseModel, IDataModel
@@ -44,7 +45,7 @@
             return this.DeleteAsync(id: id);
         }
 
-        public virtual async Task<object> DeleteAsync(object id)
+        public virtual Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -52,7 +53,7 @@
             }
 
             this.repository.Delete(id: id);
-            return await Task.FromResult(id).ConfigureAwait(false);
+            return Task.FromResult(id);
         }
 
         public virtual Task<TModel> GetByIdAsync(object id)

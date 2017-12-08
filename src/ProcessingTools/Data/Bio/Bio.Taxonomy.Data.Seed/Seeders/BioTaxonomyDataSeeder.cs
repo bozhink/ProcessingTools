@@ -14,8 +14,8 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Data.Common.Entity.Seed;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Common.Entity.Seed;
 
     public class BioTaxonomyDataSeeder : IBioTaxonomyDataSeeder
     {

@@ -6,10 +6,10 @@
     using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache;
-    using ProcessingTools.Contracts.Services.Cache;
 
     [TestClass]
     public class UrlValidationServiceTests

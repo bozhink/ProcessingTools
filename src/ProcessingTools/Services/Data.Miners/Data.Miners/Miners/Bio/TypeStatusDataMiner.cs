@@ -6,8 +6,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Contracts.Services.Data.Bio;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
 
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {

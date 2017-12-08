@@ -11,9 +11,9 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
     /// <summary>

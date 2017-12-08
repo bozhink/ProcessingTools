@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
+    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
-    using ProcessingTools.Contracts.Models.Documents;
 
     public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddress
     {
@@ -91,6 +91,6 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => null;
+        public IEnumerable<string> PreJoinFieldNames => new string[] { };
     }
 }

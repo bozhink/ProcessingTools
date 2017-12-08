@@ -6,10 +6,10 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
     using ProcessingTools.Data.Common.Expressions;
-    using ProcessingTools.Contracts.Data.Repositories;
 
     public abstract class AbstractEntityRepository<TEntity, TContext, TDbModel> : ICrudRepository<TEntity>
         where TEntity : class

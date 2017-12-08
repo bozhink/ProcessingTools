@@ -2,8 +2,8 @@
 {
     using System.Data.Entity;
     using System.Linq;
-    using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Common.Entity.Contracts;
 
     public interface IGenericRepository<TContext, TEntity> : IRepository<TEntity>
         where TContext : IDbContext

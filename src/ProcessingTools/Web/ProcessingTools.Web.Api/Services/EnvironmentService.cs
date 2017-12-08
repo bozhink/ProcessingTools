@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Web.Api.Services
 {
     using System;
+    using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Contracts.Models;
 
     public class EnvironmentService : IEnvironment
     {

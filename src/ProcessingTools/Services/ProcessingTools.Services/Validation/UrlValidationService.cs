@@ -10,11 +10,11 @@ namespace ProcessingTools.Services.Validation
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Validation;
-    using ProcessingTools.Services.Abstractions;
     using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Contracts.Services.Validation;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Abstractions;
 
     /// <summary>
     /// URL validation service.

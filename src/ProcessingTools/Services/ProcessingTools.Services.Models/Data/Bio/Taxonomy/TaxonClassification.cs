@@ -5,8 +5,8 @@
 namespace ProcessingTools.Services.Models.Data.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Taxon classification service model.

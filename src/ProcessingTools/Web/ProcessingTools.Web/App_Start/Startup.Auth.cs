@@ -12,9 +12,9 @@
     using Microsoft.Owin.Security.Twitter;
     using Owin;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Contracts.Web.Security;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Contracts.Web.Security;
     using ProcessingTools.Web.Services;
 
     public partial class Startup

@@ -5,9 +5,9 @@
     using System.Web.Mvc;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
-    using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Web.Models.Geo.GeoNames;
 
     [Authorize]

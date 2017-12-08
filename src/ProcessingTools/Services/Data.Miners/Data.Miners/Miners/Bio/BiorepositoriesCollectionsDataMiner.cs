@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Miners.Abstractions;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Models.Data.Bio.Biorepositories;
+    using ProcessingTools.Data.Miners.Abstractions;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
 
     public class BiorepositoriesCollectionsDataMiner : BiorepositoriesDataMinerBase<ICollection>, IBiorepositoriesCollectionsDataMiner
     {
@@ -30,7 +30,7 @@
                 throw new ArgumentNullException(nameof(context));
             }
 
-            Func<ICollection, bool> filter = x => Regex.IsMatch(context, Regex.Escape(x.Code) + "|" + Regex.Escape(x.Name));
+            bool filter(ICollection x) => Regex.IsMatch(context, Regex.Escape(x.Code) + "|" + Regex.Escape(x.Name));
 
             var matches = new HashSet<ICollection>();
 

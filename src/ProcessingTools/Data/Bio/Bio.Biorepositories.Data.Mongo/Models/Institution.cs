@@ -2,9 +2,9 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Bio.Biorepositories;
+    using ProcessingTools.Enumerations;
 
     public class Institution : IStringIdentifiable, IInstitution
     {

@@ -13,6 +13,7 @@
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions.Linq;
 
     public abstract class AbstractMultiDataServiceAsync<TEntity, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>, IDisposable
         where TFilter : IFilter

@@ -5,8 +5,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Data.Common.Entity.Models.Contracts;
 
     public class Institution : AddressableEntity, IEntityWithPreJoinedFields, IInstitution
     {

@@ -7,10 +7,10 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
     /// <summary>

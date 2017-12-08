@@ -6,12 +6,12 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Contracts.Models.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
-    using ProcessingTools.Web.Areas.Data.Controllers;
     using ProcessingTools.Contracts.Web.Services.Geo;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Web.Areas.Data.Controllers;
     using ProcessingTools.Web.Models.Geo.GeoNames;
     using ProcessingTools.Web.Models.Shared;
     using Strings = ProcessingTools.Web.Areas.Data.Resources.GeoNames.Views_Strings;
@@ -60,19 +60,19 @@
             return viewModel;
         }
 
-        public async Task InsertAsync(GeoNamesRequestModel model)
+        public Task InsertAsync(GeoNamesRequestModel model)
         {
-            await this.service.InsertAsync(model.ToArray()).ConfigureAwait(false);
+            return this.service.InsertAsync(model.ToArray());
         }
 
-        public async Task UpdateAsync(GeoNameRequestModel model)
+        public Task UpdateAsync(GeoNameRequestModel model)
         {
-            await this.service.UpdateAsync(model).ConfigureAwait(false);
+            return this.service.UpdateAsync(model);
         }
 
-        public async Task DeleteAsync(int id)
+        public Task DeleteAsync(int id)
         {
-            await this.service.DeleteAsync(ids: id).ConfigureAwait(false);
+            return this.service.DeleteAsync(ids: id);
         }
     }
 }

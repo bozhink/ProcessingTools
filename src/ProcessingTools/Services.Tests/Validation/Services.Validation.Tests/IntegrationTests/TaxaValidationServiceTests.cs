@@ -8,11 +8,11 @@
     using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
     using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Cache;
-    using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Services.Validation;
 
     [TestClass]

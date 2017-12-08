@@ -8,10 +8,10 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.PaleobiologyDatabase
     using System.Collections;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.PaleobiologyDatabase.Json;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
 
     /// <summary>
     /// Paleobiology Database (PBDB) data requester.

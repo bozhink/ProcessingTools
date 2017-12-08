@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Bio
 {
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Data.Miners.Generics;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data.Bio;
     using ProcessingTools.Contracts.Services.Models.Data.Bio;
+    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+    using ProcessingTools.Data.Miners.Generics;
 
     public class MorphologicalEpithetsDataMiner : SimpleServiceStringDataMiner<IMorphologicalEpithetsDataService, IMorphologicalEpithet, IFilter>, IMorphologicalEpithetsDataMiner
     {

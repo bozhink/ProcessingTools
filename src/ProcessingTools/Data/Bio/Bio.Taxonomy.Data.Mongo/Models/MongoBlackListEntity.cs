@@ -2,8 +2,8 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Data.Common.Mongo.Attributes;
 
     [CollectionName("blackList")]
     public class MongoBlackListEntity : IBlackListEntity

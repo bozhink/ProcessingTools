@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Contracts.Processors;
 
     internal class SeedCommandRunner : ICommandRunner
     {

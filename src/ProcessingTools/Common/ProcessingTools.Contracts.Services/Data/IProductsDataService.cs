@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Contracts
+﻿// <copyright file="IProductsDataService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Data.Contracts
 {
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Resources;

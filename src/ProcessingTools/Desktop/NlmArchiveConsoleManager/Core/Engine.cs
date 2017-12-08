@@ -4,11 +4,11 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Core;
-    using Contracts.Factories;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.Services.Data.Contracts.Meta;
 
     public class Engine : IEngine

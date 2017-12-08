@@ -68,7 +68,8 @@
 
             for (int i = 0; i < numberOfItems; ++i)
             {
-                Assert.AreEqual(i + 1, responseObject[i].Id, "Id should be {0}.", i + 1);
+                int expected = i + 1;
+                Assert.AreEqual(expected, responseObject[i].Id, $"Id should be {expected}.");
             }
         }
 
@@ -111,7 +112,8 @@
 
             for (int i = 0; i < numberOfItems; ++i)
             {
-                Assert.AreEqual(i + 1, responseObject.Products[i].Id, "Id should be {0}.", i + 1);
+                int expected = i + 1;
+                Assert.AreEqual(expected, responseObject.Products[i].Id, $"Id should be {expected}.");
             }
         }
 

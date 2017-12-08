@@ -12,8 +12,8 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Enumerations;
 
     public class XmlTaxaContext : IXmlTaxaContext
     {

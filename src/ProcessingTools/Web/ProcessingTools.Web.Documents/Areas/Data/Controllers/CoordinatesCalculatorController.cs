@@ -25,7 +25,6 @@
         [HttpGet]
         public ActionResult Index()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -33,7 +32,6 @@
         [HttpGet]
         public ActionResult Help()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -74,7 +72,6 @@
                     }
                 }
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(viewModel);
             }
 

@@ -5,8 +5,8 @@
 namespace ProcessingTools.Services.Models.Cache
 {
     using System;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Contracts.Models.Cache;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Validation cache service model.

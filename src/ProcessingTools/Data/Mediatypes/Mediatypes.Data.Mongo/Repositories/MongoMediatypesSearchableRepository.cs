@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using MongoDB.Driver;
+    using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
+    using ProcessingTools.Contracts.Models.Mediatypes;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Factories;
-    using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
-    using ProcessingTools.Contracts.Models.Mediatypes;
 
     public class MongoMediatypesSearchableRepository : ISearchableMediatypesRepository
     {

@@ -6,9 +6,9 @@ namespace ProcessingTools.Clients.Bio.Taxonomy.Gbif
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
 
     /// <summary>
     /// GBIF API v0.9 data requester.

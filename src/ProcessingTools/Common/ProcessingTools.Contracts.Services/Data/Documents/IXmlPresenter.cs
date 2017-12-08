@@ -1,8 +1,15 @@
-﻿namespace ProcessingTools.Contracts.Services.Data.Documents
+﻿// <copyright file="IXmlPresenter.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Services.Data.Documents
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Services.Models.Data.Documents;
 
+    /// <summary>
+    /// XML Presenter.
+    /// </summary>
     public interface IXmlPresenter
     {
         Task<string> GetHtml(object userId, object articleId, object documentId);

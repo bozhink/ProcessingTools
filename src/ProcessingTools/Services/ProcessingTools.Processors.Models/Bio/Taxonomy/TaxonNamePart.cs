@@ -8,9 +8,9 @@ namespace ProcessingTools.Processors.Models.Bio.Taxonomy
     using System.Linq.Expressions;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts.Processors.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Contracts.Processors.Models.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon name part.

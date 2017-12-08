@@ -11,14 +11,14 @@ namespace ProcessingTools.Services.Validation
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Constants.Uri;
-    using ProcessingTools.Enumerations;
-    using ProcessingTools.Extensions;
+    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Validation;
-    using ProcessingTools.Services.Abstractions;
     using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Contracts.Services.Validation;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Abstractions;
 
     /// <summary>
     /// Validation service for taxon names.

@@ -6,9 +6,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
+    using ProcessingTools.Contracts.Models.Mediatypes;
     using ProcessingTools.Mediatypes.Data.Entity.Contracts;
     using ProcessingTools.Mediatypes.Data.Entity.Models;
-    using ProcessingTools.Contracts.Models.Mediatypes;
 
     public class MediatypesRepository : IMediatypesRepository, ISearchableMediatypesRepository, IDisposable
     {
