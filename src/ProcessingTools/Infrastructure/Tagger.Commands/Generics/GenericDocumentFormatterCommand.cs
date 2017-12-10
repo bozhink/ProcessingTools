@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
     public class GenericDocumentFormatterCommand<TFormatter> : ITaggerCommand
@@ -17,7 +17,7 @@
             this.formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -29,7 +29,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return await this.formatter.FormatAsync(document).ConfigureAwait(false);
+            return this.formatter.FormatAsync(document);
         }
     }
 }

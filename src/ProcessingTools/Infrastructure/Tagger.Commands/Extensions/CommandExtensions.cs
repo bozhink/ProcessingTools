@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Reflection;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
 
     public static class CommandExtensions
     {

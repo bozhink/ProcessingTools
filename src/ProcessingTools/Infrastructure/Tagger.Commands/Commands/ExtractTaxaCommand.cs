@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     public class ExtractTaxaCommand : IExtractTaxaCommand
     {
@@ -20,7 +20,7 @@
             this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

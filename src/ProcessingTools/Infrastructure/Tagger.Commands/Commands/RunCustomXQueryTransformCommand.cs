@@ -4,9 +4,9 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Custom XQuery transform.")]
     public class RunCustomXQueryTransformCommand : IRunCustomXQueryTransformCommand
@@ -18,7 +18,7 @@
             this.processor = processor ?? throw new ArgumentNullException(nameof(processor));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

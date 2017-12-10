@@ -4,9 +4,9 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Generate XML document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlCommand : IZooBankGenerateRegistrationXmlCommand
@@ -18,7 +18,7 @@
             this.generator = generator ?? throw new ArgumentNullException(nameof(generator));
         }
 
-        public Task<object> Run(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

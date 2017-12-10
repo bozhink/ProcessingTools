@@ -41,7 +41,7 @@
                 var settingsBuilder = new ProgramSettingsBuilder(this.logger, args);
                 var settings = settingsBuilder.Settings;
 
-                await this.fileProcessor.Run(settings).ConfigureAwait(false);
+                await this.fileProcessor.RunAsync(settings).ConfigureAwait(false);
             }
             catch (Exception e)
             {

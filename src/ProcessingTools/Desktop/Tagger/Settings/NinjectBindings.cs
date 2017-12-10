@@ -1,17 +1,17 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
-    using Interceptors;
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Services.Data.Services.Files;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Tagger.Interceptors;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -29,7 +29,7 @@
 
             this.Bind(b =>
             {
-                b.From(typeof(ITaggerCommand).Assembly)
+                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

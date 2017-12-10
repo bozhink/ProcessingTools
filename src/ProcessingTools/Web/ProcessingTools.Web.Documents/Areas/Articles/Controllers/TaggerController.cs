@@ -13,15 +13,13 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
     using ProcessingTools.Services.Models.Data.Documents;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Contracts.Models;
-    using ProcessingTools.Tagger.Commands.Contracts.Providers;
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Tagger;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Tagger;
@@ -222,7 +220,7 @@
             var command = this.commandFactory.Invoke(commandType);
             var settings = this.commandSettingsFactory.Create();
 
-            var result = await command.Run(document, settings)
+            var result = await command.RunAsync(document, settings)
                 .ContinueWith(_ =>
                 {
                     _.Wait();

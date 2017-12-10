@@ -3,9 +3,9 @@
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Special.Processors.Contracts.Processors;
 
     [Description("Test.")]
@@ -18,7 +18,7 @@
             this.provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
 
-        public Task<object> Run(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

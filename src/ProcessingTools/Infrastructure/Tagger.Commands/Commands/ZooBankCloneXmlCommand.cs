@@ -4,10 +4,10 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.IO;
     using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Clone ZooBank XML.")]
     public class ZooBankCloneXmlCommand : IZooBankCloneXmlCommand
@@ -23,7 +23,7 @@
             this.fileReader = fileReader ?? throw new ArgumentNullException(nameof(fileReader));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

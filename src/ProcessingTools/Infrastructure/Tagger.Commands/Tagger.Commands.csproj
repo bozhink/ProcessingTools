@@ -39,7 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandSettings.cs" />
-    <Compile Include="Contracts\Commands\ISimpleTaggerCommand.cs" />
     <Compile Include="Providers\CommandInfoProvider.cs" />
     <Compile Include="Commands\ExpandLowerTaxaCommand.cs" />
     <Compile Include="Commands\ExtractTaxaCommand.cs" />
@@ -97,67 +96,6 @@
     <Compile Include="Commands\ZooBankCloneJsonCommand.cs" />
     <Compile Include="Commands\ZooBankCloneXmlCommand.cs" />
     <Compile Include="Commands\ZooBankGenerateRegistrationXmlCommand.cs" />
-    <Compile Include="Contracts\Commands\IExpandLowerTaxaCommand.cs" />
-    <Compile Include="Contracts\Commands\IExtractTaxaCommand.cs" />
-    <Compile Include="Contracts\Commands\IFormatTreatmentsCommand.cs" />
-    <Compile Include="Contracts\Commands\IInitialFormatCommand.cs" />
-    <Compile Include="Contracts\Commands\INotAwaitableCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseCoordinatesCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseHigherTaxaAboveGenusCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseHigherTaxaBySuffixCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseHigherTaxaWithAphiaCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseHigherTaxaWithCatalogueOfLifeCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseHigherTaxaWithGbifCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseHigherTaxaWithLocalDbCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseLowerTaxaCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseReferencesCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseTreatmentMaterialsCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithAphiaCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithCatalogueOfLifeCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithGbifCommand.cs" />
-    <Compile Include="Contracts\Commands\IParseTreatmentMetaWithInternalInformationCommand.cs" />
-    <Compile Include="Contracts\Commands\IQueryReplaceCommand.cs" />
-    <Compile Include="Contracts\Commands\IRemoveAllTaxonNamePartTagsCommand.cs" />
-    <Compile Include="Contracts\Commands\IResolveMediaTypesCommand.cs" />
-    <Compile Include="Contracts\Commands\IRunCustomXQueryTransformCommand.cs" />
-    <Compile Include="Contracts\Commands\IRunCustomXslTransformCommand.cs" />
-    <Compile Include="Contracts\Commands\ISpecialCaseGavinLaurensCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagAbbreviationsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagAltitudesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagCollectionCodesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagCoordinatesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagDatesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagEnvironmentTermsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagEnvironmentTermsWithExtractCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagFloatsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagGeoEpithetsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagGeographicDeviationsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagGeoNamesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITaggerCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagHigherTaxaCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagInstitutionalCodesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagInstitutionsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagLowerTaxaCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagLowerTaxaInItalicCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagMorphologicalEpithetsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagProductsCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagQuantitiesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagReferencesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagSpecimenCodesCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagSpecimenCountCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagTableFootnoteCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagTypeStatusCommand.cs" />
-    <Compile Include="Contracts\Commands\ITagWebLinksCommand.cs" />
-    <Compile Include="Contracts\Commands\ITestCommand.cs" />
-    <Compile Include="Contracts\Commands\IValidateCrossReferencesCommand.cs" />
-    <Compile Include="Contracts\Commands\IValidateExternalLinksCommand.cs" />
-    <Compile Include="Contracts\Commands\IValidateTaxaCommand.cs" />
-    <Compile Include="Contracts\Commands\IZooBankCloneJsonCommand.cs" />
-    <Compile Include="Contracts\Commands\IZooBankCloneXmlCommand.cs" />
-    <Compile Include="Contracts\Commands\IZooBankGenerateRegistrationXmlCommand.cs" />
-    <Compile Include="Contracts\Models\ICommandInfo.cs" />
-    <Compile Include="Contracts\Providers\ICommandInfoProvider.cs" />
-    <Compile Include="Contracts\ICommandSettings.cs" />
     <Compile Include="Extensions\CommandExtensions.cs" />
     <Compile Include="Generics\GenericDocumentFormatterCommand.cs" />
     <Compile Include="Generics\GenericDocumentParserCommand.cs" />
@@ -248,6 +186,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

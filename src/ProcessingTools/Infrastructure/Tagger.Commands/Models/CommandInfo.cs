@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Models
 {
     using System;
-    using Contracts.Models;
+    using ProcessingTools.Contracts.Commands;
 
     public class CommandInfo : ICommandInfo
     {

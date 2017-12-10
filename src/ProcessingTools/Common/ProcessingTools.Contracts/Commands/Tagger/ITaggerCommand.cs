@@ -19,6 +19,6 @@ namespace ProcessingTools.Contracts.Commands.Tagger
         /// <param name="document"><see cref="IDocument"/> context for the command.</param>
         /// <param name="settings"><see cref="ICommandSettings"/> for execution.</param>
         /// <returns>Task of result.</returns>
-        Task<object> Run(IDocument document, ICommandSettings settings);
+        Task<object> RunAsync(IDocument document, ICommandSettings settings);
     }
 }

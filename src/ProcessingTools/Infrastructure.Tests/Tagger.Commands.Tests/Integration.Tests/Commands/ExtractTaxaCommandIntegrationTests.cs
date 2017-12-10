@@ -5,9 +5,9 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
     using ProcessingTools.Tagger.Commands.Commands;
-    using ProcessingTools.Tagger.Commands.Contracts;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandIntegrationTests
@@ -47,7 +47,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
+            await command.RunAsync(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -86,7 +86,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
+            await command.RunAsync(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -125,7 +125,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
+            await command.RunAsync(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -164,7 +164,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
+            await command.RunAsync(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 
@@ -203,7 +203,7 @@
             // Act
             string initialContent = xmldocumentStub.OuterXml;
 
-            await command.Run(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
+            await command.RunAsync(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             string finalContent = xmldocumentStub.OuterXml;
 

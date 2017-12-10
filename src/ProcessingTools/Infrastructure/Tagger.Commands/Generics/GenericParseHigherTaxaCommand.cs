@@ -6,11 +6,11 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     public class GenericParseHigherTaxaCommand<TService> : ITaggerCommand
         where TService : ITaxaRankResolver
@@ -26,7 +26,7 @@
             this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

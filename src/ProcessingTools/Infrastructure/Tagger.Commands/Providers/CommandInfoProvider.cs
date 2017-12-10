@@ -4,11 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Contracts.Commands;
-    using Contracts.Models;
-    using Contracts.Providers;
-    using Extensions;
-    using Models;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Tagger.Commands.Extensions;
+    using ProcessingTools.Tagger.Commands.Models;
 
     public class CommandInfoProvider : ICommandInfoProvider
     {

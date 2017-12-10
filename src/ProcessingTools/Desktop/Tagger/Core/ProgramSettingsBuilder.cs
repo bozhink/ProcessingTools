@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Contracts.Providers;
     using ProcessingTools.Tagger.Commands.Providers;
 
     public class ProgramSettingsBuilder

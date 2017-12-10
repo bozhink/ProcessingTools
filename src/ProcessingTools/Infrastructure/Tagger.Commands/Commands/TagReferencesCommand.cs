@@ -7,9 +7,9 @@
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.References;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Tag references.")]
     public class TagReferencesCommand : ITagReferencesCommand
@@ -21,7 +21,7 @@
             this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
-        public Task<object> Run(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

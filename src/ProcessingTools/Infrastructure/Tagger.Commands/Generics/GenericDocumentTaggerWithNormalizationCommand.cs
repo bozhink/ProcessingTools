@@ -3,10 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     public class GenericDocumentTaggerWithNormalizationCommand<TTagger> : ITaggerCommand
         where TTagger : class, IDocumentTagger
@@ -20,7 +20,7 @@
             this.documentNormalizer = documentNormalizer ?? throw new ArgumentNullException(nameof(documentNormalizer));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

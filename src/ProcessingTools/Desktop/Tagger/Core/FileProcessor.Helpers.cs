@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Commands.Extensions;
 
     public partial class FileProcessor
@@ -64,7 +64,7 @@
             }
         }
 
-        private async Task InvokeCommand(ITaggerCommand command, IDocument document)
+        private Task InvokeCommand(ITaggerCommand command, IDocument document)
         {
             if (command == null)
             {
@@ -72,11 +72,10 @@
             }
 
             string message = command.GetDescriptionMessageForCommand();
-            await InvokeProcessor(
+            return InvokeProcessor(
                 message,
-                () => command.Run(document, this.settings),
-                this.logger)
-                .ConfigureAwait(false);
+                () => command.RunAsync(document, this.settings),
+                this.logger);
         }
     }
 }

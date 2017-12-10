@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Commands;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
     public class GenericDocumentValidatorCommand<TValidator> : ITaggerCommand
@@ -19,7 +19,7 @@
             this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -32,7 +32,6 @@
             }
 
             var result = await this.validator.ValidateAsync(document, this.reporter).ConfigureAwait(false);
-
             await this.reporter.MakeReportAsync().ConfigureAwait(false);
 
             return result;

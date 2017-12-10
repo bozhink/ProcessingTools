@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Contracts;
 
     public interface IProgramSettings : ICommandSettings
     {

@@ -9,9 +9,9 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Contracts;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
@@ -42,7 +42,7 @@
             this.tasks = new ConcurrentQueue<Task>();
         }
 
-        public async Task Run(IProgramSettings settings)
+        public async Task RunAsync(IProgramSettings settings)
         {
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
 

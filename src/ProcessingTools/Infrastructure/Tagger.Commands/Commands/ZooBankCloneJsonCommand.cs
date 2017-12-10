@@ -8,10 +8,10 @@
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     [Description("Clone ZooBank JSON.")]
     public class ZooBankCloneJsonCommand : IZooBankCloneJsonCommand
@@ -25,7 +25,7 @@
             this.logger = logger;
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {

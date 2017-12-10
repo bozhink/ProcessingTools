@@ -7,9 +7,9 @@
     using Ninject.Modules;
     using Ninject.Web.Common;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Services.Data.Services.Files;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -31,7 +31,7 @@
 
             this.Bind(b =>
             {
-                b.From(typeof(ProcessingTools.Tagger.Commands.Contracts.Commands.ITaggerCommand).Assembly)
+                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

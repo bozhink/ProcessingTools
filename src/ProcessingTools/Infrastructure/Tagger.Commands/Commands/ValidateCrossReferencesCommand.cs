@@ -2,8 +2,8 @@
 {
     using System.ComponentModel;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Validation;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Commands.Generics;
 
     [Description("Validate cross-references.")]
