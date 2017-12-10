@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Services.Harvesters;
+    using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Xml.Contracts.Wrappers;
 
     public abstract class AbstractEnumerableXmlHarvester<TModel> : IEnumerableXmlHarvester<TModel>

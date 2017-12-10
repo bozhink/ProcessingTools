@@ -2,10 +2,8 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Services.Harvesters
+namespace ProcessingTools.Contracts.Harvesters
 {
-    using ProcessingTools.Contracts;
-
     /// <summary>
     /// Generic harvester with <see cref="IDocument"/> context.
     /// </summary>
