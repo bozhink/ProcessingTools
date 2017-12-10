@@ -32,4 +32,8 @@
     <ProjectReference Include="..\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Tagger\" />
+  </ItemGroup>
+
 </Project>
