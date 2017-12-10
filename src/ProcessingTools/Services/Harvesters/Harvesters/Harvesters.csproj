@@ -44,14 +44,11 @@
     <Compile Include="Contracts\Harvesters\Bio\ITaxonNamesHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Content\ITextContentHarvester.cs" />
     <Compile Include="Contracts\Harvesters\ExternalLinks\IExternalLinksHarvester.cs" />
-    <Compile Include="Contracts\Factories\IAbbreviationsTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\IExternalLinksTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\ITextContentTransformersFactory.cs" />
+    <Compile Include="Contracts\Harvesters\Abbreviations\IAbbreviationsTransformersFactory.cs" />
+    <Compile Include="Contracts\Harvesters\ExternalLinks\IExternalLinksTransformersFactory.cs" />
+    <Compile Include="Contracts\Harvesters\Content\ITextContentTransformersFactory.cs" />
     <Compile Include="Contracts\Harvesters\Meta\IArticleMetaHarvester.cs" />
     <Compile Include="Contracts\Harvesters\Meta\IPersonNamesHarvester.cs" />
-    <Compile Include="Contracts\Models\Meta\IArticle.cs" />
-    <Compile Include="Contracts\Models\Meta\IAuthor.cs" />
-    <Compile Include="Contracts\Models\Meta\IPersonNameModel.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\Bio\TaxonNamesHarvester.cs" />
     <Compile Include="Harvesters\Content\TextContentHarvester.cs" />
@@ -62,8 +59,6 @@
     <Compile Include="Models\Abbreviations\AbbreviationsXmlModel.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinkModel.cs" />
     <Compile Include="Models\ExternalLinks\ExternalLinksModel.cs" />
-    <Compile Include="Contracts\Models\Abbreviations\IAbbreviationModel.cs" />
-    <Compile Include="Contracts\Models\ExternalLinks\IExternalLinkModel.cs" />
     <Compile Include="Models\Meta\Article.cs" />
     <Compile Include="Models\Meta\Author.cs" />
     <Compile Include="Models\Meta\PersonNameModel.cs" />
@@ -122,6 +117,7 @@
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

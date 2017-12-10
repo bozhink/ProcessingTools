@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Harvesters.Models.Meta
 {
-    using ProcessingTools.Harvesters.Contracts.Models.Meta;
+    using ProcessingTools.Contracts.Models.Harvesters.Meta;
 
     internal class Author : IAuthor
     {

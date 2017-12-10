@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Harvesters.Contracts.Harvesters.Meta
 {
     using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Harvesters.Contracts.Models.Meta;
+    using ProcessingTools.Contracts.Models.Harvesters.Meta;
 
     public interface IArticleMetaHarvester : IDocumentHarvester<IArticle>
     {

@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Xml.Serialization;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Harvesters.Contracts.Models.Abbreviations;
+    using ProcessingTools.Contracts.Models.Harvesters.Abbreviations;
 
     [Serializable]
     [DesignerCategory("code")]

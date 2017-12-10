@@ -3,10 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Models.Harvesters.ExternalLinks;
     using ProcessingTools.Harvesters.Abstractions;
     using ProcessingTools.Harvesters.Contracts.Factories;
     using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
-    using ProcessingTools.Harvesters.Contracts.Models.ExternalLinks;
     using ProcessingTools.Harvesters.Models.ExternalLinks;
     using ProcessingTools.Xml.Contracts.Serialization;
     using ProcessingTools.Xml.Contracts.Wrappers;
