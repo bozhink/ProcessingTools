@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions;
@@ -11,7 +10,7 @@
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.References;
 
-    [Description("Tag references.")]
+    [System.ComponentModel.Description("Tag references.")]
     public class TagReferencesCommand : ITagReferencesCommand
     {
         private readonly IReferencesTagger tagger;

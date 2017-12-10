@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
-    [Description("Query replace.")]
+    [System.ComponentModel.Description("Query replace.")]
     public class QueryReplaceCommand : IQueryReplaceCommand
     {
         private readonly IQueryReplacer queryReplacer;

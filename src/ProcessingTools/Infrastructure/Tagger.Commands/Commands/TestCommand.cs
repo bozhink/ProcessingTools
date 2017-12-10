@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Special.Processors.Contracts.Processors;
 
-    [Description("Test.")]
+    [System.ComponentModel.Description("Test.")]
     public class TestCommand : ITestCommand
     {
         private readonly ITestFeaturesProvider provider;

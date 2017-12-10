@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
-    [Description("Custom XSL transform.")]
+    [System.ComponentModel.Description("Custom XSL transform.")]
     public class RunCustomXslTransformCommand : IRunCustomXslTransformCommand
     {
         private readonly IDocumentXslProcessor processor;

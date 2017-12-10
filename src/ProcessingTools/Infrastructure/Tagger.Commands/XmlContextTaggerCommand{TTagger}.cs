@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Generics
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Threading.Tasks;
@@ -7,14 +7,14 @@
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
-    public class GenericDocumentFormatterCommand<TFormatter> : ITaggerCommand
-        where TFormatter : class, IDocumentFormatter
+    public class XmlContextTaggerCommand<TTagger> : ITaggerCommand
+        where TTagger : class, IXmlContextTagger
     {
-        private readonly TFormatter formatter;
+        private readonly TTagger tagger;
 
-        public GenericDocumentFormatterCommand(TFormatter formatter)
+        public XmlContextTaggerCommand(TTagger tagger)
         {
-            this.formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+            this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
         public Task<object> RunAsync(IDocument document, ICommandSettings settings)
@@ -29,7 +29,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return this.formatter.FormatAsync(document);
+            return this.tagger.TagAsync(document.XmlDocument.DocumentElement);
         }
     }
 }

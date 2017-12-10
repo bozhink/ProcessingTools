@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
-    [Description("Custom XQuery transform.")]
+    [System.ComponentModel.Description("Custom XQuery transform.")]
     public class RunCustomXQueryTransformCommand : IRunCustomXQueryTransformCommand
     {
         private readonly IDocumentXQueryProcessor processor;

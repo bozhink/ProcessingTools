@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Models
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using ProcessingTools.Contracts.Commands;

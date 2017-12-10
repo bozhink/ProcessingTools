@@ -2,9 +2,8 @@
 {
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Special;
-    using ProcessingTools.Tagger.Commands.Generics;
 
-    public class SpecialCaseGavinLaurensCommand : GenericDocumentParserCommand<IGavinLaurensParser>, ISpecialCaseGavinLaurensCommand
+    public class SpecialCaseGavinLaurensCommand : DocumentParserCommand<IGavinLaurensParser>, ISpecialCaseGavinLaurensCommand
     {
         public SpecialCaseGavinLaurensCommand(IGavinLaurensParser parser)
             : base(parser)

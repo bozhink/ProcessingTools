@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
-    using ProcessingTools.Tagger.Commands.Generics;
 
-    [Description("Tag institutional codes.")]
-    public class TagInstitutionalCodesCommand : GenericDocumentTaggerCommand<IInstitutionalCodesTagger>, ITagInstitutionalCodesCommand
+    [System.ComponentModel.Description("Tag institutional codes.")]
+    public class TagInstitutionalCodesCommand : DocumentTaggerCommand<IInstitutionalCodesTagger>, ITagInstitutionalCodesCommand
     {
         public TagInstitutionalCodesCommand(IInstitutionalCodesTagger tagger)
             : base(tagger)

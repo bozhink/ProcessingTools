@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
@@ -13,7 +12,7 @@
     using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
     using ProcessingTools.Enumerations;
 
-    [Description("Clone ZooBank JSON.")]
+    [System.ComponentModel.Description("Clone ZooBank JSON.")]
     public class ZooBankCloneJsonCommand : IZooBankCloneJsonCommand
     {
         private readonly IZoobankJsonCloner cloner;

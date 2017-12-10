@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Providers
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,6 @@
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Tagger.Commands.Extensions;
-    using ProcessingTools.Tagger.Commands.Models;
 
     public class CommandInfoProvider : ICommandInfoProvider
     {

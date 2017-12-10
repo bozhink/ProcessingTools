@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Providers;
+    using ProcessingTools.Tagger.Commands;
 
     public class ProgramSettingsBuilder
     {

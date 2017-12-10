@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Floats;
-    using ProcessingTools.Tagger.Commands.Generics;
 
-    [Description("Tag floats.")]
-    public class TagFloatsCommand : GenericXmlContextTaggerCommand<IFloatsTagger>, ITagFloatsCommand
+    [System.ComponentModel.Description("Tag floats.")]
+    public class TagFloatsCommand : XmlContextTaggerCommand<IFloatsTagger>, ITagFloatsCommand
     {
         public TagFloatsCommand(IFloatsTagger tagger)
             : base(tagger)

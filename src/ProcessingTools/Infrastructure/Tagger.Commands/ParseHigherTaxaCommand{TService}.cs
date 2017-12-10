@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Generics
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Linq;
@@ -12,13 +12,13 @@
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
 
-    public class GenericParseHigherTaxaCommand<TService> : ITaggerCommand
+    public class ParseHigherTaxaCommand<TService> : ITaggerCommand
         where TService : ITaxaRankResolver
     {
         private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
         private readonly IReporter reporter;
 
-        public GenericParseHigherTaxaCommand(
+        public ParseHigherTaxaCommand(
             IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
             IReporter reporter)
         {

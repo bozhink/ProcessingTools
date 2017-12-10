@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandSettings.cs" />
-    <Compile Include="Providers\CommandInfoProvider.cs" />
+    <Compile Include="CommandInfoProvider.cs" />
     <Compile Include="Commands\ExpandLowerTaxaCommand.cs" />
     <Compile Include="Commands\ExtractTaxaCommand.cs" />
     <Compile Include="Commands\FormatTreatmentsCommand.cs" />
@@ -97,20 +97,20 @@
     <Compile Include="Commands\ZooBankCloneXmlCommand.cs" />
     <Compile Include="Commands\ZooBankGenerateRegistrationXmlCommand.cs" />
     <Compile Include="Extensions\CommandExtensions.cs" />
-    <Compile Include="Generics\GenericDocumentFormatterCommand.cs" />
-    <Compile Include="Generics\GenericDocumentParserCommand.cs" />
-    <Compile Include="Generics\GenericDocumentTaggerCommand.cs" />
-    <Compile Include="Generics\GenericDocumentTaggerWithNormalizationCommand.cs" />
-    <Compile Include="Generics\GenericDocumentValidatorCommand.cs" />
-    <Compile Include="Generics\GenericParseHigherTaxaCommand.cs" />
-    <Compile Include="Generics\GenericXmlContextParserCommand.cs" />
-    <Compile Include="Generics\GenericXmlContextTaggerCommand.cs" />
+    <Compile Include="DocumentFormatterCommand{TFormatter}.cs" />
+    <Compile Include="DocumentParserCommand{TParser}.cs" />
+    <Compile Include="DocumentTaggerCommand{TTagger}.cs" />
+    <Compile Include="DocumentTaggerWithNormalizationCommand{TTagger}.cs" />
+    <Compile Include="DocumentValidatorCommand{TValidator}.cs" />
+    <Compile Include="ParseHigherTaxaCommand{TService}.cs" />
+    <Compile Include="XmlContextParserCommand{TParser}.cs" />
+    <Compile Include="XmlContextTaggerCommand{TTagger}.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommandInfo.cs" />
+    <Compile Include="CommandInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -141,10 +141,6 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
       <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
-      <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
-      <Name>Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Generics
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Threading.Tasks;
@@ -7,17 +7,17 @@
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
-    public class GenericXmlContextParserCommand<TParser> : ITaggerCommand
-        where TParser : class, IXmlContextParser
+    public class DocumentParserCommand<TParser> : ITaggerCommand
+        where TParser : class, IDocumentParser
     {
         private readonly TParser parser;
 
-        public GenericXmlContextParserCommand(TParser parser)
+        public DocumentParserCommand(TParser parser)
         {
             this.parser = parser ?? throw new ArgumentNullException(nameof(parser));
         }
 
-        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -29,7 +29,7 @@
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return await this.parser.ParseAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
+            return this.parser.ParseAsync(document);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Generics
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Threading.Tasks;
@@ -8,13 +8,13 @@
     using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
-    public class GenericDocumentTaggerWithNormalizationCommand<TTagger> : ITaggerCommand
+    public class DocumentTaggerWithNormalizationCommand<TTagger> : ITaggerCommand
         where TTagger : class, IDocumentTagger
     {
         private readonly TTagger tagger;
         private readonly IDocumentSchemaNormalizer documentNormalizer;
 
-        public GenericDocumentTaggerWithNormalizationCommand(TTagger tagger, IDocumentSchemaNormalizer documentNormalizer)
+        public DocumentTaggerWithNormalizationCommand(TTagger tagger, IDocumentSchemaNormalizer documentNormalizer)
         {
             this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
             this.documentNormalizer = documentNormalizer ?? throw new ArgumentNullException(nameof(documentNormalizer));

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Tagger.Commands.Generics
+﻿namespace ProcessingTools.Tagger.Commands
 {
     using System;
     using System.Threading.Tasks;
@@ -7,13 +7,13 @@
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors;
 
-    public class GenericDocumentValidatorCommand<TValidator> : ITaggerCommand
+    public class DocumentValidatorCommand<TValidator> : ITaggerCommand
         where TValidator : class, IDocumentValidator
     {
         private readonly IReporter reporter;
         private readonly TValidator validator;
 
-        public GenericDocumentValidatorCommand(TValidator validator, IReporter reporter)
+        public DocumentValidatorCommand(TValidator validator, IReporter reporter)
         {
             this.validator = validator ?? throw new ArgumentNullException(nameof(validator));
             this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
