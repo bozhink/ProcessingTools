@@ -152,10 +152,6 @@
       <Project>{2cee897b-f9d4-4d59-964a-4fc8ba7448f5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
-      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
-      <Name>ProcessingTools.Contracts.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>

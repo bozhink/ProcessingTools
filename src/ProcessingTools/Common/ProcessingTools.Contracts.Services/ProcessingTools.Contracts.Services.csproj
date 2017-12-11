@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj" />
     <ProjectReference Include="..\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj" />
   </ItemGroup>

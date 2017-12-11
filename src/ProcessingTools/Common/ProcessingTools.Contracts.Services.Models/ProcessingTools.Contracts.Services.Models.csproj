@@ -22,10 +22,10 @@
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Data\Geo\" />
     <Folder Include="Data\Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
   </ItemGroup>
 </Project>

@@ -14,9 +14,6 @@
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Automapper" Version="6.1.1" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.1.3596" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />

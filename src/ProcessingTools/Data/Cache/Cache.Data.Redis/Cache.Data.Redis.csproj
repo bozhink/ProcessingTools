@@ -46,13 +46,13 @@
       <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
       <Name>ProcessingTools.Contracts.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
-      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
-      <Name>ProcessingTools.Contracts.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>

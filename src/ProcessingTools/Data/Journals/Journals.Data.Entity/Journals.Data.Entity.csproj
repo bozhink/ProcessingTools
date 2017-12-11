@@ -83,9 +83,9 @@
       <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
       <Name>ProcessingTools.Contracts.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
-      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
-      <Name>ProcessingTools.Contracts.Models</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
+      <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>

@@ -130,10 +130,6 @@
       <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
-      <Project>{d9f81e90-e064-4113-8c94-be11cdd2482e}</Project>
-      <Name>ProcessingTools.Contracts.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj">
       <Project>{aa4714ba-02ce-487e-af9f-1f7c9112fa13}</Project>
       <Name>ProcessingTools.Contracts.Processors</Name>

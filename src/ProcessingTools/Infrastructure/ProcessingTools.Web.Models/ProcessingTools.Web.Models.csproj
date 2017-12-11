@@ -291,13 +291,13 @@
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
+      <Name>ProcessingTools.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Models\ProcessingTools.Contracts.Models.csproj">
-      <Project>{D9F81E90-E064-4113-8C94-BE11CDD2482E}</Project>
-      <Name>ProcessingTools.Contracts.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
