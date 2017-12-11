@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Data.Repositories.Journals;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Services.Models.Data.Journals;
+    using ProcessingTools.Contracts.Models.Services.Data.Journals;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
@@ -21,7 +21,7 @@
 
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
-        where TDetailedServiceModel : class, TServiceModel, IDetailedModel, ProcessingTools.Contracts.Services.Models.Data.Journals.IAddressable
+        where TDetailedServiceModel : class, TServiceModel, IDetailedModel, ProcessingTools.Contracts.Models.Services.Data.Journals.IAddressable
         where TDataModel : class, IDataModel, ICreated, IModified, ProcessingTools.Contracts.Models.Journals.IAddressable
         where TRepository : class, ICrudRepository<TDataModel>, IAddressableRepository
     {

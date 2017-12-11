@@ -8,7 +8,7 @@ namespace ProcessingTools.Contracts.Services.Data.Documents
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Services.Models.Data.Documents;
+    using ProcessingTools.Contracts.Models.Services.Data.Documents;
 
     public interface IDocumentsDataService
     {

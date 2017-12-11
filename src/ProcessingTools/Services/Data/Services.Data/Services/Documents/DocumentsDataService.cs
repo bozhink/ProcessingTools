@@ -13,7 +13,7 @@
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.IO;
     using ProcessingTools.Contracts.Services.Data.Documents;
-    using ProcessingTools.Contracts.Services.Models.Data.Documents;
+    using ProcessingTools.Contracts.Models.Services.Data.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Exceptions;
 

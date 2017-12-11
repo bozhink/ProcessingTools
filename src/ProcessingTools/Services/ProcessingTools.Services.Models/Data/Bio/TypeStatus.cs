@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Data.Bio
 {
-    using ProcessingTools.Contracts.Services.Models.Data.Bio;
+    using ProcessingTools.Contracts.Models.Services.Data.Bio;
 
     /// <summary>
     /// Type status service model.

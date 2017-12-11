@@ -5,7 +5,7 @@
 namespace ProcessingTools.Journals.Services.Data.Contracts.Services
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Models.Data.Journals;
+    using ProcessingTools.Contracts.Models.Services.Data.Journals;
 
     public interface IAddressableDataService<T>
         where T : IAddressable

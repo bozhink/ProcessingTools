@@ -6,7 +6,7 @@ namespace ProcessingTools.Contracts.Services.Data.Bio
 {
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
-    using ProcessingTools.Contracts.Services.Models.Data.Bio;
+    using ProcessingTools.Contracts.Models.Services.Data.Bio;
 
     /// <summary>
     /// Types statuses data service.

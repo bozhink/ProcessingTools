@@ -6,7 +6,7 @@
     using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data.Bio;
-    using ProcessingTools.Contracts.Services.Models.Data.Bio;
+    using ProcessingTools.Contracts.Models.Services.Data.Bio;
     using ProcessingTools.Services.Abstractions;
 
     public class TypeStatusDataService : AbstractMultiDataServiceAsync<TypeStatus, ITypeStatus, IFilter>, ITypeStatusDataService

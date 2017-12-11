@@ -5,7 +5,7 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Services.Data.Documents;
-    using ProcessingTools.Contracts.Services.Models.Data.Documents;
+    using ProcessingTools.Contracts.Models.Services.Data.Documents;
 
     public class XmlPresenter : IXmlPresenter
     {

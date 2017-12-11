@@ -422,10 +422,6 @@
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj">
-      <Project>{DD9DC75E-323A-49D9-AC70-EEB34C50E8A6}</Project>
-      <Name>ProcessingTools.Contracts.Services.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Web\ProcessingTools.Contracts.Web.csproj">
       <Project>{00FCCC5A-D81F-4C05-9082-023837220F69}</Project>
       <Name>ProcessingTools.Contracts.Web</Name>

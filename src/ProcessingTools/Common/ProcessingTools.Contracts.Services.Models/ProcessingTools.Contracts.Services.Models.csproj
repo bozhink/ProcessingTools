@@ -14,16 +14,17 @@
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.1.3596" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Geo\" />
-    <Folder Include="Data\Resources\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />

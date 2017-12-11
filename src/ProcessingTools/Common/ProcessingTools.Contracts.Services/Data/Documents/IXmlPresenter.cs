@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Services.Data.Documents
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Models.Data.Documents;
+    using ProcessingTools.Contracts.Models.Services.Data.Documents;
 
     /// <summary>
     /// XML Presenter.

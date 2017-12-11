@@ -201,10 +201,6 @@
       <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj">
-      <Project>{dd9dc75e-323a-49d9-ac70-eeb34c50e8a6}</Project>
-      <Name>ProcessingTools.Contracts.Services.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
       <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
       <Name>Bio.Taxonomy.Data.Mongo</Name>

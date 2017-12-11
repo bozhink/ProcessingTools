@@ -33,4 +33,9 @@
     <ProjectReference Include="..\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Services\Data\Geo\" />
+    <Folder Include="Models\Services\Data\Resources\" />
+  </ItemGroup>
+
 </Project>

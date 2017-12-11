@@ -100,10 +100,6 @@
       <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
       <Name>ProcessingTools.Contracts.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Services.Models\ProcessingTools.Contracts.Services.Models.csproj">
-      <Project>{dd9dc75e-323a-49d9-ac70-eeb34c50e8a6}</Project>
-      <Name>ProcessingTools.Contracts.Services.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}</Project>
       <Name>ProcessingTools.Net</Name>
