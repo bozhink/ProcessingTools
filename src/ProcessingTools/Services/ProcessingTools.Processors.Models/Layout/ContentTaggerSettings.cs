@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.Layout
 {
-    using ProcessingTools.Contracts.Processors.Models.Layout;
+    using ProcessingTools.Contracts.Models.Processors.Layout;
 
     /// <summary>
     /// Content tagger settings.

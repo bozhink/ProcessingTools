@@ -16,7 +16,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Processors.Factories.Bio;
-    using ProcessingTools.Contracts.Processors.Models.Bio.Codes;
+    using ProcessingTools.Contracts.Models.Processors.Bio.Codes;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;

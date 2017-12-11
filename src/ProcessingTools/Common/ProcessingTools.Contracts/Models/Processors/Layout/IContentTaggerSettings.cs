@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Processors.Models.Layout
+namespace ProcessingTools.Contracts.Models.Processors.Layout
 {
     /// <summary>
     /// Content tagger settings.

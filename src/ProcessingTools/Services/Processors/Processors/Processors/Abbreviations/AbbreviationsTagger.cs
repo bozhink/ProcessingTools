@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Models.Abbreviations;
+    using ProcessingTools.Contracts.Models.Processors.Abbreviations;
     using ProcessingTools.Contracts.Processors.Processors.Abbreviations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;

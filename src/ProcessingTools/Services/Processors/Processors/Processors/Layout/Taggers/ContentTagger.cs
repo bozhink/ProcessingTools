@@ -8,7 +8,7 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Models.Layout;
+    using ProcessingTools.Contracts.Models.Processors.Layout;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 

@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Processors.Models.Floats
+namespace ProcessingTools.Contracts.Models.Processors.Floats
 {
     using ProcessingTools.Enumerations.Nlm;
 

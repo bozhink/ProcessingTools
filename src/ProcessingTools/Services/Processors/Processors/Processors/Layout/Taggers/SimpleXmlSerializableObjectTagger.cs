@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Processors.Models.Layout;
+    using ProcessingTools.Contracts.Models.Processors.Layout;
     using ProcessingTools.Contracts.Serialization;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 

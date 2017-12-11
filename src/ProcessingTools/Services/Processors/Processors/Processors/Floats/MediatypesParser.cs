@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts.Processors.Models.Floats;
+    using ProcessingTools.Contracts.Models.Processors.Floats;
     using ProcessingTools.Contracts.Processors.Processors.Floats;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Models.Floats;
