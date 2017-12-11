@@ -1,7 +1,6 @@
 ﻿namespace ProcessingTools.Documents.Services.Data.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -12,8 +11,8 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.IO;
-    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Contracts.Models.Services.Data.Documents;
+    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Exceptions;
 
@@ -43,7 +42,7 @@
             }
         }
 
-        public async Task<IEnumerable<IDocument>> All(object userId, object articleId, int pageNumber, int itemsPerPage)
+        public async Task<IDocument[]> AllAsync(object userId, object articleId, int pageNumber, int itemsPerPage)
         {
             if (userId == null)
             {
@@ -85,14 +84,14 @@
                     DateModified = d.ModifiedOn
                 });
 
-            var documents = await query.ToListAsync().ConfigureAwait(false);
+            var documents = await query.ToArrayAsync().ConfigureAwait(false);
 
             repository.TryDispose();
 
             return documents;
         }
 
-        public async Task<long> Count(object userId, object articleId)
+        public async Task<long> CountAsync(object userId, object articleId)
         {
             if (userId == null)
             {
@@ -117,7 +116,7 @@
             return count;
         }
 
-        public async Task<object> Create(object userId, object articleId, IDocument document, Stream inputStream)
+        public async Task<object> CreateAsync(object userId, object articleId, IDocument document, Stream inputStream)
         {
             if (userId == null)
             {
@@ -174,7 +173,7 @@
             return entity.ContentLength;
         }
 
-        public async Task<object> Delete(object userId, object articleId, object documentId)
+        public async Task<object> DeleteAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {
@@ -205,7 +204,7 @@
             return documentId;
         }
 
-        public async Task<object> DeleteAll(object userId, object articleId)
+        public async Task<object> DeleteAllAsync(object userId, object articleId)
         {
             if (userId == null)
             {
@@ -237,9 +236,9 @@
             return result;
         }
 
-        public async Task<IDocument> Get(object userId, object articleId, object documentId)
+        public async Task<IDocument> GetAsync(object userId, object articleId, object documentId)
         {
-            var entity = await this.GetDocument(userId, articleId, documentId).ConfigureAwait(false);
+            var entity = await this.GetDocumentAsync(userId, articleId, documentId).ConfigureAwait(false);
             return new ProcessingTools.Services.Models.Data.Documents.Document
             {
                 Id = entity.Id.ToString(),
@@ -253,19 +252,19 @@
             };
         }
 
-        public async Task<XmlReader> GetReader(object userId, object articleId, object documentId)
+        public async Task<XmlReader> GetReaderAsync(object userId, object articleId, object documentId)
         {
-            var entity = await this.GetDocument(userId, articleId, documentId).ConfigureAwait(false);
+            var entity = await this.GetDocumentAsync(userId, articleId, documentId).ConfigureAwait(false);
             return this.xmlFileReaderWriter.GetXmlReader(entity.FilePath, this.DataDirectory);
         }
 
-        public async Task<Stream> GetStream(object userId, object articleId, object documentId)
+        public async Task<Stream> GetStreamAsync(object userId, object articleId, object documentId)
         {
-            var entity = await this.GetDocument(userId, articleId, documentId).ConfigureAwait(false);
+            var entity = await this.GetDocumentAsync(userId, articleId, documentId).ConfigureAwait(false);
             return this.xmlFileReaderWriter.ReadToStream(entity.FilePath, this.DataDirectory);
         }
 
-        public async Task<object> UpdateContent(object userId, object articleId, IDocument document, string content)
+        public async Task<object> UpdateContentAsync(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
             {
@@ -303,7 +302,7 @@
             return entity.ContentLength;
         }
 
-        public async Task<object> UpdateMeta(object userId, object articleId, IDocument document)
+        public async Task<object> UpdateMetaAsync(object userId, object articleId, IDocument document)
         {
             if (userId == null)
             {
@@ -339,7 +338,7 @@
             return entity.ContentLength;
         }
 
-        private async Task<Documents.Data.Entity.Models.Document> GetDocument(object userId, object articleId, object documentId)
+        private async Task<Documents.Data.Entity.Models.Document> GetDocumentAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {

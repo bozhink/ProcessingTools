@@ -35,7 +35,7 @@
                 throw new ArgumentNullException(nameof(documentId));
             }
 
-            var reader = await this.service.GetReader(userId, articleId, documentId).ConfigureAwait(false);
+            var reader = await this.service.GetReaderAsync(userId, articleId, documentId).ConfigureAwait(false);
             var content = await this.transformersFactory
                 .GetFormatXmlToHtmlTransformer()
                 .TransformAsync(reader, true)
@@ -66,7 +66,7 @@
                 PreserveWhitespace = true
             };
 
-            var reader = await this.service.GetReader(userId, articleId, documentId).ConfigureAwait(false);
+            var reader = await this.service.GetReaderAsync(userId, articleId, documentId).ConfigureAwait(false);
             xmlDocument.Load(reader);
             reader.Close();
             reader.TryDispose();
@@ -112,7 +112,7 @@
 
             xmlDocument.LoadXml(xmlContent);
 
-            var result = await this.service.UpdateContent(userId, articleId, document, xmlDocument.OuterXml).ConfigureAwait(false);
+            var result = await this.service.UpdateContentAsync(userId, articleId, document, xmlDocument.OuterXml).ConfigureAwait(false);
 
             return result;
         }
@@ -146,7 +146,7 @@
 
             xmlDocument.LoadXml(content);
 
-            var result = await this.service.UpdateContent(userId, articleId, document, xmlDocument.OuterXml).ConfigureAwait(false);
+            var result = await this.service.UpdateContentAsync(userId, articleId, document, xmlDocument.OuterXml).ConfigureAwait(false);
 
             return result;
         }

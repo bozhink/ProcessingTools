@@ -61,7 +61,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            await this.service.Delete(this.UserId, this.FakeArticleId, id).ConfigureAwait(false);
+            await this.service.DeleteAsync(this.UserId, this.FakeArticleId, id).ConfigureAwait(false);
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.RedirectToAction(nameof(this.Index));
         }
@@ -79,7 +79,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteAllConfirmed()
         {
-            await this.service.DeleteAll(this.UserId, this.FakeArticleId).ConfigureAwait(false);
+            await this.service.DeleteAllAsync(this.UserId, this.FakeArticleId).ConfigureAwait(false);
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.RedirectToAction(nameof(this.Index));
         }
@@ -114,9 +114,9 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var document = await this.service.Get(userId, articleId, id).ConfigureAwait(false);
+            var document = await this.service.GetAsync(userId, articleId, id).ConfigureAwait(false);
 
-            var stream = await this.service.GetStream(userId, articleId, id).ConfigureAwait(false);
+            var stream = await this.service.GetStreamAsync(userId, articleId, id).ConfigureAwait(false);
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.File(
                 fileStream: stream,
@@ -152,7 +152,7 @@
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;
 
-                await this.service.UpdateMeta(
+                await this.service.UpdateMetaAsync(
                     userId,
                     articleId,
                     new Document
@@ -196,7 +196,7 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage).ConfigureAwait(false))
+            var items = (await this.service.AllAsync(userId, articleId, currentPage, numberOfItemsPerPage).ConfigureAwait(false))
                 .Select(d => new FileViewModel
                 {
                     ArticleId = articleId.ToString(),
@@ -208,7 +208,7 @@
                 })
                 .ToArray();
 
-            var numberOfDocuments = await this.service.Count(userId, articleId).ConfigureAwait(false);
+            var numberOfDocuments = await this.service.CountAsync(userId, articleId).ConfigureAwait(false);
 
             var viewModel = new ListWithPagingViewModel<FileViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
@@ -357,7 +357,7 @@
                 ContentType = file.ContentType
             };
 
-            var task = this.service.Create(userId, articleId, document, file.InputStream);
+            var task = this.service.CreateAsync(userId, articleId, document, file.InputStream);
             return task;
         }
 
@@ -378,7 +378,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var document = await this.service.Get(userId, articleId, id).ConfigureAwait(false);
+            var document = await this.service.GetAsync(userId, articleId, id).ConfigureAwait(false);
             if (document == null)
             {
                 throw new EntityNotFoundException();

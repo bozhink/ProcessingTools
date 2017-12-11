@@ -163,7 +163,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var document = await this.service.Get(userId, articleId, id).ConfigureAwait(false);
+            var document = await this.service.GetAsync(userId, articleId, id).ConfigureAwait(false);
             if (document == null)
             {
                 throw new EntityNotFoundException();
@@ -193,7 +193,7 @@
                 PreserveWhitespace = true
             };
 
-            var reader = await this.service.GetReader(userId, articleId, model.DocumentId).ConfigureAwait(false);
+            var reader = await this.service.GetReaderAsync(userId, articleId, model.DocumentId).ConfigureAwait(false);
 
             document.Load(reader);
             return document;
@@ -254,7 +254,7 @@
                     FileName = model.FileName
                 };
 
-                var result = await this.service.Create(userId, articleId, documentMetadata, stream).ConfigureAwait(false);
+                var result = await this.service.CreateAsync(userId, articleId, documentMetadata, stream).ConfigureAwait(false);
 
                 stream.Close();
 
