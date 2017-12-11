@@ -7,6 +7,9 @@ namespace ProcessingTools.Contracts.Services.Data.Bio.Taxonomy
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data;
 
+    /// <summary>
+    /// Taxon rank data service.
+    /// </summary>
     public interface ITaxonRankDataService : IAddableDataService<ITaxonRank>, IDeletableDataService<ITaxonRank>
     {
     }

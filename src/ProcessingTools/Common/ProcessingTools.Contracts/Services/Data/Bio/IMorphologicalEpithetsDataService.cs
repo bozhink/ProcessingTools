@@ -5,8 +5,8 @@
 namespace ProcessingTools.Contracts.Services.Data.Bio
 {
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Contracts.Models.Services.Data.Bio;
+    using ProcessingTools.Contracts.Services.Data;
 
     /// <summary>
     /// Morphological epithets data service.

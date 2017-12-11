@@ -59,7 +59,7 @@ namespace ProcessingTools.Contracts.Services.Data
         /// <param name="sort">Sorting expression.</param>
         /// <param name="order"><see cref="SortOrder"/> for sorting.</param>
         /// <param name="filter">Filter expression.</param>
-        /// <returns>Pages and sorted model.</returns>
+        /// <returns>Pages and sorted models.</returns>
         Task<IEnumerable<TModel>> SelectAsync(object userId, int skip, int take, Expression<Func<TModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TModel, bool>> filter = null);
     }
 }

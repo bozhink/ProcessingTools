@@ -4,6 +4,9 @@
 
 namespace ProcessingTools.Contracts.Services.Data.Files
 {
+    /// <summary>
+    /// Streaming system file content data service.
+    /// </summary>
     public interface IStreamingSystemFileContentDataService : IStreamingFileContentDataService
     {
     }
