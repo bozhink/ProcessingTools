@@ -90,10 +90,6 @@
       <Project>{2cee897b-f9d4-4d59-964a-4fc8ba7448f5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj">
-      <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
-      <Name>ProcessingTools.Contracts.Processors</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.4.1.3596\analyzers\Google.Protobuf.dll" />

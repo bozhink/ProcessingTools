@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj" />
   </ItemGroup>
 
 </Project>

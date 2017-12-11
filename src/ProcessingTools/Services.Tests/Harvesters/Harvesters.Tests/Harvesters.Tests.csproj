@@ -88,10 +88,6 @@
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj">
-      <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
-      <Name>ProcessingTools.Contracts.Processors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
       <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
       <Name>Serialization</Name>

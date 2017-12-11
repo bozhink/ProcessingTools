@@ -135,10 +135,6 @@
       <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Processors\ProcessingTools.Contracts.Processors.csproj">
-      <Project>{AA4714BA-02CE-487E-AF9F-1F7C9112FA13}</Project>
-      <Name>ProcessingTools.Contracts.Processors</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>
