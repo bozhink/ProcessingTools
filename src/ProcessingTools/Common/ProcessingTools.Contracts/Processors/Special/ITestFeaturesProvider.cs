@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Special.Processors.Contracts.Processors
+namespace ProcessingTools.Contracts.Processors.Special
 {
     using ProcessingTools.Contracts;
 

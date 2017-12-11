@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Services.Data.History;
     using ProcessingTools.Contracts.Models.Services.Data.Journals;
+    using ProcessingTools.Contracts.Services.Data.History;
+    using ProcessingTools.Contracts.Services.Data.Journals;
     using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Journals.Services.Data.Abstractions.Services;
-    using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Services.Models.Data.Journals;
     using TDataModel = ProcessingTools.Contracts.Models.Journals.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Contracts.Models.Services.Data.Journals.IPublisherDetails;

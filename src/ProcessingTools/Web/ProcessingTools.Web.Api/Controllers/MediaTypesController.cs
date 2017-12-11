@@ -7,7 +7,7 @@
     using AutoMapper;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Mediatypes;
-    using ProcessingTools.Services.Data.Contracts.Mediatypes;
+    using ProcessingTools.Contracts.Services.Data.Mediatypes;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 
     public class MediaTypesController : ApiController
@@ -33,7 +33,7 @@
         {
             try
             {
-                var result = await this.mediatypesResolver.ResolveMediatype(id).ConfigureAwait(false);
+                var result = await this.mediatypesResolver.ResolveMediatypeAsync(id).ConfigureAwait(false);
                 if (result == null)
                 {
                     return this.NotFound();

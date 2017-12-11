@@ -2,12 +2,14 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Data.Contracts
+namespace ProcessingTools.Contracts.Services.Data
 {
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Resources;
-    using ProcessingTools.Contracts.Services.Data;
 
+    /// <summary>
+    /// Institutions data service.
+    /// </summary>
     public interface IInstitutionsDataService : IMultiDataServiceAsync<IInstitution, IFilter>
     {
     }

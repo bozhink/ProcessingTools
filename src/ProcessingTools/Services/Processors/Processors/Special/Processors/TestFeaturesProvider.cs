@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Contracts.Processors;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Processors.Special;
 
     public class TestFeaturesProvider : ITestFeaturesProvider
     {

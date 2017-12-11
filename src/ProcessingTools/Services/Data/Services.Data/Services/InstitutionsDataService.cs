@@ -4,10 +4,10 @@
     using System.Linq.Expressions;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Data.Contracts;
 
     public class InstitutionsDataService : AbstractMultiDataServiceAsync<Institution, IInstitution, IFilter>, IInstitutionsDataService
     {

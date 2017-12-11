@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
     using ProcessingTools.Contracts.Models.Mediatypes;
-    using ProcessingTools.Services.Data.Contracts.Mediatypes;
+    using ProcessingTools.Contracts.Services.Data.Mediatypes;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithDatabase : IMediatypesResolver
@@ -20,7 +19,7 @@
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public async Task<IEnumerable<IMediatype>> ResolveMediatype(string fileExtension)
+        public async Task<IMediatype[]> ResolveMediatypeAsync(string fileExtension)
         {
             string extension = fileExtension?.Trim('.', ' ', '\n', '\r');
             if (string.IsNullOrWhiteSpace(extension))
@@ -38,7 +37,7 @@
                 }
                 else
                 {
-                    return response.Select(e => new Mediatype(e.Mimetype, e.Mimesubtype));
+                    return response.Select(e => new Mediatype(e.Mimetype, e.Mimesubtype)).ToArray();
                 }
             }
             catch
@@ -47,7 +46,7 @@
             }
         }
 
-        private IEnumerable<IMediatype> GetStaticResult(string mimetype, string mimesubtype)
+        private IMediatype[] GetStaticResult(string mimetype, string mimesubtype)
         {
             return new IMediatype[]
             {

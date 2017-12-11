@@ -10,9 +10,9 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Models.Processors.Floats;
     using ProcessingTools.Contracts.Processors.Processors.Floats;
+    using ProcessingTools.Contracts.Services.Data.Mediatypes;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Models.Floats;
-    using ProcessingTools.Services.Data.Contracts.Mediatypes;
 
     public class MediatypesParser : IMediatypesParser
     {
@@ -105,7 +105,7 @@
                 FileExtension = extension
             };
 
-            var response = (await this.mediatypesResolver.ResolveMediatype(extension).ConfigureAwait(false))
+            var response = (await this.mediatypesResolver.ResolveMediatypeAsync(extension).ConfigureAwait(false))
                 .FirstOrDefault();
 
             if (response != null)

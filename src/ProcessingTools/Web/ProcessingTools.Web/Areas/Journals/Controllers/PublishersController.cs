@@ -11,8 +11,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Services.Data.Journals;
+    using ProcessingTools.Contracts.Services.Data.Journals;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Journals.Services.Data.Contracts.Services;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Journals.Models.Publishers;
     using ProcessingTools.Web.Areas.Journals.Models.Shared;

@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Special.Processors.Contracts.Processors;
+    using ProcessingTools.Contracts.Processors.Special;
 
     [System.ComponentModel.Description("Test.")]
     public class TestCommand : ITestCommand

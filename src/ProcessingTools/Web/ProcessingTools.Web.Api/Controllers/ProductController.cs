@@ -3,7 +3,7 @@
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Resources;
-    using ProcessingTools.Services.Data.Contracts;
+    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Resources.Products;
 

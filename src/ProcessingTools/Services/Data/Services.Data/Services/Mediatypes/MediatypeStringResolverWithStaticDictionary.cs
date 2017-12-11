@@ -1,15 +1,14 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
 {
     using System.Threading.Tasks;
-    using Contracts.Mediatypes;
+    using ProcessingTools.Contracts.Services.Data.Mediatypes;
 
     public partial class MediatypeStringResolverWithStaticDictionary : IMediatypeStringResolver
     {
-        public Task<string> Resolve(string fileExtension)
+        public Task<string> ResolveAsync(string fileExtension)
         {
             string extension = fileExtension.TrimStart('.');
-            string mediatype = null;
-            this.mimetypes.TryGetValue(extension, out mediatype);
+            this.mimetypes.TryGetValue(extension, out string mediatype);
             return Task.FromResult(mediatype);
         }
     }
