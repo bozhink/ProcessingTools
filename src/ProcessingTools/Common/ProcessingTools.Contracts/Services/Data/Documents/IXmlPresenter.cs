@@ -12,12 +12,12 @@ namespace ProcessingTools.Contracts.Services.Data.Documents
     /// </summary>
     public interface IXmlPresenter
     {
-        Task<string> GetHtml(object userId, object articleId, object documentId);
+        Task<string> GetHtmlAsync(object userId, object articleId, object documentId);
 
-        Task<string> GetXml(object userId, object articleId, object documentId);
+        Task<string> GetXmlAsync(object userId, object articleId, object documentId);
 
-        Task<object> SaveHtml(object userId, object articleId, IDocument document, string content);
+        Task<object> SaveHtmlAsync(object userId, object articleId, IDocument document, string content);
 
-        Task<object> SaveXml(object userId, object articleId, IDocument document, string content);
+        Task<object> SaveXmlAsync(object userId, object articleId, IDocument document, string content);
     }
 }

@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Contracts.Models.Services.Data.Documents;
+    using ProcessingTools.Contracts.Services.Data.Documents;
 
     public class XmlPresenter : IXmlPresenter
     {
@@ -18,7 +18,7 @@
             this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
         }
 
-        public async Task<string> GetHtml(object userId, object articleId, object documentId)
+        public async Task<string> GetHtmlAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {
@@ -44,7 +44,7 @@
             return content;
         }
 
-        public async Task<string> GetXml(object userId, object articleId, object documentId)
+        public async Task<string> GetXmlAsync(object userId, object articleId, object documentId)
         {
             if (userId == null)
             {
@@ -74,7 +74,7 @@
             return xmlDocument.OuterXml;
         }
 
-        public async Task<object> SaveHtml(object userId, object articleId, IDocument document, string content)
+        public async Task<object> SaveHtmlAsync(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
             {
@@ -117,7 +117,7 @@
             return result;
         }
 
-        public async Task<object> SaveXml(object userId, object articleId, IDocument document, string content)
+        public async Task<object> SaveXmlAsync(object userId, object articleId, IDocument document, string content)
         {
             if (userId == null)
             {

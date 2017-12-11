@@ -53,7 +53,7 @@
                 ContentType = ContentTypes.Xml
             };
 
-            await this.presenter.SaveHtml(userId, this.fakeArticleId, document, content).ConfigureAwait(false);
+            await this.presenter.SaveHtmlAsync(userId, this.fakeArticleId, document, content).ConfigureAwait(false);
 
             return this.DocumentSavedSuccessfullyJsonResult();
         }
@@ -73,7 +73,7 @@
                 ContentType = ContentTypes.Xml
             };
 
-            await this.presenter.SaveXml(userId, this.fakeArticleId, document, content).ConfigureAwait(false);
+            await this.presenter.SaveXmlAsync(userId, this.fakeArticleId, document, content).ConfigureAwait(false);
 
             return this.DocumentSavedSuccessfullyJsonResult();
         }
@@ -87,7 +87,7 @@
             }
 
             var userId = this.User.Identity.GetUserId();
-            var content = await this.presenter.GetHtml(userId, this.fakeArticleId, id).ConfigureAwait(false);
+            var content = await this.presenter.GetHtmlAsync(userId, this.fakeArticleId, id).ConfigureAwait(false);
             return this.ContentJsonResult(id, content);
         }
 
@@ -100,7 +100,7 @@
             }
 
             var userId = this.User.Identity.GetUserId();
-            var content = await this.presenter.GetXml(userId, this.fakeArticleId, id).ConfigureAwait(false);
+            var content = await this.presenter.GetXmlAsync(userId, this.fakeArticleId, id).ConfigureAwait(false);
             return this.ContentJsonResult(id, content);
         }
 
