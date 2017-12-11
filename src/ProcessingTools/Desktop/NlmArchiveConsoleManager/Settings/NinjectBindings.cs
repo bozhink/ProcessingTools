@@ -63,31 +63,31 @@
                 .To<ProcessingTools.Reporters.LogReporter>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalMetaDataService>()
+            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalMetaDataServiceWithFiles>();
 
 #if UseFileDirectory
             string journalMetaFilesDirectory = AppSettings.JournalsJsonFilesDirectoryName;
 
-            this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithFiles>()
                 .WhenInjectedInto<Engine>()
                 .WithConstructorArgument(
                     ParameterNames.JournalMetaFilesDirectoryName,
                     journalMetaFilesDirectory);
 
-            this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithFiles>()
                 .WhenInjectedInto<HelpProvider>()
                 .WithConstructorArgument(
                     ParameterNames.JournalMetaFilesDirectoryName,
                     journalMetaFilesDirectory);
 #else
-            this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<Engine>();
 
-            this.Bind<ProcessingTools.Services.Data.Contracts.Meta.IJournalsMetaDataService>()
+            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<HelpProvider>();
 

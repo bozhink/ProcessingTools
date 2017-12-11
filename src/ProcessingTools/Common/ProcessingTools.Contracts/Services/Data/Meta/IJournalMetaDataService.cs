@@ -2,13 +2,21 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Data.Contracts.Meta
+namespace ProcessingTools.Contracts.Services.Data.Meta
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Models.Documents;
 
+    /// <summary>
+    /// Journal meta data service.
+    /// </summary>
     public interface IJournalMetaDataService
     {
-        Task<IJournalMeta> GetJournalMeta(string journalJsonFileName);
+        /// <summary>
+        /// Parse journal JSON file and returns processed journal metadata.
+        /// </summary>
+        /// <param name="journalJsonFileName">JSON file to process.</param>
+        /// <returns>Processed journal metadata.</returns>
+        Task<IJournalMeta> GetJournalMetaAsync(string journalJsonFileName);
     }
 }

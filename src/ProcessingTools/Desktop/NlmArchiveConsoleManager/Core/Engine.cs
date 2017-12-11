@@ -9,7 +9,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
-    using ProcessingTools.Services.Data.Contracts.Meta;
+    using ProcessingTools.Contracts.Services.Data.Meta;
 
     public class Engine : IEngine
     {

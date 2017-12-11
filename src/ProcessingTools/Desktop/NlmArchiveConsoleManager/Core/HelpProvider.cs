@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Services.Data.Contracts.Meta;
+    using ProcessingTools.Contracts.Services.Data.Meta;
 
     public class HelpProvider : IHelpProvider
     {
