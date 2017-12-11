@@ -130,10 +130,6 @@
       <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
-      <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
-      <Name>ProcessingTools.Contracts.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
       <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>
       <Name>Harvesters</Name>

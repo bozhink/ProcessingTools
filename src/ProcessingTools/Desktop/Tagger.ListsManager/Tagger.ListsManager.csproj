@@ -197,10 +197,6 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
-      <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
-      <Name>ProcessingTools.Contracts.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Taxonomy.Data.Mongo\Bio.Taxonomy.Data.Mongo.csproj">
       <Project>{ef9f97c8-8e72-40d2-96aa-25e776ed1941}</Project>
       <Name>Bio.Taxonomy.Data.Mongo</Name>

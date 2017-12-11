@@ -97,10 +97,6 @@
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
-      <Project>{EA51E95E-86AF-4DDF-8B01-ED7B5FC31426}</Project>
-      <Name>ProcessingTools.Contracts.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Tagger.Commands\Tagger.Commands.csproj">
       <Project>{6FD4843F-4B5D-412C-8101-396960FDDC21}</Project>
       <Name>Tagger.Commands</Name>

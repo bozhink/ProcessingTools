@@ -586,10 +586,6 @@
       <Project>{7544ADF7-4E83-4CA1-BB6E-8F49C69E0B62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Services\ProcessingTools.Contracts.Services.csproj">
-      <Project>{ea51e95e-86af-4ddf-8b01-ed7b5fc31426}</Project>
-      <Name>ProcessingTools.Contracts.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Web\ProcessingTools.Contracts.Web.csproj">
       <Project>{00fccc5a-d81f-4c05-9082-023837220f69}</Project>
       <Name>ProcessingTools.Contracts.Web</Name>
