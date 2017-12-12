@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Contracts
+﻿namespace ProcessingTools.Contracts.Xml
 {
     using System.IO;
     using System.Xml;

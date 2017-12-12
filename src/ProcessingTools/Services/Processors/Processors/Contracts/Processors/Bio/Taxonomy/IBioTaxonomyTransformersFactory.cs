@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Processors.Factories.Bio
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Xml;
 
     public interface IBioTaxonomyTransformersFactory
     {

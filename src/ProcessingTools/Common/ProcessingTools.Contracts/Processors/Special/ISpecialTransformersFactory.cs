@@ -4,6 +4,8 @@
 
 namespace ProcessingTools.Contracts.Processors.Special
 {
+    using ProcessingTools.Contracts.Xml;
+
     /// <summary>
     /// Special Transformers Factory
     /// </summary>

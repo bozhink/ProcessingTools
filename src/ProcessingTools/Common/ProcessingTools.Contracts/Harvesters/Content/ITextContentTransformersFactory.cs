@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Harvesters.Content
 {
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
 
     /// <summary>
     /// Text content transformers factory.

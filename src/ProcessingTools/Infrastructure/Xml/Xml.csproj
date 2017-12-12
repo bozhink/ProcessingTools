@@ -45,17 +45,7 @@
     <Compile Include="Abstractions\AbstractGenericTransformCache.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Cache\XQueryTransformCache.cs" />
-    <Compile Include="Contracts\Cache\IGenericTransformCache.cs" />
-    <Compile Include="Contracts\Cache\IXQueryTransformCache.cs" />
-    <Compile Include="Contracts\Factories\IXQueryTransformerFactory.cs" />
-    <Compile Include="Contracts\Factories\IXslTransformerFactory.cs" />
-    <Compile Include="Contracts\Wrappers\IDocumentWrapper.cs" />
-    <Compile Include="Contracts\Serialization\IXmlTransformDeserializer.cs" />
-    <Compile Include="Contracts\Cache\IXslTransformCache.cs" />
     <Compile Include="Cache\XslTransformCache.cs" />
-    <Compile Include="Contracts\Wrappers\IXmlContextWrapper.cs" />
-    <Compile Include="Contracts\Transformers\IXQueryTransformer.cs" />
-    <Compile Include="Contracts\Transformers\IXslTransformer.cs" />
     <Compile Include="Wrappers\DocumentWrapper.cs" />
     <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\XQueryTransformer.cs" />
@@ -66,7 +56,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Contracts\IXQueryTransform.cs" />
     <Compile Include="Transform\XQueryTransform.cs" />
     <Compile Include="Wrappers\XmlContextWrapper.cs" />
   </ItemGroup>

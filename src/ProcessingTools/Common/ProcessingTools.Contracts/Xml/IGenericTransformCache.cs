@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Contracts.Cache
+﻿namespace ProcessingTools.Contracts.Xml
 {
     public interface IGenericTransformCache<out T>
     {

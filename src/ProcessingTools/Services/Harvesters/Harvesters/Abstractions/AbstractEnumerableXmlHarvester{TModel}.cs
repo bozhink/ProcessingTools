@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Xml.Contracts.Wrappers;
+    using ProcessingTools.Contracts.Xml;
 
     public abstract class AbstractEnumerableXmlHarvester<TModel> : IEnumerableXmlHarvester<TModel>
     {

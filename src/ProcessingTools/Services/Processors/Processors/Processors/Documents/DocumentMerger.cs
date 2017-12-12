@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Processors.Processors.Documents;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class DocumentMerger : IDocumentMerger
     {

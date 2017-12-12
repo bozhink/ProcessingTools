@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Layout.Processors.Contracts.Factories
 {
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
 
     public interface INormalizationTransformerFactory

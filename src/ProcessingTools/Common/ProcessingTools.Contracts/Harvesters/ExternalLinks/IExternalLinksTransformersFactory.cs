@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Harvesters.ExternalLinks
 {
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
 
     /// <summary>
     /// External links transformers factory.

@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Contracts.Processors.Factories
 {
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Xml;
 
     public interface IRegistrationTransformersFactory
     {

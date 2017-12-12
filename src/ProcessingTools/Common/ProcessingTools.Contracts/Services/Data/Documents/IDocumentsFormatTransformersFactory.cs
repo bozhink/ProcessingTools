@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Data.Documents
 {
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
 
     /// <summary>
     /// Documents format transformers factory.

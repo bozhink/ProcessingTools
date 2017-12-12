@@ -3,7 +3,7 @@
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Xml.Transformers;
 
     public class NinjectXmlBindings : NinjectModule
@@ -144,19 +144,19 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Xml.Contracts.Factories.IXslTransformerFactory>()
+            this.Bind<IXslTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Xml.Contracts.Factories.IXQueryTransformerFactory>()
+            this.Bind<IXQueryTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind< ProcessingTools.Contracts.Harvesters.ExternalLinks.IExternalLinksTransformersFactory>()
+            this.Bind<ProcessingTools.Contracts.Harvesters.ExternalLinks.IExternalLinksTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind< ProcessingTools.Contracts.Harvesters.Content.ITextContentTransformersFactory>()
+            this.Bind<ProcessingTools.Contracts.Harvesters.Content.ITextContentTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -164,7 +164,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind< ProcessingTools.Contracts.Harvesters.Abbreviations.IAbbreviationsTransformersFactory>()
+            this.Bind<ProcessingTools.Contracts.Harvesters.Abbreviations.IAbbreviationsTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 

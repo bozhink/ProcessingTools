@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Xml.Contracts.Serialization
+﻿namespace ProcessingTools.Contracts.Xml
 {
     using System.Threading.Tasks;
     using System.Xml;

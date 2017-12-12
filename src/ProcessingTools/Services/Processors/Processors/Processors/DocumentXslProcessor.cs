@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Processors;
-    using ProcessingTools.Xml.Contracts.Factories;
+    using ProcessingTools.Contracts.Xml;
 
     public class DocumentXslProcessor : IDocumentXslProcessor
     {

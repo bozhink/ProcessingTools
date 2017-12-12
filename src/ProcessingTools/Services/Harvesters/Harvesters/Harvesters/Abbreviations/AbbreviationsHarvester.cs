@@ -5,10 +5,9 @@
     using System.Xml;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Contracts.Models.Harvesters.Abbreviations;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Abstractions;
     using ProcessingTools.Harvesters.Models.Abbreviations;
-    using ProcessingTools.Xml.Contracts.Serialization;
-    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class AbbreviationsHarvester : AbstractEnumerableXmlHarvester<IAbbreviationModel>, IAbbreviationsHarvester
     {

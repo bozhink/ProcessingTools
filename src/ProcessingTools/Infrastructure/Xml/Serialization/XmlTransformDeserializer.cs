@@ -3,9 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Contracts.Serialization;
-    using ProcessingTools.Xml.Contracts.Serialization;
+    using ProcessingTools.Contracts.Xml;
 
     public class XmlTransformDeserializer : IXmlTransformDeserializer
     {

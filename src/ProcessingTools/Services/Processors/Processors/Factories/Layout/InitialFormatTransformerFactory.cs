@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Layout.Processors.Factories
 {
     using System;
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Layout.Processors.Contracts.Factories;
 

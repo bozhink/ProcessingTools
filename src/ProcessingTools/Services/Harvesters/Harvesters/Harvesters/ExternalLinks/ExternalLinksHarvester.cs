@@ -5,10 +5,9 @@
     using System.Xml;
     using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Contracts.Models.Harvesters.ExternalLinks;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Abstractions;
     using ProcessingTools.Harvesters.Models.ExternalLinks;
-    using ProcessingTools.Xml.Contracts.Serialization;
-    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public class ExternalLinksHarvester : AbstractEnumerableXmlHarvester<IExternalLinkModel>, IExternalLinksHarvester
     {

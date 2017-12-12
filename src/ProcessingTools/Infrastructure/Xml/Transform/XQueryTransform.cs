@@ -2,8 +2,7 @@
 {
     using System.IO;
     using System.Xml;
-
-    using Contracts;
+    using ProcessingTools.Contracts.Xml;
     using Saxon.Api;
 
     public class XQueryTransform : IXQueryTransform

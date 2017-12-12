@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Harvesters.Abbreviations
 {
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
 
     /// <summary>
     /// Abbreviations transformers factory.

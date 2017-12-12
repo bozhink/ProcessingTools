@@ -2,8 +2,8 @@
 {
     using System;
     using System.Xml;
-    using Contracts.Wrappers;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
 
     public class DocumentWrapper : IDocumentWrapper

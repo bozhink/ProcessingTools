@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Contracts.Xml;
 
     public class XmlContextNormalizer : IXmlContextNormalizer
     {

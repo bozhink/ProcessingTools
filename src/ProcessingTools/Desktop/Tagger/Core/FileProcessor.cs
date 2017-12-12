@@ -11,9 +11,9 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Documents;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Tagger.Contracts;
-    using ProcessingTools.Xml.Contracts.Wrappers;
 
     public partial class FileProcessor : IFileProcessor
     {
