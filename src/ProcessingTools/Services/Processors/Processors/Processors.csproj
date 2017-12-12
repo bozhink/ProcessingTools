@@ -261,10 +261,6 @@
       <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
       <Name>Serialization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
-      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
-      <Name>Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
