@@ -6,7 +6,7 @@
     using NUnit.Framework;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
+    using ProcessingTools.Contracts.Harvesters.Bio;
     using ProcessingTools.Tagger.Commands.Commands;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(ExtractTaxaCommand))]

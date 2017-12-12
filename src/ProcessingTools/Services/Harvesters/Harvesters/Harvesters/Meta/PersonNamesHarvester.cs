@@ -6,8 +6,8 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts.Harvesters.Meta;
     using ProcessingTools.Contracts.Models.Harvesters.Meta;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Harvesters.Models.Meta;
 
     public class PersonNamesHarvester : IPersonNamesHarvester

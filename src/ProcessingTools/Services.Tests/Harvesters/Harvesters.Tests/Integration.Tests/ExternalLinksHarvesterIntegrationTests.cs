@@ -7,7 +7,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Harvesters.Contracts.Factories;
+    using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;

@@ -4,8 +4,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Harvesters.Contracts.Factories;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
+    using ProcessingTools.Contracts.Harvesters.Content;
 
     public class TextContentHarvester : ITextContentHarvester
     {

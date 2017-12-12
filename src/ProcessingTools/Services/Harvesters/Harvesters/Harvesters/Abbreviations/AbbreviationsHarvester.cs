@@ -3,10 +3,9 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Contracts.Models.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Abstractions;
-    using ProcessingTools.Harvesters.Contracts.Factories;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Models.Abbreviations;
     using ProcessingTools.Xml.Contracts.Serialization;
     using ProcessingTools.Xml.Contracts.Wrappers;

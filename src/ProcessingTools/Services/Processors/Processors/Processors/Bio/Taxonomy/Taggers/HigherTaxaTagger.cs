@@ -7,12 +7,12 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Harvesters.Content;
+    using ProcessingTools.Contracts.Harvesters.Meta;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
 
     public class HigherTaxaTagger : IHigherTaxaTagger

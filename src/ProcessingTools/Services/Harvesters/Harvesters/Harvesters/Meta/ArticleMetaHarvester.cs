@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Harvesters.Meta;
     using ProcessingTools.Contracts.Models.Harvesters.Meta;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Meta;
     using ProcessingTools.Harvesters.Models.Meta;
 
     public class ArticleMetaHarvester : IArticleMetaHarvester

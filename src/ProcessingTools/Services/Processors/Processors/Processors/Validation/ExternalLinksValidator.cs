@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Contracts.Processors.Processors.Validation;
     using ProcessingTools.Contracts.Services.Validation;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.ExternalLinks;
 
     public class ExternalLinksValidator : IExternalLinksValidator
     {

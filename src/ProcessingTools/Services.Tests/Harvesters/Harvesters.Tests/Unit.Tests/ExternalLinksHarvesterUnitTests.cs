@@ -3,7 +3,7 @@
     using System;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Harvesters.Contracts.Factories;
+    using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
     using ProcessingTools.Tests.Library;
     using ProcessingTools.Xml.Contracts.Serialization;

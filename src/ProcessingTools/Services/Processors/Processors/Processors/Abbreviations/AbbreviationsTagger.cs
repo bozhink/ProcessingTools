@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Contracts.Models.Processors.Abbreviations;
     using ProcessingTools.Contracts.Processors.Processors.Abbreviations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Processors.Models.Abbreviations;
     using ProcessingTools.Xml.Contracts.Wrappers;
 

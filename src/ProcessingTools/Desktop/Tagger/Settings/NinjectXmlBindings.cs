@@ -136,11 +136,11 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Harvesters.Contracts.Factories.IExternalLinksTransformersFactory>()
+            this.Bind< ProcessingTools.Contracts.Harvesters.ExternalLinks.IExternalLinksTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Harvesters.Contracts.Factories.ITextContentTransformersFactory>()
+            this.Bind< ProcessingTools.Contracts.Harvesters.Content.ITextContentTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -148,7 +148,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Harvesters.Contracts.Factories.IAbbreviationsTransformersFactory>()
+            this.Bind<ProcessingTools.Contracts.Harvesters.Abbreviations.IAbbreviationsTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 

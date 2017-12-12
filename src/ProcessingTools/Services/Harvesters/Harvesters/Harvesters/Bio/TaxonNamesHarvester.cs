@@ -8,9 +8,9 @@
     using System.Xml;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Contracts.Harvesters.Bio;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
 
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {

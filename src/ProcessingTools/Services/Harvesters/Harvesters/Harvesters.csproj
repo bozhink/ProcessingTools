@@ -40,15 +40,6 @@
   <ItemGroup>
     <Compile Include="Abstractions\AbstractEnumerableXmlHarvester{TModel}.cs" />
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\Harvesters\Abbreviations\IAbbreviationsHarvester.cs" />
-    <Compile Include="Contracts\Harvesters\Bio\ITaxonNamesHarvester.cs" />
-    <Compile Include="Contracts\Harvesters\Content\ITextContentHarvester.cs" />
-    <Compile Include="Contracts\Harvesters\ExternalLinks\IExternalLinksHarvester.cs" />
-    <Compile Include="Contracts\Harvesters\Abbreviations\IAbbreviationsTransformersFactory.cs" />
-    <Compile Include="Contracts\Harvesters\ExternalLinks\IExternalLinksTransformersFactory.cs" />
-    <Compile Include="Contracts\Harvesters\Content\ITextContentTransformersFactory.cs" />
-    <Compile Include="Contracts\Harvesters\Meta\IArticleMetaHarvester.cs" />
-    <Compile Include="Contracts\Harvesters\Meta\IPersonNamesHarvester.cs" />
     <Compile Include="Harvesters\Abbreviations\AbbreviationsHarvester.cs" />
     <Compile Include="Harvesters\Bio\TaxonNamesHarvester.cs" />
     <Compile Include="Harvesters\Content\TextContentHarvester.cs" />

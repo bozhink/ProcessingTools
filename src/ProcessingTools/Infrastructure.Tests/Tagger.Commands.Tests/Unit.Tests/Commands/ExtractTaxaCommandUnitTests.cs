@@ -8,7 +8,7 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
+    using ProcessingTools.Contracts.Harvesters.Bio;
     using ProcessingTools.Tagger.Commands.Commands;
     using ProcessingTools.Tests.Library;
 

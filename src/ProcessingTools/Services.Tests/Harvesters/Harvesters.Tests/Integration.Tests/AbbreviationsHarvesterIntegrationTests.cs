@@ -7,7 +7,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Harvesters.Contracts.Factories;
+    using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Harvesters.Abbreviations;
     using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;
