@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
     public class ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy : IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy

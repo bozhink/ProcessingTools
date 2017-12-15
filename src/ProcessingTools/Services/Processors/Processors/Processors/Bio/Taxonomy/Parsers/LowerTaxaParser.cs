@@ -10,7 +10,7 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Models.Processors.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Contracts.Processors.Providers.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;

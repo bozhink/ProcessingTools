@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ProcessingTools.Contracts.Processors.Providers.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy;
+    using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
 
     public class ParseLowerTaxaStrategiesProvider : IParseLowerTaxaStrategiesProvider
     {
@@ -19,9 +18,11 @@
 
             this.strategies = this.GetType().Assembly
                 .GetTypes()
-                .Where(t => t.IsInterface &&
-                            !t.IsGenericType &&
-                            t.GetInterfaces().Contains(typeof(IParseLowerTaxaStrategy)))
+                .Where(
+                    t =>
+                        t.IsInterface &&
+                        !t.IsGenericType &&
+                        t.GetInterfaces().Contains(typeof(IParseLowerTaxaStrategy)))
                 .Select(strategyFactory)
                 .ToArray();
         }

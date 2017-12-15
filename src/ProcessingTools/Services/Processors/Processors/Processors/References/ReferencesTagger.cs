@@ -8,8 +8,8 @@
     using System.Xml;
     using System.Xml.Linq;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Factories;
     using ProcessingTools.Contracts.Models.Processors.References;
+    using ProcessingTools.Contracts.Processors.Factories;
     using ProcessingTools.Contracts.Processors.Processors.References;
     using ProcessingTools.Processors.Models.References;
 

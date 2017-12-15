@@ -134,10 +134,10 @@
                 .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
                 .InSingletonScope();
 
-            this.Bind<Func<Type, ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
+            this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
                 .ToMethod(context =>
                 {
-                    return t => context.Kernel.Get(t) as ProcessingTools.Contracts.Processors.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
+                    return t => context.Kernel.Get(t) as ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
         }
     }

@@ -95,7 +95,6 @@
     <Compile Include="Contracts\Processors\Floats\ITableFootNotesTagger.cs" />
     <Compile Include="Contracts\IGenericStringDataMinerEvaluator.cs" />
     <Compile Include="Contracts\Processors\Products\IProductsTagger.cs" />
-    <Compile Include="Contracts\Providers\Bio\Taxonomy\IParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Contracts\Providers\IAltitudeTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\ICoordinateTagModelProvider.cs" />
     <Compile Include="Contracts\Providers\IDateTagModelProvider.cs" />
@@ -115,12 +114,6 @@
     <Compile Include="Contracts\Processors\Validation\ICrossReferencesValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\IExternalLinksValidator.cs" />
     <Compile Include="Contracts\Processors\Validation\ITaxaValidator.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaFromLeftStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithBasionymStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithByPartsMatchStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithFullStringMatchStrategy.cs" />
     <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
     <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Processors\Layout\Normalizers\XmlContextNormalizer.cs" />
