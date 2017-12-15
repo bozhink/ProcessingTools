@@ -3,7 +3,7 @@
     using System.Collections.Concurrent;
     using ProcessingTools.Contracts.Xml;
 
-    public abstract class AbstractGenericTransformCache<T> : IGenericTransformCache<T>
+    public abstract class AbstractGenericTransformCache<T> : ITransformCache<T>
     {
         protected abstract ConcurrentDictionary<string, T> TransformObjects { get; }
 

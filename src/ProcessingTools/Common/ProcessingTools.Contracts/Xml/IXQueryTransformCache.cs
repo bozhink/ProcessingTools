@@ -1,6 +1,13 @@
-﻿namespace ProcessingTools.Contracts.Xml
+﻿// <copyright file="IXQueryTransformCache.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Contracts.Xml
 {
-    public interface IXQueryTransformCache : IGenericTransformCache<IXQueryTransform>
+    /// <summary>
+    /// XQuery transform cache.
+    /// </summary>
+    public interface IXQueryTransformCache : ITransformCache<IXQueryTransform>
     {
     }
 }

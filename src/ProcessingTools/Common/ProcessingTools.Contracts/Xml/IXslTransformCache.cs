@@ -9,7 +9,7 @@ namespace ProcessingTools.Contracts.Xml
     /// <summary>
     /// XSL transform cache.
     /// </summary>
-    public interface IXslTransformCache : IGenericTransformCache<XslCompiledTransform>
+    public interface IXslTransformCache : ITransformCache<XslCompiledTransform>
     {
     }
 }
