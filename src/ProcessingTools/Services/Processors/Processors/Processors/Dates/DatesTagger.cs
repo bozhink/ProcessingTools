@@ -9,7 +9,7 @@
 
     public class DatesTagger : GenericStringMinerTagger<IDatesDataMiner, IDateTagModelProvider>, IDatesTagger
     {
-        public DatesTagger(IGenericStringDataMinerEvaluator<IDatesDataMiner> evaluator, IStringTagger tagger, IDateTagModelProvider tagModelProvider)
+        public DatesTagger(IStringDataMinerEvaluator<IDatesDataMiner> evaluator, IStringTagger tagger, IDateTagModelProvider tagModelProvider)
             : base(evaluator, tagger, tagModelProvider)
         {
         }

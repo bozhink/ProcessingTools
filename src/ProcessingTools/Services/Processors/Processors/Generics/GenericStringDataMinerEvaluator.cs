@@ -8,7 +8,7 @@
     using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Contracts.Processors;
 
-    public class GenericStringDataMinerEvaluator<TMiner> : IGenericStringDataMinerEvaluator<TMiner>
+    public class GenericStringDataMinerEvaluator<TMiner> : IStringDataMinerEvaluator<TMiner>
         where TMiner : class, IStringDataMiner
     {
         private readonly TMiner miner;

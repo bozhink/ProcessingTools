@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Miners;
 
-    public interface IGenericStringDataMinerEvaluator<TMiner>
+    public interface IStringDataMinerEvaluator<TMiner>
         where TMiner : IStringDataMiner
     {
         Task<IEnumerable<string>> Evaluate(IDocument document);

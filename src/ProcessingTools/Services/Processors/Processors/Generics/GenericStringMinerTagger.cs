@@ -13,12 +13,12 @@
         where TMiner : IStringDataMiner
         where TTagModelProvider : class, IXmlTagModelProvider
     {
-        private readonly IGenericStringDataMinerEvaluator<TMiner> evaluator;
+        private readonly IStringDataMinerEvaluator<TMiner> evaluator;
         private readonly IStringTagger tagger;
         private readonly TTagModelProvider tagModelProvider;
 
         public GenericStringMinerTagger(
-            IGenericStringDataMinerEvaluator<TMiner> evaluator,
+            IStringDataMinerEvaluator<TMiner> evaluator,
             IStringTagger tagger,
             TTagModelProvider tagModelProvider)
         {

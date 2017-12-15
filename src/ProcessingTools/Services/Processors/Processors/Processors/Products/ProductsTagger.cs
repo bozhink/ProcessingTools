@@ -9,7 +9,7 @@
 
     public class ProductsTagger : GenericStringMinerTagger<IProductsDataMiner, IProductTagModelProvider>, IProductsTagger
     {
-        public ProductsTagger(IGenericStringDataMinerEvaluator<IProductsDataMiner> evaluator, IStringTagger tagger, IProductTagModelProvider tagModelProvider)
+        public ProductsTagger(IStringDataMinerEvaluator<IProductsDataMiner> evaluator, IStringTagger tagger, IProductTagModelProvider tagModelProvider)
             : base(evaluator, tagger, tagModelProvider)
         {
         }

@@ -93,7 +93,7 @@
     <Compile Include="Contracts\Processors\Floats\IMediatypesParser.cs" />
     <Compile Include="Contracts\Processors\Institutions\IInstitutionsTagger.cs" />
     <Compile Include="Contracts\Processors\Floats\ITableFootNotesTagger.cs" />
-    <Compile Include="Contracts\IGenericStringDataMinerEvaluator.cs" />
+    <Compile Include="Contracts\IStringDataMinerEvaluator.cs" />
     <Compile Include="Contracts\Processors\Products\IProductsTagger.cs" />
     <Compile Include="Contracts\Processors\Geo\IAltitudeTagModelProvider.cs" />
     <Compile Include="Contracts\Processors\Coordinates\ICoordinateTagModelProvider.cs" />
