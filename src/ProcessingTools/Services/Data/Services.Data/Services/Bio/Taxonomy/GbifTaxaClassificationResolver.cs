@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Gbif.Json;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 

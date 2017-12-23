@@ -9,7 +9,6 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Comparers;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
@@ -58,15 +57,14 @@
             return this.Delete(entity);
         }
 
-        public async Task<IBlackListEntity> Get(object id)
+        public Task<IBlackListEntity> Get(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.DataSet.FirstOrDefaultAsync(e => e.Content == id.ToString()).ConfigureAwait(false);
-            return entity;
+            return Task.Run(() => this.DataSet.FirstOrDefault(e => e.Content == id.ToString()));
         }
 
         public async Task<long> LoadFromFile(string fileName)
@@ -113,11 +111,10 @@
 
             var comparer = new BlackListEntityEqualityComparer();
 
-            var items = await this.DataSet
+            var items = this.DataSet
                 .Distinct(comparer)
                 .Select(item => new XElement(ItemNodeName, item.Content))
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                .ToArray();
 
             XElement list = new XElement(RootNodeName, items);
 
@@ -126,22 +123,21 @@
             return (long)items.Length;
         }
 
-        private async Task<object> Delete(IBlackListEntity entity)
+        private Task<object> Delete(IBlackListEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return await Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 var items = this.DataSet.ToList();
                 items.Remove(entity);
                 this.Items = new ConcurrentQueue<IBlackListEntity>(items);
 
                 return entity;
-            })
-            .ConfigureAwait(false);
+            });
         }
     }
 }

@@ -8,8 +8,8 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using Ninject;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Extensions;
     using ProcessingTools.ListsManager.Settings;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 

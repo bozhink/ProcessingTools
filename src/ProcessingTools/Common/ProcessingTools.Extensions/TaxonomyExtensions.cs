@@ -56,5 +56,109 @@ namespace ProcessingTools.Extensions
 
             return result;
         }
+
+        /// <summary>
+        /// Create taxon name <see cref="XmlElement"/>.
+        /// </summary>
+        /// <param name="document"><see cref="IDocument"/> parent.</param>
+        /// <param name="type">Type of the taxon.</param>
+        /// <returns><see cref="XmlElement"/> for the document.</returns>
+        public static XmlElement CreateTaxonNameXmlElement(this IDocument document, TaxonType type)
+        {
+            XmlElement tn = document.XmlDocument.CreateElement(ElementNames.TaxonName);
+            tn.SetAttribute(AttributeNames.Type, type.ToString().ToLowerInvariant());
+            return tn;
+        }
+
+        /// <summary>
+        /// Extract unique non parsed higher taxa.
+        /// </summary>
+        /// <param name="node"><see cref="XmlNode"/> to be harvested.</param>
+        /// <returns>Taxon names.</returns>
+        public static IEnumerable<string> ExtractUniqueNonParsedHigherTaxa(this XmlNode node)
+        {
+            if (node == null)
+            {
+                return new string[] { };
+            }
+
+            var taxaNames = node.SelectNodes(".//tn[@type='higher'][not(tn-part)]")
+                .Cast<XmlNode>()
+                .Select(c => c.InnerText);
+
+            var result = new HashSet<string>(taxaNames);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Map taxon rank string to <see cref="TaxonRankType"/>.
+        /// </summary>
+        /// <param name="rank">Taxon rank as string.</param>
+        /// <returns>Corresponding <see cref="TaxonRankType"/> value.</returns>
+        public static TaxonRankType MapTaxonRankStringToTaxonRankType(this string rank)
+        {
+            TaxonRankType rankType = TaxonRankType.Other;
+
+            if (!string.IsNullOrWhiteSpace(rank))
+            {
+                switch (rank.ToLowerInvariant())
+                {
+                    case TaxaClassificationConstants.AboveGenusTaxonRankStringValue:
+                        rankType = TaxonRankType.AboveGenus;
+                        break;
+
+                    case TaxaClassificationConstants.AboveFamilyTaxonRankStringValue:
+                        rankType = TaxonRankType.AboveFamily;
+                        break;
+
+                    default:
+                        Enum.TryParse(rank, true, out rankType);
+                        break;
+                }
+            }
+
+            return rankType;
+        }
+
+        /// <summary>
+        /// Map <see cref="TaxonRankType"/> to taxon rank string.
+        /// </summary>
+        /// <param name="rank"><see cref="TaxonRankType"/> value.</param>
+        /// <returns>String value for the rank.</returns>
+        public static string MapTaxonRankTypeToTaxonRankString(this TaxonRankType rank)
+        {
+            switch (rank)
+            {
+                case TaxonRankType.AboveGenus:
+                    return TaxaClassificationConstants.AboveGenusTaxonRankStringValue;
+
+                case TaxonRankType.AboveFamily:
+                    return TaxaClassificationConstants.AboveFamilyTaxonRankStringValue;
+
+                default:
+                    return rank.ToString().ToLowerInvariant();
+            }
+        }
+
+        /// <summary>
+        /// Map <see cref="TaxonType"/> to taxon type string.
+        /// </summary>
+        /// <param name="type"><see cref="TaxonType"/> value.</param>
+        /// <returns>String value for the taxon type.</returns>
+        public static string MapTaxonTypeToTaxonTypeString(this TaxonType type)
+        {
+            return type.ToString().ToLowerInvariant();
+        }
+
+        /// <summary>
+        /// Map <see cref="SpeciesPartType"/> to rank string.
+        /// </summary>
+        /// <param name="type"><see cref="SpeciesPartType"/> value.</param>
+        /// <returns>Rank string value of the type.</returns>
+        public static string ToRankString(this SpeciesPartType type)
+        {
+            return type.ToString().ToLowerInvariant();
+        }
     }
 }

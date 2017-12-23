@@ -5,9 +5,9 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
     public class ParseLowerTaxaWithByPartsMatchStrategy : IParseLowerTaxaWithByPartsMatchStrategy
@@ -54,9 +54,10 @@
             string replace = text;
             foreach (var patternRank in patternRanks)
             {
-                replace = replace.RegexReplace(
+                replace = replace.Replace(
                     patternRank.Pattern + InfraPatternSuffix,
-                    string.Format(InfraRankPairTaxonNameParts123FormatString, patternRank.Rank.ToRankString()));
+                    string.Format(InfraRankPairTaxonNameParts123FormatString, patternRank.Rank.ToRankString()),
+                    true);
             }
 
             return replace;

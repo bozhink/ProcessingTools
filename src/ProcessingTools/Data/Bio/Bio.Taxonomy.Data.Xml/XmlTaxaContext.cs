@@ -10,10 +10,10 @@
     using System.Xml.Serialization;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class XmlTaxaContext : IXmlTaxaContext
     {
@@ -126,7 +126,7 @@
                 throw new ArgumentNullException(nameof(taxon));
             }
 
-            Func<string, ITaxonRankEntity, ITaxonRankEntity> update = (k, t) =>
+            ITaxonRankEntity update(string k, ITaxonRankEntity t)
             {
                 var ranks = taxon.Ranks.Concat(t.Ranks);
 
@@ -138,7 +138,7 @@
                 };
 
                 return result;
-            };
+            }
 
             return this.Taxa.AddOrUpdate(taxon.Name, taxon, update);
         }

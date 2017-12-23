@@ -4,15 +4,15 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
     public class ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy : IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy
     {
         public int ExecutionPriority => 100;
 
-        public async Task<object> ParseAsync(XmlNode context)
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -32,17 +32,19 @@
                 var replacement = @"<tn-part type=""" + rank + @""">$1</tn-part>";
 
                 xml = xml
-                    .RegexReplace(
+                    .Replace(
                         @"(?i)(?<=\b" + prefix + @"\.?\s*<i\b[^>]*><tn\b[^>]+type=""lower""[^>]*>)(\S+)(?=</tn></i>)",
-                        replacement)
-                    .RegexReplace(
+                        replacement,
+                        true)
+                    .Replace(
                         @"(?i)(?<=\b" + prefix + @"\.?\s*<tn\b[^>]+type=""lower""[^>]*>)(\S+)(?=</tn>)",
-                        replacement);
+                        replacement,
+                        true);
             }
 
             context.InnerXml = xml;
 
-            return await Task.FromResult(true).ConfigureAwait(false);
+            return Task.FromResult<object>(true);
         }
     }
 }

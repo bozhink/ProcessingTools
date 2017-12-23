@@ -7,12 +7,12 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Meta;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
@@ -113,11 +113,10 @@
         {
             var stopWords = await this.GetStopWords(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
-            var taxaNamesFirstWord = await taxaNames.GetFirstWord()
+            var taxaNamesFirstWord = taxaNames.GetFirstWord()
                 .Distinct()
                 .DistinctWithStopWords(stopWords)
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                .ToArray();
 
             return new HashSet<string>(taxaNamesFirstWord);
         }
