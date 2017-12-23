@@ -24,7 +24,7 @@
 
         public Task<IEnumerable<string>> GetItemsAsync()
         {
-            return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync<IEnumerable<string>>(async (repository) =>
             {
                 var data = await repository.FindAsync(t => t.IsWhiteListed).ConfigureAwait(false);
 

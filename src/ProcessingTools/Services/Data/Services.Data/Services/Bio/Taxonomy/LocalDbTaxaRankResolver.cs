@@ -40,7 +40,7 @@
                 .Distinct()
                 .ToList();
 
-            return this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync(async (repository) =>
             {
                 var tasks = names.Select(name => this.FindRankForSingleTaxonAsync(repository, name, outputCollection)).ToArray();
 

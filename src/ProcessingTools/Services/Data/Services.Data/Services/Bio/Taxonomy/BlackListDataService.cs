@@ -22,7 +22,7 @@
         {
             var validItems = this.ValidateInputItems(models);
 
-            return this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync(async (repository) =>
             {
                 var tasks = validItems.Select(s => new BlackListEntity
                 {
@@ -40,7 +40,7 @@
         {
             var validItems = this.ValidateInputItems(models);
 
-            return this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync(async (repository) =>
             {
                 var tasks = validItems.Select(b => repository.DeleteAsync(b)).ToArray();
                 await Task.WhenAll(tasks).ConfigureAwait(false);

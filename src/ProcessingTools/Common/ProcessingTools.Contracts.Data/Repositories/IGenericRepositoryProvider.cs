@@ -7,13 +7,41 @@ namespace ProcessingTools.Contracts.Data.Repositories
     using System;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Generic repository provider.
+    /// </summary>
+    /// <typeparam name="TRepository">Type of repository.</typeparam>
     public interface IGenericRepositoryProvider<TRepository>
         where TRepository : IRepository
     {
-        Task Execute(Action<TRepository> action);
+        /// <summary>
+        /// Execute action on repository.
+        /// </summary>
+        /// <param name="action">Action to be executed.</param>
+        /// <returns>Task.</returns>
+        Task ExecuteAsync(Action<TRepository> action);
 
-        Task Execute(Func<TRepository, Task> function);
+        /// <summary>
+        /// Execute awaitable function on repository.
+        /// </summary>
+        /// <param name="action">Awaitable function to be executed.</param>
+        /// <returns>Task.</returns>
+        Task ExecuteAsync(Func<TRepository, Task> action);
 
-        Task<T> Execute<T>(Func<TRepository, Task<T>> function);
+        /// <summary>
+        /// Executes generic function on repository.
+        /// </summary>
+        /// <typeparam name="T">Type of returned result.</typeparam>
+        /// <param name="action">Function to be executed.</param>
+        /// <returns>Task of result.</returns>
+        Task<T> ExecuteAsync<T>(Func<TRepository, T> action);
+
+        /// <summary>
+        /// Executes generic function on repository.
+        /// </summary>
+        /// <typeparam name="T">Type of returned result.</typeparam>
+        /// <param name="action">Function to be executed.</param>
+        /// <returns>Task of result.</returns>
+        Task<T> ExecuteAsync<T>(Func<TRepository, Task<T>> action);
     }
 }

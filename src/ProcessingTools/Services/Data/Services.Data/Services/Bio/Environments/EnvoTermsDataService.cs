@@ -6,8 +6,8 @@
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Bio.Environments.Data.Entity.Models;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data.Bio.Environments;
     using ProcessingTools.Contracts.Models.Services.Data.Bio.Environments;
+    using ProcessingTools.Contracts.Services.Data.Bio.Environments;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Models.Data.Bio.Environments;
 

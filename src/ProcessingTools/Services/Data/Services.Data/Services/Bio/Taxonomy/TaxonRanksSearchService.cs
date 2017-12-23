@@ -27,7 +27,7 @@
                 return Task.FromResult(new ITaxonRank[] { });
             }
 
-            return this.repositoryProvider.Execute<ITaxonRank[]>(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync<ITaxonRank[]>(async (repository) =>
             {
                 var searchString = filter.ToLowerInvariant();
 

@@ -9,11 +9,13 @@
     public class DocumentValidatorTests
     {
         [TestMethod]
-        [Ignore]
+        [Ignore] // Not implemented
         public void DocumentValidator_ValidateSampleXml_ShouldWork()
         {
-            var document = new TaxPubDocument();
-            document.Xml = "<article><front></front></article>";
+            var document = new TaxPubDocument
+            {
+                Xml = "<article><front></front></article>"
+            };
 
             var validator = new DocumentValidator();
             var reporter = new LogReporter(new ConsoleLogger());

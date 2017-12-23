@@ -38,7 +38,7 @@
         {
             var validTaxa = this.ValidateTaxa(models);
 
-            return this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync(async (repository) =>
             {
                 var tasks = validTaxa.Select(this.MapServiceModelToDbModel).Select(t => repository.AddAsync(t)).ToArray();
                 await Task.WhenAll(tasks).ConfigureAwait(false);
@@ -50,7 +50,7 @@
         {
             var validTaxa = this.ValidateTaxa(models);
 
-            return this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync(async (repository) =>
             {
                 var tasks = validTaxa.Select(t => repository.DeleteAsync(t.ScientificName)).ToArray();
                 await Task.WhenAll(tasks).ConfigureAwait(false);

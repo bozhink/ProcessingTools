@@ -2,8 +2,8 @@
 {
     using AutoMapper;
     using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Services.Data.Bio;
     using ProcessingTools.Contracts.Models.Services.Data.Bio;
+    using ProcessingTools.Contracts.Services.Data.Bio;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Bio.TypeStatuses;
 

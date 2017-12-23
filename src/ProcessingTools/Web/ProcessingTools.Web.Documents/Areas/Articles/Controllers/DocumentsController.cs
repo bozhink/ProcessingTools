@@ -35,7 +35,6 @@
 
             var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -50,7 +49,6 @@
 
             var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 

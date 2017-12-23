@@ -24,7 +24,7 @@
                 return Task.FromResult(new string[] { });
             }
 
-            return this.repositoryProvider.Execute((repository) =>
+            return this.repositoryProvider.ExecuteAsync((repository) =>
             {
                 var searchString = filter.ToUpperInvariant();
 

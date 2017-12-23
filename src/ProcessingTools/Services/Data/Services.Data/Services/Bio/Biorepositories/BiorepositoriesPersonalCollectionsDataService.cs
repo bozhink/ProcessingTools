@@ -7,8 +7,8 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Models.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Exceptions;
 
     public class BiorepositoriesPersonalCollectionsDataService : IBiorepositoriesPersonalCollectionsDataService

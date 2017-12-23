@@ -2,80 +2,60 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Data.Repositories;
 
     public class RepositoryProvider<TRepository> : IGenericRepositoryProvider<TRepository>
-        where TRepository : IRepository
+        where TRepository : class, IRepository
     {
-        private readonly IRepositoryFactory<TRepository> repositoryFactory;
+        private readonly TRepository repository;
 
-        public RepositoryProvider(IRepositoryFactory<TRepository> repositoryFactory)
+        public RepositoryProvider(TRepository repository)
         {
-            this.repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public Task Execute(Func<TRepository, Task> function)
-        {
-            if (function == null)
-            {
-                throw new ArgumentNullException(nameof(function));
-            }
-
-            return Task.Run(() =>
-            {
-                var repository = this.repositoryFactory.Create();
-                try
-                {
-                    function.Invoke(repository).Wait();
-                }
-                finally
-                {
-                    repository.TryDispose();
-                }
-            });
-        }
-
-        public Task<T> Execute<T>(Func<TRepository, Task<T>> function)
-        {
-            if (function == null)
-            {
-                throw new ArgumentNullException(nameof(function));
-            }
-
-            return Task.Run(() =>
-            {
-                var repository = this.repositoryFactory.Create();
-                try
-                {
-                    return function.Invoke(repository).Result;
-                }
-                finally
-                {
-                    repository.TryDispose();
-                }
-            });
-        }
-
-        public Task Execute(Action<TRepository> action)
+        public Task ExecuteAsync(Func<TRepository, Task> action)
         {
             if (action == null)
             {
                 throw new ArgumentNullException(nameof(action));
             }
 
-            return Task.Run(() =>
+            return action.Invoke(this.repository);
+        }
+
+        public Task<T> ExecuteAsync<T>(Func<TRepository, Task<T>> action)
+        {
+            if (action == null)
             {
-                var repository = this.repositoryFactory.Create();
-                try
-                {
-                    action.Invoke(repository);
-                }
-                finally
-                {
-                    repository.TryDispose();
-                }
-            });
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            return action.Invoke(this.repository);
+        }
+
+        public Task ExecuteAsync(Action<TRepository> action)
+        {
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            action.Invoke(this.repository);
+
+            return Task.CompletedTask;
+        }
+
+        public Task<T> ExecuteAsync<T>(Func<TRepository, T> action)
+        {
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            var result = action.Invoke(this.repository);
+
+            return Task.FromResult(result);
         }
     }
 }
