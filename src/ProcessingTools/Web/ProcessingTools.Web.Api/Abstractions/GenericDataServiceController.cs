@@ -8,6 +8,7 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Enumerations;
 
     public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
         where TFilter : class, IFilter
@@ -74,7 +75,7 @@
 
             try
             {
-                var data = await this.service.SelectAsync(null, skip, take, sortKey).ConfigureAwait(false);
+                var data = await this.service.SelectAsync(null, skip, take, sortKey, SortOrder.Ascending).ConfigureAwait(false);
                 if (data == null)
                 {
                     return this.NotFound();

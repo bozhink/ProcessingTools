@@ -39,7 +39,7 @@ namespace ProcessingTools.Contracts.Services.Data
         /// <param name="sortColumn">Name of the column to sort.</param>
         /// <param name="sortOrder">Sort order.</param>
         /// <returns>Task of resultant model's array.</returns>
-        Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending);
+        Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder);
 
         /// <summary>
         /// Gets the count of models by filter.

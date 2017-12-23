@@ -52,7 +52,6 @@
 
             var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -62,7 +61,7 @@
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
             await this.service.DeleteAsync(this.UserId, this.FakeArticleId, id).ConfigureAwait(false);
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
+
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -70,7 +69,6 @@
         [HttpGet, ActionName(ActionNames.DeafultDeleteAllActionName)]
         public ActionResult DeleteAll()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -80,7 +78,7 @@
         public async Task<ActionResult> DeleteAllConfirmed()
         {
             await this.service.DeleteAllAsync(this.UserId, this.FakeArticleId).ConfigureAwait(false);
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
+
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -98,7 +96,6 @@
 
             var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -117,7 +114,7 @@
             var document = await this.service.GetAsync(userId, articleId, id).ConfigureAwait(false);
 
             var stream = await this.service.GetStreamAsync(userId, articleId, id).ConfigureAwait(false);
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
+
             return this.File(
                 fileStream: stream,
                 contentType: document.ContentType,
@@ -138,7 +135,6 @@
 
             var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -212,7 +208,6 @@
 
             var viewModel = new ListWithPagingViewModel<FileViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -220,7 +215,6 @@
         [HttpGet]
         public ActionResult Upload()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 

@@ -62,7 +62,7 @@
 
         public virtual Task<TModel[]> SelectAsync(TFilter filter) => this.repository.SelectAsync(filter);
 
-        public virtual Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending) => this.repository.SelectAsync(filter, skip, take, sortColumn, sortOrder);
+        public virtual Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder) => this.repository.SelectAsync(filter, skip, take, sortColumn, sortOrder);
 
         public virtual Task<long> SelectCountAsync(TFilter filter) => this.repository.SelectCountAsync(filter);
 

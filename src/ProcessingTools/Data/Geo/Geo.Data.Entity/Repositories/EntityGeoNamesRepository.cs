@@ -47,7 +47,7 @@
             return await query.ToArrayAsync().ConfigureAwait(false);
         }
 
-        public override async Task<IGeoName[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        public override async Task<IGeoName[]> SelectAsync(ITextFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
         {
             var query = this.GetQuery(filter)
                 .OrderByName(sortColumn, sortOrder)

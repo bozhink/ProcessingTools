@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Contracts.Services.Data.Meta;
     using ProcessingTools.Enumerations;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
-    using ProcessingTools.Contracts.Services.Data.Meta;
 
     public class Engine : IEngine
     {

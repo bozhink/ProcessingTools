@@ -10,6 +10,7 @@
     using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Enumerations;
 
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
         where TServiceModel : class, INameableIntegerIdentifiable
@@ -36,7 +37,7 @@
 
             for (int i = 0; ; i += NumberOfItemsToTake)
             {
-                var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INameableIntegerIdentifiable.Name)).ConfigureAwait(false))
+                var items = (await this.service.SelectAsync(null, i, NumberOfItemsToTake, nameof(INameableIntegerIdentifiable.Name), SortOrder.Ascending).ConfigureAwait(false))
                     .Select(t => t.Name)
                     .Distinct()
                     .ToList();

@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
 {
-    using System.Net;
     using System.Web.Mvc;
     using ProcessingTools.Web.Documents.Extensions;
 
@@ -11,7 +10,6 @@
         [HttpGet]
         public ActionResult Index()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -19,7 +17,6 @@
         [HttpGet]
         public ActionResult Help()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 

@@ -218,7 +218,7 @@
             return result;
         }
 
-        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
         {
             var query = this.SelectQuery(this.GetQuery(filter), skip, take, sortColumn, sortOrder);
             var data = await query.ToListAsync().ConfigureAwait(false);

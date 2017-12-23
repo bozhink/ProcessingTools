@@ -16,6 +16,9 @@ namespace ProcessingTools.Contracts.Data.Repositories
     /// <typeparam name="T">Type of the entity.</typeparam>
     public interface ISearchableRepository<T> : IRepository<T>
     {
+        /// <summary>
+        /// Gets query.
+        /// </summary>
         IQueryable<T> Query { get; }
 
         /// <summary>

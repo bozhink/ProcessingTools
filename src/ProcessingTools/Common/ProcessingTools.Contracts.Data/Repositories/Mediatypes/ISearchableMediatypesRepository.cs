@@ -12,6 +12,11 @@ namespace ProcessingTools.Contracts.Data.Repositories.Mediatypes
     /// </summary>
     public interface ISearchableMediatypesRepository
     {
+        /// <summary>
+        /// Get mediatypes by file extension.
+        /// </summary>
+        /// <param name="fileExtension">The file extension.</param>
+        /// <returns>Mediatypes matching the specified file extension.</returns>
         IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension);
     }
 }

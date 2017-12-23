@@ -18,7 +18,7 @@
         where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
-        private IQueryable<TEntity> SelectQuery(IQueryable<TEntity> query, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        private IQueryable<TEntity> SelectQuery(IQueryable<TEntity> query, int skip, int take, string sortColumn, SortOrder sortOrder)
         {
             return query.OrderByName(sortColumn, sortOrder).Skip(skip).Take(take);
         }
