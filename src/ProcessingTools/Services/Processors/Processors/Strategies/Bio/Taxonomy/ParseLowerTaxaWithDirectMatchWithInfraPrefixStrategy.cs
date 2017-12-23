@@ -32,14 +32,12 @@
                 var replacement = @"<tn-part type=""" + rank + @""">$1</tn-part>";
 
                 xml = xml
-                    .Replace(
+                    .RegexReplace(
                         @"(?i)(?<=\b" + prefix + @"\.?\s*<i\b[^>]*><tn\b[^>]+type=""lower""[^>]*>)(\S+)(?=</tn></i>)",
-                        replacement,
-                        true)
-                    .Replace(
+                        replacement)
+                    .RegexReplace(
                         @"(?i)(?<=\b" + prefix + @"\.?\s*<tn\b[^>]+type=""lower""[^>]*>)(\S+)(?=</tn>)",
-                        replacement,
-                        true);
+                        replacement);
             }
 
             context.InnerXml = xml;

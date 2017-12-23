@@ -24,8 +24,8 @@ namespace ProcessingTools.Data.Miners.Miners.Quantities
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Data.Miners.Contracts.Miners.Quantities;
+    using ProcessingTools.Extensions;
 
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {

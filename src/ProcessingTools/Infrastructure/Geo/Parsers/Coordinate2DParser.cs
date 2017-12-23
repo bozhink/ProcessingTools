@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Geo.Contracts.Models;
     using ProcessingTools.Geo.Contracts.Parsers;
     using ProcessingTools.Geo.Contracts.Transformers;

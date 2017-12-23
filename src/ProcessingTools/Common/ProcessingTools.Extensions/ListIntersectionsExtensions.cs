@@ -1,9 +1,16 @@
-﻿namespace ProcessingTools.Common.Extensions
+﻿// <copyright file="ListIntersectionsExtensions.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Extensions
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
 
+    /// <summary>
+    /// List intersections extensions.
+    /// </summary>
     public static class ListIntersectionsExtensions
     {
         /// <summary>

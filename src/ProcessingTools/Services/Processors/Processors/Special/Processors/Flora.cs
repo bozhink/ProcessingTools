@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Processors.Special;
+    using ProcessingTools.Extensions;
 
     public class Flora : IFlora
     {

@@ -11,10 +11,10 @@
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Seed;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Serialization.Csv;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
@@ -62,7 +62,7 @@
 
         private async Task ImportCsvFileToMongo<TSeedModel, TEntityModel>()
             where TSeedModel : class
-            where TEntityModel : class
+            where TEntityModel : class, new()
         {
             try
             {

@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Services.Data.Bio;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+    using ProcessingTools.Extensions;
 
     public class TypeStatusDataMiner : ITypeStatusDataMiner
     {

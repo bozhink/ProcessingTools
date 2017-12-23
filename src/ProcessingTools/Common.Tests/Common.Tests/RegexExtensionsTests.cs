@@ -3,7 +3,7 @@
     using System;
     using System.Text.RegularExpressions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Extensions;
 
     [TestClass]
     public class RegexExtensionsTests

@@ -1,12 +1,25 @@
-﻿namespace ProcessingTools.Common.Extensions
+﻿// <copyright file="MappingsExtensions.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Extensions
 {
     using System;
     using System.Linq;
 
+    /// <summary>
+    /// Mappings extensions.
+    /// </summary>
     public static class MappingsExtensions
     {
+        /// <summary>
+        /// Map object to type.
+        /// </summary>
+        /// <typeparam name="T">Type of the output object.</typeparam>
+        /// <param name="item">Object to be mapped.</param>
+        /// <returns>resultant object.</returns>
         public static T Map<T>(this object item)
-            where T : class
+            where T : new()
         {
             T result = Activator.CreateInstance<T>();
 

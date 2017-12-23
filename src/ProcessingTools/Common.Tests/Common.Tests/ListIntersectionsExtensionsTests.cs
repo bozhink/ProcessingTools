@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Extensions;
 
     [TestClass]
     public class ListIntersectionsExtensionsTests

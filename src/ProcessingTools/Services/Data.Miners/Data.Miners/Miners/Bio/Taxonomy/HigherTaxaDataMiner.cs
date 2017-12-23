@@ -4,33 +4,33 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
+    using ProcessingTools.Extensions;
 
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
-        public async Task<string[]> MineAsync(string context, IEnumerable<string> seed, IEnumerable<string> stopWords)
+        public Task<string[]> MineAsync(string context, IEnumerable<string> seed, IEnumerable<string> stopWords)
         {
-            if (string.IsNullOrWhiteSpace(context))
+            return Task.Run(() =>
             {
-                return new string[] { };
-            }
+                if (string.IsNullOrWhiteSpace(context))
+                {
+                    return new string[] { };
+                }
 
-            var words = await context.ExtractWordsFromText()
-                .DistinctWithStopWords(stopWords)
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                var words = context.ExtractWordsFromText()
+                    .DistinctWithStopWords(stopWords)
+                    .ToArray();
 
-            var result = await words.Where(w => this.matchHigherTaxa.IsMatch(w))
-                .Union(words.MatchWithSeedWords(seed))
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                var result = words.Where(w => this.matchHigherTaxa.IsMatch(w))
+                    .Union(words.MatchWithSeedWords(seed))
+                    .ToArray();
 
-            return new HashSet<string>(result).ToArray();
+                return new HashSet<string>(result).ToArray();
+            });
         }
     }
 }

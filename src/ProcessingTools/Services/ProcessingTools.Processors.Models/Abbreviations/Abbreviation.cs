@@ -130,8 +130,8 @@ namespace ProcessingTools.Processors.Models.Abbreviations
             abbrevContent.SelectNodes("*[name()!='sup'][name()!='sub']").ReplaceXmlNodeByItsInnerXml();
 
             this.Content = abbrevContent.InnerXml
-                .Replace(@"\s+", " ", true)
-                .Replace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty, true);
+                .RegexReplace(@"\s+", " ")
+                .RegexReplace(@"\A[^\w'""’‘\*\?]+|[^\w'""’‘\*\?]+\Z", string.Empty);
         }
 
         private void SetContentType(XmlNode abbrev)
@@ -142,10 +142,10 @@ namespace ProcessingTools.Processors.Models.Abbreviations
         private void SetDefinition(XmlNode abbrev)
         {
             this.Definition = abbrev[ElementNames.Def]?.InnerText
-                .Replace(@"\s+", " ", true)
-                .Replace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty, true)
-                .Replace(@"\((.+)\)", "$1", true)
-                .Replace(@"\[(.+)\]", "$1", true);
+                .RegexReplace(@"\s+", " ")
+                .RegexReplace(@"\A[=,;:\s–—−-]+|[=,;:\s–—−-]+\Z|\s+(?=\s)", string.Empty)
+                .RegexReplace(@"\((.+)\)", "$1")
+                .RegexReplace(@"\[(.+)\]", "$1");
         }
     }
 }

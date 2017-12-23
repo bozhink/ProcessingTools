@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using NUnit.Framework;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Extensions;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration")]
     public class DistinctWithStopWordsIntegrationTests

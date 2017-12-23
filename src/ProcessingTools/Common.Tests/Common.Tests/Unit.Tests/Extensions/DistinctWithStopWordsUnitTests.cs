@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Extensions;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit")]
     public class DistinctWithStopWordsUnitTests

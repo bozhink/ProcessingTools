@@ -5,12 +5,12 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
         where TServiceModel : class, INameableIntegerIdentifiable

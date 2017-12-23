@@ -28,8 +28,8 @@ namespace ProcessingTools.Extensions
             string articleId = document.SelectSingleNode(XPathStrings.ArticleIdOfTypeDoi)?.InnerText ?? string.Empty;
 
             string referencesFileName = articleId.ToLowerInvariant()
-                .Replace(@"\A.*/", string.Empty, true)
-                .Replace(@"\W+", "-", true)
+                .RegexReplace(@"\A.*/", string.Empty)
+                .RegexReplace(@"\W+", "-")
                 .Trim(new[] { ' ', '-' });
 
             if (string.IsNullOrWhiteSpace(referencesFileName))

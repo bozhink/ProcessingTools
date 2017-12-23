@@ -4,10 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Contracts.Processors.Special;
+    using ProcessingTools.Extensions;
 
     public class QuentinFlora : IQuentinFlora
     {

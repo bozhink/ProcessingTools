@@ -4,7 +4,6 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;

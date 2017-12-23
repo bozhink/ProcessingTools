@@ -10,8 +10,8 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
+    using ProcessingTools.Extensions;
 
     public class GeographicDeviationsDataMiner : IGeographicDeviationsDataMiner
     {

@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Validation
         protected override Func<string, string> GetPermalink => item => string.Format(
             "{0}:{1}",
             PermalinkPrefixes.ValidationCacheTaxonName,
-            item.Trim().Replace(@"\W+", "_", true).ToUpperInvariant());
+            item.Trim().RegexReplace(@"\W+", "_").ToUpperInvariant());
 
         /// <inheritdoc/>
         protected override async Task<IValidationModel<string>[]> ValidateAsync(IEnumerable<string> items)

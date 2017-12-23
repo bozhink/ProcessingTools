@@ -12,15 +12,14 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
+    using ProcessingTools.Extensions;
 
     public class AltitudesDataMiner : IAltitudesDataMiner
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
-        public async Task<string[]> MineAsync(string context)
+        public Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -33,8 +32,8 @@ namespace ProcessingTools.Data.Miners.Miners.Geo
                 @"(?:(?i)a\W*l\W*t(?:[^\w<>]{0,3}c\W*a)?)[^\w<>]{0,5}" + DistancePattern
             };
 
-            var data = await this.ExtractData(context, patterns).ToListAsync().ConfigureAwait(false);
-            return data.Distinct().ToArray();
+            var data = this.ExtractData(context, patterns).ToList();
+            return Task.FromResult(data.Distinct().ToArray());
         }
 
         private IEnumerable<string> ExtractData(string content, IEnumerable<string> patterns)

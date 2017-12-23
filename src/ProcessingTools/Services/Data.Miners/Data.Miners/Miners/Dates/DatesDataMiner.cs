@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Data.Miners.Contracts.Miners.Dates;
+    using ProcessingTools.Extensions;
 
     public class DatesDataMiner : IDatesDataMiner
     {

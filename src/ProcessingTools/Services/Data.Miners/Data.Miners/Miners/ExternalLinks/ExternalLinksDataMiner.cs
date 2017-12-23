@@ -6,12 +6,11 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
     using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
     using ProcessingTools.Data.Miners.Models.ExternalLinks;
     using ProcessingTools.Enumerations.Nlm;
+    using ProcessingTools.Extensions;
 
     public class ExternalLinksDataMiner : IExternalLinksDataMiner
     {
@@ -34,7 +33,7 @@
         private const string PmcidPattern = @"(?i)\bpmc\W*\d+|(?i)(?<=\bpmcid\W*)\d+";
         private const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
 
-        public async Task<IExternalLink[]> MineAsync(string context)
+        public Task<IExternalLink[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
@@ -50,12 +49,12 @@
                 { PmcidPattern, ExternalLinkType.Pmcid }
             };
 
-            var data = await this.ExtractData(context, patterns).ToListAsync().ConfigureAwait(false);
+            var data = this.ExtractData(context, patterns).ToList();
 
             this.DataCleansing(data);
 
             var result = new HashSet<IExternalLink>(data);
-            return result.ToArray();
+            return Task.FromResult(result.ToArray());
         }
 
         private void DataCleansing(IEnumerable<ExternalLink> data)

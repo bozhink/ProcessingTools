@@ -54,10 +54,9 @@
             string replace = text;
             foreach (var patternRank in patternRanks)
             {
-                replace = replace.Replace(
+                replace = replace.RegexReplace(
                     patternRank.Pattern + InfraPatternSuffix,
-                    string.Format(InfraRankPairTaxonNameParts123FormatString, patternRank.Rank.ToRankString()),
-                    true);
+                    string.Format(InfraRankPairTaxonNameParts123FormatString, patternRank.Rank.ToRankString()));
             }
 
             return replace;

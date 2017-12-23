@@ -4,11 +4,10 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
     using ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes;
+    using ProcessingTools.Extensions;
 
     public class SpecimenCodesByPatternDataMiner : ISpecimenCodesByPatternDataMiner
     {
@@ -48,14 +47,14 @@
             };
         }
 
-        public async Task<ISpecimenCode[]> MineAsync(string context)
+        public Task<ISpecimenCode[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                return new ISpecimenCode[] { };
+                return Task.FromResult(new ISpecimenCode[] { });
             }
 
-            var data = await this.patterns.AsParallel()
+            var data = this.patterns.AsParallel()
                 .SelectMany(p => Regex.Match(context, p.Key).AsEnumerable()
                     .Select(m => new SpecimenCodeResponseModel
                     {
@@ -63,10 +62,9 @@
                         ContentType = p.Value
                     }))
                 .Distinct()
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+                .ToArray<ISpecimenCode>();
 
-            return data;
+            return Task.FromResult(data);
         }
     }
 }
