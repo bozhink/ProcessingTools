@@ -5,11 +5,11 @@
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Models.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
 
     public class BiorepositoriesPersonalCollectionsDataService : IBiorepositoriesPersonalCollectionsDataService
     {

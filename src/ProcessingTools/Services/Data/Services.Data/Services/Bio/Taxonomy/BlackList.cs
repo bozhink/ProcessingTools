@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions.Linq;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Data.Repositories.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
@@ -25,12 +25,11 @@
 
         public Task<IEnumerable<string>> GetItemsAsync()
         {
-            return this.repositoryProvider.ExecuteAsync<IEnumerable<string>>(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync<IEnumerable<string>>((repository) =>
             {
-                var result = await repository.Entities
+                var result = repository.Entities
                     .Select(s => s.Content)
-                    .ToListAsync()
-                    .ConfigureAwait(false);
+                    .ToList();
 
                 return new HashSet<string>(result);
             });

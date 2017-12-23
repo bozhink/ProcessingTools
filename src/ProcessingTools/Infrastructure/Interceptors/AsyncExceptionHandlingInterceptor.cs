@@ -7,9 +7,9 @@ namespace ProcessingTools.Interceptors
     using System.Reflection;
     using System.Threading.Tasks;
     using Ninject.Extensions.Interception;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class AsyncExceptionHandlingInterceptor : IInterceptor
     {

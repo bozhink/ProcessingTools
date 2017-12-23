@@ -3,12 +3,12 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.References;
+    using ProcessingTools.Extensions;
 
     [System.ComponentModel.Description("Tag references.")]
     public class TagReferencesCommand : ITagReferencesCommand

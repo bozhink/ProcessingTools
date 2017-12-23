@@ -1,10 +1,14 @@
-﻿namespace ProcessingTools.Common.Extensions
+﻿// <copyright file="DisposableExtensions.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Extensions
 {
     using System;
     using ProcessingTools.Enumerations;
 
     /// <summary>
-    /// Extensions related to IDisposable.
+    /// Extensions related to <see cref="IDisposable"/>.
     /// </summary>
     public static class DisposableExtensions
     {

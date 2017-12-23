@@ -15,6 +15,7 @@
     using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
 
     public class DocumentsDataService : IDocumentsDataService
     {

@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Extensions;
 
     public class RepositoryProviderAsync<TRepository> : IGenericRepositoryProvider<TRepository>
         where TRepository : IRepository

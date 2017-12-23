@@ -5,14 +5,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
 
     public abstract class AbstractMultiDataServiceAsync<TEntity, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>, IDisposable
@@ -95,18 +94,13 @@
             return await this.repository.SaveChangesAsync().ConfigureAwait(false);
         }
 
-        public virtual async Task<TModel[]> SelectAsync(TFilter filter)
+        public virtual Task<TModel[]> SelectAsync(TFilter filter)
         {
             // TODO: filter
-            var result = await this.repository.Query
-                .Select(this.MapEntityToModel)
-                .ToArrayAsync()
-                .ConfigureAwait(false);
-
-            return result;
+            return Task.Run(() => this.repository.Query.Select(this.MapEntityToModel).ToArray());
         }
 
-        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
+        public virtual Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
         {
             // TODO: filter
             if (skip < 0)
@@ -119,23 +113,13 @@
                 throw new InvalidTakeValuePagingException();
             }
 
-            var result = await this.repository.Query
-                .OrderByName(sortColumn, sortOrder)
-                .Skip(skip)
-                .Take(take)
-                .Select(this.MapEntityToModel)
-                .ToArrayAsync()
-                .ConfigureAwait(false);
-
-            return result;
+            return Task.Run(() => this.repository.Query.OrderByName(sortColumn, sortOrder).Skip(skip).Take(take).Select(this.MapEntityToModel).ToArray());
         }
 
-        public virtual async Task<long> SelectCountAsync(TFilter filter)
+        public virtual Task<long> SelectCountAsync(TFilter filter)
         {
             // TODO: filter
-            var count = await this.repository.Query.LongCountAsync().ConfigureAwait(false);
-
-            return count;
+            return Task.Run(() => this.repository.Query.LongCount());
         }
 
         public virtual async Task<object> UpdateAsync(params TModel[] models)

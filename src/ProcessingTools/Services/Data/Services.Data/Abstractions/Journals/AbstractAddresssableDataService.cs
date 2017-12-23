@@ -257,7 +257,7 @@
 
             var query = await this.BuildQueryAsync(skip, take, sort, order, filter).ConfigureAwait(false);
 
-            var data = await query.Select(this.MapDataModelToServiceModel).ToListAsync().ConfigureAwait(false);
+            var data = query.Select(this.MapDataModelToServiceModel).ToList();
 
             return data;
         }
@@ -286,7 +286,7 @@
 
             var query = await this.BuildQueryAsync(skip, take, sort, order, filter).ConfigureAwait(false);
 
-            var data = await query.Select(this.MapDataModelToDetailedServiceModel).ToListAsync().ConfigureAwait(false);
+            var data = query.Select(this.MapDataModelToDetailedServiceModel).ToList();
 
             return data;
         }

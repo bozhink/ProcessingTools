@@ -3,10 +3,10 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Processors.Processors.Documents;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
 
     public class WriteDocumentHelper : IWriteDocumentHelper

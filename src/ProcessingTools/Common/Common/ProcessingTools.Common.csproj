@@ -47,10 +47,6 @@
   <ItemGroup>
     <Compile Include="Attributes\FileNameAttribute.cs" />
     <Compile Include="DocumentValidator.cs" />
-    <Compile Include="Extensions\ConvertExtensions.cs" />
-    <Compile Include="Extensions\DisposableExtensions.cs" />
-    <Compile Include="Extensions\DocumentExtensions.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\Linq\AsyncLinqExtensions.cs" />
     <Compile Include="Extensions\Linq\Expressions\ExpressionCompositionUtility.cs" />
     <Compile Include="Extensions\Linq\Expressions\ExpressionExtensions.cs" />
@@ -60,11 +56,9 @@
     <Compile Include="Extensions\Linq\Expressions\TypeConversionVisitor.cs" />
     <Compile Include="Extensions\ListIntersectionsExtensions.cs" />
     <Compile Include="Extensions\MappingsExtensions.cs" />
-    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\RegexExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaxonomyExtensions.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Mappings\MappingsRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxPubDocument.cs" />

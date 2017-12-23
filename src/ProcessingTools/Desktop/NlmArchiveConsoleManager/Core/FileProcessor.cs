@@ -7,13 +7,13 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Meta;
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Contracts.Services.Data.Files;
+    using ProcessingTools.Extensions;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Models;

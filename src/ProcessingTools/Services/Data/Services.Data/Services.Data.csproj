@@ -118,6 +118,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
+      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+      <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Clients\ProcessingTools.Contracts.Clients.csproj">
       <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
       <Name>ProcessingTools.Contracts.Clients</Name>
@@ -173,10 +177,6 @@
     <ProjectReference Include="..\..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\FileSystem\FileSystem.csproj">
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>

@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Data.Repositories.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
@@ -32,7 +31,7 @@
                     .Where(s => s.Content.ToUpperInvariant().Contains(searchString))
                     .Select(s => s.Content)
                     .Distinct()
-                    .ToArrayAsync();
+                    .ToArray();
             });
         }
     }

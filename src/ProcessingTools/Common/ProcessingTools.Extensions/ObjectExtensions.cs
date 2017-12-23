@@ -1,13 +1,20 @@
-﻿namespace ProcessingTools.Common.Extensions
+﻿// <copyright file="ObjectExtensions.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Extensions
 {
     using System;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
 
+    /// <summary>
+    /// Object extensions.
+    /// </summary>
     public static class ObjectExtensions
     {
         /// <summary>
-        /// Perform a deep Copy of the object.
+        /// Perform a deep copy of the object.
         /// </summary>
         /// <typeparam name="T">The type of object being copied.</typeparam>
         /// <param name="source">The object instance to copy.</param>
@@ -37,6 +44,11 @@
             }
         }
 
+        /// <summary>
+        /// Perform a deep copy of the object.
+        /// </summary>
+        /// <param name="source">The object instance to copy.</param>
+        /// <returns>The copied object.</returns>
         public static object DeepCopy(this object source)
         {
             if (source == null)

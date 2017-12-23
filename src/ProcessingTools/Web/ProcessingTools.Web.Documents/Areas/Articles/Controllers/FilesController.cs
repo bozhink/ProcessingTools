@@ -10,11 +10,11 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
