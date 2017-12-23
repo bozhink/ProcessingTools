@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="Attributes\FileNameAttribute.cs" />
     <Compile Include="DocumentValidator.cs" />
-    <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\ConvertExtensions.cs" />
     <Compile Include="Extensions\DisposableExtensions.cs" />

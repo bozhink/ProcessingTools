@@ -3,11 +3,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Contracts.Processors.Processors.ExternalLinks;
     using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Models.Serialization.Nlm;
     using ProcessingTools.Processors.Models.Layout;
