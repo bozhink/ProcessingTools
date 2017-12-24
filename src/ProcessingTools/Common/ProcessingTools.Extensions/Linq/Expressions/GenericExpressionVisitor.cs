@@ -1,7 +1,8 @@
-﻿/// <summary>
-/// See http://stackoverflow.com/questions/11248585/how-to-map-two-expressions-of-differing-types
-/// </summary>
-namespace ProcessingTools.Common.Extensions.Linq.Expressions
+﻿// <copyright file="GenericExpressionVisitor.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Extensions.Linq.Expressions
 {
     using System;
     using System.Collections.Generic;
@@ -9,21 +10,29 @@ namespace ProcessingTools.Common.Extensions.Linq.Expressions
     using System.Linq.Expressions;
     using System.Reflection;
 
-    public class GenericExpressionVisitor<S, B> : ExpressionVisitor
+    /// <summary>
+    /// Generic expression visitor.
+    /// </summary>
+    /// <typeparam name="S">S</typeparam>
+    /// <typeparam name="B">B</typeparam>
+    /// <remarks>
+    /// See http://stackoverflow.com/questions/11248585/how-to-map-two-expressions-of-differing-types
+    /// </remarks>
+    internal class GenericExpressionVisitor<S, B> : ExpressionVisitor
     {
         private readonly Type typeofS;
-        private readonly IEnumerable<Type> typeofSInterfaces;
         private readonly Type typeofB;
         private readonly IEnumerable<PropertyInfo> typeofBProperties;
 
         private readonly Stack<ParameterExpression[]> parameterStack;
         private readonly IDictionary<string, string> propertyNamesMap;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericExpressionVisitor{S, B}"/> class.
+        /// </summary>
         public GenericExpressionVisitor()
         {
             this.typeofS = typeof(S);
-            this.typeofSInterfaces = this.typeofS.GetInterfaces();
-
             this.typeofB = typeof(B);
             this.typeofBProperties = this.typeofB.GetProperties();
 
@@ -32,24 +41,22 @@ namespace ProcessingTools.Common.Extensions.Linq.Expressions
             this.propertyNamesMap = null;
         }
 
-        public GenericExpressionVisitor(IDictionary<string, string> propertyNamesMap)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericExpressionVisitor{S, B}"/> class.
+        /// </summary>
+        /// <param name="propertyNameMap">Property name map.</param>
+        public GenericExpressionVisitor(IDictionary<string, string> propertyNameMap)
         {
             this.typeofS = typeof(S);
-            this.typeofSInterfaces = this.typeofS.GetInterfaces();
-
             this.typeofB = typeof(B);
             this.typeofBProperties = this.typeofB.GetProperties();
 
             this.parameterStack = new Stack<ParameterExpression[]>();
 
-            this.propertyNamesMap = propertyNamesMap;
+            this.propertyNamesMap = propertyNameMap;
         }
 
-        ////public override Expression Visit(Expression node)
-        ////{
-        ////    return base.Visit(node);
-        ////}
-
+        /// <inheritdoc/>
         protected override Expression VisitLambda<T>(Expression<T> node)
         {
             var lambda = (LambdaExpression)node;
@@ -64,6 +71,7 @@ namespace ProcessingTools.Common.Extensions.Linq.Expressions
             return lambda;
         }
 
+        /// <inheritdoc/>
         protected override Expression VisitMember(MemberExpression node)
         {
             var memberExpression = (MemberExpression)node;
@@ -88,6 +96,7 @@ namespace ProcessingTools.Common.Extensions.Linq.Expressions
             return memberExpression;
         }
 
+        /// <inheritdoc/>
         protected override Expression VisitParameter(ParameterExpression node)
         {
             node = (ParameterExpression)base.VisitParameter(node);

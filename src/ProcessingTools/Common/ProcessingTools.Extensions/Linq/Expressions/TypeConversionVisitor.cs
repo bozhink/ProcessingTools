@@ -1,25 +1,36 @@
-﻿/// <summary>
-/// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
-/// </summary>
-namespace ProcessingTools.Common.Extensions.Linq.Expressions
+﻿// <copyright file="TypeConversionVisitor.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Extensions.Linq.Expressions
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
 
-    public class TypeConversionVisitor : ExpressionVisitor
+    /// <summary>
+    /// Type conversion visitor.
+    /// </summary>
+    /// <remarks>
+    /// See http://stackoverflow.com/questions/14007101/how-can-i-convert-a-lambda-expression-between-different-but-compatible-models
+    /// </remarks>
+    internal class TypeConversionVisitor : ExpressionVisitor
     {
         private readonly IDictionary<Expression, Expression> parameterMap;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TypeConversionVisitor"/> class.
+        /// </summary>
+        /// <param name="parameterMap">The parameter map.</param>
         public TypeConversionVisitor(IDictionary<Expression, Expression> parameterMap)
         {
             this.parameterMap = parameterMap ?? new Dictionary<Expression, Expression>();
         }
 
+        /// <inheritdoc/>
         protected override Expression VisitParameter(ParameterExpression node)
         {
-            Expression parameter;
-            if (this.parameterMap.TryGetValue(node, out parameter))
+            if (this.parameterMap.TryGetValue(node, out Expression parameter))
             {
                 return parameter;
             }
@@ -27,6 +38,7 @@ namespace ProcessingTools.Common.Extensions.Linq.Expressions
             return base.VisitParameter(node);
         }
 
+        /// <inheritdoc/>
         protected override Expression VisitMember(MemberExpression node)
         {
             // re-perform any member-binding
