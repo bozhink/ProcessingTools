@@ -15,6 +15,8 @@ namespace System.Linq.Dynamic
     /// </summary>
     public static class DynamicQueryable
     {
+#pragma warning disable SA1600,CS1591
+
         public static IQueryable<T> Where<T>(this IQueryable<T> source, string predicate, params object[] values)
         {
             return (IQueryable<T>)Where((IQueryable)source, predicate, values);
@@ -384,5 +386,7 @@ namespace System.Linq.Dynamic
 
             return source.AsQueryable().Distinct();
         }
+
+#pragma warning restore SA1600,CS1591
     }
 }

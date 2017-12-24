@@ -145,6 +145,29 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <summary>
         /// Re-map expression to new expression.
         /// </summary>
+        /// <typeparam name="S">Input type.</typeparam>
+        /// <typeparam name="T">Output type.</typeparam>
+        /// <param name="lambda">Lambda expression.</param>
+        /// <returns>Re-mapped expression.</returns>
+        public static Expression<Func<S, T>> ToExpression<S, T>(this LambdaExpression lambda)
+        {
+            ParameterExpression lambdaParameter = lambda.Parameters.Single();
+            ParameterExpression parameter = Expression.Parameter(typeof(S), lambdaParameter.Name);
+
+            var symbols = new Dictionary<string, object>
+            {
+                { parameter.ToString(), parameter }
+            };
+
+            var expression = lambda.Body.ToString();
+            var body = System.Linq.Dynamic.DynamicExpression.Parse(typeof(T), expression, symbols);
+
+            return Expression.Lambda<Func<S, T>>(body, parameter);
+        }
+
+        /// <summary>
+        /// Re-map expression to new expression.
+        /// </summary>
         /// <typeparam name="S">S</typeparam>
         /// <typeparam name="B">B</typeparam>
         /// <typeparam name="T">T</typeparam>
