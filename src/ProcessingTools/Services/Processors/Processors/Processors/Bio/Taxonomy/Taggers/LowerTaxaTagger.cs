@@ -7,14 +7,13 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Meta;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Processors.Models.Layout;
 

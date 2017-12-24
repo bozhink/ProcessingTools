@@ -3,11 +3,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
     using ProcessingTools.Contracts.Models.Mediatypes;
     using ProcessingTools.Contracts.Services.Data.Mediatypes;
+    using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithDatabase : IMediatypesResolver

@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="Attributes\FileNameAttribute.cs" />
     <Compile Include="DocumentValidator.cs" />
-    <Compile Include="Extensions\Linq\AsyncLinqExtensions.cs" />
     <Compile Include="Extensions\Linq\Expressions\ExpressionCompositionUtility.cs" />
     <Compile Include="Extensions\Linq\Expressions\ExpressionExtensions.cs" />
     <Compile Include="Extensions\Linq\Expressions\GenericExpressionVisitor.cs" />

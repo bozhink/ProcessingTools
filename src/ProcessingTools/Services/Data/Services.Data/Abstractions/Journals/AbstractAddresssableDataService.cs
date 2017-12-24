@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Common.Extensions.Linq.Expressions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;

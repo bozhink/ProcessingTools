@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Data.Common.File.Contracts.Repositories;
@@ -29,17 +28,19 @@
 
         protected virtual TContext Context { get; private set; }
 
-        // TODO
-        public virtual async Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var query = this.Context.DataSet.Where(filter);
-            var data = await query.ToArrayAsync().ConfigureAwait(false);
-            return data;
+            return Task.Run(() =>
+            {
+                var query = this.Context.DataSet.Where(filter);
+                var data = query.ToArray();
+                return data;
+            });
         }
 
         public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
@@ -49,7 +50,7 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            return this.Context.DataSet.FirstOrDefaultAsync(filter);
+            return Task.Run(() => this.Context.DataSet.FirstOrDefault(filter));
         }
 
         public virtual Task<TEntity> GetByIdAsync(object id)

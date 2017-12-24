@@ -5,8 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Data.Repositories;
@@ -16,6 +14,7 @@
     using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Extensions.Linq;
 
     public class DocumentsDataService : IDocumentsDataService
     {
