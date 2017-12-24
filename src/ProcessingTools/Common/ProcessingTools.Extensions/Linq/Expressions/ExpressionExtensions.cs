@@ -6,6 +6,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
 
     /// <summary>
@@ -28,6 +29,56 @@ namespace ProcessingTools.Extensions.Linq.Expressions
             var parameter = Expression.Parameter(typeof(T));
             var body = Expression.PropertyOrField(parameter, propertyName);
             return Expression.Lambda<Func<T, S>>(body, parameter);
+        }
+
+        /// <summary>
+        /// Composes two expressions by specified merge expression.
+        /// </summary>
+        /// <typeparam name="T">Type of expression.</typeparam>
+        /// <param name="expression1">Left expression in composition.</param>
+        /// <param name="expression2">Right expression in composition.</param>
+        /// <param name="merge">Merge expression.</param>
+        /// <returns>Expression composition.</returns>
+        public static Expression<T> Compose<T>(this Expression<T> expression1, Expression<T> expression2, Func<Expression, Expression, Expression> merge)
+        {
+            // build parameter map (from parameters of second to parameters of first)
+            var map = expression1.Parameters
+                .Select((f, i) => new
+                {
+                    First = f,
+                    Second = expression2.Parameters[i]
+                })
+                .ToDictionary(p => p.Second, p => p.First);
+
+            // replace parameters in the second lambda expression with parameters from the first
+            var secondBody = ParameterRebinderExpressionVisitor.ReplaceParameters(map, expression2.Body);
+
+            // apply composition of lambda expression bodies to parameters from the first expression
+            return Expression.Lambda<T>(merge(expression1.Body, secondBody), expression1.Parameters);
+        }
+
+        /// <summary>
+        /// Returns composed expressions with And operator.
+        /// </summary>
+        /// <typeparam name="T">Input type.</typeparam>
+        /// <param name="expression1">Left expression in composition.</param>
+        /// <param name="expression2">Right expression in composition.</param>
+        /// <returns>Composed expressions with And operator.</returns>
+        public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> expression1, Expression<Func<T, bool>> expression2)
+        {
+            return expression1.Compose(expression2, Expression.And);
+        }
+
+        /// <summary>
+        /// Returns composed expressions with Or operator.
+        /// </summary>
+        /// <typeparam name="T">Input type.</typeparam>
+        /// <param name="expression1">Left expression in composition.</param>
+        /// <param name="expression2">Right expression in composition.</param>
+        /// <returns>Composed expressions with Or operator.</returns>
+        public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> expression1, Expression<Func<T, bool>> expression2)
+        {
+            return expression1.Compose(expression2, Expression.Or);
         }
 
         /// <summary>
