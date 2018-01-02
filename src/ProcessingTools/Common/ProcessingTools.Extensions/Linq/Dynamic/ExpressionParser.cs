@@ -53,7 +53,7 @@ namespace System.Linq.Dynamic
 
         private static readonly Expression TrueLiteral = Expression.Constant(true);
 
-        private static Dictionary<string, object> keywords;
+        private static Lazy<Dictionary<string, object>> keywordsLazy = new Lazy<Dictionary<string, object>>(() => CreateKeywords());
 
         private readonly Dictionary<Expression, string> literals;
 
@@ -83,11 +83,6 @@ namespace System.Linq.Dynamic
         /// <param name="values">Expression values.</param>
         public ExpressionParser(ParameterExpression[] parameters, string expression, object[] values)
         {
-            if (keywords == null)
-            {
-                keywords = CreateKeywords();
-            }
-
             this.symbols = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             this.literals = new Dictionary<Expression, string>();
             if (parameters != null)
@@ -685,6 +680,8 @@ namespace System.Linq.Dynamic
             /// <param name="y">y</param>
             void F(DateTime? x, DateTime? y);
         }
+
+        private static Dictionary<string, object> Keywords => keywordsLazy.Value;
 
         /// <summary>
         /// Parses expression.
@@ -1430,7 +1427,9 @@ namespace System.Linq.Dynamic
                 {
                     string type1 = expr1 != NullLiteral ? expr1.Type.Name : "null";
                     string type2 = expr2 != NullLiteral ? expr2.Type.Name : "null";
-                    if (expr1as2 != null && expr2as1 != null)
+
+                    // Here  expr2as1 is not null
+                    if (expr1as2 != null)
                     {
                         throw this.ParseError(errorPos, Resources.BothTypesConvertToOther, type1, type2);
                     }
@@ -2176,7 +2175,7 @@ namespace System.Linq.Dynamic
         private Expression ParseIdentifier()
         {
             this.ValidateToken(TokenId.Identifier);
-            if (keywords.TryGetValue(this.token.Text, out object value))
+            if (Keywords.TryGetValue(this.token.Text, out object value))
             {
                 if (value is Type t)
                 {

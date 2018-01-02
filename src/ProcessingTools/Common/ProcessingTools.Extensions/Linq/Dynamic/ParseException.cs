@@ -4,9 +4,14 @@
 
 namespace System.Linq.Dynamic
 {
+    using System;
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Parse Exception.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3925: Update this implementation of 'ISerializable' to conform to the recommended serialization pattern", Justification = "Not Applicable")]
+    [Serializable]
     public sealed class ParseException : Exception
     {
         private readonly int position;
@@ -31,6 +36,12 @@ namespace System.Linq.Dynamic
         public override string ToString()
         {
             return string.Format(Resources.ParseExceptionFormat, this.Message, this.position);
+        }
+
+        /// <inheritdoc/>
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info: info, context: context);
         }
     }
 }

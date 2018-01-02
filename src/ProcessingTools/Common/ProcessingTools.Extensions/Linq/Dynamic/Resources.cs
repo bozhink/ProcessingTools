@@ -1,18 +1,12 @@
-﻿// <copyright file="DynamicLinq.cs" company="ProcessingTools">
+﻿// <copyright file="Resources.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace System.Linq.Dynamic
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq.Expressions;
-    using System.Reflection;
-    using System.Reflection.Emit;
-    using System.Text;
-    using System.Threading;
-
+    /// <summary>
+    /// Resources
+    /// </summary>
     internal static class Resources
     {
         /// <summary>

@@ -1,4 +1,4 @@
-﻿// <copyright file="DynamicLinq.cs" company="ProcessingTools">
+﻿// <copyright file="DynamicOrdering.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
