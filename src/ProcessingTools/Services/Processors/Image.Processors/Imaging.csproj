@@ -69,10 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>

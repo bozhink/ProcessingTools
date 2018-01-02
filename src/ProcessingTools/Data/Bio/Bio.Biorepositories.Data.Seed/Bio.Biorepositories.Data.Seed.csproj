@@ -51,8 +51,8 @@
     <Compile Include="Seeders\BiorepositoriesDataSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">

@@ -217,10 +217,6 @@
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithFullStringMatchStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Clients\ProcessingTools.Contracts.Clients.csproj">
       <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
       <Name>ProcessingTools.Contracts.Clients</Name>

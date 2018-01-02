@@ -124,10 +124,6 @@
     <Compile Include="Unit.Tests\UrlExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>

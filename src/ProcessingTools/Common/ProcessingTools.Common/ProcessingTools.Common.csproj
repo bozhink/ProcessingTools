@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>ProcessingTools</Company>
@@ -10,27 +9,23 @@
     <RepositoryType>git</RepositoryType>
     <Description>Common code</Description>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Common.xml</DocumentationFile>
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.0.3347" />
+    <PackageReference Include="Automapper" Version="6.2.2" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.1.3596" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="AutoMapper" Version="6.1.1" />
-    <PackageReference Include="System.Linq.Dynamic" Version="1.0.7" />
-    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
     <ProjectReference Include="..\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
   </ItemGroup>
-
 </Project>

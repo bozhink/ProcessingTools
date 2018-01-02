@@ -196,6 +196,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9f7ef778-c698-498e-b3d5-5cf91fa69b24}</Project>
+      <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
@@ -275,10 +279,6 @@
     <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>

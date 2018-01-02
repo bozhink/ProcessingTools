@@ -95,10 +95,6 @@
       <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
       <Name>Data.Common.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

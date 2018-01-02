@@ -54,8 +54,8 @@
       <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -402,6 +402,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
+      <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
@@ -445,10 +449,6 @@
     <ProjectReference Include="..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Users.Data.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>

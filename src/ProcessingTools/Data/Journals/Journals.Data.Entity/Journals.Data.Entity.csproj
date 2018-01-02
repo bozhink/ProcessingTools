@@ -71,10 +71,6 @@
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
-      <Name>ProcessingTools.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>

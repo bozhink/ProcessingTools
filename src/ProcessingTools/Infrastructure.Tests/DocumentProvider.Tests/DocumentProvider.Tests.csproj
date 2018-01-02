@@ -79,8 +79,8 @@
     <Compile Include="TaxPubDocumentTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common\ProcessingTools.Common.csproj">
-      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
