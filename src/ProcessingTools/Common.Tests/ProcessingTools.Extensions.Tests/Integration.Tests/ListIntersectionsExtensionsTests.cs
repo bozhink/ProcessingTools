@@ -1,15 +1,26 @@
-﻿namespace ProcessingTools.Common.Tests
+// <copyright file="ListIntersectionsExtensionsTests.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Extensions.Tests.Integration.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// List Intersections Extensions Tests
+    /// </summary>
     [TestClass]
     public class ListIntersectionsExtensionsTests
     {
         private static List<string> wordList;
 
+        /// <summary>
+        /// Class Initialize.
+        /// </summary>
+        /// <param name="context">Test context.</param>
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
@@ -18,10 +29,9 @@
             wordList = words.ToList();
         }
 
-        #region Fixed_String_Samples
-
-        #region MatchWithStringList_StrictMode
-
+        /// <summary>
+        /// MatchWithStringList - Non Regex - Case Insensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseInsensitive_StrictMode()
         {
@@ -35,6 +45,9 @@
                 "CaseInsensitive non-regex match failed.");
         }
 
+        /// <summary>
+        /// MatchWithStringList - Non Regex - Case Sensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseSensitive_StrictMode()
         {
@@ -48,6 +61,9 @@
                 "CaseSensitive non-regex match failed.");
         }
 
+        /// <summary>
+        /// MatchWithStringList - Regex - Case Insensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_Regex_CaseInsensitive_StrictMode()
         {
@@ -61,6 +77,9 @@
                 "CaseInsensitive regex match failed.");
         }
 
+        /// <summary>
+        /// MatchWithStringList - Regex - Case Sensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_Regex_CaseSensitive_StrictMode()
         {
@@ -74,10 +93,9 @@
                 "CaseSensitive regex match failed.");
         }
 
-        #endregion MatchWithStringList_StrictMode
-
-        #region MatchWithStringList_NonStrictMode
-
+        /// <summary>
+        /// MatchWithStringList - Non Regex - Case Insensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseInsensitive_NonStrictMode()
         {
@@ -91,6 +109,9 @@
                 "CaseInsensitive non-regex match failed.");
         }
 
+        /// <summary>
+        /// MatchWithStringList - Non Regex - Case Sensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_NonRegex_CaseSensitive_NonStrictMode()
         {
@@ -104,6 +125,9 @@
                 "CaseSensitive non-regex match failed.");
         }
 
+        /// <summary>
+        /// MatchWithStringList - Regex - Case Insensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_Regex_CaseInsensitive_NonStrictMode()
         {
@@ -117,6 +141,9 @@
                 "CaseInsensitive regex match failed.");
         }
 
+        /// <summary>
+        /// MatchWithStringList - Regex - Case Sensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void MatchWithStringList_Regex_CaseSensitive_NonStrictMode()
         {
@@ -130,10 +157,9 @@
                 "CaseSensitive regex match failed.");
         }
 
-        #endregion MatchWithStringList_NonStrictMode
-
-        #region DistinctWithStringList_StrictMode
-
+        /// <summary>
+        /// DistinctWithStringList - Non Regex - Case Insensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseInsensitive_StrictMode()
         {
@@ -147,6 +173,9 @@
                 "CaseInsensitive non-regex distinct failed.");
         }
 
+        /// <summary>
+        /// DistinctWithStringList - Non Regex - Case Sensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseSensitive_StrictMode()
         {
@@ -160,6 +189,9 @@
                 "CaseSensitive non-regex distinct failed.");
         }
 
+        /// <summary>
+        /// DistinctWithStringList - Regex - Case Insensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseInsensitive_StrictMode()
         {
@@ -173,6 +205,9 @@
                 "CaseInsensitive regex distinct failed.");
         }
 
+        /// <summary>
+        /// DistinctWithStringList - Regex - Case Sensitive - Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseSensitive_StrictMode()
         {
@@ -186,10 +221,9 @@
                 "CaseSensitive regex distinct failed.");
         }
 
-        #endregion DistinctWithStringList_StrictMode
-
-        #region DistinctWithStringList_NonStrictMode
-
+        /// <summary>
+        /// DistinctWithStringList - Non Regex - Case Insensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseInsensitive_NonStrictMode()
         {
@@ -203,6 +237,9 @@
                 "CaseInsensitive non-regex distinct failed.");
         }
 
+        /// <summary>
+        /// DistinctWithStringList - Non Regex - Case Sensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_NonRegex_CaseSensitive_NonStrictMode()
         {
@@ -216,6 +253,9 @@
                 "CaseSensitive non-regex distinct failed.");
         }
 
+        /// <summary>
+        /// DistinctWithStringList - Regex - Case Insensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseInsensitive_NonStrictMode()
         {
@@ -229,6 +269,9 @@
                 "CaseInsensitive regex distinct failed.");
         }
 
+        /// <summary>
+        /// DistinctWithStringList - Regex - Case Sensitive - Non Strict Mode.
+        /// </summary>
         [TestMethod]
         public void DistinctWithStringList_Regex_CaseSensitive_NonStrictMode()
         {
@@ -241,9 +284,5 @@
                 string.Join(" ", matchedValuesCaseSesitive),
                 "CaseSensitive regex distinct failed.");
         }
-
-        #endregion DistinctWithStringList_NonStrictMode
-
-        #endregion Fixed_String_Samples
     }
 }
