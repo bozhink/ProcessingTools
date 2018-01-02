@@ -34,7 +34,7 @@ namespace System.Linq.Dynamic
                 throw new ArgumentNullException(nameof(predicate));
             }
 
-            LambdaExpression lambda = DynamicExpression.ParseLambda(source.ElementType, typeof(bool), predicate, values);
+            LambdaExpression lambda = DynamicExpressionParser.ParseLambda(source.ElementType, typeof(bool), predicate, values);
 
             return source.Provider.CreateQuery(
                 Expression.Call(
@@ -57,7 +57,7 @@ namespace System.Linq.Dynamic
                 throw new ArgumentNullException(nameof(selector));
             }
 
-            LambdaExpression lambda = DynamicExpression.ParseLambda(source.ElementType, null, selector, values);
+            LambdaExpression lambda = DynamicExpressionParser.ParseLambda(source.ElementType, null, selector, values);
 
             return source.Provider.CreateQuery(
                 Expression.Call(
@@ -159,8 +159,8 @@ namespace System.Linq.Dynamic
                 throw new ArgumentNullException(nameof(elementSelector));
             }
 
-            LambdaExpression keyLambda = DynamicExpression.ParseLambda(source.ElementType, null, keySelector, values);
-            LambdaExpression elementLambda = DynamicExpression.ParseLambda(source.ElementType, null, elementSelector, values);
+            LambdaExpression keyLambda = DynamicExpressionParser.ParseLambda(source.ElementType, null, keySelector, values);
+            LambdaExpression elementLambda = DynamicExpressionParser.ParseLambda(source.ElementType, null, elementSelector, values);
             return source.Provider.CreateQuery(
                 Expression.Call(
                     typeof(Queryable),

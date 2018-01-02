@@ -1859,7 +1859,7 @@ namespace System.Linq.Dynamic
                             while (char.IsDigit(this.ch));
                         }
 
-                        if (this.ch == 'F' || this.ch == 'f')
+                        if (this.ch == 'F' || this.ch == 'f' || this.ch == 'L' || this.ch == 'l' || this.ch == 'M' || this.ch == 'm')
                         {
                             this.NextChar();
                         }
@@ -2251,7 +2251,7 @@ namespace System.Linq.Dynamic
         {
             this.ValidateToken(TokenId.IntegerLiteral);
 
-            string t = this.token.Text;
+            string t = this.token.Text.TrimEnd(new[] { 'L', 'l' });
             if (t[0] != '-')
             {
                 if (!ulong.TryParse(t, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out ulong value))
@@ -2472,7 +2472,7 @@ namespace System.Linq.Dynamic
 
             this.ValidateToken(TokenId.CloseParen, Resources.CloseParenthesisOrCommaExpected);
             this.NextToken();
-            Type type = DynamicExpression.CreateClass(properties);
+            Type type = DynamicExpressionParser.CreateClass(properties);
             MemberBinding[] bindings = new MemberBinding[properties.Count];
             for (int i = 0; i < bindings.Length; i++)
             {
@@ -2556,19 +2556,34 @@ namespace System.Linq.Dynamic
             string t = this.token.Text;
             object value = null;
             char last = t[t.Length - 1];
-            if (last == 'F' || last == 'f')
+
+            switch (last)
             {
-                if (float.TryParse(t.Substring(0, t.Length - 1), NumberStyles.Float | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out float f))
-                {
-                    value = f;
-                }
-            }
-            else
-            {
-                if (double.TryParse(t, NumberStyles.Float | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out double d))
-                {
-                    value = d;
-                }
+                case 'M':
+                case 'm':
+                    if (decimal.TryParse(t.Substring(0, t.Length - 1), NumberStyles.Float | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out decimal dc))
+                    {
+                        value = dc;
+                    }
+
+                    break;
+
+                case 'F':
+                case 'f':
+                    if (float.TryParse(t.Substring(0, t.Length - 1), NumberStyles.Float | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out float fl))
+                    {
+                        value = fl;
+                    }
+
+                    break;
+
+                default:
+                    if (double.TryParse(t, NumberStyles.Float | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo, out double db))
+                    {
+                        value = db;
+                    }
+
+                    break;
             }
 
             if (value == null)

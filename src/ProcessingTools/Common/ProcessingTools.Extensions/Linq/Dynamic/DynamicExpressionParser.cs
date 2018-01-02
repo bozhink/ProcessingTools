@@ -1,4 +1,4 @@
-﻿// <copyright file="DynamicExpression.cs" company="ProcessingTools">
+﻿// <copyright file="DynamicExpressionParser.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace System.Linq.Dynamic
     /// <summary>
     /// Dynamic Expression
     /// </summary>
-    public static class DynamicExpression
+    public static class DynamicExpressionParser
     {
         /// <summary>
         /// Parse string expression.
