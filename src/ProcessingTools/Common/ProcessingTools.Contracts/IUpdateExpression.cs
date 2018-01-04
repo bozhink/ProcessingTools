@@ -11,7 +11,7 @@ namespace ProcessingTools.Contracts
     /// <summary>
     /// Update expression.
     /// </summary>
-    /// <typeparam name="T">Type of the updated field</typeparam>
+    /// <typeparam name="T">Type of the updated field.</typeparam>
     public interface IUpdateExpression<T>
     {
         /// <summary>

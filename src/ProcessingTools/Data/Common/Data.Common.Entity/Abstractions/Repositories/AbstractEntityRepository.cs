@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
@@ -120,7 +121,7 @@
             return Task.FromResult<object>(model);
         }
 
-        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
+        public virtual Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
         {
             if (id == null)
             {
@@ -140,7 +141,7 @@
 
             // TODO : Updater
             var updater = new Updater<TEntity>(updateExpression);
-            await updater.Invoke(model).ConfigureAwait(false);
+            updater.Invoke(model);
 
             this.repository.Update(model);
 

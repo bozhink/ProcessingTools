@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Expressions;
 
     public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IEntityCrudRepository<TEntity>
         where TContext : DbContext
@@ -132,7 +132,7 @@
 
             // TODO : Updater
             var updater = new Updater<TEntity>(updateExpression);
-            await updater.Invoke(entity).ConfigureAwait(false);
+            await updater.InvokeAsync(entity).ConfigureAwait(false);
 
             return await this.UpdateAsync(entity).ConfigureAwait(false);
         }

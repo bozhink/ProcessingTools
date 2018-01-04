@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Data.Common.File.Contracts.Repositories;
     using ProcessingTools.Exceptions;
@@ -73,7 +73,7 @@
 
             // TODO : Updater
             var updater = new Updater<TEntity>(updateExpression);
-            await updater.Invoke(entity).ConfigureAwait(false);
+            updater.Invoke(entity);
 
             return await this.Context.Update(entity).ConfigureAwait(false);
         }
