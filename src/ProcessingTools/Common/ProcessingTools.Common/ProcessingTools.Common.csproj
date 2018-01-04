@@ -23,6 +23,7 @@
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj" />
     <ProjectReference Include="..\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
     <ProjectReference Include="..\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />

@@ -34,7 +34,7 @@
             });
 
             this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
-                .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProviderAsync<>));
+                .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
 
             this.Bind<ITypesProvider>()
                 .To<SeederTypesProvider>()
