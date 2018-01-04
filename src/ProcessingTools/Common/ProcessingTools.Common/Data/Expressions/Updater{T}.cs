@@ -6,7 +6,6 @@ namespace ProcessingTools.Common.Data.Expressions
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Expressions;
 
     /// <summary>

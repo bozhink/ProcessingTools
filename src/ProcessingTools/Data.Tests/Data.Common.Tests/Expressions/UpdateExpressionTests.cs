@@ -4,7 +4,7 @@
     using System.Linq;
     using Models;
     using NUnit.Framework;
-    using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Common.Data.Expressions;
 
     [TestFixture]
     public class UpdateExpressionTests

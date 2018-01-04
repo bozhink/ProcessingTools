@@ -118,6 +118,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
+      <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Clients\ProcessingTools.Contracts.Clients.csproj">
       <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
       <Name>ProcessingTools.Contracts.Clients</Name>

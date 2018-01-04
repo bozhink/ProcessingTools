@@ -1,12 +1,11 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Contracts.Repositories;
 

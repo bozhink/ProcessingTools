@@ -7,7 +7,7 @@ namespace ProcessingTools.Contracts.Data.Repositories
     using System;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Expressions;
 
     /// <summary>
     /// Generic CRUD Repository

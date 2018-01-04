@@ -6,7 +6,7 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Common.Data.Expressions;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Expressions;
 
     [TestFixture]
     public class UpdaterTests

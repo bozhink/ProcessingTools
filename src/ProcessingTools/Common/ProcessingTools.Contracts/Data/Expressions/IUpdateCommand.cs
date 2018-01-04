@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
+namespace ProcessingTools.Contracts.Data.Expressions
 {
     /// <summary>
     /// Update command.

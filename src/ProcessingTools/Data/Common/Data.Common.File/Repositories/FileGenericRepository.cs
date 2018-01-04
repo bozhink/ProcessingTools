@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Data.Common.File.Contracts.Repositories;
     using ProcessingTools.Exceptions;

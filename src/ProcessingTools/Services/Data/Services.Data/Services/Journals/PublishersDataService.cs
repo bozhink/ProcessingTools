@@ -3,11 +3,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Models.Services.Data.Journals;
     using ProcessingTools.Contracts.Services.Data.History;
     using ProcessingTools.Contracts.Services.Data.Journals;
-    using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Journals.Services.Data.Abstractions.Services;
     using ProcessingTools.Services.Models.Data.Journals;
     using TDataModel = ProcessingTools.Contracts.Models.Journals.IPublisher;

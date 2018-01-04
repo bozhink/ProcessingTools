@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;

@@ -2,14 +2,14 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
+namespace ProcessingTools.Contracts.Data.Expressions
 {
     using System;
     using System.Collections.Generic;
     using System.Linq.Expressions;
 
     /// <summary>
-    /// Update expression.
+    /// Generic update expression.
     /// </summary>
     /// <typeparam name="T">Type of the updated field.</typeparam>
     public interface IUpdateExpression<T>

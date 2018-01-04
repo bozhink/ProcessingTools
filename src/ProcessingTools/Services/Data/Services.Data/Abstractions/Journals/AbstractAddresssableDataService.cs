@@ -6,13 +6,13 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Contracts.Data.Repositories.Journals;
     using ProcessingTools.Contracts.Models;
     using ProcessingTools.Contracts.Models.Services.Data.Journals;
-    using ProcessingTools.Data.Common.Expressions;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions.Linq.Expressions;
