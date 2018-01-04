@@ -9,11 +9,18 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
+    /// <summary>
+    /// TaxPub document.
+    /// </summary>
     public class TaxPubDocument : ITaxPubDocument
     {
         private const string Xmlns = "xmlns";
         private Encoding encoding;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxPubDocument"/> class.
+        /// </summary>
+        /// <param name="encoding"><see cref="Encoding"/>.</param>
         public TaxPubDocument(Encoding encoding)
         {
             this.NameTable = new NameTable();
@@ -33,22 +40,39 @@
             this.Encoding = encoding;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxPubDocument"/> class.
+        /// </summary>
         public TaxPubDocument()
             : this(new UTF8Encoding())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxPubDocument"/> class.
+        /// </summary>
+        /// <param name="xml">XML as string.</param>
+        /// <param name="encoding"><see cref="Encoding"/>.</param>
         public TaxPubDocument(string xml, Encoding encoding)
             : this(encoding)
         {
             this.Xml = xml;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxPubDocument"/> class.
+        /// </summary>
+        /// <param name="xml">XML as string.</param>
         public TaxPubDocument(string xml)
             : this(xml, new UTF8Encoding())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxPubDocument"/> class.
+        /// </summary>
+        /// <param name="xml"><see cref="XmlDocument"/>.</param>
+        /// <param name="encoding"><see cref="Encoding"/>.</param>
         public TaxPubDocument(XmlDocument xml, Encoding encoding)
             : this(encoding)
         {
@@ -60,11 +84,16 @@
             this.Xml = xml.OuterXml;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxPubDocument"/> class.
+        /// </summary>
+        /// <param name="xml"><see cref="XmlDocument"/>.</param>
         public TaxPubDocument(XmlDocument xml)
             : this(xml, new UTF8Encoding())
         {
         }
 
+        /// <inheritdoc/>
         public Encoding Encoding
         {
             get
@@ -78,10 +107,13 @@
             }
         }
 
+        /// <inheritdoc/>
         public NameTable NameTable { get; private set; }
 
+        /// <inheritdoc/>
         public XmlNamespaceManager NamespaceManager { get; private set; }
 
+        /// <inheritdoc/>
         public string Xml
         {
             get
@@ -120,10 +152,13 @@
             }
         }
 
+        /// <inheritdoc/>
         public XmlDocument XmlDocument { get; private set; }
 
+        /// <inheritdoc/>
         public SchemaType SchemaType { get; set; }
 
+        /// <inheritdoc/>
         public IEnumerable<XmlNode> SelectNodes(string xpath)
         {
             if (string.IsNullOrWhiteSpace(xpath))
@@ -138,6 +173,7 @@
             return query;
         }
 
+        /// <inheritdoc/>
         public XmlNode SelectSingleNode(string xpath)
         {
             if (string.IsNullOrWhiteSpace(xpath))

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Common
+﻿// <copyright file="DocumentValidator.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common
 {
     using System;
     using System.IO;
@@ -11,12 +15,18 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Processors;
 
+    /// <summary>
+    /// Document Validator.
+    /// </summary>
     public class DocumentValidator : IDocumentValidator
     {
         private readonly XmlReaderSettings readerSettings;
         private readonly XmlWriterSettings writerSettings;
         private readonly StringBuilder reportBuilder;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocumentValidator"/> class.
+        /// </summary>
         public DocumentValidator()
         {
             this.readerSettings = new XmlReaderSettings
@@ -56,6 +66,7 @@
             this.reportBuilder = new StringBuilder();
         }
 
+        /// <inheritdoc/>
         public async Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)
