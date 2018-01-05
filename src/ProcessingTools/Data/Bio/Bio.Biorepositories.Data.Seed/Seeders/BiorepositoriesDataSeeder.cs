@@ -11,9 +11,9 @@
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
     using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Common.Data.Seed;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Seed;
     using ProcessingTools.Extensions;
     using ProcessingTools.Serialization.Csv;
 
@@ -90,7 +90,7 @@
 
                 var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);
                 var seeder = new SimpleRepositorySeeder<TEntityModel>(repositoryProvider);
-                await seeder.Seed(items).ConfigureAwait(false);
+                await seeder.SeedAsync(items).ConfigureAwait(false);
             }
             catch (Exception e)
             {

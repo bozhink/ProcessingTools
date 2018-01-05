@@ -1,10 +1,18 @@
-﻿namespace ProcessingTools.Data.Common.Seed
+﻿// <copyright file="SimpleRepositorySeeder.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Data.Seed
 {
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Simple Repository Seeder.
+    /// </summary>
+    /// <typeparam name="TEntity">Type of the entity.</typeparam>
     public class SimpleRepositorySeeder<TEntity>
         where TEntity : class
     {
@@ -12,12 +20,21 @@
 
         private readonly ICrudRepositoryProvider<TEntity> repositoryProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleRepositorySeeder{TEntity}"/> class.
+        /// </summary>
+        /// <param name="repositoryProvider">Repository provider.</param>
         public SimpleRepositorySeeder(ICrudRepositoryProvider<TEntity> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public async Task Seed(params TEntity[] data)
+        /// <summary>
+        /// Seeds repository with data.
+        /// </summary>
+        /// <param name="data">Data to be used for seeding.</param>
+        /// <returns>Task</returns>
+        public async Task SeedAsync(params TEntity[] data)
         {
             if (data == null || data.Length < 1)
             {
