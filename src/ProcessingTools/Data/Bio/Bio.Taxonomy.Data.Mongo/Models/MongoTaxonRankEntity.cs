@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
+    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Data.Common.Mongo.Attributes;
     using ProcessingTools.Enumerations;
 
     [CollectionName("taxa")]

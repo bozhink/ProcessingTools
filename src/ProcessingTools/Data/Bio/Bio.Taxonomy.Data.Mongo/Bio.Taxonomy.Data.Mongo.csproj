@@ -61,6 +61,10 @@
     <Content Include="Queries\taxa-select-multi-ranks.js" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
+      <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
       <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
       <Name>ProcessingTools.Contracts.Data</Name>
