@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using ProcessingTools.Data.Common.Mongo.Attributes;
+    using ProcessingTools.Common.Attributes;
 
     public static class CollectionNameFactory
     {

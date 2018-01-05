@@ -45,7 +45,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\CollectionNameAttribute.cs" />
     <Compile Include="Constants\ConfigurationConstants.cs" />
     <Compile Include="Contracts\IMongoDatabaseProvider.cs" />
     <Compile Include="Factories\CollectionNameFactory.cs" />
@@ -60,6 +59,10 @@
     <Compile Include="Repositories\MongoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
+      <Name>ProcessingTools.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
@@ -89,6 +92,7 @@
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

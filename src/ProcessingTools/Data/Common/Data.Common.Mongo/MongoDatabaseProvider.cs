@@ -1,10 +1,10 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo
 {
     using System;
-    using Constants;
-    using Contracts;
     using MongoDB.Bson.Serialization.Conventions;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Common.Mongo.Constants;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
 
     public class MongoDatabaseProvider : IMongoDatabaseProvider
     {
