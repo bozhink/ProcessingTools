@@ -4,9 +4,9 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Contracts.Repositories;
+    using ProcessingTools.Extensions.Data;
 
     public class MongoGenericRepository<T> : MongoCrudRepository<T, T>, IMongoGenericRepository<T>
         where T : class

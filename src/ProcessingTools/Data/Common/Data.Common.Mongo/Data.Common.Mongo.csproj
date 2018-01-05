@@ -72,9 +72,9 @@
       <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
       <Name>ProcessingTools.Contracts.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+      <Project>{720D359F-49D1-4126-A79B-F63CCE9780A0}</Project>
+      <Name>ProcessingTools.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -82,10 +82,6 @@
       <Project>{302862fe-1839-4d5c-be85-8b2b1e73ece0}</Project>
       <Name>Data.Common.File</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Bio.Taxonomy.Data.Xml.ruleset" />

@@ -8,11 +8,11 @@
     using MongoDB.Driver;
     using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Contracts.Models.Documents;
-    using ProcessingTools.Data.Common.Extensions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
     using ProcessingTools.Documents.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Mongo.Models;
+    using ProcessingTools.Extensions.Data;
 
     public class MongoJournalMetaRepository : MongoRepository<JournalMeta>, IMongoJournalMetaRepository
     {

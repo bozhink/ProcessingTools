@@ -631,10 +631,6 @@
       <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
       <Name>Data.Common.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Common\Data.Common\Data.Common.csproj">
-      <Project>{8DE48EB2-2387-4D85-A78C-773A300881D5}</Project>
-      <Name>Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents\Documents.Data.Entity\Documents.Data.Entity.csproj">
       <Project>{21813087-5b64-4279-b352-977e722e795a}</Project>
       <Name>Documents.Data.Entity</Name>
