@@ -7,6 +7,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Dynamic.Core;
     using System.Linq.Expressions;
 
     /// <summary>
@@ -160,7 +161,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
             };
 
             var expression = lambda.Body.ToString();
-            var body = System.Linq.Dynamic.DynamicExpressionParser.Parse(typeof(T), expression, symbols);
+            var body = DynamicExpressionParser.ParseLambda(typeof(T), expression, symbols);
 
             return Expression.Lambda<Func<S, T>>(body, parameter);
         }

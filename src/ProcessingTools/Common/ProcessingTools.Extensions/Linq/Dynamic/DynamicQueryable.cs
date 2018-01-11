@@ -2,10 +2,12 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace System.Linq.Dynamic
+namespace ProcessingTools.Extensions.Linq.Dynamic
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
 

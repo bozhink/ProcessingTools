@@ -2,8 +2,10 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace System.Linq.Dynamic
+namespace ProcessingTools.Extensions.Linq.Dynamic
 {
+    using System;
+
     /// <summary>
     /// Dynamic Property
     /// </summary>

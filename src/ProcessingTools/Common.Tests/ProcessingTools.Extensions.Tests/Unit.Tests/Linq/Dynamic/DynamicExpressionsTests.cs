@@ -6,10 +6,10 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests.Linq.Dynamic
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq.Dynamic;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using ProcessingTools.Extensions.Linq.Dynamic;
 
     /// <summary>
     /// Dynamic Expressions Tests
