@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Serialization.Csv
+﻿namespace ProcessingTools.Common.Serialization.Csv
 {
     using System.Collections.Generic;
 
@@ -8,7 +8,7 @@
     public class ColumnIndexToPropertyNameMapping
     {
         /// <summary>
-        /// Initializes new object with empty Mapping dictionary.
+        /// Initializes a new instance of the <see cref="ColumnIndexToPropertyNameMapping"/> class.
         /// </summary>
         public ColumnIndexToPropertyNameMapping()
         {

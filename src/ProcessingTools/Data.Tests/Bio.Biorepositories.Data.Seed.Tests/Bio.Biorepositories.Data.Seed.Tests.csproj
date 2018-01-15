@@ -79,10 +79,6 @@
       <Project>{dda1c4f8-aa95-4fee-9e85-d7d0bea6fac3}</Project>
       <Name>Bio.Biorepositories.Data.Seed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
-      <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
-      <Name>Serialization</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

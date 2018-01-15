@@ -6,7 +6,7 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Serialization.Csv;
+    using ProcessingTools.Common.Serialization.Csv;
 
     [TestClass]
     public class CsvSeedModelTests

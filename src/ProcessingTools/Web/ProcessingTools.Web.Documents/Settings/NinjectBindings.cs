@@ -78,13 +78,6 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Serialization.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
             this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
 

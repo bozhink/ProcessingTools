@@ -12,10 +12,10 @@
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
     using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Data.Seed;
+    using ProcessingTools.Common.Serialization.Csv;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Serialization.Csv;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {

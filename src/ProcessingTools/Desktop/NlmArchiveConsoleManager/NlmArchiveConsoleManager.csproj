@@ -149,10 +149,6 @@
       <Project>{7351B164-F80A-4FA2-A3E3-9B3DBB2FDAAD}</Project>
       <Name>Reporters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Serialization\Serialization.csproj">
-      <Project>{2b556ad3-ed8a-4145-8878-f6d02769ff20}</Project>
-      <Name>Serialization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>

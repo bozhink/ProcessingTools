@@ -40,5 +40,9 @@
     "font-awesome": "^4.7.0",
     "angular": "1.6.7",
     "angular-route": "^1.6.7"
+  },
+  "resolutions": {
+    "jquery": ">=1.7.2",
+    "angular": "1.6.8"
   }
 }

@@ -48,7 +48,7 @@
                 .With<FileExistsRaiseWarningInterceptor>();
 
             this.Bind<ProcessingTools.Contracts.Serialization.IDeserializer>()
-                .To<ProcessingTools.Serialization.Serializers.DataContractJsonDeserializer>()
+                .To<ProcessingTools.Common.Serialization.DataContractJsonDeserializer>()
                 .InSingletonScope();
 
             this.Bind<IProcessorFactory>()

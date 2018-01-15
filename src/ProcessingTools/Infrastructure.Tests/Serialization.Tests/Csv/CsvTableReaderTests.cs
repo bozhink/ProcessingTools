@@ -2,8 +2,7 @@
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using ProcessingTools.Serialization.Csv;
+    using ProcessingTools.Common.Serialization.Csv;
 
     [TestClass]
     public class CsvTableReaderTests

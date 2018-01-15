@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Serialization.Serializers
+﻿namespace ProcessingTools.Common.Serialization
 {
     using System;
     using System.IO;

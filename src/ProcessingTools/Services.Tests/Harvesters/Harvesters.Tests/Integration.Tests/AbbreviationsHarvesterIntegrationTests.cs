@@ -6,10 +6,10 @@
     using System.Xml;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
+    using ProcessingTools.Common.Serialization;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Harvesters.Abbreviations;
-    using ProcessingTools.Serialization.Serializers;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;

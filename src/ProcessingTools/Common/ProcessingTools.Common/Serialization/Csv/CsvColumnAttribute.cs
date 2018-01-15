@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Serialization.Csv
+﻿namespace ProcessingTools.Common.Serialization.Csv
 {
     using System;
 

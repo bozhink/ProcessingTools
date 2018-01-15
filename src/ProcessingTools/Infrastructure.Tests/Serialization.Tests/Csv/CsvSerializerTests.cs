@@ -2,11 +2,9 @@
 {
     using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
-
-    using ProcessingTools.Serialization.Csv;
+    using ProcessingTools.Common.Serialization.Csv;
+    using ProcessingTools.Serialization.Tests.Csv.Models;
 
     [TestClass]
     public class CsvSerializerTests
