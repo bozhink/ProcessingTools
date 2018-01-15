@@ -253,10 +253,6 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Strings\Strings.csproj">
-      <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
-      <Name>Strings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</Project>
       <Name>Data.Miners</Name>

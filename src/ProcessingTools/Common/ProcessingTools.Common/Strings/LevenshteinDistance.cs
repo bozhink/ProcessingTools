@@ -1,13 +1,21 @@
-﻿namespace ProcessingTools.Strings
+﻿// <copyright file="LevenshteinDistance.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Strings
 {
     using System;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Contains approximate string matching
     /// </summary>
     public static class LevenshteinDistance
     {
-        public const int DefaultFuzzynessRadius = 3;
+        /// <summary>
+        /// Default Fuzziness Radius.
+        /// </summary>
+        public const int DefaultFuzzinessRadius = 3;
 
         /// <summary>
         /// Compute the distance between two strings.
@@ -63,7 +71,22 @@
             return distanceMatrix[string1Length, string2Length];
         }
 
-        public static SimilarityType ComputeSimilarity(string string1, string string2, uint fuzzynessRadius = DefaultFuzzynessRadius)
+        /// <summary>
+        /// Calculates relative similarity of two strings.
+        /// </summary>
+        /// <param name="string1">Left string to be compared.</param>
+        /// <param name="string2">Right string to be compared.</param>
+        /// <returns><see cref="SimilarityType"/> of comparison.</returns>
+        public static SimilarityType ComputeSimilarity(string string1, string string2) => ComputeSimilarity(string1: string1, string2: string2, fuzzinessRadius: DefaultFuzzinessRadius);
+
+        /// <summary>
+        /// Calculates relative similarity of two strings.
+        /// </summary>
+        /// <param name="string1">Left string to be compared.</param>
+        /// <param name="string2">Right string to be compared.</param>
+        /// <param name="fuzzinessRadius">Radius of fuzziness to be used.</param>
+        /// <returns><see cref="SimilarityType"/> of comparison.</returns>
+        public static SimilarityType ComputeSimilarity(string string1, string string2, uint fuzzinessRadius)
         {
             int distance = Compute(string1, string2);
 
@@ -72,7 +95,7 @@
                 return SimilarityType.Same;
             }
 
-            if (distance > fuzzynessRadius)
+            if (distance > fuzzinessRadius)
             {
                 return SimilarityType.NotSimilar;
             }

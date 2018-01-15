@@ -1,6 +1,7 @@
 ﻿namespace ProcessingTools.Strings.Tests.Integration.Tests
 {
     using NUnit.Framework;
+    using ProcessingTools.Common.Strings;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(LevenshteinDistance))]
     public class LevenshteinDistanceIntegrationTests

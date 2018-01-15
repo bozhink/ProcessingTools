@@ -1,10 +1,22 @@
-﻿namespace ProcessingTools.Strings
+﻿// <copyright file="WordsStatisticsCalculator.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Strings
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
+    /// <summary>
+    /// Words statistics calculator.
+    /// </summary>
     public class WordsStatisticsCalculator
     {
+        /// <summary>
+        /// Calculated word frequency.
+        /// </summary>
+        /// <param name="words">Collection of words to be evaluated.</param>
+        /// <returns>Frequency distribution of the words in the collection.</returns>
         public IDictionary<string, ulong> CalculateWordFrequency(IEnumerable<string> words)
         {
             var result = new Dictionary<string, ulong>();
@@ -27,6 +39,14 @@
             return result;
         }
 
+        /// <summary>
+        /// Extracts words from specified text.
+        /// </summary>
+        /// <param name="text">Text as string to be processed.</param>
+        /// <param name="preserveNumbers">Whether numbers should be preserved.</param>
+        /// <param name="distictWords">Whether only unique words should be outputted.</param>
+        /// <param name="changeToLowerCase">Whether words should be changed to lowercase.</param>
+        /// <returns>Collection of found words.</returns>
         public IEnumerable<string> ExtractWords(string text, bool preserveNumbers = true, bool distictWords = false, bool changeToLowerCase = false)
         {
             if (string.IsNullOrWhiteSpace(text))
