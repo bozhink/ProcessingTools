@@ -25,11 +25,9 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integration.Tests\" />
   </ItemGroup>
 </Project>

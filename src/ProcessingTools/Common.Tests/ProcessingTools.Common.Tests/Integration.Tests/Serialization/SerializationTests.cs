@@ -1,16 +1,25 @@
-﻿namespace ProcessingTools.Serialization.Tests
+﻿// <copyright file="SerializationTests.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization
 {
     using System.IO;
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
+    using ProcessingTools.Common.Tests.Integration.Tests.Serialization.Models;
 
+    /// <summary>
+    /// Serialization Tests.
+    /// </summary>
     [TestClass]
     public class SerializationTests
     {
+        /// <summary>
+        /// Serialize <see cref="ExternalLinkSerializableModel"/> should work.
+        /// </summary>
         [TestMethod]
         public void SerializeExternalLinkModel_ShouldWork()
         {
@@ -39,6 +48,9 @@
             }
         }
 
+        /// <summary>
+        /// Serialize <see cref="ExternalLinkSerializableModel"/> without @href should work.
+        /// </summary>
         [TestMethod]
         public void SerializeExternalLinkModel_WithoutHref_ShouldWork()
         {

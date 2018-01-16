@@ -1,14 +1,24 @@
-﻿namespace ProcessingTools.Serialization.Tests.Csv
+﻿// <copyright file="CsvMapperTests.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization.Csv
 {
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Common.Serialization.Csv;
-    using ProcessingTools.Serialization.Tests.Csv.Models;
+    using ProcessingTools.Common.Tests.Integration.Tests.Serialization.Csv.Models;
 
+    /// <summary>
+    /// CSV Mapper Tests.
+    /// </summary>
     [TestClass]
     public class CsvMapperTests
     {
+        /// <summary>
+        /// Type: Map One Row CSV To Object Should Work.
+        /// </summary>
         [TestMethod]
         public void CsvMapper_MapOneRowCsvToObject_Type_ShouldWork()
         {
@@ -34,6 +44,9 @@
             Assert.AreEqual("No desription here", result.Description, "Description should match.");
         }
 
+        /// <summary>
+        /// Generic: Map One Row CSV To Object Should Work.
+        /// </summary>
         [TestMethod]
         public void CsvMapper_MapOneRowCsvToObject_Generic_ShouldWork()
         {
