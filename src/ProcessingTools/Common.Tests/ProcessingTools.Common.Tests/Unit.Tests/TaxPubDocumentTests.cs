@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.DocumentProvider.Tests
+﻿// <copyright file="TaxPubDocumentTests.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Tests.Unit.Tests
 {
     using System;
     using System.Linq;
@@ -9,11 +13,15 @@
     using ProcessingTools.Common;
     using ProcessingTools.Contracts;
 
+    /// <summary>
+    /// <see cref="TaxPubDocument"/> Tests.
+    /// </summary>
     [TestClass]
     public class TaxPubDocumentTests
     {
-        #region EmptyConstuctor
-
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty Constructor Should Create Empty XmlDocument.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithEmptyConstructor_ShouldCreateEmptyXmlDocument()
         {
@@ -21,6 +29,9 @@
             Assert.AreEqual(string.Empty, document.XmlDocument.OuterXml, "XmlDocument should be empty.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty Constructor Should Create NamespaceManager.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithEmptyConstructor_ShouldCreateNamespaceManager()
         {
@@ -28,6 +39,9 @@
             this.CheckNamespaceManager(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty Constructor Should Create NamespaceManager With Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithEmptyConstructor_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
         {
@@ -35,6 +49,9 @@
             this.CheckTaxPubNamespaces(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty Constructor Should Create NameTable.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithEmptyConstructor_ShouldCreateNameTable()
         {
@@ -42,6 +59,9 @@
             this.CheckNameTable(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty Constructor Should Create Encoding.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithEmptyConstructor_ShouldCreateEncoding()
         {
@@ -49,10 +69,9 @@
             Assert.IsNotNull(document.Encoding, "Encoding should not be null.");
         }
 
-        #endregion EmptyConstuctor
-
-        #region ConstructorWithEncoding
-
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Constructor With Encoding Should Create Empty XmlDocument.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateEmptyXmlDocument()
         {
@@ -61,6 +80,9 @@
             Assert.AreEqual(string.Empty, document.XmlDocument.OuterXml, "XmlDocument should be empty.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Constructor With Encoding Should Create NamespaceManager.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateNamespaceManager()
         {
@@ -69,6 +91,9 @@
             this.CheckNamespaceManager(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Constructor With Encoding Should Create NamespaceManager With Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
         {
@@ -77,6 +102,9 @@
             this.CheckTaxPubNamespaces(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Constructor With Encoding Should Create NameTable.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateNameTable()
         {
@@ -85,6 +113,9 @@
             this.CheckNameTable(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Constructor With Encoding Should Create Encoding.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_ConstructorWithEncoding_ShouldCreateEncoding()
         {
@@ -93,6 +124,9 @@
             Assert.IsNotNull(document.Encoding, "Encoding should not be null.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Constructor With Encoding Should Set Encoding.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_ConstructorWithEncoding_ShouldSetEncoding()
         {
@@ -111,6 +145,9 @@
                 "Encoding is not set properly.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Constructor With Null Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_ConstructorWithNullEncoding_ShouldThrow()
@@ -119,10 +156,9 @@
             new TaxPubDocument(encoding);
         }
 
-        #endregion ConstructorWithEncoding
-
-        #region ConstuctorWithStringAndEncoding
-
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty String In Constructor Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyStringInConstructor_ShouldThrow()
@@ -131,6 +167,9 @@
             new TaxPubDocument(content);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty String In Constructor With Valid Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyStringInConstructor_WithValidEncoding_ShouldThrow()
@@ -140,6 +179,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty String In Constructor With Null Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyStringInConstructor_WithNullEncoding_ShouldThrow()
@@ -149,6 +191,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Null String In Constructor Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithNullStringInConstructor_ShouldThrow()
@@ -157,6 +202,9 @@
             new TaxPubDocument(content);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Null String In Constructor With Valid Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithNullStringInConstructor_WithValidEncoding_ShouldThrow()
@@ -166,6 +214,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Null String In Constructor With Null Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithNullStringInConstructor_WithNullEncoding_ShouldThrow()
@@ -175,6 +226,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Whitespace String In Constructor Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithWhitespaceStringInConstructor_ShouldThrow()
@@ -184,6 +238,9 @@
             new TaxPubDocument(content);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Whitespace String In Constructor With Valid Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithWhitespaceStringInConstructor_WithValidEncoding_ShouldThrow()
@@ -194,6 +251,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Whitespace String In Constructor With Null Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithWhitespaceStringInConstructor_WithNullEncoding_ShouldThrow()
@@ -204,6 +264,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Invalid Xml String In Constructor Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(XmlException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithInvalidXmlStringInConstructor_ShouldThrow()
@@ -212,6 +275,9 @@
             new TaxPubDocument(content);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Invalid Xml String In Constructor With Valid Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(XmlException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithInvalidXmlStringInConstructor_WithValidEncoding_ShouldThrow()
@@ -221,6 +287,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> WithInvalidXmlStringInConstructor WithNullEncoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(Exception), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithInvalidXmlStringInConstructor_WithNullEncoding_ShouldThrow()
@@ -230,6 +299,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor Should Create Non Empty XmlDocument.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNonEmptyXmlDocument()
         {
@@ -238,6 +310,9 @@
             Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor With Valid Encoding Should Create Non Empty XmlDocument.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNonEmptyXmlDocument()
         {
@@ -247,6 +322,9 @@
             Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor With Null Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithValidXmlStringInConstructor_WithNullEncoding_ShouldThrow()
@@ -256,6 +334,9 @@
             new TaxPubDocument(content, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor Should Create NamespaceManager.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNamespaceManager()
         {
@@ -264,6 +345,9 @@
             this.CheckNamespaceManager(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor With Valid Encoding Should Create NamespaceManager.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNamespaceManager()
         {
@@ -273,6 +357,9 @@
             this.CheckNamespaceManager(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor Should Create NamespaceManager With Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
         {
@@ -281,6 +368,9 @@
             this.CheckTaxPubNamespaces(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor With Valid Encoding Should Create NamespaceManager With Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
         {
@@ -290,6 +380,9 @@
             this.CheckTaxPubNamespaces(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor Should Create NameTable.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_ShouldCreateNameTable()
         {
@@ -298,6 +391,9 @@
             this.CheckNameTable(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor With Valid Encoding Should Create NameTable.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_ShouldCreateNameTable()
         {
@@ -307,6 +403,9 @@
             this.CheckNameTable(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor XmlDocument DocumentElement Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
         {
@@ -316,6 +415,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/>_WithValidXmlStringInConstructor With Valid Encoding XmlDocument DocumentElement Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
         {
@@ -326,6 +428,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor XmlString Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_XmlString_ShouldContainValidTaxPubNamespaces()
         {
@@ -335,6 +440,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid Xml String In Constructor With Valid Encoding XmlString Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlStringInConstructor_WithValidEncoding_XmlString_ShouldContainValidTaxPubNamespaces()
         {
@@ -345,10 +453,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
-        #endregion ConstuctorWithStringAndEncoding
-
-        #region ConstuctorWithXmlDocumentAndEncoding
-
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor Should Create Non Empty XmlDocument.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_ShouldCreateNonEmptyXmlDocument()
         {
@@ -360,6 +467,9 @@
             Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor With Valid Encoding Should Create Non Empty XmlDocument.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_ShouldCreateNonEmptyXmlDocument()
         {
@@ -373,6 +483,9 @@
             Assert.IsFalse(string.IsNullOrWhiteSpace(document.XmlDocument.OuterXml), "XmlDocument should not be null or whitespace.");
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor WithNullEncoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithNullEncoding_ShouldThrow()
@@ -386,6 +499,9 @@
             new TaxPubDocument(xmlDocument, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor Should Create NamespaceManager.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_ShouldCreateNamespaceManager()
         {
@@ -397,6 +513,9 @@
             this.CheckNamespaceManager(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor With Valid Encoding Should Create NamespaceManager.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_ShouldCreateNamespaceManager()
         {
@@ -410,8 +529,11 @@
             this.CheckNamespaceManager(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor Should Create NamespaceManager With Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
-        public void TaxPubDocument_WithValidXmlDocumnetInConstructor_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
         {
             string content = "<a/>";
             var xmlDocument = new XmlDocument();
@@ -421,8 +543,11 @@
             this.CheckTaxPubNamespaces(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor With Valid Encoding Should Create NamespaceManager With Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
-        public void TaxPubDocument_WithValidXmlDocumnetInConstructor_WithValidEncoding_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
+        public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_ShouldCreateNamespaceManagerWithValidTaxPubNamespaces()
         {
             string content = "<a/>";
             var xmlDocument = new XmlDocument();
@@ -434,6 +559,9 @@
             this.CheckTaxPubNamespaces(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor Should Create NameTable.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_ShouldCreateNameTable()
         {
@@ -445,6 +573,9 @@
             this.CheckNameTable(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor With Valid Encoding Should Create NameTable.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_ShouldCreateNameTable()
         {
@@ -458,6 +589,9 @@
             this.CheckNameTable(document);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor XmlDocument DocumentElement Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
         {
@@ -470,6 +604,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor With Valid Encoding XmlDocument DocumentElement Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_XmlDocumentDocumentElement_ShouldContainValidTaxPubNamespaces()
         {
@@ -484,6 +621,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor XmlString Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_XmlString_ShouldContainValidTaxPubNamespaces()
         {
@@ -496,6 +636,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Valid XmlDocument In Constructor With Valid Encoding XmlString Should Contain Valid TaxPub Namespaces.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_WithValidXmlDocumentInConstructor_WithValidEncoding_XmlString_ShouldContainValidTaxPubNamespaces()
         {
@@ -510,6 +653,9 @@
             this.CheckTaxPubNamespaces(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Null XmlDocument In Constructor Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithNullXmlDocumentInConstructor_ShouldThrow()
@@ -518,6 +664,9 @@
             new TaxPubDocument(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Null XmlDocument In Constructor With Valid Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithNullXmlDocumentInConstructor_WithValidEncoding_ShouldThrow()
@@ -527,6 +676,9 @@
             new TaxPubDocument(xml, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Null XmlDocument In Constructor With Null Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithNullXmlDocumentInConstructor_WithNullEncoding_ShouldThrow()
@@ -536,6 +688,9 @@
             new TaxPubDocument(xml, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty XmlDocument In Constructor Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyXmlDocumentInConstructor_ShouldThrow()
@@ -544,6 +699,9 @@
             new TaxPubDocument(xml);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty XmlDocument In Constructor With Valid Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyXmlDocumentInConstructor_WithValidEncoding_ShouldThrow()
@@ -553,6 +711,9 @@
             new TaxPubDocument(xml, encoding);
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> With Empty XmlDocument In Constructor With Null Encoding Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_WithEmptyXmlDocumentInConstructor_WithNullEncoding_ShouldThrow()
@@ -562,10 +723,9 @@
             new TaxPubDocument(xml, encoding);
         }
 
-        #endregion ConstuctorWithXmlDocumentAndEncoding
-
-        #region XmlProperty
-
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Set Null Xml String Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_SetNullXmlString_ShouldThrow()
@@ -574,6 +734,9 @@
             document.Xml = null;
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Set Empty Xml String Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_SetEmptyXmlString_ShouldThrow()
@@ -582,6 +745,9 @@
             document.Xml = string.Empty;
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Set Whitespace Xml String Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = true)]
         public void TaxPubDocument_SetWhitespaceXmlString_ShouldThrow()
@@ -591,6 +757,9 @@
                             ";
         }
 
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Set Invalid Xml String Should Throw.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(XmlException), AllowDerivedTypes = true)]
         public void TaxPubDocument_SetInvalidXmlString_ShouldThrow()
@@ -599,11 +768,9 @@
             document.Xml = @"a";
         }
 
-        #endregion XmlProperty
-
-        #region SelectNodes
-
-        // TODO: add more tests
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Select Nodes With Valid XPath Should Work.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_SelectNodesWithValidXPath_ShouldWork()
         {
@@ -621,11 +788,9 @@
             Assert.AreEqual("3", nodes[2].InnerText, @"InnerText of the third node should be ""3"".");
         }
 
-        #endregion SelectNodes
-
-        #region SelectSingleNode
-
-        // TODO: add more tests
+        /// <summary>
+        /// <see cref="TaxPubDocument"/> Select Single Node With Valid XPath Should Work.
+        /// </summary>
         [TestMethod]
         public void TaxPubDocument_SelectSingleNodeWithValidXPath_ShouldWork()
         {
@@ -637,10 +802,6 @@
             Assert.IsNotNull(node, "Node should not be null.");
             Assert.AreEqual("1", node.InnerText, @"InnerText of the node should be ""1"".");
         }
-
-        #endregion SelectSingleNode
-
-        #region Helpers
 
         private void CheckNamespaceManager(IDocument document)
         {
@@ -679,7 +840,5 @@
             ////Assert.IsTrue(Regex.IsMatch(xml, @"\bxmlns:xsi=""[^<>""]+"""), "Xml string does not contain xsi namespace");
             Assert.IsTrue(Regex.IsMatch(xml, @"\bxmlns:mml=""[^<>""]+"""), "Xml string does not contain mml namespace");
         }
-
-        #endregion Helpers
     }
 }

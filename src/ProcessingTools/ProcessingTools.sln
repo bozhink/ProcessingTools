@@ -47,8 +47,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop.Tests", "Desktop.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Tests", "Web.Tests", "{51421CB2-377E-4BEF-855D-7665332A722A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentProvider.Tests", "Infrastructure.Tests\DocumentProvider.Tests\DocumentProvider.Tests.csproj", "{D8E1383B-937C-4B1E-B9C8-0448C8694D75}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo.Tests", "Infrastructure.Tests\Geo.Tests\Geo.Tests.csproj", "{210D2971-98A1-4C9F-8B65-93514BBFEE37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Tests", "Desktop.Tests\Tagger.Tests\Tagger.Tests.csproj", "{44DF19EE-8FCB-4298-95BC-381F180C1037}"
@@ -267,6 +265,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Extensions.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common", "Common\ProcessingTools.Common\ProcessingTools.Common.csproj", "{9F7EF778-C698-498E-B3D5-5CF91FA69B24}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Common.Tests", "Common.Tests\ProcessingTools.Common.Tests\ProcessingTools.Common.Tests.csproj", "{C4D00715-B47F-4F59-A3C1-4574D54C41F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -347,14 +347,6 @@ Global
 		{CCBBBB18-D57A-45AD-A676-E5585880081D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCBBBB18-D57A-45AD-A676-E5585880081D}.Release|x64.ActiveCfg = Release|Any CPU
 		{CCBBBB18-D57A-45AD-A676-E5585880081D}.Release|x64.Build.0 = Release|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Debug|x64.Build.0 = Debug|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Release|x64.ActiveCfg = Release|Any CPU
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75}.Release|x64.Build.0 = Release|Any CPU
 		{210D2971-98A1-4C9F-8B65-93514BBFEE37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{210D2971-98A1-4C9F-8B65-93514BBFEE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210D2971-98A1-4C9F-8B65-93514BBFEE37}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1059,6 +1051,14 @@ Global
 		{9F7EF778-C698-498E-B3D5-5CF91FA69B24}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F7EF778-C698-498E-B3D5-5CF91FA69B24}.Release|x64.ActiveCfg = Release|Any CPU
 		{9F7EF778-C698-498E-B3D5-5CF91FA69B24}.Release|x64.Build.0 = Release|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Debug|x64.Build.0 = Debug|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Release|x64.ActiveCfg = Release|Any CPU
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1075,7 +1075,6 @@ Global
 		{68165C17-4F06-4652-B1F6-AECF7F44CA5A} = {5FC3176F-B6DA-4309-A7DE-496D7A3481F8}
 		{CCBBBB18-D57A-45AD-A676-E5585880081D} = {53CF58F1-5E2D-4B63-8DAD-120AD0F5BCE2}
 		{2F0C6A00-97F3-4679-8363-E0DA1D332091} = {A8F2DE62-2B7F-468C-A11F-1D898147E484}
-		{D8E1383B-937C-4B1E-B9C8-0448C8694D75} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{210D2971-98A1-4C9F-8B65-93514BBFEE37} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{44DF19EE-8FCB-4298-95BC-381F180C1037} = {1E79B9F1-0090-481F-8AAC-C9C580704061}
 		{0F968970-6C68-4932-849F-7EB791AEFEED} = {2F0C6A00-97F3-4679-8363-E0DA1D332091}
@@ -1183,9 +1182,10 @@ Global
 		{766FD77E-F07B-40A5-973D-37289B7190D5} = {27A96BEF-4F22-4E41-9B98-D381339E6D94}
 		{A566E717-E60E-413D-BADA-DA1BC99DC4D5} = {27A96BEF-4F22-4E41-9B98-D381339E6D94}
 		{9F7EF778-C698-498E-B3D5-5CF91FA69B24} = {789C4203-7CD8-45FC-A182-D4C395F76530}
+		{C4D00715-B47F-4F59-A3C1-4574D54C41F6} = {27A96BEF-4F22-4E41-9B98-D381339E6D94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
