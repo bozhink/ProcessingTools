@@ -1,11 +1,24 @@
-﻿namespace ProcessingTools.Strings.Tests.Integration.Tests
+﻿// <copyright file="LevenshteinDistanceIntegrationTests.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Tests.Integration.Tests.Strings
 {
     using NUnit.Framework;
     using ProcessingTools.Common.Strings;
 
+    /// <summary>
+    /// Levenshtein distance integration tests.
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(LevenshteinDistance))]
     public class LevenshteinDistanceIntegrationTests
     {
+        /// <summary>
+        /// Levenshtein distance compute with valid strings should work.
+        /// </summary>
+        /// <param name="string1">Left string to compare.</param>
+        /// <param name="string2">Right string to compare.</param>
+        /// <param name="distance">Expected distance.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(LevenshteinDistance), Description = "LevenshteinDistance.Compute with valid strings should work.")]
         [TestCase("ant", "ant", 0)]
         [TestCase("aunt", "ant", 1)]
@@ -20,6 +33,11 @@
             Assert.AreEqual(distance, result);
         }
 
+        /// <summary>
+        /// Levenshtein distance compute is commutative.
+        /// </summary>
+        /// <param name="leftString">Left string to compare.</param>
+        /// <param name="rightString">Right string to compare.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(LevenshteinDistance), Description = "LevenshteinDistance.Compute is commutative.")]
         [TestCase("ant", "ant")]
         [TestCase("aunt", "ant")]
