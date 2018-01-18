@@ -9,7 +9,7 @@
     using ProcessingTools.Common.Serialization;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Harvesters.ExternalLinks;
-    using ProcessingTools.Harvesters.Harvesters.ExternalLinks;
+    using ProcessingTools.Harvesters.ExternalLinks;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;

@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Harvesters.Abbreviations
+﻿namespace ProcessingTools.Harvesters.Abbreviations
 {
     using System;
     using System.Threading.Tasks;

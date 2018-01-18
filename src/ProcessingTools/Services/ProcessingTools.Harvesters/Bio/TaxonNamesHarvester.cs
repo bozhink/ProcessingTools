@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Harvesters.Bio
+﻿namespace ProcessingTools.Harvesters.Bio
 {
     using System;
     using System.Collections.Generic;

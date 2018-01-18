@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Harvesters.Content
+﻿namespace ProcessingTools.Harvesters.Content
 {
     using System;
     using System.Text.RegularExpressions;

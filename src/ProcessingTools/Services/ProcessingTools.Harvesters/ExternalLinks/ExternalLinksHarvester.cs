@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Harvesters.ExternalLinks
+﻿namespace ProcessingTools.Harvesters.ExternalLinks
 {
     using System;
     using System.Threading.Tasks;

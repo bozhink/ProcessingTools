@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Harvesters.Harvesters.Meta
+﻿namespace ProcessingTools.Harvesters.Meta
 {
     using System;
     using System.Threading.Tasks;
