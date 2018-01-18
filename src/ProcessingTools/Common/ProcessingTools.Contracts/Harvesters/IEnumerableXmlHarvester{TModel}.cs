@@ -10,7 +10,7 @@ namespace ProcessingTools.Contracts.Harvesters
     /// Enumerable harvester with <see cref="XmlNode"/> context.
     /// </summary>
     /// <typeparam name="TModel">Type of the harvester model.</typeparam>
-    public interface IEnumerableXmlHarvester<TModel> : IEnumerableHarvester<XmlNode, TModel>, IXmlHarvester<TModel[]>
+    public interface IEnumerableXmlHarvester<TModel> : IXmlHarvester<TModel[]>
     {
     }
 }
