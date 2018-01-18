@@ -134,10 +134,6 @@
       <Project>{720d359f-49d1-4126-a79b-f63cce9780a0}</Project>
       <Name>ProcessingTools.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
-      <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>
-      <Name>Harvesters</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>

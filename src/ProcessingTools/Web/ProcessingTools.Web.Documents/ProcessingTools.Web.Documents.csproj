@@ -380,7 +380,6 @@
     <Compile Include="Settings\NinjectBiotaxonomyDataBindings.cs" />
     <Compile Include="Settings\NinjectDataBindings.cs" />
     <Compile Include="Settings\NinjectDataMinersBindings.cs" />
-    <Compile Include="Settings\NinjectHarvestersBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
     <Compile Include="Settings\NinjectXmlBindings.cs" />
     <Compile Include="Startup.cs" />
@@ -678,10 +677,6 @@
     <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
       <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
       <Name>Data.Miners</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
-      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
-      <Name>Harvesters</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>

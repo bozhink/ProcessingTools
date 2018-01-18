@@ -153,10 +153,6 @@
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\Harvesters\Harvesters\Harvesters.csproj">
-      <Project>{68165C17-4F06-4652-B1F6-AECF7F44CA5A}</Project>
-      <Name>Harvesters</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
