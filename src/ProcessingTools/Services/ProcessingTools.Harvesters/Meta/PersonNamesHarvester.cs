@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Harvesters.Meta
+﻿// <copyright file="PersonNamesHarvester.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Harvesters.Meta
 {
     using System;
     using System.Linq;
@@ -10,8 +14,12 @@
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Models.Meta;
 
+    /// <summary>
+    /// Person Names Harvester.
+    /// </summary>
     public class PersonNamesHarvester : IPersonNamesHarvester
     {
+        /// <inheritdoc/>
         public Task<IPersonNameModel[]> HarvestAsync(XmlNode context)
         {
             if (context == null)

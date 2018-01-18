@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Harvesters.Bio
+﻿// <copyright file="TaxonNamesHarvester.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Harvesters.Bio
 {
     using System;
     using System.Collections.Generic;
@@ -11,12 +15,18 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Taxon Names Harvester
+    /// </summary>
     public class TaxonNamesHarvester : ITaxonNamesHarvester
     {
+        /// <inheritdoc/>
         public Task<string[]> HarvestAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Any));
 
+        /// <inheritdoc/>
         public Task<string[]> HarvestHigherTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Higher));
 
+        /// <inheritdoc/>
         public Task<string[]> HarvestLowerTaxaAsync(XmlNode context) => Task.Run(() => this.ExtractTaxa(context, TaxonType.Lower));
 
         private string[] ExtractTaxa(XmlNode context, TaxonType type)

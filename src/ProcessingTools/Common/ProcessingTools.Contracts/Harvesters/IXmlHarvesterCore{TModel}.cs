@@ -26,8 +26,8 @@ namespace ProcessingTools.Contracts.Harvesters
         /// Do harvest algorithm over the specified context.
         /// </summary>
         /// <param name="context">Context to be harvested.</param>
-        /// <param name="action">Action of the harvest algorithm.</param>
+        /// <param name="actionAsync">Action of the harvest algorithm.</param>
         /// <returns>Harvest result.</returns>
-        Task<TModel> HarvestAsync(XmlNode context, Func<XmlDocument, Task<TModel>> action);
+        Task<TModel> HarvestAsync(XmlNode context, Func<XmlDocument, Task<TModel>> actionAsync);
     }
 }
