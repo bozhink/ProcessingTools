@@ -37,30 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\BiorepositoriesDataMinerBase.cs" />
-    <Compile Include="Contracts\Miners\Bio\Environments\IEnvoTermsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\Environments\IExtractHcmrDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\IBiorepositoriesCollectionsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\IBiorepositoriesInstitutionsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\IInstitutionalCodesDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\IMorphologicalEpithetsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\ISpecimenCountDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\ITypeStatusDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\SpecimenCodes\ISpecimenCodesByPatternDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\SpecimenCodes\ISpecimenCodesDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Bio\Taxonomy\IHigherTaxaDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Dates\IDatesDataMiner.cs" />
-    <Compile Include="Contracts\Miners\ExternalLinks\IExternalLinksDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Geo\IAltitudesDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Geo\ICoordinatesDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Geo\IGeoEpithetsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Geo\IGeographicDeviationsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Geo\IGeoNamesDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Institutions\IInstitutionsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Products\IProductsDataMiner.cs" />
-    <Compile Include="Contracts\Miners\Quantities\IQuantitiesDataMiner.cs" />
-    <Compile Include="Contracts\Models\Bio\Environments\IExtractHcmrEnvoTerm.cs" />
-    <Compile Include="Contracts\Models\Bio\SpecimenCodes\ISpecimenCode.cs" />
-    <Compile Include="Contracts\Models\ExternalLinks\IExternalLink.cs" />
     <Compile Include="Generics\SimpleServiceStringDataMiner.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Miners\Bio\BiorepositoriesCollectionsDataMiner.cs" />
@@ -125,6 +101,7 @@
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
