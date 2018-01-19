@@ -14,10 +14,26 @@
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Bio\**" />
+    <Compile Remove="ExternalLinks\**" />
+    <EmbeddedResource Remove="Bio\**" />
+    <EmbeddedResource Remove="ExternalLinks\**" />
+    <None Remove="Bio\**" />
+    <None Remove="ExternalLinks\**" />
+  </ItemGroup>
+  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bio\Environments\ExtractHcmrEnvoTerm.cs" />
+    <Compile Include="Bio\SpecimenCodes\SpecimenCodeResponseModel.cs" />
+    <Compile Include="ExternalLinks\ExternalLink.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.7.1.4347" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
   </ItemGroup>
 </Project>

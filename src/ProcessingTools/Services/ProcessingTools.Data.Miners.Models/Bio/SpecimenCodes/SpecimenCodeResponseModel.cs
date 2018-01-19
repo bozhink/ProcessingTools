@@ -2,7 +2,7 @@
 {
     using Contracts.Models.Bio.SpecimenCodes;
 
-    internal class SpecimenCodeResponseModel : ISpecimenCode
+    public class SpecimenCodeResponseModel : ISpecimenCode
     {
         private string content;
         private string contentType;

@@ -58,9 +58,6 @@
     <Compile Include="Miners\Institutions\InstitutionsDataMiner.cs" />
     <Compile Include="Miners\Products\ProductsDataMiner.cs" />
     <Compile Include="Miners\Quantities\QuantitiesDataMiner.cs" />
-    <Compile Include="Models\Bio\Environments\ExtractHcmrEnvoTerm.cs" />
-    <Compile Include="Models\Bio\SpecimenCodes\SpecimenCodeResponseModel.cs" />
-    <Compile Include="Models\ExternalLinks\ExternalLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +85,10 @@
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Miners.Models\ProcessingTools.Data.Miners.Models.csproj">
+      <Project>{dbbb3883-f4d3-46b1-994c-95ded4688445}</Project>
+      <Name>ProcessingTools.Data.Miners.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -101,7 +102,9 @@
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
