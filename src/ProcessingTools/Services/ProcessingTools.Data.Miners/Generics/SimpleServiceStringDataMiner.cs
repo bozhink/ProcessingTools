@@ -51,7 +51,7 @@
 
                 foreach (var matcher in matchers)
                 {
-                    matches.AddRange(await context.GetMatchesAsync(matcher).ConfigureAwait(false));
+                    matches.AddRange(context.GetMatches(matcher));
                 }
             }
 

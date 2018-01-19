@@ -379,7 +379,6 @@
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Settings\NinjectBiotaxonomyDataBindings.cs" />
     <Compile Include="Settings\NinjectDataBindings.cs" />
-    <Compile Include="Settings\NinjectDataMinersBindings.cs" />
     <Compile Include="Settings\NinjectServicesBindings.cs" />
     <Compile Include="Settings\NinjectXmlBindings.cs" />
     <Compile Include="Startup.cs" />
@@ -673,10 +672,6 @@
     <ProjectReference Include="..\..\Infrastructure\Tagger.Commands\Tagger.Commands.csproj">
       <Project>{6FD4843F-4B5D-412C-8101-396960FDDC21}</Project>
       <Name>Tagger.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services\Data.Miners\Data.Miners\Data.Miners.csproj">
-      <Project>{294e2a9b-7b64-4854-9c6a-57cf8b407708}</Project>
-      <Name>Data.Miners</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
