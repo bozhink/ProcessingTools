@@ -1,0 +1,25 @@
+{
+  "name": "processingtools.web.documents",
+  "version": "0.9.0",
+  "description": "Document managment system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bozhink/ProcessingTools.git"
+  },
+  "keywords": [
+    "tagging",
+    "biology",
+    "taxonomy",
+    "layout"
+  ],
+  "author": "Bozhin Karaivanov",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/bozhink/ProcessingTools/issues"
+  },
+  "homepage": "https://github.com/bozhink/ProcessingTools#readme"
+}
