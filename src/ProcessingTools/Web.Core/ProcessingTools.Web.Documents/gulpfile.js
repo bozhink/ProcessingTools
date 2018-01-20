@@ -61,16 +61,16 @@ gulp.task("min:html", function () {
 // Dependency Dirs
 var deps = {
     "jquery": {
-        "dist/*": ""
+        "/**": ""
     },
     "jquery-validation": {
-        "dist/*": ""
+        "/**": ""
     },
     "jquery-validation-unobtrusive": {
-        "/*": ""
+        "/**": ""
     },
     "bootstrap": {
-        "dist/**/*": ""
+        "/**": ""
     },
     // ...
 };
@@ -83,7 +83,7 @@ gulp.task("scripts", function () {
         console.log("Prepping Scripts for: " + prop);
         for (var itemProp in deps[prop]) {
             var src = gulp.src("node_modules/" + prop + "/" + itemProp);
-            var dest = gulp.dest("wwwroot/lib/" + prop + "/" + deps[prop][itemProp]);
+            var dest = gulp.dest("wwwroot/external/" + prop + "/" + deps[prop][itemProp]);
             streams.push(src.pipe(dest));
         }
     }
