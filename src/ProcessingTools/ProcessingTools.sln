@@ -263,6 +263,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Harvesters"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Harvesters.Models", "Services\ProcessingTools.Harvesters.Models\ProcessingTools.Harvesters.Models.csproj", "{BF9143F3-27D9-434A-8A68-C7558A9F59A0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Core", "Web.Core", "{BA04B013-D4BC-40F9-AAC3-364006541F81}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Documents", "Web.Core\ProcessingTools.Web.Documents\ProcessingTools.Web.Documents.csproj", "{B64D4E1A-DAC3-4414-9266-FE122A043A14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1055,6 +1059,14 @@ Global
 		{BF9143F3-27D9-434A-8A68-C7558A9F59A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF9143F3-27D9-434A-8A68-C7558A9F59A0}.Release|x64.ActiveCfg = Release|Any CPU
 		{BF9143F3-27D9-434A-8A68-C7558A9F59A0}.Release|x64.Build.0 = Release|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Debug|x64.Build.0 = Debug|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Release|x64.ActiveCfg = Release|Any CPU
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1177,9 +1189,10 @@ Global
 		{DBBB3883-F4D3-46B1-994C-95DED4688445} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{744A32DF-6B71-446E-BB3A-1C9A1E6F5CF3} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{BF9143F3-27D9-434A-8A68-C7558A9F59A0} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{B64D4E1A-DAC3-4414-9266-FE122A043A14} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
