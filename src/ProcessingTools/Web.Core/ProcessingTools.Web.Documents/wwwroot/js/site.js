@@ -1,3 +1,6 @@
 ﻿// Write your JavaScript code.
 
-var module = {};
+var module;
+if (module == null) {
+    module = {};
+}

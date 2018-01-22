@@ -5,9 +5,9 @@
     using Microsoft.AspNetCore.Identity;
     using ProcessingTools.Constants;
 
-    public class ApplicationUser : IdentityUser<string>
+    public class ApplicationRole : IdentityRole<string>
     {
-        public ApplicationUser()
+        public ApplicationRole()
         {
             this.Id = Guid.NewGuid().ToString();
         }

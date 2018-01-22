@@ -31,7 +31,7 @@ namespace ProcessingTools.Web.Documents
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(this.configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(
+            services.AddIdentity<ApplicationUser, ApplicationRole>(
                 options =>
                 {
                     // Password settings
