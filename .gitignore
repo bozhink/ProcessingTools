@@ -10,6 +10,8 @@
 .vscode/
 .idea/
 
+app.db
+
 App_Data/
 
 # Build results
