@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -9,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using ProcessingTools.Web.Documents.Models;
 using ProcessingTools.Web.Documents.Models.ManageViewModels;
 using ProcessingTools.Web.Documents.Services;
@@ -464,8 +462,6 @@ namespace ProcessingTools.Web.Documents.Controllers
             return View(model);
         }
 
-        #region Helpers
-
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -499,7 +495,5 @@ namespace ProcessingTools.Web.Documents.Controllers
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
-
-        #endregion
     }
 }
