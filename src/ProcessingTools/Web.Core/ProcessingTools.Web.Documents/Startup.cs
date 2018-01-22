@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -72,6 +74,12 @@ namespace ProcessingTools.Web.Documents
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                ////options.AreaViewLocationFormats.Clear();
+                ////options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -105,6 +113,10 @@ namespace ProcessingTools.Web.Documents
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "tools",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
         }
 

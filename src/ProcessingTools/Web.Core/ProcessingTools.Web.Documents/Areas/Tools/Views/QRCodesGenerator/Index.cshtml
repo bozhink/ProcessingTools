@@ -1,0 +1,28 @@
+﻿@{
+    ViewData[ContextKeys.Title] = "QR codes generator";
+}
+
+<h2>@(ViewData[ContextKeys.Title])</h2>
+
+<textarea id="text-content"></textarea>
+<button id="btn-generate">Generate</button>
+
+<div id="qrCode"></div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/lib/qrcodejs/qrcode.js"></script>
+    <script type="text/javascript">
+        $("#btn-generate").on("click", function () {
+            var element = document.getElementById("qrCode");
+            if (element) {
+                element.innerHTML = "";
+                new QRCode(element,
+                    {
+                        text: $("#text-content").val(),
+                        width: 300,
+                        height: 300
+                    });
+            }
+        });
+    </script>
+}
