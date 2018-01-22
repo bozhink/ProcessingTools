@@ -1,10 +1,10 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using ProcessingTools.Web.Documents.Constants;
-using ProcessingTools.Web.Documents.Models;
-
-namespace ProcessingTools.Web.Documents.Controllers
+﻿namespace ProcessingTools.Web.Documents.Controllers
 {
+    using System.Diagnostics;
+    using Microsoft.AspNetCore.Mvc;
+    using ProcessingTools.Web.Documents.Constants;
+    using ProcessingTools.Web.Documents.Models;
+
     public class HomeController : Controller
     {
         public const string ControllerName = "Home";

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ProcessingTools.Web.Documents.Constants;
-
-namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
+﻿namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using ProcessingTools.Web.Documents.Constants;
+
     [Area(AreaNames.Tools)]
     public class QRCodesGeneratorController : Controller
     {

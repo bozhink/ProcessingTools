@@ -1,21 +1,20 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using ProcessingTools.Web.Documents.Data;
-using ProcessingTools.Web.Documents.Models;
-using ProcessingTools.Web.Documents.Services;
-
-namespace ProcessingTools.Web.Documents
+﻿namespace ProcessingTools.Web.Documents
 {
+    using System;
+    using System.IO;
+    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc.Razor;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.FileProviders;
+    using ProcessingTools.Web.Documents.Data;
+    using ProcessingTools.Web.Documents.Models;
+    using ProcessingTools.Web.Documents.Services;
+
     public class Startup
     {
         private readonly IConfiguration configuration;
@@ -26,7 +25,7 @@ namespace ProcessingTools.Web.Documents
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(this.configuration.GetConnectionString("DefaultConnection")));
@@ -80,6 +79,8 @@ namespace ProcessingTools.Web.Documents
                 ////options.AreaViewLocationFormats.Clear();
                 ////options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
             });
+
+            return services.BuildServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

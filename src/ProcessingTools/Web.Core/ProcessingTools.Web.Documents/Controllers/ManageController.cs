@@ -1,19 +1,19 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProcessingTools.Web.Documents.Models;
-using ProcessingTools.Web.Documents.Models.ManageViewModels;
-using ProcessingTools.Web.Documents.Services;
-
-namespace ProcessingTools.Web.Documents.Controllers
+﻿namespace ProcessingTools.Web.Documents.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+    using System.Text.Encodings.Web;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using ProcessingTools.Web.Documents.Models;
+    using ProcessingTools.Web.Documents.Models.ManageViewModels;
+    using ProcessingTools.Web.Documents.Services;
+
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller
