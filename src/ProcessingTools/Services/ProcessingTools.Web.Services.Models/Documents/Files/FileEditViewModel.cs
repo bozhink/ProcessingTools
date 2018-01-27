@@ -1,13 +1,13 @@
-// <copyright file="JournalDetailsViewModel.cs" company="ProcessingTools">
+// <copyright file="FileEditViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Services.Models.Documents.Journals
+namespace ProcessingTools.Web.Services.Models.Documents.Files
 {
     /// <summary>
-    /// Journal Details View Model
+    /// Files Edit View Model
     /// </summary>
-    public class JournalDetailsViewModel
+    public class FileEditViewModel
     {
         /// <summary>
         /// Gets or sets the User Context.
