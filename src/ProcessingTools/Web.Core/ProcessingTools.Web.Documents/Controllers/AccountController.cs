@@ -12,6 +12,7 @@
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.AccountViewModels;
     using ProcessingTools.Web.Documents.Services;
+    using ProcessingTools.Web.Services.Contracts;
 
     [Authorize]
     [Route("[controller]/[action]")]

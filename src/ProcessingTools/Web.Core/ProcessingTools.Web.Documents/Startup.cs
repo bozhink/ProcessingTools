@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Web.Documents
+﻿// <copyright file="Startup.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Documents
 {
     using System;
     using System.IO;
@@ -13,18 +17,30 @@
     using Microsoft.Extensions.FileProviders;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Models;
-    using ProcessingTools.Web.Documents.Services;
+    using ProcessingTools.Web.Services;
+    using ProcessingTools.Web.Services.Contracts;
 
+    /// <summary>
+    /// Start-up of the application.
+    /// </summary>
     public class Startup
     {
         private readonly IConfiguration configuration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">Application configuration.</param>
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services">Collection of services.</param>
+        /// <returns>Service provider.</returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -83,7 +99,11 @@
             return services.BuildServiceProvider();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        /// <param name="env">Hosting environment.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

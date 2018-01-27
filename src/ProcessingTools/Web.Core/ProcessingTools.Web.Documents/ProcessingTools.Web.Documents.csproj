@@ -35,5 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services.Models\ProcessingTools.Web.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
   </ItemGroup>
 </Project>
