@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger", "Desktop\Tagger\Tagger.csproj", "{553469FF-345B-4BCD-AACA-3D447B23D80A}"
 EndProject
@@ -266,6 +266,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Core", "Web.Core", "{BA04B013-D4BC-40F9-AAC3-364006541F81}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Documents", "Web.Core\ProcessingTools.Web.Documents\ProcessingTools.Web.Documents.csproj", "{B64D4E1A-DAC3-4414-9266-FE122A043A14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Services.Models", "Services\ProcessingTools.Web.Services.Models\ProcessingTools.Web.Services.Models.csproj", "{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Services.Contracts", "Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj", "{D1A8546A-AF73-470F-9836-F78314211F59}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Web.Services", "Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj", "{62C040D1-DD91-40F8-9C89-9271C34B364A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1067,6 +1073,30 @@ Global
 		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Release|x64.ActiveCfg = Release|Any CPU
 		{B64D4E1A-DAC3-4414-9266-FE122A043A14}.Release|x64.Build.0 = Release|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Debug|x64.Build.0 = Debug|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Release|x64.ActiveCfg = Release|Any CPU
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E}.Release|x64.Build.0 = Release|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Debug|x64.Build.0 = Debug|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Release|x64.ActiveCfg = Release|Any CPU
+		{D1A8546A-AF73-470F-9836-F78314211F59}.Release|x64.Build.0 = Release|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Debug|x64.Build.0 = Debug|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Release|x64.ActiveCfg = Release|Any CPU
+		{62C040D1-DD91-40F8-9C89-9271C34B364A}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1190,9 +1220,12 @@ Global
 		{744A32DF-6B71-446E-BB3A-1C9A1E6F5CF3} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{BF9143F3-27D9-434A-8A68-C7558A9F59A0} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{B64D4E1A-DAC3-4414-9266-FE122A043A14} = {BA04B013-D4BC-40F9-AAC3-364006541F81}
+		{C58CA54A-8394-4B19-84EB-6A6B0DF4E55E} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{D1A8546A-AF73-470F-9836-F78314211F59} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{62C040D1-DD91-40F8-9C89-9271C34B364A} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
