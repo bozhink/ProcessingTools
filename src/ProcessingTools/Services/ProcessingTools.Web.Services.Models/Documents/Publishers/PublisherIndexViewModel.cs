@@ -1,22 +1,17 @@
-// <copyright file="PublishersIndexViewModel.cs" company="ProcessingTools">
+// <copyright file="PublisherIndexViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Web.Services.Models.Documents.Publishers
 {
     /// <summary>
-    /// Publishers Index View Model
+    /// Publisher Index View Model
     /// </summary>
-    public class PublishersIndexViewModel
+    public class PublisherIndexViewModel
     {
         /// <summary>
         /// Gets or sets the User Context.
         /// </summary>
         public UserContext UserContext { get; set; }
-
-        /// <summary>
-        /// Gets or sets publishers.
-        /// </summary>
-        public PublisherIndexViewModel[] Publishers { get; set; }
     }
 }
