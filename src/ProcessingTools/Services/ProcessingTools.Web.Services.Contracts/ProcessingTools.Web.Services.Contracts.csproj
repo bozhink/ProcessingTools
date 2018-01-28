@@ -21,4 +21,7 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
+  </ItemGroup>
 </Project>
