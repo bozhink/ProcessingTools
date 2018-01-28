@@ -6,6 +6,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
@@ -26,6 +27,12 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
         }
+
+        /// <summary>
+        /// Gets or sets the page heading.
+        /// </summary>
+        [Display(Name = "Publishers")]
+        public string PageHeading { get; set; }
 
         /// <summary>
         /// Gets the user context.
