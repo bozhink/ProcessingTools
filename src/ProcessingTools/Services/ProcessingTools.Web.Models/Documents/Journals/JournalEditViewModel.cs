@@ -96,6 +96,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// <summary>
         /// Gets the ID of the publisher of the journal.
         /// </summary>
+        [Required]
         [Display(Name = "Publisher")]
         public string PublisherId => this.Publishers?.FirstOrDefault(p => p.Selected)?.Id;
 

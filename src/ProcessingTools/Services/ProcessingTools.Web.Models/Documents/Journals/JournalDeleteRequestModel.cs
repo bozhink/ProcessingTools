@@ -4,10 +4,17 @@
 
 namespace ProcessingTools.Web.Models.Documents.Journals
 {
+    using System.ComponentModel.DataAnnotations;
+
     /// <summary>
-    /// Journal Delete Request Model
+    /// Journal delete request model.
     /// </summary>
     public class JournalDeleteRequestModel
     {
+        /// <summary>
+        /// Gets or sets the object ID.
+        /// </summary>
+        [Required(AllowEmptyStrings = false)]
+        public string Id { get; set; }
     }
 }

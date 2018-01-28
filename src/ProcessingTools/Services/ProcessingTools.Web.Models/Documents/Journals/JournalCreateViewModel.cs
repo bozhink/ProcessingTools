@@ -39,14 +39,6 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public UserContext UserContext { get; }
 
         /// <summary>
-        /// Gets or sets the object ID.
-        /// </summary>
-        [Required(AllowEmptyStrings = false)]
-        [StringLength(ValidationConstants.MaximalLengthOfId, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = ValidationConstants.MinimalLengthOfId)]
-        [Display(Name = "ID")]
-        public string Id { get; set; }
-
-        /// <summary>
         /// Gets or sets the journal's abbreviated name.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
@@ -95,6 +87,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// <summary>
         /// Gets the ID of the publisher of the journal.
         /// </summary>
+        [Required]
         [Display(Name = "Publisher")]
         public string PublisherId => this.Publishers?.FirstOrDefault(p => p.Selected)?.Id;
     }
