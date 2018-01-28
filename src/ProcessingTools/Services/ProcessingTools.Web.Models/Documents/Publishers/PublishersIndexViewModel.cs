@@ -4,21 +4,32 @@
 
 namespace ProcessingTools.Web.Models.Documents.Publishers
 {
+    using System;
+    using System.Collections.Generic;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Publishers Index View Model
+    /// Publishers index view model.
     /// </summary>
-    public class PublishersIndexViewModel
+    public class PublishersIndexViewModel : GridViewModel<PublisherIndexViewModel>
     {
         /// <summary>
-        /// Gets or sets the User Context.
+        /// Initializes a new instance of the <see cref="PublishersIndexViewModel"/> class.
         /// </summary>
-        public UserContext UserContext { get; set; }
+        /// <param name="userContext">The user context.</param>
+        /// <param name="numberOfItems">The number of grid items.</param>
+        /// <param name="numberOfItemsPerPage">The number of items per page.</param>
+        /// <param name="currentPage">The value number of the current page.</param>
+        /// <param name="items">The grid items.</param>
+        public PublishersIndexViewModel(UserContext userContext, long numberOfItems, long numberOfItemsPerPage, long currentPage, IEnumerable<PublisherIndexViewModel> items)
+            : base(numberOfItems, numberOfItemsPerPage, currentPage, items)
+        {
+            this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
+        }
 
         /// <summary>
-        /// Gets or sets publishers.
+        /// Gets the user context.
         /// </summary>
-        public PublisherIndexViewModel[] Publishers { get; set; }
+        public UserContext UserContext { get; }
     }
 }

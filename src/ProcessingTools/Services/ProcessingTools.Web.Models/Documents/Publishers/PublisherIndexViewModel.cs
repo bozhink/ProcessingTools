@@ -4,16 +4,10 @@
 
 namespace ProcessingTools.Web.Models.Documents.Publishers
 {
-    using ProcessingTools.Web.Models.Shared;
-
     /// <summary>
-    /// Publisher Index View Model
+    /// Publisher index view model.
     /// </summary>
     public class PublisherIndexViewModel
     {
-        /// <summary>
-        /// Gets or sets the User Context.
-        /// </summary>
-        public UserContext UserContext { get; set; }
     }
 }
