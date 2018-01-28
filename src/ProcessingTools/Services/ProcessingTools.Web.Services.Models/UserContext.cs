@@ -9,19 +9,26 @@ namespace ProcessingTools.Web.Services.Models
     /// </summary>
     public class UserContext
     {
-        /// <summary>
-        /// Gets or sets the User Id.
-        /// </summary>
-        public string UserId { get; set; }
+        public UserContext(string userId, string userName, string userEmail)
+        {
+            this.UserId = userId;
+            this.UserName = userName;
+            this.UserEmail = userEmail;
+        }
 
         /// <summary>
-        /// Gets or sets the User Name.
+        /// Gets the User Id.
         /// </summary>
-        public string UserName { get; set; }
+        public string UserId { get; }
 
         /// <summary>
-        /// Gets or sets the User e-mail.
+        /// Gets the User Name.
         /// </summary>
-        public string UserEmail { get; set; }
+        public string UserName { get; }
+
+        /// <summary>
+        /// Gets the User e-mail.
+        /// </summary>
+        public string UserEmail { get; }
     }
 }
