@@ -5,18 +5,16 @@
 namespace ProcessingTools.Web.Models.Documents.Publishers
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants;
 
     /// <summary>
-    /// Publisher Delete Request Model
+    /// Publisher delete request model.
     /// </summary>
     public class PublisherDeleteRequestModel
     {
         /// <summary>
-        /// Gets or sets ID.
+        /// Gets or sets the object ID.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
-        [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         public string Id { get; set; }
     }
 }
