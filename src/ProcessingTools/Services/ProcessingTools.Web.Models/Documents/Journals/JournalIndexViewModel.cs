@@ -1,4 +1,4 @@
-// <copyright file="JournalDetailsViewModel.cs" company="ProcessingTools">
+﻿// <copyright file="JournalIndexViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -7,34 +7,20 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Journal details view model.
+    /// Journal index view model.
     /// </summary>
-    public class JournalDetailsViewModel
+    public class JournalIndexViewModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JournalDetailsViewModel"/> class.
+        /// Initializes a new instance of the <see cref="JournalIndexViewModel"/> class.
         /// </summary>
-        /// <param name="userContext">The user context.</param>
         /// <param name="publisher">Publisher for combo box.</param>
-        public JournalDetailsViewModel(UserContext userContext, PublisherViewModel publisher)
+        public JournalIndexViewModel(PublisherViewModel publisher)
         {
-            this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
             this.Publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
         }
-
-        /// <summary>
-        /// Gets or sets the page heading.
-        /// </summary>
-        [Display(Name = "Journal details")]
-        public string PageHeading { get; set; }
-
-        /// <summary>
-        /// Gets the user context.
-        /// </summary>
-        public UserContext UserContext { get; }
 
         /// <summary>
         /// Gets or sets the object ID.
