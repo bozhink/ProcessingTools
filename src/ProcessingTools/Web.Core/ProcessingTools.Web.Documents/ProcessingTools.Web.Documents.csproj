@@ -31,8 +31,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Documents\Controllers\" />
-    <Folder Include="Areas\Documents\Views\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
   <ItemGroup>

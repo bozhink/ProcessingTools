@@ -19,6 +19,8 @@ namespace ProcessingTools.Web.Documents
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Services;
     using ProcessingTools.Web.Services.Contracts;
+    using ProcessingTools.Web.Services.Contracts.Documents;
+    using ProcessingTools.Web.Services.Documents;
 
     /// <summary>
     /// Start-up of the application.
@@ -87,6 +89,7 @@ namespace ProcessingTools.Web.Documents
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IPublishersService, PublishersService>();
 
             services.AddMvc();
 
