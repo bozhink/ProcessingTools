@@ -89,10 +89,6 @@ namespace ProcessingTools.Web.Documents
                     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 });
 
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IPublishersService, PublishersService>();
-
             services.AddMvc();
 
             services.Configure<RazorViewEngineOptions>(options =>
@@ -105,6 +101,9 @@ namespace ProcessingTools.Web.Documents
 
             // Add bindings
             builder.Populate(services);
+
+            builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
+            builder.RegisterType<PublishersService>().As<IPublishersService>().InstancePerDependency();
 
             var container = builder.Build();
 
