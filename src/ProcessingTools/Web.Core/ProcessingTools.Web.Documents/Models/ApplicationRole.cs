@@ -12,6 +12,7 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
+        [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         public override string Id { get; set; }
     }

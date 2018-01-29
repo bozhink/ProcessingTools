@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Web.Documents.Controllers
+﻿// <copyright file="AccountController.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
     using System.Security.Claims;
@@ -12,11 +16,18 @@
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.AccountViewModels;
     using ProcessingTools.Web.Documents.Services;
+    using ProcessingTools.Web.Services.Contracts;
 
+    /// <summary>
+    /// Account
+    /// </summary>
     [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
+        /// <summary>
+        /// Controller Name
+        /// </summary>
         public const string ControllerName = "Account";
 
         private readonly UserManager<ApplicationUser> userManager;
@@ -69,13 +80,13 @@
 
                 if (result.RequiresTwoFactor)
                 {
-                    return this.RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
+                    return this.RedirectToAction(nameof(this.LoginWith2fa), new { returnUrl, model.RememberMe });
                 }
 
                 if (result.IsLockedOut)
                 {
                     this.logger.LogWarning("User account locked out.");
-                    return this.RedirectToAction(nameof(Lockout));
+                    return this.RedirectToAction(nameof(this.Lockout));
                 }
                 else
                 {
@@ -134,7 +145,7 @@
             else if (result.IsLockedOut)
             {
                 this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                return this.RedirectToAction(nameof(Lockout));
+                return this.RedirectToAction(nameof(this.Lockout));
             }
             else
             {
@@ -189,7 +200,7 @@
             if (result.IsLockedOut)
             {
                 this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                return this.RedirectToAction(nameof(Lockout));
+                return this.RedirectToAction(nameof(this.Lockout));
             }
             else
             {
@@ -229,7 +240,7 @@
                     this.logger.LogInformation("User created a new account with password.");
 
                     var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = this.Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    var callbackUrl = this.Url.EmailConfirmationLink(user.Id, code, this.Request.Scheme);
                     await this.emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     await this.signInManager.SignInAsync(user, isPersistent: false);
@@ -259,7 +270,7 @@
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
-            var redirectUrl = this.Url.Action(nameof(ExternalLoginCallback), "Account", new { returnUrl });
+            var redirectUrl = this.Url.Action(nameof(this.ExternalLoginCallback), "Account", new { returnUrl });
             var properties = this.signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
             return this.Challenge(properties, provider);
@@ -271,14 +282,14 @@
         {
             if (remoteError != null)
             {
-                ErrorMessage = $"Error from external provider: {remoteError}";
-                return this.RedirectToAction(nameof(Login));
+                this.ErrorMessage = $"Error from external provider: {remoteError}";
+                return this.RedirectToAction(nameof(this.Login));
             }
 
             var info = await this.signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return this.RedirectToAction(nameof(Login));
+                return this.RedirectToAction(nameof(this.Login));
             }
 
             // Sign in the user with this external login provider if the user already has a login.
@@ -291,7 +302,7 @@
 
             if (result.IsLockedOut)
             {
-                return this.RedirectToAction(nameof(Lockout));
+                return this.RedirectToAction(nameof(this.Lockout));
             }
             else
             {
@@ -335,7 +346,7 @@
             }
 
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
-            return this.View(nameof(ExternalLogin), model);
+            return this.View(nameof(this.ExternalLogin), model);
         }
 
         [HttpGet]
@@ -375,17 +386,17 @@
                 if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return this.RedirectToAction(nameof(ForgotPasswordConfirmation));
+                    return this.RedirectToAction(nameof(this.ForgotPasswordConfirmation));
                 }
 
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await this.userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = this.Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
+                var callbackUrl = this.Url.ResetPasswordCallbackLink(user.Id, code, this.Request.Scheme);
 
                 await this.emailSender.SendEmailAsync(model.Email, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
 
-                return this.RedirectToAction(nameof(ForgotPasswordConfirmation));
+                return this.RedirectToAction(nameof(this.ForgotPasswordConfirmation));
             }
 
             // If we got this far, something failed, redisplay form
@@ -424,13 +435,13 @@
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return this.RedirectToAction(nameof(ResetPasswordConfirmation));
+                return this.RedirectToAction(nameof(this.ResetPasswordConfirmation));
             }
 
             var result = await this.userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return this.RedirectToAction(nameof(ResetPasswordConfirmation));
+                return this.RedirectToAction(nameof(this.ResetPasswordConfirmation));
             }
 
             this.AddErrors(result);
