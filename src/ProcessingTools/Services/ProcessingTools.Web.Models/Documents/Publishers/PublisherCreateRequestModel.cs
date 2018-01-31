@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher create request model.
     /// </summary>
-    public class PublisherCreateRequestModel : IPublisherCreateModel
+    public class PublisherCreateRequestModel : IPublisherInsertModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
