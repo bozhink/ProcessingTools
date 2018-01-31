@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Services.Models.Contracts.Documents.Journals
 {
+    using ProcessingTools.Contracts.Models;
+
     /// <summary>
     /// Journal model.
     /// </summary>
-    public interface IJournalModel
+    public interface IJournalModel : IJournalBaseModel, IStringIdentifiable, ICreated, IModified
     {
     }
 }
