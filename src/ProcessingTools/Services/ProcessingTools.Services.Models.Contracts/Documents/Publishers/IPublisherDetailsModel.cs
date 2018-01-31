@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Documents.Publishers
     /// <summary>
     /// Publisher details model.
     /// </summary>
-    public interface IPublisherDetailsModel
+    public interface IPublisherDetailsModel : IPublisherModel
     {
     }
 }

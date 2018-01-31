@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Services.Models.Contracts.Documents.Publishers
 {
+    using ProcessingTools.Contracts.Models;
+
     /// <summary>
     /// Publisher update model.
     /// </summary>
-    public interface IPublisherUpdateModel
+    public interface IPublisherUpdateModel : IPublisherBaseModel, IStringIdentifiable
     {
     }
 }

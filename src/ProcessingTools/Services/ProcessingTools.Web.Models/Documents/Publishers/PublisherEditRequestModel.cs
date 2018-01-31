@@ -6,35 +6,28 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Journals;
+    using ProcessingTools.Services.Models.Contracts.Documents.Publishers;
 
     /// <summary>
     /// Publisher edit request model.
     /// </summary>
-    public class PublisherEditRequestModel
+    public class PublisherEditRequestModel : IPublisherUpdateModel
     {
-        /// <summary>
-        /// Gets or sets the object ID.
-        /// </summary>
+        /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         public string Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets the publisher's abbreviated name.
-        /// </summary>
+        /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         [StringLength(ValidationConstants.MaximalLengthOfAbbreviatedPublisherName, MinimumLength = ValidationConstants.MinimalLengthOfAbbreviatedPublisherName)]
         public string AbbreviatedName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the publisher's name.
-        /// </summary>
+        /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         [StringLength(ValidationConstants.MaximalLengthOfPublisherName, MinimumLength = ValidationConstants.MinimalLengthOfPublisherName)]
         public string Name { get; set; }
 
-        /// <summary>
-        /// Gets or sets the publisher's address string.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfAddressString, MinimumLength = ValidationConstants.MinimalLengthOfAddressString)]
         public string Address { get; set; }
     }
