@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Web.Models.Shared
 {
+    using ProcessingTools.Contracts;
+
     /// <summary>
     /// User Context
     /// </summary>
-    public class UserContext
+    public class UserContext : IUserContext
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UserContext"/> class.
@@ -22,19 +24,13 @@ namespace ProcessingTools.Web.Models.Shared
             this.UserEmail = userEmail;
         }
 
-        /// <summary>
-        /// Gets the user ID.
-        /// </summary>
+        /// <inheritdoc/>
         public string UserId { get; }
 
-        /// <summary>
-        /// Gets the user name.
-        /// </summary>
+        /// <inheritdoc/>
         public string UserName { get; }
 
-        /// <summary>
-        /// Gets the user e-mail.
-        /// </summary>
+        /// <inheritdoc/>
         public string UserEmail { get; }
     }
 }
