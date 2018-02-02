@@ -17,8 +17,11 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Web.Documents.Data;
+    using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Web.Documents.Models;
+    using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services;
     using ProcessingTools.Web.Services.Contracts;
     using ProcessingTools.Web.Services.Contracts.Documents;
@@ -102,6 +105,9 @@ namespace ProcessingTools.Web.Documents
             // Add bindings
             builder.Populate(services);
 
+            builder.RegisterType<ApplicationContextFactory>().AsSelf().InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
+
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
             builder.RegisterType<PublishersService>().As<IPublishersService>().InstancePerDependency();
 
@@ -139,6 +145,7 @@ namespace ProcessingTools.Web.Documents
             }
 
             app.UseAuthentication();
+            app.UseApplicationContext();
 
             app.UseMvc(routes =>
             {
