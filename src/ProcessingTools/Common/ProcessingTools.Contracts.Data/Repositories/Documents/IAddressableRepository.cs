@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Documents
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>
     /// Repository related to entities with addresses.

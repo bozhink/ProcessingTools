@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Cache
 {
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Models.Cache;
+    using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>
     /// Validation cache data repository.

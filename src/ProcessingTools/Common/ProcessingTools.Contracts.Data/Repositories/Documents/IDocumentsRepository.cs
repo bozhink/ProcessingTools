@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Documents
 {
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>
     /// Documents repository.

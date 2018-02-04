@@ -9,7 +9,7 @@
     using Newtonsoft.Json;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Services.Data.Journals;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
     using ProcessingTools.Contracts.Services.Data.Journals;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;

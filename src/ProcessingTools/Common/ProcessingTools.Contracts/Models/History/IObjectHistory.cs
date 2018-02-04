@@ -2,9 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Models.History
+namespace ProcessingTools.Models.Contracts.History
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Object history model.

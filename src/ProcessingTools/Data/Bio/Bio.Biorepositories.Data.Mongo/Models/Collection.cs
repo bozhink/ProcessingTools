@@ -2,8 +2,8 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Bio.Biorepositories;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Bio.Biorepositories;
 
     public class Collection : IStringIdentifiable, ICollection
     {

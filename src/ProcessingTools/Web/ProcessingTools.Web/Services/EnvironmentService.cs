@@ -4,7 +4,7 @@
     using System.Security.Claims;
     using System.Web;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
 

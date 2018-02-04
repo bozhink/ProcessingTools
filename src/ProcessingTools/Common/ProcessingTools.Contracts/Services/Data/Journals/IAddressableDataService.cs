@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Services.Data.Journals
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Services.Data.Journals;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
 
     /// <summary>
     /// Addressable data service.

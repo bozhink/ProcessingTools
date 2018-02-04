@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Harvesters.Abbreviations
 {
     using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Contracts.Models.Harvesters.Abbreviations;
+    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
 
     /// <summary>
     /// Abbreviations harvester.

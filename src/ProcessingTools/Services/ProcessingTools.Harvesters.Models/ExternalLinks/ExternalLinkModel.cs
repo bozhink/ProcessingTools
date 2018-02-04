@@ -8,7 +8,7 @@ namespace ProcessingTools.Harvesters.Models.ExternalLinks
     using System.ComponentModel;
     using System.Xml.Serialization;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts.Models.Harvesters.ExternalLinks;
+    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
 
     /// <summary>
     /// External Link Model.

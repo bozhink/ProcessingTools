@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Mediatypes.Data.Entity.Models
 {
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     internal class Mediatype : IMediatypeEntity
     {

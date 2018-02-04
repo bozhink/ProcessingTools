@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Cache.Data.Redis.Contracts.Repositories;
     using ProcessingTools.Cache.Data.Redis.Models;
-    using ProcessingTools.Contracts.Models.Cache;
+    using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Data.Common.Redis.Repositories;
 

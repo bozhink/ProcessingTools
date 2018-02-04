@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Bio
 {
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Services.Data.Bio;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio;
     using ProcessingTools.Contracts.Services.Data.Bio;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Data.Miners.Generics;

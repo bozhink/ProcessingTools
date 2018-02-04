@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Abstractions
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Models.Validation;
+    using ProcessingTools.Models.Contracts.Validation;
     using ProcessingTools.Contracts.Services.Cache;
     using ProcessingTools.Contracts.Services.Validation;
     using ProcessingTools.Enumerations;

@@ -6,7 +6,7 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Models.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;

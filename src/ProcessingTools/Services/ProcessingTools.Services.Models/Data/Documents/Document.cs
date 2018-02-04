@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Data.Documents
 {
     using System;
-    using ProcessingTools.Contracts.Models.Services.Data.Documents;
+    using ProcessingTools.Models.Contracts.Services.Data.Documents;
 
     /// <summary>
     /// Document service model.

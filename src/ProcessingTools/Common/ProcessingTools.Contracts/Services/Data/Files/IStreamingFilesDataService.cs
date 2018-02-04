@@ -6,7 +6,7 @@ namespace ProcessingTools.Contracts.Services.Data.Files
 {
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Files;
+    using ProcessingTools.Models.Contracts.Files;
 
     /// <summary>
     /// Streaming files data service.

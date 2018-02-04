@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Data.Mediatypes
 {
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     /// <summary>
     /// Mediatype service model.

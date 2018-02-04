@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Data.Journals
 {
-    using ProcessingTools.Contracts.Models.Services.Data.Journals;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
     using ProcessingTools.Contracts.Services.Data;
 
     /// <summary>

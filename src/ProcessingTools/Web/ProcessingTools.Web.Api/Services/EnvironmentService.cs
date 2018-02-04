@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Web.Api.Services
 {
     using System;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Enumerations;
 

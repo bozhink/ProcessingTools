@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     public class ValidatedObject : IStringIdentifiable
     {

@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Journals;
-    using ProcessingTools.Contracts.Models.Journals;
+    using ProcessingTools.Models.Contracts.Journals;
 
     public class Publisher : Addressable, IPublisher
     {

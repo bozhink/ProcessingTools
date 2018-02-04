@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.Bio.Codes
 {
-    using ProcessingTools.Contracts.Models.Processors.Bio.Codes;
+    using ProcessingTools.Models.Contracts.Processors.Bio.Codes;
 
     /// <summary>
     /// Specimen code.

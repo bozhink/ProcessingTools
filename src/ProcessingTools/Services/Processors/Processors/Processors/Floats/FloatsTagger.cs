@@ -10,7 +10,7 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Processors.Floats;
+    using ProcessingTools.Models.Contracts.Processors.Floats;
     using ProcessingTools.Contracts.Processors.Processors.Floats;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Enumerations.Nlm;

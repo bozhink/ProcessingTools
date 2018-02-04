@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Data.Miners.Abstractions;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;

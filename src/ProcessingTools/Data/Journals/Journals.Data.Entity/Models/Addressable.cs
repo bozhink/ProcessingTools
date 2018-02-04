@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Contracts.Models.Journals;
+    using ProcessingTools.Models.Contracts.Journals;
     using ProcessingTools.Models.Abstractions;
 
     public abstract class Addressable : ModelWithUserInformation, IAddressable

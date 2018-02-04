@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Mediatypes
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     /// <summary>
     /// Mediatypes repository.

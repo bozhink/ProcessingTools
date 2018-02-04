@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Contracts.Models.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;

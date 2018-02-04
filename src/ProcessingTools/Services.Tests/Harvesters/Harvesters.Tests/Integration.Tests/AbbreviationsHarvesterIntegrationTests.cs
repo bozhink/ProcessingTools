@@ -9,7 +9,7 @@
     using ProcessingTools.Common.Serialization;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Contracts.Models.Harvesters.Abbreviations;
+    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters;
     using ProcessingTools.Harvesters.Abbreviations;
     using ProcessingTools.Xml.Cache;

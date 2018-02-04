@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Resources.Institutions
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.DataResources;
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts.Resources;
 
     /// <summary>
     /// Represents request model for the institutions API.

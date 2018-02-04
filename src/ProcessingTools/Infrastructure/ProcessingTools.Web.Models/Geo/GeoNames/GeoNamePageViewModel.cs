@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Geo.GeoNames
 {
-    using ProcessingTools.Contracts.Models.ViewModels;
+    using ProcessingTools.Models.Contracts.ViewModels;
 
     /// <summary>
     /// GeoName page view model

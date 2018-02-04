@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Models.Processors.Abbreviations
+namespace ProcessingTools.Models.Contracts.Processors.Abbreviations
 {
     /// <summary>
     /// Abbreviation.

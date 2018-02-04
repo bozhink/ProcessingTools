@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Processors.Layout;
+    using ProcessingTools.Models.Contracts.Processors.Layout;
 
     public interface IContentTagger
     {

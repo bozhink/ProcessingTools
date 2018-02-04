@@ -4,8 +4,8 @@
     using System.Linq.Expressions;
     using ProcessingTools.Bio.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Bio.Data.Entity.Models;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Services.Data.Bio;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio;
     using ProcessingTools.Contracts.Services.Data.Bio;
     using ProcessingTools.Services.Abstractions;
 

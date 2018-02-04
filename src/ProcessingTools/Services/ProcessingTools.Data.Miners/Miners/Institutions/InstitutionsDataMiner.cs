@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Institutions
 {
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Data.Miners.Contracts.Miners.Institutions;
     using ProcessingTools.Data.Miners.Generics;

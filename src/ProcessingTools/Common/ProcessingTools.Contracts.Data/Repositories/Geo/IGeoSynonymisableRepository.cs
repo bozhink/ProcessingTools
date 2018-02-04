@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Geo
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
 
     /// <summary>
     /// Geo synonymisable repository.

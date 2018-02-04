@@ -5,7 +5,7 @@
 namespace ProcessingTools.Data.Models.Contracts
 {
     using System;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Data model.

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Geo.Countries
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Country response model

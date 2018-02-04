@@ -6,7 +6,7 @@ namespace ProcessingTools.Services.Models.Data.Journals
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models.Services.Data.Journals;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
 
     /// <summary>
     /// Publisher details.

@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Journals
 {
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Models.Journals;
+    using ProcessingTools.Models.Contracts.Journals;
 
     /// <summary>
     /// Institutions repository.

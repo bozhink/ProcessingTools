@@ -10,7 +10,7 @@ namespace ProcessingTools.Harvesters.Meta
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Harvesters.Meta;
-    using ProcessingTools.Contracts.Models.Harvesters.Meta;
+    using ProcessingTools.Models.Contracts.Harvesters.Meta;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Models.Meta;
 

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Data.Resources
 {
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts.Resources;
 
     /// <summary>
     /// Product.

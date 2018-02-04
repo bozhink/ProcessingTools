@@ -7,7 +7,7 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Contracts.Models.Files;
+    using ProcessingTools.Models.Contracts.Files;
     using ProcessingTools.Contracts.Services.Data.Files;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Documents.Areas.Files.Models;

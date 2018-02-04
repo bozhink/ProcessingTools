@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using ProcessingTools.Contracts.Models.Journals;
+    using ProcessingTools.Models.Contracts.Journals;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
     using ProcessingTools.Journals.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Journals.Data.Entity.Contracts;

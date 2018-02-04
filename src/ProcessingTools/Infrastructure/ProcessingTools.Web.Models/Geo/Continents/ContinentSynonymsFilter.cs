@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Geo.Continents
 {
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
 
     /// <summary>
     /// Continent synonyms filter

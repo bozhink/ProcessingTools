@@ -9,7 +9,7 @@ namespace ProcessingTools.Common.Mappings
     using System.Reflection;
     using AutoMapper;
     using AutoMapper.Configuration;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Extensions;
 
     /// <summary>

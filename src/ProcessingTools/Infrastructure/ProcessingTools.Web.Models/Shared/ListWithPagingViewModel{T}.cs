@@ -6,7 +6,7 @@ namespace ProcessingTools.Web.Models.Shared
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models.ViewModels;
+    using ProcessingTools.Models.Contracts.ViewModels;
 
     /// <summary>
     /// Represents implementation of the <see cref="IPagingViewModel"/>.

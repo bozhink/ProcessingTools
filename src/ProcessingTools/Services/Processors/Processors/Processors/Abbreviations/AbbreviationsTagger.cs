@@ -7,7 +7,7 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Contracts.Models.Processors.Abbreviations;
+    using ProcessingTools.Models.Contracts.Processors.Abbreviations;
     using ProcessingTools.Contracts.Processors.Processors.Abbreviations;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Extensions;

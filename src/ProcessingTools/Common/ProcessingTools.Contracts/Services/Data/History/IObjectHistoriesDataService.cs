@@ -6,7 +6,7 @@ namespace ProcessingTools.Contracts.Services.Data.History
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.History;
+    using ProcessingTools.Models.Contracts.History;
 
     /// <summary>
     /// Object histories data service.

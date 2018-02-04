@@ -2,14 +2,14 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Models.Journals
+namespace ProcessingTools.Models.Contracts.Journals
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Address.
     /// </summary>
-    public interface IAddress : IStringIdentifiable, ProcessingTools.Contracts.Models.IAddressable, IDataModel
+    public interface IAddress : IStringIdentifiable, ProcessingTools.Models.Contracts.IAddressable, IDataModel
     {
         /// <summary>
         /// Gets city ID.

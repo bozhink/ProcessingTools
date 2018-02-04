@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Services.Data
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Data service with multiple model operations.

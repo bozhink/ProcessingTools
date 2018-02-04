@@ -6,7 +6,7 @@
     using System.Web.Http;
     using AutoMapper;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Contracts.Services.Data.Mediatypes;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 

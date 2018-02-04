@@ -2,8 +2,8 @@
 {
     using System;
     using System.Linq.Expressions;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Resources;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;

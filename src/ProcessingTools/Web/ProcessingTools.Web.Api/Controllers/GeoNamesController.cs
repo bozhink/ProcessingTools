@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Geo.GeoNames;

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using ProcessingTools.Contracts.Data.Repositories.History;
-    using ProcessingTools.Contracts.Models.History;
+    using ProcessingTools.Models.Contracts.History;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data.History;
     using ProcessingTools.Services.Models.Data.History;

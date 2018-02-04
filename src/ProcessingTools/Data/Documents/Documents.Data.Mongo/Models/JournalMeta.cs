@@ -4,8 +4,8 @@
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Documents;
 
     [CollectionName("journalsMeta")]
     public class JournalMeta : IStringIdentifiable, IJournalMeta

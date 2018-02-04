@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Bio.SpecimenCodes
 {
     using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Models.Bio.SpecimenCodes;
+    using ProcessingTools.Models.Contracts.Bio.SpecimenCodes;
 
     /// <summary>
     /// Iterable specimen codes mining repository.

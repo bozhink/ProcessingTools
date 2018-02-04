@@ -2,12 +2,12 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Models.Services.Data.History
+namespace ProcessingTools.Models.Contracts.Services.Data.History
 {
     /// <summary>
     /// Object history service model.
     /// </summary>
-    public interface IObjectHistory : ProcessingTools.Contracts.Models.History.IObjectHistory
+    public interface IObjectHistory : ProcessingTools.Models.Contracts.History.IObjectHistory
     {
     }
 }

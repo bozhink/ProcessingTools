@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Contracts.Services.Data.Meta;
     using ProcessingTools.Enumerations;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;

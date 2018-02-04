@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Data.Meta
 {
     using System.Text.RegularExpressions;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>
     /// Journal meta.

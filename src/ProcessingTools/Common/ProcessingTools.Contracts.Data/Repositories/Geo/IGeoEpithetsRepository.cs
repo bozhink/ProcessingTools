@@ -4,8 +4,8 @@
 
 namespace ProcessingTools.Contracts.Data.Repositories.Geo
 {
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Geo;
 
     /// <summary>
     /// Geo epithets repository.

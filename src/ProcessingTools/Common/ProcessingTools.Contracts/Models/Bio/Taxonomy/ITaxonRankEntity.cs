@@ -2,10 +2,10 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Models.Bio.Taxonomy
+namespace ProcessingTools.Models.Contracts.Bio.Taxonomy
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Enumerations;
 
     /// <summary>

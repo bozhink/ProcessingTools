@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Mediatypes
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     /// <summary>
     /// Searchable mediatypes repository.

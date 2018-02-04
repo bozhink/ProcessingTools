@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Services.Data.Meta
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>
     /// Journals meta data service.

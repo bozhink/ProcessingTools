@@ -7,7 +7,7 @@
     using AutoMapper;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Bio;
+    using ProcessingTools.Models.Contracts.Bio;
     using ProcessingTools.Contracts.Services.Data.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.EnvoTerms;
 

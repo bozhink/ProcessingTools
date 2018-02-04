@@ -5,7 +5,7 @@
 namespace ProcessingTools.Processors.Models.Floats
 {
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts.Models.Processors.Floats;
+    using ProcessingTools.Models.Contracts.Processors.Floats;
     using ProcessingTools.Enumerations.Nlm;
 
     /// <summary>

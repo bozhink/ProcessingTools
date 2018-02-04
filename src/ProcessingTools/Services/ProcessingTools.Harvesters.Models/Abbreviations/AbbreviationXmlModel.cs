@@ -8,7 +8,7 @@ namespace ProcessingTools.Harvesters.Models.Abbreviations
     using System.ComponentModel;
     using System.Xml.Serialization;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts.Models.Harvesters.Abbreviations;
+    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
 
     /// <summary>
     /// Abbreviation Xml Model

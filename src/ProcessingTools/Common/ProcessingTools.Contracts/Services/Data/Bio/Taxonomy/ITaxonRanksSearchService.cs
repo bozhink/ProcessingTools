@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Contracts.Services.Data.Bio.Taxonomy
 {
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon ranks search service.

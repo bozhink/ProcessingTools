@@ -7,7 +7,7 @@
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
     using ProcessingTools.Contracts.Data.Expressions;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
     using ProcessingTools.Documents.Data.Mongo.Contracts.Repositories;

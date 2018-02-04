@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Contracts.Documents.Journals
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Journal update model.

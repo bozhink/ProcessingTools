@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Bio.EnvoTerms
 {
-    using ProcessingTools.Contracts.Models.Bio;
+    using ProcessingTools.Models.Contracts.Bio;
 
     /// <summary>
     /// Represents response model for the envo terms API.

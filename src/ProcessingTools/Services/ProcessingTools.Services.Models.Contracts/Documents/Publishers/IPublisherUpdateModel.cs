@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Contracts.Documents.Publishers
 {
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Publisher update model.

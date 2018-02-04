@@ -5,15 +5,15 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Services.Data.Journals;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
     using ProcessingTools.Contracts.Services.Data.History;
     using ProcessingTools.Contracts.Services.Data.Journals;
     using ProcessingTools.Journals.Services.Data.Abstractions.Services;
     using ProcessingTools.Services.Models.Data.Journals;
-    using TDataModel = ProcessingTools.Contracts.Models.Journals.IPublisher;
-    using TDetailedServiceModel = ProcessingTools.Contracts.Models.Services.Data.Journals.IPublisherDetails;
+    using TDataModel = ProcessingTools.Models.Contracts.Journals.IPublisher;
+    using TDetailedServiceModel = ProcessingTools.Models.Contracts.Services.Data.Journals.IPublisherDetails;
     using TRepository = ProcessingTools.Contracts.Data.Repositories.Journals.IPublishersRepository;
-    using TServiceModel = ProcessingTools.Contracts.Models.Services.Data.Journals.IPublisher;
+    using TServiceModel = ProcessingTools.Models.Contracts.Services.Data.Journals.IPublisher;
 
     public class PublishersDataService : AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>, IPublishersDataService
     {

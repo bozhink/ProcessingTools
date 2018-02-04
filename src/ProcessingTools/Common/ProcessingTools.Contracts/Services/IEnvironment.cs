@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Services
 {
     using System;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Provider executing environment settings.

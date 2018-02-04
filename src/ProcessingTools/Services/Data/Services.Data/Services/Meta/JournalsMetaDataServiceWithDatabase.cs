@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Repositories.Documents;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Contracts.Services.Data.Meta;
     using ProcessingTools.Services.Models.Data.Meta;
 

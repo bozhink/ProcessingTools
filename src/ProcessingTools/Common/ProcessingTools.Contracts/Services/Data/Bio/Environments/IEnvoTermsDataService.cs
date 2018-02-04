@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Services.Data.Bio.Environments
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Services.Data.Bio.Environments;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio.Environments;
 
     /// <summary>
     /// ENVO Terms data service.

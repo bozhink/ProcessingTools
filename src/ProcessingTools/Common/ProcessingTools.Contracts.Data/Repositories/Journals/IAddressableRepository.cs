@@ -5,7 +5,7 @@
 namespace ProcessingTools.Contracts.Data.Repositories.Journals
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Journals;
+    using ProcessingTools.Models.Contracts.Journals;
 
     /// <summary>
     /// Addressable repository.

@@ -2,12 +2,12 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Models.Services.Data.Bio.Environments
+namespace ProcessingTools.Models.Contracts.Services.Data.Bio.Environments
 {
     /// <summary>
     /// ENVO Term service model.
     /// </summary>
-    public interface IEnvoTerm : ProcessingTools.Contracts.Models.Bio.IEnvoTerm
+    public interface IEnvoTerm : ProcessingTools.Models.Contracts.Bio.IEnvoTerm
     {
     }
 }

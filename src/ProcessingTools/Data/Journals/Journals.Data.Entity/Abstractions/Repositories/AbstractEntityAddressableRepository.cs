@@ -4,7 +4,7 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Models.Journals;
+    using ProcessingTools.Models.Contracts.Journals;
     using ProcessingTools.Data.Common.Entity.Abstractions.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
     using ProcessingTools.Journals.Data.Entity.Contracts;
@@ -12,7 +12,7 @@
 
     public abstract class AbstractEntityAddressableRepository<TEntity, TDbModel> : AbstractEntityRepository<TEntity, IJournalsDbContext, TDbModel>
         where TEntity : class, IAddressable
-        where TDbModel : Addressable, TEntity, ProcessingTools.Contracts.Models.IStringIdentifiable
+        where TDbModel : Addressable, TEntity, ProcessingTools.Models.Contracts.IStringIdentifiable
     {
         protected AbstractEntityAddressableRepository(IGenericRepository<IJournalsDbContext, TDbModel> repository)
             : base(repository)
