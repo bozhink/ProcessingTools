@@ -426,6 +426,10 @@
       <Project>{00FCCC5A-D81F-4C05-9082-023837220F69}</Project>
       <Name>ProcessingTools.Contracts.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Bio\Bio.Data.Entity\Bio.Data.Entity.csproj">
       <Project>{715850dd-6ffb-45c6-b858-8d8e86c772d0}</Project>
       <Name>Bio.Data.Entity</Name>

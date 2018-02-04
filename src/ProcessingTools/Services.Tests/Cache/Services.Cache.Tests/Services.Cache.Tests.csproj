@@ -93,6 +93,10 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
       <Name>Tests.Library</Name>

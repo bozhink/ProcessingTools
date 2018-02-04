@@ -144,6 +144,10 @@
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>
       <Name>Users.Data.Entity</Name>

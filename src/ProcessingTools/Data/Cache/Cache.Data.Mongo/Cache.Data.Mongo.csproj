@@ -82,6 +82,10 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{a620dfde-28c3-46c7-bed3-0afb99db9623}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
       <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
       <Name>Data.Common.Mongo</Name>

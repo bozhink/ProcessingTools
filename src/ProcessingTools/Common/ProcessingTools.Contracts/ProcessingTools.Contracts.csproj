@@ -31,11 +31,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Services\Data\Geo\" />
-    <Folder Include="Models\Services\Data\Resources\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

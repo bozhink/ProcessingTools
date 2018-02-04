@@ -98,6 +98,10 @@
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{a620dfde-28c3-46c7-bed3-0afb99db9623}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Cache\Cache.Data.Redis\Cache.Data.Redis.csproj">
       <Project>{9fafd7d9-7917-484e-b08e-b6d0c1bb02c6}</Project>
       <Name>Cache.Data.Redis</Name>
