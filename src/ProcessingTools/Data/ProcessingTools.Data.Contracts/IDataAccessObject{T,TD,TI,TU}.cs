@@ -1,19 +1,22 @@
-﻿// <copyright file="IDataService{T,TD,TI,TU}.cs" company="ProcessingTools">
+﻿// <copyright file="IDataAccessObject{T,TD,TI,TU}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts
+namespace ProcessingTools.Data.Contracts
 {
     using System.Threading.Tasks;
+    using ProcessingTools.Data.Models.Contracts;
 
     /// <summary>
-    /// Generic data service.
+    /// Generic data access object (DAO).
     /// </summary>
-    /// <typeparam name="T">Type of the service model.</typeparam>
-    /// <typeparam name="TD">Type of the detailed service model.</typeparam>
-    /// <typeparam name="TI">Type of the insert service model.</typeparam>
-    /// <typeparam name="TU">Type of the update service model.</typeparam>
-    public interface IDataService<T, TD, TI, TU>
+    /// <typeparam name="T">Type of the data model.</typeparam>
+    /// <typeparam name="TD">Type of the detailed data model.</typeparam>
+    /// <typeparam name="TI">Type of the insert data model.</typeparam>
+    /// <typeparam name="TU">Type of the update data model.</typeparam>
+    public interface IDataAccessObject<T, TD, TI, TU>
+        where T : IDataModel
+        where TD : IDataModel
     {
         /// <summary>
         /// Inserts item to the data store.
@@ -61,6 +64,13 @@ namespace ProcessingTools.Services.Contracts
         /// </summary>
         /// <param name="id">ID of the item.</param>
         /// <returns>Corresponding item of the provided ID.</returns>
-        Task<TD> GetById(object id);
+        Task<T> GetById(object id);
+
+        /// <summary>
+        /// Gets detailed item by its ID.
+        /// </summary>
+        /// <param name="id">ID of the item.</param>
+        /// <returns>Corresponding item of the provided ID.</returns>
+        Task<TD> GetDetailsById(object id);
     }
 }
