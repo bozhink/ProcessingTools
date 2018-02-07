@@ -3,12 +3,12 @@
     using System.Data.Entity;
     using System.Linq;
     using AutoMapper;
-    using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Geo;
 
     public class EntityRegionsRepository : AbstractGeoSynonymisableRepository<Region, IRegion, IRegionsFilter, RegionSynonym, IRegionSynonym, IRegionSynonymsFilter>, IRegionsRepository
     {
