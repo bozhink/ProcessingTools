@@ -1,10 +1,10 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Abstractions.Repositories
+﻿namespace ProcessingTools.Data.Common.Redis.Abstractions
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Common.Redis.Contracts;
+    using ProcessingTools.Data.Contracts;
     using ServiceStack.Redis;
 
     public abstract class AbstractSavableRedisRepository : IKeyListableRepository<string>

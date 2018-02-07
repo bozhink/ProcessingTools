@@ -48,11 +48,11 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Repositories\AbstractSavableRedisRepository.cs" />
+    <Compile Include="Abstractions\AbstractSavableRedisRepository.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Contracts\IRedisClientProvider.cs" />
-    <Compile Include="Contracts\Repositories\IRedisKeyCollectionValuePairsRepository.cs" />
-    <Compile Include="Contracts\Repositories\IRedisKeyValuePairsRepository.cs" />
+    <Compile Include="Contracts\IRedisKeyCollectionValuePairsRepository.cs" />
+    <Compile Include="Contracts\IRedisKeyValuePairsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedisClientProvider.cs" />
     <Compile Include="Repositories\RedisKeyCollectionValuePairsRepository.cs" />

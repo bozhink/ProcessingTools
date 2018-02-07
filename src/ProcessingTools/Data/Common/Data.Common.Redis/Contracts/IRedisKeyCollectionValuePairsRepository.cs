@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Data.Common.Redis.Contracts.Repositories
+﻿namespace ProcessingTools.Data.Common.Redis.Contracts
 {
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
 
     public interface IRedisKeyCollectionValuePairsRepository<T> : IStringKeyCollectionValuePairsRepository<T>
     {
