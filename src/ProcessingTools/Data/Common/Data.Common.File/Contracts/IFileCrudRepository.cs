@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Data.Common.File.Contracts.Repositories
+﻿namespace ProcessingTools.Data.Common.File.Contracts
 {
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
 
     public interface IFileCrudRepository<T> : ICrudRepository<T>, IFileSearchableRepository<T>, IFileRepository<T>
         where T : class

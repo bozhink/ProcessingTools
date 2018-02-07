@@ -37,11 +37,11 @@
   <ItemGroup>
     <Compile Include="Contracts\IFileDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Contracts\Repositories\IFileCrudRepository.cs" />
-    <Compile Include="Contracts\Repositories\IFileGenericRepository.cs" />
-    <Compile Include="Contracts\Repositories\IFileRepository.cs" />
-    <Compile Include="Contracts\Repositories\IFileSearchableRepository.cs" />
-    <Compile Include="Contracts\Repositories\IFileIterableRepository.cs" />
+    <Compile Include="Contracts\IFileCrudRepository.cs" />
+    <Compile Include="Contracts\IFileGenericRepository.cs" />
+    <Compile Include="Contracts\IFileRepository.cs" />
+    <Compile Include="Contracts\IFileSearchableRepository.cs" />
+    <Compile Include="Contracts\IFileIterableRepository.cs" />
     <Compile Include="Repositories\FileRepository.cs" />
     <Compile Include="Repositories\FileGenericRepository.cs" />
   </ItemGroup>

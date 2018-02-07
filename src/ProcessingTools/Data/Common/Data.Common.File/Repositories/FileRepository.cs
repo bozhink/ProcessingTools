@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.File.Contracts;
-    using ProcessingTools.Data.Common.File.Contracts.Repositories;
 
     public class FileRepository<TContext, TEntity> : IFileSearchableRepository<TEntity>, IFileIterableRepository<TEntity>
         where TContext : IFileDbContext<TEntity>
