@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.History.Data.Entity.Initializers
+﻿namespace ProcessingTools.History.Data.Entity
 {
     using System.Data.Entity;
-    using Contracts;
-    using Migrations;
     using ProcessingTools.Data.Common.Entity.Abstractions;
+    using ProcessingTools.History.Data.Entity.Contracts;
+    using ProcessingTools.History.Data.Entity.Migrations;
 
     public class HistoryDatabaseInitializer : GenericDbContextInitializer<HistoryDbContext>, IHistoryDatabaseInitializer
     {

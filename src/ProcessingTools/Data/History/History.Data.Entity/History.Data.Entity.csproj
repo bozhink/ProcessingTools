@@ -45,10 +45,10 @@
     <Compile Include="Contracts\IHistoryDatabaseInitializer.cs" />
     <Compile Include="Contracts\IHistoryDbContext.cs" />
     <Compile Include="Contracts\IHistoryDbContextFactory.cs" />
-    <Compile Include="Contracts\Repositories\IEntityObjectHistoriesRepository.cs" />
-    <Compile Include="Factories\HistoryDbContextFactory.cs" />
+    <Compile Include="Contracts\IEntityObjectHistoriesRepository.cs" />
+    <Compile Include="HistoryDbContextFactory.cs" />
     <Compile Include="HistoryDbContext.cs" />
-    <Compile Include="Initializers\HistoryDatabaseInitializer.cs" />
+    <Compile Include="HistoryDatabaseInitializer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ObjectHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +70,10 @@
     <ProjectReference Include="..\..\Common\Data.Common.Entity\Data.Common.Entity.csproj">
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.History.Data.Entity.Factories
 {
-    using Contracts;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.History.Data.Entity.Contracts;
 
     public class HistoryDbContextFactory : IHistoryDbContextFactory
     {
