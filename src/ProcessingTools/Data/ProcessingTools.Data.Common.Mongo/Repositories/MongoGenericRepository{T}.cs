@@ -4,15 +4,15 @@
 
 namespace ProcessingTools.Data.Common.Mongo.Repositories
 {
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Threading.Tasks;
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
     using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Extensions.Data;
-    using System;
-    using System.Linq;
-    using System.Linq.Expressions;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Generic MongoDB repository.
