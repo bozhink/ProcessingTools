@@ -2,10 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories.Documents
+namespace ProcessingTools.Data.Contracts.Documents
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>
