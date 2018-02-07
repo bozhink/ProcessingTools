@@ -7,9 +7,9 @@
     using MongoDB.Driver.Linq;
     using ProcessingTools.Cache.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Cache.Data.Mongo.Models;
-    using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Models.Contracts.Cache;
 
     public class MongoValidationCacheDataRepository : IMongoValidationCacheDataRepository
     {

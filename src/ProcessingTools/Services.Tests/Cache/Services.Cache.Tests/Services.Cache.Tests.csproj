@@ -85,10 +85,6 @@
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
-      <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
-      <Name>ProcessingTools.Contracts.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
@@ -96,6 +92,10 @@
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>

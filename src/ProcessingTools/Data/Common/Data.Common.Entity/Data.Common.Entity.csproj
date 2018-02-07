@@ -88,9 +88,9 @@
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
-      <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
-      <Name>ProcessingTools.Contracts.Data</Name>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

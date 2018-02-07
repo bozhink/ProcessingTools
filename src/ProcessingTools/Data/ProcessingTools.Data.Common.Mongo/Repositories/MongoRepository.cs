@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using Contracts;
     using Contracts.Repositories;
-    using Factories;
     using MongoDB.Bson;
     using MongoDB.Driver;
 

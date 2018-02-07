@@ -204,10 +204,6 @@
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
-      <Project>{44a79257-570b-4877-b636-c7e7cc20f606}</Project>
-      <Name>ProcessingTools.Contracts.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
