@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Journals.Data.Entity.Initializers
+﻿namespace ProcessingTools.Journals.Data.Entity
 {
     using System.Data.Entity;
-    using Contracts;
-    using Migrations;
     using ProcessingTools.Data.Common.Entity.Abstractions;
+    using ProcessingTools.Journals.Data.Entity.Contracts;
+    using ProcessingTools.Journals.Data.Entity.Migrations;
 
     public class JournalsDatabaseInitializer : GenericDbContextInitializer<JournalsDbContext>, IJournalsDatabaseInitializer
     {

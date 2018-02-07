@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.Journals.Data.Entity.Factories
+﻿namespace ProcessingTools.Journals.Data.Entity
 {
-    using Contracts;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Journals.Data.Entity.Contracts;
 
     public class JournalsDbContextFactory : IJournalsDbContextFactory
     {
