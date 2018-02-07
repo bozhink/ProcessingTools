@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using Contracts;
+    using ProcessingTools.Data.Common.Memory.Contracts;
 
     public class MemoryKeyValueDataStore<TKey, TValue> : IMemoryKeyValueDataStore<TKey, TValue>
     {
@@ -13,8 +13,7 @@
         {
             get
             {
-                TValue value;
-                DataStore.Instance.TryGetValue(key, out value);
+                DataStore.Instance.TryGetValue(key, out TValue value);
 
                 return value;
             }
@@ -24,8 +23,7 @@
 
         public bool Remove(TKey key)
         {
-            TValue value;
-            return DataStore.Instance.TryRemove(key, out value);
+            return DataStore.Instance.TryRemove(key, out TValue value);
         }
 
         private sealed class DataStore

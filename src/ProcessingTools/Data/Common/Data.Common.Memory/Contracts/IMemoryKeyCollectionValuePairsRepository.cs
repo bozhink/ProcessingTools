@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Data.Common.Memory.Contracts.Repositories
+﻿namespace ProcessingTools.Data.Common.Memory.Contracts
 {
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
 
     public interface IMemoryKeyCollectionValuePairsRepository<T> : IStringKeyCollectionValuePairsRepository<T>
     {

@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts;
-    using Contracts.Repositories;
+    using ProcessingTools.Data.Common.Memory.Contracts;
 
     public class MemoryKeyCollectionValuePairsRepository<T> : IMemoryKeyCollectionValuePairsRepository<T>
     {
