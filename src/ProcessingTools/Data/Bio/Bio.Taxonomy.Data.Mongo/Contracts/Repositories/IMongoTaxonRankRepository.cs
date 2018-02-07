@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories
 {
-    using ProcessingTools.Contracts.Data.Repositories.Bio.Taxonomy;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
 
     public interface IMongoTaxonRankRepository : ITaxonRanksRepository
     {

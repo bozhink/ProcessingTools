@@ -3,7 +3,7 @@
     using System;
     using Contracts;
     using Contracts.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
 
     public class BioTaxonomyDataRepositoryProvider<T> : IBioTaxonomyDataRepositoryProvider<T>
         where T : class
@@ -12,12 +12,7 @@
 
         public BioTaxonomyDataRepositoryProvider(IBioTaxonomyDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
         }
 
         public ICrudRepository<T> Create()
