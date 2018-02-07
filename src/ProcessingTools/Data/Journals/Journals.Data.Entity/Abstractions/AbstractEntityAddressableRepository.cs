@@ -1,14 +1,14 @@
-﻿namespace ProcessingTools.Journals.Data.Entity.Abstractions.Repositories
+﻿namespace ProcessingTools.Journals.Data.Entity.Abstractions
 {
     using System;
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Journals;
     using ProcessingTools.Data.Common.Entity.Abstractions.Repositories;
-    using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
+    using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Journals.Data.Entity.Contracts;
     using ProcessingTools.Journals.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Journals;
 
     public abstract class AbstractEntityAddressableRepository<TEntity, TDbModel> : AbstractEntityRepository<TEntity, IJournalsDbContext, TDbModel>
         where TEntity : class, IAddressable

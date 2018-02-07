@@ -42,7 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Repositories\AbstractEntityAddressableRepository.cs" />
+    <Compile Include="Abstractions\AbstractEntityAddressableRepository.cs" />
     <Compile Include="Contracts\IJournalsDatabaseInitializer.cs" />
     <Compile Include="Contracts\IJournalsDbContext.cs" />
     <Compile Include="Contracts\IJournalsDbContextFactory.cs" />
