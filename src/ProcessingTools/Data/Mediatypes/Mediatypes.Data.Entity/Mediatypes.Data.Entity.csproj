@@ -85,6 +85,10 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

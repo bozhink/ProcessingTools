@@ -74,6 +74,14 @@
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
+      <Project>{A77B11A8-45A0-45BA-9003-7A81514D8BDA}</Project>
+      <Name>ProcessingTools.Data.Common.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

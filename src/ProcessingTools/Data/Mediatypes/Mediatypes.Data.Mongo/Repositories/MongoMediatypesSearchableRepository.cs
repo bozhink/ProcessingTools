@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using MongoDB.Driver;
-    using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
-    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Data.Contracts.Mediatypes;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     public class MongoMediatypesSearchableRepository : ISearchableMediatypesRepository
     {
@@ -20,7 +20,7 @@
                 throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            string collectionName = CollectionNameFactory.Create<Mediatype>();
+            string collectionName = MongoCollectionNameFactory.Create<Mediatype>();
             this.collection = databaseProvider.Create().GetCollection<Mediatype>(collectionName);
         }
 
