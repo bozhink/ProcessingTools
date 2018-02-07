@@ -1,11 +1,11 @@
-﻿// <copyright file="IDatabaseProvider.cs" company="ProcessingTools">
+﻿// <copyright file="IDatabaseProvider{T}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Data.Contracts
 {
     /// <summary>
-    /// Database provider.
+    /// Generic database provider.
     /// </summary>
     /// <typeparam name="T">Type of database context.</typeparam>
     public interface IDatabaseProvider<out T>
