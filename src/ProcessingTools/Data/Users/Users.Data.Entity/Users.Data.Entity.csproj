@@ -53,8 +53,8 @@
   <ItemGroup>
     <Compile Include="Contracts\IUsersDataInitializer.cs" />
     <Compile Include="Contracts\IUsersDbContextFactory.cs" />
-    <Compile Include="Factories\UsersDbContextFactory.cs" />
-    <Compile Include="Initializers\UsersDataInitializer.cs" />
+    <Compile Include="UsersDbContextFactory.cs" />
+    <Compile Include="UsersDataInitializer.cs" />
     <Compile Include="UsersDbContext.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Migrations\Configuration.cs" />

@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Users.Data.Entity.Initializers
+﻿namespace ProcessingTools.Users.Data.Entity
 {
     using System.Data.Entity;
-    using Contracts;
-    using Migrations;
     using ProcessingTools.Data.Common.Entity.Abstractions;
+    using ProcessingTools.Users.Data.Entity.Contracts;
+    using ProcessingTools.Users.Data.Entity.Migrations;
 
     public class UsersDataInitializer : GenericDbContextInitializer<UsersDbContext>, IUsersDataInitializer
     {

@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Users.Data.Entity.Factories
+﻿namespace ProcessingTools.Users.Data.Entity
 {
-    using Contracts;
+    using ProcessingTools.Users.Data.Entity.Contracts;
 
     public class UsersDbContextFactory : IUsersDbContextFactory
     {
