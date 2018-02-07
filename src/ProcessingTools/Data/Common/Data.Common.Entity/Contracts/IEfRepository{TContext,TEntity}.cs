@@ -1,11 +1,10 @@
-﻿namespace ProcessingTools.Data.Common.Entity.Contracts.Repositories
+﻿namespace ProcessingTools.Data.Common.Entity.Contracts
 {
     using System.Data.Entity;
     using System.Linq;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Data.Contracts;
 
-    public interface IGenericRepository<TContext, TEntity> : IRepository<TEntity>
+    public interface IEfRepository<TContext, TEntity> : IRepository<TEntity>
         where TContext : IDbContext
         where TEntity : class
     {

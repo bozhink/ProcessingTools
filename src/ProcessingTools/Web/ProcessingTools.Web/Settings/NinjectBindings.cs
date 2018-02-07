@@ -45,7 +45,7 @@
 
             this.Bind<ProcessingTools.Journals.Data.Entity.Contracts.IJournalsDbContext>()
                 .To<ProcessingTools.Journals.Data.Entity.JournalsDbContext>()
-                .WhenInjectedInto(typeof(ProcessingTools.Data.Common.Entity.Repositories.GenericRepository<,>))
+                .WhenInjectedInto(typeof(ProcessingTools.Data.Common.Entity.Repositories.EfRepository<,>))
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,

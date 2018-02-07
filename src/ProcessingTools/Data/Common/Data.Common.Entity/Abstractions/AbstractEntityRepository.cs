@@ -7,18 +7,17 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts.Data.Expressions;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
+    using ProcessingTools.Data.Contracts;
 
     public abstract class AbstractEntityRepository<TEntity, TContext, TDbModel> : ICrudRepository<TEntity>
         where TEntity : class
         where TContext : IDbContext
         where TDbModel : class, TEntity
     {
-        private readonly IGenericRepository<TContext, TDbModel> repository;
+        private readonly IEfRepository<TContext, TDbModel> repository;
 
-        protected AbstractEntityRepository(IGenericRepository<TContext, TDbModel> repository)
+        protected AbstractEntityRepository(IEfRepository<TContext, TDbModel> repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
@@ -27,7 +26,7 @@
 
         protected abstract Func<TEntity, TDbModel> MapEntityToDbModel { get; }
 
-        protected IGenericRepository<TContext, TDbModel> Repository => this.repository;
+        protected IEfRepository<TContext, TDbModel> Repository => this.repository;
 
         public virtual Task<object> AddAsync(TEntity entity)
         {

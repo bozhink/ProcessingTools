@@ -17,12 +17,7 @@
 
         public FileByLineDbContextSeeder(IDbContextFactory<TContext> contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
         }
 
         /// <summary>

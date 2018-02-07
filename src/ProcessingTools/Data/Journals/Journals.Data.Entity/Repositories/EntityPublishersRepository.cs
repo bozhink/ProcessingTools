@@ -11,7 +11,7 @@
 
     public class EntityPublishersRepository : AbstractEntityAddressableRepository<IPublisher, Publisher>, IEntityPublishersRepository
     {
-        public EntityPublishersRepository(IGenericRepository<IJournalsDbContext, Publisher> repository)
+        public EntityPublishersRepository(IEfRepository<IJournalsDbContext, Publisher> repository)
             : base(repository)
         {
         }

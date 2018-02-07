@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Data.Common.Entity.Repositories.Contracts
+﻿namespace ProcessingTools.Data.Common.Entity.Contracts
 {
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
 
     public interface IEntityCrudRepository<T> : ICrudRepository<T>, IEntityRepository<T>
         where T : class

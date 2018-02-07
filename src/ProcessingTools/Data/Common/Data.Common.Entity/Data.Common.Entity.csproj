@@ -44,23 +44,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\GenericDbContextInitializer.cs" />
-    <Compile Include="Abstractions\Repositories\AbstractEntityRepository.cs" />
+    <Compile Include="Abstractions\AbstractEntityRepository.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
-    <Compile Include="Contracts\IDbContextInitializer.cs" />
-    <Compile Include="Contracts\IDbContextProvider.cs" />
-    <Compile Include="Contracts\Repositories\IGenericRepository.cs" />
+    <Compile Include="Contracts\IDbContextInitializer{T}.cs" />
+    <Compile Include="Contracts\IDbContextProvider{T}.cs" />
+    <Compile Include="Contracts\IEfRepository{TContext,TEntity}.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="Models\Contracts\IEntityWithPreJoinedFields.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Contracts\IEntityGenericRepository.cs" />
-    <Compile Include="Repositories\Contracts\IEntityRepository.cs" />
-    <Compile Include="Repositories\Contracts\IEntitySearchableRepository.cs" />
+    <Compile Include="Contracts\IEntityGenericRepository.cs" />
+    <Compile Include="Contracts\IEntityRepository.cs" />
+    <Compile Include="Contracts\IEntitySearchableRepository.cs" />
     <Compile Include="Repositories\EntityGenericRepository.cs" />
     <Compile Include="Repositories\EntityPreJoinedGenericRepository.cs" />
     <Compile Include="Repositories\EntityRepository.cs" />
-    <Compile Include="Repositories\Contracts\IEntityCrudRepository.cs" />
+    <Compile Include="Contracts\IEntityCrudRepository.cs" />
     <Compile Include="Repositories\EntityRepository{TContext,TDbModel,TEntity}.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\EfRepository{TContext,TEntity}.cs" />
     <Compile Include="Seed\FileByLineDbContextSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +93,7 @@
       <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

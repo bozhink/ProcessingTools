@@ -12,7 +12,7 @@
     using ProcessingTools.History.Data.Entity.Contracts.Repositories;
     using ProcessingTools.History.Data.Entity.Models;
 
-    public class EntityObjectHistoriesRepository : GenericRepository<IHistoryDbContext, ObjectHistory>, IEntityObjectHistoriesRepository
+    public class EntityObjectHistoriesRepository : EfRepository<IHistoryDbContext, ObjectHistory>, IEntityObjectHistoriesRepository
     {
         public EntityObjectHistoriesRepository(IHistoryDbContext context)
             : base(context)

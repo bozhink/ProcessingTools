@@ -4,15 +4,13 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
 
-    public class GenericRepository<TContext, TEntity> : IGenericRepository<TContext, TEntity>
+    public class EfRepository<TContext, TEntity> : IEfRepository<TContext, TEntity>
         where TContext : class, IDbContext
         where TEntity : class
     {
-        public GenericRepository(TContext context)
+        public EfRepository(TContext context)
         {
             this.Context = context ?? throw new ArgumentNullException(nameof(context));
             this.DbSet = this.Context.Set<TEntity>();
