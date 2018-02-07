@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Documents.Data.Entity.Initializers
+﻿namespace ProcessingTools.Documents.Data.Entity
 {
     using System.Data.Entity;
-    using Contracts;
-    using Migrations;
     using ProcessingTools.Data.Common.Entity.Abstractions;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Migrations;
 
     public class DocumentsDataInitializer : GenericDbContextInitializer<DocumentsDbContext>, IDocumentsDataInitializer
     {

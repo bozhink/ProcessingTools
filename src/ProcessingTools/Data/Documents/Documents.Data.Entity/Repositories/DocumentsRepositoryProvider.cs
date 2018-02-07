@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity.Repositories
 {
     using System;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
+    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts;
-    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
 
     public class DocumentsRepositoryProvider<T> : IDocumentsRepositoryProvider<T>
         where T : class, IEntityWithPreJoinedFields

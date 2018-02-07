@@ -1,7 +1,7 @@
-﻿namespace ProcessingTools.Documents.Data.Entity.Providers
+﻿namespace ProcessingTools.Documents.Data.Entity
 {
     using System;
-    using Contracts;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
 
     public class DocumentsDbContextProvider : IDocumentsDbContextProvider
     {

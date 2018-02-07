@@ -5,12 +5,12 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories.Documents;
-    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Data.Common.Entity.Repositories;
+    using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Models;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
         where TEntity : class, IAddressable

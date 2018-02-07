@@ -1,9 +1,8 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity.Repositories
 {
-    using Contracts;
-    using Contracts.Repositories;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Data.Common.Entity.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
 
     public class DocumentsRepository<T> : EntityPreJoinedGenericRepository<DocumentsDbContext, T>, IDocumentsRepository<T>
         where T : class, IEntityWithPreJoinedFields

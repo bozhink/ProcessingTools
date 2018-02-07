@@ -7,12 +7,13 @@
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
     using ProcessingTools.Contracts.Data.Expressions;
-    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
-    using ProcessingTools.Documents.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Mongo.Contracts;
     using ProcessingTools.Documents.Data.Mongo.Models;
     using ProcessingTools.Extensions.Data;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public class MongoJournalMetaRepository : MongoRepository<JournalMeta>, IMongoJournalMetaRepository
     {
@@ -67,7 +68,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var filter = this.GetFilterById(id);
+            var filter = MongoUtilities.GetFilterById<JournalMeta>(id);
             var result = await this.Collection.DeleteOneAsync(filter).ConfigureAwait(false);
             return result;
         }
@@ -99,7 +100,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var filter = this.GetFilterById(id);
+            var filter = MongoUtilities.GetFilterById<JournalMeta>(id);
             var entity = await this.Collection.Find(filter).FirstOrDefaultAsync().ConfigureAwait(false);
             return entity;
         }
@@ -113,7 +114,7 @@
 
             var dbmodel = this.MapContractToModel(entity);
             var id = dbmodel.GetIdValue<BsonIdAttribute>();
-            var filter = this.GetFilterById(id);
+            var filter = MongoUtilities.GetFilterById<JournalMeta>(id);
             var result = await this.Collection.ReplaceOneAsync(filter, dbmodel).ConfigureAwait(false);
             return result;
         }
@@ -131,7 +132,7 @@
             }
 
             var updateQuery = this.ConvertUpdateExpressionToMongoUpdateQuery(updateExpression);
-            var filter = this.GetFilterById(id);
+            var filter = MongoUtilities.GetFilterById<JournalMeta>(id);
             var result = await this.Collection.UpdateOneAsync(filter, updateQuery).ConfigureAwait(false);
             return result;
         }
