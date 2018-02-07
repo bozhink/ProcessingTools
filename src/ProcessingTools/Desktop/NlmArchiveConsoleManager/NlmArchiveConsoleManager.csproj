@@ -125,10 +125,6 @@
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
-      <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
-      <Name>Data.Common.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents\Documents.Data.Mongo\Documents.Data.Mongo.csproj">
       <Project>{E617DF4A-0DE0-49DC-B739-9D1BB51A7E2D}</Project>
       <Name>Documents.Data.Mongo</Name>

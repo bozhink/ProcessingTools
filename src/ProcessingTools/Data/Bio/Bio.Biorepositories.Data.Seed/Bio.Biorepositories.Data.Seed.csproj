@@ -79,10 +79,6 @@
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
-      <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
-      <Name>Data.Common.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bio.Biorepositories.Data.Mongo\Bio.Biorepositories.Data.Mongo.csproj">
       <Project>{8039fb59-71f9-4d99-b2d2-fd0bdeece3c2}</Project>
       <Name>Bio.Biorepositories.Data.Mongo</Name>

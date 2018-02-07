@@ -90,10 +90,6 @@
       <Project>{bfdd00f5-bd56-44da-b070-dc2ff69e212f}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
-      <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
-      <Name>Data.Common.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
       <Name>ProcessingTools.Data.Contracts</Name>

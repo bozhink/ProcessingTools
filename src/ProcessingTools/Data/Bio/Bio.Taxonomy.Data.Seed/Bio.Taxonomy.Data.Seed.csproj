@@ -114,10 +114,6 @@
       <Project>{BFDD00F5-BD56-44DA-B070-DC2FF69E212F}</Project>
       <Name>Data.Common.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
-      <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
-      <Name>Data.Common.Mongo</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
