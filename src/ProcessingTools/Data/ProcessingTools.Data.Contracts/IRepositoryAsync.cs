@@ -2,11 +2,11 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories
+namespace ProcessingTools.Data.Contracts
 {
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Generic repository.
