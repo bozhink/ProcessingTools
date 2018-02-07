@@ -24,7 +24,7 @@
                 throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            string collectionName = CollectionNameFactory.Create<ValidatedObject>();
+            string collectionName = MongoCollectionNameFactory.Create<ValidatedObject>();
             var settings = new MongoCollectionSettings
             {
                 WriteConcern = WriteConcern.Unacknowledged

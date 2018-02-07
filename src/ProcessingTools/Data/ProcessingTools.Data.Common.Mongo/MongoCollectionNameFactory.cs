@@ -1,4 +1,4 @@
-﻿// <copyright file="CollectionNameFactory.cs" company="ProcessingTools">
+﻿// <copyright file="MongoCollectionNameFactory.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,9 +10,9 @@ namespace ProcessingTools.Data.Common.Mongo
     using ProcessingTools.Common.Attributes;
 
     /// <summary>
-    /// Collection name factory.
+    /// MongoDB collection name factory.
     /// </summary>
-    public static class CollectionNameFactory
+    public static class MongoCollectionNameFactory
     {
         private static readonly ConcurrentDictionary<Type, string> CollectionNames = new ConcurrentDictionary<Type, string>();
 

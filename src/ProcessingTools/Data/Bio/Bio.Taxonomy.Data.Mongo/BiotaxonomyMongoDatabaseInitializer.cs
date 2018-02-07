@@ -33,7 +33,7 @@
 
         private async Task<object> CreateIndicesToTaxonRankCollection()
         {
-            string collectionName = CollectionNameFactory.Create<MongoTaxonRankEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<MongoTaxonRankEntity>();
 
             var collection = this.db.GetCollection<MongoTaxonRankEntity>(collectionName);
 
@@ -47,7 +47,7 @@
 
         private async Task<object> CreateIndicesToTaxonRankTypesCollection()
         {
-            string collectionName = CollectionNameFactory.Create<MongoTaxonRankTypeEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<MongoTaxonRankTypeEntity>();
 
             var collection = this.db.GetCollection<MongoTaxonRankTypeEntity>(collectionName);
 
@@ -74,7 +74,7 @@
 
         private async Task<object> CreateIndicesToBlackListCollection()
         {
-            string collectionName = CollectionNameFactory.Create<MongoBlackListEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<MongoBlackListEntity>();
 
             var collection = this.db.GetCollection<MongoBlackListEntity>(collectionName);
 

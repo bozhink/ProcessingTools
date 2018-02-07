@@ -6,7 +6,7 @@ namespace ProcessingTools.Common.Data.Repositories
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Extensions;
 
     /// <summary>
