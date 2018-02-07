@@ -23,14 +23,14 @@ namespace ProcessingTools.Data.Contracts
         /// </summary>
         /// <param name="model">Item to be inserted.</param>
         /// <returns>Task</returns>
-        Task<object> InsertAsync(TI model);
+        Task<T> InsertAsync(TI model);
 
         /// <summary>
         /// Updates item in the data store.
         /// </summary>
         /// <param name="model">Item with updated fields.</param>
         /// <returns>Task</returns>
-        Task<object> UpdateAsync(TU model);
+        Task<T> UpdateAsync(TU model);
 
         /// <summary>
         /// Delete item from the data store.
