@@ -2,9 +2,8 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories.Journals
+namespace ProcessingTools.Data.Contracts.Journals
 {
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Models.Contracts.Journals;
 
     /// <summary>

@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories.Mediatypes
+namespace ProcessingTools.Data.Contracts.Mediatypes
 {
     using System.Collections.Generic;
     using ProcessingTools.Models.Contracts.Mediatypes;

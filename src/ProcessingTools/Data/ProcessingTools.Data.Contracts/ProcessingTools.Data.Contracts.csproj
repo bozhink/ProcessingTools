@@ -26,7 +26,4 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\Documents\" />
-  </ItemGroup>
 </Project>

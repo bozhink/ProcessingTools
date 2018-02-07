@@ -2,9 +2,8 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories.Bio.SpecimenCodes
+namespace ProcessingTools.Data.Contracts.Bio.SpecimenCodes
 {
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Models.Contracts.Bio.SpecimenCodes;
 
     /// <summary>

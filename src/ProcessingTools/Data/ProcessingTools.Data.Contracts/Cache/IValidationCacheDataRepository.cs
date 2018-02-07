@@ -2,9 +2,8 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Data.Repositories.Cache
+namespace ProcessingTools.Data.Contracts.Cache
 {
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>
