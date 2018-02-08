@@ -3,9 +3,9 @@
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts;
 
     [CollectionName("taxonRankType")]
     public class MongoTaxonRankTypeEntity : INameableStringIdentifiable

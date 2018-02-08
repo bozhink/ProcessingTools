@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
@@ -17,17 +17,17 @@
         where TFilter : IFilter
     {
         private readonly IGeoRepository<TEntity> repository;
-        private readonly IEnvironment environment;
+        private readonly IApplicationContext applicationContext;
 
-        protected AbstractGeoRepository(IGeoRepository<TEntity> repository, IEnvironment environment)
+        protected AbstractGeoRepository(IGeoRepository<TEntity> repository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
         protected IGeoRepository<TEntity> Repository => this.repository;
 
-        protected IEnvironment Environment => this.environment;
+        protected IApplicationContext ApplicationContext => this.applicationContext;
 
         protected abstract Func<TEntity, TModel> MapEntityToModel { get; }
 
@@ -127,8 +127,8 @@
 
         protected async Task<TEntity> InsertEntityAsync(TEntity entity)
         {
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTimeProvider.Invoke();
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             entity.CreatedBy = user;
             entity.CreatedOn = now;
@@ -146,8 +146,8 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTimeProvider.Invoke();
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;

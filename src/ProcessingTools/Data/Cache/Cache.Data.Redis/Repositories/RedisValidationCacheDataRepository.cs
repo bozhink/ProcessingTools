@@ -4,9 +4,9 @@
     using System.Threading.Tasks;
     using ProcessingTools.Cache.Data.Redis.Contracts.Repositories;
     using ProcessingTools.Cache.Data.Redis.Models;
-    using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Data.Common.Redis.Repositories;
+    using ProcessingTools.Models.Contracts.Cache;
 
     public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheModel>, IRedisValidationCacheDataRepository
     {

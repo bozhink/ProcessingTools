@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Enumerations;
@@ -22,20 +22,20 @@
         where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
-        private readonly IEnvironment environment;
+        private readonly IApplicationContext applicationContext;
         private readonly IGeoRepository<TEntity> repository;
         private readonly IGeoRepository<TSynonymEntity> synonymRepository;
 
-        protected AbstractGeoSynonymisableRepository(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IEnvironment environment)
+        protected AbstractGeoSynonymisableRepository(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.synonymRepository = synonymRepository ?? throw new ArgumentNullException(nameof(synonymRepository));
-            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
         protected abstract IMapper Mapper { get; }
 
-        protected IEnvironment Environment => this.environment;
+        protected IApplicationContext ApplicationContext => this.applicationContext;
 
         protected IGeoRepository<TEntity> Repository => this.repository;
 
@@ -58,8 +58,8 @@
                 return null;
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTimeProvider.Invoke();
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             foreach (var synonym in synonyms)
             {
@@ -200,10 +200,12 @@
                 this.synonymRepository.Delete(id: id);
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTimeProvider.Invoke();
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
+
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
+
             this.repository.Update(entity);
             return ids.Length;
         }
@@ -276,8 +278,8 @@
                 return null;
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTimeProvider.Invoke();
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             int count = 0;
             foreach (var synonym in synonyms)
@@ -323,8 +325,8 @@
 
         protected async Task<TEntity> InsertEntityAsync(TEntity entity)
         {
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTimeProvider.Invoke();
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             entity.CreatedBy = user;
             entity.CreatedOn = now;
@@ -350,8 +352,8 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTimeProvider.Invoke();
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;

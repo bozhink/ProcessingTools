@@ -3,7 +3,7 @@
     using System.Data.Entity;
     using System.Linq;
     using AutoMapper;
-    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
@@ -14,8 +14,8 @@
     {
         private readonly IMapper mapper;
 
-        public EntityCountriesRepository(IGeoRepository<Country> repository, IGeoRepository<CountrySynonym> synonymRepository, IEnvironment environment)
-            : base(repository, synonymRepository, environment)
+        public EntityCountriesRepository(IGeoRepository<Country> repository, IGeoRepository<CountrySynonym> synonymRepository, IApplicationContext applicationContext)
+            : base(repository, synonymRepository, applicationContext)
         {
             var mapperConfiguration = new MapperConfiguration(c =>
             {

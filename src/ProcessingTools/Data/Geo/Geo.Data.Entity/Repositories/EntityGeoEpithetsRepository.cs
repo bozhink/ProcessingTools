@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
@@ -18,8 +18,8 @@
     {
         private readonly Func<GeoEpithet, IGeoEpithet> mapEntityToModel;
 
-        public EntityGeoEpithetsRepository(IGeoRepository<GeoEpithet> repository, IEnvironment environment)
-            : base(repository, environment)
+        public EntityGeoEpithetsRepository(IGeoRepository<GeoEpithet> repository, IApplicationContext applicationContext)
+            : base(repository, applicationContext)
         {
             this.mapEntityToModel = this.MapEntityToModelExpression.Compile();
         }
