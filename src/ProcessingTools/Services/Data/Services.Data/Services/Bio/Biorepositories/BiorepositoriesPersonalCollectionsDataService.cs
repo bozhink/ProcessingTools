@@ -6,10 +6,10 @@
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Constants;
-    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
 
     public class BiorepositoriesPersonalCollectionsDataService : IBiorepositoriesPersonalCollectionsDataService
     {

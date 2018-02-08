@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Data.Repositories.Mediatypes;
-    using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Contracts.Services.Data.Mediatypes;
+    using ProcessingTools.Data.Contracts.Mediatypes;
     using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithDatabase : IMediatypesResolver
