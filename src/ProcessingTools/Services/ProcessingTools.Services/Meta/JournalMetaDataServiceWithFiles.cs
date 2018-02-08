@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Services.Meta
+﻿namespace ProcessingTools.Services.Meta
 {
     using System;
     using System.IO;

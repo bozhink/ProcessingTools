@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Services.History
+﻿namespace ProcessingTools.Services.History
 {
     using System;
     using System.Linq;

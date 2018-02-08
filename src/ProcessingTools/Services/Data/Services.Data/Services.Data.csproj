@@ -78,12 +78,9 @@
     <Compile Include="Services\Bio\Taxonomy\TaxonRanksSearchService.cs" />
     <Compile Include="Services\Bio\Taxonomy\WhiteList.cs" />
     <Compile Include="Services\Bio\TypeStatusDataService.cs" />
-    <Compile Include="Services\Documents\DocumentsDataService.cs" />
-    <Compile Include="Services\Documents\XmlPresenter.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\Files\XmlFileContentDataService.cs" />
-    <Compile Include="Services\History\ObjectHistoriesDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />
@@ -91,9 +88,6 @@
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithStaticDictionaryData.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithSystemWeb.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithWindowsRegistry.cs" />
-    <Compile Include="Services\Meta\JournalMetaDataServiceWithFiles.cs" />
-    <Compile Include="Services\Meta\JournalsMetaDataServiceWithDatabase.cs" />
-    <Compile Include="Services\Meta\JournalsMetaDataServiceWithFiles.cs" />
     <Compile Include="Services\ProductsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
