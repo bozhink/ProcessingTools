@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public abstract class AddressableEntity : ModelWithUserInformation, IAddressable
     {

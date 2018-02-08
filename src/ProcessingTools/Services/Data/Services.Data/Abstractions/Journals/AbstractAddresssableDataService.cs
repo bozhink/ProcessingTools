@@ -9,13 +9,13 @@
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories.Journals;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Services.Data.Journals;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Journals;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions.Linq.Expressions;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
     using ProcessingTools.Services.Models.Data.Journals;
 
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>

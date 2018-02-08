@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Journals.Data.Entity
 {
     using System.Data.Entity;
-    using Contracts;
     using ProcessingTools.Data.Common.Entity;
+    using ProcessingTools.Journals.Data.Entity.Contracts;
     using ProcessingTools.Journals.Data.Entity.Models;
 
     public class JournalsDbContext : EntityDbContext, IJournalsDbContext

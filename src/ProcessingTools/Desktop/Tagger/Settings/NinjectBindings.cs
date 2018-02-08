@@ -34,7 +34,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
+            this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
 
             this.Bind(b =>
@@ -87,7 +87,7 @@
                 .To<ProcessingTools.Common.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Cache.IValidationCacheDataRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Cache.IValidationCacheDataRepository>()
                 ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
                 .To<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>();
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()

@@ -3,13 +3,13 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts;
 
     public abstract class AbstractGeoRepository<TEntity, TModel, TFilter> : IRepositoryAsync<TModel, TFilter>
         where TEntity : BaseModel, IDataModel

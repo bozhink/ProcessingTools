@@ -12,10 +12,10 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Repositories;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories.Bio.Taxonomy;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
 
     public class NinjectBiotaxonomyDataBindings : NinjectModule
     {

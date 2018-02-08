@@ -8,7 +8,6 @@
     using System.Threading.Tasks;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
     public class EntityPreJoinedGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>
         where TContext : DbContext

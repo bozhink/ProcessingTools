@@ -8,8 +8,8 @@
     using MongoDB.Driver;
     using Newtonsoft.Json;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;
     using ProcessingTools.Mediatypes.Data.Seed.Models;
@@ -71,7 +71,7 @@
 
         private async Task ImportMediatypesToDatabase(ExtensionJson[] mediatypes)
         {
-            string collectionName = CollectionNameFactory.Create<Mediatype>();
+            string collectionName = MongoCollectionNameFactory.Create<Mediatype>();
             var collection = this.db.GetCollection<Mediatype>(collectionName);
 
             foreach (var mediatype in mediatypes)

@@ -3,7 +3,7 @@
     using System;
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts;
     using ProcessingTools.Bio.Environments.Data.Entity.Contracts.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
 
     public class BioEnvironmentsRepositoryProvider<T> : IBioEnvironmentsRepositoryProvider<T>
         where T : class
@@ -12,12 +12,7 @@
 
         public BioEnvironmentsRepositoryProvider(IBioEnvironmentsDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
         }
 
         public ICrudRepository<T> Create()

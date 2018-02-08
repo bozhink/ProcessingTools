@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using ProcessingTools.Contracts.Data.Repositories.History;
-    using ProcessingTools.Models.Contracts.History;
     using ProcessingTools.Contracts.Services;
     using ProcessingTools.Contracts.Services.Data.History;
+    using ProcessingTools.Data.Contracts.History;
+    using ProcessingTools.Models.Contracts.History;
     using ProcessingTools.Services.Models.Data.History;
 
     public class ObjectHistoriesDataService : IObjectHistoriesDataService

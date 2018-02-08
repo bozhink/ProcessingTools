@@ -3,9 +3,9 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Models.Contracts.Services.Data.Documents;
     using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Services.Data.Documents;
 
     public class XmlPresenter : IXmlPresenter
     {

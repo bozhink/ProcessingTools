@@ -5,6 +5,9 @@
     using System.Data.Entity.Infrastructure;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// DbContext.
+    /// </summary>
     public interface IDbContext : IDisposable
     {
         DbEntityEntry<T> Entry<T>(T entity)

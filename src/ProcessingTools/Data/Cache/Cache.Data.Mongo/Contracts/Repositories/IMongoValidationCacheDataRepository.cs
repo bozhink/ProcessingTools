@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Cache.Data.Mongo.Contracts.Repositories
 {
-    using ProcessingTools.Contracts.Data.Repositories.Cache;
+    using ProcessingTools.Data.Contracts.Cache;
 
     public interface IMongoValidationCacheDataRepository : IValidationCacheDataRepository
     {

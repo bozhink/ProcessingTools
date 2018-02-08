@@ -4,15 +4,15 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Geo;
 
     public class EntityGeoEpithetsRepository : AbstractGeoRepository<GeoEpithet, IGeoEpithet, ITextFilter>, IGeoEpithetsRepository
     {

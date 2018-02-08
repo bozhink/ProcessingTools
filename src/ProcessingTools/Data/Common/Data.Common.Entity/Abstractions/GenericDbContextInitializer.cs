@@ -4,7 +4,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Threading.Tasks;
-    using Contracts;
+    using ProcessingTools.Data.Common.Entity.Contracts;
 
     public abstract class GenericDbContextInitializer<TContext> : IDbContextInitializer<TContext>
         where TContext : DbContext

@@ -721,10 +721,6 @@
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
-      <Project>{44a79257-570b-4877-b636-c7e7cc20f606}</Project>
-      <Name>ProcessingTools.Contracts.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
@@ -760,6 +756,10 @@
     <ProjectReference Include="..\..\Data\Journals\Journals.Data.Entity\Journals.Data.Entity.csproj">
       <Project>{B5C4F9BD-8119-403D-B426-6807D9EBEFDE}</Project>
       <Name>Journals.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Users\Users.Data.Entity\Users.Data.Entity.csproj">
       <Project>{e1f82b1b-2f74-402b-b936-eb819625b033}</Project>

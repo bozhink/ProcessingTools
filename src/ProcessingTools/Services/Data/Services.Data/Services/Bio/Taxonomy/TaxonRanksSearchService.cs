@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories.Bio.Taxonomy;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class TaxonRanksSearchService : ITaxonRanksSearchService

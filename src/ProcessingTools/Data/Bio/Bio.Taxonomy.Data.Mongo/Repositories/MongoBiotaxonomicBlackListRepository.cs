@@ -6,9 +6,9 @@
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class MongoBiotaxonomicBlackListRepository : MongoCrudRepository<MongoBlackListEntity, IBlackListEntity>, IMongoBiotaxonomicBlackListRepository
     {

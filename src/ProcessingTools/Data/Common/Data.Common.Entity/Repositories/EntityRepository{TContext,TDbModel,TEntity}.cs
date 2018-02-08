@@ -8,7 +8,6 @@
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
     public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IEntityCrudRepository<TEntity>
         where TContext : DbContext

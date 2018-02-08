@@ -2,9 +2,9 @@
 {
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration.Conventions;
-    using Contracts;
-    using Models;
     using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
+    using ProcessingTools.Documents.Data.Entity.Models;
 
     public class DocumentsDbContext : DbContext, IDocumentsDbContext
     {

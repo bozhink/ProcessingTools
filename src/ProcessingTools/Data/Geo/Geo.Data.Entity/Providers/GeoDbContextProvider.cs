@@ -9,12 +9,7 @@
 
         public GeoDbContextProvider(IGeoDbContextFactory contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
         }
 
         public GeoDbContext Create()

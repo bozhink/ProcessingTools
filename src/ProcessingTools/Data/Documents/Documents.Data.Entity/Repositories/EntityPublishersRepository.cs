@@ -5,10 +5,9 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts;
-    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisher>, IEntityPublishersRepository
     {

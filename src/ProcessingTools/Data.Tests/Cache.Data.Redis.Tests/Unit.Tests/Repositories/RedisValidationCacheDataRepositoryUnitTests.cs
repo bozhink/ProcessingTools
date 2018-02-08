@@ -9,8 +9,8 @@
     using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Cache.Data.Redis.Tests.Common;
-    using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Data.Common.Redis.Contracts;
+    using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Tests.Library;
     using ServiceStack.Redis;
 
@@ -128,7 +128,7 @@
             // Arrange
             string key = "some key";
 
-            var list = new List<string>();
+            var list = new List<string> { };
 
             var listMock = new Mock<IRedisList>();
             listMock.Setup(l => l.GetEnumerator())

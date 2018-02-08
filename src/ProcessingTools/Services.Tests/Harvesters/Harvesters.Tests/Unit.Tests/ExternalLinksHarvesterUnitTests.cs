@@ -5,9 +5,9 @@
     using NUnit.Framework;
     using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Contracts.Harvesters.ExternalLinks;
-    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.ExternalLinks;
+    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]

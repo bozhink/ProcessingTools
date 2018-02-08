@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public abstract class AbstractTaxaRankResolverOverTaxaClassificationResolver : ITaxaRankResolver
     {

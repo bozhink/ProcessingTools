@@ -8,7 +8,6 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.File.Contracts;
-    using ProcessingTools.Data.Common.File.Contracts.Repositories;
     using ProcessingTools.Exceptions;
 
     public abstract class FileGenericRepository<TContext, TEntity> : FileRepository<TContext, TEntity>, IFileGenericRepository<TEntity>

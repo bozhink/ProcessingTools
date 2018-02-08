@@ -204,10 +204,6 @@
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
-      <Project>{44a79257-570b-4877-b636-c7e7cc20f606}</Project>
-      <Name>ProcessingTools.Contracts.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
@@ -248,10 +244,6 @@
       <Project>{302862fe-1839-4d5c-be85-8b2b1e73ece0}</Project>
       <Name>Data.Common.File</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
-      <Project>{2b3c0310-2efa-41df-a3bc-7a60e18835fc}</Project>
-      <Name>Data.Common.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Common\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
@@ -267,6 +259,14 @@
     <ProjectReference Include="..\..\Data\Mediatypes\Mediatypes.Data.Mongo\Mediatypes.Data.Mongo.csproj">
       <Project>{326F9B92-08F1-46C4-9B66-F8AE39170674}</Project>
       <Name>Mediatypes.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
+      <Project>{a77b11a8-45a0-45ba-9003-7a81514d8bda}</Project>
+      <Name>ProcessingTools.Data.Common.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Resources\DataResources.Data.Entity\DataResources.Data.Entity.csproj">
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>

@@ -8,8 +8,8 @@ namespace ProcessingTools.Processors.Models.Abbreviations
     using System.Text.RegularExpressions;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Models.Contracts.Processors.Abbreviations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Processors.Abbreviations;
 
     /// <summary>
     /// Abbreviation.

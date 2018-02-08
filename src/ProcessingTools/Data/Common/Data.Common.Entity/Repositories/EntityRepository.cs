@@ -5,7 +5,6 @@
     using System.Data.Entity.Infrastructure;
     using System.Threading.Tasks;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
     public abstract class EntityRepository<TContext, TEntity> : IEntityRepository<TEntity>, IDisposable
         where TContext : DbContext

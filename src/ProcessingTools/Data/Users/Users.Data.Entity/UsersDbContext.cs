@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Users.Data.Entity
 {
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
+    using ProcessingTools.Users.Data.Entity.Models;
 
     public class UsersDbContext : IdentityDbContext<User>
     {

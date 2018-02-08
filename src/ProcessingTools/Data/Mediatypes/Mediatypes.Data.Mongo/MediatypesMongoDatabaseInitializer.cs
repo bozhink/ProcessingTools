@@ -5,8 +5,8 @@
     using Contracts;
     using Models;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
 
     public class MediatypesMongoDatabaseInitializer : IMediatypesMongoDatabaseInitializer
     {
@@ -31,7 +31,7 @@
 
         private async Task<object> CreateIndicesToMediatypesCollection()
         {
-            string collectionName = CollectionNameFactory.Create<Mediatype>();
+            string collectionName = MongoCollectionNameFactory.Create<Mediatype>();
             var collection = this.db.GetCollection<Mediatype>(collectionName);
 
             var result = await collection.Indexes

@@ -113,10 +113,6 @@
       <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
       <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
-      <Project>{44a79257-570b-4877-b636-c7e7cc20f606}</Project>
-      <Name>ProcessingTools.Contracts.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
       <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
       <Name>ProcessingTools.Enumerations</Name>
@@ -129,13 +125,17 @@
       <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
       <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\Common\Data.Common.Mongo\Data.Common.Mongo.csproj">
-      <Project>{2B3C0310-2EFA-41DF-A3BC-7A60E18835FC}</Project>
-      <Name>Data.Common.Mongo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Documents\Documents.Data.Mongo\Documents.Data.Mongo.csproj">
       <Project>{E617DF4A-0DE0-49DC-B739-9D1BB51A7E2D}</Project>
       <Name>Documents.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
+      <Project>{a77b11a8-45a0-45ba-9003-7a81514d8bda}</Project>
+      <Name>ProcessingTools.Data.Common.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
       <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>

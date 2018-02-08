@@ -99,10 +99,6 @@
     <Compile Include="Unit.Tests\Repositories\RedisKeyValuePairsRepositoryOfTweetUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts.Data\ProcessingTools.Contracts.Data.csproj">
-      <Project>{44A79257-570B-4877-B636-C7E7CC20F606}</Project>
-      <Name>ProcessingTools.Contracts.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
       <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
       <Name>ProcessingTools.Exceptions</Name>
@@ -110,6 +106,10 @@
     <ProjectReference Include="..\..\Data\Common\Data.Common.Redis\Data.Common.Redis.csproj">
       <Project>{8cf0e103-e770-45c3-a671-f6ad43f2cc3b}</Project>
       <Name>Data.Common.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>

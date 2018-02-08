@@ -5,9 +5,9 @@
     using NUnit.Framework;
     using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Abbreviations;
+    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(AbbreviationsHarvester))]

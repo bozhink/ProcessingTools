@@ -2,9 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Common.Redis.Abstractions.Repositories;
+    using ProcessingTools.Data.Common.Redis.Abstractions;
     using ProcessingTools.Data.Common.Redis.Contracts;
-    using ProcessingTools.Data.Common.Redis.Contracts.Repositories;
     using ProcessingTools.Exceptions;
 
     public class RedisKeyValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyValuePairsRepository<T>

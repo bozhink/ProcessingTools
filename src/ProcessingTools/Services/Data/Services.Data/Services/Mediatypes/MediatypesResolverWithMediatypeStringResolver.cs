@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Contracts.Services.Data.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithMediatypeStringResolver : IMediatypesResolver

@@ -4,10 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Abstractions.Repositories;
-    using Contracts;
-    using Contracts.Repositories;
-    using ServiceStack.Redis;
+    using ProcessingTools.Data.Common.Redis.Abstractions;
+    using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Text;
 
     public class RedisKeyCollectionValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyCollectionValuePairsRepository<T>

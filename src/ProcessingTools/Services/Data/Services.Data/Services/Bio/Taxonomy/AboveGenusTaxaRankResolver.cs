@@ -2,9 +2,9 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class AboveGenusTaxaRankResolver : IAboveGenusTaxaRankResolver
