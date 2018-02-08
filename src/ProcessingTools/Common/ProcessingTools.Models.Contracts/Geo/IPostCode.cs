@@ -4,8 +4,8 @@
 
 namespace ProcessingTools.Models.Contracts.Geo
 {
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Post code.
