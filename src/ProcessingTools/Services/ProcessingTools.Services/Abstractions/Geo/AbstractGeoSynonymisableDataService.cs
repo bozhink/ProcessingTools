@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Geo.Services.Data.Abstractions
+﻿namespace ProcessingTools.Services.Abstractions.Geo
 {
     using System;
     using System.Threading.Tasks;

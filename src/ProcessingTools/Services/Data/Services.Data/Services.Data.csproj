@@ -54,13 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\AbstractMultiDataServiceAsync{TEntity,TModel,TFilter}.cs" />
     <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaInformationResolver.cs" />
     <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaRankResolverOverTaxaClassificationResolver.cs" />
-    <Compile Include="Abstractions\Geo\AbstractGeoDataService.cs" />
-    <Compile Include="Abstractions\Geo\AbstractGeoMultiDataService.cs" />
-    <Compile Include="Abstractions\Geo\AbstractGeoSynonymisableDataService.cs" />
-    <Compile Include="Abstractions\Journals\AbstractAddresssableDataService.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionalCollectionsDataService.cs" />
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionsDataService.cs" />
@@ -88,21 +83,8 @@
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
     <Compile Include="Services\Files\XmlFileContentDataService.cs" />
-    <Compile Include="Services\Geo\CitiesDataService.cs" />
-    <Compile Include="Services\Geo\ContinentsDataService.cs" />
-    <Compile Include="Services\Geo\CountiesDataService.cs" />
-    <Compile Include="Services\Geo\CountriesDataService.cs" />
-    <Compile Include="Services\Geo\DistrictsDataService.cs" />
-    <Compile Include="Services\Geo\GeoEpithetsDataService.cs" />
-    <Compile Include="Services\Geo\GeoNamesDataService.cs" />
-    <Compile Include="Services\Geo\MunicipalitiesDataService.cs" />
-    <Compile Include="Services\Geo\PostCodesDataService.cs" />
-    <Compile Include="Services\Geo\ProvincesDataService.cs" />
-    <Compile Include="Services\Geo\RegionsDataService.cs" />
-    <Compile Include="Services\Geo\StatesDataService.cs" />
     <Compile Include="Services\History\ObjectHistoriesDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
-    <Compile Include="Services\Journals\PublishersDataService.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />
     <Compile Include="Services\Mediatypes\MediatypeStringResolverWithStaticDictionary.cs" />

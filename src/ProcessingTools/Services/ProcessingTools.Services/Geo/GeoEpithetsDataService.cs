@@ -1,9 +1,9 @@
-﻿namespace ProcessingTools.Geo.Services.Data.Entity.Services
+﻿namespace ProcessingTools.Services.Geo
 {
     using ProcessingTools.Data.Contracts.Geo;
-    using ProcessingTools.Geo.Services.Data.Abstractions;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Services.Abstractions.Geo;
     using ProcessingTools.Services.Contracts.Geo;
 
     public class GeoEpithetsDataService : AbstractGeoMultiDataService<IGeoEpithetsRepository, IGeoEpithet, ITextFilter>, IGeoEpithetsDataService

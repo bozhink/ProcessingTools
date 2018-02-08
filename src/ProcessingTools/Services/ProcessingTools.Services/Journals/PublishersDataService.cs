@@ -1,12 +1,12 @@
-﻿namespace ProcessingTools.Journals.Services.Data.Services
+﻿namespace ProcessingTools.Services.Journals
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Journals.Services.Data.Abstractions.Services;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;
+    using ProcessingTools.Services.Abstractions.Journals;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Journals;
     using ProcessingTools.Services.Models.Data.Journals;

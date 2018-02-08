@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Journals.Services.Data.Abstractions.Services
+﻿namespace ProcessingTools.Services.Abstractions.Journals
 {
     using System;
     using System.Collections.Concurrent;

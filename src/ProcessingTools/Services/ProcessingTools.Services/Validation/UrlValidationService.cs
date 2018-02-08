@@ -12,7 +12,7 @@ namespace ProcessingTools.Services.Validation
     using System.Threading.Tasks;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Validation;
-    using ProcessingTools.Services.Abstractions;
+    using ProcessingTools.Services.Abstractions.Validation;
     using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Contracts.Validation;
 

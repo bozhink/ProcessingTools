@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Abstractions
+namespace ProcessingTools.Services.Abstractions.Validation
 {
     using System;
     using System.Collections.Generic;
