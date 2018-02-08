@@ -1,12 +1,20 @@
-﻿namespace ProcessingTools.Data.Miners.Abstractions
+﻿// <copyright file="BiorepositoriesDataMinerBase.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Abstractions
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Services.Contracts.Bio.Biorepositories;
 
+    /// <summary>
+    /// Biorepositories data miner base class.
+    /// </summary>
+    /// <typeparam name="T">Type of service model.</typeparam>
     public abstract class BiorepositoriesDataMinerBase<T>
         where T : class
     {

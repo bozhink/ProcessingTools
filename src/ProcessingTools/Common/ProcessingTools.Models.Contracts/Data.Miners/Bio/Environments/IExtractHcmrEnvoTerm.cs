@@ -5,7 +5,7 @@
 namespace ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments
 {
     /// <summary>
-    /// EXTRACT HCMR envo-term.
+    /// EXTRACT HCMR ENVO term.
     /// </summary>
     public interface IExtractHcmrEnvoTerm
     {

@@ -1,23 +1,35 @@
-﻿namespace ProcessingTools.Data.Miners.Miners.Bio
+﻿// <copyright file="BiorepositoriesInstitutionsDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Miners.Bio
 {
     using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
-    using ProcessingTools.Contracts.Services.Data.Bio.Biorepositories;
     using ProcessingTools.Data.Miners.Abstractions;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
+    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Services.Contracts.Bio.Biorepositories;
 
+    /// <summary>
+    /// Biorepositories institutions data miner.
+    /// </summary>
     public class BiorepositoriesInstitutionsDataMiner : BiorepositoriesDataMinerBase<IInstitution>, IBiorepositoriesInstitutionsDataMiner
     {
         private readonly IBiorepositoriesInstitutionsDataService service;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BiorepositoriesInstitutionsDataMiner"/> class.
+        /// </summary>
+        /// <param name="service"><see cref="IBiorepositoriesInstitutionsDataService"/> instance.</param>
         public BiorepositoriesInstitutionsDataMiner(IBiorepositoriesInstitutionsDataService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
+        /// <inheritdoc/>
         public async Task<IInstitution[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))

@@ -1,7 +1,14 @@
-﻿namespace ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes
-{
-    using Contracts.Models.Bio.SpecimenCodes;
+﻿// <copyright file="SpecimenCodeResponseModel.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Data.Miners.Models.Bio.SpecimenCodes
+{
+    using ProcessingTools.Data.Miners.Contracts.Models.Bio.SpecimenCodes;
+
+    /// <summary>
+    /// Specimen code response model.
+    /// </summary>
     public class SpecimenCodeResponseModel : ISpecimenCode
     {
         private string content;
@@ -9,6 +16,9 @@
         private string url;
         private int hashCode;
 
+        /// <summary>
+        /// Gets or sets the content.
+        /// </summary>
         public string Content
         {
             get
@@ -23,6 +33,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the content-type.
+        /// </summary>
         public string ContentType
         {
             get
@@ -37,6 +50,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
         public string Url
         {
             get
@@ -53,8 +69,10 @@
 
         private int HashCode => this.hashCode;
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) => this.GetHashCode() == obj.GetHashCode();
 
+        /// <inheritdoc/>
         public override int GetHashCode() => this.HashCode;
 
         private void RecalculateHash()

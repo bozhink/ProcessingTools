@@ -1,13 +1,24 @@
-﻿namespace ProcessingTools.Data.Miners.Miners.Geo
+﻿// <copyright file="GeoNamesDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Miners.Geo
 {
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Data.Miners.Contracts.Miners.Geo;
     using ProcessingTools.Data.Miners.Generics;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Services.Contracts.Geo;
 
+    /// <summary>
+    /// Geo names data miner.
+    /// </summary>
     public class GeoNamesDataMiner : SimpleServiceStringDataMiner<IGeoNamesDataService, IGeoName, ITextFilter>, IGeoNamesDataMiner
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeoNamesDataMiner"/> class.
+        /// </summary>
+        /// <param name="service"><see cref="IGeoNamesDataService"/> instance.</param>
         public GeoNamesDataMiner(IGeoNamesDataService service)
             : base(service)
         {

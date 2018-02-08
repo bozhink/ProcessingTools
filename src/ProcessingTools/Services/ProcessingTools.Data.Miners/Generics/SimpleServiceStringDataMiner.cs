@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Miners.Generics
+﻿// <copyright file="SimpleServiceStringDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Generics
 {
     using System;
     using System.Collections.Generic;
@@ -7,11 +11,17 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Data.Miners;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts;
 
+    /// <summary>
+    /// Simple service string data miner.
+    /// </summary>
+    /// <typeparam name="TService">Type of the service.</typeparam>
+    /// <typeparam name="TServiceModel">Type of the service model.</typeparam>
+    /// <typeparam name="TFilter">Type of the filter.</typeparam>
     public class SimpleServiceStringDataMiner<TService, TServiceModel, TFilter> : IStringDataMiner
         where TServiceModel : class, INameableIntegerIdentifiable
         where TService : class, IMultiDataServiceAsync<TServiceModel, TFilter>
@@ -21,11 +31,16 @@
 
         private readonly TService service;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleServiceStringDataMiner{TService, TServiceModel, TFilter}"/> class.
+        /// </summary>
+        /// <param name="service">Service instance.</param>
         public SimpleServiceStringDataMiner(TService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
+        /// <inheritdoc/>
         public async Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
