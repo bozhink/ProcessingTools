@@ -4,8 +4,8 @@
 
 namespace ProcessingTools.Services.Models.Data.Bio.Taxonomy
 {
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// Taxon rank service model.

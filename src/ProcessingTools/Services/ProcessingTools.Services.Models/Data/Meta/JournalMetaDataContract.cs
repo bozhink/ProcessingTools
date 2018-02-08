@@ -37,7 +37,7 @@ namespace ProcessingTools.Services.Models.Data.Meta
         public string IssnPPub { get; set; }
 
         /// <summary>
-        /// Gets of sets journal id;
+        /// Gets or sets journal id.
         /// </summary>
         [DataMember(Name = "journalId")]
         public string JournalId { get; set; }

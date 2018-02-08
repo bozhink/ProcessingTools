@@ -5,8 +5,8 @@
 namespace ProcessingTools.Services.Models.Validation
 {
     using System;
-    using ProcessingTools.Models.Contracts.Validation;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Validation;
 
     /// <summary>
     /// Generic validation service model.

@@ -8,10 +8,10 @@ namespace ProcessingTools.Services.Cache
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Contracts.Services.Cache;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
+    using ProcessingTools.Services.Contracts.Cache;
     using ProcessingTools.Services.Models.Cache;
 
     /// <summary>
@@ -20,18 +20,18 @@ namespace ProcessingTools.Services.Cache
     public class ValidationCacheService : IValidationCacheService
     {
         private readonly IValidationCacheDataRepository repository;
-        private readonly IEnvironment environment;
+        private readonly IApplicationContext applicationContext;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidationCacheService"/> class.
         /// </summary>
         /// <param name="repository">Data repository.</param>
-        /// <param name="environment">Environment service.</param>
-        public ValidationCacheService(IValidationCacheDataRepository repository, IEnvironment environment)
+        /// <param name="applicationContext">The application context.</param>
+        public ValidationCacheService(IValidationCacheDataRepository repository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -55,7 +55,7 @@ namespace ProcessingTools.Services.Cache
             }
 
             var entity = this.mapper.Map<IValidationCacheModel, ValidationCacheServiceModel>(value);
-            entity.LastUpdate = this.environment.DateTimeProvider.Invoke();
+            entity.LastUpdate = this.applicationContext.DateTimeProvider.Invoke();
 
             return this.repository.AddAsync(key, entity);
         }
