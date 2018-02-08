@@ -217,6 +217,14 @@
       <Project>{302862FE-1839-4D5C-BE85-8B2B1E73ECE0}</Project>
       <Name>Data.Common.File</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj">
+      <Project>{A77B11A8-45A0-45BA-9003-7A81514D8BDA}</Project>
+      <Name>ProcessingTools.Data.Common.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
