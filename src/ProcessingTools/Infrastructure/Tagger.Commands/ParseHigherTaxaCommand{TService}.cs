@@ -7,10 +7,10 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     public class ParseHigherTaxaCommand<TService> : ITaggerCommand
         where TService : ITaxaRankResolver

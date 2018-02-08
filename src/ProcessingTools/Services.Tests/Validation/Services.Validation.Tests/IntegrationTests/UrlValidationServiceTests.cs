@@ -5,11 +5,11 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
-    using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Contracts.Services.Cache;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Contracts.Cache;
 
     [TestClass]
     public class UrlValidationServiceTests
@@ -20,12 +20,12 @@
         public void Initialize()
         {
             var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
-            var environmentMock = new Mock<IEnvironment>();
-            environmentMock
+            var applicationContextMock = new Mock<IApplicationContext>();
+            applicationContextMock
                 .SetupGet(e => e.DateTimeProvider)
                 .Returns(() => DateTime.UtcNow);
 
-            this.cacheService = new ValidationCacheService(repository, environmentMock.Object);
+            this.cacheService = new ValidationCacheService(repository, applicationContextMock.Object);
         }
 
         [TestMethod]

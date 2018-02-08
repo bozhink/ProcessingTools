@@ -78,7 +78,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
+            this.Bind<ProcessingTools.Services.Contracts.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
@@ -98,10 +98,6 @@
 
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
-                .InSingletonScope();
-
-            this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
-                .To<ProcessingTools.Services.Providers.DateTimeProvider>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()

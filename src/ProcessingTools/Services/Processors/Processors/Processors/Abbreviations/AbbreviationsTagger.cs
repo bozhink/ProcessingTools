@@ -7,10 +7,10 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Models.Contracts.Processors.Abbreviations;
     using ProcessingTools.Contracts.Processors.Processors.Abbreviations;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Processors.Abbreviations;
     using ProcessingTools.Processors.Models.Abbreviations;
 
     public class AbbreviationsTagger : IAbbreviationsTagger

@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     [System.ComponentModel.Description("Parse treatment meta with GBIF.")]
     public class ParseTreatmentMetaWithGbifCommand : DocumentParserCommand<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>, IParseTreatmentMetaWithGbifCommand

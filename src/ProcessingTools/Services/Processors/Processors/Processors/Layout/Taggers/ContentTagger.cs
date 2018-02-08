@@ -7,9 +7,9 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Processors.Layout;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Models.Contracts.Processors.Layout;
 
     public class ContentTagger : IContentTagger
     {

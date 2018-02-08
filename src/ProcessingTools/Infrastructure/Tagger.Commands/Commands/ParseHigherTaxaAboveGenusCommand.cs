@@ -2,9 +2,9 @@
 {
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     [System.ComponentModel.Description("Make higher taxa of type 'above-genus'.")]
     public class ParseHigherTaxaAboveGenusCommand : ParseHigherTaxaCommand<IAboveGenusTaxaRankResolver>, IParseHigherTaxaAboveGenusCommand

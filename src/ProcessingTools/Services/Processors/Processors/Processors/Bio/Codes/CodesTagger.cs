@@ -15,12 +15,12 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Models.Contracts.Processors.Bio.Codes;
     using ProcessingTools.Contracts.Processors.Factories.Bio;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Models.Contracts.Processors.Bio.Codes;
     using ProcessingTools.Processors.Models.Bio.Codes;
     using ProcessingTools.Processors.Models.Layout;
 

@@ -101,10 +101,6 @@
                     ParameterNames.DatabaseName,
                     AppSettings.CacheMongoDatabaseName);
 
-            this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
-                .To<ProcessingTools.Services.Providers.DateTimeProvider>()
-                .InSingletonScope();
-
             this.Bind<Func<Type, ITaggerCommand>>()
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();

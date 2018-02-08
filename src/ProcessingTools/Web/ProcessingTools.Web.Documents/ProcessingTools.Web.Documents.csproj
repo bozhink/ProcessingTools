@@ -689,6 +689,14 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8b6a9c0e-8de0-447f-a1e7-5067c8494e72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{a1c5ad6e-32a0-43aa-8191-3fb503ac4f8d}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
       <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
       <Name>ProcessingTools.Services.Models</Name>

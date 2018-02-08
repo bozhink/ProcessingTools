@@ -7,11 +7,11 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Models.Contracts.Processors.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Processors.Bio.Taxonomy;
     using ProcessingTools.Processors.Common.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
 

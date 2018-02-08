@@ -8,8 +8,8 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Documents.Services.Data.Services;
+    using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Transformers;
@@ -80,10 +80,7 @@
                         byte[] bytesContent = Encoding.UTF8.GetBytes(ValidContent);
                         var xmlReader = XmlReader.Create(
                             new MemoryStream(bytesContent),
-                            new XmlReaderSettings
-                            {
-                                Async = true
-                            });
+                            new XmlReaderSettings { Async = true });
 
                         return xmlReader;
                     });

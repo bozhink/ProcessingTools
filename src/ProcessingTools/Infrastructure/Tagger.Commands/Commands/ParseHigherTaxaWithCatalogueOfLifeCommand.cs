@@ -2,9 +2,9 @@
 {
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     [System.ComponentModel.Description("Parse higher taxa using CoL.")]
     public class ParseHigherTaxaWithCatalogueOfLifeCommand : ParseHigherTaxaCommand<ICatalogueOfLifeTaxaRankResolver>, IParseHigherTaxaWithCatalogueOfLifeCommand

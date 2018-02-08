@@ -10,10 +10,10 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Processors.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Processors.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
 
     public class Expander : IExpander
