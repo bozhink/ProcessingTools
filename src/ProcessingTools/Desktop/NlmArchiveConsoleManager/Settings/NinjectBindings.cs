@@ -64,7 +64,7 @@
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalMetaDataService>()
-                .To<ProcessingTools.Services.Data.Services.Meta.JournalMetaDataServiceWithFiles>();
+                .To<ProcessingTools.Services.Meta.JournalMetaDataServiceWithFiles>();
 
 #if UseFileDirectory
             string journalMetaFilesDirectory = AppSettings.JournalsJsonFilesDirectoryName;
@@ -84,11 +84,11 @@
                     journalMetaFilesDirectory);
 #else
             this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalsMetaDataService>()
-                .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
+                .To<ProcessingTools.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<Engine>();
 
             this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalsMetaDataService>()
-                .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
+                .To<ProcessingTools.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<HelpProvider>();
 
             this.Bind<ProcessingTools.Data.Contracts.Documents.IJournalMetaRepository>()

@@ -123,6 +123,10 @@
       <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
       <Name>ProcessingTools.Services.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
+      <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>
+      <Name>ProcessingTools.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
