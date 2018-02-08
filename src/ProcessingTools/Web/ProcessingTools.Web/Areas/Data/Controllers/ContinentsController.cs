@@ -9,9 +9,9 @@
     using Newtonsoft.Json;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
     using ProcessingTools.Web.Models.Geo.Continents;

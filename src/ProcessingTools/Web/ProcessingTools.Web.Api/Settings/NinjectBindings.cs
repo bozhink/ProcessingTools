@@ -22,10 +22,6 @@
                 .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
                 .InTransientScope();
 
-            this.Bind<ProcessingTools.Contracts.Services.IEnvironment>()
-                .To<ProcessingTools.Web.Api.Services.EnvironmentService>()
-                .InSingletonScope();
-
             this.Bind<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDbContext>()
                 .To<ProcessingTools.Geo.Data.Entity.GeoDbContext>()
                 .WhenInjectedInto(typeof(ProcessingTools.Geo.Data.Entity.Repositories.GeoRepository<>))

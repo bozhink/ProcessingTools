@@ -3,7 +3,7 @@
     using AutoMapper;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo;
+    using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Geo.GeoEpithets;
 

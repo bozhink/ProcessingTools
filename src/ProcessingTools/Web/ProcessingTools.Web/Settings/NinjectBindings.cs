@@ -27,10 +27,6 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Services.IEnvironment>()
-                .To<ProcessingTools.Web.Services.EnvironmentService>()
-                .InSingletonScope();
-
             this.Bind<ProcessingTools.History.Data.Entity.Contracts.IHistoryDbContext>()
                 .To<ProcessingTools.History.Data.Entity.HistoryDbContext>()
                 .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityObjectHistoriesRepository>()

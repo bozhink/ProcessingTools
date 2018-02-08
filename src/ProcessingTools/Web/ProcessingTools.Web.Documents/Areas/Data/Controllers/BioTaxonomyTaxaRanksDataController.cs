@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyTaxaRanks;
 

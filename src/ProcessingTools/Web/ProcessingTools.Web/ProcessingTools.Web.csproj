@@ -571,7 +571,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\EnvironmentService.cs" />
     <Compile Include="Settings\NinjectBindings.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -780,6 +779,10 @@
     <ProjectReference Include="..\..\Services\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Web\ProcessingTools.Web.Security\ProcessingTools.Web.Security.csproj">
       <Project>{7e793b3d-6932-43d4-8529-f3476e405f8e}</Project>

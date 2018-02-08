@@ -9,8 +9,8 @@ namespace ProcessingTools.Common.Mappings
     using System.Reflection;
     using AutoMapper;
     using AutoMapper.Configuration;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Mappings Registration.

@@ -7,7 +7,7 @@
     using AutoMapper;
     using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Mediatypes;
-    using ProcessingTools.Contracts.Services.Data.Mediatypes;
+    using ProcessingTools.Services.Contracts.Mediatypes;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
 
     public class MediaTypesController : ApiController

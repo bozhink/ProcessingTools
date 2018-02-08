@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Models.Contracts.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Web.Areas.Data.Controllers;
     using ProcessingTools.Web.Models.Geo.GeoNames;
     using ProcessingTools.Web.Models.Shared;

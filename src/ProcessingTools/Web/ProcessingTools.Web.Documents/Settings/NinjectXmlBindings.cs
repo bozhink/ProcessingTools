@@ -140,7 +140,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Services.Data.Documents.IDocumentsFormatTransformersFactory>()
+            this.Bind<ProcessingTools.Services.Contracts.Documents.IDocumentsFormatTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 

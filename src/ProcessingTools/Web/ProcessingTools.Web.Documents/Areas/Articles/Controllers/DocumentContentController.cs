@@ -8,8 +8,8 @@
     using Microsoft.AspNet.Identity;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
     using Strings = Resources.Strings;

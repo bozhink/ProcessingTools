@@ -6,9 +6,9 @@
     using System.Web.Http;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
         where TFilter : class, IFilter

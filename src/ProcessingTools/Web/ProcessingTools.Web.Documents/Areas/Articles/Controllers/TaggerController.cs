@@ -14,11 +14,11 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+    using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Tagger;

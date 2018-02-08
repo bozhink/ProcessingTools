@@ -9,10 +9,10 @@
     using Newtonsoft.Json;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Services.Data.Journals;
-    using ProcessingTools.Contracts.Services.Data.Journals;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
+    using ProcessingTools.Services.Contracts.Journals;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Journals.Models.Publishers;
     using ProcessingTools.Web.Areas.Journals.Models.Shared;

@@ -3,7 +3,7 @@
     using AutoMapper;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Services.Data.Bio;
-    using ProcessingTools.Contracts.Services.Data.Bio;
+    using ProcessingTools.Services.Contracts.Bio;
     using ProcessingTools.Web.Api.Abstractions;
     using ProcessingTools.Web.Models.Bio.MorphologicalEpithets;
 
