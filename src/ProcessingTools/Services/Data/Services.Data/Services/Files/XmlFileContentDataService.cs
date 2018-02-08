@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts.IO;
-    using ProcessingTools.Contracts.Services.Data.Files;
+    using ProcessingTools.Services.Contracts.Files;
 
     public class XmlFileContentDataService : IXmlFileContentDataService
     {

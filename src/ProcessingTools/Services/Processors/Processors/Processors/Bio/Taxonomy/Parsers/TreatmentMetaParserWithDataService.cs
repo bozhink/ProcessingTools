@@ -5,12 +5,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     public class TreatmentMetaParserWithDataService<TService> : ITreatmentMetaParserWithDataService<TService>
         where TService : class, ITaxaClassificationResolver

@@ -265,6 +265,10 @@
       <Project>{72ec8d88-76e5-4843-a98e-306ba6ad7f7f}</Project>
       <Name>ProcessingTools.Processors.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

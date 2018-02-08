@@ -6,13 +6,13 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     public abstract class AbstractMultiDataServiceAsync<TEntity, TModel, TFilter> : IMultiDataServiceAsync<TModel, TFilter>, IDisposable
         where TFilter : IFilter

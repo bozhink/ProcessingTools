@@ -5,10 +5,10 @@
     using System.Threading.Tasks;
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Services.Data.History;
-    using ProcessingTools.Contracts.Services.Data.Journals;
     using ProcessingTools.Journals.Services.Data.Abstractions.Services;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;
+    using ProcessingTools.Services.Contracts.History;
+    using ProcessingTools.Services.Contracts.Journals;
     using ProcessingTools.Services.Models.Data.Journals;
     using TDataModel = ProcessingTools.Models.Contracts.Journals.IPublisher;
     using TDetailedServiceModel = ProcessingTools.Models.Contracts.Services.Data.Journals.IPublisherDetails;
@@ -19,8 +19,8 @@
     {
         private readonly IObjectHistoriesDataService objectHistoriesService;
 
-        public PublishersDataService(TRepository repository, IDateTimeProvider datetimeProvider, IObjectHistoriesDataService objectHistoriesService)
-            : base(repository, datetimeProvider)
+        public PublishersDataService(TRepository repository, IApplicationContext applicationContext, IObjectHistoriesDataService objectHistoriesService)
+            : base(repository, applicationContext)
         {
             this.objectHistoriesService = objectHistoriesService ?? throw new ArgumentNullException(nameof(objectHistoriesService));
         }
@@ -66,7 +66,7 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var now = this.DatetimeProvider.Now;
+            var now = this.ApplicationContext.DateTimeProvider.Invoke();
             var user = userId.ToString();
             var dataModel = new PublisherDataModel
             {
@@ -102,7 +102,7 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var now = this.DatetimeProvider.Now;
+            var now = this.ApplicationContext.DateTimeProvider.Invoke();
             var user = userId.ToString();
 
             await this.Repository.UpdateAsync(

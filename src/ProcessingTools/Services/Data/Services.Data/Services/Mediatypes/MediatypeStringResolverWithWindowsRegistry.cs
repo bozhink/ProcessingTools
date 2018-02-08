@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using Microsoft.Win32;
-    using ProcessingTools.Contracts.Services.Data.Mediatypes;
+    using ProcessingTools.Services.Contracts.Mediatypes;
 
     public class MediatypeStringResolverWithWindowsRegistry : IMediatypeStringResolver
     {

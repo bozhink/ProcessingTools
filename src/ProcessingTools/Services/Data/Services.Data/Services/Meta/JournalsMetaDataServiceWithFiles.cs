@@ -5,8 +5,8 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Data.Meta;
     using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Meta;
 
     public class JournalsMetaDataServiceWithFiles : IJournalsMetaDataService
     {

@@ -7,13 +7,13 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
         where TService : class, ITaxaRankResolver

@@ -3,9 +3,9 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Contracts.Serialization;
-    using ProcessingTools.Contracts.Services.Data.Meta;
+    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Services.Models.Data.Meta;
 
     public class JournalMetaDataServiceWithFiles : IJournalMetaDataService

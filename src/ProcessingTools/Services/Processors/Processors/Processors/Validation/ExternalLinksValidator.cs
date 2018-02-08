@@ -6,8 +6,8 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Contracts.Processors.Processors.Validation;
-    using ProcessingTools.Contracts.Services.Validation;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Services.Contracts.Validation;
 
     public class ExternalLinksValidator : IExternalLinksValidator
     {

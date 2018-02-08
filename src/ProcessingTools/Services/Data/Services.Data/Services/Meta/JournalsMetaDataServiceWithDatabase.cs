@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Data.Meta;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Services.Models.Data.Meta;
 
     public class JournalsMetaDataServiceWithDatabase : IJournalsMetaDataService

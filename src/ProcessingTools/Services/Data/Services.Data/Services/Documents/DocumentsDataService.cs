@@ -8,13 +8,13 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.IO;
-    using ProcessingTools.Contracts.Services.Data.Documents;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts.Services.Data.Documents;
+    using ProcessingTools.Services.Contracts.Documents;
 
     public class DocumentsDataService : IDocumentsDataService
     {

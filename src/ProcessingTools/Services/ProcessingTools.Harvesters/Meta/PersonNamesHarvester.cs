@@ -10,9 +10,9 @@ namespace ProcessingTools.Harvesters.Meta
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Harvesters.Meta;
-    using ProcessingTools.Models.Contracts.Harvesters.Meta;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Harvesters.Models.Meta;
+    using ProcessingTools.Models.Contracts.Harvesters.Meta;
 
     /// <summary>
     /// Person Names Harvester.

@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Web;
-    using ProcessingTools.Contracts.Services.Data.Mediatypes;
+    using ProcessingTools.Services.Contracts.Mediatypes;
 
     public class MediatypeStringResolverWithSystemWeb : IMediatypeStringResolver
     {

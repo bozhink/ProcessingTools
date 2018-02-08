@@ -27,19 +27,19 @@
         private static readonly ConcurrentDictionary<string, Expression<Func<TDataModel, object>>> SortExpressions = new ConcurrentDictionary<string, Expression<Func<TDataModel, object>>>();
 
         private readonly TRepository repository;
-        private readonly IDateTimeProvider datetimeProvider;
+        private readonly IApplicationContext applicationContext;
 
-        protected AbstractAddresssableDataService(TRepository repository, IDateTimeProvider datetimeProvider)
+        protected AbstractAddresssableDataService(TRepository repository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            this.datetimeProvider = datetimeProvider ?? throw new ArgumentNullException(nameof(datetimeProvider));
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
         protected abstract Func<TDataModel, TServiceModel> MapDataModelToServiceModel { get; }
 
         protected abstract Func<TDataModel, TDetailedServiceModel> MapDataModelToDetailedServiceModel { get; }
 
-        protected IDateTimeProvider DatetimeProvider => this.datetimeProvider;
+        protected IApplicationContext ApplicationContext => this.applicationContext;
 
         protected TRepository Repository => this.repository;
 
@@ -92,7 +92,7 @@
 
             await this.repository.AddAddress(modelId, dataModel).ConfigureAwait(false);
 
-            var now = this.datetimeProvider.Now;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
             var user = userId.ToString();
 
             await this.repository.UpdateAsync(
@@ -135,7 +135,7 @@
 
             await this.repository.UpdateAddress(modelId, dataModel).ConfigureAwait(false);
 
-            var now = this.datetimeProvider.Now;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
             var user = userId.ToString();
 
             await this.repository.UpdateAsync(
@@ -170,7 +170,7 @@
 
             await this.repository.RemoveAddress(modelId, addressId).ConfigureAwait(false);
 
-            var now = this.datetimeProvider.Now;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
             var user = userId.ToString();
 
             await this.repository.UpdateAsync(

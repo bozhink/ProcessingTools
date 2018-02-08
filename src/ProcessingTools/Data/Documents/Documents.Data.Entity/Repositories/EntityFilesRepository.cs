@@ -12,17 +12,12 @@
     // TODO
     public class EntityFilesRepository : EntityRepository<DocumentsDbContext, File>, IEntityFilesRepository
     {
-        private readonly IGuidProvider guidProvider;
-        private readonly IDateTimeProvider dateTimeProvider;
+        private readonly IApplicationContext applicationContext;
 
-        public EntityFilesRepository(
-            IDocumentsDbContextProvider contextProvider,
-            IGuidProvider guidProvider,
-            IDateTimeProvider dateTimeProvider)
+        public EntityFilesRepository(IDocumentsDbContextProvider contextProvider, IApplicationContext applicationContext)
             : base(contextProvider)
         {
-            this.guidProvider = guidProvider ?? throw new ArgumentNullException(nameof(guidProvider));
-            this.dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
         public Task<object> AddAsync(IFile entity)
@@ -34,8 +29,8 @@
 
             return Task.Run<object>(() =>
             {
-                var id = this.guidProvider.NewGuid();
-                var now = this.dateTimeProvider.Now;
+                var id = this.applicationContext.GuidProvider.Invoke();
+                var now = this.applicationContext.DateTimeProvider.Invoke();
 
                 var dbentity = new File
                 {

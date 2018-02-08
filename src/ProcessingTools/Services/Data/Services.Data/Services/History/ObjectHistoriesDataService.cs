@@ -4,21 +4,21 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using ProcessingTools.Contracts.Services;
-    using ProcessingTools.Contracts.Services.Data.History;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.History;
     using ProcessingTools.Models.Contracts.History;
+    using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Data.History;
 
     public class ObjectHistoriesDataService : IObjectHistoriesDataService
     {
         private readonly IObjectHistoriesRepository repository;
-        private readonly IEnvironment environment;
+        private readonly IApplicationContext applicationContext;
 
-        public ObjectHistoriesDataService(IObjectHistoriesRepository repository, IEnvironment environment)
+        public ObjectHistoriesDataService(IObjectHistoriesRepository repository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
-            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
         public async Task<object> AddAsync(object objectId, object source)
@@ -49,9 +49,9 @@
                 ObjectType = objectType.FullName,
                 AssemblyName = assemblyName.Name,
                 AssemblyVersion = assemblyName.Version.ToString(),
-                Id = this.environment.GuidProvider.Invoke().ToString(),
-                CreatedBy = this.environment.User?.Id,
-                CreatedOn = this.environment.DateTimeProvider.Invoke()
+                Id = this.applicationContext.GuidProvider.Invoke().ToString(),
+                CreatedBy = this.applicationContext.UserContext?.UserId,
+                CreatedOn = this.applicationContext.DateTimeProvider.Invoke()
             };
 
             var result = await this.repository.AddAsync(model).ConfigureAwait(false);

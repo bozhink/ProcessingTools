@@ -9,9 +9,9 @@ namespace ProcessingTools.Harvesters.Abbreviations
     using System.Xml;
     using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Models.Abbreviations;
+    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
 
     /// <summary>
     /// Abbreviations Harvester.

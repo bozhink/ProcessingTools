@@ -8,11 +8,11 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Models.Contracts.Processors.Floats;
     using ProcessingTools.Contracts.Processors.Processors.Floats;
-    using ProcessingTools.Contracts.Services.Data.Mediatypes;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Models.Contracts.Processors.Floats;
     using ProcessingTools.Processors.Models.Floats;
+    using ProcessingTools.Services.Contracts.Mediatypes;
 
     public class MediatypesParser : IMediatypesParser
     {

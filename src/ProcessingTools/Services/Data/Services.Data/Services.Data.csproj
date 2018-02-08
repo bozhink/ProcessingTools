@@ -196,6 +196,14 @@
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{A1C5AD6E-32A0-43AA-8191-3FB503AC4F8D}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj">
       <Project>{11702307-f670-4a55-b936-3e468604a584}</Project>
       <Name>ProcessingTools.Services.Models</Name>

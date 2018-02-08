@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq.Expressions;
-    using ProcessingTools.Contracts.Services.Data;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Abstractions;
+    using ProcessingTools.Services.Contracts.Resources;
 
     public class ProductsDataService : AbstractMultiDataServiceAsync<Product, IProduct, IFilter>, IProductsDataService
     {

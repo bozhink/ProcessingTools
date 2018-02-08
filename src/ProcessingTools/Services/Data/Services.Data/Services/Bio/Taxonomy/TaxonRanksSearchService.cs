@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Services.Data.Bio.Taxonomy;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class TaxonRanksSearchService : ITaxonRanksSearchService

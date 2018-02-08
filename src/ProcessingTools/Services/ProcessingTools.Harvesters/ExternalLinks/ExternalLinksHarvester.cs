@@ -9,9 +9,9 @@ namespace ProcessingTools.Harvesters.ExternalLinks
     using System.Xml;
     using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Contracts.Harvesters.ExternalLinks;
-    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Models.ExternalLinks;
+    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
 
     /// <summary>
     /// External Links Harvester.

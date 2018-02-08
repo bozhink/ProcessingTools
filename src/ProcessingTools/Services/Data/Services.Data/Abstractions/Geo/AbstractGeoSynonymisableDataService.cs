@@ -2,13 +2,13 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Services.Data;
-    using ProcessingTools.Contracts.Services.Data.Geo;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Services.Contracts;
+    using ProcessingTools.Services.Contracts.Geo;
 
     public abstract class AbstractGeoSynonymisableDataService<TRepository, TModel, TFilter, TSynonym, TSynonymFilter> : IDataServiceAsync<TModel, TFilter>, IGeoSynonymisableDataService<TModel, TSynonym, TSynonymFilter>
         where TRepository : class, IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableRepository<TModel, TSynonym, TSynonymFilter>

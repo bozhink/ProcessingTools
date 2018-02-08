@@ -9,8 +9,8 @@ namespace ProcessingTools.Harvesters.Meta
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Meta;
-    using ProcessingTools.Models.Contracts.Harvesters.Meta;
     using ProcessingTools.Harvesters.Models.Meta;
+    using ProcessingTools.Models.Contracts.Harvesters.Meta;
 
     /// <summary>
     /// Article Meta Harvester
