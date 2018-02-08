@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Services.Data.Meta;
+    using ProcessingTools.Services.Contracts.Meta;
 
     public class HelpProvider : IHelpProvider
     {
@@ -13,18 +13,8 @@
 
         public HelpProvider(IReporter reporter, IJournalsMetaDataService service)
         {
-            if (reporter == null)
-            {
-                throw new ArgumentNullException(nameof(reporter));
-            }
-
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.reporter = reporter;
-            this.service = service;
+            this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         public async Task GetHelpAsync()

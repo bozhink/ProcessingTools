@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Documents;
-    using ProcessingTools.Contracts.Services.Data.Meta;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
+    using ProcessingTools.Services.Contracts.Meta;
 
     public class Engine : IEngine
     {

@@ -312,6 +312,10 @@
       <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>
       <Name>ProcessingTools.Clients</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj">
       <Project>{11c19011-f547-4ec0-8392-685827d3ad4b}</Project>
       <Name>ProcessingTools.Services</Name>

@@ -63,7 +63,7 @@
                 .To<ProcessingTools.Reporters.LogReporter>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalMetaDataService>()
+            this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalMetaDataServiceWithFiles>();
 
 #if UseFileDirectory
@@ -83,11 +83,11 @@
                     ParameterNames.JournalMetaFilesDirectoryName,
                     journalMetaFilesDirectory);
 #else
-            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalsMetaDataService>()
+            this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<Engine>();
 
-            this.Bind<ProcessingTools.Contracts.Services.Data.Meta.IJournalsMetaDataService>()
+            this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalsMetaDataService>()
                 .To<ProcessingTools.Services.Data.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<HelpProvider>();
 

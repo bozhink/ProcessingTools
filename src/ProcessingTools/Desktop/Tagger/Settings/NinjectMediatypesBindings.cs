@@ -2,7 +2,6 @@
 {
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Services.Data.Mediatypes;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Mediatypes;
@@ -12,6 +11,7 @@
     using ProcessingTools.Mediatypes.Data.Entity.Providers;
     using ProcessingTools.Mediatypes.Data.Entity.Repositories;
     using ProcessingTools.Mediatypes.Data.Mongo.Repositories;
+    using ProcessingTools.Services.Contracts.Mediatypes;
     using ProcessingTools.Services.Data.Services.Mediatypes;
 
     public class NinjectMediatypesBindings : NinjectModule
