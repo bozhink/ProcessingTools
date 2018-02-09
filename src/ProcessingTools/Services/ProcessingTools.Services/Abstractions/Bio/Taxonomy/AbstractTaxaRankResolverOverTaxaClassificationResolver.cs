@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy
+﻿namespace ProcessingTools.Services.Abstractions.Bio.Taxonomy
 {
     using System;
     using System.Threading.Tasks;
@@ -16,7 +16,7 @@
 
         public async Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
-            return await this.classificationResolver.ResolveAsync(scientificNames);
+            return await this.classificationResolver.ResolveAsync(scientificNames).ConfigureAwait(false);
         }
     }
 }

@@ -54,8 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaInformationResolver.cs" />
-    <Compile Include="Abstractions\Bio\Taxonomy\AbstractTaxaRankResolverOverTaxaClassificationResolver.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionalCollectionsDataService.cs" />
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesInstitutionsDataService.cs" />

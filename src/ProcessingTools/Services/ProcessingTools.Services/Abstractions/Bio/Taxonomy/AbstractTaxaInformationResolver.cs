@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Services.Data.Abstractions.Bio.Taxonomy
+﻿namespace ProcessingTools.Services.Abstractions.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
@@ -16,7 +16,7 @@
                 .Select(scientificName => this.ResolveScientificName(scientificName, queue, exceptions))
                 .ToArray();
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(true);
 
             if (exceptions.Count > 0)
             {
