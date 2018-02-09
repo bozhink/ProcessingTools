@@ -11,9 +11,9 @@
     using ProcessingTools.History.Data.Entity.Models;
     using ProcessingTools.Models.Contracts.History;
 
-    public class EntityObjectHistoriesRepository : EfRepository<IHistoryDbContext, ObjectHistory>, IEntityObjectHistoriesRepository
+    public class EntityObjectHistoryRepository : EfRepository<IHistoryDbContext, ObjectHistory>, IEntityObjectHistoriesRepository
     {
-        public EntityObjectHistoriesRepository(IHistoryDbContext context)
+        public EntityObjectHistoryRepository(IHistoryDbContext context)
             : base(context)
         {
         }

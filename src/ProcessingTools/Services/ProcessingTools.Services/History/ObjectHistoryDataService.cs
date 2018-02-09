@@ -10,12 +10,12 @@
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Data.History;
 
-    public class ObjectHistoriesDataService : IObjectHistoriesDataService
+    public class ObjectHistoryDataService : IObjectHistoryDataService
     {
-        private readonly IObjectHistoriesRepository repository;
+        private readonly IObjectHistoryRepository repository;
         private readonly IApplicationContext applicationContext;
 
-        public ObjectHistoriesDataService(IObjectHistoriesRepository repository, IApplicationContext applicationContext)
+        public ObjectHistoryDataService(IObjectHistoryRepository repository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));

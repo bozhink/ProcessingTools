@@ -4,10 +4,13 @@
 
 namespace ProcessingTools.Data.Contracts.Documents
 {
+    using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Models.Contracts.Documents.Publishers;
+
     /// <summary>
     /// Publishers data access object.
     /// </summary>
-    public interface IPublishersDataAccessObject
+    public interface IPublishersDataAccessObject : IDataAccessObject<IPublisherDataModel, IPublisherDetailsDataModel, IPublisherInsertModel, IPublisherUpdateModel>
     {
     }
 }

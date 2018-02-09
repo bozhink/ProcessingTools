@@ -17,9 +17,9 @@
 
     public class PublishersDataService : AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>, IPublishersDataService
     {
-        private readonly IObjectHistoriesDataService objectHistoriesService;
+        private readonly IObjectHistoryDataService objectHistoriesService;
 
-        public PublishersDataService(TRepository repository, IApplicationContext applicationContext, IObjectHistoriesDataService objectHistoriesService)
+        public PublishersDataService(TRepository repository, IApplicationContext applicationContext, IObjectHistoryDataService objectHistoriesService)
             : base(repository, applicationContext)
         {
             this.objectHistoriesService = objectHistoriesService ?? throw new ArgumentNullException(nameof(objectHistoriesService));

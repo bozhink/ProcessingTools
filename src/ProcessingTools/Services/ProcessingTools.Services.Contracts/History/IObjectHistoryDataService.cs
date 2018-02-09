@@ -1,4 +1,4 @@
-﻿// <copyright file="IObjectHistoriesDataService.cs" company="ProcessingTools">
+﻿// <copyright file="IObjectHistoryDataService.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Contracts.History
     /// <summary>
     /// Object histories data service.
     /// </summary>
-    public interface IObjectHistoriesDataService
+    public interface IObjectHistoryDataService
     {
         /// <summary>
         /// Adds history entry of specified object.
