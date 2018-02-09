@@ -5,11 +5,17 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
+    using AutoMapper;
+    using ProcessingTools.Constants;
     using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Services.Models.Documents.Publishers;
 
     /// <summary>
     /// Publishers data service.
@@ -18,6 +24,7 @@ namespace ProcessingTools.Services.Documents
     {
         private readonly IPublishersDataAccessObject dao;
         private readonly IObjectHistoryDataService history;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishersDataService"/> class.
@@ -28,6 +35,13 @@ namespace ProcessingTools.Services.Documents
         {
             this.dao = dao ?? throw new ArgumentNullException(nameof(dao));
             this.history = history ?? throw new ArgumentNullException(nameof(history));
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<IPublisherDataModel, PublisherModel>();
+                c.CreateMap<IPublisherDetailsDataModel, PublisherDetailsModel>();
+            });
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>
@@ -72,15 +86,45 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public Task<IPublisherDetailsModel> GetById(object id)
+        public async Task<IPublisherDetailsModel> GetById(object id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var entity = await this.dao.GetDetailsById(id).ConfigureAwait(false);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IPublisherDetailsDataModel, PublisherDetailsModel>(entity);
+
+            return model;
         }
 
         /// <inheritdoc/>
-        public Task<IPublisherModel[]> SelectAsync(int skip, int take)
+        public async Task<IPublisherModel[]> SelectAsync(int skip, int take)
         {
-            throw new NotImplementedException();
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            var entities = await this.dao.SelectAsync(skip, take).ConfigureAwait(false);
+            if (entities == null || !entities.Any())
+            {
+                return new IPublisherModel[] { };
+            }
+
+            var items = entities.Select(this.mapper.Map<IPublisherDataModel, PublisherModel>).ToArray();
+            return items;
         }
 
         /// <inheritdoc/>
