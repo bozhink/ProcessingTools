@@ -285,6 +285,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Models.Cont
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.Mongo", "Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj", "{A77B11A8-45A0-45BA-9003-7A81514D8BDA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Contracts", "Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj", "{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Models.Contracts", "Services\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj", "{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1157,6 +1161,22 @@ Global
 		{A77B11A8-45A0-45BA-9003-7A81514D8BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A77B11A8-45A0-45BA-9003-7A81514D8BDA}.Release|x64.ActiveCfg = Release|Any CPU
 		{A77B11A8-45A0-45BA-9003-7A81514D8BDA}.Release|x64.Build.0 = Release|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Debug|x64.Build.0 = Debug|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Release|x64.ActiveCfg = Release|Any CPU
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}.Release|x64.Build.0 = Release|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Debug|x64.Build.0 = Debug|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Release|x64.ActiveCfg = Release|Any CPU
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1289,9 +1309,11 @@ Global
 		{999D23C0-4D26-4F10-82FF-949FDB3543F6} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{A620DFDE-28C3-46C7-BED3-0AFB99DB9623} = {789C4203-7CD8-45FC-A182-D4C395F76530}
 		{A77B11A8-45A0-45BA-9003-7A81514D8BDA} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{6BFB5B07-C3B0-4046-94C1-FEC2444C1781} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
