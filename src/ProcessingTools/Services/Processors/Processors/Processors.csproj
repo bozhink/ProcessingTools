@@ -177,6 +177,14 @@
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{5201cf47-75b8-445a-a12b-c4d9c1fe7df3}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj">
+      <Project>{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}</Project>
+      <Name>ProcessingTools.Processors.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj">
       <Project>{72ec8d88-76e5-4843-a98e-306ba6ad7f7f}</Project>
       <Name>ProcessingTools.Processors.Models</Name>

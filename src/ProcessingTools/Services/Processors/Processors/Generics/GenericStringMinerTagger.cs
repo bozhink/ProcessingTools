@@ -8,6 +8,8 @@
     using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Contracts.Processors.Providers;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Layout;
 
     public class GenericStringMinerTagger<TMiner, TTagModelProvider> : IDocumentTagger
         where TMiner : IStringDataMiner
