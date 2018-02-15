@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Special;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts.Special;
 
     public class QuentinFlora : IQuentinFlora
     {

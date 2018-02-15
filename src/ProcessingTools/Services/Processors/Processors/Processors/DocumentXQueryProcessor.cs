@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Processors.Contracts;
 
     public class DocumentXQueryProcessor : IDocumentXQueryProcessor
     {

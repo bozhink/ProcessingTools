@@ -5,7 +5,10 @@
     using ProcessingTools.Contracts.Processors.Providers;
     using ProcessingTools.Data.Miners.Contracts.Miners.Quantities;
     using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Processors.Contracts.Quantities;
     using ProcessingTools.Processors.Generics;
+    using ProcessingTools.Processors.Models.Contracts;
 
     public class QuantitiesTagger : GenericStringMinerTagger<IQuantitiesDataMiner, IQuantityTagModelProvider>, IQuantitiesTagger
     {

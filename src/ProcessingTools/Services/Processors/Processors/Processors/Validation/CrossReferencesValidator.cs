@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Validation;
+    using ProcessingTools.Processors.Contracts.Validation;
 
     public class CrossReferencesValidator : ICrossReferencesValidator
     {
