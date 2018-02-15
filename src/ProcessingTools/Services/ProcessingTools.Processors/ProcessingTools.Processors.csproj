@@ -22,5 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
   </ItemGroup>
 </Project>

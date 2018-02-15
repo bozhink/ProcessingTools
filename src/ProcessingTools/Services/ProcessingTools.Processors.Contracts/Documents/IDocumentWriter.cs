@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Processors.Processors.Documents
+﻿namespace ProcessingTools.Processors.Contracts.Documents
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;

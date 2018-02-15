@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Processors.Imaging
+namespace ProcessingTools.Processors.Contracts.Imaging
 {
     using System.Threading.Tasks;
     using ProcessingTools.Enumerations;

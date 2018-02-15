@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Processors.Special
+namespace ProcessingTools.Processors.Contracts.Special
 {
     /// <summary>
     /// Gavin Laurens Parser

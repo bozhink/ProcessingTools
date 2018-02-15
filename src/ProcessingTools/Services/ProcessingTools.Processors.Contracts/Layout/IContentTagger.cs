@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Layout.Processors.Contracts.Taggers
+﻿// <copyright file="IContentTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Contracts.Layout
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -6,6 +10,9 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Processors.Layout;
 
+    /// <summary>
+    /// Content tagger.
+    /// </summary>
     public interface IContentTagger
     {
         Task TagContentInDocument(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings);

@@ -1,7 +1,12 @@
-﻿namespace ProcessingTools.Contracts.Processors.Processors.Validation
-{
-    using ProcessingTools.Contracts;
+﻿// <copyright file="ICrossReferencesValidator.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Processors.Contracts.Validation
+{
+    /// <summary>
+    /// Cross references validator.
+    /// </summary>
     public interface ICrossReferencesValidator : IDocumentValidator
     {
     }

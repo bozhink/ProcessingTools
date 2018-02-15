@@ -1,9 +1,17 @@
-﻿namespace ProcessingTools.Contracts.Processors.Processors.References
-{
-    using ProcessingTools.Contracts;
+﻿// <copyright file="IReferencesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Processors.Contracts.References
+{
+    /// <summary>
+    /// References tagger.
+    /// </summary>
     public interface IReferencesTagger : IXmlContextTagger
     {
-        string ReferencesGetReferencesXmlPath { get;  set; }
+        /// <summary>
+        /// Gets or sets the path for output references Xml file.
+        /// </summary>
+        string ReferencesGetReferencesXmlPath { get; set; }
     }
 }

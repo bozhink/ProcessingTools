@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Processors.Processors.Bio.Codes
+﻿namespace ProcessingTools.Processors.Contracts.Bio.Codes
 {
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;

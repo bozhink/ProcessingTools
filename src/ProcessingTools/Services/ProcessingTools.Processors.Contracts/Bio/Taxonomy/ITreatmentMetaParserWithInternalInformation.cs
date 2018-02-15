@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers
+﻿namespace ProcessingTools.Processors.Contracts.Bio.Taxonomy
 {
     public interface ITreatmentMetaParserWithInternalInformation : ITreatmentMetaParser
     {

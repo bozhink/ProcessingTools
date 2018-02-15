@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Layout.Processors.Contracts.Taggers
+﻿namespace ProcessingTools.Processors.Contracts.Layout
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

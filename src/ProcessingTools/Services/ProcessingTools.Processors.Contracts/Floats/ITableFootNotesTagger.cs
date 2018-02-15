@@ -1,8 +1,13 @@
-﻿namespace ProcessingTools.Contracts.Processors.Processors.Floats
-{
-    using ProcessingTools.Contracts;
+﻿// <copyright file="ITableFootnotesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
-    public interface ITableFootNotesTagger : IXmlContextTagger
+namespace ProcessingTools.Processors.Contracts.Floats
+{
+    /// <summary>
+    /// Table footnotes tagger.
+    /// </summary>
+    public interface ITableFootnotesTagger : IXmlContextTagger
     {
     }
 }

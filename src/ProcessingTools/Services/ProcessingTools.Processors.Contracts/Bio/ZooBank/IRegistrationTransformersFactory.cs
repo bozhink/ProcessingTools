@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Contracts.Processors.Factories
+﻿namespace ProcessingTools.Processors.Contracts.Bio.ZooBank
 {
     using ProcessingTools.Contracts.Xml;
 

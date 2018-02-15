@@ -1,7 +1,12 @@
-﻿namespace ProcessingTools.Contracts.Processors.Processors.Coordinates
-{
-    using ProcessingTools.Contracts;
+﻿// <copyright file="ICoordinatesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Processors.Contracts.Coordinates
+{
+    /// <summary>
+    /// Coordinates tagger.
+    /// </summary>
     public interface ICoordinatesTagger : IDocumentTagger
     {
     }
