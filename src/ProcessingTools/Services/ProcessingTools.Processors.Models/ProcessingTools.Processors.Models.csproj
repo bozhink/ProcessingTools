@@ -24,5 +24,6 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
   </ItemGroup>
 </Project>
