@@ -42,8 +42,6 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Processors\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
-    <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
-    <Compile Include="Generics\GenericStringMinerTagger.cs" />
     <Compile Include="Processors\Layout\Normalizers\XmlContextNormalizer.cs" />
     <Compile Include="Processors\Layout\Formatters\DocumentFinalFormatter.cs" />
     <Compile Include="Processors\Layout\Formatters\DocumentInitialFormatter.cs" />
@@ -209,7 +207,9 @@
   <ItemGroup>
     <Content Include="Special\Processors\FloraReplace.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Generics\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
