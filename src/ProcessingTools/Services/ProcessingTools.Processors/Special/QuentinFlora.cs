@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Special.Processors.Processors
+﻿// <copyright file="QuentinFlora.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Special
 {
     using System;
     using System.Linq;
@@ -8,6 +12,9 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Special;
 
+    /// <summary>
+    /// Quentin flora.
+    /// </summary>
     public class QuentinFlora : IQuentinFlora
     {
         private Action<XmlNode> ClearWhitespacingAction => n =>
@@ -17,14 +24,15 @@
                 .Trim();
         };
 
-        public async Task<object> FormatAsync(IDocument context)
+        /// <inheritdoc/>
+        public Task<object> FormatAsync(IDocument context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            return await Task.Run(() =>
+            return Task.Run<object>(() =>
             {
                 this.InitialFormat(context);
                 this.Split1(context);
@@ -32,8 +40,7 @@
                 this.FinalFormat(context);
 
                 return true;
-            })
-            .ConfigureAwait(false);
+            });
         }
 
         private void FinalFormat(IDocument document)

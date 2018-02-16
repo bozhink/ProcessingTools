@@ -106,12 +106,8 @@
     <Compile Include="Processors\Validation\ExternalLinksValidator.cs" />
     <Compile Include="Processors\Validation\TaxaValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
+    <Compile Include="Processors\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Processors\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
-    <Compile Include="Special\Processors\Flora.cs" />
-    <Compile Include="Special\Processors\GavinLaurensParser.cs" />
-    <Compile Include="Special\Processors\QuentinFlora.cs" />
-    <Compile Include="Special\Processors\TestFeaturesProvider.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaFromLeftStrategy.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithBasionymStrategy.cs" />
     <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithByPartsMatchStrategy.cs" />
@@ -191,9 +187,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Processors.ruleset" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Special\Processors\FloraReplace.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

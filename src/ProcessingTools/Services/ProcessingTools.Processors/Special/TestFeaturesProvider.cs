@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Special.Processors.Processors
+﻿// <copyright file="TestFeaturesProvider.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Special
 {
     using System;
     using System.Collections.Generic;
@@ -8,8 +12,12 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Special;
 
+    /// <summary>
+    /// Test features provider.
+    /// </summary>
     public class TestFeaturesProvider : ITestFeaturesProvider
     {
+        /// <inheritdoc/>
         public void ExtractSystemChecklistAuthority(IDocument document)
         {
             if (document == null)
@@ -24,6 +32,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void MoveAuthorityTaxonNamePartToTaxonAuthorityTagInTaxPubTpNomenclaure(IDocument document)
         {
             if (document == null)
@@ -44,6 +53,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void WrapEmptySuperscriptsInFootnoteXrefTag(IDocument document)
         {
             if (document == null)
@@ -69,6 +79,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void RenumerateFootNotes(IDocument document)
         {
             if (document == null)
@@ -76,9 +87,9 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            var footnoteIds = new HashSet<string>(document.SelectNodes("//back//fn-group//fn/@id")
-                .Cast<XmlNode>()
-                .Select(n => n.InnerText))
+            var footnoteIds = document.SelectNodes("//back//fn-group//fn/@id")
+                .Select(n => n.InnerText)
+                .Distinct()
                 .ToArray();
 
             var reindexDictionary = new Dictionary<string, int>();

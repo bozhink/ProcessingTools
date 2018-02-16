@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Special.Processors.Processors
+﻿// <copyright file="Flora.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Special
 {
     using System;
     using System.Linq;
@@ -8,11 +12,15 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Special;
 
+    /// <summary>
+    /// Flora
+    /// </summary>
     public class Flora : IFlora
     {
         private const string InfraspecificPattern = "\\b([Vv]ar\\.|[Ss]ubsp\\.|([Ss]ub)?[Ss]ect\\.|[Aa]ff\\.|[Cc]f\\.|[Ff]orma)";
         private const string LowerPattern = "\\s*\\b[a-z]*(ensis|ulei|onis|oidis|oide?a|phyll[au][sm]?|[aeiou]lii|longiflora)\\b";
 
+        /// <inheritdoc/>
         public void ParseInfra(IDocument document)
         {
             if (document == null)
@@ -44,6 +52,7 @@
             document.Xml = document.Xml.RegexReplace("(?<=</tn-part>)(?=<tn)", " ");
         }
 
+        /// <inheritdoc/>
         public void ParseTn(IDocument document, XmlDocument template)
         {
             if (document == null)
@@ -89,6 +98,7 @@
             document.Xml = Regex.Replace(document.Xml, "(?<=</tn-part>)(?=<tn)", " ");
         }
 
+        /// <inheritdoc/>
         public void PerformReplace(IDocument document, XmlDocument template)
         {
             if (document == null)
