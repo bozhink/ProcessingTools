@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Floats
+﻿// <copyright file="MediatypesParser.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Processors.Floats
 {
     using System;
     using System.Collections;
@@ -8,21 +12,29 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts.Processors.Processors.Floats;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Processors.Floats;
+    using ProcessingTools.Processors.Contracts.Floats;
+    using ProcessingTools.Processors.Models.Contracts.Floats;
     using ProcessingTools.Processors.Models.Floats;
     using ProcessingTools.Services.Contracts.Mediatypes;
 
+    /// <summary>
+    /// Mediatypes parser.
+    /// </summary>
     public class MediatypesParser : IMediatypesParser
     {
         private readonly IMediatypesResolver mediatypesResolver;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediatypesParser"/> class.
+        /// </summary>
+        /// <param name="mediatypesResolver">Mediatypes resolver.</param>
         public MediatypesParser(IMediatypesResolver mediatypesResolver)
         {
             this.mediatypesResolver = mediatypesResolver ?? throw new ArgumentNullException(nameof(mediatypesResolver));
         }
 
+        /// <inheritdoc/>
         public async Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)

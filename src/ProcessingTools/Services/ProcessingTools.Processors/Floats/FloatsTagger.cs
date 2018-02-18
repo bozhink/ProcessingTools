@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Floats
+﻿// <copyright file="FloatsTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Processors.Floats
 {
     using System;
     using System.Collections;
@@ -10,12 +14,15 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Floats;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Processors.Floats;
+    using ProcessingTools.Processors.Contracts.Floats;
+    using ProcessingTools.Processors.Models.Contracts.Floats;
 
+    /// <summary>
+    /// Floats tagger.
+    /// </summary>
     public class FloatsTagger : IFloatsTagger
     {
         private const int MaxNumberOfSequentalFloats = 60;
@@ -32,14 +39,19 @@
         private IEnumerable floatIdByLabelKeys = null;
         private IEnumerable floatIdByLabelValues = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FloatsTagger"/> class.
+        /// </summary>
+        /// <param name="logger">Logger</param>
         public FloatsTagger(ILogger logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.InitFloats();
 
             this.floatObjects = new ConcurrentDictionary<Type, IFloatObject>();
         }
 
+        /// <inheritdoc/>
         public Task<object> TagAsync(XmlNode context) => Task.Run(() => this.TagSync(context));
 
         private object TagSync(XmlNode context)

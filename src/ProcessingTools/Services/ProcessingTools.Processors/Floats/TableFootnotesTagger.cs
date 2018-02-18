@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Floats
+﻿// <copyright file="TableFootnotesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Processors.Floats
 {
     using System;
     using System.Collections.Generic;
@@ -6,17 +10,25 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Floats;
+    using ProcessingTools.Processors.Contracts.Floats;
 
-    public class TableFootNotesTagger : ITableFootNotesTagger
+    /// <summary>
+    /// Table footnotes tagger.
+    /// </summary>
+    public class TableFootnotesTagger : ITableFootnotesTagger
     {
         private readonly ILogger logger;
 
-        public TableFootNotesTagger(ILogger logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableFootnotesTagger"/> class.
+        /// </summary>
+        /// <param name="logger">Logger</param>
+        public TableFootnotesTagger(ILogger logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public Task<object> TagAsync(XmlNode context) => Task.Run(() => this.TagSync(context));
 
         private object TagSync(XmlNode context)

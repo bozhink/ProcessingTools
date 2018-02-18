@@ -73,9 +73,6 @@
     <Compile Include="Processors\Bio\ZooBank\ZoobankXmlCloner.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesTagger.cs" />
-    <Compile Include="Processors\Floats\FloatsTagger.cs" />
-    <Compile Include="Processors\Floats\MediatypesParser.cs" />
-    <Compile Include="Processors\Floats\TableFootNotesTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Processors\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Processors\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
@@ -159,9 +156,7 @@
     <None Include="packages.config" />
     <None Include="Processors.ruleset" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Processors\Layout\Taggers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
