@@ -7,7 +7,6 @@ namespace ProcessingTools.Processors.Products
     using ProcessingTools.Data.Miners.Contracts.Miners.Products;
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.Products;
     using ProcessingTools.Processors.Models.Contracts;
 

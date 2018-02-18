@@ -2,13 +2,13 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Processors.Contracts.Layout
+namespace ProcessingTools.Processors.Contracts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Processors.Layout;
+    using ProcessingTools.Processors.Models.Contracts;
 
     /// <summary>
     /// Content tagger.

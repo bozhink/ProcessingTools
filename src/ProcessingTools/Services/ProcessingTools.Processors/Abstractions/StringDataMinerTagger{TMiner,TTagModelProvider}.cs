@@ -10,7 +10,6 @@ namespace ProcessingTools.Processors.Abstractions
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Data.Miners;
     using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Processors.Contracts.Layout;
 
     /// <summary>
     /// Generic string data miner tagger.

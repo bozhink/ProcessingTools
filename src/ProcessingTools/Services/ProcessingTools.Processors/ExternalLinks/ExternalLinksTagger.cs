@@ -11,10 +11,10 @@ namespace ProcessingTools.Processors.ExternalLinks
     using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Data.Miners.Contracts.Miners.ExternalLinks;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.ExternalLinks;
-    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.ExternalLinks;
-    using ProcessingTools.Processors.Models.Layout;
 
     /// <summary>
     /// External links tagger.

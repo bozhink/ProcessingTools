@@ -6,7 +6,7 @@ namespace ProcessingTools.Processors.Models.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Linq;
-    using ProcessingTools.Models.Contracts.Processors.Bio.Taxonomy;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 
     /// <summary>
     /// <see cref="ITaxonName"/> content equality comparer.

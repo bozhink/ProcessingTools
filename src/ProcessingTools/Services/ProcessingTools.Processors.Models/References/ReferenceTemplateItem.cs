@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.References
 {
-    using ProcessingTools.Models.Contracts.Processors.References;
+    using ProcessingTools.Processors.Models.Contracts.References;
 
     /// <summary>
     /// Reference template item.

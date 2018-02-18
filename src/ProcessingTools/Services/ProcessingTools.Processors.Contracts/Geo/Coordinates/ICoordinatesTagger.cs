@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Processors.Contracts.Coordinates
+namespace ProcessingTools.Processors.Contracts.Geo.Coordinates
 {
     /// <summary>
     /// Coordinates tagger.

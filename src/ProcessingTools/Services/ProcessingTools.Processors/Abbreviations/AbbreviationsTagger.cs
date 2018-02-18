@@ -13,9 +13,9 @@ namespace ProcessingTools.Processors.Abbreviations
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Processors.Abbreviations;
     using ProcessingTools.Processors.Contracts.Abbreviations;
     using ProcessingTools.Processors.Models.Abbreviations;
+    using ProcessingTools.Processors.Models.Contracts.Abbreviations;
 
     /// <summary>
     /// Abbreviations tagger.

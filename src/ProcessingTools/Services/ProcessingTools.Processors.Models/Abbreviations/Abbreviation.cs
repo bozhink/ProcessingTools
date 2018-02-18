@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Models.Abbreviations
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Processors.Abbreviations;
+    using ProcessingTools.Processors.Models.Contracts.Abbreviations;
 
     /// <summary>
     /// Abbreviation.

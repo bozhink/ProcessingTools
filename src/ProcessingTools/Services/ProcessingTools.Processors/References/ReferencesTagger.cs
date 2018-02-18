@@ -12,8 +12,8 @@ namespace ProcessingTools.Processors.References
     using System.Xml;
     using System.Xml.Linq;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Processors.References;
     using ProcessingTools.Processors.Contracts.References;
+    using ProcessingTools.Processors.Models.Contracts.References;
     using ProcessingTools.Processors.Models.References;
 
     /// <summary>

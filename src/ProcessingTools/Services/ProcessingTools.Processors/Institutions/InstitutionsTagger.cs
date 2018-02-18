@@ -8,7 +8,6 @@ namespace ProcessingTools.Processors.Institutions
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Institutions;
-    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Models.Contracts;
 
     /// <summary>
