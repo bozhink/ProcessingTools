@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors
+﻿// <copyright file="XmlQueryReplacer.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors
 {
     using System;
     using System.Text.RegularExpressions;
@@ -6,8 +10,12 @@
     using System.Xml;
     using ProcessingTools.Processors.Contracts;
 
+    /// <summary>
+    /// XML query replacer.
+    /// </summary>
     public class XmlQueryReplacer : IXmlQueryReplacer
     {
+        /// <inheritdoc/>
         public Task<string> ReplaceAsync(string content, string query)
         {
             if (string.IsNullOrWhiteSpace(query))

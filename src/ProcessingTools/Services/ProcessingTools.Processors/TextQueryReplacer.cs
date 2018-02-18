@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors
+﻿// <copyright file="TextQueryReplacer.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors
 {
     using System;
     using System.IO;
@@ -7,8 +11,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Processors.Contracts;
 
+    /// <summary>
+    /// Text query replacer.
+    /// </summary>
     public class TextQueryReplacer : ITextQueryReplacer
     {
+        /// <inheritdoc/>
         public Task<string> ReplaceAsync(string content, string query)
         {
             if (string.IsNullOrWhiteSpace(query))

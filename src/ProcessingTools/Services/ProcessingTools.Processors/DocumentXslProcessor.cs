@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors
+﻿// <copyright file="DocumentXslProcessor.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors
 {
     using System;
     using System.Threading.Tasks;
@@ -6,17 +10,26 @@
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts;
 
+    /// <summary>
+    /// Document XSL processor.
+    /// </summary>
     public class DocumentXslProcessor : IDocumentXslProcessor
     {
         private readonly IXslTransformerFactory factory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocumentXslProcessor"/> class.
+        /// </summary>
+        /// <param name="factory">XSL transformer factory.</param>
         public DocumentXslProcessor(IXslTransformerFactory factory)
         {
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
+        /// <inheritdoc/>
         public string XslFileName { get; set; }
 
+        /// <inheritdoc/>
         public async Task ProcessAsync(IDocument context)
         {
             if (context == null)
@@ -26,7 +39,8 @@
 
             var content = await this.factory
                 .CreateTransformer(xslFileName: this.XslFileName)
-                .TransformAsync(context.Xml);
+                .TransformAsync(context.Xml)
+                .ConfigureAwait(false);
 
             context.Xml = content;
         }
