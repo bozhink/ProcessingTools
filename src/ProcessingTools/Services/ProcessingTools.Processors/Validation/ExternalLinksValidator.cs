@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Validation
+﻿// <copyright file="ExternalLinksValidator.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Validation
 {
     using System;
     using System.Linq;
@@ -9,19 +13,26 @@
     using ProcessingTools.Processors.Contracts.Validation;
     using ProcessingTools.Services.Contracts.Validation;
 
+    /// <summary>
+    /// External links validator.
+    /// </summary>
     public class ExternalLinksValidator : IExternalLinksValidator
     {
         private readonly IExternalLinksHarvester harvester;
         private readonly IUrlValidationService validationService;
 
-        public ExternalLinksValidator(
-            IExternalLinksHarvester harvester,
-            IUrlValidationService validationService)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExternalLinksValidator"/> class.
+        /// </summary>
+        /// <param name="harvester">External links harvester.</param>
+        /// <param name="validationService">URL validation service.</param>
+        public ExternalLinksValidator(IExternalLinksHarvester harvester, IUrlValidationService validationService)
         {
             this.harvester = harvester ?? throw new ArgumentNullException(nameof(harvester));
             this.validationService = validationService ?? throw new ArgumentNullException(nameof(validationService));
         }
 
+        /// <inheritdoc/>
         public async Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)
@@ -34,7 +45,7 @@
                 throw new ArgumentNullException(nameof(reporter));
             }
 
-            var data = await this.harvester.HarvestAsync(context.XmlDocument.DocumentElement);
+            var data = await this.harvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
             var externalLinks = data?.Select(e => e.FullAddress)
                 .Distinct()
                 .ToArray();

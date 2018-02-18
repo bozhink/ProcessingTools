@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Validation
+﻿// <copyright file="CrossReferencesValidator.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Validation
 {
     using System;
     using System.Collections.Generic;
@@ -8,8 +12,12 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Validation;
 
+    /// <summary>
+    /// Cross references validator.
+    /// </summary>
     public class CrossReferencesValidator : ICrossReferencesValidator
     {
+        /// <inheritdoc/>
         public Task<object> ValidateAsync(IDocument context, IReporter reporter)
         {
             if (context == null)

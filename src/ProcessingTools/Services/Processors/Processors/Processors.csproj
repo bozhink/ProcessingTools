@@ -100,9 +100,6 @@
     <Compile Include="Processors\Quantities\QuantitiesTagger.cs" />
     <Compile Include="Processors\TextQueryReplacer.cs" />
     <Compile Include="Processors\XmlQueryReplacer.cs" />
-    <Compile Include="Processors\Validation\CrossReferencesValidator.cs" />
-    <Compile Include="Processors\Validation\ExternalLinksValidator.cs" />
-    <Compile Include="Processors\Validation\TaxaValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Processors\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Processors\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
