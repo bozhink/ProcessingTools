@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.References
+﻿// <copyright file="ReferencesTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.References
 {
     using System;
     using System.Collections.Generic;
@@ -12,21 +16,31 @@
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Models.References;
 
+    /// <summary>
+    /// References tagger.
+    /// </summary>
     public class ReferencesTagger : IReferencesTagger
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
-        private readonly IReferencesTransformersFactory transformersFactory;
+        private readonly IReferencesTransformerFactory transformerFactory;
         private readonly ILogger logger;
 
-        public ReferencesTagger(IReferencesTransformersFactory transformersFactory, ILogger logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReferencesTagger"/> class.
+        /// </summary>
+        /// <param name="transformerFactory">Transformer factory.</param>
+        /// <param name="logger">Logger.</param>
+        public ReferencesTagger(IReferencesTransformerFactory transformerFactory, ILogger logger)
         {
-            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
-            this.logger = logger;
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public string ReferencesGetReferencesXmlPath { get; set; }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(XmlNode context)
         {
             if (context == null)
@@ -172,7 +186,7 @@
 
         private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates(XmlNode context)
         {
-            var text = await this.transformersFactory
+            var text = await this.transformerFactory
                 .GetReferencesTagTemplateTransformer()
                 .TransformAsync(context)
                 .ConfigureAwait(false);
@@ -201,7 +215,7 @@
                 return;
             }
 
-            var text = await this.transformersFactory
+            var text = await this.transformerFactory
                 .GetReferencesGetReferencesTransformer()
                 .TransformAsync(context)
                 .ConfigureAwait(false);

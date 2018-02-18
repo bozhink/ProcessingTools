@@ -4,7 +4,7 @@
     using System.Drawing;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Processors.Imaging;
+    using ProcessingTools.Processors.Contracts.Imaging;
     using QRCoder;
 
     public class QRCodeEncoder : IQRCodeEncoder

@@ -1,4 +1,4 @@
-﻿// <copyright file="IReferencesTransformersFactory.cs" company="ProcessingTools">
+﻿// <copyright file="IReferencesTransformerFactory.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Contracts.References
     /// <summary>
     /// References transformers factory.
     /// </summary>
-    public interface IReferencesTransformersFactory
+    public interface IReferencesTransformerFactory
     {
         /// <summary>
         /// Get references tag template transformer.

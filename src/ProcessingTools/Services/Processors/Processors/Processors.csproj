@@ -100,8 +100,6 @@
     <Compile Include="Processors\Quantities\QuantitiesTagger.cs" />
     <Compile Include="Processors\TextQueryReplacer.cs" />
     <Compile Include="Processors\XmlQueryReplacer.cs" />
-    <Compile Include="Processors\References\ReferencesParser.cs" />
-    <Compile Include="Processors\References\ReferencesTagger.cs" />
     <Compile Include="Processors\Validation\CrossReferencesValidator.cs" />
     <Compile Include="Processors\Validation\ExternalLinksValidator.cs" />
     <Compile Include="Processors\Validation\TaxaValidator.cs" />
@@ -188,7 +186,9 @@
     <None Include="packages.config" />
     <None Include="Processors.ruleset" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Processors\References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

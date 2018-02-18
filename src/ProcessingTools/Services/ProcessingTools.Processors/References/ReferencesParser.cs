@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.References
+﻿// <copyright file="ReferencesParser.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.References
 {
     using System;
     using System.Text.RegularExpressions;
@@ -7,18 +11,26 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.References;
 
+    /// <summary>
+    /// References parser.
+    /// </summary>
     public class ReferencesParser : IReferencesParser
     {
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReferencesParser"/> class.
+        /// </summary>
+        /// <param name="logger">Logger</param>
         public ReferencesParser(ILogger logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task<object> ParseAsync(XmlNode context) => Task.Run(() => this.ParseSync(context));
+        /// <inheritdoc/>
+        public Task<object> ParseAsync(XmlNode context) => Task.Run(() => this.Parse(context));
 
-        private object ParseSync(XmlNode context)
+        private object Parse(XmlNode context)
         {
             if (context == null)
             {
