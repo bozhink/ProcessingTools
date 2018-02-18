@@ -97,7 +97,6 @@
     <Compile Include="Processors\Geo\GeoNamesTagger.cs" />
     <Compile Include="Processors\Institutions\InstitutionsTagger.cs" />
     <Compile Include="Processors\Products\ProductsTagger.cs" />
-    <Compile Include="Processors\Quantities\QuantitiesTagger.cs" />
     <Compile Include="Processors\TextQueryReplacer.cs" />
     <Compile Include="Processors\XmlQueryReplacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
