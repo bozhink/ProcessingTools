@@ -51,7 +51,6 @@
     <Compile Include="Processors\Layout\Taggers\ContentTagger.cs" />
     <Compile Include="Processors\Layout\Taggers\SimpleXmlSerializableObjectTagger.cs" />
     <Compile Include="Processors\Layout\Taggers\StringTagger.cs" />
-    <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\InstitutionalCodesTagger.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Processors\Bio\ZooBank\ZoobankXmlCloner.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
     <Compile Include="Processors\Coordinates\CoordinatesTagger.cs" />
-    <Compile Include="Processors\Dates\DatesTagger.cs" />
     <Compile Include="Processors\Documents\DocumentManager.cs" />
     <Compile Include="Processors\Documents\DocumentMerger.cs" />
     <Compile Include="Processors\Documents\DocumentReader.cs" />
@@ -85,7 +83,6 @@
     <Compile Include="Processors\Documents\DocumentWriter.cs" />
     <Compile Include="Processors\Documents\ReadDocumentHelper.cs" />
     <Compile Include="Processors\Documents\WriteDocumentHelper.cs" />
-    <Compile Include="Processors\ExternalLinks\ExternalLinksTagger.cs" />
     <Compile Include="Processors\Floats\FloatsTagger.cs" />
     <Compile Include="Processors\Floats\MediatypesParser.cs" />
     <Compile Include="Processors\Floats\TableFootNotesTagger.cs" />

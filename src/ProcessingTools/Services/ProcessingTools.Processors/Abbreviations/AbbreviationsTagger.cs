@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Abbreviations
+﻿// <copyright file="AbbreviationsTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Abbreviations
 {
     using System;
     using System.Collections.Generic;
@@ -7,30 +11,37 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Abbreviations;
-    using ProcessingTools.Contracts.Processors.Processors.Abbreviations;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Processors.Abbreviations;
+    using ProcessingTools.Processors.Contracts.Abbreviations;
     using ProcessingTools.Processors.Models.Abbreviations;
 
+    /// <summary>
+    /// Abbreviations tagger.
+    /// </summary>
     public class AbbreviationsTagger : IAbbreviationsTagger
     {
         private const string SelectNodesToTagAbbreviationsXPathTemplate = ".//node()[contains(string(.),string('{0}'))]";
 
-        private readonly IAbbreviationsHarvester abbreviationsHarvester;
+        private readonly IAbbreviationsHarvester harvester;
         private readonly IXmlContextWrapper contextWrapper;
         private readonly ILogger logger;
 
-        public AbbreviationsTagger(
-            IAbbreviationsHarvester abbreviationsHarvester,
-            IXmlContextWrapper contextWrapper,
-            ILogger logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbbreviationsTagger"/> class.
+        /// </summary>
+        /// <param name="harvester">Abbreviations harvester.</param>
+        /// <param name="contextWrapper">Context wrapper.</param>
+        /// <param name="logger">Logger</param>
+        public AbbreviationsTagger(IAbbreviationsHarvester harvester, IXmlContextWrapper contextWrapper, ILogger logger)
         {
-            this.abbreviationsHarvester = abbreviationsHarvester ?? throw new ArgumentNullException(nameof(abbreviationsHarvester));
+            this.harvester = harvester ?? throw new ArgumentNullException(nameof(harvester));
             this.contextWrapper = contextWrapper ?? throw new ArgumentNullException(nameof(contextWrapper));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(XmlNode context)
         {
             // Do not change this sequence
@@ -168,7 +179,7 @@
                 throw new ArgumentNullException(nameof(contextToHarvest));
             }
 
-            var abbreviations = await this.abbreviationsHarvester.HarvestAsync(contextToHarvest).ConfigureAwait(false);
+            var abbreviations = await this.harvester.HarvestAsync(contextToHarvest).ConfigureAwait(false);
             if (abbreviations != null)
             {
                 var result = abbreviations
