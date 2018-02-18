@@ -48,9 +48,6 @@
     <Compile Include="Processors\Layout\Normalizers\DocumentPostReadNormalizer.cs" />
     <Compile Include="Processors\Layout\Normalizers\DocumentPreWriteNormalizer.cs" />
     <Compile Include="Processors\Layout\Normalizers\DocumentSchemaNormalizer.cs" />
-    <Compile Include="Processors\Layout\Taggers\ContentTagger.cs" />
-    <Compile Include="Processors\Layout\Taggers\SimpleXmlSerializableObjectTagger.cs" />
-    <Compile Include="Processors\Layout\Taggers\StringTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\InstitutionalCodesTagger.cs" />
@@ -162,7 +159,9 @@
     <None Include="packages.config" />
     <None Include="Processors.ruleset" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Processors\Layout\Taggers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

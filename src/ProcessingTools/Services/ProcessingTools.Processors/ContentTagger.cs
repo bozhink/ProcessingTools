@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Layout.Processors.Processors.Taggers
+﻿// <copyright file="ContentTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors
 {
     using System;
     using System.Collections.Generic;
@@ -8,19 +12,27 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Models.Contracts.Processors.Layout;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Models.Contracts;
 
+    /// <summary>
+    /// Content tagger.
+    /// </summary>
     public class ContentTagger : IContentTagger
     {
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContentTagger"/> class.
+        /// </summary>
+        /// <param name="logger">Logger</param>
         public ContentTagger(ILogger logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task TagContentInDocument(IEnumerable<string> textToTagList, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
+        /// <inheritdoc/>
+        public async Task TagContentInDocumentAsync(IEnumerable<string> textToTagList, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
         {
             if (textToTagList == null)
             {
@@ -51,7 +63,7 @@
             {
                 try
                 {
-                    await this.TagContentInDocument(textToTag, tagModel, xpath, document, settings).ConfigureAwait(false);
+                    await this.TagContentInDocumentAsync(textToTag, tagModel, xpath, document, settings).ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {
@@ -60,7 +72,8 @@
             }
         }
 
-        public async Task TagContentInDocument(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
+        /// <inheritdoc/>
+        public async Task TagContentInDocumentAsync(string textToTag, XmlElement tagModel, string xpath, IDocument document, IContentTaggerSettings settings)
         {
             if (string.IsNullOrWhiteSpace(textToTag))
             {
@@ -90,10 +103,11 @@
             XmlElement item = (XmlElement)tagModel.CloneNode(true);
             item.InnerText = textToTag;
 
-            await this.TagContentInDocument(item, xpath, document, settings).ConfigureAwait(false);
+            await this.TagContentInDocumentAsync(item, xpath, document, settings).ConfigureAwait(false);
         }
 
-        public async Task TagContentInDocument(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items)
+        /// <inheritdoc/>
+        public async Task TagContentInDocumentAsync(IEnumerable<XmlNode> nodeList, IContentTaggerSettings settings, params XmlElement[] items)
         {
             if (nodeList == null || !nodeList.Any())
             {
@@ -168,17 +182,13 @@
         /// <param name="document">IDocument object to be tagged.</param>
         /// <param name="settings">Tagging settings.</param>
         /// <returns>Task</returns>
-        private async Task TagContentInDocument(
-            XmlElement item,
-            string xpath,
-            IDocument document,
-            IContentTaggerSettings settings)
+        private async Task TagContentInDocumentAsync(XmlElement item, string xpath, IDocument document, IContentTaggerSettings settings)
         {
             var nodeList = document.SelectNodes(xpath)
                 .AsEnumerable()
                 .Where(this.GetMatchNodePredicate(item.InnerText, settings.CaseSensitive));
 
-            await this.TagContentInDocument(nodeList, settings, item).ConfigureAwait(false);
+            await this.TagContentInDocumentAsync(nodeList, settings, item).ConfigureAwait(false);
         }
 
         private Func<XmlNode, bool> GetMatchNodePredicate(string value, bool caseSensitive)

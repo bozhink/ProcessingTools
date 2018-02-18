@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Layout.Processors.Processors.Taggers
+﻿// <copyright file="StringTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors
 {
     using System;
     using System.Collections.Generic;
@@ -6,28 +10,36 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Models.Layout;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Models;
 
+    /// <summary>
+    /// String tagger.
+    /// </summary>
     public class StringTagger : IStringTagger
     {
         private readonly IContentTagger contentTagger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StringTagger"/> class.
+        /// </summary>
+        /// <param name="contentTagger">Content tagger.</param>
         public StringTagger(IContentTagger contentTagger)
         {
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
         }
 
-        public async Task<object> Tag(IDocument document, IEnumerable<string> data, XmlElement tagModel, string contentNodesXPath)
+        /// <inheritdoc/>
+        public async Task<object> TagAsync(IDocument document, IEnumerable<string> items, XmlElement tagModel, string xpath)
         {
             if (document == null)
             {
                 throw new ArgumentNullException(nameof(document));
             }
 
-            if (data == null)
+            if (items == null)
             {
-                throw new ArgumentNullException(nameof(data));
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (tagModel == null)
@@ -35,12 +47,12 @@
                 throw new ArgumentNullException(nameof(tagModel));
             }
 
-            if (string.IsNullOrWhiteSpace(contentNodesXPath))
+            if (string.IsNullOrWhiteSpace(xpath))
             {
-                throw new ArgumentNullException(nameof(contentNodesXPath));
+                throw new ArgumentNullException(nameof(xpath));
             }
 
-            var dataList = data.ToList();
+            var dataList = items.ToList();
             var itemsToTag = dataList.Select(d => this.XmlEncode(document, d))
                 .OrderByDescending(i => i.Length)
                 .ToList();
@@ -51,7 +63,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.TagContentInDocument(itemsToTag, tagModel, contentNodesXPath, document, settings).ConfigureAwait(false);
+            await this.contentTagger.TagContentInDocumentAsync(itemsToTag, tagModel, xpath, document, settings).ConfigureAwait(false);
 
             return true;
         }
