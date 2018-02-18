@@ -1,31 +1,42 @@
-﻿namespace ProcessingTools.Processors.Processors.Documents
+﻿// <copyright file="WriteDocumentHelper.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Documents
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+    using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Processors.Contracts.Layout;
 
+    /// <summary>
+    /// Write document helper.
+    /// </summary>
     public class WriteDocumentHelper : IWriteDocumentHelper
     {
         private readonly IDocumentSplitter documentSplitter;
         private readonly IDocumentWriter documentWriter;
         private readonly IDocumentPreWriteNormalizer documentNormalizer;
 
-        public WriteDocumentHelper(
-            IDocumentSplitter documentSplitter,
-            IDocumentWriter documentWriter,
-            IDocumentPreWriteNormalizer documentNormalizer)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WriteDocumentHelper"/> class.
+        /// </summary>
+        /// <param name="documentSplitter">Document splitter.</param>
+        /// <param name="documentWriter">Document writer.</param>
+        /// <param name="documentNormalizer">Document normalizer.</param>
+        public WriteDocumentHelper(IDocumentSplitter documentSplitter, IDocumentWriter documentWriter, IDocumentPreWriteNormalizer documentNormalizer)
         {
             this.documentSplitter = documentSplitter ?? throw new ArgumentNullException(nameof(documentSplitter));
             this.documentWriter = documentWriter ?? throw new ArgumentNullException(nameof(documentWriter));
             this.documentNormalizer = documentNormalizer ?? throw new ArgumentNullException(nameof(documentNormalizer));
         }
 
-        public async Task<object> Write(string outputFileName, IDocument document, bool splitDocument)
+        /// <inheritdoc/>
+        public async Task<object> WriteAsync(string outputFileName, IDocument document, bool splitDocument)
         {
             if (string.IsNullOrWhiteSpace(outputFileName))
             {
@@ -72,7 +83,7 @@
                     _ =>
                     {
                         _.Wait();
-                        return this.documentWriter.WriteDocument(fileName, document).Result;
+                        return this.documentWriter.WriteDocumentAsync(fileName, document).Result;
                     })
                 .ConfigureAwait(false);
 

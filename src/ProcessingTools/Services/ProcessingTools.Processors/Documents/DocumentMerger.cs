@@ -1,25 +1,38 @@
-﻿namespace ProcessingTools.Processors.Processors.Documents
+﻿// <copyright file="DocumentMerger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Documents
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Documents;
 
+    /// <summary>
+    /// Document merger.
+    /// </summary>
     public class DocumentMerger : IDocumentMerger
     {
         private readonly IDocumentReader documentReader;
         private readonly IDocumentWrapper documentWrapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocumentMerger"/> class.
+        /// </summary>
+        /// <param name="documentReader">Document reader.</param>
+        /// <param name="documentWrapper">Document wrapper.</param>
         public DocumentMerger(IDocumentReader documentReader, IDocumentWrapper documentWrapper)
         {
             this.documentReader = documentReader ?? throw new ArgumentNullException(nameof(documentReader));
             this.documentWrapper = documentWrapper ?? throw new ArgumentNullException(nameof(documentWrapper));
         }
 
-        public async Task<IDocument> Merge(params string[] fileNames)
+        /// <inheritdoc/>
+        public async Task<IDocument> MergeAsync(params string[] fileNames)
         {
             if (fileNames == null || fileNames.Length < 1)
             {
@@ -39,7 +52,7 @@
 
             foreach (var fileName in cleanedFileNames)
             {
-                var readDocument = await this.documentReader.ReadDocument(fileName);
+                var readDocument = await this.documentReader.ReadDocumentAsync(fileName).ConfigureAwait(false);
                 var fragment = document.XmlDocument.CreateDocumentFragment();
                 fragment.InnerXml = readDocument.XmlDocument.DocumentElement.OuterXml;
                 document.XmlDocument.DocumentElement.AppendChild(fragment);
