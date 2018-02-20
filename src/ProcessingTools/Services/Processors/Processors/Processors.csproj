@@ -71,8 +71,6 @@
     <Compile Include="Processors\Bio\ZooBank\ZoobankJsonCloner.cs" />
     <Compile Include="Processors\Bio\ZooBank\ZooBankRegistrationXmlGenerator.cs" />
     <Compile Include="Processors\Bio\ZooBank\ZoobankXmlCloner.cs" />
-    <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
-    <Compile Include="Processors\Coordinates\CoordinatesTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Processors\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
     <Compile Include="Processors\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />

@@ -1,6 +1,6 @@
-﻿namespace ProcessingTools.Geo.Contracts.Parsers
+﻿namespace ProcessingTools.Processors.Contracts.Geo.Coordinates
 {
-    using Models;
+    using ProcessingTools.Processors.Models.Contracts.Geo.Coordinates;
 
     public interface ICoordinate2DParser
     {
