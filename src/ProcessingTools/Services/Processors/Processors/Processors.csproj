@@ -51,9 +51,6 @@
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
-    <Compile Include="Processors\Bio\ZooBank\ZoobankJsonCloner.cs" />
-    <Compile Include="Processors\Bio\ZooBank\ZooBankRegistrationXmlGenerator.cs" />
-    <Compile Include="Processors\Bio\ZooBank\ZoobankXmlCloner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

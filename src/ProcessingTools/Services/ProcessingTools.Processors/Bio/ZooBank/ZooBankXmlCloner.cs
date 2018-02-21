@@ -1,22 +1,34 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.ZooBank
+﻿// <copyright file="ZooBankXmlCloner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.ZooBank
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
-    public class ZoobankXmlCloner : IZoobankXmlCloner
+    /// <summary>
+    /// ZooBank XML cloner.
+    /// </summary>
+    public class ZooBankXmlCloner : IZooBankXmlCloner
     {
         private readonly ILogger logger;
 
-        public ZoobankXmlCloner(ILogger logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ZooBankXmlCloner"/> class.
+        /// </summary>
+        /// <param name="logger">Logger.</param>
+        public ZooBankXmlCloner(ILogger logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public Task<object> CloneAsync(IDocument target, IDocument source)
         {
             if (target == null)

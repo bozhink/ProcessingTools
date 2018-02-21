@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.ZooBank
+﻿// <copyright file="ZooBankJsonCloner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.ZooBank
 {
     using System;
     using System.Threading.Tasks;
@@ -6,18 +10,26 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Uri;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
-    public class ZoobankJsonCloner : IZoobankJsonCloner
+    /// <summary>
+    /// ZooBank JSON cloner.
+    /// </summary>
+    public class ZooBankJsonCloner : IZooBankJsonCloner
     {
         private readonly ILogger logger;
 
-        public ZoobankJsonCloner(ILogger logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ZooBankJsonCloner"/> class.
+        /// </summary>
+        /// <param name="logger">Logger.</param>
+        public ZooBankJsonCloner(ILogger logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public Task<object> CloneAsync(IDocument target, ZooBankRegistration source)
         {
             if (target == null)
