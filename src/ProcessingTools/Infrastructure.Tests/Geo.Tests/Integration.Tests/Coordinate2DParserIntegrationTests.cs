@@ -9,7 +9,7 @@
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(Coordinate2DParser))]
     public class Coordinate2DParserIntegrationTests
     {
-        private Func<Coordinate2DParser> Coordinate2DParserFactory => () => new Coordinate2DParser(new UtmCoordianesTransformer());
+        private Func<Coordinate2DParser> Coordinate2DParserFactory => () => new Coordinate2DParser(new UtmCoordinatesTransformer());
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(Coordinate2DParser), Description = "Coordinate2DParser with spherical coordinate pair should work.")]
         [TestCase(@"S13°07'247"", E30°19'345""", "-13.120783", "30.322417")]

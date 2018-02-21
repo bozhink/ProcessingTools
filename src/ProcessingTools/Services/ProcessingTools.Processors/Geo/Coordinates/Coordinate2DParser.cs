@@ -1,17 +1,23 @@
-﻿namespace ProcessingTools.Geo.Parsers
+﻿// <copyright file="Coordinate2DParser.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Geo.Coordinates
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using ProcessingTools.Constants.Schema;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo.Contracts.Models;
-    using ProcessingTools.Geo.Contracts.Parsers;
-    using ProcessingTools.Geo.Contracts.Transformers;
-    using ProcessingTools.Geo.Models;
-    using ProcessingTools.Geo.Types;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using ProcessingTools.Processors.Models.Contracts.Geo.Coordinates;
+    using ProcessingTools.Processors.Models.Geo.Coordinates;
 
+    /// <summary>
+    /// 2D coordinate parser.
+    /// </summary>
     public class Coordinate2DParser : ICoordinate2DParser
     {
         private const string RepeatedDirectionsErrorMessage = "Repeated directions in the coordinate string.";
@@ -32,13 +38,18 @@
 
         private const string MatchLatitudePartPattern = @"\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*)?)?[NS]?|[NS]\W{0,4}?\-?\d+([,\.]\d+)?°?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?\s*(\d+([,\.]\d+)?\s*(\W{1,2})?)?)?";
 
-        private readonly IUtmCoordianesTransformer utmCoordianesTransformer;
+        private readonly IUtmCoordinatesTransformer utmCoordinatesTransformer;
 
-        public Coordinate2DParser(IUtmCoordianesTransformer utmCoordianesTransformer)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Coordinate2DParser"/> class.
+        /// </summary>
+        /// <param name="utmCoordinatesTransformer">UTM coordinates </param>
+        public Coordinate2DParser(IUtmCoordinatesTransformer utmCoordinatesTransformer)
         {
-            this.utmCoordianesTransformer = utmCoordianesTransformer ?? throw new ArgumentNullException(nameof(utmCoordianesTransformer));
+            this.utmCoordinatesTransformer = utmCoordinatesTransformer ?? throw new ArgumentNullException(nameof(utmCoordinatesTransformer));
         }
 
+        /// <inheritdoc/>
         public void ParseCoordinateString(string coordinateString, string coordinateType, ICoordinatePart latitude, ICoordinatePart longitude)
         {
             try
@@ -168,7 +179,7 @@
                 var utmEasting = double.Parse(utmEastingString);
                 var utmNorthing = double.Parse(utmNorthingString);
 
-                var point = this.utmCoordianesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
+                var point = this.utmCoordinatesTransformer.TransformUtm2Decimal(utmEasting, utmNorthing, utmZone);
 
                 latitude.DecimalValue = point[0];
                 latitude.Type = CoordinatePartType.Latitude;
@@ -187,12 +198,11 @@
         private void ParseGeneralTypeCoordinate(string coordinateText, ICoordinatePart latitude, ICoordinatePart longitude)
         {
             var coordinate = new Coordinate();
-            {
-                string leftPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$1");
-                string rightPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$16");
 
-                this.DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(coordinate, leftPart, rightPart);
-            }
+            string leftPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$1");
+            string rightPart = Regex.Replace(coordinateText, CoordinateParsePattern, "$16");
+
+            this.DetermineLatitudeAndLongitudePartsFromTwoPartSeparableCoordinateString(coordinate, leftPart, rightPart);
 
             this.ParseCoordinateObject(latitude, longitude, coordinate);
         }

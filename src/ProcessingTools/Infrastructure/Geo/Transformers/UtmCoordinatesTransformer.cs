@@ -2,21 +2,21 @@
 {
     using System;
     using System.Linq;
-    using Contracts.Transformers;
     using GeoAPI.CoordinateSystems;
     using GeoAPI.CoordinateSystems.Transformations;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProjNet.CoordinateSystems;
     using ProjNet.CoordinateSystems.Transformations;
 
     /// <summary>
     /// See http://blogs.u2u.be/diederik/post/2010/01/01/Converting-Spatial-Coordinates-with-ProjNET.aspx
     /// </summary>
-    public class UtmCoordianesTransformer : IUtmCoordianesTransformer
+    public class UtmCoordinatesTransformer : IUtmCoordinatesTransformer
     {
         private readonly ICoordinateSystem gcsWGS84;
         private readonly ICoordinateTransformationFactory coordinateTransformationFactory;
 
-        public UtmCoordianesTransformer()
+        public UtmCoordinatesTransformer()
         {
             this.gcsWGS84 = GeographicCoordinateSystem.WGS84;
             this.coordinateTransformationFactory = new CoordinateTransformationFactory();
