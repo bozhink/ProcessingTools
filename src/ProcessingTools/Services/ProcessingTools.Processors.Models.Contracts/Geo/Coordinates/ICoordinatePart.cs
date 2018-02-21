@@ -32,7 +32,7 @@ namespace ProcessingTools.Processors.Models.Contracts.Geo.Coordinates
         CoordinatePartType Type { get; set; }
 
         /// <summary>
-        /// Gets or sets the string value of the coordinate part.
+        /// Gets the string value of the coordinate part.
         /// </summary>
         string Value { get; }
 

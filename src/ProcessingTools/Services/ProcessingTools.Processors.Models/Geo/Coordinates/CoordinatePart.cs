@@ -1,13 +1,20 @@
-﻿namespace ProcessingTools.Geo.Models
+﻿// <copyright file="CoordinatePart.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Geo.Coordinates
 {
     using System;
     using System.Globalization;
     using System.Text.RegularExpressions;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Geo.Contracts.Models;
-    using ProcessingTools.Geo.Types;
+    using ProcessingTools.Processors.Models.Contracts.Geo.Coordinates;
 
+    /// <summary>
+    /// Coordinate part.
+    /// </summary>
     public class CoordinatePart : ICoordinatePart
     {
         private const string CoordinatePartDecimalFormat = "f6";
@@ -17,6 +24,9 @@
         private string coordinatePartString;
         private int decimalCoordinatePartSign;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CoordinatePart"/> class.
+        /// </summary>
         public CoordinatePart()
         {
             this.decimalCoordinatePartSign = 1;
@@ -29,6 +39,7 @@
             this.PartIsPresent = false;
         }
 
+        /// <inheritdoc/>
         public string CoordinatePartString
         {
             get
@@ -42,12 +53,16 @@
             }
         }
 
+        /// <inheritdoc/>
         public double DecimalValue { get; set; }
 
+        /// <inheritdoc/>
         public bool PartIsPresent { get; set; }
 
+        /// <inheritdoc/>
         public CoordinatePartType Type { get; set; }
 
+        /// <inheritdoc/>
         public string Value
         {
             get
@@ -58,6 +73,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public void Parse()
         {
             this.coordinatePartString = this.coordinatePartString

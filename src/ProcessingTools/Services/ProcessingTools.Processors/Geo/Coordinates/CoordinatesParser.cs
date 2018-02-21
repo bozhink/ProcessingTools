@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Geo.Coordinates
+﻿// <copyright file="CoordinatesParser.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Geo.Coordinates
 {
     using System;
     using System.Text.RegularExpressions;
@@ -10,6 +14,9 @@
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
 
+    /// <summary>
+    /// Coordinates parser.
+    /// </summary>
     public class CoordinatesParser : ICoordinatesParser
     {
         private const string CurrentCoordinateWillNotBeProcessedErrorMessage = "Current coordinate will not be processed!";
@@ -17,15 +24,21 @@
         private readonly ICoordinateParser coordinateParser;
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CoordinatesParser"/> class.
+        /// </summary>
+        /// <param name="coordinateParser">Single coordinate parser.</param>
+        /// <param name="logger">Logger.</param>
         public CoordinatesParser(ICoordinateParser coordinateParser, ILogger logger)
         {
             this.coordinateParser = coordinateParser ?? throw new ArgumentNullException(nameof(coordinateParser));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task<object> ParseAsync(XmlNode context) => Task.Run(() => this.ParseSync(context));
+        /// <inheritdoc/>
+        public Task<object> ParseAsync(XmlNode context) => Task.Run(() => this.Parse(context));
 
-        public object ParseSync(XmlNode context)
+        private object Parse(XmlNode context)
         {
             if (context == null)
             {
@@ -40,7 +53,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(type: LogType.Warning, exception: e, message: CurrentCoordinateWillNotBeProcessedErrorMessage);
+                    this.logger.Log(type: LogType.Warning, exception: e, message: CurrentCoordinateWillNotBeProcessedErrorMessage);
                 }
             }
 
@@ -68,7 +81,7 @@
 
         private void ParseSingleCoordinateXmlNode(XmlNode coordinateNode)
         {
-            this.logger?.Log("\n{0}", coordinateNode.OuterXml);
+            this.logger.Log("\n{0}", coordinateNode.OuterXml);
 
             coordinateNode.InnerXml = Regex.Replace(coordinateNode.InnerXml, "(º|˚|<sup>o</sup>)", "°");
 

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Geo.Models.Json.GeoJson
+﻿// <copyright file="GeoJsonCoordinateReferenceSystemProperties.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Geo.GeoJson
 {
     using Newtonsoft.Json;
 
@@ -14,6 +18,7 @@
     public class GeoJsonCoordinateReferenceSystemProperties
     {
         /// <summary>
+        /// Gets or sets the name.
         /// <para>A CRS object may indicate a coordinate reference system by name.
         /// In this case, the value of its "type" member must be the string "name".
         /// The value of its "properties" member must be an object containing a "name" member.
@@ -31,6 +36,7 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the href.
         /// <para>A link object has one required member: "href", and one optional member: "type".</para>
         /// <para>The value of the required "href" member must be a dereferenceable URI.</para>
         /// <code>"crs": {
@@ -45,6 +51,7 @@
         public string Href { get; set; }
 
         /// <summary>
+        /// Gets or sets the type.
         /// <para>A link object has one required member: "href", and one optional member: "type".</para>
         /// <para>The value of the optional "type" member must be a string that hints at the format used
         /// to represent CRS parameters at the provided URI.

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Geo.Models.Json.GeoJson
+﻿// <copyright file="GeoJsonFeatureCollection.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Geo.GeoJson
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -11,6 +15,7 @@
     public class GeoJsonFeatureCollection : GeoJsonObject<GeoJsonFeatureCollectionType>
     {
         /// <summary>
+        /// Gets or sets the features.
         /// <para>The value corresponding to "features" is an array.
         /// Each element in the array is a feature object as defined above.</para>
         /// </summary>

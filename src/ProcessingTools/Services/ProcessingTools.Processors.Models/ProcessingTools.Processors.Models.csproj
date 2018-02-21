@@ -17,12 +17,14 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.7.1.4347" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
   </ItemGroup>

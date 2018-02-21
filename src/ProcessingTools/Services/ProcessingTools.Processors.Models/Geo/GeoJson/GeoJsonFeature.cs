@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Geo.Models.Json.GeoJson
+﻿// <copyright file="GeoJsonFeature.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Geo.GeoJson
 {
     using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;
@@ -10,6 +14,7 @@
     public class GeoJsonFeature : GeoJsonObject<GeoJsonFeatureType>
     {
         /// <summary>
+        /// Gets or sets the ID.
         /// <para>If a feature has a commonly used identifier, that identifier should
         /// be included as a member of the feature object with the name "id".</para>
         /// </summary>
@@ -17,6 +22,7 @@
         public string Id { get; set; }
 
         /// <summary>
+        /// Gets or sets the geometry.
         /// <para>The value of the geometry member is a geometry object a JSON null value.</para>
         /// </summary>
         [Required]
@@ -25,6 +31,7 @@
         public GeoJsonGeometry Geometry { get; set; }
 
         /// <summary>
+        /// Gets or sets the properties.
         /// <para>The value of the properties member is an object (any JSON object or a JSON null value).</para>
         /// </summary>
         [Required]

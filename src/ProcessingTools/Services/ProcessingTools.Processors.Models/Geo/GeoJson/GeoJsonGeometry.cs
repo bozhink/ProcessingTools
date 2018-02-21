@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Geo.Models.Json.GeoJson
+﻿// <copyright file="GeoJsonGeometry.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Geo.GeoJson
 {
     using System.Collections.Generic;
     using Newtonsoft.Json;
@@ -21,6 +25,7 @@
     public class GeoJsonGeometry : GeoJsonObject<GeoJsonGeometryType>
     {
         /// <summary>
+        /// Gets or sets the coordinates.
         /// <para>For type "Point", the "coordinates" member must be a single position.</para>
         /// <para>For type "MultiPoint", the "coordinates" member must be an array of positions.</para>
         /// <para>For type "LineString", the "coordinates" member must be an array of two or more positions.</para>
@@ -37,6 +42,7 @@
         public IEnumerable<object> Coordinates { get; set; }
 
         /// <summary>
+        /// Gets or sets the geometries.
         /// <para>A GeoJSON object with type "GeometryCollection" is a geometry object which represents a collection of geometry objects.</para>
         /// <para>A geometry collection must have a member with the name "geometries".
         /// The value corresponding to "geometries" is an array.

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Geo.Models.Json.GeoJson
+﻿// <copyright file="GeoJsonObject.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Geo.GeoJson
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +21,9 @@
     {
         private string type;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeoJsonObject{TEnum}"/> class.
+        /// </summary>
         protected GeoJsonObject()
         {
             if (!typeof(TEnum).IsEnum)

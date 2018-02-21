@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Geo.Models.Json.GeoJson
+﻿// <copyright file="GeoJsonCoordinateReferenceSystem.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Geo.GeoJson
 {
     using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;
@@ -28,6 +32,7 @@
     public class GeoJsonCoordinateReferenceSystem
     {
         /// <summary>
+        /// Gets or sets the type.
         /// The value of the type member must be a string, indicating the type of CRS object.
         /// </summary>
         [Required]
@@ -36,6 +41,7 @@
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or sets the properties.
         /// The value of the properties member must be an object.
         /// </summary>
         [Required]
