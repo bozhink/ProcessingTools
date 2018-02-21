@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Layout.Processors.Processors.Formatters
+﻿// <copyright file="DocumentInitialFormatter.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Layout
 {
     using System;
     using System.Linq;
@@ -6,9 +10,11 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Factories;
-    using ProcessingTools.Layout.Processors.Contracts.Formatters;
+    using ProcessingTools.Processors.Contracts.Layout;
 
+    /// <summary>
+    /// Document initial formatter.
+    /// </summary>
     public class DocumentInitialFormatter : IDocumentInitialFormatter
     {
         private const int NumberOfPostFormattingIterations = 3;
@@ -16,11 +22,16 @@
 
         private readonly IInitialFormatTransformerFactory transformerFactory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocumentInitialFormatter"/> class.
+        /// </summary>
+        /// <param name="transformerFactory">Transformer factory.</param>
         public DocumentInitialFormatter(IInitialFormatTransformerFactory transformerFactory)
         {
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
+        /// <inheritdoc/>
         public async Task<object> FormatAsync(IDocument context)
         {
             if (context == null)

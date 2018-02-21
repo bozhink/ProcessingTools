@@ -42,12 +42,6 @@
   <ItemGroup>
     <Compile Include="Assembly.cs" />
     <Compile Include="Processors\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
-    <Compile Include="Processors\Layout\Normalizers\XmlContextNormalizer.cs" />
-    <Compile Include="Processors\Layout\Formatters\DocumentFinalFormatter.cs" />
-    <Compile Include="Processors\Layout\Formatters\DocumentInitialFormatter.cs" />
-    <Compile Include="Processors\Layout\Normalizers\DocumentPostReadNormalizer.cs" />
-    <Compile Include="Processors\Layout\Normalizers\DocumentPreWriteNormalizer.cs" />
-    <Compile Include="Processors\Layout\Normalizers\DocumentSchemaNormalizer.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\InstitutionalCodesTagger.cs" />

@@ -17,13 +17,13 @@ namespace ProcessingTools.Processors.Contracts.Layout
         /// </summary>
         /// <param name="document">IDocument object to be normalized.</param>
         /// <returns>Task</returns>
-        Task<object> NormalizeToDocumentSchema(IDocument document);
+        Task<object> NormalizeToDocumentSchemaAsync(IDocument document);
 
         /// <summary>
         /// Normalizes the IDocument object's xml content to the system schema.
         /// </summary>
         /// <param name="document">IDocument object to be normalized.</param>
         /// <returns>Task</returns>
-        Task<object> NormalizeToSystem(IDocument document);
+        Task<object> NormalizeToSystemAsync(IDocument document);
     }
 }

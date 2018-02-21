@@ -1,15 +1,23 @@
-﻿namespace ProcessingTools.Layout.Processors.Processors.Formatters
+﻿// <copyright file="DocumentFinalFormatter.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Layout
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Formatters;
+    using ProcessingTools.Processors.Contracts.Layout;
 
+    /// <summary>
+    /// Document final formatter.
+    /// </summary>
     public class DocumentFinalFormatter : IDocumentFinalFormatter
     {
-        public async Task<object> FormatAsync(IDocument context)
+        /// <inheritdoc/>
+        public Task<object> FormatAsync(IDocument context)
         {
             if (context == null)
             {
@@ -28,7 +36,7 @@
 
             context.Xml = context.Xml.RegexReplace(@"\s*(</tp:taxon-name>)\s+(?=<comment>[,;:\.])", "$1");
 
-            return await Task.FromResult(true).ConfigureAwait(false);
+            return Task.FromResult<object>(true);
         }
     }
 }
