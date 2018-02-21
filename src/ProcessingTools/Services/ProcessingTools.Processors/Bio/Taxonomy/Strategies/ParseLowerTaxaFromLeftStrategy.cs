@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Strategies.Bio.Taxonomy
+﻿// <copyright file="ParseLowerTaxaFromLeftStrategy.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy.Strategies
 {
     using System;
     using System.Linq;
@@ -7,15 +11,19 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
-    using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
+    /// <summary>
+    /// Parse lower taxa from left strategy.
+    /// </summary>
     public class ParseLowerTaxaFromLeftStrategy : IParseLowerTaxaFromLeftStrategy
     {
         private readonly string[,] replaces = ParseLowerTaxaReplacePatterns.Replaces;
 
+        /// <inheritdoc/>
         public int ExecutionPriority => 400;
 
-        public async Task<object> ParseAsync(XmlNode context)
+        /// <inheritdoc/>
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -30,7 +38,7 @@
                     node.InnerXml = this.ParseLeftStringMatch(node.InnerXml);
                 });
 
-            return await Task.FromResult(true).ConfigureAwait(false);
+            return Task.FromResult<object>(true);
         }
 
         private string ParseLeftStringMatch(string text)

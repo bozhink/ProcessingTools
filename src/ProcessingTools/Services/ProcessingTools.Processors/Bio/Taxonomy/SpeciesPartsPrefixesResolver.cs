@@ -1,12 +1,22 @@
-﻿namespace ProcessingTools.Processors.Common.Bio.Taxonomy
+﻿// <copyright file="SpeciesPartsPrefixesResolver.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
     using ProcessingTools.Enumerations;
 
+    /// <summary>
+    /// Species parts prefixes resolver.
+    /// </summary>
     internal static class SpeciesPartsPrefixesResolver
     {
+        /// <summary>
+        /// Gets species parts ranks.
+        /// </summary>
         public static readonly IDictionary<string, SpeciesPartType> SpeciesPartsRanks = new Dictionary<string, SpeciesPartType>
         {
                 { "?", SpeciesPartType.Species },
@@ -78,6 +88,9 @@
                 { "×", SpeciesPartType.Species }
             }.ToImmutableDictionary();
 
+        /// <summary>
+        /// Gets uncertainty prefixes.
+        /// </summary>
         public static readonly IEnumerable<string> UncertaintyPrefixes = new HashSet<string>
         {
             "?",
@@ -99,14 +112,22 @@
 
         private const string DefaultRank = "species";
 
+        /// <summary>
+        /// Gets non-ambiguous species parts ranks.
+        /// </summary>
         public static IEnumerable<KeyValuePair<string, SpeciesPartType>> NonAmbiguousSpeciesPartsRanks => SpeciesPartsRanks.Where(p => p.Key.Length > 1 && p.Key.IndexOf("trib") < 0 && p.Key != "near");
 
-        public static string Resolve(string infraSpecificRank)
+        /// <summary>
+        /// Resolves rank as string to <see cref="SpeciesPartType"/>.
+        /// </summary>
+        /// <param name="infraspecificRank">The infra-specific rank as string.</param>
+        /// <returns>Resolved infra-specific rank as <see cref="SpeciesPartType"/>.</returns>
+        public static string Resolve(string infraspecificRank)
         {
             string rank;
             try
             {
-                rank = SpeciesPartsRanks[infraSpecificRank.ToLowerInvariant()].ToString().ToLowerInvariant();
+                rank = SpeciesPartsRanks[infraspecificRank.ToLowerInvariant()].ToString().ToLowerInvariant();
             }
             catch
             {

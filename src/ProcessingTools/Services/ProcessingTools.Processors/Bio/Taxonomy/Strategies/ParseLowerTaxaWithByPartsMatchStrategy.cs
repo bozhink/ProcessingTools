@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Strategies.Bio.Taxonomy
+﻿// <copyright file="ParseLowerTaxaWithByPartsMatchStrategy.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy.Strategies
 {
     using System;
     using System.Linq;
@@ -8,8 +12,10 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
+    /// <summary>
+    /// Parse lower taxa with by-parts-match strategy.
+    /// </summary>
     public class ParseLowerTaxaWithByPartsMatchStrategy : IParseLowerTaxaWithByPartsMatchStrategy
     {
         private const string InfraRankPairTaxonNameParts123FormatString = @"<tn-part type=""" + AttributeValues.InfraRank + @""">$1</tn-part>$2<tn-part type=""{0}"">$3</tn-part>";
@@ -17,9 +23,11 @@
         private const string InfraTaxonNamePattern = @"([A-Za-zçäöüëïâěôûêîæœ\.-]+)";
         private const string InfraPatternSuffix = @"(\.\s*|\s+)" + InfraTaxonNamePattern;
 
+        /// <inheritdoc/>
         public int ExecutionPriority => 200;
 
-        public async Task<object> ParseAsync(XmlNode context)
+        /// <inheritdoc/>
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -34,7 +42,7 @@
                     node.InnerXml = this.ParseDifferentPartsOfTaxonomicNames(node.InnerXml);
                 });
 
-            return await Task.FromResult(true).ConfigureAwait(false);
+            return Task.FromResult<object>(true);
         }
 
         /// <summary>

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Strategies.Bio.Taxonomy
+﻿// <copyright file="ParseLowerTaxaWithFullStringMatchStrategy.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy.Strategies
 {
     using System;
     using System.Linq;
@@ -8,15 +12,19 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
+    /// <summary>
+    /// Parse lower taxa with full string match strategy.
+    /// </summary>
     public class ParseLowerTaxaWithFullStringMatchStrategy : IParseLowerTaxaWithFullStringMatchStrategy
     {
         private readonly string[,] replaces = ParseLowerTaxaReplacePatterns.Replaces;
 
+        /// <inheritdoc/>
         public int ExecutionPriority => 300;
 
-        public async Task<object> ParseAsync(XmlNode context)
+        /// <inheritdoc/>
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -45,7 +53,7 @@
                 node.ReplaceXmlNodeByItsInnerXml();
             }
 
-            return await Task.FromResult(true).ConfigureAwait(false);
+            return Task.FromResult<object>(true);
         }
 
         /// <summary>

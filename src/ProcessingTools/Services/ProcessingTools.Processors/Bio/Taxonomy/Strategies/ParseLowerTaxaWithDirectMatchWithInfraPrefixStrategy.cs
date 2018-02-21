@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Strategies.Bio.Taxonomy
+﻿// <copyright file="ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy.Strategies
 {
     using System;
     using System.Linq;
@@ -6,12 +10,16 @@
     using System.Xml;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
+    /// <summary>
+    /// Parse lower taxa with direct match with infra-prefix strategy.
+    /// </summary>
     public class ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy : IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy
     {
+        /// <inheritdoc/>
         public int ExecutionPriority => 100;
 
+        /// <inheritdoc/>
         public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)

@@ -1,5 +1,12 @@
-﻿namespace ProcessingTools.Processors.Common.Bio.Taxonomy
+﻿// <copyright file="ParseLowerTaxaReplacePatterns.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
+    /// <summary>
+    /// Parse lower taxa replace patterns.
+    /// </summary>
     internal static class ParseLowerTaxaReplacePatterns
     {
         private const string GenusPattern = @"[A-Z][a-z\.]+\-[A-Z][a-z\.]+|[A-Z][a-z\.]+";
@@ -13,6 +20,9 @@
         private const string InternalSignsPattern = @"[\s\?×]*";
         private const string InternalSignsPatternStrict = @"[\s\?×]+";
 
+        /// <summary>
+        /// Gets patter-replace pairs.
+        /// </summary>
         public static string[,] Replaces => new string[,]
         {
             // Genus species subspecies

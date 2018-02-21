@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Strategies.Bio.Taxonomy
+﻿// <copyright file="ParseLowerTaxaWithBasionymStrategy.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy.Strategies
 {
     using System;
     using System.Text.RegularExpressions;
@@ -7,13 +11,17 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Processors.Common.Bio.Taxonomy;
 
+    /// <summary>
+    /// Parse lower taxa with basionym strategy.
+    /// </summary>
     public class ParseLowerTaxaWithBasionymStrategy : IParseLowerTaxaWithBasionymStrategy
     {
+        /// <inheritdoc/>
         public int ExecutionPriority => 500;
 
-        public async Task<object> ParseAsync(XmlNode context)
+        /// <inheritdoc/>
+        public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
             {
@@ -42,7 +50,7 @@
                 lowerTaxon.InnerXml = xml;
             }
 
-            return await Task.FromResult(true).ConfigureAwait(false);
+            return Task.FromResult<object>(true);
         }
 
         private void ProcessBasionymAuthorityElements(XmlNode context)
