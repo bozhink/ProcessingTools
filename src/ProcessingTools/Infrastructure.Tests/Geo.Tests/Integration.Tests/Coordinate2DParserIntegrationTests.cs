@@ -2,9 +2,9 @@
 {
     using System;
     using NUnit.Framework;
-    using ProcessingTools.Geo.Models;
-    using ProcessingTools.Geo.Parsers;
     using ProcessingTools.Geo.Transformers;
+    using ProcessingTools.Processors.Geo.Coordinates;
+    using ProcessingTools.Processors.Models.Geo.Coordinates;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(Coordinate2DParser))]
     public class Coordinate2DParserIntegrationTests

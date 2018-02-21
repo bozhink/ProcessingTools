@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Geo;
+    using ProcessingTools.Processors.Contracts.Geo;
 
     [System.ComponentModel.Description("Tag geographic deviations.")]
     public class TagGeographicDeviationsCommand : DocumentTaggerCommand<IGeographicDeviationsTagger>, ITagGeographicDeviationsCommand

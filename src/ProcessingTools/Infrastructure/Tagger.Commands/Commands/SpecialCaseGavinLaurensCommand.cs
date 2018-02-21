@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Special;
+    using ProcessingTools.Processors.Contracts.Special;
 
     public class SpecialCaseGavinLaurensCommand : DocumentParserCommand<IGavinLaurensParser>, ISpecialCaseGavinLaurensCommand
     {

@@ -8,7 +8,7 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Contracts.Processors.Processors.Coordinates;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Tagger.Commands.Commands;
     using ProcessingTools.Tests.Library;
 

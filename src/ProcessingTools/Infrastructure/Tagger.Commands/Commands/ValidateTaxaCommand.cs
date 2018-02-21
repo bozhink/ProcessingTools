@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Validation;
+    using ProcessingTools.Processors.Contracts.Validation;
 
     [System.ComponentModel.Description("Taxa validation using Global Names Resolver.")]
     public class ValidateTaxaCommand : DocumentValidatorCommand<ITaxaValidator>, IValidateTaxaCommand

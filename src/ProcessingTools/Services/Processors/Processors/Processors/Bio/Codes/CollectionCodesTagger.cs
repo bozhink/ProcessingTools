@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
-    using ProcessingTools.Processors.Models.Layout;
 
     public class CollectionCodesTagger : ICollectionCodesTagger
     {
@@ -63,7 +63,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.collectionCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings).ConfigureAwait(false);
+            await this.collectionCodesTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings).ConfigureAwait(false);
         }
 
         private async Task TagCollections(IDocument document, ICollection[] data)
@@ -80,7 +80,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.collectionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collections, XPath, settings).ConfigureAwait(false);
+            await this.collectionsTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, collections, XPath, settings).ConfigureAwait(false);
         }
     }
 }

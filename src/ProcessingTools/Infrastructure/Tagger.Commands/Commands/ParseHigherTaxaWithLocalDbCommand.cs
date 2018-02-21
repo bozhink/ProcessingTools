@@ -2,8 +2,8 @@
 {
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     [System.ComponentModel.Description("Parse higher taxa with local database.")]

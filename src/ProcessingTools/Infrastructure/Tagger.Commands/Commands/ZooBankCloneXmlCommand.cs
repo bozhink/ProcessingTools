@@ -6,16 +6,16 @@
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.IO;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [System.ComponentModel.Description("Clone ZooBank XML.")]
     public class ZooBankCloneXmlCommand : IZooBankCloneXmlCommand
     {
-        private readonly IZoobankXmlCloner cloner;
+        private readonly IZooBankXmlCloner cloner;
         private readonly IDocumentFactory documentFactory;
         private readonly IXmlFileReader fileReader;
 
-        public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZoobankXmlCloner cloner, IXmlFileReader fileReader)
+        public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZooBankXmlCloner cloner, IXmlFileReader fileReader)
         {
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
             this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));

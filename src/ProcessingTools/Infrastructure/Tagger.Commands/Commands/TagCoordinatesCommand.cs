@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Coordinates;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
 
     [System.ComponentModel.Description("Tag coordinates.")]
     public class TagCoordinatesCommand : DocumentTaggerCommand<ICoordinatesTagger>, ITagCoordinatesCommand

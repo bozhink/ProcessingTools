@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
     using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
-    using ProcessingTools.Processors.Models.Layout;
 
     public class InstitutionalCodesTagger : IInstitutionalCodesTagger
     {
@@ -64,7 +64,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.institutionalCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings).ConfigureAwait(false);
+            await this.institutionalCodesTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings).ConfigureAwait(false);
         }
 
         private async Task TagInstitutions(IDocument document, IInstitution[] data)
@@ -81,7 +81,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.institutionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutions, XPath, settings).ConfigureAwait(false);
+            await this.institutionsTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, institutions, XPath, settings).ConfigureAwait(false);
         }
     }
 }

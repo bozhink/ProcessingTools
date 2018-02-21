@@ -7,8 +7,8 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.References;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts.References;
 
     [System.ComponentModel.Description("Tag references.")]
     public class TagReferencesCommand : ITagReferencesCommand

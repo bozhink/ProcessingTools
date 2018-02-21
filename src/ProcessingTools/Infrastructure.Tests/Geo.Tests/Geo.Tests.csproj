@@ -102,6 +102,22 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj">
+      <Project>{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}</Project>
+      <Name>ProcessingTools.Processors.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj">
+      <Project>{72EC8D88-76E5-4843-A98E-306BA6AD7F7F}</Project>
+      <Name>ProcessingTools.Processors.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors\ProcessingTools.Processors.csproj">
+      <Project>{32E4AD4E-0D8A-43C4-A284-2B051754EF40}</Project>
+      <Name>ProcessingTools.Processors</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataFiles\get-coordinates-out.txt" />

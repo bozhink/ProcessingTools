@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
 
     [System.ComponentModel.Description("Custom XQuery transform.")]
     public class RunCustomXQueryTransformCommand : IRunCustomXQueryTransformCommand

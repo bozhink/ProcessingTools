@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.References;
+    using ProcessingTools.Processors.Contracts.References;
 
     [System.ComponentModel.Description("Parse references.")]
     public class ParseReferencesCommand : XmlContextParserCommand<IReferencesParser>, IParseReferencesCommand

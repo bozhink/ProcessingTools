@@ -7,7 +7,7 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Layout.Processors.Contracts.Formatters;
+    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Tagger.Commands.Commands;
     using ProcessingTools.Tests.Library;
 

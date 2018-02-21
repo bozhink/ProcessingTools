@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Validation;
+    using ProcessingTools.Processors.Contracts.Validation;
 
     [System.ComponentModel.Description("Validate external links.")]
     public class ValidateExternalLinksCommand : DocumentValidatorCommand<IExternalLinksValidator>, IValidateExternalLinksCommand

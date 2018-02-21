@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using Ninject.Extensions.Interception;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts;
 
     public class CommandRunnerTimeLoggingInterceptor : IInterceptor
     {

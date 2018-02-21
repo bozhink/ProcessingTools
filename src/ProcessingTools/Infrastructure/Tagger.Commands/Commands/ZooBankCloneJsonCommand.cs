@@ -9,16 +9,16 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [System.ComponentModel.Description("Clone ZooBank JSON.")]
     public class ZooBankCloneJsonCommand : IZooBankCloneJsonCommand
     {
-        private readonly IZoobankJsonCloner cloner;
+        private readonly IZooBankJsonCloner cloner;
         private readonly ILogger logger;
 
-        public ZooBankCloneJsonCommand(IZoobankJsonCloner cloner, ILogger logger)
+        public ZooBankCloneJsonCommand(IZooBankJsonCloner cloner, ILogger logger)
         {
             this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));
             this.logger = logger;

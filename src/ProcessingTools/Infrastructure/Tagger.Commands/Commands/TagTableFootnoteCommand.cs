@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Floats;
+    using ProcessingTools.Processors.Contracts.Floats;
 
     [System.ComponentModel.Description("Tag table foot-notes.")]
-    public class TagTableFootnoteCommand : XmlContextTaggerCommand<ITableFootNotesTagger>, ITagTableFootnoteCommand
+    public class TagTableFootnoteCommand : XmlContextTaggerCommand<ITableFootnotesTagger>, ITagTableFootnoteCommand
     {
-        public TagTableFootnoteCommand(ITableFootNotesTagger tagger)
+        public TagTableFootnoteCommand(ITableFootnotesTagger tagger)
             : base(tagger)
         {
         }

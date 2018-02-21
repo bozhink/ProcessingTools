@@ -1,8 +1,8 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
-    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Layout;
 
     [System.ComponentModel.Description("Tag higher taxa.")]
     public class TagHigherTaxaCommand : DocumentTaggerWithNormalizationCommand<IHigherTaxaTagger>, ITagHigherTaxaCommand

@@ -5,8 +5,8 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors;
-    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Layout;
 
     public class DocumentTaggerWithNormalizationCommand<TTagger> : ITaggerCommand
         where TTagger : class, IDocumentTagger
@@ -33,7 +33,7 @@
             }
 
             var result = await this.tagger.TagAsync(document).ConfigureAwait(false);
-            await this.documentNormalizer.NormalizeToSystem(document).ConfigureAwait(false);
+            await this.documentNormalizer.NormalizeToSystemAsync(document).ConfigureAwait(false);
 
             return result;
         }

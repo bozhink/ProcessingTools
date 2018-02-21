@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Dates;
+    using ProcessingTools.Processors.Contracts.Dates;
 
     [System.ComponentModel.Description("Tag dates.")]
     public class TagDatesCommand : DocumentTaggerCommand<IDatesTagger>, ITagDatesCommand

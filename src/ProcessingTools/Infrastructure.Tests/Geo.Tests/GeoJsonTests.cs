@@ -3,12 +3,10 @@
     using System.Configuration;
     using System.IO;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using Models.Json.GeoJson;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using ProcessingTools.Processors.Models.Geo.GeoJson;
 
     [TestClass]
     public class GeoJsonTests

@@ -5,11 +5,11 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.EnvironmentTerms;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.EnvironmentTerms;
-    using ProcessingTools.Processors.Models.Layout;
 
     public class EnvironmentTermsWithExtractTagger : IEnvironmentTermsWithExtractTagger
     {
@@ -51,7 +51,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.contentTagger.Tag(context.XmlDocument, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);
+            await this.contentTagger.TagAsync(context.XmlDocument, context.NamespaceManager, data, XPath, settings).ConfigureAwait(false);
 
             return true;
         }

@@ -13,7 +13,7 @@ namespace ProcessingTools.Common
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
 
     /// <summary>
     /// Document Validator.

@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.ZooBank;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     [System.ComponentModel.Description("Generate XML document for registration in ZooBank.")]
     public class ZooBankGenerateRegistrationXmlCommand : IZooBankGenerateRegistrationXmlCommand

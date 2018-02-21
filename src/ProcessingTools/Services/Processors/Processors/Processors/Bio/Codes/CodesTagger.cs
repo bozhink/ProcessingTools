@@ -15,14 +15,13 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Contracts.Processors.Factories.Bio;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Models.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
-    using ProcessingTools.Processors.Models.Layout;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Codes;
 
     public class CodesTagger : ICodesTagger
     {
@@ -65,7 +64,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
          * ZUPV/EHU 188
          */
 
-        private readonly ICodesTransformersFactory transformerFactory;
+        private readonly ICodesTransformerFactory transformerFactory;
         private readonly ITextContentHarvester contentHarvester;
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
@@ -127,7 +126,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         };
 
         public CodesTagger(
-            ICodesTransformersFactory transformerFactory,
+            ICodesTransformerFactory transformerFactory,
             ITextContentHarvester contentHarvester,
             IContentTagger contentTagger,
             ILogger logger)
@@ -138,7 +137,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             this.logger = logger;
         }
 
-        public async Task TagKnownSpecimenCodes(IDocument document)
+        public async Task TagKnownSpecimenCodesAsync(IDocument document)
         {
             if (document == null)
             {
@@ -158,7 +157,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathStrings.ContentNodes, tagModel).ConfigureAwait(false);
         }
 
-        public async Task TagSpecimenCodes(IDocument document)
+        public async Task TagSpecimenCodesAsync(IDocument document)
         {
             if (document == null)
             {
@@ -382,7 +381,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                     MinimalTextSelect = false
                 };
 
-                await this.contentTagger.TagContentInDocument(specimenCode.Code, codeElement, xpathTemplate, document, settings).ConfigureAwait(false);
+                await this.contentTagger.TagContentInDocumentAsync(specimenCode.Code, codeElement, xpathTemplate, document, settings).ConfigureAwait(false);
             }
 
             /*

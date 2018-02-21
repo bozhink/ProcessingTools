@@ -6,20 +6,18 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Clients.Bio;
-    using ProcessingTools.Contracts.Processors.Factories.Bio;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Materials;
+    using ProcessingTools.Processors.Contracts.Bio.Materials;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
         private readonly IMaterialCitationsParser materialCitationsParser;
-        private readonly ITaxonTreatmentsTransformersFactory transformersFactory;
+        private readonly ITaxonTreatmentsTransformerFactory transformerFactory;
 
-        public TreatmentMaterialsParser(
-            IMaterialCitationsParser materialCitationsParser,
-            ITaxonTreatmentsTransformersFactory transformersFactory)
+        public TreatmentMaterialsParser(IMaterialCitationsParser materialCitationsParser, ITaxonTreatmentsTransformerFactory transformerFactory)
         {
             this.materialCitationsParser = materialCitationsParser ?? throw new ArgumentNullException(nameof(materialCitationsParser));
-            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
         public async Task<object> ParseAsync(IDocument context)
@@ -70,7 +68,7 @@
                 PreserveWhitespace = true
             };
 
-            var text = await this.transformersFactory
+            var text = await this.transformerFactory
                 .GetTaxonTreatmentExtractMaterialsTransformer()
                 .TransformAsync(context)
                 .ConfigureAwait(false);
@@ -81,7 +79,7 @@
 
         private async Task FormatTaxonTreatments(XmlDocument document)
         {
-            var text = await this.transformersFactory
+            var text = await this.transformerFactory
                 .GetTaxonTreatmentFormatTransformer()
                 .TransformAsync(document)
                 .ConfigureAwait(false);

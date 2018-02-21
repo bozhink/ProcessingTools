@@ -1,13 +1,12 @@
 ﻿namespace ProcessingTools.Processors.Processors.Bio
 {
-    using ProcessingTools.Contracts.Processors;
-    using ProcessingTools.Contracts.Processors.Processors.Bio;
-    using ProcessingTools.Contracts.Processors.Providers;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Generics;
+    using ProcessingTools.Processors.Abstractions;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio;
+    using ProcessingTools.Processors.Models.Contracts;
 
-    public class TypeStatusTagger : GenericStringMinerTagger<ITypeStatusDataMiner, ITypeStatusTagModelProvider>, ITypeStatusTagger
+    public class TypeStatusTagger : StringDataMinerTagger<ITypeStatusDataMiner, ITypeStatusTagModelProvider>, ITypeStatusTagger
     {
         public TypeStatusTagger(IStringDataMinerEvaluator<ITypeStatusDataMiner> evaluator, IStringTagger tagger, ITypeStatusTagModelProvider tagModelProvider)
             : base(evaluator, tagger, tagModelProvider)

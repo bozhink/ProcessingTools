@@ -5,7 +5,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors;
+    using ProcessingTools.Processors.Contracts;
 
     public class DocumentValidatorCommand<TValidator> : ITaggerCommand
         where TValidator : class, IDocumentValidator

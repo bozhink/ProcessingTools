@@ -6,11 +6,11 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Codes;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
-    using ProcessingTools.Processors.Models.Layout;
 
     public class SpecimenCodesByPatternTagger : ISpecimenCodesByPatternTagger
     {
@@ -52,7 +52,7 @@
                 MinimalTextSelect = true
             };
 
-            return await this.tagger.Tag(
+            return await this.tagger.TagAsync(
                 context.XmlDocument.DocumentElement,
                 context.NamespaceManager,
                 specimenCodes,
