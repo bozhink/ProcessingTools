@@ -3,8 +3,8 @@
     using System;
     using Ninject.Extensions.Interception;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Geo.Contracts.Models;
-    using ProcessingTools.Geo.Parsers;
+    using ProcessingTools.Processors.Geo.Coordinates;
+    using ProcessingTools.Processors.Models.Contracts.Geo.Coordinates;
 
     internal class LogParsedCoordinatesInterceptor : IInterceptor
     {

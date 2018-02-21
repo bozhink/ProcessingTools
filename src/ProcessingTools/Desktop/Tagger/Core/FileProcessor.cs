@@ -10,9 +10,9 @@
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Processors.Processors.Documents;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Documents;
     using ProcessingTools.Tagger.Contracts;
 
     public partial class FileProcessor : IFileProcessor
@@ -54,7 +54,7 @@
 
                 try
                 {
-                    document = await this.documentManager.Read(
+                    document = await this.documentManager.ReadAsync(
                         this.settings.MergeInputFiles,
                         this.settings.FileNames.ToArray())
                         .ConfigureAwait(false);
@@ -338,7 +338,7 @@
 
         private Task WriteOutputFile(IDocument document) => InvokeProcessor(
             Messages.WriteOutputFileMessage,
-            () => this.documentManager.Write(
+            () => this.documentManager.WriteAsync(
                 this.settings.OutputFileName,
                 document,
                 this.settings.SplitDocument),

@@ -10,6 +10,8 @@
     using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Services.Data.Services.Files;
     using ProcessingTools.Tagger.Interceptors;
 
@@ -58,13 +60,13 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Geo.Contracts.Factories.ICoordinatesFactory>()
+            this.Bind<ICoordinateFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Geo.Contracts.Parsers.ICoordinate2DParser>()
-                .To<ProcessingTools.Geo.Parsers.Coordinate2DParser>()
-                .WhenInjectedInto<ProcessingTools.Geo.Parsers.CoordinateParser>()
+            this.Bind<ICoordinate2DParser>()
+                .To<Coordinate2DParser>()
+                .WhenInjectedInto<CoordinateParser>()
                 .Intercept()
                 .With<LogParsedCoordinatesInterceptor>();
 

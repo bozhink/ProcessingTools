@@ -4,6 +4,6 @@
 
     public interface IEngine
     {
-        Task Run(string[] args);
+        Task RunAsync(string[] args);
     }
 }

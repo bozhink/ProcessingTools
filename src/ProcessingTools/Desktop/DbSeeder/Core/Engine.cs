@@ -4,8 +4,8 @@
     using System.Collections.Concurrent;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.DbSeeder.Contracts.Core;
+    using ProcessingTools.Processors.Contracts;
 
     public class Engine : IEngine
     {
@@ -20,7 +20,7 @@
             this.helpProvider = helpProvider;
         }
 
-        public async Task Run(string[] args)
+        public async Task RunAsync(string[] args)
         {
             if (args == null || args.Length < 1)
             {

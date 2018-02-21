@@ -3,7 +3,16 @@
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Contracts.Harvesters.Abbreviations;
+    using ProcessingTools.Contracts.Harvesters.Content;
+    using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Processors.Contracts.References;
+    using ProcessingTools.Processors.Contracts.Special;
     using ProcessingTools.Xml.Transformers;
 
     public class NinjectXmlBindings : NinjectModule
@@ -116,43 +125,43 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.IReferencesTransformersFactory>()
+            this.Bind<IReferencesTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.Bio.ICodesTransformersFactory>()
+            this.Bind<ICodesTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.Bio.ITaxonTreatmentsTransformersFactory>()
+            this.Bind<ITaxonTreatmentsTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.IRegistrationTransformersFactory>()
+            this.Bind<IZooBankTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Layout.Processors.Contracts.Factories.IFormatTransformersFactory>()
+            this.Bind<IFormatTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Harvesters.ExternalLinks.IExternalLinksTransformersFactory>()
+            this.Bind<IExternalLinksTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Harvesters.Content.ITextContentTransformersFactory>()
+            this.Bind<ITextContentTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.Bio.IBioTaxonomyTransformersFactory>()
+            this.Bind<IBioTaxonomyTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Harvesters.Abbreviations.IAbbreviationsTransformersFactory>()
+            this.Bind<IAbbreviationsTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Special.ISpecialTransformersFactory>()
+            this.Bind<ISpecialTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }

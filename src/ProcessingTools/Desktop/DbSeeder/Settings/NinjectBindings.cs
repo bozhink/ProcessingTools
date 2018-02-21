@@ -8,7 +8,6 @@
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
@@ -17,6 +16,7 @@
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Reporters;
 
     /// <summary>
