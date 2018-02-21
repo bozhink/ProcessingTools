@@ -50,16 +50,6 @@
     <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Formatters\TaxonNamePartsRemover.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Formatters\TreatmentFormatter.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\Expander.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\HigherTaxaParserWithDataService.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\LowerTaxaParser.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithDataService.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithInternalInformation.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Taggers\HigherTaxaTagger.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Taggers\LowerTaxaInItalicTagger.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
     <Compile Include="Processors\Bio\ZooBank\ZoobankJsonCloner.cs" />
     <Compile Include="Processors\Bio\ZooBank\ZooBankRegistrationXmlGenerator.cs" />
@@ -140,9 +130,7 @@
     <None Include="packages.config" />
     <None Include="Processors.ruleset" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Processors\Bio\Taxonomy\Strategies\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

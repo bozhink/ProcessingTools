@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Taggers
+﻿// <copyright file="LowerTaxaInItalicTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
@@ -8,11 +12,14 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Meta;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Lower taxa in italic tagger.
+    /// </summary>
     public class LowerTaxaInItalicTagger : ILowerTaxaInItalicTagger
     {
         private const string ItalicXPath = ".//i[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]|.//Italic[not(ancestor::i)][not(ancestor::italic)][not(ancestor::Italic)][not(tn)]";
@@ -20,12 +27,18 @@
         private readonly IPersonNamesHarvester personNamesHarvester;
         private readonly IBlackList blacklist;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LowerTaxaInItalicTagger"/> class.
+        /// </summary>
+        /// <param name="personNamesHarvester">Person names harvester.</param>
+        /// <param name="blacklist">Taxonomic black list.</param>
         public LowerTaxaInItalicTagger(IPersonNamesHarvester personNamesHarvester, IBlackList blacklist)
         {
             this.personNamesHarvester = personNamesHarvester ?? throw new ArgumentNullException(nameof(personNamesHarvester));
             this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
         }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)

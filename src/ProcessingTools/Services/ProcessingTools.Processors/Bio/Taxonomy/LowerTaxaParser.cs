@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Parsers
+﻿// <copyright file="LowerTaxaParser.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
@@ -7,14 +11,16 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Contracts.Strategies.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Processors.Bio.Taxonomy;
-    using ProcessingTools.Processors.Common.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Lower taxa parser.
+    /// </summary>
     public class LowerTaxaParser : ILowerTaxaParser
     {
         private const string SelectLowerTaxaWithInvalidChildNodesXPath = ".//tn[@type='lower'][count(*) != count(tn-part)]";
@@ -23,11 +29,16 @@
 
         private readonly IParseLowerTaxaStrategiesProvider strategiesProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LowerTaxaParser"/> class.
+        /// </summary>
+        /// <param name="strategiesProvider">Strategies provider.</param>
         public LowerTaxaParser(IParseLowerTaxaStrategiesProvider strategiesProvider)
         {
             this.strategiesProvider = strategiesProvider ?? throw new ArgumentNullException(nameof(strategiesProvider));
         }
 
+        /// <inheritdoc/>
         public async Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)

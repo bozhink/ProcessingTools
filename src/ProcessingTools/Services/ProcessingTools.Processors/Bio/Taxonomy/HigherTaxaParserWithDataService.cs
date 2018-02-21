@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Parsers
+﻿// <copyright file="HigherTaxaParserWithDataService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
@@ -7,27 +11,38 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Generic higher taxa parser with data service.
+    /// </summary>
+    /// <typeparam name="TService">Type of the data service.</typeparam>
+    /// <typeparam name="T">Type of the data service model.</typeparam>
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
         where TService : class, ITaxaRankResolver
         where T : ITaxonRank
     {
-        private readonly TService taxaRankDataService;
+        private readonly TService service;
         private readonly ILogger logger;
 
-        public HigherTaxaParserWithDataService(TService taxaRankDataService, ILogger logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HigherTaxaParserWithDataService{TService, T}"/> class.
+        /// </summary>
+        /// <param name="service">Taxon rank data service.</param>
+        /// <param name="logger">Logger.</param>
+        public HigherTaxaParserWithDataService(TService service, ILogger logger)
         {
-            this.taxaRankDataService = taxaRankDataService ?? throw new ArgumentNullException(nameof(taxaRankDataService));
-            this.logger = logger;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public async Task<long> ParseAsync(XmlNode context)
         {
             if (context == null)
@@ -45,7 +60,7 @@
                 return uniqueHigherTaxaList.LongLength;
             }
 
-            var response = await this.taxaRankDataService.ResolveAsync(uniqueHigherTaxaList);
+            var response = await this.service.ResolveAsync(uniqueHigherTaxaList);
             if (response == null)
             {
                 throw new ServiceReturnedNullException("Current taxa rank data service instance returned null.");

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Taggers
+﻿// <copyright file="LowerTaxaTagger.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
@@ -9,14 +13,17 @@
     using System.Xml;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Meta;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Taggers;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Extensions.Linq;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Processors.Models.Layout;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Lower taxa tagger.
+    /// </summary>
     public class LowerTaxaTagger : ILowerTaxaTagger
     {
         private const string SensuSubpattern = @"(?:\(\s*)?(?i)(?:\bsensu\b\s*[a-z]*|s\.?\s*[ls]\.?|s\.?\s*str\.?)(?:\s*\))?";
@@ -36,11 +43,14 @@
         private readonly IBlackList blacklist;
         private readonly ILogger logger;
 
-        public LowerTaxaTagger(
-            IPersonNamesHarvester personNamesHarvester,
-            IBlackList blacklist,
-            IContentTagger contentTagger,
-            ILogger logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LowerTaxaTagger"/> class.
+        /// </summary>
+        /// <param name="personNamesHarvester">Person names harvester.</param>
+        /// <param name="blacklist">Taxonomic black list.</param>
+        /// <param name="contentTagger">Content tagger.</param>
+        /// <param name="logger">Logger.</param>
+        public LowerTaxaTagger(IPersonNamesHarvester personNamesHarvester, IBlackList blacklist, IContentTagger contentTagger, ILogger logger)
         {
             this.personNamesHarvester = personNamesHarvester ?? throw new ArgumentNullException(nameof(personNamesHarvester));
             this.blacklist = blacklist ?? throw new ArgumentNullException(nameof(blacklist));
@@ -48,6 +58,7 @@
             this.logger = logger;
         }
 
+        /// <inheritdoc/>
         public async Task<object> TagAsync(IDocument context)
         {
             if (context == null)
@@ -365,7 +376,7 @@
                         MinimalTextSelect = true
                     };
 
-                    await this.contentTagger.TagContentInDocument(item, tagModel, LowerTaxaXPath, document, settings).ConfigureAwait(false);
+                    await this.contentTagger.TagContentInDocumentAsync(item, tagModel, LowerTaxaXPath, document, settings).ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {

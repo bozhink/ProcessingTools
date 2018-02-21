@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Formatters
+﻿// <copyright file="TreatmentFormatter.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
     using System;
     using System.Linq;
@@ -7,16 +11,20 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Formatters;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Treatment formatter.
+    /// </summary>
     public class TreatmentFormatter : ITreatmentFormatter
     {
         private const string TaxonAuthorityStatusNodeName = "AuthorityStatus";
 
-        public Task<object> FormatAsync(IDocument context) => Task.Run(() => this.FormatSync(context));
+        /// <inheritdoc/>
+        public Task<object> FormatAsync(IDocument context) => Task.Run(() => this.Format(context));
 
-        private object FormatSync(IDocument document)
+        private object Format(IDocument document)
         {
             if (document == null)
             {

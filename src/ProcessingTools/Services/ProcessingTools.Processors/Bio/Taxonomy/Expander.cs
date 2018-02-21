@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Processors.Processors.Bio.Taxonomy.Parsers
+﻿// <copyright file="Expander.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
@@ -10,12 +14,15 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Processors.Processors.Bio.Taxonomy.Parsers;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Processors.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Models.Bio.Taxonomy;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Lower taxa shorten names expander.
+    /// </summary>
     public class Expander : IExpander
     {
         private readonly ILogger logger;
@@ -26,11 +33,16 @@
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsResolvedOrNotAbbreviated = p => p.IsResolved || !p.IsAbbreviated;
         private readonly Expression<Func<ITaxonNamePart, bool>> partIsWithMeaningfullRank = p => p.Rank != SpeciesPartType.Undefined;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Expander"/> class.
+        /// </summary>
+        /// <param name="logger">Logger.</param>
         public Expander(ILogger logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <inheritdoc/>
         public Task<object> ParseAsync(XmlNode context)
         {
             if (context == null)
