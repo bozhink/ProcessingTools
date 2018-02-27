@@ -17,7 +17,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
+    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Abstractions;

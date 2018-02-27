@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Processors.Imaging;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts.Imaging;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BarcodeGenerator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.BarcodeGenerator;
     using ProcessingTools.Web.Documents.Extensions;
@@ -20,12 +20,7 @@
 
         public BarcodeGeneratorController(IBarcodeEncoder encoder)
         {
-            if (encoder == null)
-            {
-                throw new ArgumentNullException(nameof(encoder));
-            }
-
-            this.encoder = encoder;
+            this.encoder = encoder ?? throw new ArgumentNullException(nameof(encoder));
         }
 
         [HttpGet]

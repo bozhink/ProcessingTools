@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Processors.Imaging;
+    using ProcessingTools.Processors.Contracts.Imaging;
     using ProcessingTools.Web.Documents.Areas.Data.Models.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Extensions;

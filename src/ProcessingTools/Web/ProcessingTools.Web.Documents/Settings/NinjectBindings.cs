@@ -9,6 +9,9 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Imaging.Processors;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using ProcessingTools.Processors.Contracts.Imaging;
     using ProcessingTools.Services.Data.Services.Files;
 
     /// <summary>
@@ -60,7 +63,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Geo.Contracts.Factories.ICoordinatesFactory>()
+            this.Bind<ICoordinateFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -106,12 +109,12 @@
                     return t => context.Kernel.Get(t) as ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
 
-            this.Bind<ProcessingTools.Contracts.Processors.Imaging.IQRCodeEncoder>()
-                .To<ProcessingTools.Imaging.Processors.QRCodeEncoder>()
+            this.Bind<IQRCodeEncoder>()
+                .To<QRCodeEncoder>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Imaging.IBarcodeEncoder>()
-                .To<ProcessingTools.Imaging.Processors.BarcodeEncoder>()
+            this.Bind<IBarcodeEncoder>()
+                .To<BarcodeEncoder>()
                 .InRequestScope();
         }
     }

@@ -4,6 +4,12 @@
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Processors.Contracts.References;
+    using ProcessingTools.Processors.Contracts.Special;
     using ProcessingTools.Xml.Transformers;
 
     public class NinjectXmlBindings : NinjectModule
@@ -120,23 +126,23 @@
                     AppSettings.FormatHtmlToXmlXslFileName);
 
             // Factories
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.IReferencesTransformersFactory>()
+            this.Bind<IReferencesTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.Bio.ICodesTransformersFactory>()
+            this.Bind<ICodesTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.Bio.ITaxonTreatmentsTransformersFactory>()
+            this.Bind<ITaxonTreatmentsTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.IRegistrationTransformersFactory>()
+            this.Bind<IZooBankTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Layout.Processors.Contracts.Factories.IFormatTransformersFactory>()
+            this.Bind<IFormatTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -160,7 +166,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Factories.Bio.IBioTaxonomyTransformersFactory>()
+            this.Bind<IBioTaxonomyTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -168,7 +174,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Processors.Special.ISpecialTransformersFactory>()
+            this.Bind<ISpecialTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
         }

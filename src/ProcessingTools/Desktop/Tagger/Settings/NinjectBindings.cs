@@ -11,9 +11,9 @@
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
-    using ProcessingTools.Processors.Geo.Coordinates;
+    //using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Services.Data.Services.Files;
-    using ProcessingTools.Tagger.Interceptors;
+    //using ProcessingTools.Tagger.Interceptors;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -64,11 +64,11 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ICoordinate2DParser>()
-                .To<Coordinate2DParser>()
-                .WhenInjectedInto<CoordinateParser>()
-                .Intercept()
-                .With<LogParsedCoordinatesInterceptor>();
+            //this.Bind<ICoordinate2DParser>()
+            //    .To<Coordinate2DParser>()
+            //    .WhenInjectedInto<CoordinateParser>()
+            //    .Intercept()
+            //    .With<LogParsedCoordinatesInterceptor>();
 
             this.Bind(b =>
             {
