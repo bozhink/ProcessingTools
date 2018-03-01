@@ -28,6 +28,7 @@
     <ProjectReference Include="..\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
     <ProjectReference Include="..\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj" />
     <ProjectReference Include="..\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
   </ItemGroup>
 </Project>

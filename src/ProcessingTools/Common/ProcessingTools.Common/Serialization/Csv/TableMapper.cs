@@ -1,7 +1,12 @@
-﻿namespace ProcessingTools.Common.Serialization.Csv
+﻿// <copyright file="TableMapper.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Serialization.Csv
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Mappings of CSV to object.
@@ -12,9 +17,21 @@
     /// </remarks>
     public class TableMapper
     {
-        public IEnumerable<T> MapTableToObjects<T>(string[][] table, ColumnIndexToPropertyNameMapping propertiesMapping)
+        /// <summary>
+        /// Map table of strings to list of objects.
+        /// </summary>
+        /// <typeparam name="T">Type of the mapped object.</typeparam>
+        /// <param name="table">Table of string values.</param>
+        /// <param name="propertiesMapping">Column-to-property mapping.</param>
+        /// <returns>List of mapped object.s</returns>
+        public IEnumerable<T> MapTableToObjects<T>(IEnumerable<string[]> table, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
-            var result = new List<T>();
+            if (table == null || table.Any())
+            {
+                return new List<T> { };
+            }
+
+            var result = new List<T>(table.Count());
 
             foreach (string[] row in table)
             {
@@ -25,9 +42,21 @@
             return result;
         }
 
-        public IEnumerable<object> MapTableToObjects(Type type, string[][] table, ColumnIndexToPropertyNameMapping propertiesMapping)
+        /// <summary>
+        /// Map table of strings to list of objects.
+        /// </summary>
+        /// <param name="type">Type of the mapped object.</param>
+        /// <param name="table">Table of string values.</param>
+        /// <param name="propertiesMapping">Column-to-property mapping.</param>
+        /// <returns>List of mapped object.s</returns>
+        public IEnumerable<object> MapTableToObjects(Type type, IEnumerable<string[]> table, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
-            var result = new List<object>();
+            if (table == null || table.Any())
+            {
+                return new List<object> { };
+            }
+
+            var result = new List<object>(table.Count());
 
             foreach (string[] row in table)
             {

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Common.Serialization
+﻿// <copyright file="XmlSerializer{T}.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Serialization
 {
     using System;
     using System.IO;
@@ -7,12 +11,19 @@
     using System.Xml.Serialization;
     using ProcessingTools.Contracts.Serialization;
 
+    /// <summary>
+    /// Generic XML serializer.
+    /// </summary>
+    /// <typeparam name="T">Type of serialization model.</typeparam>
     public class XmlSerializer<T> : IXmlSerializer<T>
     {
         private readonly XmlSerializer serializer;
         private readonly XmlDocument bufferXml;
         private XmlSerializerNamespaces xmlns;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlSerializer{T}"/> class.
+        /// </summary>
         public XmlSerializer()
         {
             this.serializer = new XmlSerializer(typeof(T));
@@ -24,16 +35,21 @@
             };
         }
 
+        /// <inheritdoc/>
         public Task<XmlNode> SerializeAsync(T @object)
         {
-            if (@object == null)
+            return Task.Run(() =>
             {
-                throw new ArgumentNullException(nameof(@object));
-            }
+                if (@object == null)
+                {
+                    return null;
+                }
 
-            return Task.Run(() => this.SerializeSync(@object));
+                return this.Serialize(@object);
+            });
         }
 
+        /// <inheritdoc/>
         public void SetNamespaces(XmlNamespaceManager namespaceManager)
         {
             if (namespaceManager == null)
@@ -49,7 +65,7 @@
             }
         }
 
-        private XmlNode SerializeSync(T @object)
+        private XmlNode Serialize(T @object)
         {
             using (var stream = new MemoryStream())
             {

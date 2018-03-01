@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Meta
+﻿// <copyright file="JournalsMetaDataServiceWithDatabase.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Meta
 {
     using System;
     using System.Linq;
@@ -8,15 +12,23 @@
     using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Services.Models.Data.Meta;
 
+    /// <summary>
+    /// Journals meta data service with database.
+    /// </summary>
     public class JournalsMetaDataServiceWithDatabase : IJournalsMetaDataService
     {
         private readonly IJournalMetaRepository repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JournalsMetaDataServiceWithDatabase"/> class.
+        /// </summary>
+        /// <param name="repository">Instance of <see cref="IJournalMetaRepository"/>.</param>
         public JournalsMetaDataServiceWithDatabase(IJournalMetaRepository repository)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        /// <inheritdoc/>
         public async Task<IJournalMeta[]> GetAllJournalsMetaAsync()
         {
             var data = await this.repository.FindAsync(j => true).ConfigureAwait(false);

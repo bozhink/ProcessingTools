@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Common
+﻿// <copyright file="TaxPubDocument.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common
 {
     using System;
     using System.Collections.Generic;

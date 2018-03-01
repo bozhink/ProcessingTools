@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Abstractions.Journals
+﻿// <copyright file="AbstractAddresssableDataService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Abstractions.Journals
 {
     using System;
     using System.Collections.Concurrent;
@@ -18,6 +22,13 @@
     using ProcessingTools.Models.Contracts.Services.Data.Journals;
     using ProcessingTools.Services.Models.Data.Journals;
 
+    /// <summary>
+    /// Abstract addresssable data service.
+    /// </summary>
+    /// <typeparam name="TServiceModel">Type of service model.</typeparam>
+    /// <typeparam name="TDetailedServiceModel">Type of detailed service model.</typeparam>
+    /// <typeparam name="TDataModel">Type of data model.</typeparam>
+    /// <typeparam name="TRepository">Type of repository.</typeparam>
     public abstract class AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>
         where TServiceModel : class, IServiceModel
         where TDetailedServiceModel : class, TServiceModel, IDetailedModel, ProcessingTools.Models.Contracts.Services.Data.Journals.IAddressable
@@ -29,24 +40,59 @@
         private readonly TRepository repository;
         private readonly IApplicationContext applicationContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractAddresssableDataService{TServiceModel, TDetailedServiceModel, TDataModel, TRepository}"/> class.
+        /// </summary>
+        /// <param name="repository">The repository</param>
+        /// <param name="applicationContext">The application context.</param>
         protected AbstractAddresssableDataService(TRepository repository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
+        /// <summary>
+        /// Gets the mapping from the data model to the service model.
+        /// </summary>
         protected abstract Func<TDataModel, TServiceModel> MapDataModelToServiceModel { get; }
 
+        /// <summary>
+        /// Gets the mapping from the data model to the detailed service model.
+        /// </summary>
         protected abstract Func<TDataModel, TDetailedServiceModel> MapDataModelToDetailedServiceModel { get; }
 
+        /// <summary>
+        /// Gets the application context.
+        /// </summary>
         protected IApplicationContext ApplicationContext => this.applicationContext;
 
+        /// <summary>
+        /// Gets the repository.
+        /// </summary>
         protected TRepository Repository => this.repository;
 
+        /// <summary>
+        /// Adds new model.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="model">Model to be added.</param>
+        /// <returns>Task of result.</returns>
         public abstract Task<object> AddAsync(object userId, TServiceModel model);
 
+        /// <summary>
+        /// Updates existing model.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="model">Model to be updated.</param>
+        /// <returns>Task of result.</returns>
         public abstract Task<object> UpdateAsync(object userId, TServiceModel model);
 
+        /// <summary>
+        /// Deletes model by ID;
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="id">ID of the model to be deleted.</param>
+        /// <returns>Task of result.</returns>
         public virtual async Task<object> DeleteAsync(object userId, object id)
         {
             if (userId == null)
@@ -66,6 +112,13 @@
             return result;
         }
 
+        /// <summary>
+        /// Add address to model.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="modelId">Model ID to be updated.</param>
+        /// <param name="address"><see cref="IAddress"/> model to be attached.</param>
+        /// <returns>Task of result.</returns>
         public virtual async Task<object> AddAddressAsync(object userId, object modelId, IAddress address)
         {
             if (userId == null)
@@ -108,6 +161,13 @@
             return dataModel.Id;
         }
 
+        /// <summary>
+        /// Updates address of model.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="modelId">Model ID to be updated.</param>
+        /// <param name="address"><see cref="IAddress"/> model to be updated.</param>
+        /// <returns>Task of result.</returns>
         public virtual async Task<object> UpdateAddressAsync(object userId, object modelId, IAddress address)
         {
             if (userId == null)
@@ -151,6 +211,13 @@
             return dataModel.Id;
         }
 
+        /// <summary>
+        /// Removes address from model.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="modelId">Model ID to be updated.</param>
+        /// <param name="addressId">Address ID to be removed.</param>
+        /// <returns>Task of result.</returns>
         public virtual async Task<object> RemoveAddressAsync(object userId, object modelId, object addressId)
         {
             if (userId == null)
@@ -186,6 +253,12 @@
             return addressId;
         }
 
+        /// <summary>
+        /// Gets model by ID.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="id">ID of the model to be retrieved.</param>
+        /// <returns>The model.</returns>
         public virtual async Task<TServiceModel> GetAsync(object userId, object id)
         {
             if (userId == null)
@@ -209,6 +282,12 @@
             return model;
         }
 
+        /// <summary>
+        /// Gets details of a specified model.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="id">ID of the model to be retrieved.</param>
+        /// <returns>Detailed model.</returns>
         public async Task<TDetailedServiceModel> GetDetailsAsync(object userId, object id)
         {
             if (userId == null)
@@ -232,6 +311,16 @@
             return model;
         }
 
+        /// <summary>
+        /// Gets paged and sorted data.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="skip">Number of items to be skipped.</param>
+        /// <param name="take">Number of items to be taken.</param>
+        /// <param name="sort">Sorting expression.</param>
+        /// <param name="order"><see cref="SortOrder"/> for sorting.</param>
+        /// <param name="filter">Filter expression.</param>
+        /// <returns>Pages and sorted models.</returns>
         public async Task<IEnumerable<TServiceModel>> SelectAsync(object userId, int skip, int take, Expression<Func<TServiceModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TServiceModel, bool>> filter = null)
         {
             if (userId == null)
@@ -261,6 +350,16 @@
             return data;
         }
 
+        /// <summary>
+        /// Gets paged and sorted details.
+        /// </summary>
+        /// <param name="userId">User ID for validation.</param>
+        /// <param name="skip">Number of items to be skipped.</param>
+        /// <param name="take">Number of items to be taken.</param>
+        /// <param name="sort">Sorting expression.</param>
+        /// <param name="order"><see cref="SortOrder"/> for sorting.</param>
+        /// <param name="filter">Filter expression.</param>
+        /// <returns>Pages and sorted detailed models.</returns>
         public async Task<IEnumerable<TDetailedServiceModel>> SelectDetailsAsync(object userId, int skip, int take, Expression<Func<TDetailedServiceModel, object>> sort, SortOrder order = SortOrder.Ascending, Expression<Func<TDetailedServiceModel, bool>> filter = null)
         {
             if (userId == null)

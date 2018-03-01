@@ -1,39 +1,65 @@
-﻿namespace ProcessingTools.Common.Serialization.Csv
+﻿// <copyright file="CsvSerializer.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Serialization.Csv
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
 
+    /// <summary>
+    /// CSV serializer.
+    /// </summary>
     public class CsvSerializer
     {
         private readonly int numberOfRowsToSkip;
         private readonly CsvObjectConfiguration configuration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CsvSerializer"/> class.
+        /// </summary>
         public CsvSerializer()
             : this(new CsvObjectConfiguration())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CsvSerializer"/> class.
+        /// </summary>
+        /// <param name="configuration">The CSV object configuration.</param>
         public CsvSerializer(CsvObjectConfiguration configuration)
         {
             this.configuration = configuration;
             this.numberOfRowsToSkip = this.configuration.FirstRow < 1 ? 0 : this.configuration.FirstRow;
         }
 
-        public IEnumerable<T> Deserialize<T>(string csvText)
+        /// <summary>
+        /// Deserializes CSV text to list of models.
+        /// </summary>
+        /// <typeparam name="T">Type of CSV serialization model.</typeparam>
+        /// <param name="text">CSV as string.</param>
+        /// <returns>Deserialized text.</returns>
+        public IEnumerable<T> Deserialize<T>(string text)
         {
-            return this.Deserialize(typeof(T), csvText).Cast<T>();
+            return this.Deserialize(typeof(T), text).Cast<T>();
         }
 
-        public IEnumerable<object> Deserialize(Type type, string csvText)
+        /// <summary>
+        /// Deserializes CSV text to list of objects.
+        /// </summary>
+        /// <param name="type">Type of the serialization model.</param>
+        /// <param name="text">CSV as string.</param>
+        /// <returns>Deserialized text.</returns>
+        public IEnumerable<object> Deserialize(Type type, string text)
         {
             if (!Attribute.IsDefined(type, typeof(CsvObjectAttribute)))
             {
                 throw new ArgumentException("Type should contain CsvObjectAttribute", nameof(type));
             }
 
-            var table = this.CsvToTable(csvText);
+            var table = this.CsvToTable(text);
             var mappings = this.CreatePropertiesMapping(type, table);
             var data = this.GetDataPartOfTheCsv(table);
 

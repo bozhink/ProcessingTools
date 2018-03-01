@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Meta
+﻿// <copyright file="JournalMetaDataServiceWithFiles.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Meta
 {
     using System;
     using System.IO;
@@ -8,15 +12,23 @@
     using ProcessingTools.Services.Contracts.Meta;
     using ProcessingTools.Services.Models.Data.Meta;
 
+    /// <summary>
+    /// Journal meta data service with files.
+    /// </summary>
     public class JournalMetaDataServiceWithFiles : IJournalMetaDataService
     {
         private readonly IDeserializer deserializer;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JournalMetaDataServiceWithFiles"/> class.
+        /// </summary>
+        /// <param name="deserializer">Instance of <see cref="IDeserializer"/>.</param>
         public JournalMetaDataServiceWithFiles(IDeserializer deserializer)
         {
             this.deserializer = deserializer ?? throw new ArgumentNullException(nameof(deserializer));
         }
 
+        /// <inheritdoc/>
         public async Task<IJournalMeta> GetJournalMetaAsync(string journalJsonFileName)
         {
             if (string.IsNullOrWhiteSpace(journalJsonFileName))

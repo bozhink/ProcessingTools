@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.History
+﻿// <copyright file="ObjectHistoryDataService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.History
 {
     using System;
     using System.Linq;
@@ -10,17 +14,26 @@
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Models.Data.History;
 
+    /// <summary>
+    /// Object history data service.
+    /// </summary>
     public class ObjectHistoryDataService : IObjectHistoryDataService
     {
         private readonly IObjectHistoryRepository repository;
         private readonly IApplicationContext applicationContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObjectHistoryDataService"/> class.
+        /// </summary>
+        /// <param name="repository">Instance of <see cref="IObjectHistoryRepository"/>.</param>
+        /// <param name="applicationContext">The application context.</param>
         public ObjectHistoryDataService(IObjectHistoryRepository repository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
+        /// <inheritdoc/>
         public async Task<object> AddAsync(object objectId, object source)
         {
             if (objectId == null)
@@ -60,6 +73,7 @@
             return result;
         }
 
+        /// <inheritdoc/>
         public async Task<object[]> GetAsync(object objectId, Type objectType)
         {
             if (objectId == null)
@@ -85,6 +99,7 @@
             return items;
         }
 
+        /// <inheritdoc/>
         public async Task<object[]> GetAsync(object objectId, Type objectType, int skip, int take)
         {
             if (objectId == null)
@@ -122,6 +137,7 @@
             return items;
         }
 
+        /// <inheritdoc/>
         public async Task<IObjectHistory[]> GetHistoriesAsync(object objectId)
         {
             if (objectId == null)
@@ -149,6 +165,7 @@
             return items;
         }
 
+        /// <inheritdoc/>
         public async Task<IObjectHistory[]> GetHistoriesAsync(object objectId, int skip, int take)
         {
             if (objectId == null)

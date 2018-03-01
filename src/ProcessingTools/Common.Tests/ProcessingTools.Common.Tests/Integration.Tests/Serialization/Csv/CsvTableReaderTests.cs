@@ -21,12 +21,12 @@ namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization.Csv
         public void CsvObject_WithEmptyConstructor_ShouldCreateValidObject()
         {
             var csv = new CsvTableReader();
-            Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.FieldTerminator.ToString()), "FieldTerminator");
+            Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.FieldSeparator.ToString()), "FieldTerminator");
             Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.FirstRow.ToString()), "FirstRow");
-            Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.RowTerminator.ToString()), "RowTerminator");
+            Assert.IsFalse(string.IsNullOrEmpty(csv.Configuration.RowSeparator.ToString()), "RowTerminator");
             Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.SingleCharEscapeSymbol.ToString()), "SingleCharEscapeSymbol");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.TerminatorEscapeLeftWrapSymbol.ToString()), "TerminatorEscapeLeftWrapSymbol");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.TerminatorEscapeRightWrapSymbol.ToString()), "TerminatorEscapeRightWrapSymbol");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.SeparatorEscapeLeftWrapSymbol.ToString()), "TerminatorEscapeLeftWrapSymbol");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(csv.Configuration.SeparatorEscapeRightWrapSymbol.ToString()), "TerminatorEscapeRightWrapSymbol");
         }
 
         /// <summary>

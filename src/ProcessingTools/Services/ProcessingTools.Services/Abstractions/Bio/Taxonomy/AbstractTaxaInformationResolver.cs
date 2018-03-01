@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Abstractions.Bio.Taxonomy
+﻿// <copyright file="AbstractTaxaInformationResolver.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Abstractions.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
@@ -6,8 +10,13 @@
     using System.Threading.Tasks;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Abstract taxa information resolver.
+    /// </summary>
+    /// <typeparam name="T">Type of result object.</typeparam>
     public abstract class AbstractTaxaInformationResolver<T> : ITaxaInformationResolver<T>
     {
+        /// <inheritdoc/>
         public async Task<T[]> ResolveAsync(params string[] scientificNames)
         {
             var queue = new ConcurrentQueue<T>();
@@ -26,6 +35,11 @@
             return queue.ToArray();
         }
 
+        /// <summary>
+        /// Resolve scientific name.
+        /// </summary>
+        /// <param name="scientificName">Scientific name.</param>
+        /// <returns>Resolved models.</returns>
         protected abstract Task<T[]> ResolveScientificNameAsync(string scientificName);
 
         private async Task ResolveScientificName(string scientificName, ConcurrentQueue<T> queue, ConcurrentQueue<Exception> exceptions)

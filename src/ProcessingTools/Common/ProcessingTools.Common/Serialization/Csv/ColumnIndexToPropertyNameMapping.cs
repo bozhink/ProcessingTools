@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Common.Serialization.Csv
+﻿// <copyright file="ColumnIndexToPropertyNameMapping.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Serialization.Csv
 {
     using System.Collections.Generic;
 
@@ -16,6 +20,7 @@
         }
 
         /// <summary>
+        /// Gets or sets the dictionary of mappings.
         /// A dictionary holding Property Names (Key) and column indexes (Value).
         /// </summary>
         /// <remarks>

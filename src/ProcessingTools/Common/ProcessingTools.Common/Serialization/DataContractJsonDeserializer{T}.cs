@@ -1,29 +1,43 @@
-﻿namespace ProcessingTools.Common.Serialization
+﻿// <copyright file="DataContractJsonDeserializer{T}.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Serialization
 {
-    using System;
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Serialization;
 
+    /// <summary>
+    /// Generic data contract JSON deserializer.
+    /// </summary>
+    /// <typeparam name="T">Type of serialization model.</typeparam>
     public class DataContractJsonDeserializer<T> : IDataContractJsonDeserializer<T>
     {
         private readonly DataContractJsonSerializer serializer;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataContractJsonDeserializer{T}"/> class.
+        /// </summary>
         public DataContractJsonDeserializer()
         {
             this.serializer = new DataContractJsonSerializer(typeof(T));
         }
 
+        /// <inheritdoc/>
         public Task<T> DeserializeAsync(Stream stream)
         {
-            if (stream == null)
+            return Task.Run(() =>
             {
-                throw new ArgumentNullException(nameof(stream));
-            }
+                if (stream == null || !stream.CanRead)
+                {
+                    return default(T);
+                }
 
-            var result = (T)this.serializer.ReadObject(stream);
-            return Task.FromResult(result);
+                var result = (T)this.serializer.ReadObject(stream);
+                return result;
+            });
         }
     }
 }

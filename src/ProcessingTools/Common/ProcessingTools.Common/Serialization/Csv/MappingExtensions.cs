@@ -1,15 +1,37 @@
-﻿namespace ProcessingTools.Common.Serialization.Csv
-{
-    using ProcessingTools.Extensions;
-    using System;
+﻿// <copyright file="MappingExtensions.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Common.Serialization.Csv
+{
+    using System;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
+
+    /// <summary>
+    /// Mapping extensions.
+    /// </summary>
     public static class MappingExtensions
     {
+        /// <summary>
+        /// Map values to object properties.
+        /// </summary>
+        /// <typeparam name="T">Type of mapped object.</typeparam>
+        /// <param name="values">Array of string values to be mapped.</param>
+        /// <param name="propertiesMapping">Column-to-property mapping.</param>
+        /// <returns>Mapped object.</returns>
         public static T MapToObjectProperties<T>(this string[] values, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
             return (T)values.MapToObjectProperties(typeof(T), propertiesMapping);
         }
 
+        /// <summary>
+        /// Map values to object properties.
+        /// </summary>
+        /// <param name="values">Array of string values to be mapped.</param>
+        /// <param name="type">Type of mapped object.</param>
+        /// <param name="propertiesMapping">Column-to-property mapping.</param>
+        /// <returns>Mapped object.</returns>
         public static object MapToObjectProperties(this string[] values, Type type, ColumnIndexToPropertyNameMapping propertiesMapping)
         {
             if (type == null)
@@ -38,7 +60,7 @@
                     int index = propertiesMapping.Mapping[property.Name];
                     if (numberOfItems <= index || index < 0)
                     {
-                        throw new IndexOutOfRangeException("Invalid mapping.");
+                        throw new InvalidColumnMappingException();
                     }
 
                     var propertyType = property.PropertyType;

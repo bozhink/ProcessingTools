@@ -29,7 +29,7 @@ namespace ProcessingTools.Services.Contracts
         Task<TDetailedModel> GetDetailsAsync(object userId, object id);
 
         /// <summary>
-        ///  Gets paged and sorted details.
+        /// Gets paged and sorted details.
         /// </summary>
         /// <param name="userId">User ID for validation.</param>
         /// <param name="skip">Number of items to be skipped.</param>

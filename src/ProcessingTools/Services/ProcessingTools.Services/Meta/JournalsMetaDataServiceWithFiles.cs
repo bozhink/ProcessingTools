@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Meta
+﻿// <copyright file="JournalsMetaDataServiceWithFiles.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Meta
 {
     using System;
     using System.Collections.Generic;
@@ -8,11 +12,19 @@
     using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.Services.Contracts.Meta;
 
+    /// <summary>
+    /// Journals meta data service with files.
+    /// </summary>
     public class JournalsMetaDataServiceWithFiles : IJournalsMetaDataService
     {
         private readonly IJournalMetaDataService journalMetaDataService;
         private string journalMetaFilesDirectory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JournalsMetaDataServiceWithFiles"/> class.
+        /// </summary>
+        /// <param name="journalMetaFilesDirectory">Journal meta files directory.</param>
+        /// <param name="journalMetaDataService">Instance of <see cref="IJournalMetaDataService"/>.</param>
         public JournalsMetaDataServiceWithFiles(string journalMetaFilesDirectory, IJournalMetaDataService journalMetaDataService)
         {
             this.JournalMetaFilesDirectory = journalMetaFilesDirectory;
@@ -42,6 +54,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public async Task<IJournalMeta[]> GetAllJournalsMetaAsync()
         {
             var journalMetaFiles = Directory.GetFiles(this.JournalMetaFilesDirectory).ToArray();
