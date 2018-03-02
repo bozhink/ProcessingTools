@@ -10,7 +10,7 @@
     <Description>Data contracts</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Data.Contracts.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Contracts.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S1075</NoWarn>
   </PropertyGroup>
   <ItemGroup>

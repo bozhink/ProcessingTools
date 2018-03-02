@@ -10,7 +10,7 @@
     <Description>Extensions</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Extensions.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Extensions.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S3242;S2436;S907</NoWarn>
   </PropertyGroup>
   <ItemGroup>

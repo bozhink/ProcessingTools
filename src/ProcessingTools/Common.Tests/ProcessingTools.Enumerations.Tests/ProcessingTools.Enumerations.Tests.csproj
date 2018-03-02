@@ -8,10 +8,10 @@
     <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Enumerations Tests</Description>
+    <Description>Enumeration test</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Enumerations.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Enumerations.Tests.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />

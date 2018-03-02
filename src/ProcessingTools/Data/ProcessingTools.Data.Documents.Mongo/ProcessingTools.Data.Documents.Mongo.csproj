@@ -10,7 +10,7 @@
     <Description>Documents data models for MongoDB implementation</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\ProcessingTools.Data.Documents.Mongo.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Documents.Mongo.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S1075</NoWarn>
   </PropertyGroup>
   <ItemGroup>
