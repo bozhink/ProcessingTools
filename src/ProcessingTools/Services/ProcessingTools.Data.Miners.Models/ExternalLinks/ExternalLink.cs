@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Data.Miners.Models.ExternalLinks
 {
-    using ProcessingTools.Data.Miners.Contracts.Models.ExternalLinks;
+    using ProcessingTools.Data.Miners.Models.Contracts.ExternalLinks;
     using ProcessingTools.Enumerations.Nlm;
 
     /// <summary>

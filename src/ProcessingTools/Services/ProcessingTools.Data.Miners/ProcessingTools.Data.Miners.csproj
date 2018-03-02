@@ -27,6 +27,8 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Miners.Contracts\ProcessingTools.Data.Miners.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Miners.Models.Contracts\ProcessingTools.Data.Miners.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Miners.Models\ProcessingTools.Data.Miners.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
   </ItemGroup>
