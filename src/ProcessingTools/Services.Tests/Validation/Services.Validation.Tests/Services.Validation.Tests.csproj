@@ -82,10 +82,6 @@
     <Compile Include="IntegrationTests\UrlValidationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Clients\ProcessingTools.Contracts.Clients.csproj">
-      <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
-      <Name>ProcessingTools.Contracts.Clients</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
       <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
       <Name>ProcessingTools.Contracts</Name>
@@ -113,6 +109,10 @@
     <ProjectReference Include="..\..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{F67FD0C3-B2C5-43F4-8722-FF77CFA42AE9}</Project>
       <Name>ProcessingTools.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
+      <Project>{4FA9E8DE-3062-41C5-AB25-A44776A4C116}</Project>
+      <Name>ProcessingTools.Clients.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
       <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>

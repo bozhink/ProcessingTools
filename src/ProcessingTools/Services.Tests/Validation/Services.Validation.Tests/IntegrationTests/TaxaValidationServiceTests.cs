@@ -6,8 +6,8 @@
     using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;

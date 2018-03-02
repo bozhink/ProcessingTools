@@ -3,7 +3,7 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Contracts.Clients.Bio.Taxonomy;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Services.Contracts.Cache;
 

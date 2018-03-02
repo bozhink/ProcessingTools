@@ -96,10 +96,6 @@
       <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
       <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts.Clients\ProcessingTools.Contracts.Clients.csproj">
-      <Project>{790C5E30-E903-40AE-A45E-FFD4E950C54D}</Project>
-      <Name>ProcessingTools.Contracts.Clients</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
       <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
       <Name>ProcessingTools.Constants</Name>
@@ -167,6 +163,10 @@
     <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
       <Project>{F364BD78-29DE-48BE-9098-B6AE0C468008}</Project>
       <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
+      <Project>{4FA9E8DE-3062-41C5-AB25-A44776A4C116}</Project>
+      <Name>ProcessingTools.Clients.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>

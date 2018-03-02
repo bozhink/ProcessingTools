@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Clients.Bio.Taxonomy
+namespace ProcessingTools.Clients.Contracts.Bio.Taxonomy
 {
     using ProcessingTools.Clients.Models.Bio.Taxonomy.CatalogueOfLife.Xml;
     using ProcessingTools.Contracts;

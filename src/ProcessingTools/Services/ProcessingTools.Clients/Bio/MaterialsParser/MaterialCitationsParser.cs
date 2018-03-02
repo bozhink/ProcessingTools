@@ -8,9 +8,9 @@ namespace ProcessingTools.Clients.Bio.MaterialsParser
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Clients.Bio;
 
     /// <summary>
     /// Material citations parser.

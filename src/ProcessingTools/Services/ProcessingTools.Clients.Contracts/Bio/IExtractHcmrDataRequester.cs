@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Clients.Bio
+namespace ProcessingTools.Clients.Contracts.Bio
 {
     using ProcessingTools.Clients.Models.Bio.ExtractHcmr.Xml;
     using ProcessingTools.Contracts;

@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.Data.Miners.Miners.Bio.Environments
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Clients.Bio;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Environments;
     using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
     using ProcessingTools.Data.Miners.Models.Bio.Environments;

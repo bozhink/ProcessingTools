@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Clients.Bio;
     using ProcessingTools.Processors.Contracts.Bio.Materials;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 

@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Clients.Bio.Taxonomy
+namespace ProcessingTools.Clients.Contracts.Bio.Taxonomy
 {
     using System.Threading.Tasks;
     using System.Xml;

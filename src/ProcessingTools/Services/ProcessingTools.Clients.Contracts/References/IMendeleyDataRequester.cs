@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Clients.References
+namespace ProcessingTools.Clients.Contracts.References
 {
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Models.References.Mendeley;
