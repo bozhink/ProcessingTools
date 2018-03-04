@@ -142,6 +142,10 @@
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj">
+      <Project>{76075CD7-8071-4F78-92F7-6E8416848484}</Project>
+      <Name>ProcessingTools.Harvesters.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
       <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>
       <Name>ProcessingTools.Processors.Contracts</Name>

@@ -2,10 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters.ExternalLinks
+namespace ProcessingTools.Harvesters.Contracts.ExternalLinks
 {
-    using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
+    using ProcessingTools.Harvesters.Models.Contracts.ExternalLinks;
 
     /// <summary>
     /// External links harvester.

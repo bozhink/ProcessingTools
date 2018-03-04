@@ -8,23 +8,23 @@ namespace ProcessingTools.Harvesters.Content
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Harvesters.Contracts.Content;
 
     /// <summary>
     /// Text Content Harvester
     /// </summary>
     public class TextContentHarvester : ITextContentHarvester
     {
-        private readonly ITextContentTransformersFactory transformersFactory;
+        private readonly ITextContentTransformerFactory transformerFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TextContentHarvester"/> class.
         /// </summary>
-        /// <param name="transformersFactory">Factory of <see cref="IXmlTransformer"/>.</param>
-        public TextContentHarvester(ITextContentTransformersFactory transformersFactory)
+        /// <param name="transformerFactory">Factory of <see cref="IXmlTransformer"/>.</param>
+        public TextContentHarvester(ITextContentTransformerFactory transformerFactory)
         {
-            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
         /// <inheritdoc/>
@@ -35,7 +35,7 @@ namespace ProcessingTools.Harvesters.Content
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var content = await this.transformersFactory
+            var content = await this.transformerFactory
                 .GetTextContentTransformer()
                 .TransformAsync(context)
                 .ConfigureAwait(false);

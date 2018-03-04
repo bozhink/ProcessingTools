@@ -2,10 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters.Abbreviations
+namespace ProcessingTools.Harvesters.Contracts.Abbreviations
 {
-    using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
+    using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
 
     /// <summary>
     /// Abbreviations harvester.

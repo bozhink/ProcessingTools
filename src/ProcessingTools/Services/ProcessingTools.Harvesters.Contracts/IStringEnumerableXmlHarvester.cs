@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters
+namespace ProcessingTools.Harvesters.Contracts
 {
     /// <summary>
     /// Enumerable harvester with <see cref="System.Xml.XmlNode"/> context and string model.

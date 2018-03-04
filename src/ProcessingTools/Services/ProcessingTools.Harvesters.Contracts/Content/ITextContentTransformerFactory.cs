@@ -1,15 +1,15 @@
-﻿// <copyright file="ITextContentTransformersFactory.cs" company="ProcessingTools">
+﻿// <copyright file="ITextContentTransformerFactory.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters.Content
+namespace ProcessingTools.Harvesters.Contracts.Content
 {
     using ProcessingTools.Contracts.Xml;
 
     /// <summary>
     /// Text content transformers factory.
     /// </summary>
-    public interface ITextContentTransformersFactory
+    public interface ITextContentTransformerFactory
     {
         /// <summary>
         /// Gets text content transformer.

@@ -157,6 +157,14 @@
       <Project>{ccbbbb18-d57a-45ad-a676-e5585880081d}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj">
+      <Project>{76075CD7-8071-4F78-92F7-6E8416848484}</Project>
+      <Name>ProcessingTools.Harvesters.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models.Contracts\ProcessingTools.Harvesters.Models.Contracts.csproj">
+      <Project>{DFC99A0C-3645-4E8E-A844-B0EEEBF7BB18}</Project>
+      <Name>ProcessingTools.Harvesters.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>

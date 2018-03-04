@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Data.Miners.Contracts.Bio;
+    using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
     using ProcessingTools.Processors.Models;

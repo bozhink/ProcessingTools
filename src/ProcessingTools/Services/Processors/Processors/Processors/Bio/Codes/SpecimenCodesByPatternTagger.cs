@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Data.Miners.Contracts.Bio.SpecimenCodes;
+    using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
     using ProcessingTools.Processors.Models;

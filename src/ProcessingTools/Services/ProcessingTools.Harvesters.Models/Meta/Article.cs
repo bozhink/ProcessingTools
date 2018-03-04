@@ -5,7 +5,7 @@
 namespace ProcessingTools.Harvesters.Models.Meta
 {
     using System.Collections.Generic;
-    using ProcessingTools.Models.Contracts.Harvesters.Meta;
+    using ProcessingTools.Harvesters.Models.Contracts.Meta;
 
     /// <summary>
     /// Article

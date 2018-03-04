@@ -1,15 +1,15 @@
-﻿// <copyright file="IExternalLinksTransformersFactory.cs" company="ProcessingTools">
+﻿// <copyright file="IExternalLinksTransformerFactory.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters.ExternalLinks
+namespace ProcessingTools.Harvesters.Contracts.ExternalLinks
 {
     using ProcessingTools.Contracts.Xml;
 
     /// <summary>
     /// External links transformers factory.
     /// </summary>
-    public interface IExternalLinksTransformersFactory
+    public interface IExternalLinksTransformerFactory
     {
         /// <summary>
         /// Gets external links transformer.

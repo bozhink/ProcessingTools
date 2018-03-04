@@ -8,10 +8,10 @@
     using Moq;
     using ProcessingTools.Common.Serialization;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Harvesters;
+    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Harvesters.ExternalLinks;
-    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
+    using ProcessingTools.Harvesters.Models.Contracts.ExternalLinks;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;
@@ -46,12 +46,12 @@
             var transformer = new XslTransformer(
                 AppSettings.ExternalLinksXslFileName,
                 xslCache);
-            var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
-            transformersFactoryMock
+            var transformerFactoryMock = new Mock<IExternalLinksTransformerFactory>();
+            transformerFactoryMock
                 .Setup(f => f.GetExternalLinksTransformer())
                 .Returns(transformer);
 
-            var harvester = new ExternalLinksHarvester(harvesterCore, serializer, transformersFactoryMock.Object);
+            var harvester = new ExternalLinksHarvester(harvesterCore, serializer, transformerFactoryMock.Object);
 
             // Act
             var externalLinks = harvester.HarvestAsync(document.DocumentElement).Result?.ToList();

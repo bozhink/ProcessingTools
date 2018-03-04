@@ -4,6 +4,9 @@
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Harvesters.Contracts.Abbreviations;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
@@ -146,7 +149,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Services.Contracts.Documents.IDocumentsFormatTransformersFactory>()
+            this.Bind<ProcessingTools.Services.Contracts.Documents.IDocumentsFormatTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -158,11 +161,11 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Harvesters.ExternalLinks.IExternalLinksTransformersFactory>()
+            this.Bind<IExternalLinksTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Harvesters.Content.ITextContentTransformersFactory>()
+            this.Bind<ITextContentTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -170,7 +173,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Harvesters.Abbreviations.IAbbreviationsTransformersFactory>()
+            this.Bind<IAbbreviationsTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
 

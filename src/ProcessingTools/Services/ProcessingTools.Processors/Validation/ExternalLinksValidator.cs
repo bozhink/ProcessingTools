@@ -8,8 +8,8 @@ namespace ProcessingTools.Processors.Validation
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Processors.Contracts.Validation;
     using ProcessingTools.Services.Contracts.Validation;
 

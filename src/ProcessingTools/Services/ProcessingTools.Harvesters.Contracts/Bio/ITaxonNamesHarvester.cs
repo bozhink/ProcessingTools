@@ -2,11 +2,10 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters.Bio
+namespace ProcessingTools.Harvesters.Contracts.Bio
 {
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Harvesters;
 
     /// <summary>
     /// Taxon names harvester.

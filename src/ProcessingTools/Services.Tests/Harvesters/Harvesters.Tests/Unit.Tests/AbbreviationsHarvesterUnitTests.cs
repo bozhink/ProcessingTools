@@ -3,11 +3,11 @@
     using System;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Harvesters.Abbreviations;
-    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
+    using ProcessingTools.Harvesters.Contracts;
+    using ProcessingTools.Harvesters.Contracts.Abbreviations;
+    using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(AbbreviationsHarvester))]
@@ -15,7 +15,7 @@
     {
         private const string HarvesterCoreFieldName = "harvesterCore";
         private const string SerializerFieldName = "serializer";
-        private const string TransformersFactoryFieldName = "transformersFactory";
+        private const string TransformerFactoryFieldName = "transformerFactory";
         private static readonly Type HarvesterType = typeof(AbbreviationsHarvester);
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(AbbreviationsHarvester), Description = "AbbreviationsHarvester with valid parameters in constructor should correctly initialize new instance.")]
@@ -26,10 +26,10 @@
             var harvesterCore = harvesterCoreMock.Object;
 
             var serializerMock = new Mock<IXmlTransformDeserializer>();
-            var transformersFactoryMock = new Mock<IAbbreviationsTransformersFactory>();
+            var transformerFactoryMock = new Mock<IAbbreviationsTransformerFactory>();
 
             // Act
-            var harvester = new AbbreviationsHarvester(harvesterCore, serializerMock.Object, transformersFactoryMock.Object);
+            var harvester = new AbbreviationsHarvester(harvesterCore, serializerMock.Object, transformerFactoryMock.Object);
 
             // Assert
             Assert.IsNotNull(harvester);
@@ -44,10 +44,10 @@
             Assert.IsInstanceOf<IXmlTransformDeserializer>(serializerField);
             Assert.AreSame(serializerMock.Object, serializerField);
 
-            var transformersFactoryField = PrivateField.GetInstanceField(HarvesterType, harvester, TransformersFactoryFieldName);
-            Assert.IsNotNull(transformersFactoryField);
-            Assert.IsInstanceOf<IAbbreviationsTransformersFactory>(transformersFactoryField);
-            Assert.AreSame(transformersFactoryMock.Object, transformersFactoryField);
+            var transformerFactoryField = PrivateField.GetInstanceField(HarvesterType, harvester, TransformerFactoryFieldName);
+            Assert.IsNotNull(transformerFactoryField);
+            Assert.IsInstanceOf<IAbbreviationsTransformerFactory>(transformerFactoryField);
+            Assert.AreSame(transformerFactoryMock.Object, transformerFactoryField);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(AbbreviationsHarvester), Description = "AbbreviationsHarvester with null harvesterCore in constructor should throw ArgumentNullException with correct ParamName.")]
@@ -55,12 +55,12 @@
         {
             // Arrange
             var serializerMock = new Mock<IXmlTransformDeserializer>();
-            var transformersFactoryMock = new Mock<IAbbreviationsTransformersFactory>();
+            var transformerFactoryMock = new Mock<IAbbreviationsTransformerFactory>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                new AbbreviationsHarvester(null, serializerMock.Object, transformersFactoryMock.Object);
+                new AbbreviationsHarvester(null, serializerMock.Object, transformerFactoryMock.Object);
             });
 
             Assert.AreEqual(HarvesterCoreFieldName, exception.ParamName);
@@ -79,7 +79,7 @@
                 new AbbreviationsHarvester(harvesterCoreMock.Object, serializerMock.Object, null);
             });
 
-            Assert.AreEqual(TransformersFactoryFieldName, exception.ParamName);
+            Assert.AreEqual(TransformerFactoryFieldName, exception.ParamName);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(AbbreviationsHarvester), Description = "AbbreviationsHarvester with null serializer in constructor should throw ArgumentNullException with correct ParamName.")]
@@ -87,12 +87,12 @@
         {
             // Arrange
             var harvesterCoreMock = new Mock<IEnumerableXmlHarvesterCore<IAbbreviationModel>>();
-            var transformersFactoryMock = new Mock<IAbbreviationsTransformersFactory>();
+            var transformerFactoryMock = new Mock<IAbbreviationsTransformerFactory>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                new AbbreviationsHarvester(harvesterCoreMock.Object, null, transformersFactoryMock.Object);
+                new AbbreviationsHarvester(harvesterCoreMock.Object, null, transformerFactoryMock.Object);
             });
 
             Assert.AreEqual(SerializerFieldName, exception.ParamName);

@@ -10,8 +10,8 @@
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Harvesters.Meta;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Harvesters.Contracts.Meta;
     using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;

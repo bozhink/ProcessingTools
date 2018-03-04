@@ -106,6 +106,10 @@
       <Project>{1FE4A6DB-F86A-47A3-A3FC-A829D6B86192}</Project>
       <Name>ProcessingTools.Data.Miners.Models.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj">
+      <Project>{76075CD7-8071-4F78-92F7-6E8416848484}</Project>
+      <Name>ProcessingTools.Harvesters.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
       <Project>{5201cf47-75b8-445a-a12b-c4d9c1fe7df3}</Project>
       <Name>ProcessingTools.Processors.Contracts</Name>

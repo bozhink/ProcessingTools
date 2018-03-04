@@ -3,11 +3,11 @@
     using System;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Contracts.Harvesters.ExternalLinks;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Harvesters.Contracts;
+    using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Harvesters.ExternalLinks;
-    using ProcessingTools.Models.Contracts.Harvesters.ExternalLinks;
+    using ProcessingTools.Harvesters.Models.Contracts.ExternalLinks;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Unit Tests", TestOf = typeof(ExternalLinksHarvester))]
@@ -15,7 +15,7 @@
     {
         private const string HarvesterCoreFieldName = "harvesterCore";
         private const string SerializerFieldName = "serializer";
-        private const string TransformersFactoryFieldName = "transformersFactory";
+        private const string TransformerFactoryFieldName = "transformerFactory";
         private static readonly Type HarvesterType = typeof(ExternalLinksHarvester);
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with valid parameters in constructor should correctly initialize new instance.")]
@@ -24,10 +24,10 @@
             // Arrange
             var harvesterCoreMock = new Mock<IEnumerableXmlHarvesterCore<IExternalLinkModel>>();
             var serializerMock = new Mock<IXmlTransformDeserializer>();
-            var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
+            var transformerFactoryMock = new Mock<IExternalLinksTransformerFactory>();
 
             // Act
-            var harvester = new ExternalLinksHarvester(harvesterCoreMock.Object, serializerMock.Object, transformersFactoryMock.Object);
+            var harvester = new ExternalLinksHarvester(harvesterCoreMock.Object, serializerMock.Object, transformerFactoryMock.Object);
 
             // Assert
             Assert.IsNotNull(harvester);
@@ -42,10 +42,10 @@
             Assert.IsInstanceOf<IXmlTransformDeserializer>(serializerField);
             Assert.AreSame(serializerMock.Object, serializerField);
 
-            var transformersFactoryField = PrivateField.GetInstanceField(HarvesterType, harvester, TransformersFactoryFieldName);
-            Assert.IsNotNull(transformersFactoryField);
-            Assert.IsInstanceOf<IExternalLinksTransformersFactory>(transformersFactoryField);
-            Assert.AreSame(transformersFactoryMock.Object, transformersFactoryField);
+            var transformerFactoryField = PrivateField.GetInstanceField(HarvesterType, harvester, TransformerFactoryFieldName);
+            Assert.IsNotNull(transformerFactoryField);
+            Assert.IsInstanceOf<IExternalLinksTransformerFactory>(transformerFactoryField);
+            Assert.AreSame(transformerFactoryMock.Object, transformerFactoryField);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null harvesterCore in constructor should throw ArgumentNullException with correct ParamName.")]
@@ -53,12 +53,12 @@
         {
             // Arrange
             var serializerMock = new Mock<IXmlTransformDeserializer>();
-            var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
+            var transformerFactoryMock = new Mock<IExternalLinksTransformerFactory>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                new ExternalLinksHarvester(null, serializerMock.Object, transformersFactoryMock.Object);
+                new ExternalLinksHarvester(null, serializerMock.Object, transformerFactoryMock.Object);
             });
 
             Assert.AreEqual(HarvesterCoreFieldName, exception.ParamName);
@@ -77,7 +77,7 @@
                 new ExternalLinksHarvester(harvesterCoreMock.Object, serializerMock.Object, null);
             });
 
-            Assert.AreEqual(TransformersFactoryFieldName, exception.ParamName);
+            Assert.AreEqual(TransformerFactoryFieldName, exception.ParamName);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ExternalLinksHarvester), Description = "ExternalLinksHarvester with null serializer in constructor should throw ArgumentNullException with correct ParamName.")]
@@ -85,12 +85,12 @@
         {
             // Arrange
             var harvesterCoreMock = new Mock<IEnumerableXmlHarvesterCore<IExternalLinkModel>>();
-            var transformersFactoryMock = new Mock<IExternalLinksTransformersFactory>();
+            var transformerFactoryMock = new Mock<IExternalLinksTransformerFactory>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                new ExternalLinksHarvester(harvesterCoreMock.Object, null, transformersFactoryMock.Object);
+                new ExternalLinksHarvester(harvesterCoreMock.Object, null, transformerFactoryMock.Object);
             });
 
             Assert.AreEqual(SerializerFieldName, exception.ParamName);

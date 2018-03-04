@@ -2,10 +2,8 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters.Content
+namespace ProcessingTools.Harvesters.Contracts.Content
 {
-    using ProcessingTools.Contracts.Harvesters;
-
     /// <summary>
     /// Text content harvester.
     /// </summary>

@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Harvesters.Models.Meta
 {
-    using ProcessingTools.Models.Contracts.Harvesters.Meta;
+    using ProcessingTools.Harvesters.Models.Contracts.Meta;
 
     /// <summary>
     /// Author

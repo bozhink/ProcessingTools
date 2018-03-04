@@ -8,10 +8,10 @@
     using Moq;
     using ProcessingTools.Common.Serialization;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters;
     using ProcessingTools.Harvesters.Abbreviations;
-    using ProcessingTools.Models.Contracts.Harvesters.Abbreviations;
+    using ProcessingTools.Harvesters.Contracts.Abbreviations;
+    using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;
@@ -45,12 +45,12 @@
             var transformer = new XQueryTransformer(
                 AppSettings.AbbreviationsXQueryFileName,
                 xqueryCache);
-            var transformersFactoryMock = new Mock<IAbbreviationsTransformersFactory>();
-            transformersFactoryMock
+            var transformerFactoryMock = new Mock<IAbbreviationsTransformerFactory>();
+            transformerFactoryMock
                 .Setup(f => f.GetAbbreviationsTransformer())
                 .Returns(transformer);
 
-            var harvester = new AbbreviationsHarvester(harvesterCore, serializer, transformersFactoryMock.Object);
+            var harvester = new AbbreviationsHarvester(harvesterCore, serializer, transformerFactoryMock.Object);
 
             // Act
             var abbreviations = harvester.HarvestAsync(document.DocumentElement).Result?.ToList();

@@ -7,8 +7,8 @@ namespace ProcessingTools.Harvesters
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Harvesters;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Harvesters.Contracts;
 
     /// <summary>
     /// Default implementation of <see cref="IEnumerableXmlHarvesterCore{TModel}"/>.

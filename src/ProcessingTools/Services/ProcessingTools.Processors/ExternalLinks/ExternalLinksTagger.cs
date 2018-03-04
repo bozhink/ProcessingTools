@@ -8,9 +8,9 @@ namespace ProcessingTools.Processors.ExternalLinks
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Data.Miners.Contracts.ExternalLinks;
     using ProcessingTools.Extensions;
+    using ProcessingTools.Harvesters.Contracts.Content;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.ExternalLinks;
     using ProcessingTools.Processors.Models;

@@ -2,10 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Harvesters.Meta
+namespace ProcessingTools.Harvesters.Contracts.Meta
 {
-    using ProcessingTools.Contracts.Harvesters;
-    using ProcessingTools.Models.Contracts.Harvesters.Meta;
+    using ProcessingTools.Harvesters.Models.Contracts.Meta;
 
     /// <summary>
     /// Person names harvester.

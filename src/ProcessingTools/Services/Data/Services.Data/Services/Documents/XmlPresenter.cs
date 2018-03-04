@@ -10,12 +10,12 @@
     public class XmlPresenter : IXmlPresenter
     {
         private readonly IDocumentsDataService service;
-        private readonly IDocumentsFormatTransformersFactory transformersFactory;
+        private readonly IDocumentsFormatTransformerFactory transformerFactory;
 
-        public XmlPresenter(IDocumentsDataService service, IDocumentsFormatTransformersFactory transformersFactory)
+        public XmlPresenter(IDocumentsDataService service, IDocumentsFormatTransformerFactory transformerFactory)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
-            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
         public async Task<string> GetHtmlAsync(object userId, object articleId, object documentId)
@@ -36,7 +36,7 @@
             }
 
             var reader = await this.service.GetReaderAsync(userId, articleId, documentId).ConfigureAwait(false);
-            var content = await this.transformersFactory
+            var content = await this.transformerFactory
                 .GetFormatXmlToHtmlTransformer()
                 .TransformAsync(reader, true)
                 .ConfigureAwait(false);
@@ -105,7 +105,7 @@
                 .Replace("&nbsp;", " ")
                 .Replace("<br>", @"<span elem-name=""break""></span>"));
 
-            var xmlContent = await this.transformersFactory
+            var xmlContent = await this.transformerFactory
                 .GetFormatHtmlToXmlTransformer()
                 .TransformAsync(xmlDocument)
                 .ConfigureAwait(false);

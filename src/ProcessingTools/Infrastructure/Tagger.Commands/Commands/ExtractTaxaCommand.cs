@@ -7,7 +7,7 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.Harvesters.Bio;
+    using ProcessingTools.Harvesters.Contracts.Bio;
 
     public class ExtractTaxaCommand : IExtractTaxaCommand
     {
