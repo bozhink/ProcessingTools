@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Data.Miners.Models.Bio.Environments
 {
-    using ProcessingTools.Data.Miners.Contracts.Models.Bio.Environments;
+    using ProcessingTools.Data.Miners.Models.Contracts.Bio.Environments;
 
     /// <summary>
     /// EXTRACT HCMR ENVO teem.

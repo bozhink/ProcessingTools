@@ -2,10 +2,10 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Miners.Miners.Institutions
+namespace ProcessingTools.Data.Miners.Institutions
 {
-    using ProcessingTools.Data.Miners.Contracts.Miners.Institutions;
-    using ProcessingTools.Data.Miners.Generics;
+    using ProcessingTools.Data.Miners.Abstractions;
+    using ProcessingTools.Data.Miners.Contracts.Institutions;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Contracts.Resources;

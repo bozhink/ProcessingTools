@@ -18,13 +18,13 @@
  * 2.2–2.6 mm
  */
 
-namespace ProcessingTools.Data.Miners.Miners.Quantities
+namespace ProcessingTools.Data.Miners.Quantities
 {
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Quantities;
+    using ProcessingTools.Data.Miners.Contracts.Quantities;
     using ProcessingTools.Extensions;
 
     public class QuantitiesDataMiner : IQuantitiesDataMiner

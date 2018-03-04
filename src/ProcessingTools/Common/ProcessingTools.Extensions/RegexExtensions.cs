@@ -5,6 +5,7 @@
 namespace ProcessingTools.Extensions
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
@@ -56,9 +57,9 @@ namespace ProcessingTools.Extensions
         /// <param name="input">The string to search for a match.</param>
         /// <param name="regex"><see cref="Regex"/> to match.</param>
         /// <returns>Evaluated regex.</returns>
-        public static IEnumerable<string> GetMatches(this string input, Regex regex)
+        public static string[] GetMatches(this string input, Regex regex)
         {
-            return new HashSet<string>(regex.Match(input: input).AsEnumerable());
+            return new HashSet<string>(regex.Match(input: input).AsEnumerable()).ToArray();
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace ProcessingTools.Extensions
         /// <param name="input">The string to search for a match.</param>
         /// <param name="regex"><see cref="Regex"/> to match.</param>
         /// <returns>Task of evaluated regex.</returns>
-        public static Task<IEnumerable<string>> GetMatchesAsync(this string input, Regex regex)
+        public static Task<string[]> GetMatchesAsync(this string input, Regex regex)
         {
             return Task.Run(() => input.GetMatches(regex));
         }
