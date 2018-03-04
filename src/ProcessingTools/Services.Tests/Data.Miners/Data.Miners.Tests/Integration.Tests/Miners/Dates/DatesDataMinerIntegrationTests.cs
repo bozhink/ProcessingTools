@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using NUnit.Framework;
-    using ProcessingTools.Data.Miners.Miners.Dates;
+    using ProcessingTools.Data.Miners.Dates;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(DatesDataMiner))]
     public class DatesDataMinerIntegrationTests

@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using NUnit.Framework;
-    using ProcessingTools.Data.Miners.Miners.Geo;
+    using ProcessingTools.Data.Miners.Geo;
 
     [TestFixture]
     public class CoordinatesDataMinerTests
