@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Abstractions
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Miners;
+    using ProcessingTools.Data.Miners.Contracts;
     using ProcessingTools.Processors.Contracts;
 
     /// <summary>

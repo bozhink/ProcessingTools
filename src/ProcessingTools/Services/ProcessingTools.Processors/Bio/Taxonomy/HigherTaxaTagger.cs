@@ -12,7 +12,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
     using ProcessingTools.Contracts.Harvesters.Meta;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.Taxonomy;
+    using ProcessingTools.Data.Miners.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts;

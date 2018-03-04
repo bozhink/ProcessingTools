@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Institutions
 {
-    using ProcessingTools.Data.Miners.Contracts.Miners.Institutions;
+    using ProcessingTools.Data.Miners.Contracts.Institutions;
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Institutions;

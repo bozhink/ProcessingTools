@@ -32,6 +32,8 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Miners.Contracts\ProcessingTools.Data.Miners.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj" />
   </ItemGroup>

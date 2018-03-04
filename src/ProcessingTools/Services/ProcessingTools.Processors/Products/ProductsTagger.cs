@@ -4,7 +4,7 @@
 
 namespace ProcessingTools.Processors.Products
 {
-    using ProcessingTools.Data.Miners.Contracts.Miners.Products;
+    using ProcessingTools.Data.Miners.Contracts.Products;
     using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Products;
