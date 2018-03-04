@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Harvesters.Content;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Models.Contracts.Services.Data.Bio.Biorepositories;
+    using ProcessingTools.Data.Miners.Contracts.Bio;
     using ProcessingTools.Processors.Contracts;
     using ProcessingTools.Processors.Contracts.Bio.Codes;
     using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
     public class InstitutionalCodesTagger : IInstitutionalCodesTagger
     {

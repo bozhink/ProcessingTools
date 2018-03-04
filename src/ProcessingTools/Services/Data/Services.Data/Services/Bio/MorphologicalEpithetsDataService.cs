@@ -5,9 +5,9 @@
     using ProcessingTools.Bio.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Bio.Data.Entity.Models;
     using ProcessingTools.Models.Contracts;
-    using ProcessingTools.Models.Contracts.Services.Data.Bio;
     using ProcessingTools.Services.Abstractions;
     using ProcessingTools.Services.Contracts.Bio;
+    using ProcessingTools.Services.Models.Contracts.Bio;
 
     public class MorphologicalEpithetsDataService : AbstractMultiDataServiceAsync<MorphologicalEpithet, IMorphologicalEpithet, IFilter>, IMorphologicalEpithetsDataService
     {

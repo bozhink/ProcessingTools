@@ -98,6 +98,14 @@
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Miners.Contracts\ProcessingTools.Data.Miners.Contracts.csproj">
+      <Project>{6B8C6024-1B83-4429-B480-BE38C84D7118}</Project>
+      <Name>ProcessingTools.Data.Miners.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Miners.Models.Contracts\ProcessingTools.Data.Miners.Models.Contracts.csproj">
+      <Project>{1FE4A6DB-F86A-47A3-A3FC-A829D6B86192}</Project>
+      <Name>ProcessingTools.Data.Miners.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
       <Project>{5201cf47-75b8-445a-a12b-c4d9c1fe7df3}</Project>
       <Name>ProcessingTools.Processors.Contracts</Name>
@@ -117,6 +125,10 @@
     <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{a1c5ad6e-32a0-43aa-8191-3fb503ac4f8d}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

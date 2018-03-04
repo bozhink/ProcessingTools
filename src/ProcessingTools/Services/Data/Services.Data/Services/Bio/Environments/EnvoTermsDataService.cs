@@ -7,8 +7,8 @@
     using ProcessingTools.Bio.Environments.Data.Entity.Models;
     using ProcessingTools.Constants;
     using ProcessingTools.Exceptions;
-    using ProcessingTools.Models.Contracts.Services.Data.Bio.Environments;
     using ProcessingTools.Services.Contracts.Bio.Environments;
+    using ProcessingTools.Services.Models.Contracts.Bio.Environments;
     using ProcessingTools.Services.Models.Data.Bio.Environments;
 
     public class EnvoTermsDataService : IEnvoTermsDataService
