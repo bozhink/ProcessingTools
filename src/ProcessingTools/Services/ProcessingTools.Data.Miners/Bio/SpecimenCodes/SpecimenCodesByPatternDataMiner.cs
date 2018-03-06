@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Miners.Bio.SpecimenCodes
+﻿// <copyright file="SpecimenCodesByPatternDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Bio.SpecimenCodes
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -9,10 +13,16 @@
     using ProcessingTools.Data.Miners.Models.Contracts.Bio.SpecimenCodes;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Specimen codes by pattern data miner.
+    /// </summary>
     public class SpecimenCodesByPatternDataMiner : ISpecimenCodesByPatternDataMiner
     {
         private readonly IDictionary<string, string> patterns;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SpecimenCodesByPatternDataMiner"/> class.
+        /// </summary>
         public SpecimenCodesByPatternDataMiner()
         {
             this.patterns = new Dictionary<string, string>
@@ -47,6 +57,7 @@
             };
         }
 
+        /// <inheritdoc/>
         public Task<ISpecimenCode[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))

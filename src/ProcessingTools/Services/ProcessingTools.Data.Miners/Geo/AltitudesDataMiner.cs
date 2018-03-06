@@ -1,4 +1,8 @@
-﻿/*
+﻿// <copyright file="AltitudesDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+/*
  * 6–8 m depth
  * Elevation: 2880 m
  * Elevation: 2900
@@ -15,10 +19,14 @@ namespace ProcessingTools.Data.Miners.Geo
     using ProcessingTools.Data.Miners.Contracts.Geo;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Altitudes data miner.
+    /// </summary>
     public class AltitudesDataMiner : IAltitudesDataMiner
     {
         private const string DistancePattern = @"(\d+(?:[,\.]\d+)?(?:\s*[\(\)\[\]\{\}×\*])?\s*)+?k?m";
 
+        /// <inheritdoc/>
         public Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))

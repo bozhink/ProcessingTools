@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Miners.Dates
+﻿// <copyright file="DatesDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Dates
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -8,6 +12,9 @@
     using ProcessingTools.Data.Miners.Contracts.Dates;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Dates data miner.
+    /// </summary>
     public class DatesDataMiner : IDatesDataMiner
     {
         private const string RangeSubpattern = @"\s*(?:[–—−‒-]+|to)\s*";
@@ -23,6 +30,7 @@
 
         private const string MonthArabicSubpattern = @"(?<!\d)(?:0?[1-9]|1[0-2])(?!\d)";
 
+        /// <inheritdoc/>
         public async Task<string[]> MineAsync(string context)
         {
             var patterns = new string[]

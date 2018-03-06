@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Miners.Bio.Taxonomy
+﻿// <copyright file="HigherTaxaDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -8,10 +12,14 @@
     using ProcessingTools.Data.Miners.Contracts.Bio.Taxonomy;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Higher taxa data miner.
+    /// </summary>
     public class HigherTaxaDataMiner : IHigherTaxaDataMiner
     {
         private readonly Regex matchHigherTaxa = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
+        /// <inheritdoc/>
         public Task<string[]> MineAsync(string context, IEnumerable<string> seed, IEnumerable<string> stopWords)
         {
             return Task.Run(() =>

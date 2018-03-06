@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Miners.Geo
+﻿// <copyright file="CoordinatesDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Geo
 {
     using System;
     using System.Collections.Concurrent;
@@ -9,8 +13,12 @@
     using ProcessingTools.Data.Miners.Contracts.Geo;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Coordinates data miner.
+    /// </summary>
     public class CoordinatesDataMiner : ICoordinatesDataMiner
     {
+        /// <inheritdoc/>
         public async Task<string[]> MineAsync(string context)
         {
             var internalMiner = new InternalMiner(Regex.Replace(context, @"(?:[º°˚]|(?<=\d\s?)o(?![A-Za-z]))", "°"));

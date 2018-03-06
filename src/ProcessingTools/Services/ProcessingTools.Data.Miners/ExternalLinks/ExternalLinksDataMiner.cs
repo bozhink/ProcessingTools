@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Miners.ExternalLinks
+﻿// <copyright file="ExternalLinksDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.ExternalLinks
 {
     using System;
     using System.Collections.Concurrent;
@@ -12,6 +16,9 @@
     using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// External links data miner.
+    /// </summary>
     public class ExternalLinksDataMiner : IExternalLinksDataMiner
     {
         private const string UriPatternSuffix = @"(?=(?:&gt;|>)?(?:[,;:\.\)\]]+)?(?:\s|$)|$)";
@@ -33,6 +40,7 @@
         private const string PmcidPattern = @"(?i)\bpmc\W*\d+|(?i)(?<=\bpmcid\W*)\d+";
         private const string PmidPattern = @"(?i)(?<=\bpmid\W*)\d+";
 
+        /// <inheritdoc/>
         public Task<IExternalLink[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Data.Miners.Bio.Environments
+﻿// <copyright file="ExtractHcmrDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Miners.Bio.Environments
 {
     using System;
     using System.Linq;
@@ -8,15 +12,23 @@
     using ProcessingTools.Data.Miners.Models.Bio.Environments;
     using ProcessingTools.Data.Miners.Models.Contracts.Bio.Environments;
 
+    /// <summary>
+    /// EXTRACT HCMR data miner.
+    /// </summary>
     public class ExtractHcmrDataMiner : IExtractHcmrDataMiner
     {
         private readonly IExtractHcmrDataRequester requester;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtractHcmrDataMiner"/> class.
+        /// </summary>
+        /// <param name="requester">Instance of <see cref="IExtractHcmrDataRequester"/>.</param>
         public ExtractHcmrDataMiner(IExtractHcmrDataRequester requester)
         {
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
+        /// <inheritdoc/>
         public async Task<IExtractHcmrEnvoTerm[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))

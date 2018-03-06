@@ -1,4 +1,8 @@
-﻿/*
+﻿// <copyright file="QuantitiesDataMiner.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+/*
  * ~16–~61m
  * 28.4–30.0 °C
  * * 30.1–31.2 ppt
@@ -27,8 +31,12 @@ namespace ProcessingTools.Data.Miners.Quantities
     using ProcessingTools.Data.Miners.Contracts.Quantities;
     using ProcessingTools.Extensions;
 
+    /// <summary>
+    /// Quantities data miner.
+    /// </summary>
     public class QuantitiesDataMiner : IQuantitiesDataMiner
     {
+        /// <inheritdoc/>
         public async Task<string[]> MineAsync(string context)
         {
             if (string.IsNullOrWhiteSpace(context))
