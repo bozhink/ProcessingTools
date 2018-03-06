@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Journals
+﻿// <copyright file="PublishersDataService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Journals
 {
     using System;
     using System.Linq;
@@ -15,18 +19,29 @@
     using TRepository = ProcessingTools.Data.Contracts.Journals.IPublishersRepository;
     using TServiceModel = ProcessingTools.Models.Contracts.Services.Data.Journals.IPublisher;
 
+    /// <summary>
+    /// Publishers data service.
+    /// </summary>
     public class PublishersDataService : AbstractAddresssableDataService<TServiceModel, TDetailedServiceModel, TDataModel, TRepository>, IPublishersDataService
     {
         private readonly IObjectHistoryDataService objectHistoriesService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PublishersDataService"/> class.
+        /// </summary>
+        /// <param name="repository">Instance of <see cref="ProcessingTools.Data.Contracts.Journals.IPublishersRepository"/>.</param>
+        /// <param name="applicationContext">Application context.</param>
+        /// <param name="objectHistoriesService">Instance of <see cref="IObjectHistoryDataService"/>.</param>
         public PublishersDataService(TRepository repository, IApplicationContext applicationContext, IObjectHistoryDataService objectHistoriesService)
             : base(repository, applicationContext)
         {
             this.objectHistoriesService = objectHistoriesService ?? throw new ArgumentNullException(nameof(objectHistoriesService));
         }
 
+        /// <inheritdoc/>
         public bool SaveToHistory { get; set; } = true;
 
+        /// <inheritdoc/>
         protected override Func<TDataModel, TDetailedServiceModel> MapDataModelToDetailedServiceModel => dataModel => new PublisherDetails
         {
             Id = dataModel.Id,
@@ -47,6 +62,7 @@
                 .ToList<IAddress>()
         };
 
+        /// <inheritdoc/>
         protected override Func<TDataModel, TServiceModel> MapDataModelToServiceModel => dataModel => new Publisher
         {
             Id = dataModel.Id,
@@ -54,6 +70,7 @@
             Name = dataModel.Name
         };
 
+        /// <inheritdoc/>
         public override async Task<object> AddAsync(object userId, TServiceModel model)
         {
             if (userId == null)
@@ -90,6 +107,7 @@
             return dataModel.Id;
         }
 
+        /// <inheritdoc/>
         public override async Task<object> UpdateAsync(object userId, TServiceModel model)
         {
             if (userId == null)
@@ -126,6 +144,7 @@
             return model.Id;
         }
 
+        /// <inheritdoc/>
         public override async Task<object> AddAddressAsync(object userId, object modelId, IAddress address)
         {
             var result = await base.AddAddressAsync(userId, modelId, address).ConfigureAwait(false);
@@ -139,6 +158,7 @@
             return result;
         }
 
+        /// <inheritdoc/>
         public override async Task<object> UpdateAddressAsync(object userId, object modelId, IAddress address)
         {
             var result = await base.UpdateAddressAsync(userId, modelId, address).ConfigureAwait(false);
@@ -152,6 +172,7 @@
             return result;
         }
 
+        /// <inheritdoc/>
         public override async Task<object> RemoveAddressAsync(object userId, object modelId, object addressId)
         {
             var result = await base.RemoveAddressAsync(userId, modelId, addressId).ConfigureAwait(false);
