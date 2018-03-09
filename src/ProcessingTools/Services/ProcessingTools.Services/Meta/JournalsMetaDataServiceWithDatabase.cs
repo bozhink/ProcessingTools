@@ -17,21 +17,21 @@ namespace ProcessingTools.Services.Meta
     /// </summary>
     public class JournalsMetaDataServiceWithDatabase : IJournalsMetaDataService
     {
-        private readonly IJournalMetaRepository repository;
+        private readonly IJournalMetaDataAccessObject dataAccessObject;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalsMetaDataServiceWithDatabase"/> class.
         /// </summary>
-        /// <param name="repository">Instance of <see cref="IJournalMetaRepository"/>.</param>
-        public JournalsMetaDataServiceWithDatabase(IJournalMetaRepository repository)
+        /// <param name="dataAccessObject">Instance of <see cref="IJournalMetaDataAccessObject"/>.</param>
+        public JournalsMetaDataServiceWithDatabase(IJournalMetaDataAccessObject dataAccessObject)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
         }
 
         /// <inheritdoc/>
         public async Task<IJournalMeta[]> GetAllJournalsMetaAsync()
         {
-            var data = await this.repository.FindAsync(j => true).ConfigureAwait(false);
+            var data = await this.dataAccessObject.GetAllAsync().ConfigureAwait(false);
             var result = data.Select(j => new JournalMeta
             {
                 AbbreviatedJournalTitle = j.AbbreviatedJournalTitle,

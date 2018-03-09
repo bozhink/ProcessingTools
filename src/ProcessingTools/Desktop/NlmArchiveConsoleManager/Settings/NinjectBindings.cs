@@ -7,6 +7,8 @@
     using Ninject.Modules;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Data.Documents.Mongo;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
@@ -91,15 +93,15 @@
                 .To<ProcessingTools.Services.Meta.JournalsMetaDataServiceWithDatabase>()
                 .WhenInjectedInto<HelpProvider>();
 
-            this.Bind<ProcessingTools.Data.Contracts.Documents.IJournalMetaRepository>()
-                .To<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>();
+            this.Bind<IJournalMetaDataAccessObject>()
+                .To<MongoJournalMetaDataAccessObject>();
 
             string documentsMongoConnection = AppSettings.DocumentsMongoConnection;
             string documentsMongoDabaseName = AppSettings.DocumentsMongoDatabaseName;
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto<ProcessingTools.Documents.Data.Mongo.Repositories.MongoJournalMetaRepository>()
+                .WhenInjectedInto<MongoJournalMetaDataAccessObject>()
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,

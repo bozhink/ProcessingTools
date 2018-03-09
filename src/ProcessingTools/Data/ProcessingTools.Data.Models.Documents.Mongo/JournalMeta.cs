@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Documents.Data.Mongo.Models
+﻿// <copyright file="JournalMeta.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Models.Documents.Mongo
 {
     using System.Text.RegularExpressions;
     using MongoDB.Bson;
@@ -7,38 +11,51 @@
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents;
 
+    /// <summary>
+    /// Journal meta.
+    /// </summary>
     [CollectionName("journalsMeta")]
     public class JournalMeta : IStringIdentifiable, IJournalMeta
     {
+        /// <inheritdoc/>
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         [BsonIgnoreIfDefault]
         public string Id { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string AbbreviatedJournalTitle { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string ArchiveNamePattern { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string FileNamePattern { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string IssnEPub { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string IssnPPub { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string JournalId { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string JournalTitle { get; set; }
 
+        /// <inheritdoc/>
         [BsonIgnore]
         public string Permalink => Regex.Replace(this.AbbreviatedJournalTitle, @"\W+", "_").ToLowerInvariant();
 
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string PublisherName { get; set; }
     }
