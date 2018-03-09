@@ -13,6 +13,9 @@ namespace ProcessingTools.Services.Models.Data.Meta
     public class JournalMeta : IJournalMeta
     {
         /// <inheritdoc/>
+        public string Id { get; set; }
+
+        /// <inheritdoc/>
         public string AbbreviatedJournalTitle { get; set; }
 
         /// <inheritdoc/>

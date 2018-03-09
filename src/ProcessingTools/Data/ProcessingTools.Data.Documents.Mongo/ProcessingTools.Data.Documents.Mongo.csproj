@@ -17,6 +17,7 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="MongoDB.Bson" Version="2.5.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.5.0" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.5.0" />

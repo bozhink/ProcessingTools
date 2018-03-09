@@ -7,11 +7,14 @@ namespace ProcessingTools.Data.Documents.Mongo
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using AutoMapper;
     using MongoDB.Driver;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Models.Documents.Mongo;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Models.Contracts.Documents;
 
     /// <summary>
@@ -19,13 +22,16 @@ namespace ProcessingTools.Data.Documents.Mongo
     /// </summary>
     public class MongoJournalMetaDataAccessObject : IJournalMetaDataAccessObject
     {
+        private readonly IMapper mapper;
         private readonly IMongoDatabase db;
+        private readonly IApplicationContext applicationContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoJournalMetaDataAccessObject"/> class.
         /// </summary>
         /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
-        public MongoJournalMetaDataAccessObject(IMongoDatabaseProvider databaseProvider)
+        /// <param name="applicationContext">Application context.</param>
+        public MongoJournalMetaDataAccessObject(IMongoDatabaseProvider databaseProvider, IApplicationContext applicationContext)
         {
             if (databaseProvider == null)
             {
@@ -34,6 +40,15 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             this.db = databaseProvider.Create();
             this.CollectionName = MongoCollectionNameFactory.Create<JournalMeta>();
+
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<IJournalMeta, JournalMeta>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         private string CollectionName { get; set; }
@@ -41,10 +56,116 @@ namespace ProcessingTools.Data.Documents.Mongo
         private IMongoCollection<JournalMeta> Collection => this.db.GetCollection<JournalMeta>(this.CollectionName);
 
         /// <inheritdoc/>
+        public async Task<object> DeleteAsync(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            var result = await this.Collection.DeleteOneAsync(m => m.Id == id.ToString()).ConfigureAwait(false);
+            return result;
+        }
+
+        /// <inheritdoc/>
         public async Task<IJournalMeta[]> GetAllAsync()
         {
             var data = await this.Collection.Find(m => true).ToListAsync().ConfigureAwait(false);
             return data.ToArray<IJournalMeta>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IJournalMeta> GetAsync(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            var item = await this.Collection.Find(m => m.Id == id.ToString()).FirstOrDefaultAsync().ConfigureAwait(false);
+            return item;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IJournalMeta> InsertAsync(IJournalMeta journalMeta)
+        {
+            if (journalMeta == null)
+            {
+                return null;
+            }
+
+            var item = this.mapper.Map<IJournalMeta, JournalMeta>(journalMeta);
+            item.ModifiedBy = this.applicationContext.UserContext.UserId;
+            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            item.CreatedBy = item.ModifiedBy;
+            item.CreatedOn = item.ModifiedOn;
+
+            var filterDefinition = new FilterDefinitionBuilder<JournalMeta>().Eq(m => m.Id, null);
+            var updateDefinition = new UpdateDefinitionBuilder<JournalMeta>()
+                .Set(m => m.AbbreviatedJournalTitle, item.AbbreviatedJournalTitle)
+                .Set(m => m.ArchiveNamePattern, item.ArchiveNamePattern)
+                .Set(m => m.FileNamePattern, item.FileNamePattern)
+                .Set(m => m.IssnEPub, item.IssnEPub)
+                .Set(m => m.IssnPPub, item.IssnPPub)
+                .Set(m => m.JournalId, item.JournalId)
+                .Set(m => m.JournalTitle, item.JournalTitle)
+                .Set(m => m.PublisherName, item.PublisherName)
+                .Set(m => m.CreatedBy, item.CreatedBy)
+                .Set(m => m.CreatedOn, item.CreatedOn)
+                .Set(m => m.ModifiedBy, item.ModifiedBy)
+                .Set(m => m.ModifiedOn, item.ModifiedOn);
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = true
+            };
+
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+
+            item.Id = result.UpsertedId.AsString;
+
+            return item;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IJournalMeta> UpdateAsync(IJournalMeta journalMeta)
+        {
+            if (journalMeta == null)
+            {
+                return null;
+            }
+
+            var item = this.mapper.Map<IJournalMeta, JournalMeta>(journalMeta);
+            item.ModifiedBy = this.applicationContext.UserContext.UserId;
+            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+
+            var filterDefinition = new FilterDefinitionBuilder<JournalMeta>().Eq(m => m.Id, item.Id);
+            var updateDefinition = new UpdateDefinitionBuilder<JournalMeta>()
+                .Set(m => m.AbbreviatedJournalTitle, item.AbbreviatedJournalTitle)
+                .Set(m => m.ArchiveNamePattern, item.ArchiveNamePattern)
+                .Set(m => m.FileNamePattern, item.FileNamePattern)
+                .Set(m => m.IssnEPub, item.IssnEPub)
+                .Set(m => m.IssnPPub, item.IssnPPub)
+                .Set(m => m.JournalId, item.JournalId)
+                .Set(m => m.JournalTitle, item.JournalTitle)
+                .Set(m => m.PublisherName, item.PublisherName)
+                .Set(m => m.AbbreviatedJournalTitle, item.AbbreviatedJournalTitle)
+                .Set(m => m.ModifiedBy, item.ModifiedBy)
+                .Set(m => m.ModifiedOn, item.ModifiedOn);
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = false
+            };
+
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+
+            if (result.UpsertedId.AsString != journalMeta.Id)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            return item;
         }
     }
 }

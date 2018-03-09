@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Data.Models.Documents.Mongo
 {
+    using System;
     using System.Text.RegularExpressions;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
@@ -15,7 +16,7 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     /// Journal meta.
     /// </summary>
     [CollectionName("journalsMeta")]
-    public class JournalMeta : IStringIdentifiable, IJournalMeta
+    public class JournalMeta : IJournalMeta, ICreated, IModified
     {
         /// <inheritdoc/>
         [BsonId]
@@ -58,5 +59,17 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string PublisherName { get; set; }
+
+        /// <inheritdoc/>
+        public string CreatedBy { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime CreatedOn { get; set; }
+
+        /// <inheritdoc/>
+        public string ModifiedBy { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime ModifiedOn { get; set; }
     }
 }
