@@ -8,7 +8,6 @@ namespace ProcessingTools.Data.History.Mongo
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using MongoDB.Bson;
     using MongoDB.Driver;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
