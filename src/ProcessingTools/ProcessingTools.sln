@@ -301,6 +301,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Histor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.History.Mongo", "Data\ProcessingTools.Data.Models.History.Mongo\ProcessingTools.Data.Models.History.Mongo.csproj", "{EA78FF99-0AB9-4528-8D08-CE816212D82D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Common.Entity", "Data\ProcessingTools.Data.Common.Entity\ProcessingTools.Data.Common.Entity.csproj", "{B7FF486D-3B24-4329-9597-D26AB1385F0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.History.Entity", "Data\ProcessingTools.Data.History.Entity\ProcessingTools.Data.History.Entity.csproj", "{5343E9C0-4CC8-40F3-9569-ED58C7437035}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.History.Entity", "Data\ProcessingTools.Data.Models.History.Entity\ProcessingTools.Data.Models.History.Entity.csproj", "{8945E15E-827A-4E3D-9E13-611A1556A067}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1237,6 +1243,30 @@ Global
 		{EA78FF99-0AB9-4528-8D08-CE816212D82D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA78FF99-0AB9-4528-8D08-CE816212D82D}.Release|x64.ActiveCfg = Release|Any CPU
 		{EA78FF99-0AB9-4528-8D08-CE816212D82D}.Release|x64.Build.0 = Release|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Debug|x64.Build.0 = Debug|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C}.Release|x64.Build.0 = Release|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Debug|x64.Build.0 = Debug|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Release|x64.ActiveCfg = Release|Any CPU
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035}.Release|x64.Build.0 = Release|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Debug|x64.Build.0 = Debug|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Release|x64.ActiveCfg = Release|Any CPU
+		{8945E15E-827A-4E3D-9E13-611A1556A067}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1377,9 +1407,12 @@ Global
 		{DFC99A0C-3645-4E8E-A844-B0EEEBF7BB18} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{49C0FFE6-24FC-405F-9913-DACD2225F62E} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{EA78FF99-0AB9-4528-8D08-CE816212D82D} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{B7FF486D-3B24-4329-9597-D26AB1385F0C} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{5343E9C0-4CC8-40F3-9569-ED58C7437035} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{8945E15E-827A-4E3D-9E13-611A1556A067} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
