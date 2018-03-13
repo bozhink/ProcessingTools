@@ -4,8 +4,6 @@
 
 namespace ProcessingTools.Data.Contracts
 {
-    using System;
-    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts.Data.Expressions;
 
@@ -15,19 +13,6 @@ namespace ProcessingTools.Data.Contracts
     /// <typeparam name="T">Type of entity</typeparam>
     public interface ICrudRepository<T> : ISearchableRepository<T>
     {
-        /// <summary>
-        /// Gets count of all entities.
-        /// </summary>
-        /// <returns>Task of the number of entities.</returns>
-        Task<long> CountAsync();
-
-        /// <summary>
-        /// Gets count of all entities by filter.
-        /// </summary>
-        /// <param name="filter">Filter to be applied.</param>
-        /// <returns>Task of the number of entities.</returns>
-        Task<long> CountAsync(Expression<Func<T, bool>> filter);
-
         /// <summary>
         /// Adds entity.
         /// </summary>

@@ -37,16 +37,6 @@ namespace ProcessingTools.Data.Common.Mongo.Repositories
         public abstract Task<object> AddAsync(TE entity);
 
         /// <inheritdoc/>
-        public virtual Task<long> CountAsync() => this.Collection.CountAsync(m => true);
-
-        /// <inheritdoc/>
-        public virtual Task<long> CountAsync(Expression<Func<TE, bool>> filter)
-        {
-            var result = this.Query.LongCount(filter);
-            return Task.FromResult(result);
-        }
-
-        /// <inheritdoc/>
         public virtual async Task<object> DeleteAsync(object id)
         {
             if (id == null)

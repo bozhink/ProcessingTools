@@ -92,23 +92,6 @@ namespace ProcessingTools.Data.Common.Mongo.Repositories
         }
 
         /// <inheritdoc/>
-        public virtual Task<long> CountAsync()
-        {
-            return this.Collection.CountAsync("{}");
-        }
-
-        /// <inheritdoc/>
-        public virtual Task<long> CountAsync(Expression<Func<T, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            return this.Collection.CountAsync(filter);
-        }
-
-        /// <inheritdoc/>
         public virtual async Task<T[]> FindAsync(Expression<Func<T, bool>> filter)
         {
             if (filter == null)
