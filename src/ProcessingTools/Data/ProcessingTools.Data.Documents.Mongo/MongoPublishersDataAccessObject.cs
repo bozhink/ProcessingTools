@@ -1,0 +1,156 @@
+﻿// <copyright file="MongoPublishersDataAccessObject.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Data.Documents.Mongo
+{
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using MongoDB.Driver;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Common.Mongo;
+    using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts.Documents;
+    using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
+    using ProcessingTools.Data.Models.Documents.Mongo;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts.Documents.Publishers;
+
+    /// <summary>
+    /// MongoDB implementation of <see cref="IPublishersDataAccessObject"/>.
+    /// </summary>
+    public class MongoPublishersDataAccessObject : MongoDataAccessObjectExtendedBase<Publisher>, IPublishersDataAccessObject
+    {
+        private readonly IMapper mapper;
+        private readonly IApplicationContext applicationContext;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoPublishersDataAccessObject"/> class.
+        /// </summary>
+        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
+        /// <param name="applicationContext">Application context.</param>
+        public MongoPublishersDataAccessObject(IMongoDatabaseProvider databaseProvider, IApplicationContext applicationContext)
+            : base(databaseProvider)
+        {
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<IPublisherInsertModel, Publisher>();
+                c.CreateMap<IPublisherUpdateModel, Publisher>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
+
+            this.CollectionSettings = new MongoCollectionSettings
+            {
+                AssignIdOnInsert = true,
+                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard,
+                WriteConcern = new WriteConcern(WriteConcern.WMajority.W)
+            };
+        }
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDataModel> GetById(object id) => await this.GetDetailsById(id).ConfigureAwait(false);
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDetailsDataModel> GetDetailsById(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            var item = await this.Collection.Find(p => p.Id == id.ToString()).FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return item;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDataModel> InsertAsync(IPublisherInsertModel model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
+            var item = this.mapper.Map<IPublisherInsertModel, Publisher>(model);
+            item.ObjectId = this.applicationContext.GuidProvider.Invoke();
+            item.ModifiedBy = this.applicationContext.UserContext.UserId;
+            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            item.CreatedBy = item.ModifiedBy;
+            item.CreatedOn = item.ModifiedOn;
+
+            var filterDefinition = new FilterDefinitionBuilder<Publisher>().Eq(m => m.Id, null);
+            var updateDefinition = new UpdateDefinitionBuilder<Publisher>()
+                .Set(p => p.ObjectId, item.ObjectId)
+                .Set(p => p.AbbreviatedName, item.AbbreviatedName)
+                .Set(p => p.Name, item.Name)
+                .Set(p => p.Address, item.Address)
+                .Set(p => p.CreatedBy, item.CreatedBy)
+                .Set(p => p.CreatedOn, item.CreatedOn)
+                .Set(p => p.ModifiedBy, item.ModifiedBy)
+                .Set(p => p.ModifiedOn, item.ModifiedOn);
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = true
+            };
+
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+
+            item.Id = result.UpsertedId.AsString;
+
+            return item;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDataModel[]> SelectAsync(int skip, int take)
+        {
+            var data = await this.Collection.Find(p => true).ToListAsync().ConfigureAwait(false);
+            if (data == null || !data.Any())
+            {
+                return new IPublisherDataModel[] { };
+            }
+
+            return data.ToArray<IPublisherDataModel>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDataModel> UpdateAsync(IPublisherUpdateModel model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
+            var item = this.mapper.Map<IPublisherUpdateModel, Publisher>(model);
+            item.ModifiedBy = this.applicationContext.UserContext.UserId;
+            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+
+            var filterDefinition = new FilterDefinitionBuilder<Publisher>().Eq(m => m.Id, model.Id);
+            var updateDefinition = new UpdateDefinitionBuilder<Publisher>()
+                .Set(p => p.AbbreviatedName, model.AbbreviatedName)
+                .Set(p => p.Name, model.Name)
+                .Set(p => p.Address, model.Address)
+                .Set(p => p.ModifiedBy, item.ModifiedBy)
+                .Set(p => p.ModifiedOn, item.ModifiedOn);
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = false
+            };
+
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+
+            if (result.UpsertedId.AsString != model.Id)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            return item;
+        }
+    }
+}

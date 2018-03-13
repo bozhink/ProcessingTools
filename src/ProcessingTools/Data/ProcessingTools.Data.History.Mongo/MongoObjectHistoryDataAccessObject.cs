@@ -55,7 +55,7 @@ namespace ProcessingTools.Data.History.Mongo
         {
             if (objectHistory == null)
             {
-                throw new ArgumentNullException(nameof(objectHistory));
+                return null;
             }
 
             var item = this.mapper.Map<IObjectHistory, ObjectHistory>(objectHistory);
@@ -72,7 +72,7 @@ namespace ProcessingTools.Data.History.Mongo
         {
             if (objectId == null)
             {
-                throw new ArgumentNullException(nameof(objectId));
+                return new IObjectHistory[] { };
             }
 
             var data = await this.Collection
@@ -94,7 +94,7 @@ namespace ProcessingTools.Data.History.Mongo
         {
             if (objectId == null)
             {
-                throw new ArgumentNullException(nameof(objectId));
+                return new IObjectHistory[] { };
             }
 
             var data = await this.Collection

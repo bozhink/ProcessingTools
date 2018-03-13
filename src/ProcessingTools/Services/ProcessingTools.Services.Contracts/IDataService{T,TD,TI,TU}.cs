@@ -47,14 +47,8 @@ namespace ProcessingTools.Services.Contracts
         /// <summary>
         /// Selects the count of all items in the data store.
         /// </summary>
-        /// <returns>The count of all items in the data store.</returns>
-        Task<int> SelectCountAsync();
-
-        /// <summary>
-        /// Selects the long count of all items in the data store.
-        /// </summary>
         /// <returns>The long count of all items in the data store.</returns>
-        Task<long> SelectLongCountAsync();
+        Task<long> SelectCountAsync();
 
         /// <summary>
         /// Gets item by its ID.

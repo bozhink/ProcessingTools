@@ -22,19 +22,19 @@ namespace ProcessingTools.Services.Documents
     /// </summary>
     public class PublishersDataService : IPublishersDataService
     {
-        private readonly IPublishersDataAccessObject dao;
-        private readonly IObjectHistoryDataService history;
+        private readonly IPublishersDataAccessObject dataAccessObject;
+        private readonly IObjectHistoryDataService objectHistoryDataService;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishersDataService"/> class.
         /// </summary>
-        /// <param name="dao">Data access object.</param>
-        /// <param name="history">Object history data service.</param>
-        public PublishersDataService(IPublishersDataAccessObject dao, IObjectHistoryDataService history)
+        /// <param name="dataAccessObject">Data access object.</param>
+        /// <param name="objectHistoryDataService">Object history data service.</param>
+        public PublishersDataService(IPublishersDataAccessObject dataAccessObject, IObjectHistoryDataService objectHistoryDataService)
         {
-            this.dao = dao ?? throw new ArgumentNullException(nameof(dao));
-            this.history = history ?? throw new ArgumentNullException(nameof(history));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
+            this.objectHistoryDataService = objectHistoryDataService ?? throw new ArgumentNullException(nameof(objectHistoryDataService));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -52,8 +52,13 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var entity = await this.dao.InsertAsync(model).ConfigureAwait(false);
-            await this.history.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
+            var entity = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
+            if (entity == null)
+            {
+                throw new InsertUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
 
             return entity.Id;
         }
@@ -66,8 +71,13 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var entity = await this.dao.UpdateAsync(model).ConfigureAwait(false);
-            await this.history.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
+            var entity = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            if (entity == null)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
 
             return entity.Id;
         }
@@ -80,7 +90,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var result = await this.dao.DeleteAsync(id).ConfigureAwait(false);
+            var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
 
             return result;
         }
@@ -93,7 +103,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.dao.GetDetailsById(id).ConfigureAwait(false);
+            var entity = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
             if (entity == null)
             {
                 return null;
@@ -117,7 +127,7 @@ namespace ProcessingTools.Services.Documents
                 throw new InvalidItemsPerPageException();
             }
 
-            var entities = await this.dao.SelectAsync(skip, take).ConfigureAwait(false);
+            var entities = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
             if (entities == null || !entities.Any())
             {
                 return new IPublisherModel[] { };
@@ -128,9 +138,6 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public Task<int> SelectCountAsync() => this.dao.SelectCountAsync();
-
-        /// <inheritdoc/>
-        public Task<long> SelectLongCountAsync() => this.dao.SelectLongCountAsync();
+        public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
     }
 }
