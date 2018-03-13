@@ -33,20 +33,6 @@ namespace ProcessingTools.Services.History
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
-        private static Func<IObjectHistory, ObjectHistory> ReMapObjectHistory() => h => new ObjectHistory
-        {
-            Id = h.Id,
-            Data = h.Data,
-            ObjectId = h.ObjectId,
-            ObjectType = h.ObjectType,
-            AssemblyName = h.AssemblyName,
-            AssemblyVersion = h.AssemblyVersion,
-            CreatedBy = h.CreatedBy,
-            CreatedOn = h.CreatedOn
-        };
-
-        private static Func<IObjectHistory, object> MapObjectHistoryToObject(Type objectType) => h => JsonConvert.DeserializeObject(h.Data, objectType);
-
         /// <inheritdoc/>
         public async Task<object> AddAsync(object objectId, object source)
         {
@@ -106,7 +92,7 @@ namespace ProcessingTools.Services.History
                 return new object[] { };
             }
 
-            var items = data.Select(MapObjectHistoryToObject(objectType)).ToArray();
+            var items = data.Select(this.MapObjectHistoryToObject(objectType)).ToArray();
 
             return items;
         }
@@ -140,7 +126,7 @@ namespace ProcessingTools.Services.History
                 return new object[] { };
             }
 
-            var items = data.Select(MapObjectHistoryToObject(objectType)).ToArray();
+            var items = data.Select(this.MapObjectHistoryToObject(objectType)).ToArray();
 
             return items;
         }
@@ -159,7 +145,7 @@ namespace ProcessingTools.Services.History
                 return new IObjectHistory[] { };
             }
 
-            var items = data.Select(ReMapObjectHistory()).ToArray();
+            var items = data.Select(this.ReMapObjectHistory()).ToArray();
 
             return items;
         }
@@ -188,9 +174,23 @@ namespace ProcessingTools.Services.History
                 return new IObjectHistory[] { };
             }
 
-            var items = data.Select(ReMapObjectHistory()).ToArray();
+            var items = data.Select(this.ReMapObjectHistory()).ToArray();
 
             return items;
         }
+
+        private Func<IObjectHistory, ObjectHistory> ReMapObjectHistory() => h => new ObjectHistory
+        {
+            Id = h.Id,
+            Data = h.Data,
+            ObjectId = h.ObjectId,
+            ObjectType = h.ObjectType,
+            AssemblyName = h.AssemblyName,
+            AssemblyVersion = h.AssemblyVersion,
+            CreatedBy = h.CreatedBy,
+            CreatedOn = h.CreatedOn
+        };
+
+        private Func<IObjectHistory, object> MapObjectHistoryToObject(Type objectType) => h => JsonConvert.DeserializeObject(h.Data, objectType);
     }
 }
