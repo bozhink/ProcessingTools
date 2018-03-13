@@ -20,10 +20,9 @@ namespace ProcessingTools.Data.Documents.Mongo
     /// <summary>
     /// MongoDB implementation of Journals meta data access object.
     /// </summary>
-    public class MongoJournalMetaDataAccessObject : IJournalMetaDataAccessObject
+    public class MongoJournalMetaDataAccessObject : MongoDataAccessObjectBase<JournalMeta>, IJournalMetaDataAccessObject
     {
         private readonly IMapper mapper;
-        private readonly IMongoDatabase db;
         private readonly IApplicationContext applicationContext;
 
         /// <summary>
@@ -32,15 +31,8 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
         /// <param name="applicationContext">Application context.</param>
         public MongoJournalMetaDataAccessObject(IMongoDatabaseProvider databaseProvider, IApplicationContext applicationContext)
+            : base(databaseProvider)
         {
-            if (databaseProvider == null)
-            {
-                throw new ArgumentNullException(nameof(databaseProvider));
-            }
-
-            this.db = databaseProvider.Create();
-            this.CollectionName = MongoCollectionNameFactory.Create<JournalMeta>();
-
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
 
             var mapperConfiguration = new MapperConfiguration(c =>
@@ -50,10 +42,6 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             this.mapper = mapperConfiguration.CreateMapper();
         }
-
-        private string CollectionName { get; set; }
-
-        private IMongoCollection<JournalMeta> Collection => this.db.GetCollection<JournalMeta>(this.CollectionName);
 
         /// <inheritdoc/>
         public async Task<object> DeleteAsync(object id)
