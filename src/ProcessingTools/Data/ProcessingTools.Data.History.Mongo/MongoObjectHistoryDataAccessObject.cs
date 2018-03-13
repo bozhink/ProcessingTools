@@ -8,6 +8,7 @@ namespace ProcessingTools.Data.History.Mongo
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using MongoDB.Bson;
     using MongoDB.Driver;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Mongo;
@@ -40,6 +41,14 @@ namespace ProcessingTools.Data.History.Mongo
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
+
+            this.CollectionSettings = new MongoCollectionSettings
+            {
+                AssignIdOnInsert = true,
+                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard,
+                ReadPreference = new ReadPreference(ReadPreferenceMode.SecondaryPreferred),
+                WriteConcern = new WriteConcern(WriteConcern.Unacknowledged.W)
+            };
         }
 
         /// <inheritdoc/>
@@ -69,6 +78,7 @@ namespace ProcessingTools.Data.History.Mongo
 
             var data = await this.Collection
                 .Find(h => h.ObjectId == objectId.ToString())
+                .Sort(Builders<ObjectHistory>.Sort.Descending(h => h.CreatedOn))
                 .ToListAsync()
                 .ConfigureAwait(false);
 
@@ -90,6 +100,7 @@ namespace ProcessingTools.Data.History.Mongo
 
             var data = await this.Collection
                 .Find(h => h.ObjectId == objectId.ToString())
+                .Sort(Builders<ObjectHistory>.Sort.Descending(h => h.CreatedOn))
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()

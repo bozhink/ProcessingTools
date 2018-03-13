@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts.Documents
     /// <summary>
     /// Journals meta data access object.
     /// </summary>
-    public interface IJournalMetaDataAccessObject
+    public interface IJournalMetaDataAccessObject : IDataAccessObject
     {
         /// <summary>
         /// Inserts new journal meta item to data store.

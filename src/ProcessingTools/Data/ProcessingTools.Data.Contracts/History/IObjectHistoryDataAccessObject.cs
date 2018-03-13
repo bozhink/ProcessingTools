@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts.History
     /// <summary>
     /// Object history data access object.
     /// </summary>
-    public interface IObjectHistoryDataAccessObject
+    public interface IObjectHistoryDataAccessObject : IDataAccessObject
     {
         /// <summary>
         /// Adds new object history item to data store.

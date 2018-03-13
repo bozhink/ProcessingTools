@@ -19,19 +19,33 @@ namespace ProcessingTools.Services.History
     /// </summary>
     public class ObjectHistoryDataService : IObjectHistoryDataService
     {
-        private readonly IObjectHistoryRepository repository;
+        private readonly IObjectHistoryDataAccessObject dataAccessObject;
         private readonly IApplicationContext applicationContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ObjectHistoryDataService"/> class.
         /// </summary>
-        /// <param name="repository">Instance of <see cref="IObjectHistoryRepository"/>.</param>
+        /// <param name="dataAccessObject">Instance of <see cref="IObjectHistoryDataAccessObject"/>.</param>
         /// <param name="applicationContext">The application context.</param>
-        public ObjectHistoryDataService(IObjectHistoryRepository repository, IApplicationContext applicationContext)
+        public ObjectHistoryDataService(IObjectHistoryDataAccessObject dataAccessObject, IApplicationContext applicationContext)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
+
+        private static Func<IObjectHistory, ObjectHistory> ReMapObjectHistory() => h => new ObjectHistory
+        {
+            Id = h.Id,
+            Data = h.Data,
+            ObjectId = h.ObjectId,
+            ObjectType = h.ObjectType,
+            AssemblyName = h.AssemblyName,
+            AssemblyVersion = h.AssemblyVersion,
+            CreatedBy = h.CreatedBy,
+            CreatedOn = h.CreatedOn
+        };
+
+        private static Func<IObjectHistory, object> MapObjectHistoryToObject(Type objectType) => h => JsonConvert.DeserializeObject(h.Data, objectType);
 
         /// <inheritdoc/>
         public async Task<object> AddAsync(object objectId, object source)
@@ -67,8 +81,8 @@ namespace ProcessingTools.Services.History
                 CreatedOn = this.applicationContext.DateTimeProvider.Invoke()
             };
 
-            var result = await this.repository.AddAsync(model).ConfigureAwait(false);
-            await this.repository.SaveChangesAsync().ConfigureAwait(false);
+            var result = await this.dataAccessObject.AddAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
@@ -86,15 +100,13 @@ namespace ProcessingTools.Services.History
                 throw new ArgumentNullException(nameof(objectType));
             }
 
-            string id = objectId.ToString();
-            string typeName = objectType.FullName;
+            var data = await this.dataAccessObject.GetAsync(objectId).ConfigureAwait(false);
+            if (data == null || !data.Any())
+            {
+                return new object[] { };
+            }
 
-            var data = await this.repository.FindAsync(h => h.ObjectId == id && h.ObjectType == typeName).ConfigureAwait(false);
-
-            var items = data
-                .OrderBy(h => h.CreatedOn)
-                .Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
-                .ToArray();
+            var items = data.Select(MapObjectHistoryToObject(objectType)).ToArray();
 
             return items;
         }
@@ -122,17 +134,13 @@ namespace ProcessingTools.Services.History
                 throw new ArgumentOutOfRangeException(nameof(take), take, "Value should be positive");
             }
 
-            string id = objectId.ToString();
-            string typeName = objectType.FullName;
+            var data = await this.dataAccessObject.GetAsync(objectId, skip, take).ConfigureAwait(false);
+            if (data == null || !data.Any())
+            {
+                return new object[] { };
+            }
 
-            var data = await this.repository.FindAsync(h => h.ObjectId == id && h.ObjectType == typeName).ConfigureAwait(false);
-
-            var items = data
-                .OrderBy(h => h.CreatedOn)
-                .Skip(skip)
-                .Take(take)
-                .Select(h => JsonConvert.DeserializeObject(h.Data, objectType))
-                .ToArray();
+            var items = data.Select(MapObjectHistoryToObject(objectType)).ToArray();
 
             return items;
         }
@@ -145,22 +153,13 @@ namespace ProcessingTools.Services.History
                 throw new ArgumentNullException(nameof(objectId));
             }
 
-            string id = objectId.ToString();
-            var data = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
+            var data = await this.dataAccessObject.GetAsync(objectId).ConfigureAwait(false);
+            if (data == null || !data.Any())
+            {
+                return new IObjectHistory[] { };
+            }
 
-            var items = data.OrderBy(h => h.CreatedBy)
-                .Select(h => new ObjectHistory
-                {
-                    Id = h.Id,
-                    Data = h.Data,
-                    ObjectId = h.ObjectId,
-                    ObjectType = h.ObjectType,
-                    AssemblyName = h.AssemblyName,
-                    AssemblyVersion = h.AssemblyVersion,
-                    CreatedBy = h.CreatedBy,
-                    CreatedOn = h.CreatedOn
-                })
-                .ToArray();
+            var items = data.Select(ReMapObjectHistory()).ToArray();
 
             return items;
         }
@@ -183,24 +182,13 @@ namespace ProcessingTools.Services.History
                 throw new ArgumentOutOfRangeException(nameof(take), take, "Value should be positive");
             }
 
-            string id = objectId.ToString();
-            var data = await this.repository.FindAsync(h => h.ObjectId == id).ConfigureAwait(false);
+            var data = await this.dataAccessObject.GetAsync(objectId, skip, take).ConfigureAwait(false);
+            if (data == null || !data.Any())
+            {
+                return new IObjectHistory[] { };
+            }
 
-            var items = data.OrderBy(h => h.CreatedOn)
-                .Skip(skip)
-                .Take(take)
-                .Select(h => new ObjectHistory
-                {
-                    Id = h.Id,
-                    Data = h.Data,
-                    ObjectId = h.ObjectId,
-                    ObjectType = h.ObjectType,
-                    AssemblyName = h.AssemblyName,
-                    AssemblyVersion = h.AssemblyVersion,
-                    CreatedBy = h.CreatedBy,
-                    CreatedOn = h.CreatedOn
-                })
-                .ToArray();
+            var items = data.Select(ReMapObjectHistory()).ToArray();
 
             return items;
         }
