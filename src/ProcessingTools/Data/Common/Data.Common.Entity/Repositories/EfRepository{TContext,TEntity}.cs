@@ -70,11 +70,20 @@
         public IQueryable<TEntity> Queryable() => this.DbSet.AsQueryable();
 
         public IQueryable<T> Queryable<T>()
-            where T : class => this.Context.Set<T>().AsQueryable();
+            where T : class
+        {
+            return this.Context.Set<T>().AsQueryable();
+        }
 
-        public virtual object SaveChanges() => this.Context.SaveChanges();
+        public virtual object SaveChanges()
+        {
+            return this.Context.SaveChanges();
+        }
 
-        public virtual async Task<object> SaveChangesAsync() => await this.Context.SaveChangesAsync().ConfigureAwait(false);
+        public virtual async Task<object> SaveChangesAsync()
+        {
+            return await this.Context.SaveChangesAsync().ConfigureAwait(false);
+        }
 
         public virtual void Update(TEntity entity)
         {
