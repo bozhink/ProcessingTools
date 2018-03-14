@@ -64,9 +64,9 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <summary>
         /// Delete publisher.
         /// </summary>
-        /// <param name="model">Model for the operation.</param>
+        /// <param name="id">ID of publisher to be deleted.</param>
         /// <returns>Success status.</returns>
-        Task<bool> DeletePublisherAsync(PublisherEditRequestModel model);
+        Task<bool> DeletePublisherAsync(string id);
 
         /// <summary>
         /// Map <see cref="PublisherCreateRequestModel"/> to <see cref="PublisherCreateViewModel"/>.
