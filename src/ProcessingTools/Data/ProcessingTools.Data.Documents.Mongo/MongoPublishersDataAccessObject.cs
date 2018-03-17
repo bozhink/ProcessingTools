@@ -82,26 +82,9 @@ namespace ProcessingTools.Data.Documents.Mongo
             item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
             item.CreatedBy = item.ModifiedBy;
             item.CreatedOn = item.ModifiedOn;
+            item.Id = null;
 
-            var filterDefinition = new FilterDefinitionBuilder<Publisher>().Eq(m => m.Id, null);
-            var updateDefinition = new UpdateDefinitionBuilder<Publisher>()
-                .Set(p => p.ObjectId, item.ObjectId)
-                .Set(p => p.AbbreviatedName, item.AbbreviatedName)
-                .Set(p => p.Name, item.Name)
-                .Set(p => p.Address, item.Address)
-                .Set(p => p.CreatedBy, item.CreatedBy)
-                .Set(p => p.CreatedOn, item.CreatedOn)
-                .Set(p => p.ModifiedBy, item.ModifiedBy)
-                .Set(p => p.ModifiedOn, item.ModifiedOn);
-            var updateOptions = new UpdateOptions
-            {
-                BypassDocumentValidation = false,
-                IsUpsert = true
-            };
-
-            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
-
-            item.Id = result.UpsertedId.AsString;
+            await this.Collection.InsertOneAsync(item).ConfigureAwait(false);
 
             return item;
         }

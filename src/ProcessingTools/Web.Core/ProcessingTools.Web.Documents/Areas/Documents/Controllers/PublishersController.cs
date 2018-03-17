@@ -4,14 +4,15 @@
 
 namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants;
     using ProcessingTools.Web.Documents.Constants;
+    using ProcessingTools.Web.Models.Documents.Publishers;
     using ProcessingTools.Web.Services.Contracts.Documents;
-    using System;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Publishers
@@ -53,6 +54,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         private readonly IPublishersService service;
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PublishersController"/> class.
+        /// </summary>
+        /// <param name="service">Instance of <see cref="IPublishersService"/>.</param>
+        /// <param name="logger">Logger.</param>
         public PublishersController(IPublishersService service, ILogger<PublishersController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
@@ -62,6 +68,8 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         [ActionName(IndexActionName)]
         public async Task<IActionResult> Index(int? p, int? n)
         {
+            this.logger.LogTrace("Index?p={0}&n={1}", p, n);
+
             int pageNumber = Math.Max(
                 PaginationConstants.MinimalPageNumber,
                 p ?? PaginationConstants.DefaultPageNumber);
@@ -89,6 +97,8 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         [ActionName(CreateActionName)]
         public async Task<IActionResult> Create()
         {
+            this.logger.LogTrace("GET Create Publisher");
+
             try
             {
                 var model = await this.service.GetPublisherCreateViewModelAsync().ConfigureAwait(false);
@@ -100,6 +110,40 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
 
             return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName(CreateActionName)]
+        public async Task<IActionResult> Create(PublisherCreateRequestModel model, string returnUrl)
+        {
+            this.logger.LogTrace("POST Create Publisher");
+
+            try
+            {
+                if (this.ModelState.IsValid)
+                {
+                    var ok = await this.service.CreatePublisherAsync(model).ConfigureAwait(false);
+                    if (ok)
+                    {
+                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            return this.Redirect(returnUrl);
+                        }
+
+                        return this.RedirectToAction(IndexActionName);
+                    }
+
+                    this.ModelState.AddModelError(string.Empty, "Publisher is not created.");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, "POST Create publisher");
+            }
+
+            var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+            return this.View(viewModel);
         }
 
         [HttpGet]

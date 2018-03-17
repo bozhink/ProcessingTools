@@ -164,7 +164,14 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public Task<PublisherCreateViewModel> MapToViewModelAsync(PublisherCreateRequestModel model)
         {
-            throw new NotImplementedException();
+            var viewModel = new PublisherCreateViewModel(this.userContext)
+            {
+                Name = model?.Name,
+                AbbreviatedName = model?.AbbreviatedName,
+                Address = model?.Address
+            };
+
+            return Task.FromResult(viewModel);
         }
 
         /// <inheritdoc/>

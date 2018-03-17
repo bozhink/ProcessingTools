@@ -15,5 +15,7 @@
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<ProcessingTools.Web.Documents.Models.ApplicationRole> ApplicationRoles { get; set; }
     }
 }

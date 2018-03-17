@@ -87,30 +87,9 @@ namespace ProcessingTools.Data.Documents.Mongo
             item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
             item.CreatedBy = item.ModifiedBy;
             item.CreatedOn = item.ModifiedOn;
+            item.Id = null;
 
-            var filterDefinition = new FilterDefinitionBuilder<JournalMeta>().Eq(m => m.Id, null);
-            var updateDefinition = new UpdateDefinitionBuilder<JournalMeta>()
-                .Set(m => m.AbbreviatedJournalTitle, item.AbbreviatedJournalTitle)
-                .Set(m => m.ArchiveNamePattern, item.ArchiveNamePattern)
-                .Set(m => m.FileNamePattern, item.FileNamePattern)
-                .Set(m => m.IssnEPub, item.IssnEPub)
-                .Set(m => m.IssnPPub, item.IssnPPub)
-                .Set(m => m.JournalId, item.JournalId)
-                .Set(m => m.JournalTitle, item.JournalTitle)
-                .Set(m => m.PublisherName, item.PublisherName)
-                .Set(m => m.CreatedBy, item.CreatedBy)
-                .Set(m => m.CreatedOn, item.CreatedOn)
-                .Set(m => m.ModifiedBy, item.ModifiedBy)
-                .Set(m => m.ModifiedOn, item.ModifiedOn);
-            var updateOptions = new UpdateOptions
-            {
-                BypassDocumentValidation = false,
-                IsUpsert = true
-            };
-
-            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
-
-            item.Id = result.UpsertedId.AsString;
+            await this.Collection.InsertOneAsync(item).ConfigureAwait(false);
 
             return item;
         }

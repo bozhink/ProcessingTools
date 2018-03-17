@@ -61,6 +61,7 @@ namespace ProcessingTools.Data.History.Mongo
             var item = this.mapper.Map<IObjectHistory, ObjectHistory>(objectHistory);
             item.CreatedBy = this.applicationContext.UserContext.UserId;
             item.CreatedOn = this.applicationContext.DateTimeProvider.Invoke();
+            item.Id = null;
 
             await this.Collection.InsertOneAsync(item, new InsertOneOptions { BypassDocumentValidation = true }).ConfigureAwait(false);
 

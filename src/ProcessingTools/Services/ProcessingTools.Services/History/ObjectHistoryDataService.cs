@@ -62,7 +62,6 @@ namespace ProcessingTools.Services.History
                 ObjectType = objectType.FullName,
                 AssemblyName = assemblyName.Name,
                 AssemblyVersion = assemblyName.Version.ToString(),
-                Id = this.applicationContext.GuidProvider.Invoke().ToString(),
                 CreatedBy = this.applicationContext.UserContext?.UserId,
                 CreatedOn = this.applicationContext.DateTimeProvider.Invoke()
             };

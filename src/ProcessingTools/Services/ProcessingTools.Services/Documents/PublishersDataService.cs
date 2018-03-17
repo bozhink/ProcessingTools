@@ -53,6 +53,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var entity = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
             if (entity == null)
             {
                 throw new InsertUnsuccessfulException();
@@ -72,6 +73,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var entity = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
             if (entity == null)
             {
                 throw new UpdateUnsuccessfulException();
@@ -91,6 +93,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var result = await this.dataAccessObject.DeleteAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
 
             return result;
         }
