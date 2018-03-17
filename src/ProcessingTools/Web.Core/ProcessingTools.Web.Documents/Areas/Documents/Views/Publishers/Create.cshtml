@@ -1,7 +1,69 @@
-﻿
+﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublisherCreateViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create new publisher";
 }
 
-<h2>Create</h2>
+@if (Model == null)
+{
+    <section role="main">
+        <header>
+            <h2>@ViewData[ContextKeys.Title]</h2>
+        </header>
+        <div class="alert alert-danger">Invalid view model.</div>
+    </section>
+}
+else
+{
+    <section role="main">
+        <header>
+            @if (string.IsNullOrWhiteSpace(Model.PageHeading))
+            {
+                <h2>@Html.DisplayNameFor(m => m.PageHeading)</h2>
+            }
+            else
+            {
+                <h2>@Model.PageHeading</h2>
+            }
+        </header>
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Name" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="AbbreviatedName" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="AbbreviatedName" class="form-control" />
+                    <span asp-validation-for="AbbreviatedName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Address" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-default" value="Save" />
+            <input type="reset" class="btn btn-default" value="Reset" />
+            <a asp-action="@(PublishersController.IndexActionName)" class="btn btn-default">Cancel</a>
+        </form>
+
+
+    </section>
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
 
