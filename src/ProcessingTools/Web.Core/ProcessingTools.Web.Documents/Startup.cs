@@ -7,6 +7,7 @@ namespace ProcessingTools.Web.Documents
     using System;
     using System.IO;
     using Autofac;
+    using Autofac.Core;
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
@@ -24,8 +25,6 @@ namespace ProcessingTools.Web.Documents
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services;
     using ProcessingTools.Web.Services.Contracts;
-    using ProcessingTools.Web.Services.Contracts.Documents;
-    using ProcessingTools.Web.Services.Documents;
 
     /// <summary>
     /// Start-up of the application.
@@ -107,9 +106,63 @@ namespace ProcessingTools.Web.Documents
 
             builder.RegisterType<ApplicationContextFactory>().AsSelf().InstancePerLifetimeScope();
             builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
+            builder.Register(c => c.Resolve<IApplicationContext>().UserContext).As<IUserContext>().InstancePerDependency();
+
+            builder
+                .RegisterType<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                .As<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                .Named<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>("MongoDBDocumentsDataBase")
+                .WithParameter("connectionString", "mongodb://localhost:27017")
+                .WithParameter("databaseName", "documents")
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                .As<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                .Named<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>("MongoDBHistoryDataBase")
+                .WithParameter("connectionString", "mongodb://localhost:27017")
+                .WithParameter("databaseName", "history")
+                .InstancePerLifetimeScope();
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
-            builder.RegisterType<PublishersService>().As<IPublishersService>().InstancePerDependency();
+
+            builder
+                .RegisterType<ProcessingTools.Services.History.ObjectHistoryDataService>()
+                .As<ProcessingTools.Services.Contracts.History.IObjectHistoryDataService>()
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Data.History.Mongo.MongoObjectHistoryDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.History.IObjectHistoryDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>("MongoDBHistoryDataBase")))
+                .InstancePerDependency();
+            
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Documents.PublishersService>()
+                .As<ProcessingTools.Web.Services.Contracts.Documents.IPublishersService>()
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Services.Documents.PublishersDataService>()
+                .As<ProcessingTools.Services.Contracts.Documents.IPublishersDataService>()
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoPublishersDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.Documents.IPublishersDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>("MongoDBDocumentsDataBase")))
+                .InstancePerDependency();
+            
+            builder
+                .RegisterType<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
+                .As<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
+                .Named<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>("MongoDBDocumentsDataBase")
+                .WithParameter("connectionString", "mongodb://localhost:27017")
+                .WithParameter("databaseName", "documents")
+                .InstancePerDependency();
 
             var container = builder.Build();
 
