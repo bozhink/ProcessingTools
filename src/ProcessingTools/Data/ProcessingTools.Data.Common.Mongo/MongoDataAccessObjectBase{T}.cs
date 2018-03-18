@@ -51,5 +51,16 @@ namespace ProcessingTools.Data.Common.Mongo
 
         /// <inheritdoc/>
         public Task<long> SaveChangesAsync() => Task.FromResult(-1L);
+
+        /// <summary>
+        /// Gets collection from the same database.
+        /// </summary>
+        /// <typeparam name="S">Type of model of the collection.</typeparam>
+        /// <returns><see cref="IMongoCollection{S}"/></returns>
+        protected IMongoCollection<S> GetCollection<S>()
+        {
+            string collectionName = MongoCollectionNameFactory.Create<S>();
+            return this.db.GetCollection<S>(collectionName);
+        }
     }
 }
