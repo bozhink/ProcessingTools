@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
-    /// Publishers
+    /// /Documents/Publishers
     /// </summary>
     [Authorize]
     [Area(AreaNames.Documents)]
@@ -65,10 +65,21 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// /Documents/Publishers/Index
+        /// </summary>
+        /// <param name="p">Current page number. Zero-based.</param>
+        /// <param name="n">Number of publishers per page.</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [ActionName(IndexActionName)]
-        public async Task<IActionResult> Index(int? p, int? n)
+        public async Task<IActionResult> Index(int? p, int? n, string returnUrl = null)
         {
-            this.logger.LogTrace("Index?p={0}&n={1}", p, n);
+            const string LogMessage = "Fetch Publishers";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
 
             int pageNumber = Math.Max(
                 PaginationConstants.MinimalPageNumber,
@@ -81,43 +92,64 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var model = await this.service.GetPublishersIndexViewModelAsync(pageNumber * numberOfItemsPerPage, numberOfItemsPerPage).ConfigureAwait(false);
+                var viewModel = await this.service.GetPublishersIndexViewModelAsync(pageNumber * numberOfItemsPerPage, numberOfItemsPerPage).ConfigureAwait(false);
 
-                return this.View(model: model);
+                return this.View(model: viewModel);
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"{AreaNames.Documents}/{ControllerName}/{IndexActionName}?p={p}&n={n}");
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
             }
 
             return this.View();
         }
 
+        /// <summary>
+        /// GET /Documents/Publishers/Create
+        /// </summary>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(CreateActionName)]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(string returnUrl = null)
         {
-            this.logger.LogTrace("GET Create Publisher");
+            const string LogMessage = "GET Create Publisher";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
 
             try
             {
-                var model = await this.service.GetPublisherCreateViewModelAsync().ConfigureAwait(false);
-                return this.View(model: model);
+                var viewModel = await this.service.GetPublisherCreateViewModelAsync().ConfigureAwait(false);
+                return this.View(model: viewModel);
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"{AreaNames.Documents}/{ControllerName}/{CreateActionName}");
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
             }
 
             return this.View();
         }
 
+        /// <summary>
+        /// POST /Documents/Publishers/Create
+        /// </summary>
+        /// <param name="model"><see cref="PublisherCreateRequestModel"/></param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(CreateActionName)]
-        public async Task<IActionResult> Create(PublisherCreateRequestModel model, string returnUrl)
+        public async Task<IActionResult> Create(PublisherCreateRequestModel model, string returnUrl = null)
         {
-            this.logger.LogTrace("POST Create Publisher");
+            const string LogMessage = "POST Create Publisher";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
 
             try
             {
@@ -136,62 +168,197 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
                     this.ModelState.AddModelError(string.Empty, "Publisher is not created.");
                 }
+
+                var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                return this.View(viewModel);
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, "POST Create publisher");
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
             }
 
-            var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
-            return this.View(viewModel);
+            return this.View();
         }
 
+        /// <summary>
+        /// GET /Documents/Publishers/Edit/id
+        /// </summary>
+        /// <param name="id">ID of the publisher</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(EditActionName)]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string id, string returnUrl = null)
         {
+            const string LogMessage = "GET Edit Publisher";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
+
             try
             {
-                var model = await this.service.GetPublisherEditViewModelAsync(id).ConfigureAwait(false);
-                return this.View(model: model);
+                var viewModel = await this.service.GetPublisherEditViewModelAsync(id).ConfigureAwait(false);
+                return this.View(model: viewModel);
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"{AreaNames.Documents}/{ControllerName}/{EditActionName}");
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
             }
 
             return this.View();
         }
 
+        /// <summary>
+        /// POST /Documents/Publishers/Edit
+        /// </summary>
+        /// <param name="model"><see cref="PublisherEditRequestModel"/></param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName(EditActionName)]
+        public async Task<IActionResult> Edit(PublisherEditRequestModel model, string returnUrl = null)
+        {
+            const string LogMessage = "POST Edit Publisher";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
+
+            try
+            {
+                if (this.ModelState.IsValid)
+                {
+                    var ok = await this.service.UpdatePublisherAsync(model).ConfigureAwait(false);
+                    if (ok)
+                    {
+                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            return this.Redirect(returnUrl);
+                        }
+
+                        return this.RedirectToAction(IndexActionName);
+                    }
+
+                    this.ModelState.AddModelError(string.Empty, "Publisher is not updated.");
+                }
+
+                var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                return this.View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.View();
+        }
+
+        /// <summary>
+        /// GET /Documents/Publishers/Delete/id
+        /// </summary>
+        /// <param name="id">ID of the publisher</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(DeleteActionName)]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id, string returnUrl = null)
         {
+            const string LogMessage = "GET Delete Publisher";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
+
             try
             {
-                var model = await this.service.GetPublisherDeleteViewModelAsync(id).ConfigureAwait(false);
-                return this.View(model: model);
+                var viewModel = await this.service.GetPublisherDeleteViewModelAsync(id).ConfigureAwait(false);
+                return this.View(model: viewModel);
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"{AreaNames.Documents}/{ControllerName}/{DeleteActionName}");
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
             }
 
             return this.View();
         }
 
-        [HttpGet]
-        [ActionName(DetailsActionName)]
-        public async Task<IActionResult> Details(string id)
+        /// <summary>
+        /// POST /Documents/Publishers/Delete
+        /// </summary>
+        /// <param name="model"><see cref="PublisherDeleteRequestModel"/></param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName(DeleteActionName)]
+        public async Task<IActionResult> Delete(PublisherDeleteRequestModel model, string returnUrl = null)
         {
+            const string LogMessage = "POST Delete Publisher";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
+
             try
             {
-                var model = await this.service.GetPublisherDetailsViewModelAsync(id).ConfigureAwait(false);
-                return this.View(model: model);
+                if (this.ModelState.IsValid)
+                {
+                    var ok = await this.service.DeletePublisherAsync(model.Id).ConfigureAwait(false);
+                    if (ok)
+                    {
+                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        {
+                            return this.Redirect(returnUrl);
+                        }
+
+                        return this.RedirectToAction(IndexActionName);
+                    }
+
+                    this.ModelState.AddModelError(string.Empty, "Publisher is not deleted.");
+                }
+
+                var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                return this.View(viewModel);
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"{AreaNames.Documents}/{ControllerName}/{DetailsActionName}");
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.View();
+        }
+
+        /// <summary>
+        /// GET /Documents/Publishers/Details/id
+        /// </summary>
+        /// <param name="id">ID of the publisher</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(DetailsActionName)]
+        public async Task<IActionResult> Details(string id, string returnUrl = null)
+        {
+            const string LogMessage = "Fetch Publisher Details";
+
+            this.logger.LogTrace(LogMessage);
+
+            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
+
+            try
+            {
+                var viewModel = await this.service.GetPublisherDetailsViewModelAsync(id).ConfigureAwait(false);
+                return this.View(model: viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
             }
 
             return this.View();

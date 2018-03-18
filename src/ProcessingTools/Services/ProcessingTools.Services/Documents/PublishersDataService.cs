@@ -99,7 +99,26 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDetailsModel> GetById(object id)
+        public async Task<IPublisherModel> GetById(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var entity = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IPublisherDataModel, PublisherModel>(entity);
+
+            return model;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDetailsModel> GetDetailsById(object id)
         {
             if (id == null)
             {

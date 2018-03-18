@@ -59,7 +59,7 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// </summary>
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
-        Task<bool> EditPublisherAsync(PublisherEditRequestModel model);
+        Task<bool> UpdatePublisherAsync(PublisherEditRequestModel model);
 
         /// <summary>
         /// Delete publisher.

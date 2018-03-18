@@ -13,5 +13,10 @@ namespace ProcessingTools.Web.Documents.Constants
         /// Default layout view.
         /// </summary>
         public const string Layout = "_Layout";
+
+        /// <summary>
+        /// Validation scripts partial view.
+        /// </summary>
+        public const string ValidationScriptsPartial = "_ValidationScriptsPartial";
     }
 }
