@@ -63,7 +63,7 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<bool> UpdatePublisherAsync(PublisherEditRequestModel model)
+        public async Task<bool> UpdatePublisherAsync(PublisherUpdateRequestModel model)
         {
             if (model == null)
             {
@@ -205,7 +205,7 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<PublisherEditViewModel> MapToViewModelAsync(PublisherEditRequestModel model)
+        public async Task<PublisherEditViewModel> MapToViewModelAsync(PublisherUpdateRequestModel model)
         {
             var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
 

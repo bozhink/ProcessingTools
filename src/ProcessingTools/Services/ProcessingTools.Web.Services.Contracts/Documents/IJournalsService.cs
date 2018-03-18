@@ -59,14 +59,14 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// </summary>
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
-        Task<bool> EditJournalAsync(JournalEditRequestModel model);
+        Task<bool> UpdateJournalAsync(JournalUpdateRequestModel model);
 
         /// <summary>
         /// Delete journal.
         /// </summary>
-        /// <param name="model">Model for the operation.</param>
+        /// <param name="id">Model for the operation.</param>
         /// <returns>Success status.</returns>
-        Task<bool> DeleteJournalAsync(JournalEditRequestModel model);
+        Task<bool> DeleteJournalAsync(string id);
 
         /// <summary>
         /// Map <see cref="JournalCreateRequestModel"/> to <see cref="JournalCreateViewModel"/>.
@@ -76,11 +76,11 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<JournalCreateViewModel> MapToViewModelAsync(JournalCreateRequestModel model);
 
         /// <summary>
-        /// Map <see cref="JournalEditRequestModel"/> to <see cref="JournalEditViewModel"/>.
+        /// Map <see cref="JournalUpdateRequestModel"/> to <see cref="JournalEditViewModel"/>.
         /// </summary>
         /// <param name="model">The model to be mapped to view model.</param>
         /// <returns>The mapped view model.</returns>
-        Task<JournalEditViewModel> MapToViewModelAsync(JournalEditRequestModel model);
+        Task<JournalEditViewModel> MapToViewModelAsync(JournalUpdateRequestModel model);
 
         /// <summary>
         /// Map <see cref="JournalDeleteRequestModel"/> to <see cref="JournalDeleteViewModel"/>.

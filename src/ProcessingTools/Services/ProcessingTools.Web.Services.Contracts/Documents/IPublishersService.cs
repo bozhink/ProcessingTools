@@ -59,7 +59,7 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// </summary>
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
-        Task<bool> UpdatePublisherAsync(PublisherEditRequestModel model);
+        Task<bool> UpdatePublisherAsync(PublisherUpdateRequestModel model);
 
         /// <summary>
         /// Delete publisher.
@@ -76,11 +76,11 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<PublisherCreateViewModel> MapToViewModelAsync(PublisherCreateRequestModel model);
 
         /// <summary>
-        /// Map <see cref="PublisherEditRequestModel"/> to <see cref="PublisherEditViewModel"/>.
+        /// Map <see cref="PublisherUpdateRequestModel"/> to <see cref="PublisherEditViewModel"/>.
         /// </summary>
         /// <param name="model">The model to be mapped to view model.</param>
         /// <returns>The mapped view model.</returns>
-        Task<PublisherEditViewModel> MapToViewModelAsync(PublisherEditRequestModel model);
+        Task<PublisherEditViewModel> MapToViewModelAsync(PublisherUpdateRequestModel model);
 
         /// <summary>
         /// Map <see cref="PublisherDeleteRequestModel"/> to <see cref="PublisherDeleteViewModel"/>.

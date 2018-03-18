@@ -1,4 +1,4 @@
-// <copyright file="PublisherEditRequestModel.cs" company="ProcessingTools">
+// <copyright file="PublisherUpdateRequestModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher edit request model.
     /// </summary>
-    public class PublisherEditRequestModel : IPublisherUpdateModel
+    public class PublisherUpdateRequestModel : IPublisherUpdateModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

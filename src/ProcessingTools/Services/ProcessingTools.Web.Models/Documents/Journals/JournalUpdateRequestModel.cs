@@ -1,4 +1,4 @@
-// <copyright file="JournalEditRequestModel.cs" company="ProcessingTools">
+// <copyright file="JournalUpdateRequestModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal edit request model.
     /// </summary>
-    public class JournalEditRequestModel : IJournalUpdateModel
+    public class JournalUpdateRequestModel : IJournalUpdateModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

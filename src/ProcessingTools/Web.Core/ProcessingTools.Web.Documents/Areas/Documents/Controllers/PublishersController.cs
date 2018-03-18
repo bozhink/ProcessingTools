@@ -214,13 +214,13 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <summary>
         /// POST /Documents/Publishers/Edit
         /// </summary>
-        /// <param name="model"><see cref="PublisherEditRequestModel"/></param>
+        /// <param name="model"><see cref="PublisherUpdateRequestModel"/></param>
         /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(EditActionName)]
-        public async Task<IActionResult> Edit(PublisherEditRequestModel model, string returnUrl = null)
+        public async Task<IActionResult> Edit(PublisherUpdateRequestModel model, string returnUrl = null)
         {
             const string LogMessage = "POST Edit Publisher";
 
