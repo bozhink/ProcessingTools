@@ -16,12 +16,13 @@ namespace ProcessingTools.Data.Documents.Mongo
     using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
     using ProcessingTools.Data.Models.Documents.Mongo;
     using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Documents.Publishers;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IPublishersDataAccessObject"/>.
     /// </summary>
-    public class MongoPublishersDataAccessObject : MongoDataAccessObjectExtendedBase<Publisher>, IPublishersDataAccessObject
+    public class MongoPublishersDataAccessObject : MongoDataAccessObjectBase<Publisher>, IPublishersDataAccessObject
     {
         private readonly IMapper mapper;
         private readonly IApplicationContext applicationContext;
@@ -63,9 +64,31 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
-            var item = await this.Collection.Find(p => p.Id == id.ToString()).FirstOrDefaultAsync().ConfigureAwait(false);
+            Guid objectId = id.ToNewGuid();
+
+            var item = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
             return item;
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> DeleteAsync(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var result = await this.Collection.DeleteOneAsync(p => p.ObjectId == objectId).ConfigureAwait(false);
+
+            if (!result.IsAcknowledged)
+            {
+                throw new DeleteUnsuccessfulException();
+            }
+
+            return result;
         }
 
         /// <inheritdoc/>
@@ -102,6 +125,12 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
+        public Task<long> SelectCountAsync()
+        {
+            return this.Collection.CountAsync(p => true);
+        }
+
+        /// <inheritdoc/>
         public async Task<IPublisherDataModel> UpdateAsync(IPublisherUpdateModel model)
         {
             if (model == null)
@@ -109,11 +138,13 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
+            Guid objectId = model.Id.ToNewGuid();
+
             var item = this.mapper.Map<IPublisherUpdateModel, Publisher>(model);
             item.ModifiedBy = this.applicationContext.UserContext.UserId;
             item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
 
-            var filterDefinition = new FilterDefinitionBuilder<Publisher>().Eq(m => m.Id, model.Id);
+            var filterDefinition = new FilterDefinitionBuilder<Publisher>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Publisher>()
                 .Set(p => p.AbbreviatedName, model.AbbreviatedName)
                 .Set(p => p.Name, model.Name)

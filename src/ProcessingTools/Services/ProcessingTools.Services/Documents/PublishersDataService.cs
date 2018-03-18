@@ -38,8 +38,10 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IPublisherDataModel, PublisherModel>();
-                c.CreateMap<IPublisherDetailsDataModel, PublisherDetailsModel>();
+                c.CreateMap<IPublisherDataModel, PublisherModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IPublisherDetailsDataModel, PublisherDetailsModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -61,7 +63,7 @@ namespace ProcessingTools.Services.Documents
 
             await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
 
-            return entity.Id;
+            return entity.ObjectId;
         }
 
         /// <inheritdoc/>
@@ -81,7 +83,7 @@ namespace ProcessingTools.Services.Documents
 
             await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
 
-            return entity.Id;
+            return entity.ObjectId;
         }
 
         /// <inheritdoc/>
