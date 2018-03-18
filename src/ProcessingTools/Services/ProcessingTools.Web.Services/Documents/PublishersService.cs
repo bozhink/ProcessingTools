@@ -232,30 +232,9 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<PublisherDeleteViewModel> MapToViewModelAsync(PublisherDeleteRequestModel model)
+        public Task<PublisherDeleteViewModel> MapToViewModelAsync(PublisherDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
-
-            if (model != null && !string.IsNullOrWhiteSpace(model.Id))
-            {
-                var publisher = await this.publishersDataService.GetDetailsById(model.Id).ConfigureAwait(false);
-                if (publisher != null)
-                {
-                    return new PublisherDeleteViewModel(userContext)
-                    {
-                        Id = publisher.Id,
-                        Name = publisher.Name,
-                        AbbreviatedName = publisher.AbbreviatedName,
-                        Address = publisher.Address,
-                        CreatedBy = publisher.CreatedBy,
-                        CreatedOn = publisher.CreatedOn,
-                        ModifiedBy = publisher.ModifiedBy,
-                        ModifiedOn = publisher.ModifiedOn
-                    };
-                }
-            }
-
-            return new PublisherDeleteViewModel(userContext);
+            return this.GetPublisherDeleteViewModelAsync(model?.Id);
         }
     }
 }
