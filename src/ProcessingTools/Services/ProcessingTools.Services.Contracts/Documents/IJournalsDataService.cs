@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Services.Contracts.Documents
 {
+    using System.Threading.Tasks;
     using ProcessingTools.Services.Models.Contracts.Documents.Journals;
 
     /// <summary>
@@ -11,5 +12,10 @@ namespace ProcessingTools.Services.Contracts.Documents
     /// </summary>
     public interface IJournalsDataService : IDataService<IJournalModel, IJournalDetailsModel, IJournalInsertModel, IJournalUpdateModel>
     {
+        /// <summary>
+        /// Gets journal publishers for select.
+        /// </summary>
+        /// <returns>Array of journal publishers.</returns>
+        Task<IJournalPublisherModel[]> GetJournalPublishersAsync();
     }
 }

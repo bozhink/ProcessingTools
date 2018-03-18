@@ -14,15 +14,6 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     public class JournalIndexViewModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JournalIndexViewModel"/> class.
-        /// </summary>
-        /// <param name="publisher">Publisher for combo box.</param>
-        public JournalIndexViewModel(PublisherViewModel publisher)
-        {
-            this.Publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
-        }
-
-        /// <summary>
         /// Gets or sets the object ID.
         /// </summary>
         [ReadOnly(true)]
@@ -63,12 +54,6 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [ReadOnly(true)]
         [Display(Name = "Electronic ISSN")]
         public string ElectronicIssn { get; set; }
-
-        /// <summary>
-        /// Gets publisher of the journal.
-        /// </summary>
-        [Display(Name = "Publisher")]
-        public PublisherViewModel Publisher { get; }
 
         /// <summary>
         /// Gets or sets created by.

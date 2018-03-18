@@ -19,7 +19,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// </summary>
         /// <param name="userContext">The user context.</param>
         /// <param name="publisher">Publisher for combo box.</param>
-        public JournalDetailsViewModel(UserContext userContext, PublisherViewModel publisher)
+        public JournalDetailsViewModel(UserContext userContext, JournalPublisherViewModel publisher)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
             this.Publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
@@ -82,7 +82,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// Gets publisher of the journal.
         /// </summary>
         [Display(Name = "Publisher")]
-        public PublisherViewModel Publisher { get; }
+        public JournalPublisherViewModel Publisher { get; }
 
         /// <summary>
         /// Gets or sets created by.

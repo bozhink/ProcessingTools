@@ -1,4 +1,4 @@
-﻿// <copyright file="PublisherViewModel.cs" company="ProcessingTools">
+﻿// <copyright file="JournalPublisherViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// Publisher view model.
+    /// Journal publisher view model.
     /// </summary>
-    public class PublisherViewModel
+    public class JournalPublisherViewModel
     {
         /// <summary>
         /// Gets or sets the object ID.
