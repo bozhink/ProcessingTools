@@ -1,26 +1,23 @@
 ﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublisherCreateViewModel
 @{
-    ViewData[ContextKeys.Title] = "Create new publisher";
+    ViewData[ContextKeys.Title] = "Create New Publisher";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
 }
 
 <section role="main">
     <header>
-        @if (string.IsNullOrWhiteSpace(Model?.PageHeading))
-        {
-            string title = Html.DisplayNameFor(m => m.PageHeading);
-            if (string.IsNullOrWhiteSpace(title))
-            {
-                <h2>@ViewData[ContextKeys.Title]</h2>
-            }
-            else
-            {
-                <h2>@title</h2>
-            }
-        }
-        else
-        {
-            <h2>@Model.PageHeading</h2>
-        }
+        <h2>@ViewData[ContextKeys.Title]</h2>
     </header>
     <div asp-validation-summary="All" class="text-danger"></div>
     @if (Model == null)
@@ -35,7 +32,7 @@
                     <label asp-for="Name" class="control-label"></label>
                 </div>
                 <div class="col-md-10">
-                    <input asp-for="Name" class="form-control" />
+                    <input type="text" asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
@@ -44,7 +41,7 @@
                     <label asp-for="AbbreviatedName" class="control-label"></label>
                 </div>
                 <div class="col-md-10">
-                    <input asp-for="AbbreviatedName" class="form-control" />
+                    <input type="text" asp-for="AbbreviatedName" class="form-control" />
                     <span asp-validation-for="AbbreviatedName" class="text-danger"></span>
                 </div>
             </div>
@@ -53,7 +50,7 @@
                     <label asp-for="Address" class="control-label"></label>
                 </div>
                 <div class="col-md-10">
-                    <input asp-for="Address" class="form-control" />
+                    <input type="text" asp-for="Address" class="form-control" />
                     <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
             </div>
@@ -74,4 +71,3 @@
 @section Scripts {
     @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
 }
-

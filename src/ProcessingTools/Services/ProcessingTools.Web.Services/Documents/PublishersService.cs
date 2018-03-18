@@ -87,7 +87,7 @@ namespace ProcessingTools.Web.Services.Documents
         {
             var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
 
-            if (string.IsNullOrWhiteSpace(id))
+            if (!string.IsNullOrWhiteSpace(id))
             {
                 var publisher = await this.publishersDataService.GetDetailsById(id).ConfigureAwait(false);
                 if (publisher != null)

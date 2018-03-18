@@ -128,7 +128,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
 
-            if (result.UpsertedId.AsString != model.Id)
+            if (!result.IsAcknowledged)
             {
                 throw new UpdateUnsuccessfulException();
             }

@@ -1,7 +1,65 @@
-﻿
+﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublisherDeleteViewModel
 @{
-    ViewData["Title"] = "Delete";
+    ViewData[ContextKeys.Title] = "Delete Publisher";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
 }
 
-<h2>Delete</h2>
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(m => m.Name)</dt>
+            <dd>@Html.DisplayFor(m => m.Name)</dd>
+            
+            <dt>@Html.DisplayNameFor(m => m.AbbreviatedName)</dt>
+            <dd>@Html.DisplayFor(m => m.AbbreviatedName)</dd>
+            
+            <dt>@Html.DisplayNameFor(m => m.Address)</dt>
+            <dd>@Html.DisplayFor(m => m.Address)</dd>
 
+            <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
+        </dl>
+
+        <form asp-route-returnUrl="@ViewData[ContextKeys.ReturnUrl]" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@ViewData[ContextKeys.ReturnUrl]" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(PublishersController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
