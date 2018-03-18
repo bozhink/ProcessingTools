@@ -160,5 +160,55 @@ namespace ProcessingTools.Extensions
 
             return stream;
         }
+
+        /// <summary>
+        /// Parse string to <see cref="Guid"/> or generates new <see cref="Guid"/> if parse is invalid.
+        /// </summary>
+        /// <param name="source">Source string to be parsed.</param>
+        /// <returns>Parsed or new <see cref="Guid"/></returns>
+        public static Guid ToNewGuid(this string source)
+        {
+            if (!string.IsNullOrWhiteSpace(source) && Guid.TryParse(source, out Guid result))
+            {
+                return result;
+            }
+
+            return Guid.NewGuid();
+        }
+
+        /// <summary>
+        /// Parse object to <see cref="Guid"/> or generates new <see cref="Guid"/> if parse is invalid.
+        /// </summary>
+        /// <param name="source">Source object to be parsed.</param>
+        /// <returns>Parsed or new <see cref="Guid"/></returns>
+        public static Guid ToNewGuid(this object source)
+        {
+            return (source?.ToString()).ToNewGuid();
+        }
+
+        /// <summary>
+        /// Parse string to <see cref="Guid"/> or returns empty <see cref="Guid"/> if parse is invalid.
+        /// </summary>
+        /// <param name="source">Source string to be parsed.</param>
+        /// <returns>Parsed or empty <see cref="Guid"/></returns>
+        public static Guid ToEmptyGuid(this string source)
+        {
+            if (!string.IsNullOrWhiteSpace(source) && Guid.TryParse(source, out Guid result))
+            {
+                return result;
+            }
+
+            return Guid.Empty;
+        }
+
+        /// <summary>
+        /// Parse object to <see cref="Guid"/> or returns empty <see cref="Guid"/> if parse is invalid.
+        /// </summary>
+        /// <param name="source">Source object to be parsed.</param>
+        /// <returns>Parsed or empty <see cref="Guid"/></returns>
+        public static Guid ToEmptyGuid(this object source)
+        {
+            return (source?.ToString()).ToEmptyGuid();
+        }
     }
 }
