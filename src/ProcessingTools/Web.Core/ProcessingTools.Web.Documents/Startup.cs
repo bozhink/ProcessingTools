@@ -139,7 +139,7 @@ namespace ProcessingTools.Web.Documents
                         (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBHistoryDatabaseBindingName)))
                 .InstancePerDependency();
-            
+
             builder
                 .RegisterType<ProcessingTools.Web.Services.Documents.PublishersService>()
                 .As<ProcessingTools.Web.Services.Contracts.Documents.IPublishersService>()

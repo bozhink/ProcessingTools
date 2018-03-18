@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         /// <summary>
         /// Gets or sets the page heading.
         /// </summary>
-        [Display(Name = "Publisher details")]
+        [Display(Name = "Publisher Details")]
         public string PageHeading { get; set; }
 
         /// <summary>
