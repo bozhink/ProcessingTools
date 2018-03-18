@@ -28,7 +28,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// <summary>
         /// Gets or sets the page heading.
         /// </summary>
-        [Display(Name = "Journal details")]
+        [Display(Name = "Journal Details")]
         public string PageHeading { get; set; }
 
         /// <summary>
