@@ -17,6 +17,6 @@ namespace ProcessingTools.Data.Contracts.Documents
         /// Gets journal publishers.
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
-        Task<IJournalPublisherModel[]> GetJournalPublishersAsync();
+        Task<IJournalPublisherDataModel[]> GetJournalPublishersAsync();
     }
 }
