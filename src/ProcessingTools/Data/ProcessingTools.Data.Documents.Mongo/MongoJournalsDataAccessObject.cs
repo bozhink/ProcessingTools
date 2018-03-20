@@ -92,21 +92,55 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public Task<IJournalPublisherDataModel[]> GetJournalPublishersAsync()
+        public async Task<IJournalPublisherDataModel[]> GetJournalPublishersAsync()
         {
-            throw new NotImplementedException();
+            var collection = this.GetCollection<Publisher>();
+
+            var data = await collection.Find(p => true).
+                Project(p => new JournalPublisher
+                {
+                    Id = p.Id,
+                    ObjectId = p.ObjectId,
+                    Name = p.Name,
+                    AbbreviatedName = p.AbbreviatedName
+                })
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            return data.ToArray<IJournalPublisherDataModel>();
         }
 
         /// <inheritdoc/>
-        public Task<IJournalDataModel> InsertAsync(IJournalInsertModel model)
+        public async Task<IJournalDataModel> InsertAsync(IJournalInsertModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return null;
+            }
+
+            var item = this.mapper.Map<IJournalInsertModel, Journal>(model);
+            item.ObjectId = this.applicationContext.GuidProvider.Invoke();
+            item.ModifiedBy = this.applicationContext.UserContext.UserId;
+            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            item.CreatedBy = item.ModifiedBy;
+            item.CreatedOn = item.ModifiedOn;
+            item.Id = null;
+
+            await this.Collection.InsertOneAsync(item).ConfigureAwait(false);
+
+            return item;
         }
 
         /// <inheritdoc/>
-        public Task<IJournalDataModel[]> SelectAsync(int skip, int take)
+        public async Task<IJournalDataModel[]> SelectAsync(int skip, int take)
         {
-            throw new NotImplementedException();
+            var data = await this.Collection.Find(p => true).ToListAsync().ConfigureAwait(false);
+            if (data == null || !data.Any())
+            {
+                return new IJournalDataModel[] { };
+            }
+
+            return data.ToArray<IJournalDataModel>();
         }
 
         /// <inheritdoc/>
@@ -116,9 +150,43 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public Task<IJournalDataModel> UpdateAsync(IJournalUpdateModel model)
+        public async Task<IJournalDataModel> UpdateAsync(IJournalUpdateModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                return null;
+            }
+
+            Guid objectId = model.Id.ToNewGuid();
+
+            var item = this.mapper.Map<IJournalUpdateModel, Journal>(model);
+            item.ModifiedBy = this.applicationContext.UserContext.UserId;
+            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+
+            var filterDefinition = new FilterDefinitionBuilder<Journal>().Eq(m => m.ObjectId, objectId);
+            var updateDefinition = new UpdateDefinitionBuilder<Journal>()
+                .Set(p => p.Name, model.Name)
+                .Set(p => p.AbbreviatedName, model.AbbreviatedName)
+                .Set(p => p.JournalId, model.JournalId)
+                .Set(p => p.PrintIssn, model.PrintIssn)
+                .Set(p => p.ElectronicIssn, model.ElectronicIssn)
+                .Set(p => p.PublisherId, model.PublisherId)
+                .Set(p => p.ModifiedBy, item.ModifiedBy)
+                .Set(p => p.ModifiedOn, item.ModifiedOn);
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = false
+            };
+
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+
+            if (!result.IsAcknowledged)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            return item;
         }
     }
 }
