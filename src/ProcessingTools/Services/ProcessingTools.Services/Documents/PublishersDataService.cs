@@ -54,16 +54,17 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var entity = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
+            var publisher = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-            if (entity == null)
+
+            if (publisher == null)
             {
                 throw new InsertUnsuccessfulException();
             }
 
-            await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
+            await this.objectHistoryDataService.AddAsync(publisher.ObjectId, publisher).ConfigureAwait(false);
 
-            return entity.ObjectId;
+            return publisher.ObjectId;
         }
 
         /// <inheritdoc/>
@@ -74,16 +75,17 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var entity = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            var publisher = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-            if (entity == null)
+
+            if (publisher == null)
             {
                 throw new UpdateUnsuccessfulException();
             }
 
-            await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
+            await this.objectHistoryDataService.AddAsync(publisher.ObjectId, publisher).ConfigureAwait(false);
 
-            return entity.ObjectId;
+            return publisher.ObjectId;
         }
 
         /// <inheritdoc/>
@@ -108,13 +110,14 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
-            if (entity == null)
+            var publisher = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
+
+            if (publisher == null)
             {
                 return null;
             }
 
-            var model = this.mapper.Map<IPublisherDataModel, PublisherModel>(entity);
+            var model = this.mapper.Map<IPublisherDataModel, PublisherModel>(publisher);
 
             return model;
         }
@@ -127,13 +130,14 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
-            if (entity == null)
+            var publisher = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
+
+            if (publisher == null)
             {
                 return null;
             }
 
-            var model = this.mapper.Map<IPublisherDetailsDataModel, PublisherDetailsModel>(entity);
+            var model = this.mapper.Map<IPublisherDetailsDataModel, PublisherDetailsModel>(publisher);
 
             return model;
         }
@@ -151,13 +155,38 @@ namespace ProcessingTools.Services.Documents
                 throw new InvalidItemsPerPageException();
             }
 
-            var entities = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
-            if (entities == null || !entities.Any())
+            var publishers = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
+
+            if (publishers == null || !publishers.Any())
             {
                 return new IPublisherModel[] { };
             }
 
-            var items = entities.Select(this.mapper.Map<IPublisherDataModel, PublisherModel>).ToArray();
+            var items = publishers.Select(this.mapper.Map<IPublisherDataModel, PublisherModel>).ToArray();
+            return items;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            var publishers = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+
+            if (publishers == null || !publishers.Any())
+            {
+                return new IPublisherDetailsModel[] { };
+            }
+
+            var items = publishers.Select(this.mapper.Map<IPublisherDetailsDataModel, PublisherDetailsModel>).ToArray();
             return items;
         }
 

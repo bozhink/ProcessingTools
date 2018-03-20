@@ -182,7 +182,7 @@ namespace ProcessingTools.Web.Services.Documents
         {
             var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
 
-            var data = await this.journalsDataService.SelectAsync(skip, take).ConfigureAwait(false);
+            var data = await this.journalsDataService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             var count = await this.journalsDataService.SelectCountAsync().ConfigureAwait(false);
 
             var journals = data?.Select(j => new JournalIndexViewModel
@@ -196,7 +196,14 @@ namespace ProcessingTools.Web.Services.Documents
                 CreatedBy = j.CreatedBy,
                 CreatedOn = j.CreatedOn,
                 ModifiedBy = j.ModifiedBy,
-                ModifiedOn = j.ModifiedOn
+                ModifiedOn = j.ModifiedOn,
+                Publisher = new JournalPublisherViewModel
+                {
+                    Id = j.Publisher.Id,
+                    Name = j.Publisher.Name,
+                    AbbreviatedName = j.Publisher.AbbreviatedName,
+                    Selected = true
+                }
             });
 
             return new JournalsIndexViewModel(userContext, count, take, skip / take, journals ?? new JournalIndexViewModel[] { });

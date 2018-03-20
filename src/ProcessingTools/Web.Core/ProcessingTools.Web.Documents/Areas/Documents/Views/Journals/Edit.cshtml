@@ -1,0 +1,107 @@
+﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublisherEditViewModel
+@{
+    ViewData[ContextKeys.Title] = "Edit Publisher";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <form asp-route-returnUrl="@ViewData[ContextKeys.ReturnUrl]" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Name" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="AbbreviatedName" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="AbbreviatedName" class="form-control" />
+                    <span asp-validation-for="AbbreviatedName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Address" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="CreatedBy" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="CreatedOn" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    
+                    <input type="datetime" asp-for="CreatedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ModifiedBy" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ModifiedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ModifiedOn" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="ModifiedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-default" value="Save" />
+                    <input type="reset" class="btn btn-default" value="Reset" />
+                    <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@ViewData[ContextKeys.ReturnUrl]" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(PublishersController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
+}

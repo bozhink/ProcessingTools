@@ -38,12 +38,15 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
+                c.CreateMap<IJournalPublisherDataModel, JournalPublisherModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IJournalPublisherDataModel, IJournalPublisherModel>().As<JournalPublisherModel>();
+
                 c.CreateMap<IJournalDataModel, JournalModel>()
                     .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IJournalDetailsDataModel, JournalDetailsModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
-                c.CreateMap<IJournalPublisherDataModel, JournalPublisherModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()))
+                    .ForMember(sm => sm.Publisher, o => o.MapFrom(dm => dm.Publisher));
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -56,16 +59,17 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var entity = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
+            var journal = await this.dataAccessObject.InsertAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-            if (entity == null)
+
+            if (journal == null)
             {
                 throw new InsertUnsuccessfulException();
             }
 
-            await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
+            await this.objectHistoryDataService.AddAsync(journal.ObjectId, journal).ConfigureAwait(false);
 
-            return entity.ObjectId;
+            return journal.ObjectId;
         }
 
         /// <inheritdoc/>
@@ -76,16 +80,17 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var entity = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
+            var journal = await this.dataAccessObject.UpdateAsync(model).ConfigureAwait(false);
             await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
-            if (entity == null)
+
+            if (journal == null)
             {
                 throw new UpdateUnsuccessfulException();
             }
 
-            await this.objectHistoryDataService.AddAsync(entity.ObjectId, entity).ConfigureAwait(false);
+            await this.objectHistoryDataService.AddAsync(journal.ObjectId, journal).ConfigureAwait(false);
 
-            return entity.ObjectId;
+            return journal.ObjectId;
         }
 
         /// <inheritdoc/>
@@ -110,13 +115,14 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
-            if (entity == null)
+            var journal = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
+
+            if (journal == null)
             {
                 return null;
             }
 
-            var model = this.mapper.Map<IJournalDataModel, JournalModel>(entity);
+            var model = this.mapper.Map<IJournalDataModel, JournalModel>(journal);
 
             return model;
         }
@@ -129,13 +135,14 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
-            if (entity == null)
+            var journal = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
+
+            if (journal == null)
             {
                 return null;
             }
 
-            var model = this.mapper.Map<IJournalDetailsDataModel, JournalDetailsModel>(entity);
+            var model = this.mapper.Map<IJournalDetailsDataModel, JournalDetailsModel>(journal);
 
             return model;
         }
@@ -153,13 +160,37 @@ namespace ProcessingTools.Services.Documents
                 throw new InvalidItemsPerPageException();
             }
 
-            var entities = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
-            if (entities == null || !entities.Any())
+            var journals = await this.dataAccessObject.SelectAsync(skip, take).ConfigureAwait(false);
+
+            if (journals == null || !journals.Any())
             {
                 return new IJournalModel[] { };
             }
 
-            var items = entities.Select(this.mapper.Map<IJournalDataModel, JournalModel>).ToArray();
+            var items = journals.Select(this.mapper.Map<IJournalDataModel, JournalModel>).ToArray();
+            return items;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IJournalDetailsModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            if (skip < PaginationConstants.MinimalPageNumber)
+            {
+                throw new InvalidPageNumberException();
+            }
+
+            if (take < PaginationConstants.MinimalItemsPerPage || take > PaginationConstants.MaximalItemsPerPageAllowed)
+            {
+                throw new InvalidItemsPerPageException();
+            }
+
+            var journals = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+            if (journals == null || !journals.Any())
+            {
+                return new IJournalDetailsModel[] { };
+            }
+
+            var items = journals.Select(this.mapper.Map<IJournalDetailsDataModel, JournalDetailsModel>).ToArray();
             return items;
         }
 
@@ -169,13 +200,13 @@ namespace ProcessingTools.Services.Documents
         /// <inheritdoc/>
         public async Task<IJournalPublisherModel[]> GetJournalPublishersAsync()
         {
-            var entities = await this.dataAccessObject.GetJournalPublishersAsync().ConfigureAwait(false);
-            if (entities == null || !entities.Any())
+            var publishers = await this.dataAccessObject.GetJournalPublishersAsync().ConfigureAwait(false);
+            if (publishers == null || !publishers.Any())
             {
                 return new IJournalPublisherModel[] { };
             }
 
-            return entities.Select(this.mapper.Map<IJournalPublisherDataModel, JournalPublisherModel>).ToArray();
+            return publishers.Select(this.mapper.Map<IJournalPublisherDataModel, JournalPublisherModel>).ToArray();
         }
     }
 }

@@ -24,8 +24,8 @@ namespace ProcessingTools.Data.Documents.Mongo
     /// </summary>
     public class MongoJournalsDataAccessObject : MongoDataAccessObjectBase<Journal>, IJournalsDataAccessObject
     {
-        private readonly IMapper mapper;
         private readonly IApplicationContext applicationContext;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoJournalsDataAccessObject"/> class.
@@ -74,7 +74,19 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDataModel> GetById(object id) => await this.GetDetailsById(id).ConfigureAwait(false);
+        public async Task<IJournalDataModel> GetById(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var journal = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return journal;
+        }
 
         /// <inheritdoc/>
         public async Task<IJournalDetailsDataModel> GetDetailsById(object id)
@@ -86,28 +98,24 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var item = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var journal = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
-            return item;
+            if (journal != null)
+            {
+                var publisherId = journal.PublisherId.ToNewGuid();
+
+                journal.Publisher = await this.GetJournalPublishersQuery(p => p.ObjectId == publisherId).FirstOrDefaultAsync().ConfigureAwait(false);
+            }
+
+            return journal;
         }
 
         /// <inheritdoc/>
         public async Task<IJournalPublisherDataModel[]> GetJournalPublishersAsync()
         {
-            var collection = this.GetCollection<Publisher>();
+            var publishers = await this.GetJournalPublishersQuery(p => true).ToListAsync().ConfigureAwait(false);
 
-            var data = await collection.Find(p => true).
-                Project(p => new JournalPublisher
-                {
-                    Id = p.Id,
-                    ObjectId = p.ObjectId,
-                    Name = p.Name,
-                    AbbreviatedName = p.AbbreviatedName
-                })
-                .ToListAsync()
-                .ConfigureAwait(false);
-
-            return data.ToArray<IJournalPublisherDataModel>();
+            return publishers.ToArray<IJournalPublisherDataModel>();
         }
 
         /// <inheritdoc/>
@@ -118,29 +126,61 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
-            var item = this.mapper.Map<IJournalInsertModel, Journal>(model);
-            item.ObjectId = this.applicationContext.GuidProvider.Invoke();
-            item.ModifiedBy = this.applicationContext.UserContext.UserId;
-            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
-            item.CreatedBy = item.ModifiedBy;
-            item.CreatedOn = item.ModifiedOn;
-            item.Id = null;
+            var journal = this.mapper.Map<IJournalInsertModel, Journal>(model);
+            journal.ObjectId = this.applicationContext.GuidProvider.Invoke();
+            journal.ModifiedBy = this.applicationContext.UserContext.UserId;
+            journal.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            journal.CreatedBy = journal.ModifiedBy;
+            journal.CreatedOn = journal.ModifiedOn;
+            journal.Id = null;
 
-            await this.Collection.InsertOneAsync(item).ConfigureAwait(false);
+            await this.Collection.InsertOneAsync(journal).ConfigureAwait(false);
 
-            return item;
+            return journal;
         }
 
         /// <inheritdoc/>
         public async Task<IJournalDataModel[]> SelectAsync(int skip, int take)
         {
-            var data = await this.Collection.Find(p => true).ToListAsync().ConfigureAwait(false);
-            if (data == null || !data.Any())
+            var journals = await this.Collection.Find(p => true)
+                .Skip(skip)
+                .Limit(take)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (journals == null || !journals.Any())
             {
                 return new IJournalDataModel[] { };
             }
 
-            return data.ToArray<IJournalDataModel>();
+            return journals.ToArray<IJournalDataModel>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IJournalDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            var journals = await this.Collection.Find(p => true)
+                .Skip(skip)
+                .Limit(take)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (journals == null || !journals.Any())
+            {
+                return new IJournalDetailsDataModel[] { };
+            }
+
+            var publishers = await this.GetJournalPublishersAsync().ConfigureAwait(false);
+
+            if (publishers != null && publishers.Any())
+            {
+                journals.ForEach(j =>
+                {
+                    j.Publisher = publishers.FirstOrDefault(p => p.ObjectId == j.PublisherId.ToNewGuid());
+                });
+            }
+
+            return journals.ToArray<IJournalDetailsDataModel>();
         }
 
         /// <inheritdoc/>
@@ -159,9 +199,9 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = model.Id.ToNewGuid();
 
-            var item = this.mapper.Map<IJournalUpdateModel, Journal>(model);
-            item.ModifiedBy = this.applicationContext.UserContext.UserId;
-            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            var journal = this.mapper.Map<IJournalUpdateModel, Journal>(model);
+            journal.ModifiedBy = this.applicationContext.UserContext.UserId;
+            journal.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
 
             var filterDefinition = new FilterDefinitionBuilder<Journal>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Journal>()
@@ -171,8 +211,8 @@ namespace ProcessingTools.Data.Documents.Mongo
                 .Set(p => p.PrintIssn, model.PrintIssn)
                 .Set(p => p.ElectronicIssn, model.ElectronicIssn)
                 .Set(p => p.PublisherId, model.PublisherId)
-                .Set(p => p.ModifiedBy, item.ModifiedBy)
-                .Set(p => p.ModifiedOn, item.ModifiedOn);
+                .Set(p => p.ModifiedBy, journal.ModifiedBy)
+                .Set(p => p.ModifiedOn, journal.ModifiedOn);
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
@@ -186,7 +226,19 @@ namespace ProcessingTools.Data.Documents.Mongo
                 throw new UpdateUnsuccessfulException();
             }
 
-            return item;
+            return journal;
+        }
+
+        private IFindFluent<Publisher, JournalPublisher> GetJournalPublishersQuery(System.Linq.Expressions.Expression<Func<Publisher, bool>> filter)
+        {
+            return this.GetCollection<Publisher>().Find(filter)
+                .Project(p => new JournalPublisher
+                {
+                    Id = p.Id,
+                    ObjectId = p.ObjectId,
+                    Name = p.Name,
+                    AbbreviatedName = p.AbbreviatedName
+                });
         }
     }
 }

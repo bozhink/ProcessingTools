@@ -24,8 +24,8 @@ namespace ProcessingTools.Data.Documents.Mongo
     /// </summary>
     public class MongoPublishersDataAccessObject : MongoDataAccessObjectBase<Publisher>, IPublishersDataAccessObject
     {
-        private readonly IMapper mapper;
         private readonly IApplicationContext applicationContext;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoPublishersDataAccessObject"/> class.
@@ -115,13 +115,35 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IPublisherDataModel[]> SelectAsync(int skip, int take)
         {
-            var publishers = await this.Collection.Find(p => true).ToListAsync().ConfigureAwait(false);
+            var publishers = await this.Collection.Find(p => true)
+                .Skip(skip)
+                .Limit(take)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
             if (publishers == null || !publishers.Any())
             {
                 return new IPublisherDataModel[] { };
             }
 
             return publishers.ToArray<IPublisherDataModel>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IPublisherDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
+        {
+            var publishers = await this.Collection.Find(p => true)
+                .Skip(skip)
+                .Limit(take)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (publishers == null || !publishers.Any())
+            {
+                return new IPublisherDetailsDataModel[] { };
+            }
+
+            return publishers.ToArray<IPublisherDetailsDataModel>();
         }
 
         /// <inheritdoc/>

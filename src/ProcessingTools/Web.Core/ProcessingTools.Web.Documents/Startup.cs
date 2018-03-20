@@ -145,12 +145,30 @@ namespace ProcessingTools.Web.Documents
                 .As<ProcessingTools.Web.Services.Contracts.Documents.IPublishersService>()
                 .InstancePerDependency();
             builder
+                .RegisterType<ProcessingTools.Web.Services.Documents.JournalsService>()
+                .As<ProcessingTools.Web.Services.Contracts.Documents.IJournalsService>()
+                .InstancePerDependency();
+
+            builder
                 .RegisterType<ProcessingTools.Services.Documents.PublishersDataService>()
                 .As<ProcessingTools.Services.Contracts.Documents.IPublishersDataService>()
                 .InstancePerDependency();
             builder
+                .RegisterType<ProcessingTools.Services.Documents.JournalsDataService>()
+                .As<ProcessingTools.Services.Contracts.Documents.IJournalsDataService>()
+                .InstancePerDependency();
+
+            builder
                 .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoPublishersDataAccessObject>()
                 .As<ProcessingTools.Data.Contracts.Documents.IPublishersDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoJournalsDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.Documents.IJournalsDataAccessObject>()
                 .WithParameter(
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
