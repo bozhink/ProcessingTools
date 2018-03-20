@@ -82,5 +82,11 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the publisher.
+        /// </summary>
+        [ReadOnly(true)]
+        public JournalPublisherViewModel Publisher { get; set; } = new JournalPublisherViewModel();
     }
 }

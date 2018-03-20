@@ -34,13 +34,13 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public string JournalId { get; set; }
 
         /// <inheritdoc/>
-        [RegularExpression(@"\A(\d{4}-\d{3}[\dxX]|\s+)\Z")]
+        [RegularExpression(@"^\d{4}-\d{3}[\dxX]$")]
         [StringLength(ValidationConstants.IssnLength)]
         public string PrintIssn { get; set; }
 
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
-        [RegularExpression(@"\A\d{4}-\d{3}[\dxX]\Z")]
+        [RegularExpression(@"^\d{4}-\d{3}[\dxX]$")]
         [StringLength(ValidationConstants.IssnLength, MinimumLength = ValidationConstants.IssnLength)]
         public string ElectronicIssn { get; set; }
 

@@ -65,7 +65,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// <summary>
         /// Gets or sets the journal's print ISSN.
         /// </summary>
-        [RegularExpression(@"\A(\d{4}-\d{3}[\dxX]|\s+)\Z")]
+        [RegularExpression(@"^\d{4}-\d{3}[\dxX]$")]
         [StringLength(ValidationConstants.IssnLength, ErrorMessage = "The {0} must be {1} characters long.")]
         [Display(Name = "Print ISSN")]
         public string PrintIssn { get; set; }
@@ -74,7 +74,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// Gets or sets the journal's electronic ISSN.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
-        [RegularExpression(@"\A\d{4}-\d{3}[\dxX]\Z")]
+        [RegularExpression(@"^\d{4}-\d{3}[\dxX]$")]
         [StringLength(ValidationConstants.IssnLength, ErrorMessage = "The {0} must be {1} characters long.", MinimumLength = ValidationConstants.IssnLength)]
         [Display(Name = "Electronic ISSN")]
         public string ElectronicIssn { get; set; }
