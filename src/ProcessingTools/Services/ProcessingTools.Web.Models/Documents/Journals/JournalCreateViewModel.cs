@@ -85,10 +85,10 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public IEnumerable<JournalPublisherViewModel> Publishers { get; }
 
         /// <summary>
-        /// Gets the ID of the publisher of the journal.
+        /// Gets or sets the ID of the publisher of the journal.
         /// </summary>
         [Required]
         [Display(Name = "Publisher")]
-        public string PublisherId => this.Publishers?.FirstOrDefault(p => p.Selected)?.Id;
+        public string PublisherId { get; set; }
     }
 }

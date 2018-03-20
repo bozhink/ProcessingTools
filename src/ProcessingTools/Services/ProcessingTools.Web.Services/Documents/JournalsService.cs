@@ -166,6 +166,7 @@ namespace ProcessingTools.Web.Services.Documents
                         JournalId = journal.JournalId,
                         PrintIssn = journal.PrintIssn,
                         ElectronicIssn = journal.ElectronicIssn,
+                        PublisherId = journal.PublisherId,
                         CreatedBy = journal.CreatedBy,
                         CreatedOn = journal.CreatedOn,
                         ModifiedBy = journal.ModifiedBy,
