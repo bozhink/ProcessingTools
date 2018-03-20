@@ -66,9 +66,9 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var item = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var publisher = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
-            return item;
+            return publisher;
         }
 
         /// <inheritdoc/>
@@ -99,29 +99,29 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
-            var item = this.mapper.Map<IPublisherInsertModel, Publisher>(model);
-            item.ObjectId = this.applicationContext.GuidProvider.Invoke();
-            item.ModifiedBy = this.applicationContext.UserContext.UserId;
-            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
-            item.CreatedBy = item.ModifiedBy;
-            item.CreatedOn = item.ModifiedOn;
-            item.Id = null;
+            var publisher = this.mapper.Map<IPublisherInsertModel, Publisher>(model);
+            publisher.ObjectId = this.applicationContext.GuidProvider.Invoke();
+            publisher.ModifiedBy = this.applicationContext.UserContext.UserId;
+            publisher.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            publisher.CreatedBy = publisher.ModifiedBy;
+            publisher.CreatedOn = publisher.ModifiedOn;
+            publisher.Id = null;
 
-            await this.Collection.InsertOneAsync(item).ConfigureAwait(false);
+            await this.Collection.InsertOneAsync(publisher).ConfigureAwait(false);
 
-            return item;
+            return publisher;
         }
 
         /// <inheritdoc/>
         public async Task<IPublisherDataModel[]> SelectAsync(int skip, int take)
         {
-            var data = await this.Collection.Find(p => true).ToListAsync().ConfigureAwait(false);
-            if (data == null || !data.Any())
+            var publishers = await this.Collection.Find(p => true).ToListAsync().ConfigureAwait(false);
+            if (publishers == null || !publishers.Any())
             {
                 return new IPublisherDataModel[] { };
             }
 
-            return data.ToArray<IPublisherDataModel>();
+            return publishers.ToArray<IPublisherDataModel>();
         }
 
         /// <inheritdoc/>
@@ -140,17 +140,17 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = model.Id.ToNewGuid();
 
-            var item = this.mapper.Map<IPublisherUpdateModel, Publisher>(model);
-            item.ModifiedBy = this.applicationContext.UserContext.UserId;
-            item.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
+            var publisher = this.mapper.Map<IPublisherUpdateModel, Publisher>(model);
+            publisher.ModifiedBy = this.applicationContext.UserContext.UserId;
+            publisher.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
 
             var filterDefinition = new FilterDefinitionBuilder<Publisher>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Publisher>()
                 .Set(p => p.AbbreviatedName, model.AbbreviatedName)
                 .Set(p => p.Name, model.Name)
                 .Set(p => p.Address, model.Address)
-                .Set(p => p.ModifiedBy, item.ModifiedBy)
-                .Set(p => p.ModifiedOn, item.ModifiedOn);
+                .Set(p => p.ModifiedBy, publisher.ModifiedBy)
+                .Set(p => p.ModifiedOn, publisher.ModifiedOn);
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
@@ -164,7 +164,7 @@ namespace ProcessingTools.Data.Documents.Mongo
                 throw new UpdateUnsuccessfulException();
             }
 
-            return item;
+            return publisher;
         }
     }
 }
