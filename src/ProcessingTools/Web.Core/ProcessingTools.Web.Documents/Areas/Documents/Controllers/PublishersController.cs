@@ -79,8 +79,6 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
-
             int pageNumber = Math.Max(
                 PaginationConstants.MinimalPageNumber,
                 p ?? PaginationConstants.DefaultPageNumber);
@@ -93,6 +91,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             try
             {
                 var viewModel = await this.service.GetPublishersIndexViewModelAsync(pageNumber * numberOfItemsPerPage, numberOfItemsPerPage).ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
 
                 return this.View(model: viewModel);
             }
@@ -118,11 +117,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
-
             try
             {
                 var viewModel = await this.service.GetPublisherCreateViewModelAsync().ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
                 return this.View(model: viewModel);
             }
             catch (Exception ex)
@@ -138,18 +137,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// POST /Documents/Publishers/Create
         /// </summary>
         /// <param name="model"><see cref="PublisherCreateRequestModel"/></param>
-        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(CreateActionName)]
-        public async Task<IActionResult> Create(PublisherCreateRequestModel model, string returnUrl = null)
+        public async Task<IActionResult> Create(PublisherCreateRequestModel model)
         {
             const string LogMessage = "POST Create Publisher";
 
             this.logger.LogTrace(LogMessage);
-
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
 
             try
             {
@@ -158,9 +154,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                     var ok = await this.service.CreatePublisherAsync(model).ConfigureAwait(false);
                     if (ok)
                     {
-                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
                         {
-                            return this.Redirect(returnUrl);
+                            return this.Redirect(model.ReturnUrl);
                         }
 
                         return this.RedirectToAction(IndexActionName);
@@ -170,6 +166,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+
                 return this.View(viewModel);
             }
             catch (Exception ex)
@@ -195,11 +192,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
-
             try
             {
                 var viewModel = await this.service.GetPublisherEditViewModelAsync(id).ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
                 return this.View(model: viewModel);
             }
             catch (Exception ex)
@@ -215,18 +212,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// POST /Documents/Publishers/Edit
         /// </summary>
         /// <param name="model"><see cref="PublisherUpdateRequestModel"/></param>
-        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(EditActionName)]
-        public async Task<IActionResult> Edit(PublisherUpdateRequestModel model, string returnUrl = null)
+        public async Task<IActionResult> Edit(PublisherUpdateRequestModel model)
         {
             const string LogMessage = "POST Edit Publisher";
 
             this.logger.LogTrace(LogMessage);
-
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
 
             try
             {
@@ -235,9 +229,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                     var ok = await this.service.UpdatePublisherAsync(model).ConfigureAwait(false);
                     if (ok)
                     {
-                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
                         {
-                            return this.Redirect(returnUrl);
+                            return this.Redirect(model.ReturnUrl);
                         }
 
                         return this.RedirectToAction(IndexActionName);
@@ -247,6 +241,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+
                 return this.View(viewModel);
             }
             catch (Exception ex)
@@ -272,11 +267,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
-
             try
             {
                 var viewModel = await this.service.GetPublisherDeleteViewModelAsync(id).ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
                 return this.View(model: viewModel);
             }
             catch (Exception ex)
@@ -292,18 +287,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// POST /Documents/Publishers/Delete
         /// </summary>
         /// <param name="model"><see cref="PublisherDeleteRequestModel"/></param>
-        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(DeleteActionName)]
-        public async Task<IActionResult> Delete(PublisherDeleteRequestModel model, string returnUrl = null)
+        public async Task<IActionResult> Delete(PublisherDeleteRequestModel model)
         {
             const string LogMessage = "POST Delete Publisher";
 
             this.logger.LogTrace(LogMessage);
-
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
 
             try
             {
@@ -312,9 +304,9 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                     var ok = await this.service.DeletePublisherAsync(model.Id).ConfigureAwait(false);
                     if (ok)
                     {
-                        if (!string.IsNullOrWhiteSpace(returnUrl))
+                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
                         {
-                            return this.Redirect(returnUrl);
+                            return this.Redirect(model.ReturnUrl);
                         }
 
                         return this.RedirectToAction(IndexActionName);
@@ -324,6 +316,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+
                 return this.View(viewModel);
             }
             catch (Exception ex)
@@ -348,11 +341,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
-
             try
             {
                 var viewModel = await this.service.GetPublisherDetailsViewModelAsync(id).ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
                 return this.View(model: viewModel);
             }
             catch (Exception ex)

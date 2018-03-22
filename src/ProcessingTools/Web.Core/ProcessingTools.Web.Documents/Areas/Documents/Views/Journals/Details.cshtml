@@ -49,7 +49,7 @@
             <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
         </dl>
         <div>
-            <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@ViewData[ContextKeys.ReturnUrl]" class="btn btn-default">Cancel</a>
+            <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
         </div>
     }
     <footer class="page-navigation">

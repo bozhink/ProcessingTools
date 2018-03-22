@@ -26,7 +26,7 @@
     }
     else
     {
-        <form asp-route-returnUrl="@ViewData[ContextKeys.ReturnUrl]" method="post" class="form-horizontal">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <div class="col-md-2">
@@ -127,7 +127,7 @@
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-default" value="Save" />
                     <input type="reset" class="btn btn-default" value="Reset" />
-                    <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@ViewData[ContextKeys.ReturnUrl]" class="btn btn-default">Cancel</a>
+                    <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
                 </div>
             </div>
         </form>
