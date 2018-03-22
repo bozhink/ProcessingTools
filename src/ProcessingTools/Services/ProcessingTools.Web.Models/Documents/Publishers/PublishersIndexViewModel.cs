@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publishers index view model.
     /// </summary>
-    public class PublishersIndexViewModel : GridViewModel<PublisherIndexViewModel>
+    public class PublishersIndexViewModel : GridViewModel<PublisherIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishersIndexViewModel"/> class.
@@ -38,5 +38,8 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         /// Gets the user context.
         /// </summary>
         public UserContext UserContext { get; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

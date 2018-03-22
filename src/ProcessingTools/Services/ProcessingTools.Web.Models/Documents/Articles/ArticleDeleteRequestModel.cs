@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article Delete Request Model
     /// </summary>
-    public class ArticleDeleteRequestModel
+    public class ArticleDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Gets or sets ID.
@@ -18,5 +18,8 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         [Required(AllowEmptyStrings = false)]
         [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         public string Id { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

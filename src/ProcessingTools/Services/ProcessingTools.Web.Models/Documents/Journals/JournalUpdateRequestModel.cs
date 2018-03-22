@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal edit request model.
     /// </summary>
-    public class JournalUpdateRequestModel : IJournalUpdateModel
+    public class JournalUpdateRequestModel : IJournalUpdateModel, ProcessingTools.Models.Contracts.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
@@ -48,5 +48,8 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [Required(AllowEmptyStrings = false)]
         [StringLength(ValidationConstants.MaximalLengthOfId, MinimumLength = ValidationConstants.MinimalLengthOfId)]
         public string PublisherId { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

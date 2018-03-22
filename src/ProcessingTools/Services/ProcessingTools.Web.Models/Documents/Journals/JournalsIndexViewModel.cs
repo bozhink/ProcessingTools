@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journals index view model.
     /// </summary>
-    public class JournalsIndexViewModel : GridViewModel<JournalIndexViewModel>
+    public class JournalsIndexViewModel : GridViewModel<JournalIndexViewModel>, ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalsIndexViewModel"/> class.
@@ -38,5 +38,8 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// Gets the user context.
         /// </summary>
         public UserContext UserContext { get; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

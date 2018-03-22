@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal delete view model.
     /// </summary>
-    public class JournalDeleteViewModel
+    public class JournalDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalDeleteViewModel"/> class.
@@ -111,5 +111,8 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher delete view model.
     /// </summary>
-    public class PublisherDeleteViewModel
+    public class PublisherDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublisherDeleteViewModel"/> class.
@@ -89,5 +89,8 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

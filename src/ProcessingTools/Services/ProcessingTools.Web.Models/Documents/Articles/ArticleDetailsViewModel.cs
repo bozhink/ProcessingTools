@@ -9,11 +9,14 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article Details View Model
     /// </summary>
-    public class ArticleDetailsViewModel
+    public class ArticleDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Gets or sets the User Context.
         /// </summary>
         public UserContext UserContext { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

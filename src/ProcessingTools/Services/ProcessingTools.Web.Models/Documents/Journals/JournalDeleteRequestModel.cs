@@ -9,12 +9,15 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal delete request model.
     /// </summary>
-    public class JournalDeleteRequestModel
+    public class JournalDeleteRequestModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Gets or sets the object ID.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
         public string Id { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

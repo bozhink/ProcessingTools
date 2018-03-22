@@ -7,7 +7,9 @@ namespace ProcessingTools.Web.Models.Documents.Files
     /// <summary>
     /// File Edit Request Model
     /// </summary>
-    public class FileEditRequestModel
+    public class FileEditRequestModel : ProcessingTools.Models.Contracts.IWebModel
     {
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

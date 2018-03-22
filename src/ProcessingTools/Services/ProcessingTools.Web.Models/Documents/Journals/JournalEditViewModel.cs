@@ -8,14 +8,13 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using ProcessingTools.Constants.Data.Journals;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
     /// Journal edit view model.
     /// </summary>
-    public class JournalEditViewModel
+    public class JournalEditViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalEditViewModel"/> class.
@@ -127,5 +126,8 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

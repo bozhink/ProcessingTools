@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher create request model.
     /// </summary>
-    public class PublisherCreateRequestModel : IPublisherInsertModel
+    public class PublisherCreateRequestModel : IPublisherInsertModel, ProcessingTools.Models.Contracts.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
@@ -26,5 +26,8 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfAddressString, MinimumLength = ValidationConstants.MinimalLengthOfAddressString)]
         public string Address { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

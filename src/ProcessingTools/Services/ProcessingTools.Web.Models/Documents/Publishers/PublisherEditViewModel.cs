@@ -13,7 +13,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher edit view model.
     /// </summary>
-    public class PublisherEditViewModel
+    public class PublisherEditViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublisherEditViewModel"/> class.
@@ -93,5 +93,8 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

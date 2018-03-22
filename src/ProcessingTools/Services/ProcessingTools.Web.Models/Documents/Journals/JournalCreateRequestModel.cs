@@ -11,7 +11,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal create request model.
     /// </summary>
-    public class JournalCreateRequestModel : IJournalInsertModel
+    public class JournalCreateRequestModel : IJournalInsertModel, ProcessingTools.Models.Contracts.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
@@ -43,5 +43,8 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [Required(AllowEmptyStrings = false)]
         [StringLength(ValidationConstants.MaximalLengthOfId, MinimumLength = ValidationConstants.MinimalLengthOfId)]
         public string PublisherId { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

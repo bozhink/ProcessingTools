@@ -7,14 +7,13 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using ProcessingTools.Constants.Data.Journals;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
     /// Journal create view model.
     /// </summary>
-    public class JournalCreateViewModel
+    public class JournalCreateViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalCreateViewModel"/> class.
@@ -90,5 +89,8 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [Required]
         [Display(Name = "Publisher")]
         public string PublisherId { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher create view model.
     /// </summary>
-    public class PublisherCreateViewModel
+    public class PublisherCreateViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublisherCreateViewModel"/> class.
@@ -56,5 +56,8 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         [StringLength(ValidationConstants.MaximalLengthOfAddressString, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = ValidationConstants.MinimalLengthOfAddressString)]
         [Display(Name = "Address")]
         public string Address { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

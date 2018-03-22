@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
     /// <summary>
     /// Publisher details view model.
     /// </summary>
-    public class PublisherDetailsViewModel
+    public class PublisherDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PublisherDetailsViewModel"/> class.
@@ -89,5 +89,8 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

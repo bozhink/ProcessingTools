@@ -7,7 +7,9 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// <summary>
     /// Article Edit Request Model
     /// </summary>
-    public class ArticleEditRequestModel
+    public class ArticleEditRequestModel : ProcessingTools.Models.Contracts.IWebModel
     {
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

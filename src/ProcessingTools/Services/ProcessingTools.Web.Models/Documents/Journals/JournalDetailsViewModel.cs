@@ -12,7 +12,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
     /// <summary>
     /// Journal details view model.
     /// </summary>
-    public class JournalDetailsViewModel
+    public class JournalDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalDetailsViewModel"/> class.
@@ -111,5 +111,8 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }
