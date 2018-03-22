@@ -197,11 +197,15 @@ namespace ProcessingTools.Web.Services.Documents
                 {
                     Name = model.Name,
                     AbbreviatedName = model.AbbreviatedName,
-                    Address = model.Address
+                    Address = model.Address,
+                    ReturnUrl = model.ReturnUrl
                 };
             }
 
-            return new PublisherCreateViewModel(userContext);
+            return new PublisherCreateViewModel(userContext)
+            {
+                ReturnUrl = model?.ReturnUrl
+            };
         }
 
         /// <inheritdoc/>
@@ -223,18 +227,47 @@ namespace ProcessingTools.Web.Services.Documents
                         CreatedBy = publisher.CreatedBy,
                         CreatedOn = publisher.CreatedOn,
                         ModifiedBy = publisher.ModifiedBy,
-                        ModifiedOn = publisher.ModifiedOn
+                        ModifiedOn = publisher.ModifiedOn,
+                        ReturnUrl = model.ReturnUrl
                     };
                 }
             }
 
-            return new PublisherEditViewModel(userContext);
+            return new PublisherEditViewModel(userContext)
+            {
+                ReturnUrl = model?.ReturnUrl
+            };
         }
 
         /// <inheritdoc/>
-        public Task<PublisherDeleteViewModel> MapToViewModelAsync(PublisherDeleteRequestModel model)
+        public async Task<PublisherDeleteViewModel> MapToViewModelAsync(PublisherDeleteRequestModel model)
         {
-            return this.GetPublisherDeleteViewModelAsync(model?.Id);
+            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+
+            if (model != null && !string.IsNullOrWhiteSpace(model.Id))
+            {
+                var publisher = await this.publishersDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                if (publisher != null)
+                {
+                    return new PublisherDeleteViewModel(userContext)
+                    {
+                        Id = publisher.Id,
+                        Name = publisher.Name,
+                        AbbreviatedName = publisher.AbbreviatedName,
+                        Address = publisher.Address,
+                        CreatedBy = publisher.CreatedBy,
+                        CreatedOn = publisher.CreatedOn,
+                        ModifiedBy = publisher.ModifiedBy,
+                        ModifiedOn = publisher.ModifiedOn,
+                        ReturnUrl = model?.ReturnUrl
+                    };
+                }
+            }
+
+            return new PublisherDeleteViewModel(userContext)
+            {
+                ReturnUrl = model?.ReturnUrl
+            };
         }
     }
 }

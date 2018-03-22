@@ -225,11 +225,15 @@ namespace ProcessingTools.Web.Services.Documents
                     AbbreviatedName = model.AbbreviatedName,
                     JournalId = model.JournalId,
                     PrintIssn = model.PrintIssn,
-                    ElectronicIssn = model.ElectronicIssn
+                    ElectronicIssn = model.ElectronicIssn,
+                    ReturnUrl = model.ReturnUrl
                 };
             }
 
-            return new JournalCreateViewModel(userContext, publishers);
+            return new JournalCreateViewModel(userContext, publishers)
+            {
+                ReturnUrl = model?.ReturnUrl
+            };
         }
 
         /// <inheritdoc/>
@@ -255,18 +259,51 @@ namespace ProcessingTools.Web.Services.Documents
                         CreatedBy = journal.CreatedBy,
                         CreatedOn = journal.CreatedOn,
                         ModifiedBy = journal.ModifiedBy,
-                        ModifiedOn = journal.ModifiedOn
+                        ModifiedOn = journal.ModifiedOn,
+                        ReturnUrl = model.ReturnUrl
                     };
                 }
             }
 
-            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { });
+            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { })
+            {
+                ReturnUrl = model?.ReturnUrl
+            };
         }
 
         /// <inheritdoc/>
-        public Task<JournalDeleteViewModel> MapToViewModelAsync(JournalDeleteRequestModel model)
+        public async Task<JournalDeleteViewModel> MapToViewModelAsync(JournalDeleteRequestModel model)
         {
-            return this.GetJournalDeleteViewModelAsync(model?.Id);
+            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+
+            if (model != null && !string.IsNullOrWhiteSpace(model.Id))
+            {
+                var journal = await this.journalsDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                if (journal != null)
+                {
+                    var publisher = this.MapJournalPublisherToViewModel(journal);
+
+                    return new JournalDeleteViewModel(userContext, publisher)
+                    {
+                        Id = journal.Id,
+                        Name = journal.Name,
+                        AbbreviatedName = journal.AbbreviatedName,
+                        JournalId = journal.JournalId,
+                        PrintIssn = journal.PrintIssn,
+                        ElectronicIssn = journal.ElectronicIssn,
+                        CreatedBy = journal.CreatedBy,
+                        CreatedOn = journal.CreatedOn,
+                        ModifiedBy = journal.ModifiedBy,
+                        ModifiedOn = journal.ModifiedOn,
+                        ReturnUrl = model.ReturnUrl
+                    };
+                }
+            }
+
+            return new JournalDeleteViewModel(userContext, new JournalPublisherViewModel())
+            {
+                ReturnUrl = model?.ReturnUrl
+            };
         }
 
         private JournalPublisherViewModel MapJournalPublisherToViewModel(ProcessingTools.Services.Models.Contracts.Documents.Journals.IJournalDetailsModel journal)
