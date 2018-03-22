@@ -10,13 +10,13 @@ namespace ProcessingTools.Enumerations
     public enum UserRole
     {
         /// <summary>
-        /// Common user
+        /// Default user
         /// </summary>
-        CommonUser = 0,
+        Default = 0,
 
         /// <summary>
-        /// Administrator
+        /// Administrator.
         /// </summary>
-        Administrator = 1
+        Admin = 1
     }
 }

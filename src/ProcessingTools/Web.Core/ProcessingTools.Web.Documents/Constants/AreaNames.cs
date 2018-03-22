@@ -10,6 +10,11 @@ namespace ProcessingTools.Web.Documents.Constants
     public static class AreaNames
     {
         /// <summary>
+        /// Default area.
+        /// </summary>
+        public const string Default = "";
+
+        /// <summary>
         /// Documents area.
         /// </summary>
         public const string Documents = nameof(Documents);
