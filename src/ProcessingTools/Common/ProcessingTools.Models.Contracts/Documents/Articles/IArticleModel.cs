@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts.Documents.Articles
     /// <summary>
     /// Article model.
     /// </summary>
-    public interface IArticleModel
+    public interface IArticleModel : IArticleBaseModel, IStringIdentifiable, ICreated, IModified
     {
     }
 }
