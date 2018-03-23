@@ -94,7 +94,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// Gets or sets the issue part.
         /// </summary>
         [ReadOnly(true)]
-        [Display(Name = "Issue")]
+        [Display(Name = "Issue part")]
         public string IssuePart { get; set; }
 
         /// <summary>

@@ -1,4 +1,4 @@
-// <copyright file="ArticleDeleteViewModel.cs" company="ProcessingTools">
+﻿// <copyright file="ArticleIndexViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -7,35 +7,12 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Article delete view model.
+    /// Article index view model.
     /// </summary>
-    public class ArticleDeleteViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ArticleIndexViewModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ArticleDeleteViewModel"/> class.
-        /// </summary>
-        /// <param name="userContext">The user context.</param>
-        /// <param name="journal">Selected journal.</param>
-        public ArticleDeleteViewModel(UserContext userContext, ArticleJournalViewModel journal)
-        {
-            this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
-            this.Journal = journal ?? throw new ArgumentNullException(nameof(journal));
-        }
-
-        /// <summary>
-        /// Gets or sets the page heading.
-        /// </summary>
-        [Display(Name = "Delete Article")]
-        public string PageHeading { get; set; }
-
-        /// <summary>
-        /// Gets the user context.
-        /// </summary>
-        public UserContext UserContext { get; }
-
         /// <summary>
         /// Gets or sets the object ID.
         /// </summary>
@@ -65,9 +42,9 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string JournalId { get; set; }
 
         /// <summary>
-        /// Gets the selected journal.
+        /// Gets or sets the selected journal.
         /// </summary>
-        public ArticleJournalViewModel Journal { get; }
+        public ArticleJournalViewModel Journal { get; set; } = new ArticleJournalViewModel();
 
         /// <summary>
         /// Gets or sets the volume series.
@@ -152,8 +129,5 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         [ReadOnly(true)]
         [Display(Name = "Modified on")]
         public DateTime ModifiedOn { get; set; }
-
-        /// <inheritdoc/>
-        public string ReturnUrl { get; set; }
     }
 }

@@ -98,7 +98,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// Gets or sets the issue part.
         /// </summary>
         [StringLength(ValidationConstants.MaximalLengthOfArticleIssuePart, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = ValidationConstants.MinimalLengthOfArticleIssuePart)]
-        [Display(Name = "Issue")]
+        [Display(Name = "Issue part")]
         public string IssuePart { get; set; }
 
         /// <summary>
