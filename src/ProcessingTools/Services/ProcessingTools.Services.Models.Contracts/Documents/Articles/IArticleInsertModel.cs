@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Contracts.Documents.Articles
 {
     /// <summary>
-    /// Article create model.
+    /// Article insert model.
     /// </summary>
     public interface IArticleInsertModel : ProcessingTools.Models.Contracts.Documents.Articles.IArticleInsertModel
     {

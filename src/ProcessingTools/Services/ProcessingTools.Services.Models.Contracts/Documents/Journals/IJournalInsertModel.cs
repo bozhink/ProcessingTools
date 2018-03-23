@@ -5,7 +5,7 @@
 namespace ProcessingTools.Services.Models.Contracts.Documents.Journals
 {
     /// <summary>
-    /// Journal create model.
+    /// Journal insert model.
     /// </summary>
     public interface IJournalInsertModel : ProcessingTools.Models.Contracts.Documents.Journals.IJournalInsertModel
     {
