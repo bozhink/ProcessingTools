@@ -55,7 +55,7 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<bool> CreateJournalAsync(JournalCreateRequestModel model);
 
         /// <summary>
-        /// Edit journal.
+        /// Update journal.
         /// </summary>
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
@@ -64,7 +64,7 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <summary>
         /// Delete journal.
         /// </summary>
-        /// <param name="id">Model for the operation.</param>
+        /// <param name="id">ID of the journal to be deleted.</param>
         /// <returns>Success status.</returns>
         Task<bool> DeleteJournalAsync(string id);
 

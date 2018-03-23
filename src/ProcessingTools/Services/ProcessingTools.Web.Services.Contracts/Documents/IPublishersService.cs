@@ -55,7 +55,7 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<bool> CreatePublisherAsync(PublisherCreateRequestModel model);
 
         /// <summary>
-        /// Edit publisher.
+        /// Update publisher.
         /// </summary>
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
