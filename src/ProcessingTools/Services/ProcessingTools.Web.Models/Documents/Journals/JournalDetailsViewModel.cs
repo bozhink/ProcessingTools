@@ -18,7 +18,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// Initializes a new instance of the <see cref="JournalDetailsViewModel"/> class.
         /// </summary>
         /// <param name="userContext">The user context.</param>
-        /// <param name="publisher">Publisher for combo box.</param>
+        /// <param name="publisher">Selected publisher.</param>
         public JournalDetailsViewModel(UserContext userContext, JournalPublisherViewModel publisher)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
@@ -79,7 +79,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public string ElectronicIssn { get; set; }
 
         /// <summary>
-        /// Gets publisher of the journal.
+        /// Gets the publisher of the journal.
         /// </summary>
         [Display(Name = "Publisher")]
         public JournalPublisherViewModel Publisher { get; }

@@ -20,7 +20,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// Initializes a new instance of the <see cref="JournalEditViewModel"/> class.
         /// </summary>
         /// <param name="userContext">The user context.</param>
-        /// <param name="publishers">Publisher for combo box.</param>
+        /// <param name="publishers">Publisher for select.</param>
         public JournalEditViewModel(UserContext userContext, IEnumerable<JournalPublisherViewModel> publishers)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
@@ -88,7 +88,7 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public string ElectronicIssn { get; set; }
 
         /// <summary>
-        /// Gets publishers for combo box.
+        /// Gets publishers for select.
         /// </summary>
         public IEnumerable<JournalPublisherViewModel> Publishers { get; }
 
