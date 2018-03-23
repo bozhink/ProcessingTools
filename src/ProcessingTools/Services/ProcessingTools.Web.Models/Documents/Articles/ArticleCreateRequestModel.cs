@@ -13,70 +13,48 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     /// </summary>
     public class ArticleCreateRequestModel : ProcessingTools.Models.Contracts.IWebModel, IArticleInsertModel
     {
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
+        /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         [StringLength(ValidationConstants.MaximalLengthOfArticleTitle, MinimumLength = ValidationConstants.MinimalLengthOfArticleTitle)]
         public string Title { get; set; }
 
-        /// <summary>
-        /// Gets or sets the subtitle.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleSubTitle, MinimumLength = ValidationConstants.MinimalLengthOfArticleSubTitle)]
         public string SubTitle { get; set; }
 
-        /// <summary>
-        /// Gets or sets the journal ID.
-        /// </summary>
+        /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         public string JournalId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the volume series.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleVolumeSeries, MinimumLength = ValidationConstants.MinimalLengthOfArticleVolumeSeries)]
         public string VolumeSeries { get; set; }
 
-        /// <summary>
-        /// Gets or sets the volume.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleVolume, MinimumLength = ValidationConstants.MinimalLengthOfArticleVolume)]
         public string Volume { get; set; }
 
-        /// <summary>
-        /// Gets or sets the issue.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleIssue, MinimumLength = ValidationConstants.MinimalLengthOfArticleIssue)]
         public string Issue { get; set; }
 
-        /// <summary>
-        /// Gets or sets the issue part.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleIssuePart, MinimumLength = ValidationConstants.MinimalLengthOfArticleIssuePart)]
         public string IssuePart { get; set; }
 
-        /// <summary>
-        /// Gets or sets the e-location ID.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleELocationId, MinimumLength = ValidationConstants.MinimalLengthOfArticleELocationId)]
         public string ELocationId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the first page.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleFirstPage, MinimumLength = ValidationConstants.MinimalLengthOfArticleFirstPage)]
         public string FirstPage { get; set; }
 
-        /// <summary>
-        /// Gets or sets the last page.
-        /// </summary>
+        /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleLastPage, MinimumLength = ValidationConstants.MinimalLengthOfArticleLastPage)]
         public string LastPage { get; set; }
 
-        /// <summary>
-        /// Gets or sets the number of pages.
-        /// </summary>
+        /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         public int NumberOfPages { get; set; }
 
