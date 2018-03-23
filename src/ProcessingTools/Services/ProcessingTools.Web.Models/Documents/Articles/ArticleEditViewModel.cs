@@ -74,6 +74,24 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public IEnumerable<ArticleJournalViewModel> Journals { get; }
 
         /// <summary>
+        /// Gets or sets the published date.
+        /// </summary>
+        [Display(Name = "Published on")]
+        public DateTime? PublishedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the accepted date.
+        /// </summary>
+        [Display(Name = "Accepted on")]
+        public DateTime? AcceptedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the received date.
+        /// </summary>
+        [Display(Name = "Received on")]
+        public DateTime? ReceivedOn { get; set; }
+
+        /// <summary>
         /// Gets or sets the volume series.
         /// </summary>
         [StringLength(ValidationConstants.MaximalLengthOfArticleVolumeSeries, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = ValidationConstants.MinimalLengthOfArticleVolumeSeries)]

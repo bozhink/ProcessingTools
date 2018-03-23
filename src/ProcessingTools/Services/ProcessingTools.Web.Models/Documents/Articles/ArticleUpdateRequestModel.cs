@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Models.Documents.Articles
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
@@ -28,6 +29,15 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         public string JournalId { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? PublishedOn { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? AcceptedOn { get; set; }
+
+        /// <inheritdoc/>
+        public DateTime? ReceivedOn { get; set; }
 
         /// <inheritdoc/>
         [StringLength(ValidationConstants.MaximalLengthOfArticleVolumeSeries, MinimumLength = ValidationConstants.MinimalLengthOfArticleVolumeSeries)]

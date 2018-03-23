@@ -4,6 +4,8 @@
 
 namespace ProcessingTools.Models.Contracts.Documents.Articles
 {
+    using System;
+
     /// <summary>
     /// Article base model.
     /// </summary>
@@ -23,6 +25,21 @@ namespace ProcessingTools.Models.Contracts.Documents.Articles
         /// Gets or sets the journal ID.
         /// </summary>
         string JournalId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the published date.
+        /// </summary>
+        DateTime? PublishedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the accepted date.
+        /// </summary>
+        DateTime? AcceptedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the received date.
+        /// </summary>
+        DateTime? ReceivedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the volume series.

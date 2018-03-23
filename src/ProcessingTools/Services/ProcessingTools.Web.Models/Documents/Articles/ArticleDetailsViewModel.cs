@@ -70,6 +70,27 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public ArticleJournalViewModel Journal { get; }
 
         /// <summary>
+        /// Gets or sets the published date.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Published on")]
+        public DateTime? PublishedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the accepted date.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Accepted on")]
+        public DateTime? AcceptedOn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the received date.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Received on")]
+        public DateTime? ReceivedOn { get; set; }
+
+        /// <summary>
         /// Gets or sets the volume series.
         /// </summary>
         [ReadOnly(true)]
