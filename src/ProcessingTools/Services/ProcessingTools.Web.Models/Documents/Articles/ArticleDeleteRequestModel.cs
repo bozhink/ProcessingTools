@@ -5,7 +5,6 @@
 namespace ProcessingTools.Web.Models.Documents.Articles
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Constants;
 
     /// <summary>
     /// Article Delete Request Model
@@ -16,7 +15,6 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// Gets or sets ID.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
-        [MaxLength(ValidationConstants.MaximalLengthOfUserIdentifier)]
         public string Id { get; set; }
 
         /// <inheritdoc/>
