@@ -5,12 +5,13 @@
 namespace ProcessingTools.Web.Models.Documents.Articles
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Documents;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Article Create View Model
+    /// Article create view model.
     /// </summary>
     public class ArticleCreateViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
@@ -18,9 +19,11 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// Initializes a new instance of the <see cref="ArticleCreateViewModel"/> class.
         /// </summary>
         /// <param name="userContext">The user context.</param>
-        public ArticleCreateViewModel(UserContext userContext)
+        /// <param name="journals">Journals for select.</param>
+        public ArticleCreateViewModel(UserContext userContext, IEnumerable<ArticleJournalViewModel> journals)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
+            this.Journals = journals ?? throw new ArgumentNullException(nameof(journals));
         }
 
         /// <summary>
@@ -55,6 +58,11 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         [Required(AllowEmptyStrings = false)]
         [Display(Name = "Journal")]
         public string JournalId { get; set; }
+
+        /// <summary>
+        /// Gets the list of journals for select.
+        /// </summary>
+        public IEnumerable<ArticleJournalViewModel> Journals { get; }
 
         /// <summary>
         /// Gets or sets the volume series.
