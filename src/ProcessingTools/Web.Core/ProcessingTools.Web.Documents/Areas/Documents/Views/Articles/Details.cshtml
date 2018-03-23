@@ -1,6 +1,6 @@
-﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublisherDetailsViewModel
+﻿@model ProcessingTools.Web.Models.Documents.Articles.ArticleDetailsViewModel
 @{
-    ViewData[ContextKeys.Title] = "Publisher Details";
+    ViewData[ContextKeys.Title] = "Article Details";
     if (string.IsNullOrWhiteSpace(Model?.PageHeading))
     {
         string title = Html.DisplayNameFor(m => m.PageHeading);
@@ -27,14 +27,47 @@
     else
     {
         <dl class="dl-horizontal">
-            <dt>@Html.DisplayNameFor(m => m.Name)</dt>
-            <dd>@Html.DisplayFor(m => m.Name)</dd>
+            <dt>@Html.DisplayNameFor(m => m.Title)</dt>
+            <dd>@Html.DisplayFor(m => m.Title)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.AbbreviatedName)</dt>
-            <dd>@Html.DisplayFor(m => m.AbbreviatedName)</dd>
+            <dt>@Html.DisplayNameFor(m => m.SubTitle)</dt>
+            <dd>@Html.DisplayFor(m => m.SubTitle)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.Address)</dt>
-            <dd>@Html.DisplayFor(m => m.Address)</dd>
+            <dt>@Html.DisplayNameFor(m => m.Journal.Name)</dt>
+            <dd>@Html.DisplayFor(m => m.Journal.Name)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.PublishedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.PublishedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.AcceptedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.AcceptedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ReceivedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.ReceivedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.VolumeSeries)</dt>
+            <dd>@Html.DisplayFor(m => m.VolumeSeries)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Volume)</dt>
+            <dd>@Html.DisplayFor(m => m.Volume)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Issue)</dt>
+            <dd>@Html.DisplayFor(m => m.Issue)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.IssuePart)</dt>
+            <dd>@Html.DisplayFor(m => m.IssuePart)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ELocationId)</dt>
+            <dd>@Html.DisplayFor(m => m.ELocationId)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.FirstPage)</dt>
+            <dd>@Html.DisplayFor(m => m.FirstPage)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.LastPage)</dt>
+            <dd>@Html.DisplayFor(m => m.LastPage)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.NumberOfPages)</dt>
+            <dd>@Html.DisplayFor(m => m.NumberOfPages)</dd>
 
             <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
             <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
@@ -49,10 +82,10 @@
             <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
         </dl>
         <div>
-            <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+            <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
         </div>
     }
     <footer class="page-navigation">
-        <p><a asp-action="@(PublishersController.IndexActionName)">Back to List</a></p>
+        <p><a asp-action="@(ArticlesController.IndexActionName)">Back to List</a></p>
     </footer>
 </section>
