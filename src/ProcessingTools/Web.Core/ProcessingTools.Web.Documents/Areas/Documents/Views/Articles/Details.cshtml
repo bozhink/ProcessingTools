@@ -1,6 +1,6 @@
 ﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublisherDetailsViewModel
 @{
-    ViewData[ContextKeys.Title] = "Journal Details";
+    ViewData[ContextKeys.Title] = "Publisher Details";
     if (string.IsNullOrWhiteSpace(Model?.PageHeading))
     {
         string title = Html.DisplayNameFor(m => m.PageHeading);
@@ -49,10 +49,10 @@
             <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
         </dl>
         <div>
-            <a asp-action="@(JournalsController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+            <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
         </div>
     }
     <footer class="page-navigation">
-        <p><a asp-action="@(JournalsController.IndexActionName)">Back to List</a></p>
+        <p><a asp-action="@(PublishersController.IndexActionName)">Back to List</a></p>
     </footer>
 </section>

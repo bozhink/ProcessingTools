@@ -1,0 +1,68 @@
+﻿
+@model ProcessingTools.Web.Models.Documents.Articles.ArticlesIndexViewModel
+
+@{
+    ViewData[ContextKeys.Title] = "Articles";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    @if (Model == null)
+    {
+        <div class="alert alert-info">No items found.</div>
+    }
+    else
+    {
+        <p><a asp-action="@(ArticlesController.CreateActionName)">Create New Article</a></p>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Title)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Volume)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Issue)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().FirstPage)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Journal.Name)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0; }
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@(++i)</td>
+                            <td>@Html.DisplayFor(m => item.Title)</td>
+                            <td>@Html.DisplayFor(m => item.Volume)</td>
+                            <td>@Html.DisplayFor(m => item.Issue)</td>
+                            <td>@Html.DisplayFor(m => item.FirstPage)</td>
+                            <td>@Html.DisplayFor(m => item.Journal.Name)</td>
+                            <td>
+                                <a asp-action="@(ArticlesController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |
+                                <a asp-action="@(ArticlesController.DeleteActionName)" asp-route-id="@(item.Id)">Delete</a> |
+                                <a asp-action="@(ArticlesController.DetailsActionName)" asp-route-id="@(item.Id)">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</section>
+

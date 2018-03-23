@@ -127,13 +127,13 @@
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-default" value="Save" />
                     <input type="reset" class="btn btn-default" value="Reset" />
-                    <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <a asp-action="@(JournalsController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
                 </div>
             </div>
         </form>
     }
     <footer class="page-navigation">
-        <p><a asp-action="@(PublishersController.IndexActionName)">Back to List</a></p>
+        <p><a asp-action="@(JournalsController.IndexActionName)">Back to List</a></p>
     </footer>
 </section>
 
