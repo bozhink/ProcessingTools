@@ -65,6 +65,66 @@ namespace ProcessingTools.Constants.Data.Documents
         public const int MinimalLengthOfAffiliationName = 0;
 
         /// <summary>
+        /// Maximal length of article volume series.
+        /// </summary>
+        public const int MaximalLengthOfArticleVolumeSeries = 10;
+
+        /// <summary>
+        /// Minimal length of article volume series.
+        /// </summary>
+        public const int MinimalLengthOfArticleVolumeSeries = 0;
+
+        /// <summary>
+        /// Maximal length of article volume.
+        /// </summary>
+        public const int MaximalLengthOfArticleVolume = 10;
+
+        /// <summary>
+        /// Minimal length of article volume.
+        /// </summary>
+        public const int MinimalLengthOfArticleVolume = 0;
+
+        /// <summary>
+        /// Maximal length of article issue.
+        /// </summary>
+        public const int MaximalLengthOfArticleIssue = 10;
+
+        /// <summary>
+        /// Minimal length of article issue.
+        /// </summary>
+        public const int MinimalLengthOfArticleIssue = 0;
+
+        /// <summary>
+        /// Maximal length of article issue part.
+        /// </summary>
+        public const int MaximalLengthOfArticleIssuePart = 10;
+
+        /// <summary>
+        /// Minimal length of article issue part.
+        /// </summary>
+        public const int MinimalLengthOfArticleIssuePart = 0;
+
+        /// <summary>
+        /// Maximal length of article first page.
+        /// </summary>
+        public const int MaximalLengthOfArticleFirstPage = 10;
+
+        /// <summary>
+        /// Minimal length of article first page.
+        /// </summary>
+        public const int MinimalLengthOfArticleFirstPage = 0;
+
+        /// <summary>
+        /// Maximal length of article last page.
+        /// </summary>
+        public const int MaximalLengthOfArticleLastPage = 10;
+
+        /// <summary>
+        /// Minimal length of article last page.
+        /// </summary>
+        public const int MinimalLengthOfArticleLastPage = 0;
+
+        /// <summary>
         /// Maximal length of article e-location ID.
         /// </summary>
         public const int MaximalLengthOfArticleELocationId = 10;
