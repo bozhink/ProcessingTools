@@ -17,19 +17,30 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     [CollectionName("publishers")]
     public class Publisher : IPublisherDataModel, IPublisherDetailsDataModel, ICreated, IModified
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Publisher"/> class.
+        /// </summary>
+        public Publisher()
+        {
+            this.ObjectId = Guid.NewGuid();
+        }
+
         /// <inheritdoc/>
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
         /// <inheritdoc/>
+        [BsonRequired]
+        [BsonRepresentation(BsonType.String)]
         public Guid ObjectId { get; set; }
 
         /// <inheritdoc/>
-        public string AbbreviatedName { get; set; }
+        [BsonRequired]
+        public string Name { get; set; }
 
         /// <inheritdoc/>
-        public string Name { get; set; }
+        public string AbbreviatedName { get; set; }
 
         /// <inheritdoc/>
         public string Address { get; set; }

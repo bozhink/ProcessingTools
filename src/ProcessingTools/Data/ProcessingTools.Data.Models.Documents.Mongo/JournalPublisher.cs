@@ -5,6 +5,8 @@
 namespace ProcessingTools.Data.Models.Documents.Mongo
 {
     using System;
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Journals;
 
     /// <summary>
@@ -16,6 +18,7 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public string Id { get; set; }
 
         /// <inheritdoc/>
+        [BsonRepresentation(BsonType.String)]
         public Guid ObjectId { get; set; }
 
         /// <inheritdoc/>
