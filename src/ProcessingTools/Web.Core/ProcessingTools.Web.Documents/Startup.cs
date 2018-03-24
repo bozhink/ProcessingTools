@@ -94,6 +94,15 @@ namespace ProcessingTools.Web.Documents
 
             services.AddMvc();
 
+            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
+            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ElevatedRights", policy =>
+                  policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
+            });
+
+
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 ////options.AreaViewLocationFormats.Clear();

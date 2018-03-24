@@ -2,6 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
+// See http://benfoster.io/blog/asp-net-identity-role-claims
+// See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
+// See https://stackoverflow.com/questions/39577906/add-claims-when-creating-a-new-user
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
