@@ -33,15 +33,18 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Documents <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a asp-area="Documents" asp-controller="Publishers" asp-action="Index" class="dropdown-item">Publishers</a></li>
-                            <li><a asp-area="Documents" asp-controller="Journals" asp-action="Index" class="dropdown-item">Journals</a></li>
+                            <li><a asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.IndexActionName)" class="dropdown-item">Publishers</a></li>
+                            <li><a asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.JournalsController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.JournalsController.IndexActionName)" class="dropdown-item">Journals</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a asp-area="Documents" asp-controller="Articles" asp-action="Index" class="dropdown-item">Articles</a></li>
+                            <li><a asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.ArticlesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.ArticlesController.IndexActionName)" class="dropdown-item">Articles</a></li>
                         </ul>
                     </li>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
