@@ -1,33 +1,32 @@
-﻿
-@model ProcessingTools.Web.Models.Documents.Publishers.PublishersIndexViewModel
+﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublishersIndexViewModel
 
 @{
     ViewData[ContextKeys.Title] = "Publishers";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
 }
 
-@if (Model == null)
-{
-    <section role="main">
-        <header>
-            <h2>@ViewData[ContextKeys.Title]</h2>
-        </header>
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    @if (Model == null)
+    {
         <div class="alert alert-info">No items found.</div>
-    </section>
-}
-else
-{
-    <section role="main">
-        <header>
-            @if (string.IsNullOrWhiteSpace(Model.PageHeading))
-            {
-                <h2>@Html.DisplayNameFor(m => m.PageHeading)</h2>
-            }
-            else
-            {
-                <h2>@Model.PageHeading</h2>
-            }
-        </header>
-        <p><a asp-action="@(PublishersController.CreateActionName)">Create New</a></p>
+    }
+    else
+    {
+        <p><a asp-action="@(PublishersController.CreateActionName)">Create New Publisher</a></p>
         @if (Model.Items != null && Model.Items.Any())
         {
             <table class="table">
@@ -59,6 +58,5 @@ else
                 </tbody>
             </table>
         }
-    </section>
-}
-
+    }
+</section>
