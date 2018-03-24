@@ -38,8 +38,7 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IJournalPublisherDataModel, JournalPublisherModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IJournalPublisherDataModel, JournalPublisherModel>();
                 c.CreateMap<IJournalPublisherDataModel, IJournalPublisherModel>().As<JournalPublisherModel>();
 
                 c.CreateMap<IJournalDataModel, JournalModel>()

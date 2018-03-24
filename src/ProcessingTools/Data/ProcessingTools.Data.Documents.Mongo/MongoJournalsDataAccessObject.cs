@@ -176,7 +176,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             {
                 journals.ForEach(j =>
                 {
-                    j.Publisher = publishers.FirstOrDefault(p => p.ObjectId == j.PublisherId.ToNewGuid());
+                    j.Publisher = publishers.FirstOrDefault(p => p.Id == j.PublisherId);
                 });
             }
 
@@ -234,8 +234,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             return this.GetCollection<Publisher>().Find(filter)
                 .Project(p => new JournalPublisher
                 {
-                    Id = p.Id,
-                    ObjectId = p.ObjectId,
+                    Id = p.ObjectId.ToString(),
                     Name = p.Name,
                     AbbreviatedName = p.AbbreviatedName
                 });
