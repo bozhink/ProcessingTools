@@ -1,13 +1,11 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Validation;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Validation;
 
-    [Description("Taxa validation using Global Names Resolver.")]
-    public class ValidateTaxaCommand : GenericDocumentValidatorCommand<ITaxaValidator>, IValidateTaxaCommand
+    [System.ComponentModel.Description("Taxa validation using Global Names Resolver.")]
+    public class ValidateTaxaCommand : DocumentValidatorCommand<ITaxaValidator>, IValidateTaxaCommand
     {
         public ValidateTaxaCommand(ITaxaValidator validator, IReporter reporter)
             : base(validator, reporter)

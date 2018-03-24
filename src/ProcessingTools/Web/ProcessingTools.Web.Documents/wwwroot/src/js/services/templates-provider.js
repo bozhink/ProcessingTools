@@ -36,4 +36,4 @@ module.exports = function TemplatesProvider($, handlebars, baseAddress, extensio
     return {
         get: get
     };
-}
+};

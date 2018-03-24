@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Products;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Products;
 
-    [Description("Tag products.")]
-    public class TagProductsCommand : GenericDocumentTaggerCommand<IProductsTagger>, ITagProductsCommand
+    [System.ComponentModel.Description("Tag products.")]
+    public class TagProductsCommand : DocumentTaggerCommand<IProductsTagger>, ITagProductsCommand
     {
         public TagProductsCommand(IProductsTagger tagger)
             : base(tagger)

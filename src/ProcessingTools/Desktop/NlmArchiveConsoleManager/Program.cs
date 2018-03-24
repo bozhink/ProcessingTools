@@ -6,7 +6,7 @@
     using Ninject;
     using ProcessingTools.NlmArchiveConsoleManager.Settings;
 
-    public class Program
+    internal static class Program
     {
         public static void Main(string[] args)
         {

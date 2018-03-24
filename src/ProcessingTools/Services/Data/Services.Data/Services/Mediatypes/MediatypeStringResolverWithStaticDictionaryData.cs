@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
 {
     using System.Collections.Generic;
-    using Contracts.Mediatypes;
+    using ProcessingTools.Services.Contracts.Mediatypes;
 
     public partial class MediatypeStringResolverWithStaticDictionary : IMediatypeStringResolver
     {

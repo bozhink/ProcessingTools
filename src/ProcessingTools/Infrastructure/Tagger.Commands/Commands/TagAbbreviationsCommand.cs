@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Abbreviations;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Abbreviations;
 
-    [Description("Tag abbreviations.")]
-    public class TagAbbreviationsCommand : GenericXmlContextTaggerCommand<IAbbreviationsTagger>, ITagAbbreviationsCommand
+    [System.ComponentModel.Description("Tag abbreviations.")]
+    public class TagAbbreviationsCommand : XmlContextTaggerCommand<IAbbreviationsTagger>, ITagAbbreviationsCommand
     {
         public TagAbbreviationsCommand(IAbbreviationsTagger tagger)
             : base(tagger)

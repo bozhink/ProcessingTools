@@ -9,16 +9,11 @@
 
     public class TextWriterLogger : LoggerBase, ITextWriterLogger
     {
-        private TextWriter textWriter;
+        private readonly TextWriter textWriter;
 
         public TextWriterLogger(TextWriter textWriter)
         {
-            if (textWriter == null)
-            {
-                throw new ArgumentNullException(nameof(textWriter));
-            }
-
-            this.textWriter = textWriter;
+            this.textWriter = textWriter ?? throw new ArgumentNullException(nameof(textWriter));
         }
 
         public override void Log()
@@ -29,6 +24,7 @@
             }
             catch (IOException)
             {
+                // Skip
             }
             catch
             {
@@ -44,6 +40,7 @@
             }
             catch (IOException)
             {
+                // Skip
             }
             catch
             {
@@ -66,6 +63,7 @@
             }
             catch (IOException)
             {
+                // Skip
             }
             catch
             {
@@ -88,6 +86,7 @@
             }
             catch (IOException)
             {
+                // Skip
             }
             catch
             {

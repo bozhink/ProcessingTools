@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using NUnit.Framework;
-    using ProcessingTools.Data.Miners.Miners.Dates;
+    using ProcessingTools.Data.Miners.Dates;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(DatesDataMiner))]
     public class DatesDataMinerIntegrationTests
@@ -51,10 +51,10 @@
             var miner = new DatesDataMiner();
 
             // Act
-            var result = await miner.Mine(content);
+            var result = await miner.MineAsync(content).ConfigureAwait(false);
 
             // Assert
-            Assert.IsTrue(result.Count() > 0, "Number of dates found should be greater than 0.");
+            Assert.IsTrue(result.Any(), "Number of dates found should be greater than 0.");
 
             var bestMatch = result.OrderByDescending(i => i.Length).First();
             Assert.AreEqual(dateText, bestMatch);

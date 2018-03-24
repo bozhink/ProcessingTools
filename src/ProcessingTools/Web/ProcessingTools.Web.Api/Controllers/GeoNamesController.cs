@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
-    using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Contracts.Services.Data.Geo;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Geo;
+    using ProcessingTools.Services.Contracts.Geo;
     using ProcessingTools.Web.Api.Abstractions;
-    using ProcessingTools.Web.Api.Models.GeoNames;
+    using ProcessingTools.Web.Models.Geo.GeoNames;
 
     public class GeoNamesController : GenericDataServiceController<IGeoNamesDataService, IGeoName, GeoNameRequestModel, GeoNameResponseModel, ITextFilter>
     {

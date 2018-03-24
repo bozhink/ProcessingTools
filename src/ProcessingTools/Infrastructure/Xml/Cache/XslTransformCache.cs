@@ -2,9 +2,8 @@
 {
     using System.Collections.Concurrent;
     using System.Xml.Xsl;
-
-    using Abstractions;
-    using Contracts.Cache;
+    using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Xml.Abstractions;
 
     public class XslTransformCache : AbstractGenericTransformCache<XslCompiledTransform>, IXslTransformCache
     {

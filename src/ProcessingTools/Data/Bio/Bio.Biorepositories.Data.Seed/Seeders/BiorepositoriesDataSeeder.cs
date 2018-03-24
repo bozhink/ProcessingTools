@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -12,11 +11,11 @@
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
     using ProcessingTools.Common.Attributes;
-    using ProcessingTools.Common.Extensions;
+    using ProcessingTools.Common.Data.Seed;
+    using ProcessingTools.Common.Serialization.Csv;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Seed;
-    using ProcessingTools.Serialization.Csv;
+    using ProcessingTools.Extensions;
 
     public class BiorepositoriesDataSeeder : IBiorepositoriesDataSeeder
     {
@@ -28,7 +27,7 @@
         {
             this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesSeedCsvDataFilesDirectoryName];
+            this.dataFilesDirectoryPath = AppSettings.BiorepositoriesSeedCsvDataFilesDirectoryName;
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
@@ -36,7 +35,7 @@
         /// Seeds databases with data.
         /// </summary>
         /// <returns>Object to be awaited</returns>
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
@@ -51,7 +50,7 @@
                 this.ImportCsvFileToMongo<StaffCsv, Staff>(),
                 this.ImportCsvFileToMongo<StaffLabelCsv, StaffLabel>()
             };
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -63,7 +62,7 @@
 
         private async Task ImportCsvFileToMongo<TSeedModel, TEntityModel>()
             where TSeedModel : class
-            where TEntityModel : class
+            where TEntityModel : class, new()
         {
             try
             {
@@ -71,13 +70,13 @@
                 var fileNameAttribute = seedModelType.GetCustomAttributes(typeof(FileNameAttribute), false)?.FirstOrDefault() as FileNameAttribute;
                 if (fileNameAttribute == null)
                 {
-                    throw new ApplicationException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
+                    throw new ProcessingTools.Exceptions.InvalidModelException($"Invalid seed model {seedModelType.Name}: There is no FileNameAttribute.");
                 }
 
                 string fileName = string.Format("{0}/{1}", this.dataFilesDirectoryPath, fileNameAttribute.Name);
                 if (!File.Exists(fileName))
                 {
-                    throw new ApplicationException($"File {fileName} does not exist.");
+                    throw new FileNotFoundException($"File {fileName} does not exist.");
                 }
 
                 string csvText = File.ReadAllText(fileName);
@@ -86,12 +85,12 @@
                     .ToArray();
                 if (items == null || items.Length < 1)
                 {
-                    throw new ApplicationException("De-serialized items are not valid.");
+                    throw new ProcessingTools.Exceptions.InvalidDataException("De-serialized items are not valid.");
                 }
 
                 var repositoryProvider = new BiorepositoriesRepositoryProvider<TEntityModel>(this.contextProvider);
                 var seeder = new SimpleRepositorySeeder<TEntityModel>(repositoryProvider);
-                await seeder.Seed(items);
+                await seeder.SeedAsync(items).ConfigureAwait(false);
             }
             catch (Exception e)
             {

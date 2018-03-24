@@ -6,7 +6,7 @@
     using System.Xml;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Files.IO;
+    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Enumerations;
 
     public class BrokenXmlFileReader : IXmlFileReader
@@ -16,12 +16,7 @@
 
         public BrokenXmlFileReader(IXmlFileReader reader, ILogger logger)
         {
-            if (reader == null)
-            {
-                throw new ArgumentNullException(nameof(reader));
-            }
-
-            this.reader = reader;
+            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
             this.logger = logger;
         }
 
@@ -48,7 +43,7 @@
             return this.reader.GetReader(fileName);
         }
 
-        public async Task<XmlDocument> ReadXml(string fileName)
+        public async Task<XmlDocument> ReadXmlAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -58,7 +53,7 @@
             XmlDocument document;
             try
             {
-                document = await this.reader.ReadXml(fileName);
+                document = await this.reader.ReadXmlAsync(fileName).ConfigureAwait(false);
             }
             catch (XmlException e)
             {
@@ -72,7 +67,7 @@
                 }
                 else
                 {
-                    throw e;
+                    throw;
                 }
             }
 
@@ -92,7 +87,7 @@
             return document;
         }
 
-        private XmlDocument RestoreXmlDocument(object fileName)
+        private XmlDocument RestoreXmlDocument(string fileName)
         {
             if (fileName == null)
             {
@@ -105,7 +100,7 @@
             };
 
             var body = document.CreateElement(ElementNames.Body);
-            foreach (var line in File.ReadLines(fileName.ToString()))
+            foreach (var line in File.ReadLines(fileName))
             {
                 var paragraph = document.CreateElement(ElementNames.Paragraph);
                 paragraph.InnerText = line;

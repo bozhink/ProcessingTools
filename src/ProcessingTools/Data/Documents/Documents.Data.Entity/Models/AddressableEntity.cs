@@ -2,15 +2,14 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public abstract class AddressableEntity : ModelWithUserInformation, IAddressableEntity
+    public abstract class AddressableEntity : ModelWithUserInformation, IAddressable
     {
         private ICollection<Address> addresses;
 
-        public AddressableEntity()
+        protected AddressableEntity()
         {
             this.addresses = new HashSet<Address>();
         }
@@ -29,6 +28,6 @@
         }
 
         [NotMapped]
-        ICollection<IAddressEntity> IAddressableEntity.Addresses => this.Addresses.ToList<IAddressEntity>();
+        IEnumerable<IAddress> IAddressable.Addresses => this.Addresses;
     }
 }

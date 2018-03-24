@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Coordinates;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
 
-    [Description("Parse coordinates.")]
-    public class ParseCoordinatesCommand : GenericXmlContextParserCommand<ICoordinatesParser>, IParseCoordinatesCommand
+    [System.ComponentModel.Description("Parse coordinates.")]
+    public class ParseCoordinatesCommand : XmlContextParserCommand<ICoordinatesParser>, IParseCoordinatesCommand
     {
         public ParseCoordinatesCommand(ICoordinatesParser parser)
             : base(parser)

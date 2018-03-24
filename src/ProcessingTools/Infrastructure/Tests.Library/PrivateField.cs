@@ -33,7 +33,7 @@
                 BindingFlags.Static;
 
             var fieldInfo = type.GetField(fieldName, bindFlags);
-            return fieldInfo.GetValue(instance);
+            return fieldInfo?.GetValue(instance);
         }
     }
 }

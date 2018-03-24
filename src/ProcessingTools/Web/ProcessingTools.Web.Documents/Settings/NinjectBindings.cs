@@ -7,9 +7,12 @@
     using Ninject.Modules;
     using Ninject.Web.Common;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Imaging.Processors;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using ProcessingTools.Processors.Contracts.Imaging;
     using ProcessingTools.Services.Data.Services.Files;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -21,30 +24,27 @@
             this.Bind(b =>
             {
                 b.FromThisAssembly()
-                 .SelectAllClasses()
-                 .BindDefaultInterface();
-            });
+                    .SelectAllClasses()
+                    .BindDefaultInterface();
 
-            this.Bind(b =>
-            {
-                b.From(nameof(ProcessingTools.Services.Web))
+                b.FromAssembliesMatching("ProcessingTools.Web.*")
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
             this.Bind(b =>
             {
-                b.From(typeof(ProcessingTools.Tagger.Commands.Contracts.Commands.ITaggerCommand).Assembly)
+                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
-                .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
+            this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
+                .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Net.Assembly.Assembly.GetType().Assembly)
+                b.From(typeof(ProcessingTools.Net.NetConnector).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -63,7 +63,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Geo.Contracts.Factories.ICoordinatesFactory>()
+            this.Bind<ICoordinateFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
@@ -76,37 +76,16 @@
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Layout.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
                 b.From(ProcessingTools.Processors.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Special.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Serialization.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind<ProcessingTools.Contracts.Services.Data.Files.IStreamingFilesDataService>()
+            this.Bind<ProcessingTools.Services.Contracts.Files.IStreamingFilesDataService>()
                 .To<StreamingSystemFilesDataService>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ITaggerCommand>>()
@@ -124,22 +103,18 @@
                 .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
-                .To<ProcessingTools.Services.Providers.DateTimeProvider>()
-                .InSingletonScope();
-
-            this.Bind<Func<Type, ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
+            this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
                 .ToMethod(context =>
                 {
-                    return t => context.Kernel.Get(t) as ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
+                    return t => context.Kernel.Get(t) as ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
 
-            this.Bind<ProcessingTools.Imaging.Contracts.Processors.IQRCodeEncoderService>()
-                .To<ProcessingTools.Imaging.Processors.QRCodeEncoderService>()
+            this.Bind<IQRCodeEncoder>()
+                .To<QRCodeEncoder>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Imaging.Contracts.Processors.IBarcodeEncoderService>()
-                .To<ProcessingTools.Imaging.Processors.BarcodeEncoderService>()
+            this.Bind<IBarcodeEncoder>()
+                .To<BarcodeEncoder>()
                 .InRequestScope();
         }
     }

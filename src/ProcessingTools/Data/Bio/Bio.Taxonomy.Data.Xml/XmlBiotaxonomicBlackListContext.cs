@@ -9,7 +9,7 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Comparers;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Models;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class XmlBiotaxonomicBlackListContext : IXmlBiotaxonomicBlackListContext
     {
@@ -27,7 +27,7 @@
 
         private ConcurrentQueue<IBlackListEntity> Items { get; set; }
 
-        public Task<object> Add(IBlackListEntity entity) => Task.Run<object>(() =>
+        public async Task<object> Add(IBlackListEntity entity)
         {
             if (entity == null)
             {
@@ -39,8 +39,8 @@
                 this.Items.Enqueue(entity);
             }
 
-            return entity;
-        });
+            return await Task.FromResult(entity).ConfigureAwait(false);
+        }
 
         public Task<object> Delete(object id)
         {
@@ -57,43 +57,46 @@
             return this.Delete(entity);
         }
 
-        public Task<IBlackListEntity> Get(object id) => Task.Run(() =>
+        public Task<IBlackListEntity> Get(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = this.DataSet.FirstOrDefault(e => e.Content == id.ToString());
-            return entity;
-        });
+            return Task.Run(() => this.DataSet.FirstOrDefault(e => e.Content == id.ToString()));
+        }
 
-        public Task<long> LoadFromFile(string fileName) => Task.Run(() =>
+        public async Task<long> LoadFromFile(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            var timeSpan = this.lastUpdated - DateTime.Now;
-            if (timeSpan.HasValue &&
-                timeSpan.Value.Milliseconds < MillisecondsToUpdate)
+            return await Task.Run(() =>
             {
-                return -1L;
-            }
-
-            XElement.Load(fileName)
-                .Descendants(ItemNodeName)
-                .AsParallel()
-                .ForAll(element => this.Items.Enqueue(new BlackListEntity
+                var timeSpan = this.lastUpdated - DateTime.Now;
+                if (timeSpan.HasValue &&
+                    timeSpan.Value.Milliseconds < MillisecondsToUpdate)
                 {
-                    Content = element.Value
-                }));
+                    return -1L;
+                }
 
-            this.lastUpdated = DateTime.Now;
+                XElement.Load(fileName)
+                    .Descendants(ItemNodeName)
+                    .AsParallel()
+                    .ForAll(element => this.Items.Enqueue(new BlackListEntity
+                    {
+                        Content = element.Value
+                    }));
 
-            return this.Items.Count;
-        });
+                this.lastUpdated = DateTime.Now;
+
+                return this.Items.Count;
+            })
+            .ConfigureAwait(false);
+        }
 
         public Task<object> Update(IBlackListEntity entity) => this.Add(entity);
 
@@ -104,7 +107,7 @@
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            await this.LoadFromFile(fileName);
+            await this.LoadFromFile(fileName).ConfigureAwait(false);
 
             var comparer = new BlackListEntityEqualityComparer();
 
@@ -120,18 +123,21 @@
             return (long)items.Length;
         }
 
-        private Task<object> Delete(IBlackListEntity entity) => Task.Run(() =>
+        private Task<object> Delete(IBlackListEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            var items = this.DataSet.ToList();
-            items.Remove(entity);
-            this.Items = new ConcurrentQueue<IBlackListEntity>(items);
+            return Task.Run<object>(() =>
+            {
+                var items = this.DataSet.ToList();
+                items.Remove(entity);
+                this.Items = new ConcurrentQueue<IBlackListEntity>(items);
 
-            return (object)entity;
-        });
+                return entity;
+            });
+        }
     }
 }

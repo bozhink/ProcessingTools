@@ -8,10 +8,10 @@
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Services.Web.Managers;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Documents.ViewModels.Error;
+    using ProcessingTools.Web.Services;
     using Strings = Resources.Strings;
 
     public static class ControllerExtensions
@@ -46,7 +46,7 @@
                 .GetOwinContext()
                 .GetUserManager<ApplicationUserManager>();
 
-            var user = await userManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id).ConfigureAwait(false);
             if (user == null)
             {
                 throw new InvalidUserIdException(id);

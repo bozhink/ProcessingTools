@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using MongoDB.Driver;
-    using ProcessingTools.Contracts.Data.Mediatypes.Models;
-    using ProcessingTools.Contracts.Data.Mediatypes.Repositories;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Data.Contracts.Mediatypes;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
     public class MongoMediatypesSearchableRepository : ISearchableMediatypesRepository
     {
@@ -20,11 +20,11 @@
                 throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            string collectionName = CollectionNameFactory.Create<Mediatype>();
+            string collectionName = MongoCollectionNameFactory.Create<Mediatype>();
             this.collection = databaseProvider.Create().GetCollection<Mediatype>(collectionName);
         }
 
-        public IEnumerable<IMediatype> GetByFileExtension(string fileExtension)
+        public IEnumerable<IMediatypeEntity> GetByFileExtension(string fileExtension)
         {
             var extension = fileExtension?.ToLower().Trim(' ', '.');
             var cursor = this.collection.Find(e => e.FileExtension.ToLower() == extension).ToCursor();

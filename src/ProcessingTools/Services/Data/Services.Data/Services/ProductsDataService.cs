@@ -2,13 +2,12 @@
 {
     using System;
     using System.Linq.Expressions;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Contracts.Models;
-    using ProcessingTools.Services.Data.Models;
+    using ProcessingTools.Services.Contracts.Resources;
 
     public class ProductsDataService : AbstractMultiDataServiceAsync<Product, IProduct, IFilter>, IProductsDataService
     {
@@ -17,7 +16,7 @@
         {
         }
 
-        protected override Expression<Func<Product, IProduct>> MapEntityToModel => e => new ProductServiceModel
+        protected override Expression<Func<Product, IProduct>> MapEntityToModel => e => new ProcessingTools.Services.Models.Data.Resources.Product
         {
             Id = e.Id,
             Name = e.Name

@@ -7,11 +7,12 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Newtonsoft.Json;
-    using ProcessingTools.Common.Extensions.Linq;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Journals.Services.Data.Contracts.Models;
-    using ProcessingTools.Journals.Services.Data.Contracts.Services;
+    using ProcessingTools.Extensions.Linq;
+    using ProcessingTools.Models.Contracts.Services.Data.Journals;
+    using ProcessingTools.Services.Contracts.Journals;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Areas.Journals.Models.Publishers;
     using ProcessingTools.Web.Areas.Journals.Models.Shared;
@@ -32,10 +33,12 @@
         public const string AddressesActionName = nameof(PublishersController.Addresses);
 
         private readonly IPublishersDataService service;
+        private readonly ILogger logger;
 
-        public PublishersController(IPublishersDataService service)
+        public PublishersController(IPublishersDataService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger;
             this.service.SaveToHistory = true;
         }
 
@@ -51,10 +54,10 @@
             Id = p.Id,
             Name = p.Name,
             AbbreviatedName = p.AbbreviatedName,
-            CreatedByUser = p.CreatedByUser,
-            DateCreated = p.DateCreated,
-            DateModified = p.DateModified,
-            ModifiedByUser = p.ModifiedByUser,
+            CreatedByUser = p.CreatedBy,
+            DateCreated = p.CreatedOn,
+            DateModified = p.ModifiedOn,
+            ModifiedByUser = p.ModifiedBy,
             Addresses = p.Addresses
                 .Select(a => new AddressViewModel
                 {
@@ -64,13 +67,6 @@
                     CountryId = a.CountryId
                 })
             .ToList()
-        };
-
-        private Func<PublisherViewModel, Publisher> MapViewModelToModel => p => new Publisher
-        {
-            Id = p.Id,
-            Name = p.Name,
-            AbbreviatedName = p.AbbreviatedName
         };
 
         private Func<IAddress, Address> MapAddress => a => new Address
@@ -91,9 +87,9 @@
                 return this.Redirect(returnUrl);
             }
 
-            var data = await this.service.SelectDetails(this.UserId, p * n, n, x => x.Name);
+            var data = await this.service.SelectDetailsAsync(this.UserId, p * n, n, x => x.Name).ConfigureAwait(false);
 
-            var viewModel = await data.Select(this.MapDetailedModelToViewModel).ToListAsync();
+            var viewModel = await data.Select(this.MapDetailedModelToViewModel).ToListAsync().ConfigureAwait(false);
 
             this.ViewBag.Title = Strings.IndexPageTitle;
             return this.View(viewModel);
@@ -108,7 +104,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = await this.service.GetDetails(this.UserId, id);
+            var model = await this.service.GetDetailsAsync(this.UserId, id).ConfigureAwait(false);
             if (model == null)
             {
                 return this.HttpNotFound();
@@ -141,8 +137,8 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    var modelId = await this.service.Add(this.UserId, model);
-                    await this.UpdateAddressesFromJson(modelId, addresses);
+                    var modelId = await this.service.AddAsync(this.UserId, model).ConfigureAwait(false);
+                    await this.UpdateAddressesFromJsonAsync(modelId, addresses).ConfigureAwait(false);
 
                     return this.RedirectToAction(IndexActionName);
                 }
@@ -173,7 +169,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.service.Get(this.UserId, id);
+            var data = await this.service.GetAsync(this.UserId, id).ConfigureAwait(false);
             if (data == null)
             {
                 return this.HttpNotFound();
@@ -201,8 +197,8 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    var modelId = await this.service.Update(this.UserId, model);
-                    await this.UpdateAddressesFromJson(modelId, addresses);
+                    var modelId = await this.service.UpdateAsync(this.UserId, model).ConfigureAwait(false);
+                    await this.UpdateAddressesFromJsonAsync(modelId, addresses).ConfigureAwait(false);
 
                     if (exit)
                     {
@@ -243,7 +239,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var data = await this.service.GetDetails(this.UserId, id);
+            var data = await this.service.GetDetailsAsync(this.UserId, id).ConfigureAwait(false);
             if (data == null)
             {
                 return this.HttpNotFound();
@@ -265,7 +261,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            await this.service.Delete(this.UserId, id);
+            await this.service.DeleteAsync(this.UserId, id).ConfigureAwait(false);
 
             return this.RedirectToAction(IndexActionName);
         }
@@ -286,8 +282,8 @@
                 Data = new Address[] { }
             };
 
-            var model = await this.service.GetDetails(this.UserId, id);
-            if (model?.Addresses?.Count > 0)
+            var model = await this.service.GetDetailsAsync(this.UserId, id).ConfigureAwait(false);
+            if (model != null && model.Addresses != null && model.Addresses.Count > 0)
             {
                 result.Data = model.Addresses.Select(this.MapAddress).ToArray();
             }
@@ -303,36 +299,28 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            await this.UpdateAddresses(id, addresses);
+            await this.UpdateAddressesAsync(id, addresses).ConfigureAwait(false);
 
-            return await this.Addresses(id);
+            return await this.Addresses(id).ConfigureAwait(false);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-            }
-
-            base.Dispose(disposing);
-        }
-
-        private async Task UpdateAddressesFromJson(object modelId, string addresses)
+        private async Task UpdateAddressesFromJsonAsync(object modelId, string addresses)
         {
             if (!string.IsNullOrWhiteSpace(addresses) && addresses != "[]")
             {
                 try
                 {
                     var addressesArray = JsonConvert.DeserializeObject<Address[]>(addresses);
-                    await this.UpdateAddresses(modelId, addressesArray);
+                    await this.UpdateAddressesAsync(modelId, addressesArray).ConfigureAwait(false);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    this.logger?.Log(exception: ex, message: ControllerName);
                 }
             }
         }
 
-        private async Task UpdateAddresses(object modelId, Address[] addresses)
+        private async Task UpdateAddressesAsync(object modelId, Address[] addresses)
         {
             if (addresses?.Length > 0)
             {
@@ -343,23 +331,24 @@
                         switch (address.Status)
                         {
                             case UpdateStatus.Modified:
-                                await this.service.UpdateAddress(this.UserId, modelId, address);
+                                await this.service.UpdateAddressAsync(this.UserId, modelId, address).ConfigureAwait(false);
                                 break;
 
                             case UpdateStatus.Added:
-                                await this.service.AddAddress(this.UserId, modelId, address);
+                                await this.service.AddAddressAsync(this.UserId, modelId, address).ConfigureAwait(false);
                                 break;
 
                             case UpdateStatus.Removed:
-                                await this.service.RemoveAddress(this.UserId, modelId, address.Id);
+                                await this.service.RemoveAddressAsync(this.UserId, modelId, address.Id).ConfigureAwait(false);
                                 break;
 
                             default:
                                 break;
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        this.logger?.Log(exception: ex, message: ControllerName);
                     }
                 }
             }

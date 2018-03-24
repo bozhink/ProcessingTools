@@ -4,30 +4,25 @@
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Threading.Tasks;
-    using Contracts;
+    using ProcessingTools.Data.Common.Entity.Contracts;
 
     public abstract class GenericDbContextInitializer<TContext> : IDbContextInitializer<TContext>
         where TContext : DbContext
     {
         private readonly IDbContextFactory<TContext> contextFactory;
 
-        public GenericDbContextInitializer(IDbContextFactory<TContext> contextFactory)
+        protected GenericDbContextInitializer(IDbContextFactory<TContext> contextFactory)
         {
-            if (contextFactory == null)
-            {
-                throw new ArgumentNullException(nameof(contextFactory));
-            }
-
-            this.contextFactory = contextFactory;
+            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
         }
 
-        public async Task<object> Initialize()
+        public async Task<object> InitializeAsync()
         {
             using (var context = this.contextFactory.Create())
             {
                 if (context.Database.CreateIfNotExists())
                 {
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
 

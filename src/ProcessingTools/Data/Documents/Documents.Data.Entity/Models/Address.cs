@@ -5,11 +5,11 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddressEntity
+    public class Address : ModelWithUserInformation, IEntityWithPreJoinedFields, IAddress
     {
         private ICollection<Publisher> publishers;
         private ICollection<Institution> institutions;
@@ -23,7 +23,7 @@
             this.affiliations = new HashSet<Affiliation>();
         }
 
-        public Address(IAddressEntity entity)
+        public Address(IAddress entity)
             : this()
         {
             if (entity == null)
@@ -34,10 +34,10 @@
             this.AddressString = entity.AddressString;
             this.CountryId = entity.CountryId;
             this.CityId = entity.CityId;
-            this.CreatedByUser = entity.CreatedByUser;
-            this.ModifiedByUser = entity.ModifiedByUser;
-            this.DateCreated = entity.DateCreated;
-            this.DateModified = entity.DateModified;
+            this.CreatedBy = entity.CreatedBy;
+            this.ModifiedBy = entity.ModifiedBy;
+            this.CreatedOn = entity.CreatedOn;
+            this.ModifiedOn = entity.ModifiedOn;
         }
 
         [Key]
@@ -91,6 +91,6 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => null;
+        public IEnumerable<string> PreJoinFieldNames => new string[] { };
     }
 }

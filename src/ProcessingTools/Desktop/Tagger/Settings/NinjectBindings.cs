@@ -1,18 +1,19 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
     using System;
-    using System.Configuration;
-    using Interceptors;
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    //using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Services.Data.Services.Files;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    //using ProcessingTools.Tagger.Interceptors;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -30,17 +31,17 @@
 
             this.Bind(b =>
             {
-                b.From(typeof(ITaggerCommand).Assembly)
+                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
 
-            this.Bind(typeof(ProcessingTools.Contracts.Data.Repositories.IGenericRepositoryProvider<>))
-                .To(typeof(ProcessingTools.Data.Common.Repositories.RepositoryProvider<>));
+            this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
+                .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
 
             this.Bind(b =>
             {
-                b.From(ProcessingTools.Net.Assembly.Assembly.GetType().Assembly)
+                b.From(typeof(ProcessingTools.Net.NetConnector).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -59,40 +60,19 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Geo.Contracts.Factories.ICoordinatesFactory>()
+            this.Bind<ICoordinateFactory>()
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Geo.Contracts.Parsers.ICoordinate2DParser>()
-                .To<ProcessingTools.Geo.Parsers.Coordinate2DParser>()
-                .WhenInjectedInto<ProcessingTools.Geo.Parsers.CoordinateParser>()
-                .Intercept()
-                .With<LogParsedCoordinatesInterceptor>();
+            //this.Bind<ICoordinate2DParser>()
+            //    .To<Coordinate2DParser>()
+            //    .WhenInjectedInto<CoordinateParser>()
+            //    .Intercept()
+            //    .With<LogParsedCoordinatesInterceptor>();
 
             this.Bind(b =>
             {
                 b.From(ProcessingTools.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Layout.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Special.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Serialization.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -106,10 +86,10 @@
                 .To<Reporters.LogReporter>();
 
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
-                .To<ProcessingTools.DocumentProvider.Factories.TaxPubDocumentFactory>()
+                .To<ProcessingTools.Common.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Cache.Repositories.IValidationCacheDataRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Cache.IValidationCacheDataRepository>()
                 ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
                 .To<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>();
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
@@ -118,41 +98,37 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoConnection])
+                    AppSettings.CacheMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.CacheMongoDabaseName]);
-
-            this.Bind<ProcessingTools.Contracts.IDateTimeProvider>()
-                .To<ProcessingTools.Services.Providers.DateTimeProvider>()
-                .InSingletonScope();
+                    AppSettings.CacheMongoDatabaseName);
 
             this.Bind<Func<Type, ITaggerCommand>>()
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileReader>()
+            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
                 .Intercept()
                 .With<FileNotFoundInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.Files.IO.IXmlFileWriter>()
+            this.Bind<ProcessingTools.Contracts.IO.IXmlFileWriter>()
                 .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.Files.Generators.IFileNameGenerator>()
+            this.Bind<ProcessingTools.Contracts.IFileNameGenerator>()
                 .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
                 .InSingletonScope();
 
-            this.Bind<Func<Type, ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
+            this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
                 .ToMethod(context =>
                 {
-                    return t => context.Kernel.Get(t) as ProcessingTools.Processors.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
+                    return t => context.Kernel.Get(t) as ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy;
                 });
         }
     }

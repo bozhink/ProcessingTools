@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 module.exports = function DocumentController(dataService, reporter) {
-
     function get(url, quietMode, setContentCallback, done) {
         if (!setContentCallback) {
             throw 'setContentCallback function is required';
@@ -64,4 +63,4 @@ module.exports = function DocumentController(dataService, reporter) {
         createSaveAction: createSaveAction,
         createGetAction: createGetAction
     };
-}
+};

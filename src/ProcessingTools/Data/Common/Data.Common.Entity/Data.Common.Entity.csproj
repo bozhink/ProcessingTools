@@ -34,35 +34,33 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\GenericDbContextInitializer.cs" />
-    <Compile Include="Abstractions\Repositories\AbstractEntityRepository.cs" />
+    <Compile Include="Abstractions\AbstractEntityRepository.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
-    <Compile Include="Contracts\IDbContextInitializer.cs" />
-    <Compile Include="Contracts\IDbContextProvider.cs" />
-    <Compile Include="Contracts\Repositories\IGenericRepository.cs" />
+    <Compile Include="Contracts\IDbContextInitializer{T}.cs" />
+    <Compile Include="Contracts\IDbContextProvider{T}.cs" />
+    <Compile Include="Contracts\IEfRepository{TContext,TEntity}.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="Models\Contracts\IEntityWithPreJoinedFields.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Contracts\IEntityGenericRepository.cs" />
-    <Compile Include="Repositories\Contracts\IEntityRepository.cs" />
-    <Compile Include="Repositories\Contracts\IEntitySearchableRepository.cs" />
+    <Compile Include="Contracts\IEntityGenericRepository.cs" />
+    <Compile Include="Contracts\IEntityRepository.cs" />
+    <Compile Include="Contracts\IEntitySearchableRepository.cs" />
     <Compile Include="Repositories\EntityGenericRepository.cs" />
     <Compile Include="Repositories\EntityPreJoinedGenericRepository.cs" />
     <Compile Include="Repositories\EntityRepository.cs" />
-    <Compile Include="Repositories\Contracts\IEntityCrudRepository.cs" />
+    <Compile Include="Contracts\IEntityCrudRepository.cs" />
     <Compile Include="Repositories\EntityRepository{TContext,TDbModel,TEntity}.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\EfRepository{TContext,TEntity}.cs" />
     <Compile Include="Seed\FileByLineDbContextSeeder.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,31 +69,31 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
-      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
-      <Name>Common</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj">
+      <Project>{9F7EF778-C698-498E-B3D5-5CF91FA69B24}</Project>
+      <Name>ProcessingTools.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
-      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
-      <Name>Constants</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
+      <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
+      <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4C455D90-7433-4853-BC6E-4A726786D253}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19E394EF-8FDC-4FBA-8135-D12E15EA8D8E}</Project>
+      <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
-      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>Enumerations</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
-      <Project>{8de48eb2-2387-4d85-a78c-773a300881d5}</Project>
-      <Name>Data.Common</Name>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj">
+      <Project>{20df2bbe-db57-4970-a4da-99c0db94c40f}</Project>
+      <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

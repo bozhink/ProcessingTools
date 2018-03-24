@@ -4,9 +4,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
-    public class City : SystemInformation, ISynonymisable<CitySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
+    public class City : BaseModel, ISynonymisable<CitySynonym>, INameableIntegerIdentifiable, IAbbreviatedNameable, IDataModel
     {
         private ICollection<PostCode> postCodes;
         private ICollection<CitySynonym> synonyms;

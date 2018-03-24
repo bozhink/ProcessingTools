@@ -1,0 +1,98 @@
+﻿@model ProcessingTools.Web.Models.Documents.Articles.ArticleDeleteViewModel
+@{
+    ViewData[ContextKeys.Title] = "Delete Article";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(m => m.Title)</dt>
+            <dd>@Html.DisplayFor(m => m.Title)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.SubTitle)</dt>
+            <dd>@Html.DisplayFor(m => m.SubTitle)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Journal.Name)</dt>
+            <dd>@Html.DisplayFor(m => m.Journal.Name)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.PublishedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.PublishedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.AcceptedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.AcceptedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ReceivedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.ReceivedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.VolumeSeries)</dt>
+            <dd>@Html.DisplayFor(m => m.VolumeSeries)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Volume)</dt>
+            <dd>@Html.DisplayFor(m => m.Volume)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Issue)</dt>
+            <dd>@Html.DisplayFor(m => m.Issue)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.IssuePart)</dt>
+            <dd>@Html.DisplayFor(m => m.IssuePart)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ELocationId)</dt>
+            <dd>@Html.DisplayFor(m => m.ELocationId)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.FirstPage)</dt>
+            <dd>@Html.DisplayFor(m => m.FirstPage)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.LastPage)</dt>
+            <dd>@Html.DisplayFor(m => m.LastPage)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.NumberOfPages)</dt>
+            <dd>@Html.DisplayFor(m => m.NumberOfPages)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
+        </dl>
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(ArticlesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>

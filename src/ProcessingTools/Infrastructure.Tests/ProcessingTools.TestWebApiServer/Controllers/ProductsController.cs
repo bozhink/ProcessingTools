@@ -35,7 +35,7 @@
         {
             if (product == null)
             {
-                return await Task.FromResult(this.BadRequest());
+                return await Task.FromResult(this.BadRequest()).ConfigureAwait(false);
             }
 
             int id = 1;
@@ -53,20 +53,20 @@
             };
 
             Products.Add(entity);
-            return await Task.FromResult(this.Created(entity.Id.ToString(), entity));
+            return await Task.FromResult(this.Created(entity.Id.ToString(), entity)).ConfigureAwait(false);
         }
 
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteAll()
         {
             Products.Clear();
-            return await Task.FromResult(this.Ok());
+            return await Task.FromResult(this.Ok()).ConfigureAwait(false);
         }
 
         // /api/products
         public async Task<IHttpActionResult> GetAllProducts()
         {
-            return await Task.FromResult(this.Ok(Products));
+            return await Task.FromResult(this.Ok(Products)).ConfigureAwait(false);
         }
 
         // /api/products/id
@@ -75,10 +75,10 @@
             var product = Products.FirstOrDefault((p) => p.Id == id);
             if (product == null)
             {
-                return await Task.FromResult(this.NotFound());
+                return await Task.FromResult(this.NotFound()).ConfigureAwait(false);
             }
 
-            return await Task.FromResult(this.Ok(product));
+            return await Task.FromResult(this.Ok(product)).ConfigureAwait(false);
         }
 
         // /api/products/?category=category
@@ -86,7 +86,7 @@
         {
             var result = Products.Where(p => string.Equals(p.Category, category, StringComparison.OrdinalIgnoreCase));
 
-            return await Task.FromResult(this.Ok(result));
+            return await Task.FromResult(this.Ok(result)).ConfigureAwait(false);
         }
     }
 }

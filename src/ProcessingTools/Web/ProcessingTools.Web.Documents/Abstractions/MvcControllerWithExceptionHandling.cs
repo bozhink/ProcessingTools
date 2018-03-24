@@ -2,8 +2,8 @@
 {
     using System;
     using System.Web.Mvc;
-    using Extensions;
-    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Web.Documents.Extensions;
 
     public abstract class MvcControllerWithExceptionHandling : Controller
     {

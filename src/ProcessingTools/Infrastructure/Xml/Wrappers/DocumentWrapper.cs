@@ -2,8 +2,8 @@
 {
     using System;
     using System.Xml;
-    using Contracts.Wrappers;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
 
     public class DocumentWrapper : IDocumentWrapper
@@ -12,12 +12,7 @@
 
         public DocumentWrapper(IDocumentFactory documentFactory)
         {
-            if (documentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(documentFactory));
-            }
-
-            this.documentFactory = documentFactory;
+            this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
         }
 
         public IDocument Create()

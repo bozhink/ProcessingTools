@@ -8,9 +8,9 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Services.Web.Managers;
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Documents.ViewModels.Account;
+    using ProcessingTools.Web.Services;
 
     [Authorize]
     public class AccountController : Controller
@@ -95,7 +95,8 @@
                 model.Email,
                 model.Password,
                 model.RememberMe,
-                shouldLockout: false);
+                shouldLockout: false)
+                .ConfigureAwait(false);
 
             switch (result)
             {
@@ -121,7 +122,7 @@
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
-            if (!await this.SignInManager.HasBeenVerifiedAsync())
+            if (!await this.SignInManager.HasBeenVerifiedAsync().ConfigureAwait(false))
             {
                 return this.View(ViewNames.ErrorViewName);
             }
@@ -153,7 +154,8 @@
                 model.Provider,
                 model.Code,
                 isPersistent: model.RememberMe,
-                rememberBrowser: model.RememberBrowser);
+                rememberBrowser: model.RememberBrowser)
+                .ConfigureAwait(false);
 
             switch (result)
             {
@@ -192,19 +194,20 @@
                     Email = model.Email
                 };
 
-                var result = await this.UserManager.CreateAsync(user, model.Password);
+                var result = await this.UserManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     await this.SignInManager.SignInAsync(
                         user,
                         isPersistent: false,
-                        rememberBrowser: false);
+                        rememberBrowser: false)
+                        .ConfigureAwait(false);
 
                     //// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     //// Send an email with this link
-                    //// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id).ConfigureAwait(false);
                     //// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    //// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>").ConfigureAwait(false);
 
                     return this.RedirectToAction("Index", "Home");
                 }
@@ -226,7 +229,7 @@
                 return this.View(ViewNames.ErrorViewName);
             }
 
-            var result = await this.UserManager.ConfirmEmailAsync(userId, code);
+            var result = await this.UserManager.ConfirmEmailAsync(userId, code).ConfigureAwait(false);
             return this.View(result.Succeeded ? "ConfirmEmail" : ViewNames.ErrorViewName);
         }
 
@@ -246,8 +249,8 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = await this.UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await this.UserManager.FindByNameAsync(model.Email).ConfigureAwait(false);
+                if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id).ConfigureAwait(false)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return this.View("ForgotPasswordConfirmation");
@@ -255,9 +258,9 @@
 
                 //// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 //// Send an email with this link
-                //// string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                //// string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id).ConfigureAwait(false);
                 //// var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //// await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //// await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>").ConfigureAwait(false);
                 //// return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -292,14 +295,14 @@
                 return this.View(model);
             }
 
-            var user = await this.UserManager.FindByNameAsync(model.Email);
+            var user = await this.UserManager.FindByNameAsync(model.Email).ConfigureAwait(false);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return this.RedirectToAction("ResetPasswordConfirmation", "Account");
             }
 
-            var result = await this.UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await this.UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password).ConfigureAwait(false);
             if (result.Succeeded)
             {
                 return this.RedirectToAction("ResetPasswordConfirmation", "Account");
@@ -334,13 +337,13 @@
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
-            var userId = await this.SignInManager.GetVerifiedUserIdAsync();
+            var userId = await this.SignInManager.GetVerifiedUserIdAsync().ConfigureAwait(false);
             if (userId == null)
             {
                 return this.View(ViewNames.ErrorViewName);
             }
 
-            var userFactors = await this.UserManager.GetValidTwoFactorProvidersAsync(userId);
+            var userFactors = await this.UserManager.GetValidTwoFactorProvidersAsync(userId).ConfigureAwait(false);
             var factorOptions = userFactors.Select(purpose => new SelectListItem
             {
                 Text = purpose,
@@ -368,7 +371,7 @@
             }
 
             // Generate the token and send it
-            if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider).ConfigureAwait(false))
             {
                 return this.View(ViewNames.ErrorViewName);
             }
@@ -381,14 +384,14 @@
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
+            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync().ConfigureAwait(false);
             if (loginInfo == null)
             {
                 return this.RedirectToAction("Login");
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var result = await this.SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await this.SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false).ConfigureAwait(false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -423,7 +426,7 @@
             if (this.ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
+                var info = await this.AuthenticationManager.GetExternalLoginInfoAsync().ConfigureAwait(false);
                 if (info == null)
                 {
                     return this.View("ExternalLoginFailure");
@@ -435,13 +438,13 @@
                     Email = model.Email
                 };
 
-                var result = await this.UserManager.CreateAsync(user);
+                var result = await this.UserManager.CreateAsync(user).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    result = await this.UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await this.UserManager.AddLoginAsync(user.Id, info.Login).ConfigureAwait(false);
                     if (result.Succeeded)
                     {
-                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false).ConfigureAwait(false);
                         return this.RedirectToLocal(returnUrl);
                     }
                 }

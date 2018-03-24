@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Materials;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Bio.Materials;
 
-    [Description("Parse treatment materials.")]
-    public class ParseTreatmentMaterialsCommand : GenericDocumentParserCommand<ITreatmentMaterialsParser>, IParseTreatmentMaterialsCommand
+    [System.ComponentModel.Description("Parse treatment materials.")]
+    public class ParseTreatmentMaterialsCommand : DocumentParserCommand<ITreatmentMaterialsParser>, IParseTreatmentMaterialsCommand
     {
         public ParseTreatmentMaterialsCommand(ITreatmentMaterialsParser parser)
             : base(parser)

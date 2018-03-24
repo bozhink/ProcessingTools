@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Models;
     using MongoDB.Driver;
     using MongoDB.Driver.Linq;
-    using ProcessingTools.Contracts.Data.Cache.Models;
+    using ProcessingTools.Cache.Data.Mongo.Contracts.Repositories;
+    using ProcessingTools.Cache.Data.Mongo.Models;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Models.Contracts.Cache;
 
     public class MongoValidationCacheDataRepository : IMongoValidationCacheDataRepository
     {
@@ -24,7 +24,7 @@
                 throw new ArgumentNullException(nameof(databaseProvider));
             }
 
-            string collectionName = CollectionNameFactory.Create<ValidatedObject>();
+            string collectionName = MongoCollectionNameFactory.Create<ValidatedObject>();
             var settings = new MongoCollectionSettings
             {
                 WriteConcern = WriteConcern.Unacknowledged
@@ -41,7 +41,7 @@
 
         public IEnumerable<string> Keys => this.collection.AsQueryable().Select(o => o.Id);
 
-        public async Task<object> Add(string key, IValidationCacheEntity value)
+        public async Task<object> AddAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -58,10 +58,11 @@
                     .Eq(o => o.Id, key),
                 Builders<ValidatedObject>.Update
                     .AddToSet(o => o.Values, new ValidationCacheEntity(value)),
-                this.updateOptions);
+                this.updateOptions)
+                .ConfigureAwait(false);
         }
 
-        public IEnumerable<IValidationCacheEntity> GetAll(string key)
+        public IEnumerable<IValidationCacheModel> GetAll(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -72,17 +73,17 @@
             return dbmodel?.Values;
         }
 
-        public async Task<object> Remove(string key)
+        public async Task<object> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return await this.collection.DeleteOneAsync(o => o.Id == key);
+            return await this.collection.DeleteOneAsync(o => o.Id == key).ConfigureAwait(false);
         }
 
-        public async Task<object> Remove(string key, IValidationCacheEntity value)
+        public async Task<object> RemoveAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -94,7 +95,7 @@
                 throw new ArgumentNullException(nameof(value));
             }
 
-            var dbmodel = await this.collection.Find(o => o.Id == key).FirstOrDefaultAsync();
+            var dbmodel = await this.collection.Find(o => o.Id == key).FirstOrDefaultAsync().ConfigureAwait(false);
             if (dbmodel == null)
             {
                 return false;
@@ -102,7 +103,7 @@
 
             var result = dbmodel.Values.Remove(new ValidationCacheEntity(value));
 
-            var response = await this.collection.ReplaceOneAsync(o => o.Id == key, dbmodel);
+            var response = await this.collection.ReplaceOneAsync(o => o.Id == key, dbmodel).ConfigureAwait(false);
 
             return result && response.IsAcknowledged;
         }

@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.Files.IO;
-    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Contracts.IO;
+    using ProcessingTools.Services.Contracts.Files;
 
     public class XmlFileContentDataService : IXmlFileContentDataService
     {
@@ -13,18 +13,8 @@
 
         public XmlFileContentDataService(IXmlFileReader reader, IXmlFileWriter writer)
         {
-            if (reader == null)
-            {
-                throw new ArgumentNullException(nameof(reader));
-            }
-
-            if (writer == null)
-            {
-                throw new ArgumentNullException(nameof(writer));
-            }
-
-            this.reader = reader;
-            this.writer = writer;
+            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
+            this.writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
         public XmlReaderSettings ReaderSettings
@@ -60,7 +50,7 @@
                 throw new ArgumentNullException(nameof(fullName));
             }
 
-            return this.reader.ReadXml(fullName: fullName);
+            return this.reader.ReadXmlAsync(fileName: fullName);
         }
 
         public async Task<object> WriteXmlFile(string fullName, XmlDocument document, XmlDocumentType documentType = null)
@@ -75,7 +65,7 @@
                 throw new ArgumentNullException(nameof(document));
             }
 
-            return await this.writer.Write(fullName: fullName, document: document, documentType: documentType);
+            return await this.writer.WriteAsync(fileName: fullName, document: document, documentType: documentType).ConfigureAwait(false);
         }
     }
 }

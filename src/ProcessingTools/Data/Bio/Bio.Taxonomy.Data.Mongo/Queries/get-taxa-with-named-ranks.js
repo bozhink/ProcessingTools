@@ -1,28 +1,30 @@
-﻿db.taxa.aggregate([{
-    $unwind: "$ranks"
+﻿/* globals db */
+
+db.taxa.aggregate([{
+    $unwind: '$ranks'
 }, {
     $lookup: {
-        from: "taxonRankType",
-        localField: "ranks",
-        foreignField: "rankType",
-        as: "ranks"
+        from: 'taxonRankType',
+        localField: 'ranks',
+        foreignField: 'rankType',
+        as: 'ranks'
     }
 }, {
-    $unwind: "$ranks"
+    $unwind: '$ranks'
 }, {
     $project: {
         name: 1,
         isWhiteListed: 1,
-        rank: "$ranks.name"
+        rank: '$ranks.name'
     }
 }, {
     $group: {
         _id: {
-            name: "$name",
-            isWhiteListed: "$isWhiteListed"
+            name: '$name',
+            isWhiteListed: '$isWhiteListed'
         },
         ranks: {
-            $addToSet: "$rank"
+            $addToSet: '$rank'
         }
     }
-}])
+}]);

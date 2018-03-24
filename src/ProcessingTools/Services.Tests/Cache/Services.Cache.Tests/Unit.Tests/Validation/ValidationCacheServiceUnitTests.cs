@@ -6,10 +6,8 @@
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Cache.Models;
-    using ProcessingTools.Contracts.Data.Cache.Repositories;
-    using ProcessingTools.Services.Cache.Contracts.Models.Validation;
-    using ProcessingTools.Services.Cache.Services.Validation;
+    using ProcessingTools.Data.Contracts.Cache;
+    using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Services.Cache.Tests.Common;
     using ProcessingTools.Tests.Library;
 
@@ -22,25 +20,25 @@
         {
             // Arrange
             string key = "some key";
-            var valueMock = new Mock<IValidationCacheServiceModel>();
+            var valueMock = new Mock<IValidationCacheModel>();
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
-                .Setup(r => r.Add(key, It.IsAny<IValidationCacheEntity>()))
+                .Setup(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()))
                 .Returns(Task.FromResult<object>(true));
 
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
+            var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.Add(key, valueMock.Object);
+            var result = await service.AddAsync(key, valueMock.Object).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
 
-            repositoryMock.Verify(r => r.Add(key, It.IsAny<IValidationCacheEntity>()), Times.Once);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Once);
+            repositoryMock.Verify(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()), Times.Once);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Once);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add with invalid key and null value should throw ArgumentNullException.")]
@@ -52,17 +50,17 @@
         {
             // Arrange
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var applicationContextMock = new Mock<IApplicationContext>();
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.Add(key, null);
+                return service.AddAsync(key, null);
             });
 
-            repositoryMock.Verify(p => p.Add(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add with invalid key and valid value should throw ArgumentNullException with correct ParamName.")]
@@ -73,21 +71,21 @@
         public void ValidationCacheService_AddWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
-            var valueMock = new Mock<IValidationCacheServiceModel>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var applicationContextMock = new Mock<IApplicationContext>();
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.Add(key, valueMock.Object);
+                return service.AddAsync(key, valueMock.Object);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.Add(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Add with valid key and null value should throw ArgumentNullException with correct ParamName.")]
@@ -97,19 +95,19 @@
             // Arrange
             string key = "some key";
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var applicationContextMock = new Mock<IApplicationContext>();
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.Add(key, null);
+                return service.AddAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.Add(It.IsAny<string>(), It.IsAny<IValidationCacheEntity>()), Times.Never);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key from cache in which is not present should return null.")]
@@ -124,18 +122,18 @@
                 .Setup(r => r.GetAll(key))
                 .Returns(value: null);
 
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
+            var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNull(result);
 
             repositoryMock.Verify(r => r.GetAll(key), Times.Once);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with empty list should return null.")]
@@ -145,25 +143,25 @@
             // Arrange
             string key = "some key";
 
-            var list = new List<IValidationCacheEntity>();
+            var list = new List<IValidationCacheModel>();
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
                 .Setup(r => r.GetAll(key))
                 .Returns(list);
 
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
+            var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNull(result);
 
             repositoryMock.Verify(r => r.GetAll(key), Times.Once);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get with invalid key should throw ArgumentNullException with correct ParamName.")]
@@ -175,19 +173,19 @@
         {
             // Arrange
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var applicationContextMock = new Mock<IApplicationContext>();
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.Get(key);
+                return service.GetAsync(key);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
 
             repositoryMock.Verify(r => r.GetAll(key), Times.Never);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with list with single value should return a new copy of it.")]
@@ -196,21 +194,21 @@
         {
             // Arrange
             string key = "some key";
-            var valueMock = new Mock<IValidationCacheEntity>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var value = valueMock.Object;
-            var list = new IValidationCacheEntity[] { value };
+            var list = new[] { value };
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
                 .Setup(r => r.GetAll(key))
                 .Returns(list);
 
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
+            var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNotNull(result);
@@ -221,7 +219,7 @@
             Assert.AreEqual(value.Status, result.Status);
 
             repositoryMock.Verify(r => r.GetAll(key), Times.Once);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with list with two values should return a new copy of the last updated one.")]
@@ -232,31 +230,31 @@
             string key = "some key";
             var now = DateTime.Now;
 
-            var value1Mock = new Mock<IValidationCacheEntity>();
+            var value1Mock = new Mock<IValidationCacheModel>();
             value1Mock
                 .SetupGet(v => v.LastUpdate)
                 .Returns(now);
 
-            var value2Mock = new Mock<IValidationCacheEntity>();
+            var value2Mock = new Mock<IValidationCacheModel>();
             value2Mock
                 .SetupGet(v => v.LastUpdate)
                 .Returns(now + TimeSpan.FromHours(1));
 
             var expectedValue = value2Mock.Object;
 
-            var list = new IValidationCacheEntity[] { value1Mock.Object, value2Mock.Object };
+            var list = new[] { value1Mock.Object, value2Mock.Object };
 
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             repositoryMock
                 .Setup(r => r.GetAll(key))
                 .Returns(list);
 
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
+            var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, dateTimeProviderMock.Object);
+            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.Get(key);
+            var result = await service.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNotNull(result);
@@ -268,12 +266,12 @@
             Assert.AreEqual(expectedValue.Status, result.Status);
 
             repositoryMock.Verify(r => r.GetAll(key), Times.Once);
-            dateTimeProviderMock.VerifyGet(p => p.Now, Times.Never);
+            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null repository and null dateTimeProvider in constructor should throw ArgumentNullException.")]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null repository and null applicationContext in constructor should throw ArgumentNullException.")]
         [Timeout(300)]
-        public void ValidationCacheService_WithNullRepositoryAndNullDateTimeProviderInConstructor_ShouldThrowArgumentNullException()
+        public void ValidationCacheService_WithNullRepositoryAndNullApplicationContextInConstructor_ShouldThrowArgumentNullException()
         {
             // Act + Assert
             Assert.Throws<ArgumentNullException>(() =>
@@ -282,17 +280,17 @@
             });
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null repository and valid dateTimeProvider in constructor should throw ArgumentNullException with correct ParamName.")]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null repository and valid applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
         [Timeout(300)]
-        public void ValidationCacheService_WithNullRepositoryAndValidDateTimeProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void ValidationCacheService_WithNullRepositoryAndValidApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
+            var applicationContextMock = new Mock<IApplicationContext>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                new ValidationCacheService(null, dateTimeProviderMock.Object);
+                new ValidationCacheService(null, applicationContextMock.Object);
             });
 
             Assert.AreEqual(Constants.RepositoryParamName, exception.ParamName);
@@ -306,11 +304,11 @@
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
             var repository = repositoryMock.Object;
 
-            var dateTimeProviderMock = new Mock<IDateTimeProvider>();
-            var dateTimeProvider = dateTimeProviderMock.Object;
+            var applicationContextMock = new Mock<IApplicationContext>();
+            var applicationContext = applicationContextMock.Object;
 
             // Act
-            var service = new ValidationCacheService(repository, dateTimeProvider);
+            var service = new ValidationCacheService(repository, applicationContext);
 
             // Assert
             Assert.IsNotNull(service);
@@ -318,13 +316,13 @@
             var repositoryFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.RepositoryParamName);
             Assert.AreSame(repository, repositoryFieldValue, "Repository field should be set correctly.");
 
-            var dateTimeProviderFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.DateTimeProviderParamName);
-            Assert.AreEqual(dateTimeProvider, dateTimeProviderFieldValue, "DateTimeProvider field should be set correctly.");
+            var applicationContextFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.ApplicationContextParamName);
+            Assert.AreEqual(applicationContext, applicationContextFieldValue, "ApplicationContext field should be set correctly.");
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid repository and null dateTimeProvider in constructor should throw ArgumentNullException with correct ParamName.")]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid repository and null applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
         [Timeout(300)]
-        public void ValidationCacheService_WithValidRepositoryAndNullDateTimeProviderInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void ValidationCacheService_WithValidRepositoryAndNullApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
             var repositoryMock = new Mock<IValidationCacheDataRepository>();
@@ -335,7 +333,7 @@
                 new ValidationCacheService(repositoryMock.Object, null);
             });
 
-            Assert.AreEqual(Constants.DateTimeProviderParamName, exception.ParamName);
+            Assert.AreEqual(Constants.ApplicationContextParamName, exception.ParamName);
         }
     }
 }

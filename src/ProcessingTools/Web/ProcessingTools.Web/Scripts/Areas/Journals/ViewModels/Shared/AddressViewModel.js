@@ -1,4 +1,6 @@
-﻿function AddressesViewModel(addresses) {
+﻿/* globals ko Country Address */
+
+function AddressesViewModel(addresses) {
     var self = this, count = 0;
 
     self.isModified = ko.observable(false);
@@ -27,9 +29,7 @@
                     done();
                 }
             },
-            error: function (error) {
-                console.log(error);
-
+            error: function () {
                 if (typeof done === 'function') {
                     done();
                 }
@@ -99,7 +99,7 @@
 
                 self.isModified(isModified || self.isModified());
             } catch (e) {
-                console.log(e);
+                // skip
             }
         }
 

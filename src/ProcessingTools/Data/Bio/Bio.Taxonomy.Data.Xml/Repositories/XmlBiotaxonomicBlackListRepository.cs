@@ -5,8 +5,8 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts.Repositories;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.File.Repositories;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class XmlBiotaxonomicBlackListRepository : FileGenericRepository<IXmlBiotaxonomicBlackListContext, IBlackListEntity>, IXmlBiotaxonomicBlackListRepository
     {
@@ -27,8 +27,8 @@
 
         public override object SaveChanges() => this.Context.WriteToFile(this.dataFileName).Result;
 
-        public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFile(this.dataFileName);
+        public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFile(this.dataFileName).ConfigureAwait(false);
 
-        public override Task<object> Update(IBlackListEntity entity) => this.Add(entity);
+        public override Task<object> UpdateAsync(IBlackListEntity entity) => this.AddAsync(entity);
     }
 }

@@ -3,9 +3,9 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Extensions;
 
     public class AphiaDirectSoapRequester
     {
@@ -43,7 +43,8 @@
                 ApiUrl,
                 this.AphiaSoapXml(scientificName).OuterXml,
                 ContentTypes.Xml,
-                Defaults.Encoding);
+                Defaults.Encoding)
+                .ConfigureAwait(false);
 
             return response.ToXmlDocument();
         }

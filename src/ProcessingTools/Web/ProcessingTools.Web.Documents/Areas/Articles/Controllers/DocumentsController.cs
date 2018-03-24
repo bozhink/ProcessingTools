@@ -3,8 +3,8 @@
     using System;
     using System.Net;
     using System.Web.Mvc;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants.Web;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Documents;
 
@@ -35,7 +35,6 @@
 
             var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -50,7 +49,6 @@
 
             var viewModel = new DocumentIdViewModel(this.FakeArticleId, id);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 

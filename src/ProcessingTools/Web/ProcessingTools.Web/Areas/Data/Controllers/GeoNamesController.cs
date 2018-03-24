@@ -5,10 +5,10 @@
     using System.Web.Mvc;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Web.Abstractions.Controllers;
-    using ProcessingTools.Web.Areas.Data.Models.GeoNames;
-    using ProcessingTools.Web.Areas.Data.Services;
     using ProcessingTools.Web.Constants;
+    using ProcessingTools.Web.Models.Geo.GeoNames;
 
     [Authorize]
     public class GeoNamesController : BaseMvcController
@@ -20,10 +20,10 @@
         public const string EditActionName = ActionNames.Edit;
         public const string DeleteActionName = ActionNames.Delete;
 
-        private readonly IGeoNamesService service;
+        private readonly IGeoNamesWebService service;
         private readonly ILogger logger;
 
-        public GeoNamesController(IGeoNamesService service, ILogger logger)
+        public GeoNamesController(IGeoNamesWebService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger;
@@ -38,10 +38,10 @@
                 return this.Redirect(returnUrl);
             }
 
-            int currentPage = p ?? PagingConstants.DefaultPageNumber;
-            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            int currentPage = p ?? PaginationConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PaginationConstants.DefaultLargeNumberOfItemsPerPage;
 
-            var viewModel = await this.service.SelectAsync(currentPage, numberOfItemsPerPage);
+            var viewModel = await this.service.SelectAsync(currentPage, numberOfItemsPerPage).ConfigureAwait(false);
 
             this.ViewData[ContextKeys.AreaName] = AreaName;
             this.ViewData[ContextKeys.ControllerName] = ControllerName;
@@ -58,7 +58,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    await this.service.InsertAsync(model);
+                    await this.service.InsertAsync(model).ConfigureAwait(false);
                 }
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -69,7 +69,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(ex, ControllerName);
+                this.logger?.Log(exception: ex, message: ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);
@@ -83,7 +83,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    await this.service.UpdateAsync(model);
+                    await this.service.UpdateAsync(model).ConfigureAwait(false);
                 }
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -94,7 +94,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(ex, ControllerName);
+                this.logger?.Log(exception: ex, message: ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);
@@ -106,7 +106,7 @@
         {
             try
             {
-                await this.service.DeleteAsync(id);
+                await this.service.DeleteAsync(id).ConfigureAwait(false);
 
                 string returnUrl = this.Request[ContextKeys.ReturnUrl];
                 if (!string.IsNullOrWhiteSpace(returnUrl))
@@ -116,7 +116,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(ex, ControllerName);
+                this.logger?.Log(exception: ex, message: ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);

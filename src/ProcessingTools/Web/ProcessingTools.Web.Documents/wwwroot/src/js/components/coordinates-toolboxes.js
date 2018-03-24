@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProvider) {
-
     function clickMinimizeButtonEventHandler(event) {
         var e = event || window.event,
             target = e.target,
@@ -22,7 +21,7 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
                     toolbox.style.height = '60px';
                 }
             } catch (ex) {
-                console.error(ex);
+                // skip
             }
         }
     }
@@ -47,7 +46,7 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
                     toolbox.style.height = '400px';
                 }
             } catch (ex) {
-                console.error(ex);
+                // skip
             }
         }
     }
@@ -67,7 +66,7 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
                     document.body.style.cursor = 'auto';
                 }
             } catch (ex) {
-                console.error(ex);
+                // skip
             }
         }
     }
@@ -203,4 +202,4 @@ module.exports = function CoordinatesToolboxes(window, $, leaflet, templatesProv
         genrateCoordinatesListToolbox,
         genrateCoordinatesMapToolbox
     };
-}
+};

@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Core;
+    using ProcessingTools.Processors.Contracts;
 
     public class Engine : IEngine
     {
@@ -14,36 +15,26 @@
 
         public Engine(ICommandRunner commandRunner, ISandbox sandbox, IHelpProvider helpProvider)
         {
-            if (commandRunner == null)
-            {
-                throw new ArgumentNullException(nameof(commandRunner));
-            }
-
-            if (sandbox == null)
-            {
-                throw new ArgumentNullException(nameof(sandbox));
-            }
-
-            this.commandRunner = commandRunner;
-            this.sandbox = sandbox;
+            this.commandRunner = commandRunner ?? throw new ArgumentNullException(nameof(commandRunner));
+            this.sandbox = sandbox ?? throw new ArgumentNullException(nameof(sandbox));
             this.helpProvider = helpProvider;
         }
 
-        public async Task Run(string[] args)
+        public async Task RunAsync(string[] args)
         {
             if (args == null || args.Length < 1)
             {
-                await this.helpProvider?.GetHelp();
+                await this.helpProvider.GetHelpAsync().ConfigureAwait(false);
                 return;
             }
 
             var tasks = new ConcurrentQueue<Task>();
             foreach (var arg in args)
             {
-                tasks.Enqueue(this.sandbox.Run(action: () => this.commandRunner.Run(arg).Wait()));
+                tasks.Enqueue(this.sandbox.RunAsync(action: () => this.commandRunner.RunAsync(arg).Wait()));
             }
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
     }
 }

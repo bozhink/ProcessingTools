@@ -42,8 +42,8 @@
                 {
                     if (outputItem != null)
                     {
-                        this.logger?.Log(outputItem.BaseObject.GetType().FullName);
-                        this.logger?.Log(outputItem.BaseObject.ToString() + "\n");
+                        this.logger?.Log(message: outputItem.BaseObject.GetType().FullName);
+                        this.logger?.Log(message: outputItem.BaseObject.ToString() + "\n");
                     }
                 }
 
@@ -51,26 +51,28 @@
                 {
                     foreach (var record in powerShellInstance.Streams.Debug)
                     {
-                        this.logger?.Log(record.Message);
-                        this.logger?.Log(record.InvocationInfo);
-                        this.logger?.Log(record.PipelineIterationInfo);
+                        this.logger?.Log(message: record.Message);
+                        this.logger?.Log(message: record.InvocationInfo);
+                        this.logger?.Log(message: record.PipelineIterationInfo);
                     }
                 }
 
-                ////// TODO: Powershell in Win10
-                ////if (powerShellInstance.Streams.Information.Count > 0)
-                ////{
-                ////    foreach (var record in powerShellInstance.Streams.Information)
-                ////    {
-                ////        this.logger?.Log(LogType.Info, record.ToString());
-                ////    }
-                ////}
+#if Win10
+                // TODO: Powershell in Win10
+                if (powerShellInstance.Streams.Information.Count > 0)
+                {
+                    foreach (var record in powerShellInstance.Streams.Information)
+                    {
+                        this.logger?.Log(type: LogType.Info, message: record.ToString());
+                    }
+                }
+#endif
 
                 if (powerShellInstance.Streams.Warning.Count > 0)
                 {
                     foreach (var record in powerShellInstance.Streams.Warning)
                     {
-                        this.logger?.Log(LogType.Warning, record.Message);
+                        this.logger?.Log(type: LogType.Warning, message: record.Message);
                     }
                 }
 
@@ -78,7 +80,7 @@
                 {
                     foreach (var record in powerShellInstance.Streams.Error)
                     {
-                        this.logger?.Log(LogType.Error, record.ErrorDetails.Message);
+                        this.logger?.Log(type: LogType.Error, message: record.ErrorDetails.Message);
                     }
                 }
             }
@@ -137,7 +139,7 @@
 
                 // do something else until execution has completed.
                 // this could be sleep/wait, or perhaps some other work
-                while (result.IsCompleted == false)
+                while (!result.IsCompleted)
                 {
                     Console.WriteLine("Waiting for pipeline to finish...");
                     Thread.Sleep(1000);
@@ -177,7 +179,7 @@
 
                 // do something else until execution has completed.
                 // this could be sleep/wait, or perhaps some other work
-                while (result.IsCompleted == false)
+                while (!result.IsCompleted)
                 {
                     Console.WriteLine("Waiting for pipeline to finish...");
                     Thread.Sleep(1000);

@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Geo;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Geo;
 
-    [Description("Tag geo names.")]
-    public class TagGeoNamesCommand : GenericDocumentTaggerCommand<IGeoNamesTagger>, ITagGeoNamesCommand
+    [System.ComponentModel.Description("Tag geo names.")]
+    public class TagGeoNamesCommand : DocumentTaggerCommand<IGeoNamesTagger>, ITagGeoNamesCommand
     {
         public TagGeoNamesCommand(IGeoNamesTagger tagger)
             : base(tagger)

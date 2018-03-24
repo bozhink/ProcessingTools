@@ -7,8 +7,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
     using System.Web.Http.Controllers;
     using System.Web.Http.Description;
     using System.Xml.XPath;
-
-    using ProcessingTools.Web.Api.Areas.HelpPage.ModelDescriptions;
+    using ProcessingTools.Contracts.Web.Services.HelpPage;
 
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
@@ -21,7 +20,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
         private const string FieldExpression = "/doc/members/member[@name='F:{0}']";
         private const string ParameterExpression = "param[@name='{0}']";
 
-        private XPathNavigator documentNavigator;
+        private readonly XPathNavigator documentNavigator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlDocumentationProvider"/> class.
@@ -52,8 +51,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
 
         public virtual string GetDocumentation(HttpParameterDescriptor parameterDescriptor)
         {
-            ReflectedHttpParameterDescriptor reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
-            if (reflectedParameterDescriptor != null)
+            if (parameterDescriptor is ReflectedHttpParameterDescriptor reflectedParameterDescriptor)
             {
                 XPathNavigator methodNode = this.GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
                 if (methodNode != null)
@@ -145,8 +143,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
 
         private XPathNavigator GetMethodNode(HttpActionDescriptor actionDescriptor)
         {
-            ReflectedHttpActionDescriptor reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
-            if (reflectedActionDescriptor != null)
+            if (actionDescriptor is ReflectedHttpActionDescriptor reflectedActionDescriptor)
             {
                 string selectExpression = string.Format(CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
                 return this.documentNavigator.SelectSingleNode(selectExpression);

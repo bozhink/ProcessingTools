@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Tagger.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
     using ProcessingTools.Constants.Configuration;
@@ -54,10 +53,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                    AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+                    AppSettings.BiorepositoriesMongoDatabaseName);
 
             this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
                 .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
@@ -65,10 +64,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoConnection])
+                    AppSettings.BiorepositoriesMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiorepositoriesMongoDabaseName]);
+                    AppSettings.BiorepositoriesMongoDatabaseName);
 
             this.Bind(b =>
             {

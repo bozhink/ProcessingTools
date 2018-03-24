@@ -14,6 +14,7 @@ namespace ProcessingTools.Users.Data.Entity.Migrations
 
         protected override void Seed(UsersDbContext context)
         {
+            // Skip
         }
     }
 }

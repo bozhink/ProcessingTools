@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Data.Common.Redis.Contracts
 {
-    using ProcessingTools.Contracts.Data;
+    using ProcessingTools.Data.Contracts;
     using ServiceStack.Redis;
 
     public interface IRedisClientProvider : IDatabaseProvider<IRedisClient>

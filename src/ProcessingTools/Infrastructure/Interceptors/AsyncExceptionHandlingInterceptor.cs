@@ -7,20 +7,20 @@ namespace ProcessingTools.Interceptors
     using System.Reflection;
     using System.Threading.Tasks;
     using Ninject.Extensions.Interception;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class AsyncExceptionHandlingInterceptor : IInterceptor
     {
         private static readonly MethodInfo HandleAsyncMethodInfo = typeof(AsyncExceptionHandlingInterceptor)
             .GetMethod(nameof(HandleAsyncWithResult), BindingFlags.Instance | BindingFlags.NonPublic);
 
-        private readonly IExceptionHandler handler;
+        private readonly ISandbox sandbox;
 
-        public AsyncExceptionHandlingInterceptor(IExceptionHandler handler)
+        public AsyncExceptionHandlingInterceptor(ISandbox sandbox)
         {
-            this.handler = handler;
+            this.sandbox = sandbox;
         }
 
         public void Intercept(IInvocation invocation)
@@ -29,7 +29,7 @@ namespace ProcessingTools.Interceptors
             switch (delegateType)
             {
                 case MethodType.Synchronous:
-                    this.handler.HandleExceptions(() => invocation.Proceed());
+                    this.sandbox.RunAsync(() => invocation.Proceed());
                     break;
 
                 case MethodType.AsyncAction:
@@ -56,12 +56,12 @@ namespace ProcessingTools.Interceptors
 
         private async Task HandleAsync(Task task)
         {
-            await this.handler.HandleExceptions(async () => await task);
+            await this.sandbox.RunAsync(() => task).ConfigureAwait(false);
         }
 
         private async Task<T> HandleAsyncWithResult<T>(Task<T> task)
         {
-            return await this.handler.HandleExceptions(async () => await task);
+            return await this.sandbox.RunAsync(() => task).ConfigureAwait(false);
         }
     }
 }

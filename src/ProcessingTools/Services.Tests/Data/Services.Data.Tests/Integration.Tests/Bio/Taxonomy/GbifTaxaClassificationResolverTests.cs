@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Gbif;
+    using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
@@ -30,7 +30,7 @@
             var connectorFactory = new NetConnectorFactory();
             var requester = new GbifApiV09DataRequester(connectorFactory);
             var service = new GbifTaxaClassificationResolver(requester);
-            var response = service.Resolve(CanonicalName).Result;
+            var response = service.ResolveAsync(CanonicalName).Result;
 
             var defaultClassification = response.FirstOrDefault();
 

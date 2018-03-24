@@ -6,9 +6,9 @@
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     public class MongoBiotaxonomicBlackListRepository : MongoCrudRepository<MongoBlackListEntity, IBlackListEntity>, IMongoBiotaxonomicBlackListRepository
     {
@@ -29,9 +29,9 @@
            .ToCursor()
            .ToEnumerable<IBlackListEntity>();
 
-        public override Task<object> Add(IBlackListEntity entity) => this.Update(entity);
+        public override Task<object> AddAsync(IBlackListEntity entity) => this.UpdateAsync(entity);
 
-        public override async Task<object> Update(IBlackListEntity entity)
+        public override async Task<object> UpdateAsync(IBlackListEntity entity)
         {
             if (entity == null)
             {
@@ -43,7 +43,8 @@
                     .Eq(t => t.Content, entity.Content),
                 Builders<MongoBlackListEntity>.Update
                     .Set(t => t.Content, entity.Content),
-                this.updateOptions);
+                this.updateOptions)
+                .ConfigureAwait(false);
 
             return result;
         }

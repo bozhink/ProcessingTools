@@ -6,11 +6,11 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Common.Exceptions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Documents.Services.Data.Contracts;
-    using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.DocumentContent;
     using Strings = Resources.Strings;
 
@@ -47,13 +47,13 @@
             }
 
             var userId = this.User.Identity.GetUserId();
-            var document = new DocumentServiceModel
+            var document = new Document
             {
                 Id = id,
                 ContentType = ContentTypes.Xml
             };
 
-            await this.presenter.SaveHtml(userId, this.fakeArticleId, document, content);
+            await this.presenter.SaveHtmlAsync(userId, this.fakeArticleId, document, content).ConfigureAwait(false);
 
             return this.DocumentSavedSuccessfullyJsonResult();
         }
@@ -67,13 +67,13 @@
             }
 
             var userId = this.User.Identity.GetUserId();
-            var document = new DocumentServiceModel
+            var document = new Document
             {
                 Id = id,
                 ContentType = ContentTypes.Xml
             };
 
-            await this.presenter.SaveXml(userId, this.fakeArticleId, document, content);
+            await this.presenter.SaveXmlAsync(userId, this.fakeArticleId, document, content).ConfigureAwait(false);
 
             return this.DocumentSavedSuccessfullyJsonResult();
         }
@@ -87,7 +87,7 @@
             }
 
             var userId = this.User.Identity.GetUserId();
-            var content = await this.presenter.GetHtml(userId, this.fakeArticleId, id);
+            var content = await this.presenter.GetHtmlAsync(userId, this.fakeArticleId, id).ConfigureAwait(false);
             return this.ContentJsonResult(id, content);
         }
 
@@ -100,7 +100,7 @@
             }
 
             var userId = this.User.Identity.GetUserId();
-            var content = await this.presenter.GetXml(userId, this.fakeArticleId, id);
+            var content = await this.presenter.GetXmlAsync(userId, this.fakeArticleId, id).ConfigureAwait(false);
             return this.ContentJsonResult(id, content);
         }
 

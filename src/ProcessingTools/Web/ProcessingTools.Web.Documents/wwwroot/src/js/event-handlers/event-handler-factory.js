@@ -20,4 +20,4 @@ module.exports = function eventHandlerFactory(window) {
     return {
         create: createEventHandler
     };
-}
+};

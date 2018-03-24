@@ -1,0 +1,17 @@
+﻿// <copyright file="ProcessingConstants.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Constants
+{
+    /// <summary>
+    /// Constants related to processing actions.
+    /// </summary>
+    public static class ProcessingConstants
+    {
+        /// <summary>
+        /// Number of expand iterations.
+        /// </summary>
+        public const int NumberOfExpandIterations = 1;
+    }
+}

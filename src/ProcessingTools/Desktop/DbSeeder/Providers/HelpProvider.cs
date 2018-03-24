@@ -27,7 +27,7 @@
             this.commandNamesProvider = commandNamesProvider;
         }
 
-        public async Task GetHelp()
+        public async Task GetHelpAsync()
         {
             this.reporter.AppendContent("Available commands:");
 
@@ -39,7 +39,7 @@
                     this.reporter.AppendContent($"\t{c}");
                 });
 
-            await this.reporter.MakeReport();
+            await this.reporter.MakeReportAsync().ConfigureAwait(false);
         }
     }
 }

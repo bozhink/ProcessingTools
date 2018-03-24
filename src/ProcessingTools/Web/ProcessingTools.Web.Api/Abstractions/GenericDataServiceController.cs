@@ -6,9 +6,9 @@
     using System.Web.Http;
     using AutoMapper;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Services.Data;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts;
 
     public abstract class GenericDataServiceController<TService, TServiceModel, TRequestModel, TResponseModel, TFilter> : ApiController
         where TFilter : class, IFilter
@@ -19,7 +19,7 @@
     {
         private readonly TService service;
 
-        public GenericDataServiceController(TService service)
+        protected GenericDataServiceController(TService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
@@ -30,7 +30,7 @@
         {
             try
             {
-                var data = await this.service.SelectAsync(null);
+                var data = await this.service.SelectAsync(null).ConfigureAwait(false);
                 if (data == null)
                 {
                     return this.NotFound();
@@ -50,7 +50,7 @@
         {
             try
             {
-                var model = await this.service.GetByIdAsync(id);
+                var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
                 if (model == null)
                 {
                     return this.NotFound();
@@ -66,7 +66,7 @@
             }
         }
 
-        public async Task<IHttpActionResult> GetPaged(string sortKey, int skip = PagingConstants.DefaultSkip, int take = PagingConstants.DefaultTake)
+        public async Task<IHttpActionResult> GetPaged(string sortKey, int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
         {
             if (string.IsNullOrWhiteSpace(sortKey))
             {
@@ -75,7 +75,7 @@
 
             try
             {
-                var data = await this.service.SelectAsync(null, skip, take, sortKey);
+                var data = await this.service.SelectAsync(null, skip, take, sortKey, SortOrder.Ascending).ConfigureAwait(false);
                 if (data == null)
                 {
                     return this.NotFound();
@@ -106,7 +106,7 @@
             try
             {
                 var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
-                var result = await this.service.InsertAsync(items);
+                var result = await this.service.InsertAsync(items).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -130,7 +130,7 @@
             try
             {
                 var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
-                var result = await this.service.UpdateAsync(items);
+                var result = await this.service.UpdateAsync(items).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -153,7 +153,7 @@
                 var property = item.GetType().GetProperty(nameof(IIntegerIdentifiable.Id));
                 property.SetValue(item, id);
 
-                var result = await this.service.UpdateAsync(item);
+                var result = await this.service.UpdateAsync(item).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -177,7 +177,7 @@
             try
             {
                 var items = entities.Select(this.Mapper.Map<TServiceModel>).ToArray();
-                var result = await this.service.DeleteAsync(items);
+                var result = await this.service.DeleteAsync(items).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -195,7 +195,7 @@
         {
             try
             {
-                var result = await this.service.DeleteAsync(id);
+                var result = await this.service.DeleteAsync(id).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)
@@ -208,7 +208,7 @@
         {
             try
             {
-                var result = await this.service.DeleteAsync(ids.Cast<object>().ToArray());
+                var result = await this.service.DeleteAsync(ids.Cast<object>().ToArray()).ConfigureAwait(false);
                 return this.Ok(result);
             }
             catch (Exception ex)

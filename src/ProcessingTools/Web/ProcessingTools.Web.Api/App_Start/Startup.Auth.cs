@@ -7,7 +7,7 @@
     using Microsoft.Owin.Security.OAuth;
     using Owin;
     using ProcessingTools.Users.Data.Entity;
-    using ProcessingTools.Web.Api.Providers;
+    using ProcessingTools.Web.Services;
 
     public partial class Startup
     {

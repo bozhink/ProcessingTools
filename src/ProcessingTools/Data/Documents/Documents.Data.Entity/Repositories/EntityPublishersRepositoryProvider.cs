@@ -1,8 +1,7 @@
 ﻿namespace ProcessingTools.Documents.Data.Entity.Repositories
 {
     using System;
-    using Contracts;
-    using Contracts.Repositories;
+    using ProcessingTools.Documents.Data.Entity.Contracts;
 
     public class EntityPublishersRepositoryProvider : IEntityPublishersRepositoryProvider
     {
@@ -10,12 +9,7 @@
 
         public EntityPublishersRepositoryProvider(IDocumentsDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
         }
 
         public IEntityPublishersRepository Create()

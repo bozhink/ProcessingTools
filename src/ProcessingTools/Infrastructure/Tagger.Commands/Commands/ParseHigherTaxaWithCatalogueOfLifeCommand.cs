@@ -1,15 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
-    [Description("Parse higher taxa using CoL.")]
-    public class ParseHigherTaxaWithCatalogueOfLifeCommand : GenericParseHigherTaxaCommand<ICatalogueOfLifeTaxaRankResolver>, IParseHigherTaxaWithCatalogueOfLifeCommand
+    [System.ComponentModel.Description("Parse higher taxa using CoL.")]
+    public class ParseHigherTaxaWithCatalogueOfLifeCommand : ParseHigherTaxaCommand<ICatalogueOfLifeTaxaRankResolver>, IParseHigherTaxaWithCatalogueOfLifeCommand
     {
         public ParseHigherTaxaWithCatalogueOfLifeCommand(
             IHigherTaxaParserWithDataService<ICatalogueOfLifeTaxaRankResolver, ITaxonRank> parser,

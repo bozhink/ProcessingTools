@@ -2,13 +2,12 @@
 {
     using System;
     using System.Linq.Expressions;
-    using ProcessingTools.Contracts.Filters;
     using ProcessingTools.DataResources.Data.Entity.Contracts.Repositories;
     using ProcessingTools.DataResources.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Resources;
     using ProcessingTools.Services.Abstractions;
-    using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Contracts.Models;
-    using ProcessingTools.Services.Data.Models;
+    using ProcessingTools.Services.Contracts.Resources;
 
     public class InstitutionsDataService : AbstractMultiDataServiceAsync<Institution, IInstitution, IFilter>, IInstitutionsDataService
     {
@@ -17,13 +16,13 @@
         {
         }
 
-        protected override Expression<Func<Institution, IInstitution>> MapEntityToModel => e => new InstitutionServiceModel
+        protected override Expression<Func<Institution, IInstitution>> MapEntityToModel => e => new ProcessingTools.Services.Models.Data.Resources.Institution
         {
             Id = e.Id,
             Name = e.Name
         };
 
-        protected override Expression<Func<IInstitution, Institution>> MapModelToEntity => m => new Institution
+        protected override Expression<Func<IInstitution, Institution>> MapModelToEntity => m => new DataResources.Data.Entity.Models.Institution
         {
             Id = m.Id,
             Name = m.Name

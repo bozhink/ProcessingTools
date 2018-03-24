@@ -8,20 +8,18 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Documents.Services.Data.Contracts;
-    using ProcessingTools.Documents.Services.Data.Models;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Layout.Processors.Contracts.Normalizers;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Contracts.Models;
-    using ProcessingTools.Tagger.Commands.Contracts.Providers;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts.Layout;
+    using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Abstractions;
     using ProcessingTools.Web.Documents.Areas.Articles.Models.Tagger;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Tagger;
@@ -100,7 +98,7 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var viewModel = await this.GetDetails(userId, articleId, id);
+            var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
@@ -116,13 +114,14 @@
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;
 
-                var xmldocument = await this.ReadDocument(model, userId, articleId);
-                var result = await this.RunCommand(model, xmldocument)
+                var xmldocument = await this.ReadDocument(model, userId, articleId).ConfigureAwait(false);
+                await this.RunCommand(model, xmldocument)
                     .ContinueWith(_ =>
                     {
                         _.Wait();
                         return this.WriteDocument(model, userId, articleId, _.Result).Result;
-                    });
+                    })
+                    .ConfigureAwait(false);
 
                 this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
@@ -164,7 +163,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var document = await this.service.Get(userId, articleId, id);
+            var document = await this.service.GetAsync(userId, articleId, id).ConfigureAwait(false);
             if (document == null)
             {
                 throw new EntityNotFoundException();
@@ -194,7 +193,7 @@
                 PreserveWhitespace = true
             };
 
-            var reader = await this.service.GetReader(userId, articleId, model.DocumentId);
+            var reader = await this.service.GetReaderAsync(userId, articleId, model.DocumentId).ConfigureAwait(false);
 
             document.Load(reader);
             return document;
@@ -212,7 +211,7 @@
                 document.SchemaType = SchemaType.System;
             }
 
-            await this.documentReadNormalizer.Normalize(document);
+            await this.documentReadNormalizer.NormalizeAsync(document).ConfigureAwait(false);
 
             var commandType = this.commandsInformation
                 .First(p => p.Value.Name == model.CommandId)
@@ -221,17 +220,18 @@
             var command = this.commandFactory.Invoke(commandType);
             var settings = this.commandSettingsFactory.Create();
 
-            var result = await command.Run(document, settings)
+            var result = await command.RunAsync(document, settings)
                 .ContinueWith(_ =>
                 {
                     _.Wait();
-                    return this.documentWriteNormalizer.Normalize(document);
+                    return this.documentWriteNormalizer.NormalizeAsync(document);
                 })
                 .ContinueWith(_ =>
                 {
                     _.Wait();
                     return document.XmlDocument;
-                });
+                })
+                .ConfigureAwait(false);
 
             return result;
         }
@@ -245,16 +245,16 @@
                     .FirstOrDefault(i => i.Name == model.CommandId)
                     .Description;
 
-                var documentMetadata = new DocumentServiceModel
+                var documentMetadata = new Document
                 {
                     Comment = comment,
                     ContentLength = stream.Length,
-                    ContentType = ContentTypes.Xml,
+                    ContentType = ProcessingTools.Constants.ContentTypes.Xml,
                     FileExtension = FileConstants.XmlFileExtension,
                     FileName = model.FileName
                 };
 
-                var result = await this.service.Create(userId, articleId, documentMetadata, stream);
+                var result = await this.service.CreateAsync(userId, articleId, documentMetadata, stream).ConfigureAwait(false);
 
                 stream.Close();
 

@@ -1,10 +1,9 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using ProcessingTools.Special.Processors.Contracts.Processors;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Special;
 
-    public class SpecialCaseGavinLaurensCommand : GenericDocumentParserCommand<IGavinLaurensParser>, ISpecialCaseGavinLaurensCommand
+    public class SpecialCaseGavinLaurensCommand : DocumentParserCommand<IGavinLaurensParser>, ISpecialCaseGavinLaurensCommand
     {
         public SpecialCaseGavinLaurensCommand(IGavinLaurensParser parser)
             : base(parser)

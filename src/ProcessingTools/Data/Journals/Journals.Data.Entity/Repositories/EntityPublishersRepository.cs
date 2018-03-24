@@ -2,16 +2,15 @@
 {
     using System;
     using System.Linq;
-    using ProcessingTools.Contracts.Data.Journals.Models;
-    using ProcessingTools.Data.Common.Entity.Contracts.Repositories;
-    using ProcessingTools.Journals.Data.Entity.Abstractions.Repositories;
+    using ProcessingTools.Data.Common.Entity.Contracts;
+    using ProcessingTools.Journals.Data.Entity.Abstractions;
     using ProcessingTools.Journals.Data.Entity.Contracts;
-    using ProcessingTools.Journals.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Journals.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Journals;
 
     public class EntityPublishersRepository : AbstractEntityAddressableRepository<IPublisher, Publisher>, IEntityPublishersRepository
     {
-        public EntityPublishersRepository(IGenericRepository<IJournalsDbContext, Publisher> repository)
+        public EntityPublishersRepository(IEfRepository<IJournalsDbContext, Publisher> repository)
             : base(repository)
         {
         }
@@ -21,10 +20,10 @@
             Id = p.Id,
             Name = p.Name,
             AbbreviatedName = p.AbbreviatedName,
-            CreatedByUser = p.CreatedByUser,
-            ModifiedByUser = p.ModifiedByUser,
-            DateCreated = p.DateCreated,
-            DateModified = p.DateModified,
+            CreatedBy = p.CreatedBy,
+            ModifiedBy = p.ModifiedBy,
+            CreatedOn = p.CreatedOn,
+            ModifiedOn = p.ModifiedOn,
             Addresses = p.Addresses.Select(this.MapAddressToAddress).ToList()
         };
     }

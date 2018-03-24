@@ -1,17 +1,16 @@
 ﻿namespace ProcessingTools.Processors.Processors.Bio.Codes
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Data.Miners.Contracts.Models.Bio;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Data.Miners.Contracts.Bio;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
     public class CollectionCodesTagger : ICollectionCodesTagger
     {
@@ -33,32 +32,29 @@
             this.collectionsTagger = collectionsTagger ?? throw new ArgumentNullException(nameof(collectionsTagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> TagAsync(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var data = (await this.miner.Mine(textContent))
-                .ToArray();
+            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = await this.miner.MineAsync(textContent).ConfigureAwait(false);
 
-            await this.TagCollectionCodes(document, data);
-            await this.TagCollections(document, data);
+            await this.TagCollectionCodes(context, data).ConfigureAwait(false);
+            await this.TagCollections(context, data).ConfigureAwait(false);
 
             return true;
         }
 
-        private async Task TagCollectionCodes(
-            IDocument document,
-            IEnumerable<IBiorepositoriesCollection> data)
+        private async Task TagCollectionCodes(IDocument document, ICollection[] data)
         {
             var collectionCodes = data.Select(c => new BiorepositoriesCollectionCodeSerializableModel
             {
                 Url = c.Url,
-                Value = c.CollectionCode,
-                XLinkTitle = c.CollectionName
+                Value = c.Code,
+                XLinkTitle = c.Name
             });
 
             var settings = new ContentTaggerSettings
@@ -67,17 +63,15 @@
                 MinimalTextSelect = true
             };
 
-            await this.collectionCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings);
+            await this.collectionCodesTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, collectionCodes, XPath, settings).ConfigureAwait(false);
         }
 
-        private async Task TagCollections(
-            IDocument document,
-            IEnumerable<IBiorepositoriesCollection> data)
+        private async Task TagCollections(IDocument document, ICollection[] data)
         {
             var collections = data.Select(c => new BiorepositoriesCollectionSerializableModel
             {
                 Url = c.Url,
-                Value = c.CollectionName
+                Value = c.Name
             });
 
             var settings = new ContentTaggerSettings
@@ -86,7 +80,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.collectionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, collections, XPath, settings);
+            await this.collectionsTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, collections, XPath, settings).ConfigureAwait(false);
         }
     }
 }

@@ -11,4 +11,4 @@ module.exports = function BioDataRouter($routeProvider) {
         .when('/black-list', {
             templateUrl: 'bio-data-black-list.view.html'
         });
-}
+};

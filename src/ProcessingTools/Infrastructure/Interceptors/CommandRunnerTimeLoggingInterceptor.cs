@@ -7,6 +7,7 @@
     using Ninject.Extensions.Interception;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Processors.Contracts;
 
     public class CommandRunnerTimeLoggingInterceptor : IInterceptor
     {
@@ -20,7 +21,7 @@
         public void Intercept(IInvocation invocation)
         {
             if (invocation.Request.Target is ICommandRunner &&
-                invocation.Request.Method.Name == nameof(ICommandRunner.Run))
+                invocation.Request.Method.Name == nameof(ICommandRunner.RunAsync))
             {
                 var target = invocation.Request.Target as ICommandRunner;
                 var commandName = invocation.Request.Arguments.Single().ToString();
@@ -36,7 +37,7 @@
 
                 try
                 {
-                    invocation.ReturnValue = Task.FromResult(target.Run(commandName).Result);
+                    invocation.ReturnValue = Task.FromResult(target.RunAsync(commandName).Result);
                 }
                 catch (AggregateException e)
                 {

@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Bio;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Harvesters.Contracts.Bio;
 
     public class ExtractTaxaCommand : IExtractTaxaCommand
     {
@@ -20,7 +20,7 @@
             this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -36,25 +36,25 @@
 
             if (settings.ExtractTaxa)
             {
-                var data = await this.harvester.Harvest(context);
+                var data = await this.harvester.HarvestAsync(context);
                 this.BuildReport(Messages.ExtractAllTaxaMessage, data);
             }
             else
             {
                 if (settings.ExtractLowerTaxa)
                 {
-                    var data = await this.harvester.HarvestLowerTaxa(context);
+                    var data = await this.harvester.HarvestLowerTaxaAsync(context).ConfigureAwait(false);
                     this.BuildReport(Messages.ExtractLowerTaxaMessage, data);
                 }
 
                 if (settings.ExtractHigherTaxa)
                 {
-                    var data = await this.harvester.HarvestHigherTaxa(context);
+                    var data = await this.harvester.HarvestHigherTaxaAsync(context).ConfigureAwait(false);
                     this.BuildReport(Messages.ExtractHigherTaxaMessage, data);
                 }
             }
 
-            await this.reporter.MakeReport();
+            await this.reporter.MakeReportAsync().ConfigureAwait(false);
 
             return true;
         }

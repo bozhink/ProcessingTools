@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Bio.Taxonomy.Data.Xml.Tests
 {
-    using System.Configuration;
     using System.IO;
     using System.Xml;
     using System.Xml.Serialization;
@@ -16,8 +15,8 @@
         public void BlackListXmlModel_Deserialize_ShouldWork()
         {
             const int NumberOfListItems = 2;
-            string directoryFileName = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
-            string fileName = ConfigurationManager.AppSettings["BlackListSampleFileName"];
+            string directoryFileName = AppSettings.DataFilesDirectoryName;
+            string fileName = AppSettings.BlackListSampleFileName;
 
             BlackListXmlModel list = null;
             using (var stream = new FileStream($"{directoryFileName}/{fileName}", FileMode.Open))

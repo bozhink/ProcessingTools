@@ -13,14 +13,14 @@
             this.logger = logger;
         }
 
-        public Task Run(Action action)
+        public async Task RunAsync(Action action)
         {
             if (action == null)
             {
                 throw new ArgumentNullException(nameof(action));
             }
 
-            return Task.Run(() =>
+            await Task.Run(() =>
             {
                 try
                 {
@@ -30,24 +30,25 @@
                 {
                     foreach (var i in e.InnerExceptions)
                     {
-                        this.logger?.Log(i, "\n");
+                        this.logger?.Log(exception: i, message: "\n");
                     }
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e, string.Empty);
+                    this.logger?.Log(exception: e, message: string.Empty);
                 }
-            });
+            })
+            .ConfigureAwait(false);
         }
 
-        public Task Run(Func<Task> function)
+        public async Task RunAsync(Func<Task> function)
         {
             if (function == null)
             {
                 throw new ArgumentNullException(nameof(function));
             }
 
-            return Task.Run(() =>
+            await Task.Run(() =>
             {
                 try
                 {
@@ -57,24 +58,25 @@
                 {
                     foreach (var i in e.InnerExceptions)
                     {
-                        this.logger?.Log(i, "\n");
+                        this.logger?.Log(exception: i, message: "\n");
                     }
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e, string.Empty);
+                    this.logger?.Log(exception: e, message: string.Empty);
                 }
-            });
+            })
+            .ConfigureAwait(false);
         }
 
-        public Task<T> Run<T>(Func<Task<T>> function)
+        public async Task<T> RunAsync<T>(Func<Task<T>> function)
         {
             if (function == null)
             {
                 throw new ArgumentNullException(nameof(function));
             }
 
-            return Task.Run(() =>
+            return await Task.Run<T>(() =>
             {
                 try
                 {
@@ -84,17 +86,18 @@
                 {
                     foreach (var i in e.InnerExceptions)
                     {
-                        this.logger?.Log(i, "\n");
+                        this.logger?.Log(exception: i, message: "\n");
                     }
 
-                    throw e;
+                    throw;
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e, string.Empty);
-                    throw e;
+                    this.logger?.Log(exception: e, message: string.Empty);
+                    throw;
                 }
-            });
+            })
+            .ConfigureAwait(false);
         }
     }
 }

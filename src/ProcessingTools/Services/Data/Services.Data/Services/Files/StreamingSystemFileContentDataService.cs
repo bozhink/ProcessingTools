@@ -3,8 +3,8 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Services.Data.Contracts.Files;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Contracts.Files;
 
     public class StreamingSystemFileContentDataService : IStreamingSystemFileContentDataService
     {
@@ -42,7 +42,7 @@
             return stream;
         }
 
-        public Task<object> Write(object id, StreamReader streamReader)
+        public Task<object> WriteAsync(object id, StreamReader streamReader)
         {
             if (id == null)
             {
@@ -54,10 +54,10 @@
                 throw new ArgumentNullException(nameof(streamReader));
             }
 
-            return this.Write(id, streamReader.BaseStream);
+            return this.WriteAsync(id, streamReader.BaseStream);
         }
 
-        public async Task<object> Write(object id, Stream stream)
+        public async Task<object> WriteAsync(object id, Stream stream)
         {
             if (id == null)
             {
@@ -83,8 +83,8 @@
             long writtenStreamLength = 0L;
             using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
             {
-                await stream.CopyToAsync(fileStream);
-                await fileStream.FlushAsync();
+                await stream.CopyToAsync(fileStream).ConfigureAwait(false);
+                await fileStream.FlushAsync().ConfigureAwait(false);
                 writtenStreamLength = fileStream.Length;
                 fileStream.Close();
             }

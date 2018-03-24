@@ -10,7 +10,7 @@
 
         public MediatypesDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.MediatypesDatabaseConnection;
+            this.ConnectionString = ConnectionStrings.MediatypesDatabaseConnection;
         }
 
         public string ConnectionString
@@ -24,7 +24,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.ConnectionString));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.connectionString = value;

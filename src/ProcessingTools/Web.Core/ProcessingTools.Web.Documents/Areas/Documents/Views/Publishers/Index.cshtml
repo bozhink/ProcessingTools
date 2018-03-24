@@ -1,0 +1,64 @@
+﻿
+@model ProcessingTools.Web.Models.Documents.Publishers.PublishersIndexViewModel
+
+@{
+    ViewData[ContextKeys.Title] = "Publishers";
+}
+
+@if (Model == null)
+{
+    <section role="main">
+        <header>
+            <h2>@ViewData[ContextKeys.Title]</h2>
+        </header>
+        <div class="alert alert-info">No items found.</div>
+    </section>
+}
+else
+{
+    <section role="main">
+        <header>
+            @if (string.IsNullOrWhiteSpace(Model.PageHeading))
+            {
+                <h2>@Html.DisplayNameFor(m => m.PageHeading)</h2>
+            }
+            else
+            {
+                <h2>@Model.PageHeading</h2>
+            }
+        </header>
+        <p><a asp-action="@(PublishersController.CreateActionName)">Create New</a></p>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Name)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().AbbreviatedName)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Address)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0; }
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@(++i)</td>
+                            <td>@Html.DisplayFor(m => item.Name)</td>
+                            <td>@Html.DisplayFor(m => item.AbbreviatedName)</td>
+                            <td>@Html.DisplayFor(m => item.Address)</td>
+                            <td>
+                                <a asp-action="@(PublishersController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |
+                                <a asp-action="@(PublishersController.DeleteActionName)" asp-route-id="@(item.Id)">Delete</a> |
+                                <a asp-action="@(PublishersController.DetailsActionName)" asp-route-id="@(item.Id)">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </section>
+}
+

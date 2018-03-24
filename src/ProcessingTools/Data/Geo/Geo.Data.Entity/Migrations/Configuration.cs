@@ -14,6 +14,7 @@ namespace ProcessingTools.Geo.Data.Entity.Migrations
 
         protected override void Seed(GeoDbContext context)
         {
+            // Skip
         }
     }
 }

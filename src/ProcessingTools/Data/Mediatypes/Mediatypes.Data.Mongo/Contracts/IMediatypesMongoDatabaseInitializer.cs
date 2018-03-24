@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Mediatypes.Data.Mongo.Contracts
 {
-    using ProcessingTools.Contracts.Data;
+    using ProcessingTools.Data.Contracts;
 
     public interface IMediatypesMongoDatabaseInitializer : IDatabaseInitializer
     {

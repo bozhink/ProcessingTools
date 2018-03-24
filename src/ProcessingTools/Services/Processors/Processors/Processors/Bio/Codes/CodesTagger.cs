@@ -12,21 +12,19 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Contracts.Models.Bio.Codes;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Processors.Models.Contracts.Bio.Codes;
 
     public class CodesTagger : ICodesTagger
     {
-        private const string InstitutionalCodeTagName = "institutional_code";
-        private const string InstitutionTagName = "institution";
         private const string SpecimenCodeTagName = "specimen_code";
 
         /*
@@ -66,12 +64,12 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
          * ZUPV/EHU 188
          */
 
-        private readonly ICodesTransformersFactory transformerFactory;
+        private readonly ICodesTransformerFactory transformerFactory;
         private readonly ITextContentHarvester contentHarvester;
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
 
-        private string[] codePrefixes = new string[]
+        private readonly string[] codePrefixes = new string[]
         {
             @"ALP",
             @"AMNH",
@@ -128,7 +126,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         };
 
         public CodesTagger(
-            ICodesTransformersFactory transformerFactory,
+            ICodesTransformerFactory transformerFactory,
             ITextContentHarvester contentHarvester,
             IContentTagger contentTagger,
             ILogger logger)
@@ -139,7 +137,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             this.logger = logger;
         }
 
-        public async Task TagKnownSpecimenCodes(IDocument document)
+        public async Task TagKnownSpecimenCodesAsync(IDocument document)
         {
             if (document == null)
             {
@@ -149,17 +147,17 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             var knownSpecimenCodes = new List<ISpecimenCode>();
 
             knownSpecimenCodes.AddRange(this.GetJanzenCodes(document));
-            knownSpecimenCodes.AddRange(await this.GetPrefixNumericCodes(document));
+            knownSpecimenCodes.AddRange(await this.GetPrefixNumericCodes(document).ConfigureAwait(false));
 
             knownSpecimenCodes = knownSpecimenCodes.Distinct().ToList();
 
             var tagModel = this.GetTagModel(document);
 
-            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, knownSpecimenCodes, tagModel);
-            await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathStrings.ContentNodes, tagModel);
+            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, knownSpecimenCodes, tagModel).ConfigureAwait(false);
+            await this.GuessSequentalPrefixNumericSpecimenCodes(document, XPathStrings.ContentNodes, tagModel).ConfigureAwait(false);
         }
 
-        public async Task TagSpecimenCodes(IDocument document)
+        public async Task TagSpecimenCodesAsync(IDocument document)
         {
             if (document == null)
             {
@@ -168,22 +166,22 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             const string CodePattern = @"\b[A-Z0-9](\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?)+[A-Z0-9]\b";
 
-            var potentialSpecimenCodes = await this.ExtractPotentialSpecimenCodes(document, CodePattern);
+            var potentialSpecimenCodes = await this.ExtractPotentialSpecimenCodes(document, CodePattern).ConfigureAwait(false);
 
-            this.logger?.Log("\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
+            this.logger?.Log(message: "\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
             foreach (string word in potentialSpecimenCodes)
             {
-                this.logger?.Log(word);
+                this.logger?.Log(message: word);
             }
 
-            this.logger?.Log("\n\nPlausible specimen codes\n\n");
+            this.logger?.Log(message: "\n\nPlausible specimen codes\n\n");
 
             var plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(document, potentialSpecimenCodes);
 
             var tagModel = this.GetTagModel(document);
 
-            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, plausibleSpecimenCodes, tagModel);
-            await this.GuessSequentalSpecimenCodes(document, tagModel, XPathStrings.ContentNodes);
+            await this.ReplaceSpecimenCodesInXml(document, XPathStrings.ContentNodes, plausibleSpecimenCodes, tagModel).ConfigureAwait(false);
+            await this.GuessSequentalSpecimenCodes(document, tagModel, XPathStrings.ContentNodes).ConfigureAwait(false);
         }
 
         private async Task<IEnumerable<string>> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)
@@ -201,7 +199,8 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             var cleanedContent = await this.transformerFactory
                 .GetCodesRemoveNonCodeNodesTransformer()
-                .Transform(cleanedXmlDocument);
+                .TransformAsync(cleanedXmlDocument)
+                .ConfigureAwait(false);
 
             cleanedXmlDocument.LoadXml(cleanedContent);
 
@@ -212,6 +211,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         /// <summary>
         /// Gets all matches of Janzen specimen codes in the text of the XmlDocument.
         /// </summary>
+        /// <param name="document">Context document</param>
         /// <returns>ICollection of found different Janzen specimen codes.</returns>
         /// <example>
         /// Janzen codes:
@@ -280,7 +280,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         private async Task<IEnumerable<ISpecimenCode>> GetPrefixNumericCodes(IDocument document)
         {
             var prefixNumericSpecimenCodes = new List<ISpecimenCode>();
-            string textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
+            string textContent = await this.contentHarvester.HarvestAsync(document.XmlDocument.DocumentElement).ConfigureAwait(false);
 
             for (int i = 0, length = this.codePrefixes.Length; i < length; ++i)
             {
@@ -305,7 +305,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
         private XmlElement GetTagModel(IDocument document) => document.XmlDocument.CreateElement(SpecimenCodeTagName);
 
-        private async Task GuessNextSpecimenCodesByRegex(IDocument document, string xpathTemplate, XmlElement tagModel, Regex guessNextCode, string xpathToSelectSpecimenCodeTags)
+        private async Task GuessNextSpecimenCodesByRegex(IDocument document, string xpathTemplate, XmlNode tagModel, Regex guessNextCode, string xpathToSelectSpecimenCodeTags)
         {
             XmlNode replacementNode = tagModel.CloneNode(true);
             replacementNode.InnerText = "$1";
@@ -320,7 +320,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                     nodeInnerXml = guessNextCode.Replace(nodeInnerXml, replacement);
                 }
 
-                await node.SafeReplaceInnerXml(nodeInnerXml, this.logger);
+                await node.SafeReplaceInnerXml(nodeInnerXml, this.logger).ConfigureAwait(false);
 
                 if (xpathToSelectSpecimenCodeTags != null && xpathToSelectSpecimenCodeTags.Length > 0)
                 {
@@ -332,7 +332,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             }
         }
 
-        private async Task GuessSequentalPrefixNumericSpecimenCodes(IDocument document, string xpathTemplate, XmlElement tagModel)
+        private async Task GuessSequentalPrefixNumericSpecimenCodes(IDocument document, string xpathTemplate, XmlNode tagModel)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
@@ -343,7 +343,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             string guessNextCodePattern = @"(?<=" + closeTag + @"(?:\W{1,5}|(?:\W*?<!--[\w\s]*?-->)+\W*))((?:\d[\/\.]?(?:<[^>]*>)*){1,20}(?:(?i)[a-z]\b)?)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, ".//*[@prefix][@type='prefix-numeric']");
+            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, ".//*[@prefix][@type='prefix-numeric']").ConfigureAwait(false);
         }
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         /// <param name="tagModel">The tag model.</param>
         /// <param name="xpathTemplate">XPath string template of the type "//node-to-search-in[{0}]".</param>
         /// <returns>Task</returns>
-        private async Task GuessSequentalSpecimenCodes(IDocument document, XmlElement tagModel, string xpathTemplate)
+        private async Task GuessSequentalSpecimenCodes(IDocument document, XmlNode tagModel, string xpathTemplate)
         {
             //// <specimenCode full-string="UQIC 221451"><institutionalCode attribute1="http://grbio.org/institution/university-queensland-insect-collection">UQIC</institutionalCode> 221451</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
             //// <specimenCode full-string="UQIC 221451">.*?</specimenCode>, 221452, 221447, 221448, 221450, 221454, 221456
@@ -364,10 +364,10 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             string guessNextCodePattern = "(?<=" + closeTag + @"\W{1,3})(\b[A-Z0-9](?:<[^>]*>)*(?:\s?[\.:\\\/–—−-]?\s?[A-Z0-9]\s?(?:<[^>]*>)*){1,20}[A-Z0-9]\b)";
             Regex guessNextCode = new Regex(guessNextCodePattern);
 
-            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, string.Format("//{0}[count(@*)!=0]", tagModel.Name));
+            await this.GuessNextSpecimenCodesByRegex(document, xpathTemplate, tagModel, guessNextCode, string.Format("//{0}[count(@*)!=0]", tagModel.Name)).ConfigureAwait(false);
         }
 
-        private async Task ReplaceSpecimenCodesInXml(IDocument document, string xpathTemplate, IEnumerable<ISpecimenCode> specimenCodes, XmlElement tagModel)
+        private async Task ReplaceSpecimenCodesInXml(IDocument document, string xpathTemplate, IEnumerable<ISpecimenCode> specimenCodes, XmlNode tagModel)
         {
             foreach (var specimenCode in specimenCodes)
             {
@@ -381,7 +381,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                     MinimalTextSelect = false
                 };
 
-                await this.contentTagger.TagContentInDocument(specimenCode.Code, codeElement, xpathTemplate, document, settings);
+                await this.contentTagger.TagContentInDocumentAsync(specimenCode.Code, codeElement, xpathTemplate, document, settings).ConfigureAwait(false);
             }
 
             /*
@@ -391,7 +391,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                 string nestedSpecimenCodesXpath = string.Format(".//{0}[{0}]", tagModel.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in document.SelectNodes(nestedSpecimenCodesXpath))
                 {
-                    this.logger?.Log("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
+                    this.logger?.Log(type: LogType.Warning, message: "WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
             }
         }
@@ -436,7 +436,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                             next.Attributes.Append(attr);
                         }
 
-                        this.logger?.Log(next.OuterXml);
+                        this.logger?.Log(message: next.OuterXml);
                     }
                 }
             }

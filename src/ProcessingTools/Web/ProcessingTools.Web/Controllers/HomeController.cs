@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Controllers
 {
-    using System.Net;
     using System.Web.Mvc;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
@@ -16,21 +15,18 @@
         [HttpGet, ActionName(IndexActionName)]
         public ActionResult Index()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
         [HttpGet, ActionName(AboutActionName)]
         public ActionResult About()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
         [HttpGet, ActionName(ContactActionName)]
         public ActionResult Contact()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
     }

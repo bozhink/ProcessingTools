@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ProcessingTools.Cache.Data.Redis.Tests")]
-[assembly: AssemblyCopyright("Copyright © 2017 Bozhin Karaivanov")]
+[assembly: AssemblyCopyright("Copyright © 2017 ProcessingTools")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

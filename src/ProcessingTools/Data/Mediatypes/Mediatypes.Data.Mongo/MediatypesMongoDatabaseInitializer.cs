@@ -5,8 +5,8 @@
     using Contracts;
     using Models;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
 
     public class MediatypesMongoDatabaseInitializer : IMediatypesMongoDatabaseInitializer
     {
@@ -22,21 +22,22 @@
             this.db = provider.Create();
         }
 
-        public async Task<object> Initialize()
+        public async Task<object> InitializeAsync()
         {
-            await this.CreateIndicesToMediatypesCollection();
+            await this.CreateIndicesToMediatypesCollection().ConfigureAwait(false);
 
             return true;
         }
 
         private async Task<object> CreateIndicesToMediatypesCollection()
         {
-            string collectionName = CollectionNameFactory.Create<Mediatype>();
+            string collectionName = MongoCollectionNameFactory.Create<Mediatype>();
             var collection = this.db.GetCollection<Mediatype>(collectionName);
 
             var result = await collection.Indexes
                 .CreateOneAsync(
-                    Builders<Mediatype>.IndexKeys.Ascending(t => t.FileExtension));
+                    Builders<Mediatype>.IndexKeys.Ascending(t => t.FileExtension))
+                .ConfigureAwait(false);
 
             return result;
         }

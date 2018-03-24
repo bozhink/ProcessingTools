@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Xml.Abstractions
 {
     using System.Collections.Concurrent;
-    using Contracts.Cache;
+    using ProcessingTools.Contracts.Xml;
 
-    public abstract class AbstractGenericTransformCache<T> : IGenericTransformCache<T>
+    public abstract class AbstractGenericTransformCache<T> : ITransformCache<T>
     {
         protected abstract ConcurrentDictionary<string, T> TransformObjects { get; }
 
@@ -18,8 +18,7 @@
 
         public virtual bool Remove(string fileName)
         {
-            T value;
-            var result = this.TransformObjects.TryRemove(fileName, out value);
+            var result = this.TransformObjects.TryRemove(fileName, out T value);
             return result;
         }
 
@@ -28,8 +27,7 @@
             var result = true;
             foreach (var key in this.TransformObjects.Keys)
             {
-                T value;
-                result &= this.TransformObjects.TryRemove(key, out value);
+                result &= this.TransformObjects.TryRemove(key, out T value);
             }
 
             return result;

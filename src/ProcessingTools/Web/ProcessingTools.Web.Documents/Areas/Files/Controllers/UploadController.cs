@@ -7,9 +7,9 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts.Models.Files;
-    using ProcessingTools.Contracts.Services.Data.Files;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts.Files;
+    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Web.Documents.Areas.Files.Models;
 
     [Authorize]
@@ -26,21 +26,18 @@
         [HttpGet]
         public ActionResult Index()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
         [HttpGet]
         public ActionResult UploadSingleFile()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
         [HttpGet]
         public ActionResult UploadMultipleFiles()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -54,7 +51,7 @@
 
             var userId = this.User.Identity.GetUserId();
 
-            var metadata = await this.UploadSingleFile(userId, file);
+            var metadata = await this.UploadSingleFile(userId, file).ConfigureAwait(false);
 
             this.Response.StatusCode = (int)HttpStatusCode.Created;
 
@@ -64,15 +61,15 @@
                 {
                     ContentLength = metadata.ContentLength,
                     ContentType = metadata.ContentType,
-                    CreatedByUser = metadata.CreatedByUser,
-                    DateCreated = metadata.DateCreated,
-                    DateModified = metadata.DateModified,
+                    CreatedBy = metadata.CreatedBy,
+                    CreatedOn = metadata.CreatedOn,
+                    ModifiedOn = metadata.ModifiedOn,
                     Description = metadata.Description,
                     FileExtension = metadata.FileExtension,
                     FileName = metadata.FileName,
                     FullName = metadata.FullName,
                     Id = metadata.Id,
-                    ModifiedByUser = metadata.ModifiedByUser
+                    ModifiedBy = metadata.ModifiedBy
                 });
 
             ////return this.RedirectToAction(
@@ -100,8 +97,8 @@
 
             var metadata = new FileMetadataModel
             {
-                CreatedByUser = user,
-                ModifiedByUser = user,
+                CreatedBy = user,
+                ModifiedBy = user,
                 ContentLength = file.ContentLength,
                 ContentType = file.ContentType,
                 FileExtension = Path.GetExtension(file.FileName).Trim('.'),
@@ -114,7 +111,7 @@
 
             metadata.FullName = fullName;
 
-            return this.filesDataService.Create(metadata, file.InputStream);
+            return this.filesDataService.CreateAsync(metadata, file.InputStream);
         }
     }
 }

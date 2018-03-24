@@ -4,39 +4,23 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Repositories;
     using ProcessingTools.Documents.Data.Entity.Contracts;
-    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Documents;
 
     // TODO
     public class EntityFilesRepository : EntityRepository<DocumentsDbContext, File>, IEntityFilesRepository
     {
-        private readonly IGuidProvider guidProvider;
-        private readonly IDateTimeProvider dateTimeProvider;
+        private readonly IApplicationContext applicationContext;
 
-        public EntityFilesRepository(
-            IDocumentsDbContextProvider contextProvider,
-            IGuidProvider guidProvider,
-            IDateTimeProvider dateTimeProvider)
+        public EntityFilesRepository(IDocumentsDbContextProvider contextProvider, IApplicationContext applicationContext)
             : base(contextProvider)
         {
-            if (guidProvider == null)
-            {
-                throw new ArgumentNullException(nameof(guidProvider));
-            }
-
-            if (dateTimeProvider == null)
-            {
-                throw new ArgumentNullException(nameof(dateTimeProvider));
-            }
-
-            this.guidProvider = guidProvider;
-            this.dateTimeProvider = dateTimeProvider;
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
-        public Task<object> Add(IFileEntity entity)
+        public Task<object> AddAsync(IFile entity)
         {
             if (entity == null)
             {
@@ -45,22 +29,22 @@
 
             return Task.Run<object>(() =>
             {
-                var id = this.guidProvider.NewGuid();
-                var now = this.dateTimeProvider.Now;
+                var id = this.applicationContext.GuidProvider.Invoke();
+                var now = this.applicationContext.DateTimeProvider.Invoke();
 
                 var dbentity = new File
                 {
                     Id = id,
-                    DateCreated = now,
-                    DateModified = now,
+                    CreatedOn = now,
+                    ModifiedOn = now,
                     ContentLength = entity.ContentLength,
                     ContentType = entity.ContentType,
-                    CreatedByUser = entity.CreatedByUser,
+                    CreatedBy = entity.CreatedBy,
                     Description = entity.Description,
                     FileExtension = entity.FileExtension,
                     FileName = entity.FileName,
                     FullName = entity.FullName,
-                    ModifiedByUser = entity.ModifiedByUser,
+                    ModifiedBy = entity.ModifiedBy,
                     OriginalContentLength = entity.ContentLength,
                     OriginalContentType = entity.ContentType,
                     OriginalFileExtension = entity.FileExtension,
@@ -80,26 +64,26 @@
             });
         }
 
-        public Task<IFileEntity> Get(object id)
+        public Task<IFile> GetAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            return Task.Run<IFileEntity>(() =>
+            return Task.Run<IFile>(() =>
             {
                 var dbentity = this.DbSet.Find(id);
                 return dbentity;
             });
         }
 
-        public Task<object> Remove(object id)
+        public Task<object> RemoveAsync(object id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<object> Update(IFileEntity entity)
+        public Task<object> UpdateAsync(IFile entity)
         {
             throw new NotImplementedException();
         }

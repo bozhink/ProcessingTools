@@ -8,7 +8,7 @@ function BlackListItem(content) {
         throw 'Null or whitespace content';
     }
 
-    self.id = undefined;
+    self.id = null;
     self.content = content;
 }
 

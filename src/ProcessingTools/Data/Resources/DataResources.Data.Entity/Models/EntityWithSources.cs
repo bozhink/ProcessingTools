@@ -2,14 +2,13 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using ProcessingTools.Contracts.Data.DataResources.Models;
+    using ProcessingTools.Models.Contracts.Resources;
 
     public abstract class EntityWithSources : IEntityWithSources
     {
         private ICollection<SourceId> sources;
 
-        public EntityWithSources()
+        protected EntityWithSources()
         {
             this.sources = new HashSet<SourceId>();
         }
@@ -28,6 +27,6 @@
         }
 
         [NotMapped]
-        ICollection<ISourceIdEntity> IEntityWithSources.Sources => this.Sources.ToList<ISourceIdEntity>();
+        IEnumerable<ISourceIdEntity> IEntityWithSources.Sources => this.Sources;
     }
 }

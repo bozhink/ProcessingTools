@@ -5,14 +5,13 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields, IDocumentEntity
+    public class Document : ModelWithUserInformation, IEntityWithPreJoinedFields, IDocument
     {
         public Document()
-            : base()
         {
             this.Id = Guid.NewGuid();
         }
@@ -60,6 +59,6 @@
         public virtual Article Article { get; set; }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => null;
+        public IEnumerable<string> PreJoinFieldNames => new string[] { };
     }
 }

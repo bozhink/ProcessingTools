@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using System.Web.Http.Cors;
-    using Abstractions;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Web.Api.Abstractions;
 
-    [EnableCors("*", "*", "*")]
     public class CoLController : AbstractTaxaClassificationResolverController
     {
-        public CoLController(ICatalogueOfLifeTaxaClassificationResolver resolver)
-            : base(resolver)
+        protected CoLController(ICatalogueOfLifeTaxaClassificationResolver resolver, ILogger logger)
+            : base(resolver, logger)
         {
         }
     }

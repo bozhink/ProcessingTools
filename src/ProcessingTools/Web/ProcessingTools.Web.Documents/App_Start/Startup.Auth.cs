@@ -1,19 +1,16 @@
 ﻿namespace ProcessingTools.Web.Documents
 {
     using System;
-    using System.Configuration;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
-    using Microsoft.Owin.Security.Twitter;
     using Owin;
-    using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Services.Web.Contracts.Factories;
-    using ProcessingTools.Services.Web.Managers;
+    using ProcessingTools.Contracts.Web.Security;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
+    using ProcessingTools.Web.Services;
 
     public partial class Startup
     {

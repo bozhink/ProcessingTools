@@ -2,11 +2,9 @@
 {
     using System.Collections.Concurrent;
     using System.IO;
-
-    using Abstractions;
-    using Contracts;
-    using Contracts.Cache;
-    using Transform;
+    using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Xml.Abstractions;
+    using ProcessingTools.Xml.Transform;
 
     public class XQueryTransformCache : AbstractGenericTransformCache<IXQueryTransform>, IXQueryTransformCache
     {

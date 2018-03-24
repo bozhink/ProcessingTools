@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Documents.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
@@ -9,10 +8,10 @@
     using ProcessingTools.Bio.Taxonomy.Data.Xml.Contracts;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
 
     public class NinjectBiotaxonomyDataBindings : NinjectModule
     {
@@ -20,21 +19,21 @@
         {
             // MongoDB
             this.Bind<IMongoTaxonRankRepository>()
-                .To<MongoTaxonRankRepository>();
+                .To<MongoTaxonRanksRepository>();
 
             this.Bind<IMongoBiotaxonomicBlackListRepository>()
                 .To<MongoBiotaxonomicBlackListRepository>();
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
-                .WhenInjectedInto<MongoTaxonRankRepository>()
+                .WhenInjectedInto<MongoTaxonRanksRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             this.Bind<IMongoDatabaseProvider>()
                 .To<MongoDatabaseProvider>()
@@ -42,10 +41,10 @@
                 .InSingletonScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoConnection])
+                    AppSettings.BiotaxonomyMongoConnection)
                 .WithConstructorArgument(
                     ParameterNames.DatabaseName,
-                    ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyMongoDabaseName]);
+                    AppSettings.BiotaxonomyMongoDatabaseName);
 
             // Xml
             this.Bind<IXmlTaxaContext>()
@@ -65,25 +64,27 @@
                 .InSingletonScope();
 
             // Common
-            ////this.Bind<ITaxonRankRepository>()
-            ////    .To<XmlTaxonRankRepository>()
-            ////    .WithConstructorArgument(
-            ////        ParameterNames.DataFileName,
-            ////        ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyRankListXmlFileName]);
-
-            ////this.Bind<IBiotaxonomicBlackListRepository>()
-            ////    .To<XmlBiotaxonomicBlackListRepository>()
-            ////    .WithConstructorArgument(
-            ////        ParameterNames.DataFileName,
-            ////        ConfigurationManager.AppSettings[AppSettingsKeys.BiotaxonomyBlackListXmlFileName]);
-
+#if FilesDB
             this.Bind<ITaxonRankRepository>()
-                .To<MongoTaxonRankRepository>();
+                .To<XmlTaxonRankRepository>()
+                .WithConstructorArgument(
+                    ParameterNames.DataFileName,
+                    AppSettings.BiotaxonomyRankListXmlFileName);
+
+            this.Bind<IBiotaxonomicBlackListRepository>()
+                .To<XmlBiotaxonomicBlackListRepository>()
+                .WithConstructorArgument(
+                    ParameterNames.DataFileName,
+                    AppSettings.BiotaxonomyBlackListXmlFileName);
+#else
+            this.Bind<ITaxonRanksRepository>()
+                .To<MongoTaxonRanksRepository>();
 
             this.Bind<IBiotaxonomicBlackListRepository>()
                 .To<MongoBiotaxonomicBlackListRepository>();
+#endif
 
-            this.Bind<IRepositoryFactory<ITaxonRankRepository>>()
+            this.Bind<IRepositoryFactory<ITaxonRanksRepository>>()
                 .ToFactory()
                 .InSingletonScope();
 

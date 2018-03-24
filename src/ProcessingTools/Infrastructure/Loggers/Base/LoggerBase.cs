@@ -18,23 +18,23 @@
 
         public virtual void Log(LogType type, string format, params object[] args) => this.Log(type: type, message: string.Format(format, args));
 
-        public virtual void Log(Exception e, object message) => this.Log(type: LogType.Exception, e: e, message: message);
+        public virtual void Log(Exception exception, object message) => this.Log(type: LogType.Exception, exception: exception, message: message);
 
-        public virtual void Log(Exception e, string format, params object[] args) => this.Log(type: LogType.Exception, e: e, message: string.Format(format, args));
+        public virtual void Log(Exception exception, string format, params object[] args) => this.Log(type: LogType.Exception, exception: exception, message: string.Format(format, args));
 
-        public virtual void Log(LogType type, Exception e, string format, params object[] args) => this.Log(type: type, e: e, message: string.Format(format, args));
+        public virtual void Log(LogType type, Exception exception, string format, params object[] args) => this.Log(type: type, exception: exception, message: string.Format(format, args));
 
-        public virtual void Log(LogType type, Exception e, object message)
+        public virtual void Log(LogType type, Exception exception, object message)
         {
             var sb = new StringBuilder();
             sb.AppendFormat(
                 "{0}: {1}: {2}: {3}",
                 Tracer.GetCurrentMethod(2),
                 type.ToString(),
-                e.GetType(),
-                e.Message);
+                exception.GetType(),
+                exception.Message);
             sb.Append(message);
-            sb.Append(e.ToString());
+            sb.Append(exception.ToString());
 
             this.Log(type: type, message: sb.ToString());
         }

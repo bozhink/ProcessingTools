@@ -2,9 +2,8 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Configuration;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Configuration;
@@ -19,36 +18,37 @@
         private const string UserName = "system";
         private static readonly DateTime Now = DateTime.UtcNow;
 
-        private readonly IGeoDbContextFactory contextFactory;
-        private readonly Type stringType = typeof(string);
-
-        private FileByLineDbContextSeeder<GeoDbContext> seeder;
-        private string dataFilesDirectoryPath;
+        private readonly FileByLineDbContextSeeder<GeoDbContext> seeder;
+        private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
         public GeoDataSeeder(IGeoDbContextFactory contextFactory)
         {
-            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
-            this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(this.contextFactory);
+            if (contextFactory == null)
+            {
+                throw new ArgumentNullException(nameof(contextFactory));
+            }
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
+            this.seeder = new FileByLineDbContextSeeder<GeoDbContext>(contextFactory);
+
+            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
         // TODO: Link countries and continents
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
             var tasks = new Task[]
             {
-                this.SeedGeoNames(ConfigurationManager.AppSettings[AppSettingsKeys.GeoNamesSeedFileName]),
-                this.SeedGeoEpithets(ConfigurationManager.AppSettings[AppSettingsKeys.GeoEpithetsSeedFileName]),
-                this.SeedContinents(ConfigurationManager.AppSettings[AppSettingsKeys.ContinentsCodesSeedFileName]),
-                this.SeedCountryCodes(ConfigurationManager.AppSettings[AppSettingsKeys.CountryCodesSeedFileName])
+                this.SeedGeoNamesAsync(AppSettings.GeoNamesSeedFileName),
+                this.SeedGeoEpithetsAsync(AppSettings.GeoEpithetsSeedFileName),
+                this.SeedContinentsAsync(AppSettings.ContinentsCodesSeedFileName),
+                this.SeedCountryCodesAsync(AppSettings.CountryCodesSeedFileName)
             };
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -58,7 +58,7 @@
             return true;
         }
 
-        private async Task SeedGeoNames(string fileName)
+        private async Task SeedGeoNamesAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -68,7 +68,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         context.GeoNames.AddOrUpdate(new GeoName
@@ -79,7 +79,8 @@
                             ModifiedBy = UserName,
                             ModifiedOn = Now
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -87,7 +88,7 @@
             }
         }
 
-        private async Task SeedGeoEpithets(string fileName)
+        private async Task SeedGeoEpithetsAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -97,7 +98,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         context.GeoEpithets.AddOrUpdate(new GeoEpithet
@@ -108,7 +109,8 @@
                             ModifiedBy = UserName,
                             ModifiedOn = Now
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -116,7 +118,7 @@
             }
         }
 
-        private async Task SeedContinents(string fileName)
+        private async Task SeedContinentsAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -126,7 +128,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         var data = line.Split('\t');
@@ -141,7 +143,8 @@
                                 ModifiedOn = Now
                             });
                         }
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -149,7 +152,7 @@
             }
         }
 
-        private async Task SeedCountryCodes(string fileName)
+        private async Task SeedCountryCodesAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -159,7 +162,7 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         var data = line.Split('\t');
@@ -178,7 +181,8 @@
                                 ModifiedOn = Now
                             });
                         }
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {

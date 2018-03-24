@@ -5,8 +5,8 @@
     using Models;
     using Moq;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Expressions;
-    using ProcessingTools.Data.Common.Expressions;
+    using ProcessingTools.Common.Data.Expressions;
+    using ProcessingTools.Contracts.Data.Expressions;
 
     [TestFixture]
     public class UpdaterTests
@@ -18,7 +18,7 @@
             var exception = Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    var updater = new Updater<ITweet>(null);
+                    new Updater<ITweet>(null);
                 },
                 "Updater with null updateExpression should throw ArgumentNullException.");
 
@@ -73,7 +73,7 @@
             var exception = Assert.Throws<AggregateException>(
                 () =>
                 {
-                    updater.Invoke(null).Wait();
+                    updater.InvokeAsync(null).Wait();
                 },
                 "Updater.Invoke(null) should throw AggregateException.");
 
@@ -127,7 +127,7 @@
             var targetObject = targetObjectMock.Object;
 
             // Act
-            updater.Invoke(targetObject).Wait();
+            updater.InvokeAsync(targetObject).Wait();
 
             // Assert
             Assert.IsNotNull(targetObject, "Updated target object should not be null.");
@@ -206,7 +206,7 @@
             var targetObject = targetObjectMock.Object;
 
             // Act
-            updater.Invoke(targetObject).Wait();
+            updater.InvokeAsync(targetObject).Wait();
 
             // Assert
             Assert.IsNotNull(targetObject, "Updated target object should not be null.");
@@ -309,7 +309,7 @@
             var targetObject = targetObjectMock.Object;
 
             // Act
-            updater.Invoke(targetObject).Wait();
+            updater.InvokeAsync(targetObject).Wait();
 
             // Assert
             Assert.IsNotNull(targetObject, "Updated target object should not be null.");
@@ -377,7 +377,7 @@
             var exception = Assert.Throws<AggregateException>(
                 () =>
                 {
-                    updater.Invoke(targetObject).Wait();
+                    updater.InvokeAsync(targetObject).Wait();
                 },
                 "AggregateException should be thrown.");
 
@@ -442,7 +442,7 @@
             var exception = Assert.Throws<AggregateException>(
                 () =>
                 {
-                    updater.Invoke(targetObject).Wait();
+                    updater.InvokeAsync(targetObject).Wait();
                 },
                 "AggregateException should be thrown.");
 

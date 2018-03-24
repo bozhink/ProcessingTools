@@ -5,7 +5,7 @@
     using System.Net;
     using System.Web.Mvc;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Geo.Contracts.Parsers;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Web.Documents.Areas.Data.Models.CoordinatesCalculator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.CoordinatesCalculator;
 
@@ -25,7 +25,6 @@
         [HttpGet]
         public ActionResult Index()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -33,7 +32,6 @@
         [HttpGet]
         public ActionResult Help()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -43,7 +41,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var coordinateStrings = model.Coordinates.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                var coordinateStrings = model.Coordinates.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(c => c.Trim())
                     .Where(c => c.Length > 1)
                     .Distinct()
@@ -74,7 +72,6 @@
                     }
                 }
 
-                this.Response.StatusCode = (int)HttpStatusCode.OK;
                 return this.View(viewModel);
             }
 

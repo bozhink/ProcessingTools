@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Constants;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Documents.Areas.Data.Models.BioTaxonomyBlackList;
 
     [Authorize]
@@ -35,7 +35,7 @@
                 .Select(i => i.Content)
                 .ToArray();
 
-            await this.dataService.Add(taxa);
+            await this.dataService.AddAsync(taxa);
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.GetEmptyJsonResult();
@@ -50,7 +50,7 @@
                 return this.GetEmptyJsonResult();
             }
 
-            var foundItems = (await this.searchService.Search(searchString))
+            var foundItems = (await this.searchService.SearchAsync(searchString))
                 .ToList();
 
             if (foundItems.Count < 1)

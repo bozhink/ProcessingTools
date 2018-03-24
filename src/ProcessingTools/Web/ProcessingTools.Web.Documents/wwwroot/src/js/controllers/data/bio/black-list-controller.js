@@ -42,7 +42,7 @@ module.exports = function BlackListController(dataSet, searchService, jsonReques
                 if (response.status === 200) {
                     dataSet.addMulti(response.data.Items, (e) => new BlackListItem(e.Content));
                 } else {
-                    reporter.report(response.status, 'error')
+                    reporter.report(response.status, 'error');
                 }
             }).catch(function (err) {
                 reporter.report(err, 'error');

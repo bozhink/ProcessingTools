@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Layout.Processors.Contracts.Formatters;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Layout;
 
-    [Description("Initial format.")]
-    public class InitialFormatCommand : GenericDocumentFormatterCommand<IDocumentInitialFormatter>, IInitialFormatCommand
+    [System.ComponentModel.Description("Initial format.")]
+    public class InitialFormatCommand : DocumentFormatterCommand<IDocumentInitialFormatter>, IInitialFormatCommand
     {
         public InitialFormatCommand(IDocumentInitialFormatter formatter)
             : base(formatter)

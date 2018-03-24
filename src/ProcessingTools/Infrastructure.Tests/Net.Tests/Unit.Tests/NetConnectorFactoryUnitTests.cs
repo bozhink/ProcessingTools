@@ -2,7 +2,7 @@
 {
     using System;
     using NUnit.Framework;
-    using ProcessingTools.Contracts.Net;
+    using ProcessingTools.Contracts;
 
     [TestFixture]
     public class NetConnectorFactoryUnitTests
@@ -52,7 +52,7 @@
                 () =>
                 {
                     var connectorFactory = new NetConnectorFactory();
-                    var connector = connectorFactory.Create(baseAddress);
+                    connectorFactory.Create(baseAddress);
                 },
                 "Constructor With Null BaseAddress should throw {0}",
                 nameof(ArgumentNullException));
@@ -70,11 +70,11 @@
             try
             {
                 var connectorFactory = new NetConnectorFactory();
-                var connector = connectorFactory.Create(baseAddress);
+                connectorFactory.Create(baseAddress);
             }
             catch (ArgumentNullException e)
             {
-                Assert.AreEqual("BaseAddress", e.ParamName, "ParamName should be BaseAddress");
+                Assert.AreEqual(nameof(baseAddress), e.ParamName, "ParamName should be baseAddress");
             }
         }
 
@@ -87,7 +87,7 @@
                 () =>
                 {
                     var connectorFactory = new NetConnectorFactory();
-                    var connector = connectorFactory.Create(baseAddress);
+                    connectorFactory.Create(baseAddress);
                 },
                 "Constructor should throw UriFormatException");
         }

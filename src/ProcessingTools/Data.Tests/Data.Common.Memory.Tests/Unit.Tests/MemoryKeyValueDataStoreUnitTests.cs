@@ -140,13 +140,15 @@
         {
             // Arrange
             var db = new MemoryKeyValueDataStore<IKeyModel, IValueModel>();
+            IValueModel value = null;
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var value = db[null];
+                value = db[null];
             });
 
+            Assert.IsNull(value);
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
         }
 

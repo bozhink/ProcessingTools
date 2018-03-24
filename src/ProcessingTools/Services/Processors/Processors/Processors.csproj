@@ -33,141 +33,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Common\Bio\Taxonomy\ParseLowerTaxaReplacePatterns.cs" />
-    <Compile Include="Comparers\Bio\Taxonomy\TaxonNameContentEqualityComparer.cs" />
-    <Compile Include="Comparers\Bio\Taxonomy\TaxonNamePartContentEqualityComparer.cs" />
-    <Compile Include="Contracts\Factories\Bio\IBioTaxonomyTransformersFactory.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\IMinimalTaxonName.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\IMinimalTaxonNamePart.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\ITaxonName.cs" />
-    <Compile Include="Contracts\Models\Bio\Taxonomy\Parsers\ITaxonNamePart.cs" />
-    <Compile Include="Contracts\Processors\Abbreviations\IAbbreviationsTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\Codes\ICodesTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\Codes\ICollectionCodesTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\Codes\IInstitutionalCodesTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\Codes\ISpecimenCodesByPatternTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\EnvironmentTerms\IEnvironmentTermsTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\EnvironmentTerms\IEnvironmentTermsWithExtractTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\IMorphologicalEpithetsTagger.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Contracts\Processors\Bio\ISpecimenCountTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\ITypeStatusTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\Materials\ITreatmentMaterialsParser.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Formatters\ITaxonNamePartsRemover.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Formatters\ITreatmentFormatter.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\IExpander.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\IHigherTaxaParserWithDataService.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ILowerTaxaParser.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParser.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParserWithDataService.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Parsers\ITreatmentMetaParserWithInternalInformation.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\IHigherTaxaTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\ILowerTaxaInItalicTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\Taxonomy\Taggers\ILowerTaxaTagger.cs" />
-    <Compile Include="Contracts\Processors\Bio\ZooBank\IZoobankJsonCloner.cs" />
-    <Compile Include="Contracts\Processors\Bio\ZooBank\IZooBankRegistrationXmlGenerator.cs" />
-    <Compile Include="Contracts\Processors\Bio\ZooBank\IZoobankXmlCloner.cs" />
-    <Compile Include="Contracts\Processors\Coordinates\ICoordinatesParser.cs" />
-    <Compile Include="Contracts\Processors\Coordinates\ICoordinatesTagger.cs" />
-    <Compile Include="Contracts\Processors\Dates\IDatesTagger.cs" />
-    <Compile Include="Contracts\Processors\Documents\IDocumentManager.cs" />
-    <Compile Include="Contracts\Processors\Documents\IDocumentMerger.cs" />
-    <Compile Include="Contracts\Processors\Documents\IDocumentReader.cs" />
-    <Compile Include="Contracts\Processors\Documents\IDocumentSplitter.cs" />
-    <Compile Include="Contracts\Processors\Documents\IDocumentWriter.cs" />
-    <Compile Include="Contracts\Processors\Documents\IReadDocumentHelper.cs" />
-    <Compile Include="Contracts\Processors\Documents\IWriteDocumentHelper.cs" />
-    <Compile Include="Contracts\Processors\ExternalLinks\IExternalLinksTagger.cs" />
-    <Compile Include="Contracts\Factories\Bio\ICodesTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\Bio\ITaxonTreatmentsTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\IReferencesTransformersFactory.cs" />
-    <Compile Include="Contracts\Factories\IRegistrationTransformersFactory.cs" />
-    <Compile Include="Contracts\Processors\Geo\IAltitudesTagger.cs" />
-    <Compile Include="Contracts\Processors\Geo\IGeoEpithetsTagger.cs" />
-    <Compile Include="Contracts\Processors\Geo\IGeographicDeviationsTagger.cs" />
-    <Compile Include="Contracts\Processors\Geo\IGeoNamesTagger.cs" />
-    <Compile Include="Contracts\Processors\IDocumentXQueryProcessor.cs" />
-    <Compile Include="Contracts\Processors\IDocumentXslProcessor.cs" />
-    <Compile Include="Contracts\Processors\Floats\IFloatsTagger.cs" />
-    <Compile Include="Contracts\Processors\Floats\IMediatypesParser.cs" />
-    <Compile Include="Contracts\Processors\Institutions\IInstitutionsTagger.cs" />
-    <Compile Include="Contracts\Processors\IQueryReplacer.cs" />
-    <Compile Include="Contracts\Processors\Floats\ITableFootNotesTagger.cs" />
-    <Compile Include="Contracts\IGenericStringDataMinerEvaluator.cs" />
-    <Compile Include="Contracts\Processors\Products\IProductsTagger.cs" />
-    <Compile Include="Contracts\Providers\Bio\Taxonomy\IParseLowerTaxaStrategiesProvider.cs" />
-    <Compile Include="Contracts\Providers\IAltitudeTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\ICoordinateTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IDateTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IGeoEpithetTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IGeographicDeviationTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IGeoNameTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IInstitutionTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IMorphologicalEpithetTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IProductTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IQuantityTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\ISpecimenCountTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\ITypeStatusTagModelProvider.cs" />
-    <Compile Include="Contracts\Providers\IXmlTagModelProvider.cs" />
-    <Compile Include="Contracts\Processors\Quantities\IQuantitiesTagger.cs" />
-    <Compile Include="Contracts\Processors\References\IReferencesParser.cs" />
-    <Compile Include="Contracts\Processors\References\IReferencesTagger.cs" />
-    <Compile Include="Contracts\Processors\Validation\ICrossReferencesValidator.cs" />
-    <Compile Include="Contracts\Processors\Validation\IExternalLinksValidator.cs" />
-    <Compile Include="Contracts\Processors\Validation\ITaxaValidator.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaFromLeftStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithBasionymStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithByPartsMatchStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" />
-    <Compile Include="Contracts\Strategies\Bio\Taxonomy\IParseLowerTaxaWithFullStringMatchStrategy.cs" />
-    <Compile Include="Generics\GenericStringDataMinerEvaluator.cs" />
-    <Compile Include="Generics\GenericStringMinerTagger.cs" />
-    <Compile Include="Models\Abbreviations\Abbreviation.cs" />
-    <Compile Include="Contracts\Models\Abbreviations\IAbbreviation.cs" />
-    <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionCodeSerializableModel.cs" />
-    <Compile Include="Models\Bio\Codes\BiorepositoriesCollectionSerializableModel.cs" />
-    <Compile Include="Models\Bio\Codes\BiorepositoriesInstitutionalCodeSerializableModel.cs" />
-    <Compile Include="Models\Bio\Codes\BiorepositoriesInstitutionSerializableModel.cs" />
-    <Compile Include="Contracts\Models\Bio\Codes\ISpecimenCode.cs" />
-    <Compile Include="Models\Bio\Codes\SpecimenCode.cs" />
-    <Compile Include="Models\Bio\Codes\SpecimenCodeSerializableModel.cs" />
-    <Compile Include="Models\Bio\EnvironmentTerms\EnvoExtractHcmrSerializableModel.cs" />
-    <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermResponseModel.cs" />
-    <Compile Include="Models\Bio\EnvironmentTerms\EnvoTermSerializableModel.cs" />
-    <Compile Include="Models\Bio\Taxonomy\Parsers\MinimalTaxonName.cs" />
-    <Compile Include="Models\Bio\Taxonomy\Parsers\MinimalTaxonNamePart.cs" />
-    <Compile Include="Models\Bio\Taxonomy\Parsers\Species.cs" />
-    <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonName.cs" />
-    <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonNamePart.cs" />
-    <Compile Include="Models\Bio\Taxonomy\Parsers\TaxonRankResponseModel.cs" />
-    <Compile Include="Contracts\Models\Floats\IFloatObject.cs" />
-    <Compile Include="Contracts\Models\Floats\IMediaType.cs" />
-    <Compile Include="Models\Floats\AppendixFloatObject.cs" />
-    <Compile Include="Models\Floats\FigureFloatObject.cs" />
-    <Compile Include="Models\Floats\GraphicFloatObject.cs" />
-    <Compile Include="Models\Floats\HabitusFloatObject.cs" />
-    <Compile Include="Models\Floats\MapFloatObject.cs" />
-    <Compile Include="Models\Floats\MediatypeResponseModel.cs" />
-    <Compile Include="Models\Floats\MovieFloatObject.cs" />
-    <Compile Include="Models\Floats\PictureFloatObject.cs" />
-    <Compile Include="Models\Floats\PlateFloatObject.cs" />
-    <Compile Include="Models\Floats\SupplementaryMaterialFloatObject.cs" />
-    <Compile Include="Models\Floats\TableAppendixFloatObject.cs" />
-    <Compile Include="Models\Floats\TableBoxFloatObject.cs" />
-    <Compile Include="Models\Floats\TableFloatObject.cs" />
-    <Compile Include="Models\Floats\TextBoxFloatObject.cs" />
-    <Compile Include="Models\NamedContentSerializableModel.cs" />
-    <Compile Include="Contracts\Models\References\IReferenceTemplateItem.cs" />
-    <Compile Include="Models\References\ReferenceTemplateItem.cs" />
-    <Compile Include="Models\SerializableModelWithXLinkTypeSimple.cs" />
-    <Compile Include="Processors\Abbreviations\AbbreviationsTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\CollectionCodesTagger.cs" />
     <Compile Include="Processors\Bio\Codes\InstitutionalCodesTagger.cs" />
@@ -177,141 +50,95 @@
     <Compile Include="Processors\Bio\Materials\TreatmentMaterialsParser.cs" />
     <Compile Include="Processors\Bio\MorphologicalEpithetsTagger.cs" />
     <Compile Include="Processors\Bio\SpecimenCountTagger.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Formatters\TaxonNamePartsRemover.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Formatters\TreatmentFormatter.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\Expander.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\HigherTaxaParserWithDataService.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\LowerTaxaParser.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithDataService.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Parsers\TreatmentMetaParserWithInternalInformation.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Taggers\HigherTaxaTagger.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Taggers\LowerTaxaInItalicTagger.cs" />
-    <Compile Include="Processors\Bio\Taxonomy\Taggers\LowerTaxaTagger.cs" />
     <Compile Include="Processors\Bio\TypeStatusTagger.cs" />
-    <Compile Include="Processors\Bio\ZooBank\ZoobankJsonCloner.cs" />
-    <Compile Include="Processors\Bio\ZooBank\ZooBankRegistrationXmlGenerator.cs" />
-    <Compile Include="Processors\Bio\ZooBank\ZoobankXmlCloner.cs" />
-    <Compile Include="Processors\Coordinates\CoordinatesParser.cs" />
-    <Compile Include="Processors\Coordinates\CoordinatesTagger.cs" />
-    <Compile Include="Processors\Dates\DatesTagger.cs" />
-    <Compile Include="Processors\Documents\DocumentManager.cs" />
-    <Compile Include="Processors\Documents\DocumentMerger.cs" />
-    <Compile Include="Processors\Documents\DocumentReader.cs" />
-    <Compile Include="Processors\Documents\DocumentSplitter.cs" />
-    <Compile Include="Processors\Documents\DocumentWriter.cs" />
-    <Compile Include="Processors\Documents\ReadDocumentHelper.cs" />
-    <Compile Include="Processors\Documents\WriteDocumentHelper.cs" />
-    <Compile Include="Processors\DocumentXQueryProcessor.cs" />
-    <Compile Include="Processors\DocumentXslProcessor.cs" />
-    <Compile Include="Processors\ExternalLinks\ExternalLinksTagger.cs" />
-    <Compile Include="Processors\Floats\FloatsTagger.cs" />
-    <Compile Include="Processors\Floats\MediatypesParser.cs" />
-    <Compile Include="Processors\Floats\TableFootNotesTagger.cs" />
-    <Compile Include="Processors\Geo\AltitudesTagger.cs" />
-    <Compile Include="Processors\Geo\GeoEpithetsTagger.cs" />
-    <Compile Include="Processors\Geo\GeographicDeviationsTagger.cs" />
-    <Compile Include="Processors\Geo\GeoNamesTagger.cs" />
-    <Compile Include="Processors\Institutions\InstitutionsTagger.cs" />
-    <Compile Include="Processors\Products\ProductsTagger.cs" />
-    <Compile Include="Processors\Quantities\QuantitiesTagger.cs" />
-    <Compile Include="Processors\QueryReplacer.cs" />
-    <Compile Include="Processors\References\ReferencesParser.cs" />
-    <Compile Include="Processors\References\ReferencesTagger.cs" />
-    <Compile Include="Processors\Validation\CrossReferencesValidator.cs" />
-    <Compile Include="Processors\Validation\ExternalLinksValidator.cs" />
-    <Compile Include="Processors\Validation\TaxaValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\AltitudeTagModelProvider.cs" />
-    <Compile Include="Providers\Bio\Taxonomy\ParseLowerTaxaStrategiesProvider.cs" />
-    <Compile Include="Providers\CoordinateTagModelProvider.cs" />
-    <Compile Include="Providers\DateTagModelProvider.cs" />
-    <Compile Include="Providers\GeoEpithetTagModelProvider.cs" />
-    <Compile Include="Providers\GeographicDeviationTagModelProvider.cs" />
-    <Compile Include="Providers\GeoNameTagModelProvider.cs" />
-    <Compile Include="Providers\InstitutionTagModelProvider.cs" />
-    <Compile Include="Providers\MorphologicalEpithetTagModelProvider.cs" />
-    <Compile Include="Providers\ProductTagModelProvider.cs" />
-    <Compile Include="Providers\QuantityTagModelProvider.cs" />
-    <Compile Include="Providers\SpecimenCountTagModelProvider.cs" />
-    <Compile Include="Providers\TypeStatusTagModelProvider.cs" />
-    <Compile Include="Common\Bio\Taxonomy\SpeciesPartsPrefixesResolver.cs" />
-    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaFromLeftStrategy.cs" />
-    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithBasionymStrategy.cs" />
-    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithByPartsMatchStrategy.cs" />
-    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithDirectMatchWithInfraPrefixStrategy.cs" />
-    <Compile Include="Strategies\Bio\Taxonomy\ParseLowerTaxaWithFullStringMatchStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Common\Common.csproj">
-      <Project>{C6BF6DB1-BDED-4902-BAA2-D2419E24F2AF}</Project>
-      <Name>Common</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
+      <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
+      <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Constants\Constants.csproj">
-      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
-      <Name>Constants</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj">
+      <Project>{19e394ef-8fdc-4fba-8135-d12e15ea8d8e}</Project>
+      <Name>ProcessingTools.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj">
+      <Project>{2CEE897B-F9D4-4D59-964A-4FC8BA7448F5}</Project>
+      <Name>ProcessingTools.Enumerations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\DocumentProvider\DocumentProvider.csproj">
-      <Project>{ee6cf295-22f5-4fb5-8099-be4ba9e232de}</Project>
-      <Name>DocumentProvider</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
+      <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
+      <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Enumerations\Enumerations.csproj">
-      <Project>{0A7E970B-7A28-46DB-92A9-D9DF7CCB6C9D}</Project>
-      <Name>Enumerations</Name>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+      <Project>{720d359f-49d1-4126-a79b-f63cce9780a0}</Project>
+      <Name>ProcessingTools.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj">
+      <Project>{A620DFDE-28C3-46C7-BED3-0AFB99DB9623}</Project>
+      <Name>ProcessingTools.Models.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Serialization\Serialization.csproj">
-      <Project>{2B556AD3-ED8A-4145-8878-F6D02769FF20}</Project>
-      <Name>Serialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Xml\Xml.csproj">
-      <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
-      <Name>Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Geo\Geo.csproj">
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Strings\Strings.csproj">
-      <Project>{B705EDF9-0593-4312-AF43-5C205A4441B9}</Project>
-      <Name>Strings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.ServiceClient.MaterialsParser\Bio.ServiceClient.MaterialsParser.csproj">
-      <Project>{e15f875b-a919-4e95-abea-2273fa53a0b9}</Project>
-      <Name>Bio.ServiceClient.MaterialsParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.ZooBank\Bio.Taxonomy.ServiceClient.ZooBank.csproj">
-      <Project>{47ACD088-5DAA-4C7B-B802-CF871FFD5FC1}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.ZooBank</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data.Miners\Data.Miners\Data.Miners.csproj">
-      <Project>{294E2A9B-7B64-4854-9C6A-57CF8B407708}</Project>
-      <Name>Data.Miners</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Harvesters\Harvesters\Harvesters.csproj">
-      <Project>{68165c17-4f06-4652-b1f6-aecf7f44ca5a}</Project>
-      <Name>Harvesters</Name>
+    <ProjectReference Include="..\..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
+      <Project>{4FA9E8DE-3062-41C5-AB25-A44776A4C116}</Project>
+      <Name>ProcessingTools.Clients.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Validation\Services.Validation\Services.Validation.csproj">
-      <Project>{AA7AB2A8-DAC5-4F5C-8838-0FDC4D22E66C}</Project>
-      <Name>Services.Validation</Name>
+    <ProjectReference Include="..\..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
+      <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
+      <Name>ProcessingTools.Clients.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Layout.Processors\Layout.Processors.csproj">
-      <Project>{FC880066-D413-4E16-9F46-23ACD5E30C2D}</Project>
-      <Name>Layout.Processors</Name>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Miners.Contracts\ProcessingTools.Data.Miners.Contracts.csproj">
+      <Project>{6B8C6024-1B83-4429-B480-BE38C84D7118}</Project>
+      <Name>ProcessingTools.Data.Miners.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Miners.Models.Contracts\ProcessingTools.Data.Miners.Models.Contracts.csproj">
+      <Project>{1FE4A6DB-F86A-47A3-A3FC-A829D6B86192}</Project>
+      <Name>ProcessingTools.Data.Miners.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj">
+      <Project>{76075CD7-8071-4F78-92F7-6E8416848484}</Project>
+      <Name>ProcessingTools.Harvesters.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{5201cf47-75b8-445a-a12b-c4d9c1fe7df3}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj">
+      <Project>{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}</Project>
+      <Name>ProcessingTools.Processors.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj">
+      <Project>{72ec8d88-76e5-4843-a98e-306ba6ad7f7f}</Project>
+      <Name>ProcessingTools.Processors.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Processors\ProcessingTools.Processors.csproj">
+      <Project>{32E4AD4E-0D8A-43C4-A284-2B051754EF40}</Project>
+      <Name>ProcessingTools.Processors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
+      <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
+      <Name>ProcessingTools.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj">
+      <Project>{a1c5ad6e-32a0-43aa-8191-3fb503ac4f8d}</Project>
+      <Name>ProcessingTools.Services.Models.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>

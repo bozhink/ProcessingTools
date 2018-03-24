@@ -3,9 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using Contracts.Serialization;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Serialization.Contracts;
+    using ProcessingTools.Contracts.Serialization;
+    using ProcessingTools.Contracts.Xml;
 
     public class XmlTransformDeserializer : IXmlTransformDeserializer
     {
@@ -13,12 +12,7 @@
 
         public XmlTransformDeserializer(IXmlDeserializer deserializer)
         {
-            if (deserializer == null)
-            {
-                throw new ArgumentNullException(nameof(deserializer));
-            }
-
-            this.deserializer = deserializer;
+            this.deserializer = deserializer ?? throw new ArgumentNullException(nameof(deserializer));
         }
 
         public async Task<T> Deserialize<T>(IXmlTransformer transformer, string xml)
@@ -35,7 +29,7 @@
 
             var stream = transformer.TransformToStream(xml);
 
-            var result = await this.deserializer.Deserialize<T>(stream);
+            var result = await this.deserializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
 
             stream.Close();
             stream.Dispose();
@@ -57,7 +51,7 @@
 
             var stream = transformer.TransformToStream(node);
 
-            var result = await this.deserializer.Deserialize<T>(stream);
+            var result = await this.deserializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
 
             stream.Close();
             stream.Dispose();

@@ -14,6 +14,7 @@ namespace ProcessingTools.Journals.Data.Entity.Migrations
 
         protected override void Seed(JournalsDbContext context)
         {
+            // Skip
         }
     }
 }

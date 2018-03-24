@@ -3,9 +3,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.DataResources;
-    using ProcessingTools.Contracts.Data.DataResources.Models;
+    using ProcessingTools.Models.Contracts.Resources;
 
-    public class ContentType : IContentTypeEntity
+    public class ContentType : IContentType
     {
         [Key]
         public int Id { get; set; }

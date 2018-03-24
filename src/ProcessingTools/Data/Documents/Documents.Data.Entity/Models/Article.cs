@@ -4,13 +4,12 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public class Article : ModelWithUserInformation, IEntityWithPreJoinedFields, IArticleEntity
+    public class Article : ModelWithUserInformation, IEntityWithPreJoinedFields, IArticle
     {
         private ICollection<Document> documents;
         private ICollection<Author> authors;
@@ -84,9 +83,9 @@
         };
 
         [NotMapped]
-        ICollection<IDocumentEntity> IArticleEntity.Documents => this.Documents.ToList<IDocumentEntity>();
+        IEnumerable<IDocument> IArticle.Documents => this.Documents;
 
         [NotMapped]
-        ICollection<IAuthorEntity> IArticleEntity.Authors => this.Authors.ToList<IAuthorEntity>();
+        IEnumerable<IAuthor> IArticle.Authors => this.Authors;
     }
 }

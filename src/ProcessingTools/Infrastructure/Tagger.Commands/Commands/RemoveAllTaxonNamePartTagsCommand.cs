@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Formatters;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 
-    [Description("Remove all taxon-name-part tags.")]
-    public class RemoveAllTaxonNamePartTagsCommand : GenericDocumentFormatterCommand<ITaxonNamePartsRemover>, IRemoveAllTaxonNamePartTagsCommand
+    [System.ComponentModel.Description("Remove all taxon-name-part tags.")]
+    public class RemoveAllTaxonNamePartTagsCommand : DocumentFormatterCommand<ITaxonNamePartsRemover>, IRemoveAllTaxonNamePartTagsCommand
     {
         public RemoveAllTaxonNamePartTagsCommand(ITaxonNamePartsRemover formatter)
             : base(formatter)

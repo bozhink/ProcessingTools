@@ -49,7 +49,7 @@ module.exports = function TaxaRanksController(dataSet, searchService, jsonReques
                 if (response.status === 200) {
                     dataSet.addMulti(response.data.Taxa, (e) => new TaxonRank(e.TaxonName, e.Rank));
                 } else {
-                    reporter.report(response.status, 'error')
+                    reporter.report(response.status, 'error');
                 }
             }).catch(function (err) {
                 reporter.report(err, 'error');

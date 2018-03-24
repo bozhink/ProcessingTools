@@ -1,61 +1,51 @@
 ﻿namespace ProcessingTools.Web.ApiControllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-    using ProcessingTools.Contracts.Services.Data.Geo;
-    using ProcessingTools.Web.Models.Cities;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Web.Services.Geo;
 
     [Authorize]
     public class CitiesController : ApiController
     {
-        private readonly ICitiesDataService service;
+        private readonly ICitiesApiService service;
+        private readonly ILogger logger;
 
-        public CitiesController(ICitiesDataService service)
+        public CitiesController(ICitiesApiService service, ILogger logger)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.service = service;
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger;
         }
 
         // GET: api/Cities
-        public async Task<IEnumerable<CityResponseModel>> Get()
+        public async Task<IHttpActionResult> Get()
         {
-            var items = await this.service.SelectAsync(null);
-
-            return items.Select(c => new CityResponseModel
+            try
             {
-                Id = c.Id,
-                Name = c.Name,
-                Country = new CountryResponseModel
-                {
-                    Id = c.Country.Id,
-                    Name = c.Country.Name
-                }
-            })
-            .ToArray();
+                var data = await this.service.GetAllAsync().ConfigureAwait(false);
+                return this.Ok(data);
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(exception: ex, message: nameof(this.Get));
+                return this.InternalServerError();
+            }
         }
 
         // GET: api/Cities/5
-        public async Task<CityResponseModel> Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
-            var item = await this.service.GetByIdAsync(id);
-
-            return new CityResponseModel
+            try
             {
-                Id = item.Id,
-                Name = item.Name,
-                Country = new CountryResponseModel
-                {
-                    Id = item.Country.Id,
-                    Name = item.Country.Name
-                }
-            };
+                var item = await this.service.GetById(id).ConfigureAwait(false);
+                return this.Ok(item);
+            }
+            catch (Exception ex)
+            {
+                this.logger?.Log(exception: ex, message: nameof(this.Get));
+                return this.InternalServerError();
+            }
         }
     }
 }

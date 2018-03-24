@@ -8,10 +8,10 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using Ninject;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Data.Models.Bio.Taxonomy;
-    using Settings;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.ListsManager.Settings;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public partial class ListManagerControl : UserControl
     {
@@ -25,12 +25,12 @@
         }
 
         /// <summary>
-        /// Get or set the boolean value which designates whether current views are rank-related or not
+        /// Gets or sets a value indicating whether get or set the boolean value which designates whether current views are rank-related or not
         /// </summary>
         public bool IsRankList { get; set; }
 
         /// <summary>
-        /// Get or set the name of the main group box of this control
+        /// Gets or sets get or set the name of the main group box of this control
         /// </summary>
         public string ListGroupBoxLabel
         {
@@ -79,7 +79,7 @@
                     {
                         var taxonRankPair = new KeyValuePair<string, string>(
                             Regex.Match(entriesMatch.Value, @"\S+").Value,
-                            Regex.Match(entriesMatch.Value, @"\S+").NextMatch().Value.ToLower());
+                            Regex.Match(entriesMatch.Value, @"\S+").NextMatch().Value.ToLowerInvariant());
 
                         items.Add(taxonRankPair);
                     }
@@ -93,7 +93,7 @@
                     .ToList()
                     .ForEach(i =>
                     {
-                        var item = new ListViewItem(new string[] { i.Key, i.Value });
+                        var item = new ListViewItem(new[] { i.Key, i.Value });
                         this.listView.Items.Add(item);
                     });
             }
@@ -132,7 +132,7 @@
 
         private void ListImportButton_Click(object sender, EventArgs e)
         {
-            var awaiter = this.ImportData().GetAwaiter();
+            this.ImportData().GetAwaiter();
         }
 
         private async Task ImportData()
@@ -144,16 +144,16 @@
                 {
                     var service = this.kernel.Get<ITaxonRankDataService>();
 
-                    var taxa = new HashSet<TaxonRankServiceModel>(this.listView.Items
+                    var taxa = new HashSet<TaxonRank>(this.listView.Items
                         .Cast<ListViewItem>()
-                        .Select(i => new TaxonRankServiceModel
+                        .Select(i => new TaxonRank
                         {
                             ScientificName = i.SubItems[0].Text,
                             Rank = i.SubItems[1].Text.MapTaxonRankStringToTaxonRankType()
                         }))
                         .ToArray();
 
-                    await service.Add(taxa);
+                    await service.AddAsync(taxa);
                 }
                 else
                 {
@@ -164,7 +164,7 @@
                         .Select(i => i.Text))
                         .ToArray();
 
-                    await service.Add(items);
+                    await service.AddAsync(items);
                 }
             }
             catch (Exception ex)
@@ -208,14 +208,14 @@
 
         private void ListSearchButton_Click(object sender, EventArgs e)
         {
-            var awaiter = this.Search().GetAwaiter();
+            this.Search().GetAwaiter();
         }
 
         private void ListSearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var awaiter = this.Search().GetAwaiter();
+                this.Search().GetAwaiter();
             }
         }
 
@@ -232,9 +232,9 @@
             {
                 if (this.IsRankList)
                 {
-                    var service = this.kernel.Get<ITaxonRankSearchService>();
+                    var service = this.kernel.Get<ITaxonRanksSearchService>();
 
-                    var foundTaxa = await service.Search(textToSearch);
+                    var foundTaxa = await service.SearchAsync(textToSearch);
                     foreach (var taxon in foundTaxa)
                     {
                         string scientificName = taxon.ScientificName;
@@ -249,7 +249,7 @@
                 {
                     var service = this.kernel.Get<IBlackListSearchService>();
 
-                    var items = await service.Search(textToSearch);
+                    var items = await service.SearchAsync(textToSearch);
                     foreach (var item in items)
                     {
                         this.listView.Items.Add(item);

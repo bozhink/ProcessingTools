@@ -3,21 +3,22 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Constants;
-    using Contracts.Generators;
-    using ProcessingTools.Common.Exceptions;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Exceptions;
 
     public class SequentialFileNameGenerator : ISequentialFileNameGenerator
     {
-        public Task<string> Generate(string baseFileFullName, int maximalFileNameLength, bool returnFullName = true)
+        private const int MaximalNumberOfIterationsToFindNewFileName = 200;
+
+        public Task<string> GenerateAsync(string baseFileFullName, int maximalFileNameLength, bool returnFullName = true)
         {
             string directoryPath = Path.GetDirectoryName(baseFileFullName);
             string fileName = Path.GetFileName(baseFileFullName);
 
-            return this.Generate(directoryPath, fileName, maximalFileNameLength, returnFullName);
+            return this.GenerateAsync(directoryPath, fileName, maximalFileNameLength, returnFullName);
         }
 
-        public Task<string> Generate(string directoryPath, string baseFileName, int maximalFileNameLength, bool returnFullName = false)
+        public Task<string> GenerateAsync(string directoryName, string baseFileName, int maximalFileNameLength, bool returnFullName = false)
         {
             return Task.Run(() =>
             {
@@ -35,7 +36,8 @@
                 }
 
                 string extension = Path.GetExtension(baseFileName);
-                string fileName, fullName;
+                string fileName;
+                string fullName;
                 int i = 0;
                 do
                 {
@@ -45,11 +47,11 @@
                         throw new MaximalLengthOfFileNameExceededException();
                     }
 
-                    fullName = Path.Combine(directoryPath, fileName);
+                    fullName = Path.Combine(directoryName, fileName);
 
-                    if (i > GeneratorsConstants.MaximalNumberOfIterationsToFindNewFileName)
+                    if (i > MaximalNumberOfIterationsToFindNewFileName)
                     {
-                        throw new MaximalNumberOfIterationsExceededException(GeneratorsConstants.MaximalNumberOfIterationsExceedeExceptionMessage);
+                        throw new MaximalNumberOfIterationsExceededException("Maximal number of iterations to find a new unique file name is exceeded");
                     }
                 }
                 while (File.Exists(fullName));

@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Common;
-    using Models;
     using NUnit.Framework;
     using ProcessingTools.Data.Common.Redis.Repositories;
+    using ProcessingTools.Data.Common.Redis.Tests.Common;
+    using ProcessingTools.Data.Common.Redis.Tests.Models;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Integration", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>))]
@@ -15,7 +15,7 @@
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Add new valid key-value pair and then Get it and Remove it should work.")]
         [Timeout(5000)]
         [Ignore("System-dependent integration test. Needs running Redis server.")]
-        public void RedisKeyValuePairsRepositoryOfTweet_AddNewValidKeyValuePairAndThenGetItAndRemoveIt_ShouldWork()
+        public async Task RedisKeyValuePairsRepositoryOfTweet_AddNewValidKeyValuePairAndThenGetItAndRemoveIt_ShouldWork()
         {
             // Arrange
             var clientProvider = new RedisClientProvider();
@@ -29,16 +29,16 @@
             };
 
             // Act: Add
-            var added = repository.Add(key, value);
+            var added = repository.AddAsync(key, value);
 
             // Assert: Add
-            Assert.That(async () => await added, Is.EqualTo(true));
+            Assert.That(async () => await added.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L));
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L));
 
             // Act: Get
-            var valueFromDb = repository.Get(key).Result;
+            var valueFromDb = await repository.GetAsync(key).ConfigureAwait(false);
 
             // Assert: Get
             Assert.AreEqual(value.Id, valueFromDb.Id);
@@ -47,14 +47,14 @@
             Assert.AreEqual(value.PostedOn.ToLongTimeString(), valueFromDb.PostedOn.ToLongTimeString());
 
             // Act: Remove
-            var removed = repository.Remove(key);
+            var removed = repository.RemoveAsync(key);
 
             // Assert: Remove
-            Assert.That(async () => await removed, Is.EqualTo(true));
+            Assert.That(async () => await removed.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
             // Expected internal catch of "ServiceStack.Redis.RedisResponseException : Background save already in progress"
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(1L));
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(1L));
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisKeyValuePairsRepository<ITweet>), Description = "RedisKeyValuePairsRepositoryOfTweet Get Keys should work.")]
@@ -81,7 +81,7 @@
             // Act: Add
             foreach (var key in listOfKeys)
             {
-                await repository.Add(key, value);
+                await repository.AddAsync(key, value).ConfigureAwait(false);
             }
 
             // Act: Get Keys
@@ -99,7 +99,7 @@
             // Act: Remove
             foreach (var key in listOfKeys)
             {
-                await repository.Remove(key);
+                await repository.RemoveAsync(key).ConfigureAwait(false);
             }
 
             // Act: Get Keys

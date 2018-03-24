@@ -19,7 +19,7 @@
 
                 try
                 {
-                    engine.Run(args).Wait();
+                    engine.RunAsync(args).Wait();
                 }
                 catch (Exception e)
                 {

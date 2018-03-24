@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
-    using Models.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class SuffixHigherTaxaRankResolver : ISuffixHigherTaxaRankResolver
     {
@@ -34,7 +34,7 @@
             };
         }
 
-        public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
             var result = new HashSet<ITaxonRank>();
 
@@ -46,7 +46,7 @@
 
                 foreach (var rank in ranks)
                 {
-                    result.Add(new TaxonRankServiceModel
+                    result.Add(new TaxonRank
                     {
                         ScientificName = scientificName,
                         Rank = rank
@@ -54,7 +54,7 @@
                 }
             }
 
-            return await Task.FromResult(result);
+            return Task.FromResult(result.ToArray());
         }
     }
 }

@@ -16,8 +16,8 @@
 
         protected override Func<TEntity, TEntity> MapEntityToDbModel => e => e;
 
-        public override async Task<object> Add(TEntity entity) => await this.Add(entity, this.DbSet);
+        public override async Task<object> AddAsync(TEntity entity) => await this.AddAsync(entity, this.DbSet).ConfigureAwait(false);
 
-        public override async Task<object> Update(TEntity entity) => await this.Update(entity, this.DbSet);
+        public override async Task<object> UpdateAsync(TEntity entity) => await this.UpdateAsync(entity, this.DbSet).ConfigureAwait(false);
     }
 }

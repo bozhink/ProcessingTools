@@ -3,10 +3,9 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
-    using ProcessingTools.Services.Validation.Services;
+    using ProcessingTools.Services.Contracts.Cache;
 
     [TestClass]
     public class TaxaValidationServiceTests
@@ -35,11 +34,11 @@
         [ExpectedException(typeof(System.ArgumentNullException))]
         public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
         {
-            var service = new TaxaValidationService(null, this.requester);
+            new TaxaValidationService(null, this.requester);
         }
 
         [TestMethod]
-        [Ignore]
+        [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItems_SchouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "Homo sapiens" };
@@ -47,7 +46,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 
@@ -57,7 +56,7 @@
             {
                 Assert.AreEqual(
                     1,
-                    result.Where(r => r.ValidatedObject == items[i]).Count(),
+                    result.Count(r => r.ValidatedObject == items[i]),
                     $"Result should contain Item #{i} only once.");
                 Assert.IsTrue(result[i].ValidationStatus == ValidationStatus.Valid, $"Item #{i} should be valid.");
                 Assert.IsNull(result[i].ValidationException, $"Item #{i} should have null exception.");
@@ -65,7 +64,7 @@
         }
 
         [TestMethod]
-        [Ignore]
+        [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItemsWithOneInvalid_SchouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "John Smith" };
@@ -73,7 +72,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 

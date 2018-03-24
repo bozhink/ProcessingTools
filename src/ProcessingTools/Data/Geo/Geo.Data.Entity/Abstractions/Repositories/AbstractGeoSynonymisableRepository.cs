@@ -5,39 +5,37 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Contracts.Filters.Geo;
-    using ProcessingTools.Contracts.Models;
-    using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Geo;
 
     public abstract partial class AbstractGeoSynonymisableRepository<TEntity, TModel, TFilter, TSynonymEntity, TSynonymModel, TSynonymFilter> : IRepositoryAsync<TModel, TFilter>, IGeoSynonymisableRepository<TModel, TSynonymModel, TSynonymFilter>
-        where TEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonymisable<TSynonymEntity>
+        where TEntity : BaseModel, INameableIntegerIdentifiable, IDataModel, ISynonymisable<TSynonymEntity>
         where TModel : class, IIntegerIdentifiable, IGeoSynonymisable<TSynonymModel>
         where TFilter : IFilter
-        where TSynonymEntity : SystemInformation, INameableIntegerIdentifiable, IDataModel, ISynonym
+        where TSynonymEntity : BaseModel, INameableIntegerIdentifiable, IDataModel, ISynonym
         where TSynonymModel : class, IGeoSynonym
         where TSynonymFilter : ISynonymFilter
     {
-        private readonly IEnvironment environment;
+        private readonly IApplicationContext applicationContext;
         private readonly IGeoRepository<TEntity> repository;
         private readonly IGeoRepository<TSynonymEntity> synonymRepository;
 
-        public AbstractGeoSynonymisableRepository(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IEnvironment environment)
+        protected AbstractGeoSynonymisableRepository(IGeoRepository<TEntity> repository, IGeoRepository<TSynonymEntity> synonymRepository, IApplicationContext applicationContext)
         {
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.synonymRepository = synonymRepository ?? throw new ArgumentNullException(nameof(synonymRepository));
-            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
         }
 
         protected abstract IMapper Mapper { get; }
 
-        protected IEnvironment Environment => this.environment;
+        protected IApplicationContext ApplicationContext => this.applicationContext;
 
         protected IGeoRepository<TEntity> Repository => this.repository;
 
@@ -52,15 +50,16 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => e.Id == modelId);
+                .FirstOrDefaultAsync(e => e.Id == modelId)
+                .ConfigureAwait(false);
 
             if (entity == null)
             {
                 return null;
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             foreach (var synonym in synonyms)
             {
@@ -98,7 +97,7 @@
             }
 
             this.repository.Delete(id: id);
-            return await Task.FromResult(id);
+            return await Task.FromResult(id).ConfigureAwait(false);
         }
 
         public virtual async Task<TModel> GetByIdAsync(object id)
@@ -110,7 +109,8 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => (object)e.Id == id);
+                .FirstOrDefaultAsync(e => (object)e.Id == id)
+                .ConfigureAwait(false);
 
             if (entity == null)
             {
@@ -127,7 +127,9 @@
             var entity = await this.repository.Queryable()
                 .Where(e => e.Id == modelId)
                 .SelectMany(e => e.Synonyms)
-                .FirstOrDefaultAsync(s => s.Id == id);
+                .FirstOrDefaultAsync(s => s.Id == id)
+                .ConfigureAwait(false);
+
             if (entity == null)
             {
                 return null;
@@ -145,7 +147,7 @@
             }
 
             var entity = this.Mapper.Map<TModel, TEntity>(model);
-            var result = await this.InsertEntityAsync(entity);
+            var result = await this.InsertEntityAsync(entity).ConfigureAwait(false);
             return result;
         }
 
@@ -166,7 +168,7 @@
                 }
             }
 
-            var result = await this.InsertEntityAsync(entity);
+            var result = await this.InsertEntityAsync(entity).ConfigureAwait(false);
             return result;
         }
 
@@ -179,7 +181,8 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => e.Id == modelId);
+                .FirstOrDefaultAsync(e => e.Id == modelId)
+                .ConfigureAwait(false);
 
             if (entity == null)
             {
@@ -197,10 +200,12 @@
                 this.synonymRepository.Delete(id: id);
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
+
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
+
             this.repository.Update(entity);
             return ids.Length;
         }
@@ -210,15 +215,15 @@
         public virtual async Task<TModel[]> SelectAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-            var data = await query.ToListAsync();
+            var data = await query.ToListAsync().ConfigureAwait(false);
             var result = data.Select(e => this.Mapper.Map<TEntity, TModel>(e)).ToArray();
             return result;
         }
 
-        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder = SortOrder.Ascending)
+        public virtual async Task<TModel[]> SelectAsync(TFilter filter, int skip, int take, string sortColumn, SortOrder sortOrder)
         {
             var query = this.SelectQuery(this.GetQuery(filter), skip, take, sortColumn, sortOrder);
-            var data = await query.ToListAsync();
+            var data = await query.ToListAsync().ConfigureAwait(false);
             var result = data.Select(e => this.Mapper.Map<TEntity, TModel>(e)).ToArray();
             return result;
         }
@@ -226,21 +231,21 @@
         public virtual async Task<long> SelectCountAsync(TFilter filter)
         {
             var query = this.GetQuery(filter);
-            var count = await query.LongCountAsync();
+            var count = await query.LongCountAsync().ConfigureAwait(false);
             return count;
         }
 
         public virtual async Task<long> SelectSynonymCountAsync(int modelId, TSynonymFilter filter)
         {
             var query = this.GetQuery(modelId, filter);
-            var count = await query.LongCountAsync();
+            var count = await query.LongCountAsync().ConfigureAwait(false);
             return count;
         }
 
         public virtual async Task<TSynonymModel[]> SelectSynonymsAsync(int modelId, TSynonymFilter filter)
         {
             var query = this.GetQuery(modelId, filter);
-            var data = await query.ToListAsync();
+            var data = await query.ToListAsync().ConfigureAwait(false);
             var result = data.Select(e => this.Mapper.Map<TSynonymEntity, TSynonymModel>(e)).ToArray();
             return result;
         }
@@ -253,7 +258,7 @@
             }
 
             var entity = this.Mapper.Map<TModel, TEntity>(model);
-            return await this.UpdateEntityAsync(entity);
+            return await this.UpdateEntityAsync(entity).ConfigureAwait(false);
         }
 
         public async Task<object> UpdateSynonymsAsync(int modelId, params TSynonymModel[] synonyms)
@@ -265,15 +270,16 @@
 
             var entity = await this.repository.Queryable()
                 .Include(e => e.Synonyms)
-                .FirstOrDefaultAsync(e => e.Id == modelId);
+                .FirstOrDefaultAsync(e => e.Id == modelId)
+                .ConfigureAwait(false);
 
             if (entity == null || synonyms.Any(s => s.ParentId != modelId))
             {
                 return null;
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             int count = 0;
             foreach (var synonym in synonyms)
@@ -319,8 +325,8 @@
 
         protected async Task<TEntity> InsertEntityAsync(TEntity entity)
         {
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             entity.CreatedBy = user;
             entity.CreatedOn = now;
@@ -336,7 +342,7 @@
             }
 
             this.repository.Add(entity);
-            return await Task.FromResult(entity);
+            return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
         protected async Task<TEntity> UpdateEntityAsync(TEntity entity)
@@ -346,8 +352,8 @@
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            string user = this.environment.User.Id;
-            var now = this.environment.DateTime.Now;
+            string user = this.applicationContext.UserContext?.UserId;
+            var now = this.applicationContext.DateTimeProvider.Invoke();
 
             entity.ModifiedBy = user;
             entity.ModifiedOn = now;
@@ -360,7 +366,7 @@
 
             this.Mapper.Map<TEntity, TEntity>(entity, dbentity);
             this.repository.Update(dbentity);
-            return await Task.FromResult(dbentity);
+            return await Task.FromResult(dbentity).ConfigureAwait(false);
         }
     }
 }

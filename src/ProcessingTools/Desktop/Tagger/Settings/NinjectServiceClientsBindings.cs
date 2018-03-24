@@ -12,42 +12,7 @@
         {
             this.Bind(b =>
             {
-                b.From(Bio.ServiceClient.ExtractHcmr.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            ////this.Bind(b =>
-            ////{
-            ////    b.From(Bio.ServiceClient.MaterialsParser.Assembly.Assembly.GetType().Assembly)
-            ////        .SelectAllClasses()
-            ////        .BindDefaultInterface();
-            ////});
-
-            this.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.CatalogueOfLife.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.Gbif.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.PaleobiologyDatabase.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Assembly.Assembly.GetType().Assembly)
+                b.From(typeof(ProcessingTools.Clients.Bio.ExtractHcmr.ExtractHcmrDataRequester).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

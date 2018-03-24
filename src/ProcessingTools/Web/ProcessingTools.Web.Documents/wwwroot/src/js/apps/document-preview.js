@@ -12,7 +12,6 @@ const
         contentHashKey: 'CONTENT_HASH_KEY_PREVIEW'
     };
 
-
 var $ = window.jQuery,
     document = window.document,
     storage = window.sessionStorage,
@@ -277,6 +276,7 @@ function keyDownEventHandler(event) {
             return false;
         }
     } else {
+
         // Escape
         if (e.which === 27) {
             return eventHandlers.unsetAllInEditMode(e);

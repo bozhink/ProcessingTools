@@ -5,9 +5,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Xsl;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Xml.Contracts.Cache;
-    using ProcessingTools.Xml.Contracts.Transformers;
+    using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Extensions;
 
     public class XslTransformer : IXslTransformer
     {
@@ -28,7 +27,7 @@
             this.xslCompiledTransform = cache[xslFileName];
         }
 
-        public async Task<string> Transform(XmlReader reader, bool closeReader)
+        public async Task<string> TransformAsync(XmlReader reader, bool closeReader)
         {
             if (reader == null)
             {
@@ -43,17 +42,13 @@
                 {
                     stream.Position = 0;
                     var streamReader = new StreamReader(stream);
-                    result = await streamReader.ReadToEndAsync();
+                    result = await streamReader.ReadToEndAsync().ConfigureAwait(false);
                     stream.Close();
                 }
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
             finally
             {
-                if (closeReader && reader != null && reader.ReadState != ReadState.Closed)
+                if (closeReader && reader?.ReadState != ReadState.Closed)
                 {
                     try
                     {
@@ -62,6 +57,7 @@
                     }
                     catch
                     {
+                        // Skip
                     }
                 }
             }
@@ -69,24 +65,24 @@
             return result;
         }
 
-        public Task<string> Transform(XmlNode node)
+        public Task<string> TransformAsync(XmlNode node)
         {
             if (node == null)
             {
                 throw new ArgumentNullException(nameof(node));
             }
 
-            return this.Transform(node.OuterXml);
+            return this.TransformAsync(node.OuterXml);
         }
 
-        public Task<string> Transform(string xml)
+        public Task<string> TransformAsync(string xml)
         {
             if (string.IsNullOrWhiteSpace(xml))
             {
                 throw new ArgumentNullException(nameof(xml));
             }
 
-            return this.Transform(xml.ToXmlReader(), true);
+            return this.TransformAsync(xml.ToXmlReader(), true);
         }
 
         public Stream TransformToStream(XmlReader reader)

@@ -5,8 +5,8 @@
     using Contracts;
     using Models;
     using MongoDB.Driver;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
 
     public class BiotaxonomyMongoDatabaseInitializer : IBiotaxonomyMongoDatabaseInitializer
     {
@@ -22,31 +22,32 @@
             this.db = provider.Create();
         }
 
-        public async Task<object> Initialize()
+        public async Task<object> InitializeAsync()
         {
-            await this.CreateIndicesToTaxonRankCollection();
-            await this.CreateIndicesToTaxonRankTypesCollection();
-            await this.CreateIndicesToBlackListCollection();
+            await this.CreateIndicesToTaxonRankCollection().ConfigureAwait(false);
+            await this.CreateIndicesToTaxonRankTypesCollection().ConfigureAwait(false);
+            await this.CreateIndicesToBlackListCollection().ConfigureAwait(false);
 
             return true;
         }
 
         private async Task<object> CreateIndicesToTaxonRankCollection()
         {
-            string collectionName = CollectionNameFactory.Create<MongoTaxonRankEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<MongoTaxonRankEntity>();
 
             var collection = this.db.GetCollection<MongoTaxonRankEntity>(collectionName);
 
             var result = await collection.Indexes
                 .CreateOneAsync(
-                    Builders<MongoTaxonRankEntity>.IndexKeys.Ascending(t => t.Name));
+                    Builders<MongoTaxonRankEntity>.IndexKeys.Ascending(t => t.Name))
+                .ConfigureAwait(false);
 
             return result;
         }
 
         private async Task<object> CreateIndicesToTaxonRankTypesCollection()
         {
-            string collectionName = CollectionNameFactory.Create<MongoTaxonRankTypeEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<MongoTaxonRankTypeEntity>();
 
             var collection = this.db.GetCollection<MongoTaxonRankTypeEntity>(collectionName);
 
@@ -56,22 +57,24 @@
                 Sparse = false
             };
 
-            var result = await collection.Indexes
+            await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.RankType),
-                    indexOptions);
+                    indexOptions)
+                .ConfigureAwait(false);
 
-            result = await collection.Indexes
+            var result = await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.Name),
-                    indexOptions);
+                    indexOptions)
+                .ConfigureAwait(false);
 
             return result;
         }
 
         private async Task<object> CreateIndicesToBlackListCollection()
         {
-            string collectionName = CollectionNameFactory.Create<MongoBlackListEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<MongoBlackListEntity>();
 
             var collection = this.db.GetCollection<MongoBlackListEntity>(collectionName);
 
@@ -84,7 +87,8 @@
             var result = await collection.Indexes
                 .CreateOneAsync(
                     Builders<MongoBlackListEntity>.IndexKeys.Ascending(t => t.Content),
-                    indexOptions);
+                    indexOptions)
+                .ConfigureAwait(false);
 
             return result;
         }

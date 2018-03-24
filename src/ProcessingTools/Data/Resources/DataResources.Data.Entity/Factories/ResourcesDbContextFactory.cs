@@ -10,7 +10,7 @@
 
         public ResourcesDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.DataResourcesDatabaseConnection;
+            this.ConnectionString = ConnectionStrings.DataResourcesDatabaseConnection;
         }
 
         public string ConnectionString
@@ -24,7 +24,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.ConnectionString));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.connectionString = value;

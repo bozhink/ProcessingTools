@@ -4,8 +4,8 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using ProcessingTools.Contracts.Services.Data.Files;
-    using ViewModels.Metadata;
+    using ProcessingTools.Services.Contracts.Files;
+    using ProcessingTools.Web.Documents.Areas.Files.ViewModels.Metadata;
 
     public class MetadataController : Controller
     {
@@ -13,12 +13,7 @@
 
         public MetadataController(IStreamingFilesDataService filesDataService)
         {
-            if (filesDataService == null)
-            {
-                throw new ArgumentNullException(nameof(filesDataService));
-            }
-
-            this.filesDataService = filesDataService;
+            this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
         }
 
         // GET: /Files/Metadata
@@ -37,21 +32,21 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var metadata = await this.filesDataService.GetMetadata(id);
+            var metadata = await this.filesDataService.GetMetadataAsync(id).ConfigureAwait(false);
 
             var viewmodel = new FileMetadataViewModel
             {
                 ContentLength = metadata.ContentLength,
                 ContentType = metadata.ContentType,
-                CreatedByUser = metadata.CreatedByUser,
-                DateCreated = metadata.DateCreated,
-                DateModified = metadata.DateModified,
+                CreatedBy = metadata.CreatedBy,
+                CreatedOn = metadata.CreatedOn,
+                ModifiedOn = metadata.ModifiedOn,
                 Description = metadata.Description,
                 FileExtension = metadata.FileExtension,
                 FileName = metadata.FileName,
                 FullName = metadata.FullName,
                 Id = metadata.Id,
-                ModifiedByUser = metadata.ModifiedByUser
+                ModifiedBy = metadata.ModifiedBy
             };
 
             this.Response.StatusCode = (int)HttpStatusCode.OK;

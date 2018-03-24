@@ -1,29 +1,28 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Files.IO;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.ZooBank;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Contracts.IO;
+    using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
-    [Description("Clone ZooBank XML.")]
+    [System.ComponentModel.Description("Clone ZooBank XML.")]
     public class ZooBankCloneXmlCommand : IZooBankCloneXmlCommand
     {
-        private readonly IZoobankXmlCloner cloner;
+        private readonly IZooBankXmlCloner cloner;
         private readonly IDocumentFactory documentFactory;
         private readonly IXmlFileReader fileReader;
 
-        public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZoobankXmlCloner cloner, IXmlFileReader fileReader)
+        public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZooBankXmlCloner cloner, IXmlFileReader fileReader)
         {
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
             this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));
             this.fileReader = fileReader ?? throw new ArgumentNullException(nameof(fileReader));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -38,23 +37,23 @@
             int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 2)
             {
-                throw new ApplicationException("Output file name should be set.");
+                throw new InvalidOperationException("Output file name should be set.");
             }
 
             if (numberOfFileNames < 3)
             {
-                throw new ApplicationException("The file path to xml-file-to-clone should be set.");
+                throw new InvalidOperationException("The file path to xml-file-to-clone should be set.");
             }
 
             string sourceFileName = settings.FileNames[2];
-            var sourceDocument = await this.ReadSourceDocument(sourceFileName);
+            var sourceDocument = await this.ReadSourceDocument(sourceFileName).ConfigureAwait(false);
 
-            return await this.cloner.Clone(document, sourceDocument);
+            return await this.cloner.CloneAsync(document, sourceDocument).ConfigureAwait(false);
         }
 
         private async Task<IDocument> ReadSourceDocument(string sourceFileName)
         {
-            var xml = await this.fileReader.ReadXml(sourceFileName);
+            var xml = await this.fileReader.ReadXmlAsync(sourceFileName).ConfigureAwait(false);
             var document = this.documentFactory.Create(xml.OuterXml);
             return document;
         }

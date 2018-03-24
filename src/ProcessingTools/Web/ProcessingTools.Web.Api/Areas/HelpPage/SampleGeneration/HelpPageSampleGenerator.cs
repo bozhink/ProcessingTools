@@ -261,7 +261,6 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
                         formatters = api.SupportedRequestBodyFormatters;
                         break;
 
-                    case SampleDirection.Response:
                     default:
                         type = api.ResponseDescription.ResponseType ?? api.ResponseDescription.DeclaredType;
                         formatters = api.SupportedResponseFormatters;
@@ -379,9 +378,10 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
 
                 case SampleDirection.Response:
                     return formatter.CanWriteType(type);
-            }
 
-            return false;
+                default:
+                    return false;
+            }
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Handling the failure by returning the original string.")]

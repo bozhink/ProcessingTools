@@ -8,19 +8,16 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Http;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.Cookies;
     using Microsoft.Owin.Security.OAuth;
-
     using ProcessingTools.Users.Data.Entity.Models;
-    using ProcessingTools.Web.Api.Models.Account;
-    using ProcessingTools.Web.Api.Providers;
     using ProcessingTools.Web.Api.Results;
-    using ProcessingTools.Web.Api.ViewModels.Account;
+    using ProcessingTools.Web.Models.Account;
+    using ProcessingTools.Web.Services;
 
     [Authorize]
     [RoutePrefix("api/Account")]
@@ -33,9 +30,7 @@
         {
         }
 
-        public AccountController(
-            ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountController(ApplicationUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             this.UserManager = userManager;
             this.AccessTokenFormat = accessTokenFormat;
@@ -85,7 +80,7 @@
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
-            IdentityUser user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+            IdentityUser user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId()).ConfigureAwait(false);
 
             if (user == null)
             {
@@ -133,7 +128,8 @@
             IdentityResult result = await this.UserManager.ChangePasswordAsync(
                 this.User.Identity.GetUserId(),
                 model.OldPassword,
-                model.NewPassword);
+                model.NewPassword)
+                .ConfigureAwait(false);
 
             if (!result.Succeeded)
             {
@@ -152,7 +148,7 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            IdentityResult result = await this.UserManager.AddPasswordAsync(this.User.Identity.GetUserId(), model.NewPassword);
+            IdentityResult result = await this.UserManager.AddPasswordAsync(this.User.Identity.GetUserId(), model.NewPassword).ConfigureAwait(false);
 
             if (!result.Succeeded)
             {
@@ -191,7 +187,8 @@
 
             IdentityResult result = await this.UserManager.AddLoginAsync(
                 this.User.Identity.GetUserId(),
-                new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
+                new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey))
+                .ConfigureAwait(false);
 
             if (!result.Succeeded)
             {
@@ -214,13 +211,14 @@
 
             if (model.LoginProvider == LocalLoginProvider)
             {
-                result = await this.UserManager.RemovePasswordAsync(this.User.Identity.GetUserId());
+                result = await this.UserManager.RemovePasswordAsync(this.User.Identity.GetUserId()).ConfigureAwait(false);
             }
             else
             {
                 result = await this.UserManager.RemoveLoginAsync(
                     this.User.Identity.GetUserId(),
-                    new UserLoginInfo(model.LoginProvider, model.ProviderKey));
+                    new UserLoginInfo(model.LoginProvider, model.ProviderKey))
+                    .ConfigureAwait(false);
             }
 
             if (!result.Succeeded)
@@ -261,8 +259,7 @@
                 return new ChallengeResult(provider, this);
             }
 
-            var user = await this.UserManager.FindAsync(
-                new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+            var user = await this.UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey)).ConfigureAwait(false);
 
             bool hasRegistered = user != null;
 
@@ -272,11 +269,13 @@
 
                 ClaimsIdentity oauthIdentity = await user.GenerateUserIdentityAsync(
                     this.UserManager,
-                    OAuthDefaults.AuthenticationType);
+                    OAuthDefaults.AuthenticationType)
+                    .ConfigureAwait(false);
 
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(
                     this.UserManager,
-                    CookieAuthenticationDefaults.AuthenticationType);
+                    CookieAuthenticationDefaults.AuthenticationType)
+                    .ConfigureAwait(false);
 
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
                 this.Authentication.SignIn(properties, oauthIdentity, cookieIdentity);
@@ -351,7 +350,7 @@
                 Email = model.Email
             };
 
-            IdentityResult result = await this.UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await this.UserManager.CreateAsync(user, model.Password).ConfigureAwait(false);
 
             if (!result.Succeeded)
             {
@@ -372,7 +371,7 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var info = await this.Authentication.GetExternalLoginInfoAsync();
+            var info = await this.Authentication.GetExternalLoginInfoAsync().ConfigureAwait(false);
             if (info == null)
             {
                 return this.InternalServerError();
@@ -384,13 +383,13 @@
                 Email = model.Email
             };
 
-            IdentityResult result = await this.UserManager.CreateAsync(user);
+            IdentityResult result = await this.UserManager.CreateAsync(user).ConfigureAwait(false);
             if (!result.Succeeded)
             {
                 return this.GetErrorResult(result);
             }
 
-            result = await this.UserManager.AddLoginAsync(user.Id, info.Login);
+            result = await this.UserManager.AddLoginAsync(user.Id, info.Login).ConfigureAwait(false);
             if (!result.Succeeded)
             {
                 return this.GetErrorResult(result);

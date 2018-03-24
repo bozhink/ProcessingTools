@@ -8,8 +8,8 @@
     using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Cache.Data.Redis.Tests.Common;
-    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Category = "Integration", TestOf = typeof(RedisValidationCacheDataRepository))]
@@ -34,12 +34,12 @@
             };
 
             // Act: Clean-up database
-            await repository.Remove(key);
-            await repository.SaveChangesAsync();
+            await repository.RemoveAsync(key).ConfigureAwait(false);
+            await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act: Add
-            await repository.Add(key, value);
-            await repository.SaveChangesAsync();
+            await repository.AddAsync(key, value).ConfigureAwait(false);
+            await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act + Assert: Retrieve data
             var valuesFromDb = repository.GetAll(key).ToList();
@@ -51,8 +51,8 @@
             Assert.AreEqual(value.Content, valueFromDb.Content);
 
             // Act: Remove
-            await repository.Remove(key);
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
+            await repository.RemoveAsync(key).ConfigureAwait(false);
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
             Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
@@ -69,11 +69,11 @@
             var repository = new RedisValidationCacheDataRepository(clientProvider);
             var key = Guid.NewGuid().ToString();
 
-            var values = new List<IValidationCacheEntity>(NumberOfItems);
+            var values = new List<IValidationCacheModel>(NumberOfItems);
 
             // Act: Clean-up database
-            await repository.Remove(key);
-            await repository.SaveChangesAsync();
+            await repository.RemoveAsync(key).ConfigureAwait(false);
+            await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act: Add
             for (int i = 0; i < NumberOfItems; ++i)
@@ -88,7 +88,7 @@
                 };
 
                 values.Add(value);
-                await repository.Add(key, value);
+                await repository.AddAsync(key, value).ConfigureAwait(false);
             }
 
             var valueToBeDeleted = new ValidationCacheEntity
@@ -98,17 +98,17 @@
                 Status = ValidationStatus.Undefined
             };
 
-            await repository.Add(key, valueToBeDeleted);
+            await repository.AddAsync(key, valueToBeDeleted).ConfigureAwait(false);
 
             values.TrimExcess();
-            await repository.SaveChangesAsync();
+            await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Assert: Get
             Assert.AreEqual(NumberOfItems, values.Count);
             Assert.AreEqual(NumberOfItems + 1, repository.GetAll(key).ToList().Count);
 
             // Act: Remove value
-            var removed = await repository.Remove(key, valueToBeDeleted);
+            var removed = await repository.RemoveAsync(key, valueToBeDeleted).ConfigureAwait(false);
 
             // Assert: Remove value
             Assert.That(removed, Is.EqualTo(true));
@@ -133,8 +133,8 @@
             }
 
             // Act: Remove
-            await repository.Remove(key);
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
+            await repository.RemoveAsync(key).ConfigureAwait(false);
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
             Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
@@ -151,11 +151,11 @@
             var repository = new RedisValidationCacheDataRepository(clientProvider);
             var key = Guid.NewGuid().ToString();
 
-            var values = new List<IValidationCacheEntity>(NumberOfItems);
+            var values = new List<IValidationCacheModel>(NumberOfItems);
 
             // Act: Clean-up database
-            await repository.Remove(key);
-            await repository.SaveChangesAsync();
+            await repository.RemoveAsync(key).ConfigureAwait(false);
+            await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act: Add
             for (int i = 0; i < NumberOfItems; ++i)
@@ -170,11 +170,11 @@
                 };
 
                 values.Add(value);
-                await repository.Add(key, value);
+                await repository.AddAsync(key, value).ConfigureAwait(false);
             }
 
             values.TrimExcess();
-            await repository.SaveChangesAsync();
+            await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Act: Get
             var valuesFromDb = repository.GetAll(key).ToList();
@@ -194,8 +194,8 @@
             }
 
             // Act: Remove
-            await repository.Remove(key);
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
+            await repository.RemoveAsync(key).ConfigureAwait(false);
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Assert: Remove
             Assert.AreEqual(0, repository.GetAll(key).ToList().Count, "All values in the list should be removed.");
@@ -218,13 +218,13 @@
             };
 
             // Act: Add
-            var added = repository.Add(key, value);
+            var added = repository.AddAsync(key, value);
 
             // Assert: Add
-            Assert.That(async () => await added, Is.EqualTo(true));
+            Assert.That(async () => await added.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(0L).After(2000));
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(0L).After(2000));
 
             // Act: Get
             var valuesFromDb = repository.GetAll(key);
@@ -241,20 +241,20 @@
             Assert.AreEqual(value.LastUpdate.ToLongTimeString(), valueFromDb.LastUpdate.ToLongTimeString());
 
             // Act: Remove value
-            var removedValue = repository.Remove(key, value);
+            var removedValue = repository.RemoveAsync(key, value);
 
             // Assert: Remove value
-            Assert.That(async () => await removedValue, Is.EqualTo(true));
+            Assert.That(async () => await removedValue.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act: Remove
-            var removed = repository.Remove(key);
+            var removed = repository.RemoveAsync(key);
 
             // Assert: Remove
-            Assert.That(async () => await removed, Is.EqualTo(true));
+            Assert.That(async () => await removed.ConfigureAwait(false), Is.EqualTo(true));
 
             // Act + Assert: SaveChanges
             // Expected internal catch of "ServiceStack.Redis.RedisResponseException : Background save already in progress"
-            Assert.That(async () => await repository.SaveChangesAsync(), Is.EqualTo(1L));
+            Assert.That(async () => await repository.SaveChangesAsync().ConfigureAwait(false), Is.EqualTo(1L));
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(RedisValidationCacheDataRepository), Description = "RedisValidationCacheDataRepository Get Keys should work.")]
@@ -281,7 +281,7 @@
             // Act: Add
             foreach (var key in listOfKeys)
             {
-                await repository.Add(key, value);
+                await repository.AddAsync(key, value).ConfigureAwait(false);
             }
 
             // Act: Get Keys
@@ -299,7 +299,7 @@
             // Act: Remove
             foreach (var key in listOfKeys)
             {
-                await repository.Remove(key);
+                await repository.RemoveAsync(key).ConfigureAwait(false);
             }
 
             // Act: Get Keys

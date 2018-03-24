@@ -3,12 +3,10 @@
     using System.Configuration;
     using System.IO;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using Models.Json.GeoJson;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using ProcessingTools.Processors.Models.Geo.GeoJson;
 
     [TestClass]
     public class GeoJsonTests
@@ -56,7 +54,7 @@
                 Geometry = new GeoJsonGeometry
                 {
                     Type = GeoJsonType.Point.ToString(),
-                    Coordinates = (new double[] { 125.6, 10.1 }).Select(c => c as object).ToList()
+                    Coordinates = new[] { 125.6, 10.1 }.Select(c => c as object).ToList()
                 },
                 Properties = new
                 {

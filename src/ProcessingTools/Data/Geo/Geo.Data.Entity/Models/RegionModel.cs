@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Geo.Data.Entity.Models
 {
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Models.Geo;
+    using ProcessingTools.Models.Contracts.Geo;
 
     internal class RegionModel : IRegion
     {

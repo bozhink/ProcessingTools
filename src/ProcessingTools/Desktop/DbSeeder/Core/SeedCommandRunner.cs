@@ -6,6 +6,8 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.DbSeeder.Contracts.Providers;
     using ProcessingTools.DbSeeder.Contracts.Seeders;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Processors.Contracts;
 
     internal class SeedCommandRunner : ICommandRunner
     {
@@ -18,50 +20,34 @@
             ITypesProvider typesProvider,
             Func<Type, IDbSeeder> seederFactory)
         {
-            if (commandNamesProvider == null)
-            {
-                throw new ArgumentNullException(nameof(commandNamesProvider));
-            }
-
-            if (typesProvider == null)
-            {
-                throw new ArgumentNullException(nameof(typesProvider));
-            }
-
-            if (seederFactory == null)
-            {
-                throw new ArgumentNullException(nameof(seederFactory));
-            }
-
-            this.commandNamesProvider = commandNamesProvider;
-            this.typesProvider = typesProvider;
-            this.seederFactory = seederFactory;
+            this.commandNamesProvider = commandNamesProvider ?? throw new ArgumentNullException(nameof(commandNamesProvider));
+            this.typesProvider = typesProvider ?? throw new ArgumentNullException(nameof(typesProvider));
+            this.seederFactory = seederFactory ?? throw new ArgumentNullException(nameof(seederFactory));
         }
 
-        public async Task<object> Run(string commandName)
+        public async Task<object> RunAsync(string commandName)
         {
             var name = commandName ?? " ";
 
             var matchedNames = this.commandNamesProvider.CommandNames
-                .Where(n => n.ToLower().IndexOf(name.ToLower()) == 0)
+                .Where(n => n.IndexOf(name, StringComparison.InvariantCultureIgnoreCase) == 0)
                 .ToArray();
 
             if (matchedNames.Length < 1)
             {
-                throw new Exception($"Invalid command '{commandName}'");
+                throw new CommandNotFoundException(commandName);
             }
-            else if (matchedNames.Length > 1 && matchedNames.Count(n => n.ToLower() == name.ToLower()) != 1)
+            else if (matchedNames.Length > 1 && matchedNames.Count(n => string.Compare(n, name, true) == 0) != 1)
             {
-                throw new Exception($"Ambiguous command '{commandName}'. Possible matches: {string.Join(", ", matchedNames)}");
+                throw new AmbiguousCommandException(commandName, matchedNames);
             }
             else
             {
-                name = matchedNames.Single(n => n.ToLower() == name.ToLower());
-                var seederType = this.typesProvider.Types
-                    .Single(t => t.Name == $"I{name}DbSeeder");
+                name = matchedNames.Single(n => string.Compare(n, name, true) == 0);
+                var seederType = this.typesProvider.GetTypes().Single(t => t.Name == $"I{name}DbSeeder");
 
                 var seeder = this.seederFactory(seederType);
-                await seeder.Seed();
+                await seeder.Seed().ConfigureAwait(false);
             }
 
             return true;

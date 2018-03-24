@@ -4,38 +4,49 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
-
-    using Models.EnvoTerms;
-
-    using ProcessingTools.Bio.Environments.Services.Data.Contracts;
+    using AutoMapper;
     using ProcessingTools.Constants;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Models.Contracts.Bio;
+    using ProcessingTools.Services.Contracts.Bio.Environments;
+    using ProcessingTools.Web.Models.Bio.EnvoTerms;
 
     public class EnvoTermsController : ApiController
     {
-        private IEnvoTermsDataService service;
+        private readonly IEnvoTermsDataService service;
+        private readonly ILogger logger;
+        private readonly IMapper mapper;
 
-        public EnvoTermsController(IEnvoTermsDataService service)
+        public EnvoTermsController(IEnvoTermsDataService service, ILogger logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger;
+
+            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<IEnvoTerm, EnvoTermResponseModel>();
+            });
+
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
-        public async Task<IHttpActionResult> GetEnvoTerms(int skip = PagingConstants.DefaultSkip, int take = PagingConstants.DefaultTake)
+        public async Task<IHttpActionResult> Get(int skip = PaginationConstants.DefaultSkip, int take = PaginationConstants.DefaultTake)
         {
             try
             {
-                var data = await this.service.Get(skip, take);
-                if (data == null)
+                var result = await this.service.GetAsync(skip, take).ConfigureAwait(false);
+                if (result == null)
                 {
                     return this.NotFound();
                 }
 
-                var result = data.Select(AutoMapperConfig.Mapper.Map<EnvoTermResponseModel>).ToList();
-
-                return this.Ok(result);
+                var data = result.Select(this.mapper.Map<IEnvoTerm, EnvoTermResponseModel>).ToArray();
+                return this.Ok(data);
             }
             catch (Exception ex)
             {
-                return this.BadRequest(ex.ToString());
+                this.logger?.Log(exception: ex, message: string.Empty);
+                return this.InternalServerError();
             }
         }
     }

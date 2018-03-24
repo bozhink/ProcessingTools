@@ -37,9 +37,8 @@
       <HintPath>..\..\packages\GeoAPI.1.7.4\lib\net45\GeoAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ProjNet, Version=1.3.0.3, Culture=neutral, PublicKeyToken=a1f5bdcd9c6f5740, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ProjNET4GeoAPI.1.3.0.4\lib\net45-client\ProjNet.dll</HintPath>
@@ -50,59 +49,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\Factories\ICoordinatesFactory.cs" />
-    <Compile Include="Contracts\Models\ICoordinate.cs" />
-    <Compile Include="Contracts\Parsers\ICoordinateParser.cs" />
-    <Compile Include="Models\Coordinate.cs" />
-    <Compile Include="Parsers\Coordinate2DParser.cs" />
-    <Compile Include="Models\CoordinatePart.cs" />
-    <Compile Include="Contracts\Models\ICoordinatePart.cs" />
-    <Compile Include="Contracts\Transformers\IUtmCoordianesTransformer.cs" />
-    <Compile Include="Contracts\Parsers\ICoordinate2DParser.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonCoordinateReferenceSystem.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonCoordinateReferenceSystemProperties.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonFeature.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonFeatureCollection.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonFeatureCollectionType.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonFeatureType.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonGeometry.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonGeometryType.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GeoJsonMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Json\GeoJson\GeoJsonObject.cs" />
-    <Compile Include="Models\Json\GeoJson\GeoJsonType.cs" />
-    <Compile Include="Parsers\CoordinateParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Types\CoordinatePartType.cs" />
-    <Compile Include="Transformers\UtmCoordianesTransformer.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="Transformers\UtmCoordinatesTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Models\Json\GeoJson\GeoJsonMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GeoJsonMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Common\Common.csproj">
-      <Project>{c6bf6db1-bded-4902-baa2-d2419e24f2af}</Project>
-      <Name>Common</Name>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj">
+      <Project>{df3c20c1-1916-485d-9540-03433b391d31}</Project>
+      <Name>ProcessingTools.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Constants\Constants.csproj">
-      <Project>{C85DDAD3-2BBE-4DFE-95FB-2E8DEE682601}</Project>
-      <Name>Constants</Name>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Exceptions\ProcessingTools.Exceptions.csproj">
+      <Project>{7544adf7-4e83-4ca1-bb6e-8f49c69e0b62}</Project>
+      <Name>ProcessingTools.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Contracts\Contracts.csproj">
-      <Project>{4c455d90-7433-4853-bc6e-4a726786d253}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj">
+      <Project>{720d359f-49d1-4126-a79b-f63cce9780a0}</Project>
+      <Name>ProcessingTools.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Enumerations\Enumerations.csproj">
-      <Project>{0a7e970b-7a28-46db-92a9-d9df7ccb6c9d}</Project>
-      <Name>Enumerations</Name>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
+      <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>
+      <Name>ProcessingTools.Processors.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -111,9 +76,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

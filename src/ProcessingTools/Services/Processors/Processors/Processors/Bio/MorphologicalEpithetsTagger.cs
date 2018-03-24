@@ -1,15 +1,14 @@
 ﻿namespace ProcessingTools.Processors.Processors.Bio
 {
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Data.Miners.Contracts.Bio;
+    using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Bio;
-    using ProcessingTools.Processors.Contracts.Providers;
-    using ProcessingTools.Processors.Generics;
+    using ProcessingTools.Processors.Contracts.Bio;
+    using ProcessingTools.Processors.Models.Contracts;
 
-    public class MorphologicalEpithetsTagger : GenericStringMinerTagger<IMorphologicalEpithetsDataMiner, IMorphologicalEpithetTagModelProvider>, IMorphologicalEpithetsTagger
+    public class MorphologicalEpithetsTagger : StringDataMinerTagger<IMorphologicalEpithetsDataMiner, IMorphologicalEpithetTagModelProvider>, IMorphologicalEpithetsTagger
     {
-        public MorphologicalEpithetsTagger(IGenericStringDataMinerEvaluator<IMorphologicalEpithetsDataMiner> evaluator, IStringTagger tagger, IMorphologicalEpithetTagModelProvider tagModelProvider)
+        public MorphologicalEpithetsTagger(IStringDataMinerEvaluator<IMorphologicalEpithetsDataMiner> evaluator, IStringTagger tagger, IMorphologicalEpithetTagModelProvider tagModelProvider)
             : base(evaluator, tagger, tagModelProvider)
         {
         }

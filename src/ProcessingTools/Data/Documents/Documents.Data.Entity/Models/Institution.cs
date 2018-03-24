@@ -5,15 +5,14 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public class Institution : AddressableEntity, IEntityWithPreJoinedFields, IInstitutionEntity
+    public class Institution : AddressableEntity, IEntityWithPreJoinedFields, IInstitution
     {
         private ICollection<Affiliation> affiliations;
 
         public Institution()
-            : base()
         {
             this.Id = Guid.NewGuid();
             this.affiliations = new HashSet<Affiliation>();

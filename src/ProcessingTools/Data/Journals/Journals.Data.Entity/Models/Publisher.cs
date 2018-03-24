@@ -3,12 +3,11 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Journals;
-    using ProcessingTools.Contracts.Data.Journals.Models;
+    using ProcessingTools.Models.Contracts.Journals;
 
     public class Publisher : Addressable, IPublisher
     {
         public Publisher()
-            : base()
         {
             this.Id = Guid.NewGuid().ToString();
         }

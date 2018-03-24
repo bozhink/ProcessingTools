@@ -2,8 +2,9 @@
 {
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
+    using System.Text;
 
-    public class Tracer
+    public static class Tracer
     {
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetCurrentMethod()
@@ -11,15 +12,16 @@
             StackTrace stackTrace = new StackTrace();
             StackFrame[] stackFrames = stackTrace.GetFrames();
 
-            string stackPath = string.Empty;
+            StringBuilder stackPath = new StringBuilder();
             for (int i = stackFrames.Length - 1; i > 1; i--)
             {
-                stackPath += stackFrames[i].GetMethod().Name + ".";
+                stackPath.Append(stackFrames[i].GetMethod().Name);
+                stackPath.Append(".");
             }
 
-            stackPath += stackFrames[1].GetMethod().Name;
+            stackPath.Append(stackFrames[1].GetMethod().Name);
 
-            return stackPath;
+            return stackPath.ToString();
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]

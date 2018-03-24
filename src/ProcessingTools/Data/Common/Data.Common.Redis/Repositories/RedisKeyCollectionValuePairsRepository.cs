@@ -4,10 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Abstractions.Repositories;
-    using Contracts;
-    using Contracts.Repositories;
-    using ServiceStack.Redis;
+    using ProcessingTools.Data.Common.Redis.Abstractions;
+    using ProcessingTools.Data.Common.Redis.Contracts;
     using ServiceStack.Text;
 
     public class RedisKeyCollectionValuePairsRepository<T> : AbstractSavableRedisRepository, IRedisKeyCollectionValuePairsRepository<T>
@@ -24,7 +22,7 @@
 
         private Func<T, string> Serialize => e => this.serializer.SerializeToString(e);
 
-        public virtual Task<object> Add(string key, T value)
+        public virtual Task<object> AddAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -62,7 +60,7 @@
             }
         }
 
-        public virtual Task<object> Remove(string key)
+        public virtual Task<object> RemoveAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -83,7 +81,7 @@
             });
         }
 
-        public virtual Task<object> Remove(string key, T value)
+        public virtual Task<object> RemoveAsync(string key, T value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -107,8 +105,8 @@
             });
         }
 
-        private void AddValueToList(IRedisList list, T value) => list.Add(this.Serialize(value));
+        private void AddValueToList(ICollection<string> list, T value) => list.Add(this.Serialize(value));
 
-        private bool RemoveValueFromList(IRedisList list, T value) => list.Remove(this.Serialize(value));
+        private bool RemoveValueFromList(ICollection<string> list, T value) => list.Remove(this.Serialize(value));
     }
 }

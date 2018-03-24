@@ -3,18 +3,17 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Contracts.Filters.Geo;
-    using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Geo;
 
     public class EntityPostCodesRepository : AbstractGeoRepository<PostCode, IPostCode, IPostCodesFilter>, IPostCodesRepository
     {
-        public EntityPostCodesRepository(IGeoRepository<PostCode> repository, IEnvironment environment)
-            : base(repository, environment)
+        public EntityPostCodesRepository(IGeoRepository<PostCode> repository, IApplicationContext applicationContext)
+            : base(repository, applicationContext)
         {
         }
 

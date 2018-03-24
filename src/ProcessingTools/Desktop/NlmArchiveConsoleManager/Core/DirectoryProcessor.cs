@@ -8,10 +8,10 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Contracts.Core;
-    using Contracts.Factories;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.Models.Documents;
+    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
 
     public class DirectoryProcessor : IDirectoryProcessor
     {
@@ -21,19 +21,9 @@
 
         public DirectoryProcessor(string direcoryName, IJournalMeta journalMeta, IProcessorFactory processorFactory)
         {
-            if (journalMeta == null)
-            {
-                throw new ArgumentNullException(nameof(journalMeta));
-            }
-
-            if (processorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(processorFactory));
-            }
-
             this.DirectoryName = direcoryName;
-            this.journalMeta = journalMeta;
-            this.processorFactory = processorFactory;
+            this.journalMeta = journalMeta ?? throw new ArgumentNullException(nameof(journalMeta));
+            this.processorFactory = processorFactory ?? throw new ArgumentNullException(nameof(processorFactory));
         }
 
         private string DirectoryName
@@ -68,25 +58,30 @@
                 .ContinueWith(_ =>
                 {
                     _.Wait();
-                    ////this.CreateZipFile();
-                });
+#if CreateZip
+                    this.CreateZipFile();
+#endif
+                })
+                .ConfigureAwait(false);
 
             Directory.SetCurrentDirectory(initialDirectory);
         }
 
+#if CreateZip
         private void CreateZipFile()
         {
             var zipDestinationDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
-            var zipFileName = this.DirectoryName.Trim(new char[] { ':', '/', '\\' });
+            var zipFileName = this.DirectoryName.Trim(new[] { ':', '/', '\\' });
             var destinationArchiveFileName = Path.Combine(zipDestinationDirectory, $"{zipFileName}.{FileConstants.ZipFileExtension}");
 
             ZipFile.CreateFromDirectory(this.DirectoryName, destinationArchiveFileName, CompressionLevel.Optimal, false);
         }
+#endif
 
         private async Task ProcessDirectory()
         {
             var directory = Directory.GetCurrentDirectory();
-            var xmlFiles = await this.GetFiles(directory);
+            var xmlFiles = this.GetFiles(directory);
             var exceptions = new ConcurrentQueue<Exception>();
 
             foreach (var fileName in xmlFiles)
@@ -94,7 +89,7 @@
                 try
                 {
                     var fileProcessor = this.processorFactory.CreateFileProcessor(fileName, this.journalMeta);
-                    fileProcessor.Process().Wait();
+                    await fileProcessor.Process().ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {
@@ -108,16 +103,16 @@
             }
         }
 
-        private Task<IEnumerable<string>> GetFiles(string directory)
+        private string[] GetFiles(string directory)
         {
             var matchSupplementaryMaterial = new Regex(@"\-s\d+\Z");
 
             var files = Directory.GetFiles(directory)
-                .Where(f => Path.GetExtension(f).TrimStart('.').ToLower() == FileConstants.XmlFileExtension &&
+                .Where(f => Path.GetExtension(f).TrimStart('.').ToLowerInvariant() == FileConstants.XmlFileExtension &&
                             !matchSupplementaryMaterial.IsMatch(Path.GetFileNameWithoutExtension(f)))
                 .ToArray();
 
-            return Task.FromResult<IEnumerable<string>>(files);
+            return files;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace ProcessingTools.Tagger.Commands
 {
     using System.Collections.Generic;
-    using Contracts;
+    using ProcessingTools.Contracts.Commands;
 
     public class CommandSettings : ICommandSettings
     {

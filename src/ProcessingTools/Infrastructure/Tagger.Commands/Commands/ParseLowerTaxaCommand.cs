@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Taxonomy.Parsers;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 
-    [Description("Parse lower taxa.")]
-    public class ParseLowerTaxaCommand : GenericXmlContextParserCommand<ILowerTaxaParser>, IParseLowerTaxaCommand
+    [System.ComponentModel.Description("Parse lower taxa.")]
+    public class ParseLowerTaxaCommand : XmlContextParserCommand<ILowerTaxaParser>, IParseLowerTaxaCommand
     {
         public ParseLowerTaxaCommand(ILowerTaxaParser parser)
             : base(parser)

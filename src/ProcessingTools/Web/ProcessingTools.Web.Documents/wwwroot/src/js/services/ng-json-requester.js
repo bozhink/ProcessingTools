@@ -13,7 +13,7 @@ module.exports = function NgJsonRequester($http) {
         headers = options.headers || {};
         headers['Content-Type'] = 'application/json';
 
-        data = options.data || undefined;
+        data = options.data || {};
 
         request = {
             method: method,

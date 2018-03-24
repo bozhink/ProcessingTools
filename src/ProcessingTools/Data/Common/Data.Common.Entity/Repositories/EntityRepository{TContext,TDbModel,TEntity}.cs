@@ -1,22 +1,20 @@
 ﻿namespace ProcessingTools.Data.Common.Entity.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Expressions;
+    using ProcessingTools.Common.Data.Expressions;
+    using ProcessingTools.Contracts.Data.Expressions;
     using ProcessingTools.Data.Common.Entity.Contracts;
-    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
-    using ProcessingTools.Data.Common.Expressions;
 
-    public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IEntityCrudRepository<TEntity>, IDisposable
+    public abstract class EntityRepository<TContext, TDbModel, TEntity> : EntityRepository<TContext, TDbModel>, IEntitySearchableRepository<TEntity>, IEntityCrudRepository<TEntity>
         where TContext : DbContext
         where TEntity : class
         where TDbModel : class, TEntity
     {
-        public EntityRepository(IDbContextProvider<TContext> contextProvider)
+        protected EntityRepository(IDbContextProvider<TContext> contextProvider)
             : base(contextProvider)
         {
         }
@@ -25,7 +23,7 @@
 
         protected abstract Func<TEntity, TDbModel> MapEntityToDbModel { get; }
 
-        public virtual async Task<object> Add(TEntity entity)
+        public virtual async Task<object> AddAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -33,34 +31,32 @@
             }
 
             var dbmodel = this.MapEntityToDbModel.Invoke(entity);
-            return await this.Add(dbmodel, this.DbSet);
+            return await this.AddAsync(dbmodel, this.DbSet).ConfigureAwait(false);
         }
 
-        public virtual async Task<long> Count()
+        public virtual Task<long> CountAsync()
         {
-            var count = await this.DbSet.LongCountAsync();
-            return count;
+            return this.DbSet.LongCountAsync();
         }
 
-        public virtual async Task<long> Count(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<long> CountAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var count = await this.DbSet.Where(filter).LongCountAsync();
-            return count;
+            return this.DbSet.Where(filter).LongCountAsync();
         }
 
-        public virtual async Task<object> Delete(object id)
+        public virtual async Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var entity = await this.Get(id, this.DbSet);
+            var entity = await this.GetAsync(id, this.DbSet).ConfigureAwait(false);
             if (entity == null)
             {
                 return null;
@@ -80,33 +76,31 @@
         }
 
         // TODO
-        public virtual Task<IEnumerable<TEntity>> Find(
-            Expression<Func<TEntity, bool>> filter) => Task.Run(() =>
+        public virtual async Task<TEntity[]> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var query = this.DbSet.Where(filter).AsEnumerable();
-            return query;
-        });
-
-        public virtual async Task<TEntity> FindFirst(
-            Expression<Func<TEntity, bool>> filter)
-        {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
-
-            var entity = await this.DbSet.FirstOrDefaultAsync(filter);
-            return entity;
+            var query = this.DbSet.Where(filter);
+            var data = await query.ToArrayAsync().ConfigureAwait(false);
+            return data;
         }
 
-        public virtual async Task<TEntity> GetById(object id) => await this.Get(id, this.DbSet);
+        public virtual Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException(nameof(filter));
+            }
 
-        public virtual async Task<object> Update(TEntity entity)
+            return this.DbSet.FirstOrDefaultAsync(filter);
+        }
+
+        public virtual async Task<TEntity> GetByIdAsync(object id) => await this.GetAsync(id, this.DbSet).ConfigureAwait(false);
+
+        public virtual async Task<object> UpdateAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -114,36 +108,36 @@
             }
 
             var dbmodel = this.MapEntityToDbModel.Invoke(entity);
-            return await this.Update(dbmodel, this.DbSet);
+            return await this.UpdateAsync(dbmodel, this.DbSet).ConfigureAwait(false);
         }
 
-        public virtual async Task<object> Update(object id, IUpdateExpression<TEntity> update)
+        public virtual async Task<object> UpdateAsync(object id, IUpdateExpression<TEntity> updateExpression)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            if (update == null)
+            if (updateExpression == null)
             {
-                throw new ArgumentNullException(nameof(update));
+                throw new ArgumentNullException(nameof(updateExpression));
             }
 
-            var entity = await this.Get(id, this.DbSet);
+            var entity = await this.GetAsync(id, this.DbSet).ConfigureAwait(false);
             if (entity == null)
             {
                 return null;
             }
 
             // TODO : Updater
-            var updater = new Updater<TEntity>(update);
-            await updater.Invoke(entity);
+            var updater = new Updater<TEntity>(updateExpression);
+            await updater.InvokeAsync(entity).ConfigureAwait(false);
 
-            return await this.Update(entity);
+            return await this.UpdateAsync(entity).ConfigureAwait(false);
         }
 
-        protected Task<T> Add<T>(T entity, IDbSet<T> set)
-            where T : class => Task.Run(() =>
+        protected Task<T> AddAsync<T>(T entity, IDbSet<T> set)
+            where T : class
         {
             if (entity == null)
             {
@@ -159,16 +153,16 @@
             if (entry.State != EntityState.Detached)
             {
                 entry.State = EntityState.Added;
-                return entity;
+                return Task.FromResult(entity);
             }
             else
             {
-                return set.Add(entity);
+                return Task.FromResult(set.Add(entity));
             }
-        });
+        }
 
-        protected virtual Task<T> Get<T>(object id, IDbSet<T> set)
-            where T : class => Task.Run(() =>
+        protected virtual Task<T> GetAsync<T>(object id, IDbSet<T> set)
+            where T : class
         {
             if (id == null)
             {
@@ -180,12 +174,11 @@
                 throw new ArgumentNullException(nameof(set));
             }
 
-            var entity = set.Find(id);
-            return entity;
-        });
+            return Task.Run(() => set.Find(id));
+        }
 
-        protected Task<T> Update<T>(T entity, IDbSet<T> set)
-            where T : class => Task.Run(() =>
+        protected Task<T> UpdateAsync<T>(T entity, IDbSet<T> set)
+            where T : class
         {
             if (entity == null)
             {
@@ -204,7 +197,7 @@
             }
 
             entry.State = EntityState.Modified;
-            return entity;
-        });
+            return Task.FromResult(entity);
+        }
     }
 }

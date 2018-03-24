@@ -38,7 +38,7 @@
         public async Task NetConnector_GetJsonAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             var connector = new NetConnector(BaseAddress);
-            var content = await connector.GetAsync(url, "application/json");
+            var content = await connector.GetAsync(url, "application/json").ConfigureAwait(false);
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -49,7 +49,7 @@
         public async Task NetConnector_GetDeserializedJson_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = await connector.GetJsonObjectAsync<Product>(url);
+            var responseObject = await connector.GetJsonObjectAsync<Product>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -62,13 +62,14 @@
         public async Task NetConnector_GetDeserializedJsonArray_WithValidParameters_ShouldWork(string url, int numberOfItems)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = await connector.GetJsonObjectAsync<Product[]>(url);
+            var responseObject = await connector.GetJsonObjectAsync<Product[]>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Length, "Number of items should match.");
 
             for (int i = 0; i < numberOfItems; ++i)
             {
-                Assert.AreEqual(i + 1, responseObject[i].Id, "Id should be {0}.", i + 1);
+                int expected = i + 1;
+                Assert.AreEqual(expected, responseObject[i].Id, $"Id should be {expected}.");
             }
         }
 
@@ -80,7 +81,7 @@
         public async Task NetConnector_GetXmlAsString_WithValidParameters_ShouldWork(string url, string checkString)
         {
             var connector = new NetConnector(BaseAddress);
-            var content = await connector.GetAsync(url, "application/xml");
+            var content = await connector.GetAsync(url, "application/xml").ConfigureAwait(false);
             Assert.IsTrue(content.Contains(checkString), "Content of the response should contain {0}", checkString);
         }
 
@@ -91,7 +92,7 @@
         public async Task NetConnector_GetDeserializedXml_WithValidParameters_ShouldWork(string url, int id, string name, string category, decimal price)
         {
             var connector = new NetConnector(BaseAddress);
-            var responseObject = await connector.GetXmlObjectAsync<Product>(url);
+            var responseObject = await connector.GetXmlObjectAsync<Product>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(id, responseObject.Id, "Id should match.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");
@@ -105,13 +106,14 @@
         {
             var connector = new NetConnector(BaseAddress);
 
-            var responseObject = await connector.GetXmlObjectAsync<ArrayOfProduct>(url);
+            var responseObject = await connector.GetXmlObjectAsync<ArrayOfProduct>(url).ConfigureAwait(false);
             Assert.IsNotNull(responseObject, "Response object should not be null.");
             Assert.AreEqual(numberOfItems, responseObject.Products.Length, "Number of items should match.");
 
             for (int i = 0; i < numberOfItems; ++i)
             {
-                Assert.AreEqual(i + 1, responseObject.Products[i].Id, "Id should be {0}.", i + 1);
+                int expected = i + 1;
+                Assert.AreEqual(expected, responseObject.Products[i].Id, $"Id should be {expected}.");
             }
         }
 
@@ -129,7 +131,7 @@
                 { "price", price.ToString() }
             };
 
-            var response = await connector.PostAsync(url, values, Encoding.UTF8);
+            var response = await connector.PostAsync(url, values, Encoding.UTF8).ConfigureAwait(false);
 
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
@@ -153,7 +155,7 @@
             string content = JsonConvert.SerializeObject(product);
 
             var connector = new NetConnector(BaseAddress);
-            var response = await connector.PostAsync(url, content, "application/json", Encoding.UTF8);
+            var response = await connector.PostAsync(url, content, "application/json", Encoding.UTF8).ConfigureAwait(false);
 
             Assert.IsNotNull(response, "Response should not be null.");
             Assert.IsTrue(response.Contains(name), "Response should contain the name.");
@@ -178,7 +180,7 @@
                 { "price", price.ToString() }
             };
 
-            var responseObject = await connector.PostXmlObjectAsync<Product>(url, values, Encoding.UTF8);
+            var responseObject = await connector.PostXmlObjectAsync<Product>(url, values, Encoding.UTF8).ConfigureAwait(false);
 
             Assert.IsNotNull(responseObject, "Response should not be null.");
             Assert.AreEqual(name, responseObject.Name, "Name should match.");

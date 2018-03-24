@@ -15,12 +15,7 @@
 
         public CommandNamesProvider(ITypesProvider typesProvider)
         {
-            if (typesProvider == null)
-            {
-                throw new ArgumentNullException(nameof(typesProvider));
-            }
-
-            this.typesProvider = typesProvider;
+            this.typesProvider = typesProvider ?? throw new ArgumentNullException(nameof(typesProvider));
         }
 
         public IEnumerable<string> CommandNames
@@ -28,7 +23,7 @@
             get
             {
                 var re = new Regex(CommandInterfacePattern);
-                var names = this.typesProvider.Types
+                var names = this.typesProvider.GetTypes()
                     .Select(t => re.Match(t.Name).Groups["commandName"].Value);
 
                 return new HashSet<string>(names);

@@ -4,36 +4,34 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Bio.ServiceClient.MaterialsParser.Contracts;
+    using ProcessingTools.Clients.Contracts.Bio;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Factories.Bio;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Materials;
+    using ProcessingTools.Processors.Contracts.Bio.Materials;
+    using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
 
     public class TreatmentMaterialsParser : ITreatmentMaterialsParser
     {
         private readonly IMaterialCitationsParser materialCitationsParser;
-        private readonly ITaxonTreatmentsTransformersFactory transformersFactory;
+        private readonly ITaxonTreatmentsTransformerFactory transformerFactory;
 
-        public TreatmentMaterialsParser(
-            IMaterialCitationsParser materialCitationsParser,
-            ITaxonTreatmentsTransformersFactory transformersFactory)
+        public TreatmentMaterialsParser(IMaterialCitationsParser materialCitationsParser, ITaxonTreatmentsTransformerFactory transformerFactory)
         {
             this.materialCitationsParser = materialCitationsParser ?? throw new ArgumentNullException(nameof(materialCitationsParser));
-            this.transformersFactory = transformersFactory ?? throw new ArgumentNullException(nameof(transformersFactory));
+            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
         }
 
-        public async Task<object> Parse(IDocument document)
+        public async Task<object> ParseAsync(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            await this.FormatTaxonTreatments(document.XmlDocument);
+            await this.FormatTaxonTreatments(context.XmlDocument).ConfigureAwait(false);
 
-            var queryDocument = await this.GenerateQueryDocument(document.XmlDocument);
+            var queryDocument = await this.GenerateQueryDocument(context.XmlDocument).ConfigureAwait(false);
 
-            string response = await this.materialCitationsParser.Invoke(queryDocument.OuterXml);
+            string response = await this.materialCitationsParser.ParseAsync(queryDocument.OuterXml).ConfigureAwait(false);
 
             var responseDocument = this.GenerateResponseDocument(response);
             responseDocument.SelectNodes("//p[@id]")
@@ -42,7 +40,7 @@
                 .ForAll(p =>
                 {
                     string id = p.Attributes["id"].InnerText;
-                    var paragraph = document.SelectSingleNode($"//p[@id='{id}']");
+                    var paragraph = context.SelectSingleNode($"//p[@id='{id}']");
                     if (paragraph != null)
                     {
                         paragraph.InnerXml = p.InnerXml;
@@ -63,16 +61,17 @@
             return responseDocument;
         }
 
-        private async Task<XmlDocument> GenerateQueryDocument(XmlDocument document)
+        private async Task<XmlDocument> GenerateQueryDocument(XmlNode context)
         {
             XmlDocument queryDocument = new XmlDocument
             {
                 PreserveWhitespace = true
             };
 
-            var text = await this.transformersFactory
+            var text = await this.transformerFactory
                 .GetTaxonTreatmentExtractMaterialsTransformer()
-                .Transform(document);
+                .TransformAsync(context)
+                .ConfigureAwait(false);
 
             queryDocument.LoadXml(text);
             return queryDocument;
@@ -80,9 +79,10 @@
 
         private async Task FormatTaxonTreatments(XmlDocument document)
         {
-            var text = await this.transformersFactory
+            var text = await this.transformerFactory
                 .GetTaxonTreatmentFormatTransformer()
-                .Transform(document);
+                .TransformAsync(document)
+                .ConfigureAwait(false);
 
             document.LoadXml(text);
         }

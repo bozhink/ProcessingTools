@@ -1,13 +1,11 @@
 ﻿namespace ProcessingTools.Tagger.Core
 {
     using System;
-    using System.Configuration;
     using System.Threading.Tasks;
-    using Contracts;
-    using Core;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Tagger.Contracts;
 
     public class Engine : IEngine
     {
@@ -16,21 +14,15 @@
 
         public Engine(IFileProcessor fileProcessor, ILogger logger)
         {
-            if (fileProcessor == null)
-            {
-                throw new ArgumentNullException(nameof(fileProcessor));
-            }
-
-            this.fileProcessor = fileProcessor;
+            this.fileProcessor = fileProcessor ?? throw new ArgumentNullException(nameof(fileProcessor));
             this.logger = logger;
         }
 
         public void Run(string[] args)
         {
-            int timeSpanInMunutesValue = 0;
-            if (!int.TryParse(ConfigurationManager.AppSettings[AppSettingsKeys.MaximalTimeInMinutesToWaitTheMainThread], out timeSpanInMunutesValue))
+            if (!int.TryParse(AppSettings.MaximalTimeInMinutesToWaitTheMainThread, out int timeSpanInMunutesValue))
             {
-                throw new SystemException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
+                throw new InvalidCastException("MaximalTimeInMinutesToWaitTheMainThread has invalid value.");
             }
 
             var ts = TimeSpan.FromMinutes(timeSpanInMunutesValue);
@@ -38,7 +30,7 @@
             var succeeded = this.RunAsync(args).Wait(ts);
             if (!succeeded)
             {
-                this.logger.Log(LogType.Error, "The timeout interval elapsed.");
+                this.logger.Log(LogType.Error, message: "The timeout interval elapsed.");
             }
         }
 
@@ -49,11 +41,11 @@
                 var settingsBuilder = new ProgramSettingsBuilder(this.logger, args);
                 var settings = settingsBuilder.Settings;
 
-                await this.fileProcessor.Run(settings);
+                await this.fileProcessor.RunAsync(settings).ConfigureAwait(false);
             }
             catch (Exception e)
             {
-                this.logger.Log(e, string.Empty);
+                this.logger.Log(e, message: string.Empty);
             }
         }
     }

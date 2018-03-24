@@ -7,19 +7,19 @@
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
-    using ProcessingTools.Common.Extensions;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Enumerations;
+    using ProcessingTools.Extensions;
 
     public class BiotaxonomyMongoDatabaseSeeder : IBiotaxonomyMongoDatabaseSeeder
     {
         private readonly IMongoDatabase db;
 
         private readonly IRepositoryFactory<IMongoTaxonRankRepository> mongoTaxonRankRepositoryFactory;
-        private readonly IRepositoryFactory<ITaxonRankRepository> taxonRankRepositoryFactory;
+        private readonly IRepositoryFactory<ITaxonRanksRepository> taxonRankRepositoryFactory;
 
         private readonly IRepositoryFactory<IMongoBiotaxonomicBlackListRepository> mongoBiotaxonomicBlackListRepositoryFactory;
         private readonly IRepositoryFactory<IBiotaxonomicBlackListRepository> biotaxonomicBlackListIterableRepositoryFactory;
@@ -27,7 +27,7 @@
         public BiotaxonomyMongoDatabaseSeeder(
             IMongoDatabaseProvider databaseProvider,
             IRepositoryFactory<IMongoTaxonRankRepository> mongoTaxonRankRepositoryFactory,
-            IRepositoryFactory<ITaxonRankRepository> taxonRankRepositoryFactory,
+            IRepositoryFactory<ITaxonRanksRepository> taxonRankRepositoryFactory,
             IRepositoryFactory<IMongoBiotaxonomicBlackListRepository> mongoBiotaxonomicBlackListRepositoryFactory,
             IRepositoryFactory<IBiotaxonomicBlackListRepository> biotaxonomicBlackListIterableRepositoryFactory)
         {
@@ -43,16 +43,16 @@
             this.biotaxonomicBlackListIterableRepositoryFactory = biotaxonomicBlackListIterableRepositoryFactory ?? throw new ArgumentNullException(nameof(biotaxonomicBlackListIterableRepositoryFactory));
         }
 
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
-            await this.SeedTaxonRankTypeCollection();
-            await this.SeedTaxonRankCollection();
-            await this.SeedBlackListCollection();
+            await this.SeedTaxonRankTypeCollectionAsync().ConfigureAwait(false);
+            await this.SeedTaxonRankCollectionAsync().ConfigureAwait(false);
+            await this.SeedBlackListCollectionAsync().ConfigureAwait(false);
 
             return true;
         }
 
-        private async Task SeedTaxonRankCollection()
+        private async Task SeedTaxonRankCollectionAsync()
         {
             var mongoTaxonRankRepository = this.mongoTaxonRankRepositoryFactory.Create();
 
@@ -61,16 +61,16 @@
 
             foreach (var entity in query)
             {
-                await mongoTaxonRankRepository.Add(entity);
+                await mongoTaxonRankRepository.AddAsync(entity).ConfigureAwait(false);
             }
 
             repository.TryDispose();
             mongoTaxonRankRepository.TryDispose();
         }
 
-        private async Task SeedTaxonRankTypeCollection()
+        private async Task SeedTaxonRankTypeCollectionAsync()
         {
-            string collectionName = CollectionNameFactory.Create<MongoTaxonRankTypeEntity>();
+            string collectionName = MongoCollectionNameFactory.Create<MongoTaxonRankTypeEntity>();
             var collection = this.db.GetCollection<MongoTaxonRankTypeEntity>(collectionName);
 
             var entities = Enum.GetValues(typeof(TaxonRankType)).Cast<TaxonRankType>()
@@ -86,10 +86,10 @@
                 BypassDocumentValidation = false
             };
 
-            await collection.InsertManyAsync(entities, options);
+            await collection.InsertManyAsync(entities, options).ConfigureAwait(false);
         }
 
-        private async Task SeedBlackListCollection()
+        private async Task SeedBlackListCollectionAsync()
         {
             var mongoBiotaxonomicBlackListRepository = this.mongoBiotaxonomicBlackListRepositoryFactory.Create();
             var repository = this.biotaxonomicBlackListIterableRepositoryFactory.Create();
@@ -97,7 +97,7 @@
             var entities = repository.Entities;
             foreach (var entity in entities)
             {
-                await mongoBiotaxonomicBlackListRepository.Add(entity);
+                await mongoBiotaxonomicBlackListRepository.AddAsync(entity).ConfigureAwait(false);
             }
 
             repository.TryDispose();

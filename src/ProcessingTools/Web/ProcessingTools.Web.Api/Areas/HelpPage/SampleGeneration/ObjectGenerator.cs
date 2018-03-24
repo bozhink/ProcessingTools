@@ -68,7 +68,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
             for (int i = 0; i < size; i++)
             {
                 object element = objectGenerator.GenerateObject(type, createdObjectReferences);
-                addMethod.Invoke(result, new object[] { element });
+                addMethod.Invoke(result, new[] { element });
                 areAllElementsNull &= element == null;
             }
 
@@ -82,9 +82,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
 
         private static object GenerateComplexObject(Type type, Dictionary<Type, object> createdObjectReferences)
         {
-            object result = null;
-
-            if (createdObjectReferences.TryGetValue(type, out result))
+            if (createdObjectReferences.TryGetValue(type, out object result))
             {
                 // The object has been created already, just return it. This will handle the circular reference case.
                 return result;
@@ -136,11 +134,11 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
                     return null;
                 }
 
-                bool containsKey = (bool)containsMethod.Invoke(result, new object[] { newKey });
+                bool containsKey = (bool)containsMethod.Invoke(result, new[] { newKey });
                 if (!containsKey)
                 {
                     object newValue = objectGenerator.GenerateObject(typeV, createdObjectReferences);
-                    addMethod.Invoke(result, new object[] { newKey, newValue });
+                    addMethod.Invoke(result, new[] { newKey, newValue });
                 }
             }
 

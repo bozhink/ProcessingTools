@@ -3,9 +3,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Geo;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
 
-    public class GeoName : SystemInformation, INameableIntegerIdentifiable, IDataModel
+    public class GeoName : BaseModel, INameableIntegerIdentifiable, IDataModel
     {
         [Key]
         public int Id { get; set; }

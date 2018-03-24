@@ -93,10 +93,11 @@ monacoEditorConfig.init(document.getElementById(EDITOR_CONTAINER_ID), '../../../
                     $monacoEditor = $('.monaco-editor');
 
                 theme = themes[index].themeId;
-                storage.setItem(keys.theme, theme)
+                storage.setItem(keys.theme, theme);
                 monacoEditorConfig.changeTheme(editor, theme);
 
                 if (index > 0) {
+
                     // Not the default theme
                     $('.navbar-fixed-bottom').removeClass('navbar-default').addClass('navbar-inverse');
                 } else {
@@ -143,6 +144,7 @@ function keyDownEventHandler(event) {
     var e = event || window.event;
 
     if (e.ctrlKey) {
+
         // Ctrl + S
         if (e.which === 83) {
             return eventHandlers.saveContent(e);

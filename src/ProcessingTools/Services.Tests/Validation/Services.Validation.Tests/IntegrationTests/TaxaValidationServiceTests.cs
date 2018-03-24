@@ -3,16 +3,17 @@
     using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.GlobalNamesResolver.Contracts;
+    using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Clients.Bio.Taxonomy.GlobalNamesResolver;
+    using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
-    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
-    using ProcessingTools.Services.Cache.Services.Validation;
-    using ProcessingTools.Services.Providers;
-    using ProcessingTools.Services.Validation.Services;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Contracts.Cache;
+    using ProcessingTools.Services.Validation;
 
     [TestClass]
     public class TaxaValidationServiceTests
@@ -24,8 +25,11 @@
         public void Initialize()
         {
             var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
-            var dateTimeProvider = new DateTimeProvider();
-            this.cacheService = new ValidationCacheService(repository, dateTimeProvider);
+            var applicationContextMock = new Mock<IApplicationContext>();
+            applicationContextMock
+                .SetupGet(e => e.DateTimeProvider)
+                .Returns(() => DateTime.UtcNow);
+            this.cacheService = new ValidationCacheService(repository, applicationContextMock.Object);
             this.requester = new GlobalNamesResolverDataRequester(new NetConnectorFactory());
         }
 
@@ -40,12 +44,12 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void TaxaValidationServiceTests_WithNullConstructor_ShouldThrow()
         {
-            var service = new TaxaValidationService(null, this.requester);
+            new TaxaValidationService(null, this.requester);
         }
 
         [TestMethod]
         [Timeout(2000)]
-        [Ignore]
+        [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItems_SchouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "Homo sapiens" };
@@ -53,7 +57,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 
@@ -63,7 +67,7 @@
             {
                 Assert.AreEqual(
                     1,
-                    result.Where(r => r.ValidatedObject == items[i]).Count(),
+                    result.Count(r => r.ValidatedObject == items[i]),
                     $"Result should contain Item #{i} only once.");
                 Assert.IsTrue(result[i].ValidationStatus == ValidationStatus.Valid, $"Item #{i} should be valid.");
                 Assert.IsNull(result[i].ValidationException, $"Item #{i} should have null exception.");
@@ -72,7 +76,7 @@
 
         [TestMethod]
         [Timeout(2000)]
-        [Ignore]
+        [Ignore] // Integration test
         public void TaxaValidationServiceTests_ValidateOfThreeItemsWithOneInvalid_SchouldReturnThreeValidatedItems()
         {
             string[] taxa = { "Coleoptera", "Zospeum", "John Smith" };
@@ -80,7 +84,7 @@
             var items = taxa.ToArray();
 
             var service = new TaxaValidationService(this.cacheService, this.requester);
-            var result = service.Validate(items).Result.ToList();
+            var result = service.ValidateAsync(items).Result.ToList();
 
             const int ExpectedNumberOfItems = 3;
 

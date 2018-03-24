@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Web.Constants
 {
-    public sealed class ContextKeys
+    public static class ContextKeys
     {
         public const string ActionName = "ActionName";
         public const string AreaName = "AreaName";

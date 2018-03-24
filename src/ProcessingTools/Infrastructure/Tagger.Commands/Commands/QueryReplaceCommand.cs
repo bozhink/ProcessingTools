@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts;
 
-    [Description("Query replace.")]
+    [System.ComponentModel.Description("Query replace.")]
     public class QueryReplaceCommand : IQueryReplaceCommand
     {
         private readonly IQueryReplacer queryReplacer;
@@ -18,7 +17,7 @@
             this.queryReplacer = queryReplacer ?? throw new ArgumentNullException(nameof(queryReplacer));
         }
 
-        public async Task<object> Run(IDocument document, ICommandSettings settings)
+        public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -33,12 +32,12 @@
             int numberOfFileNames = settings.FileNames.Count;
             if (numberOfFileNames < 3)
             {
-                throw new ApplicationException("The query file name should be set.");
+                throw new InvalidOperationException("The query file name should be set.");
             }
 
             string queryFileName = settings.FileNames[2];
 
-            var processedContent = await this.queryReplacer.Replace(document.Xml, queryFileName);
+            var processedContent = await this.queryReplacer.ReplaceAsync(document.Xml, queryFileName);
 
             document.Xml = processedContent;
 

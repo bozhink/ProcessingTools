@@ -2,15 +2,14 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Configuration;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using Newtonsoft.Json;
     using ProcessingTools.Constants.Configuration;
+    using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Common.Mongo.Factories;
     using ProcessingTools.Mediatypes.Data.Mongo.Models;
     using ProcessingTools.Mediatypes.Data.Seed.Contracts;
     using ProcessingTools.Mediatypes.Data.Seed.Models;
@@ -32,7 +31,7 @@
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
@@ -40,10 +39,10 @@
 
             if (mediatypesJson.Length < 1)
             {
-                throw new ApplicationException("Mediatypes data json file is empty or invalid.");
+                throw new ProcessingTools.Exceptions.InvalidDataException("Mediatypes data json file is empty or invalid.");
             }
 
-            await this.ImportMediatypesToDatabase(mediatypesJson);
+            await this.ImportMediatypesToDatabase(mediatypesJson).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -55,16 +54,16 @@
 
         private ExtensionJson[] ParseDataJsonFile()
         {
-            string jsonFilePath = ConfigurationManager.AppSettings[AppSettingsKeys.MediaTypeDataJsonFileName];
+            string jsonFilePath = AppSettings.MediaTypeDataJsonFileName;
 
             string jsonString = File.ReadAllText(jsonFilePath);
 
             var mediatypesJson = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
             return mediatypesJson?.Select(m => new ExtensionJson
             {
-                Extension = m.Extension.ToLower(),
-                Mimetype = m.Mimetype.ToLower(),
-                Mimesubtype = m.Mimesubtype.ToLower(),
+                Extension = m.Extension.ToLowerInvariant(),
+                Mimetype = m.Mimetype.ToLowerInvariant(),
+                Mimesubtype = m.Mimesubtype.ToLowerInvariant(),
                 Description = m.Description
             })
             .ToArray();
@@ -72,7 +71,7 @@
 
         private async Task ImportMediatypesToDatabase(ExtensionJson[] mediatypes)
         {
-            string collectionName = CollectionNameFactory.Create<Mediatype>();
+            string collectionName = MongoCollectionNameFactory.Create<Mediatype>();
             var collection = this.db.GetCollection<Mediatype>(collectionName);
 
             foreach (var mediatype in mediatypes)
@@ -85,7 +84,8 @@
                         Description = mediatype.Description,
                         Mimetype = mediatype.Mimetype,
                         Mimesubtype = mediatype.Mimesubtype
-                    });
+                    })
+                    .ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {

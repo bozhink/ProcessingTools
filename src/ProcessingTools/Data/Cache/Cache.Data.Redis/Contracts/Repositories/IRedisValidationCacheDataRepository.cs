@@ -1,6 +1,6 @@
 ﻿namespace ProcessingTools.Cache.Data.Redis.Contracts.Repositories
 {
-    using ProcessingTools.Contracts.Data.Cache.Repositories;
+    using ProcessingTools.Data.Contracts.Cache;
 
     public interface IRedisValidationCacheDataRepository : IValidationCacheDataRepository
     {

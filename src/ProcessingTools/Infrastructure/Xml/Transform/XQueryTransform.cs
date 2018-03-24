@@ -2,14 +2,13 @@
 {
     using System.IO;
     using System.Xml;
-
-    using Contracts;
+    using ProcessingTools.Contracts.Xml;
     using Saxon.Api;
 
     public class XQueryTransform : IXQueryTransform
     {
-        private Processor processor;
-        private XQueryCompiler compiler;
+        private readonly Processor processor;
+        private readonly XQueryCompiler compiler;
         private XQueryEvaluator evaluator;
 
         public XQueryTransform()

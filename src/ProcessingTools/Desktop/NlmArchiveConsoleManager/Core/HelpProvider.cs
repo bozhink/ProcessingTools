@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Services.Data.Contracts.Meta;
+    using ProcessingTools.Services.Contracts.Meta;
 
     public class HelpProvider : IHelpProvider
     {
@@ -13,23 +13,13 @@
 
         public HelpProvider(IReporter reporter, IJournalsMetaDataService service)
         {
-            if (reporter == null)
-            {
-                throw new ArgumentNullException(nameof(reporter));
-            }
-
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            this.reporter = reporter;
-            this.service = service;
+            this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task GetHelp()
+        public async Task GetHelpAsync()
         {
-            var journalsMeta = await this.service.GetAllJournalsMeta();
+            var journalsMeta = await this.service.GetAllJournalsMetaAsync().ConfigureAwait(false);
 
             this.reporter.AppendContent("Select a journal with one of these options:");
 
@@ -40,7 +30,7 @@
                     this.reporter.AppendContent($"\t--{j.Permalink}");
                 });
 
-            await this.reporter.MakeReport();
+            await this.reporter.MakeReportAsync().ConfigureAwait(false);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants;
-    using ValidationConstants = ProcessingTools.Constants.Models.ValidationConstants;
+    using ValidationConstants = ProcessingTools.Constants.ValidationConstants;
 
     public class IndexRequestModel
     {

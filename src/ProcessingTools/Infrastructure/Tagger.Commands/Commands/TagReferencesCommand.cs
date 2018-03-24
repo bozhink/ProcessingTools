@@ -1,17 +1,16 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
     using System;
-    using System.ComponentModel;
     using System.IO;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.References;
-    using ProcessingTools.Tagger.Commands.Contracts;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Processors.Contracts.References;
 
-    [Description("Tag references.")]
+    [System.ComponentModel.Description("Tag references.")]
     public class TagReferencesCommand : ITagReferencesCommand
     {
         private readonly IReferencesTagger tagger;
@@ -21,7 +20,7 @@
             this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
-        public Task<object> Run(IDocument document, ICommandSettings settings)
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)
             {
@@ -35,7 +34,7 @@
 
             this.SetReferencesOutputFileName(document, settings);
 
-            return this.tagger.Tag(document.XmlDocument.DocumentElement);
+            return this.tagger.TagAsync(document.XmlDocument.DocumentElement);
         }
 
         private void SetReferencesOutputFileName(IDocument document, ICommandSettings settings)

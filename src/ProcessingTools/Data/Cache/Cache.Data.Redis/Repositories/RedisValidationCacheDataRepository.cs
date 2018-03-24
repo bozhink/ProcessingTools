@@ -2,27 +2,27 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Contracts.Repositories;
-    using Models;
-    using ProcessingTools.Contracts.Data.Cache.Models;
+    using ProcessingTools.Cache.Data.Redis.Contracts.Repositories;
+    using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Data.Common.Redis.Repositories;
+    using ProcessingTools.Models.Contracts.Cache;
 
-    public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheEntity>, IRedisValidationCacheDataRepository
+    public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheModel>, IRedisValidationCacheDataRepository
     {
         public RedisValidationCacheDataRepository(IRedisClientProvider provider)
             : base(provider)
         {
         }
 
-        private Func<IValidationCacheEntity, ValidationCacheEntity> MapToEntity => e => new ValidationCacheEntity
+        private Func<IValidationCacheModel, ValidationCacheEntity> MapToEntity => e => new ValidationCacheEntity
         {
             Content = e.Content,
             LastUpdate = e.LastUpdate,
             Status = e.Status
         };
 
-        public override Task<object> Add(string key, IValidationCacheEntity value)
+        public override Task<object> AddAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -36,10 +36,10 @@
 
             var entity = this.MapToEntity(value);
 
-            return base.Add(key, entity);
+            return base.AddAsync(key, entity);
         }
 
-        public override Task<object> Remove(string key, IValidationCacheEntity value)
+        public override Task<object> RemoveAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -53,7 +53,7 @@
 
             var entity = this.MapToEntity(value);
 
-            return base.Remove(key, entity);
+            return base.RemoveAsync(key, entity);
         }
     }
 }

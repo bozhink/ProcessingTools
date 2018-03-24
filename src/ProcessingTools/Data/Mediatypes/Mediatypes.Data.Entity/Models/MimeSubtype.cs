@@ -30,7 +30,7 @@
 
             set
             {
-                this.name = value?.ToLower();
+                this.name = value?.ToLowerInvariant();
             }
         }
 

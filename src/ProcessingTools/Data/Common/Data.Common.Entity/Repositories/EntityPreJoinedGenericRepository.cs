@@ -8,13 +8,12 @@
     using System.Threading.Tasks;
     using ProcessingTools.Data.Common.Entity.Contracts;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
-    using ProcessingTools.Data.Common.Entity.Repositories.Contracts;
 
-    public class EntityPreJoinedGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>, IDisposable
+    public class EntityPreJoinedGenericRepository<TContext, TEntity> : EntityGenericRepository<TContext, TEntity>, IEntityGenericRepository<TEntity>
         where TContext : DbContext
         where TEntity : class, IEntityWithPreJoinedFields
     {
-        private IEnumerable<string> prejoinFields;
+        private readonly IEnumerable<string> prejoinFields;
 
         public EntityPreJoinedGenericRepository(IDbContextProvider<TContext> contextProvider)
             : base(contextProvider)
@@ -41,14 +40,14 @@
             }
         }
 
-        public override async Task<TEntity> FindFirst(Expression<Func<TEntity, bool>> filter)
+        public override Task<TEntity> FindFirstAsync(Expression<Func<TEntity, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            return await this.Query.FirstOrDefaultAsync(filter);
+            return this.Query.FirstOrDefaultAsync(filter);
         }
     }
 }

@@ -3,20 +3,19 @@
     using System.Data.Entity;
     using System.Linq;
     using AutoMapper;
-    using ProcessingTools.Contracts.Data.Repositories.Geo;
-    using ProcessingTools.Contracts.Filters.Geo;
-    using ProcessingTools.Contracts.Models.Geo;
-    using ProcessingTools.Contracts.Services;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Contracts.Geo;
     using ProcessingTools.Geo.Data.Entity.Abstractions.Repositories;
     using ProcessingTools.Geo.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Geo.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Geo;
 
     public class EntityMunicipalitiesRepository : AbstractGeoSynonymisableRepository<Municipality, IMunicipality, IMunicipalitiesFilter, MunicipalitySynonym, IMunicipalitySynonym, IMunicipalitySynonymsFilter>, IMunicipalitiesRepository
     {
         private readonly IMapper mapper;
 
-        public EntityMunicipalitiesRepository(IGeoRepository<Municipality> repository, IGeoRepository<MunicipalitySynonym> synonymRepository, IEnvironment environment)
-            : base(repository, synonymRepository, environment)
+        public EntityMunicipalitiesRepository(IGeoRepository<Municipality> repository, IGeoRepository<MunicipalitySynonym> synonymRepository, IApplicationContext applicationContext)
+            : base(repository, synonymRepository, applicationContext)
         {
             var mapperConfiguration = new MapperConfiguration(c =>
             {

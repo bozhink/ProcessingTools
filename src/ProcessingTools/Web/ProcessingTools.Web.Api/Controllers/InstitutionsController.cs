@@ -1,11 +1,11 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
-    using ProcessingTools.Contracts.Filters;
-    using ProcessingTools.Services.Data.Contracts;
-    using ProcessingTools.Services.Data.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Resources;
+    using ProcessingTools.Services.Contracts.Resources;
     using ProcessingTools.Web.Api.Abstractions;
-    using ProcessingTools.Web.Api.Models.Institutions;
+    using ProcessingTools.Web.Models.Resources.Institutions;
 
     public class InstitutionsController : GenericDataServiceController<IInstitutionsDataService, IInstitution, InstitutionRequestModel, InstitutionResponseModel, IFilter>
     {

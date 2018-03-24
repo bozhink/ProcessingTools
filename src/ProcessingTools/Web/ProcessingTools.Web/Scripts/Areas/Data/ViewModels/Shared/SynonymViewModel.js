@@ -1,3 +1,5 @@
+/* globals ko Country Synonym Language */
+
 function SynonymViewModel(synonyms) {
     var self = this;
 
@@ -27,9 +29,7 @@ function SynonymViewModel(synonyms) {
                     done();
                 }
             },
-            error: function (error) {
-                console.log(error);
-
+            error: function () {
                 if (typeof done === 'function') {
                     done();
                 }
@@ -94,7 +94,7 @@ function SynonymViewModel(synonyms) {
 
                 self.isModified(isModified || self.isModified());
             } catch (e) {
-                console.log(e);
+                // skip
             }
         }
 

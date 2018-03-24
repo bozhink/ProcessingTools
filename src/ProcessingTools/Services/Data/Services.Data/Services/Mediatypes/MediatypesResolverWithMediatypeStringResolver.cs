@@ -1,11 +1,10 @@
 ﻿namespace ProcessingTools.Services.Data.Services.Mediatypes
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Contracts.Mediatypes;
-    using Models.Mediatypes;
-    using ProcessingTools.Contracts.Models.Mediatypes;
+    using ProcessingTools.Models.Contracts.Mediatypes;
+    using ProcessingTools.Services.Contracts.Mediatypes;
+    using ProcessingTools.Services.Models.Data.Mediatypes;
 
     public class MediatypesResolverWithMediatypeStringResolver : IMediatypesResolver
     {
@@ -13,15 +12,10 @@
 
         public MediatypesResolverWithMediatypeStringResolver(IMediatypeStringResolver mediatypeStringResolver)
         {
-            if (mediatypeStringResolver == null)
-            {
-                throw new ArgumentNullException(nameof(mediatypeStringResolver));
-            }
-
-            this.mediatypeStringResolver = mediatypeStringResolver;
+            this.mediatypeStringResolver = mediatypeStringResolver ?? throw new ArgumentNullException(nameof(mediatypeStringResolver));
         }
 
-        public async Task<IEnumerable<IMediatype>> ResolveMediatype(string fileExtension)
+        public async Task<IMediatype[]> ResolveMediatypeAsync(string fileExtension)
         {
             string extension = fileExtension?.Trim('.', ' ', '\n', '\r');
             if (string.IsNullOrWhiteSpace(extension))
@@ -29,11 +23,11 @@
                 throw new ArgumentNullException(nameof(fileExtension));
             }
 
-            string mediatype = await this.mediatypeStringResolver.Resolve($".{extension.ToLower()}");
+            string mediatype = await this.mediatypeStringResolver.ResolveAsync($".{extension.ToLowerInvariant()}").ConfigureAwait(false);
 
             return new IMediatype[]
             {
-                new MediatypeServiceModel(mediatype)
+                new Mediatype(mediatype)
             };
         }
     }

@@ -10,7 +10,7 @@
 
         public BioTaxonomyDbContextFactory()
         {
-            this.ConnectionString = ConnectionStringsKeys.BioTaxonomyDatabaseConnection;
+            this.ConnectionString = ConnectionStrings.BioTaxonomyDatabaseConnection;
         }
 
         public string ConnectionString
@@ -24,7 +24,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.ConnectionString));
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.connectionString = value;

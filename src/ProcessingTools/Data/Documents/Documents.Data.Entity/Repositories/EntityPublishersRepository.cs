@@ -5,21 +5,20 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Documents.Data.Entity.Contracts;
-    using ProcessingTools.Documents.Data.Entity.Contracts.Repositories;
     using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisherEntity>, IEntityPublishersRepository
+    public class EntityPublishersRepository : EntityAddressableRepository<Publisher, IPublisher>, IEntityPublishersRepository
     {
         public EntityPublishersRepository(IDocumentsDbContextProvider contextProvider)
             : base(contextProvider)
         {
         }
 
-        protected override Func<IPublisherEntity, Publisher> MapEntityToDbModel => e => new Publisher(e);
+        protected override Func<IPublisher, Publisher> MapEntityToDbModel => e => new Publisher(e);
 
-        public override async Task<object> Add(IPublisherEntity entity)
+        public override async Task<object> AddAsync(IPublisher entity)
         {
             if (entity == null)
             {
@@ -29,27 +28,27 @@
             var dbmodel = new Publisher(entity);
             foreach (var entityAddress in entity.Addresses)
             {
-                var dbaddress = await this.AddOrGetAddress(entityAddress);
+                var dbaddress = await this.AddOrGetAddressAsync(entityAddress).ConfigureAwait(false);
                 dbmodel.Addresses.Add(dbaddress);
             }
 
-            return await this.Add(dbmodel, this.DbSet);
+            return await this.AddAsync(dbmodel, this.DbSet).ConfigureAwait(false);
         }
 
-        public override Task<long> Count() => this.DbSet.LongCountAsync();
+        public override Task<long> CountAsync() => this.DbSet.LongCountAsync();
 
-        public override Task<long> Count(Expression<Func<IPublisherEntity, bool>> filter)
+        public override Task<long> CountAsync(Expression<Func<IPublisher, bool>> filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var query = this.DbSet.AsQueryable<IPublisherEntity>();
+            var query = this.DbSet.AsQueryable<IPublisher>();
             return query.LongCountAsync(filter);
         }
 
-        public override async Task<IPublisherEntity> GetById(object id)
+        public override async Task<IPublisher> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -60,7 +59,7 @@
                 .Include(p => p.Addresses)
                 .Where(p => p.Id.ToString() == id.ToString());
 
-            var entity = await query.FirstOrDefaultAsync();
+            var entity = await query.FirstOrDefaultAsync().ConfigureAwait(false);
 
             return entity;
         }

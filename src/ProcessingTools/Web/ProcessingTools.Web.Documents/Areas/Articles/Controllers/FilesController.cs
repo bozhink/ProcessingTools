@@ -10,15 +10,15 @@
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Common.Extensions;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Web;
-    using ProcessingTools.Documents.Services.Data.Contracts;
-    using ProcessingTools.Documents.Services.Data.Models;
-    using ProcessingTools.Models.ViewModels;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Extensions;
+    using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Web.Documents.Areas.Articles.ViewModels.Files;
     using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Models.Shared;
     using Strings = Resources.Strings;
 
     [Authorize]
@@ -50,9 +50,8 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var viewModel = await this.GetDetails(userId, articleId, id);
+            var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -61,8 +60,8 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            await this.service.Delete(this.UserId, this.FakeArticleId, id);
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            await this.service.DeleteAsync(this.UserId, this.FakeArticleId, id).ConfigureAwait(false);
+
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -70,7 +69,6 @@
         [HttpGet, ActionName(ActionNames.DeafultDeleteAllActionName)]
         public ActionResult DeleteAll()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -79,8 +77,8 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteAllConfirmed()
         {
-            await this.service.DeleteAll(this.UserId, this.FakeArticleId);
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            await this.service.DeleteAllAsync(this.UserId, this.FakeArticleId).ConfigureAwait(false);
+
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -96,9 +94,8 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var viewModel = await this.GetDetails(userId, articleId, id);
+            var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -114,10 +111,10 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var document = await this.service.Get(userId, articleId, id);
+            var document = await this.service.GetAsync(userId, articleId, id).ConfigureAwait(false);
 
-            var stream = await this.service.GetStream(userId, articleId, id);
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
+            var stream = await this.service.GetStreamAsync(userId, articleId, id).ConfigureAwait(false);
+
             return this.File(
                 fileStream: stream,
                 contentType: document.ContentType,
@@ -136,9 +133,8 @@
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var viewModel = await this.GetDetails(userId, articleId, id);
+            var viewModel = await this.GetDetails(userId, articleId, id).ConfigureAwait(false);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -152,17 +148,18 @@
                 var userId = this.UserId;
                 var articleId = this.FakeArticleId;
 
-                await this.service.UpdateMeta(
+                await this.service.UpdateMetaAsync(
                     userId,
                     articleId,
-                    new DocumentServiceModel
+                    new Document
                     {
                         Id = model.DocumentId,
                         Comment = model.Comment,
                         ContentType = model.ContentType,
                         FileExtension = model.FileExtension,
                         FileName = model.FileName
-                    });
+                    })
+                    .ConfigureAwait(false);
 
                 this.Response.StatusCode = (int)HttpStatusCode.Redirect;
                 return this.RedirectToAction(nameof(this.Index));
@@ -189,13 +186,13 @@
         [HttpGet]
         public async Task<ActionResult> Index(int? p, int? n)
         {
-            int currentPage = p ?? PagingConstants.DefaultPageNumber;
-            int numberOfItemsPerPage = n ?? PagingConstants.DefaultLargeNumberOfItemsPerPage;
+            int currentPage = p ?? PaginationConstants.DefaultPageNumber;
+            int numberOfItemsPerPage = n ?? PaginationConstants.DefaultLargeNumberOfItemsPerPage;
 
             var userId = this.UserId;
             var articleId = this.FakeArticleId;
 
-            var items = (await this.service.All(userId, articleId, currentPage, numberOfItemsPerPage))
+            var items = (await this.service.AllAsync(userId, articleId, currentPage, numberOfItemsPerPage).ConfigureAwait(false))
                 .Select(d => new FileViewModel
                 {
                     ArticleId = articleId.ToString(),
@@ -207,11 +204,10 @@
                 })
                 .ToArray();
 
-            var numberOfDocuments = await this.service.Count(userId, articleId);
+            var numberOfDocuments = await this.service.CountAsync(userId, articleId).ConfigureAwait(false);
 
             var viewModel = new ListWithPagingViewModel<FileViewModel>(nameof(this.Index), numberOfDocuments, numberOfItemsPerPage, currentPage, items);
 
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View(viewModel);
         }
 
@@ -219,7 +215,6 @@
         [HttpGet]
         public ActionResult Upload()
         {
-            this.Response.StatusCode = (int)HttpStatusCode.OK;
             return this.View();
         }
 
@@ -227,7 +222,7 @@
         [HttpPost]
         public async Task<ActionResult> Upload(IEnumerable<HttpPostedFileBase> files)
         {
-            if (files == null || files.Count() < 1 || files.All(f => f == null))
+            if (files == null || !files.Any() || files.All(f => f == null))
             {
                 throw new NoFilesSelectedException();
             }
@@ -250,7 +245,7 @@
                 }
             }
 
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
 
             if (invalidFiles.Count > 0)
             {
@@ -291,10 +286,10 @@
                     filterContext.Exception.Message,
                     Strings.DefaultUploadNewFileActionLinkTitle);
             }
-            else if (filterContext.Exception is InvalidOrEmptyFilesException)
+            else if (filterContext.Exception is InvalidOrEmptyFilesException ex)
             {
                 // TODO: Remove ViewBag
-                this.ViewBag.InvalidFiles = ((InvalidOrEmptyFilesException)filterContext.Exception).FileNames;
+                this.ViewBag.InvalidFiles = ex?.FileNames;
                 filterContext.Result = this.InvalidOrEmptyFilesErrorView(InstanceNames.FilesControllerInstanceName);
             }
             else if (filterContext.Exception is InvalidIdException)
@@ -348,7 +343,7 @@
                 throw new NullOrEmptyFileException();
             }
 
-            var document = new DocumentServiceModel
+            var document = new Document
             {
                 FileName = Path.GetFileNameWithoutExtension(file.FileName).Trim('.'),
                 FileExtension = Path.GetExtension(file.FileName).Trim('.'),
@@ -356,7 +351,7 @@
                 ContentType = file.ContentType
             };
 
-            var task = this.service.Create(userId, articleId, document, file.InputStream);
+            var task = this.service.CreateAsync(userId, articleId, document, file.InputStream);
             return task;
         }
 
@@ -377,7 +372,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var document = await this.service.Get(userId, articleId, id);
+            var document = await this.service.GetAsync(userId, articleId, id).ConfigureAwait(false);
             if (document == null)
             {
                 throw new EntityNotFoundException();

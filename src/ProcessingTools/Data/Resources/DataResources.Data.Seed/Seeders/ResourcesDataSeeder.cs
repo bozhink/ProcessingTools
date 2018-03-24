@@ -2,9 +2,8 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Configuration;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Data.Common.Entity.Seed;
@@ -15,33 +14,34 @@
 
     public class ResourcesDataSeeder : IResourcesDataSeeder
     {
-        private readonly IResourcesDbContextFactory contextFactory;
-        private readonly Type stringType = typeof(string);
-
-        private FileByLineDbContextSeeder<ResourcesDbContext> seeder;
-        private string dataFilesDirectoryPath;
+        private readonly FileByLineDbContextSeeder<ResourcesDbContext> seeder;
+        private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
         public ResourcesDataSeeder(IResourcesDbContextFactory contextFactory)
         {
-            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
-            this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(this.contextFactory);
+            if (contextFactory == null)
+            {
+                throw new ArgumentNullException(nameof(contextFactory));
+            }
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
+            this.seeder = new FileByLineDbContextSeeder<ResourcesDbContext>(contextFactory);
+
+            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
             var tasks = new Task[]
             {
-                this.SeedProducts(ConfigurationManager.AppSettings[AppSettingsKeys.ProductsSeedFileName]),
-                this.SeedInstitutions(ConfigurationManager.AppSettings[AppSettingsKeys.InstitutionsSeedFileName])
+                this.SeedProductsAsync(AppSettings.ProductsSeedFileName),
+                this.SeedInstitutionsAsync(AppSettings.InstitutionsSeedFileName)
             };
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -51,7 +51,7 @@
             return true;
         }
 
-        private async Task SeedProducts(string fileName)
+        private async Task SeedProductsAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -61,14 +61,15 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         context.Products.AddOrUpdate(new Product
                         {
                             Name = line
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -76,7 +77,7 @@
             }
         }
 
-        private async Task SeedInstitutions(string fileName)
+        private async Task SeedInstitutionsAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -86,14 +87,15 @@
             try
             {
                 await this.seeder.ImportSingleLineTextObjectsFromFile(
-                    $"{this.dataFilesDirectoryPath}/{fileName}",
+                    Path.Combine(this.dataFilesDirectoryPath, fileName),
                     (context, line) =>
                     {
                         context.Institutions.AddOrUpdate(new Institution
                         {
                             Name = line
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {

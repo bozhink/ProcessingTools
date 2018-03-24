@@ -4,38 +4,34 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     public class WhiteList : IWhiteList
     {
-        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
-        public WhiteList(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
+        public WhiteList(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public Task<IEnumerable<string>> Items
+        public IEnumerable<string> GetItems()
         {
-            get
+            return this.GetItemsAsync().Result;
+        }
+
+        public Task<IEnumerable<string>> GetItemsAsync()
+        {
+            return this.repositoryProvider.ExecuteAsync<IEnumerable<string>>(async (repository) =>
             {
-                return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
-                {
-                    var query = await repository.Find(t => t.IsWhiteListed == true);
+                var data = await repository.FindAsync(t => t.IsWhiteListed).ConfigureAwait(false);
 
-                    var result = query.Select(t => t.Name)
-                        .ToList();
+                var result = data.Select(t => t.Name).ToList();
 
-                    return new HashSet<string>(result);
-                });
-            }
+                return new HashSet<string>(result);
+            });
         }
     }
 }

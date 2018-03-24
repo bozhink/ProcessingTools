@@ -4,10 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Extensions.Linq;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     public class BlackList : IBlackList
     {
@@ -18,19 +17,21 @@
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public Task<IEnumerable<string>> Items
+        public IEnumerable<string> GetItems()
         {
-            get
-            {
-                return this.repositoryProvider.Execute<IEnumerable<string>>(async (repository) =>
-                {
-                    var result = await repository.Entities
-                        .Select(s => s.Content)
-                        .ToListAsync();
+            return this.GetItemsAsync().Result;
+        }
 
-                    return new HashSet<string>(result);
-                });
-            }
+        public Task<IEnumerable<string>> GetItemsAsync()
+        {
+            return this.repositoryProvider.ExecuteAsync<IEnumerable<string>>((repository) =>
+            {
+                var result = repository.Entities
+                    .Select(s => s.Content)
+                    .ToList();
+
+                return new HashSet<string>(result);
+            });
         }
     }
 }

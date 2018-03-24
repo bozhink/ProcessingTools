@@ -5,11 +5,11 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
     using ProcessingTools.Models.Abstractions;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliationEntity
+    public class Affiliation : ModelWithUserInformation, IEntityWithPreJoinedFields, IAffiliation
     {
         private ICollection<Author> authors;
 
@@ -47,6 +47,6 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => null;
+        public IEnumerable<string> PreJoinFieldNames => new string[] { };
     }
 }

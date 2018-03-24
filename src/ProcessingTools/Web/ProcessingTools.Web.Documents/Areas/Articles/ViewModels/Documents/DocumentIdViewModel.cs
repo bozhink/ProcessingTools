@@ -28,7 +28,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.DocumentId));
+                    throw new ArgumentException(nameof(this.DocumentId));
                 }
 
                 this.documentId = value;
@@ -47,7 +47,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(this.ArticleId));
+                    throw new ArgumentException(nameof(this.ArticleId));
                 }
 
                 this.articleId = value;

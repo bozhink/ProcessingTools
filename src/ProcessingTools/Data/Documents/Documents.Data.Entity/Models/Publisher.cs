@@ -5,21 +5,20 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using ProcessingTools.Constants.Data.Documents;
-    using ProcessingTools.Contracts.Data.Documents.Models;
     using ProcessingTools.Data.Common.Entity.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Documents;
 
-    public class Publisher : AddressableEntity, IEntityWithPreJoinedFields, IPublisherEntity
+    public class Publisher : AddressableEntity, IEntityWithPreJoinedFields, IPublisher
     {
         private ICollection<Journal> journals;
 
         public Publisher()
-            : base()
         {
             this.Id = Guid.NewGuid();
             this.journals = new HashSet<Journal>();
         }
 
-        public Publisher(IPublisherEntity entity)
+        public Publisher(IPublisher entity)
             : this()
         {
             if (entity == null)
@@ -30,10 +29,10 @@
             this.Id = entity.Id;
             this.Name = entity.Name;
             this.AbbreviatedName = entity.AbbreviatedName;
-            this.CreatedByUser = entity.CreatedByUser;
-            this.ModifiedByUser = entity.ModifiedByUser;
-            this.DateCreated = entity.DateCreated;
-            this.DateModified = entity.DateModified;
+            this.CreatedBy = entity.CreatedBy;
+            this.ModifiedBy = entity.ModifiedBy;
+            this.CreatedOn = entity.CreatedOn;
+            this.ModifiedOn = entity.ModifiedOn;
         }
 
         [Key]

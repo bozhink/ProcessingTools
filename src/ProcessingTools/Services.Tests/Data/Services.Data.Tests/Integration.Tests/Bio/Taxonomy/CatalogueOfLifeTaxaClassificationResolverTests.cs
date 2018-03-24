@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using NUnit.Framework;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.CatalogueOfLife;
+    using ProcessingTools.Clients.Bio.Taxonomy.CatalogueOfLife;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
@@ -28,7 +28,7 @@
 
             var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
             var service = new CatalogueOfLifeTaxaClassificationResolver(requester);
-            var response = service.Resolve(ScientificName).Result;
+            var response = service.ResolveAsync(ScientificName).Result;
 
             Assert.IsNotNull(response, "Response should not be null.");
 

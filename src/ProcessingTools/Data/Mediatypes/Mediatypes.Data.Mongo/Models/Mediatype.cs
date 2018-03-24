@@ -2,10 +2,10 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Contracts.Data.Mediatypes.Models;
-    using ProcessingTools.Contracts.Models;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Mediatypes;
 
-    public class Mediatype : IStringIdentifiable, IMediatype
+    public class Mediatype : IStringIdentifiable, IMediatypeEntity
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

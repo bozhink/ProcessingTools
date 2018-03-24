@@ -1,17 +1,16 @@
 ﻿namespace ProcessingTools.Processors.Processors.Bio.Codes
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Data.Miners.Contracts.Models.Bio;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Data.Miners.Contracts.Bio;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
+    using ProcessingTools.Services.Models.Contracts.Bio.Biorepositories;
 
     public class InstitutionalCodesTagger : IInstitutionalCodesTagger
     {
@@ -33,32 +32,30 @@
             this.institutionsTagger = institutionsTagger ?? throw new ArgumentNullException(nameof(institutionsTagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> TagAsync(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var data = (await this.miner.Mine(textContent))
+            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
                 .ToArray();
 
-            await this.TagInstitutionalCodes(document, data);
-            await this.TagInstitutions(document, data);
+            await this.TagInstitutionalCodes(context, data).ConfigureAwait(false);
+            await this.TagInstitutions(context, data).ConfigureAwait(false);
 
             return true;
         }
 
-        private async Task TagInstitutionalCodes(
-            IDocument document,
-            IEnumerable<IBiorepositoriesInstitution> data)
+        private async Task TagInstitutionalCodes(IDocument document, IInstitution[] data)
         {
             var institutionalCodes = data.Select(i => new BiorepositoriesInstitutionalCodeSerializableModel
             {
-                Description = i.NameOfInstitution,
+                Description = i.Name,
                 Url = i.Url,
-                Value = i.InstitutionalCode
+                Value = i.Code
             });
 
             var settings = new ContentTaggerSettings
@@ -67,17 +64,15 @@
                 MinimalTextSelect = true
             };
 
-            await this.institutionalCodesTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings);
+            await this.institutionalCodesTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, institutionalCodes, XPath, settings).ConfigureAwait(false);
         }
 
-        private async Task TagInstitutions(
-            IDocument document,
-            IEnumerable<IBiorepositoriesInstitution> data)
+        private async Task TagInstitutions(IDocument document, IInstitution[] data)
         {
             var institutions = data.Select(i => new BiorepositoriesInstitutionSerializableModel
             {
                 Url = i.Url,
-                Value = i.NameOfInstitution
+                Value = i.Name
             });
 
             var settings = new ContentTaggerSettings
@@ -86,7 +81,7 @@
                 MinimalTextSelect = true
             };
 
-            await this.institutionsTagger.Tag(document.XmlDocument.DocumentElement, document.NamespaceManager, institutions, XPath, settings);
+            await this.institutionsTagger.TagAsync(document.XmlDocument.DocumentElement, document.NamespaceManager, institutions, XPath, settings).ConfigureAwait(false);
         }
     }
 }

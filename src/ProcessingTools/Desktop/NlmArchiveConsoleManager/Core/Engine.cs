@@ -4,12 +4,12 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Core;
-    using Contracts.Factories;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Models.Documents;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Data.Contracts.Meta;
+    using ProcessingTools.Models.Contracts.Documents;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
+    using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
+    using ProcessingTools.Services.Contracts.Meta;
 
     public class Engine : IEngine
     {
@@ -62,18 +62,18 @@
             int numberOfDoubleDashedArguments = args.Count(this.FilterDoubleDashedOption);
             if (numberOfDoubleDashedArguments != 1)
             {
-                await this.helpProvider.GetHelp();
+                await this.helpProvider.GetHelpAsync().ConfigureAwait(false);
                 return;
             }
 
             var journalId = args.Single(this.FilterDoubleDashedOption).Substring(2);
 
-            IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMeta())
+            IJournalMeta journalMeta = (await this.journalsMetaService.GetAllJournalsMetaAsync().ConfigureAwait(false))
                 .FirstOrDefault(j => j.Permalink == journalId);
 
             if (journalMeta == null)
             {
-                this.logger?.Log(LogType.Error, "Journal not found");
+                this.logger?.Log(type: LogType.Error, message: "Journal not found");
                 return;
             }
 
@@ -89,7 +89,7 @@
 
             foreach (var directoryName in directories)
             {
-                this.logger?.Log(directoryName);
+                this.logger?.Log(message: directoryName);
 
                 var direcoryProcessor = this.processorFactory.CreateDirectoryProcessor(directoryName, journalMeta);
 

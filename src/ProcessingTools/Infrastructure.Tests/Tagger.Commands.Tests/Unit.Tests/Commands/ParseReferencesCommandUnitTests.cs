@@ -7,9 +7,9 @@
     using NUnit.Framework;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.References;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Tagger.Commands.Commands;
-    using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ParseReferencesCommand))]
@@ -24,7 +24,7 @@
             // Arrange + Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var command = new ParseReferencesCommand(null);
+                new ParseReferencesCommand(null);
             });
 
             Assert.AreEqual(ParameterNames.Parser, exception.ParamName, "ParamName is not correct.");
@@ -63,12 +63,12 @@
             var command = new ParseReferencesCommand(parserMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return command.Run(null, null);
+                return command.RunAsync(null, null);
             });
 
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseReferencesCommand), Description = "ParseReferencesCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
@@ -83,12 +83,12 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return command.Run(null, settingsMock.Object);
+                return command.RunAsync(null, settingsMock.Object);
             });
 
             Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
 
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseReferencesCommand), Description = "ParseReferencesCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
@@ -103,12 +103,12 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return command.Run(documentMock.Object, null);
+                return command.RunAsync(documentMock.Object, null);
             });
 
             Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
 
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Never);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ParseReferencesCommand), Description = "ParseReferencesCommand Run with valid document and valid program settings should call parser with correct parameter.")]
@@ -129,11 +129,11 @@
                 .Returns(xmldocumentStub);
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.RunAsync(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
-            parserMock.Verify(p => p.Parse(It.IsAny<XmlNode>()), Times.Once);
-            parserMock.Verify(p => p.Parse(xmldocumentStub.DocumentElement), Times.Once);
+            parserMock.Verify(p => p.ParseAsync(It.IsAny<XmlNode>()), Times.Once);
+            parserMock.Verify(p => p.ParseAsync(xmldocumentStub.DocumentElement), Times.Once);
         }
 
         #endregion ExecutionTests

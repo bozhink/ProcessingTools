@@ -1,9 +1,9 @@
 ﻿namespace ProcessingTools.Data.Common.Tests
 {
-    using Attributes;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Models;
-    using ProcessingTools.Data.Common.Extensions;
+    using ProcessingTools.Data.Common.Tests.Attributes;
+    using ProcessingTools.Data.Common.Tests.Models;
+    using ProcessingTools.Extensions.Data;
 
     [TestClass]
     public class ModelExtensionsTests

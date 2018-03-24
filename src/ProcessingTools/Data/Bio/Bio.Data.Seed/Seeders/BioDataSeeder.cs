@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.Threading.Tasks;
     using ProcessingTools.Bio.Data.Entity;
@@ -15,33 +13,34 @@
 
     public class BioDataSeeder : IBioDataSeeder
     {
-        private readonly IBioDbContextFactory contextFactory;
-        private readonly Type stringType = typeof(string);
-
-        private FileByLineDbContextSeeder<BioDbContext> seeder;
-        private string dataFilesDirectoryPath;
+        private readonly FileByLineDbContextSeeder<BioDbContext> seeder;
+        private readonly string dataFilesDirectoryPath;
         private ConcurrentQueue<Exception> exceptions;
 
         public BioDataSeeder(IBioDbContextFactory contextFactory)
         {
-            this.contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
-            this.seeder = new FileByLineDbContextSeeder<BioDbContext>(this.contextFactory);
+            if (contextFactory == null)
+            {
+                throw new ArgumentNullException(nameof(contextFactory));
+            }
 
-            this.dataFilesDirectoryPath = ConfigurationManager.AppSettings[AppSettingsKeys.DataFilesDirectoryName];
+            this.seeder = new FileByLineDbContextSeeder<BioDbContext>(contextFactory);
+
+            this.dataFilesDirectoryPath = AppSettings.DataFilesDirectoryName;
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
             var tasks = new Task[]
             {
-                this.SeedMorphologicalEpithets(ConfigurationManager.AppSettings[AppSettingsKeys.MorphologicalEpithetsFileName]),
-                this.SeedTypeStatuses(ConfigurationManager.AppSettings[AppSettingsKeys.TypeStatusesFileName])
+                this.SeedMorphologicalEpithets(AppSettings.MorphologicalEpithetsFileName),
+                this.SeedTypeStatuses(AppSettings.TypeStatusesFileName)
             };
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -68,7 +67,8 @@
                         {
                             Name = line
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -93,7 +93,8 @@
                         {
                             Name = line
                         });
-                    });
+                    })
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {

@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Web.Settings
 {
-    using System.Configuration;
     using Ninject.Extensions.Conventions;
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
@@ -28,31 +27,27 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.Services.IEnvironment>()
-                .To<ProcessingTools.Web.Services.EnvironmentService>()
-                .InSingletonScope();
-
             this.Bind<ProcessingTools.History.Data.Entity.Contracts.IHistoryDbContext>()
                 .To<ProcessingTools.History.Data.Entity.HistoryDbContext>()
-                .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
+                .WhenInjectedInto<ProcessingTools.History.Data.Entity.Repositories.EntityObjectHistoryRepository>()
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.HistoryDatabaseConnection].ConnectionString);
+                    ConnectionStrings.HistoryDatabaseConnection);
 
-            this.Bind<ProcessingTools.Contracts.Data.History.Repositories.IHistoryRepository>()
-                .To<ProcessingTools.History.Data.Entity.Repositories.EntityHistoryRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.History.IObjectHistoryRepository>()
+                .To<ProcessingTools.History.Data.Entity.Repositories.EntityObjectHistoryRepository>()
                 .InRequestScope();
 
             this.Bind<ProcessingTools.Journals.Data.Entity.Contracts.IJournalsDbContext>()
                 .To<ProcessingTools.Journals.Data.Entity.JournalsDbContext>()
-                .WhenInjectedInto(typeof(ProcessingTools.Data.Common.Entity.Repositories.GenericRepository<,>))
+                .WhenInjectedInto(typeof(ProcessingTools.Data.Common.Entity.Repositories.EfRepository<,>))
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.JournalsDatabaseConnection].ConnectionString);
+                    ConnectionStrings.JournalsDatabaseConnection);
 
-            this.Bind<ProcessingTools.Contracts.Data.Journals.Repositories.IPublishersRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Journals.IPublishersRepository>()
                 .To<ProcessingTools.Journals.Data.Entity.Repositories.EntityPublishersRepository>()
                 .InRequestScope();
 
@@ -62,25 +57,25 @@
                 .InRequestScope()
                 .WithConstructorArgument(
                     ParameterNames.ConnectionString,
-                    ConfigurationManager.ConnectionStrings[ConnectionStringsKeys.GeoDatabseConnection].ConnectionString);
+                    ConnectionStrings.GeoDatabseConnection);
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.ICitiesRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Geo.ICitiesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityCitiesRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.IGeoNamesRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Geo.IGeoNamesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityGeoNamesRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.IGeoEpithetsRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Geo.IGeoEpithetsRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityGeoEpithetsRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.IContinentsRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Geo.IContinentsRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityContinentsRepository>()
                 .InRequestScope();
 
-            this.Bind<ProcessingTools.Contracts.Data.Repositories.Geo.ICountriesRepository>()
+            this.Bind<ProcessingTools.Data.Contracts.Geo.ICountriesRepository>()
                 .To<ProcessingTools.Geo.Data.Entity.Repositories.EntityCountriesRepository>()
                 .InRequestScope();
         }

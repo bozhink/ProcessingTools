@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 module.exports = function JsonRequester($) {
-
     function send(method, url, options) {
         var headers, data, promise;
 
@@ -11,7 +10,7 @@ module.exports = function JsonRequester($) {
 
         options = options || {};
         headers = options.headers || {};
-        data = options.data || undefined;
+        data = options.data || {};
 
         promise = new Promise(function (resolve, reject) {
             $.ajax({
@@ -55,4 +54,4 @@ module.exports = function JsonRequester($) {
         put: put,
         delete: del
     };
-}
+};

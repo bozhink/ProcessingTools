@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
@@ -23,16 +22,11 @@
 
         public MediatypesDataSeeder(IMediatypesDbContextProvider contextProvider)
         {
-            if (contextProvider == null)
-            {
-                throw new ArgumentNullException(nameof(contextProvider));
-            }
-
-            this.contextProvider = contextProvider;
+            this.contextProvider = contextProvider ?? throw new ArgumentNullException(nameof(contextProvider));
             this.exceptions = new ConcurrentQueue<Exception>();
         }
 
-        public async Task<object> Seed()
+        public async Task<object> SeedAsync()
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
@@ -40,14 +34,14 @@
 
             if (mediatypesJson.Length < 1)
             {
-                throw new ApplicationException("Mediatypes data json file is empty or invalid.");
+                throw new ProcessingTools.Exceptions.InvalidDataException("Mediatypes data json file is empty or invalid.");
             }
 
-            await this.ImportMimeTypesToDatabase(mediatypesJson);
-            await this.ImportMimeSubtypesToDataBase(mediatypesJson);
-            await this.ImportFileExtensionsToDatabase(mediatypesJson);
-            await this.CreateMediaTypePairsInDatabase(mediatypesJson);
-            await this.ConnectMediaTypePairsToFileExtensions(mediatypesJson);
+            await this.ImportMimeTypesToDatabaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.ImportMimeSubtypesToDataBaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.ImportFileExtensionsToDatabaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.CreateMediaTypePairsInDatabaseAsync(mediatypesJson).ConfigureAwait(false);
+            await this.ConnectMediaTypePairsToFileExtensionsAsync(mediatypesJson).ConfigureAwait(false);
 
             if (this.exceptions.Count > 0)
             {
@@ -59,22 +53,22 @@
 
         private ExtensionJson[] ParseDataJsonFile()
         {
-            string jsonFilePath = ConfigurationManager.AppSettings[AppSettingsKeys.MediaTypeDataJsonFileName];
+            string jsonFilePath = AppSettings.MediaTypeDataJsonFileName;
 
             string jsonString = File.ReadAllText(jsonFilePath);
 
             var mediatypesJson = JsonConvert.DeserializeObject<ExtensionJson[]>(jsonString);
             return mediatypesJson?.Select(m => new ExtensionJson
             {
-                Extension = m.Extension.ToLower(),
-                Mimetype = m.Mimetype.ToLower(),
-                Mimesubtype = m.Mimesubtype.ToLower(),
+                Extension = m.Extension.ToLowerInvariant(),
+                Mimetype = m.Mimetype.ToLowerInvariant(),
+                Mimesubtype = m.Mimesubtype.ToLowerInvariant(),
                 Description = m.Description
             })
             .ToArray();
         }
 
-        private async Task ConnectMediaTypePairsToFileExtensions(ExtensionJson[] mediatypesJson)
+        private async Task ConnectMediaTypePairsToFileExtensionsAsync(ExtensionJson[] mediatypesJson)
         {
             try
             {
@@ -102,7 +96,7 @@
                     }
 
                     context.FileExtensions.AddOrUpdate(extensions.ToArray());
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -111,7 +105,7 @@
             }
         }
 
-        private async Task CreateMediaTypePairsInDatabase(ExtensionJson[] mediatypesJson)
+        private async Task CreateMediaTypePairsInDatabaseAsync(ExtensionJson[] mediatypesJson)
         {
             try
             {
@@ -129,7 +123,7 @@
                         .ToArray();
 
                     context.MimetypePairs.AddOrUpdate(mediaTypesPairs);
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -138,7 +132,7 @@
             }
         }
 
-        private async Task ImportFileExtensionsToDatabase(ExtensionJson[] mediatypesJson)
+        private async Task ImportFileExtensionsToDatabaseAsync(ExtensionJson[] mediatypesJson)
         {
             try
             {
@@ -152,7 +146,7 @@
                     .ToArray();
 
                     context.FileExtensions.AddOrUpdate(fileExtension);
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -161,7 +155,7 @@
             }
         }
 
-        private async Task ImportMimeSubtypesToDataBase(ExtensionJson[] mediatypesJson)
+        private async Task ImportMimeSubtypesToDataBaseAsync(ExtensionJson[] mediatypesJson)
         {
             try
             {
@@ -175,7 +169,7 @@
                     .ToArray();
 
                     context.Mimesubtypes.AddOrUpdate(mimeSubtypesNames);
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -184,7 +178,7 @@
             }
         }
 
-        private async Task ImportMimeTypesToDatabase(ExtensionJson[] mediatypesJson)
+        private async Task ImportMimeTypesToDatabaseAsync(ExtensionJson[] mediatypesJson)
         {
             try
             {
@@ -198,7 +192,7 @@
                     .ToArray();
 
                     context.Mimetypes.AddOrUpdate(mimeTypesNames);
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception e)

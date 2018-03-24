@@ -9,8 +9,8 @@
     using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Cache.Data.Redis.Tests.Common;
-    using ProcessingTools.Contracts.Data.Cache.Models;
     using ProcessingTools.Data.Common.Redis.Contracts;
+    using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Tests.Library;
     using ServiceStack.Redis;
 
@@ -41,7 +41,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Add(key, value);
+            var result = await repository.AddAsync(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -67,7 +67,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, null);
+                return repository.AddAsync(key, null);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Never);
@@ -81,7 +81,7 @@
         public void RedisValidationCacheDataRepository_AddWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
-            var valueMock = new Mock<IValidationCacheEntity>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var value = valueMock.Object;
 
             var clientProviderMock = new Mock<IRedisClientProvider>();
@@ -91,7 +91,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, value);
+                return repository.AddAsync(key, value);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -113,7 +113,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Add(key, null);
+                return repository.AddAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
@@ -128,7 +128,7 @@
             // Arrange
             string key = "some key";
 
-            var list = new List<string>();
+            var list = new List<string> { };
 
             var listMock = new Mock<IRedisList>();
             listMock.Setup(l => l.GetEnumerator())
@@ -155,7 +155,8 @@
             Assert.That(result.Count(), Is.EqualTo(0));
             listMock.Verify(l => l.GetEnumerator(), Times.Once);
 
-            result.ToList();
+            var resultValue = result.ToList();
+            Assert.IsNotNull(resultValue, "Result List should not be null");
             listMock.Verify(l => l.GetEnumerator(), Times.Exactly(2));
 
             clientProviderMock.Verify(p => p.Create(), Times.Once);
@@ -236,7 +237,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.RemoveAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -254,7 +255,7 @@
             // Arrange
             string key = "some key";
 
-            // JsonStringSerializer does not work with mock? var valueMock = new Mock<IValidationCacheEntity>();
+            //// JsonStringSerializer does not work with mock? Mock objects are recursive.
             var value = new ValidationCacheEntity();
 
             var listMock = new Mock<IRedisList>();
@@ -274,7 +275,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key, value);
+            var result = await repository.RemoveAsync(key, value).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -308,7 +309,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.Remove(key);
+            var result = await repository.RemoveAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
@@ -334,7 +335,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key);
+                return repository.RemoveAsync(key);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -357,7 +358,7 @@
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key, null);
+                return repository.RemoveAsync(key, null);
             });
 
             clientProviderMock.Verify(p => p.Create(), Times.Never);
@@ -371,7 +372,7 @@
         public void RedisValidationCacheDataRepository_RemoveWithInvalidKeyAndValidValue_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
-            var valueMock = new Mock<IValidationCacheEntity>();
+            var valueMock = new Mock<IValidationCacheModel>();
             var value = valueMock.Object;
 
             var clientProviderMock = new Mock<IRedisClientProvider>();
@@ -381,7 +382,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key, value);
+                return repository.RemoveAsync(key, value);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
@@ -403,7 +404,7 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return repository.Remove(key, null);
+                return repository.RemoveAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
@@ -426,7 +427,7 @@
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
 
             // Act
-            var result = await repository.SaveChangesAsync();
+            var result = await repository.SaveChangesAsync().ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(0L));
@@ -443,7 +444,7 @@
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var repository = new RedisValidationCacheDataRepository(null);
+                new RedisValidationCacheDataRepository(null);
             });
 
             Assert.AreEqual(Constants.ClientProviderFieldName, exception.ParamName);

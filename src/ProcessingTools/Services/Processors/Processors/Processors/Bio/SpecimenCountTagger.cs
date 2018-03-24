@@ -1,15 +1,14 @@
 ﻿namespace ProcessingTools.Processors.Processors.Bio
 {
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
+    using ProcessingTools.Data.Miners.Contracts.Bio;
+    using ProcessingTools.Processors.Abstractions;
     using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Processors.Contracts.Processors.Bio;
-    using ProcessingTools.Processors.Contracts.Providers;
-    using ProcessingTools.Processors.Generics;
+    using ProcessingTools.Processors.Contracts.Bio;
+    using ProcessingTools.Processors.Models.Contracts;
 
-    public class SpecimenCountTagger : GenericStringMinerTagger<ISpecimenCountDataMiner, ISpecimenCountTagModelProvider>, ISpecimenCountTagger
+    public class SpecimenCountTagger : StringDataMinerTagger<ISpecimenCountDataMiner, ISpecimenCountTagModelProvider>, ISpecimenCountTagger
     {
-        public SpecimenCountTagger(IGenericStringDataMinerEvaluator<ISpecimenCountDataMiner> evaluator, IStringTagger tagger, ISpecimenCountTagModelProvider tagModelProvider)
+        public SpecimenCountTagger(IStringDataMinerEvaluator<ISpecimenCountDataMiner> evaluator, IStringTagger tagger, ISpecimenCountTagModelProvider tagModelProvider)
             : base(evaluator, tagger, tagModelProvider)
         {
         }

@@ -5,11 +5,11 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Data.Miners.Contracts.Miners.Bio.SpecimenCodes;
-    using ProcessingTools.Harvesters.Contracts.Harvesters.Content;
-    using ProcessingTools.Layout.Processors.Contracts.Taggers;
-    using ProcessingTools.Layout.Processors.Models.Taggers;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.Codes;
+    using ProcessingTools.Data.Miners.Contracts.Bio.SpecimenCodes;
+    using ProcessingTools.Harvesters.Contracts.Content;
+    using ProcessingTools.Processors.Contracts;
+    using ProcessingTools.Processors.Contracts.Bio.Codes;
+    using ProcessingTools.Processors.Models;
     using ProcessingTools.Processors.Models.Bio.Codes;
 
     public class SpecimenCodesByPatternTagger : ISpecimenCodesByPatternTagger
@@ -28,15 +28,15 @@
             this.tagger = tagger ?? throw new ArgumentNullException(nameof(tagger));
         }
 
-        public async Task<object> Tag(IDocument document)
+        public async Task<object> TagAsync(IDocument context)
         {
-            if (document == null)
+            if (context == null)
             {
-                throw new ArgumentNullException(nameof(document));
+                throw new ArgumentNullException(nameof(context));
             }
 
-            var textContent = await this.contentHarvester.Harvest(document.XmlDocument.DocumentElement);
-            var data = (await this.miner.Mine(textContent))
+            var textContent = await this.contentHarvester.HarvestAsync(context.XmlDocument.DocumentElement).ConfigureAwait(false);
+            var data = (await this.miner.MineAsync(textContent).ConfigureAwait(false))
                 .ToArray();
 
             var specimenCodes = data.Select(s => new SpecimenCodeSerializableModel
@@ -52,12 +52,13 @@
                 MinimalTextSelect = true
             };
 
-            return await this.tagger.Tag(
-                document.XmlDocument.DocumentElement,
-                document.NamespaceManager,
+            return await this.tagger.TagAsync(
+                context.XmlDocument.DocumentElement,
+                context.NamespaceManager,
                 specimenCodes,
                 XPathStrings.RootNodesOfContext,
-                settings);
+                settings)
+                .ConfigureAwait(false);
         }
     }
 }

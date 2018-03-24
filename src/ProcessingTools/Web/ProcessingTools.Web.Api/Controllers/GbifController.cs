@@ -1,14 +1,13 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
-    using System.Web.Http.Cors;
-    using Abstractions;
-    using ProcessingTools.Services.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Contracts;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Web.Api.Abstractions;
 
-    [EnableCors("*", "*", "*")]
     public class GbifController : AbstractTaxaClassificationResolverController
     {
-        public GbifController(IGbifTaxaClassificationResolver resolver)
-            : base(resolver)
+        protected GbifController(IGbifTaxaClassificationResolver resolver, ILogger logger)
+            : base(resolver, logger)
         {
         }
     }

@@ -3,13 +3,13 @@
     using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
     using ProcessingTools.Cache.Data.Redis.Repositories;
+    using ProcessingTools.Contracts;
     using ProcessingTools.Data.Common.Redis;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Services.Cache.Contracts.Services.Validation;
-    using ProcessingTools.Services.Cache.Services.Validation;
-    using ProcessingTools.Services.Providers;
-    using ProcessingTools.Services.Validation.Services;
+    using ProcessingTools.Services.Cache;
+    using ProcessingTools.Services.Contracts.Cache;
 
     [TestClass]
     public class UrlValidationServiceTests
@@ -20,8 +20,12 @@
         public void Initialize()
         {
             var repository = new RedisValidationCacheDataRepository(new RedisClientProvider());
-            var dateTimeProvider = new DateTimeProvider();
-            this.cacheService = new ValidationCacheService(repository, dateTimeProvider);
+            var applicationContextMock = new Mock<IApplicationContext>();
+            applicationContextMock
+                .SetupGet(e => e.DateTimeProvider)
+                .Returns(() => DateTime.UtcNow);
+
+            this.cacheService = new ValidationCacheService(repository, applicationContextMock.Object);
         }
 
         [TestMethod]
@@ -35,19 +39,19 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void UrlValidationService_WithNullConstructor_ShouldThrow()
         {
-            var service = new UrlValidationService(null);
+            new UrlValidationService(null);
         }
 
         [TestMethod]
         [Timeout(2000)]
-        [Ignore]
+        [Ignore] // Integration test
         public void UrlValidationService_ValidateOfTwoItems_WithoutBaseAddress_SchouldReturnTwoValidatedItems()
         {
             int i = 0;
             var items = (new int[2]).Select(item => $"https://www.google.com/search?q={++i}").ToArray();
 
             var service = new UrlValidationService(this.cacheService);
-            var result = service.Validate(items.ToArray()).Result
+            var result = service.ValidateAsync(items.ToArray()).Result
                 .OrderBy(u => u.ValidatedObject)
                 .ToList();
 

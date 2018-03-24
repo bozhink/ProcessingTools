@@ -5,18 +5,18 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using ProcessingTools.Common.Exceptions;
-    using ProcessingTools.Contracts.Data.Documents.Models;
-    using ProcessingTools.Contracts.Data.Documents.Repositories;
     using ProcessingTools.Data.Common.Entity.Repositories;
+    using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Documents.Data.Entity.Contracts;
     using ProcessingTools.Documents.Data.Entity.Models;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Models.Contracts.Documents;
 
     public abstract class EntityAddressableRepository<TDbModel, TEntity> : EntityRepository<DocumentsDbContext, TDbModel, TEntity>, IAddressableRepository
-        where TEntity : class, IAddressableEntity
+        where TEntity : class, IAddressable
         where TDbModel : AddressableEntity, TEntity
     {
-        public EntityAddressableRepository(IDocumentsDbContextProvider contextProvider)
+        protected EntityAddressableRepository(IDocumentsDbContextProvider contextProvider)
             : base(contextProvider)
         {
             this.AddressSet = this.GetDbSet<Address>();
@@ -24,7 +24,7 @@
 
         private IDbSet<Address> AddressSet { get; set; }
 
-        public virtual async Task<object> AddAddress(object entityId, IAddressEntity address)
+        public virtual async Task<object> AddAddressAsync(object entityId, IAddress address)
         {
             if (entityId == null)
             {
@@ -36,19 +36,19 @@
                 throw new ArgumentNullException(nameof(address));
             }
 
-            var dbmodel = await this.Get(entityId, this.DbSet);
+            var dbmodel = await this.GetAsync(entityId, this.DbSet).ConfigureAwait(false);
             if (dbmodel == null)
             {
                 throw new EntityNotFoundException();
             }
 
-            var dbaddress = await this.AddOrGetAddress(address);
+            var dbaddress = await this.AddOrGetAddressAsync(address).ConfigureAwait(false);
             dbmodel.Addresses.Add(dbaddress);
 
             return dbmodel;
         }
 
-        public virtual async Task<object> RemoveAddress(object entityId, object addressId)
+        public virtual async Task<object> RemoveAddressAsync(object entityId, object addressId)
         {
             if (entityId == null)
             {
@@ -65,53 +65,57 @@
                 throw new ArgumentException($"Parameter '{nameof(addressId)}' should be valid GUID", nameof(addressId));
             }
 
-            var dbmodel = await this.Get(entityId, this.DbSet);
+            var dbmodel = await this.GetAsync(entityId, this.DbSet).ConfigureAwait(false);
             if (dbmodel == null)
             {
                 throw new EntityNotFoundException();
             }
 
-            return this.RemoveAddressFromDbModel(dbmodel, addressIdAsGuid);
+            return this.RemoveAddressFromDbModelAsync(dbmodel, addressIdAsGuid);
         }
 
-        protected virtual async Task<Address> AddOrGetAddress(IAddressEntity address)
+        protected virtual async Task<Address> AddOrGetAddressAsync(IAddress address)
         {
             if (address == null)
             {
                 throw new ArgumentNullException(nameof(address));
             }
 
-            var dbaddress = await this.AddOrGet(
+            var dbaddress = await this.AddOrGetAsync(
                 new Address(address),
                 this.AddressSet,
                 t => (t.AddressString == address.AddressString) &&
                      (t.CountryId == address.CountryId) &&
-                     (t.CityId == address.CityId));
+                     (t.CityId == address.CityId))
+                .ConfigureAwait(false);
 
             return dbaddress;
         }
 
-        protected virtual Task<object> RemoveAddressFromDbModel(TDbModel dbmodel, Guid addressId) => Task.Run<object>(() =>
+        protected virtual Task<object> RemoveAddressFromDbModelAsync(TDbModel dbmodel, Guid addressId)
         {
             if (dbmodel == null)
             {
                 throw new ArgumentNullException(nameof(dbmodel));
             }
 
-            var addressToBeRemoved = dbmodel.Addresses.FirstOrDefault(a => a.Id == addressId);
-            if (addressToBeRemoved == null)
+            return Task.Run<object>(() =>
             {
-                return null;
-            }
+                var addressToBeRemoved = dbmodel.Addresses.FirstOrDefault(a => a.Id == addressId);
+                if (addressToBeRemoved == null)
+                {
+                    return null;
+                }
 
-            this.RemoveAddressFromAddressSetIfOneOrLessEntityReferencesIt(addressToBeRemoved);
+                this.RemoveAddressFromAddressSetIfOneOrLessEntityReferencesIt(addressToBeRemoved);
 
-            dbmodel.Addresses.Remove(addressToBeRemoved);
+                dbmodel.Addresses.Remove(addressToBeRemoved);
 
-            return dbmodel;
-        });
+                return dbmodel;
+            });
+        }
 
-        private async Task<T> AddOrGet<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
+        private async Task<T> AddOrGetAsync<T>(T entity, IDbSet<T> set, Expression<Func<T, bool>> filter)
             where T : class
         {
             if (entity == null)
@@ -129,11 +133,11 @@
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            var dbmodel = await set.AsQueryable().FirstOrDefaultAsync(filter);
+            var dbmodel = await set.AsQueryable().FirstOrDefaultAsync(filter).ConfigureAwait(false);
             if (dbmodel == null)
             {
-                var result = await this.Add(entity, set);
-                await this.SaveChangesAsync();
+                var result = await this.AddAsync(entity, set).ConfigureAwait(false);
+                await this.SaveChangesAsync().ConfigureAwait(false);
 
                 return result;
             }

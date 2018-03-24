@@ -1,13 +1,13 @@
 ﻿namespace ProcessingTools.Web.Api.Controllers
 {
     using AutoMapper;
-    using ProcessingTools.Bio.Services.Data.Contracts;
-    using ProcessingTools.Bio.Services.Data.Models;
-    using ProcessingTools.Contracts.Filters;
+    using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Services.Contracts.Bio;
+    using ProcessingTools.Services.Models.Contracts.Bio;
     using ProcessingTools.Web.Api.Abstractions;
-    using ProcessingTools.Web.Api.Models.MorphologicalEpithets;
+    using ProcessingTools.Web.Models.Bio.MorphologicalEpithets;
 
-    public class MorphologicalEpithetsController : GenericDataServiceController<IMorphologicalEpithetsDataService, MorphologicalEpithetServiceModel, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel, IFilter>
+    public class MorphologicalEpithetsController : GenericDataServiceController<IMorphologicalEpithetsDataService, IMorphologicalEpithet, MorphologicalEpithetRequestModel, MorphologicalEpithetResponseModel, IFilter>
     {
         private readonly IMapper mapper;
 
@@ -16,8 +16,8 @@
         {
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<MorphologicalEpithetServiceModel, MorphologicalEpithetResponseModel>();
-                c.CreateMap<MorphologicalEpithetRequestModel, MorphologicalEpithetServiceModel>();
+                c.CreateMap<IMorphologicalEpithet, MorphologicalEpithetResponseModel>();
+                c.CreateMap<MorphologicalEpithetRequestModel, IMorphologicalEpithet>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();

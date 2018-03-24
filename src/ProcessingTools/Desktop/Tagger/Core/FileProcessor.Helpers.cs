@@ -6,8 +6,8 @@
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
     using ProcessingTools.Tagger.Commands.Extensions;
 
     public partial class FileProcessor
@@ -19,20 +19,20 @@
 
             try
             {
-                logger?.Log(message);
-                await action.Invoke();
+                logger?.Log(message: message);
+                await action.Invoke().ConfigureAwait(false);
             }
             catch (AggregateException e)
             {
                 foreach (var exception in e.InnerExceptions)
                 {
-                    logger?.Log(exception, string.Empty);
+                    logger?.Log(exception, message: string.Empty);
                     logger?.Log();
                 }
             }
             catch (Exception e)
             {
-                logger?.Log(e, string.Empty);
+                logger?.Log(e, message: string.Empty);
             }
 
             logger?.Log(LogType.Info, Messages.ElapsedTimeMessageFormat, timer.Elapsed);
@@ -41,7 +41,7 @@
         private async Task InvokeProcessor<TCommand>(XmlNode context)
             where TCommand : ITaggerCommand
         {
-            await this.InvokeProcessor(typeof(TCommand), context);
+            await this.InvokeProcessor(typeof(TCommand), context).ConfigureAwait(false);
         }
 
         private async Task InvokeProcessor(Type commandType, XmlNode context)
@@ -49,7 +49,7 @@
             var command = this.commandFactory(commandType);
             var document = this.documentWrapper.Create(context, this.settings.ArticleSchemaType);
 
-            var isNotAwaitableCommand = commandType.GetInterfaces().Count(t => t == typeof(INotAwaitableCommand)) > 0;
+            var isNotAwaitableCommand = commandType.GetInterfaces().Any(t => t == typeof(INotAwaitableCommand));
             if (isNotAwaitableCommand)
             {
                 // Validation commands should not overwrite the content of this.document.XmlDocument,
@@ -59,12 +59,12 @@
             }
             else
             {
-                await this.InvokeCommand(command, document);
+                await this.InvokeCommand(command, document).ConfigureAwait(false);
                 context.InnerXml = document.XmlDocument.DocumentElement.InnerXml;
             }
         }
 
-        private async Task InvokeCommand(ITaggerCommand command, IDocument document)
+        private Task InvokeCommand(ITaggerCommand command, IDocument document)
         {
             if (command == null)
             {
@@ -72,9 +72,9 @@
             }
 
             string message = command.GetDescriptionMessageForCommand();
-            await InvokeProcessor(
+            return InvokeProcessor(
                 message,
-                () => command.Run(document, this.settings),
+                () => command.RunAsync(document, this.settings),
                 this.logger);
         }
     }

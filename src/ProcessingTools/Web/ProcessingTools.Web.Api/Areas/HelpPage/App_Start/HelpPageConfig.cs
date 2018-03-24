@@ -31,7 +31,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
             config.SetSampleObjects(new Dictionary<Type, object>
            {
                 { typeof(string), "sample string" },
-                { typeof(IEnumerable<string>), new string[] { "sample 1", "sample 2" } }
+                { typeof(IEnumerable<string>), new[] { "sample 1", "sample 2" } }
            });
 
             // Extend the following to provide factories for types not handled automatically (those lacking parameterless
@@ -87,8 +87,8 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
                     object items = sampleGenerator.GetSampleObject(itemsType);
 
                     // Fill in the other information needed to invoke the PageResult<T> constuctor
-                    Type[] parameterTypes = new Type[] { itemsType, typeof(Uri), typeof(long?), };
-                    object[] parameters = new object[] { items, null, (long)ObjectGenerator.DefaultCollectionSize, };
+                    Type[] parameterTypes = new[] { itemsType, typeof(Uri), typeof(long?), };
+                    object[] parameters = new[] { items, null, (long)ObjectGenerator.DefaultCollectionSize, };
 
                     // Call PageResult(IEnumerable<T> items, Uri nextPageLink, long? count) constructor
                     ConstructorInfo constructor = type.GetConstructor(parameterTypes);

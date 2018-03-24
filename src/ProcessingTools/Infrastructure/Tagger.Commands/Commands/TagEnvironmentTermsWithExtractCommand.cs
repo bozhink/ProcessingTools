@@ -1,12 +1,10 @@
 ﻿namespace ProcessingTools.Tagger.Commands.Commands
 {
-    using System.ComponentModel;
-    using ProcessingTools.Processors.Contracts.Processors.Bio.EnvironmentTerms;
-    using ProcessingTools.Tagger.Commands.Contracts.Commands;
-    using ProcessingTools.Tagger.Commands.Generics;
+    using ProcessingTools.Contracts.Commands.Tagger;
+    using ProcessingTools.Processors.Contracts.Bio.EnvironmentTerms;
 
-    [Description("Tag envo terms using EXTRACT.")]
-    public class TagEnvironmentTermsWithExtractCommand : GenericDocumentTaggerCommand<IEnvironmentTermsWithExtractTagger>, ITagEnvironmentTermsWithExtractCommand
+    [System.ComponentModel.Description("Tag envo terms using EXTRACT.")]
+    public class TagEnvironmentTermsWithExtractCommand : DocumentTaggerCommand<IEnvironmentTermsWithExtractTagger>, ITagEnvironmentTermsWithExtractCommand
     {
         public TagEnvironmentTermsWithExtractCommand(IEnvironmentTermsWithExtractTagger tagger)
             : base(tagger)

@@ -2,71 +2,60 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Contracts.Bio.Taxonomy;
-    using Models.Bio.Taxonomy;
-    using ProcessingTools.Contracts.Data.Bio.Taxonomy.Repositories;
-    using ProcessingTools.Contracts.Data.Repositories;
-    using ProcessingTools.Contracts.Models.Bio.Taxonomy;
+    using ProcessingTools.Data.Contracts;
+    using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Models.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
     public class LocalDbTaxaRankResolver : ILocalDbTaxaRankResolver
     {
-        private readonly IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider;
+        private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
-        public LocalDbTaxaRankResolver(IGenericRepositoryProvider<ITaxonRankRepository> repositoryProvider)
+        public LocalDbTaxaRankResolver(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
-            if (repositoryProvider == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryProvider));
-            }
-
-            this.repositoryProvider = repositoryProvider;
+            this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        public async Task<IEnumerable<ITaxonRank>> Resolve(params string[] scientificNames)
+        public async Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
             var result = new ConcurrentQueue<ITaxonRank>();
 
-            await this.Resolve(scientificNames, result);
+            await this.ResolveAsync(scientificNames, result).ConfigureAwait(false);
 
-            return new HashSet<ITaxonRank>(result);
+            return result.ToArray();
         }
 
-        private async Task Resolve(string[] scientificNames, ConcurrentQueue<ITaxonRank> outputCollection)
+        private Task ResolveAsync(string[] scientificNames, ConcurrentQueue<ITaxonRank> outputCollection)
         {
             if (scientificNames == null || scientificNames.Length < 1)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             var names = scientificNames.Where(s => !string.IsNullOrWhiteSpace(s))
-                .Select(s => s.ToLower())
+                .Select(s => s.ToLowerInvariant())
                 .Distinct()
                 .ToList();
 
-            await this.repositoryProvider.Execute(async (repository) =>
+            return this.repositoryProvider.ExecuteAsync(async (repository) =>
             {
-                var tasks = new ConcurrentQueue<Task>();
+                var tasks = names.Select(name => this.FindRankForSingleTaxonAsync(repository, name, outputCollection)).ToArray();
 
-                foreach (var name in names)
-                {
-                    tasks.Enqueue(this.FindRankForSingleTaxon(repository, name, outputCollection));
-                }
-
-                await Task.WhenAll(tasks);
+                await Task.WhenAll(tasks).ConfigureAwait(false);
             });
         }
 
-        private async Task FindRankForSingleTaxon(ITaxonRankRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
+        private async Task FindRankForSingleTaxonAsync(ITaxonRanksRepository repository, string name, ConcurrentQueue<ITaxonRank> outputCollection)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
                 return;
             }
 
-            var entity = await repository.FindFirst(t => t.Name.ToLower() == name.ToLower());
+            var entity = await repository.FindFirstAsync(t => t.Name.ToLower() == name.ToLower()).ConfigureAwait(false);
             if (entity == null)
             {
                 return;
@@ -74,7 +63,7 @@
 
             foreach (var rank in entity.Ranks)
             {
-                var taxon = new TaxonRankServiceModel
+                var taxon = new TaxonRank
                 {
                     ScientificName = entity.Name,
                     Rank = rank

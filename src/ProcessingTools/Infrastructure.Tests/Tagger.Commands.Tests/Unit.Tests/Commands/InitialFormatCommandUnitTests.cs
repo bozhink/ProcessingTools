@@ -6,9 +6,9 @@
     using NUnit.Framework;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Layout.Processors.Contracts.Formatters;
+    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Tagger.Commands.Commands;
-    using ProcessingTools.Tagger.Commands.Contracts;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(InitialFormatCommand))]
@@ -23,7 +23,7 @@
             // Arrange + Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                var command = new InitialFormatCommand(null);
+                new InitialFormatCommand(null);
             });
 
             Assert.AreEqual(ParameterNames.Formatter, exception.ParamName, "ParamName is not correct.");
@@ -62,12 +62,12 @@
             var command = new InitialFormatCommand(formatterMock.Object);
 
             // Act + Assert
-            var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
+            Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return command.Run(null, null);
+                return command.RunAsync(null, null);
             });
 
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Never);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with null document and valid program settings should throw ArgumentNullException with correct ParamName.")]
@@ -82,12 +82,12 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return command.Run(null, settingsMock.Object);
+                return command.RunAsync(null, settingsMock.Object);
             });
 
             Assert.AreEqual(ParameterNames.Document, exception.ParamName, "ParamName is not correct.");
 
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Never);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with valid document and null program settings should throw ArgumentNullException with correct ParamName.")]
@@ -102,12 +102,12 @@
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return command.Run(documentMock.Object, null);
+                return command.RunAsync(documentMock.Object, null);
             });
 
             Assert.AreEqual(ParameterNames.Settings, exception.ParamName, "ParamName is not correct.");
 
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Never);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Never);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(InitialFormatCommand), Description = "InitialFormatCommand Run with valid document and valid program settings should call formatter with correct parameter.")]
@@ -121,11 +121,11 @@
             var documentMock = new Mock<IDocument>();
 
             // Act
-            var result = await command.Run(documentMock.Object, settingsMock.Object);
+            await command.RunAsync(documentMock.Object, settingsMock.Object).ConfigureAwait(false);
 
             // Assert
-            formatterMock.Verify(p => p.Format(It.IsAny<IDocument>()), Times.Once);
-            formatterMock.Verify(p => p.Format(documentMock.Object), Times.Once);
+            formatterMock.Verify(p => p.FormatAsync(It.IsAny<IDocument>()), Times.Once);
+            formatterMock.Verify(p => p.FormatAsync(documentMock.Object), Times.Once);
         }
 
         #endregion ExecutionTests
