@@ -17,7 +17,6 @@ namespace ProcessingTools.Web.Documents.Controllers
     /// <summary>
     /// Admin controller.
     /// </summary>
-    [Area(AreaNames.Default)]
     [Authorize(Roles = nameof(UserRole.Admin))]
     public class AdminController : Controller
     {
