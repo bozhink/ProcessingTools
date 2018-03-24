@@ -310,9 +310,9 @@ namespace ProcessingTools.Web.Services.Documents
         {
             return new JournalPublisherViewModel
             {
-                Id = journal.Publisher.Id,
-                Name = journal.Publisher.Name,
-                AbbreviatedName = journal.Publisher.AbbreviatedName,
+                Id = journal.Publisher?.Id,
+                Name = journal.Publisher?.Name,
+                AbbreviatedName = journal.Publisher?.AbbreviatedName,
                 Selected = true
             };
         }

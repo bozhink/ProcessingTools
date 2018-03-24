@@ -1,4 +1,4 @@
-﻿@model ProcessingTools.Web.Models.Documents.Publishers.PublisherDetailsViewModel
+﻿@model ProcessingTools.Web.Models.Documents.Journals.JournalDetailsViewModel
 @{
     ViewData[ContextKeys.Title] = "Journal Details";
     if (string.IsNullOrWhiteSpace(Model?.PageHeading))
@@ -33,8 +33,17 @@
             <dt>@Html.DisplayNameFor(m => m.AbbreviatedName)</dt>
             <dd>@Html.DisplayFor(m => m.AbbreviatedName)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.Address)</dt>
-            <dd>@Html.DisplayFor(m => m.Address)</dd>
+            <dt>@Html.DisplayNameFor(m => m.JournalId)</dt>
+            <dd>@Html.DisplayFor(m => m.JournalId)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.PrintIssn)</dt>
+            <dd>@Html.DisplayFor(m => m.PrintIssn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ElectronicIssn)</dt>
+            <dd>@Html.DisplayFor(m => m.ElectronicIssn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Publisher.Name)</dt>
+            <dd>@Html.DisplayFor(m => m.Publisher.Name)</dd>
 
             <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
             <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
