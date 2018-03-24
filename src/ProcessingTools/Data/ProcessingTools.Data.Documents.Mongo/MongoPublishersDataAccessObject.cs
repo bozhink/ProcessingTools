@@ -68,6 +68,13 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var publisher = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
+            if (publisher != null)
+            {
+                var numberOfJournals = await this.GetCollection<Journal>().CountAsync(j => j.PublisherId == publisher.ObjectId.ToString()).ConfigureAwait(false);
+
+                publisher.NumberOfJournals = numberOfJournals;
+            }
+
             return publisher;
         }
 
@@ -77,6 +84,12 @@ namespace ProcessingTools.Data.Documents.Mongo
             if (id == null)
             {
                 return null;
+            }
+
+            long numberOfJournals = await this.GetNumberOfJournalsAsync(id.ToString()).ConfigureAwait(false);
+            if (numberOfJournals > 0L)
+            {
+                throw new DeleteUnsuccessfulException("Publisher will not be deleted because it contains related journals.");
             }
 
             Guid objectId = id.ToNewGuid();
@@ -143,6 +156,16 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return new IPublisherDetailsDataModel[] { };
             }
 
+            var journals = this.GetCollection<Journal>().AsQueryable()
+                .GroupBy(j => j.PublisherId)
+                .Select(g => new { PublisherId = g.Key, Count = g.LongCount() })
+                .ToArray();
+
+            publishers.ForEach(p =>
+            {
+                p.NumberOfJournals = journals.FirstOrDefault(j => j.PublisherId == p.ObjectId.ToString())?.Count ?? 0L;
+            });
+
             return publishers.ToArray<IPublisherDetailsDataModel>();
         }
 
@@ -187,6 +210,11 @@ namespace ProcessingTools.Data.Documents.Mongo
             }
 
             return publisher;
+        }
+
+        private Task<long> GetNumberOfJournalsAsync(string publisherId)
+        {
+            return this.GetCollection<Journal>().CountAsync(j => j.PublisherId == publisherId);
         }
     }
 }

@@ -42,6 +42,13 @@ namespace ProcessingTools.Web.Models.Documents.Publishers
         public string Address { get; set; }
 
         /// <summary>
+        /// Gets or sets the number of journals.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Number of journals")]
+        public long NumberOfJournals { get; set; }
+
+        /// <summary>
         /// Gets or sets created by.
         /// </summary>
         [ReadOnly(true)]

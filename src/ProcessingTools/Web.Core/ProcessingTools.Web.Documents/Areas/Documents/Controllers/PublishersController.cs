@@ -151,18 +151,26 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.CreatePublisherAsync(model).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.CreatePublisherAsync(model).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Publisher is not created.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Publisher is not created.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
@@ -226,18 +234,26 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.UpdatePublisherAsync(model).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.UpdatePublisherAsync(model).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Publisher is not updated.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Publisher is not updated.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
@@ -301,18 +317,26 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.DeletePublisherAsync(model.Id).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.DeletePublisherAsync(model.Id).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Publisher is not deleted.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Publisher is not deleted.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);

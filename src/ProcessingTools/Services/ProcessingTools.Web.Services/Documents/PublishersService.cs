@@ -98,6 +98,7 @@ namespace ProcessingTools.Web.Services.Documents
                         Name = publisher.Name,
                         AbbreviatedName = publisher.AbbreviatedName,
                         Address = publisher.Address,
+                        NumberOfJournals = publisher.NumberOfJournals,
                         CreatedBy = publisher.CreatedBy,
                         CreatedOn = publisher.CreatedOn,
                         ModifiedBy = publisher.ModifiedBy,
@@ -125,6 +126,7 @@ namespace ProcessingTools.Web.Services.Documents
                         Name = publisher.Name,
                         AbbreviatedName = publisher.AbbreviatedName,
                         Address = publisher.Address,
+                        NumberOfJournals = publisher.NumberOfJournals,
                         CreatedBy = publisher.CreatedBy,
                         CreatedOn = publisher.CreatedOn,
                         ModifiedBy = publisher.ModifiedBy,
@@ -143,7 +145,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var publisher = await this.publishersDataService.GetDetailsById(id).ConfigureAwait(false);
+                var publisher = await this.publishersDataService.GetById(id).ConfigureAwait(false);
                 if (publisher != null)
                 {
                     return new PublisherEditViewModel(userContext)
@@ -255,6 +257,7 @@ namespace ProcessingTools.Web.Services.Documents
                         Name = publisher.Name,
                         AbbreviatedName = publisher.AbbreviatedName,
                         Address = publisher.Address,
+                        NumberOfJournals = publisher.NumberOfJournals,
                         CreatedBy = publisher.CreatedBy,
                         CreatedOn = publisher.CreatedOn,
                         ModifiedBy = publisher.ModifiedBy,

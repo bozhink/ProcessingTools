@@ -56,5 +56,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
 
         /// <inheritdoc/>
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        public long NumberOfJournals { get; set; }
     }
 }
