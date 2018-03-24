@@ -45,6 +45,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         /// <inheritdoc/>
         public string JournalId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the article's journal.
+        /// </summary>
+        [BsonIgnore]
+        public IArticleJournalDataModel Journal { get; set; }
+
         /// <inheritdoc/>
         public DateTime? PublishedOn { get; set; }
 
