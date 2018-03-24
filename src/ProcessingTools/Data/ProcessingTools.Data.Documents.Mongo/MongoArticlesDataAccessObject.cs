@@ -247,16 +247,5 @@ namespace ProcessingTools.Data.Documents.Mongo
                     AbbreviatedName = j.AbbreviatedName
                 });
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 }
