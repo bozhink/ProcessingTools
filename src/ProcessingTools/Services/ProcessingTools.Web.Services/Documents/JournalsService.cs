@@ -104,6 +104,7 @@ namespace ProcessingTools.Web.Services.Documents
                         JournalId = journal.JournalId,
                         PrintIssn = journal.PrintIssn,
                         ElectronicIssn = journal.ElectronicIssn,
+                        NumberOfArticles = journal.NumberOfArticles,
                         CreatedBy = journal.CreatedBy,
                         CreatedOn = journal.CreatedOn,
                         ModifiedBy = journal.ModifiedBy,
@@ -135,6 +136,7 @@ namespace ProcessingTools.Web.Services.Documents
                         JournalId = journal.JournalId,
                         PrintIssn = journal.PrintIssn,
                         ElectronicIssn = journal.ElectronicIssn,
+                        NumberOfArticles = journal.NumberOfArticles,
                         CreatedBy = journal.CreatedBy,
                         CreatedOn = journal.CreatedOn,
                         ModifiedBy = journal.ModifiedBy,
@@ -198,6 +200,7 @@ namespace ProcessingTools.Web.Services.Documents
                 CreatedOn = j.CreatedOn,
                 ModifiedBy = j.ModifiedBy,
                 ModifiedOn = j.ModifiedOn,
+                NumberOfArticles = j.NumberOfArticles,
                 Publisher = new JournalPublisherViewModel
                 {
                     Id = j.Publisher.Id,

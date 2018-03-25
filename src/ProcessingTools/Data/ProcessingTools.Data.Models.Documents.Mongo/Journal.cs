@@ -70,5 +70,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         /// <inheritdoc/>
         [BsonIgnore]
         public IJournalPublisherDataModel Publisher { get; set; }
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        public long NumberOfArticles { get; set; }
     }
 }

@@ -86,7 +86,7 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
-            long numberOfJournals = await this.GetNumberOfJournalsAsync(id.ToString()).ConfigureAwait(false);
+            long numberOfJournals = await this.GetCollection<Journal>().CountAsync(j => j.PublisherId == id.ToString()).ConfigureAwait(false);
             if (numberOfJournals > 0L)
             {
                 throw new DeleteUnsuccessfulException("Publisher will not be deleted because it contains related journals.");
@@ -120,7 +120,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             publisher.CreatedOn = publisher.ModifiedOn;
             publisher.Id = null;
 
-            await this.Collection.InsertOneAsync(publisher).ConfigureAwait(false);
+            await this.Collection.InsertOneAsync(publisher, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
 
             return publisher;
         }
@@ -129,6 +129,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         public async Task<IPublisherDataModel[]> SelectAsync(int skip, int take)
         {
             var publishers = await this.Collection.Find(p => true)
+                .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -146,6 +147,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         public async Task<IPublisherDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
         {
             var publishers = await this.Collection.Find(p => true)
+                .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -161,10 +163,13 @@ namespace ProcessingTools.Data.Documents.Mongo
                 .Select(g => new { PublisherId = g.Key, Count = g.LongCount() })
                 .ToArray();
 
-            publishers.ForEach(p =>
+            if (journals != null && journals.Any())
             {
-                p.NumberOfJournals = journals.FirstOrDefault(j => j.PublisherId == p.ObjectId.ToString())?.Count ?? 0L;
-            });
+                publishers.ForEach(p =>
+                {
+                    p.NumberOfJournals = journals.FirstOrDefault(j => j.PublisherId == p.ObjectId.ToString())?.Count ?? 0L;
+                });
+            }
 
             return publishers.ToArray<IPublisherDetailsDataModel>();
         }
@@ -210,11 +215,6 @@ namespace ProcessingTools.Data.Documents.Mongo
             }
 
             return publisher;
-        }
-
-        private Task<long> GetNumberOfJournalsAsync(string publisherId)
-        {
-            return this.GetCollection<Journal>().CountAsync(j => j.PublisherId == publisherId);
         }
     }
 }

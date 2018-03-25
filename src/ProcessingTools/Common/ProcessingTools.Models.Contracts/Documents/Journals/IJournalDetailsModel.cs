@@ -9,5 +9,9 @@ namespace ProcessingTools.Models.Contracts.Documents.Journals
     /// </summary>
     public interface IJournalDetailsModel : IJournalModel
     {
+        /// <summary>
+        /// Gets or sets the number of articles.
+        /// </summary>
+        long NumberOfArticles { get; set; }
     }
 }
