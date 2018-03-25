@@ -148,6 +148,20 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public int NumberOfPages { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether article is finalized.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Is finalized")]
+        public bool IsFinalized { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether article is deployed.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Is deployed")]
+        public bool IsDeployed { get; set; }
+
+        /// <summary>
         /// Gets or sets created by.
         /// </summary>
         [ReadOnly(true)]

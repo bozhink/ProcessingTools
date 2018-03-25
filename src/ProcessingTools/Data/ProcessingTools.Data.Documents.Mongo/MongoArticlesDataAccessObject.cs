@@ -127,6 +127,8 @@ namespace ProcessingTools.Data.Documents.Mongo
             }
 
             var article = this.mapper.Map<IArticleInsertModel, Article>(model);
+            article.IsFinalized = false;
+            article.IsDeployed = false;
             article.ObjectId = this.applicationContext.GuidProvider.Invoke();
             article.ModifiedBy = this.applicationContext.UserContext.UserId;
             article.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();

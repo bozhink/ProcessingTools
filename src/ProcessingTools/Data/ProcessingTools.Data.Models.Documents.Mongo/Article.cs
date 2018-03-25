@@ -85,6 +85,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public int NumberOfPages { get; set; }
 
         /// <inheritdoc/>
+        public bool IsFinalized { get; set; }
+
+        /// <inheritdoc/>
+        public bool IsDeployed { get; set; }
+
+        /// <inheritdoc/>
         public string CreatedBy { get; set; }
 
         /// <inheritdoc/>
