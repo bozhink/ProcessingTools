@@ -63,7 +63,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var result = await this.Collection.DeleteOneAsync(p => p.ObjectId == objectId).ConfigureAwait(false);
+            var result = await this.Collection.DeleteOneAsync(a => a.ObjectId == objectId).ConfigureAwait(false);
 
             if (!result.IsAcknowledged)
             {
@@ -83,7 +83,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var article = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var article = await this.Collection.Find(a => a.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
             return article;
         }
@@ -98,7 +98,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var article = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var article = await this.Collection.Find(a => a.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
             if (article != null)
             {
@@ -113,7 +113,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IArticleJournalDataModel[]> GetArticleJournalsAsync()
         {
-            var journals = await this.GetArticleJournalsQuery(p => true).ToListAsync().ConfigureAwait(false);
+            var journals = await this.GetArticleJournalsQuery(j => true).ToListAsync().ConfigureAwait(false);
 
             return journals.ToArray<IArticleJournalDataModel>();
         }
@@ -134,7 +134,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             article.CreatedOn = article.ModifiedOn;
             article.Id = null;
 
-            await this.Collection.InsertOneAsync(article).ConfigureAwait(false);
+            await this.Collection.InsertOneAsync(article, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
 
             return article;
         }
@@ -142,7 +142,8 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IArticleDataModel[]> SelectAsync(int skip, int take)
         {
-            var articles = await this.Collection.Find(p => true)
+            var articles = await this.Collection.Find(a => true)
+                .SortByDescending(a => a.CreatedOn)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -159,7 +160,8 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IArticleDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
         {
-            var articles = await this.Collection.Find(p => true)
+            var articles = await this.Collection.Find(a => true)
+                .SortByDescending(a => a.CreatedOn)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -176,7 +178,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             {
                 articles.ForEach(a =>
                 {
-                    a.Journal = journals.FirstOrDefault(p => p.Id == a.JournalId);
+                    a.Journal = journals.FirstOrDefault(j => j.Id == a.JournalId);
                 });
             }
 
@@ -186,7 +188,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(p => true);
+            return this.Collection.CountAsync(a => true);
         }
 
         /// <inheritdoc/>
@@ -205,22 +207,22 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<Article>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Article>()
-                .Set(p => p.Title, model.Title)
-                .Set(p => p.SubTitle, model.SubTitle)
-                .Set(p => p.JournalId, model.JournalId)
-                .Set(p => p.PublishedOn, model.PublishedOn)
-                .Set(p => p.AcceptedOn, model.AcceptedOn)
-                .Set(p => p.ReceivedOn, model.ReceivedOn)
-                .Set(p => p.VolumeSeries, model.VolumeSeries)
-                .Set(p => p.Volume, model.Volume)
-                .Set(p => p.Issue, model.Issue)
-                .Set(p => p.IssuePart, model.IssuePart)
-                .Set(p => p.ELocationId, model.ELocationId)
-                .Set(p => p.FirstPage, model.FirstPage)
-                .Set(p => p.LastPage, model.LastPage)
-                .Set(p => p.NumberOfPages, model.NumberOfPages)
-                .Set(p => p.ModifiedBy, article.ModifiedBy)
-                .Set(p => p.ModifiedOn, article.ModifiedOn);
+                .Set(a => a.Title, model.Title)
+                .Set(a => a.SubTitle, model.SubTitle)
+                .Set(a => a.JournalId, model.JournalId)
+                .Set(a => a.PublishedOn, model.PublishedOn)
+                .Set(a => a.AcceptedOn, model.AcceptedOn)
+                .Set(a => a.ReceivedOn, model.ReceivedOn)
+                .Set(a => a.VolumeSeries, model.VolumeSeries)
+                .Set(a => a.Volume, model.Volume)
+                .Set(a => a.Issue, model.Issue)
+                .Set(a => a.IssuePart, model.IssuePart)
+                .Set(a => a.ELocationId, model.ELocationId)
+                .Set(a => a.FirstPage, model.FirstPage)
+                .Set(a => a.LastPage, model.LastPage)
+                .Set(a => a.NumberOfPages, model.NumberOfPages)
+                .Set(a => a.ModifiedBy, article.ModifiedBy)
+                .Set(a => a.ModifiedOn, article.ModifiedOn);
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
