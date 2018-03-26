@@ -511,7 +511,7 @@
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
           <servers defaultServer="">
-            <server name="OwinHost" exePath="{solutiondir}\packages\OwinHost.3.1.0\tools\OwinHost.exe" cmdArgs="-u {url}" url="http://localhost:12345/" workingDir="{projectdir}" />
+            <server name="OwinHost" exePath="{solutiondir}\packages\OwinHost.4.0.0\tools\OwinHost.exe" cmdArgs="-u {url}" url="http://localhost:12345/" workingDir="{projectdir}" />
           </servers>
         </WebProjectProperties>
       </FlavorProperties>
