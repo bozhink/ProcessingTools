@@ -166,6 +166,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                viewModel.ReturnUrl = model.ReturnUrl;
 
                 return this.View(viewModel);
             }
@@ -241,6 +242,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                viewModel.ReturnUrl = model.ReturnUrl;
 
                 return this.View(viewModel);
             }
@@ -316,6 +318,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                viewModel.ReturnUrl = model.ReturnUrl;
 
                 return this.View(viewModel);
             }

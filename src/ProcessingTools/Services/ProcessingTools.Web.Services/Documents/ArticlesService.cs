@@ -48,6 +48,10 @@ namespace ProcessingTools.Web.Services.Documents
 
                 c.CreateMap<IArticleJournalModel, ArticleJournalViewModel>();
 
+                c.CreateMap<IArticleModel, ArticleDeleteViewModel>();
+                c.CreateMap<IArticleModel, ArticleDetailsViewModel>();
+                c.CreateMap<IArticleModel, ArticleEditViewModel>();
+                c.CreateMap<IArticleModel, ArticleIndexViewModel>();
                 c.CreateMap<IArticleDetailsModel, ArticleDeleteViewModel>();
                 c.CreateMap<IArticleDetailsModel, ArticleDetailsViewModel>();
                 c.CreateMap<IArticleDetailsModel, ArticleEditViewModel>();
@@ -195,8 +199,6 @@ namespace ProcessingTools.Web.Services.Documents
                 this.mapper.Map(model, viewModel);
             }
 
-            viewModel.ReturnUrl = model?.ReturnUrl;
-
             return viewModel;
         }
 
@@ -226,10 +228,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new ArticleEditViewModel(userContext, new ArticleJournalViewModel[] { })
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
+            return new ArticleEditViewModel(userContext, new ArticleJournalViewModel[] { });
         }
 
         /// <inheritdoc/>
@@ -247,16 +246,11 @@ namespace ProcessingTools.Web.Services.Documents
                     var viewModel = new ArticleDeleteViewModel(userContext, journal);
                     this.mapper.Map(article, viewModel);
 
-                    viewModel.ReturnUrl = model.ReturnUrl;
-
                     return viewModel;
                 }
             }
 
-            return new ArticleDeleteViewModel(userContext, new ArticleJournalViewModel())
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
+            return new ArticleDeleteViewModel(userContext, new ArticleJournalViewModel());
         }
 
         private async Task<ArticleJournalViewModel[]> GetArticleJournalsViewModelsAsync()

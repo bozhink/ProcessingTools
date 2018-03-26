@@ -32,10 +32,5 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         [ReadOnly(true)]
         [Display(Name = "Publisher name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether publisher is selected.
-        /// </summary>
-        public bool Selected { get; set; }
     }
 }

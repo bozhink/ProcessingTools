@@ -46,13 +46,14 @@ namespace ProcessingTools.Web.Services.Documents
                 c.CreateMap<PublisherUpdateRequestModel, PublisherEditViewModel>();
                 c.CreateMap<PublisherDeleteRequestModel, PublisherDeleteViewModel>();
 
-                c.CreateMap<IPublisherDetailsModel, PublisherDeleteViewModel>();
                 c.CreateMap<IPublisherModel, PublisherDeleteViewModel>();
-                c.CreateMap<IPublisherDetailsModel, PublisherDetailsViewModel>();
                 c.CreateMap<IPublisherModel, PublisherDetailsViewModel>();
+                c.CreateMap<IPublisherModel, PublisherEditViewModel>();
+                c.CreateMap<IPublisherModel, PublisherIndexViewModel>();
+                c.CreateMap<IPublisherDetailsModel, PublisherDeleteViewModel>();
+                c.CreateMap<IPublisherDetailsModel, PublisherDetailsViewModel>();
                 c.CreateMap<IPublisherDetailsModel, PublisherEditViewModel>();
                 c.CreateMap<IPublisherDetailsModel, PublisherIndexViewModel>();
-                c.CreateMap<IPublisherModel, PublisherIndexViewModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -187,10 +188,7 @@ namespace ProcessingTools.Web.Services.Documents
                 return viewModel;
             }
 
-            return new PublisherCreateViewModel(userContext)
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
+            return new PublisherCreateViewModel(userContext);
         }
 
         /// <inheritdoc/>
@@ -215,10 +213,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new PublisherEditViewModel(userContext)
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
+            return new PublisherEditViewModel(userContext);
         }
 
         /// <inheritdoc/>
@@ -238,10 +233,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new PublisherDeleteViewModel(userContext)
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
+            return new PublisherDeleteViewModel(userContext);
         }
     }
 }
