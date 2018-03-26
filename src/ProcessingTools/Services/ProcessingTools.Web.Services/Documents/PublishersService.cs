@@ -7,8 +7,10 @@ namespace ProcessingTools.Web.Services.Documents
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using AutoMapper;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.Models.Contracts.Documents.Publishers;
     using ProcessingTools.Web.Models.Documents.Publishers;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services.Contracts.Documents;
@@ -20,6 +22,7 @@ namespace ProcessingTools.Web.Services.Documents
     {
         private readonly IPublishersDataService publishersDataService;
         private readonly Func<Task<UserContext>> userContextFactory;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishersService"/> class.
@@ -36,6 +39,22 @@ namespace ProcessingTools.Web.Services.Documents
             this.publishersDataService = publishersDataService ?? throw new ArgumentNullException(nameof(publishersDataService));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
+
+            MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<PublisherCreateRequestModel, PublisherCreateViewModel>();
+                c.CreateMap<PublisherUpdateRequestModel, PublisherEditViewModel>();
+                c.CreateMap<PublisherDeleteRequestModel, PublisherDeleteViewModel>();
+
+                c.CreateMap<IPublisherDetailsModel, PublisherDeleteViewModel>();
+                c.CreateMap<IPublisherModel, PublisherDeleteViewModel>();
+                c.CreateMap<IPublisherDetailsModel, PublisherDetailsViewModel>();
+                c.CreateMap<IPublisherModel, PublisherDetailsViewModel>();
+                c.CreateMap<IPublisherDetailsModel, PublisherEditViewModel>();
+                c.CreateMap<IPublisherDetailsModel, PublisherIndexViewModel>();
+                c.CreateMap<IPublisherModel, PublisherIndexViewModel>();
+            });
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>
@@ -92,18 +111,10 @@ namespace ProcessingTools.Web.Services.Documents
                 var publisher = await this.publishersDataService.GetDetailsById(id).ConfigureAwait(false);
                 if (publisher != null)
                 {
-                    return new PublisherDeleteViewModel(userContext)
-                    {
-                        Id = publisher.Id,
-                        Name = publisher.Name,
-                        AbbreviatedName = publisher.AbbreviatedName,
-                        Address = publisher.Address,
-                        NumberOfJournals = publisher.NumberOfJournals,
-                        CreatedBy = publisher.CreatedBy,
-                        CreatedOn = publisher.CreatedOn,
-                        ModifiedBy = publisher.ModifiedBy,
-                        ModifiedOn = publisher.ModifiedOn
-                    };
+                    var viewModel = new PublisherDeleteViewModel(userContext);
+                    this.mapper.Map(publisher, viewModel);
+
+                    return viewModel;
                 }
             }
 
@@ -120,18 +131,10 @@ namespace ProcessingTools.Web.Services.Documents
                 var publisher = await this.publishersDataService.GetDetailsById(id).ConfigureAwait(false);
                 if (publisher != null)
                 {
-                    return new PublisherDetailsViewModel(userContext)
-                    {
-                        Id = publisher.Id,
-                        Name = publisher.Name,
-                        AbbreviatedName = publisher.AbbreviatedName,
-                        Address = publisher.Address,
-                        NumberOfJournals = publisher.NumberOfJournals,
-                        CreatedBy = publisher.CreatedBy,
-                        CreatedOn = publisher.CreatedOn,
-                        ModifiedBy = publisher.ModifiedBy,
-                        ModifiedOn = publisher.ModifiedOn
-                    };
+                    var viewModel = new PublisherDetailsViewModel(userContext);
+                    this.mapper.Map(publisher, viewModel);
+
+                    return viewModel;
                 }
             }
 
@@ -148,17 +151,10 @@ namespace ProcessingTools.Web.Services.Documents
                 var publisher = await this.publishersDataService.GetById(id).ConfigureAwait(false);
                 if (publisher != null)
                 {
-                    return new PublisherEditViewModel(userContext)
-                    {
-                        Id = publisher.Id,
-                        AbbreviatedName = publisher.AbbreviatedName,
-                        Name = publisher.Name,
-                        Address = publisher.Address,
-                        CreatedBy = publisher.CreatedBy,
-                        CreatedOn = publisher.CreatedOn,
-                        ModifiedBy = publisher.ModifiedBy,
-                        ModifiedOn = publisher.ModifiedOn
-                    };
+                    var viewModel = new PublisherEditViewModel(userContext);
+                    this.mapper.Map(publisher, viewModel);
+
+                    return viewModel;
                 }
             }
 
@@ -173,19 +169,9 @@ namespace ProcessingTools.Web.Services.Documents
             var data = await this.publishersDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.publishersDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var publishers = data?.Select(p => new PublisherIndexViewModel
-            {
-                Id = p.Id,
-                Name = p.Name,
-                AbbreviatedName = p.AbbreviatedName,
-                Address = p.Address,
-                CreatedBy = p.CreatedBy,
-                CreatedOn = p.CreatedOn,
-                ModifiedBy = p.ModifiedBy,
-                ModifiedOn = p.ModifiedOn
-            });
+            var publishers = data?.Select(this.mapper.Map<IPublisherModel, PublisherIndexViewModel>).ToArray() ?? new PublisherIndexViewModel[] { };
 
-            return new PublishersIndexViewModel(userContext, count, take, skip / take, publishers ?? new PublisherIndexViewModel[] { });
+            return new PublishersIndexViewModel(userContext, count, take, skip / take, publishers);
         }
 
         /// <inheritdoc/>
@@ -195,13 +181,10 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null)
             {
-                return new PublisherCreateViewModel(userContext)
-                {
-                    Name = model.Name,
-                    AbbreviatedName = model.AbbreviatedName,
-                    Address = model.Address,
-                    ReturnUrl = model.ReturnUrl
-                };
+                var viewModel = new PublisherCreateViewModel(userContext);
+                this.mapper.Map(model, viewModel);
+
+                return viewModel;
             }
 
             return new PublisherCreateViewModel(userContext)
@@ -220,18 +203,15 @@ namespace ProcessingTools.Web.Services.Documents
                 var publisher = await this.publishersDataService.GetDetailsById(model.Id).ConfigureAwait(false);
                 if (publisher != null)
                 {
-                    return new PublisherEditViewModel(userContext)
-                    {
-                        Id = model.Id,
-                        Name = model.Name,
-                        AbbreviatedName = model.AbbreviatedName,
-                        Address = model.Address,
-                        CreatedBy = publisher.CreatedBy,
-                        CreatedOn = publisher.CreatedOn,
-                        ModifiedBy = publisher.ModifiedBy,
-                        ModifiedOn = publisher.ModifiedOn,
-                        ReturnUrl = model.ReturnUrl
-                    };
+                    var viewModel = new PublisherEditViewModel(userContext);
+                    this.mapper.Map(model, viewModel);
+
+                    viewModel.CreatedBy = publisher.CreatedBy;
+                    viewModel.CreatedOn = publisher.CreatedOn;
+                    viewModel.ModifiedBy = publisher.ModifiedBy;
+                    viewModel.ModifiedOn = publisher.ModifiedOn;
+
+                    return viewModel;
                 }
             }
 
@@ -251,19 +231,10 @@ namespace ProcessingTools.Web.Services.Documents
                 var publisher = await this.publishersDataService.GetDetailsById(model.Id).ConfigureAwait(false);
                 if (publisher != null)
                 {
-                    return new PublisherDeleteViewModel(userContext)
-                    {
-                        Id = publisher.Id,
-                        Name = publisher.Name,
-                        AbbreviatedName = publisher.AbbreviatedName,
-                        Address = publisher.Address,
-                        NumberOfJournals = publisher.NumberOfJournals,
-                        CreatedBy = publisher.CreatedBy,
-                        CreatedOn = publisher.CreatedOn,
-                        ModifiedBy = publisher.ModifiedBy,
-                        ModifiedOn = publisher.ModifiedOn,
-                        ReturnUrl = model?.ReturnUrl
-                    };
+                    var viewModel = new PublisherDeleteViewModel(userContext);
+                    this.mapper.Map(publisher, viewModel);
+
+                    return viewModel;
                 }
             }
 
