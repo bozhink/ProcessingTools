@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
     /// <summary>
     /// Document base model.
     /// </summary>
-    public interface IDocumentBaseModel
+    public interface IDocumentBaseModel : IDescribed, IContentTyped
     {
     }
 }
