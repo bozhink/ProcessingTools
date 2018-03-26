@@ -1,12 +1,20 @@
-﻿namespace ProcessingTools.Web.Documents.Data.Migrations
+﻿// <copyright file="ApplicationDbContextModelSnapshot.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Documents.Data.Migrations
 {
     using System;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Infrastructure;
 
+    /// <summary>
+    /// ApplicationDbContext Model Snapshot
+    /// </summary>
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    public partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
+        /// <inheritdoc/>
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
