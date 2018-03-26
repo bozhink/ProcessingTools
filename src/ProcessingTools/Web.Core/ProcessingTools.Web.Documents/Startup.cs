@@ -102,7 +102,6 @@ namespace ProcessingTools.Web.Documents
                   policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
             });
 
-
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 ////options.AreaViewLocationFormats.Clear();
@@ -157,6 +156,10 @@ namespace ProcessingTools.Web.Documents
                 .RegisterType<ProcessingTools.Web.Services.Documents.JournalsService>()
                 .As<ProcessingTools.Web.Services.Contracts.Documents.IJournalsService>()
                 .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Web.Services.Documents.ArticlesService>()
+                .As<ProcessingTools.Web.Services.Contracts.Documents.IArticlesService>()
+                .InstancePerDependency();
 
             builder
                 .RegisterType<ProcessingTools.Services.Documents.PublishersDataService>()
@@ -165,6 +168,10 @@ namespace ProcessingTools.Web.Documents
             builder
                 .RegisterType<ProcessingTools.Services.Documents.JournalsDataService>()
                 .As<ProcessingTools.Services.Contracts.Documents.IJournalsDataService>()
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Services.Documents.ArticlesDataService>()
+                .As<ProcessingTools.Services.Contracts.Documents.IArticlesDataService>()
                 .InstancePerDependency();
 
             builder
@@ -183,6 +190,14 @@ namespace ProcessingTools.Web.Documents
                         (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
                 .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoArticlesDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.Documents.IArticlesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
+                .InstancePerDependency();
 
             var container = builder.Build();
 
@@ -196,6 +211,7 @@ namespace ProcessingTools.Web.Documents
         /// <param name="env">Hosting environment.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+#pragma warning disable S1075 // URIs should not be hardcoded
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -230,6 +246,7 @@ namespace ProcessingTools.Web.Documents
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+#pragma warning restore S1075 // URIs should not be hardcoded
         }
 
         private void ServeStaticFiles(IApplicationBuilder app, IHostingEnvironment env, string rootPath, string requestPath)
