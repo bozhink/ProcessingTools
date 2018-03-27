@@ -25,9 +25,6 @@ namespace ProcessingTools.Services.Models.Documents.Documents
         public string Description { get; set; }
 
         /// <inheritdoc/>
-        public string ContentType { get; set; }
-
-        /// <inheritdoc/>
         public string CreatedBy { get; set; }
 
         /// <inheritdoc/>
