@@ -25,6 +25,6 @@
         public virtual ContentType ContentType { get; set; }
 
         [NotMapped]
-        string IContentTypeable.ContentType => this.ContentType.Name;
+        string IContentTyped.ContentType => this.ContentType.Name;
     }
 }

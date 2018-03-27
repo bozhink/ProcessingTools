@@ -10,7 +10,7 @@ namespace ProcessingTools.Models.Contracts.Services.Data.Documents
     /// <summary>
     /// Document service model.
     /// </summary>
-    public interface IDocument : IStringIdentifiable, IContentTypeable, ICommentable
+    public interface IDocument : IStringIdentifiable, IContentTyped, ICommentable
     {
         /// <summary>
         /// Gets file content length.
