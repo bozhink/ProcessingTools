@@ -10,8 +10,8 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
     public interface IDocumentBaseModel : IDescribed, IContentTyped
     {
         /// <summary>
-        /// Gets or sets the document content.
+        /// Gets the document content.
         /// </summary>
-        IDocumentContentModel DocumentContent { get; set; }
+        IDocumentContentModel DocumentContent { get; }
     }
 }

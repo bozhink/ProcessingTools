@@ -10,8 +10,8 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
     public interface IDocumentDetailsModel : IDocumentModel
     {
         /// <summary>
-        /// Gets or sets the number of files.
+        /// Gets the number of files.
         /// </summary>
-        long NumberOfFiles { get; set; }
+        long NumberOfFiles { get; }
     }
 }

@@ -10,8 +10,8 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
     public interface IDocumentModel : IDocumentBaseModel, IStringIdentifiable, ICreated, IModified
     {
         /// <summary>
-        /// Gets or sets a value indicating whether document is final.
+        /// Gets a value indicating whether document is final.
         /// </summary>
-        bool IsFinal { get; set; }
+        bool IsFinal { get; }
     }
 }

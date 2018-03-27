@@ -10,13 +10,13 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
     public interface IDocumentContentModel
     {
         /// <summary>
-        /// Gets or sets the document object ID.
+        /// Gets the document object ID.
         /// </summary>
-        string DocumentId { get; set; }
+        string DocumentId { get; }
 
         /// <summary>
-        /// Gets or sets the content of the document.
+        /// Gets the content of the document.
         /// </summary>
-        string Content { get; set; }
+        string Content { get; }
     }
 }

@@ -10,13 +10,13 @@ namespace ProcessingTools.Models.Contracts.Documents.Journals
     public interface IJournalPublisherModel : IStringIdentifiable
     {
         /// <summary>
-        /// Gets or sets the publisher's abbreviated name.
+        /// Gets the publisher's name.
         /// </summary>
-        string AbbreviatedName { get; set; }
+        string Name { get; }
 
         /// <summary>
-        /// Gets or sets the publisher's name.
+        /// Gets the publisher's abbreviated name.
         /// </summary>
-        string Name { get; set; }
+        string AbbreviatedName { get; }
     }
 }
