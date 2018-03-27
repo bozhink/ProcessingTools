@@ -9,5 +9,49 @@ namespace ProcessingTools.Models.Contracts.Documents.Files
     /// </summary>
     public interface IFileBaseModel
     {
+        /// <summary>
+        /// Gets the content length.
+        /// </summary>
+        long ContentLength { get; }
+
+        /// <summary>
+        /// Gets the content type.
+        /// </summary>
+        string ContentType { get; }
+
+        /// <summary>
+        /// Gets the file extension.
+        /// </summary>
+        string FileExtension { get; }
+
+        /// <summary>
+        /// Gets the file name.
+        /// </summary>
+        string FileName { get; }
+
+        /// <summary>
+        /// Gets the original content length.
+        /// </summary>
+        long OriginalContentLength { get; }
+
+        /// <summary>
+        /// Gets the original content type.
+        /// </summary>
+        string OriginalContentType { get; }
+
+        /// <summary>
+        /// Gets the original file extension.
+        /// </summary>
+        string OriginalFileExtension { get; }
+
+        /// <summary>
+        /// Gets the original file name.
+        /// </summary>
+        string OriginalFileName { get; }
+
+        /// <summary>
+        /// Gets the system file name.
+        /// </summary>
+        string SystemFileName { get; }
     }
 }
