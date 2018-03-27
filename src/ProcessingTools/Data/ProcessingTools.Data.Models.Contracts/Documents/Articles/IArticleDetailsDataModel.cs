@@ -10,8 +10,8 @@ namespace ProcessingTools.Data.Models.Contracts.Documents.Articles
     public interface IArticleDetailsDataModel : IArticleDataModel, ProcessingTools.Models.Contracts.Documents.Articles.IArticleDetailsModel
     {
         /// <summary>
-        /// Gets or sets the article journal.
+        /// Gets the article journal.
         /// </summary>
-        IArticleJournalDataModel Journal { get; set; }
+        IArticleJournalDataModel Journal { get; }
     }
 }

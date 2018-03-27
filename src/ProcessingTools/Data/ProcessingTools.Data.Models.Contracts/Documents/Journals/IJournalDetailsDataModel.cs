@@ -10,8 +10,8 @@ namespace ProcessingTools.Data.Models.Contracts.Documents.Journals
     public interface IJournalDetailsDataModel : IJournalDataModel, ProcessingTools.Models.Contracts.Documents.Journals.IJournalDetailsModel
     {
         /// <summary>
-        /// Gets or sets the journal publisher.
+        /// Gets the journal publisher.
         /// </summary>
-        IJournalPublisherDataModel Publisher { get; set; }
+        IJournalPublisherDataModel Publisher { get; }
     }
 }
