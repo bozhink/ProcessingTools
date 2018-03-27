@@ -20,4 +20,3 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
         string Content { get; set; }
     }
 }
-

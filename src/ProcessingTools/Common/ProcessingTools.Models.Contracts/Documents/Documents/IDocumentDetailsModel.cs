@@ -15,4 +15,3 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
         long NumberOfFiles { get; set; }
     }
 }
-

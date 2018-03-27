@@ -15,4 +15,3 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
         IDocumentContentModel DocumentContent { get; set; }
     }
 }
-
