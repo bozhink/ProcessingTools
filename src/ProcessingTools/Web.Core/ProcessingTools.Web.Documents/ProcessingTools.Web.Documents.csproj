@@ -29,7 +29,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Ninject" Version="3.3.4" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc3" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0" />
     <PackageReference Include="NLog" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
