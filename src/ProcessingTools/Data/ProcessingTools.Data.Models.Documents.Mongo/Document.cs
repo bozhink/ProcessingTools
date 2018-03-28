@@ -36,6 +36,10 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public Guid ObjectId { get; set; }
 
         /// <inheritdoc/>
+        [BsonRequired]
+        public string ArticleId { get; set; }
+
+        /// <inheritdoc/>
         public bool IsFinal { get; set; }
 
         /// <inheritdoc/>

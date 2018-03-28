@@ -9,5 +9,9 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
     /// </summary>
     public interface IDocumentBaseModel : IDescribed
     {
+        /// <summary>
+        /// Gets the article ID.
+        /// </summary>
+        string ArticleId { get; }
     }
 }
