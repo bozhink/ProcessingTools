@@ -57,12 +57,6 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         /// <inheritdoc/>
         public DateTime ModifiedOn { get; set; }
 
-        /// <summary>
-        /// Gets or sets the document content.
-        /// </summary>
-        [BsonIgnoreIfNull]
-        public DocumentContent Content { get; set; }
-
         /// <inheritdoc/>
         [BsonIgnore]
         public long NumberOfFiles { get; set; }

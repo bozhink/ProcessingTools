@@ -41,6 +41,6 @@ namespace ProcessingTools.Data.Contracts.Documents
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <returns>Document file.</returns>
-        Task<IDocumentFileDataModel> GetDocumentFile(object id);
+        Task<IDocumentFileDataModel> GetDocumentFileAsync(object id);
     }
 }
