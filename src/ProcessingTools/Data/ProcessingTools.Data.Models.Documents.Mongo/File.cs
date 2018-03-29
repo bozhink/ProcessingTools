@@ -35,6 +35,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         [BsonRepresentation(BsonType.String)]
         public Guid ObjectId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ID of the related document.
+        /// </summary>
+        [BsonIgnoreIfNull]
+        public string DocumentId { get; set; }
+
         /// <inheritdoc/>
         public long ContentLength { get; set; }
 

@@ -7,17 +7,12 @@ namespace ProcessingTools.Models.Contracts.Documents.Files
     /// <summary>
     /// File base model.
     /// </summary>
-    public interface IFileBaseModel
+    public interface IFileBaseModel : IContentTyped
     {
         /// <summary>
         /// Gets the content length.
         /// </summary>
         long ContentLength { get; }
-
-        /// <summary>
-        /// Gets the content type.
-        /// </summary>
-        string ContentType { get; }
 
         /// <summary>
         /// Gets the file extension.
