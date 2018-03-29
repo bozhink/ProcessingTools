@@ -15,6 +15,11 @@ namespace ProcessingTools.Web.Documents.Constants
         public const string Default = "";
 
         /// <summary>
+        /// Admin area.
+        /// </summary>
+        public const string Admin = nameof(Admin);
+
+        /// <summary>
         /// Documents area.
         /// </summary>
         public const string Documents = nameof(Documents);
