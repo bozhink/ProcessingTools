@@ -24,6 +24,10 @@
     <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.1" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.1" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.1" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.1" />
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
@@ -33,5 +37,8 @@
     <ProjectReference Include="..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 </Project>
