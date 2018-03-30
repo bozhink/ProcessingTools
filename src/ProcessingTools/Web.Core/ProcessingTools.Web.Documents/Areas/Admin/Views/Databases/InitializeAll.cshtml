@@ -1,0 +1,70 @@
+﻿@model ProcessingTools.Web.Models.Admin.Databases.InitializeViewModel
+
+@{
+    ViewData[ContextKeys.Title] = "Initialize all databases";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(m => m.NumberOfDatabases)</dt>
+            <dd>@Html.DisplayFor(m => m.NumberOfDatabases)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Success)</dt>
+            <dd>@Html.DisplayFor(m => m.Success)</dd>
+        </dl>
+
+        @if (Model.Exceptions.Any())
+        {
+            <section>
+                <header>
+                    <h3>Exceptions</h3>
+                </header>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Class name</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 0; }
+                        @foreach (var exception in Model.Exceptions)
+                        {
+                            <tr>
+                                <td>@(++i)</td>
+                                <td>@(exception.GetType().FullName)</td>
+                                <td>@(exception.Message)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
+        }
+    }
+
+    <a asp-action="@(DatabasesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+
+</section>
+

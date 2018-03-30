@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using Autofac;
     using Autofac.Core;
@@ -20,6 +21,7 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.Extensions.FileProviders;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Data.Contracts;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Web.Documents.Models;
@@ -133,6 +135,14 @@ namespace ProcessingTools.Web.Documents
                 .WithParameter(InjectionConstants.DatabaseNameParameterName, this.configuration[ConfigurationConstants.HistoryMongoDBDatabaseName])
                 .InstancePerLifetimeScope();
 
+            builder
+                .Register<Func<IEnumerable<IDatabaseInitializer>>>(c => () => new IDatabaseInitializer[]
+                {
+                    c.Resolve<ProcessingTools.Data.Documents.Mongo.MongoDocumentsDatabaseInitializer>()
+                })
+                .As<Func<IEnumerable<IDatabaseInitializer>>>()
+                .InstancePerDependency();
+
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
 
             builder
@@ -162,6 +172,11 @@ namespace ProcessingTools.Web.Documents
                 .InstancePerDependency();
 
             builder
+                .RegisterType<ProcessingTools.Web.Services.Admin.DatabasesService>()
+                .As<ProcessingTools.Web.Services.Contracts.Admin.IDatabasesService>()
+                .InstancePerDependency();
+
+            builder
                 .RegisterType<ProcessingTools.Services.Documents.PublishersDataService>()
                 .As<ProcessingTools.Services.Contracts.Documents.IPublishersDataService>()
                 .InstancePerDependency();
@@ -172,6 +187,11 @@ namespace ProcessingTools.Web.Documents
             builder
                 .RegisterType<ProcessingTools.Services.Documents.ArticlesDataService>()
                 .As<ProcessingTools.Services.Contracts.Documents.IArticlesDataService>()
+                .InstancePerDependency();
+
+            builder
+                .RegisterType<ProcessingTools.Services.Admin.DatabasesService>()
+                .As<ProcessingTools.Services.Contracts.Admin.IDatabasesService>()
                 .InstancePerDependency();
 
             builder
@@ -193,6 +213,15 @@ namespace ProcessingTools.Web.Documents
             builder
                 .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoArticlesDataAccessObject>()
                 .As<ProcessingTools.Data.Contracts.Documents.IArticlesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
+                .InstancePerDependency();
+
+            builder
+                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoDocumentsDatabaseInitializer>()
+                .AsSelf()
                 .WithParameter(
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
