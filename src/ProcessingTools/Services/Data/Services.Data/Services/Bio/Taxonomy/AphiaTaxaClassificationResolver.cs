@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
+    using ProcessingTools.Clients.Bio.Aphia.ServiceReference;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
@@ -13,30 +13,38 @@
 
     public class AphiaTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IAphiaTaxaClassificationResolver
     {
-        protected override Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
+        protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
         {
-            return Task.Run(() =>
+            var aphiaRecords = await this.GetAphiaRecords(scientificName);
+
+            var result = new HashSet<ITaxonClassification>();
+
+            if (aphiaRecords != null && aphiaRecords.@return.Length > 0)
             {
-                var result = new HashSet<ITaxonClassification>();
+                var records = aphiaRecords.@return
+                    .Where(s => string.Compare(s.scientificname, scientificName, true) == 0)
+                    .Select(this.MapAphiaRecordToTaxonClassification);
 
-                using (var aphiaService = new AphiaNameService())
+                foreach (var record in records)
                 {
-                    var aphiaRecords = aphiaService.getAphiaRecords(scientificName, false, true, false, 0);
-                    if (aphiaRecords != null && aphiaRecords.Length > 0)
-                    {
-                        var records = aphiaRecords
-                            .Where(s => string.Compare(s.scientificname, scientificName, true) == 0)
-                            .Select(this.MapAphiaRecordToTaxonClassification);
-
-                        foreach (var record in records)
-                        {
-                            result.Add(record);
-                        }
-                    }
+                    result.Add(record);
                 }
+            }
 
-                return result.ToArray();
-            });
+            return result.ToArray();
+        }
+
+        private async Task<getAphiaRecordsResponse> GetAphiaRecords(string scientificName)
+        {
+            var client = new AphiaNameServicePortTypeClient();
+
+            await client.OpenAsync().ConfigureAwait(false);
+
+            var aphiaRecords = await client.getAphiaRecordsAsync(new getAphiaRecordsRequest(scientificName, false, true, false, 0)).ConfigureAwait(false);
+
+            await client.CloseAsync().ConfigureAwait(false);
+
+            return aphiaRecords;
         }
 
         private ITaxonClassification MapAphiaRecordToTaxonClassification(AphiaRecord record)

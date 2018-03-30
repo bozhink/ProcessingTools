@@ -5,24 +5,24 @@
 namespace ProcessingTools.Clients.Tests.Integration.Tests.Bio.Taxonomy.Aphia
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia;
+    using ProcessingTools.Clients.Bio.Aphia.ServiceReference;
 
     /// <summary>
-    /// <see cref="AphiaNameService"/> integration tests.
+    /// <see cref="AphiaNameServicePortTypeClient"/> integration tests.
     /// </summary>
     [TestClass]
     public class AphiaNameServiceIntegrationTests
     {
         /// <summary>
-        /// <see cref="AphiaNameService"/> GetAphiaRecords with valid parameters should work.
+        /// <see cref="AphiaNameServicePortTypeClient"/> GetAphiaRecords with valid parameters should work.
         /// </summary>
         [TestMethod]
         [Timeout(20000)]
         [Ignore(message: "Net dependent integration test")] // Net dependent integration test
         public void AphiaService_GetAphiaRecordsWithValidParameters_ShouldWork()
         {
-            var service = new AphiaNameService();
-            var records = service.getAphiaRecords("Anodontiglanis", true, true, false, 0);
+            var client = new AphiaNameServicePortTypeClient();
+            var records = client.getAphiaRecordsAsync(new getAphiaRecordsRequest("Anodontiglanis", true, true, false, 0)).Result.@return;
 
             Assert.IsTrue(records?.Length > 0, "Number of records should be greater than 0.");
             if (records != null)

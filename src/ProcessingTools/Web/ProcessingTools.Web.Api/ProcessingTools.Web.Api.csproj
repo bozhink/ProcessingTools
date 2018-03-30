@@ -445,10 +445,6 @@
       <Project>{667D4391-17F1-4433-BC96-685AEE89650A}</Project>
       <Name>ProcessingTools.Web.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
-      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>

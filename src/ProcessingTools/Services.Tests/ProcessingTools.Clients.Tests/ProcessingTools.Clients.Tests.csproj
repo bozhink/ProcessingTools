@@ -63,6 +63,7 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.4.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -112,10 +113,6 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
       <Name>ProcessingTools.Net</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
-      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5eb84ce6-3248-4237-979c-71d7a34a4c2b}</Project>

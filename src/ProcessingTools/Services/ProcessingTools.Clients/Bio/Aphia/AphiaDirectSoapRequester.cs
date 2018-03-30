@@ -1,4 +1,4 @@
-﻿namespace ProcessingTools.Bio.Taxonomy.ServiceClient.Aphia
+﻿namespace ProcessingTools.Clients.Bio.Aphia
 {
     using System;
     using System.Threading.Tasks;

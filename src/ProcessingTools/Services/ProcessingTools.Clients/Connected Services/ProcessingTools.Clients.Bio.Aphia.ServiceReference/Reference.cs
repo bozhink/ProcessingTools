@@ -7,108 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AphiaServiceReference
+namespace ProcessingTools.Clients.Bio.Aphia.ServiceReference
 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://aphia/v1.0", ConfigurationName="AphiaServiceReference.AphiaNameServicePortType")]
-    internal interface AphiaNameServicePortType
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://aphia/v1.0", ConfigurationName="ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaNameServicePortType")]
+    public interface AphiaNameServicePortType
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaIDResponse> getAphiaIDAsync(AphiaServiceReference.getAphiaIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaIDResponse> getAphiaIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaRecords", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsResponse> getAphiaRecordsAsync(AphiaServiceReference.getAphiaRecordsRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsResponse> getAphiaRecordsAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaNameByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaNameByIDResponse> getAphiaNameByIDAsync(AphiaServiceReference.getAphiaNameByIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaNameByIDResponse> getAphiaNameByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaNameByIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaRecordByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordByIDResponse> getAphiaRecordByIDAsync(AphiaServiceReference.getAphiaRecordByIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByIDResponse> getAphiaRecordByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaRecordByExtID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordByExtIDResponse> getAphiaRecordByExtIDAsync(AphiaServiceReference.getAphiaRecordByExtIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByExtIDResponse> getAphiaRecordByExtIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByExtIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getExtIDbyAphiaID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getExtIDbyAphiaIDResponse> getExtIDbyAphiaIDAsync(AphiaServiceReference.getExtIDbyAphiaIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getExtIDbyAphiaIDResponse> getExtIDbyAphiaIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getExtIDbyAphiaIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaRecordsByNames", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsByNamesResponse> getAphiaRecordsByNamesAsync(AphiaServiceReference.getAphiaRecordsByNamesRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByNamesResponse> getAphiaRecordsByNamesAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByNamesRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaRecordsByVernacular", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsByVernacularResponse> getAphiaRecordsByVernacularAsync(AphiaServiceReference.getAphiaRecordsByVernacularRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByVernacularResponse> getAphiaRecordsByVernacularAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByVernacularRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaRecordsByDate", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsByDateResponse> getAphiaRecordsByDateAsync(AphiaServiceReference.getAphiaRecordsByDateRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByDateResponse> getAphiaRecordsByDateAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByDateRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaClassificationByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaClassificationByIDResponse> getAphiaClassificationByIDAsync(AphiaServiceReference.getAphiaClassificationByIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaClassificationByIDResponse> getAphiaClassificationByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaClassificationByIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getSourcesByAphiaID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getSourcesByAphiaIDResponse> getSourcesByAphiaIDAsync(AphiaServiceReference.getSourcesByAphiaIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getSourcesByAphiaIDResponse> getSourcesByAphiaIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getSourcesByAphiaIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaSynonymsByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaSynonymsByIDResponse> getAphiaSynonymsByIDAsync(AphiaServiceReference.getAphiaSynonymsByIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaSynonymsByIDResponse> getAphiaSynonymsByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaSynonymsByIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaVernacularsByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaVernacularsByIDResponse> getAphiaVernacularsByIDAsync(AphiaServiceReference.getAphiaVernacularsByIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaVernacularsByIDResponse> getAphiaVernacularsByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaVernacularsByIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="getAphiaChildrenByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.getAphiaChildrenByIDResponse> getAphiaChildrenByIDAsync(AphiaServiceReference.getAphiaChildrenByIDRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaChildrenByIDResponse> getAphiaChildrenByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaChildrenByIDRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="matchAphiaRecordsByNames", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(Style=System.ServiceModel.OperationFormatStyle.Rpc, SupportFaults=true, Use=System.ServiceModel.OperationFormatUse.Encoded)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Vernacular))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Source))]
-        System.Threading.Tasks.Task<AphiaServiceReference.matchAphiaRecordsByNamesResponse> matchAphiaRecordsByNamesAsync(AphiaServiceReference.matchAphiaRecordsByNamesRequest request);
+        System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.matchAphiaRecordsByNamesResponse> matchAphiaRecordsByNamesAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.matchAphiaRecordsByNamesRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaID", WrapperNamespace="http://aphia/v1.0/AphiaID", IsWrapped=true)]
-    internal partial class getAphiaIDRequest
+    public partial class getAphiaIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -131,7 +131,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaIDResponse", WrapperNamespace="http://aphia/v1.0/AphiaID", IsWrapped=true)]
-    internal partial class getAphiaIDResponse
+    public partial class getAphiaIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -767,7 +767,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecords", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaRecordsRequest
+    public partial class getAphiaRecordsRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -802,17 +802,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordsResponse", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaRecordsResponse
+    public partial class getAphiaRecordsResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord[] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return;
         
         public getAphiaRecordsResponse()
         {
         }
         
-        public getAphiaRecordsResponse(AphiaServiceReference.AphiaRecord[] @return)
+        public getAphiaRecordsResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return)
         {
             this.@return = @return;
         }
@@ -821,7 +821,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaNameByID", WrapperNamespace="http://aphia/v1.0/AphiaName", IsWrapped=true)]
-    internal partial class getAphiaNameByIDRequest
+    public partial class getAphiaNameByIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -840,7 +840,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaNameByIDResponse", WrapperNamespace="http://aphia/v1.0/AphiaName", IsWrapped=true)]
-    internal partial class getAphiaNameByIDResponse
+    public partial class getAphiaNameByIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -859,7 +859,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordByID", WrapperNamespace="http://aphia/v1.0/AphiaRecord", IsWrapped=true)]
-    internal partial class getAphiaRecordByIDRequest
+    public partial class getAphiaRecordByIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -878,17 +878,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordByIDResponse", WrapperNamespace="http://aphia/v1.0/AphiaRecord", IsWrapped=true)]
-    internal partial class getAphiaRecordByIDResponse
+    public partial class getAphiaRecordByIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord @return;
         
         public getAphiaRecordByIDResponse()
         {
         }
         
-        public getAphiaRecordByIDResponse(AphiaServiceReference.AphiaRecord @return)
+        public getAphiaRecordByIDResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord @return)
         {
             this.@return = @return;
         }
@@ -897,7 +897,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordByExtID", WrapperNamespace="http://aphia/v1.0/AphiaRecord", IsWrapped=true)]
-    internal partial class getAphiaRecordByExtIDRequest
+    public partial class getAphiaRecordByExtIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -920,17 +920,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordByExtIDResponse", WrapperNamespace="http://aphia/v1.0/AphiaRecord", IsWrapped=true)]
-    internal partial class getAphiaRecordByExtIDResponse
+    public partial class getAphiaRecordByExtIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord @return;
         
         public getAphiaRecordByExtIDResponse()
         {
         }
         
-        public getAphiaRecordByExtIDResponse(AphiaServiceReference.AphiaRecord @return)
+        public getAphiaRecordByExtIDResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord @return)
         {
             this.@return = @return;
         }
@@ -939,7 +939,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getExtIDbyAphiaID", WrapperNamespace="http://aphia/v1.0/externalidentifiers", IsWrapped=true)]
-    internal partial class getExtIDbyAphiaIDRequest
+    public partial class getExtIDbyAphiaIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -962,7 +962,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getExtIDbyAphiaIDResponse", WrapperNamespace="http://aphia/v1.0/externalidentifiers", IsWrapped=true)]
-    internal partial class getExtIDbyAphiaIDResponse
+    public partial class getExtIDbyAphiaIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -981,7 +981,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordsByNames", WrapperNamespace="http://aphia/v1.0/AphiaMatches", IsWrapped=true)]
-    internal partial class getAphiaRecordsByNamesRequest
+    public partial class getAphiaRecordsByNamesRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1012,17 +1012,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordsByNamesResponse", WrapperNamespace="http://aphia/v1.0/AphiaMatches", IsWrapped=true)]
-    internal partial class getAphiaRecordsByNamesResponse
+    public partial class getAphiaRecordsByNamesResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord[][] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[][] @return;
         
         public getAphiaRecordsByNamesResponse()
         {
         }
         
-        public getAphiaRecordsByNamesResponse(AphiaServiceReference.AphiaRecord[][] @return)
+        public getAphiaRecordsByNamesResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[][] @return)
         {
             this.@return = @return;
         }
@@ -1031,7 +1031,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordsByVernacular", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaRecordsByVernacularRequest
+    public partial class getAphiaRecordsByVernacularRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1058,17 +1058,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordsByVernacularResponse", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaRecordsByVernacularResponse
+    public partial class getAphiaRecordsByVernacularResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord[] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return;
         
         public getAphiaRecordsByVernacularResponse()
         {
         }
         
-        public getAphiaRecordsByVernacularResponse(AphiaServiceReference.AphiaRecord[] @return)
+        public getAphiaRecordsByVernacularResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return)
         {
             this.@return = @return;
         }
@@ -1077,7 +1077,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordsByDate", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaRecordsByDateRequest
+    public partial class getAphiaRecordsByDateRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1108,17 +1108,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaRecordsByDateResponse", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaRecordsByDateResponse
+    public partial class getAphiaRecordsByDateResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord[] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return;
         
         public getAphiaRecordsByDateResponse()
         {
         }
         
-        public getAphiaRecordsByDateResponse(AphiaServiceReference.AphiaRecord[] @return)
+        public getAphiaRecordsByDateResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return)
         {
             this.@return = @return;
         }
@@ -1127,7 +1127,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaClassificationByID", WrapperNamespace="http://aphia/v1.0/Classification", IsWrapped=true)]
-    internal partial class getAphiaClassificationByIDRequest
+    public partial class getAphiaClassificationByIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1146,17 +1146,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaClassificationByIDResponse", WrapperNamespace="http://aphia/v1.0/Classification", IsWrapped=true)]
-    internal partial class getAphiaClassificationByIDResponse
+    public partial class getAphiaClassificationByIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.Classification @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.Classification @return;
         
         public getAphiaClassificationByIDResponse()
         {
         }
         
-        public getAphiaClassificationByIDResponse(AphiaServiceReference.Classification @return)
+        public getAphiaClassificationByIDResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.Classification @return)
         {
             this.@return = @return;
         }
@@ -1165,7 +1165,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getSourcesByAphiaID", WrapperNamespace="http://aphia/v1.0/Sources", IsWrapped=true)]
-    internal partial class getSourcesByAphiaIDRequest
+    public partial class getSourcesByAphiaIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1184,17 +1184,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getSourcesByAphiaIDResponse", WrapperNamespace="http://aphia/v1.0/Sources", IsWrapped=true)]
-    internal partial class getSourcesByAphiaIDResponse
+    public partial class getSourcesByAphiaIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.Source[] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.Source[] @return;
         
         public getSourcesByAphiaIDResponse()
         {
         }
         
-        public getSourcesByAphiaIDResponse(AphiaServiceReference.Source[] @return)
+        public getSourcesByAphiaIDResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.Source[] @return)
         {
             this.@return = @return;
         }
@@ -1203,7 +1203,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaSynonymsByID", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaSynonymsByIDRequest
+    public partial class getAphiaSynonymsByIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1222,17 +1222,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaSynonymsByIDResponse", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaSynonymsByIDResponse
+    public partial class getAphiaSynonymsByIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord[] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return;
         
         public getAphiaSynonymsByIDResponse()
         {
         }
         
-        public getAphiaSynonymsByIDResponse(AphiaServiceReference.AphiaRecord[] @return)
+        public getAphiaSynonymsByIDResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return)
         {
             this.@return = @return;
         }
@@ -1241,7 +1241,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaVernacularsByID", WrapperNamespace="http://aphia/v1.0/AphiaVernaculars", IsWrapped=true)]
-    internal partial class getAphiaVernacularsByIDRequest
+    public partial class getAphiaVernacularsByIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1260,17 +1260,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaVernacularsByIDResponse", WrapperNamespace="http://aphia/v1.0/AphiaVernaculars", IsWrapped=true)]
-    internal partial class getAphiaVernacularsByIDResponse
+    public partial class getAphiaVernacularsByIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.Vernacular[] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.Vernacular[] @return;
         
         public getAphiaVernacularsByIDResponse()
         {
         }
         
-        public getAphiaVernacularsByIDResponse(AphiaServiceReference.Vernacular[] @return)
+        public getAphiaVernacularsByIDResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.Vernacular[] @return)
         {
             this.@return = @return;
         }
@@ -1279,7 +1279,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaChildrenByID", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaChildrenByIDRequest
+    public partial class getAphiaChildrenByIDRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1306,17 +1306,17 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="getAphiaChildrenByIDResponse", WrapperNamespace="http://aphia/v1.0/AphiaRecords", IsWrapped=true)]
-    internal partial class getAphiaChildrenByIDResponse
+    public partial class getAphiaChildrenByIDResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord[] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return;
         
         public getAphiaChildrenByIDResponse()
         {
         }
         
-        public getAphiaChildrenByIDResponse(AphiaServiceReference.AphiaRecord[] @return)
+        public getAphiaChildrenByIDResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[] @return)
         {
             this.@return = @return;
         }
@@ -1325,7 +1325,7 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="matchAphiaRecordsByNames", WrapperNamespace="http://aphia/v1.0/AphiaMatches", IsWrapped=true)]
-    internal partial class matchAphiaRecordsByNamesRequest
+    public partial class matchAphiaRecordsByNamesRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
@@ -1348,30 +1348,30 @@ namespace AphiaServiceReference
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="matchAphiaRecordsByNamesResponse", WrapperNamespace="http://aphia/v1.0/AphiaMatches", IsWrapped=true)]
-    internal partial class matchAphiaRecordsByNamesResponse
+    public partial class matchAphiaRecordsByNamesResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="", Order=0)]
-        public AphiaServiceReference.AphiaRecord[][] @return;
+        public ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[][] @return;
         
         public matchAphiaRecordsByNamesResponse()
         {
         }
         
-        public matchAphiaRecordsByNamesResponse(AphiaServiceReference.AphiaRecord[][] @return)
+        public matchAphiaRecordsByNamesResponse(ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaRecord[][] @return)
         {
             this.@return = @return;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
-    internal interface AphiaNameServicePortTypeChannel : AphiaServiceReference.AphiaNameServicePortType, System.ServiceModel.IClientChannel
+    public interface AphiaNameServicePortTypeChannel : ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaNameServicePortType, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.0")]
-    internal partial class AphiaNameServicePortTypeClient : System.ServiceModel.ClientBase<AphiaServiceReference.AphiaNameServicePortType>, AphiaServiceReference.AphiaNameServicePortType
+    public partial class AphiaNameServicePortTypeClient : System.ServiceModel.ClientBase<ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaNameServicePortType>, ProcessingTools.Clients.Bio.Aphia.ServiceReference.AphiaNameServicePortType
     {
         
     /// <summary>
@@ -1414,77 +1414,77 @@ namespace AphiaServiceReference
         {
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaIDResponse> getAphiaIDAsync(AphiaServiceReference.getAphiaIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaIDResponse> getAphiaIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaIDRequest request)
         {
             return base.Channel.getAphiaIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsResponse> getAphiaRecordsAsync(AphiaServiceReference.getAphiaRecordsRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsResponse> getAphiaRecordsAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsRequest request)
         {
             return base.Channel.getAphiaRecordsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaNameByIDResponse> getAphiaNameByIDAsync(AphiaServiceReference.getAphiaNameByIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaNameByIDResponse> getAphiaNameByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaNameByIDRequest request)
         {
             return base.Channel.getAphiaNameByIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordByIDResponse> getAphiaRecordByIDAsync(AphiaServiceReference.getAphiaRecordByIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByIDResponse> getAphiaRecordByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByIDRequest request)
         {
             return base.Channel.getAphiaRecordByIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordByExtIDResponse> getAphiaRecordByExtIDAsync(AphiaServiceReference.getAphiaRecordByExtIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByExtIDResponse> getAphiaRecordByExtIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordByExtIDRequest request)
         {
             return base.Channel.getAphiaRecordByExtIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getExtIDbyAphiaIDResponse> getExtIDbyAphiaIDAsync(AphiaServiceReference.getExtIDbyAphiaIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getExtIDbyAphiaIDResponse> getExtIDbyAphiaIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getExtIDbyAphiaIDRequest request)
         {
             return base.Channel.getExtIDbyAphiaIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsByNamesResponse> getAphiaRecordsByNamesAsync(AphiaServiceReference.getAphiaRecordsByNamesRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByNamesResponse> getAphiaRecordsByNamesAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByNamesRequest request)
         {
             return base.Channel.getAphiaRecordsByNamesAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsByVernacularResponse> getAphiaRecordsByVernacularAsync(AphiaServiceReference.getAphiaRecordsByVernacularRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByVernacularResponse> getAphiaRecordsByVernacularAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByVernacularRequest request)
         {
             return base.Channel.getAphiaRecordsByVernacularAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaRecordsByDateResponse> getAphiaRecordsByDateAsync(AphiaServiceReference.getAphiaRecordsByDateRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByDateResponse> getAphiaRecordsByDateAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaRecordsByDateRequest request)
         {
             return base.Channel.getAphiaRecordsByDateAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaClassificationByIDResponse> getAphiaClassificationByIDAsync(AphiaServiceReference.getAphiaClassificationByIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaClassificationByIDResponse> getAphiaClassificationByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaClassificationByIDRequest request)
         {
             return base.Channel.getAphiaClassificationByIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getSourcesByAphiaIDResponse> getSourcesByAphiaIDAsync(AphiaServiceReference.getSourcesByAphiaIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getSourcesByAphiaIDResponse> getSourcesByAphiaIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getSourcesByAphiaIDRequest request)
         {
             return base.Channel.getSourcesByAphiaIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaSynonymsByIDResponse> getAphiaSynonymsByIDAsync(AphiaServiceReference.getAphiaSynonymsByIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaSynonymsByIDResponse> getAphiaSynonymsByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaSynonymsByIDRequest request)
         {
             return base.Channel.getAphiaSynonymsByIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaVernacularsByIDResponse> getAphiaVernacularsByIDAsync(AphiaServiceReference.getAphiaVernacularsByIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaVernacularsByIDResponse> getAphiaVernacularsByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaVernacularsByIDRequest request)
         {
             return base.Channel.getAphiaVernacularsByIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.getAphiaChildrenByIDResponse> getAphiaChildrenByIDAsync(AphiaServiceReference.getAphiaChildrenByIDRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaChildrenByIDResponse> getAphiaChildrenByIDAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.getAphiaChildrenByIDRequest request)
         {
             return base.Channel.getAphiaChildrenByIDAsync(request);
         }
         
-        public System.Threading.Tasks.Task<AphiaServiceReference.matchAphiaRecordsByNamesResponse> matchAphiaRecordsByNamesAsync(AphiaServiceReference.matchAphiaRecordsByNamesRequest request)
+        public System.Threading.Tasks.Task<ProcessingTools.Clients.Bio.Aphia.ServiceReference.matchAphiaRecordsByNamesResponse> matchAphiaRecordsByNamesAsync(ProcessingTools.Clients.Bio.Aphia.ServiceReference.matchAphiaRecordsByNamesRequest request)
         {
             return base.Channel.matchAphiaRecordsByNamesAsync(request);
         }

@@ -302,10 +302,6 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
-      <Project>{f364bd78-29de-48be-9098-b6ae0c468008}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
       <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>
       <Name>ProcessingTools.Clients</Name>
