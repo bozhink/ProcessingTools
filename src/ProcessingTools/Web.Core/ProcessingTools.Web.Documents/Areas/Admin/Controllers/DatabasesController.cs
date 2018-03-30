@@ -89,6 +89,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
                 this.logger.LogError(ex, "Error in database initialization.");
             }
 

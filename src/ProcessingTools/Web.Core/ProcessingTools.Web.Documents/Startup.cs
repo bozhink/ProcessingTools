@@ -136,9 +136,13 @@ namespace ProcessingTools.Web.Documents
                 .InstancePerLifetimeScope();
 
             builder
-                .Register<Func<IEnumerable<IDatabaseInitializer>>>(c => () => new IDatabaseInitializer[]
+                .Register<Func<IEnumerable<IDatabaseInitializer>>>(c =>
                 {
-                    c.Resolve<ProcessingTools.Data.Documents.Mongo.MongoDocumentsDatabaseInitializer>()
+                    var context = c.Resolve<IComponentContext>();
+                    return () => new IDatabaseInitializer[]
+                    {
+                        context.Resolve<ProcessingTools.Data.Documents.Mongo.MongoDocumentsDatabaseInitializer>()
+                    };
                 })
                 .As<Func<IEnumerable<IDatabaseInitializer>>>()
                 .InstancePerDependency();
