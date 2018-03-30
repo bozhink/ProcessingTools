@@ -27,20 +27,5 @@ namespace ProcessingTools.Data.Contracts.Documents
         /// <param name="id">Object ID of the document.</param>
         /// <returns>Content of the document as string.</returns>
         Task<string> GetDocumentContentAsync(object id);
-
-        /// <summary>
-        /// Sets document file of specified document.
-        /// </summary>
-        /// <param name="id">Object ID of the document.</param>
-        /// <param name="model">Document file model.</param>
-        /// <returns>Length of the written content.</returns>
-        Task<long> SetDocumentFileAsync(object id, IDocumentFileModel model);
-
-        /// <summary>
-        /// Gets document file.
-        /// </summary>
-        /// <param name="id">Object ID of the document.</param>
-        /// <returns>Document file.</returns>
-        Task<IDocumentFileDataModel> GetDocumentFileAsync(object id);
     }
 }

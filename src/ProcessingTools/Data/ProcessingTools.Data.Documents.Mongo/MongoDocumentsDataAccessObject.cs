@@ -41,7 +41,6 @@ namespace ProcessingTools.Data.Documents.Mongo
             {
                 c.CreateMap<IDocumentInsertModel, Document>();
                 c.CreateMap<IDocumentUpdateModel, Document>();
-                c.CreateMap<File, DocumentFile>();
                 c.CreateMap<IDocumentFileModel, File>();
             });
 
@@ -219,31 +218,6 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentFileDataModel> GetDocumentFileAsync(object id)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-
-            string objectId = id.ToNewGuid().ToString();
-            var file = await this.GetCollection<File>().Find(f => f.DocumentId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
-            if (file == null)
-            {
-                return null;
-            }
-
-            string content = await this.GetDocumentContentAsync(id).ConfigureAwait(false);
-
-            var documentFile = this.mapper.Map<File, DocumentFile>(file);
-            documentFile.Content = content;
-            documentFile.ContentLength = content.Length;
-            documentFile.ContentType = ProcessingTools.Constants.ContentTypes.Xml;
-
-            return documentFile;
-        }
-
-        /// <inheritdoc/>
         public async Task<long> SetDocumentContentAsync(object id, string content)
         {
             if (id == null)
@@ -276,65 +250,6 @@ namespace ProcessingTools.Data.Documents.Mongo
             }
 
             return content?.Length ?? 0L;
-        }
-
-        /// <inheritdoc/>
-        public async Task<long> SetDocumentFileAsync(object id, IDocumentFileModel model)
-        {
-            if (id == null)
-            {
-                return 0L;
-            }
-
-            var length = await this.SetDocumentContentAsync(id, model.Content).ConfigureAwait(false);
-
-            var filesCollection = this.GetCollection<File>();
-
-            string documentId = id.ToNewGuid().ToString();
-
-            if (await filesCollection.Aggregate().Match(m => m.DocumentId == documentId).AnyAsync().ConfigureAwait(false))
-            {
-                var filterDefinition = new FilterDefinitionBuilder<File>().Eq(m => m.DocumentId, documentId);
-
-                var updateDefinition = new UpdateDefinitionBuilder<File>()
-                    .Set(d => d.ContentLength, model.ContentLength)
-                    .Set(d => d.ContentType, model.ContentType)
-                    .Set(d => d.ContentLength, model.ContentLength)
-                    .Set(d => d.FileExtension, model.FileExtension)
-                    .Set(d => d.FileName, model.FileName)
-                    .Set(d => d.ModifiedBy, this.applicationContext.UserContext.UserId)
-                    .Set(d => d.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke());
-
-                var updateOptions = new UpdateOptions
-                {
-                    BypassDocumentValidation = false,
-                    IsUpsert = false
-                };
-
-                var result = await this.GetCollection<File>()
-                    .UpdateOneAsync(filterDefinition, updateDefinition, updateOptions)
-                    .ConfigureAwait(false);
-
-                if (!result.IsAcknowledged)
-                {
-                    throw new UpdateUnsuccessfulException();
-                }
-            }
-            else
-            {
-                var file = this.mapper.Map<IDocumentFileModel, File>(model);
-                file.ObjectId = this.applicationContext.GuidProvider.Invoke();
-                file.DocumentId = documentId;
-                file.ModifiedBy = this.applicationContext.UserContext.UserId;
-                file.ModifiedOn = this.applicationContext.DateTimeProvider.Invoke();
-                file.CreatedBy = file.ModifiedBy;
-                file.CreatedOn = file.ModifiedOn;
-                file.Id = null;
-
-                await filesCollection.InsertOneAsync(file, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
-            }
-
-            return length;
         }
     }
 }
