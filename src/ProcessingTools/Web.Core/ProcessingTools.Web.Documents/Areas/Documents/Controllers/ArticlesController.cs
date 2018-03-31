@@ -7,6 +7,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants;
@@ -35,6 +36,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// Create action name.
         /// </summary>
         public const string CreateActionName = nameof(Create);
+
+        /// <summary>
+        /// Create from file action name.
+        /// </summary>
+        public const string CreateFromFileActionName = nameof(CreateFromFile);
 
         /// <summary>
         /// Edit action name.
@@ -169,6 +175,80 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 viewModel.ReturnUrl = model.ReturnUrl;
 
                 return this.View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.View();
+        }
+
+        /// <summary>
+        /// GET /Documents/Articles/CreateFromFileActionName
+        /// </summary>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpGet]
+        [ActionName(CreateFromFileActionName)]
+        public async Task<IActionResult> CreateFromFile(string returnUrl = null)
+        {
+            const string LogMessage = "GET CreateFromFile Article";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var viewModel = await this.service.GetArticleCreateFromFileViewModelAsync().ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
+                return this.View(model: viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.View();
+        }
+
+        /// <summary>
+        /// POST /Documents/Articles/Create
+        /// </summary>
+        /// <param name="file">File to upload.</param>
+        /// <param name="journalId">Journal ID of the article.</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName(CreateFromFileActionName)]
+        public async Task<IActionResult> CreateFromFile(IFormFile file, string journalId, string returnUrl = null)
+        {
+            const string LogMessage = "POST CreateFromFile Article";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var ok = await this.service.CreateFromFileArticleAsync(new ArticleCreateRequestModel { }, file.OpenReadStream()).ConfigureAwait(false);
+                if (ok)
+                {
+                    if (!string.IsNullOrWhiteSpace(returnUrl))
+                    {
+                        return this.Redirect(returnUrl);
+                    }
+
+                    return this.RedirectToAction(IndexActionName);
+                }
+
+                this.ModelState.AddModelError(string.Empty, "Article is not uploaded.");
+
+                var viewModel = await this.service.GetArticleCreateFromFileViewModelAsync().ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
+                return this.View(model: viewModel);
             }
             catch (Exception ex)
             {

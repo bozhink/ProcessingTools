@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Services.Documents
 {
     using System;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -74,6 +75,17 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
+        public async Task<bool> CreateFromFileArticleAsync(ArticleCreateRequestModel model, Stream stream)
+        {
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                var x = await reader.ReadToEndAsync().ConfigureAwait(false);
+            }
+
+            return false;
+        }
+
+        /// <inheritdoc/>
         public async Task<bool> DeleteArticleAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -105,6 +117,16 @@ namespace ProcessingTools.Web.Services.Documents
             var journals = await this.GetArticleJournalsViewModelsAsync().ConfigureAwait(false);
 
             return new ArticleCreateViewModel(userContext, journals);
+        }
+
+        /// <inheritdoc/>
+        public async Task<ArticleCreateFromFileViewModel> GetArticleCreateFromFileViewModelAsync()
+        {
+            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+
+            var journals = await this.GetArticleJournalsViewModelsAsync().ConfigureAwait(false);
+
+            return new ArticleCreateFromFileViewModel(userContext, journals);
         }
 
         /// <inheritdoc/>

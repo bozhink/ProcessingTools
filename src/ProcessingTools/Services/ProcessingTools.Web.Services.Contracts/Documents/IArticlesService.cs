@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Services.Contracts.Documents
 {
+    using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Web.Models.Documents.Articles;
 
@@ -25,6 +26,12 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// </summary>
         /// <returns>Task of <see cref="ArticleCreateViewModel"/>.</returns>
         Task<ArticleCreateViewModel> GetArticleCreateViewModelAsync();
+
+        /// <summary>
+        /// Get <see cref="ArticleCreateFromFileViewModel"/>.
+        /// </summary>
+        /// <returns>Task of <see cref="ArticleCreateFromFileViewModel"/>.</returns>
+        Task<ArticleCreateFromFileViewModel> GetArticleCreateFromFileViewModelAsync();
 
         /// <summary>
         /// Get <see cref="ArticleEditViewModel"/>.
@@ -53,6 +60,14 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
         Task<bool> CreateArticleAsync(ArticleCreateRequestModel model);
+
+        /// <summary>
+        /// Create article.
+        /// </summary>
+        /// <param name="model">Model for the operation.</param>
+        /// <param name="stream">Stream of the file content.</param>
+        /// <returns>Success status.</returns>
+        Task<bool> CreateFromFileArticleAsync(ArticleCreateRequestModel model, Stream stream);
 
         /// <summary>
         /// Update article.

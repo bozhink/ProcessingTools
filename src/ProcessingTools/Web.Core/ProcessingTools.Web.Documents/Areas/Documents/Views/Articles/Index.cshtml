@@ -27,7 +27,10 @@
     }
     else
     {
-        <p><a asp-action="@(ArticlesController.CreateActionName)">Create New Article</a></p>
+        <p>
+            <a asp-action="@(ArticlesController.CreateActionName)">Create New Article</a> |
+            <a asp-action="@(ArticlesController.CreateFromFileActionName)">Create New Article From File</a>
+        </p>
         @if (Model.Items != null && Model.Items.Any())
         {
             <table class="table">
