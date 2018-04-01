@@ -57,6 +57,9 @@ namespace ProcessingTools.Web.Services.Documents
                 c.CreateMap<IArticleDetailsModel, ArticleEditViewModel>();
                 c.CreateMap<IArticleDetailsModel, ArticleIndexViewModel>()
                     .ForMember(vm => vm.Journal, o => o.MapFrom(m => m.Journal));
+
+                c.CreateMap<Microsoft.AspNetCore.Http.IFormFile, ArticleFileRequestModel>();
+                c.CreateMap<Microsoft.AspNetCore.Http.IFormFile, IArticleFileModel>().As<ArticleFileRequestModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -69,19 +72,21 @@ namespace ProcessingTools.Web.Services.Documents
                 return false;
             }
 
-            var result = await this.articlesService.InsertAsync(model).ConfigureAwait(false);
+            var result = await this.articlesService.CreateAsync(model).ConfigureAwait(false);
             return result != null;
         }
 
         /// <inheritdoc/>
-        public async Task<bool> CreateFromFileArticleAsync(ArticleCreateRequestModel model, Stream stream)
+        public async Task<bool> CreateFromFileArticleAsync(Microsoft.AspNetCore.Http.IFormFile formFile, string journalId)
         {
-            using (StreamReader reader = new StreamReader(stream))
+            if (formFile == null)
             {
-                var x = await reader.ReadToEndAsync().ConfigureAwait(false);
+                throw new ArgumentNullException(nameof(formFile));
             }
 
-            return false;
+            var model = this.mapper.Map<Microsoft.AspNetCore.Http.IFormFile, IArticleFileModel>(formFile);
+            var result = await this.articlesService.CreateFromFileAsync(model, formFile.OpenReadStream(), journalId).ConfigureAwait(false);
+            return result != null;
         }
 
         /// <inheritdoc/>

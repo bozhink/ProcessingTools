@@ -5,8 +5,10 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Xml;
     using AutoMapper;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Contracts.Documents;
@@ -43,7 +45,7 @@ namespace ProcessingTools.Services.Documents
         public Task<IArticleDetailsModel> GetDetailsByIdAsync(object id) => this.articlesDataService.GetDetailsByIdAsync(id);
 
         /// <inheritdoc/>
-        public Task<object> InsertAsync(IArticleInsertModel model) => this.articlesDataService.InsertAsync(model);
+        public Task<object> CreateAsync(IArticleInsertModel model) => this.articlesDataService.InsertAsync(model);
 
         /// <inheritdoc/>
         public Task<long> SelectCountAsync() => this.articlesDataService.SelectCountAsync();
@@ -53,5 +55,57 @@ namespace ProcessingTools.Services.Documents
 
         /// <inheritdoc/>
         public Task<object> UpdateAsync(IArticleUpdateModel model) => this.articlesDataService.UpdateAsync(model);
+
+        /// <inheritdoc/>
+        public Task<object> CreateFromFileAsync(IArticleFileModel model, Stream stream, string journalId)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (stream == null)
+            {
+                throw new ArgumentNullException(nameof(stream));
+            }
+
+            if (!stream.CanRead)
+            {
+                throw new InvalidOperationException("File stream can not be read.");
+            }
+
+            XmlDocument xmlDocument = GetXmlDocument(stream);
+
+            xmlDocument.DocumentElement.SelectNodes("");
+
+
+
+            throw new NotImplementedException();
+        }
+
+        private static XmlDocument GetXmlDocument(Stream stream)
+        {
+            XmlReaderSettings settings = new XmlReaderSettings
+            {
+                Async = true,
+                CloseInput = true,
+                ConformanceLevel = ConformanceLevel.Document,
+                DtdProcessing = DtdProcessing.Ignore,
+                IgnoreComments = false,
+                IgnoreProcessingInstructions = false,
+                IgnoreWhitespace = false,
+                ValidationType = ValidationType.None
+            };
+
+            XmlReader reader = XmlReader.Create(stream, settings);
+
+            XmlDocument xmlDocument = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
+
+            xmlDocument.Load(reader);
+            return xmlDocument;
+        }
     }
 }

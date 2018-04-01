@@ -232,7 +232,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var ok = await this.service.CreateFromFileArticleAsync(new ArticleCreateRequestModel { }, file.OpenReadStream()).ConfigureAwait(false);
+                var ok = await this.service.CreateFromFileArticleAsync(file, journalId).ConfigureAwait(false);
                 if (ok)
                 {
                     if (!string.IsNullOrWhiteSpace(returnUrl))

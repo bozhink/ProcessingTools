@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Contracts.Documents
 {
     using System;
+    using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
 
@@ -14,11 +15,20 @@ namespace ProcessingTools.Services.Contracts.Documents
     public interface IArticlesService
     {
         /// <summary>
-        /// Inserts new article.
+        /// Creates new article.
         /// </summary>
         /// <param name="model">Article model to be inserted.</param>
         /// <returns>Resultant object.</returns>
-        Task<object> InsertAsync(IArticleInsertModel model);
+        Task<object> CreateAsync(IArticleInsertModel model);
+
+        /// <summary>
+        /// Creates new article from file.
+        /// </summary>
+        /// <param name="model">Article file model.</param>
+        /// <param name="stream">Stream of the article's content.</param>
+        /// <param name="journalId">Journal ID.</param>
+        /// <returns>Resultant object.</returns>
+        Task<object> CreateFromFileAsync(IArticleFileModel model, Stream stream, string journalId);
 
         /// <summary>
         /// Deletes article specified by ID.

@@ -64,10 +64,10 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <summary>
         /// Create article.
         /// </summary>
-        /// <param name="model">Model for the operation.</param>
-        /// <param name="stream">Stream of the file content.</param>
+        /// <param name="formFile">Form file.</param>
+        /// <param name="journalId">Journal ID.</param>
         /// <returns>Success status.</returns>
-        Task<bool> CreateFromFileArticleAsync(ArticleCreateRequestModel model, Stream stream);
+        Task<bool> CreateFromFileArticleAsync(Microsoft.AspNetCore.Http.IFormFile formFile, string journalId);
 
         /// <summary>
         /// Update article.
