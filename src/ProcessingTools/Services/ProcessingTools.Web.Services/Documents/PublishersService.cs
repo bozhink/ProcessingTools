@@ -109,7 +109,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var publisher = await this.publishersDataService.GetDetailsById(id).ConfigureAwait(false);
+                var publisher = await this.publishersDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (publisher != null)
                 {
                     var viewModel = new PublisherDeleteViewModel(userContext);
@@ -129,7 +129,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var publisher = await this.publishersDataService.GetDetailsById(id).ConfigureAwait(false);
+                var publisher = await this.publishersDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (publisher != null)
                 {
                     var viewModel = new PublisherDetailsViewModel(userContext);
@@ -149,7 +149,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var publisher = await this.publishersDataService.GetById(id).ConfigureAwait(false);
+                var publisher = await this.publishersDataService.GetByIdAsync(id).ConfigureAwait(false);
                 if (publisher != null)
                 {
                     var viewModel = new PublisherEditViewModel(userContext);
@@ -198,7 +198,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var publisher = await this.publishersDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var publisher = await this.publishersDataService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (publisher != null)
                 {
                     var viewModel = new PublisherEditViewModel(userContext);
@@ -223,7 +223,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var publisher = await this.publishersDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var publisher = await this.publishersDataService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (publisher != null)
                 {
                     var viewModel = new PublisherDeleteViewModel(userContext);

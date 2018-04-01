@@ -14,30 +14,29 @@ namespace ProcessingTools.Web.Services.Documents
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
     using ProcessingTools.Web.Models.Documents.Articles;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
     /// Articles service.
     /// </summary>
-    public class ArticlesService : IArticlesService
+    public class ArticlesService : ProcessingTools.Web.Services.Contracts.Documents.IArticlesService
     {
-        private readonly IArticlesDataService articlesDataService;
+        private readonly IArticlesService articlesService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticlesService"/> class.
         /// </summary>
-        /// <param name="articlesDataService">Instance of <see cref="IArticlesDataService"/>.</param>
+        /// <param name="articlesService">Instance of <see cref="IArticlesService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public ArticlesService(IArticlesDataService articlesDataService, IUserContext userContext)
+        public ArticlesService(IArticlesService articlesService, IUserContext userContext)
         {
             if (userContext == null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
 
-            this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
+            this.articlesService = articlesService ?? throw new ArgumentNullException(nameof(articlesService));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
 
@@ -70,7 +69,7 @@ namespace ProcessingTools.Web.Services.Documents
                 return false;
             }
 
-            var result = await this.articlesDataService.InsertAsync(model).ConfigureAwait(false);
+            var result = await this.articlesService.InsertAsync(model).ConfigureAwait(false);
             return result != null;
         }
 
@@ -93,7 +92,7 @@ namespace ProcessingTools.Web.Services.Documents
                 return false;
             }
 
-            var result = await this.articlesDataService.DeleteAsync(id).ConfigureAwait(false);
+            var result = await this.articlesService.DeleteAsync(id).ConfigureAwait(false);
             return result != null;
         }
 
@@ -105,7 +104,7 @@ namespace ProcessingTools.Web.Services.Documents
                 return false;
             }
 
-            var result = await this.articlesDataService.UpdateAsync(model).ConfigureAwait(false);
+            var result = await this.articlesService.UpdateAsync(model).ConfigureAwait(false);
             return result != null;
         }
 
@@ -136,7 +135,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var article = await this.articlesDataService.GetDetailsById(id).ConfigureAwait(false);
+                var article = await this.articlesService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (article != null)
                 {
                     var journal = this.mapper.Map<IArticleJournalModel, ArticleJournalViewModel>(article.Journal);
@@ -158,7 +157,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var article = await this.articlesDataService.GetDetailsById(id).ConfigureAwait(false);
+                var article = await this.articlesService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (article != null)
                 {
                     var journal = this.mapper.Map<IArticleJournalModel, ArticleJournalViewModel>(article.Journal);
@@ -180,7 +179,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var article = await this.articlesDataService.GetDetailsById(id).ConfigureAwait(false);
+                var article = await this.articlesService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (article != null)
                 {
                     var journals = await this.GetArticleJournalsViewModelsAsync().ConfigureAwait(false);
@@ -200,8 +199,8 @@ namespace ProcessingTools.Web.Services.Documents
         {
             var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
 
-            var data = await this.articlesDataService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-            var count = await this.articlesDataService.SelectCountAsync().ConfigureAwait(false);
+            var data = await this.articlesService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+            var count = await this.articlesService.SelectCountAsync().ConfigureAwait(false);
 
             var articles = data?.Select(this.mapper.Map<IArticleDetailsModel, ArticleIndexViewModel>).ToArray() ?? new ArticleIndexViewModel[] { };
 
@@ -231,7 +230,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var article = await this.articlesDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var article = await this.articlesService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (article != null)
                 {
                     var journals = await this.GetArticleJournalsViewModelsAsync().ConfigureAwait(false);
@@ -260,7 +259,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var article = await this.articlesDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var article = await this.articlesService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (article != null)
                 {
                     var journal = this.mapper.Map<IArticleJournalModel, ArticleJournalViewModel>(article.Journal);
@@ -277,7 +276,7 @@ namespace ProcessingTools.Web.Services.Documents
 
         private async Task<ArticleJournalViewModel[]> GetArticleJournalsViewModelsAsync()
         {
-            var articleJournals = await this.articlesDataService.GetArticleJournalsAsync().ConfigureAwait(false);
+            var articleJournals = await this.articlesService.GetArticleJournalsAsync().ConfigureAwait(false);
 
             return articleJournals?.Select(this.mapper.Map<IArticleJournalModel, ArticleJournalViewModel>).ToArray() ?? new ArticleJournalViewModel[] { };
         }

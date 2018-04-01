@@ -114,7 +114,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(id).ConfigureAwait(false);
+                var journal = await this.journalsDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
                     var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
@@ -136,7 +136,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(id).ConfigureAwait(false);
+                var journal = await this.journalsDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
                     var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
@@ -158,7 +158,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(id).ConfigureAwait(false);
+                var journal = await this.journalsDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
                     var publishers = await this.GetJournalPublishersViewModelsAsync().ConfigureAwait(false);
@@ -211,7 +211,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var journal = await this.journalsDataService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (journal != null)
                 {
                     var publishers = await this.GetJournalPublishersViewModelsAsync().ConfigureAwait(false);
@@ -238,7 +238,7 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var journal = await this.journalsDataService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (journal != null)
                 {
                     var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);

@@ -107,7 +107,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalModel> GetById(object id)
+        public async Task<IJournalModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -127,7 +127,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsModel> GetDetailsById(object id)
+        public async Task<IJournalDetailsModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {

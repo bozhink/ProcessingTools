@@ -103,7 +103,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherModel> GetById(object id)
+        public async Task<IPublisherModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -123,7 +123,7 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDetailsModel> GetDetailsById(object id)
+        public async Task<IPublisherDetailsModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
