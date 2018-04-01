@@ -6,18 +6,11 @@ namespace ProcessingTools.Services.Documents
 {
     using System;
     using System.IO;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using AutoMapper;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.Documents;
-    using ProcessingTools.Services.Contracts.History;
+    using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Services.Models.Documents.Articles;
 
     /// <summary>
     /// Articles service.
@@ -25,14 +18,17 @@ namespace ProcessingTools.Services.Documents
     public class ArticlesService : IArticlesService
     {
         private readonly IArticlesDataService articlesDataService;
+        private readonly IXmlReadService xmlReadService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticlesService"/> class.
         /// </summary>
         /// <param name="articlesDataService">Articles data service.</param>
-        public ArticlesService(IArticlesDataService articlesDataService)
+        /// <param name="xmlReadService">Xml read service.</param>
+        public ArticlesService(IArticlesDataService articlesDataService, IXmlReadService xmlReadService)
         {
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
+            this.xmlReadService = xmlReadService ?? throw new ArgumentNullException(nameof(xmlReadService));
         }
 
         /// <inheritdoc/>
@@ -57,7 +53,7 @@ namespace ProcessingTools.Services.Documents
         public Task<object> UpdateAsync(IArticleUpdateModel model) => this.articlesDataService.UpdateAsync(model);
 
         /// <inheritdoc/>
-        public Task<object> CreateFromFileAsync(IArticleFileModel model, Stream stream, string journalId)
+        public async Task<object> CreateFromFileAsync(IArticleFileModel model, Stream stream, string journalId)
         {
             if (model == null)
             {
@@ -74,38 +70,11 @@ namespace ProcessingTools.Services.Documents
                 throw new InvalidOperationException("File stream can not be read.");
             }
 
-            XmlDocument xmlDocument = GetXmlDocument(stream);
+            XmlDocument xmlDocument = await this.xmlReadService.ReadStreamToXmlDocumentAsync(stream).ConfigureAwait(false);
 
-            xmlDocument.DocumentElement.SelectNodes("");
-
-
+            // TODO
 
             throw new NotImplementedException();
-        }
-
-        private static XmlDocument GetXmlDocument(Stream stream)
-        {
-            XmlReaderSettings settings = new XmlReaderSettings
-            {
-                Async = true,
-                CloseInput = true,
-                ConformanceLevel = ConformanceLevel.Document,
-                DtdProcessing = DtdProcessing.Ignore,
-                IgnoreComments = false,
-                IgnoreProcessingInstructions = false,
-                IgnoreWhitespace = false,
-                ValidationType = ValidationType.None
-            };
-
-            XmlReader reader = XmlReader.Create(stream, settings);
-
-            XmlDocument xmlDocument = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
-
-            xmlDocument.Load(reader);
-            return xmlDocument;
         }
     }
 }
