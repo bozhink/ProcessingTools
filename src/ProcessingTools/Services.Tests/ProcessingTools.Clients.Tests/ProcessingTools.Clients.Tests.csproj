@@ -114,6 +114,10 @@
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
       <Name>ProcessingTools.Net</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.ConnectedServices\ProcessingTools.Clients.ConnectedServices.csproj">
+      <Project>{30E121DD-97E2-4998-993E-F64B8E6A7EBA}</Project>
+      <Name>ProcessingTools.Clients.ConnectedServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5eb84ce6-3248-4237-979c-71d7a34a4c2b}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
