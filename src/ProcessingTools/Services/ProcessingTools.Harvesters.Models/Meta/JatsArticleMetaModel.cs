@@ -1,4 +1,4 @@
-﻿// <copyright file="ArticleMetaModel.cs" company="ProcessingTools">
+﻿// <copyright file="JatsArticleMetaModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,9 +10,9 @@ namespace ProcessingTools.Harvesters.Models.Meta
     using ProcessingTools.Harvesters.Models.Contracts.Meta;
 
     /// <summary>
-    /// Article meta model.
+    /// JATS Article meta model.
     /// </summary>
-    public class ArticleMetaModel : IArticleMetaModel
+    public class JatsArticleMetaModel : IArticleMetaModel
     {
         /// <inheritdoc/>
         [XPath(XPathStrings.ArticleIdOfTypeDoi)]
