@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Common.Attributes
+namespace ProcessingTools.Attributes
 {
     using System;
 
@@ -28,6 +28,6 @@ namespace ProcessingTools.Common.Attributes
         /// <summary>
         /// Gets the name of the file.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 }

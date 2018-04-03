@@ -5,7 +5,7 @@
     using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Common.Serialization.Csv;
 
     [TestClass]
