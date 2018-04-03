@@ -30,7 +30,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bio\MaterialsParser\" />
-    <Folder Include="Bio\Taxonomy\Aphia\" />
     <Folder Include="Bio\Taxonomy\UBio\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
   </ItemGroup>
 </Project>
