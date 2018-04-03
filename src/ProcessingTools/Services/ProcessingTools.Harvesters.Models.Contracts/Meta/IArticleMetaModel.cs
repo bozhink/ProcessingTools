@@ -12,6 +12,11 @@ namespace ProcessingTools.Harvesters.Models.Contracts.Meta
     public interface IArticleMetaModel
     {
         /// <summary>
+        /// Gets DOI.
+        /// </summary>
+        string Doi { get; }
+
+        /// <summary>
         /// Gets the title.
         /// </summary>
         string Title { get; }
