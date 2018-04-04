@@ -209,22 +209,22 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<Article>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Article>()
-                .Set(a => a.Title, model.Title)
-                .Set(a => a.SubTitle, model.SubTitle)
-                .Set(a => a.JournalId, model.JournalId)
-                .Set(a => a.PublishedOn, model.PublishedOn)
-                .Set(a => a.AcceptedOn, model.AcceptedOn)
-                .Set(a => a.ReceivedOn, model.ReceivedOn)
-                .Set(a => a.VolumeSeries, model.VolumeSeries)
-                .Set(a => a.Volume, model.Volume)
-                .Set(a => a.Issue, model.Issue)
-                .Set(a => a.IssuePart, model.IssuePart)
-                .Set(a => a.ELocationId, model.ELocationId)
-                .Set(a => a.FirstPage, model.FirstPage)
-                .Set(a => a.LastPage, model.LastPage)
-                .Set(a => a.NumberOfPages, model.NumberOfPages)
-                .Set(a => a.ModifiedBy, article.ModifiedBy)
-                .Set(a => a.ModifiedOn, article.ModifiedOn);
+                .Set(m => m.Title, model.Title)
+                .Set(m => m.SubTitle, model.SubTitle)
+                .Set(m => m.JournalId, model.JournalId)
+                .Set(m => m.PublishedOn, model.PublishedOn)
+                .Set(m => m.AcceptedOn, model.AcceptedOn)
+                .Set(m => m.ReceivedOn, model.ReceivedOn)
+                .Set(m => m.VolumeSeries, model.VolumeSeries)
+                .Set(m => m.Volume, model.Volume)
+                .Set(m => m.Issue, model.Issue)
+                .Set(m => m.IssuePart, model.IssuePart)
+                .Set(m => m.ELocationId, model.ELocationId)
+                .Set(m => m.FirstPage, model.FirstPage)
+                .Set(m => m.LastPage, model.LastPage)
+                .Set(m => m.NumberOfPages, model.NumberOfPages)
+                .Set(m => m.ModifiedBy, article.ModifiedBy)
+                .Set(m => m.ModifiedOn, article.ModifiedOn);
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,

@@ -63,7 +63,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var result = await this.Collection.DeleteOneAsync(p => p.ObjectId == objectId).ConfigureAwait(false);
+            var result = await this.Collection.DeleteOneAsync(f => f.ObjectId == objectId).ConfigureAwait(false);
 
             if (!result.IsAcknowledged)
             {
@@ -86,7 +86,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var file = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var file = await this.Collection.Find(f => f.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
             return file;
         }
@@ -116,7 +116,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         public async Task<IFileDataModel[]> SelectAsync(int skip, int take)
         {
             var files = await this.Collection.Find(Builders<File>.Filter.Empty)
-                .SortBy(p => p.CreatedOn)
+                .SortBy(f => f.CreatedOn)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -134,7 +134,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         public async Task<IFileDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
         {
             var files = await this.Collection.Find(Builders<File>.Filter.Empty)
-                .SortBy(p => p.CreatedOn)
+                .SortBy(f => f.CreatedOn)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()

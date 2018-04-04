@@ -178,10 +178,10 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<Document>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Document>()
-                .Set(d => d.ArticleId, model.ArticleId)
-                .Set(d => d.Description, model.Description)
-                .Set(d => d.ModifiedBy, document.ModifiedBy)
-                .Set(d => d.ModifiedOn, document.ModifiedOn);
+                .Set(m => m.ArticleId, model.ArticleId)
+                .Set(m => m.Description, model.Description)
+                .Set(m => m.ModifiedBy, document.ModifiedBy)
+                .Set(m => m.ModifiedOn, document.ModifiedOn);
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
@@ -209,8 +209,8 @@ namespace ProcessingTools.Data.Documents.Mongo
             string objectId = id.ToNewGuid().ToString();
 
             var result = await this.GetCollection<DocumentContent>()
-                .Find(d => d.DocumentId == objectId)
-                .Project(d => d.Content)
+                .Find(c => c.DocumentId == objectId)
+                .Project(c => c.Content)
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
 
@@ -229,10 +229,10 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<DocumentContent>().Eq(m => m.DocumentId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<DocumentContent>()
-                .Set(d => d.ContentType, ProcessingTools.Constants.ContentTypes.Xml)
-                .Set(d => d.Content, content)
-                .Set(d => d.ModifiedBy, this.applicationContext.UserContext.UserId)
-                .Set(d => d.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke());
+                .Set(m => m.ContentType, ProcessingTools.Constants.ContentTypes.Xml)
+                .Set(m => m.Content, content)
+                .Set(m => m.ModifiedBy, this.applicationContext.UserContext.UserId)
+                .Set(m => m.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke());
 
             var updateOptions = new UpdateOptions
             {
