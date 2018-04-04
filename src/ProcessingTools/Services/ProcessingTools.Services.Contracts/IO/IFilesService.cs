@@ -4,53 +4,137 @@
 
 namespace ProcessingTools.Services.Contracts.IO
 {
+    using System.IO;
+
     /// <summary>
-    /// Files service.
+    /// Files Service.
     /// </summary>
     public interface IFilesService
     {
         /// <summary>
-        /// Resolves full file name.
+        /// Returns the full name of the files' directory.
         /// </summary>
-        /// <param name="fileName">Name of file to be resolved.</param>
-        /// <returns>Full file name.</returns>
-        string GetFullFileName(string fileName);
+        /// <returns>The full name of the files' directory.</returns>
+        string GetFilesDirectoryFullName();
 
         /// <summary>
-        /// Resolves full file name of the original file.
+        /// Returns the full name of the temporary directory.
         /// </summary>
-        /// <param name="fileName">Name of file to be resolved.</param>
-        /// <returns>Full file name.</returns>
-        string GetOriginalFullFileName(string fileName);
+        /// <returns>The full name of the temporary directory.</returns>
+        string GetTempDirectoryFullName();
 
         /// <summary>
-        /// Checks whether file exists.
+        /// Resolves a file name and returns its full name.
         /// </summary>
-        /// <param name="fileName">Name of file to be resolved.</param>
-        /// <returns>True if file exists.</returns>
-        bool FileExists(string fileName);
+        /// <param name="fileName">File name to be resolved.</param>
+        /// <returns>Full name of the file.</returns>
+        string GetFileFullName(string fileName);
 
         /// <summary>
-        /// Generates new file name.
+        /// Returns a new local file name with default settings.
         /// </summary>
-        /// <param name="fileName">Old file name.</param>
-        /// <param name="fileNameLength">Required maximal length if the new file.</param>
-        /// <returns>New file name.</returns>
-        string GenerateNewFileName(string fileName, int fileNameLength);
+        /// <returns>New local file name with default settings.</returns>
+        string GetNewFileName();
 
         /// <summary>
-        /// Moves a file to the data directory.
+        /// Returns a new local file name with specified maximal length.
         /// </summary>
-        /// <param name="fileName">Name of the file to be moved.</param>
-        /// <param name="fileNameLength">Required maximal length if the new file.</param>
-        /// <returns>The new name of the moved file.</returns>
-        string MoveFile(string fileName, int fileNameLength);
+        /// <param name="maximalLength">Maximal length of the generated file name.</param>
+        /// <returns>New local file name with specified maximal length.</returns>
+        string GetNewFileName(int maximalLength);
 
         /// <summary>
-        /// Copies a file from the data directory to a specified destination.
+        /// Returns a new local file name based on a specified file name.
         /// </summary>
-        /// <param name="fileName">Name of the file to be copied.</param>
-        /// <param name="destination">Destination path for the file.</param>
-        void CopyOriginalFile(string fileName, string destination);
+        /// <param name="fileName">Base file name of the new file name.</param>
+        /// <returns>New local file name based on a specified file name.</returns>
+        string GetNewFileName(string fileName);
+
+        /// <summary>
+        /// Returns a new local file name based on a specified file name with specified maximal length.
+        /// </summary>
+        /// <param name="fileName">Base file name of the new file name.</param>
+        /// <param name="maximalLength">Maximal length of the generated file name.</param>
+        /// <returns>New local file name based on a specified file name with specified maximal length.</returns>
+        string GetNewFileName(string fileName, int maximalLength);
+
+        /// <summary>
+        /// Copies one file to another name with default overwrite behavior.
+        /// </summary>
+        /// <param name="sourceFileName">Source file name.</param>
+        /// <param name="destinationFileName">Destination file name.</param>
+        void CopyFile(string sourceFileName, string destinationFileName);
+
+        /// <summary>
+        /// Copies one file to another name with specified overwrite behavior.
+        /// </summary>
+        /// <param name="sourceFileName">Source file name.</param>
+        /// <param name="destinationFileName">Destination file name.</param>
+        /// <param name="overwrite">Specified overwrite behavior.</param>
+        void CopyFile(string sourceFileName, string destinationFileName, bool overwrite);
+
+        /// <summary>
+        /// Copies a file to new file with name generated with default parameters.
+        /// </summary>
+        /// <param name="sourceFileName">Source file name.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(string sourceFileName);
+
+        /// <summary>
+        /// Copies a <see cref="Stream"/> to new file with name generated with default parameters.
+        /// </summary>
+        /// <param name="sourceStream">Source <see cref="Stream"/>.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(Stream sourceStream);
+
+        /// <summary>
+        /// Copies a file to new file with name generated with specified maximal file name length.
+        /// </summary>
+        /// <param name="sourceFileName">Source file name.</param>
+        /// <param name="maximalFileNameLength">Maximal length of the output file name.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(string sourceFileName, int maximalFileNameLength);
+
+        /// <summary>
+        /// Copies a <see cref="Stream"/> to new file with name generated with specified maximal file name length.
+        /// </summary>
+        /// <param name="sourceStream">Source <see cref="Stream"/>.</param>
+        /// <param name="maximalFileNameLength">Maximal length of the output file name.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(Stream sourceStream, int maximalFileNameLength);
+
+        /// <summary>
+        /// Copies a file to new file with name generated with local file name based on a specified file name.
+        /// </summary>
+        /// <param name="sourceFileName">Source file name.</param>
+        /// <param name="baseFileName">Base file name of the new file name.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(string sourceFileName, string baseFileName);
+
+        /// <summary>
+        /// Copies a <see cref="Stream"/> to new file with name generated with local file name based on a specified file name.
+        /// </summary>
+        /// <param name="sourceStream">Source <see cref="Stream"/>.</param>
+        /// <param name="baseFileName">Base file name of the new file name.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(Stream sourceStream, string baseFileName);
+
+        /// <summary>
+        /// Copies a file to new file with name generated with local file name based on a specified file name with specified maximal length.
+        /// </summary>
+        /// <param name="sourceFileName">Source file name.</param>
+        /// <param name="baseFileName">Base file name of the new file name.</param>
+        /// <param name="maximalFileNameLength">Maximal length of the output file name.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(string sourceFileName, string baseFileName, int maximalFileNameLength);
+
+        /// <summary>
+        /// Copies a <see cref="Stream"/> to new file with name generated with local file name based on a specified file name with specified maximal length.
+        /// </summary>
+        /// <param name="sourceStream">Source <see cref="Stream"/>.</param>
+        /// <param name="baseFileName">Base file name of the new file name.</param>
+        /// <param name="maximalFileNameLength">Maximal length of the output file name.</param>
+        /// <returns>Name of the output file.</returns>
+        string CopyToNewFile(Stream sourceStream, string baseFileName, int maximalFileNameLength);
     }
 }
