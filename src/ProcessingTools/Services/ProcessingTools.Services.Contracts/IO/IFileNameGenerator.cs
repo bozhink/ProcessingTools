@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts
+namespace ProcessingTools.Services.Contracts.IO
 {
     using System.Threading.Tasks;
 
@@ -18,7 +18,7 @@ namespace ProcessingTools.Contracts
         /// <param name="maximalFileNameLength">Maximal length of the output file name</param>
         /// <param name="returnFullName">Specified if to return the full name of the generated file name or to return only the file name</param>
         /// <returns>Generated file name</returns>
-        Task<string> GenerateAsync(string baseFileFullName, int maximalFileNameLength, bool returnFullName = true);
+        string Generate(string baseFileFullName, int maximalFileNameLength, bool returnFullName = true);
 
         /// <summary>
         /// Generates file name based on specified file name with specified maximal length and related to a directory.
@@ -28,6 +28,6 @@ namespace ProcessingTools.Contracts
         /// <param name="maximalFileNameLength">Maximal length of the output file name</param>
         /// <param name="returnFullName">Specified if to return the full name of the generated file name or to return only the file name</param>
         /// <returns>Generated file name</returns>
-        Task<string> GenerateAsync(string directoryName, string baseFileName, int maximalFileNameLength, bool returnFullName = false);
+        string Generate(string directoryName, string baseFileName, int maximalFileNameLength, bool returnFullName = false);
     }
 }

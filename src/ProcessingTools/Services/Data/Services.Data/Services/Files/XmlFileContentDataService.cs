@@ -5,13 +5,14 @@
     using System.Xml;
     using ProcessingTools.Contracts.IO;
     using ProcessingTools.Services.Contracts.Files;
+    using ProcessingTools.Services.Contracts.IO;
 
     public class XmlFileContentDataService : IXmlFileContentDataService
     {
-        private readonly IXmlFileReader reader;
+        private readonly IXmlReadService reader;
         private readonly IXmlFileWriter writer;
 
-        public XmlFileContentDataService(IXmlFileReader reader, IXmlFileWriter writer)
+        public XmlFileContentDataService(IXmlReadService reader, IXmlFileWriter writer)
         {
             this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
             this.writer = writer ?? throw new ArgumentNullException(nameof(writer));
@@ -50,7 +51,7 @@
                 throw new ArgumentNullException(nameof(fullName));
             }
 
-            return this.reader.ReadXmlAsync(fileName: fullName);
+            return this.reader.ReadFileToXmlDocumentAsync(fileName: fullName);
         }
 
         public async Task<object> WriteXmlFile(string fullName, XmlDocument document, XmlDocumentType documentType = null)

@@ -39,8 +39,8 @@
                 .To<ConsoleLogger>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
+                .To<ProcessingTools.Services.IO.XmlReadService>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
             this.Bind<ProcessingTools.Contracts.IO.IXmlFileWriter>()

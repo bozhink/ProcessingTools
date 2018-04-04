@@ -5,21 +5,21 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Contracts.Commands.Tagger;
-    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
+    using ProcessingTools.Services.Contracts.IO;
 
     [System.ComponentModel.Description("Clone ZooBank XML.")]
     public class ZooBankCloneXmlCommand : IZooBankCloneXmlCommand
     {
         private readonly IZooBankXmlCloner cloner;
         private readonly IDocumentFactory documentFactory;
-        private readonly IXmlFileReader fileReader;
+        private readonly IXmlReadService reader;
 
-        public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZooBankXmlCloner cloner, IXmlFileReader fileReader)
+        public ZooBankCloneXmlCommand(IDocumentFactory documentFactory, IZooBankXmlCloner cloner, IXmlReadService reader)
         {
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
             this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));
-            this.fileReader = fileReader ?? throw new ArgumentNullException(nameof(fileReader));
+            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
         }
 
         public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
@@ -53,7 +53,7 @@
 
         private async Task<IDocument> ReadSourceDocument(string sourceFileName)
         {
-            var xml = await this.fileReader.ReadXmlAsync(sourceFileName).ConfigureAwait(false);
+            var xml = await this.reader.ReadFileToXmlDocumentAsync(sourceFileName).ConfigureAwait(false);
             var document = this.documentFactory.Create(xml.OuterXml);
             return document;
         }

@@ -11,9 +11,7 @@
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
-    //using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Services.Data.Services.Files;
-    //using ProcessingTools.Tagger.Interceptors;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -70,13 +68,6 @@
             //    .Intercept()
             //    .With<LogParsedCoordinatesInterceptor>();
 
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
                 .To<ConsoleLogger>()
@@ -107,12 +98,12 @@
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
+                .To<ProcessingTools.Services.IO.BrokenXmlReadService>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
+                .To<ProcessingTools.Services.IO.XmlReadService>()
                 .Intercept()
                 .With<FileNotFoundInterceptor>();
 
@@ -121,8 +112,8 @@
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.IFileNameGenerator>()
-                .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IFileNameGenerator>()
+                .To<ProcessingTools.Services.IO.SequentialFileNameGenerator>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()

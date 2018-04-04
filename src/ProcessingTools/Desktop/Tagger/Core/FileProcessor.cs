@@ -13,6 +13,7 @@
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Tagger.Contracts;
 
     public partial class FileProcessor : IFileProcessor
@@ -98,21 +99,19 @@
 
             if (this.settings.MergeInputFiles)
             {
-                outputFileName = await this.fileNameGenerator.GenerateAsync(
+                outputFileName = this.fileNameGenerator.Generate(
                     Path.Combine(Path.GetDirectoryName(inputFileName), FileConstants.DefaultBundleXmlFileName),
                     FileConstants.MaximalLengthOfGeneratedNewFileName,
-                    true)
-                    .ConfigureAwait(false);
+                    true);
             }
             else
             {
                 outputFileName = numberOfFileNames > 1 ?
                     this.settings.FileNames[1] :
-                    await this.fileNameGenerator.GenerateAsync(
+                    this.fileNameGenerator.Generate(
                         inputFileName,
                         FileConstants.MaximalLengthOfGeneratedNewFileName,
-                        true)
-                        .ConfigureAwait(false);
+                        true);
 
                 inputFileNameMessage = inputFileName;
             }
