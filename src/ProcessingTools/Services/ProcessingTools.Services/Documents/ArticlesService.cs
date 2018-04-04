@@ -8,15 +8,15 @@ namespace ProcessingTools.Services.Documents
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
+    using AutoMapper;
     using ProcessingTools.Harvesters.Contracts.Meta;
+    using ProcessingTools.Harvesters.Models.Contracts.Meta;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Services.Models.Documents.Files;
     using ProcessingTools.Services.Models.Documents.Articles;
-    using AutoMapper;
-    using ProcessingTools.Harvesters.Models.Contracts.Meta;
     using ProcessingTools.Services.Models.Documents.Documents;
+    using ProcessingTools.Services.Models.Documents.Files;
 
     /// <summary>
     /// Articles service.
@@ -24,7 +24,7 @@ namespace ProcessingTools.Services.Documents
     public class ArticlesService : IArticlesService
     {
         private readonly IArticlesDataService articlesDataService;
-        private readonly IXDocumentsDataService documentsDataService;
+        private readonly IDocumentsDataService documentsDataService;
         private readonly IFilesDataService filesDataService;
         private readonly IXmlReadService xmlReadService;
         private readonly IJatsArticleMetaHarvester articleMetaHarvester;
@@ -38,7 +38,7 @@ namespace ProcessingTools.Services.Documents
         /// <param name="filesDataService">Files data service.</param>
         /// <param name="xmlReadService">Xml read service.</param>
         /// <param name="articleMetaHarvester">Article meta harvester.</param>
-        public ArticlesService(IArticlesDataService articlesDataService, IXDocumentsDataService documentsDataService, IFilesDataService filesDataService, IXmlReadService xmlReadService, IJatsArticleMetaHarvester articleMetaHarvester)
+        public ArticlesService(IArticlesDataService articlesDataService, IDocumentsDataService documentsDataService, IFilesDataService filesDataService, IXmlReadService xmlReadService, IJatsArticleMetaHarvester articleMetaHarvester)
         {
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
@@ -49,6 +49,7 @@ namespace ProcessingTools.Services.Documents
             var mapperConfiguration = new MapperConfiguration(c =>
             {
                 c.CreateMap<IArticleMetaModel, ArticleInsertModel>();
+                c.CreateMap<FileInsertModel, FileUpdateModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -92,7 +93,7 @@ namespace ProcessingTools.Services.Documents
                 throw new InvalidOperationException("File stream can not be read.");
             }
 
-            var file = new FileInsertModel
+            var fileInsertModel = new FileInsertModel
             {
                 OriginalContentLength = model.Length,
                 OriginalContentType = model.ContentType,
@@ -100,7 +101,7 @@ namespace ProcessingTools.Services.Documents
                 OriginalFileExtension = Path.GetExtension(model.FileName)
             };
 
-            var fileId = await this.filesDataService.InsertAsync(file).ConfigureAwait(false);
+            var fileId = await this.filesDataService.InsertAsync(fileInsertModel).ConfigureAwait(false);
 
             XmlDocument xmlDocument = await this.xmlReadService.ReadStreamToXmlDocumentAsync(stream).ConfigureAwait(false);
             if (xmlDocument == null)
@@ -110,26 +111,26 @@ namespace ProcessingTools.Services.Documents
 
             var meta = await this.articleMetaHarvester.HarvestAsync(xmlDocument.DocumentElement).ConfigureAwait(false);
 
-            var article = this.mapper.Map<IArticleMetaModel, ArticleInsertModel>(meta);
+            var articleInsertModel = this.mapper.Map<IArticleMetaModel, ArticleInsertModel>(meta);
 
-            var articleId = await this.articlesDataService.InsertAsync(article).ConfigureAwait(false);
+            var articleId = await this.articlesDataService.InsertAsync(articleInsertModel).ConfigureAwait(false);
 
-            var document = new DocumentInsertModel
+            var documentInsertModel = new DocumentInsertModel
             {
-                Description = file.FileName,
+                Description = fileInsertModel.FileName,
                 ArticleId = articleId.ToString(),
                 FileId = fileId.ToString()
             };
 
-            //
+            var documentId = await this.documentsDataService.InsertAsync(documentInsertModel).ConfigureAwait(false);
 
+            long length = await this.documentsDataService.SetDocumentContentAsync(documentId, xmlDocument.OuterXml);
 
+            var fileUpdateModel = this.mapper.Map<FileInsertModel, FileUpdateModel>(fileInsertModel);
+            fileUpdateModel.Id = fileId.ToString();
+            fileUpdateModel.ContentLength = length;
 
-
-
-
-
-
+            await this.filesDataService.UpdateAsync(fileUpdateModel).ConfigureAwait(false);
 
             return articleId;
         }

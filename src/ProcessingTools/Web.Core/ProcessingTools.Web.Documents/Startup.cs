@@ -196,6 +196,10 @@ namespace ProcessingTools.Web.Documents
                 .As<ProcessingTools.Services.Contracts.Documents.IArticlesDataService>()
                 .InstancePerDependency();
             builder
+                .RegisterType<ProcessingTools.Services.Documents.DocumentsDataService>()
+                .As<ProcessingTools.Services.Contracts.Documents.IDocumentsDataService>()
+                .InstancePerDependency();
+            builder
                 .RegisterType<ProcessingTools.Services.Documents.FilesDataService>()
                 .As<ProcessingTools.Services.Contracts.Documents.IFilesDataService>()
                 .InstancePerDependency();
