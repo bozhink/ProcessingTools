@@ -49,7 +49,7 @@
 
             try
             {
-                this.settings.OutputFileName = await this.GetOutputFileName().ConfigureAwait(false);
+                this.settings.OutputFileName = this.GetOutputFileName();
 
                 IDocument document;
 
@@ -82,7 +82,7 @@
             }
         }
 
-        private async Task<string> GetOutputFileName()
+        private string GetOutputFileName()
         {
             int numberOfFileNames = this.settings.FileNames.Count;
 

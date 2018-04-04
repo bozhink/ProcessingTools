@@ -81,7 +81,6 @@
     <Compile Include="Services\Documents\XmlPresenter.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
-    <Compile Include="Services\Files\XmlFileContentDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />

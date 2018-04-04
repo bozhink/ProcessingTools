@@ -13,7 +13,7 @@
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
-    using ProcessingTools.Services.Data.Services.Files;
+    using ProcessingTools.Services.IO;
 
     public class NinjectBindings : NinjectModule
     {

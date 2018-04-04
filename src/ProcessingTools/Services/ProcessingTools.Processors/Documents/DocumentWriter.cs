@@ -8,22 +8,22 @@ namespace ProcessingTools.Processors.Documents
     using System.Threading.Tasks;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Documents;
-    using ProcessingTools.Services.Contracts.Files;
+    using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
     /// Document writer.
     /// </summary>
     public class DocumentWriter : IDocumentWriter
     {
-        private readonly IXmlFileContentDataService filesManager;
+        private readonly IXmlWriteService writer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentWriter"/> class.
         /// </summary>
-        /// <param name="filesManager">File manager.</param>
-        public DocumentWriter(IXmlFileContentDataService filesManager)
+        /// <param name="writer">XML writer..</param>
+        public DocumentWriter(IXmlWriteService writer)
         {
-            this.filesManager = filesManager ?? throw new ArgumentNullException(nameof(filesManager));
+            this.writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
         /// <inheritdoc/>
@@ -39,7 +39,7 @@ namespace ProcessingTools.Processors.Documents
                 throw new ArgumentNullException(nameof(document));
             }
 
-            return this.filesManager.WriteXmlFile(fileName, document.XmlDocument);
+            return this.writer.WriteAsync(fileName, document.XmlDocument);
         }
     }
 }

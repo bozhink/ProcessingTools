@@ -11,7 +11,7 @@
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
-    using ProcessingTools.Services.Data.Services.Files;
+    using ProcessingTools.Services.IO;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.

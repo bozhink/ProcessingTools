@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Contracts.Files
+namespace ProcessingTools.Services.Contracts.IO
 {
     using System.Threading.Tasks;
     using System.Xml;
