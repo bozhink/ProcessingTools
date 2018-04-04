@@ -9,6 +9,7 @@ namespace ProcessingTools.Harvesters.Abstractions
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Attributes;
@@ -61,7 +62,22 @@ namespace ProcessingTools.Harvesters.Abstractions
                         var node = context.SelectSingleNode(attribute.XPath);
                         if (node != null)
                         {
-                            item.Key.SetValue(result, node.InnerXml);
+                            string value = node.InnerText;
+
+                            if (node.HasChildNodes)
+                            {
+                                var dateNodes = node.SelectNodes("day|month|year").Cast<XmlNode>();
+                                if (dateNodes.Any())
+                                {
+                                    int year = GetInteger(dateNodes, "year");
+                                    int month = GetInteger(dateNodes, "month");
+                                    int day = GetInteger(dateNodes, "day");
+
+                                    value = $"{year}-{month}-{day}";
+                                }
+                            }
+
+                            item.Key.SetValue(result, Regex.Replace(value, @"\s+", " ").Trim());
                             break;
                         }
                     }
@@ -69,6 +85,12 @@ namespace ProcessingTools.Harvesters.Abstractions
 
                 return result;
             });
+        }
+
+        private static int GetInteger(IEnumerable<XmlNode> nodes, string nodeName)
+        {
+            int.TryParse(nodes.FirstOrDefault(n => n.Name == nodeName)?.InnerText?.Trim(), out int year);
+            return year;
         }
     }
 }

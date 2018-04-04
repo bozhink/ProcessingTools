@@ -19,36 +19,46 @@ namespace ProcessingTools.Harvesters.Models.Meta
         public string Doi { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/article-meta/title-group/article-title")]
         public string Title { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/article-meta/title-group/subtitle")]
         public string SubTitle { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/journal-meta/journal-id[@journal-id-type='publisher-id']")]
         public string JournalId { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/journal-meta/journal-title-group/journal-title")]
         public string JournalName { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/journal-meta/journal-title-group/abbrev-journal-title")]
         public string JournalAbbreviatedName { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/journal-meta/publisher/publisher-name")]
         public string PublisherName { get; set; }
 
         /// <inheritdoc/>
         public string PublisherAbbreviatedName { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/article-meta/pub-date[@pub-type='epub']")]
         public DateTime? PublishedOn { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/article-meta/history/date[@date-type=='accepted']")]
         public DateTime? AcceptedOn { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/article-meta/history/date[@date-type=='received']")]
         public DateTime? ReceivedOn { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/article-meta/volume-series")]
         public string VolumeSeries { get; set; }
 
         /// <inheritdoc/>
@@ -60,6 +70,7 @@ namespace ProcessingTools.Harvesters.Models.Meta
         public string Issue { get; set; }
 
         /// <inheritdoc/>
+        [XPath(@".//front/article-meta/issue-part")]
         public string IssuePart { get; set; }
 
         /// <inheritdoc/>
