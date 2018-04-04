@@ -195,6 +195,10 @@ namespace ProcessingTools.Web.Documents
                 .RegisterType<ProcessingTools.Services.Documents.ArticlesDataService>()
                 .As<ProcessingTools.Services.Contracts.Documents.IArticlesDataService>()
                 .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Services.Documents.FilesDataService>()
+                .As<ProcessingTools.Services.Contracts.Documents.IFilesDataService>()
+                .InstancePerDependency();
 
             builder
                 .RegisterType<ProcessingTools.Services.Documents.ArticlesService>()
@@ -225,6 +229,22 @@ namespace ProcessingTools.Web.Documents
             builder
                 .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoArticlesDataAccessObject>()
                 .As<ProcessingTools.Data.Contracts.Documents.IArticlesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoDocumentsDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.Documents.IDocumentsDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
+                .InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoFilesDataAccessObject>()
+                .As<ProcessingTools.Data.Contracts.Documents.IFilesDataAccessObject>()
                 .WithParameter(
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
