@@ -649,10 +649,6 @@
       <Project>{6FD4843F-4B5D-412C-8101-396960FDDC21}</Project>
       <Name>Tagger.Commands</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\FileSystem\FileSystem.csproj">
-      <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
-      <Name>FileSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>
       <Name>Xml</Name>

@@ -1,13 +1,17 @@
-﻿namespace ProcessingTools.FileSystem.IO
+﻿// <copyright file="XmlFileReaderWriter.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.IO
 {
+    using ProcessingTools.Constants;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Contracts.IO;
     using System;
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.IO;
-    using ProcessingTools.Exceptions;
 
     public class XmlFileReaderWriter : IXmlFileReaderWriter
     {
@@ -44,6 +48,7 @@
             };
         }
 
+        /// <inheritdoc/>
         public XmlReaderSettings ReaderSettings
         {
             get
@@ -57,6 +62,7 @@
             }
         }
 
+        /// <inheritdoc/>
         public XmlWriterSettings WriterSettings
         {
             get
@@ -70,11 +76,13 @@
             }
         }
 
+        /// <inheritdoc/>
         public XmlReader GetXmlReader(string fileName, string basePath)
         {
             return XmlReader.Create(this.ReadToStream(fileName, basePath), this.ReaderSettings);
         }
 
+        /// <inheritdoc/>
         public Stream ReadToStream(string fileName, string basePath)
         {
             string path = this.CombineFileName(fileName, basePath);
@@ -82,6 +90,7 @@
             return stream;
         }
 
+        /// <inheritdoc/>
         public Task DeleteAsync(string fileName, string basePath)
         {
             return Task.Run(() =>
@@ -91,6 +100,7 @@
             });
         }
 
+        /// <inheritdoc/>
         public async Task<long> WriteAsync(Stream stream, string fileName, string basePath)
         {
             if (stream == null)
@@ -115,6 +125,7 @@
             return contentLength;
         }
 
+        /// <inheritdoc/>
         public async Task<string> GetNewFilePathAsync(string fileName, string basePath, int length)
         {
             return await Task.Run(() =>

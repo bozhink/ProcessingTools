@@ -7,7 +7,6 @@ namespace ProcessingTools.Services.IO
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
