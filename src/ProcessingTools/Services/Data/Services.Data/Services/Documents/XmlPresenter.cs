@@ -9,10 +9,10 @@
 
     public class XmlPresenter : IXmlPresenter
     {
-        private readonly IDocumentsDataService service;
+        private readonly IXDocumentsDataService service;
         private readonly IDocumentsFormatTransformerFactory transformerFactory;
 
-        public XmlPresenter(IDocumentsDataService service, IDocumentsFormatTransformerFactory transformerFactory)
+        public XmlPresenter(IXDocumentsDataService service, IDocumentsFormatTransformerFactory transformerFactory)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));

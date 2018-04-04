@@ -1,4 +1,4 @@
-﻿// <copyright file="IDocumentsDataService.cs" company="ProcessingTools">
+﻿// <copyright file="IXDocumentsDataService.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -12,7 +12,7 @@ namespace ProcessingTools.Services.Contracts.Documents
     /// <summary>
     /// Documents data service.
     /// </summary>
-    public interface IDocumentsDataService
+    public interface IXDocumentsDataService
     {
         /// <summary>
         /// Gets all documents.

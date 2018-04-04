@@ -40,6 +40,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public string ArticleId { get; set; }
 
         /// <inheritdoc/>
+        public string FileId { get; set; }
+
+        /// <inheritdoc/>
         public bool IsFinal { get; set; }
 
         /// <inheritdoc/>

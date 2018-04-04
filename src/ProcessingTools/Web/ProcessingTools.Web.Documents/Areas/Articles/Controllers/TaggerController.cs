@@ -33,12 +33,12 @@
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentPostReadNormalizer documentReadNormalizer;
         private readonly IDocumentPreWriteNormalizer documentWriteNormalizer;
-        private readonly IDocumentsDataService service;
+        private readonly IXDocumentsDataService service;
         private readonly IDictionary<Type, ICommandInfo> commandsInformation;
 
         public TaggerController(
             ICommandInfoProvider commandInfoProvider,
-            IDocumentsDataService service,
+            IXDocumentsDataService service,
             IDocumentFactory documentFactory,
             IDocumentPostReadNormalizer documentReadNormalizer,
             IDocumentPreWriteNormalizer documentWriteNormalizer,

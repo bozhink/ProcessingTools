@@ -13,5 +13,10 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
         /// Gets the article ID.
         /// </summary>
         string ArticleId { get; }
+
+        /// <summary>
+        /// Gets the file ID.
+        /// </summary>
+        string FileId { get; }
     }
 }

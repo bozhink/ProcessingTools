@@ -19,6 +19,9 @@ namespace ProcessingTools.Services.Models.Documents.Documents
         public string ArticleId { get; set; }
 
         /// <inheritdoc/>
+        public string FileId { get; set; }
+
+        /// <inheritdoc/>
         public bool IsFinal { get; set; }
 
         /// <inheritdoc/>

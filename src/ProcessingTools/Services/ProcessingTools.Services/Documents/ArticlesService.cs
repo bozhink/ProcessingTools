@@ -12,6 +12,11 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
+    using ProcessingTools.Services.Models.Documents.Files;
+    using ProcessingTools.Services.Models.Documents.Articles;
+    using AutoMapper;
+    using ProcessingTools.Harvesters.Models.Contracts.Meta;
+    using ProcessingTools.Services.Models.Documents.Documents;
 
     /// <summary>
     /// Articles service.
@@ -19,20 +24,33 @@ namespace ProcessingTools.Services.Documents
     public class ArticlesService : IArticlesService
     {
         private readonly IArticlesDataService articlesDataService;
+        private readonly IXDocumentsDataService documentsDataService;
+        private readonly IFilesDataService filesDataService;
         private readonly IXmlReadService xmlReadService;
         private readonly IJatsArticleMetaHarvester articleMetaHarvester;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticlesService"/> class.
         /// </summary>
         /// <param name="articlesDataService">Articles data service.</param>
+        /// <param name="documentsDataService">Documents data service.</param>
+        /// <param name="filesDataService">Files data service.</param>
         /// <param name="xmlReadService">Xml read service.</param>
         /// <param name="articleMetaHarvester">Article meta harvester.</param>
-        public ArticlesService(IArticlesDataService articlesDataService, IXmlReadService xmlReadService, IJatsArticleMetaHarvester articleMetaHarvester)
+        public ArticlesService(IArticlesDataService articlesDataService, IXDocumentsDataService documentsDataService, IFilesDataService filesDataService, IXmlReadService xmlReadService, IJatsArticleMetaHarvester articleMetaHarvester)
         {
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
+            this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
+            this.filesDataService = filesDataService ?? throw new ArgumentNullException(nameof(filesDataService));
             this.xmlReadService = xmlReadService ?? throw new ArgumentNullException(nameof(xmlReadService));
             this.articleMetaHarvester = articleMetaHarvester ?? throw new ArgumentNullException(nameof(articleMetaHarvester));
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<IArticleMetaModel, ArticleInsertModel>();
+            });
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>
@@ -74,6 +92,16 @@ namespace ProcessingTools.Services.Documents
                 throw new InvalidOperationException("File stream can not be read.");
             }
 
+            var file = new FileInsertModel
+            {
+                OriginalContentLength = model.Length,
+                OriginalContentType = model.ContentType,
+                OriginalFileName = Path.GetFileNameWithoutExtension(model.FileName),
+                OriginalFileExtension = Path.GetExtension(model.FileName)
+            };
+
+            var fileId = await this.filesDataService.InsertAsync(file).ConfigureAwait(false);
+
             XmlDocument xmlDocument = await this.xmlReadService.ReadStreamToXmlDocumentAsync(stream).ConfigureAwait(false);
             if (xmlDocument == null)
             {
@@ -82,9 +110,28 @@ namespace ProcessingTools.Services.Documents
 
             var meta = await this.articleMetaHarvester.HarvestAsync(xmlDocument.DocumentElement).ConfigureAwait(false);
 
-            // TODO
+            var article = this.mapper.Map<IArticleMetaModel, ArticleInsertModel>(meta);
 
-            throw new NotImplementedException();
+            var articleId = await this.articlesDataService.InsertAsync(article).ConfigureAwait(false);
+
+            var document = new DocumentInsertModel
+            {
+                Description = file.FileName,
+                ArticleId = articleId.ToString(),
+                FileId = fileId.ToString()
+            };
+
+            //
+
+
+
+
+
+
+
+
+
+            return articleId;
         }
     }
 }

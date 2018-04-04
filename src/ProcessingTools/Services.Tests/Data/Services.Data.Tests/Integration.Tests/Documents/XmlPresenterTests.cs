@@ -47,8 +47,8 @@
         private const string ServiceShouldBeInitializedMessage = "Service should be initialized";
         private const string ServiceShouldBeSetCorrectlyMessage = "Service should be set correctly";
 
-        private Mock<IDocumentsDataService> serviceMock;
-        private IDocumentsDataService service;
+        private Mock<IXDocumentsDataService> serviceMock;
+        private IXDocumentsDataService service;
 
         private Document document;
 
@@ -61,7 +61,7 @@
         [SetUp]
         public void TestInitialize()
         {
-            this.serviceMock = new Mock<IDocumentsDataService>();
+            this.serviceMock = new Mock<IXDocumentsDataService>();
             this.serviceMock.Setup(s => s.UpdateContentAsync(
                 It.IsAny<object>(),
                 It.IsAny<object>(),

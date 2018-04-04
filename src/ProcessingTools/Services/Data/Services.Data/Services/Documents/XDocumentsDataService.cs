@@ -16,12 +16,12 @@
     using ProcessingTools.Models.Contracts.Services.Data.Documents;
     using ProcessingTools.Services.Contracts.Documents;
 
-    public class DocumentsDataService : IDocumentsDataService
+    public class XDocumentsDataService : IXDocumentsDataService
     {
         private readonly IDocumentsRepositoryProvider<Documents.Data.Entity.Models.Document> repositoryProvider;
         private readonly IXmlFileReaderWriter xmlFileReaderWriter;
 
-        public DocumentsDataService(IDocumentsRepositoryProvider<Documents.Data.Entity.Models.Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
+        public XDocumentsDataService(IDocumentsRepositoryProvider<Documents.Data.Entity.Models.Document> repositoryProvider, IXmlFileReaderWriter xmlFileReaderWriter)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
             this.xmlFileReaderWriter = xmlFileReaderWriter ?? throw new ArgumentNullException(nameof(xmlFileReaderWriter));

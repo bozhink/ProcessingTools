@@ -77,7 +77,7 @@
     <Compile Include="Services\Bio\Taxonomy\TaxonRanksSearchService.cs" />
     <Compile Include="Services\Bio\Taxonomy\WhiteList.cs" />
     <Compile Include="Services\Bio\TypeStatusDataService.cs" />
-    <Compile Include="Services\Documents\DocumentsDataService.cs" />
+    <Compile Include="Services\Documents\XDocumentsDataService.cs" />
     <Compile Include="Services\Documents\XmlPresenter.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
