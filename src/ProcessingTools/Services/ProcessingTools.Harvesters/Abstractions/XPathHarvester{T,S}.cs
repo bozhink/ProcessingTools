@@ -5,25 +5,41 @@
 namespace ProcessingTools.Harvesters.Abstractions
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Attributes;
     using ProcessingTools.Harvesters.Contracts;
 
     /// <summary>
-    /// XPath harvester.
+    /// Generic XPath harvester.
     /// </summary>
     /// <typeparam name="T">Type of resultant model.</typeparam>
     /// <typeparam name="S">Type of internal model.</typeparam>
     public abstract class XPathHarvester<T, S> : IXmlHarvester<T>
         where S : T, new()
     {
+        private readonly IDictionary<PropertyInfo, IEnumerable> dictionary;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XPathHarvester{T, S}"/> class.
         /// </summary>
         protected XPathHarvester()
         {
+            this.dictionary = new Dictionary<PropertyInfo, IEnumerable>();
+
+            var properties = typeof(S).GetProperties().Where(p => p.PropertyType == typeof(string)).ToArray();
+            foreach (var property in properties)
+            {
+                var attributes = property.GetCustomAttributes(typeof(XPathAttribute), false);
+                if (attributes != null && attributes.Any())
+                {
+                    this.dictionary[property] = attributes;
+                }
+            }
         }
 
         /// <inheritdoc/>
@@ -34,28 +50,25 @@ namespace ProcessingTools.Harvesters.Abstractions
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var result = new S();
-
-            var properties = typeof(S).GetProperties().Where(p => p.PropertyType == typeof(string)).ToArray();
-
-            foreach (var property in properties)
+            return Task.Run<T>(() =>
             {
-                var attributes = property.GetCustomAttributes(typeof(XPathAttribute), false);
-                if (attributes != null && attributes.Any())
+                var result = new S();
+
+                foreach (var item in this.dictionary)
                 {
-                    foreach (XPathAttribute attribute in attributes)
+                    foreach (XPathAttribute attribute in item.Value)
                     {
                         var node = context.SelectSingleNode(attribute.XPath);
                         if (node != null)
                         {
-                            property.SetValue(result, node.InnerXml);
+                            item.Key.SetValue(result, node.InnerXml);
                             break;
                         }
                     }
                 }
-            }
 
-            return Task.FromResult<T>(result);
+                return result;
+            });
         }
     }
 }
