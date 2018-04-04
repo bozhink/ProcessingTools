@@ -5,22 +5,22 @@
 namespace ProcessingTools.Constants.Schema
 {
     /// <summary>
-    /// XPathStrings
+    /// XPath strings.
     /// </summary>
     public static class XPathStrings
     {
         /// <summary>
-        /// ArticleIdOfTypeDoi
+        /// Article ID of type DOI.
         /// </summary>
         public const string ArticleIdOfTypeDoi = ".//front/article-meta/article-id[@pub-id-type='doi']";
 
         /// <summary>
-        /// ArticleJournalMetaIssnEPub
+        /// Article journal meta ISSN epub.
         /// </summary>
         public const string ArticleJournalMetaIssnEPub = ".//front/journal-meta/issn[@pub-type='epub']";
 
         /// <summary>
-        /// ArticleJournalMetaIssnPPub
+        /// Article journal meta ISSN ppub.
         /// </summary>
         public const string ArticleJournalMetaIssnPPub = ".//front/journal-meta/issn[@pub-type='ppub']";
 
