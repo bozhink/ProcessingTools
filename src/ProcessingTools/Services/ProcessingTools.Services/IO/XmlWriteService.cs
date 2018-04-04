@@ -1,14 +1,24 @@
-﻿namespace ProcessingTools.FileSystem.IO
+﻿// <copyright file="XmlWriteService.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.IO
 {
     using System;
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts.IO;
+    using ProcessingTools.Services.Contracts.IO;
 
-    public class XmlFileWriter : IXmlFileWriter
+    /// <summary>
+    /// XML write service.
+    /// </summary>
+    public class XmlWriteService : IXmlWriteService
     {
-        public XmlFileWriter()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlWriteService"/> class.
+        /// </summary>
+        public XmlWriteService()
         {
             this.WriterSettings = new XmlWriterSettings
             {
@@ -26,13 +36,16 @@
             };
         }
 
+        /// <inheritdoc/>
         public XmlWriterSettings WriterSettings { get; set; }
 
+        /// <inheritdoc/>
         public Task<object> WriteAsync(string fileName, XmlDocument document)
         {
             return this.WriteAsync(fileName: fileName, document: document, documentType: null);
         }
 
+        /// <inheritdoc/>
         public async Task<object> WriteAsync(string fileName, XmlDocument document, XmlDocumentType documentType)
         {
             if (string.IsNullOrWhiteSpace(fileName))
@@ -64,11 +77,13 @@
             return true;
         }
 
+        /// <inheritdoc/>
         public Task<object> WriteAsync(string fileName, XmlReader reader)
         {
             return this.WriteAsync(fileName: fileName, reader: reader, documentType: null);
         }
 
+        /// <inheritdoc/>
         public async Task<object> WriteAsync(string fileName, XmlReader reader, XmlDocumentType documentType)
         {
             if (string.IsNullOrWhiteSpace(fileName))

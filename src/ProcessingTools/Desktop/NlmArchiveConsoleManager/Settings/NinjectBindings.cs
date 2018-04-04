@@ -43,8 +43,8 @@
                 .To<ProcessingTools.Services.IO.XmlReadService>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileWriter>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlWriteService>()
+                .To<ProcessingTools.Services.IO.XmlWriteService>()
                 .WhenInjectedInto<XmlFileContentDataService>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();

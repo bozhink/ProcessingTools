@@ -3,46 +3,23 @@
     using System;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts.IO;
     using ProcessingTools.Services.Contracts.Files;
     using ProcessingTools.Services.Contracts.IO;
 
     public class XmlFileContentDataService : IXmlFileContentDataService
     {
         private readonly IXmlReadService reader;
-        private readonly IXmlFileWriter writer;
+        private readonly IXmlWriteService writer;
 
-        public XmlFileContentDataService(IXmlReadService reader, IXmlFileWriter writer)
+        public XmlFileContentDataService(IXmlReadService reader, IXmlWriteService writer)
         {
             this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
             this.writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
-        public XmlReaderSettings ReaderSettings
-        {
-            get
-            {
-                return this.reader.ReaderSettings;
-            }
+        public XmlReaderSettings ReaderSettings { get => this.reader.ReaderSettings; set => this.reader.ReaderSettings = value; }
 
-            set
-            {
-                this.reader.ReaderSettings = value;
-            }
-        }
-
-        public XmlWriterSettings WriterSettings
-        {
-            get
-            {
-                return this.writer.WriterSettings;
-            }
-
-            set
-            {
-                this.writer.WriterSettings = value;
-            }
-        }
+        public XmlWriterSettings WriterSettings { get => this.writer.WriterSettings; set => this.writer.WriterSettings = value; }
 
         public Task<XmlDocument> ReadXmlFile(string fullName)
         {

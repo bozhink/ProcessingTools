@@ -1,16 +1,16 @@
-﻿// <copyright file="IXmlFileWriter.cs" company="ProcessingTools">
+﻿// <copyright file="IXmlWriteService.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.IO
+namespace ProcessingTools.Services.Contracts.IO
 {
     using System.Threading.Tasks;
     using System.Xml;
 
     /// <summary>
-    /// File writer for XML files.
+    /// XML write service.
     /// </summary>
-    public interface IXmlFileWriter
+    public interface IXmlWriteService
     {
         /// <summary>
         /// Gets or sets the settings of the writer.
