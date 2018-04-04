@@ -80,7 +80,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDataModel> GetById(object id)
+        public async Task<IJournalDataModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -95,7 +95,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsDataModel> GetDetailsById(object id)
+        public async Task<IJournalDetailsDataModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {

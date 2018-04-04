@@ -81,10 +81,10 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<IDocumentDataModel> GetById(object id) => await this.GetDetailsById(id).ConfigureAwait(false);
+        public async Task<IDocumentDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IDocumentDetailsDataModel> GetDetailsById(object id)
+        public async Task<IDocumentDetailsDataModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {

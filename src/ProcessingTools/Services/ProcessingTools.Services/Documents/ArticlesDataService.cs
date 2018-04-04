@@ -114,7 +114,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var article = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
+            var article = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
             if (article == null)
             {
@@ -134,7 +134,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var article = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
+            var article = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
             if (article == null)
             {

@@ -119,6 +119,9 @@ namespace ProcessingTools.Web.Documents
             builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
             builder.Register(c => c.Resolve<IApplicationContext>().UserContext).As<IUserContext>().InstancePerDependency();
 
+            builder.RegisterType<ProcessingTools.Harvesters.Meta.JatsArticleMetaHarvester>().As<ProcessingTools.Harvesters.Contracts.Meta.IJatsArticleMetaHarvester>().InstancePerDependency();
+            builder.RegisterType<ProcessingTools.Services.IO.XmlReadService>().As<ProcessingTools.Services.Contracts.IO.IXmlReadService>().InstancePerDependency();
+
             builder
                 .RegisterType<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
                 .As<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()

@@ -110,7 +110,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var publisher = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
+            var publisher = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
             if (publisher == null)
             {
@@ -130,7 +130,7 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var publisher = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
+            var publisher = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
             if (publisher == null)
             {

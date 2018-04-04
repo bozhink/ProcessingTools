@@ -54,10 +54,10 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDataModel> GetById(object id) => await this.GetDetailsById(id).ConfigureAwait(false);
+        public async Task<IPublisherDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IPublisherDetailsDataModel> GetDetailsById(object id)
+        public async Task<IPublisherDetailsDataModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -128,7 +128,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IPublisherDataModel[]> SelectAsync(int skip, int take)
         {
-            var publishers = await this.Collection.Find(p => true)
+            var publishers = await this.Collection.Find(Builders<Publisher>.Filter.Empty)
                 .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
@@ -146,7 +146,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IPublisherDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
         {
-            var publishers = await this.Collection.Find(p => true)
+            var publishers = await this.Collection.Find(Builders<Publisher>.Filter.Empty)
                 .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
@@ -177,7 +177,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(p => true);
+            return this.Collection.CountAsync(Builders<Publisher>.Filter.Empty);
         }
 
         /// <inheritdoc/>

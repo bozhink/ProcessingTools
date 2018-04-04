@@ -8,6 +8,7 @@ namespace ProcessingTools.Services.Documents
     using System.IO;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Harvesters.Contracts.Meta;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
@@ -19,16 +20,19 @@ namespace ProcessingTools.Services.Documents
     {
         private readonly IArticlesDataService articlesDataService;
         private readonly IXmlReadService xmlReadService;
+        private readonly IJatsArticleMetaHarvester articleMetaHarvester;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticlesService"/> class.
         /// </summary>
         /// <param name="articlesDataService">Articles data service.</param>
         /// <param name="xmlReadService">Xml read service.</param>
-        public ArticlesService(IArticlesDataService articlesDataService, IXmlReadService xmlReadService)
+        /// <param name="articleMetaHarvester">Article meta harvester.</param>
+        public ArticlesService(IArticlesDataService articlesDataService, IXmlReadService xmlReadService, IJatsArticleMetaHarvester articleMetaHarvester)
         {
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
             this.xmlReadService = xmlReadService ?? throw new ArgumentNullException(nameof(xmlReadService));
+            this.articleMetaHarvester = articleMetaHarvester ?? throw new ArgumentNullException(nameof(articleMetaHarvester));
         }
 
         /// <inheritdoc/>
@@ -71,6 +75,12 @@ namespace ProcessingTools.Services.Documents
             }
 
             XmlDocument xmlDocument = await this.xmlReadService.ReadStreamToXmlDocumentAsync(stream).ConfigureAwait(false);
+            if (xmlDocument == null)
+            {
+                throw new InvalidOperationException("Invalid XML document.");
+            }
+
+            var meta = await this.articleMetaHarvester.HarvestAsync(xmlDocument.DocumentElement).ConfigureAwait(false);
 
             // TODO
 
