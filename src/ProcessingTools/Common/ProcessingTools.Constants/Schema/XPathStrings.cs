@@ -45,6 +45,36 @@ namespace ProcessingTools.Constants.Schema
         public const string ArticleJournalMetaPublisherName = ".//front/journal-meta/publisher/publisher-name";
 
         /// <summary>
+        /// Article meta title.
+        /// </summary>
+        public const string ArticleMetaTitle = ".//front/article-meta/title-group/article-title";
+
+        /// <summary>
+        /// Article meta subtitle.
+        /// </summary>
+        public const string ArticleMetaSubTitle = ".//front/article-meta/title-group/subtitle";
+
+        /// <summary>
+        /// Article meta published on.
+        /// </summary>
+        public const string ArticleMetaPublishedOn = ".//front/article-meta/pub-date[@pub-type='epub']";
+
+        /// <summary>
+        /// Article meta accepted on.
+        /// </summary>
+        public const string ArticleMetaAcceptedOn = ".//front/article-meta/history/date[@date-type=='accepted']";
+
+        /// <summary>
+        /// Article meta received on.
+        /// </summary>
+        public const string ArticleMetaReceivedOn = ".//front/article-meta/history/date[@date-type=='received']";
+
+        /// <summary>
+        /// Article meta volume series.
+        /// </summary>
+        public const string ArticleMetaVolumeSeries = ".//front/article-meta/volume-series";
+
+        /// <summary>
         /// Article meta volume.
         /// </summary>
         public const string ArticleMetaVolume = ".//front/article-meta/volume";
@@ -53,6 +83,11 @@ namespace ProcessingTools.Constants.Schema
         /// Article meta issue.
         /// </summary>
         public const string ArticleMetaIssue = ".//front/article-meta/issue";
+
+        /// <summary>
+        /// Article meta issue part.
+        /// </summary>
+        public const string ArticleMetaIssuePart = ".//front/article-meta/issue-part";
 
         /// <summary>
         /// Article meta e-location ID.

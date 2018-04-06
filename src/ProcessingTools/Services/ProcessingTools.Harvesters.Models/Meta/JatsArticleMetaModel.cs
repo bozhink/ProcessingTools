@@ -19,46 +19,43 @@ namespace ProcessingTools.Harvesters.Models.Meta
         public string Doi { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/article-meta/title-group/article-title")]
+        [XPath(XPathStrings.ArticleMetaTitle)]
         public string Title { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/article-meta/title-group/subtitle")]
+        [XPath(XPathStrings.ArticleMetaSubTitle)]
         public string SubTitle { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/journal-meta/journal-id[@journal-id-type='publisher-id']")]
+        [XPath(XPathStrings.ArticleJournalMetaJournalId)]
         public string JournalId { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/journal-meta/journal-title-group/journal-title")]
+        [XPath(XPathStrings.ArticleJournalMetaJournalTitle)]
         public string JournalName { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/journal-meta/journal-title-group/abbrev-journal-title")]
+        [XPath(XPathStrings.ArticleJournalMetaJournalAbbreviatedTitle)]
         public string JournalAbbreviatedName { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/journal-meta/publisher/publisher-name")]
+        [XPath(XPathStrings.ArticleJournalMetaPublisherName)]
         public string PublisherName { get; set; }
 
         /// <inheritdoc/>
-        public string PublisherAbbreviatedName { get; set; }
-
-        /// <inheritdoc/>
-        [XPath(@".//front/article-meta/pub-date[@pub-type='epub']")]
+        [XPath(XPathStrings.ArticleMetaPublishedOn)]
         public DateTime? PublishedOn { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/article-meta/history/date[@date-type=='accepted']")]
+        [XPath(XPathStrings.ArticleMetaAcceptedOn)]
         public DateTime? AcceptedOn { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/article-meta/history/date[@date-type=='received']")]
+        [XPath(XPathStrings.ArticleMetaReceivedOn)]
         public DateTime? ReceivedOn { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/article-meta/volume-series")]
+        [XPath(XPathStrings.ArticleMetaVolumeSeries)]
         public string VolumeSeries { get; set; }
 
         /// <inheritdoc/>
@@ -70,7 +67,7 @@ namespace ProcessingTools.Harvesters.Models.Meta
         public string Issue { get; set; }
 
         /// <inheritdoc/>
-        [XPath(@".//front/article-meta/issue-part")]
+        [XPath(XPathStrings.ArticleMetaIssuePart)]
         public string IssuePart { get; set; }
 
         /// <inheritdoc/>

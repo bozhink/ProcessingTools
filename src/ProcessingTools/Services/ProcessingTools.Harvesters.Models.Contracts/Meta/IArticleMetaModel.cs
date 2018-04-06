@@ -47,11 +47,6 @@ namespace ProcessingTools.Harvesters.Models.Contracts.Meta
         string PublisherName { get; }
 
         /// <summary>
-        /// Gets the publisher abbreviated name.
-        /// </summary>
-        string PublisherAbbreviatedName { get; }
-
-        /// <summary>
         /// Gets the published date.
         /// </summary>
         DateTime? PublishedOn { get; }
