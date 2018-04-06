@@ -4,15 +4,18 @@
 
 namespace ProcessingTools.Services.IO
 {
-    using ProcessingTools.Constants;
-    using ProcessingTools.Exceptions;
-    using ProcessingTools.Services.Contracts.IO;
     using System;
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Exceptions;
+    using ProcessingTools.Services.Contracts.IO;
 
+    /// <summary>
+    /// Xml file reader-writer.
+    /// </summary>
     public class XmlFileReaderWriter : IXmlFileReaderWriter
     {
         private const int MaximalNumberOfTrialsToGenerateNewFileName = 100;
@@ -20,6 +23,9 @@ namespace ProcessingTools.Services.IO
         private XmlReaderSettings readerSettings;
         private XmlWriterSettings writerSettings;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlFileReaderWriter"/> class.
+        /// </summary>
         public XmlFileReaderWriter()
         {
             this.ReaderSettings = new XmlReaderSettings

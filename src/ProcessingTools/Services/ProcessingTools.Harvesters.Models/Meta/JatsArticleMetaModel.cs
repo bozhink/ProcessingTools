@@ -15,6 +15,10 @@ namespace ProcessingTools.Harvesters.Models.Meta
     public class JatsArticleMetaModel : IArticleMetaModel
     {
         /// <inheritdoc/>
+        [XPath(XPathStrings.ArticleIdOfInternalType)]
+        public string ArticleId { get; set; }
+
+        /// <inheritdoc/>
         [XPath(XPathStrings.ArticleIdOfTypeDoi)]
         public string Doi { get; set; }
 
@@ -41,6 +45,10 @@ namespace ProcessingTools.Harvesters.Models.Meta
         /// <inheritdoc/>
         [XPath(XPathStrings.ArticleJournalMetaPublisherName)]
         public string PublisherName { get; set; }
+
+        /// <inheritdoc/>
+        [XPath(XPathStrings.ArticleMetaArchivalDate)]
+        public DateTime? ArchivalDate { get; set; }
 
         /// <inheritdoc/>
         [XPath(XPathStrings.ArticleMetaPublishedOn)]

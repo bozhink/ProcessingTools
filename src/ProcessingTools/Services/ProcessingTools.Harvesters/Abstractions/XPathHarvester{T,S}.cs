@@ -83,7 +83,7 @@ namespace ProcessingTools.Harvesters.Abstractions
                                     int month = GetInteger(dateNodes, ElementNames.Month);
                                     int day = GetInteger(dateNodes, ElementNames.Day);
 
-                                    value = $"{year}-{month}-{day}";
+                                    value = $"{year:0000}-{month:00}-{day:00}T00:00:00.000Z";
                                 }
                             }
 

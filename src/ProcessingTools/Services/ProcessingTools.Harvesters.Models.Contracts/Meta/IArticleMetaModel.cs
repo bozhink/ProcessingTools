@@ -12,6 +12,11 @@ namespace ProcessingTools.Harvesters.Models.Contracts.Meta
     public interface IArticleMetaModel
     {
         /// <summary>
+        /// Gets article ID given by publisher.
+        /// </summary>
+        string ArticleId { get; }
+
+        /// <summary>
         /// Gets DOI.
         /// </summary>
         string Doi { get; }
@@ -45,6 +50,11 @@ namespace ProcessingTools.Harvesters.Models.Contracts.Meta
         /// Gets the publisher name.
         /// </summary>
         string PublisherName { get; }
+
+        /// <summary>
+        /// Gets archival date.
+        /// </summary>
+        DateTime? ArchivalDate { get; }
 
         /// <summary>
         /// Gets the published date.

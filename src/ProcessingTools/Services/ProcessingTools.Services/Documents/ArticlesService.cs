@@ -112,6 +112,8 @@ namespace ProcessingTools.Services.Documents
             var meta = await this.articleMetaHarvester.HarvestAsync(xmlDocument.DocumentElement).ConfigureAwait(false);
 
             var articleInsertModel = this.mapper.Map<IArticleMetaModel, ArticleInsertModel>(meta);
+            articleInsertModel.JournalId = journalId;
+            articleInsertModel.ELocationId = articleInsertModel.ELocationId ?? meta.ArticleId;
 
             var articleId = await this.articlesDataService.InsertAsync(articleInsertModel).ConfigureAwait(false);
 

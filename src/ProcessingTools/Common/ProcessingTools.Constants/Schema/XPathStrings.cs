@@ -15,6 +15,11 @@ namespace ProcessingTools.Constants.Schema
         public const string ArticleIdOfTypeDoi = ".//front/article-meta/article-id[@pub-id-type='doi']";
 
         /// <summary>
+        /// Article ID of internal (publisher's) type.
+        /// </summary>
+        public const string ArticleIdOfInternalType = ".//front/article-meta/article-id[@pub-id-type='publisher-id']";
+
+        /// <summary>
         /// Article journal meta ISSN epub.
         /// </summary>
         public const string ArticleJournalMetaIssnEPub = ".//front/journal-meta/issn[@pub-type='epub']";
@@ -55,19 +60,24 @@ namespace ProcessingTools.Constants.Schema
         public const string ArticleMetaSubTitle = ".//front/article-meta/title-group/subtitle";
 
         /// <summary>
+        /// Article meta archival date.
+        /// </summary>
+        public const string ArticleMetaArchivalDate = ".//front/article-meta/pub-date[@pub-type='archival-date']";
+
+        /// <summary>
         /// Article meta published on.
         /// </summary>
-        public const string ArticleMetaPublishedOn = ".//front/article-meta/pub-date[@pub-type='epub']";
+        public const string ArticleMetaPublishedOn = ".//front/article-meta/pub-date[@pub-type='epub']|.//front/article-meta/history/date[@date-type='pub']";
 
         /// <summary>
         /// Article meta accepted on.
         /// </summary>
-        public const string ArticleMetaAcceptedOn = ".//front/article-meta/history/date[@date-type=='accepted']";
+        public const string ArticleMetaAcceptedOn = ".//front/article-meta/history/date[@date-type='accepted']";
 
         /// <summary>
         /// Article meta received on.
         /// </summary>
-        public const string ArticleMetaReceivedOn = ".//front/article-meta/history/date[@date-type=='received']";
+        public const string ArticleMetaReceivedOn = ".//front/article-meta/history/date[@date-type='received']";
 
         /// <summary>
         /// Article meta volume series.

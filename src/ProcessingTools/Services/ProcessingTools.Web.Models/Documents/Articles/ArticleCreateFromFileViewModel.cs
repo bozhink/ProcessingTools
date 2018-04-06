@@ -56,6 +56,5 @@ namespace ProcessingTools.Web.Models.Documents.Articles
 
         /// <inheritdoc/>
         public string ReturnUrl { get; set; }
-
     }
 }
