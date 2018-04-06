@@ -13,6 +13,7 @@ namespace ProcessingTools.Harvesters.Abstractions
     using System.Threading.Tasks;
     using System.Xml;
     using ProcessingTools.Attributes;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Harvesters.Contracts;
 
     /// <summary>
@@ -64,14 +65,17 @@ namespace ProcessingTools.Harvesters.Abstractions
                         {
                             string value = node.InnerText;
 
-                            if (node.HasChildNodes)
+                            if (node.Name == ElementNames.PubDate || node.Name == ElementNames.Date)
                             {
-                                var dateNodes = node.SelectNodes("day|month|year").Cast<XmlNode>();
+                                var dateNodes = node.SelectNodes($"{ElementNames.Day}|{ElementNames.Month}|{ElementNames.Year}")
+                                    .Cast<XmlNode>()
+                                    .ToList();
+
                                 if (dateNodes.Any())
                                 {
-                                    int year = GetInteger(dateNodes, "year");
-                                    int month = GetInteger(dateNodes, "month");
-                                    int day = GetInteger(dateNodes, "day");
+                                    int year = GetInteger(dateNodes, ElementNames.Year);
+                                    int month = GetInteger(dateNodes, ElementNames.Month);
+                                    int day = GetInteger(dateNodes, ElementNames.Day);
 
                                     value = $"{year}-{month}-{day}";
                                 }
@@ -89,8 +93,8 @@ namespace ProcessingTools.Harvesters.Abstractions
 
         private static int GetInteger(IEnumerable<XmlNode> nodes, string nodeName)
         {
-            int.TryParse(nodes.FirstOrDefault(n => n.Name == nodeName)?.InnerText?.Trim(), out int year);
-            return year;
+            int.TryParse(nodes.FirstOrDefault(n => n.Name == nodeName)?.InnerText?.Trim(), out int result);
+            return result;
         }
     }
 }

@@ -123,5 +123,30 @@ namespace ProcessingTools.Constants.Schema
         /// xref
         /// </summary>
         public const string XRef = "xref";
+
+        /// <summary>
+        /// pub-date
+        /// </summary>
+        public const string PubDate = "pub-date";
+
+        /// <summary>
+        /// date
+        /// </summary>
+        public const string Date = "date";
+
+        /// <summary>
+        /// day
+        /// </summary>
+        public const string Day = "day";
+
+        /// <summary>
+        /// month
+        /// </summary>
+        public const string Month = "month";
+
+        /// <summary>
+        /// year
+        /// </summary>
+        public const string Year = "year";
     }
 }
