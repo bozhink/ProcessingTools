@@ -7,6 +7,7 @@ namespace ProcessingTools.Harvesters.Abstractions
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
     using System.Text.RegularExpressions;
@@ -24,22 +25,27 @@ namespace ProcessingTools.Harvesters.Abstractions
     public abstract class XPathHarvester<T, S> : IXmlHarvester<T>
         where S : T, new()
     {
-        private readonly IDictionary<PropertyInfo, IEnumerable> dictionary;
+        private readonly IDictionary<PropertyInfo, PropertyData> propertyDictionary;
+        private readonly Regex matchWhitespace = new Regex(@"\s+");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XPathHarvester{T, S}"/> class.
         /// </summary>
         protected XPathHarvester()
         {
-            this.dictionary = new Dictionary<PropertyInfo, IEnumerable>();
+            this.propertyDictionary = new Dictionary<PropertyInfo, PropertyData>();
 
-            var properties = typeof(S).GetProperties().Where(p => p.PropertyType == typeof(string)).ToArray();
+            var properties = typeof(S).GetProperties().ToArray();
             foreach (var property in properties)
             {
                 var attributes = property.GetCustomAttributes(typeof(XPathAttribute), false);
                 if (attributes != null && attributes.Any())
                 {
-                    this.dictionary[property] = attributes;
+                    this.propertyDictionary[property] = new PropertyData
+                    {
+                        Converter = TypeDescriptor.GetConverter(property.PropertyType),
+                        Attributes = attributes
+                    };
                 }
             }
         }
@@ -56,9 +62,9 @@ namespace ProcessingTools.Harvesters.Abstractions
             {
                 var result = new S();
 
-                foreach (var item in this.dictionary)
+                foreach (var item in this.propertyDictionary)
                 {
-                    foreach (XPathAttribute attribute in item.Value)
+                    foreach (XPathAttribute attribute in item.Value.Attributes)
                     {
                         var node = context.SelectSingleNode(attribute.XPath);
                         if (node != null)
@@ -81,7 +87,19 @@ namespace ProcessingTools.Harvesters.Abstractions
                                 }
                             }
 
-                            item.Key.SetValue(result, Regex.Replace(value, @"\s+", " ").Trim());
+                            value = this.matchWhitespace.Replace(value, " ").Trim();
+                            if (item.Key.PropertyType == typeof(string))
+                            {
+                                item.Key.SetValue(result, value);
+                            }
+                            else
+                            {
+                                if (item.Value.Converter != null)
+                                {
+                                    item.Key.SetValue(result, item.Value.Converter.ConvertFromString(value));
+                                }
+                            }
+
                             break;
                         }
                     }
@@ -95,6 +113,22 @@ namespace ProcessingTools.Harvesters.Abstractions
         {
             int.TryParse(nodes.FirstOrDefault(n => n.Name == nodeName)?.InnerText?.Trim(), out int result);
             return result;
+        }
+
+        /// <summary>
+        /// Private class to represent needed <see cref="PropertyInfo" /> data.
+        /// </summary>
+        private class PropertyData
+        {
+            /// <summary>
+            /// Gets or sets the type converter.
+            /// </summary>
+            internal TypeConverter Converter { get; set; }
+
+            /// <summary>
+            /// Gets or sets the attributes.
+            /// </summary>
+            internal IEnumerable Attributes { get; set; }
         }
     }
 }
