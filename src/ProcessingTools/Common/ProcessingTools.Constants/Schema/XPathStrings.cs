@@ -25,182 +25,182 @@ namespace ProcessingTools.Constants.Schema
         public const string ArticleJournalMetaIssnPPub = ".//front/journal-meta/issn[@pub-type='ppub']";
 
         /// <summary>
-        /// ArticleJournalMetaJournalAbbreviatedTitle
+        /// Article journal meta journal abbreviated title.
         /// </summary>
         public const string ArticleJournalMetaJournalAbbreviatedTitle = ".//front/journal-meta/journal-title-group/abbrev-journal-title";
 
         /// <summary>
-        /// ArticleJournalMetaJournalId
+        /// Article journal meta journal id.
         /// </summary>
         public const string ArticleJournalMetaJournalId = ".//front/journal-meta/journal-id[@journal-id-type='publisher-id']";
 
         /// <summary>
-        /// ArticleJournalMetaJournalTitle
+        /// Article journal meta journal title.
         /// </summary>
         public const string ArticleJournalMetaJournalTitle = ".//front/journal-meta/journal-title-group/journal-title";
 
         /// <summary>
-        /// ArticleJournalMetaPublisherName
+        /// Article journal meta publisher name.
         /// </summary>
         public const string ArticleJournalMetaPublisherName = ".//front/journal-meta/publisher/publisher-name";
 
         /// <summary>
-        /// ArticleMetaElocationId
-        /// </summary>
-        public const string ArticleMetaElocationId = ".//front/article-meta/elocation-id";
-
-        /// <summary>
-        /// ArticleMetaFirstPage
-        /// </summary>
-        public const string ArticleMetaFirstPage = ".//front/article-meta/fpage";
-
-        /// <summary>
-        /// ArticleMetaIssue
-        /// </summary>
-        public const string ArticleMetaIssue = ".//front/article-meta/issue";
-
-        /// <summary>
-        /// ArticleMetaLastPage
-        /// </summary>
-        public const string ArticleMetaLastPage = ".//front/article-meta/lpage";
-
-        /// <summary>
-        /// ArticleMetaVolume
+        /// Article meta volume.
         /// </summary>
         public const string ArticleMetaVolume = ".//front/article-meta/volume";
 
         /// <summary>
-        /// ArticleZooBankSelfUri
+        /// Article meta issue.
+        /// </summary>
+        public const string ArticleMetaIssue = ".//front/article-meta/issue";
+
+        /// <summary>
+        /// Article meta e-location ID.
+        /// </summary>
+        public const string ArticleMetaElocationId = ".//front/article-meta/elocation-id";
+
+        /// <summary>
+        /// Article meta first page.
+        /// </summary>
+        public const string ArticleMetaFirstPage = ".//front/article-meta/fpage";
+
+        /// <summary>
+        /// Article meta last page.
+        /// </summary>
+        public const string ArticleMetaLastPage = ".//front/article-meta/lpage";
+
+        /// <summary>
+        /// Article ZooBank self-uri.
         /// </summary>
         public const string ArticleZooBankSelfUri = ".//article-meta/self-uri[@content-type='zoobank']";
 
         /// <summary>
-        /// ContentNodes
+        /// Content nodes.
         /// </summary>
         public const string ContentNodes = ".//p|.//title|.//license-p|.//li|.//th|.//td|.//mixed-citation|.//element-citation|.//nlm-citation|.//tp:nomenclature-citation";
 
         /// <summary>
-        /// ContributorZooBankUri
+        /// Contributor ZooBank uri.
         /// </summary>
         public const string ContributorZooBankUri = ".//article-meta/contrib-group/contrib/uri[@content-type='zoobank']";
 
         /// <summary>
-        /// CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes
+        /// Coordinate of type latitude with empty latitude and longitude attributes.
         /// </summary>
         public const string CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes = ".//locality-coordinates[@type='latitude'][normalize-space(@latitude)!='' and normalize-space(@longitude)='']";
 
         /// <summary>
-        /// CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes
+        /// Coordinate of type longitude with empty latitude and longitude attributes.
         /// </summary>
         public const string CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes = ".//locality-coordinates[@type='longitude'][normalize-space(@latitude)='' and normalize-space(@longitude)!='']";
 
         /// <summary>
-        /// CoordinateWithEmptyLatitudeOrLongitude
+        /// Coordinate with empty latitude or longitude.
         /// </summary>
         public const string CoordinateWithEmptyLatitudeOrLongitude = ".//locality-coordinates[normalize-space(@latitude)='' or normalize-space(@longitude)='']";
 
         /// <summary>
-        /// ElementWithFullNameAttribute
+        /// Element with full name attribute.
         /// </summary>
         public const string ElementWithFullNameAttribute = ".//*[normalize-space(@" + AttributeNames.FullName + ")!='']";
 
         /// <summary>
-        /// HigherDocumentStructure
+        /// Higher document structure.
         /// </summary>
         public const string HigherDocumentStructure = ".//article[not(ancestor::article)][not(ancestor::document)]|.//document[not(ancestor::article)][not(ancestor::document)]";
 
         /// <summary>
-        /// IdAttributes
+        /// ID attributes.
         /// </summary>
         public const string IdAttributes = ".//@id";
 
         /// <summary>
-        /// LowerTaxonNamePartWithNoFullNameAttribute
+        /// Lower taxon name part with no full name attribute.
         /// </summary>
         public const string LowerTaxonNamePartWithNoFullNameAttribute = LowerTaxonNames + "/tn-part[not(@full-name)]" + TaxonNamePartOfNonAuxiliaryType;
 
         /// <summary>
-        /// LowerTaxonNames
+        /// Lower taxon names.
         /// </summary>
         public const string LowerTaxonNames = ".//tn[@type='lower']";
 
         /// <summary>
-        /// LowerTaxonNameWithNoGenusTaxonNamePart
+        /// Lower taxon name with no genus taxon name part.
         /// </summary>
         public const string LowerTaxonNameWithNoGenusTaxonNamePart = LowerTaxonNames + "[count(.//tn-part[@type='genus']) = 0]";
 
         /// <summary>
-        /// LowerTaxonNameWithNoTaxonNamePart
+        /// Lower taxon name with no taxon name part.
         /// </summary>
         public const string LowerTaxonNameWithNoTaxonNamePart = LowerTaxonNames + "[not(" + ElementNames.TaxonNamePart + ")]";
 
         /// <summary>
-        /// MediaElement
+        /// Media element.
         /// </summary>
         public const string MediaElement = ".//media";
 
         /// <summary>
-        /// ObjectIdOfTypeIpni
+        /// ObjectId of type IPNI.
         /// </summary>
         public const string ObjectIdOfTypeIpni = ".//object-id[@content-type='ipni']";
 
         /// <summary>
-        /// ObjectIdOfTypeZooBank
+        /// ObjectId of type ZooBank.
         /// </summary>
         public const string ObjectIdOfTypeZooBank = ".//object-id[@content-type='zoobank']";
 
         /// <summary>
-        /// ReferencesXPath
+        /// References XPath.
         /// </summary>
         public const string ReferencesXPath = ".//ref|.//reference";
 
         /// <summary>
-        /// RidAttributes
+        /// Rid attributes.
         /// </summary>
         public const string RidAttributes = ".//@rid";
 
         /// <summary>
-        /// RootNodesOfContext
+        /// Root nodes of context.
         /// </summary>
         public const string RootNodesOfContext = "./*";
 
         /// <summary>
-        /// SpecimenCodesContentNodes
+        /// Specimen codes content nodes.
         /// </summary>
         public const string SpecimenCodesContentNodes = "//p|//li|//th|//td|//title|//tp:nomenclature-citation";
 
         /// <summary>
-        /// TableRowWithCoordinatePartsWichCanBeMerged
+        /// Table row with coordinate parts Which can be merged.
         /// </summary>
-        public const string TableRowWithCoordinatePartsWichCanBeMerged = ".//tr[count(" + CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1][count(" + CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1]";
+        public const string TableRowWithCoordinatePartsWhichCanBeMerged = ".//tr[count(" + CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1][count(" + CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes + ")=1]";
 
         /// <summary>
-        /// TaxonNamePartOfNonAuxiliaryType
+        /// Taxon name part of non auxiliary type.
         /// </summary>
         public const string TaxonNamePartOfNonAuxiliaryType = "[@type!='sensu'][@type!='hybrid-sign'][@type!='uncertainty-rank'][@type!='infraspecific-rank'][@type!='authority'][@type!='basionym-authority']";
 
         /// <summary>
-        /// TaxonNamePartOfTypeGenus
+        /// Taxon name part of type genus.
         /// </summary>
         public const string TaxonNamePartOfTypeGenus = "tn-part[@type='genus']";
 
         /// <summary>
-        /// TaxonNamePartOfTypeSpecies
+        /// Taxon name part of type species.
         /// </summary>
         public const string TaxonNamePartOfTypeSpecies = "tn-part[@type='species']";
 
         /// <summary>
-        /// TaxonNamePartsOfLowerTaxonNames
+        /// Taxon name parts of lower taxon names.
         /// </summary>
         public const string TaxonNamePartsOfLowerTaxonNames = LowerTaxonNames + "/" + ElementNames.TaxonNamePart;
 
         /// <summary>
-        /// TaxonTreatmentNomenclature
+        /// Taxon treatment nomenclature.
         /// </summary>
         public const string TaxonTreatmentNomenclature = ".//tp:taxon-treatment/tp:nomenclature";
 
         /// <summary>
-        /// XLinkHref
+        /// XLink href.
         /// </summary>
         public const string XLinkHref = "//graphic/@xlink:href|//inline-graphic/@xlink:href|//media/@xlink:href";
     }
