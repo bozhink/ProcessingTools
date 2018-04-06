@@ -95,5 +95,15 @@ namespace ProcessingTools.Harvesters.Models.Contracts.Meta
         /// Gets the last page.
         /// </summary>
         string LastPage { get; }
+
+        /// <summary>
+        /// Gets the number of pages.
+        /// </summary>
+        int NumberOfPages { get; }
+
+        /// <summary>
+        /// Gets the number of references.
+        /// </summary>
+        int NumberOfReferences { get; }
     }
 }

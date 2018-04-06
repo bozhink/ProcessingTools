@@ -105,6 +105,16 @@ namespace ProcessingTools.Constants.Schema
         public const string ArticleMetaLastPage = ".//front/article-meta/lpage";
 
         /// <summary>
+        /// Article meta counts number of pages.
+        /// </summary>
+        public const string ArticleMetaCountsNumberOfPages = ".//front/article-meta/counts/page-count/@count";
+
+        /// <summary>
+        /// Article meta counts number of references.
+        /// </summary>
+        public const string ArticleMetaCountsNumberOfReferences = ".//front/article-meta/counts/ref-count/@count";
+
+        /// <summary>
         /// Article ZooBank self-uri.
         /// </summary>
         public const string ArticleZooBankSelfUri = ".//article-meta/self-uri[@content-type='zoobank']";

@@ -81,5 +81,13 @@ namespace ProcessingTools.Harvesters.Models.Meta
         /// <inheritdoc/>
         [XPath(XPathStrings.ArticleMetaLastPage)]
         public string LastPage { get; set; }
+
+        /// <inheritdoc/>
+        [XPath(XPathStrings.ArticleMetaCountsNumberOfPages)]
+        public int NumberOfPages { get; set; }
+
+        /// <inheritdoc/>
+        [XPath(XPathStrings.ArticleMetaCountsNumberOfReferences)]
+        public int NumberOfReferences { get; set; }
     }
 }
