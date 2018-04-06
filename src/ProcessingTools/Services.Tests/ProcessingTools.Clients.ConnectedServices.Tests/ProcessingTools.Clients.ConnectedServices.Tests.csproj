@@ -1,35 +1,40 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.0.9</Version>
     <Copyright>Copyright © 2017 ProcessingTools</Copyright>
     <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Client Tests</Description>
+    <Description>Tests for clents for connected services of external services.</Description>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Clients.Tests.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;S1075</NoWarn>
-  </PropertyGroup>
+
   <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.4.0.3347" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.1" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.1" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.1" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.1" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Clients.ConnectedServices\ProcessingTools.Clients.ConnectedServices.csproj" />
+  </ItemGroup>
+
 </Project>
