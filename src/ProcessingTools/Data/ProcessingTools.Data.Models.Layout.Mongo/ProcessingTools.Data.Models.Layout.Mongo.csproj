@@ -7,10 +7,10 @@
     <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Documents data models for MongoDB implementation</Description>
+    <Description>Layout data models for MongoDB implementation</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Models.Documents.Mongo.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Models.Layout.Mongo.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S1075</NoWarn>
   </PropertyGroup>
   <ItemGroup>
