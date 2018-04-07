@@ -191,7 +191,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// GET /Documents/Articles/CreateFromFileActionName
+        /// GET /Documents/Articles/CreateFromFile
         /// </summary>
         /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
@@ -220,7 +220,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
-        /// POST /Documents/Articles/Create
+        /// POST /Documents/Articles/CreateFromFile
         /// </summary>
         /// <param name="file">File to upload.</param>
         /// <param name="journalId">Journal ID of the article.</param>

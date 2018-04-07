@@ -15,8 +15,9 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <summary>
         /// Get <see cref="DocumentUploadViewModel"/>.
         /// </summary>
+        /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Task of <see cref="DocumentUploadViewModel"/>.</returns>
-        Task<DocumentUploadViewModel> GetDocumentUploadViewModelAsync();
+        Task<DocumentUploadViewModel> GetDocumentUploadViewModelAsync(string articleId);
 
         /// <summary>
         /// Get <see cref="DocumentEditViewModel"/>.
@@ -51,8 +52,9 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// Download document.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Task of <see cref="DocumentDownloadResponseModel"/>.</returns>
-        Task<DocumentDownloadResponseModel> DownloadDocumentAsync(string id);
+        Task<DocumentDownloadResponseModel> DownloadDocumentAsync(string id, string articleId);
 
         /// <summary>
         /// Update document.
@@ -64,9 +66,18 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <summary>
         /// Delete document.
         /// </summary>
-        /// <param name="id">ID of the article to be deleted.</param>
+        /// <param name="id">Object ID of the document to be deleted.</param>
+        /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Success status.</returns>
-        Task<bool> DeleteDocumentAsync(string id);
+        Task<bool> DeleteDocumentAsync(string id, string articleId);
+
+        /// <summary>
+        /// Sets specified document as final.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns>Success status.</returns>
+        Task<bool> SetAsFinalAsync(string id, string articleId);
 
         /// <summary>
         /// Map <see cref="DocumentUpdateRequestModel"/> to <see cref="DocumentEditViewModel"/>.
