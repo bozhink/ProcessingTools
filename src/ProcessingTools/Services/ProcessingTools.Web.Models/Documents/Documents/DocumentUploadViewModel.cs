@@ -1,8 +1,8 @@
-﻿// <copyright file="ArticleCreateFromFileViewModel.cs" company="ProcessingTools">
+﻿// <copyright file="DocumentUploadViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Models.Documents.Articles
+namespace ProcessingTools.Web.Models.Documents.Documents
 {
     using System;
     using System.Collections.Generic;
@@ -10,25 +10,25 @@ namespace ProcessingTools.Web.Models.Documents.Articles
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Article create from file view model.
+    /// Document upload view model.
     /// </summary>
-    public class ArticleCreateFromFileViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentUploadViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArticleCreateFromFileViewModel"/> class.
+        /// Initializes a new instance of the <see cref="DocumentUploadViewModel"/> class.
         /// </summary>
         /// <param name="userContext">The user context.</param>
-        /// <param name="journals">Journals for select.</param>
-        public ArticleCreateFromFileViewModel(UserContext userContext, IEnumerable<ArticleJournalViewModel> journals)
+        /// <param name="article">Article of the document.</param>
+        public DocumentUploadViewModel(UserContext userContext, DocumentArticleViewModel article)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
-            this.Journals = journals ?? throw new ArgumentNullException(nameof(journals));
+            this.Article = article ?? throw new ArgumentNullException(nameof(article));
         }
 
         /// <summary>
         /// Gets or sets the page heading.
         /// </summary>
-        [Display(Name = "Create New Article From File")]
+        [Display(Name = "Upload document")]
         public string PageHeading { get; set; }
 
         /// <summary>
@@ -43,15 +43,15 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string File { get; set; }
 
         /// <summary>
-        /// Gets or sets the journal ID.
+        /// Gets or sets the object ID of the article.
         /// </summary>
-        [Display(Name = "Journal")]
-        public string JournalId { get; set; }
+        [Display(Name = "Article")]
+        public string ArticleId { get; set; }
 
         /// <summary>
-        /// Gets the list of journals for select.
+        /// Gets the article.
         /// </summary>
-        public IEnumerable<ArticleJournalViewModel> Journals { get; }
+        public DocumentArticleViewModel Article { get; }
 
         /// <inheritdoc/>
         public string ReturnUrl { get; set; }

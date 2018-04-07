@@ -4,7 +4,6 @@
 
 namespace ProcessingTools.Web.Services.Contracts.Documents
 {
-    using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Web.Models.Documents.Articles;
 
