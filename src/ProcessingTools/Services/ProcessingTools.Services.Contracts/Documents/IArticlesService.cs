@@ -4,10 +4,10 @@
 
 namespace ProcessingTools.Services.Contracts.Documents
 {
-    using System;
     using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
+    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// Articles service.
@@ -70,5 +70,12 @@ namespace ProcessingTools.Services.Contracts.Documents
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
         Task<IArticleJournalModel[]> GetArticleJournalsAsync();
+
+        /// <summary>
+        /// Gets documents of a specified article.
+        /// </summary>
+        /// <param name="articleId">ID of the article.</param>
+        /// <returns>Array of documents.</returns>
+        Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId);
     }
 }

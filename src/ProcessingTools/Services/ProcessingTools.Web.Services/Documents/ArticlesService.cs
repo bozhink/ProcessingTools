@@ -5,13 +5,13 @@
 namespace ProcessingTools.Web.Services.Documents
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
+    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
     using ProcessingTools.Web.Models.Documents.Articles;
     using ProcessingTools.Web.Models.Shared;
 
@@ -47,6 +47,7 @@ namespace ProcessingTools.Web.Services.Documents
                 c.CreateMap<ArticleDeleteRequestModel, ArticleDeleteViewModel>();
 
                 c.CreateMap<IArticleJournalModel, ArticleJournalViewModel>();
+                c.CreateMap<IDocumentModel, ArticleDocumentViewModel>();
 
                 c.CreateMap<IArticleModel, ArticleDeleteViewModel>();
                 c.CreateMap<IArticleModel, ArticleDetailsViewModel>();
@@ -175,6 +176,32 @@ namespace ProcessingTools.Web.Services.Documents
             }
 
             return new ArticleDetailsViewModel(userContext, new ArticleJournalViewModel());
+        }
+
+        /// <inheritdoc/>
+        public async Task<ArticleDocumentsViewModel> GetArticleDocumentsViewModelAsync(string id)
+        {
+            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                var article = await this.articlesService.GetDetailsByIdAsync(id).ConfigureAwait(false);
+                if (article != null)
+                {
+                    var journal = this.mapper.Map<IArticleJournalModel, ArticleJournalViewModel>(article.Journal);
+
+                    var documents = await this.articlesService.GetArticleDocumentsAsync(article.Id).ConfigureAwait(false);
+
+                    var documentsViewModel = documents?.Select(this.mapper.Map<IDocumentModel, ArticleDocumentViewModel>).ToArray() ?? new ArticleDocumentViewModel[] { };
+
+                    var viewModel = new ArticleDocumentsViewModel(userContext, journal, documentsViewModel);
+                    this.mapper.Map(article, viewModel);
+
+                    return viewModel;
+                }
+            }
+
+            return new ArticleDocumentsViewModel(userContext, new ArticleJournalViewModel(), new ArticleDocumentViewModel[] { });
         }
 
         /// <inheritdoc/>

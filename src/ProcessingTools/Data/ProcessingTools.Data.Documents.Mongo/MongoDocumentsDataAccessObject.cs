@@ -218,6 +218,19 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
+        public async Task<IDocumentDataModel[]> GetArticleDocumentsAsync(string articleId)
+        {
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var result = await this.Collection.Find(d => d.ArticleId == articleId).ToListAsync().ConfigureAwait(false);
+
+            return result.ToArray<IDocumentDataModel>();
+        }
+
+        /// <inheritdoc/>
         public async Task<long> SetDocumentContentAsync(object id, string content)
         {
             if (id == null)

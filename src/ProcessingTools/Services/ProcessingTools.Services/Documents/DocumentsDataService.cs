@@ -143,6 +143,26 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
+        public async Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId)
+        {
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var documents = await this.dataAccessObject.GetArticleDocumentsAsync(articleId).ConfigureAwait(false);
+
+            if (documents == null || !documents.Any())
+            {
+                return new IDocumentModel[] { };
+            }
+
+            var model = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
+
+            return model;
+        }
+
+        /// <inheritdoc/>
         public async Task<string> GetDocumentContentAsync(object id)
         {
             if (id == null)

@@ -57,6 +57,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         public const string DetailsActionName = nameof(Details);
 
+        /// <summary>
+        /// Documents action name.
+        /// </summary>
+        public const string DocumentsActionName = nameof(Documents);
+
         private readonly IArticlesService service;
         private readonly ILogger logger;
 
@@ -437,6 +442,18 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
+            return this.View();
+        }
+
+        /// <summary>
+        /// GET /Documents/Articles/Documents/id
+        /// </summary>
+        /// <param name="id">ID of the article</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(DocumentsActionName)]
+        public async Task<IActionResult> Documents(string id, string returnUrl = null)
+        {
             return this.View();
         }
     }

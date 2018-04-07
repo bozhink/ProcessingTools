@@ -55,6 +55,13 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<ArticleDetailsViewModel> GetArticleDetailsViewModelAsync(string id);
 
         /// <summary>
+        /// Get <see cref="ArticleDocumentsViewModel"/>.
+        /// </summary>
+        /// <param name="id">Object ID of the article.</param>
+        /// <returns>Task of <see cref="ArticleDocumentsViewModel"/>.</returns>
+        Task<ArticleDocumentsViewModel> GetArticleDocumentsViewModelAsync(string id);
+
+        /// <summary>
         /// Create article.
         /// </summary>
         /// <param name="model">Model for the operation.</param>

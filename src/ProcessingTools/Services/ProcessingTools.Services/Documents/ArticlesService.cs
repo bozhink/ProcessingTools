@@ -14,6 +14,7 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Models.Contracts.Documents.Articles;
+    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
     using ProcessingTools.Services.Models.Documents.Articles;
     using ProcessingTools.Services.Models.Documents.Documents;
     using ProcessingTools.Services.Models.Documents.Files;
@@ -59,6 +60,9 @@ namespace ProcessingTools.Services.Documents
 
         /// <inheritdoc/>
         public Task<IArticleJournalModel[]> GetArticleJournalsAsync() => this.articlesDataService.GetArticleJournalsAsync();
+
+        /// <inheritdoc/>
+        public Task<IDocumentModel[]> GetArticleDocumentsAsync(string articleId) => this.documentsDataService.GetArticleDocumentsAsync(articleId);
 
         /// <inheritdoc/>
         public Task<IArticleDetailsModel> GetDetailsByIdAsync(object id) => this.articlesDataService.GetDetailsByIdAsync(id);
