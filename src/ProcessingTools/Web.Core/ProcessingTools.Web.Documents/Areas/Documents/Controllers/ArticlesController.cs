@@ -454,6 +454,23 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         [ActionName(DocumentsActionName)]
         public async Task<IActionResult> Documents(string id, string returnUrl = null)
         {
+            const string LogMessage = "Fetch Article Documents";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var viewModel = await this.service.GetArticleDocumentsViewModelAsync(id).ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
+                return this.View(model: viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
             return this.View();
         }
     }

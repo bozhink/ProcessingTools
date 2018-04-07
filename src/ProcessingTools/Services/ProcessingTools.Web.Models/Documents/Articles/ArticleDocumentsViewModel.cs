@@ -5,6 +5,7 @@
 namespace ProcessingTools.Web.Models.Documents.Articles
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
@@ -23,6 +24,10 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         {
             this.Documents = documents;
         }
+
+        /// <inheritdoc/>
+        [Display(Name = "Article Documents")]
+        public override string PageHeading { get; set; }
 
         /// <summary>
         /// Gets the documents of the article.

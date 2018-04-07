@@ -29,7 +29,7 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// Gets or sets the page heading.
         /// </summary>
         [Display(Name = "Article Details")]
-        public string PageHeading { get; set; }
+        public virtual string PageHeading { get; set; }
 
         /// <summary>
         /// Gets the user context.
