@@ -225,7 +225,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var model = await this.service.DownloadDocumentAsync(id).ConfigureAwait(false);
+                var model = await this.service.DownloadDocumentAsync(id, articleId).ConfigureAwait(false);
                 if (model == null || model.Stream == null)
                 {
                     this.Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
