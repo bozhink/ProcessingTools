@@ -12,36 +12,18 @@ namespace ProcessingTools.Services.Models.Documents.Documents
     public class DocumentFileModel : IDocumentFileModel
     {
         /// <inheritdoc/>
-        public string DocumentId { get; set; }
-
-        /// <inheritdoc/>
-        public string Content { get; set; }
-
-        /// <inheritdoc/>
         public string ContentType { get; set; }
 
         /// <inheritdoc/>
-        public long ContentLength { get; set; }
+        public string ContentDisposition { get; set; }
 
         /// <inheritdoc/>
-        public string FileExtension { get; set; }
+        public long Length { get; set; }
+
+        /// <inheritdoc/>
+        public string Name { get; set; }
 
         /// <inheritdoc/>
         public string FileName { get; set; }
-
-        /// <inheritdoc/>
-        public long OriginalContentLength { get; set; }
-
-        /// <inheritdoc/>
-        public string OriginalContentType { get; set; }
-
-        /// <inheritdoc/>
-        public string OriginalFileExtension { get; set; }
-
-        /// <inheritdoc/>
-        public string OriginalFileName { get; set; }
-
-        /// <inheritdoc/>
-        public string SystemFileName { get; set; }
     }
 }

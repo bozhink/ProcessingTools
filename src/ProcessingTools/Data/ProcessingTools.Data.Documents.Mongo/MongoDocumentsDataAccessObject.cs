@@ -41,7 +41,6 @@ namespace ProcessingTools.Data.Documents.Mongo
             {
                 c.CreateMap<IDocumentInsertModel, Document>();
                 c.CreateMap<IDocumentUpdateModel, Document>();
-                c.CreateMap<IDocumentFileModel, File>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
