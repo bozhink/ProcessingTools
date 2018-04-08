@@ -5,11 +5,12 @@
 namespace ProcessingTools.Web.Models.Documents.Documents
 {
     using System.IO;
+    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// Document download response model.
     /// </summary>
-    public class DocumentDownloadResponseModel
+    public class DocumentDownloadResponseModel : IDocumentFileStreamModel
     {
         /// <summary>
         /// Gets or sets the content type of the file.
