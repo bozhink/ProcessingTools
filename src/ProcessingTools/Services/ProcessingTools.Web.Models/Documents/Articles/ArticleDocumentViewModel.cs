@@ -16,26 +16,43 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         /// <summary>
         /// Gets or sets the document ID.
         /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Document")]
         public string DocumentId { get; set; }
 
         /// <summary>
         /// Gets or sets the article ID.
         /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Article")]
         public string ArticleId { get; set; }
 
         /// <summary>
         /// Gets or sets the file ID.
         /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "File")]
         public string FileId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file name.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "File name")]
+        public string FileName { get; set; }
 
         /// <summary>
         /// Gets or sets the description of the document.
         /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether document is final.
         /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Is final")]
         public bool IsFinal { get; set; }
 
         /// <summary>

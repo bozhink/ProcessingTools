@@ -162,18 +162,26 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.CreateArticleAsync(model).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.CreateArticleAsync(model).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Article is not created.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Article is not created.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
@@ -249,11 +257,6 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 }
 
                 this.ModelState.AddModelError(string.Empty, "Article is not uploaded.");
-
-                var viewModel = await this.service.GetArticleCreateFromFileViewModelAsync().ConfigureAwait(false);
-                viewModel.ReturnUrl = returnUrl;
-
-                return this.View(model: viewModel);
             }
             catch (Exception ex)
             {
@@ -261,7 +264,10 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
-            return this.View();
+            var viewModel = await this.service.GetArticleCreateFromFileViewModelAsync().ConfigureAwait(false);
+            viewModel.ReturnUrl = returnUrl;
+
+            return this.View(model: viewModel);
         }
 
         /// <summary>
@@ -312,18 +318,26 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.UpdateArticleAsync(model).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.UpdateArticleAsync(model).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Article is not updated.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Article is not updated.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
@@ -388,18 +402,26 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.DeleteArticleAsync(model.Id).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.DeleteArticleAsync(model.Id).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Article is not deleted.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Article is not deleted.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);

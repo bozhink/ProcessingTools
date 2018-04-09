@@ -61,6 +61,12 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
+            long numberOfDocuments = await this.GetCollection<Document>().CountAsync(j => j.ArticleId == id.ToString()).ConfigureAwait(false);
+            if (numberOfDocuments > 0L)
+            {
+                throw new DeleteUnsuccessfulException("Article will not be deleted because it contains documents.");
+            }
+
             Guid objectId = id.ToNewGuid();
 
             var result = await this.Collection.DeleteOneAsync(a => a.ObjectId == objectId).ConfigureAwait(false);

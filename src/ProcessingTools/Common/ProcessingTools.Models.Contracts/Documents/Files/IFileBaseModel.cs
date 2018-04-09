@@ -4,39 +4,12 @@
 
 namespace ProcessingTools.Models.Contracts.Documents.Files
 {
+    using ProcessingTools.Models.Contracts.IO;
+
     /// <summary>
     /// File base model.
     /// </summary>
-    public interface IFileBaseModel : IContentTyped
+    public interface IFileBaseModel : IFileMetadata, IOriginalFileMetadata, ISystemFileMetadata
     {
-        /// <summary>
-        /// Gets the content length.
-        /// </summary>
-        long ContentLength { get; }
-
-        /// <summary>
-        /// Gets the file name.
-        /// </summary>
-        string FileName { get; }
-
-        /// <summary>
-        /// Gets the original content length.
-        /// </summary>
-        long OriginalContentLength { get; }
-
-        /// <summary>
-        /// Gets the original content type.
-        /// </summary>
-        string OriginalContentType { get; }
-
-        /// <summary>
-        /// Gets the original file name.
-        /// </summary>
-        string OriginalFileName { get; }
-
-        /// <summary>
-        /// Gets the system file name.
-        /// </summary>
-        string SystemFileName { get; }
     }
 }

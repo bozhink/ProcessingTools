@@ -5,12 +5,12 @@
 namespace ProcessingTools.Web.Models.Documents.Documents
 {
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
+    using ProcessingTools.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// Document update request model.
     /// </summary>
-    public class DocumentUpdateRequestModel : IDocumentUpdateModel, ProcessingTools.Models.Contracts.IWebModel
+    public class DocumentUpdateRequestModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentUpdateModel, ProcessingTools.Models.Contracts.IWebModel
     {
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
@@ -22,6 +22,9 @@ namespace ProcessingTools.Web.Models.Documents.Documents
 
         /// <inheritdoc/>
         public string FileId { get; set; }
+
+        /// <inheritdoc/>
+        public IDocumentFileModel File { get; set; }
 
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]

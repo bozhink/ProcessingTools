@@ -39,6 +39,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
+                c.CreateMap<IDocumentFileModel, File>();
                 c.CreateMap<IDocumentInsertModel, Document>();
                 c.CreateMap<IDocumentUpdateModel, Document>();
             });
@@ -114,6 +115,24 @@ namespace ProcessingTools.Data.Documents.Mongo
             document.CreatedOn = document.ModifiedOn;
             document.Id = null;
 
+            if (document.File != null)
+            {
+                var file = this.mapper.Map<IDocumentFileModel, File>(document.File);
+                file.OriginalContentType = file.ContentType;
+                file.OriginalContentLength = file.ContentLength;
+                file.OriginalFileExtension = file.FileExtension;
+                file.OriginalFileName = file.FileName;
+                file.SystemFileName = null;
+                file.ObjectId = this.applicationContext.GuidProvider.Invoke();
+                file.CreatedBy = document.CreatedBy;
+                file.CreatedOn = document.CreatedOn;
+                file.ModifiedBy = document.ModifiedBy;
+                file.ModifiedOn = document.ModifiedOn;
+
+                document.FileId = file.ObjectId.ToString();
+                document.File = file;
+            }
+
             await this.Collection.InsertOneAsync(document, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
 
             return document;
@@ -179,6 +198,10 @@ namespace ProcessingTools.Data.Documents.Mongo
             var updateDefinition = new UpdateDefinitionBuilder<Document>()
                 .Set(m => m.ArticleId, model.ArticleId)
                 .Set(m => m.Description, model.Description)
+                .Set(m => m.File.ContentType, model.File.ContentType)
+                .Set(m => m.File.ContentLength, model.File.ContentLength)
+                .Set(m => m.File.FileExtension, model.File.FileExtension)
+                .Set(m => m.File.FileName, model.File.FileName)
                 .Set(m => m.ModifiedBy, document.ModifiedBy)
                 .Set(m => m.ModifiedOn, document.ModifiedOn);
             var updateOptions = new UpdateOptions
@@ -224,7 +247,26 @@ namespace ProcessingTools.Data.Documents.Mongo
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            var result = await this.Collection.Find(d => d.ArticleId == articleId).ToListAsync().ConfigureAwait(false);
+            var result = await this.Collection
+                .Find(d => d.ArticleId == articleId)
+                .Project(d => new Document
+                {
+                    Id = d.Id,
+                    ObjectId = d.ObjectId,
+                    ArticleId = d.ArticleId,
+                    Description = d.Description,
+                    FileId = d.FileId,
+                    File = new File
+                    {
+                        FileName = d.File.FileName
+                    },
+                    IsFinal = d.IsFinal,
+                    CreatedBy = d.CreatedBy,
+                    CreatedOn = d.CreatedOn,
+                    ModifiedBy = d.ModifiedBy,
+                    ModifiedOn = d.ModifiedOn
+                })
+                .ToListAsync().ConfigureAwait(false);
 
             return result.ToArray<IDocumentDataModel>();
         }

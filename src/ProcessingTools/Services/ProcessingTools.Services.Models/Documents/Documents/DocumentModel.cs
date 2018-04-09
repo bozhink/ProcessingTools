@@ -5,12 +5,12 @@
 namespace ProcessingTools.Services.Models.Documents.Documents
 {
     using System;
-    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
+    using ProcessingTools.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// Document model.
     /// </summary>
-    public class DocumentModel : IDocumentModel
+    public class DocumentModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentModel
     {
         /// <inheritdoc/>
         public string Id { get; set; }
@@ -20,6 +20,9 @@ namespace ProcessingTools.Services.Models.Documents.Documents
 
         /// <inheritdoc/>
         public string FileId { get; set; }
+
+        /// <inheritdoc/>
+        public IDocumentFileModel File { get; set; }
 
         /// <inheritdoc/>
         public bool IsFinal { get; set; }

@@ -18,5 +18,10 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
         /// Gets the file ID.
         /// </summary>
         string FileId { get; }
+
+        /// <summary>
+        /// Gets the document file.
+        /// </summary>
+        IDocumentFileModel File { get; }
     }
 }

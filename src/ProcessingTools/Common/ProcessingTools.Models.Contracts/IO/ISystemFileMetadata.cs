@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts.IO
     /// <summary>
     /// System file metadata.
     /// </summary>
-    internal interface ISystemFileMetadata
+    public interface ISystemFileMetadata
     {
         /// <summary>
         /// Gets the system file name.

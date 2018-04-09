@@ -10,6 +10,7 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Documents;
     using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// Document
@@ -42,6 +43,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         /// <inheritdoc/>
         public string FileId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the document's file.
+        /// </summary>
+        [BsonIgnoreIfNull]
+        public File File { get; set; }
+
         /// <inheritdoc/>
         public bool IsFinal { get; set; }
 
@@ -63,5 +70,8 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         /// <inheritdoc/>
         [BsonIgnore]
         public long NumberOfFiles { get; set; }
+
+        /// <inheritdoc/>
+        IDocumentFileModel IDocumentBaseModel.File => this.File;
     }
 }

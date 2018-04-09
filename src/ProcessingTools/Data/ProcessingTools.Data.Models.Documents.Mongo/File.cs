@@ -10,12 +10,13 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Files;
     using ProcessingTools.Models.Contracts;
+    using ProcessingTools.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// File
     /// </summary>
     [CollectionName("files")]
-    public class File : IFileDataModel, IFileDetailsDataModel, ICreated, IModified
+    public class File : IFileDataModel, IFileDetailsDataModel, ICreated, IModified, IDocumentFileModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="File"/> class.
@@ -42,6 +43,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public string ContentType { get; set; }
 
         /// <inheritdoc/>
+        public string FileExtension { get; set; }
+
+        /// <inheritdoc/>
         public string FileName { get; set; }
 
         /// <inheritdoc/>
@@ -51,9 +55,13 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public string OriginalContentType { get; set; }
 
         /// <inheritdoc/>
+        public string OriginalFileExtension { get; set; }
+
+        /// <inheritdoc/>
         public string OriginalFileName { get; set; }
 
         /// <inheritdoc/>
+        [BsonIgnoreIfNull]
         public string SystemFileName { get; set; }
 
         /// <inheritdoc/>

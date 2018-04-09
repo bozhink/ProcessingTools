@@ -4,12 +4,10 @@
 
 namespace ProcessingTools.Services.Models.Documents.Documents
 {
-    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
-
     /// <summary>
     /// Document content model.
     /// </summary>
-    public class DocumentContentModel : IDocumentContentModel
+    public class DocumentContentModel : ProcessingTools.Services.Models.Contracts.Documents.Documents.IDocumentContentModel
     {
         /// <inheritdoc/>
         public string DocumentId { get; set; }

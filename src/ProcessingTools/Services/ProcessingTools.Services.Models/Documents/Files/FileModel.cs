@@ -22,6 +22,9 @@ namespace ProcessingTools.Services.Models.Documents.Files
         public string ContentType { get; set; }
 
         /// <inheritdoc/>
+        public string FileExtension { get; set; }
+
+        /// <inheritdoc/>
         public string FileName { get; set; }
 
         /// <inheritdoc/>
@@ -29,6 +32,9 @@ namespace ProcessingTools.Services.Models.Documents.Files
 
         /// <inheritdoc/>
         public string OriginalContentType { get; set; }
+
+        /// <inheritdoc/>
+        public string OriginalFileExtension { get; set; }
 
         /// <inheritdoc/>
         public string OriginalFileName { get; set; }
