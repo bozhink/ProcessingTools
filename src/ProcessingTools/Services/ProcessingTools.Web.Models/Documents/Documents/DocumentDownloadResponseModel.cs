@@ -23,6 +23,11 @@ namespace ProcessingTools.Web.Models.Documents.Documents
         public long ContentLength { get; set; }
 
         /// <summary>
+        /// Gets or sets the file extension.
+        /// </summary>
+        public string FileExtension { get; set; }
+
+        /// <summary>
         /// Gets or sets the file name.
         /// </summary>
         public string FileName { get; set; }

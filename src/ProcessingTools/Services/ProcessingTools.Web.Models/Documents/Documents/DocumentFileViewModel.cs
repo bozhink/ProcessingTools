@@ -36,7 +36,6 @@ namespace ProcessingTools.Web.Models.Documents.Documents
         /// <summary>
         /// Gets or sets the file name.
         /// </summary>
-        [ReadOnly(true)]
         [Display(Name = "File name")]
         public string FileName { get; set; }
     }

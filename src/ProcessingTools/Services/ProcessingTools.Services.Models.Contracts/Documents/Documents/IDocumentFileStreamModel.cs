@@ -5,27 +5,13 @@
 namespace ProcessingTools.Services.Models.Contracts.Documents.Documents
 {
     using System.IO;
+    using ProcessingTools.Models.Contracts.IO;
 
     /// <summary>
     /// Document file stream model.
     /// </summary>
-    public interface IDocumentFileStreamModel
+    public interface IDocumentFileStreamModel : IFileMetadata
     {
-        /// <summary>
-        /// Gets the content type of the file.
-        /// </summary>
-        string ContentType { get; }
-
-        /// <summary>
-        /// Gets the content length of the file.
-        /// </summary>
-        long ContentLength { get; }
-
-        /// <summary>
-        /// Gets the file name.
-        /// </summary>
-        string FileName { get; }
-
         /// <summary>
         /// Gets the content stream.
         /// </summary>

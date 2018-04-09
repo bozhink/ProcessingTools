@@ -23,22 +23,25 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// Get <see cref="DocumentEditViewModel"/>.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Task of <see cref="DocumentEditViewModel"/>.</returns>
-        Task<DocumentEditViewModel> GetDocumentEditViewModelAsync(string id);
+        Task<DocumentEditViewModel> GetDocumentEditViewModelAsync(string id, string articleId);
 
         /// <summary>
         /// Get <see cref="DocumentDeleteViewModel"/>.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Task of <see cref="DocumentDeleteViewModel"/>.</returns>
-        Task<DocumentDeleteViewModel> GetDocumentDeleteViewModelAsync(string id);
+        Task<DocumentDeleteViewModel> GetDocumentDeleteViewModelAsync(string id, string articleId);
 
         /// <summary>
         /// Get <see cref="DocumentDetailsViewModel"/>.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Task of <see cref="DocumentDetailsViewModel"/>.</returns>
-        Task<DocumentDetailsViewModel> GetDocumentDetailsViewModelAsync(string id);
+        Task<DocumentDetailsViewModel> GetDocumentDetailsViewModelAsync(string id, string articleId);
 
         /// <summary>
         /// Upload document.
