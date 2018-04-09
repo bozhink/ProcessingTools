@@ -14,7 +14,7 @@ namespace ProcessingTools.Services.Contracts.Documents
     public interface IDocumentsService
     {
         /// <summary>
-        /// Uploads new document from file..
+        /// Uploads new document from file.
         /// </summary>
         /// <param name="model">Document file model.</param>
         /// <param name="stream">Stream of the document's content.</param>
@@ -35,7 +35,7 @@ namespace ProcessingTools.Services.Contracts.Documents
         /// </summary>
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
-        Task<bool> UpdateDocumentAsync(IDocumentUpdateModel model);
+        Task<bool> UpdateAsync(IDocumentUpdateModel model);
 
         /// <summary>
         /// Delete document.
@@ -43,7 +43,7 @@ namespace ProcessingTools.Services.Contracts.Documents
         /// <param name="id">Object ID of the document to be deleted.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Success status.</returns>
-        Task<bool> DeleteDocumentAsync(string id, string articleId);
+        Task<bool> DeleteAsync(string id, string articleId);
 
         /// <summary>
         /// Sets specified document as final.
