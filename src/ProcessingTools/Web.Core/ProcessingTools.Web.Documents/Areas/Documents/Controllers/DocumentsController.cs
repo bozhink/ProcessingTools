@@ -314,7 +314,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var viewModel = await this.service.GetDocumentEditViewModelAsync(id).ConfigureAwait(false);
+                var viewModel = await this.service.GetDocumentEditViewModelAsync(id, articleId).ConfigureAwait(false);
                 if (viewModel.ArticleId != articleId)
                 {
                     string modelError = "Document-article mismatch";
@@ -429,7 +429,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var viewModel = await this.service.GetDocumentDeleteViewModelAsync(id).ConfigureAwait(false);
+                var viewModel = await this.service.GetDocumentDeleteViewModelAsync(id, articleId).ConfigureAwait(false);
                 if (viewModel.ArticleId != articleId)
                 {
                     string modelError = "Document-article mismatch";
@@ -543,7 +543,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var viewModel = await this.service.GetDocumentDetailsViewModelAsync(id).ConfigureAwait(false);
+                var viewModel = await this.service.GetDocumentDetailsViewModelAsync(id, articleId).ConfigureAwait(false);
                 if (viewModel.ArticleId != articleId)
                 {
                     string modelError = "Document-article mismatch";
