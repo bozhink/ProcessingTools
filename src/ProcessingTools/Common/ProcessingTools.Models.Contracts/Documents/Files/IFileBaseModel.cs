@@ -15,11 +15,6 @@ namespace ProcessingTools.Models.Contracts.Documents.Files
         long ContentLength { get; }
 
         /// <summary>
-        /// Gets the file extension.
-        /// </summary>
-        string FileExtension { get; }
-
-        /// <summary>
         /// Gets the file name.
         /// </summary>
         string FileName { get; }
@@ -33,11 +28,6 @@ namespace ProcessingTools.Models.Contracts.Documents.Files
         /// Gets the original content type.
         /// </summary>
         string OriginalContentType { get; }
-
-        /// <summary>
-        /// Gets the original file extension.
-        /// </summary>
-        string OriginalFileExtension { get; }
 
         /// <summary>
         /// Gets the original file name.

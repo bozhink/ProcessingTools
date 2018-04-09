@@ -172,7 +172,6 @@ namespace ProcessingTools.Data.Documents.Mongo
             var updateDefinition = new UpdateDefinitionBuilder<File>()
                 .Set(m => m.ContentLength, model.ContentLength)
                 .Set(m => m.ContentType, model.ContentType)
-                .Set(m => m.FileExtension, model.FileExtension)
                 .Set(m => m.FileName, model.FileName)
                 .Set(m => m.ModifiedBy, file.ModifiedBy)
                 .Set(m => m.ModifiedOn, file.ModifiedOn);

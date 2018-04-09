@@ -101,8 +101,7 @@ namespace ProcessingTools.Services.Documents
             {
                 OriginalContentLength = model.Length,
                 OriginalContentType = model.ContentType,
-                OriginalFileName = Path.GetFileNameWithoutExtension(model.FileName),
-                OriginalFileExtension = Path.GetExtension(model.FileName)
+                OriginalFileName = model.FileName
             };
 
             var fileId = await this.filesDataService.InsertAsync(fileInsertModel).ConfigureAwait(false);

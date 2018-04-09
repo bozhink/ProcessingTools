@@ -18,9 +18,6 @@ namespace ProcessingTools.Services.Models.Documents.Files
         public string ContentType => this.OriginalContentType;
 
         /// <inheritdoc/>
-        public string FileExtension => this.OriginalFileExtension;
-
-        /// <inheritdoc/>
         public string FileName => this.OriginalFileName;
 
         /// <inheritdoc/>
@@ -28,9 +25,6 @@ namespace ProcessingTools.Services.Models.Documents.Files
 
         /// <inheritdoc/>
         public string OriginalContentType { get; set; }
-
-        /// <inheritdoc/>
-        public string OriginalFileExtension { get; set; }
 
         /// <inheritdoc/>
         public string OriginalFileName { get; set; }
