@@ -80,6 +80,40 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<bool> SetAsFinalAsync(string id, string articleId);
 
         /// <summary>
+        /// Gets content of a specified document as HTML.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns>HTML representation of the content of the document.</returns>
+        Task<string> GetHtmlAsync(string id, string articleId);
+
+        /// <summary>
+        /// Gets content of a specified document as XML.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns>XML representation of the content of the document.</returns>
+        Task<string> GetXmlAsync(string id, string articleId);
+
+        /// <summary>
+        /// Sets HTML content of a specified document.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <param name="content">HTML representation of the content of the document.</param>
+        /// <returns>Success status.</returns>
+        Task<bool> SetHtmlAsync(string id, string articleId, string content);
+
+        /// <summary>
+        /// Sets XML content of a specified document.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <param name="content">XML representation of the content of the document.</param>
+        /// <returns>Success status.</returns>
+        Task<bool> SetXmlAsync(string id, string articleId, string content);
+
+        /// <summary>
         /// Map <see cref="DocumentUpdateRequestModel"/> to <see cref="DocumentEditViewModel"/>.
         /// </summary>
         /// <param name="model">The model to be mapped to view model.</param>
