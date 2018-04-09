@@ -94,6 +94,30 @@ namespace ProcessingTools.Services.IO
         }
 
         /// <inheritdoc/>
+        public Stream GetStreamForXmlString(string xml)
+        {
+            if (string.IsNullOrWhiteSpace(xml))
+            {
+                throw new ArgumentNullException(nameof(xml));
+            }
+
+            try
+            {
+                byte[] bytes = this.Encoding.GetBytes(xml);
+                Stream stream = new MemoryStream(bytes)
+                {
+                    Position = 0
+                };
+
+                return stream;
+            }
+            catch (EncoderFallbackException e)
+            {
+                throw new EncoderFallbackException($"Input document string should be {Defaults.Encoding.EncodingName} encoded.", e);
+            }
+        }
+
+        /// <inheritdoc/>
         public async Task<XmlDocument> ReadFileToXmlDocumentAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))

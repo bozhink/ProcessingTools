@@ -46,6 +46,13 @@ namespace ProcessingTools.Services.Contracts.IO
         XmlReader GetXmlReaderForXmlString(string xml);
 
         /// <summary>
+        /// Opens a <see cref="Stream"/> for XML string.
+        /// </summary>
+        /// <param name="xml">XML string.</param>
+        /// <returns>Instance of <see cref="Stream"/>.</returns>
+        Stream GetStreamForXmlString(string xml);
+
+        /// <summary>
         /// Reads <see cref="XmlReader"/> to <see cref="XmlDocument"/>.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> to be read.</param>

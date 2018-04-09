@@ -44,6 +44,9 @@ namespace ProcessingTools.Services.IO
         public XmlReader GetXmlReaderForXmlString(string xml) => this.xmlReadService.GetXmlReaderForXmlString(xml);
 
         /// <inheritdoc/>
+        public Stream GetStreamForXmlString(string xml) => this.xmlReadService.GetStreamForXmlString(xml);
+
+        /// <inheritdoc/>
         public async Task<XmlDocument> ReadFileToXmlDocumentAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
