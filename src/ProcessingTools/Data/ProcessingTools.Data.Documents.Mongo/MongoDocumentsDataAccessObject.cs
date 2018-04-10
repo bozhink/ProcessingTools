@@ -244,7 +244,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         {
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                throw new ArgumentNullException(nameof(articleId));
+                return new IDocumentDataModel[] { };
             }
 
             var result = await this.Collection
@@ -304,6 +304,61 @@ namespace ProcessingTools.Data.Documents.Mongo
             }
 
             return content?.Length ?? 0L;
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> SetAsFinalAsync(object id, string articleId)
+        {
+            if (id == null || string.IsNullOrWhiteSpace(articleId))
+            {
+                return null;
+            }
+
+            var objectId = id.ToNewGuid();
+
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = false
+            };
+
+            var resultMany = await this.Collection
+                .UpdateManyAsync(
+                    Builders<Document>.Filter
+                        .And(
+                            Builders<Document>.Filter.Eq(m => m.ArticleId, articleId),
+                            Builders<Document>.Filter.Ne(m => m.ObjectId, objectId)),
+                    Builders<Document>.Update
+                        .Set(m => m.IsFinal, false)
+                        .Set(m => m.ModifiedBy, this.applicationContext.UserContext.UserId)
+                        .Set(m => m.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke()),
+                    updateOptions)
+                .ConfigureAwait(false);
+
+            if (!resultMany.IsAcknowledged)
+            {
+                throw new UpdateUnsuccessfulException("Update all documents as not final failed.");
+            }
+
+            var resultOne = await this.Collection
+                .UpdateOneAsync(
+                    Builders<Document>.Filter
+                        .And(
+                            Builders<Document>.Filter.Eq(m => m.ArticleId, articleId),
+                            Builders<Document>.Filter.Eq(m => m.ObjectId, objectId)),
+                    Builders<Document>.Update
+                        .Set(m => m.IsFinal, true)
+                        .Set(m => m.ModifiedBy, this.applicationContext.UserContext.UserId)
+                        .Set(m => m.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke()),
+                    updateOptions)
+                .ConfigureAwait(false);
+
+            if (!resultOne.IsAcknowledged || (resultOne.IsModifiedCountAvailable && resultOne.ModifiedCount != 1))
+            {
+                throw new UpdateUnsuccessfulException("Update single document as final failed.");
+            }
+
+            return resultOne;
         }
     }
 }

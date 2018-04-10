@@ -237,5 +237,23 @@ namespace ProcessingTools.Services.Documents
 
             return result;
         }
+
+        /// <inheritdoc/>
+        public async Task<object> SetAsFinalAsync(object id, string articleId)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var result = await this.dataAccessObject.SetAsFinalAsync(id, articleId).ConfigureAwait(false);
+
+            return result;
+        }
     }
 }

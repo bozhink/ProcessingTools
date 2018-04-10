@@ -67,7 +67,7 @@ namespace ProcessingTools.Services.Documents
             }
 
             var document = await this.documentsDataService.GetByIdAsync(id).ConfigureAwait(false);
-            if (document == null)
+            if (document == null || document.ArticleId != articleId)
             {
                 return null;
             }
@@ -93,7 +93,13 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            return await this.documentsDataService.GetByIdAsync(id).ConfigureAwait(false);
+            var document = await this.documentsDataService.GetByIdAsync(id).ConfigureAwait(false);
+            if (document == null || document.ArticleId != articleId)
+            {
+                return null;
+            }
+
+            return document;
         }
 
         /// <inheritdoc/>
@@ -109,7 +115,13 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            return await this.documentsDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
+            var document = await this.documentsDataService.GetDetailsByIdAsync(id).ConfigureAwait(false);
+            if (document == null || document.ArticleId != articleId)
+            {
+                return null;
+            }
+
+            return document;
         }
 
         public Task<IDocumentArticle> GetDocumentArticleAsync(string articleId)
@@ -158,7 +170,8 @@ namespace ProcessingTools.Services.Documents
             return content;
         }
 
-        public Task<object> SetAsFinalAsync(string id, string articleId)
+        /// <inheritdoc/>
+        public async Task<object> SetAsFinalAsync(string id, string articleId)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -170,8 +183,9 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
+            var result = await this.documentsDataService.SetAsFinalAsync(id, articleId).ConfigureAwait(false);
 
-            throw new NotImplementedException();
+            return result;
         }
 
         public Task<object> SetHtmlAsync(string id, string articleId, string content)
