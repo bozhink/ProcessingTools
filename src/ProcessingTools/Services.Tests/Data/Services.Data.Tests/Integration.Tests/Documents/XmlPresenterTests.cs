@@ -56,7 +56,7 @@
         private object articleId;
         private object documentId;
 
-        private Mock<IDocumentsFormatTransformerFactory> transformerFactoryMock;
+        private Mock<IDocumentsFormatTransformersFactory> transformerFactoryMock;
 
         [SetUp]
         public void TestInitialize()
@@ -92,7 +92,7 @@
             var htmlToXmlTransformer = new XslTransformer(AppSettings.FormatHtmlToXmlXslFileName, xslCache);
             var xmlToHtmlTransformer = new XslTransformer(AppSettings.FormatXmlToHtmlXslFileName, xslCache);
 
-            this.transformerFactoryMock = new Mock<IDocumentsFormatTransformerFactory>();
+            this.transformerFactoryMock = new Mock<IDocumentsFormatTransformersFactory>();
             this.transformerFactoryMock
                 .Setup(f => f.GetFormatHtmlToXmlTransformer())
                 .Returns(htmlToXmlTransformer);

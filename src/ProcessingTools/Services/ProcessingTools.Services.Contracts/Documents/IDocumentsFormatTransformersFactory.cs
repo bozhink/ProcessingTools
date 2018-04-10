@@ -1,4 +1,4 @@
-﻿// <copyright file="IDocumentsFormatTransformerFactory.cs" company="ProcessingTools">
+﻿// <copyright file="IDocumentsFormatTransformersFactory.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Contracts.Documents
     /// <summary>
     /// Documents format transformers factory.
     /// </summary>
-    public interface IDocumentsFormatTransformerFactory
+    public interface IDocumentsFormatTransformersFactory
     {
         /// <summary>
         /// Gets format XML to HTML transformer.
