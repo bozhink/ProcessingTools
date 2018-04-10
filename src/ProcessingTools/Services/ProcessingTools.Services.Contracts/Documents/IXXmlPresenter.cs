@@ -1,4 +1,4 @@
-﻿// <copyright file="IXmlPresenter.cs" company="ProcessingTools">
+﻿// <copyright file="IXXmlPresenter.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace ProcessingTools.Services.Contracts.Documents
     /// <summary>
     /// XML Presenter.
     /// </summary>
-    public interface IXmlPresenter
+    public interface IXXmlPresenter
     {
         /// <summary>
         /// Gets HTML.

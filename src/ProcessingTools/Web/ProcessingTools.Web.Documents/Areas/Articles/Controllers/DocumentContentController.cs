@@ -19,12 +19,12 @@
     {
         private const int MaximalJsonLength = int.MaxValue;
 
-        private readonly IXmlPresenter presenter;
+        private readonly IXXmlPresenter presenter;
 
         // TODO: To be removed
         private readonly int fakeArticleId = 0;
 
-        public DocumentContentController(IXmlPresenter presenter)
+        public DocumentContentController(IXXmlPresenter presenter)
         {
             this.presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
         }

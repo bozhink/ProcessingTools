@@ -7,12 +7,12 @@
     using ProcessingTools.Models.Contracts.Services.Data.Documents;
     using ProcessingTools.Services.Contracts.Documents;
 
-    public class XmlPresenter : IXmlPresenter
+    public class XXmlPresenter : IXXmlPresenter
     {
         private readonly IXDocumentsDataService service;
         private readonly IDocumentsFormatTransformerFactory transformerFactory;
 
-        public XmlPresenter(IXDocumentsDataService service, IDocumentsFormatTransformerFactory transformerFactory)
+        public XXmlPresenter(IXDocumentsDataService service, IDocumentsFormatTransformerFactory transformerFactory)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
