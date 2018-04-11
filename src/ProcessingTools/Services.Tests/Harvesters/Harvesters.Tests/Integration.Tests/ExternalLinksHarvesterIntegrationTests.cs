@@ -14,7 +14,6 @@
     using ProcessingTools.Harvesters.Models.Contracts.ExternalLinks;
     using ProcessingTools.Services.IO;
     using ProcessingTools.Services.Xml;
-    using ProcessingTools.Xml.Wrappers;
 
     [TestClass]
     public class ExternalLinksHarvesterIntegrationTests

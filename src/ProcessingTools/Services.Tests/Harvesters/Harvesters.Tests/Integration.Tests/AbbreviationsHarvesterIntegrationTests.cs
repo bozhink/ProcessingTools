@@ -15,7 +15,6 @@
     using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Transformers;
-    using ProcessingTools.Xml.Wrappers;
 
     [TestClass]
     public class AbbreviationsHarvesterIntegrationTests
