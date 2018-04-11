@@ -9,8 +9,10 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Contracts.Admin;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.History;
+    using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Documents;
     using ProcessingTools.Services.History;
+    using ProcessingTools.Services.IO;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Services.*
@@ -29,6 +31,10 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerDependency();
 
             builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerDependency();
+            builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerDependency();
+            builder.RegisterType<XmlPresenter>().As<IXmlPresenter>().InstancePerDependency();
+
+            builder.RegisterType<XmlReadService>().As<IXmlReadService>().InstancePerDependency();
 
             builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerDependency();
         }

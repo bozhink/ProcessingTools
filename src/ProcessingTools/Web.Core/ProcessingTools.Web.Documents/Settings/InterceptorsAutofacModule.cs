@@ -1,4 +1,4 @@
-﻿// <copyright file="InterceptorsModule.cs" company="ProcessingTools">
+﻿// <copyright file="InterceptorsAutofacModule.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Documents.Settings
     /// <summary>
     /// Interceptors module.
     /// </summary>
-    public class InterceptorsModule : Module
+    public class InterceptorsAutofacModule : Module
     {
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)

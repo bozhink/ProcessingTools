@@ -1,4 +1,4 @@
-﻿// <copyright file="TransformersFactoriesModule.cs" company="ProcessingTools">
+﻿// <copyright file="TransformersFactoriesAurofacModule.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -14,7 +14,7 @@ namespace ProcessingTools.Web.Documents.Settings
     /// <summary>
     /// Transformers factories module.
     /// </summary>
-    public class TransformersFactoriesModule : Module
+    public class TransformersFactoriesAurofacModule : Module
     {
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)

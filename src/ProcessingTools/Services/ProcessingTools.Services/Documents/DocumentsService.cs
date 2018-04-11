@@ -9,7 +9,6 @@ namespace ProcessingTools.Services.Documents
     using System.Threading.Tasks;
     using System.Xml;
     using AutoMapper;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.IO;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
@@ -23,12 +22,14 @@ namespace ProcessingTools.Services.Documents
     {
         private readonly IDocumentsDataService documentsDataService;
         private readonly IXmlReadService xmlReadService;
+        private readonly IXmlPresenter xmlPresenter;
         private readonly IMapper mapper;
 
-        public DocumentsService(IDocumentsDataService documentsDataService, IXmlReadService xmlReadService)
+        public DocumentsService(IDocumentsDataService documentsDataService, IXmlReadService xmlReadService, IXmlPresenter xmlPresenter)
         {
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
             this.xmlReadService = xmlReadService ?? throw new ArgumentNullException(nameof(xmlReadService));
+            this.xmlPresenter = xmlPresenter ?? throw new ArgumentNullException(nameof(xmlPresenter));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -131,11 +132,11 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-
             throw new NotImplementedException();
         }
 
-        public Task<string> GetHtmlAsync(string id, string articleId)
+        /// <inheritdoc/>
+        public async Task<string> GetHtmlAsync(string id, string articleId)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -147,9 +148,8 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-
-
-            throw new NotImplementedException();
+            string result = await this.xmlPresenter.GetHtmlAsync(id, articleId).ConfigureAwait(false);
+            return result;
         }
 
         /// <inheritdoc/>
@@ -165,9 +165,8 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            string content = await this.documentsDataService.GetDocumentContentAsync(id).ConfigureAwait(false);
-
-            return content;
+            string result = await this.xmlPresenter.GetXmlAsync(id, articleId).ConfigureAwait(false);
+            return result;
         }
 
         /// <inheritdoc/>
@@ -184,11 +183,11 @@ namespace ProcessingTools.Services.Documents
             }
 
             var result = await this.documentsDataService.SetAsFinalAsync(id, articleId).ConfigureAwait(false);
-
             return result;
         }
 
-        public Task<object> SetHtmlAsync(string id, string articleId, string content)
+        /// <inheritdoc/>
+        public async Task<object> SetHtmlAsync(string id, string articleId, string content)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -200,7 +199,8 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            throw new NotImplementedException();
+            var result = await this.xmlPresenter.SetHtmlAsync(id, articleId, content).ConfigureAwait(false);
+            return result;
         }
 
         /// <inheritdoc/>
@@ -216,7 +216,8 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            return await this.documentsDataService.SetDocumentContentAsync(id, content);
+            var result = await this.xmlPresenter.SetXmlAsync(id, articleId, content).ConfigureAwait(false);
+            return result;
         }
 
         /// <inheritdoc/>

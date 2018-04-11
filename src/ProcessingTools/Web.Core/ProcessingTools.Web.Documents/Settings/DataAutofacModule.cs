@@ -66,7 +66,7 @@ namespace ProcessingTools.Web.Documents.Settings
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBHistoryDatabaseBindingName)))
-                .InstancePerDependency();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<MongoPublishersDataAccessObject>()
@@ -75,7 +75,7 @@ namespace ProcessingTools.Web.Documents.Settings
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
+                .InstancePerLifetimeScope();
             builder
                 .RegisterType<MongoJournalsDataAccessObject>()
                 .As<IJournalsDataAccessObject>()
@@ -83,7 +83,7 @@ namespace ProcessingTools.Web.Documents.Settings
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
+                .InstancePerLifetimeScope();
             builder
                 .RegisterType<MongoArticlesDataAccessObject>()
                 .As<IArticlesDataAccessObject>()
@@ -91,7 +91,7 @@ namespace ProcessingTools.Web.Documents.Settings
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
+                .InstancePerLifetimeScope();
             builder
                 .RegisterType<MongoDocumentsDataAccessObject>()
                 .As<IDocumentsDataAccessObject>()
@@ -99,7 +99,7 @@ namespace ProcessingTools.Web.Documents.Settings
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
+                .InstancePerLifetimeScope();
             builder
                 .RegisterType<MongoFilesDataAccessObject>()
                 .As<IFilesDataAccessObject>()
@@ -107,7 +107,7 @@ namespace ProcessingTools.Web.Documents.Settings
                     new ResolvedParameter(
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<MongoDocumentsDatabaseInitializer>()
