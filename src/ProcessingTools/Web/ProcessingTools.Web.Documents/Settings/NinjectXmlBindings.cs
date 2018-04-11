@@ -13,6 +13,7 @@
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Contracts.Special;
+    using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Transformers;
 
     public class NinjectXmlBindings : NinjectModule

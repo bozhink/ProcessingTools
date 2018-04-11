@@ -45,11 +45,8 @@
     <Compile Include="Abstractions\AbstractGenericTransformCache.cs" />
     <Compile Include="Assembly.cs" />
     <Compile Include="Cache\XQueryTransformCache.cs" />
-    <Compile Include="Cache\XslTransformCache.cs" />
     <Compile Include="Wrappers\DocumentWrapper.cs" />
-    <Compile Include="Serialization\XmlTransformDeserializer.cs" />
     <Compile Include="Transformers\XQueryTransformer.cs" />
-    <Compile Include="Transformers\XslTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

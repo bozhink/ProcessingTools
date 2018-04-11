@@ -41,7 +41,7 @@ namespace ProcessingTools.Harvesters.ExternalLinks
         private async Task<IExternalLinkModel[]> RunAsync(XmlDocument document)
         {
             var transformer = this.transformerFactory.GetExternalLinksTransformer();
-            var items = await this.serializer.Deserialize<ExternalLinksModel>(transformer, document.OuterXml).ConfigureAwait(false);
+            var items = await this.serializer.DeserializeAsync<ExternalLinksModel>(transformer, document.OuterXml).ConfigureAwait(false);
 
             return items?.ExternalLinks ?? new IExternalLinkModel[] { };
         }

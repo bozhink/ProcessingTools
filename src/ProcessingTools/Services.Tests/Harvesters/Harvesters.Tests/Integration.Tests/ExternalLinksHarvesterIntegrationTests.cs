@@ -12,9 +12,8 @@
     using ProcessingTools.Harvesters.Contracts.ExternalLinks;
     using ProcessingTools.Harvesters.ExternalLinks;
     using ProcessingTools.Harvesters.Models.Contracts.ExternalLinks;
-    using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Serialization;
-    using ProcessingTools.Xml.Transformers;
+    using ProcessingTools.Services.IO;
+    using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Wrappers;
 
     [TestClass]
@@ -45,7 +44,8 @@
             var xslCache = new XslTransformCache();
             var transformer = new XslTransformer(
                 AppSettings.ExternalLinksXslFileName,
-                xslCache);
+                xslCache,
+                new XmlReadService());
             var transformerFactoryMock = new Mock<IExternalLinksTransformerFactory>();
             transformerFactoryMock
                 .Setup(f => f.GetExternalLinksTransformer())

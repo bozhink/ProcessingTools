@@ -10,7 +10,9 @@
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Documents.Services.Data.Services;
     using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.IO;
     using ProcessingTools.Services.Models.Data.Documents;
+    using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Cache;
     using ProcessingTools.Xml.Transformers;
 
@@ -89,8 +91,9 @@
             this.service = this.serviceMock.Object;
 
             var xslCache = new XslTransformCache();
-            var htmlToXmlTransformer = new XslTransformer(AppSettings.FormatHtmlToXmlXslFileName, xslCache);
-            var xmlToHtmlTransformer = new XslTransformer(AppSettings.FormatXmlToHtmlXslFileName, xslCache);
+            var xmlReadService = new XmlReadService();
+            var htmlToXmlTransformer = new XslTransformer(AppSettings.FormatHtmlToXmlXslFileName, xslCache, xmlReadService);
+            var xmlToHtmlTransformer = new XslTransformer(AppSettings.FormatXmlToHtmlXslFileName, xslCache, xmlReadService);
 
             this.transformerFactoryMock = new Mock<IDocumentsFormatTransformersFactory>();
             this.transformerFactoryMock
