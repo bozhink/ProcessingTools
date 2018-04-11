@@ -42,6 +42,7 @@ namespace ProcessingTools.Services.Documents
                     .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IDocumentDetailsDataModel, DocumentDetailsModel>()
                     .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IDocumentArticleDataModel, DocumentArticleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -158,6 +159,25 @@ namespace ProcessingTools.Services.Documents
             }
 
             var model = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
+
+            return model;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IDocumentArticleModel> GetDocumentArticleAsync(string articleId)
+        {
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var article = await this.dataAccessObject.GetDocumentArticleAsync(articleId).ConfigureAwait(false);
+            if (article == null)
+            {
+                return null;
+            }
+
+            var model = this.mapper.Map<IDocumentArticleDataModel, DocumentArticleModel>(article);
 
             return model;
         }

@@ -25,6 +25,12 @@ namespace ProcessingTools.Services.Documents
         private readonly IXmlPresenter xmlPresenter;
         private readonly IMapper mapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocumentsService"/> class.
+        /// </summary>
+        /// <param name="documentsDataService">Data access object.</param>
+        /// <param name="xmlReadService">XML read service.</param>
+        /// <param name="xmlPresenter">XML presenter.</param>
         public DocumentsService(IDocumentsDataService documentsDataService, IXmlReadService xmlReadService, IXmlPresenter xmlPresenter)
         {
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
@@ -125,14 +131,17 @@ namespace ProcessingTools.Services.Documents
             return document;
         }
 
-        public Task<IDocumentArticleModel> GetDocumentArticleAsync(string articleId)
+        /// <inheritdoc/>
+        public async Task<IDocumentArticleModel> GetDocumentArticleAsync(string articleId)
         {
             if (string.IsNullOrWhiteSpace(articleId))
             {
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            throw new NotImplementedException();
+            var article = await this.documentsDataService.GetDocumentArticleAsync(articleId).ConfigureAwait(false);
+
+            return article;
         }
 
         /// <inheritdoc/>

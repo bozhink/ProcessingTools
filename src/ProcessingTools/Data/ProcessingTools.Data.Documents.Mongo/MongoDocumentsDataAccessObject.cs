@@ -272,6 +272,43 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
+        public async Task<IDocumentArticleDataModel> GetDocumentArticleAsync(string articleId)
+        {
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                return null;
+            }
+
+            var article = await this.GetCollection<Article>()
+                .Find(a => a.ObjectId == articleId.ToNewGuid())
+                .Project(a => new DocumentArticleDataModel
+                {
+                    ArticleId = a.ObjectId.ToString(),
+                    ArticleTitle = a.Title,
+                    JournalId = a.JournalId
+                })
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            if (article != null && string.IsNullOrWhiteSpace(article.JournalName))
+            {
+                var journal = await this.GetCollection<Journal>()
+                    .Find(j => j.ObjectId == article.JournalId.ToNewGuid())
+                    .Project(j => new
+                    {
+                        JournalId = j.ObjectId.ToString(),
+                        JournalName = j.Name
+                    })
+                    .FirstOrDefaultAsync()
+                    .ConfigureAwait(false);
+
+                article.JournalName = journal.JournalName;
+            }
+
+            return article;
+        }
+
+        /// <inheritdoc/>
         public async Task<long> SetDocumentContentAsync(object id, string content)
         {
             if (id == null)

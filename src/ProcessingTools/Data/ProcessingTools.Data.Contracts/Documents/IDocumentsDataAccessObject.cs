@@ -36,6 +36,13 @@ namespace ProcessingTools.Data.Contracts.Documents
         Task<IDocumentDataModel[]> GetArticleDocumentsAsync(string articleId);
 
         /// <summary>
+        /// Gets document's article.
+        /// </summary>
+        /// <param name="articleId">ID of the article.</param>
+        /// <returns>Document's article.</returns>
+        Task<IDocumentArticleDataModel> GetDocumentArticleAsync(string articleId);
+
+        /// <summary>
         /// Sets specified document as final.
         /// </summary>
         /// <param name="id">Object ID of the document.</param>

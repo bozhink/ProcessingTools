@@ -1,4 +1,4 @@
-﻿// <copyright file="DocumentArticle.cs" company="ProcessingTools">
+﻿// <copyright file="DocumentArticleModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Models.Documents.Documents
     /// <summary>
     /// Document article.
     /// </summary>
-    public class DocumentArticle : IDocumentArticleModel
+    public class DocumentArticleModel : IDocumentArticleModel
     {
         /// <inheritdoc/>
         public string ArticleId { get; set; }
