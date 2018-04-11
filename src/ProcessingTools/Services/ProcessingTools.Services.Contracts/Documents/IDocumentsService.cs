@@ -74,7 +74,7 @@ namespace ProcessingTools.Services.Contracts.Documents
         /// </summary>
         /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Document article.</returns>
-        Task<IDocumentArticle> GetDocumentArticleAsync(string articleId);
+        Task<IDocumentArticleModel> GetDocumentArticleAsync(string articleId);
 
         /// <summary>
         /// Gets content of a specified document as HTML.

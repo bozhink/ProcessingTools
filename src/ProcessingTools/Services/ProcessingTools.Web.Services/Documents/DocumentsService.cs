@@ -49,7 +49,7 @@ namespace ProcessingTools.Web.Services.Documents
                 c.CreateMap<IDocumentDetailsModel, DocumentDeleteViewModel>();
                 c.CreateMap<IDocumentDetailsModel, DocumentDetailsViewModel>();
 
-                c.CreateMap<IDocumentArticle, DocumentArticleViewModel>();
+                c.CreateMap<IDocumentArticleModel, DocumentArticleViewModel>();
                 c.CreateMap<IFileMetadata, DocumentFileViewModel>();
 
                 c.CreateMap<IDocumentFileStreamModel, DocumentDownloadResponseModel>();
@@ -71,7 +71,7 @@ namespace ProcessingTools.Web.Services.Documents
                 var article = await this.documentsService.GetDocumentArticleAsync(articleId).ConfigureAwait(false);
                 if (article != null)
                 {
-                    var articleViewModel = this.mapper.Map<IDocumentArticle, DocumentArticleViewModel>(article);
+                    var articleViewModel = this.mapper.Map<IDocumentArticleModel, DocumentArticleViewModel>(article);
 
                     return new DocumentUploadViewModel(userContext, articleViewModel);
                 }
@@ -93,7 +93,7 @@ namespace ProcessingTools.Web.Services.Documents
                     var document = await this.documentsService.GetDetailsByIdAsync(id, articleId).ConfigureAwait(false);
                     if (document != null)
                     {
-                        var articleViewModel = this.mapper.Map<IDocumentArticle, DocumentArticleViewModel>(article);
+                        var articleViewModel = this.mapper.Map<IDocumentArticleModel, DocumentArticleViewModel>(article);
 
                         var fileViewModel = this.mapper.Map<IFileMetadata, DocumentFileViewModel>(document.File);
                         fileViewModel.FileId = document.FileId;
@@ -122,7 +122,7 @@ namespace ProcessingTools.Web.Services.Documents
                     var document = await this.documentsService.GetDetailsByIdAsync(id, articleId).ConfigureAwait(false);
                     if (document != null)
                     {
-                        var articleViewModel = this.mapper.Map<IDocumentArticle, DocumentArticleViewModel>(article);
+                        var articleViewModel = this.mapper.Map<IDocumentArticleModel, DocumentArticleViewModel>(article);
 
                         var fileViewModel = this.mapper.Map<IFileMetadata, DocumentFileViewModel>(document.File);
                         fileViewModel.FileId = document.FileId;
@@ -151,7 +151,7 @@ namespace ProcessingTools.Web.Services.Documents
                     var document = await this.documentsService.GetDetailsByIdAsync(id, articleId).ConfigureAwait(false);
                     if (document != null)
                     {
-                        var articleViewModel = this.mapper.Map<IDocumentArticle, DocumentArticleViewModel>(article);
+                        var articleViewModel = this.mapper.Map<IDocumentArticleModel, DocumentArticleViewModel>(article);
 
                         var fileViewModel = this.mapper.Map<IFileMetadata, DocumentFileViewModel>(document.File);
                         fileViewModel.FileId = document.FileId;
@@ -296,7 +296,7 @@ namespace ProcessingTools.Web.Services.Documents
                     var document = await this.documentsService.GetDetailsByIdAsync(model.Id, model.ArticleId).ConfigureAwait(false);
                     if (document != null)
                     {
-                        var articleViewModel = this.mapper.Map<IDocumentArticle, DocumentArticleViewModel>(article);
+                        var articleViewModel = this.mapper.Map<IDocumentArticleModel, DocumentArticleViewModel>(article);
 
                         var fileViewModel = this.mapper.Map<IFileMetadata, DocumentFileViewModel>(document.File);
                         fileViewModel.FileId = document.FileId;

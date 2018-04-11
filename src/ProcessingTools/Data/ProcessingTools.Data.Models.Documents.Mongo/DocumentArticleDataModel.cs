@@ -1,15 +1,15 @@
-﻿// <copyright file="DocumentArticle.cs" company="ProcessingTools">
+﻿// <copyright file="DocumentArticleDataModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Models.Documents.Documents
+namespace ProcessingTools.Data.Models.Documents.Mongo
 {
-    using ProcessingTools.Services.Models.Contracts.Documents.Documents;
+    using ProcessingTools.Data.Models.Contracts.Documents.Documents;
 
     /// <summary>
-    /// Document article.
+    /// Document article data model.
     /// </summary>
-    public class DocumentArticle : IDocumentArticleModel
+    public class DocumentArticleDataModel : IDocumentArticleDataModel
     {
         /// <inheritdoc/>
         public string ArticleId { get; set; }

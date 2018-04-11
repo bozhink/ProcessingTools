@@ -125,7 +125,7 @@ namespace ProcessingTools.Services.Documents
             return document;
         }
 
-        public Task<IDocumentArticle> GetDocumentArticleAsync(string articleId)
+        public Task<IDocumentArticleModel> GetDocumentArticleAsync(string articleId)
         {
             if (string.IsNullOrWhiteSpace(articleId))
             {

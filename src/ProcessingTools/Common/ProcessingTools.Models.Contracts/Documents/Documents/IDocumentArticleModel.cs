@@ -1,4 +1,4 @@
-﻿// <copyright file="IDocumentArticle.cs" company="ProcessingTools">
+﻿// <copyright file="IDocumentArticleModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts.Documents.Documents
     /// <summary>
     /// Document article.
     /// </summary>
-    public interface IDocumentArticle
+    public interface IDocumentArticleModel
     {
         /// <summary>
         /// Gets the object ID of the article.
