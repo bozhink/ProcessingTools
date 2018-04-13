@@ -305,7 +305,8 @@ namespace ProcessingTools.Web.Services.Documents
                         this.mapper.Map<IDocumentDetailsModel, DocumentEditViewModel>(document, documentViewModel);
 
                         documentViewModel.Description = model.Description;
-                        documentViewModel.File.FileName = model.FileName;
+                        documentViewModel.File.FileName = model.File.FileName;
+                        documentViewModel.File.ContentType = model.File.ContentType;
 
                         return documentViewModel;
                     }

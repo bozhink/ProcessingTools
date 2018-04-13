@@ -56,6 +56,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         public const string DetailsActionName = nameof(Details);
 
+        /// <summary>
+        /// SetAsFinal action name.
+        /// </summary>
+        public const string SetAsFinalActionName = nameof(SetAsFinal);
+
         private readonly IDocumentsService service;
         private readonly ILogger logger;
 
@@ -73,34 +78,23 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <summary>
         /// /Documents/Documents/Index
         /// </summary>
-        /// <param name="returnUrl">Return URL.</param>
-        /// <returns><see cref="IActionResult"/></returns>
-        [ActionName(IndexActionName)]
-        public IActionResult Index(string returnUrl = null)
-        {
-            if (!string.IsNullOrWhiteSpace(returnUrl))
-            {
-                return this.Redirect(returnUrl);
-            }
-
-            return this.RedirectToAction(ArticlesController.IndexActionName, ArticlesController.ControllerName, new { returnUrl });
-        }
-
-        /// <summary>
-        /// /Documents/Documents/Index
-        /// </summary>
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/></returns>
         [ActionName(IndexActionName)]
-        public IActionResult Index(string articleId, string returnUrl = null)
+        public IActionResult Index(string articleId, string returnUrl)
         {
             if (!string.IsNullOrWhiteSpace(returnUrl))
             {
                 return this.Redirect(returnUrl);
             }
 
-            return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId, returnUrl });
+            if (!string.IsNullOrWhiteSpace(articleId))
+            {
+                return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId, returnUrl });
+            }
+
+            return this.RedirectToAction(ArticlesController.IndexActionName, ArticlesController.ControllerName, new { returnUrl });
         }
 
         /// <summary>
@@ -251,6 +245,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
         /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(SetAsFinalActionName)]
         public async Task<IActionResult> SetAsFinal(string id, string articleId)
         {
             const string LogMessage = "Document SetAsFinal";

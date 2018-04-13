@@ -26,6 +26,10 @@
     margin: 15px;
 }
 
+footer.page-navigation {
+    margin: 2em 0;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

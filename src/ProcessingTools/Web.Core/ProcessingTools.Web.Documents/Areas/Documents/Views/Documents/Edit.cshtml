@@ -28,6 +28,7 @@
     else
     {
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            @Html.AntiForgeryToken()
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ArticleId" />
             <input type="hidden" asp-for="FileId" />
@@ -60,65 +61,64 @@
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label asp-for="File.ContentLength" class="control-label"></label>
+                    <label class="control-label">@Html.DisplayNameFor(m => m.File.ContentLength)</label>
                 </div>
                 <div class="col-md-10">
-                    <input type="text" asp-for="File.ContentLength" class="form-control disabled" disabled="disabled" />
+                    <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.File.ContentLength)</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label asp-for="IsFinal" class="control-label"></label>
+                    <label class="control-label">@Html.DisplayNameFor(m => m.IsFinal)</label>
                 </div>
                 <div class="col-md-10">
-                    <input type="text" asp-for="IsFinal" class="form-control disabled" disabled="disabled" />
+                    <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.IsFinal)</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label asp-for="CreatedBy" class="control-label"></label>
+                    <label class="control-label">@Html.DisplayNameFor(m => m.CreatedBy)</label>
                 </div>
                 <div class="col-md-10">
-                    <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
+                    <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.CreatedBy)</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label asp-for="CreatedOn" class="control-label"></label>
+                    <label class="control-label">@Html.DisplayNameFor(m => m.CreatedOn)</label>
                 </div>
                 <div class="col-md-10">
-
-                    <input type="datetime" asp-for="CreatedOn" class="form-control disabled" disabled="disabled" />
+                    <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.CreatedOn)</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label asp-for="ModifiedBy" class="control-label"></label>
+                    <label class="control-label">@Html.DisplayNameFor(m => m.ModifiedBy)</label>
                 </div>
                 <div class="col-md-10">
-                    <input type="text" asp-for="ModifiedBy" class="form-control disabled" disabled="disabled" />
+                    <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.ModifiedBy)</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label asp-for="ModifiedOn" class="control-label"></label>
+                    <label class="control-label">@Html.DisplayNameFor(m => m.ModifiedOn)</label>
                 </div>
                 <div class="col-md-10">
-                    <input type="datetime" asp-for="ModifiedOn" class="form-control disabled" disabled="disabled" />
+                    <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.ModifiedOn)</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-default" value="Save" />
                     <input type="reset" class="btn btn-default" value="Reset" />
-                    <a asp-action="@(DocumentsController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
                 </div>
             </div>
         </form>
+        <footer class="page-navigation">
+            <p><a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)">Back to Documents</a></p>
+        </footer>
     }
-    <footer class="page-navigation">
-        <p><a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)">Back to Documents</a></p>
-    </footer>
 </section>
 
 @section Scripts {

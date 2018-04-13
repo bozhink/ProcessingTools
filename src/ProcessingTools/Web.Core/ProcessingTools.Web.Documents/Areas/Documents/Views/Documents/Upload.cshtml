@@ -29,6 +29,7 @@
     {
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="ArticleId" />
             <div class="form-group">
                 <div class="col-md-2">
                     <label asp-for="File" class="control-label"></label>
@@ -42,14 +43,14 @@
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-default" value="Submit" />
                     <input type="reset" class="btn btn-default" value="Reset" />
-                    <a asp-action="@(DocumentsController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
                 </div>
             </div>
         </form>
+        <footer class="page-navigation">
+            <p><a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)">Back to Documents</a></p>
+        </footer>
     }
-    <footer class="page-navigation">
-        <p><a asp-action="@(DocumentsController.IndexActionName)">Back to List</a></p>
-    </footer>
 </section>
 
 @section Scripts {
