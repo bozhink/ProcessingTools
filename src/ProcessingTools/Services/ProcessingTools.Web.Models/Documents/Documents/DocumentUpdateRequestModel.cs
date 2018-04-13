@@ -37,7 +37,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
         public string FileName { get; set; }
 
         /// <inheritdoc/>
-        public IDocumentFileModel File => this;
+        public DocumentFileRequestModel File { get; set; } = new DocumentFileRequestModel();
 
         /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
@@ -45,5 +45,7 @@ namespace ProcessingTools.Web.Models.Documents.Documents
 
         /// <inheritdoc/>
         public string ReturnUrl { get; set; }
+
+        IDocumentFileModel IDocumentBaseModel.File => this;
     }
 }

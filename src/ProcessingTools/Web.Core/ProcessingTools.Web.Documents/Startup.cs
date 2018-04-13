@@ -122,6 +122,7 @@ namespace ProcessingTools.Web.Documents
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
 
+            builder.RegisterModule<TransformersFactoriesAurofacModule>();
             builder.RegisterModule<InterceptorsAutofacModule>();
             builder.RegisterModule(new DataAutofacModule
             {

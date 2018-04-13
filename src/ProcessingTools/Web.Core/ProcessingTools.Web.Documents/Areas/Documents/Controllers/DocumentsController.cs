@@ -6,15 +6,19 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Documents.Documents;
     using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
     /// /Documents/Documents
     /// </summary>
+    [Authorize]
+    [Area(AreaNames.Documents)]
     public class DocumentsController : Controller
     {
         /// <summary>

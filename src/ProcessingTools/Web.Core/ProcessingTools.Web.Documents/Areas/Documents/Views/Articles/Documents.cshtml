@@ -142,7 +142,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @{ int i = 0; }
+                        @{
+                            int i = 0;
+                            string returnUrl = ViewContext.HttpContext.Request.GetDisplayUrl();
+                        }
                         @foreach (var document in Model.Documents)
                         {
                             <tr>
@@ -153,10 +156,10 @@
                                 <td>@Html.DisplayFor(m => document.CreatedOn)</td>
                                 <td>@Html.DisplayFor(m => document.ModifiedOn)</td>
                                 <td>
-                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.EditActionName)" asp-route-articleId="@(Model.Id)" asp-route-id="@(document.DocumentId)">Edit</a> |
-                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DeleteActionName)" asp-route-articleId="@(Model.Id)" asp-route-id="@(document.DocumentId)">Delete</a> |
-                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DetailsActionName)" asp-route-articleId="@(Model.Id)" asp-route-id="@(document.DocumentId)">Details</a> |
-                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DownloadActionName)" asp-route-articleId="@(Model.Id)" asp-route-id="@(document.DocumentId)">Download</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.EditActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Edit</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DeleteActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Delete</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DetailsActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Details</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DownloadActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Download</a> |
                                     Set as final |
                                     Preview HTML |
                                     Edit XML

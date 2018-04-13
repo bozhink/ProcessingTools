@@ -48,6 +48,7 @@ namespace ProcessingTools.Web.Services.Documents
 
                 c.CreateMap<IArticleJournalModel, ArticleJournalViewModel>();
                 c.CreateMap<IDocumentModel, ArticleDocumentViewModel>()
+                    .ForMember(vm => vm.DocumentId, o => o.ResolveUsing(sm => sm.Id))
                     .ForMember(vm => vm.FileName, o => o.ResolveUsing(sm => sm.File?.FileName));
 
                 c.CreateMap<IArticleModel, ArticleDeleteViewModel>();
