@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <div class="contols">
+            <div class="form-group">
+                <fieldset>
+                    <legend>Add taxa</legend>
+                    <form ng-submit="taxaList.addItem()" class="form-horizontal">
+                        <textarea ng-model="taxaList.textArea" name="taxa" cols="30" rows="4" placeholder="add taxon-rank pairs here" class="form-control"></textarea>
+                        <input class="btn btn-primary" type="submit" value="add" />
+                    </form>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <fieldset>
+                    <legend>Search taxa</legend>
+                    <form ng-submit="taxaList.search('taxaRanksSearchUrl')" class="form-horizontal">
+                        <input ng-model="taxaList.searchString" type="text" size="30" placeholder="input taxon name to search here" class="form-control"
+                            pattern=".+" />
+                        <input class="btn btn-primary" type="submit" value="search" />
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group" ng-if="taxaList.items.length">
+            <fieldset>
+                <legend>Taxa list</legend>
+                <ul class="view-list">
+                    <li ng-repeat="taxon in taxaList.items | orderBy: 'taxonName'" class="list-item">
+                        <span class="index">{{$index + 1}}.</span>
+                        <span class="taxon-name">{{taxon.taxonName}}</span>
+                        <span class="taxon-rank">{{taxon.rank}}</span>
+                        <span ng-click="taxaList.removeItem(taxon.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
+                    </li>
+                </ul>
+                <div class="form-group">
+                    <span ng-click="taxaList.clearList()" class="btn btn-default">Clear List</span>
+                    <span ng-click="taxaList.submitItems('taxaRanksSubmitUrl')" class="btn btn-default">Submit</span>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
