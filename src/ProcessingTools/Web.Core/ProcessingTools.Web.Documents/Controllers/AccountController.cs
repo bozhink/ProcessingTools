@@ -464,6 +464,16 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.View();
         }
 
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
+        }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

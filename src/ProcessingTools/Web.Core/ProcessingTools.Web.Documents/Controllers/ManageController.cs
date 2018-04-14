@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.ManageViewModels;
     using ProcessingTools.Web.Documents.Services;
@@ -465,6 +466,16 @@
             this.logger.LogInformation("User with ID {UserId} has generated new 2FA recovery codes.", user.Id);
 
             return this.View(model);
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
         }
 
         private void AddErrors(IdentityResult result)

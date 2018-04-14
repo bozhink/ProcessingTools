@@ -8,6 +8,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Models;
 
@@ -184,6 +185,16 @@ namespace ProcessingTools.Web.Documents.Controllers
             this.context.ApplicationRoles.Remove(applicationRole);
             await this.context.SaveChangesAsync();
             return this.RedirectToAction(IndexActionName);
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
         }
 
         private bool ApplicationRoleExists(string id)

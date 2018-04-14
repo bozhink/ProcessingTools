@@ -565,5 +565,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
             return this.View();
         }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
+        }
     }
 }

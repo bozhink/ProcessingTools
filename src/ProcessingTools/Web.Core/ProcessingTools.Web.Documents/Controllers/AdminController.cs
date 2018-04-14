@@ -107,5 +107,15 @@ namespace ProcessingTools.Web.Documents.Controllers
 
             return this.RedirectToActionPermanent(IndexActionName);
         }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
+        }
     }
 }

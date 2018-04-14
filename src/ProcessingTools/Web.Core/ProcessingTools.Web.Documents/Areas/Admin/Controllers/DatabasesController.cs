@@ -28,7 +28,7 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         /// <summary>
         /// Index action name.
         /// </summary>
-        public const string IndexActionName = nameof(Index);
+        public const string IndexActionName = ActionNames.Index;
 
         /// <summary>
         /// InitializeAll action name.
@@ -93,6 +93,16 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
                 this.logger.LogError(ex, "Error in database initialization.");
             }
 
+            return this.View();
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
             return this.View();
         }
     }
