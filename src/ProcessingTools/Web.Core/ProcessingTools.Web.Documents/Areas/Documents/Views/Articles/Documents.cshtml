@@ -162,9 +162,9 @@
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DetailsActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Details</a> |
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DownloadActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Download</a> |
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.SetAsFinalActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Set as final</a> |
-                                    Preview HTML |
-                                    Edit XML
-                                </td>
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Html" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Preview HTML</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Xml" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Edit XML</a>
+</td>
                             </tr>
                         }
                     </tbody>

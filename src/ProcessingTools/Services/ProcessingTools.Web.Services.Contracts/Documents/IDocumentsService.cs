@@ -44,6 +44,22 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<DocumentDetailsViewModel> GetDocumentDetailsViewModelAsync(string id, string articleId);
 
         /// <summary>
+        /// Get <see cref="DocumentHtmlViewModel"/>.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns>Task of <see cref="DocumentHtmlViewModel"/>.</returns>
+        Task<DocumentHtmlViewModel> GetDocumentHtmlViewModelAsync(string id, string articleId);
+
+        /// <summary>
+        /// Get <see cref="DocumentXmlViewModel"/>.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns>Task of <see cref="DocumentXmlViewModel"/>.</returns>
+        Task<DocumentXmlViewModel> GetDocumentXmlViewModelAsync(string id, string articleId);
+
+        /// <summary>
         /// Upload document.
         /// </summary>
         /// <param name="formFile">Form file.</param>

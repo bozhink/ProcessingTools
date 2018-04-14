@@ -1,0 +1,20 @@
+﻿@model ProcessingTools.Web.Models.Documents.Documents.DocumentXmlViewModel
+@{
+    ViewData[ContextKeys.Title] = "Edit Document";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<code><pre>@(Model?.Content)</pre></code>

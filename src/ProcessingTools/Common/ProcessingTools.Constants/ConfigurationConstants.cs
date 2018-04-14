@@ -33,5 +33,15 @@ namespace ProcessingTools.Constants
         /// History MongoDB database name.
         /// </summary>
         public const string HistoryMongoDBDatabaseName = "DatabaseNames:HistoryMongoDB";
+
+        /// <summary>
+        /// Format HTML-to-XML XSL file path.
+        /// </summary>
+        public const string FormatHtmlToXmlXslFilePath = "StaticFiles:FormatHtmlToXmlXslFilePath";
+
+        /// <summary>
+        /// /// Format XML-to-HTML XSL file path.
+        /// </summary>
+        public const string FormatXmlToHtmlXslFilePath = "StaticFiles:FormatXmlToHtmlXslFilePath";
     }
 }

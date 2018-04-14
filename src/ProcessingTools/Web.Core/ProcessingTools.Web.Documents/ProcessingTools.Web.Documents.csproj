@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Xml\ProcessingTools.Xml.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models.Contracts\ProcessingTools.Harvesters.Models.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models\ProcessingTools.Harvesters.Models.csproj" />

@@ -168,6 +168,46 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
+        public async Task<DocumentHtmlViewModel> GetDocumentHtmlViewModelAsync(string id, string articleId)
+        {
+            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+
+            if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(articleId))
+            {
+                string content = await this.documentsService.GetHtmlAsync(id, articleId).ConfigureAwait(false);
+
+                return new DocumentHtmlViewModel(userContext)
+                {
+                    Id = id,
+                    ArticleId = articleId,
+                    Content = content
+                };
+            }
+
+            return new DocumentHtmlViewModel(userContext);
+        }
+
+        /// <inheritdoc/>
+        public async Task<DocumentXmlViewModel> GetDocumentXmlViewModelAsync(string id, string articleId)
+        {
+            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+
+            if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(articleId))
+            {
+                string content = await this.documentsService.GetXmlAsync(id, articleId).ConfigureAwait(false);
+
+                return new DocumentXmlViewModel(userContext)
+                {
+                    Id = id,
+                    ArticleId = articleId,
+                    Content = content
+                };
+            }
+
+            return new DocumentXmlViewModel(userContext);
+        }
+
+        /// <inheritdoc/>
         public async Task<DocumentDownloadResponseModel> DownloadDocumentAsync(string id, string articleId)
         {
             if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))

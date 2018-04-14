@@ -567,6 +567,86 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         }
 
         /// <summary>
+        /// GET /Documents/Documents/Html/id
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        public async Task<IActionResult> Html(string id, string articleId, string returnUrl = null)
+        {
+            const string LogMessage = "Fetch Document Html";
+
+            this.logger.LogTrace(LogMessage);
+
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                string modelError = "Invalid article";
+                this.logger.LogError(modelError);
+                this.ModelState.AddModelError(string.Empty, modelError);
+                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return this.View();
+            }
+
+            try
+            {
+                var viewModel = await this.service.GetDocumentHtmlViewModelAsync(id, articleId).ConfigureAwait(false);
+
+                viewModel.ReturnUrl = returnUrl;
+
+                return this.View(model: viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            return this.View();
+        }
+
+        /// <summary>
+        /// GET /Documents/Documents/Xml/id
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        public async Task<IActionResult> Xml(string id, string articleId, string returnUrl = null)
+        {
+            const string LogMessage = "Fetch Document Xml";
+
+            this.logger.LogTrace(LogMessage);
+
+            if (string.IsNullOrWhiteSpace(articleId))
+            {
+                string modelError = "Invalid article";
+                this.logger.LogError(modelError);
+                this.ModelState.AddModelError(string.Empty, modelError);
+                this.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return this.View();
+            }
+
+            try
+            {
+                var viewModel = await this.service.GetDocumentXmlViewModelAsync(id, articleId).ConfigureAwait(false);
+
+                viewModel.ReturnUrl = returnUrl;
+
+                return this.View(model: viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+            return this.View();
+        }
+
+        /// <summary>
         /// Help
         /// </summary>
         /// <returns><see cref="IActionResult"/></returns>
