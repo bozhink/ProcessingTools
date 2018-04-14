@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProcessingTools.Web.Documents</title>
+    <title>@ViewData[ContextKeys.Title] - ProcessingTools.Web.Documents</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,13 +26,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">PTWD</a>
+                <a asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.IndexActionName)" class="navbar-brand">PTWD</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-action="@(ActionNames.Index)">Home</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                     <li class="nav-item dropdown">
@@ -45,6 +43,15 @@
                         </ul>
                     </li>
                     }
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-action="@(ActionNames.Help)" target="_blank">Help</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.ContactActionName)">Contact</a></li>
+                                <li><a asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.AboutActionName)">About</a></li>
+                            </ul>
+                        </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -54,7 +61,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - ProcessingTools.Web.Documents</p>
+            <p>&copy; @(DateTime.Now.Year) - ProcessingTools.Web.Documents</p>
         </footer>
     </div>
 
