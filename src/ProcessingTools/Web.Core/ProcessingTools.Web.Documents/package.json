@@ -4,7 +4,13 @@
     "description": "Document management system",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "clean": "./node_modules/.bin/gulp clean",
+        "test": "./node_modules/.bin/mocha wwwroot/tests/",
+        "test-kitten": "./node_modules/.bin/mocha -R nyan wwwroot/tests/",
+        "watch-tests": "./node_modules/.bin/gulp watch-tests",
+        "build": "./node_modules/.bin/gulp build",
+        "min": "./node_modules/.bin/gulp min",
+        "watch": "./node_modules/.bin/gulp watch"
     },
     "repository": {
         "type": "git",

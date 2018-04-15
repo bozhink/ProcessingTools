@@ -17,4 +17,4 @@
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<code><pre>@(Model?.Content)</pre></code>
+@Html.Raw(Model?.Content)
