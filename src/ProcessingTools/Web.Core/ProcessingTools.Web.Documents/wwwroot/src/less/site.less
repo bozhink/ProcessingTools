@@ -6,25 +6,54 @@ body {
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+footer.page-navigation {
+    margin: 2em 0;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+/*.dl-horizontal dt {
     white-space: normal;
-}
+}*/
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 .nav li a {
     cursor: pointer;

@@ -35,7 +35,6 @@
         "eslint": "^4.19.1",
         "gulp": "^3.9.1",
         "gulp-browserify": "^0.5.1",
-        "gulp-clean-css": "^3.9.3",
         "gulp-concat": "^2.6.1",
         "gulp-cssmin": "^0.2.0",
         "gulp-htmlmin": "^4.0.0",

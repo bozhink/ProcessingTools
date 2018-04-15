@@ -255,7 +255,8 @@ gulp.task("build", [
     "build-document-edit",
     "build-document-preview",
     "build-files-index",
-    "build-bio-data-app"]);
+    "build-bio-data-app",
+    "min"]);
 
 gulp.task("watch", function () {
     gulp.watch([srcPath], ["build"]);
