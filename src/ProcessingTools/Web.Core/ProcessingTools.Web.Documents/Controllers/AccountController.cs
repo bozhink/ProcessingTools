@@ -53,6 +53,16 @@ namespace ProcessingTools.Web.Documents.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
+        public IActionResult Index(string returnUrl = null)
+        {
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
+
+            return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName, null);
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)

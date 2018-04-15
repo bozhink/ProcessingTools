@@ -61,6 +61,7 @@
         "bootstrap": "3.3.7",
         "bootstrap-datetime-picker": "^2.4.4",
         "codemirror": "^5.36.0",
+        "crypto-js": "^3.1.9-1",
         "davidshimjs-qrcodejs": "0.0.2",
         "font-awesome": "^4.7.0",
         "handlebars": "^4.0.11",

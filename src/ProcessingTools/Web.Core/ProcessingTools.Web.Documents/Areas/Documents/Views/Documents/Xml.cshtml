@@ -17,4 +17,63 @@
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<code><pre>@(Model?.Content)</pre></code>
+@*<code><pre>@(Model?.Content)</pre></code>*@
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/toastr/build/toastr.min.css" />
+    <link rel="stylesheet" href="~/build/dist/css/document-edit.css" />
+}
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-action="@(DocumentsController.XmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="navbar-brand">XML</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a asp-action="@(DocumentsController.HtmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank">HTML</a></li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <span class="input-group">
+                        <label class="input-group-addon">Language</label>
+                        <select class="form-control language-picker"></select>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <span class="input-group">
+                        <label class="input-group-addon">Theme</label>
+                        <select class="form-control theme-picker"></select>
+                    </span>
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">Download</a></li>
+                <li><a id="refresh-button">Refresh</a></li>
+                <li><a id="save-button">Save</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="editor-container"></div>
+<div class="clearfix"></div>
+<aside style="display: none;">
+    <a id="get-link" asp-action="@DocumentsController.GetXmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+    <a id="save-link" asp-action="@DocumentsController.SetXmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+</aside>
+
+@section Scripts {
+    <script src="~/lib/crypto-js/sha1.js"></script>
+    <script src="~/lib/toastr/build/toastr.min.js"></script>
+    <script src="~/lib/monaco-editor/min/vs/loader.js"></script>
+    <script src="~/build/dist/js/apps/document-edit.min.js"></script>
+}

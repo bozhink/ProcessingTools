@@ -4,8 +4,10 @@
 
 namespace ProcessingTools.Web.Services.Contracts.Documents
 {
+    using System;
     using System.Threading.Tasks;
     using ProcessingTools.Web.Models.Documents.Documents;
+    using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
     /// Documents service.
@@ -58,6 +60,37 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <param name="articleId">Object ID of the article.</param>
         /// <returns>Task of <see cref="DocumentXmlViewModel"/>.</returns>
         Task<DocumentXmlViewModel> GetDocumentXmlViewModelAsync(string id, string articleId);
+
+        /// <summary>
+        /// Gets BadRequest response model.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns><see cref="MessageStatusResponseModel"/></returns>
+        MessageStatusResponseModel GetBadRequestResponseModel(string id, string articleId);
+
+        /// <summary>
+        /// Gets InternalServerError response model.
+        /// </summary>
+        /// <param name="ex">Exception of the error.</param>
+        /// <returns><see cref="MessageStatusResponseModel"/></returns>
+        MessageStatusResponseModel GetInternalServerErrorResponseModel(Exception ex);
+
+        /// <summary>
+        /// Gets document saved response model.
+        /// </summary>
+        /// <param name="success">Success value.</param>
+        /// <returns><see cref="MessageStatusResponseModel"/></returns>
+        MessageStatusResponseModel GetDocumentSavedResponseModel(bool success);
+
+        /// <summary>
+        /// Gets <see cref="DocumentContentResponseModel"/>.
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <param name="content">Content of the document.</param>
+        /// <returns><see cref="DocumentContentResponseModel"/></returns>
+        DocumentContentResponseModel GetDocumentContentResponseModel(string id, string articleId, string content);
 
         /// <summary>
         /// Upload document.

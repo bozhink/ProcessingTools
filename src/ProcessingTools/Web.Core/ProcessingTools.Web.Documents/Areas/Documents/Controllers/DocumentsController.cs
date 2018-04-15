@@ -5,13 +5,17 @@
 namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 {
     using System;
+    using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Constants;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Documents.Documents;
+    using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
@@ -60,6 +64,36 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// SetAsFinal action name.
         /// </summary>
         public const string SetAsFinalActionName = nameof(SetAsFinal);
+
+        /// <summary>
+        /// Html action name.
+        /// </summary>
+        public const string HtmlActionName = nameof(Html);
+
+        /// <summary>
+        /// GetXml action name.
+        /// </summary>
+        public const string GetXmlActionName = nameof(GetXml);
+
+        /// <summary>
+        /// GetHtml action name.
+        /// </summary>
+        public const string GetHtmlActionName = nameof(GetHtml);
+
+        /// <summary>
+        /// SetXml action name.
+        /// </summary>
+        public const string SetXmlActionName = nameof(SetXml);
+
+        /// <summary>
+        /// SetHtml action name.
+        /// </summary>
+        public const string SetHtmlActionName = nameof(SetHtml);
+
+        /// <summary>
+        /// Xml action name.
+        /// </summary>
+        public const string XmlActionName = nameof(Xml);
 
         private readonly IDocumentsService service;
         private readonly ILogger logger;
@@ -573,6 +607,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(HtmlActionName)]
         public async Task<IActionResult> Html(string id, string articleId, string returnUrl = null)
         {
             const string LogMessage = "Fetch Document Html";
@@ -613,6 +648,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <param name="articleId">Object ID of the article.</param>
         /// <param name="returnUrl">Return URL.</param>
         /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(XmlActionName)]
         public async Task<IActionResult> Xml(string id, string articleId, string returnUrl = null)
         {
             const string LogMessage = "Fetch Document Xml";
@@ -644,6 +680,188 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             this.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
             return this.View();
+        }
+
+        /// <summary>
+        /// POST /Documents/Documents/GetXml/id
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPost]
+        [ActionName(GetXmlActionName)]
+        public async Task<IActionResult> GetXml(string id, string articleId)
+        {
+            const string LogMessage = "Get XML";
+
+            this.logger.LogTrace(LogMessage);
+
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
+            {
+                return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+
+            try
+            {
+                string content = await this.service.GetXmlAsync(id, articleId).ConfigureAwait(false);
+
+                return new JsonResult(this.service.GetDocumentContentResponseModel(id, articleId, content))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, LogMessage);
+
+                return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.InternalServerError
+                };
+            }
+        }
+
+        /// <summary>
+        /// POST /Documents/Documents/GetHtml/id
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPost]
+        [ActionName(GetHtmlActionName)]
+        public async Task<IActionResult> GetHtml(string id, string articleId)
+        {
+            const string LogMessage = "Get HTML";
+
+            this.logger.LogTrace(LogMessage);
+
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
+            {
+                return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+
+            try
+            {
+                string content = await this.service.GetHtmlAsync(id, articleId).ConfigureAwait(false);
+
+                return new JsonResult(this.service.GetDocumentContentResponseModel(id, articleId, content))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, LogMessage);
+
+                return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.InternalServerError
+                };
+            }
+        }
+
+        /// <summary>
+        /// PUT /Documents/Documents/SetXml/id
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// /// <param name="content">XML content.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPut]
+        [ActionName(SetXmlActionName)]
+        public async Task<IActionResult> SetXml(string id, string articleId, string content)
+        {
+            const string LogMessage = "Set XML";
+
+            this.logger.LogTrace(LogMessage);
+
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
+            {
+                return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+
+            try
+            {
+                var result = await this.service.SetXmlAsync(id, articleId, content).ConfigureAwait(false);
+
+                return new JsonResult(this.service.GetDocumentSavedResponseModel(result))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, LogMessage);
+
+                return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.InternalServerError
+                };
+            }
+        }
+
+        /// <summary>
+        /// PUT /Documents/Documents/SetHtml/id
+        /// </summary>
+        /// <param name="id">Object ID of the document.</param>
+        /// <param name="articleId">Object ID of the article.</param>
+        /// <param name="content">HTML content.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPut]
+        [ActionName(SetHtmlActionName)]
+        public async Task<IActionResult> SetHtml(string id, string articleId, string content)
+        {
+            const string LogMessage = "Set HTML";
+
+            this.logger.LogTrace(LogMessage);
+
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
+            {
+                return new JsonResult(this.service.GetBadRequestResponseModel(id, articleId))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+
+            try
+            {
+                var result = await this.service.SetHtmlAsync(id, articleId, content).ConfigureAwait(false);
+
+                return new JsonResult(this.service.GetDocumentSavedResponseModel(result))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, LogMessage);
+
+                return new JsonResult(this.service.GetInternalServerErrorResponseModel(ex))
+                {
+                    ContentType = ContentTypes.Json,
+                    StatusCode = (int)HttpStatusCode.InternalServerError
+                };
+            }
         }
 
         /// <summary>

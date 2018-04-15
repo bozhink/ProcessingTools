@@ -9,6 +9,7 @@ namespace ProcessingTools.Web.Services.Documents
     using AutoMapper;
     using Microsoft.AspNetCore.Http;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.IO;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Models.Contracts.Documents.Documents;
@@ -205,6 +206,62 @@ namespace ProcessingTools.Web.Services.Documents
             }
 
             return new DocumentXmlViewModel(userContext);
+        }
+
+        /// <inheritdoc/>
+        public MessageStatusResponseModel GetBadRequestResponseModel(string id, string articleId)
+        {
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(articleId))
+            {
+                return new MessageStatusResponseModel
+                {
+                    Success = false,
+                    Status = MessageResponseStatus.Error,
+                    Message = "Bad Request: Document or article IDs are not provided"
+                };
+            }
+            else
+            {
+                return new MessageStatusResponseModel
+                {
+                    Success = false,
+                    Status = MessageResponseStatus.Error,
+                    Message = "Bad Request"
+                };
+            }
+        }
+
+        /// <inheritdoc/>
+        public MessageStatusResponseModel GetInternalServerErrorResponseModel(Exception ex)
+        {
+            return new MessageStatusResponseModel
+            {
+                Success = false,
+                Status = MessageResponseStatus.Error,
+                Message = $"Internal Server Error: {ex?.Message}"
+            };
+        }
+
+        /// <inheritdoc/>
+        public DocumentContentResponseModel GetDocumentContentResponseModel(string id, string articleId, string content)
+        {
+            return new DocumentContentResponseModel
+            {
+                DocumentId = id,
+                ArticleId = articleId,
+                Content = content
+            };
+        }
+
+        /// <inheritdoc/>
+        public MessageStatusResponseModel GetDocumentSavedResponseModel(bool success)
+        {
+            return new MessageStatusResponseModel
+            {
+                Success = success,
+                Status = MessageResponseStatus.OK,
+                Message = "Document saved"
+            };
         }
 
         /// <inheritdoc/>
