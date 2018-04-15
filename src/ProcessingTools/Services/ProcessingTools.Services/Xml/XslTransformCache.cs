@@ -5,6 +5,7 @@
 namespace ProcessingTools.Services.Xml
 {
     using System.Collections.Concurrent;
+    using System.Xml;
     using System.Xml.Xsl;
     using ProcessingTools.Contracts.Xml;
 
@@ -21,8 +22,10 @@ namespace ProcessingTools.Services.Xml
         /// <inheritdoc/>
         protected override XslCompiledTransform GetTransformObject(string fileName)
         {
-            var transform = new XslCompiledTransform();
-            transform.Load(fileName);
+            XslCompiledTransform transform = new XslCompiledTransform();
+            XsltSettings settings = new XsltSettings(true, true);
+            XmlUrlResolver resolver = new XmlUrlResolver();
+            transform.Load(fileName, settings, resolver);
             return transform;
         }
     }
