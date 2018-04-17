@@ -22,6 +22,8 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Layout\Styles\Floats\" />
+    <Folder Include="Layout\Styles\References\" />
     <Folder Include="Services\Data\Geo\" />
     <Folder Include="Services\Data\Resources\" />
   </ItemGroup>
