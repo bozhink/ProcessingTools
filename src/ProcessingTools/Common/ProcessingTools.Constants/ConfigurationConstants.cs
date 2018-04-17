@@ -30,6 +30,11 @@ namespace ProcessingTools.Constants
         public const string DocumentsMongoDBDatabaseName = "DatabaseNames:DocumentsMongoDB";
 
         /// <summary>
+        /// Layout MongoDB database name.
+        /// </summary>
+        public const string LayoutMongoDBDatabaseName = "DatabaseNames:LayoutMongoDB";
+
+        /// <summary>
         /// History MongoDB database name.
         /// </summary>
         public const string HistoryMongoDBDatabaseName = "DatabaseNames:HistoryMongoDB";
