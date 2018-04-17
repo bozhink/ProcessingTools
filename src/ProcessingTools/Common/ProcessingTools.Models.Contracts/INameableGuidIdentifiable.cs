@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts
     /// <summary>
     /// Model with name and GUID ID.
     /// </summary>
-    public interface INameableGuidIdentifiable : INameable, IGuidIdentifiable
+    public interface INameableGuidIdentifiable : INamed, IGuidIdentifiable
     {
     }
 }
