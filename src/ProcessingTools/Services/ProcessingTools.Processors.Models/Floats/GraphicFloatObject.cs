@@ -33,5 +33,8 @@ namespace ProcessingTools.Processors.Models.Floats
 
         /// <inheritdoc/>
         public string Description => "Graphic";
+
+        /// <inheritdoc/>
+        public string TargetXPath => "./*";
     }
 }

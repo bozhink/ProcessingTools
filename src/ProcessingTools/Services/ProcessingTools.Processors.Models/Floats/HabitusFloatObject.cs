@@ -33,5 +33,8 @@ namespace ProcessingTools.Processors.Models.Floats
 
         /// <inheritdoc/>
         public string Description => "Habitus";
+
+        /// <inheritdoc/>
+        public string TargetXPath => "./*";
     }
 }

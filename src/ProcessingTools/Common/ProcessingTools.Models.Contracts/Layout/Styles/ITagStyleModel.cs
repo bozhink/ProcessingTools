@@ -9,5 +9,9 @@ namespace ProcessingTools.Models.Contracts.Layout.Styles
     /// </summary>
     public interface ITagStyleModel : IStyleModel
     {
+        /// <summary>
+        /// Gets the XPath to select target nodes to process.
+        /// </summary>
+        string TargetXPath { get; }
     }
 }
