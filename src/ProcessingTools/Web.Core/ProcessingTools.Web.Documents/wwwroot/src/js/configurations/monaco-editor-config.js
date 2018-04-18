@@ -58,6 +58,14 @@ module.exports = function MonacoEditorConfig(window, require) {
         return monaco.editor.create(containerElement, {
             value: content.toString(),
             language: language,
+            lineNumbers: 'on',
+            roundedSelection: true,
+            scrollBeyondLastLine: true,
+            readOnly: false,
+            wordWrap: 'wordWrapColumn',
+            wordWrapColumn: 120,
+            wordWrapMinified: true,
+            wrappingIndent: 'none', // try "same", "indent" or "none"
             theme: theme
         });
     }
@@ -79,6 +87,17 @@ module.exports = function MonacoEditorConfig(window, require) {
                     themes = getThemes(monaco, theme);
 
                     editor = createEditor(monaco, containerElement, language, theme, content);
+
+                    editor.addCommand(monaco.KeyCode.F10, function () {
+                        editor.updateOptions({
+                            wordWrap: 'none'
+                        });
+                    });
+                    editor.addCommand(monaco.KeyCode.F11, function () {
+                        editor.updateOptions({
+                            wordWrap: 'wordWrapColumn'
+                        });
+                    });
 
                     window.addEventListener('resize', function () {
                         if (editor) {

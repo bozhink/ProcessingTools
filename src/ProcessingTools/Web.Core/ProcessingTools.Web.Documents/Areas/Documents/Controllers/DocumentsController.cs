@@ -712,7 +712,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetDocumentContentResponseModel(id, articleId, content))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.BadRequest
+                    StatusCode = (int)HttpStatusCode.OK
                 };
             }
             catch (Exception ex)
@@ -757,7 +757,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 return new JsonResult(this.service.GetDocumentContentResponseModel(id, articleId, content))
                 {
                     ContentType = ContentTypes.Json,
-                    StatusCode = (int)HttpStatusCode.BadRequest
+                    StatusCode = (int)HttpStatusCode.OK
                 };
             }
             catch (Exception ex)

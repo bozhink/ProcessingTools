@@ -46,7 +46,7 @@ module.exports = function DocumentContentData(storage, keys, jsonRequester, sha1
             if (!lastGetTime || getTimeToNextPossibleGet(lastGetTime) < 0) {
                 jsonRequester.post(url)
                     .then(function (data) {
-                        var content = data.Content;
+                        var content = data.content;
                         storage.setItem(keys.lastGetTimeKey, new Date());
                         resolve(content);
                     })

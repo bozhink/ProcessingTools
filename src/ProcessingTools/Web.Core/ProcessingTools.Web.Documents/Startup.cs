@@ -162,6 +162,7 @@ namespace ProcessingTools.Web.Documents
             app.UseStaticFiles();
             if (env.IsDevelopment() || env.IsStaging())
             {
+                this.ServeStaticFiles(app, env, "node_modules", "/node_modules");
                 this.ServeStaticFiles(app, env, "node_modules", "/lib");
                 this.ServeStaticFiles(app, env, "node_modules/jquery/dist", "/lib/jquery/dist");
                 this.ServeStaticFiles(app, env, "node_modules/jquery-validation/dist", "/lib/jquery-validation/dist");
