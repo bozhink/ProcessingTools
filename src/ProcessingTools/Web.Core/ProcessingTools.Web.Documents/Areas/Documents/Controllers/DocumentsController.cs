@@ -777,11 +777,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
-        /// /// <param name="content">XML content.</param>
+        /// <param name="model">Content model.</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPut]
         [ActionName(SetXmlActionName)]
-        public async Task<IActionResult> SetXml(string id, string articleId, string content)
+        public async Task<IActionResult> SetXml(string id, string articleId, [FromBody]DocumentContentRequestModel model)
         {
             const string LogMessage = "Set XML";
 
@@ -798,7 +798,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var result = await this.service.SetXmlAsync(id, articleId, content).ConfigureAwait(false);
+                var result = await this.service.SetXmlAsync(id, articleId, model.Content).ConfigureAwait(false);
 
                 return new JsonResult(this.service.GetDocumentSavedResponseModel(result))
                 {
@@ -823,11 +823,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         /// <param name="id">Object ID of the document.</param>
         /// <param name="articleId">Object ID of the article.</param>
-        /// <param name="content">HTML content.</param>
+        /// <param name="model">Content model.</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpPut]
         [ActionName(SetHtmlActionName)]
-        public async Task<IActionResult> SetHtml(string id, string articleId, string content)
+        public async Task<IActionResult> SetHtml(string id, string articleId, [FromBody]DocumentContentRequestModel model)
         {
             const string LogMessage = "Set HTML";
 
@@ -844,7 +844,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             try
             {
-                var result = await this.service.SetHtmlAsync(id, articleId, content).ConfigureAwait(false);
+                var result = await this.service.SetHtmlAsync(id, articleId, model.Content).ConfigureAwait(false);
 
                 return new JsonResult(this.service.GetDocumentSavedResponseModel(result))
                 {

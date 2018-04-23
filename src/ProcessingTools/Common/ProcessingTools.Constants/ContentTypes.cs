@@ -10,6 +10,11 @@ namespace ProcessingTools.Constants
     public static class ContentTypes
     {
         /// <summary>
+        /// Default content type.
+        /// </summary>
+        public const string Default = "text/plain; encoding='utf-8'";
+
+        /// <summary>
         /// Default mime-subtype.
         /// </summary>
         public const string DefaultMimesubtype = "unknown";
@@ -30,11 +35,6 @@ namespace ProcessingTools.Constants
         public const string DefaultMimetypeOnException = "application";
 
         /// <summary>
-        /// Default content type.
-        /// </summary>
-        public const string Default = "text/plain; encoding='utf-8'";
-
-        /// <summary>
         /// JPEG
         /// </summary>
         public const string Jpeg = "image/jpeg";
@@ -43,6 +43,16 @@ namespace ProcessingTools.Constants
         /// JSON
         /// </summary>
         public const string Json = "application/json";
+
+        /// <summary>
+        /// Octet stream.
+        /// </summary>
+        public const string OctetStream = "application/octet-stream";
+
+        /// <summary>
+        /// Plain text.
+        /// </summary>
+        public const string PlainText = "text/plain";
 
         /// <summary>
         /// URL-encoded

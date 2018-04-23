@@ -17,10 +17,12 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
+    using Newtonsoft.Json.Serialization;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Documents.Formatters;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Settings;
     using ProcessingTools.Web.Models.Shared;
@@ -92,7 +94,25 @@ namespace ProcessingTools.Web.Documents
                     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 });
 
-            services.AddMvc();
+            services.AddMvcCore()
+                .AddApiExplorer()
+                .AddAuthorization()
+                .AddFormatterMappings()
+                .AddJsonFormatters()
+                .AddXmlDataContractSerializerFormatters()
+                .AddXmlSerializerFormatters()
+                .AddViews()
+                .AddRazorViewEngine()
+                .AddCacheTagHelper()
+                .AddDataAnnotations()
+                .AddCors();
+
+            services.AddMvc(o => o.InputFormatters.Insert(0, new RawRequestBodyFormatter()))
+                .AddJsonOptions(o => o.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
+                .AddXmlDataContractSerializerFormatters()
+                .AddXmlSerializerFormatters();
+
+            services.AddCors();
 
             // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
             // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
