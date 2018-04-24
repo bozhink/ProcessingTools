@@ -15,6 +15,89 @@
     }
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/node_modules/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="~/node_modules/toastr/build/toastr.min.css" />
+    <link rel="stylesheet" href="~/build/dist/css/toolbox.css" />
+    <link rel="stylesheet" href="~/build/dist/css/document-preview.css" />
+}
+
 <div asp-validation-summary="All" class="text-danger"></div>
 
-@Html.Raw(Model?.Content)
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-action="@(DocumentsController.HtmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="navbar-brand">HTML</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a asp-action="@(DocumentsController.XmlActionName)" asp-route-id="@(Model.Id)" asp-route-articleId="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" target="_blank">XML</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manual actions <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="move-floating-objects">Move floating objects</a></li>
+                        <li><a id="tag-figures-citations-menu-item">Figures citations</a></li>
+                        <li><a id="tag-tables-citations-menu-item">Tables citations</a></li>
+                        <li><a id="tag-suppl-materials-citations-menu-item">Suppl. materials citations</a></li>
+                        <li><a id="tag-appendices-citations-menu-item">Appendices citations</a></li>
+                        <li><a id="tag-bibliographic-citations-menu-item">Bibliographic citations</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Window <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="window-map">Map</a></li>
+                        <li><a id="window-coordinates">Coordinates</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a asp-action="@DocumentsController.DownloadActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">Download</a></li>
+                <li><a id="refresh-button">Refresh</a></li>
+                <li><a id="save-button">Save</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<article id="article" contextmenu="supermenu"></article>
+<div class="clearfix"></div>
+<aside id="aside-main-box"></aside>
+<aside style="display: none;">
+    <a id="get-link" asp-action="@DocumentsController.GetHtmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+    <a id="save-link" asp-action="@DocumentsController.SetHtmlActionName" asp-route-id="@Model.Id" asp-route-articleId="@Model.ArticleId">_</a>
+</aside>
+
+@section Scripts {
+    <script src="~/node_modules/crypto-js/crypto-js.js"></script>
+    <script src="~/node_modules/crypto-js/sha1.js"></script>
+    <script src="~/node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="~/node_modules/interactjs/dist/interact.js"></script>
+    <script src="~/node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="~/node_modules/toastr/build/toastr.min.js"></script>
+    <script src="~/build/dist/js/apps/document-preview.min.js"></script>
+}
+
+<menu type="context" id="supermenu">
+    <menuitem id="menu-item-refresh" label="Refresh"></menuitem>
+    <menu id="menu-item-bibliography" label="Bibliography">
+        @{
+            var tags = new string[] { "article-title", "annotation", "chapter-title", "comment", "collab", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "given-names", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "person-group", "publisher-loc", "publisher-name", "page-range", "part-title", "patent", "prefix", "pub-id", "role", "source", "season", "series", "size", "std", "string-name", "sub", "sup", "suffix", "supplement", "surname", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
+            foreach (var tag in tags)
+            {
+                <menuitem id="menu-item-@tag" label="@tag"></menuitem>
+            }
+        }
+    </menu>
+    <menuitem id="menu-item-tag-link" label="Tag link"></menuitem>
+    <menuitem id="menu-item-tag-coordinate" label="Tag coordinate"></menuitem>
+</menu>
