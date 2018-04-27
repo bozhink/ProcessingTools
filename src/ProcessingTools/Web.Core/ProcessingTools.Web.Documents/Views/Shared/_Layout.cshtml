@@ -37,6 +37,12 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Layout <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a asp-area="@(AreaNames.Layout)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.FloatObjectTagStylesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.FloatObjectTagStylesController.IndexActionName)" class="dropdown-item">Float Object Tag Styles</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Documents <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.IndexActionName)" class="dropdown-item">Publishers</a></li>
