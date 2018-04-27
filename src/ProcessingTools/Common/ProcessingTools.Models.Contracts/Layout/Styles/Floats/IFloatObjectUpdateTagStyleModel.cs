@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts.Layout.Styles.Floats
     /// <summary>
     /// Float object update tag style model.
     /// </summary>
-    public interface IFloatObjectUpdateTagStyleModel : IFloatObjectBaseTagStyleModel, IStringIdentifiable, INamed
+    public interface IFloatObjectUpdateTagStyleModel : IFloatObjectBaseTagStyleModel, IStringIdentifiable
     {
     }
 }
