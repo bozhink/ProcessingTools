@@ -9,13 +9,8 @@ namespace ProcessingTools.Models.Contracts.Layout.Styles.Floats
     /// <summary>
     /// Float object style model
     /// </summary>
-    public interface IFloatObjectStyleModel : IStyleModel, INamed
+    public interface IFloatObjectStyleModel : IStyleModel
     {
-        /// <summary>
-        /// Gets description of the float object.
-        /// </summary>
-        string Description { get; }
-
         /// <summary>
         /// Gets the reference type of the floating object according to NLM schema.
         /// </summary>

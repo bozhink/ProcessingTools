@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts.Layout.Styles
     /// <summary>
     /// Style model.
     /// </summary>
-    public interface IStyleModel
+    public interface IStyleModel : INamed, IDescribed
     {
     }
 }
