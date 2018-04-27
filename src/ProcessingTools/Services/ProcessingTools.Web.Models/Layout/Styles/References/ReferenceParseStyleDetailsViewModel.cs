@@ -1,25 +1,24 @@
-﻿// <copyright file="FloatObjectParseStyleEditViewModel.cs" company="ProcessingTools">
+﻿// <copyright file="ReferenceParseStyleDetailsViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Models.Layout.Styles.Floats
+namespace ProcessingTools.Web.Models.Layout.Styles.References
 {
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Float object parse style edit view model.
+    /// Reference parse style details view model.
     /// </summary>
-    public class FloatObjectParseStyleEditViewModel : ProcessingTools.Models.Contracts.IWebModel
+    public class ReferenceParseStyleDetailsViewModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FloatObjectParseStyleEditViewModel"/> class.
+        /// Initializes a new instance of the <see cref="ReferenceParseStyleDetailsViewModel"/> class.
         /// </summary>
         /// <param name="userContext">The user context.</param>
-        public FloatObjectParseStyleEditViewModel(UserContext userContext)
+        public ReferenceParseStyleDetailsViewModel(UserContext userContext)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
         }
@@ -27,7 +26,7 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
         /// <summary>
         /// Gets or sets the page heading.
         /// </summary>
-        [Display(Name = "Edit Float Object Parse Style")]
+        [Display(Name = "Reference Parse Style Details")]
         public string PageHeading { get; set; }
 
         /// <summary>
@@ -38,44 +37,37 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
         /// <summary>
         /// Gets or sets the object ID.
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
+        [ReadOnly(true)]
         [Display(Name = "ID")]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the style.
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
+        [ReadOnly(true)]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the description of the style.
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
+        [ReadOnly(true)]
         [Display(Name = "Description")]
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the reference type of the floating object according to NLM schema.
-        /// </summary>
-        [Required]
-        [Display(Name = "Reference type")]
-        public ReferenceType FloatReferenceType { get; set; }
-
-        /// <summary>
         /// Gets or sets the script content.
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
+        [ReadOnly(true)]
         [Display(Name = "Script")]
         public string Script { get; set; }
 
         /// <summary>
-        /// Gets or sets the XPath for selection of the XML objects which provide information about the floating object.
+        /// Gets or sets the XPath for selection of the XML objects which represent the reference.
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
-        [Display(Name = "Float object XPath")]
-        public string FloatObjectXPath { get; set; }
+        [ReadOnly(true)]
+        [Display(Name = "Reference XPath")]
+        public string ReferenceXPath { get; set; }
 
         /// <summary>
         /// Gets or sets created by.
