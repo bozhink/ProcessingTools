@@ -1,4 +1,4 @@
-// <copyright file="FloatObjectTagStyleIndexViewModel.cs" company="ProcessingTools">
+﻿// <copyright file="FloatObjectParseStyleIndexViewModel.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,9 +10,9 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
     using ProcessingTools.Enumerations.Nlm;
 
     /// <summary>
-    /// Float object tag style index view model.
+    /// Float object parse style index view model.
     /// </summary>
-    public class FloatObjectTagStyleIndexViewModel
+    public class FloatObjectParseStyleIndexViewModel
     {
         /// <summary>
         /// Gets or sets the object ID.
@@ -48,13 +48,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Floats
         [ReadOnly(true)]
         [Display(Name = "Float object XPath")]
         public string FloatObjectXPath { get; set; }
-
-        /// <summary>
-        /// Gets or sets the target XPath.
-        /// </summary>
-        [ReadOnly(true)]
-        [Display(Name = "Target XPath")]
-        public string TargetXPath { get; set; }
 
         /// <summary>
         /// Gets or sets created by.
