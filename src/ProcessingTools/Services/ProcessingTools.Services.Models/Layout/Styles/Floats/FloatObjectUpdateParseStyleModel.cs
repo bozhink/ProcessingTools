@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Floats
     using ProcessingTools.Enumerations.Nlm;
 
     /// <summary>
-    /// Float object parse style model.
+    /// Float object update parse style model.
     /// </summary>
     public class FloatObjectUpdateParseStyleModel : ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats.IFloatObjectUpdateParseStyleModel
     {
