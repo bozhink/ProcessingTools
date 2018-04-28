@@ -43,6 +43,27 @@ namespace ProcessingTools.Data.Layout.Mongo
                 })
                 .ConfigureAwait(false);
 
+            await this.GetCollection<FloatObjectParseStyle>().Indexes
+                .CreateManyAsync(new CreateIndexModel<FloatObjectParseStyle>[]
+                {
+                    new CreateIndexModel<FloatObjectParseStyle>(new IndexKeysDefinitionBuilder<FloatObjectParseStyle>().Ascending(b => b.ObjectId))
+                })
+                .ConfigureAwait(false);
+            
+            await this.GetCollection<ReferenceTagStyle>().Indexes
+                .CreateManyAsync(new CreateIndexModel<ReferenceTagStyle>[]
+                {
+                    new CreateIndexModel<ReferenceTagStyle>(new IndexKeysDefinitionBuilder<ReferenceTagStyle>().Ascending(b => b.ObjectId))
+                })
+                .ConfigureAwait(false);
+
+            await this.GetCollection<ReferenceParseStyle>().Indexes
+                .CreateManyAsync(new CreateIndexModel<ReferenceParseStyle>[]
+                {
+                    new CreateIndexModel<ReferenceParseStyle>(new IndexKeysDefinitionBuilder<ReferenceParseStyle>().Ascending(b => b.ObjectId))
+                })
+                .ConfigureAwait(false);
+
             return true;
         }
 
