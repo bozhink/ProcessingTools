@@ -33,6 +33,9 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerDependency();
 
             builder.RegisterType<FloatObjectTagStylesDataService>().As<IFloatObjectTagStylesDataService>().InstancePerDependency();
+            builder.RegisterType<FloatObjectParseStylesDataService>().As<IFloatObjectParseStylesDataService>().InstancePerDependency();
+            builder.RegisterType<ReferenceTagStylesDataService>().As<IReferenceTagStylesDataService>().InstancePerDependency();
+            builder.RegisterType<ReferenceParseStylesDataService>().As<IReferenceParseStylesDataService>().InstancePerDependency();
 
             builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerDependency();
             builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerDependency();

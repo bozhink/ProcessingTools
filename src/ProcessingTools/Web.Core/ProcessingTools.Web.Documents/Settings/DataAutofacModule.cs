@@ -137,6 +137,30 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
                 .InstancePerLifetimeScope();
+            builder
+                .RegisterType<MongoFloatObjectParseStylesDataAccessObject>()
+                .As<IFloatObjectParseStylesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<MongoReferenceTagStylesDataAccessObject>()
+                .As<IReferenceTagStylesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<MongoReferenceParseStylesDataAccessObject>()
+                .As<IReferenceParseStylesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<MongoLayoutDatabaseInitializer>()
