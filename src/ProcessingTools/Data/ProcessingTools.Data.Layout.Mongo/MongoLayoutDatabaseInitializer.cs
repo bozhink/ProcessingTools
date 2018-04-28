@@ -49,7 +49,7 @@ namespace ProcessingTools.Data.Layout.Mongo
                     new CreateIndexModel<FloatObjectParseStyle>(new IndexKeysDefinitionBuilder<FloatObjectParseStyle>().Ascending(b => b.ObjectId))
                 })
                 .ConfigureAwait(false);
-            
+
             await this.GetCollection<ReferenceTagStyle>().Indexes
                 .CreateManyAsync(new CreateIndexModel<ReferenceTagStyle>[]
                 {
@@ -61,6 +61,13 @@ namespace ProcessingTools.Data.Layout.Mongo
                 .CreateManyAsync(new CreateIndexModel<ReferenceParseStyle>[]
                 {
                     new CreateIndexModel<ReferenceParseStyle>(new IndexKeysDefinitionBuilder<ReferenceParseStyle>().Ascending(b => b.ObjectId))
+                })
+                .ConfigureAwait(false);
+
+            await this.GetCollection<JournalStyle>().Indexes
+                .CreateManyAsync(new CreateIndexModel<JournalStyle>[]
+                {
+                    new CreateIndexModel<JournalStyle>(new IndexKeysDefinitionBuilder<JournalStyle>().Ascending(b => b.ObjectId))
                 })
                 .ConfigureAwait(false);
 
