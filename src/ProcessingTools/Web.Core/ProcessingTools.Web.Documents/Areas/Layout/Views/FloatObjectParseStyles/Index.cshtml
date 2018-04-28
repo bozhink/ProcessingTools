@@ -1,0 +1,68 @@
+﻿@model ProcessingTools.Web.Models.Layout.Styles.Floats.FloatObjectParseStylesIndexViewModel
+
+@{
+    ViewData[ContextKeys.Title] = "Float Object Parse Styles";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    @if (Model == null)
+    {
+        <div class="alert alert-info">No items found.</div>
+    }
+    else
+    {
+        <p><a asp-action="@(FloatObjectParseStylesController.CreateActionName)">Create New Parse Style</a></p>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Name)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Description)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().FloatReferenceType)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().FloatObjectXPath)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().CreatedOn)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().ModifiedOn)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0; }
+                    @foreach (var item in Model.Items)
+                    {
+                    <tr>
+                        <td>@(++i)</td>
+                        <td>@Html.DisplayFor(m => item.Name)</td>
+                        <td>@Html.DisplayFor(m => item.Description)</td>
+                        <td>@Html.DisplayFor(m => item.FloatReferenceType)</td>
+                        <td>@Html.DisplayFor(m => item.FloatObjectXPath)</td>
+                        <td>@Html.DisplayFor(m => item.CreatedOn)</td>
+                        <td>@Html.DisplayFor(m => item.ModifiedOn)</td>
+                        <td>
+                            <a asp-action="@(FloatObjectParseStylesController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |
+                            <a asp-action="@(FloatObjectParseStylesController.DeleteActionName)" asp-route-id="@(item.Id)">Delete</a> |
+                            <a asp-action="@(FloatObjectParseStylesController.DetailsActionName)" asp-route-id="@(item.Id)">Details</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</section>
