@@ -15,6 +15,10 @@
     }
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/node_modules/codemirror/lib/codemirror.css" />
+}
+
 <section role="main">
     <header>
         <h2>@ViewData[ContextKeys.Title]</h2>
@@ -34,7 +38,7 @@
             <dd>@Html.DisplayFor(m => m.Description)</dd>
 
             <dt>@Html.DisplayNameFor(m => m.Script)</dt>
-            <dd>@Html.DisplayFor(m => m.Script)</dd>
+            <dd><textarea id="Script">@Html.DisplayFor(m => m.Script)</textarea></dd>
 
             <dt>@Html.DisplayNameFor(m => m.ReferenceXPath)</dt>
             <dd>@Html.DisplayFor(m => m.ReferenceXPath)</dd>
@@ -59,3 +63,7 @@
         <p><a asp-action="@(ReferenceParseStylesController.IndexActionName)">Back to List</a></p>
     </footer>
 </section>
+
+@section Scripts {
+    @await Html.PartialAsync("_DetailsScripts")
+}

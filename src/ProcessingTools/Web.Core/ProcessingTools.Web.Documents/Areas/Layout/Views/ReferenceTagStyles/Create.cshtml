@@ -15,6 +15,10 @@
     }
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/node_modules/codemirror/lib/codemirror.css" />
+}
+
 <section role="main">
     <header>
         <h2>@ViewData[ContextKeys.Title]</h2>
@@ -88,4 +92,5 @@
 
 @section Scripts {
     @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
+    @await Html.PartialAsync("_EditScripts")
 }
