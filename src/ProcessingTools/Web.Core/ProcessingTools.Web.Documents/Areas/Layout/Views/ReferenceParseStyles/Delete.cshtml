@@ -1,6 +1,6 @@
-﻿@model ProcessingTools.Web.Models.Layout.Styles.Floats.FloatObjectTagStyleDeleteViewModel
+﻿@model ProcessingTools.Web.Models.Layout.Styles.References.ReferenceTagStyleDeleteViewModel
 @{
-    ViewData[ContextKeys.Title] = "Delete Float Object Tag Style";
+    ViewData[ContextKeys.Title] = "Delete Reference Tag Style";
     if (string.IsNullOrWhiteSpace(Model?.PageHeading))
     {
         string title = Html.DisplayNameFor(m => m.PageHeading);
@@ -33,14 +33,11 @@
             <dt>@Html.DisplayNameFor(m => m.Description)</dt>
             <dd>@Html.DisplayFor(m => m.Description)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.FloatReferenceType)</dt>
-            <dd>@Html.DisplayFor(m => m.FloatReferenceType)</dd>
-
             <dt>@Html.DisplayNameFor(m => m.Script)</dt>
             <dd>@Html.DisplayFor(m => m.Script)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.FloatObjectXPath)</dt>
-            <dd>@Html.DisplayFor(m => m.FloatObjectXPath)</dd>
+            <dt>@Html.DisplayNameFor(m => m.ReferenceXPath)</dt>
+            <dd>@Html.DisplayFor(m => m.ReferenceXPath)</dd>
 
             <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
             <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
@@ -60,12 +57,12 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-danger" value="Delete" />
-                    <a asp-action="@(FloatObjectParseStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <a asp-action="@(ReferenceParseStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
                 </div>
             </div>
         </form>
     }
     <footer class="page-navigation">
-        <p><a asp-action="@(FloatObjectParseStylesController.IndexActionName)">Back to List</a></p>
+        <p><a asp-action="@(ReferenceParseStylesController.IndexActionName)">Back to List</a></p>
     </footer>
 </section>
