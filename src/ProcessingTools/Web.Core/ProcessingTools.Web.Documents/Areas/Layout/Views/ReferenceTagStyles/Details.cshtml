@@ -1,6 +1,6 @@
-﻿@model ProcessingTools.Web.Models.Layout.Styles.Floats.FloatObjectParseStyleDeleteViewModel
+﻿@model ProcessingTools.Web.Models.Layout.Styles.References.ReferenceTagStyleDetailsViewModel
 @{
-    ViewData[ContextKeys.Title] = "Delete Float Object Parse Style";
+    ViewData[ContextKeys.Title] = "Reference Tag Style Details";
     if (string.IsNullOrWhiteSpace(Model?.PageHeading))
     {
         string title = Html.DisplayNameFor(m => m.PageHeading);
@@ -33,14 +33,14 @@
             <dt>@Html.DisplayNameFor(m => m.Description)</dt>
             <dd>@Html.DisplayFor(m => m.Description)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.FloatReferenceType)</dt>
-            <dd>@Html.DisplayFor(m => m.FloatReferenceType)</dd>
-
             <dt>@Html.DisplayNameFor(m => m.Script)</dt>
             <dd>@Html.DisplayFor(m => m.Script)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.FloatObjectXPath)</dt>
-            <dd>@Html.DisplayFor(m => m.FloatObjectXPath)</dd>
+            <dt>@Html.DisplayNameFor(m => m.ReferenceXPath)</dt>
+            <dd>@Html.DisplayFor(m => m.ReferenceXPath)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.TargetXPath)</dt>
+            <dd>@Html.DisplayFor(m => m.TargetXPath)</dd>
 
             <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
             <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
@@ -54,18 +54,11 @@
             <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
             <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
         </dl>
-
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <div class="col-md-12">
-                    <input type="submit" class="btn btn-danger" value="Delete" />
-                    <a asp-action="@(FloatObjectParseStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
-                </div>
-            </div>
-        </form>
+        <div>
+            <a asp-action="@(ReferenceTagStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+        </div>
     }
     <footer class="page-navigation">
-        <p><a asp-action="@(FloatObjectParseStylesController.IndexActionName)">Back to List</a></p>
+        <p><a asp-action="@(ReferenceTagStylesController.IndexActionName)">Back to List</a></p>
     </footer>
 </section>
