@@ -47,5 +47,6 @@
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Attributes\ProcessingTools.Attributes.csproj" />
   </ItemGroup>
 </Project>
