@@ -32,16 +32,19 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<DocumentsDataService>().As<IDocumentsDataService>().InstancePerDependency();
             builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerDependency();
 
-            builder.RegisterType<FloatObjectTagStylesDataService>().As<IFloatObjectTagStylesDataService>().InstancePerDependency();
-            builder.RegisterType<FloatObjectParseStylesDataService>().As<IFloatObjectParseStylesDataService>().InstancePerDependency();
-            builder.RegisterType<ReferenceTagStylesDataService>().As<IReferenceTagStylesDataService>().InstancePerDependency();
-            builder.RegisterType<ReferenceParseStylesDataService>().As<IReferenceParseStylesDataService>().InstancePerDependency();
-
             builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerDependency();
             builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerDependency();
             builder.RegisterType<XmlPresenter>().As<IXmlPresenter>().InstancePerDependency();
 
             builder.RegisterType<XmlReadService>().As<IXmlReadService>().InstancePerDependency();
+
+            builder.RegisterType<FloatObjectTagStylesDataService>().As<IFloatObjectTagStylesDataService>().InstancePerDependency();
+            builder.RegisterType<FloatObjectParseStylesDataService>().As<IFloatObjectParseStylesDataService>().InstancePerDependency();
+            builder.RegisterType<ReferenceTagStylesDataService>().As<IReferenceTagStylesDataService>().InstancePerDependency();
+            builder.RegisterType<ReferenceParseStylesDataService>().As<IReferenceParseStylesDataService>().InstancePerDependency();
+            builder.RegisterType<JournalStylesDataService>().As<IJournalStylesDataService>().InstancePerDependency();
+
+            builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues).InstancePerDependency();
 
             builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerDependency();
         }

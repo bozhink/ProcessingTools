@@ -161,6 +161,14 @@ namespace ProcessingTools.Web.Documents.Settings
                         (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
                         (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
                 .InstancePerLifetimeScope();
+            builder
+                .RegisterType<MongoJournalStylesDataAccessObject>()
+                .As<IJournalStylesDataAccessObject>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        (p, c) => p.ParameterType == typeof(IMongoDatabaseProvider),
+                        (p, c) => c.ResolveNamed<IMongoDatabaseProvider>(InjectionConstants.MongoDBLayoutDatabaseBindingName)))
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<MongoLayoutDatabaseInitializer>()
