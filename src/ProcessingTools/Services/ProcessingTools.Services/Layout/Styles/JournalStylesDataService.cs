@@ -10,11 +10,14 @@ namespace ProcessingTools.Services.Layout.Styles
     using AutoMapper;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Contracts.Layout.Styles;
+    using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
+    using ProcessingTools.Services.Models.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;
+    using ProcessingTools.Services.Models.Layout.Styles;
     using ProcessingTools.Services.Models.Layout.Styles.Journals;
 
     /// <summary>
@@ -42,6 +45,9 @@ namespace ProcessingTools.Services.Layout.Styles
                     .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>()
                     .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -192,5 +198,12 @@ namespace ProcessingTools.Services.Layout.Styles
 
         /// <inheritdoc/>
         public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
+
+        /// <inheritdoc/>
+        public async Task<IIdentifiedStyleModel[]> GetStylesForSelectAsync()
+        {
+            var styles = await this.dataAccessObject.GetStylesForSelectAsync().ConfigureAwait(false);
+            return styles.Select(this.mapper.Map<IIdentifiedStyleDataModel, IIdentifiedStyleModel>).ToArray();
+        }
     }
 }

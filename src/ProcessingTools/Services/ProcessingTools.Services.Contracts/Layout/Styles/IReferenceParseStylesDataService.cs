@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
     /// <summary>
     /// Reference parse styles data service.
     /// </summary>
-    public interface IReferenceParseStylesDataService : IDataService<IReferenceParseStyleModel, IReferenceDetailsParseStyleModel, IReferenceInsertParseStyleModel, IReferenceUpdateParseStyleModel>
+    public interface IReferenceParseStylesDataService : IStylesDataService, IDataService<IReferenceParseStyleModel, IReferenceDetailsParseStyleModel, IReferenceInsertParseStyleModel, IReferenceUpdateParseStyleModel>
     {
     }
 }

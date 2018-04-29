@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
     /// <summary>
     /// Reference tag styles data service.
     /// </summary>
-    public interface IReferenceTagStylesDataService : IDataService<IReferenceTagStyleModel, IReferenceDetailsTagStyleModel, IReferenceInsertTagStyleModel, IReferenceUpdateTagStyleModel>
+    public interface IReferenceTagStylesDataService : IStylesDataService, IDataService<IReferenceTagStyleModel, IReferenceDetailsTagStyleModel, IReferenceInsertTagStyleModel, IReferenceUpdateTagStyleModel>
     {
     }
 }

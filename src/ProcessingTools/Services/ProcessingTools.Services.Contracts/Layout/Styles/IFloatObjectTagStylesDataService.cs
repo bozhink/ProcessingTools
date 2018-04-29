@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
     /// <summary>
     /// Float object tag styles data service.
     /// </summary>
-    public interface IFloatObjectTagStylesDataService : IDataService<IFloatObjectTagStyleModel, IFloatObjectDetailsTagStyleModel, IFloatObjectInsertTagStyleModel, IFloatObjectUpdateTagStyleModel>
+    public interface IFloatObjectTagStylesDataService : IStylesDataService, IDataService<IFloatObjectTagStyleModel, IFloatObjectDetailsTagStyleModel, IFloatObjectInsertTagStyleModel, IFloatObjectUpdateTagStyleModel>
     {
     }
 }

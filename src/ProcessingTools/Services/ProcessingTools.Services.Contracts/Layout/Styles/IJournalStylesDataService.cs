@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
     /// <summary>
     /// Journal styles data service.
     /// </summary>
-    public interface IJournalStylesDataService : IDataService<IJournalStyleModel, IJournalDetailsStyleModel, IJournalInsertStyleModel, IJournalUpdateStyleModel>
+    public interface IJournalStylesDataService : IStylesDataService, IDataService<IJournalStyleModel, IJournalDetailsStyleModel, IJournalInsertStyleModel, IJournalUpdateStyleModel>
     {
     }
 }
