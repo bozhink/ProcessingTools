@@ -61,5 +61,6 @@
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.History.Mongo\ProcessingTools.Data.History.Mongo.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Documents.Mongo\ProcessingTools.Data.Documents.Mongo.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Services\ProcessingTools.Services.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Attributes\ProcessingTools.Attributes.csproj" />
   </ItemGroup>
 </Project>

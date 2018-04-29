@@ -9,7 +9,8 @@ namespace ProcessingTools.Attributes
     /// <summary>
     /// Inject property attribute.
     /// </summary>
-    public class InjectPropertyAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
+    public sealed class InjectPropertyAttribute : Attribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InjectPropertyAttribute"/> class.
