@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts.Layout.Styles
     /// <summary>
     /// Float object tag styles data access object.
     /// </summary>
-    public interface IFloatObjectTagStylesDataAccessObject : IDataAccessObject<IFloatObjectTagStyleDataModel, IFloatObjectDetailsTagStyleDataModel, IFloatObjectInsertTagStyleModel, IFloatObjectUpdateTagStyleModel>
+    public interface IFloatObjectTagStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IFloatObjectTagStyleDataModel, IFloatObjectDetailsTagStyleDataModel, IFloatObjectInsertTagStyleModel, IFloatObjectUpdateTagStyleModel>
     {
     }
 }

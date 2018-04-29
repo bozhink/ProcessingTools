@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts.Layout.Styles
     /// <summary>
     /// Journal styles data access object.
     /// </summary>
-    public interface IJournalStylesDataAccessObject : IDataAccessObject<IJournalStyleDataModel, IJournalDetailsStyleDataModel, IJournalInsertStyleModel, IJournalUpdateStyleModel>
+    public interface IJournalStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IJournalStyleDataModel, IJournalDetailsStyleDataModel, IJournalInsertStyleModel, IJournalUpdateStyleModel>
     {
     }
 }

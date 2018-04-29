@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts.Layout.Styles
     /// <summary>
     /// Reference tag styles data access object.
     /// </summary>
-    public interface IReferenceTagStylesDataAccessObject : IDataAccessObject<IReferenceTagStyleDataModel, IReferenceDetailsTagStyleDataModel, IReferenceInsertTagStyleModel, IReferenceUpdateTagStyleModel>
+    public interface IReferenceTagStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IReferenceTagStyleDataModel, IReferenceDetailsTagStyleDataModel, IReferenceInsertTagStyleModel, IReferenceUpdateTagStyleModel>
     {
     }
 }

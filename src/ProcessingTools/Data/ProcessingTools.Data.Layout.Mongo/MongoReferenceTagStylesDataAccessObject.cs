@@ -13,6 +13,7 @@ namespace ProcessingTools.Data.Layout.Mongo
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Layout.Styles;
+    using ProcessingTools.Data.Models.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Data.Models.Layout.Mongo;
     using ProcessingTools.Exceptions;
@@ -191,6 +192,22 @@ namespace ProcessingTools.Data.Layout.Mongo
             }
 
             return tagStyle;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IIdentifiedStyleDataModel[]> GetStylesForSelectAsync()
+        {
+            var data = await this.Collection.Find(Builders<ReferenceTagStyle>.Filter.Empty)
+                .Project(s => new StyleDataModel
+                {
+                    Id = s.Id,
+                    ObjectId = s.ObjectId,
+                    Name = s.Name,
+                    Description = s.Description
+                })
+                .ToListAsync()
+                .ConfigureAwait(false);
+            return data.ToArray();
         }
     }
 }

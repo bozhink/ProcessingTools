@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts.Layout.Styles
     /// <summary>
     /// Float object parse styles data access object.
     /// </summary>
-    public interface IFloatObjectParseStylesDataAccessObject : IDataAccessObject<IFloatObjectParseStyleDataModel, IFloatObjectDetailsParseStyleDataModel, IFloatObjectInsertParseStyleModel, IFloatObjectUpdateParseStyleModel>
+    public interface IFloatObjectParseStylesDataAccessObject : IStylesDataAccessObject, IDataAccessObject<IFloatObjectParseStyleDataModel, IFloatObjectDetailsParseStyleDataModel, IFloatObjectInsertParseStyleModel, IFloatObjectUpdateParseStyleModel>
     {
     }
 }
