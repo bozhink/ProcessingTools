@@ -7,7 +7,7 @@ namespace ProcessingTools.Attributes
     using System;
 
     /// <summary>
-    /// File Name Attribute.
+    /// File name attribute.
     /// </summary>
     public class FileNameAttribute : Attribute
     {
