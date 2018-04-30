@@ -13,12 +13,11 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
     /// Float object parse styles service.
     /// </summary>
-    public class FloatObjectParseStylesService : IFloatObjectParseStylesService
+    public class FloatObjectParseStylesService : ProcessingTools.Web.Services.Contracts.Layout.Styles.IFloatObjectParseStylesService
     {
         private readonly IFloatObjectParseStylesDataService floatObjectParseStylesDataService;
         private readonly Func<Task<UserContext>> userContextFactory;

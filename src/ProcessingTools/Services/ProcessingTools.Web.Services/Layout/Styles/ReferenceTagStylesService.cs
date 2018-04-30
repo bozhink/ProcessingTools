@@ -13,12 +13,11 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Web.Models.Layout.Styles.References;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
     /// Reference tag styles service.
     /// </summary>
-    public class ReferenceTagStylesService : IReferenceTagStylesService
+    public class ReferenceTagStylesService : ProcessingTools.Web.Services.Contracts.Layout.Styles.IReferenceTagStylesService
     {
         private readonly IReferenceTagStylesDataService referenceTagStylesDataService;
         private readonly Func<Task<UserContext>> userContextFactory;

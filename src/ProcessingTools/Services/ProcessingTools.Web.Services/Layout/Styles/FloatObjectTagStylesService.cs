@@ -13,12 +13,11 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
     /// Float object tag styles service.
     /// </summary>
-    public class FloatObjectTagStylesService : IFloatObjectTagStylesService
+    public class FloatObjectTagStylesService : ProcessingTools.Web.Services.Contracts.Layout.Styles.IFloatObjectTagStylesService
     {
         private readonly IFloatObjectTagStylesDataService floatObjectTagStylesDataService;
         private readonly Func<Task<UserContext>> userContextFactory;
