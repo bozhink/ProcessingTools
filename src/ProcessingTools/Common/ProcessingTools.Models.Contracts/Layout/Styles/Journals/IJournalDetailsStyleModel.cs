@@ -14,22 +14,22 @@ namespace ProcessingTools.Models.Contracts.Layout.Styles.Journals
     public interface IJournalDetailsStyleModel : IJournalStyleModel
     {
         /// <summary>
-        /// Gets the reference float object parse styles.
+        /// Gets the referenced float object parse styles.
         /// </summary>
         IList<IFloatObjectDetailsParseStyleModel> FloatObjectParseStyles { get; }
 
         /// <summary>
-        /// Gets the reference float object tag styles.
+        /// Gets the referenced float object tag styles.
         /// </summary>
         IList<IFloatObjectDetailsTagStyleModel> FloatObjectTagStyles { get; }
 
         /// <summary>
-        /// Gets the reference reference parse styles.
+        /// Gets the referenced reference parse styles.
         /// </summary>
         IList<IReferenceDetailsParseStyleModel> ReferenceParseStyles { get; }
 
         /// <summary>
-        /// Gets the reference reference tag styles.
+        /// Gets the referenced reference tag styles.
         /// </summary>
         IList<IReferenceDetailsTagStyleModel> ReferenceTagStyles { get; }
     }
