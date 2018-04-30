@@ -36,16 +36,16 @@ namespace ProcessingTools.Services.Models.Layout.Styles.Journals
         public IList<string> ReferenceTagStyleIds { get; set; } = new List<string>();
 
         /// <inheritdoc/>
-        public IList<IFloatObjectDetailsParseStyleModel> FloatObjectParseStyles { get; set; }
+        public IEnumerable<IFloatObjectDetailsParseStyleModel> FloatObjectParseStyles { get; set; }
 
         /// <inheritdoc/>
-        public IList<IFloatObjectDetailsTagStyleModel> FloatObjectTagStyles { get; set; }
+        public IEnumerable<IFloatObjectDetailsTagStyleModel> FloatObjectTagStyles { get; set; }
 
         /// <inheritdoc/>
-        public IList<IReferenceDetailsParseStyleModel> ReferenceParseStyles { get; set; }
+        public IEnumerable<IReferenceDetailsParseStyleModel> ReferenceParseStyles { get; set; }
 
         /// <inheritdoc/>
-        public IList<IReferenceDetailsTagStyleModel> ReferenceTagStyles { get; set; }
+        public IEnumerable<IReferenceDetailsTagStyleModel> ReferenceTagStyles { get; set; }
 
         /// <inheritdoc/>
         public string CreatedBy { get; set; }

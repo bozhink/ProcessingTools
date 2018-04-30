@@ -12,6 +12,7 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
+    using ProcessingTools.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Models.Contracts.Layout.Styles.References;
 
     /// <summary>
@@ -56,21 +57,29 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
         /// <inheritdoc/>
         public IList<string> ReferenceTagStyleIds { get; set; } = new List<string>();
 
-        /// <inheritdoc/>
-        [BsonIgnore]
-        public IList<IFloatObjectDetailsParseStyleModel> FloatObjectParseStyles { get; set; }
+        /// <summary>
+        /// Gets or sets the float object parse styles.
+        /// </summary>
+        [BsonIgnoreIfDefault]
+        public IList<FloatObjectParseStyle> FloatObjectParseStyles { get; set; }
 
-        /// <inheritdoc/>
-        [BsonIgnore]
-        public IList<IFloatObjectDetailsTagStyleModel> FloatObjectTagStyles { get; set; }
+        /// <summary>
+        /// Gets or sets the float object tag styles.
+        /// </summary>
+        [BsonIgnoreIfDefault]
+        public IList<FloatObjectTagStyle> FloatObjectTagStyles { get; set; }
 
-        /// <inheritdoc/>
-        [BsonIgnore]
-        public IList<IReferenceDetailsParseStyleModel> ReferenceParseStyles { get; set; }
+        /// <summary>
+        /// Gets or sets the reference parse styles.
+        /// </summary>
+        [BsonIgnoreIfDefault]
+        public IList<ReferenceParseStyle> ReferenceParseStyles { get; set; }
 
-        /// <inheritdoc/>
-        [BsonIgnore]
-        public IList<IReferenceDetailsTagStyleModel> ReferenceTagStyles { get; set; }
+        /// <summary>
+        /// Gets or sets the reference tag styles.
+        /// </summary>
+        [BsonIgnoreIfDefault]
+        public IList<ReferenceTagStyle> ReferenceTagStyles { get; set; }
 
         /// <inheritdoc/>
         public string CreatedBy { get; set; }
@@ -83,5 +92,21 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
 
         /// <inheritdoc/>
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        IEnumerable<IFloatObjectDetailsParseStyleModel> IJournalDetailsStyleModel.FloatObjectParseStyles => this.FloatObjectParseStyles;
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        IEnumerable<IFloatObjectDetailsTagStyleModel> IJournalDetailsStyleModel.FloatObjectTagStyles => this.FloatObjectTagStyles;
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        IEnumerable<IReferenceDetailsParseStyleModel> IJournalDetailsStyleModel.ReferenceParseStyles => this.ReferenceParseStyles;
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        IEnumerable<IReferenceDetailsTagStyleModel> IJournalDetailsStyleModel.ReferenceTagStyles => this.ReferenceTagStyles;
     }
 }

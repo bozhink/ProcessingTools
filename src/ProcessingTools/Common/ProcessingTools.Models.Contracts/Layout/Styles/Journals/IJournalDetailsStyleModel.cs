@@ -16,21 +16,21 @@ namespace ProcessingTools.Models.Contracts.Layout.Styles.Journals
         /// <summary>
         /// Gets the referenced float object parse styles.
         /// </summary>
-        IList<IFloatObjectDetailsParseStyleModel> FloatObjectParseStyles { get; }
+        IEnumerable<IFloatObjectDetailsParseStyleModel> FloatObjectParseStyles { get; }
 
         /// <summary>
         /// Gets the referenced float object tag styles.
         /// </summary>
-        IList<IFloatObjectDetailsTagStyleModel> FloatObjectTagStyles { get; }
+        IEnumerable<IFloatObjectDetailsTagStyleModel> FloatObjectTagStyles { get; }
 
         /// <summary>
         /// Gets the referenced reference parse styles.
         /// </summary>
-        IList<IReferenceDetailsParseStyleModel> ReferenceParseStyles { get; }
+        IEnumerable<IReferenceDetailsParseStyleModel> ReferenceParseStyles { get; }
 
         /// <summary>
         /// Gets the referenced reference tag styles.
         /// </summary>
-        IList<IReferenceDetailsTagStyleModel> ReferenceTagStyles { get; }
+        IEnumerable<IReferenceDetailsTagStyleModel> ReferenceTagStyles { get; }
     }
 }
