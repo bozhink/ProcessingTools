@@ -57,34 +57,6 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected float object parse styles.
-        /// </summary>
-        [ReadOnly(true)]
-        [Display(Name = "Float object parse styles")]
-        public IList<StyleSelectViewModel> FloatObjectParseStyles { get; set; } = new List<StyleSelectViewModel>();
-
-        /// <summary>
-        /// Gets or sets the selected float object tag styles.
-        /// </summary>
-        [ReadOnly(true)]
-        [Display(Name = "Float object tag styles")]
-        public IList<StyleSelectViewModel> FloatObjectTagStyles { get; set; } = new List<StyleSelectViewModel>();
-
-        /// <summary>
-        /// Gets or sets the selected reference parse styles.
-        /// </summary>
-        [ReadOnly(true)]
-        [Display(Name = "Reference parse styles")]
-        public IList<StyleSelectViewModel> ReferenceParseStyles { get; set; } = new List<StyleSelectViewModel>();
-
-        /// <summary>
-        /// Gets or sets the selected reference tag styles.
-        /// </summary>
-        [ReadOnly(true)]
-        [Display(Name = "Reference tag styles")]
-        public IList<StyleSelectViewModel> ReferenceTagStyles { get; set; } = new List<StyleSelectViewModel>();
-
-        /// <summary>
         /// Gets or sets created by.
         /// </summary>
         [ReadOnly(true)]

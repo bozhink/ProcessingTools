@@ -33,58 +33,6 @@
             <dt>@Html.DisplayNameFor(m => m.Description)</dt>
             <dd>@Html.DisplayFor(m => m.Description)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.FloatObjectParseStyles)</dt>
-            <dd>
-                @if (Model.FloatObjectParseStyles?.Any() == true)
-                {
-                    <ol>
-                        @foreach (var style in Model.FloatObjectParseStyles)
-                        {
-                            <li>@(style.Name)</li>
-                        }
-                    </ol>
-                }
-            </dd>
-
-            <dt>@Html.DisplayNameFor(m => m.FloatObjectTagStyles)</dt>
-            <dd>
-                @if (Model.FloatObjectTagStyles?.Any() == true)
-                {
-                    <ol>
-                        @foreach (var style in Model.FloatObjectTagStyles)
-                        {
-                            <li>@(style.Name)</li>
-                        }
-                    </ol>
-                }
-            </dd>
-
-            <dt>@Html.DisplayNameFor(m => m.ReferenceParseStyles)</dt>
-            <dd>
-                @if (Model.ReferenceParseStyles?.Any() == true)
-                {
-                    <ol>
-                        @foreach (var style in Model.ReferenceParseStyles)
-                        {
-                            <li>@(style.Name)</li>
-                        }
-                    </ol>
-                }
-            </dd>
-
-            <dt>@Html.DisplayNameFor(m => m.ReferenceTagStyles)</dt>
-            <dd>
-                @if (Model.ReferenceTagStyles?.Any() == true)
-                {
-                    <ol>
-                        @foreach (var style in Model.ReferenceTagStyles)
-                        {
-                            <li>@(style.Name)</li>
-                        }
-                    </ol>
-                }
-            </dd>
-
             <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
             <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
 

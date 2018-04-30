@@ -63,11 +63,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
                 c.CreateMap<IJournalStyleModel, JournalStyleDetailsViewModel>();
                 c.CreateMap<IJournalStyleModel, JournalStyleEditViewModel>();
                 c.CreateMap<IJournalStyleModel, JournalStyleIndexViewModel>();
-                c.CreateMap<IJournalDetailsStyleModel, JournalStyleDeleteViewModel>()
-                    .ForMember(vm => vm.FloatObjectParseStyles, o => o.MapFrom(sm => sm.FloatObjectParseStyles))
-                    .ForMember(vm => vm.FloatObjectTagStyles, o => o.MapFrom(sm => sm.FloatObjectTagStyles))
-                    .ForMember(vm => vm.ReferenceParseStyles, o => o.MapFrom(sm => sm.ReferenceParseStyles))
-                    .ForMember(vm => vm.ReferenceTagStyles, o => o.MapFrom(sm => sm.ReferenceTagStyles));
+                c.CreateMap<IJournalDetailsStyleModel, JournalStyleDeleteViewModel>();
                 c.CreateMap<IJournalDetailsStyleModel, JournalStyleDetailsViewModel>()
                     .ForMember(vm => vm.FloatObjectParseStyles, o => o.MapFrom(sm => sm.FloatObjectParseStyles))
                     .ForMember(vm => vm.FloatObjectTagStyles, o => o.MapFrom(sm => sm.FloatObjectTagStyles))
@@ -143,7 +139,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var style = await this.journalStylesService.GetDetailsByIdAsync(id).ConfigureAwait(false);
+                var style = await this.journalStylesService.GetByIdAsync(id).ConfigureAwait(false);
                 if (style != null)
                 {
                     var viewModel = new JournalStyleDeleteViewModel(userContext);
@@ -287,7 +283,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var style = await this.journalStylesService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
+                var style = await this.journalStylesService.GetByIdAsync(model.Id).ConfigureAwait(false);
                 if (style != null)
                 {
                     var viewModel = new JournalStyleDeleteViewModel(userContext);
