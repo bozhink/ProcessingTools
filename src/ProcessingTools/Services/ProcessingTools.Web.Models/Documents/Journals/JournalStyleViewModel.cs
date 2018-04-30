@@ -23,14 +23,14 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// Gets or sets the name of the style.
         /// </summary>
         [ReadOnly(true)]
-        [Display(Name = "Name")]
+        [Display(Name = "Journal style name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the description of the style.
         /// </summary>
         [ReadOnly(true)]
-        [Display(Name = "Description")]
+        [Display(Name = "Journal style description")]
         public string Description { get; set; }
     }
 }
