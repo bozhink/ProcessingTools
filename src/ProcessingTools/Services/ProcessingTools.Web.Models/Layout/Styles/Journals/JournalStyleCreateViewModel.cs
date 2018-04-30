@@ -49,6 +49,30 @@ namespace ProcessingTools.Web.Models.Layout.Styles.Journals
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or sets the ID-s of the selected float object parse styles.
+        /// </summary>
+        [Display(Name = "Float object parse styles")]
+        public IList<string> FloatObjectParseStyleIds { get; set; } = new List<string>();
+
+        /// <summary>
+        /// Gets or sets the ID-s of the selected float object tag styles.
+        /// </summary>
+        [Display(Name = "Float object tag styles")]
+        public IList<string> FloatObjectTagStyleIds { get; set; } = new List<string>();
+
+        /// <summary>
+        /// Gets or sets the ID-s of the selected reference parse styles.
+        /// </summary>
+        [Display(Name = "Reference parse styles")]
+        public IList<string> ReferenceParseStyleIds { get; set; } = new List<string>();
+
+        /// <summary>
+        /// Gets or sets the ID-s of the selected reference tag styles.
+        /// </summary>
+        [Display(Name = "Reference tag styles")]
+        public IList<string> ReferenceTagStyleIds { get; set; } = new List<string>();
+
+        /// <summary>
         /// Gets or sets the float object parse styles for select.
         /// </summary>
         [Display(Name = "Float object parse styles")]
