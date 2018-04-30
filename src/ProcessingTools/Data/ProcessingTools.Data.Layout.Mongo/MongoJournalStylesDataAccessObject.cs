@@ -18,9 +18,7 @@ namespace ProcessingTools.Data.Layout.Mongo
     using ProcessingTools.Data.Models.Layout.Mongo;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
-    using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Models.Contracts.Layout.Styles.Journals;
-    using ProcessingTools.Models.Contracts.Layout.Styles.References;
 
     /// <summary>
     /// MongoDB implementation of <see cref="IJournalStylesDataAccessObject"/>.
