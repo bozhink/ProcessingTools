@@ -28,6 +28,9 @@ namespace ProcessingTools.Services.Models.Documents.Articles
         public string SubTitle { get; set; }
 
         /// <inheritdoc/>
+        public string Doi { get; set; }
+
+        /// <inheritdoc/>
         public string JournalId { get; set; }
 
         /// <inheritdoc/>

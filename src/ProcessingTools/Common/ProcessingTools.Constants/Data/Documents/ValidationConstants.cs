@@ -155,6 +155,16 @@ namespace ProcessingTools.Constants.Data.Documents
         public const int MinimalLengthOfArticleSubTitle = 0;
 
         /// <summary>
+        /// Maximal length of article DOI.
+        /// </summary>
+        public const int MaximalLengthOfArticleDoi = 512;
+
+        /// <summary>
+        /// Minimal length of article DOI.
+        /// </summary>
+        public const int MinimalLengthOfArticleDoi = 0;
+
+        /// <summary>
         /// Maximal length of author given names.
         /// </summary>
         public const int MaximalLengthOfAuthorGivenNames = 50;

@@ -40,7 +40,7 @@
                         <th>@Html.DisplayNameFor(m => m.Items.First().Title)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Volume)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Issue)</th>
-                        <th>@Html.DisplayNameFor(m => m.Items.First().FirstPage)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Doi)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Journal.Name)</th>
                         <th></th>
                     </tr>
@@ -54,7 +54,7 @@
                             <td>@Html.DisplayFor(m => item.Title)</td>
                             <td>@Html.DisplayFor(m => item.Volume)</td>
                             <td>@Html.DisplayFor(m => item.Issue)</td>
-                            <td>@Html.DisplayFor(m => item.FirstPage)</td>
+                            <td>@Html.DisplayFor(m => item.Doi)</td>
                             <td>@Html.DisplayFor(m => item.Journal.Name)</td>
                             <td>
                                 <a asp-action="@(ArticlesController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |

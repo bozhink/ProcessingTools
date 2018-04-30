@@ -22,6 +22,11 @@ namespace ProcessingTools.Models.Contracts.Documents.Articles
         string SubTitle { get; set; }
 
         /// <summary>
+        /// Gets or sets the Digital Object Identifier (DOI) of the article.
+        /// </summary>
+        string Doi { get; set; }
+
+        /// <summary>
         /// Gets or sets the journal ID.
         /// </summary>
         string JournalId { get; set; }

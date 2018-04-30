@@ -35,6 +35,13 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string SubTitle { get; set; }
 
         /// <summary>
+        /// Gets or sets the Digital Object Identifier (DOI) of the article.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "DOI")]
+        public string Doi { get; set; }
+
+        /// <summary>
         /// Gets or sets the journal ID.
         /// </summary>
         [ReadOnly(true)]

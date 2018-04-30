@@ -41,6 +41,9 @@
                 <dd>@Html.DisplayFor(m => m.SubTitle)</dd>
                 }
 
+                <dt>@Html.DisplayNameFor(m => m.Doi)</dt>
+                <dd>@Html.DisplayFor(m => m.Doi)</dd>
+
                 @if (!string.IsNullOrWhiteSpace(Model.Journal?.Name))
                 {
                 <dt>@Html.DisplayNameFor(m => m.Journal.Name)</dt>

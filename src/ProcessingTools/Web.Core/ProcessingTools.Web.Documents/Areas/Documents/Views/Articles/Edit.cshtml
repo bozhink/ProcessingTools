@@ -48,17 +48,26 @@
             </div>
             <div class="form-group">
                 <div class="col-md-2">
+                    <label asp-for="Doi" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Doi" class="form-control" />
+                    <span asp-validation-for="Doi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
                     <label asp-for="JournalId" class="control-label"></label>
                 </div>
                 <div class="col-md-10">
                     <select asp-for="JournalId" class="form-control">
                         @if (Model.Journals != null && Model.Journals.Any())
-                {
-                    foreach (var journal in Model.Journals)
-                    {
-                        <option value="@journal.Id">@journal.Name</option>
-            }
-        }
+                        {
+                            foreach (var journal in Model.Journals)
+                            {
+                                <option value="@journal.Id">@journal.Name</option>
+                            }
+                        }
                     </select>
                     <span asp-validation-for="JournalId" class="text-danger"></span>
                 </div>
@@ -164,18 +173,9 @@
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    <label asp-for="CreatedBy" class="control-label"></label>
-                </div>
-                <div class="col-md-10">
-                    <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2">
                     <label asp-for="IsFinalized" class="control-label"></label>
                 </div>
                 <div class="col-md-10">
-
                     <input type="datetime" asp-for="IsFinalized" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
@@ -184,8 +184,15 @@
                     <label asp-for="IsDeployed" class="control-label"></label>
                 </div>
                 <div class="col-md-10">
-
                     <input type="datetime" asp-for="IsDeployed" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="CreatedBy" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
             <div class="form-group">

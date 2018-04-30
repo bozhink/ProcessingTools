@@ -43,6 +43,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public string SubTitle { get; set; }
 
         /// <inheritdoc/>
+        public string Doi { get; set; }
+
+        /// <inheritdoc/>
         public string JournalId { get; set; }
 
         /// <summary>

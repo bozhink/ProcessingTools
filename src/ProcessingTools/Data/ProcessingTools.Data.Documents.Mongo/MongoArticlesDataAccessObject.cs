@@ -217,6 +217,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             var updateDefinition = new UpdateDefinitionBuilder<Article>()
                 .Set(m => m.Title, model.Title)
                 .Set(m => m.SubTitle, model.SubTitle)
+                .Set(m => m.Doi, model.Doi)
                 .Set(m => m.JournalId, model.JournalId)
                 .Set(m => m.PublishedOn, model.PublishedOn)
                 .Set(m => m.AcceptedOn, model.AcceptedOn)
