@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Models.Contracts.Layout.Styles.References
     /// <summary>
     /// Float object parse style data model.
     /// </summary>
-    public interface IReferenceParseStyleDataModel : IDataModel, ProcessingTools.Models.Contracts.Layout.Styles.References.IReferenceParseStyleModel
+    public interface IReferenceParseStyleDataModel : IIdentifiedStyleDataModel, IDataModel, ProcessingTools.Models.Contracts.Layout.Styles.References.IReferenceParseStyleModel
     {
     }
 }

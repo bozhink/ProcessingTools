@@ -38,5 +38,10 @@ namespace ProcessingTools.Models.Contracts.Documents.Journals
         /// Gets the ID of the publisher of the journal.
         /// </summary>
         string PublisherId { get; }
+
+        /// <summary>
+        /// Gets the ID of the journal style.
+        /// </summary>
+        string JournalStyleId { get; }
     }
 }

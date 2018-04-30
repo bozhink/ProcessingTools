@@ -13,6 +13,13 @@ namespace ProcessingTools.Data.Contracts.Layout.Styles
     public interface IStylesDataAccessObject
     {
         /// <summary>
+        /// Gets style by specified ID.
+        /// </summary>
+        /// <param name="id">Object ID of the style.</param>
+        /// <returns>Style data model.</returns>
+        Task<IIdentifiedStyleDataModel> GetStyleByIdAsync(object id);
+
+        /// <summary>
         /// Gets styles for select.
         /// </summary>
         /// <returns>Styles data models with object ID, name and description.</returns>

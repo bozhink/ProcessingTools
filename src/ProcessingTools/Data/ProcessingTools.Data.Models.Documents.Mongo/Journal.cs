@@ -56,6 +56,10 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public string PublisherId { get; set; }
 
         /// <inheritdoc/>
+        [BsonRequired]
+        public string JournalStyleId { get; set; }
+
+        /// <inheritdoc/>
         public string CreatedBy { get; set; }
 
         /// <inheritdoc/>

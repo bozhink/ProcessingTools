@@ -212,6 +212,30 @@ namespace ProcessingTools.Data.Layout.Mongo
         }
 
         /// <inheritdoc/>
+        public async Task<IIdentifiedStyleDataModel> GetStyleByIdAsync(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var style = await this.Collection.Find(s => s.ObjectId == objectId)
+                .Project(s => new StyleDataModel
+                {
+                    Id = s.Id,
+                    ObjectId = s.ObjectId,
+                    Name = s.Name,
+                    Description = s.Description
+                })
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            return style;
+        }
+
+        /// <inheritdoc/>
         public async Task<IIdentifiedStyleDataModel[]> GetStylesForSelectAsync()
         {
             var data = await this.Collection.Find(Builders<JournalStyle>.Filter.Empty)

@@ -13,6 +13,13 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
     public interface IStylesDataService
     {
         /// <summary>
+        /// Gets style specified by ID;
+        /// </summary>
+        /// <param name="id">Object ID of the style.</param>
+        /// <returns>Style.</returns>
+        Task<IIdentifiedStyleModel> GetStyleByIdAsync(object id);
+
+        /// <summary>
         /// Gets styles for select.
         /// </summary>
         /// <returns>Styles data models with object ID, name and description.</returns>

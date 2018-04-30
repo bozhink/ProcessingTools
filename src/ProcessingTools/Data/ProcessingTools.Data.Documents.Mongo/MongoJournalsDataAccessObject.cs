@@ -234,6 +234,7 @@ namespace ProcessingTools.Data.Documents.Mongo
                 .Set(j => j.PrintIssn, model.PrintIssn)
                 .Set(j => j.ElectronicIssn, model.ElectronicIssn)
                 .Set(j => j.PublisherId, model.PublisherId)
+                .Set(j => j.JournalStyleId, model.JournalStyleId)
                 .Set(j => j.ModifiedBy, journal.ModifiedBy)
                 .Set(j => j.ModifiedOn, journal.ModifiedOn);
             var updateOptions = new UpdateOptions

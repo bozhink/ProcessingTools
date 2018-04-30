@@ -200,6 +200,13 @@ namespace ProcessingTools.Services.Layout.Styles
         public Task<long> SelectCountAsync() => this.dataAccessObject.SelectCountAsync();
 
         /// <inheritdoc/>
+        public async Task<IIdentifiedStyleModel> GetStyleByIdAsync(object id)
+        {
+            var style = await this.dataAccessObject.GetStyleByIdAsync(id).ConfigureAwait(false);
+            return this.mapper.Map<IIdentifiedStyleDataModel, IIdentifiedStyleModel>(style);
+        }
+
+        /// <inheritdoc/>
         public async Task<IIdentifiedStyleModel[]> GetStylesForSelectAsync()
         {
             var styles = await this.dataAccessObject.GetStylesForSelectAsync().ConfigureAwait(false);

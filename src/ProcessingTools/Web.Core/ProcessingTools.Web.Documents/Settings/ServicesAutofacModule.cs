@@ -32,6 +32,7 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<DocumentsDataService>().As<IDocumentsDataService>().InstancePerDependency();
             builder.RegisterType<FilesDataService>().As<IFilesDataService>().InstancePerDependency();
 
+            builder.RegisterType<JournalsService>().As<IJournalsService>().InstancePerDependency();
             builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerDependency();
             builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerDependency();
             builder.RegisterType<XmlPresenter>().As<IXmlPresenter>().InstancePerDependency();

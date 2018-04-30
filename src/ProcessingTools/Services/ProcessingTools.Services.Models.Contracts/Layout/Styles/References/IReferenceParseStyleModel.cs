@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Layout.Styles.References
     /// <summary>
     /// Reference parse style model.
     /// </summary>
-    public interface IReferenceParseStyleModel : ProcessingTools.Models.Contracts.Layout.Styles.References.IReferenceParseStyleModel
+    public interface IReferenceParseStyleModel : IIdentifiedStyleModel, ProcessingTools.Models.Contracts.Layout.Styles.References.IReferenceParseStyleModel
     {
     }
 }

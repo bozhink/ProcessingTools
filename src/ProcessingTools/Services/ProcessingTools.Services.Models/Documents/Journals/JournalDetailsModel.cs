@@ -37,6 +37,9 @@ namespace ProcessingTools.Services.Models.Documents.Journals
         public IJournalPublisherModel Publisher { get; set; }
 
         /// <inheritdoc/>
+        public string JournalStyleId { get; set; }
+
+        /// <inheritdoc/>
         public long NumberOfArticles { get; set; }
 
         /// <inheritdoc/>

@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals
     /// <summary>
     /// Journal style model.
     /// </summary>
-    public interface IJournalStyleModel : ProcessingTools.Models.Contracts.Layout.Styles.Journals.IJournalStyleModel
+    public interface IJournalStyleModel : IIdentifiedStyleModel, ProcessingTools.Models.Contracts.Layout.Styles.Journals.IJournalStyleModel
     {
     }
 }

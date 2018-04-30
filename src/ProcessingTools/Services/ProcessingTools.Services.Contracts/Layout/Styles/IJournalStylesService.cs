@@ -38,14 +38,14 @@ namespace ProcessingTools.Services.Contracts.Layout.Styles
         /// Gets journal style specified by ID.
         /// </summary>
         /// <param name="id">Object ID of the journal style.</param>
-        /// <returns>Resultant object.</returns>
+        /// <returns>Journal style.</returns>
         Task<IJournalStyleModel> GetByIdAsync(object id);
 
         /// <summary>
         /// Gets journal style details specified by ID;
         /// </summary>
         /// <param name="id">Object ID of the journal style.</param>
-        /// <returns>Resultant object.</returns>
+        /// <returns>Journal style details.</returns>
         Task<IJournalDetailsStyleModel> GetDetailsByIdAsync(object id);
 
         /// <summary>
