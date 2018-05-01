@@ -188,7 +188,7 @@ Rules:
                 .IgnoreUnmatchedProperties()
                 .Build();
 
-            var result = deserializer.Deserialize<IEnumerable<XmlReplaceRuleSetModel>>(new StringReader(yaml));
+            var result = deserializer.Deserialize<XmlReplaceRuleSetModel[]>(new StringReader(yaml));
 
             Assert.IsNotNull(result, "result");
             Assert.AreEqual(2, result.Count(), "result.Rules.Count");
