@@ -21,7 +21,7 @@ namespace ProcessingTools.Processors.Contracts.Rules
         /// </summary>
         /// <param name="context">Context to be processed.</param>
         /// <param name="ruleSets">Rule sets to be applied.</param>
-        /// <returns>Task</returns>
-        Task ProcessAsync(TContext context, IEnumerable<TRuleSet> ruleSets);
+        /// <returns>Resultant object.</returns>
+        Task<object> ProcessAsync(TContext context, IEnumerable<TRuleSet> ruleSets);
     }
 }
