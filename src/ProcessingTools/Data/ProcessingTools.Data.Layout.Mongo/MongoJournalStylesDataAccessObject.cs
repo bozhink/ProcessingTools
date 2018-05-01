@@ -14,7 +14,9 @@ namespace ProcessingTools.Data.Layout.Mongo
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
+    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
+    using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Data.Models.Layout.Mongo;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
@@ -247,6 +249,94 @@ namespace ProcessingTools.Data.Layout.Mongo
                 .ToListAsync()
                 .ConfigureAwait(false);
             return data.ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IFloatObjectParseStyleDataModel[]> GetFloatObjectParseStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                return Array.Empty<IFloatObjectParseStyleDataModel>();
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var query = this.Collection.Aggregate().Match(s => s.ObjectId == objectId)
+                .Lookup<FloatObjectParseStyle, JournalStyle>(
+                    foreignCollectionName: MongoCollectionNameFactory.Create<FloatObjectParseStyle>(),
+                    localField: nameof(JournalStyle.FloatObjectParseStyleIds),
+                    foreignField: nameof(FloatObjectParseStyle.ObjectId),
+                    @as: nameof(JournalStyle.FloatObjectParseStyles));
+
+            var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return journalStyle?.FloatObjectParseStyles?.ToArray<IFloatObjectParseStyleDataModel>() ?? Array.Empty<IFloatObjectParseStyleDataModel>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IFloatObjectTagStyleDataModel[]> GetFloatObjectTagStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                return Array.Empty<IFloatObjectTagStyleDataModel>();
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var query = this.Collection.Aggregate().Match(s => s.ObjectId == objectId)
+                .Lookup<FloatObjectTagStyle, JournalStyle>(
+                    foreignCollectionName: MongoCollectionNameFactory.Create<FloatObjectTagStyle>(),
+                    localField: nameof(JournalStyle.FloatObjectTagStyleIds),
+                    foreignField: nameof(FloatObjectTagStyle.ObjectId),
+                    @as: nameof(JournalStyle.FloatObjectTagStyles));
+
+            var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return journalStyle?.FloatObjectTagStyles?.ToArray<IFloatObjectTagStyleDataModel>() ?? Array.Empty<IFloatObjectTagStyleDataModel>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IReferenceParseStyleDataModel[]> GetReferenceParseStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                return Array.Empty<IReferenceParseStyleDataModel>();
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var query = this.Collection.Aggregate().Match(s => s.ObjectId == objectId)
+                .Lookup<ReferenceParseStyle, JournalStyle>(
+                    foreignCollectionName: MongoCollectionNameFactory.Create<ReferenceParseStyle>(),
+                    localField: nameof(JournalStyle.ReferenceParseStyleIds),
+                    foreignField: nameof(ReferenceParseStyle.ObjectId),
+                    @as: nameof(JournalStyle.ReferenceParseStyles));
+
+            var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return journalStyle?.ReferenceParseStyles?.ToArray<IReferenceParseStyleDataModel>() ?? Array.Empty<IReferenceParseStyleDataModel>();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IReferenceTagStyleDataModel[]> GetReferenceTagStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                return Array.Empty<IReferenceTagStyleDataModel>();
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var query = this.Collection.Aggregate().Match(s => s.ObjectId == objectId)
+                .Lookup<ReferenceTagStyle, JournalStyle>(
+                    foreignCollectionName: MongoCollectionNameFactory.Create<ReferenceTagStyle>(),
+                    localField: nameof(JournalStyle.ReferenceTagStyleIds),
+                    foreignField: nameof(ReferenceTagStyle.ObjectId),
+                    @as: nameof(JournalStyle.ReferenceTagStyles));
+
+            var journalStyle = await query.FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return journalStyle?.ReferenceTagStyles?.ToArray<IReferenceTagStyleDataModel>() ?? Array.Empty<IReferenceTagStyleDataModel>();
         }
 
         private IAggregateFluent<JournalStyle> GetDetailsLookup(IAggregateFluent<JournalStyle> query)
