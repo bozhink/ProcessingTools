@@ -11,10 +11,12 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Services.Contracts.Layout.Styles;
+    using ProcessingTools.Services.Contracts.Rules;
     using ProcessingTools.Services.Documents;
     using ProcessingTools.Services.History;
     using ProcessingTools.Services.IO;
     using ProcessingTools.Services.Layout.Styles;
+    using ProcessingTools.Services.Rules;
 
     /// <summary>
     /// Autofac bindings for ProcessingTools.Services.*
@@ -46,6 +48,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<JournalStylesDataService>().As<IJournalStylesDataService>().InstancePerDependency();
 
             builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues).InstancePerDependency();
+
+            builder.RegisterType<YamlSourceXmlReplaceRuleSetParser>().As<IXmlReplaceRuleSetParser>().InstancePerLifetimeScope();
 
             builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerDependency();
         }

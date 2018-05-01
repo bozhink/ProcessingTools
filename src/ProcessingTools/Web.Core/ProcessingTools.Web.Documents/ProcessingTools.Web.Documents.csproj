@@ -54,6 +54,10 @@
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models.Contracts\ProcessingTools.Harvesters.Models.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models\ProcessingTools.Harvesters.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters\ProcessingTools.Harvesters.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors\ProcessingTools.Processors.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj" />
