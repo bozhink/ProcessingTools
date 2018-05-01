@@ -10,7 +10,7 @@ namespace ProcessingTools.Models.Contracts.Rules
     /// Generic rule set model.
     /// </summary>
     /// <typeparam name="T">Type of the rule.</typeparam>
-    public interface IRuleSetModel<out T>
+    public interface IRuleSetModel<out T> : IRuleSetModel
         where T : IRuleModel
     {
         /// <summary>
