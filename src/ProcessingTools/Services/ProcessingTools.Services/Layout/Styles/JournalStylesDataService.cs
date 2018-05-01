@@ -11,14 +11,20 @@ namespace ProcessingTools.Services.Layout.Styles
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Contracts.Layout.Styles;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles;
+    using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
+    using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Services.Contracts.History;
     using ProcessingTools.Services.Contracts.Layout.Styles;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles;
+    using ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;
+    using ProcessingTools.Services.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Services.Models.Layout.Styles;
+    using ProcessingTools.Services.Models.Layout.Styles.Floats;
     using ProcessingTools.Services.Models.Layout.Styles.Journals;
+    using ProcessingTools.Services.Models.Layout.Styles.References;
 
     /// <summary>
     /// Journal styles data service.
@@ -48,6 +54,22 @@ namespace ProcessingTools.Services.Layout.Styles
                 c.CreateMap<IIdentifiedStyleDataModel, StyleModel>()
                     .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
                 c.CreateMap<IIdentifiedStyleDataModel, IIdentifiedStyleModel>().As<StyleModel>();
+
+                c.CreateMap<IFloatObjectParseStyleDataModel, FloatObjectParseStyleModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IFloatObjectParseStyleDataModel, IFloatObjectParseStyleModel>().As<FloatObjectParseStyleModel>();
+
+                c.CreateMap<IFloatObjectTagStyleDataModel, FloatObjectTagStyleModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IFloatObjectTagStyleDataModel, IFloatObjectTagStyleModel>().As<FloatObjectTagStyleModel>();
+
+                c.CreateMap<IReferenceParseStyleDataModel, ReferenceParseStyleModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IReferenceParseStyleDataModel, IReferenceParseStyleModel>().As<ReferenceParseStyleModel>();
+
+                c.CreateMap<IReferenceTagStyleDataModel, ReferenceTagStyleModel>()
+                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IReferenceTagStyleDataModel, IReferenceTagStyleModel>().As<ReferenceTagStyleModel>();
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
@@ -211,6 +233,54 @@ namespace ProcessingTools.Services.Layout.Styles
         {
             var styles = await this.dataAccessObject.GetStylesForSelectAsync().ConfigureAwait(false);
             return styles.Select(this.mapper.Map<IIdentifiedStyleDataModel, IIdentifiedStyleModel>).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IFloatObjectParseStyleModel[]> GetFloatObjectParseStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var styles = await this.dataAccessObject.GetFloatObjectParseStylesAsync(id).ConfigureAwait(false);
+            return styles.Select(this.mapper.Map<IFloatObjectParseStyleDataModel, IFloatObjectParseStyleModel>).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IFloatObjectTagStyleModel[]> GetFloatObjectTagStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var styles = await this.dataAccessObject.GetFloatObjectTagStylesAsync(id).ConfigureAwait(false);
+            return styles.Select(this.mapper.Map<IFloatObjectTagStyleDataModel, IFloatObjectTagStyleModel>).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IReferenceParseStyleModel[]> GetReferenceParseStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var styles = await this.dataAccessObject.GetReferenceParseStylesAsync(id).ConfigureAwait(false);
+            return styles.Select(this.mapper.Map<IReferenceParseStyleDataModel, IReferenceParseStyleModel>).ToArray();
+        }
+
+        /// <inheritdoc/>
+        public async Task<IReferenceTagStyleModel[]> GetReferenceTagStylesAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var styles = await this.dataAccessObject.GetReferenceTagStylesAsync(id).ConfigureAwait(false);
+            return styles.Select(this.mapper.Map<IReferenceTagStyleDataModel, IReferenceTagStyleModel>).ToArray();
         }
     }
 }
