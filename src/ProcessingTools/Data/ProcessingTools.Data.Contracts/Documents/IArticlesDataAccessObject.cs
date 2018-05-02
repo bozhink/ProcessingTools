@@ -18,5 +18,12 @@ namespace ProcessingTools.Data.Contracts.Documents
         /// </summary>
         /// <returns>Array of journal publishers.</returns>
         Task<IArticleJournalDataModel[]> GetArticleJournalsAsync();
+
+        /// <summary>
+        /// Gets the object ID of the journal style for a specified article.
+        /// </summary>
+        /// <param name="id">Object ID of the article.</param>
+        /// <returns>Object ID of the journal style for the article.</returns>
+        Task<object> GetJournalStyleIdAsync(object id);
     }
 }

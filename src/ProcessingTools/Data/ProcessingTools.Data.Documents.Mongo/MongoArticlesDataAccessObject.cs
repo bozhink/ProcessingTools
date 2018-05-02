@@ -248,6 +248,34 @@ namespace ProcessingTools.Data.Documents.Mongo
             return article;
         }
 
+        /// <inheritdoc/>
+        public async Task<object> GetJournalStyleIdAsync(object id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            Guid objectId = id.ToNewGuid();
+
+            var query = this.Collection.Aggregate()
+                .Match(a => a.ObjectId == objectId)
+                .Lookup<Journal, ArticleJournalAggregation>(
+                    foreignCollectionName: MongoCollectionNameFactory.Create<Journal>(),
+                    localField: nameof(Article.JournalId),
+                    foreignField: nameof(Journal.ObjectId),
+                    @as: nameof(ArticleJournalAggregation.Journals))
+                .Project(a => new { a.Journals })
+                .Unwind(a => a.Journals)
+                .Project(j => new { JournalStyleId = j[nameof(Journal.JournalStyleId)].AsString })
+                .Skip(0)
+                .Limit(1);
+
+            var result = await query.FirstOrDefaultAsync().ConfigureAwait(false);
+
+            return result?.JournalStyleId;
+        }
+
         private IFindFluent<Journal, ArticleJournal> GetArticleJournalsQuery(System.Linq.Expressions.Expression<Func<Journal, bool>> filter)
         {
             return this.GetCollection<Journal>().Find(filter)
