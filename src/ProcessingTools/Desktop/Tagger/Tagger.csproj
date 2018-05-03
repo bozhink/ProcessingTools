@@ -282,10 +282,6 @@
       <Project>{7351B164-F80A-4FA2-A3E3-9B3DBB2FDAAD}</Project>
       <Name>Reporters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Tagger.Commands\Tagger.Commands.csproj">
-      <Project>{6FD4843F-4B5D-412C-8101-396960FDDC21}</Project>
-      <Name>Tagger.Commands</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
