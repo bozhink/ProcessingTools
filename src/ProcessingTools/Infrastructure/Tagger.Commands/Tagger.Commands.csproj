@@ -38,67 +38,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\ExpandLowerTaxaCommand.cs" />
-    <Compile Include="Commands\ExtractTaxaCommand.cs" />
-    <Compile Include="Commands\FormatTreatmentsCommand.cs" />
-    <Compile Include="Commands\InitialFormatCommand.cs" />
-    <Compile Include="Commands\ParseCoordinatesCommand.cs" />
-    <Compile Include="Commands\ParseHigherTaxaAboveGenusCommand.cs" />
-    <Compile Include="Commands\ParseHigherTaxaBySuffixCommand.cs" />
-    <Compile Include="Commands\ParseHigherTaxaWithAphiaCommand.cs" />
-    <Compile Include="Commands\ParseHigherTaxaWithCatalogueOfLifeCommand.cs" />
-    <Compile Include="Commands\ParseHigherTaxaWithGbifCommand.cs" />
-    <Compile Include="Commands\ParseHigherTaxaWithLocalDbCommand.cs" />
-    <Compile Include="Commands\ParseLowerTaxaCommand.cs" />
-    <Compile Include="Commands\ParseReferencesCommand.cs" />
-    <Compile Include="Commands\ParseTreatmentMaterialsCommand.cs" />
-    <Compile Include="Commands\ParseTreatmentMetaWithAphiaCommand.cs" />
-    <Compile Include="Commands\ParseTreatmentMetaWithCatalogueOfLifeCommand.cs" />
-    <Compile Include="Commands\ParseTreatmentMetaWithGbifCommand.cs" />
-    <Compile Include="Commands\ParseTreatmentMetaWithInternalInformationCommand.cs" />
-    <Compile Include="Commands\QueryReplaceCommand.cs" />
-    <Compile Include="Commands\RemoveAllTaxonNamePartTagsCommand.cs" />
-    <Compile Include="Commands\ResolveMediaTypesCommand.cs" />
-    <Compile Include="Commands\RunCustomXQueryTransformCommand.cs" />
-    <Compile Include="Commands\RunCustomXslTransformCommand.cs" />
-    <Compile Include="Commands\SpecialCaseGavinLaurensCommand.cs" />
-    <Compile Include="Commands\TagAbbreviationsCommand.cs" />
-    <Compile Include="Commands\TagAltitudesCommand.cs" />
-    <Compile Include="Commands\TagCollectionCodesCommand.cs" />
-    <Compile Include="Commands\TagCoordinatesCommand.cs" />
-    <Compile Include="Commands\TagDatesCommand.cs" />
-    <Compile Include="Commands\TagEnvironmentTermsCommand.cs" />
-    <Compile Include="Commands\TagEnvironmentTermsWithExtractCommand.cs" />
-    <Compile Include="Commands\TagFloatsCommand.cs" />
-    <Compile Include="Commands\TagGeoEpithetsCommand.cs" />
-    <Compile Include="Commands\TagGeographicDeviationsCommand.cs" />
-    <Compile Include="Commands\TagGeoNamesCommand.cs" />
-    <Compile Include="Commands\TagHigherTaxaCommand.cs" />
-    <Compile Include="Commands\TagInstitutionalCodesCommand.cs" />
-    <Compile Include="Commands\TagInstitutionsCommand.cs" />
-    <Compile Include="Commands\TagLowerTaxaCommand.cs" />
-    <Compile Include="Commands\TagLowerTaxaInItalicCommand.cs" />
-    <Compile Include="Commands\TagMorphologicalEpithetsCommand.cs" />
-    <Compile Include="Commands\TagProductsCommand.cs" />
-    <Compile Include="Commands\TagQuantitiesCommand.cs" />
-    <Compile Include="Commands\TagReferencesCommand.cs" />
-    <Compile Include="Commands\TagSpecimenCodesCommand.cs" />
-    <Compile Include="Commands\TagSpecimenCountCommand.cs" />
-    <Compile Include="Commands\TagTableFootnoteCommand.cs" />
-    <Compile Include="Commands\TagTypeStatusCommand.cs" />
-    <Compile Include="Commands\TagWebLinksCommand.cs" />
-    <Compile Include="Commands\TestCommand.cs" />
-    <Compile Include="Commands\ValidateCrossReferencesCommand.cs" />
-    <Compile Include="Commands\ValidateExternalLinksCommand.cs" />
-    <Compile Include="Commands\ValidateTaxaCommand.cs" />
-    <Compile Include="Commands\ZooBankCloneJsonCommand.cs" />
-    <Compile Include="Commands\ZooBankCloneXmlCommand.cs" />
-    <Compile Include="Commands\ZooBankGenerateRegistrationXmlCommand.cs" />
-    <Compile Include="Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,17 +81,6 @@
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>
       <Name>ProcessingTools.Services.Contracts</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MessageTexts\ExtractAllTaxaMessage.txt" />
-    <Content Include="MessageTexts\ExtractHigherTaxaMessage.txt" />
-    <Content Include="MessageTexts\ExtractLowerTaxaMessage.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
