@@ -6,8 +6,8 @@
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
@@ -25,13 +25,6 @@
                 b.FromThisAssembly()
                  .SelectAllClasses()
                  .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
             });
 
             this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))

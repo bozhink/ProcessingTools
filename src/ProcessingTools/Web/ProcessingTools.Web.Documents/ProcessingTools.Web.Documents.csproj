@@ -653,6 +653,14 @@
       <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
       <Name>Geo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj">
+      <Project>{D7A7689B-5972-4357-B2A2-54FF6ADEACDC}</Project>
+      <Name>ProcessingTools.Commands.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Commands.Tagger.Contracts.csproj">
+      <Project>{A88D9D6F-8842-48B5-A847-5AD192E0814D}</Project>
+      <Name>ProcessingTools.Commands.Tagger.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj">
       <Project>{76075CD7-8071-4F78-92F7-6E8416848484}</Project>
       <Name>ProcessingTools.Harvesters.Contracts</Name>

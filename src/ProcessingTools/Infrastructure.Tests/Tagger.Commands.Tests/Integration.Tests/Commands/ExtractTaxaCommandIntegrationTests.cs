@@ -4,10 +4,10 @@
     using System.Xml;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Harvesters.Contracts.Bio;
-    using ProcessingTools.Tagger.Commands.Commands;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(ExtractTaxaCommand))]
     public class ExtractTaxaCommandIntegrationTests

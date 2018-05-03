@@ -108,6 +108,22 @@
       <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
       <Name>Loggers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj">
+      <Project>{d7a7689b-5972-4357-b2a2-54ff6adeacdc}</Project>
+      <Name>ProcessingTools.Commands.Models.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models\ProcessingTools.Commands.Models.csproj">
+      <Project>{35e931d4-265b-413c-b837-09e530321f57}</Project>
+      <Name>ProcessingTools.Commands.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger.Contracts\ProcessingTools.Commands.Tagger.Contracts.csproj">
+      <Project>{a88d9d6f-8842-48b5-a847-5ad192e0814d}</Project>
+      <Name>ProcessingTools.Commands.Tagger.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Tagger\ProcessingTools.Commands.Tagger.csproj">
+      <Project>{50171e07-3148-4f27-ae06-bf8ee2912322}</Project>
+      <Name>ProcessingTools.Commands.Tagger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Processors\Processors\Processors.csproj">
       <Project>{237d4caf-98a4-4c86-91a6-46ae3e27e965}</Project>
       <Name>Processors</Name>

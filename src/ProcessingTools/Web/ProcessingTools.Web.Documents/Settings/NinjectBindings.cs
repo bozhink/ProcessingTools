@@ -6,9 +6,9 @@
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using Ninject.Web.Common;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Imaging.Processors;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Processors.Contracts.Imaging;
@@ -28,13 +28,6 @@
                     .BindDefaultInterface();
 
                 b.FromAssembliesMatching("ProcessingTools.Web.*")
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });

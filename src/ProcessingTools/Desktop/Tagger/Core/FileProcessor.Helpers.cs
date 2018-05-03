@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 

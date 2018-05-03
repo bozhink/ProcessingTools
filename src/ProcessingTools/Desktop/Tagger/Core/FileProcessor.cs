@@ -6,10 +6,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
