@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Processors.Contracts.References
 {
+    using ProcessingTools.Models.Contracts.Rules;
+
     /// <summary>
     /// References parser.
     /// </summary>
-    public interface IReferencesParser : IXmlContextParser
+    public interface IReferencesParser : IXmlContextParser<IXmlReplaceRuleSetModel, object>
     {
     }
 }

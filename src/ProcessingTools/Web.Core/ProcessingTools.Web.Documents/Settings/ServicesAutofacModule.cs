@@ -46,7 +46,6 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ReferenceTagStylesDataService>().As<IReferenceTagStylesDataService>().InstancePerDependency();
             builder.RegisterType<ReferenceParseStylesDataService>().As<IReferenceParseStylesDataService>().InstancePerDependency();
             builder.RegisterType<JournalStylesDataService>().As<IJournalStylesDataService>().InstancePerDependency();
-            builder.RegisterType<ReferenceParseStyleRuleSetsProvider>().As<IReferenceParseStyleRuleSetsProvider>().InstancePerDependency();
 
             builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues).InstancePerDependency();
 
