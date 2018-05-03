@@ -2,11 +2,11 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Commands.Tagger
+namespace ProcessingTools.Commands.Tagger.Contracts
 {
     using System.Threading.Tasks;
+    using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
 
     /// <summary>
     /// Tagger Command.

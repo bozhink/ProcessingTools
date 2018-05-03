@@ -2,10 +2,11 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Commands
+namespace ProcessingTools.Commands.Tagger.Contracts
 {
     using System;
     using System.Collections.Generic;
+    using ProcessingTools.Commands.Models.Contracts;
 
     /// <summary>
     /// Command info provider.

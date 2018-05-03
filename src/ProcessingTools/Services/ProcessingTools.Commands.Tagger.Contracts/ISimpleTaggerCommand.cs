@@ -2,7 +2,7 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Contracts.Commands.Tagger
+namespace ProcessingTools.Commands.Tagger.Contracts
 {
     /// <summary>
     /// Simple Tagger Command.
