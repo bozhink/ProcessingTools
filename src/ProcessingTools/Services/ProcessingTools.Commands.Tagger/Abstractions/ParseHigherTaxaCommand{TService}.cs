@@ -1,31 +1,43 @@
-﻿namespace ProcessingTools.Tagger.Commands
+﻿// <copyright file="ParseHigherTaxaCommand{TService}.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Commands.Tagger.Abstractions
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Parse higher taxa command.
+    /// </summary>
+    /// <typeparam name="TService">Type of service.</typeparam>
     public class ParseHigherTaxaCommand<TService> : ITaggerCommand
         where TService : ITaxaRankResolver
     {
         private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
         private readonly IReporter reporter;
 
-        public ParseHigherTaxaCommand(
-            IHigherTaxaParserWithDataService<TService, ITaxonRank> parser,
-            IReporter reporter)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParseHigherTaxaCommand{TService}"/> class.
+        /// </summary>
+        /// <param name="parser">Parser to be invoked.</param>
+        /// <param name="reporter">Reporter.</param>
+        public ParseHigherTaxaCommand(IHigherTaxaParserWithDataService<TService, ITaxonRank> parser, IReporter reporter)
         {
             this.parser = parser ?? throw new ArgumentNullException(nameof(parser));
             this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
+        /// <inheritdoc/>
         public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)

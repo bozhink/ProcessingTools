@@ -94,14 +94,6 @@
     <Compile Include="Commands\ZooBankCloneJsonCommand.cs" />
     <Compile Include="Commands\ZooBankCloneXmlCommand.cs" />
     <Compile Include="Commands\ZooBankGenerateRegistrationXmlCommand.cs" />
-    <Compile Include="DocumentFormatterCommand{TFormatter}.cs" />
-    <Compile Include="DocumentParserCommand{TParser}.cs" />
-    <Compile Include="DocumentTaggerCommand{TTagger}.cs" />
-    <Compile Include="DocumentTaggerWithNormalizationCommand{TTagger}.cs" />
-    <Compile Include="DocumentValidatorCommand{TValidator}.cs" />
-    <Compile Include="ParseHigherTaxaCommand{TService}.cs" />
-    <Compile Include="XmlContextParserCommand{TParser}.cs" />
-    <Compile Include="XmlContextTaggerCommand{TTagger}.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
