@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Commands.Tagger
+﻿// <copyright file="RunCustomXQueryTransformCommand.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Commands.Tagger
 {
     using System;
     using System.Threading.Tasks;
@@ -7,16 +11,24 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
 
+    /// <summary>
+    /// Run custom XQuery transform command.
+    /// </summary>
     [System.ComponentModel.Description("Custom XQuery transform.")]
     public class RunCustomXQueryTransformCommand : IRunCustomXQueryTransformCommand
     {
         private readonly IDocumentXQueryProcessor processor;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunCustomXQueryTransformCommand"/> class.
+        /// </summary>
+        /// <param name="processor">Instance of <see cref="IDocumentXQueryProcessor"/>.</param>
         public RunCustomXQueryTransformCommand(IDocumentXQueryProcessor processor)
         {
             this.processor = processor ?? throw new ArgumentNullException(nameof(processor));
         }
 
+        /// <inheritdoc/>
         public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)

@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Commands.Tagger
+﻿// <copyright file="ExtractTaxaCommand.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Commands.Tagger
 {
     using System;
     using System.Collections.Generic;
@@ -9,17 +13,26 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Harvesters.Contracts.Bio;
 
+    /// <summary>
+    /// Extract taxa command.
+    /// </summary>
     public class ExtractTaxaCommand : IExtractTaxaCommand
     {
         private readonly ITaxonNamesHarvester harvester;
         private readonly IReporter reporter;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtractTaxaCommand"/> class.
+        /// </summary>
+        /// <param name="harvester">Instance of <see cref="ITaxonNamesHarvester"/>.</param>
+        /// <param name="reporter">Instance of <see cref="IReporter"/>.</param>
         public ExtractTaxaCommand(ITaxonNamesHarvester harvester, IReporter reporter)
         {
             this.harvester = harvester ?? throw new ArgumentNullException(nameof(harvester));
             this.reporter = reporter ?? throw new ArgumentNullException(nameof(reporter));
         }
 
+        /// <inheritdoc/>
         public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)

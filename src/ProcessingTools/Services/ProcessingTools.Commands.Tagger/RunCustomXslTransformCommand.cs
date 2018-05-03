@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Commands.Tagger
+﻿// <copyright file="RunCustomXslTransformCommand.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Commands.Tagger
 {
     using System;
     using System.Threading.Tasks;
@@ -7,16 +11,24 @@
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts;
 
+    /// <summary>
+    /// Run custom XSL transform command.
+    /// </summary>
     [System.ComponentModel.Description("Custom XSL transform.")]
     public class RunCustomXslTransformCommand : IRunCustomXslTransformCommand
     {
         private readonly IDocumentXslProcessor processor;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunCustomXslTransformCommand"/> class.
+        /// </summary>
+        /// <param name="processor">Instance of <see cref="IDocumentXslProcessor"/>.</param>
         public RunCustomXslTransformCommand(IDocumentXslProcessor processor)
         {
             this.processor = processor ?? throw new ArgumentNullException(nameof(processor));
         }
 
+        /// <inheritdoc/>
         public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)

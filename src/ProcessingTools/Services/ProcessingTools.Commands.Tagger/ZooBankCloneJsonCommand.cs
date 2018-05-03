@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Commands.Tagger
+﻿// <copyright file="ZooBankCloneJsonCommand.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Commands.Tagger
 {
     using System;
     using System.Collections.Generic;
@@ -12,18 +16,27 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
+    /// <summary>
+    /// ZooBank clone JSON command.
+    /// </summary>
     [System.ComponentModel.Description("Clone ZooBank JSON.")]
     public class ZooBankCloneJsonCommand : IZooBankCloneJsonCommand
     {
         private readonly IZooBankJsonCloner cloner;
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ZooBankCloneJsonCommand"/> class.
+        /// </summary>
+        /// <param name="cloner">Instance of <see cref="IZooBankJsonCloner"/>.</param>
+        /// <param name="logger">Instance of <see cref="ILogger"/>.</param>
         public ZooBankCloneJsonCommand(IZooBankJsonCloner cloner, ILogger logger)
         {
             this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));
             this.logger = logger;
         }
 
+        /// <inheritdoc/>
         public async Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
             if (document == null)

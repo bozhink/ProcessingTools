@@ -1,15 +1,25 @@
-﻿namespace ProcessingTools.Commands.Tagger
-{
-    using ProcessingTools.Commands.Tagger.Abstractions;
-    using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Processors.Contracts.References;
+﻿// <copyright file="ParseReferencesCommand.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
 
+namespace ProcessingTools.Commands.Tagger
+{
+    using System;
+    using System.Threading.Tasks;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger.Contracts;
+    using ProcessingTools.Contracts;
+
+    /// <summary>
+    /// Parse references command.
+    /// </summary>
     [System.ComponentModel.Description("Parse references.")]
-    public class ParseReferencesCommand : XmlContextParserCommand<IReferencesParser>, IParseReferencesCommand
+    public class ParseReferencesCommand : IParseReferencesCommand
     {
-        public ParseReferencesCommand(IReferencesParser parser)
-            : base(parser)
+        /// <inheritdoc/>
+        public Task<object> RunAsync(IDocument document, ICommandSettings settings)
         {
+            throw new NotImplementedException();
         }
     }
 }
