@@ -39,6 +39,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerDependency();
             builder.RegisterType<XmlPresenter>().As<IXmlPresenter>().InstancePerDependency();
 
+            builder.RegisterType<DocumentProcessingService>().As<IDocumentProcessingService>().InstancePerDependency();
+
             builder.RegisterType<XmlReadService>().As<IXmlReadService>().InstancePerDependency();
 
             builder.RegisterType<FloatObjectTagStylesDataService>().As<IFloatObjectTagStylesDataService>().InstancePerDependency();

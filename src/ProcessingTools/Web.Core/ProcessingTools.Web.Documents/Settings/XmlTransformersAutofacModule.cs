@@ -5,29 +5,20 @@
 namespace ProcessingTools.Web.Documents.Settings
 {
     using Autofac;
+    using Microsoft.Extensions.Configuration;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Xml;
-    using System;
-    using System.Collections.Generic;
-    using Autofac;
-    using Autofac.Core;
-    using Microsoft.Extensions.Configuration;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
-    using ProcessingTools.Data.Contracts;
-    using ProcessingTools.Data.Contracts.Documents;
-    using ProcessingTools.Data.Contracts.History;
-    using ProcessingTools.Data.Documents.Mongo;
-    using ProcessingTools.Data.History.Mongo;
 
     /// <summary>
-    /// Autofac bindings for the Xml transformers.
+    /// Autofac bindings for the XML transformers.
     /// </summary>
     public class XmlTransformersAutofacModule : Module
     {
+        /// <summary>
+        /// Gets or sets the configuration.
+        /// </summary>
         public IConfiguration Configuration { get; set; }
 
         /// <inheritdoc/>

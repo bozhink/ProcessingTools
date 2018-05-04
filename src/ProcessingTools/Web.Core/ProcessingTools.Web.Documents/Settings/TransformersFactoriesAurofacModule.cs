@@ -8,6 +8,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac;
     using Autofac.Extras.DynamicProxy;
     using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Web.Documents.Interceptors;
 
@@ -26,11 +27,19 @@ namespace ProcessingTools.Web.Documents.Settings
                 .InterceptedBy(typeof(FactoryInterceptor));
         }
 
-        private class TransformersFactory : IDocumentsFormatTransformersFactory
+        private class TransformersFactory : IDocumentsFormatTransformersFactory, IFormatTransformerFactory
         {
             public IXmlTransformer GetFormatHtmlToXmlTransformer() => throw new NotSupportedException();
 
+            public IXmlTransformer GetFormatToNlmTransformer() => throw new NotSupportedException();
+
+            public IXmlTransformer GetFormatToSystemTransformer() => throw new NotSupportedException();
+
             public IXmlTransformer GetFormatXmlToHtmlTransformer() => throw new NotSupportedException();
+
+            public IXmlTransformer GetNlmInitialFormatTransformer() => throw new NotSupportedException();
+
+            public IXmlTransformer GetSystemInitialFormatTransformer() => throw new NotSupportedException();
         }
     }
 }
