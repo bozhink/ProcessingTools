@@ -207,5 +207,8 @@ namespace ProcessingTools.Services.Documents
 
             return journals.Select(this.mapper.Map<IArticleJournalDataModel, ArticleJournalModel>).ToArray();
         }
+
+        /// <inheritdoc/>
+        public Task<object> GetJournalStyleIdAsync(object id) => this.dataAccessObject.GetJournalStyleIdAsync(id);
     }
 }

@@ -13,9 +13,16 @@ namespace ProcessingTools.Services.Contracts.Documents
     public interface IArticlesDataService : IDataService<IArticleModel, IArticleDetailsModel, IArticleInsertModel, IArticleUpdateModel>
     {
         /// <summary>
-        /// Gets journal publishers for select.
+        /// Gets article journals for select.
         /// </summary>
-        /// <returns>Array of journal publishers.</returns>
+        /// <returns>Array of article journals.</returns>
         Task<IArticleJournalModel[]> GetArticleJournalsAsync();
+
+        /// <summary>
+        /// Gets the object ID of the journal style for a specified article.
+        /// </summary>
+        /// <param name="id">Object ID of the article.</param>
+        /// <returns>Object ID of the journal style for the article.</returns>
+        Task<object> GetJournalStyleIdAsync(object id);
     }
 }
