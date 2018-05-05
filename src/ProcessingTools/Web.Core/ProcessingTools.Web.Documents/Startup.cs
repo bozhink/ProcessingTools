@@ -146,7 +146,8 @@ namespace ProcessingTools.Web.Documents
             {
                 Configuration = this.configuration
             });
-            builder.RegisterModule<TransformersFactoriesAurofacModule>();
+            builder.RegisterModule<TransformersFactoriesAutofacModule>();
+            builder.RegisterModule<ProcessorsAutofacModule>();
             builder.RegisterModule<InterceptorsAutofacModule>();
             builder.RegisterModule(new DataAutofacModule
             {

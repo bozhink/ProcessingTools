@@ -1,4 +1,4 @@
-﻿// <copyright file="TransformersFactoriesAurofacModule.cs" company="ProcessingTools">
+﻿// <copyright file="TransformersFactoriesAutofacModule.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Documents.Settings
     /// <summary>
     /// Transformers factories module.
     /// </summary>
-    public class TransformersFactoriesAurofacModule : Module
+    public class TransformersFactoriesAutofacModule : Module
     {
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
@@ -23,6 +23,7 @@ namespace ProcessingTools.Web.Documents.Settings
             builder
                 .RegisterType<TransformersFactory>()
                 .As<IDocumentsFormatTransformersFactory>()
+                .As<IFormatTransformerFactory>()
                 .EnableInterfaceInterceptors()
                 .InterceptedBy(typeof(FactoryInterceptor));
         }

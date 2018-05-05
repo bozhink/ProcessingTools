@@ -8,7 +8,7 @@ namespace ProcessingTools.Processors.Contracts.Layout
     using ProcessingTools.Contracts;
 
     /// <summary>
-    /// Provides normalizations for IDocument objects.
+    /// Provides normalization for IDocument objects.
     /// </summary>
     public interface IDocumentSchemaNormalizer
     {

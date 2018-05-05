@@ -166,7 +166,8 @@
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DownloadActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Download</a> |
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.SetAsFinalActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Set as final</a> |
                                     <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Html" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Preview HTML</a> |
-                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Xml" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Edit XML</a>
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Xml" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Edit XML</a> |
+                                    <a asp-controller="Tagger" asp-action="ParseReferences" asp-route-documentId="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Parse references</a>
 </td>
                             </tr>
                         }
