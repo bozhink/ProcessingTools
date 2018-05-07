@@ -265,9 +265,10 @@ namespace ProcessingTools.Data.Documents.Mongo
                     localField: nameof(Article.JournalId),
                     foreignField: nameof(Journal.ObjectId),
                     @as: nameof(ArticleJournalAggregation.Journals))
-                .Project(a => new { a.Journals })
+                .Project(a => new JournalsProjectAggregation { Journals = a.Journals })
                 .Unwind(a => a.Journals)
-                .Project(j => new { JournalStyleId = j[nameof(Journal.JournalStyleId)].AsString })
+                .As<JournalsUnwindAggregation>()
+                .Project(j => new { j.Journals.JournalStyleId })
                 .Skip(0)
                 .Limit(1);
 
