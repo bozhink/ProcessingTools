@@ -45,8 +45,28 @@ namespace ProcessingTools.Constants
         public const string FormatHtmlToXmlXslFilePath = "StaticFiles:FormatHtmlToXmlXslFilePath";
 
         /// <summary>
-        /// /// Format XML-to-HTML XSL file path.
+        /// Format XML-to-HTML XSL file path.
         /// </summary>
         public const string FormatXmlToHtmlXslFilePath = "StaticFiles:FormatXmlToHtmlXslFilePath";
+
+        /// <summary>
+        /// Abbreviations XQuery file path.
+        /// </summary>
+        public const string AbbreviationsXQueryFilePath = "AbbreviationsXQueryFilePath";
+        public const string CodesRemoveNonCodeNodesXslFilePath = "CodesRemoveNonCodeNodesXslFilePath";
+        public const string ExternalLinksXslFilePath = "ExternalLinksXslFilePath";
+        public const string FormatNlmToSystemXslFilePath = "FormatNlmToSystemXslFilePath";
+        public const string FormatSystemToNlmXslFilePath = "FormatSystemToNlmXslFilePath";
+        public const string FormatTaxonTreatmentsXslFilePath = "FormatTaxonTreatmentsXslFilePath";
+        public const string GavinLaurensXslFilePath = "GavinLaurensXslFilePath";
+        public const string NlmInitialFormatXslFilePath = "NlmInitialFormatXslFilePath";
+        public const string ParseTreatmentMetaWithInternalInformationXslFilePath = "ParseTreatmentMetaWithInternalInformationXslFilePath";
+        public const string ReferencesGetReferencesXslFilePath = "ReferencesGetReferencesXslFilePath";
+        public const string ReferencesTagTemplateXslFilePath = "ReferencesTagTemplateXslFilePath";
+        public const string RemoveTaxonNamePartsXslFilePath = "RemoveTaxonNamePartsXslFilePath";
+        public const string SystemInitialFormatXslFilePath = "SystemInitialFormatXslFilePath";
+        public const string TaxonTreatmentExtractMaterialsXslFilePath = "TaxonTreatmentExtractMaterialsXslFilePath";
+        public const string TextContentXslFilePath = "TextContentXslFilePath";
+        public const string ZooBankRegistrationNlmXslFilePath = "ZooBankRegistrationNlmXslFilePath";
     }
 }
