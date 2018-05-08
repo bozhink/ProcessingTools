@@ -90,6 +90,13 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<bool> DeleteArticleAsync(string id);
 
         /// <summary>
+        /// Finalizes article specified by object ID.
+        /// </summary>
+        /// <param name="id">Object ID of the article.</param>
+        /// <returns>Success status.</returns>
+        Task<bool> FinalizeAsync(string id);
+
+        /// <summary>
         /// Map <see cref="ArticleCreateRequestModel"/> to <see cref="ArticleCreateViewModel"/>.
         /// </summary>
         /// <param name="model">The model to be mapped to view model.</param>

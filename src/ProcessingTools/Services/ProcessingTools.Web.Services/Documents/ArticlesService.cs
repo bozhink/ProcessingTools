@@ -105,6 +105,18 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
+        public async Task<bool> FinalizeAsync(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return false;
+            }
+
+            var result = await this.articlesService.FinalizeAsync(id).ConfigureAwait(false);
+            return result != null;
+        }
+
+        /// <inheritdoc/>
         public async Task<bool> UpdateArticleAsync(ArticleUpdateRequestModel model)
         {
             if (model == null)
