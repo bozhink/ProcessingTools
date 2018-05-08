@@ -42,6 +42,8 @@
                         <th>@Html.DisplayNameFor(m => m.Items.First().Issue)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Doi)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Journal.Name)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().CreatedOn)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().ModifiedOn)</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -56,6 +58,8 @@
                             <td>@Html.DisplayFor(m => item.Issue)</td>
                             <td>@Html.DisplayFor(m => item.Doi)</td>
                             <td>@Html.DisplayFor(m => item.Journal.Name)</td>
+                            <td>@Html.DisplayFor(m => item.CreatedOn)</td>
+                            <td>@Html.DisplayFor(m => item.ModifiedOn)</td>
                             <td>
                                 <a asp-action="@(ArticlesController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |
                                 <a asp-action="@(ArticlesController.DeleteActionName)" asp-route-id="@(item.Id)">Delete</a> |
@@ -66,7 +70,19 @@
                     }
                 </tbody>
             </table>
+
+            <footer>
+                @await Html.PartialAsync(ViewNames.NavigationFootPartialViewName)
+            </footer>
         }
     }
 </section>
 
+@section Scripts {
+    <environment include="Development">
+        <script src="~/build/dist/js/apps/files-index.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/build/dist/js/apps/files-index.min.js" asp-append-version="true"></script>
+    </environment>
+}
