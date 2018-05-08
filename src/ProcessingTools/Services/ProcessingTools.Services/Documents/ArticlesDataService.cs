@@ -210,5 +210,26 @@ namespace ProcessingTools.Services.Documents
 
         /// <inheritdoc/>
         public Task<object> GetJournalStyleIdAsync(object id) => this.dataAccessObject.GetJournalStyleIdAsync(id);
+
+        /// <inheritdoc/>
+        public async Task<object> FinalizeAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            var article = await this.dataAccessObject.FinalizeAsync(id).ConfigureAwait(false);
+            await this.dataAccessObject.SaveChangesAsync().ConfigureAwait(false);
+
+            if (article == null)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            await this.objectHistoryDataService.AddAsync(article.ObjectId, article).ConfigureAwait(false);
+
+            return article.ObjectId;
+        }
     }
 }

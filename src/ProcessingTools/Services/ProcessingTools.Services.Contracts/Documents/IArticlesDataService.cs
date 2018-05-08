@@ -24,5 +24,12 @@ namespace ProcessingTools.Services.Contracts.Documents
         /// <param name="id">Object ID of the article.</param>
         /// <returns>Object ID of the journal style for the article.</returns>
         Task<object> GetJournalStyleIdAsync(object id);
+
+        /// <summary>
+        /// Finalizes article specified by object ID.
+        /// </summary>
+        /// <param name="id">Object ID of the article.</param>
+        /// <returns>Resultant object.</returns>
+        Task<object> FinalizeAsync(object id);
     }
 }

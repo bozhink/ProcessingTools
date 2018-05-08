@@ -297,7 +297,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<object> FinalizeAsync(object id)
+        public async Task<IArticleDataModel> FinalizeAsync(object id)
         {
             if (id == null)
             {
@@ -318,18 +318,17 @@ namespace ProcessingTools.Data.Documents.Mongo
             }
 
             Guid articleObjectId = id.ToNewGuid();
-            var articleJournalId = await this.Collection
+            var article = await this.Collection
                 .Find(a => a.ObjectId == articleObjectId)
-                .Project(a => a.JournalId)
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
 
-            if (string.IsNullOrWhiteSpace(articleJournalId))
+            if (article == null || string.IsNullOrWhiteSpace(article.JournalId))
             {
                 throw new InvalidOperationException("Specified article does not have valid Journal ID");
             }
 
-            Guid journalObjectId = articleJournalId.ToNewGuid();
+            Guid journalObjectId = article.JournalId.ToNewGuid();
             var journal = await this.GetCollection<Journal>()
                 .Find(j => j.ObjectId == journalObjectId)
                 .FirstOrDefaultAsync()
@@ -368,7 +367,9 @@ namespace ProcessingTools.Data.Documents.Mongo
                 throw new UpdateUnsuccessfulException();
             }
 
-            return result;
+            article.DbJournal = journal;
+
+            return article;
         }
 
         private IFindFluent<Journal, ArticleJournal> GetArticleJournalsQuery(System.Linq.Expressions.Expression<Func<Journal, bool>> filter)

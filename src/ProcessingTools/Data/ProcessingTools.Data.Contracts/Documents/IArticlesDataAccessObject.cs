@@ -31,6 +31,6 @@ namespace ProcessingTools.Data.Contracts.Documents
         /// </summary>
         /// <param name="id">Object ID of the article.</param>
         /// <returns>Resultant object.</returns>
-        Task<object> FinalizeAsync(object id);
+        Task<IArticleDataModel> FinalizeAsync(object id);
     }
 }
