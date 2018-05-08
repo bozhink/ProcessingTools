@@ -127,5 +127,8 @@ namespace ProcessingTools.Services.Documents
 
             return articleId;
         }
+
+        /// <inheritdoc/>
+        public Task<object> FinalizeAsync(object id) => this.articlesDataService.FinalizeAsync(id);
     }
 }
