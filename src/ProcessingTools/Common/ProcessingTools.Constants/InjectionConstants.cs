@@ -15,6 +15,11 @@ namespace ProcessingTools.Constants
         public const string MongoDBDocumentsDatabaseBindingName = nameof(MongoDBDocumentsDatabaseBindingName);
 
         /// <summary>
+        /// Binding name for the MongoDB documents database.
+        /// </summary>
+        public const string MongoDBLayoutDatabaseBindingName = nameof(MongoDBLayoutDatabaseBindingName);
+
+        /// <summary>
         /// Binding name for the MongoDB history database.
         /// </summary>
         public const string MongoDBHistoryDatabaseBindingName = nameof(MongoDBHistoryDatabaseBindingName);

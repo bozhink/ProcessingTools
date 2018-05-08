@@ -64,7 +64,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
 
         private void CombineCoordinatePartsOfColumnSeparatedCoordinatesInTableRows(XmlNode context)
         {
-            foreach (XmlNode tableRowNode in context.SelectNodes(XPathStrings.TableRowWithCoordinatePartsWichCanBeMerged))
+            foreach (XmlNode tableRowNode in context.SelectNodes(XPathStrings.TableRowWithCoordinatePartsWhichCanBeMerged))
             {
                 XmlNode latitudeNode = tableRowNode.SelectSingleNode(XPathStrings.CoordinateOfTypeLatitudeWithEmptyLatitudeAndLongitudeAttributes);
                 XmlNode longitudeNode = tableRowNode.SelectSingleNode(XPathStrings.CoordinateOfTypeLongitudeWithEmptyLatitudeAndLongitudeAttributes);

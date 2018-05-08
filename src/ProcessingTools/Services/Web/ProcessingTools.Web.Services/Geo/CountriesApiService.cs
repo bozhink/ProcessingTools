@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Services.Geo
             var items = await this.service.SelectAsync(null).ConfigureAwait(false);
             if (items == null || !items.Any())
             {
-                return new CountryResponseModel[] { };
+                return Array.Empty<CountryResponseModel>();
             }
 
             return items.Select(this.mapper.Map<ICountry, CountryResponseModel>).ToArray();

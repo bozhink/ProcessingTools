@@ -6,11 +6,11 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Models;
     using ProcessingTools.Bio.Biorepositories.Data.Mongo.Repositories;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Contracts;
     using ProcessingTools.Bio.Biorepositories.Data.Seed.Models.Csv;
-    using ProcessingTools.Common.Attributes;
     using ProcessingTools.Common.Data.Seed;
     using ProcessingTools.Common.Serialization.Csv;
     using ProcessingTools.Constants.Configuration;

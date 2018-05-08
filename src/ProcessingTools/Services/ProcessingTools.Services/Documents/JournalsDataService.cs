@@ -38,8 +38,7 @@ namespace ProcessingTools.Services.Documents
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
-                c.CreateMap<IJournalPublisherDataModel, JournalPublisherModel>()
-                    .ForMember(sm => sm.Id, o => o.ResolveUsing(dm => dm.ObjectId.ToString()));
+                c.CreateMap<IJournalPublisherDataModel, JournalPublisherModel>();
                 c.CreateMap<IJournalPublisherDataModel, IJournalPublisherModel>().As<JournalPublisherModel>();
 
                 c.CreateMap<IJournalDataModel, JournalModel>()
@@ -108,14 +107,14 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalModel> GetById(object id)
+        public async Task<IJournalModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var journal = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
+            var journal = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
             if (journal == null)
             {
@@ -128,14 +127,14 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsModel> GetDetailsById(object id)
+        public async Task<IJournalDetailsModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var journal = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
+            var journal = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
             if (journal == null)
             {

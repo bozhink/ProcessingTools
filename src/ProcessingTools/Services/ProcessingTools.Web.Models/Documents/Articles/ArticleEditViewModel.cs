@@ -62,6 +62,13 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string SubTitle { get; set; }
 
         /// <summary>
+        /// Gets or sets the Digital Object Identifier (DOI) of the article.
+        /// </summary>
+        [StringLength(ValidationConstants.MaximalLengthOfArticleDoi, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = ValidationConstants.MinimalLengthOfArticleDoi)]
+        [Display(Name = "DOI")]
+        public string Doi { get; set; }
+
+        /// <summary>
         /// Gets or sets the journal ID.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
@@ -146,6 +153,20 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         [Required(AllowEmptyStrings = false)]
         [Display(Name = "Number of pages")]
         public int NumberOfPages { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether article is finalized.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Is finalized")]
+        public bool IsFinalized { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether article is deployed.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Is deployed")]
+        public bool IsDeployed { get; set; }
 
         /// <summary>
         /// Gets or sets created by.

@@ -10,33 +10,38 @@ namespace ProcessingTools.Models.Contracts.Documents.Journals
     public interface IJournalBaseModel
     {
         /// <summary>
-        /// Gets or sets the journal's abbreviated name.
+        /// Gets the journal's name.
         /// </summary>
-        string AbbreviatedName { get; set; }
+        string Name { get; }
 
         /// <summary>
-        /// Gets or sets the journal's name.
+        /// Gets the journal's abbreviated name.
         /// </summary>
-        string Name { get; set; }
+        string AbbreviatedName { get; }
 
         /// <summary>
-        /// Gets or sets the journal's ID.
+        /// Gets the journal's ID.
         /// </summary>
-        string JournalId { get; set; }
+        string JournalId { get; }
 
         /// <summary>
-        /// Gets or sets the journal's print ISSN.
+        /// Gets the journal's print ISSN.
         /// </summary>
-        string PrintIssn { get; set; }
+        string PrintIssn { get; }
 
         /// <summary>
-        /// Gets or sets the journal's electronic ISSN.
+        /// Gets the journal's electronic ISSN.
         /// </summary>
-        string ElectronicIssn { get; set; }
+        string ElectronicIssn { get; }
 
         /// <summary>
-        /// Gets or sets the ID of the publisher of the journal.
+        /// Gets the ID of the publisher of the journal.
         /// </summary>
-        string PublisherId { get; set; }
+        string PublisherId { get; }
+
+        /// <summary>
+        /// Gets the ID of the journal style.
+        /// </summary>
+        string JournalStyleId { get; }
     }
 }

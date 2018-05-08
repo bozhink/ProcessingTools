@@ -20,10 +20,12 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// </summary>
         /// <param name="userContext">The user context.</param>
         /// <param name="publishers">Publishers for select.</param>
-        public JournalCreateViewModel(UserContext userContext, IEnumerable<JournalPublisherViewModel> publishers)
+        /// <param name="journalStyles">Journal styles for select.</param>
+        public JournalCreateViewModel(UserContext userContext, IEnumerable<JournalPublisherViewModel> publishers, IEnumerable<JournalStyleViewModel> journalStyles)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
             this.Publishers = publishers ?? throw new ArgumentNullException(nameof(publishers));
+            this.JournalStyles = journalStyles ?? throw new ArgumentNullException(nameof(journalStyles));
         }
 
         /// <summary>
@@ -87,8 +89,22 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// Gets or sets the ID of the publisher of the journal.
         /// </summary>
         [Required]
+        [StringLength(ValidationConstants.MaximalLengthOfId, MinimumLength = ValidationConstants.MinimalLengthOfId)]
         [Display(Name = "Publisher")]
         public string PublisherId { get; set; }
+
+        /// <summary>
+        /// Gets the journal styles.
+        /// </summary>
+        public IEnumerable<JournalStyleViewModel> JournalStyles { get; }
+
+        /// <summary>
+        /// Gets or sets the ID of the journal style.
+        /// </summary>
+        [Required(AllowEmptyStrings = false)]
+        [StringLength(ValidationConstants.MaximalLengthOfId, MinimumLength = ValidationConstants.MinimalLengthOfId)]
+        [Display(Name = "Journal style")]
+        public string JournalStyleId { get; set; }
 
         /// <inheritdoc/>
         public string ReturnUrl { get; set; }

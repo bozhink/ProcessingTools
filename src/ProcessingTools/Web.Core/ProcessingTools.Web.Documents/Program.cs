@@ -26,11 +26,11 @@ namespace ProcessingTools.Web.Documents
             try
             {
                 logger.Debug("init main");
-                BuildWebHost(args).Run(); 
+                BuildWebHost(args).Run();
             }
             catch (Exception ex)
             {
-                //NLog: catch setup errors
+                // NLog: catch setup errors
                 logger.Fatal(ex, "Stopped program because of exception");
             }
             finally
@@ -48,7 +48,7 @@ namespace ProcessingTools.Web.Documents
                     logging.ClearProviders();
                     logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
                 })
-                .UseNLog()  // NLog: setup NLog for Dependency injection
+                .UseNLog() // NLog: setup NLog for Dependency injection
                 .Build();
     }
 }

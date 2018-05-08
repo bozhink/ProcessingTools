@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using System;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
     using ProcessingTools.Models.Contracts;
 
@@ -17,19 +17,30 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     [CollectionName("publishers")]
     public class Publisher : IPublisherDataModel, IPublisherDetailsDataModel, ICreated, IModified
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Publisher"/> class.
+        /// </summary>
+        public Publisher()
+        {
+            this.ObjectId = Guid.NewGuid();
+        }
+
         /// <inheritdoc/>
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
         /// <inheritdoc/>
+        [BsonRequired]
+        [BsonRepresentation(BsonType.String)]
         public Guid ObjectId { get; set; }
 
         /// <inheritdoc/>
-        public string AbbreviatedName { get; set; }
+        [BsonRequired]
+        public string Name { get; set; }
 
         /// <inheritdoc/>
-        public string Name { get; set; }
+        public string AbbreviatedName { get; set; }
 
         /// <inheritdoc/>
         public string Address { get; set; }
@@ -45,5 +56,9 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
 
         /// <inheritdoc/>
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        public long NumberOfJournals { get; set; }
     }
 }

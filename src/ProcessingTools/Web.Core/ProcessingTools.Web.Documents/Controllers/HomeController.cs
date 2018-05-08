@@ -82,5 +82,15 @@ namespace ProcessingTools.Web.Documents.Controllers
         {
             return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
+        }
     }
 }

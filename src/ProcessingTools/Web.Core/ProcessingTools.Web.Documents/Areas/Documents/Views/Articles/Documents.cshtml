@@ -1,0 +1,196 @@
+﻿@model ProcessingTools.Web.Models.Documents.Articles.ArticleDocumentsViewModel
+@{
+    ViewData[ContextKeys.Title] = "Article Documents";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+
+    string returnUrl = ViewContext.HttpContext.Request.GetDisplayUrl();
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <fieldset>
+            <legend>Common data</legend>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Title)</dt>
+                <dd>@Html.DisplayFor(m => m.Title)</dd>
+
+                @if (!string.IsNullOrWhiteSpace(Model.SubTitle))
+                {
+                <dt>@Html.DisplayNameFor(m => m.SubTitle)</dt>
+                <dd>@Html.DisplayFor(m => m.SubTitle)</dd>
+                }
+
+                <dt>@Html.DisplayNameFor(m => m.Doi)</dt>
+                <dd>@Html.DisplayFor(m => m.Doi)</dd>
+
+                @if (!string.IsNullOrWhiteSpace(Model.Journal?.Name))
+                {
+                <dt>@Html.DisplayNameFor(m => m.Journal.Name)</dt>
+                <dd>@Html.DisplayFor(m => m.Journal.Name)</dd>
+                }
+
+                <dt>@Html.DisplayNameFor(m => m.PublishedOn)</dt>
+                <dd>@Html.DisplayFor(m => m.PublishedOn)</dd>
+
+                <dt>@Html.DisplayNameFor(m => m.AcceptedOn)</dt>
+                <dd>@Html.DisplayFor(m => m.AcceptedOn)</dd>
+
+                <dt>@Html.DisplayNameFor(m => m.ReceivedOn)</dt>
+                <dd>@Html.DisplayFor(m => m.ReceivedOn)</dd>
+
+                @if (!string.IsNullOrWhiteSpace(Model.VolumeSeries))
+                {
+                <dt>@Html.DisplayNameFor(m => m.VolumeSeries)</dt>
+                <dd>@Html.DisplayFor(m => m.VolumeSeries)</dd>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.Volume))
+                {
+                <dt>@Html.DisplayNameFor(m => m.Volume)</dt>
+                <dd>@Html.DisplayFor(m => m.Volume)</dd>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.Issue))
+                {
+                <dt>@Html.DisplayNameFor(m => m.Issue)</dt>
+                <dd>@Html.DisplayFor(m => m.Issue)</dd>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.IssuePart))
+                {
+                <dt>@Html.DisplayNameFor(m => m.IssuePart)</dt>
+                <dd>@Html.DisplayFor(m => m.IssuePart)</dd>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.ELocationId))
+                {
+                <dt>@Html.DisplayNameFor(m => m.ELocationId)</dt>
+                <dd>@Html.DisplayFor(m => m.ELocationId)</dd>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.FirstPage))
+                {
+                <dt>@Html.DisplayNameFor(m => m.FirstPage)</dt>
+                <dd>@Html.DisplayFor(m => m.FirstPage)</dd>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.LastPage))
+                {
+                <dt>@Html.DisplayNameFor(m => m.LastPage)</dt>
+                <dd>@Html.DisplayFor(m => m.LastPage)</dd>
+                }
+
+                @if (Model.NumberOfPages > 0)
+                {
+                <dt>@Html.DisplayNameFor(m => m.NumberOfPages)</dt>
+                <dd>@Html.DisplayFor(m => m.NumberOfPages)</dd>
+                }
+
+                <dt>@Html.DisplayNameFor(m => m.IsFinalized)</dt>
+                <dd>@Html.DisplayFor(m => m.IsFinalized)</dd>
+
+                <dt>@Html.DisplayNameFor(m => m.IsDeployed)</dt>
+                <dd>@Html.DisplayFor(m => m.IsDeployed)</dd>
+
+                <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+                <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+                <dt>@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+                <dd>@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+                <dt>@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+                <dd>@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+                <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+                <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
+            </dl>
+        </fieldset>
+
+        <fieldset>
+            <legend>Documents</legend>
+            <p>
+                <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.UploadActionName)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Upload New Document</a>
+            </p>
+            @if (Model.Documents != null && Model.Documents.Any())
+            {
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>@Html.DisplayNameFor(m => m.Documents.First().FileName)</th>
+                            <th>@Html.DisplayNameFor(m => m.Documents.First().Description)</th>
+                            <th>@Html.DisplayNameFor(m => m.Documents.First().IsFinal)</th>
+                            <th>@Html.DisplayNameFor(m => m.Documents.First().CreatedOn)</th>
+                            <th>@Html.DisplayNameFor(m => m.Documents.First().ModifiedOn)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var document in Model.Documents)
+                        {
+                            <tr>
+                                <td>@(++i)</td>
+                                <td>@Html.DisplayFor(m => document.FileName)</td>
+                                <td>@Html.DisplayFor(m => document.Description)</td>
+                                <td>@Html.DisplayFor(m => document.IsFinal)</td>
+                                <td>@Html.DisplayFor(m => document.CreatedOn)</td>
+                                <td>@Html.DisplayFor(m => document.ModifiedOn)</td>
+                                <td>
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.EditActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Edit</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DeleteActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Delete</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DetailsActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Details</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.DownloadActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Download</a> |
+                                    
+                                    @if (!Model.IsFinalized)
+                                    { 
+                                        <a asp-controller="@(DocumentsController.ControllerName)" asp-action="@(DocumentsController.SetAsFinalActionName)" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Set as final</a> @:|
+                                    }
+                                    
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Html" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Preview HTML</a> |
+                                    <a asp-controller="@(DocumentsController.ControllerName)" asp-action="Xml" asp-route-id="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Edit XML</a> |
+                                    <a asp-controller="Tagger" asp-action="ParseReferences" asp-route-documentId="@(document.DocumentId)" asp-route-articleId="@(Model.Id)" asp-route-returnUrl="@(returnUrl)">Parse references</a>
+</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info">No documents.</div>
+            }
+        </fieldset>
+
+        <div>
+            <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a> |
+            <a asp-action="@(ArticlesController.FinalizeActionName)" asp-route-id="@(Model.Id)" asp-route-returnUrl="@(Context.Request.GetDisplayUrl())" class="btn btn-default">Finalize</a>
+        </div>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(ArticlesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>

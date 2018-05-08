@@ -63,13 +63,13 @@ namespace ProcessingTools.Services.Contracts
         /// </summary>
         /// <param name="id">ID of the item.</param>
         /// <returns>Corresponding item of the provided ID.</returns>
-        Task<T> GetById(object id);
+        Task<T> GetByIdAsync(object id);
 
         /// <summary>
         /// Gets item details by its ID.
         /// </summary>
         /// <param name="id">ID of the item.</param>
         /// <returns>Corresponding item details of the provided ID.</returns>
-        Task<TD> GetDetailsById(object id);
+        Task<TD> GetDetailsByIdAsync(object id);
     }
 }

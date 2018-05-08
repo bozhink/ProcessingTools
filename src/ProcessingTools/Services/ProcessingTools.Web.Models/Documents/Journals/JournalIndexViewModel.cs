@@ -88,5 +88,12 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// </summary>
         [ReadOnly(true)]
         public JournalPublisherViewModel Publisher { get; set; } = new JournalPublisherViewModel();
+
+        /// <summary>
+        /// Gets or sets the number of articles.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Number of articles")]
+        public long NumberOfArticles { get; set; }
     }
 }

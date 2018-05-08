@@ -48,16 +48,16 @@ namespace ProcessingTools.Data.Documents.Mongo
             this.CollectionSettings = new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard,
+                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W)
             };
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDataModel> GetById(object id) => await this.GetDetailsById(id).ConfigureAwait(false);
+        public async Task<IPublisherDataModel> GetByIdAsync(object id) => await this.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
         /// <inheritdoc/>
-        public async Task<IPublisherDetailsDataModel> GetDetailsById(object id)
+        public async Task<IPublisherDetailsDataModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -68,6 +68,13 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var publisher = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
+            if (publisher != null)
+            {
+                var numberOfJournals = await this.GetCollection<Journal>().CountAsync(j => j.PublisherId == publisher.ObjectId.ToString()).ConfigureAwait(false);
+
+                publisher.NumberOfJournals = numberOfJournals;
+            }
+
             return publisher;
         }
 
@@ -77,6 +84,12 @@ namespace ProcessingTools.Data.Documents.Mongo
             if (id == null)
             {
                 return null;
+            }
+
+            long numberOfJournals = await this.GetCollection<Journal>().CountAsync(j => j.PublisherId == id.ToString()).ConfigureAwait(false);
+            if (numberOfJournals > 0L)
+            {
+                throw new DeleteUnsuccessfulException("Publisher will not be deleted because it contains related journals.");
             }
 
             Guid objectId = id.ToNewGuid();
@@ -107,7 +120,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             publisher.CreatedOn = publisher.ModifiedOn;
             publisher.Id = null;
 
-            await this.Collection.InsertOneAsync(publisher).ConfigureAwait(false);
+            await this.Collection.InsertOneAsync(publisher, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
 
             return publisher;
         }
@@ -115,7 +128,8 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IPublisherDataModel[]> SelectAsync(int skip, int take)
         {
-            var publishers = await this.Collection.Find(p => true)
+            var publishers = await this.Collection.Find(Builders<Publisher>.Filter.Empty)
+                .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -132,7 +146,8 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IPublisherDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
         {
-            var publishers = await this.Collection.Find(p => true)
+            var publishers = await this.Collection.Find(Builders<Publisher>.Filter.Empty)
+                .SortBy(p => p.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -143,13 +158,26 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return new IPublisherDetailsDataModel[] { };
             }
 
+            var journals = this.GetCollection<Journal>().AsQueryable()
+                .GroupBy(j => j.PublisherId)
+                .Select(g => new { PublisherId = g.Key, Count = g.LongCount() })
+                .ToArray();
+
+            if (journals != null && journals.Any())
+            {
+                publishers.ForEach(p =>
+                {
+                    p.NumberOfJournals = journals.FirstOrDefault(j => j.PublisherId == p.ObjectId.ToString())?.Count ?? 0L;
+                });
+            }
+
             return publishers.ToArray<IPublisherDetailsDataModel>();
         }
 
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(p => true);
+            return this.Collection.CountAsync(Builders<Publisher>.Filter.Empty);
         }
 
         /// <inheritdoc/>

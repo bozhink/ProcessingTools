@@ -1,0 +1,83 @@
+﻿@model ProcessingTools.Web.Models.Layout.Styles.Floats.FloatObjectTagStyleDeleteViewModel
+@{
+    ViewData[ContextKeys.Title] = "Delete Float Object Tag Style";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(m => m.Name)</dt>
+            <dd>@Html.DisplayFor(m => m.Name)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd>@Html.DisplayFor(m => m.Description)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.FloatReferenceType)</dt>
+            <dd>@Html.DisplayFor(m => m.FloatReferenceType)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.FloatTypeNameInLabel)</dt>
+            <dd>@Html.DisplayFor(m => m.FloatTypeNameInLabel)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.MatchCitationPattern)</dt>
+            <dd>@Html.DisplayFor(m => m.MatchCitationPattern)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.InternalReferenceType)</dt>
+            <dd>@Html.DisplayFor(m => m.InternalReferenceType)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ResultantReferenceType)</dt>
+            <dd>@Html.DisplayFor(m => m.ResultantReferenceType)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.FloatObjectXPath)</dt>
+            <dd>@Html.DisplayFor(m => m.FloatObjectXPath)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.TargetXPath)</dt>
+            <dd>@Html.DisplayFor(m => m.TargetXPath)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
+        </dl>
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <a asp-action="@(FloatObjectTagStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(FloatObjectTagStylesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>

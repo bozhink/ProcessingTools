@@ -23,11 +23,14 @@
     </header>
     @if (Model == null)
     {
-        <div class="alert alert-info">No items found.</div>
+        <div class="alert alert-info">No articles found.</div>
     }
     else
     {
-        <p><a asp-action="@(ArticlesController.CreateActionName)">Create New Article</a></p>
+        <p>
+            <a asp-action="@(ArticlesController.CreateActionName)">Create New Article</a> |
+            <a asp-action="@(ArticlesController.CreateFromFileActionName)">Create New Article From File</a>
+        </p>
         @if (Model.Items != null && Model.Items.Any())
         {
             <table class="table">
@@ -37,8 +40,10 @@
                         <th>@Html.DisplayNameFor(m => m.Items.First().Title)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Volume)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Issue)</th>
-                        <th>@Html.DisplayNameFor(m => m.Items.First().FirstPage)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().Doi)</th>
                         <th>@Html.DisplayNameFor(m => m.Items.First().Journal.Name)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().CreatedOn)</th>
+                        <th>@Html.DisplayNameFor(m => m.Items.First().ModifiedOn)</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -51,18 +56,34 @@
                             <td>@Html.DisplayFor(m => item.Title)</td>
                             <td>@Html.DisplayFor(m => item.Volume)</td>
                             <td>@Html.DisplayFor(m => item.Issue)</td>
-                            <td>@Html.DisplayFor(m => item.FirstPage)</td>
+                            <td>@Html.DisplayFor(m => item.Doi)</td>
                             <td>@Html.DisplayFor(m => item.Journal.Name)</td>
+                            <td>@Html.DisplayFor(m => item.CreatedOn)</td>
+                            <td>@Html.DisplayFor(m => item.ModifiedOn)</td>
                             <td>
                                 <a asp-action="@(ArticlesController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |
                                 <a asp-action="@(ArticlesController.DeleteActionName)" asp-route-id="@(item.Id)">Delete</a> |
-                                <a asp-action="@(ArticlesController.DetailsActionName)" asp-route-id="@(item.Id)">Details</a>
+                                <a asp-action="@(ArticlesController.DetailsActionName)" asp-route-id="@(item.Id)">Details</a> |
+                                <a asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(item.Id)">Documents</a> |
+                                <a asp-action="@(ArticlesController.FinalizeActionName)" asp-route-id="@(item.Id)">Finalize</a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
+
+            <footer>
+                @await Html.PartialAsync(ViewNames.NavigationFootPartialViewName)
+            </footer>
         }
     }
 </section>
 
+@section Scripts {
+    <environment include="Development">
+        <script src="~/build/dist/js/apps/files-index.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/build/dist/js/apps/files-index.min.js" asp-append-version="true"></script>
+    </environment>
+}

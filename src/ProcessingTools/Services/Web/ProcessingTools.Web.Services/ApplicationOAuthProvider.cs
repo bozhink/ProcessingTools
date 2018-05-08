@@ -59,7 +59,8 @@ namespace ProcessingTools.Web.Services
 
             ClaimsIdentity oauthIdentity = await user.GenerateUserIdentityAsync(
                 userManager,
-                OAuthDefaults.AuthenticationType);
+                OAuthDefaults.AuthenticationType)
+                .ConfigureAwait(false);
 
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(
                 userManager,

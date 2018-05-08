@@ -10,7 +10,7 @@ namespace ProcessingTools.Processors.Documents
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
-    using ProcessingTools.Services.Contracts.Files;
+    using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
     /// Document reader.
@@ -18,17 +18,17 @@ namespace ProcessingTools.Processors.Documents
     public class DocumentReader : IDocumentReader
     {
         private readonly IDocumentFactory documentFactory;
-        private readonly IXmlFileContentDataService filesManager;
+        private readonly IXmlReadService reader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentReader"/> class.
         /// </summary>
         /// <param name="documentFactory">Document factory.</param>
-        /// <param name="filesManager">File manager.</param>
-        public DocumentReader(IDocumentFactory documentFactory, IXmlFileContentDataService filesManager)
+        /// <param name="reader">XML reader.</param>
+        public DocumentReader(IDocumentFactory documentFactory, IXmlReadService reader)
         {
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
-            this.filesManager = filesManager ?? throw new ArgumentNullException(nameof(filesManager));
+            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
         }
 
         /// <inheritdoc/>
@@ -39,7 +39,7 @@ namespace ProcessingTools.Processors.Documents
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            var xmldocument = await this.filesManager.ReadXmlFile(fileName).ConfigureAwait(false);
+            var xmldocument = await this.reader.ReadFileToXmlDocumentAsync(fileName).ConfigureAwait(false);
 
             var document = this.documentFactory.Create(xmldocument.OuterXml);
             switch (document.XmlDocument.DocumentElement.Name)

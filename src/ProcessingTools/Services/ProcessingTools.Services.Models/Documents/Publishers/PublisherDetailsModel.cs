@@ -35,5 +35,8 @@ namespace ProcessingTools.Services.Models.Documents.Publishers
 
         /// <inheritdoc/>
         public DateTime ModifiedOn { get; set; }
+
+        /// <inheritdoc/>
+        public long NumberOfJournals { get; set; }
     }
 }

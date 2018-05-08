@@ -48,7 +48,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             this.CollectionSettings = new MongoCollectionSettings
             {
                 AssignIdOnInsert = true,
-                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard,
+                GuidRepresentation = MongoDB.Bson.GuidRepresentation.Unspecified,
                 WriteConcern = new WriteConcern(WriteConcern.WMajority.W)
             };
         }
@@ -61,9 +61,15 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
+            long numberOfArticles = await this.GetCollection<Article>().CountAsync(a => a.JournalId == id.ToString()).ConfigureAwait(false);
+            if (numberOfArticles > 0L)
+            {
+                throw new DeleteUnsuccessfulException("Journal will not be deleted because it contains related articles.");
+            }
+
             Guid objectId = id.ToNewGuid();
 
-            var result = await this.Collection.DeleteOneAsync(p => p.ObjectId == objectId).ConfigureAwait(false);
+            var result = await this.Collection.DeleteOneAsync(j => j.ObjectId == objectId).ConfigureAwait(false);
 
             if (!result.IsAcknowledged)
             {
@@ -74,7 +80,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDataModel> GetById(object id)
+        public async Task<IJournalDataModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
@@ -83,13 +89,13 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var journal = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var journal = await this.Collection.Find(j => j.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
             return journal;
         }
 
         /// <inheritdoc/>
-        public async Task<IJournalDetailsDataModel> GetDetailsById(object id)
+        public async Task<IJournalDetailsDataModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
@@ -98,13 +104,15 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             Guid objectId = id.ToNewGuid();
 
-            var journal = await this.Collection.Find(p => p.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
+            var journal = await this.Collection.Find(j => j.ObjectId == objectId).FirstOrDefaultAsync().ConfigureAwait(false);
 
             if (journal != null)
             {
                 var publisherId = journal.PublisherId.ToNewGuid();
 
                 journal.Publisher = await this.GetJournalPublishersQuery(p => p.ObjectId == publisherId).FirstOrDefaultAsync().ConfigureAwait(false);
+
+                journal.NumberOfArticles = await this.GetCollection<Article>().CountAsync(a => a.JournalId == journal.ObjectId.ToString()).ConfigureAwait(false);
             }
 
             return journal;
@@ -134,7 +142,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             journal.CreatedOn = journal.ModifiedOn;
             journal.Id = null;
 
-            await this.Collection.InsertOneAsync(journal).ConfigureAwait(false);
+            await this.Collection.InsertOneAsync(journal, new InsertOneOptions { BypassDocumentValidation = false }).ConfigureAwait(false);
 
             return journal;
         }
@@ -142,7 +150,8 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IJournalDataModel[]> SelectAsync(int skip, int take)
         {
-            var journals = await this.Collection.Find(p => true)
+            var journals = await this.Collection.Find(j => true)
+                .SortBy(j => j.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -159,7 +168,8 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public async Task<IJournalDetailsDataModel[]> SelectDetailsAsync(int skip, int take)
         {
-            var journals = await this.Collection.Find(p => true)
+            var journals = await this.Collection.Find(j => true)
+                .SortBy(j => j.Name)
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync()
@@ -176,7 +186,20 @@ namespace ProcessingTools.Data.Documents.Mongo
             {
                 journals.ForEach(j =>
                 {
-                    j.Publisher = publishers.FirstOrDefault(p => p.ObjectId == j.PublisherId.ToNewGuid());
+                    j.Publisher = publishers.FirstOrDefault(p => p.Id == j.PublisherId);
+                });
+            }
+
+            var articles = this.GetCollection<Article>().AsQueryable()
+                .GroupBy(a => a.JournalId)
+                .Select(g => new { JournalId = g.Key, Count = g.LongCount() })
+                .ToArray();
+
+            if (articles != null && articles.Any())
+            {
+                journals.ForEach(j =>
+                {
+                    j.NumberOfArticles = articles.FirstOrDefault(a => a.JournalId == j.ObjectId.ToString())?.Count ?? 0L;
                 });
             }
 
@@ -186,7 +209,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(p => true);
+            return this.Collection.CountAsync(j => true);
         }
 
         /// <inheritdoc/>
@@ -205,14 +228,15 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             var filterDefinition = new FilterDefinitionBuilder<Journal>().Eq(m => m.ObjectId, objectId);
             var updateDefinition = new UpdateDefinitionBuilder<Journal>()
-                .Set(p => p.Name, model.Name)
-                .Set(p => p.AbbreviatedName, model.AbbreviatedName)
-                .Set(p => p.JournalId, model.JournalId)
-                .Set(p => p.PrintIssn, model.PrintIssn)
-                .Set(p => p.ElectronicIssn, model.ElectronicIssn)
-                .Set(p => p.PublisherId, model.PublisherId)
-                .Set(p => p.ModifiedBy, journal.ModifiedBy)
-                .Set(p => p.ModifiedOn, journal.ModifiedOn);
+                .Set(j => j.Name, model.Name)
+                .Set(j => j.AbbreviatedName, model.AbbreviatedName)
+                .Set(j => j.JournalId, model.JournalId)
+                .Set(j => j.PrintIssn, model.PrintIssn)
+                .Set(j => j.ElectronicIssn, model.ElectronicIssn)
+                .Set(j => j.PublisherId, model.PublisherId)
+                .Set(j => j.JournalStyleId, model.JournalStyleId)
+                .Set(j => j.ModifiedBy, journal.ModifiedBy)
+                .Set(j => j.ModifiedOn, journal.ModifiedOn);
             var updateOptions = new UpdateOptions
             {
                 BypassDocumentValidation = false,
@@ -234,8 +258,7 @@ namespace ProcessingTools.Data.Documents.Mongo
             return this.GetCollection<Publisher>().Find(filter)
                 .Project(p => new JournalPublisher
                 {
-                    Id = p.Id,
-                    ObjectId = p.ObjectId,
+                    Id = p.ObjectId.ToString(),
                     Name = p.Name,
                     AbbreviatedName = p.AbbreviatedName
                 });

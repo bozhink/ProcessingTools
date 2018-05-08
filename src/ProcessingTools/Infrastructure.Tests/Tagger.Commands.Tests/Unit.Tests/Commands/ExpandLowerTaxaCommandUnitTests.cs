@@ -5,11 +5,11 @@
     using System.Xml;
     using Moq;
     using NUnit.Framework;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Tagger.Commands.Commands;
     using ProcessingTools.Tests.Library;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Unit", TestOf = typeof(ExpandLowerTaxaCommand))]

@@ -1,10 +1,18 @@
-﻿namespace ProcessingTools.Web.Documents.Data.Migrations
+﻿// <copyright file="00000000000000_CreateIdentitySchema.cs" company="ProcessingTools">
+// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Documents.Data.Migrations
 {
     using System;
     using Microsoft.EntityFrameworkCore.Migrations;
 
+    /// <summary>
+    /// Create Identity Schema
+    /// </summary>
     public partial class CreateIdentitySchema : Migration
     {
+        /// <inheritdoc/>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -188,6 +196,7 @@
                 unique: true);
         }
 
+        /// <inheritdoc/>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

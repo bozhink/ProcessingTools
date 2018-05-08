@@ -53,6 +53,13 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string SubTitle { get; set; }
 
         /// <summary>
+        /// Gets or sets the Digital Object Identifier (DOI) of the article.
+        /// </summary>
+        [StringLength(ValidationConstants.MaximalLengthOfArticleDoi, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = ValidationConstants.MinimalLengthOfArticleDoi)]
+        [Display(Name = "DOI")]
+        public string Doi { get; set; }
+
+        /// <summary>
         /// Gets or sets the journal ID.
         /// </summary>
         [Required(AllowEmptyStrings = false)]

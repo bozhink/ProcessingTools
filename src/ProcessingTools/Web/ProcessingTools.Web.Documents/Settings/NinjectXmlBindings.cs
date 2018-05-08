@@ -13,6 +13,7 @@
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Contracts.Special;
+    using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Transformers;
 
     public class NinjectXmlBindings : NinjectModule
@@ -149,7 +150,7 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Services.Contracts.Documents.IDocumentsFormatTransformerFactory>()
+            this.Bind<ProcessingTools.Services.Contracts.Documents.IDocumentsFormatTransformersFactory>()
                 .ToFactory()
                 .InSingletonScope();
 

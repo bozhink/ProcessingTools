@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using ProcessingTools.Contracts.Commands;
+    using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Enumerations;
 
     public interface IProgramSettings : ICommandSettings

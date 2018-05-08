@@ -33,5 +33,11 @@ namespace ProcessingTools.Processors.Models.Floats
 
         /// <inheritdoc/>
         public string Description => "Figure";
+
+        /// <inheritdoc/>
+        public string Name => this.Description;
+
+        /// <inheritdoc/>
+        public string TargetXPath => "./*";
     }
 }

@@ -27,6 +27,12 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<ArticleCreateViewModel> GetArticleCreateViewModelAsync();
 
         /// <summary>
+        /// Get <see cref="ArticleCreateFromFileViewModel"/>.
+        /// </summary>
+        /// <returns>Task of <see cref="ArticleCreateFromFileViewModel"/>.</returns>
+        Task<ArticleCreateFromFileViewModel> GetArticleCreateFromFileViewModelAsync();
+
+        /// <summary>
         /// Get <see cref="ArticleEditViewModel"/>.
         /// </summary>
         /// <param name="id">Object ID of the article.</param>
@@ -48,11 +54,26 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         Task<ArticleDetailsViewModel> GetArticleDetailsViewModelAsync(string id);
 
         /// <summary>
+        /// Get <see cref="ArticleDocumentsViewModel"/>.
+        /// </summary>
+        /// <param name="id">Object ID of the article.</param>
+        /// <returns>Task of <see cref="ArticleDocumentsViewModel"/>.</returns>
+        Task<ArticleDocumentsViewModel> GetArticleDocumentsViewModelAsync(string id);
+
+        /// <summary>
         /// Create article.
         /// </summary>
         /// <param name="model">Model for the operation.</param>
         /// <returns>Success status.</returns>
         Task<bool> CreateArticleAsync(ArticleCreateRequestModel model);
+
+        /// <summary>
+        /// Create article.
+        /// </summary>
+        /// <param name="formFile">Form file.</param>
+        /// <param name="journalId">Journal ID.</param>
+        /// <returns>Success status.</returns>
+        Task<bool> CreateFromFileArticleAsync(Microsoft.AspNetCore.Http.IFormFile formFile, string journalId);
 
         /// <summary>
         /// Update article.
@@ -67,6 +88,13 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// <param name="id">ID of the article to be deleted.</param>
         /// <returns>Success status.</returns>
         Task<bool> DeleteArticleAsync(string id);
+
+        /// <summary>
+        /// Finalizes article specified by object ID.
+        /// </summary>
+        /// <param name="id">Object ID of the article.</param>
+        /// <returns>Success status.</returns>
+        Task<bool> FinalizeArticleAsync(string id);
 
         /// <summary>
         /// Map <see cref="ArticleCreateRequestModel"/> to <see cref="ArticleCreateViewModel"/>.

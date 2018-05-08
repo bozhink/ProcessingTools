@@ -19,10 +19,12 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// </summary>
         /// <param name="userContext">The user context.</param>
         /// <param name="publisher">Selected publisher.</param>
-        public JournalDeleteViewModel(UserContext userContext, JournalPublisherViewModel publisher)
+        /// <param name="journalStyle">Selected journal style.</param>
+        public JournalDeleteViewModel(UserContext userContext, JournalPublisherViewModel publisher, JournalStyleViewModel journalStyle)
         {
             this.UserContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
             this.Publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
+            this.JournalStyle = journalStyle ?? throw new ArgumentNullException(nameof(journalStyle));
         }
 
         /// <summary>
@@ -83,6 +85,19 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         /// </summary>
         [Display(Name = "Publisher")]
         public JournalPublisherViewModel Publisher { get; }
+
+        /// <summary>
+        /// Gets the journal style.
+        /// </summary>
+        [Display(Name = "Journal style")]
+        public JournalStyleViewModel JournalStyle { get; }
+
+        /// <summary>
+        /// Gets or sets the number of articles.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Number of articles")]
+        public long NumberOfArticles { get; set; }
 
         /// <summary>
         /// Gets or sets created by.

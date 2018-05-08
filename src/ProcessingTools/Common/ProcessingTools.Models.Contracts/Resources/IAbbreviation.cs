@@ -9,7 +9,7 @@ namespace ProcessingTools.Models.Contracts.Resources
     /// <summary>
     /// Abbreviation entity.
     /// </summary>
-    public interface IAbbreviation : INameableGuidIdentifiable, IDefinable, IContentTypeable, IEntityWithSources
+    public interface IAbbreviation : INameableGuidIdentifiable, IDefinable, IContentTyped, IEntityWithSources
     {
     }
 }

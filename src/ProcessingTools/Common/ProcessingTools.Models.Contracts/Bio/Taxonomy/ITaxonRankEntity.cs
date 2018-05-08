@@ -11,7 +11,7 @@ namespace ProcessingTools.Models.Contracts.Bio.Taxonomy
     /// <summary>
     /// Taxon rank entity.
     /// </summary>
-    public interface ITaxonRankEntity : INameable
+    public interface ITaxonRankEntity : INamed
     {
         /// <summary>
         /// Gets a value indicating whether entity is included in the white list.

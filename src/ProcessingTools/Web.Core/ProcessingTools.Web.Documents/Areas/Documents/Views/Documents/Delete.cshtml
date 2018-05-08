@@ -1,0 +1,72 @@
+﻿@model ProcessingTools.Web.Models.Documents.Documents.DocumentDeleteViewModel
+@{
+    ViewData[ContextKeys.Title] = "Delete Document";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+        <h3>@(Model?.Article?.ArticleTitle) (@(Model?.Article?.JournalName))</h3>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd>@Html.DisplayFor(m => m.Description)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.File.FileName)</dt>
+            <dd>@Html.DisplayFor(m => m.File.FileName)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.File.ContentType)</dt>
+            <dd>@Html.DisplayFor(m => m.File.ContentType)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.File.ContentLength)</dt>
+            <dd>@Html.DisplayFor(m => m.File.ContentLength)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.IsFinal)</dt>
+            <dd>@Html.DisplayFor(m => m.IsFinal)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.CreatedOn)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedBy)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
+        </dl>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ArticleId" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+        <footer class="page-navigation">
+            <p><a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)">Back to Documents</a></p>
+        </footer>
+    }
+</section>

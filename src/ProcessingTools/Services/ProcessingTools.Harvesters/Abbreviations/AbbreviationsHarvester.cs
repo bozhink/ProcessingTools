@@ -41,7 +41,7 @@ namespace ProcessingTools.Harvesters.Abbreviations
         private async Task<IAbbreviationModel[]> RunAsync(XmlDocument document)
         {
             var transformer = this.transformerFactory.GetAbbreviationsTransformer();
-            var model = await this.serializer.Deserialize<AbbreviationsXmlModel>(transformer, document.DocumentElement).ConfigureAwait(false);
+            var model = await this.serializer.DeserializeAsync<AbbreviationsXmlModel>(transformer, document.DocumentElement).ConfigureAwait(false);
 
             return model?.Abbreviations ?? new IAbbreviationModel[] { };
         }

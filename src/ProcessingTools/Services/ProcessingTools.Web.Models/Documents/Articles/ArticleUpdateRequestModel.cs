@@ -27,6 +27,10 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string SubTitle { get; set; }
 
         /// <inheritdoc/>
+        [StringLength(ValidationConstants.MaximalLengthOfArticleDoi, MinimumLength = ValidationConstants.MinimalLengthOfArticleDoi)]
+        public string Doi { get; set; }
+
+        /// <inheritdoc/>
         [Required(AllowEmptyStrings = false)]
         public string JournalId { get; set; }
 

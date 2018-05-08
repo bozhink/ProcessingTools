@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Models.Contracts.Documents.Journals
     /// <summary>
     /// Journal publisher data model
     /// </summary>
-    public interface IJournalPublisherDataModel : IDataModel, ProcessingTools.Models.Contracts.Documents.Journals.IJournalPublisherModel
+    public interface IJournalPublisherDataModel : ProcessingTools.Models.Contracts.Documents.Journals.IJournalPublisherModel
     {
     }
 }

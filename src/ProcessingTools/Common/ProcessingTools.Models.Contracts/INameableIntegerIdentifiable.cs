@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts
     /// <summary>
     /// Model with name and integer ID.
     /// </summary>
-    public interface INameableIntegerIdentifiable : INameable, IIntegerIdentifiable
+    public interface INameableIntegerIdentifiable : INamed, IIntegerIdentifiable
     {
     }
 }

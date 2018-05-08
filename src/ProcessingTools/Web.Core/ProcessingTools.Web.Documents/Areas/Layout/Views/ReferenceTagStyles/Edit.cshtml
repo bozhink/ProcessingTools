@@ -1,0 +1,130 @@
+﻿@model ProcessingTools.Web.Models.Layout.Styles.References.ReferenceTagStyleEditViewModel
+@{
+    ViewData[ContextKeys.Title] = "Edit Reference Tag Style";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/node_modules/codemirror/lib/codemirror.css" />
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Name" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Description" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Script" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <textarea type="text" asp-for="Script" class="form-control"></textarea>
+                    <span asp-validation-for="Script" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ReferenceXPath" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ReferenceXPath" class="form-control" />
+                    <span asp-validation-for="ReferenceXPath" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="TargetXPath" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="TargetXPath" class="form-control" />
+                    <span asp-validation-for="TargetXPath" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="CreatedBy" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="CreatedOn" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+
+                    <input type="datetime" asp-for="CreatedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ModifiedBy" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ModifiedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ModifiedOn" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="ModifiedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-default" value="Save" />
+                    <input type="reset" class="btn btn-default" value="Reset" />
+                    <a asp-action="@(ReferenceTagStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(ReferenceTagStylesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
+    @await Html.PartialAsync("_EditScripts")
+}

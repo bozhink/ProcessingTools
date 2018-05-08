@@ -9,5 +9,9 @@ namespace ProcessingTools.Models.Contracts.Documents.Publishers
     /// </summary>
     public interface IPublisherDetailsModel : IPublisherModel
     {
+        /// <summary>
+        /// Gets the number of journals.
+        /// </summary>
+        long NumberOfJournals { get; }
     }
 }

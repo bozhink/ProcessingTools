@@ -7,35 +7,59 @@ namespace ProcessingTools.Web.Services.Documents
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using AutoMapper;
     using ProcessingTools.Contracts;
     using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.Models.Contracts.Documents.Journals;
+    using ProcessingTools.Services.Models.Contracts.Layout.Styles;
     using ProcessingTools.Web.Models.Documents.Journals;
     using ProcessingTools.Web.Models.Shared;
-    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
     /// Journals service.
     /// </summary>
-    public class JournalsService : IJournalsService
+    public class JournalsService : ProcessingTools.Web.Services.Contracts.Documents.IJournalsService
     {
-        private readonly IJournalsDataService journalsDataService;
+        private readonly IJournalsService journalsService;
         private readonly Func<Task<UserContext>> userContextFactory;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalsService"/> class.
         /// </summary>
-        /// <param name="journalsDataService">Instance of <see cref="IJournalsDataService"/>.</param>
+        /// <param name="journalsService">Instance of <see cref="IJournalsDataService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public JournalsService(IJournalsDataService journalsDataService, IUserContext userContext)
+        public JournalsService(IJournalsService journalsService, IUserContext userContext)
         {
             if (userContext == null)
             {
                 throw new ArgumentNullException(nameof(userContext));
             }
 
-            this.journalsDataService = journalsDataService ?? throw new ArgumentNullException(nameof(journalsDataService));
+            this.journalsService = journalsService ?? throw new ArgumentNullException(nameof(journalsService));
 
             this.userContextFactory = () => Task.FromResult(new UserContext(userId: userContext.UserId, userName: userContext.UserName, userEmail: userContext.UserEmail));
+
+            var mapperConfiguration = new MapperConfiguration(c =>
+            {
+                c.CreateMap<JournalCreateRequestModel, JournalCreateViewModel>();
+                c.CreateMap<JournalUpdateRequestModel, JournalEditViewModel>();
+                c.CreateMap<JournalDeleteRequestModel, JournalDeleteViewModel>();
+
+                c.CreateMap<IJournalPublisherModel, JournalPublisherViewModel>();
+                c.CreateMap<IIdentifiedStyleModel, JournalStyleViewModel>();
+
+                c.CreateMap<IJournalModel, JournalDeleteViewModel>();
+                c.CreateMap<IJournalModel, JournalDetailsViewModel>();
+                c.CreateMap<IJournalModel, JournalEditViewModel>();
+                c.CreateMap<IJournalModel, JournalIndexViewModel>();
+                c.CreateMap<IJournalDetailsModel, JournalDeleteViewModel>();
+                c.CreateMap<IJournalDetailsModel, JournalDetailsViewModel>();
+                c.CreateMap<IJournalDetailsModel, JournalEditViewModel>();
+                c.CreateMap<IJournalDetailsModel, JournalIndexViewModel>()
+                    .ForMember(vm => vm.Publisher, o => o.MapFrom(m => m.Publisher));
+            });
+            this.mapper = mapperConfiguration.CreateMapper();
         }
 
         /// <inheritdoc/>
@@ -46,7 +70,7 @@ namespace ProcessingTools.Web.Services.Documents
                 return false;
             }
 
-            var result = await this.journalsDataService.InsertAsync(model).ConfigureAwait(false);
+            var result = await this.journalsService.InsertAsync(model).ConfigureAwait(false);
             return result != null;
         }
 
@@ -58,7 +82,7 @@ namespace ProcessingTools.Web.Services.Documents
                 return false;
             }
 
-            var result = await this.journalsDataService.DeleteAsync(id).ConfigureAwait(false);
+            var result = await this.journalsService.DeleteAsync(id).ConfigureAwait(false);
             return result != null;
         }
 
@@ -70,7 +94,7 @@ namespace ProcessingTools.Web.Services.Documents
                 return false;
             }
 
-            var result = await this.journalsDataService.UpdateAsync(model).ConfigureAwait(false);
+            var result = await this.journalsService.UpdateAsync(model).ConfigureAwait(false);
             return result != null;
         }
 
@@ -80,8 +104,9 @@ namespace ProcessingTools.Web.Services.Documents
             var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
 
             var publishers = await this.GetJournalPublishersViewModelsAsync().ConfigureAwait(false);
+            var journalStyles = await this.GetJournalStyleViewModelsAsync().ConfigureAwait(false);
 
-            return new JournalCreateViewModel(userContext, publishers);
+            return new JournalCreateViewModel(userContext, publishers, journalStyles);
         }
 
         /// <inheritdoc/>
@@ -91,28 +116,20 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(id).ConfigureAwait(false);
+                var journal = await this.journalsService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publisher = this.MapJournalPublisherToViewModel(journal);
+                    var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
+                    var journalStyle = await this.GetJournalStyleViewModelAsync(journal.JournalStyleId).ConfigureAwait(false);
 
-                    return new JournalDeleteViewModel(userContext, publisher)
-                    {
-                        Id = journal.Id,
-                        Name = journal.Name,
-                        AbbreviatedName = journal.AbbreviatedName,
-                        JournalId = journal.JournalId,
-                        PrintIssn = journal.PrintIssn,
-                        ElectronicIssn = journal.ElectronicIssn,
-                        CreatedBy = journal.CreatedBy,
-                        CreatedOn = journal.CreatedOn,
-                        ModifiedBy = journal.ModifiedBy,
-                        ModifiedOn = journal.ModifiedOn
-                    };
+                    var viewModel = new JournalDeleteViewModel(userContext, publisher, journalStyle);
+                    this.mapper.Map(journal, viewModel);
+
+                    return viewModel;
                 }
             }
 
-            return new JournalDeleteViewModel(userContext, new JournalPublisherViewModel());
+            return new JournalDeleteViewModel(userContext, new JournalPublisherViewModel(), new JournalStyleViewModel());
         }
 
         /// <inheritdoc/>
@@ -122,28 +139,20 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(id).ConfigureAwait(false);
+                var journal = await this.journalsService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publisher = this.MapJournalPublisherToViewModel(journal);
+                    var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
+                    var journalStyle = await this.GetJournalStyleViewModelAsync(journal.JournalStyleId).ConfigureAwait(false);
 
-                    return new JournalDetailsViewModel(userContext, publisher)
-                    {
-                        Id = journal.Id,
-                        Name = journal.Name,
-                        AbbreviatedName = journal.AbbreviatedName,
-                        JournalId = journal.JournalId,
-                        PrintIssn = journal.PrintIssn,
-                        ElectronicIssn = journal.ElectronicIssn,
-                        CreatedBy = journal.CreatedBy,
-                        CreatedOn = journal.CreatedOn,
-                        ModifiedBy = journal.ModifiedBy,
-                        ModifiedOn = journal.ModifiedOn
-                    };
+                    var viewModel = new JournalDetailsViewModel(userContext, publisher, journalStyle);
+                    this.mapper.Map(journal, viewModel);
+
+                    return viewModel;
                 }
             }
 
-            return new JournalDetailsViewModel(userContext, new JournalPublisherViewModel());
+            return new JournalDetailsViewModel(userContext, new JournalPublisherViewModel(), new JournalStyleViewModel());
         }
 
         /// <inheritdoc/>
@@ -153,29 +162,20 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(id).ConfigureAwait(false);
+                var journal = await this.journalsService.GetDetailsByIdAsync(id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publishers = await this.GetJournalPublishersViewModelsAsync(journal).ConfigureAwait(false);
+                    var publishers = await this.GetJournalPublishersViewModelsAsync().ConfigureAwait(false);
+                    var journalStyles = await this.GetJournalStyleViewModelsAsync().ConfigureAwait(false);
 
-                    return new JournalEditViewModel(userContext, publishers)
-                    {
-                        Id = journal.Id,
-                        Name = journal.Name,
-                        AbbreviatedName = journal.AbbreviatedName,
-                        JournalId = journal.JournalId,
-                        PrintIssn = journal.PrintIssn,
-                        ElectronicIssn = journal.ElectronicIssn,
-                        PublisherId = journal.PublisherId,
-                        CreatedBy = journal.CreatedBy,
-                        CreatedOn = journal.CreatedOn,
-                        ModifiedBy = journal.ModifiedBy,
-                        ModifiedOn = journal.ModifiedOn
-                    };
+                    var viewModel = new JournalEditViewModel(userContext, publishers, journalStyles);
+                    this.mapper.Map(journal, viewModel);
+
+                    return viewModel;
                 }
             }
 
-            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { });
+            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { }, new JournalStyleViewModel[] { });
         }
 
         /// <inheritdoc/>
@@ -183,31 +183,12 @@ namespace ProcessingTools.Web.Services.Documents
         {
             var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
 
-            var data = await this.journalsDataService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
-            var count = await this.journalsDataService.SelectCountAsync().ConfigureAwait(false);
+            var data = await this.journalsService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
+            var count = await this.journalsService.SelectCountAsync().ConfigureAwait(false);
 
-            var journals = data?.Select(j => new JournalIndexViewModel
-            {
-                Id = j.Id,
-                Name = j.Name,
-                AbbreviatedName = j.AbbreviatedName,
-                JournalId = j.JournalId,
-                PrintIssn = j.PrintIssn,
-                ElectronicIssn = j.ElectronicIssn,
-                CreatedBy = j.CreatedBy,
-                CreatedOn = j.CreatedOn,
-                ModifiedBy = j.ModifiedBy,
-                ModifiedOn = j.ModifiedOn,
-                Publisher = new JournalPublisherViewModel
-                {
-                    Id = j.Publisher.Id,
-                    Name = j.Publisher.Name,
-                    AbbreviatedName = j.Publisher.AbbreviatedName,
-                    Selected = true
-                }
-            });
+            var journals = data?.Select(this.mapper.Map<IJournalDetailsModel, JournalIndexViewModel>).ToArray() ?? new JournalIndexViewModel[] { };
 
-            return new JournalsIndexViewModel(userContext, count, take, skip / take, journals ?? new JournalIndexViewModel[] { });
+            return new JournalsIndexViewModel(userContext, count, take, skip / take, journals);
         }
 
         /// <inheritdoc/>
@@ -216,24 +197,17 @@ namespace ProcessingTools.Web.Services.Documents
             var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
 
             var publishers = await this.GetJournalPublishersViewModelsAsync().ConfigureAwait(false);
+            var journalStyles = await this.GetJournalStyleViewModelsAsync().ConfigureAwait(false);
 
             if (model != null)
             {
-                return new JournalCreateViewModel(userContext, publishers)
-                {
-                    Name = model.Name,
-                    AbbreviatedName = model.AbbreviatedName,
-                    JournalId = model.JournalId,
-                    PrintIssn = model.PrintIssn,
-                    ElectronicIssn = model.ElectronicIssn,
-                    ReturnUrl = model.ReturnUrl
-                };
+                var viewModel = new JournalCreateViewModel(userContext, publishers, journalStyles);
+                this.mapper.Map(model, viewModel);
+
+                return viewModel;
             }
 
-            return new JournalCreateViewModel(userContext, publishers)
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
+            return new JournalCreateViewModel(userContext, publishers, journalStyles);
         }
 
         /// <inheritdoc/>
@@ -243,32 +217,25 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var journal = await this.journalsService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publishers = await this.GetJournalPublishersViewModelsAsync(journal).ConfigureAwait(false);
+                    var publishers = await this.GetJournalPublishersViewModelsAsync().ConfigureAwait(false);
+                    var journalStyles = await this.GetJournalStyleViewModelsAsync().ConfigureAwait(false);
 
-                    return new JournalEditViewModel(userContext, publishers)
-                    {
-                        Id = model.Id,
-                        Name = model.Name,
-                        AbbreviatedName = model.AbbreviatedName,
-                        JournalId = model.JournalId,
-                        PrintIssn = model.PrintIssn,
-                        ElectronicIssn = model.ElectronicIssn,
-                        CreatedBy = journal.CreatedBy,
-                        CreatedOn = journal.CreatedOn,
-                        ModifiedBy = journal.ModifiedBy,
-                        ModifiedOn = journal.ModifiedOn,
-                        ReturnUrl = model.ReturnUrl
-                    };
+                    var viewModel = new JournalEditViewModel(userContext, publishers, journalStyles);
+                    this.mapper.Map(model, viewModel);
+
+                    viewModel.CreatedBy = journal.CreatedBy;
+                    viewModel.CreatedOn = journal.CreatedOn;
+                    viewModel.ModifiedBy = journal.ModifiedBy;
+                    viewModel.ModifiedOn = journal.ModifiedOn;
+
+                    return viewModel;
                 }
             }
 
-            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { })
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
+            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { }, new JournalStyleViewModel[] { });
         }
 
         /// <inheritdoc/>
@@ -278,69 +245,44 @@ namespace ProcessingTools.Web.Services.Documents
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
-                var journal = await this.journalsDataService.GetDetailsById(model.Id).ConfigureAwait(false);
+                var journal = await this.journalsService.GetDetailsByIdAsync(model.Id).ConfigureAwait(false);
                 if (journal != null)
                 {
-                    var publisher = this.MapJournalPublisherToViewModel(journal);
+                    var publisher = this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>(journal.Publisher);
+                    var journalStyle = await this.GetJournalStyleViewModelAsync(journal.JournalStyleId).ConfigureAwait(false);
 
-                    return new JournalDeleteViewModel(userContext, publisher)
-                    {
-                        Id = journal.Id,
-                        Name = journal.Name,
-                        AbbreviatedName = journal.AbbreviatedName,
-                        JournalId = journal.JournalId,
-                        PrintIssn = journal.PrintIssn,
-                        ElectronicIssn = journal.ElectronicIssn,
-                        CreatedBy = journal.CreatedBy,
-                        CreatedOn = journal.CreatedOn,
-                        ModifiedBy = journal.ModifiedBy,
-                        ModifiedOn = journal.ModifiedOn,
-                        ReturnUrl = model.ReturnUrl
-                    };
+                    var viewModel = new JournalDeleteViewModel(userContext, publisher, journalStyle);
+                    this.mapper.Map(journal, viewModel);
+
+                    return viewModel;
                 }
             }
 
-            return new JournalDeleteViewModel(userContext, new JournalPublisherViewModel())
-            {
-                ReturnUrl = model?.ReturnUrl
-            };
-        }
-
-        private JournalPublisherViewModel MapJournalPublisherToViewModel(ProcessingTools.Services.Models.Contracts.Documents.Journals.IJournalDetailsModel journal)
-        {
-            return new JournalPublisherViewModel
-            {
-                Id = journal.Publisher.Id,
-                Name = journal.Publisher.Name,
-                AbbreviatedName = journal.Publisher.AbbreviatedName,
-                Selected = true
-            };
+            return new JournalDeleteViewModel(userContext, new JournalPublisherViewModel(), new JournalStyleViewModel());
         }
 
         private async Task<JournalPublisherViewModel[]> GetJournalPublishersViewModelsAsync()
         {
-            var journalPublishers = await this.journalsDataService.GetJournalPublishersAsync().ConfigureAwait(false);
-
-            return journalPublishers?.Select(p => new JournalPublisherViewModel
-            {
-                Id = p.Id,
-                Name = p.Name,
-                AbbreviatedName = p.AbbreviatedName,
-                Selected = false
-            }).ToArray() ?? new JournalPublisherViewModel[] { };
+            var publishers = await this.journalsService.GetJournalPublishersForSelectAsync().ConfigureAwait(false);
+            return publishers?.Select(this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>).ToArray() ?? new JournalPublisherViewModel[] { };
         }
 
-        private async Task<JournalPublisherViewModel[]> GetJournalPublishersViewModelsAsync(ProcessingTools.Services.Models.Contracts.Documents.Journals.IJournalDetailsModel journal)
+        private async Task<JournalStyleViewModel> GetJournalStyleViewModelAsync(string id)
         {
-            var journalPublishers = await this.journalsDataService.GetJournalPublishersAsync().ConfigureAwait(false);
-
-            return journalPublishers?.Select(p => new JournalPublisherViewModel
+            var style = await this.journalsService.GetJournalStyleByIdAsync(id).ConfigureAwait(false);
+            if (style == null)
             {
-                Id = p.Id,
-                Name = p.Name,
-                AbbreviatedName = p.AbbreviatedName,
-                Selected = journal.Publisher != null && p.Name == journal.Publisher.Name && p.AbbreviatedName == journal.Publisher.AbbreviatedName
-            }).ToArray() ?? new JournalPublisherViewModel[] { };
+                return new JournalStyleViewModel();
+            }
+
+            return this.mapper.Map<IIdentifiedStyleModel, JournalStyleViewModel>(style);
+        }
+
+        private async Task<JournalStyleViewModel[]> GetJournalStyleViewModelsAsync()
+        {
+            var styles = await this.journalsService.GetJournalStylesForSelectAsync().ConfigureAwait(false);
+
+            return styles?.Select(this.mapper.Map<IIdentifiedStyleModel, JournalStyleViewModel>).ToArray() ?? new JournalStyleViewModel[] { };
         }
     }
 }
