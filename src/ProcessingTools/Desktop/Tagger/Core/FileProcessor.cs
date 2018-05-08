@@ -6,13 +6,14 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
+    using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Tagger.Contracts;
 
     public partial class FileProcessor : IFileProcessor
@@ -48,7 +49,7 @@
 
             try
             {
-                this.settings.OutputFileName = await this.GetOutputFileName().ConfigureAwait(false);
+                this.settings.OutputFileName = this.GetOutputFileName();
 
                 IDocument document;
 
@@ -81,7 +82,7 @@
             }
         }
 
-        private async Task<string> GetOutputFileName()
+        private string GetOutputFileName()
         {
             int numberOfFileNames = this.settings.FileNames.Count;
 
@@ -98,21 +99,19 @@
 
             if (this.settings.MergeInputFiles)
             {
-                outputFileName = await this.fileNameGenerator.GenerateAsync(
+                outputFileName = this.fileNameGenerator.Generate(
                     Path.Combine(Path.GetDirectoryName(inputFileName), FileConstants.DefaultBundleXmlFileName),
                     FileConstants.MaximalLengthOfGeneratedNewFileName,
-                    true)
-                    .ConfigureAwait(false);
+                    true);
             }
             else
             {
                 outputFileName = numberOfFileNames > 1 ?
                     this.settings.FileNames[1] :
-                    await this.fileNameGenerator.GenerateAsync(
+                    this.fileNameGenerator.Generate(
                         inputFileName,
                         FileConstants.MaximalLengthOfGeneratedNewFileName,
-                        true)
-                        .ConfigureAwait(false);
+                        true);
 
                 inputFileNameMessage = inputFileName;
             }

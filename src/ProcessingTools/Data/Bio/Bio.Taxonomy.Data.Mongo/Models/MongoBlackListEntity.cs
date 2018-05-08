@@ -2,7 +2,7 @@
 {
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     [CollectionName("blackList")]

@@ -7,6 +7,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants;
@@ -37,6 +38,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         public const string CreateActionName = nameof(Create);
 
         /// <summary>
+        /// Create from file action name.
+        /// </summary>
+        public const string CreateFromFileActionName = nameof(CreateFromFile);
+
+        /// <summary>
         /// Edit action name.
         /// </summary>
         public const string EditActionName = nameof(Edit);
@@ -47,9 +53,19 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         public const string DeleteActionName = nameof(Delete);
 
         /// <summary>
+        /// Finalize action name.
+        /// </summary>
+        public const string FinalizeActionName = nameof(Finalize);
+
+        /// <summary>
         /// Details action name.
         /// </summary>
         public const string DetailsActionName = nameof(Details);
+
+        /// <summary>
+        /// Documents action name.
+        /// </summary>
+        public const string DocumentsActionName = nameof(Documents);
 
         private readonly IArticlesService service;
         private readonly ILogger logger;
@@ -151,21 +167,30 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.CreateArticleAsync(model).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.CreateArticleAsync(model).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Article is not created.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Article is not created.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                viewModel.ReturnUrl = model.ReturnUrl;
 
                 return this.View(viewModel);
             }
@@ -176,6 +201,78 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
 
             return this.View();
+        }
+
+        /// <summary>
+        /// GET /Documents/Articles/CreateFromFile
+        /// </summary>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpGet]
+        [ActionName(CreateFromFileActionName)]
+        public async Task<IActionResult> CreateFromFile(string returnUrl = null)
+        {
+            const string LogMessage = "GET CreateFromFile Article";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var viewModel = await this.service.GetArticleCreateFromFileViewModelAsync().ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
+                return this.View(model: viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.View();
+        }
+
+        /// <summary>
+        /// POST /Documents/Articles/CreateFromFile
+        /// </summary>
+        /// <param name="file">File to upload.</param>
+        /// <param name="journalId">Journal ID of the article.</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName(CreateFromFileActionName)]
+        public async Task<IActionResult> CreateFromFile(IFormFile file, string journalId, string returnUrl = null)
+        {
+            const string LogMessage = "POST CreateFromFile Article";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var ok = await this.service.CreateFromFileArticleAsync(file, journalId).ConfigureAwait(false);
+                if (ok)
+                {
+                    if (!string.IsNullOrWhiteSpace(returnUrl))
+                    {
+                        return this.Redirect(returnUrl);
+                    }
+
+                    return this.RedirectToAction(IndexActionName);
+                }
+
+                this.ModelState.AddModelError(string.Empty, "Article is not uploaded.");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            var viewModel = await this.service.GetArticleCreateFromFileViewModelAsync().ConfigureAwait(false);
+            viewModel.ReturnUrl = returnUrl;
+
+            return this.View(model: viewModel);
         }
 
         /// <summary>
@@ -226,21 +323,30 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.UpdateArticleAsync(model).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.UpdateArticleAsync(model).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Article is not updated.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Article is not updated.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                viewModel.ReturnUrl = model.ReturnUrl;
 
                 return this.View(viewModel);
             }
@@ -301,21 +407,30 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var ok = await this.service.DeleteArticleAsync(model.Id).ConfigureAwait(false);
-                    if (ok)
+                    try
                     {
-                        if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                        var ok = await this.service.DeleteArticleAsync(model.Id).ConfigureAwait(false);
+                        if (ok)
                         {
-                            return this.Redirect(model.ReturnUrl);
+                            if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
+                            {
+                                return this.Redirect(model.ReturnUrl);
+                            }
+
+                            return this.RedirectToAction(IndexActionName);
                         }
 
-                        return this.RedirectToAction(IndexActionName);
+                        this.ModelState.AddModelError(string.Empty, "Article is not deleted.");
                     }
-
-                    this.ModelState.AddModelError(string.Empty, "Article is not deleted.");
+                    catch (Exception ex)
+                    {
+                        this.ModelState.AddModelError(string.Empty, ex.Message);
+                        this.logger.LogError(ex, LogMessage);
+                    }
                 }
 
                 var viewModel = await this.service.MapToViewModelAsync(model).ConfigureAwait(false);
+                viewModel.ReturnUrl = model.ReturnUrl;
 
                 return this.View(viewModel);
             }
@@ -326,6 +441,40 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
 
             return this.View();
+        }
+
+        /// <summary>
+        /// /Documents/Articles/Finalize/id
+        /// </summary>
+        /// <param name="id">ID of the article</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(FinalizeActionName)]
+        public async Task<IActionResult> Finalize(string id, string returnUrl = null)
+        {
+            const string LogMessage = "Finalize Article";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var ok = await this.service.FinalizeArticleAsync(id).ConfigureAwait(false);
+                if (ok)
+                {
+                    if (!string.IsNullOrWhiteSpace(returnUrl))
+                    {
+                        return this.Redirect(returnUrl);
+                    }
+
+                    return this.RedirectToAction(IndexActionName);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.RedirectToAction(IndexActionName);
         }
 
         /// <summary>
@@ -354,6 +503,45 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                 this.logger.LogError(ex, LogMessage);
             }
 
+            return this.View();
+        }
+
+        /// <summary>
+        /// GET /Documents/Articles/Documents/id
+        /// </summary>
+        /// <param name="id">ID of the article</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(DocumentsActionName)]
+        public async Task<IActionResult> Documents(string id, string returnUrl = null)
+        {
+            const string LogMessage = "Fetch Article Documents";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var viewModel = await this.service.GetArticleDocumentsViewModelAsync(id).ConfigureAwait(false);
+                viewModel.ReturnUrl = returnUrl;
+
+                return this.View(model: viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.View();
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
             return this.View();
         }
     }

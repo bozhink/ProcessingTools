@@ -13,7 +13,7 @@
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
-    using ProcessingTools.Services.Data.Services.Files;
+    using ProcessingTools.Services.IO;
 
     public class NinjectBindings : NinjectModule
     {
@@ -39,12 +39,12 @@
                 .To<ConsoleLogger>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
+                .To<ProcessingTools.Services.IO.XmlReadService>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileWriter>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlWriteService>()
+                .To<ProcessingTools.Services.IO.XmlWriteService>()
                 .WhenInjectedInto<XmlFileContentDataService>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();

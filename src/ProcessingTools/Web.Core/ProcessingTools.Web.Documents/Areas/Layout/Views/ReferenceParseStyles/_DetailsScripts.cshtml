@@ -1,0 +1,9 @@
+<script src="~/node_modules/codemirror/lib/codemirror.js"></script>
+<script src="~/node_modules/codemirror/mode/yaml/yaml.js"></script>
+<script>
+    CodeMirror.fromTextArea(document.getElementById("Script"), {
+        lineNumbers: true,
+        readOnly: true,
+        mode: "yaml"
+    })
+</script>

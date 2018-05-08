@@ -7,7 +7,6 @@ namespace ProcessingTools.Web.Documents
     using System;
     using System.IO;
     using Autofac;
-    using Autofac.Core;
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
@@ -18,11 +17,14 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
+    using Newtonsoft.Json.Serialization;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
+    using ProcessingTools.Web.Documents.Formatters;
     using ProcessingTools.Web.Documents.Models;
+    using ProcessingTools.Web.Documents.Settings;
     using ProcessingTools.Web.Models.Shared;
     using ProcessingTools.Web.Services;
     using ProcessingTools.Web.Services.Contracts;
@@ -92,7 +94,33 @@ namespace ProcessingTools.Web.Documents
                     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 });
 
-            services.AddMvc();
+            services.AddMvcCore()
+                .AddApiExplorer()
+                .AddAuthorization()
+                .AddFormatterMappings()
+                .AddJsonFormatters()
+                .AddXmlDataContractSerializerFormatters()
+                .AddXmlSerializerFormatters()
+                .AddViews()
+                .AddRazorViewEngine()
+                .AddCacheTagHelper()
+                .AddDataAnnotations()
+                .AddCors();
+
+            services.AddMvc(o => o.InputFormatters.Insert(0, new RawRequestBodyFormatter()))
+                .AddJsonOptions(o => o.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
+                .AddXmlDataContractSerializerFormatters()
+                .AddXmlSerializerFormatters();
+
+            services.AddCors();
+
+            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
+            // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ElevatedRights", policy =>
+                  policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
+            });
 
             services.Configure<RazorViewEngineOptions>(options =>
             {
@@ -109,71 +137,24 @@ namespace ProcessingTools.Web.Documents
             builder.Register(c => c.Resolve<ApplicationContextFactory>().ApplicationContext).As<IApplicationContext>().InstancePerDependency();
             builder.Register(c => c.Resolve<IApplicationContext>().UserContext).As<IUserContext>().InstancePerDependency();
 
-            builder
-                .RegisterType<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .As<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .Named<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)
-                .WithParameter(InjectionConstants.ConnectionStringParameterName, this.configuration.GetConnectionString(ConfigurationConstants.DocumentsDatabaseMongoDBConnectionStringName))
-                .WithParameter(InjectionConstants.DatabaseNameParameterName, this.configuration[ConfigurationConstants.DocumentsMongoDBDatabaseName])
-                .InstancePerLifetimeScope();
-
-            builder
-                .RegisterType<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .As<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .Named<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBHistoryDatabaseBindingName)
-                .WithParameter(InjectionConstants.ConnectionStringParameterName, this.configuration.GetConnectionString(ConfigurationConstants.HistoryDatabaseMongoDBConnectionStringName))
-                .WithParameter(InjectionConstants.DatabaseNameParameterName, this.configuration[ConfigurationConstants.HistoryMongoDBDatabaseName])
-                .InstancePerLifetimeScope();
+            builder.RegisterType<ProcessingTools.Harvesters.Meta.JatsArticleMetaHarvester>().As<ProcessingTools.Harvesters.Contracts.Meta.IJatsArticleMetaHarvester>().InstancePerDependency();
+            builder.RegisterType<ProcessingTools.Services.IO.XmlReadService>().As<ProcessingTools.Services.Contracts.IO.IXmlReadService>().InstancePerDependency();
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
 
-            builder
-                .RegisterType<ProcessingTools.Services.History.ObjectHistoryDataService>()
-                .As<ProcessingTools.Services.Contracts.History.IObjectHistoryDataService>()
-                .InstancePerDependency();
-            builder
-                .RegisterType<ProcessingTools.Data.History.Mongo.MongoObjectHistoryDataAccessObject>()
-                .As<ProcessingTools.Data.Contracts.History.IObjectHistoryDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBHistoryDatabaseBindingName)))
-                .InstancePerDependency();
-
-            builder
-                .RegisterType<ProcessingTools.Web.Services.Documents.PublishersService>()
-                .As<ProcessingTools.Web.Services.Contracts.Documents.IPublishersService>()
-                .InstancePerDependency();
-            builder
-                .RegisterType<ProcessingTools.Web.Services.Documents.JournalsService>()
-                .As<ProcessingTools.Web.Services.Contracts.Documents.IJournalsService>()
-                .InstancePerDependency();
-
-            builder
-                .RegisterType<ProcessingTools.Services.Documents.PublishersDataService>()
-                .As<ProcessingTools.Services.Contracts.Documents.IPublishersDataService>()
-                .InstancePerDependency();
-            builder
-                .RegisterType<ProcessingTools.Services.Documents.JournalsDataService>()
-                .As<ProcessingTools.Services.Contracts.Documents.IJournalsDataService>()
-                .InstancePerDependency();
-
-            builder
-                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoPublishersDataAccessObject>()
-                .As<ProcessingTools.Data.Contracts.Documents.IPublishersDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
-            builder
-                .RegisterType<ProcessingTools.Data.Documents.Mongo.MongoJournalsDataAccessObject>()
-                .As<ProcessingTools.Data.Contracts.Documents.IJournalsDataAccessObject>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        (p, c) => p.ParameterType == typeof(ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider),
-                        (p, c) => c.ResolveNamed<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>(InjectionConstants.MongoDBDocumentsDatabaseBindingName)))
-                .InstancePerDependency();
+            builder.RegisterModule(new XmlTransformersAutofacModule
+            {
+                Configuration = this.configuration
+            });
+            builder.RegisterModule<TransformersFactoriesAutofacModule>();
+            builder.RegisterModule<ProcessorsAutofacModule>();
+            builder.RegisterModule<InterceptorsAutofacModule>();
+            builder.RegisterModule(new DataAutofacModule
+            {
+                Configuration = this.configuration
+            });
+            builder.RegisterModule<ServicesWebAutofacModule>();
+            builder.RegisterModule<ServicesAutofacModule>();
 
             var container = builder.Build();
 
@@ -187,6 +168,7 @@ namespace ProcessingTools.Web.Documents
         /// <param name="env">Hosting environment.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+#pragma warning disable S1075 // URIs should not be hardcoded
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -201,6 +183,8 @@ namespace ProcessingTools.Web.Documents
             app.UseStaticFiles();
             if (env.IsDevelopment() || env.IsStaging())
             {
+                this.ServeStaticFiles(app, env, "node_modules", "/node_modules");
+                this.ServeStaticFiles(app, env, "node_modules", "/lib");
                 this.ServeStaticFiles(app, env, "node_modules/jquery/dist", "/lib/jquery/dist");
                 this.ServeStaticFiles(app, env, "node_modules/jquery-validation/dist", "/lib/jquery-validation/dist");
                 this.ServeStaticFiles(app, env, "node_modules/jquery-validation-unobtrusive", "/lib/jquery-validation-unobtrusive");
@@ -221,6 +205,7 @@ namespace ProcessingTools.Web.Documents
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+#pragma warning restore S1075 // URIs should not be hardcoded
         }
 
         private void ServeStaticFiles(IApplicationBuilder app, IHostingEnvironment env, string rootPath, string requestPath)

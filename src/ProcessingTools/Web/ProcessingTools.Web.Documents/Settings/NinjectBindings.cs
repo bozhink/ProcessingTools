@@ -6,9 +6,9 @@
     using Ninject.Extensions.Factory;
     using Ninject.Modules;
     using Ninject.Web.Common;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Imaging.Processors;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Processors.Contracts.Imaging;
@@ -32,26 +32,12 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(b =>
-            {
-                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
             this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
 
             this.Bind(b =>
             {
                 b.From(typeof(ProcessingTools.Net.NetConnector).Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.FileSystem.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -66,13 +52,6 @@
             this.Bind<ICoordinateFactory>()
                 .ToFactory()
                 .InSingletonScope();
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Xml.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
 
             this.Bind(b =>
             {

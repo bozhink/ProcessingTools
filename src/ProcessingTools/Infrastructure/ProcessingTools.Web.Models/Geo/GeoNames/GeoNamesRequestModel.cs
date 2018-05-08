@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Models.Geo.GeoNames
         {
             if (string.IsNullOrWhiteSpace(this.Names))
             {
-                return new IGeoName[] { };
+                return Array.Empty<IGeoName>();
             }
 
             return this.Names.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)

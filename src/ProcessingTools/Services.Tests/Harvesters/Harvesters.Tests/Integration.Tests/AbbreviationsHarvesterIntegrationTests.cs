@@ -12,10 +12,9 @@
     using ProcessingTools.Harvesters.Abbreviations;
     using ProcessingTools.Harvesters.Contracts.Abbreviations;
     using ProcessingTools.Harvesters.Models.Contracts.Abbreviations;
+    using ProcessingTools.Services.Xml;
     using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Serialization;
     using ProcessingTools.Xml.Transformers;
-    using ProcessingTools.Xml.Wrappers;
 
     [TestClass]
     public class AbbreviationsHarvesterIntegrationTests

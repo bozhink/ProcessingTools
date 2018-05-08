@@ -6,14 +6,12 @@
     using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Interceptors;
     using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
-    //using ProcessingTools.Processors.Geo.Coordinates;
-    using ProcessingTools.Services.Data.Services.Files;
-    //using ProcessingTools.Tagger.Interceptors;
+    using ProcessingTools.Services.IO;
 
     /// <summary>
     /// NinjectModule to bind other infrastructure objects.
@@ -29,26 +27,12 @@
                  .BindDefaultInterface();
             });
 
-            this.Bind(b =>
-            {
-                b.From(typeof(ProcessingTools.Tagger.Commands.Commands.TestCommand).Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
             this.Bind(typeof(ProcessingTools.Data.Contracts.IGenericRepositoryProvider<>))
                 .To(typeof(ProcessingTools.Common.Data.Repositories.RepositoryProviderAsync<>));
 
             this.Bind(b =>
             {
                 b.From(typeof(ProcessingTools.Net.NetConnector).Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Xml.Assembly.Assembly.GetType().Assembly)
                     .SelectAllClasses()
                     .BindDefaultInterface();
             });
@@ -69,13 +53,6 @@
             //    .WhenInjectedInto<CoordinateParser>()
             //    .Intercept()
             //    .With<LogParsedCoordinatesInterceptor>();
-
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Processors.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
 
             // Custom hard-coded bindings
             this.Bind<ProcessingTools.Contracts.ILogger>()
@@ -107,22 +84,22 @@
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.BrokenXmlFileReader>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
+                .To<ProcessingTools.Services.IO.BrokenXmlReadService>()
                 .WhenInjectedInto<XmlFileContentDataService>();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileReader>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileReader>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
+                .To<ProcessingTools.Services.IO.XmlReadService>()
                 .Intercept()
                 .With<FileNotFoundInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.IO.IXmlFileWriter>()
-                .To<ProcessingTools.FileSystem.IO.XmlFileWriter>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IXmlWriteService>()
+                .To<ProcessingTools.Services.IO.XmlWriteService>()
                 .Intercept()
                 .With<FileExistsRaiseWarningInterceptor>();
 
-            this.Bind<ProcessingTools.Contracts.IFileNameGenerator>()
-                .To<ProcessingTools.FileSystem.Generators.SequentialFileNameGenerator>()
+            this.Bind<ProcessingTools.Services.Contracts.IO.IFileNameGenerator>()
+                .To<ProcessingTools.Services.IO.SequentialFileNameGenerator>()
                 .InSingletonScope();
 
             this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()

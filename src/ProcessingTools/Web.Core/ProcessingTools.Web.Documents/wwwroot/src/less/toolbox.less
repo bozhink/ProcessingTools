@@ -1,0 +1,82 @@
+﻿@import "inc/colors.less";
+
+@left: 30px;
+@right: 10px;
+@top: 100px;
+
+@control-min-heigth: 60px;
+@control-max-heigth: 600px;
+@control-heigth: @control-max-heigth / 2;
+
+@control-min-width: 250px;
+@control-max-width: 500px;
+@control-width: @control-min-width;
+
+.selected-text-to-scroll {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: @selected-text-to-scroll-color;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.toolbox-titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .titlebar-text {
+        pointer-events: none;
+    }
+
+    .titlebar-buttons {
+    }
+}
+
+#coordinates-map-toolbox {
+    position: fixed;
+    top: @top + 10px;
+    left: @left + 10px;
+    right: @right;
+    height: @control-max-heigth;
+    min-height: @control-min-heigth;
+    max-height: @control-max-heigth;
+    width: @control-max-width;
+    min-width: @control-min-width;
+    max-width: @control-max-width;
+}
+
+.panel.draggable {
+    position: fixed;
+    top: @top;
+    left: @left;
+    right: @right;
+    height: @control-heigth;
+    min-height: @control-min-heigth;
+    max-height: @control-max-heigth;
+    width: @control-width;
+    min-width: @control-min-width;
+    max-width: @control-max-width;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .panel-body {
+        height: 100%;
+        overflow-y: hidden;
+
+        .toolbox-content {
+            height: 100%;
+            width: 100%;
+
+            &.list-group {
+                overflow-y: auto;
+
+                a:nth-child(2n) {
+                    background-color: azure;
+                }
+            }
+        }
+    }
+}

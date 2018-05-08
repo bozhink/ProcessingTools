@@ -3,17 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProcessingTools.Web.Documents</title>
+    <title>@ViewData[ContextKeys.Title] - ProcessingTools.Web.Documents</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="~/build/dist/css/site.css" />
+        @RenderSection("Styles", required: false)
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        @RenderSection("Styles", required: false)
     </environment>
 </head>
 <body>
@@ -26,13 +29,42 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ProcessingTools.Web.Documents</a>
+                <a asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.IndexActionName)" class="navbar-brand">PTWD</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-action="@(ActionNames.Index)"><span class="fa fa-home"></span></a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Layout <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a asp-area="@(AreaNames.Layout)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.FloatObjectTagStylesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.FloatObjectTagStylesController.IndexActionName)" class="dropdown-item">Float Object Tag Styles</a></li>
+                            <li><a asp-area="@(AreaNames.Layout)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.FloatObjectParseStylesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.FloatObjectParseStylesController.IndexActionName)" class="dropdown-item">Float Object Parse Styles</a></li>
+                            <li><a asp-area="@(AreaNames.Layout)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.ReferenceTagStylesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.ReferenceTagStylesController.IndexActionName)" class="dropdown-item">Reference Tag Styles</a></li>
+                            <li><a asp-area="@(AreaNames.Layout)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.ReferenceParseStylesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.ReferenceParseStylesController.IndexActionName)" class="dropdown-item">Reference Parse Styles</a></li>
+                            <li><a asp-area="@(AreaNames.Layout)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.JournalStylesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Layout.Controllers.JournalStylesController.IndexActionName)" class="dropdown-item">Journal Styles</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Documents <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.IndexActionName)" class="dropdown-item">Publishers</a></li>
+                            <li><a asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.JournalsController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.JournalsController.IndexActionName)" class="dropdown-item">Journals</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.ArticlesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.ArticlesController.IndexActionName)" class="dropdown-item">Articles</a></li>
+                        </ul>
+                    </li>
+                    }
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-action="@(ActionNames.Help)" target="_blank">Help</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.ContactActionName)">Contact</a></li>
+                                <li><a asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.AboutActionName)">About</a></li>
+                            </ul>
+                        </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -42,7 +74,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - ProcessingTools.Web.Documents</p>
+            <p>&copy; @(DateTime.Now.Year) - ProcessingTools.Web.Documents</p>
         </footer>
     </div>
 

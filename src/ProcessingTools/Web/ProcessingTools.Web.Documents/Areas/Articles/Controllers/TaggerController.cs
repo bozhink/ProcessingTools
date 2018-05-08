@@ -8,12 +8,12 @@
     using System.Web.Mvc;
     using System.Xml;
     using Microsoft.AspNet.Identity;
+    using ProcessingTools.Commands.Models.Contracts;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Constants.Web;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
@@ -33,12 +33,12 @@
         private readonly IDocumentFactory documentFactory;
         private readonly IDocumentPostReadNormalizer documentReadNormalizer;
         private readonly IDocumentPreWriteNormalizer documentWriteNormalizer;
-        private readonly IDocumentsDataService service;
+        private readonly IXDocumentsDataService service;
         private readonly IDictionary<Type, ICommandInfo> commandsInformation;
 
         public TaggerController(
             ICommandInfoProvider commandInfoProvider,
-            IDocumentsDataService service,
+            IXDocumentsDataService service,
             IDocumentFactory documentFactory,
             IDocumentPostReadNormalizer documentReadNormalizer,
             IDocumentPreWriteNormalizer documentWriteNormalizer,

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>ProcessingTools</Company>
+    <Version>0.0.9</Version>
+    <Copyright>Copyright © 2017 ProcessingTools</Copyright>
+    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Model contracts for commands.</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Commands.Models.Contracts.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.7.1.4347" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+  </ItemGroup>
+</Project>

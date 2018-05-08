@@ -7,7 +7,7 @@ namespace ProcessingTools.Models.Contracts
     /// <summary>
     /// Model with name and string ID.
     /// </summary>
-    public interface INameableStringIdentifiable : INameable, IStringIdentifiable
+    public interface INameableStringIdentifiable : INamed, IStringIdentifiable
     {
     }
 }

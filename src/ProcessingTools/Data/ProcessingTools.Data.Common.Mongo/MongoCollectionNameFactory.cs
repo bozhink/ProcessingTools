@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Common.Mongo
     using System;
     using System.Collections.Concurrent;
     using System.Linq;
-    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Attributes;
 
     /// <summary>
     /// MongoDB collection name factory.

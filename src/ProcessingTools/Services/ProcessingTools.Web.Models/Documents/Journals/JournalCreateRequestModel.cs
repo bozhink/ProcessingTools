@@ -45,6 +45,11 @@ namespace ProcessingTools.Web.Models.Documents.Journals
         public string PublisherId { get; set; }
 
         /// <inheritdoc/>
+        [Required(AllowEmptyStrings = false)]
+        [StringLength(ValidationConstants.MaximalLengthOfId, MinimumLength = ValidationConstants.MinimalLengthOfId)]
+        public string JournalStyleId { get; set; }
+
+        /// <inheritdoc/>
         public string ReturnUrl { get; set; }
     }
 }

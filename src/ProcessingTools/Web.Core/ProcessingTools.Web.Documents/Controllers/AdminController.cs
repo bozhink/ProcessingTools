@@ -17,7 +17,6 @@ namespace ProcessingTools.Web.Documents.Controllers
     /// <summary>
     /// Admin controller.
     /// </summary>
-    [Area(AreaNames.Default)]
     [Authorize(Roles = nameof(UserRole.Admin))]
     public class AdminController : Controller
     {
@@ -107,6 +106,16 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             return this.RedirectToActionPermanent(IndexActionName);
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
         }
     }
 }

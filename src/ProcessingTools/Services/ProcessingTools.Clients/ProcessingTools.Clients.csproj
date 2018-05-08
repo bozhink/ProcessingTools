@@ -29,9 +29,10 @@
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Constants\ProcessingTools.Constants.csproj" />
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Clients.ConnectedServices\ProcessingTools.Clients.ConnectedServices.csproj" />
   </ItemGroup>
 </Project>

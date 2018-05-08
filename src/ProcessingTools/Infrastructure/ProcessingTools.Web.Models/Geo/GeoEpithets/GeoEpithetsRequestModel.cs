@@ -26,7 +26,7 @@ namespace ProcessingTools.Web.Models.Geo.GeoEpithets
         {
             if (string.IsNullOrWhiteSpace(this.Names))
             {
-                return new IGeoEpithet[] { };
+                return Array.Empty<IGeoEpithet>();
             }
 
             return this.Names.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)

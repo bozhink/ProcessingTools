@@ -1,0 +1,64 @@
+﻿@model ProcessingTools.Models.Contracts.ViewModels.IPagedViewModel
+
+@{
+    var actionName = ViewContext.RouteData.Values[RouteKeys.Action];
+    
+    if (Model.LastPage > 0)
+    {
+        const long MaximalNumberOfPagesToShow = 5;
+        const long NumberOfPagesNearActive = MaximalNumberOfPagesToShow / 2;
+
+        long leftPage = Model.FirstPage;
+        long rightPage = Model.LastPage;
+
+        if (Model.NumberOfPages > MaximalNumberOfPagesToShow)
+        {
+            long l = Math.Max(Model.FirstPage, Model.CurrentPage - NumberOfPagesNearActive);
+            leftPage = l;
+
+            long r = Math.Min(Model.LastPage, Model.CurrentPage + NumberOfPagesNearActive);
+            rightPage = r;
+
+            if (l == Model.FirstPage)
+            {
+                rightPage += NumberOfPagesNearActive - (Model.CurrentPage - Model.FirstPage);
+            }
+
+            if (r == Model.LastPage)
+            {
+                leftPage -= NumberOfPagesNearActive - (Model.LastPage - Model.CurrentPage);
+            }
+        }
+
+        <nav>
+            <ul class="pagination">
+                @if (Model.CurrentPage > Model.FirstPage)
+                {
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.FirstPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-first" class="glyphicon glyphicon-fast-backward"></a></li>
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.PreviousPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-prev" class="glyphicon glyphicon-backward"></a></li>
+                }
+
+                @if (leftPage > Model.FirstPage)
+                {
+                    <li class="disabled"><a>...</a></li>
+                }
+
+                @for (long i = leftPage; i <= rightPage; ++i)
+                {
+                    <li class="@((i == Model.CurrentPage) ? "active" : null)"><a asp-action="@(actionName)" asp-route-p="@(i)" asp-route-n="@(Model.NumberOfItemsPerPage)">@(i + 1)</a></li>
+                }
+
+                @if (rightPage < Model.LastPage)
+                {
+                    <li class="disabled"><a>...</a></li>
+                }
+
+                @if (Model.CurrentPage < Model.LastPage)
+                {
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.NextPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-next" class="glyphicon glyphicon-forward"></a></li>
+                    <li><a asp-action="@(actionName)" asp-route-p="@(Model.LastPage)" asp-route-n="@(Model.NumberOfItemsPerPage)" id="page-last" class="glyphicon glyphicon-fast-forward"></a></li>
+                }
+            </ul>
+        </nav>
+    }
+}

@@ -103,14 +103,14 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherModel> GetById(object id)
+        public async Task<IPublisherModel> GetByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var publisher = await this.dataAccessObject.GetById(id).ConfigureAwait(false);
+            var publisher = await this.dataAccessObject.GetByIdAsync(id).ConfigureAwait(false);
 
             if (publisher == null)
             {
@@ -123,14 +123,14 @@ namespace ProcessingTools.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<IPublisherDetailsModel> GetDetailsById(object id)
+        public async Task<IPublisherDetailsModel> GetDetailsByIdAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var publisher = await this.dataAccessObject.GetDetailsById(id).ConfigureAwait(false);
+            var publisher = await this.dataAccessObject.GetDetailsByIdAsync(id).ConfigureAwait(false);
 
             if (publisher == null)
             {

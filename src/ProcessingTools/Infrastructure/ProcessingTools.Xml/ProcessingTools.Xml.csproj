@@ -1,0 +1,251 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>ProcessingTools</Company>
+    <Version>0.0.9</Version>
+    <Copyright>Copyright © 2017 ProcessingTools</Copyright>
+    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Services</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Xml.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Xml\context-wrapper.xml" />
+    <None Remove="Xml\document-wrapper.xml" />
+    <None Remove="Xml\query-replacer-sample-query.xml" />
+    <None Remove="Xsl\codes.remove-non-code-nodes.xsl" />
+    <None Remove="Xsl\copy.xsl" />
+    <None Remove="Xsl\envo-items-to-tagreplace.xsl" />
+    <None Remove="Xsl\Floats\format-tables.xsl" />
+    <None Remove="Xsl\Flora\flora.extract-taxa.xsl" />
+    <None Remove="Xsl\Flora\flora.extract.taxa-parts.xsl" />
+    <None Remove="Xsl\Flora\flora.generate-template.xsl" />
+    <None Remove="Xsl\Flora\taxa.distinct.xsl" />
+    <None Remove="Xsl\Format\epub-html-to-nlm.xsl" />
+    <None Remove="Xsl\Format\format.clear-table-styles.xsl" />
+    <None Remove="Xsl\Format\format.html-to-xml.xsl" />
+    <None Remove="Xsl\Format\format.inc.xsl" />
+    <None Remove="Xsl\Format\format.nlm-to-system.xsl" />
+    <None Remove="Xsl\Format\format.nlm.initial.xsl" />
+    <None Remove="Xsl\Format\format.system-to-nlm.xsl" />
+    <None Remove="Xsl\Format\format.system.initial.xsl" />
+    <None Remove="Xsl\Format\format.taxon-treatments.xsl" />
+    <None Remove="Xsl\Format\format.to-valid-nlm.xsl" />
+    <None Remove="Xsl\Format\format.xml-to-html.inc.xsl" />
+    <None Remove="Xsl\Format\format.xml-to-html.xsl" />
+    <None Remove="Xsl\Format\taxpub-to-html.xsl" />
+    <None Remove="Xsl\geo\geo-json.xsl" />
+    <None Remove="Xsl\Harvesters\harvest.external-links.xsl" />
+    <None Remove="Xsl\Harvesters\harvest.references-to-json.xsl" />
+    <None Remove="Xsl\Harvesters\text-content.xsl" />
+    <None Remove="Xsl\InDesign\Idml\map.xsl" />
+    <None Remove="Xsl\ipni-query.xsl" />
+    <None Remove="Xsl\Materials\taxon-treatment.extract-materials.xsl" />
+    <None Remove="Xsl\RankListClean.xsl" />
+    <None Remove="Xsl\references\references.get.xsl" />
+    <None Remove="Xsl\references\references.sort.xsl" />
+    <None Remove="Xsl\references\references.tag-template.xsl" />
+    <None Remove="Xsl\Special\gavin-laurens-tn-ultimate.xsl" />
+    <None Remove="Xsl\Special\gavin-laurens-tn.xsl" />
+    <None Remove="Xsl\Special\gavin-laurens.xsl" />
+    <None Remove="Xsl\Special\set-genus-in-paragraph.xsl" />
+    <None Remove="Xsl\taxonomy\expand-genus-in-paragraph.xsl" />
+    <None Remove="Xsl\taxonomy\expand-taxa-by-full-name.xsl" />
+    <None Remove="Xsl\taxonomy\get-taxa.xsl" />
+    <None Remove="Xsl\taxonomy\parse-treatment-meta-with-inner-information.xsl" />
+    <None Remove="Xsl\taxonomy\regularize-treatment-sec.xsl" />
+    <None Remove="Xsl\taxonomy\remove-taxon-name-parts.xsl" />
+    <None Remove="Xsl\taxonomy\resolve-families-in-checklist.xsl" />
+    <None Remove="Xsl\taxonomy\taxonomy-parse-postprocess.xsl" />
+    <None Remove="Xsl\WhiteListClean.xsl" />
+    <None Remove="Xsl\zoobank-nlm.xsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Xml\context-wrapper.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xml\document-wrapper.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xml\query-replacer-sample-query.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\codes.remove-non-code-nodes.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\copy.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\envo-items-to-tagreplace.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Floats\format-tables.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\flora.extract-taxa.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\flora.extract.taxa-parts.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\flora.generate-template.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Flora\taxa.distinct.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\epub-html-to-nlm.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.clear-table-styles.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.html-to-xml.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.inc.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.nlm-to-system.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.nlm.initial.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.system-to-nlm.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.system.initial.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.taxon-treatments.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.to-valid-nlm.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.xml-to-html.inc.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\format.xml-to-html.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Format\taxpub-to-html.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\geo\geo-json.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Harvesters\harvest.external-links.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Harvesters\harvest.references-to-json.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Harvesters\text-content.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\InDesign\Idml\map.xsl" />
+    <Content Include="Xsl\ipni-query.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Materials\taxon-treatment.extract-materials.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\RankListClean.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\references\references.get.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\references\references.sort.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\references\references.tag-template.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Special\gavin-laurens-tn-ultimate.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Special\gavin-laurens-tn.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Special\gavin-laurens.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\Special\set-genus-in-paragraph.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\expand-genus-in-paragraph.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\expand-taxa-by-full-name.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\get-taxa.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\parse-treatment-meta-with-inner-information.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\regularize-treatment-sec.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\remove-taxon-name-parts.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\resolve-families-in-checklist.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\taxonomy\taxonomy-parse-postprocess.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\WhiteListClean.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xsl\zoobank-nlm.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.7.1.4347" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+    <PackageReference Include="System.Xml.ReaderWriter" Version="4.3.1" />
+    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="XQuery\harvesters\abbrev.xq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="XQuery\select_multi-rank-taxa.xq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="XQuery\taxonomic_ranks.xq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Xsd\abbreviations.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Xsd\query-replacer.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

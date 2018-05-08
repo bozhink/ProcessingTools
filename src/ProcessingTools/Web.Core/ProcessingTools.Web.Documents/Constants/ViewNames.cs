@@ -18,5 +18,10 @@ namespace ProcessingTools.Web.Documents.Constants
         /// Validation scripts partial view.
         /// </summary>
         public const string ValidationScriptsPartial = "_ValidationScriptsPartial";
+
+        /// <summary>
+        /// Navigation foot partial view name.
+        /// </summary>
+        public const string NavigationFootPartialViewName = "~/Views/Shared/_NavigationFoot.cshtml";
     }
 }

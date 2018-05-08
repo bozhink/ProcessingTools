@@ -10,6 +10,11 @@ namespace ProcessingTools.Web.Documents.Constants
     public static class AreaNames
     {
         /// <summary>
+        /// Admin area.
+        /// </summary>
+        public const string Admin = nameof(Admin);
+
+        /// <summary>
         /// Default area.
         /// </summary>
         public const string Default = "";
@@ -18,6 +23,11 @@ namespace ProcessingTools.Web.Documents.Constants
         /// Documents area.
         /// </summary>
         public const string Documents = nameof(Documents);
+
+        /// <summary>
+        /// Layout area.
+        /// </summary>
+        public const string Layout = nameof(Layout);
 
         /// <summary>
         /// Tools area.

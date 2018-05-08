@@ -44,11 +44,12 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
@@ -76,11 +77,10 @@
     <Compile Include="Services\Bio\Taxonomy\TaxonRanksSearchService.cs" />
     <Compile Include="Services\Bio\Taxonomy\WhiteList.cs" />
     <Compile Include="Services\Bio\TypeStatusDataService.cs" />
-    <Compile Include="Services\Documents\DocumentsDataService.cs" />
-    <Compile Include="Services\Documents\XmlPresenter.cs" />
+    <Compile Include="Services\Documents\XDocumentsDataService.cs" />
+    <Compile Include="Services\Documents\XXmlPresenter.cs" />
     <Compile Include="Services\Files\StreamingSystemFileContentDataService.cs" />
     <Compile Include="Services\Files\StreamingSystemFilesDataService.cs" />
-    <Compile Include="Services\Files\XmlFileContentDataService.cs" />
     <Compile Include="Services\InstitutionsDataService.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithDatabase.cs" />
     <Compile Include="Services\Mediatypes\MediatypesResolverWithMediatypeStringResolver.cs" />
@@ -148,10 +148,6 @@
       <Project>{a8e46d02-ee55-40d3-ab35-7568b9a2e713}</Project>
       <Name>DataResources.Data.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\FileSystem\FileSystem.csproj">
-      <Project>{e2828ec6-a37a-4aa5-878b-b89cf0b28065}</Project>
-      <Name>FileSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Models\Models.csproj">
       <Project>{a9d115cf-cf42-4685-a4de-f6b1ab0c753f}</Project>
       <Name>Models</Name>
@@ -160,10 +156,6 @@
       <Project>{15c673af-40bd-43e9-aee9-1a819ac6145c}</Project>
       <Name>Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ServiceClients\Bio.Taxonomy.ServiceClient.Aphia\Bio.Taxonomy.ServiceClient.Aphia.csproj">
-      <Project>{F364BD78-29DE-48BE-9098-B6AE0C468008}</Project>
-      <Name>Bio.Taxonomy.ServiceClient.Aphia</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj">
       <Project>{4FA9E8DE-3062-41C5-AB25-A44776A4C116}</Project>
       <Name>ProcessingTools.Clients.Contracts</Name>
@@ -171,6 +163,10 @@
     <ProjectReference Include="..\..\ProcessingTools.Clients.Models\ProcessingTools.Clients.Models.csproj">
       <Project>{5EB84CE6-3248-4237-979C-71D7A34A4C2B}</Project>
       <Name>ProcessingTools.Clients.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Clients\ProcessingTools.Clients.csproj">
+      <Project>{A45E61B1-8C2A-4DBC-BD97-6C88E295C93B}</Project>
+      <Name>ProcessingTools.Clients</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj">
       <Project>{8B6A9C0E-8DE0-447F-A1E7-5067C8494E72}</Project>

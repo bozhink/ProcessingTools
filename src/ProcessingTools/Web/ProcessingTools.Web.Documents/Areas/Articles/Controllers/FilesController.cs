@@ -26,9 +26,9 @@
     {
         private const string DocumentValidationBinding = nameof(FileDetailsViewModel.DocumentId) + "," + nameof(FileDetailsViewModel.FileName) + "," + nameof(FileDetailsViewModel.FileExtension) + "," + nameof(FileDetailsViewModel.ContentType) + "," + nameof(FileDetailsViewModel.Comment);
 
-        private readonly IDocumentsDataService service;
+        private readonly IXDocumentsDataService service;
 
-        public FilesController(IDocumentsDataService service)
+        public FilesController(IXDocumentsDataService service)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
         }

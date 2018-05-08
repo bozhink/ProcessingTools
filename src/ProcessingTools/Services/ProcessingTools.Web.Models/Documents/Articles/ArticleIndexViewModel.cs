@@ -35,6 +35,13 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         public string SubTitle { get; set; }
 
         /// <summary>
+        /// Gets or sets the Digital Object Identifier (DOI) of the article.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "DOI")]
+        public string Doi { get; set; }
+
+        /// <summary>
         /// Gets or sets the journal ID.
         /// </summary>
         [ReadOnly(true)]
@@ -122,6 +129,20 @@ namespace ProcessingTools.Web.Models.Documents.Articles
         [ReadOnly(true)]
         [Display(Name = "Number of pages")]
         public int NumberOfPages { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether article is finalized.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Is finalized")]
+        public bool IsFinalized { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether article is deployed.
+        /// </summary>
+        [ReadOnly(true)]
+        [Display(Name = "Is deployed")]
+        public bool IsDeployed { get; set; }
 
         /// <summary>
         /// Gets or sets created by.

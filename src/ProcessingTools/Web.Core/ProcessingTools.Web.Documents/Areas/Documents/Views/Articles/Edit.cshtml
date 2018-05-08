@@ -48,6 +48,15 @@
             </div>
             <div class="form-group">
                 <div class="col-md-2">
+                    <label asp-for="Doi" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Doi" class="form-control" />
+                    <span asp-validation-for="Doi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
                     <label asp-for="JournalId" class="control-label"></label>
                 </div>
                 <div class="col-md-10">
@@ -160,6 +169,22 @@
                 <div class="col-md-10">
                     <input type="text" asp-for="NumberOfPages" class="form-control" />
                     <span asp-validation-for="NumberOfPages" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="IsFinalized" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="IsFinalized" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="IsDeployed" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="IsDeployed" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
             <div class="form-group">

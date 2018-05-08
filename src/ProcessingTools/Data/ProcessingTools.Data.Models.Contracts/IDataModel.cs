@@ -4,17 +4,12 @@
 
 namespace ProcessingTools.Data.Models.Contracts
 {
-    using System;
     using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Data model.
     /// </summary>
-    public interface IDataModel : IStringIdentifiable, ICreated, IModified
+    public interface IDataModel : IIdentifiedDataModel, ICreated, IModified
     {
-        /// <summary>
-        /// Gets the object ID.
-        /// </summary>
-        Guid ObjectId { get; }
     }
 }

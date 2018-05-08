@@ -52,7 +52,7 @@ namespace ProcessingTools.Web.Services.Geo
             var items = await this.service.SelectAsync(null).ConfigureAwait(false);
             if (items == null || !items.Any())
             {
-                return new CityResponseModel[] { };
+                return Array.Empty<CityResponseModel>();
             }
 
             return items.Select(this.mapper.Map<ICity, CityResponseModel>).ToArray();

@@ -2,6 +2,9 @@
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
+// See http://benfoster.io/blog/asp-net-identity-role-claims
+// See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
+// See https://stackoverflow.com/questions/39577906/add-claims-when-creating-a-new-user
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System;
@@ -49,6 +52,16 @@ namespace ProcessingTools.Web.Documents.Controllers
 
         [TempData]
         public string ErrorMessage { get; set; }
+
+        public IActionResult Index(string returnUrl = null)
+        {
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
+
+            return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName, null);
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -457,6 +470,16 @@ namespace ProcessingTools.Web.Documents.Controllers
 
         [HttpGet]
         public IActionResult AccessDenied()
+        {
+            return this.View();
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
         {
             return this.View();
         }

@@ -1,0 +1,161 @@
+﻿@model ProcessingTools.Web.Models.Layout.Styles.Floats.FloatObjectTagStyleEditViewModel
+@{
+    ViewData[ContextKeys.Title] = "Edit Float Object Tag Style";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Name" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Description" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="FloatReferenceType" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="FloatReferenceType" asp-items="Html.GetEnumSelectList<ProcessingTools.Enumerations.Nlm.ReferenceType>()" class="form-control"></select>
+                    <span asp-validation-for="FloatReferenceType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="FloatTypeNameInLabel" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="FloatTypeNameInLabel" class="form-control" />
+                    <span asp-validation-for="FloatTypeNameInLabel" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="MatchCitationPattern" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="MatchCitationPattern" class="form-control" />
+                    <span asp-validation-for="MatchCitationPattern" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="InternalReferenceType" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="InternalReferenceType" class="form-control" />
+                    <span asp-validation-for="InternalReferenceType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ResultantReferenceType" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ResultantReferenceType" class="form-control" />
+                    <span asp-validation-for="ResultantReferenceType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="FloatObjectXPath" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="FloatObjectXPath" class="form-control" />
+                    <span asp-validation-for="FloatObjectXPath" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="TargetXPath" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="TargetXPath" class="form-control" />
+                    <span asp-validation-for="TargetXPath" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="CreatedBy" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="CreatedOn" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+
+                    <input type="datetime" asp-for="CreatedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ModifiedBy" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="ModifiedBy" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ModifiedOn" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="datetime" asp-for="ModifiedOn" class="form-control disabled" disabled="disabled" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-default" value="Save" />
+                    <input type="reset" class="btn btn-default" value="Reset" />
+                    <a asp-action="@(FloatObjectTagStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(FloatObjectTagStylesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
+}

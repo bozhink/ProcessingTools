@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using ProcessingTools.Commands.Tagger;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands;
 
     public class ProgramSettingsBuilder
     {

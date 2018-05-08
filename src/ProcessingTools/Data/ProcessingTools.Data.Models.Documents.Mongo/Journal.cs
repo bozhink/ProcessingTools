@@ -7,7 +7,7 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using System;
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    using ProcessingTools.Common.Attributes;
+    using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Journals;
     using ProcessingTools.Models.Contracts;
 
@@ -17,15 +17,26 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     [CollectionName("journals")]
     public class Journal : IJournalDataModel, IJournalDetailsDataModel, ICreated, IModified
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Journal"/> class.
+        /// </summary>
+        public Journal()
+        {
+            this.ObjectId = Guid.NewGuid();
+        }
+
         /// <inheritdoc/>
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
         /// <inheritdoc/>
+        [BsonRequired]
+        [BsonRepresentation(BsonType.String)]
         public Guid ObjectId { get; set; }
 
         /// <inheritdoc/>
+        [BsonRequired]
         public string Name { get; set; }
 
         /// <inheritdoc/>
@@ -41,7 +52,11 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         public string ElectronicIssn { get; set; }
 
         /// <inheritdoc/>
+        [BsonRequired]
         public string PublisherId { get; set; }
+
+        /// <inheritdoc/>
+        public string JournalStyleId { get; set; }
 
         /// <inheritdoc/>
         public string CreatedBy { get; set; }
@@ -58,5 +73,16 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         /// <inheritdoc/>
         [BsonIgnore]
         public IJournalPublisherDataModel Publisher { get; set; }
+
+        /// <summary>
+        /// Gets or sets the publisher from the database.
+        /// </summary>
+        [BsonIgnoreIfNull]
+        [BsonElement("publisher")]
+        public Publisher DbPublisher { get; set; }
+
+        /// <inheritdoc/>
+        [BsonIgnore]
+        public long NumberOfArticles { get; set; }
     }
 }

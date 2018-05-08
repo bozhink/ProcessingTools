@@ -18,7 +18,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.7.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.7.1.4347" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
@@ -26,9 +27,19 @@
     <PackageReference Include="System.IO" Version="4.3.0" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
     <PackageReference Include="System.Security.Principal" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+    <PackageReference Include="System.Xml.ReaderWriter" Version="4.3.1" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+    <PackageReference Include="YamlDotNet.NetStandard" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj" />
@@ -38,8 +49,11 @@
     <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
     <ProjectReference Include="..\..\Data\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Clients.Contracts\ProcessingTools.Clients.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Harvesters.Contracts\ProcessingTools.Harvesters.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Harvesters.Models.Contracts\ProcessingTools.Harvesters.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models.Contracts\ProcessingTools.Services.Models.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Models\ProcessingTools.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Attributes\ProcessingTools.Attributes.csproj" />
   </ItemGroup>
 </Project>

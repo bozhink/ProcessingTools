@@ -32,5 +32,15 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         {
             return this.View();
         }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
+        }
     }
 }

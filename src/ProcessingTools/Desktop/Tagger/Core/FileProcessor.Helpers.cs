@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Contracts.Commands.Tagger;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Tagger.Commands.Extensions;
+    using ProcessingTools.Extensions;
 
     public partial class FileProcessor
     {
@@ -71,7 +71,7 @@
                 throw new ArgumentNullException(nameof(command), $"Command of type {command.GetType().FullName} is invalid.");
             }
 
-            string message = command.GetDescriptionMessageForCommand();
+            string message = $"\n\t{command.GetType().GetDescriptionMessageForCommand()}\n";
             return InvokeProcessor(
                 message,
                 () => command.RunAsync(document, this.settings),

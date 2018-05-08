@@ -1,0 +1,132 @@
+﻿@model ProcessingTools.Web.Models.Layout.Styles.Journals.JournalStyleCreateViewModel
+@{
+    ViewData[ContextKeys.Title] = "Create Journal Style";
+    if (string.IsNullOrWhiteSpace(Model?.PageHeading))
+    {
+        string title = Html.DisplayNameFor(m => m.PageHeading);
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            ViewData[ContextKeys.Title] = title;
+        }
+    }
+    else
+    {
+        ViewData[ContextKeys.Title] = Model.PageHeading;
+    }
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (Model == null)
+    {
+        <div class="alert alert-danger">Invalid view model.</div>
+    }
+    else
+    {
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Name" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Description" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="FloatObjectParseStyleIds" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="FloatObjectParseStyleIds" class="form-control">
+                        @if (Model.FloatObjectParseStyles?.Any() == true)
+                        {
+                            foreach (var style in Model.FloatObjectParseStyles)
+                            {
+                                <option value="@(style.Id)" title="@(style.Description)">@(style.Name)</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="FloatObjectParseStyleIds" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="FloatObjectTagStyleIds" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="FloatObjectTagStyleIds" class="form-control">
+                        @if (Model.FloatObjectTagStyles?.Any() == true)
+                        {
+                            foreach (var style in Model.FloatObjectTagStyles)
+                            {
+                                <option value="@(style.Id)" title="@(style.Description)">@(style.Name)</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="FloatObjectTagStyleIds" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ReferenceParseStyleIds" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="ReferenceParseStyleIds" class="form-control">
+                        @if (Model.ReferenceParseStyles?.Any() == true)
+                        {
+                            foreach (var style in Model.ReferenceParseStyles)
+                            {
+                                <option value="@(style.Id)" title="@(style.Description)">@(style.Name)</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="ReferenceParseStyleIds" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="ReferenceTagStyleIds" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="ReferenceTagStyleIds" class="form-control">
+                        @if (Model.ReferenceTagStyles?.Any() == true)
+                        {
+                            foreach (var style in Model.ReferenceTagStyles)
+                            {
+                                <option value="@(style.Id)" title="@(style.Description)">@(style.Name)</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="ReferenceTagStyleIds" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-default" value="Save" />
+                    <input type="reset" class="btn btn-default" value="Reset" />
+                    <a asp-action="@(JournalStylesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    }
+    <footer class="page-navigation">
+        <p><a asp-action="@(JournalStylesController.IndexActionName)">Back to List</a></p>
+    </footer>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
+}

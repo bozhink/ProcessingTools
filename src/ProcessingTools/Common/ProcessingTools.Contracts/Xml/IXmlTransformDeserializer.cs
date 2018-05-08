@@ -19,7 +19,7 @@ namespace ProcessingTools.Contracts.Xml
         /// <param name="transformer">Transformer to be applied on the XML.</param>
         /// <param name="xml">XML as string to be processed.</param>
         /// <returns>Deserialized object.</returns>
-        Task<T> Deserialize<T>(IXmlTransformer transformer, string xml);
+        Task<T> DeserializeAsync<T>(IXmlTransformer transformer, string xml);
 
         /// <summary>
         /// Deserializes <see cref="XmlNode"/> context with a specified transformer.
@@ -28,6 +28,6 @@ namespace ProcessingTools.Contracts.Xml
         /// <param name="transformer">Transformer to be applied on the XML.</param>
         /// <param name="node"><see cref="XmlNode"/> context to be processed.</param>
         /// <returns>Deserialized object.</returns>
-        Task<T> Deserialize<T>(IXmlTransformer transformer, XmlNode node);
+        Task<T> DeserializeAsync<T>(IXmlTransformer transformer, XmlNode node);
     }
 }
