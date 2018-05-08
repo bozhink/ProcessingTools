@@ -5,7 +5,9 @@
 namespace ProcessingTools.Common
 {
     using System;
+    using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// TaxPub Document Factory.
@@ -33,7 +35,19 @@ namespace ProcessingTools.Common
                 throw new ArgumentNullException(nameof(content));
             }
 
-            return new TaxPubDocument(content);
+            var document = new TaxPubDocument(content);
+            switch (document.XmlDocument.DocumentElement.Name)
+            {
+                case ElementNames.Article:
+                    document.SchemaType = SchemaType.Nlm;
+                    break;
+
+                default:
+                    document.SchemaType = SchemaType.System;
+                    break;
+            }
+
+            return document;
         }
     }
 }
