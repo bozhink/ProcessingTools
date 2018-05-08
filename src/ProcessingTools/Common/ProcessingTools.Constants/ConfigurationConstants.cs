@@ -52,21 +52,81 @@ namespace ProcessingTools.Constants
         /// <summary>
         /// Abbreviations XQuery file path.
         /// </summary>
-        public const string AbbreviationsXQueryFilePath = "AbbreviationsXQueryFilePath";
-        public const string CodesRemoveNonCodeNodesXslFilePath = "CodesRemoveNonCodeNodesXslFilePath";
-        public const string ExternalLinksXslFilePath = "ExternalLinksXslFilePath";
-        public const string FormatNlmToSystemXslFilePath = "FormatNlmToSystemXslFilePath";
-        public const string FormatSystemToNlmXslFilePath = "FormatSystemToNlmXslFilePath";
-        public const string FormatTaxonTreatmentsXslFilePath = "FormatTaxonTreatmentsXslFilePath";
-        public const string GavinLaurensXslFilePath = "GavinLaurensXslFilePath";
-        public const string NlmInitialFormatXslFilePath = "NlmInitialFormatXslFilePath";
-        public const string ParseTreatmentMetaWithInternalInformationXslFilePath = "ParseTreatmentMetaWithInternalInformationXslFilePath";
-        public const string ReferencesGetReferencesXslFilePath = "ReferencesGetReferencesXslFilePath";
-        public const string ReferencesTagTemplateXslFilePath = "ReferencesTagTemplateXslFilePath";
-        public const string RemoveTaxonNamePartsXslFilePath = "RemoveTaxonNamePartsXslFilePath";
-        public const string SystemInitialFormatXslFilePath = "SystemInitialFormatXslFilePath";
-        public const string TaxonTreatmentExtractMaterialsXslFilePath = "TaxonTreatmentExtractMaterialsXslFilePath";
-        public const string TextContentXslFilePath = "TextContentXslFilePath";
-        public const string ZooBankRegistrationNlmXslFilePath = "ZooBankRegistrationNlmXslFilePath";
+        public const string AbbreviationsXQueryFilePath = "StaticFiles:AbbreviationsXQueryFilePath";
+
+        /// <summary>
+        /// Codes remove non-code nodes XSL file path.
+        /// </summary>
+        public const string CodesRemoveNonCodeNodesXslFilePath = "StaticFiles:CodesRemoveNonCodeNodesXslFilePath";
+
+        /// <summary>
+        /// External links XSL file path.
+        /// </summary>
+        public const string ExternalLinksXslFilePath = "StaticFiles:ExternalLinksXslFilePath";
+
+        /// <summary>
+        /// Format NLM to system XSL file path.
+        /// </summary>
+        public const string FormatNlmToSystemXslFilePath = "StaticFiles:FormatNlmToSystemXslFilePath";
+
+        /// <summary>
+        /// Format system to NLM XSL file path.
+        /// </summary>
+        public const string FormatSystemToNlmXslFilePath = "StaticFiles:FormatSystemToNlmXslFilePath";
+
+        /// <summary>
+        /// Format taxon treatments XSL file path.
+        /// </summary>
+        public const string FormatTaxonTreatmentsXslFilePath = "StaticFiles:FormatTaxonTreatmentsXslFilePath";
+
+        /// <summary>
+        /// Gavin-Laurens XSL file path.
+        /// </summary>
+        public const string GavinLaurensXslFilePath = "StaticFiles:GavinLaurensXslFilePath";
+
+        /// <summary>
+        /// NLM initial format XSL file path.
+        /// </summary>
+        public const string NlmInitialFormatXslFilePath = "StaticFiles:NlmInitialFormatXslFilePath";
+
+        /// <summary>
+        /// Parse treatment meta with internal information XSL file path.
+        /// </summary>
+        public const string ParseTreatmentMetaWithInternalInformationXslFilePath = "StaticFiles:ParseTreatmentMetaWithInternalInformationXslFilePath";
+
+        /// <summary>
+        /// References get references XSL file path.
+        /// </summary>
+        public const string ReferencesGetReferencesXslFilePath = "StaticFiles:ReferencesGetReferencesXslFilePath";
+
+        /// <summary>
+        /// References tag template XSL file path.
+        /// </summary>
+        public const string ReferencesTagTemplateXslFilePath = "StaticFiles:ReferencesTagTemplateXslFilePath";
+
+        /// <summary>
+        /// Remove taxon name parts XSL file path.
+        /// </summary>
+        public const string RemoveTaxonNamePartsXslFilePath = "StaticFiles:RemoveTaxonNamePartsXslFilePath";
+
+        /// <summary>
+        /// System initial format XSL file path.
+        /// </summary>
+        public const string SystemInitialFormatXslFilePath = "StaticFiles:SystemInitialFormatXslFilePath";
+
+        /// <summary>
+        /// Taxon treatment extract materials XSL file path.
+        /// </summary>
+        public const string TaxonTreatmentExtractMaterialsXslFilePath = "StaticFiles:TaxonTreatmentExtractMaterialsXslFilePath";
+
+        /// <summary>
+        /// Text content XSL file path.
+        /// </summary>
+        public const string TextContentXslFilePath = "StaticFiles:TextContentXslFilePath";
+
+        /// <summary>
+        /// ZooBank registration NLM XSL file path.
+        /// </summary>
+        public const string ZooBankRegistrationNlmXslFilePath = "StaticFiles:ZooBankRegistrationNlmXslFilePath";
     }
 }
