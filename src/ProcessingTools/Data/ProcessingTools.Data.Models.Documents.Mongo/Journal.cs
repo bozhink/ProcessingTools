@@ -74,6 +74,13 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         [BsonIgnore]
         public IJournalPublisherDataModel Publisher { get; set; }
 
+        /// <summary>
+        /// Gets or sets the publisher from the database.
+        /// </summary>
+        [BsonIgnoreIfNull]
+        [BsonElement("publisher")]
+        public Publisher DbPublisher { get; set; }
+
         /// <inheritdoc/>
         [BsonIgnore]
         public long NumberOfArticles { get; set; }

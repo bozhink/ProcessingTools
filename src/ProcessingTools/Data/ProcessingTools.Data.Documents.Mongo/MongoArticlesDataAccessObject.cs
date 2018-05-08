@@ -41,6 +41,9 @@ namespace ProcessingTools.Data.Documents.Mongo
             {
                 c.CreateMap<IArticleInsertModel, Article>();
                 c.CreateMap<IArticleUpdateModel, Article>();
+                c.CreateMap<Journal, ArticleJournal>()
+                    .ForMember(aj => aj.Id, o => o.ResolveUsing(j => j.ObjectId.ToString()));
+                c.CreateMap<Journal, IArticleJournalDataModel>().As<ArticleJournal>();
             });
 
             this.mapper = mapperConfiguration.CreateMapper();
@@ -110,7 +113,15 @@ namespace ProcessingTools.Data.Documents.Mongo
             {
                 var journalId = article.JournalId.ToNewGuid();
 
-                article.Journal = await this.GetArticleJournalsQuery(j => j.ObjectId == journalId).FirstOrDefaultAsync().ConfigureAwait(false);
+                if (article.DbJournal != null)
+                {
+                    article.Journal = this.mapper.Map<Journal, IArticleJournalDataModel>(article.DbJournal);
+                }
+
+                if (article.Journal == null)
+                {
+                    article.Journal = await this.GetArticleJournalsQuery(j => j.ObjectId == journalId).FirstOrDefaultAsync().ConfigureAwait(false);
+                }
             }
 
             return article;
@@ -184,10 +195,18 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (journals != null && journals.Any())
             {
-                articles.ForEach(a =>
+                foreach (var article in articles)
                 {
-                    a.Journal = journals.FirstOrDefault(j => j.Id == a.JournalId);
-                });
+                    if (article.DbJournal != null)
+                    {
+                        article.Journal = this.mapper.Map<Journal, IArticleJournalDataModel>(article.DbJournal);
+                    }
+
+                    if (article.Journal == null)
+                    {
+                        article.Journal = journals.FirstOrDefault(j => j.Id == article.JournalId);
+                    }
+                }
             }
 
             return articles.ToArray<IArticleDetailsDataModel>();
@@ -275,6 +294,81 @@ namespace ProcessingTools.Data.Documents.Mongo
             var result = await query.FirstOrDefaultAsync().ConfigureAwait(false);
 
             return result?.JournalStyleId;
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> FinalizeAsync(object id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            string articleId = id.ToString();
+
+            var finalDocumentId = await this.GetCollection<Document>()
+                .Find(d => d.ArticleId == articleId && d.IsFinal)
+                .Project(d => d.ObjectId)
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            if (finalDocumentId == Guid.Empty)
+            {
+                throw new InvalidOperationException("Specified article does not have any final document");
+            }
+
+            Guid articleObjectId = id.ToNewGuid();
+            var articleJournalId = await this.Collection
+                .Find(a => a.ObjectId == articleObjectId)
+                .Project(a => a.JournalId)
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            if (string.IsNullOrWhiteSpace(articleJournalId))
+            {
+                throw new InvalidOperationException("Specified article does not have valid Journal ID");
+            }
+
+            Guid journalObjectId = articleJournalId.ToNewGuid();
+            var journal = await this.GetCollection<Journal>()
+                .Find(j => j.ObjectId == journalObjectId)
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            if (journal == null)
+            {
+                throw new InvalidOperationException("Specified journal is null.");
+            }
+
+            Guid publisherObjectId = journal.PublisherId.ToNewGuid();
+            var publisher = await this.GetCollection<Publisher>()
+                .Find(p => p.ObjectId == publisherObjectId)
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+
+            journal.DbPublisher = publisher ?? throw new InvalidOperationException("Specified publisher is null");
+
+            var filterDefinition = new FilterDefinitionBuilder<Article>().Eq(m => m.ObjectId, articleObjectId);
+            var updateDefinition = new UpdateDefinitionBuilder<Article>()
+                .Set(m => m.IsFinalized, true)
+                .Set(m => m.FinalDocumentId, finalDocumentId.ToString())
+                .Set(m => m.DbJournal, journal)
+                .Set(m => m.ModifiedBy, this.applicationContext.UserContext.UserId)
+                .Set(m => m.ModifiedOn, this.applicationContext.DateTimeProvider.Invoke());
+            var updateOptions = new UpdateOptions
+            {
+                BypassDocumentValidation = false,
+                IsUpsert = false
+            };
+
+            var result = await this.Collection.UpdateOneAsync(filterDefinition, updateDefinition, updateOptions).ConfigureAwait(false);
+
+            if (!result.IsAcknowledged)
+            {
+                throw new UpdateUnsuccessfulException();
+            }
+
+            return result;
         }
 
         private IFindFluent<Journal, ArticleJournal> GetArticleJournalsQuery(System.Linq.Expressions.Expression<Func<Journal, bool>> filter)

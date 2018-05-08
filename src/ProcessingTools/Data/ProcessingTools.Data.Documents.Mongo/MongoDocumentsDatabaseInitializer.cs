@@ -47,7 +47,9 @@ namespace ProcessingTools.Data.Documents.Mongo
             await this.GetCollection<Document>().Indexes
                 .CreateManyAsync(new CreateIndexModel<Document>[]
                 {
-                    new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ObjectId))
+                    new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ObjectId)),
+                    new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ArticleId)),
+                    new CreateIndexModel<Document>(new IndexKeysDefinitionBuilder<Document>().Ascending(b => b.ArticleId).Ascending(b => b.IsFinal))
                 })
                 .ConfigureAwait(false);
 

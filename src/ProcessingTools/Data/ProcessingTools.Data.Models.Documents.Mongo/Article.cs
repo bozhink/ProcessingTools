@@ -54,6 +54,13 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
         [BsonIgnore]
         public IArticleJournalDataModel Journal { get; set; }
 
+        /// <summary>
+        /// Gets or sets the journal from the database.
+        /// </summary>
+        [BsonIgnoreIfNull]
+        [BsonElement("journal")]
+        public Journal DbJournal { get; set; }
+
         /// <inheritdoc/>
         public DateTime? PublishedOn { get; set; }
 
@@ -89,6 +96,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
 
         /// <inheritdoc/>
         public bool IsFinalized { get; set; }
+
+        /// <summary>
+        /// Gets or sets the object ID of the final document.
+        /// </summary>
+        [BsonIgnoreIfNull]
+        public string FinalDocumentId { get; set; }
 
         /// <inheritdoc/>
         public bool IsDeployed { get; set; }
