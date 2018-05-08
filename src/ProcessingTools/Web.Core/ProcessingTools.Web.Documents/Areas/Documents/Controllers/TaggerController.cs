@@ -23,14 +23,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
     public class TaggerController : Controller
     {
         private readonly IDocumentProcessingService service;
+        private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TaggerController"/> class.
         /// </summary>
         /// <param name="service">Service</param>
-        public TaggerController(IDocumentProcessingService service)
+        /// <param name="logger">Logger</param>
+        public TaggerController(IDocumentProcessingService service, ILogger<TaggerController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
@@ -50,8 +53,17 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// <returns><see cref="IActionResult"/></returns>
         public async Task<IActionResult> ParseReferences(string documentId, string articleId)
         {
-            var result = await this.service.ParseReferencesAsync(documentId, articleId).ConfigureAwait(false);
-            return new JsonResult(new { id = result });
+            try
+            {
+                var result = await this.service.ParseReferencesAsync(documentId, articleId).ConfigureAwait(false);
+                this.logger.LogInformation("{0}", result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, "TaggerController.ParseReferences");
+            }
+
+            return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
         }
     }
 }
