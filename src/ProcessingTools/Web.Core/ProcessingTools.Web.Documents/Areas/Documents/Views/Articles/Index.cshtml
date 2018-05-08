@@ -64,7 +64,8 @@
                                 <a asp-action="@(ArticlesController.EditActionName)" asp-route-id="@(item.Id)">Edit</a> |
                                 <a asp-action="@(ArticlesController.DeleteActionName)" asp-route-id="@(item.Id)">Delete</a> |
                                 <a asp-action="@(ArticlesController.DetailsActionName)" asp-route-id="@(item.Id)">Details</a> |
-                                <a asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(item.Id)">Documents</a>
+                                <a asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(item.Id)">Documents</a> |
+                                <a asp-action="@(ArticlesController.FinalizeActionName)" asp-route-id="@(item.Id)">Finalize</a>
                             </td>
                         </tr>
                     }

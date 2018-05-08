@@ -105,7 +105,7 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
-        public async Task<bool> FinalizeAsync(string id)
+        public async Task<bool> FinalizeArticleAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

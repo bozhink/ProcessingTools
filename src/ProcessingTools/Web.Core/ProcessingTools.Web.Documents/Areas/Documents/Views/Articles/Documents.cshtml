@@ -186,7 +186,8 @@
         </fieldset>
 
         <div>
-            <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+            <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a> |
+            <a asp-action="@(ArticlesController.FinalizeActionName)" asp-route-id="@(Model.Id)" asp-route-returnUrl="@(Context.Request.GetDisplayUrl())">Finalize</a>
         </div>
     }
     <footer class="page-navigation">

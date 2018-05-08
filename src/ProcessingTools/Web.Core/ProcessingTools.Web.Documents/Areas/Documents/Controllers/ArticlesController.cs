@@ -53,6 +53,11 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         public const string DeleteActionName = nameof(Delete);
 
         /// <summary>
+        /// Finalize action name.
+        /// </summary>
+        public const string FinalizeActionName = nameof(Finalize);
+
+        /// <summary>
         /// Details action name.
         /// </summary>
         public const string DetailsActionName = nameof(Details);
@@ -436,6 +441,40 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             }
 
             return this.View();
+        }
+
+        /// <summary>
+        /// /Documents/Articles/Finalize/id
+        /// </summary>
+        /// <param name="id">ID of the article</param>
+        /// <param name="returnUrl">Return URL</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(FinalizeActionName)]
+        public async Task<IActionResult> Finalize(string id, string returnUrl = null)
+        {
+            const string LogMessage = "Finalize Article";
+
+            this.logger.LogTrace(LogMessage);
+
+            try
+            {
+                var ok = await this.service.FinalizeArticleAsync(id).ConfigureAwait(false);
+                if (ok)
+                {
+                    if (!string.IsNullOrWhiteSpace(returnUrl))
+                    {
+                        return this.Redirect(returnUrl);
+                    }
+
+                    return this.RedirectToAction(IndexActionName);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, LogMessage);
+            }
+
+            return this.RedirectToAction(IndexActionName);
         }
 
         /// <summary>

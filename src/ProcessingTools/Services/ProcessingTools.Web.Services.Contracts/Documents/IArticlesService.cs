@@ -94,7 +94,7 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
         /// </summary>
         /// <param name="id">Object ID of the article.</param>
         /// <returns>Success status.</returns>
-        Task<bool> FinalizeAsync(string id);
+        Task<bool> FinalizeArticleAsync(string id);
 
         /// <summary>
         /// Map <see cref="ArticleCreateRequestModel"/> to <see cref="ArticleCreateViewModel"/>.
