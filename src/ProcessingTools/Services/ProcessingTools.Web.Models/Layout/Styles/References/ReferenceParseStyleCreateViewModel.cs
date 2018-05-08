@@ -52,7 +52,12 @@ namespace ProcessingTools.Web.Models.Layout.Styles.References
         /// </summary>
         [Required(AllowEmptyStrings = false)]
         [Display(Name = "Script")]
-        public string Script { get; set; }
+        public string Script { get; set; } = @"# Enter rule sets
+- xPath: /*
+  rules:
+    - pattern: ^1
+      replacement: 1
+";
 
         /// <summary>
         /// Gets or sets the XPath for selection of the XML objects which represent the reference.
