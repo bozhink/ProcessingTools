@@ -2,10 +2,10 @@ import { HttpMethod, IRequesterBase, IRequestModel } from "../../contracts/http/
 import { ContentType, IJsonRequester } from "../../contracts/http/json-requester";
 
 export class JsonRequester implements IJsonRequester<any> {
-    private $: JQueryStatic;
+    private jQuery: JQueryStatic;
 
-    public constructor($: JQueryStatic) {
-        this.$ = $;
+    public constructor(jQuery: JQueryStatic) {
+        this.jQuery = jQuery;
     }
 
     public send(method: (string | HttpMethod), url: string, options: IRequestModel): Promise<any> {
@@ -24,20 +24,12 @@ export class JsonRequester implements IJsonRequester<any> {
         headers = options.headers || {};
         data = options.data || {};
 
-        return new Promise(function (resolve: (value?: any | PromiseLike<any>) => void, reject: (reason?: any) => void): void {
-            this.$.ajax({
-                url: url,
-                method: method,
-                contentType: ContentType,
-                headers: headers,
-                data: JSON.stringify(data),
-                success: function (res: any): void {
-                    resolve(res);
-                },
-                error: function (err: any): void {
-                    reject(err);
-                }
-            });
+        return this.jQuery.ajax({
+            url: url,
+            method: method,
+            contentType: ContentType,
+            headers: headers,
+            data: JSON.stringify(data)
         });
     }
 
