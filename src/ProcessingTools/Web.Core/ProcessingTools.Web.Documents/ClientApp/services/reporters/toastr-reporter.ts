@@ -1,4 +1,4 @@
-import { ReportType, IReportMessage, IReporter } from "../../contracts/reporters/reporter";
+import { ReportType, IReporter } from "../../contracts/reporters/reporter";
 
 export class ToastrReporter implements IReporter {
     private toastr: Toastr;
@@ -11,24 +11,23 @@ export class ToastrReporter implements IReporter {
         this.toastr = toastr;
     }
 
-    public raiseMessage(message: IReportMessage): void {
+    public report(type: (string | ReportType), message: string): object {
         if (message != null) {
-            switch (message.type) {
+            switch (type.toString().toUpperCase()) {
                 case ReportType.SUCCESS:
-                    toastr.success(message.message);
-                    break;
+                    return toastr.success(message);
 
                 case ReportType.INFO:
-                    toastr.info(message.message);
-                    break;
+                    return toastr.info(message);
 
                 case ReportType.WARNING:
-                    toastr.warning(message.message);
-                    break;
+                    return toastr.warning(message);
 
                 default:
-                    toastr.error(message.message);
+                    return toastr.error(message);
             }
         }
+
+        return null;
     }
 }

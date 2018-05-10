@@ -1,15 +1,11 @@
 export enum ReportType {
-    INFO = "info",
-    SUCCESS = "success",
-    WARNING = "warning",
-    ERROR = "error"
-}
-
-export interface IReportMessage {
-    type: ReportType;
-    message: string;
+    INFO = "INFO",
+    SUCCESS = "SUCCESS",
+    WARNING = "WARNING",
+    ERROR = "ERROR"
 }
 
 export interface IReporter {
-    raiseMessage: (message: IReportMessage) => void;
+    report: (type: (string | ReportType), message: string) => object;
+
 }
