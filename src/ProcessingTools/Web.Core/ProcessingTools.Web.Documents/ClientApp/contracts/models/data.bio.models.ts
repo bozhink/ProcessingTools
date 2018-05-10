@@ -1,6 +1,4 @@
-export interface IDataModel {
-    getHash: () => string;
-}
+import { IDataModel } from "./data.models";
 
 export interface ITaxonRank extends IDataModel {
     id: string;
