@@ -15,16 +15,16 @@ export class ToastrReporter implements IReporter {
         if (message != null) {
             switch (type.toString().toUpperCase()) {
                 case ReportType.SUCCESS:
-                    return toastr.success(message);
+                    return this.toastr.success(message);
 
                 case ReportType.INFO:
-                    return toastr.info(message);
+                    return this.toastr.info(message);
 
                 case ReportType.WARNING:
-                    return toastr.warning(message);
+                    return this.toastr.warning(message);
 
                 default:
-                    return toastr.error(message);
+                    return this.toastr.error(message);
             }
         }
 
