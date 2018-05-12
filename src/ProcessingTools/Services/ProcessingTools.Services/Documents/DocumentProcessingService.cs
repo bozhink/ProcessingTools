@@ -11,7 +11,6 @@ namespace ProcessingTools.Services.Documents
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Rules;
-    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.Layout.Styles;
@@ -25,7 +24,6 @@ namespace ProcessingTools.Services.Documents
     {
         private readonly IDocumentsDataService documentsDataService;
         private readonly IDocumentFactory documentFactory;
-        private readonly IDocumentSchemaNormalizer documentSchemaNormalizer;
         private readonly IArticlesDataService articlesDataService;
         private readonly IJournalStylesDataService journalStylesDataService;
         private readonly IXmlReplaceRuleSetParser ruleSetParser;
@@ -36,7 +34,6 @@ namespace ProcessingTools.Services.Documents
         /// </summary>
         /// <param name="documentsDataService">Document data service.</param>
         /// <param name="documentFactory">Document factory.</param>
-        /// <param name="documentSchemaNormalizer">Document schema normalizer.</param>
         /// <param name="articlesDataService">Articles data service.</param>
         /// <param name="journalStylesDataService">Journal styles data service.</param>
         /// <param name="ruleSetParser">Rule set parser.</param>
@@ -44,7 +41,6 @@ namespace ProcessingTools.Services.Documents
         public DocumentProcessingService(
            IDocumentsDataService documentsDataService,
            IDocumentFactory documentFactory,
-           IDocumentSchemaNormalizer documentSchemaNormalizer,
            IArticlesDataService articlesDataService,
            IJournalStylesDataService journalStylesDataService,
            IXmlReplaceRuleSetParser ruleSetParser,
@@ -52,7 +48,6 @@ namespace ProcessingTools.Services.Documents
         {
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
-            this.documentSchemaNormalizer = documentSchemaNormalizer ?? throw new ArgumentNullException(nameof(documentSchemaNormalizer));
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
             this.journalStylesDataService = journalStylesDataService ?? throw new ArgumentNullException(nameof(journalStylesDataService));
             this.ruleSetParser = ruleSetParser ?? throw new ArgumentNullException(nameof(ruleSetParser));
@@ -77,12 +72,6 @@ namespace ProcessingTools.Services.Documents
 
             var parsed = await this.referencesParser.ParseAsync(document.XmlDocument.DocumentElement, ruleSets).ConfigureAwait(false);
             if (parsed == null)
-            {
-                return null;
-            }
-
-            var normalized = await this.documentSchemaNormalizer.NormalizeToDocumentSchemaAsync(document).ConfigureAwait(false);
-            if (normalized == null)
             {
                 return null;
             }
@@ -144,13 +133,6 @@ namespace ProcessingTools.Services.Documents
         {
             string content = await this.documentsDataService.GetDocumentContentAsync(documentId).ConfigureAwait(false);
             var document = this.documentFactory.Create(content);
-
-            var normalized = await this.documentSchemaNormalizer.NormalizeToDocumentSchemaAsync(document).ConfigureAwait(false);
-            if (normalized == null)
-            {
-                return null;
-            }
-
             return document;
         }
     }
