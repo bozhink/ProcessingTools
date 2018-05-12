@@ -20,6 +20,11 @@ namespace ProcessingTools.Constants
         public const string DocumentsDatabaseMongoDBConnectionStringName = "DocumentsDatabaseMongoDB";
 
         /// <summary>
+        /// Layout database MongoDB connection string name.
+        /// </summary>
+        public const string LayoutDatabaseMongoDBConnectionStringName = "LayoutDatabaseMongoDB";
+
+        /// <summary>
         /// History database MongoDB connection string name,
         /// </summary>
         public const string HistoryDatabaseMongoDBConnectionStringName = "HistoryDatabaseMongoDB";
