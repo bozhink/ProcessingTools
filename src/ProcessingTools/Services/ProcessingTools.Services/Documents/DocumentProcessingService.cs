@@ -5,16 +5,12 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Rules;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.Layout.Styles;
-    using ProcessingTools.Services.Contracts.Rules;
     using ProcessingTools.Services.Models.Documents.Documents;
 
     /// <summary>
@@ -26,7 +22,6 @@ namespace ProcessingTools.Services.Documents
         private readonly IDocumentFactory documentFactory;
         private readonly IArticlesDataService articlesDataService;
         private readonly IJournalStylesDataService journalStylesDataService;
-        private readonly IXmlReplaceRuleSetParser ruleSetParser;
         private readonly IReferencesParser referencesParser;
 
         /// <summary>
@@ -36,21 +31,18 @@ namespace ProcessingTools.Services.Documents
         /// <param name="documentFactory">Document factory.</param>
         /// <param name="articlesDataService">Articles data service.</param>
         /// <param name="journalStylesDataService">Journal styles data service.</param>
-        /// <param name="ruleSetParser">Rule set parser.</param>
         /// <param name="referencesParser">References parser.</param>
         public DocumentProcessingService(
            IDocumentsDataService documentsDataService,
            IDocumentFactory documentFactory,
            IArticlesDataService articlesDataService,
            IJournalStylesDataService journalStylesDataService,
-           IXmlReplaceRuleSetParser ruleSetParser,
            IReferencesParser referencesParser)
         {
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
             this.journalStylesDataService = journalStylesDataService ?? throw new ArgumentNullException(nameof(journalStylesDataService));
-            this.ruleSetParser = ruleSetParser ?? throw new ArgumentNullException(nameof(ruleSetParser));
             this.referencesParser = referencesParser ?? throw new ArgumentNullException(nameof(referencesParser));
         }
 
@@ -67,10 +59,17 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            var ruleSets = await this.GetReferenceParseRuleSetsFromStylesAsync(articleId);
+            var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
+            if (journalStyleId == null)
+            {
+                return null;
+            }
+
+            var styles = await this.journalStylesDataService.GetReferenceParseStylesAsync(journalStyleId).ConfigureAwait(false);
+
             var document = await this.GetDocumentAsync(documentId);
 
-            var parsed = await this.referencesParser.ParseAsync(document.XmlDocument.DocumentElement, ruleSets).ConfigureAwait(false);
+            var parsed = await this.referencesParser.ParseAsync(document.XmlDocument.DocumentElement, styles).ConfigureAwait(false);
             if (parsed == null)
             {
                 return null;
@@ -102,31 +101,6 @@ namespace ProcessingTools.Services.Documents
             await this.documentsDataService.SetDocumentContentAsync(id, document.Xml).ConfigureAwait(false);
 
             return id;
-        }
-
-        private async Task<IList<IXmlReplaceRuleSetModel>> GetReferenceParseRuleSetsFromStylesAsync(object articleId)
-        {
-            var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
-            if (journalStyleId == null)
-            {
-                return null;
-            }
-
-            var styles = await this.journalStylesDataService.GetReferenceParseStylesAsync(journalStyleId).ConfigureAwait(false);
-
-            var scripts = styles.Select(s => s.Script);
-
-            var ruleSets = new List<IXmlReplaceRuleSetModel>();
-            foreach (var script in scripts)
-            {
-                var scriptRuleSets = await this.ruleSetParser.ParseStringToRuleSetsAsync(script).ConfigureAwait(false);
-                if (scriptRuleSets != null && scriptRuleSets.Any())
-                {
-                    ruleSets.AddRange(scriptRuleSets);
-                }
-            }
-
-            return ruleSets;
         }
 
         private async Task<IDocument> GetDocumentAsync(object documentId)
