@@ -43,5 +43,8 @@
     "awesome-bootstrap-checkbox": "^1.0.1",
     "knockout": "^3.4.2",
     "knockout-validation": "^2.0.3"
+  },
+  "resolutions": {
+    "jquery": "1.9.1 - 3"
   }
 }
