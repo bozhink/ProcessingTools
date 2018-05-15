@@ -38,17 +38,12 @@ namespace ProcessingTools.Processors.References
         }
 
         /// <inheritdoc/>
-        public string ReferencesGetReferencesXmlPath { get; set; }
-
-        /// <inheritdoc/>
         public async Task<object> TagAsync(XmlNode context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
-
-            await this.ExportReferences(context).ConfigureAwait(false);
 
             var referencesTemplates = await this.GetReferencesTemplates(context).ConfigureAwait(false);
 
@@ -206,23 +201,6 @@ namespace ProcessingTools.Processors.References
                 .ToArray();
 
             return referencesTemplates;
-        }
-
-        private async Task ExportReferences(XmlNode context)
-        {
-            if (string.IsNullOrWhiteSpace(this.ReferencesGetReferencesXmlPath))
-            {
-                return;
-            }
-
-            var text = await this.transformerFactory
-                .GetReferencesGetReferencesTransformer()
-                .TransformAsync(context)
-                .ConfigureAwait(false);
-
-            var referencesList = XDocument.Parse(text);
-
-            referencesList.Save(this.ReferencesGetReferencesXmlPath);
         }
     }
 }
