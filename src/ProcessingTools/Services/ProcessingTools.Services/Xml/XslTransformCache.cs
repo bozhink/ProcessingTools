@@ -14,10 +14,10 @@ namespace ProcessingTools.Services.Xml
     /// </summary>
     public class XslTransformCache : TransformCache<XslCompiledTransform>, IXslTransformCache
     {
-        private static readonly ConcurrentDictionary<string, XslCompiledTransform> XslCompiledTransformObjects = new ConcurrentDictionary<string, XslCompiledTransform>();
+        private readonly ConcurrentDictionary<string, XslCompiledTransform> transformObjects = new ConcurrentDictionary<string, XslCompiledTransform>();
 
         /// <inheritdoc/>
-        protected override ConcurrentDictionary<string, XslCompiledTransform> TransformObjects => XslCompiledTransformObjects;
+        protected override ConcurrentDictionary<string, XslCompiledTransform> TransformObjects => this.transformObjects;
 
         /// <inheritdoc/>
         protected override XslCompiledTransform GetTransformObject(string fileName)
