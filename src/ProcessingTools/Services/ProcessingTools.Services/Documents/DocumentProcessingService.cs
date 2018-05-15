@@ -23,6 +23,7 @@ namespace ProcessingTools.Services.Documents
         private readonly IArticlesDataService articlesDataService;
         private readonly IJournalStylesDataService journalStylesDataService;
         private readonly IReferencesParser referencesParser;
+        private readonly IReferencesTagger referencesTagger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentProcessingService"/> class.
@@ -32,18 +33,21 @@ namespace ProcessingTools.Services.Documents
         /// <param name="articlesDataService">Articles data service.</param>
         /// <param name="journalStylesDataService">Journal styles data service.</param>
         /// <param name="referencesParser">References parser.</param>
+        /// <param name="referencesTagger">References tagger.</param>
         public DocumentProcessingService(
            IDocumentsDataService documentsDataService,
            IDocumentFactory documentFactory,
            IArticlesDataService articlesDataService,
            IJournalStylesDataService journalStylesDataService,
-           IReferencesParser referencesParser)
+           IReferencesParser referencesParser,
+           IReferencesTagger referencesTagger)
         {
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
             this.journalStylesDataService = journalStylesDataService ?? throw new ArgumentNullException(nameof(journalStylesDataService));
             this.referencesParser = referencesParser ?? throw new ArgumentNullException(nameof(referencesParser));
+            this.referencesTagger = referencesTagger ?? throw new ArgumentNullException(nameof(referencesTagger));
         }
 
         /// <inheritdoc/>
@@ -76,6 +80,40 @@ namespace ProcessingTools.Services.Documents
             }
 
             string description = "Parse references";
+
+            return await this.CreateDocumentAsync(documentId, articleId, document, description).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> TagReferencesAsync(object documentId, object articleId)
+        {
+            if (documentId == null)
+            {
+                throw new ArgumentNullException(nameof(documentId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
+            if (journalStyleId == null)
+            {
+                return null;
+            }
+
+            var styles = await this.journalStylesDataService.GetReferenceTagStylesAsync(journalStyleId).ConfigureAwait(false);
+
+            var document = await this.GetDocumentAsync(documentId);
+
+            var parsed = await this.referencesTagger.TagAsync(document.XmlDocument.DocumentElement, styles).ConfigureAwait(false);
+            if (parsed == null)
+            {
+                return null;
+            }
+
+            string description = "Tag references";
 
             return await this.CreateDocumentAsync(documentId, articleId, document, description).ConfigureAwait(false);
         }

@@ -50,7 +50,7 @@ namespace ProcessingTools.Processors.References
 
             foreach (var style in styles)
             {
-                var templates = await this.GetReferencesTemplates(context, style.Script).ConfigureAwait(false);
+                var templates = await this.GetReferencesTemplatesAsync(context, style.Script).ConfigureAwait(false);
 
                 foreach (XmlNode node in context.SelectNodes(style.TargetXPath))
                 {
@@ -191,7 +191,7 @@ namespace ProcessingTools.Processors.References
             return xml;
         }
 
-        private async Task<IReferenceTemplateItem[]> GetReferencesTemplates(XmlNode context, string script)
+        private async Task<IReferenceTemplateItem[]> GetReferencesTemplatesAsync(XmlNode context, string script)
         {
             var text = await this.xmlTransformerFactory.CreateXmlTransformerFromSourceScript(script)
                 .TransformAsync(context)

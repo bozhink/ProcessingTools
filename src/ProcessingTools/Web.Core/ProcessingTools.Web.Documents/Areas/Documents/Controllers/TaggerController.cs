@@ -65,5 +65,26 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
 
             return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
         }
+
+        /// <summary>
+        /// /Documents/Tagger/TagReferences
+        /// </summary>
+        /// <param name="documentId">Document object ID.</param>
+        /// <param name="articleId">Article object ID.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        public async Task<IActionResult> TagReferences(string documentId, string articleId)
+        {
+            try
+            {
+                var result = await this.service.TagReferencesAsync(documentId, articleId).ConfigureAwait(false);
+                this.logger.LogInformation("{0}", result);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex, "TaggerController.TagReferences");
+            }
+
+            return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+        }
     }
 }
