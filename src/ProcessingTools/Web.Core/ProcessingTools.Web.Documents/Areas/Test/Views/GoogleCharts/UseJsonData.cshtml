@@ -1,0 +1,53 @@
+﻿@{
+    ViewData[ContextKeys.Title] = "Use JSON Data";
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Simple Pie Chart</h4>
+                <div id="chart1"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var json = {
+                cols: [
+                    { id: 'taxType', label: 'Tax Type', type: 'string' },
+                    { id: 'percent', label: 'Tax Percentage', type: 'number' }
+                ],
+                rows: [
+                    { c: [{ v: 'Soc. Sec. Tax' }, { v: 30, f: '30%' }] },
+                    { c: [{ v: 'Income Tax' }, { v: 35 }] },
+                    { c: [{ v: 'Borrowing' }, { v: 15 }] },
+                    { c: [{ v: 'Corp. Tax' }, { v: 12 }] },
+                    { c: [{ v: 'Misc' }, { v: 8 }] },
+                ],
+            };
+
+            var data = new google.visualization.DataTable(json);
+
+            // Simple Pie Chart:
+            var option = {
+                title: 'Tax Structure in US',
+                width: 500,
+                height: 400
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+            chart.draw(data, option);
+        }
+    </script>
+}

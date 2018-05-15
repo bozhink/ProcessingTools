@@ -30,6 +30,11 @@ namespace ProcessingTools.Web.Documents.Constants
         public const string Layout = nameof(Layout);
 
         /// <summary>
+        /// Test area.
+        /// </summary>
+        public const string Test = nameof(Test);
+
+        /// <summary>
         /// Tools area.
         /// </summary>
         public const string Tools = nameof(Tools);

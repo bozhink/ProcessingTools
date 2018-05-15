@@ -1,0 +1,64 @@
+﻿@{
+    ViewData[ContextKeys.Title] = "Use Data Array";
+}
+
+<section role="main">
+    <header>
+        <h2>ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Simple Pie Chart</h4>
+                <div id="chart1"></div>
+            </div>
+            <div class="col-md-6">
+                <h4>Line Chart</h4>
+                <div id="chart2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var i, x;
+
+            // Pie Chart with Data Array:
+            var arr = [
+                ['Tax Type', 'Tax Percentage'],
+                ['Income Tax', { v: 35, f: '35%' }],
+                ['Borrowing', { v: 15, f: '15%' }],
+                ['Corp. Tax', { v: 12, f: '12%' }],
+                ['Misc', { v: 8, f: '8%' }]
+            ];
+
+            var data = google.visualization.arrayToDataTable(arr, false);
+            var option = {
+                title: 'Tax Structure in US',
+                width: 600,
+                height: 500
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+            chart.draw(data, option);
+
+            // Line Chart:
+            arr = [];
+            arr.push(['x', 'sin(x)', 'cos(x)', 'sin(x)^2']);
+            for (i = 0; i < 70; i += 1) {
+                x = 0.1 * i;
+                arr.push([x, Math.sin(x), Math.cos(x), Math.sin(x) * Math.sin(x)]);
+            }
+
+            data = google.visualization.arrayToDataTable(arr, false);
+            chart = new google.visualization.LineChart(document.getElementById('chart2'));
+            chart.draw(data, option);
+        }
+    </script>
+}

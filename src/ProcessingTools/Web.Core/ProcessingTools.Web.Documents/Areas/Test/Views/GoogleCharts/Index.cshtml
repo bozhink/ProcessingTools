@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData[ContextKeys.Title] = "Google Charts Samples";
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+        <h6>See <a href="https://www.codeproject.com/Articles/1243682/Create-Cross-Platform-Charts-with-ASP-NET-Core-MVC">https://www.codeproject.com/Articles/1243682/Create-Cross-Platform-Charts-with-ASP-NET-Core-MVC</a></h6>
+    </header>
+    <nav>
+        <ul>
+            <li><a asp-action="@(GoogleChartsController.UseDataTableActionName)">Use Data Table</a></li>
+            <li><a asp-action="@(GoogleChartsController.UseDataArrayActionName)">Use Data Array</a></li>
+            <li><a asp-action="@(GoogleChartsController.UseJsonDataActionName)">Use JSON Data</a></li>
+            <li><a asp-action="@(GoogleChartsController.UseDataFromServerActionName)">Use Data From Server</a></li>
+            <li><a asp-action="@(GoogleChartsController.UseRealTimeDataActionName)">Use Real Time Data</a></li>
+        </ul>
+    </nav>
+</section>

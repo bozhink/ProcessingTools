@@ -1,0 +1,53 @@
+﻿@{
+    ViewData[ContextKeys.Title] = "Use Real Time Data";
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div class="container">
+        <div id="chart1"></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="~/node_modules/moment/moment.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(callback);
+
+        function callback() {
+            var option = {
+                title: "Real-Time Chart",
+                width: 900,
+                height: 650,
+                legend: { position: 'none' },
+                vAxis: { viewWindow: { min: -1, max: 11 }, baselineColor: 'transparent' },
+                chartArea: { height: '80%', width: '85%', left: 100, backgroundColor: { stroke: "gray", strokeWidth: 1 } },
+                pointSize: 10
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('chart1'));
+            var data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'TimeStamp');
+            data.addColumn('number', 'Value');
+
+            drawChart();
+            setInterval(drawChart, 1000);
+
+            function drawChart() {
+                $.get('GetRealTimeData', function (d) {
+                    var timeStamp = new Date(d.timeStamp);
+                    var time = { v: timeStamp, f: moment(timeStamp).format('HH:mm:ss') };
+                    var val = d.dataValue;
+                    data.addRow([time, val]);
+                    if (data.getNumberOfRows() > 20) {
+                        data.removeRow(0);
+                    }
+                    chart.draw(data, option);
+                });
+            }
+        }
+    </script>
+}
