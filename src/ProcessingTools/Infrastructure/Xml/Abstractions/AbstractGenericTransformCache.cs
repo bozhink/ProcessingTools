@@ -7,18 +7,18 @@
     {
         protected abstract ConcurrentDictionary<string, T> TransformObjects { get; }
 
-        public virtual T this[string fileName]
+        public virtual T this[string key]
         {
             get
             {
-                var transform = this.TransformObjects.GetOrAdd(fileName, this.GetTransformObject);
+                var transform = this.TransformObjects.GetOrAdd(key, this.GetTransformObject);
                 return transform;
             }
         }
 
-        public virtual bool Remove(string fileName)
+        public virtual bool Remove(string key)
         {
-            var result = this.TransformObjects.TryRemove(fileName, out T value);
+            var result = this.TransformObjects.TryRemove(key, out T value);
             return result;
         }
 

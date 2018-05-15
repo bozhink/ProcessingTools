@@ -1,4 +1,4 @@
-﻿// <copyright file="XslTransformCache.cs" company="ProcessingTools">
+﻿// <copyright file="XslTransformCacheFromFile.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,9 +10,9 @@ namespace ProcessingTools.Services.Xml
     using ProcessingTools.Contracts.Xml;
 
     /// <summary>
-    /// XSL transform cache.
+    /// XSL transform cache for XSL style-sheets specified by file name.
     /// </summary>
-    public class XslTransformCache : TransformCache<XslCompiledTransform>, IXslTransformCache
+    public class XslTransformCacheFromFile : TransformCache<XslCompiledTransform>, IXslTransformCache
     {
         private readonly ConcurrentDictionary<string, XslCompiledTransform> transformObjects = new ConcurrentDictionary<string, XslCompiledTransform>();
 
@@ -20,12 +20,12 @@ namespace ProcessingTools.Services.Xml
         protected override ConcurrentDictionary<string, XslCompiledTransform> TransformObjects => this.transformObjects;
 
         /// <inheritdoc/>
-        protected override XslCompiledTransform GetTransformObject(string fileName)
+        protected override XslCompiledTransform GetTransformObject(string key)
         {
             XslCompiledTransform transform = new XslCompiledTransform();
             XsltSettings settings = new XsltSettings(true, true);
             XmlUrlResolver resolver = new XmlUrlResolver();
-            transform.Load(fileName, settings, resolver);
+            transform.Load(key, settings, resolver);
             return transform;
         }
     }

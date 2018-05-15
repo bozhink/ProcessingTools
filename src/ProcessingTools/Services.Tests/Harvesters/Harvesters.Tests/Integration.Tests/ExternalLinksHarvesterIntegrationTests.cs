@@ -40,8 +40,8 @@
             var deserializer = new XmlDeserializer();
             var serializer = new XmlTransformDeserializer(deserializer);
 
-            var xslCache = new XslTransformCache();
-            var transformer = new XslTransformer(
+            var xslCache = new XslTransformCacheFromFile();
+            var transformer = new XslTransformerFromFile(
                 AppSettings.ExternalLinksXslFileName,
                 xslCache,
                 new XmlReadService());

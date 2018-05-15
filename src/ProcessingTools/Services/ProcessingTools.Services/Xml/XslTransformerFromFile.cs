@@ -1,4 +1,4 @@
-﻿// <copyright file="XslTransformer.cs" company="ProcessingTools">
+﻿// <copyright file="XslTransformerFromFile.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,17 +10,17 @@ namespace ProcessingTools.Services.Xml
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
-    /// XSL transformer.
+    /// XSL transformer from file with specified file name.
     /// </summary>
-    public class XslTransformer : XslTransformerBase, IXslTransformer
+    public class XslTransformerFromFile : XslTransformerBase, IXslTransformerFromFile
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="XslTransformer"/> class.
+        /// Initializes a new instance of the <see cref="XslTransformerFromFile"/> class.
         /// </summary>
         /// <param name="xslFileName">XSL file name.</param>
-        /// <param name="cache">Cache.</param>
+        /// <param name="cache">Transform cache.</param>
         /// <param name="xmlReadService">XML read service.</param>
-        public XslTransformer(string xslFileName, IXslTransformCache cache, IXmlReadService xmlReadService)
+        public XslTransformerFromFile(string xslFileName, IXslTransformCache cache, IXmlReadService xmlReadService)
             : base(xmlReadService)
         {
             if (string.IsNullOrWhiteSpace(xslFileName))

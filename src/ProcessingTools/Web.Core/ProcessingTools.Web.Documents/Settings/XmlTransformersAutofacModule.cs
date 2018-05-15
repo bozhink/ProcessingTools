@@ -26,43 +26,43 @@ namespace ProcessingTools.Web.Documents.Settings
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterType<XslTransformCache>()
+                .RegisterType<XslTransformCacheFromFile>()
                 .As<IXslTransformCache>()
                 .SingleInstance();
 
             builder
-                .RegisterType<XslTransformer>()
+                .RegisterType<XslTransformerFromFile>()
                 .As<IXmlTransformer>()
                 .Named<IXmlTransformer>(nameof(IDocumentsFormatTransformersFactory.GetFormatHtmlToXmlTransformer))
                 .WithParameter(new TypedParameter(typeof(string), this.Configuration[ConfigurationConstants.FormatHtmlToXmlXslFilePath]))
                 .InstancePerDependency();
             builder
-                .RegisterType<XslTransformer>()
+                .RegisterType<XslTransformerFromFile>()
                 .As<IXmlTransformer>()
                 .Named<IXmlTransformer>(nameof(IDocumentsFormatTransformersFactory.GetFormatXmlToHtmlTransformer))
                 .WithParameter(new TypedParameter(typeof(string), this.Configuration[ConfigurationConstants.FormatXmlToHtmlXslFilePath]))
                 .InstancePerDependency();
 
             builder
-                .RegisterType<XslTransformer>()
+                .RegisterType<XslTransformerFromFile>()
                 .As<IXmlTransformer>()
                 .Named<IXmlTransformer>(nameof(IFormatTransformerFactory.GetFormatToNlmTransformer))
                 .WithParameter(new TypedParameter(typeof(string), this.Configuration[ConfigurationConstants.FormatSystemToNlmXslFilePath]))
                 .InstancePerDependency();
             builder
-                .RegisterType<XslTransformer>()
+                .RegisterType<XslTransformerFromFile>()
                 .As<IXmlTransformer>()
                 .Named<IXmlTransformer>(nameof(IFormatTransformerFactory.GetFormatToSystemTransformer))
                 .WithParameter(new TypedParameter(typeof(string), this.Configuration[ConfigurationConstants.FormatNlmToSystemXslFilePath]))
                 .InstancePerDependency();
             builder
-                .RegisterType<XslTransformer>()
+                .RegisterType<XslTransformerFromFile>()
                 .As<IXmlTransformer>()
                 .Named<IXmlTransformer>(nameof(IFormatTransformerFactory.GetNlmInitialFormatTransformer))
                 .WithParameter(new TypedParameter(typeof(string), this.Configuration[ConfigurationConstants.NlmInitialFormatXslFilePath]))
                 .InstancePerDependency();
             builder
-                .RegisterType<XslTransformer>()
+                .RegisterType<XslTransformerFromFile>()
                 .As<IXmlTransformer>()
                 .Named<IXmlTransformer>(nameof(IFormatTransformerFactory.GetSystemInitialFormatTransformer))
                 .WithParameter(new TypedParameter(typeof(string), this.Configuration[ConfigurationConstants.SystemInitialFormatXslFilePath]))
