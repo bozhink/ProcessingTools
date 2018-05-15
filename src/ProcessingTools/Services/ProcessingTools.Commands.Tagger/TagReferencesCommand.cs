@@ -41,7 +41,8 @@ namespace ProcessingTools.Commands.Tagger
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            return this.tagger.TagAsync(document.XmlDocument.DocumentElement);
+            // TODO
+            return this.tagger.TagAsync(document.XmlDocument.DocumentElement, null);
         }
     }
 }

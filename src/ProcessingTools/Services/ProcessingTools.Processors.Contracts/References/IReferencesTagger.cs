@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Processors.Contracts.References
 {
+    using ProcessingTools.Models.Contracts.Layout.Styles.References;
+
     /// <summary>
     /// References tagger.
     /// </summary>
-    public interface IReferencesTagger : IXmlContextTagger
+    public interface IReferencesTagger : IXmlContextTagger<IReferenceTagStyleModel, object>
     {
     }
 }
