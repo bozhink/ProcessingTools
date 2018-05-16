@@ -130,10 +130,6 @@
                     AppSettings.FormatHtmlToXmlXslFileName);
 
             // Factories
-            this.Bind<IReferencesTransformerFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
             this.Bind<ICodesTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();

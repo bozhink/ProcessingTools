@@ -29,6 +29,7 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<DocumentRulesProcessor>().As<IDocumentRulesProcessor>().InstancePerDependency();
             builder.RegisterType<XmlContextRulesProcessor>().As<IXmlContextRulesProcessor>().InstancePerDependency();
             builder.RegisterType<ReferencesParser>().As<IReferencesParser>().InstancePerDependency();
+            builder.RegisterType<ReferencesTagger>().As<IReferencesTagger>().InstancePerDependency();
         }
     }
 }

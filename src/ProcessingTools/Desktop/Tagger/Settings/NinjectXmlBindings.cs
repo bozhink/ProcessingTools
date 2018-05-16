@@ -126,10 +126,6 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<IReferencesTransformerFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
             this.Bind<ICodesTransformerFactory>()
                 .ToFactory()
                 .InSingletonScope();
