@@ -29,6 +29,7 @@ var gulp = require("gulp"),
     plumber = require("gulp-plumber"),
     mocha = require("gulp-mocha"),
     ts = require("gulp-typescript"),
+    tsProject = ts.createProject("./tsconfig.json"),
     bundleconfig = require("./bundleconfig.json"),
     path = require("path");
 
@@ -123,7 +124,7 @@ gulp.task("clean:bundle", function () {
 });
 
 gulp.task("clean:build", function () {
-    return del([compilePath, distPath]);
+    return del([compilePath, distPath, tsProject.config.compilerOptions.outDir.toString()]);
 });
 
 gulp.task("watch", function () {
@@ -173,34 +174,6 @@ gulp.task("compile-less", function () {
 });
 
 /**
- * Compile TypeScript files
- */
-gulp.task("compile-typescript", function () {
-    var tsResult = gulp.src(path.join(srcPath, paths.typescript, "**/*.ts"))
-        .pipe(ts({
-            target: "ES5",
-            declarationFiles: false,
-            noResolve: true,
-            noImplicitAny: true
-        }));
-
-    tsResult.dts.pipe(gulp.dest(path.join(compilePath, paths.tsdefinitions)));
-
-    return tsResult.js.pipe(gulp.dest(path.join(compilePath, paths.typescript)));
-});
-
-gulp.task("compressScripts", function () {
-    return gulp
-        .src([
-            compilePath + "/typescript/*.js"
-        ])
-        .pipe(plumber())
-        .pipe(concat("scripts.min.js"))
-        .pipe(uglify())
-        .pipe(gulp.dest(path.join(distPath, paths.js)));
-});
-
-/**
  * Compile apps
  */
 gulp.task("build-bio-data-app", function () {
@@ -244,12 +217,18 @@ gulp.task("build-files-index", function () {
         .pipe(gulp.dest(path.join(distPath, paths.apps)));
 });
 
+gulp.task("build-typescript", function (){
+    return tsProject.src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest(tsProject.config.compilerOptions.outDir.toString()));
+});
+
 /**
  * Build all code
  */
 gulp.task("build", [
+    "build-typescript",
     "compile-less",
-    "compile-typescript",
     "copy-js",
     "copy-templates",
     "build-document-edit",

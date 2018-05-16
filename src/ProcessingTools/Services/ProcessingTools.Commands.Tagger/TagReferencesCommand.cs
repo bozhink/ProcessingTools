@@ -5,13 +5,10 @@
 namespace ProcessingTools.Commands.Tagger
 {
     using System;
-    using System.IO;
     using System.Threading.Tasks;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.References;
 
     /// <summary>
@@ -44,22 +41,8 @@ namespace ProcessingTools.Commands.Tagger
                 throw new ArgumentNullException(nameof(settings));
             }
 
-            this.SetReferencesOutputFileName(document, settings);
-
-            return this.tagger.TagAsync(document.XmlDocument.DocumentElement);
-        }
-
-        private void SetReferencesOutputFileName(IDocument document, ICommandSettings settings)
-        {
-            if (string.IsNullOrWhiteSpace(settings.OutputFileName))
-            {
-                return;
-            }
-
-            string referencesFileName = document.GenerateFileNameFromDocumentId();
-
-            var outputDirectoryName = Path.GetDirectoryName(settings.OutputFileName);
-            this.tagger.ReferencesGetReferencesXmlPath = Path.Combine(outputDirectoryName, $"{referencesFileName}-references.{FileConstants.XmlFileExtension}");
+            // TODO
+            return this.tagger.TagAsync(document.XmlDocument.DocumentElement, null);
         }
     }
 }

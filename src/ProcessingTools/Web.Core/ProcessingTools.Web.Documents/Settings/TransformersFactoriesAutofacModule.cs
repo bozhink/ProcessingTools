@@ -10,6 +10,7 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Services.Contracts.Documents;
+    using ProcessingTools.Services.Xml;
     using ProcessingTools.Web.Documents.Interceptors;
 
     /// <summary>
@@ -20,6 +21,13 @@ namespace ProcessingTools.Web.Documents.Settings
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
+            builder
+                .RegisterType<XslTransformerFactory>()
+                .As<IXslTransformerFactory>()
+                .As<IXmlTransformerFactory>()
+                .PropertiesAutowired()
+                .InstancePerDependency();
+
             builder
                 .RegisterType<TransformersFactory>()
                 .As<IDocumentsFormatTransformersFactory>()

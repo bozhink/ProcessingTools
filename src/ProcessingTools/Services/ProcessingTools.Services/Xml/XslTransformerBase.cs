@@ -1,4 +1,4 @@
-﻿// <copyright file="XslTransformer.cs" company="ProcessingTools">
+﻿// <copyright file="XslTransformerBase.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -13,35 +13,25 @@ namespace ProcessingTools.Services.Xml
     using ProcessingTools.Services.Contracts.IO;
 
     /// <summary>
-    /// XSL transformer.
+    /// XSL transformer base class.
     /// </summary>
-    public class XslTransformer : IXslTransformer
+    public abstract class XslTransformerBase : IXslTransformer
     {
         private readonly IXmlReadService xmlReadService;
-        private readonly XslCompiledTransform xslCompiledTransform;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XslTransformer"/> class.
+        /// Initializes a new instance of the <see cref="XslTransformerBase"/> class.
         /// </summary>
-        /// <param name="xslFileName">XSL file name.</param>
-        /// <param name="cache">Cache.</param>
-        /// <param name="xmlReadService">XML reader.</param>
-        public XslTransformer(string xslFileName, IXslTransformCache cache, IXmlReadService xmlReadService)
+        /// <param name="xmlReadService">XML read service.</param>
+        protected XslTransformerBase(IXmlReadService xmlReadService)
         {
-            if (string.IsNullOrWhiteSpace(xslFileName))
-            {
-                throw new ArgumentNullException(nameof(xslFileName));
-            }
-
-            if (cache == null)
-            {
-                throw new ArgumentNullException(nameof(cache));
-            }
-
             this.xmlReadService = xmlReadService ?? throw new ArgumentNullException(nameof(xmlReadService));
-
-            this.xslCompiledTransform = cache[xslFileName];
         }
+
+        /// <summary>
+        /// Gets the <see cref="XslCompiledTransform"/> object.
+        /// </summary>
+        protected abstract XslCompiledTransform XslCompiledTransform { get; }
 
         /// <inheritdoc/>
         public async Task<string> TransformAsync(XmlReader reader, bool closeReader)
@@ -114,7 +104,7 @@ namespace ProcessingTools.Services.Xml
             }
 
             var stream = new MemoryStream();
-            this.xslCompiledTransform.Transform(reader, null, stream);
+            this.XslCompiledTransform.Transform(reader, null, stream);
             stream.Position = 0;
 
             return stream;

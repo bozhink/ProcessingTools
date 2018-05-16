@@ -38,7 +38,7 @@ namespace ProcessingTools.Processors
             }
 
             var content = await this.factory
-                .CreateTransformer(xslFileName: this.XslFileName)
+                .CreateTransformerFromFile(fileName: this.XslFileName)
                 .TransformAsync(context.Xml)
                 .ConfigureAwait(false);
 

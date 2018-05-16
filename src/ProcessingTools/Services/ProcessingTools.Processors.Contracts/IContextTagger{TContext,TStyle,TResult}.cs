@@ -1,4 +1,4 @@
-﻿// <copyright file="IContextParser{TContext,TRuleSet,TResult}.cs" company="ProcessingTools">
+﻿// <copyright file="IContextTagger{TContext,TStyle,TResult}.cs" company="ProcessingTools">
 // Copyright (c) 2017 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -6,21 +6,23 @@ namespace ProcessingTools.Processors.Contracts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using ProcessingTools.Models.Contracts.Layout.Styles;
 
     /// <summary>
-    /// Generic context parser.
+    /// Generic context tagger.
     /// </summary>
     /// <typeparam name="TContext">Type of the context object.</typeparam>
-    /// <typeparam name="TRuleSet">Type of rule sets to apply.</typeparam>
+    /// <typeparam name="TStyle">Type of style rules to apply.</typeparam>
     /// <typeparam name="TResult">Type of the result.</typeparam>
-    public interface IContextParser<in TContext, in TRuleSet, TResult>
+    public interface IContextTagger<TContext, TStyle, TResult>
+        where TStyle : IStyleModel
     {
         /// <summary>
-        /// Executes parsing operation over the context.
+        /// Executes tagging operation over the context.
         /// </summary>
         /// <param name="context">Context object to be processed.</param>
-        /// <param name="ruleSets">Rule sets to apply.</param>
+        /// <param name="styles">Style rules to apply.</param>
         /// <returns>Task of result.</returns>
-        Task<TResult> ParseAsync(TContext context, IEnumerable<TRuleSet> ruleSets);
+        Task<TResult> TagAsync(TContext context, IEnumerable<TStyle> styles);
     }
 }

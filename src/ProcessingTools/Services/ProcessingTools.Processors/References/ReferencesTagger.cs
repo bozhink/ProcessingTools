@@ -11,7 +11,8 @@ namespace ProcessingTools.Processors.References
     using System.Threading.Tasks;
     using System.Xml;
     using System.Xml.Linq;
-    using ProcessingTools.Contracts;
+    using ProcessingTools.Contracts.Xml;
+    using ProcessingTools.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Models.Contracts.References;
     using ProcessingTools.Processors.Models.References;
@@ -23,65 +24,74 @@ namespace ProcessingTools.Processors.References
     {
         private const int NumberOfSequentalReferenceCitationsPerAuthority = 10;
 
-        private readonly IReferencesTransformerFactory transformerFactory;
-        private readonly ILogger logger;
+        private readonly IXmlTransformerFactory xmlTransformerFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferencesTagger"/> class.
         /// </summary>
-        /// <param name="transformerFactory">Transformer factory.</param>
-        /// <param name="logger">Logger.</param>
-        public ReferencesTagger(IReferencesTransformerFactory transformerFactory, ILogger logger)
+        /// <param name="xmlTransformerFactory">Transformer factory.</param>
+        public ReferencesTagger(IXmlTransformerFactory xmlTransformerFactory)
         {
-            this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
-            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.xmlTransformerFactory = xmlTransformerFactory ?? throw new ArgumentNullException(nameof(xmlTransformerFactory));
         }
 
         /// <inheritdoc/>
-        public string ReferencesGetReferencesXmlPath { get; set; }
-
-        /// <inheritdoc/>
-        public async Task<object> TagAsync(XmlNode context)
+        public async Task<object> TagAsync(XmlNode context, IEnumerable<IReferenceTagStyleModel> styles)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            await this.ExportReferences(context).ConfigureAwait(false);
+            if (styles == null || !styles.Any())
+            {
+                return false;
+            }
 
-            var referencesTemplates = await this.GetReferencesTemplates(context).ConfigureAwait(false);
+            foreach (var style in styles)
+            {
+                var templates = await this.GetReferencesTemplatesAsync(context, style.Script).ConfigureAwait(false);
 
+                foreach (XmlNode node in context.SelectNodes(style.TargetXPath))
+                {
+                    node.InnerXml = this.TagReferencecUsingTemplates(node.InnerXml, templates);
+                }
+            }
+
+            return true;
+        }
+
+        private string TagReferencecUsingTemplates(string xml, IEnumerable<IReferenceTemplateItem> templates)
+        {
             /*
              * Tag references using generated template
              */
-            string xml = context.InnerXml;
-            foreach (var reference in referencesTemplates)
+            foreach (var template in templates)
             {
                 xml = Regex.Replace(
                     xml,
-                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*\\(" + reference.Year + "\\))",
-                    @"<xref ref-type=""bibr"" rid=""" + reference.Id + @""">$1</xref>");
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + template.Authors + "[’´'s]*\\s*\\(" + template.Year + "\\))",
+                    @"<xref ref-type=""bibr"" rid=""" + template.Id + @""">$1</xref>");
 
                 xml = Regex.Replace(
                     xml,
-                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*\\[" + reference.Year + "\\])",
-                    @"<xref ref-type=""bibr"" rid=""" + reference.Id + @""">$1</xref>");
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + template.Authors + "[’´'s]*\\s*\\[" + template.Year + "\\])",
+                    @"<xref ref-type=""bibr"" rid=""" + template.Id + @""">$1</xref>");
 
                 xml = Regex.Replace(
                     xml,
-                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*[\\(\\[]" + reference.Year + ")(?=[;:,\\s])",
-                    @"<xref ref-type=""bibr"" rid=""" + reference.Id + @""">$1</xref>");
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + template.Authors + "[’´'s]*\\s*[\\(\\[]" + template.Year + ")(?=[;:,\\s])",
+                    @"<xref ref-type=""bibr"" rid=""" + template.Id + @""">$1</xref>");
 
                 xml = Regex.Replace(
                     xml,
-                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*\\[[a-z\\d\\W]{0,20}\\]\\s*)(" + reference.Year + ")",
-                    @"$1<xref ref-type=""bibr"" rid=""" + reference.Id + @""">$2</xref>");
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + template.Authors + "[’´'s]*\\s*\\[[a-z\\d\\W]{0,20}\\]\\s*)(" + template.Year + ")",
+                    @"$1<xref ref-type=""bibr"" rid=""" + template.Id + @""">$2</xref>");
 
                 xml = Regex.Replace(
                     xml,
-                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + reference.Authors + "[’´'s]*\\s*" + reference.Year + ")",
-                    @"<xref ref-type=""bibr"" rid=""" + reference.Id + @""">$1</xref>");
+                    "(?i)(?<!<xref [^>]*>)(?<!<[^>]+)(" + template.Authors + "[’´'s]*\\s*" + template.Year + ")",
+                    @"<xref ref-type=""bibr"" rid=""" + template.Id + @""">$1</xref>");
             }
 
             // Polenec 1952, 1954, 1957, 1958, 1959, 1960, 1961a, b, c, d, 1962a
@@ -91,7 +101,7 @@ namespace ProcessingTools.Processors.References
                 {
                     string rid = Regex.Replace(m.Value, @"\A.*<xref [^<>]*rid=""(\w*?)""[^<>]*>.*\Z", "$1");
 
-                    string authors = referencesTemplates
+                    string authors = templates
                         .FirstOrDefault(r => r.Id == rid)?.Authors;
 
                     if (!string.IsNullOrWhiteSpace(authors))
@@ -102,7 +112,7 @@ namespace ProcessingTools.Processors.References
                         {
                             try
                             {
-                                string id = referencesTemplates
+                                string id = templates
                                     .FirstOrDefault(r => (r.Authors == authors) && (r.Year == l.Value))?.Id;
 
                                 if (!string.IsNullOrWhiteSpace(id))
@@ -115,7 +125,7 @@ namespace ProcessingTools.Processors.References
                             }
                             catch (Exception e)
                             {
-                                this.logger?.Log(exception: e, message: string.Empty);
+                                // skip
                             }
                         }
 
@@ -129,7 +139,7 @@ namespace ProcessingTools.Processors.References
             {
                 string rid = Regex.Replace(m.Value, @"\A.*<xref [^<>]*rid=""(\w+)""[^<>]*>.*\Z", "$1");
 
-                var reference = referencesTemplates.FirstOrDefault(r => r.Id == rid);
+                var reference = templates.FirstOrDefault(r => r.Id == rid);
                 if (reference != null)
                 {
                     string authors = reference.Authors;
@@ -142,7 +152,7 @@ namespace ProcessingTools.Processors.References
                         {
                             try
                             {
-                                string id = referencesTemplates
+                                string id = templates
                                     .FirstOrDefault(r => (r.Authors == authors) && (r.Year == year + l.Value))?.Id;
 
                                 if (!string.IsNullOrWhiteSpace(id))
@@ -155,7 +165,7 @@ namespace ProcessingTools.Processors.References
                             }
                             catch (Exception e)
                             {
-                                this.logger?.Log(exception: e, message: string.Empty);
+                                // skip
                             }
                         }
 
@@ -165,7 +175,7 @@ namespace ProcessingTools.Processors.References
             }
 
             // This loop must be executed separately because is slow
-            foreach (var reference in referencesTemplates)
+            foreach (var reference in templates)
             {
                 xml = Regex.Replace(
                     xml,
@@ -178,16 +188,12 @@ namespace ProcessingTools.Processors.References
             }
 
             //// TODO: Call here the two loops above
-
-            context.InnerXml = xml;
-
-            return true;
+            return xml;
         }
 
-        private async Task<IEnumerable<IReferenceTemplateItem>> GetReferencesTemplates(XmlNode context)
+        private async Task<IReferenceTemplateItem[]> GetReferencesTemplatesAsync(XmlNode context, string script)
         {
-            var text = await this.transformerFactory
-                .GetReferencesTagTemplateTransformer()
+            var text = await this.xmlTransformerFactory.CreateXmlTransformerFromSourceScript(script)
                 .TransformAsync(context)
                 .ConfigureAwait(false);
 
@@ -206,23 +212,6 @@ namespace ProcessingTools.Processors.References
                 .ToArray();
 
             return referencesTemplates;
-        }
-
-        private async Task ExportReferences(XmlNode context)
-        {
-            if (string.IsNullOrWhiteSpace(this.ReferencesGetReferencesXmlPath))
-            {
-                return;
-            }
-
-            var text = await this.transformerFactory
-                .GetReferencesGetReferencesTransformer()
-                .TransformAsync(context)
-                .ConfigureAwait(false);
-
-            var referencesList = XDocument.Parse(text);
-
-            referencesList.Save(this.ReferencesGetReferencesXmlPath);
         }
     }
 }

@@ -57,13 +57,40 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
             {
                 var result = await this.service.ParseReferencesAsync(documentId, articleId).ConfigureAwait(false);
                 this.logger.LogInformation("{0}", result);
+                return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
             }
             catch (Exception ex)
             {
+                this.ModelState.AddModelError("Error", ex.ToString());
                 this.logger.LogError(ex, "TaggerController.ParseReferences");
             }
 
-            return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            return this.View();
+        }
+
+        /// <summary>
+        /// /Documents/Tagger/TagReferences
+        /// </summary>
+        /// <param name="documentId">Document object ID.</param>
+        /// <param name="articleId">Article object ID.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        public async Task<IActionResult> TagReferences(string documentId, string articleId)
+        {
+            try
+            {
+                var result = await this.service.TagReferencesAsync(documentId, articleId).ConfigureAwait(false);
+                this.logger.LogInformation("{0}", result);
+                return this.RedirectToAction(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError("Error", ex.ToString());
+                this.logger.LogError(ex, "TaggerController.TagReferences");
+            }
+
+            this.ViewData[ContextKeys.ReturnUrl] = this.Url.Action(ArticlesController.DocumentsActionName, ArticlesController.ControllerName, new { id = articleId });
+            return this.View();
         }
     }
 }

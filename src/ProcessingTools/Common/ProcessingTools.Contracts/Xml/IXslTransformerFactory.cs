@@ -10,10 +10,17 @@ namespace ProcessingTools.Contracts.Xml
     public interface IXslTransformerFactory
     {
         /// <summary>
-        /// Creates <see cref="IXslTransformer"/> from file with a specified file name.
+        /// Creates <see cref="IXslTransformerFromFile"/> from file with a specified file name.
         /// </summary>
-        /// <param name="xslFileName">File name of the XSL file.</param>
+        /// <param name="fileName">File name of the source file.</param>
         /// <returns>The transformer.</returns>
-        IXslTransformer CreateTransformer(string xslFileName);
+        IXslTransformerFromFile CreateTransformerFromFile(string fileName);
+
+        /// <summary>
+        /// Creates <see cref="IXslTransformerFromContent"/> from specified source content.
+        /// </summary>
+        /// <param name="content">Source content.</param>
+        /// <returns>The transformer.</returns>
+        IXslTransformerFromContent CreateTransformerFromContent(string content);
     }
 }

@@ -19,12 +19,12 @@ namespace ProcessingTools.Services.Xml
         protected abstract ConcurrentDictionary<string, T> TransformObjects { get; }
 
         /// <inheritdoc/>
-        public virtual T this[string fileName] => this.TransformObjects.GetOrAdd(fileName, this.GetTransformObject);
+        public virtual T this[string key] => this.TransformObjects.GetOrAdd(key, this.GetTransformObject);
 
         /// <inheritdoc/>
-        public virtual bool Remove(string fileName)
+        public virtual bool Remove(string key)
         {
-            return this.TransformObjects.TryRemove(fileName, out T value);
+            return this.TransformObjects.TryRemove(key, out T value);
         }
 
         /// <inheritdoc/>
@@ -42,8 +42,8 @@ namespace ProcessingTools.Services.Xml
         /// <summary>
         /// Gets transform object by file name.
         /// </summary>
-        /// <param name="fileName">File name of the source file.</param>
+        /// <param name="key">Key of the source file.</param>
         /// <returns>Transform object.</returns>
-        protected abstract T GetTransformObject(string fileName);
+        protected abstract T GetTransformObject(string key);
     }
 }

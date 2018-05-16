@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "declaration": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noEmitOnError": true,
+        "removeComments": true,
+        "sourceMap": false,
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "target": "es5",
+        "outDir": "wwwroot/build/ts"
+    },
+    "exclude": [
+        "node_modules",
+        "wwwroot"
+    ],
+    "compileOnSave": true
+}

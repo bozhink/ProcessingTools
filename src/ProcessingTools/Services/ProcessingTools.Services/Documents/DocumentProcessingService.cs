@@ -5,17 +5,12 @@
 namespace ProcessingTools.Services.Documents
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Models.Contracts.Rules;
-    using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Services.Contracts.Documents;
     using ProcessingTools.Services.Contracts.Layout.Styles;
-    using ProcessingTools.Services.Contracts.Rules;
     using ProcessingTools.Services.Models.Documents.Documents;
 
     /// <summary>
@@ -25,38 +20,34 @@ namespace ProcessingTools.Services.Documents
     {
         private readonly IDocumentsDataService documentsDataService;
         private readonly IDocumentFactory documentFactory;
-        private readonly IDocumentSchemaNormalizer documentSchemaNormalizer;
         private readonly IArticlesDataService articlesDataService;
         private readonly IJournalStylesDataService journalStylesDataService;
-        private readonly IXmlReplaceRuleSetParser ruleSetParser;
         private readonly IReferencesParser referencesParser;
+        private readonly IReferencesTagger referencesTagger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentProcessingService"/> class.
         /// </summary>
         /// <param name="documentsDataService">Document data service.</param>
         /// <param name="documentFactory">Document factory.</param>
-        /// <param name="documentSchemaNormalizer">Document schema normalizer.</param>
         /// <param name="articlesDataService">Articles data service.</param>
         /// <param name="journalStylesDataService">Journal styles data service.</param>
-        /// <param name="ruleSetParser">Rule set parser.</param>
         /// <param name="referencesParser">References parser.</param>
+        /// <param name="referencesTagger">References tagger.</param>
         public DocumentProcessingService(
            IDocumentsDataService documentsDataService,
            IDocumentFactory documentFactory,
-           IDocumentSchemaNormalizer documentSchemaNormalizer,
            IArticlesDataService articlesDataService,
            IJournalStylesDataService journalStylesDataService,
-           IXmlReplaceRuleSetParser ruleSetParser,
-           IReferencesParser referencesParser)
+           IReferencesParser referencesParser,
+           IReferencesTagger referencesTagger)
         {
             this.documentsDataService = documentsDataService ?? throw new ArgumentNullException(nameof(documentsDataService));
             this.documentFactory = documentFactory ?? throw new ArgumentNullException(nameof(documentFactory));
-            this.documentSchemaNormalizer = documentSchemaNormalizer ?? throw new ArgumentNullException(nameof(documentSchemaNormalizer));
             this.articlesDataService = articlesDataService ?? throw new ArgumentNullException(nameof(articlesDataService));
             this.journalStylesDataService = journalStylesDataService ?? throw new ArgumentNullException(nameof(journalStylesDataService));
-            this.ruleSetParser = ruleSetParser ?? throw new ArgumentNullException(nameof(ruleSetParser));
             this.referencesParser = referencesParser ?? throw new ArgumentNullException(nameof(referencesParser));
+            this.referencesTagger = referencesTagger ?? throw new ArgumentNullException(nameof(referencesTagger));
         }
 
         /// <inheritdoc/>
@@ -72,22 +63,57 @@ namespace ProcessingTools.Services.Documents
                 throw new ArgumentNullException(nameof(articleId));
             }
 
-            var ruleSets = await this.GetReferenceParseRuleSetsFromStylesAsync(articleId);
+            var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
+            if (journalStyleId == null)
+            {
+                return null;
+            }
+
+            var styles = await this.journalStylesDataService.GetReferenceParseStylesAsync(journalStyleId).ConfigureAwait(false);
+
             var document = await this.GetDocumentAsync(documentId);
 
-            var parsed = await this.referencesParser.ParseAsync(document.XmlDocument.DocumentElement, ruleSets).ConfigureAwait(false);
+            var parsed = await this.referencesParser.ParseAsync(document.XmlDocument.DocumentElement, styles).ConfigureAwait(false);
             if (parsed == null)
             {
                 return null;
             }
 
-            var normalized = await this.documentSchemaNormalizer.NormalizeToDocumentSchemaAsync(document).ConfigureAwait(false);
-            if (normalized == null)
+            string description = "Parse references";
+
+            return await this.CreateDocumentAsync(documentId, articleId, document, description).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public async Task<object> TagReferencesAsync(object documentId, object articleId)
+        {
+            if (documentId == null)
+            {
+                throw new ArgumentNullException(nameof(documentId));
+            }
+
+            if (articleId == null)
+            {
+                throw new ArgumentNullException(nameof(articleId));
+            }
+
+            var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
+            if (journalStyleId == null)
             {
                 return null;
             }
 
-            string description = "Parse references";
+            var styles = await this.journalStylesDataService.GetReferenceTagStylesAsync(journalStyleId).ConfigureAwait(false);
+
+            var document = await this.GetDocumentAsync(documentId);
+
+            var parsed = await this.referencesTagger.TagAsync(document.XmlDocument.DocumentElement, styles).ConfigureAwait(false);
+            if (parsed == null)
+            {
+                return null;
+            }
+
+            string description = "Tag references";
 
             return await this.CreateDocumentAsync(documentId, articleId, document, description).ConfigureAwait(false);
         }
@@ -115,42 +141,10 @@ namespace ProcessingTools.Services.Documents
             return id;
         }
 
-        private async Task<IList<IXmlReplaceRuleSetModel>> GetReferenceParseRuleSetsFromStylesAsync(object articleId)
-        {
-            var journalStyleId = await this.articlesDataService.GetJournalStyleIdAsync(articleId).ConfigureAwait(false);
-            if (journalStyleId == null)
-            {
-                return null;
-            }
-
-            var styles = await this.journalStylesDataService.GetReferenceParseStylesAsync(journalStyleId).ConfigureAwait(false);
-
-            var scripts = styles.Select(s => s.Script);
-
-            var ruleSets = new List<IXmlReplaceRuleSetModel>();
-            foreach (var script in scripts)
-            {
-                var scriptRuleSets = await this.ruleSetParser.ParseStringToRuleSetsAsync(script).ConfigureAwait(false);
-                if (scriptRuleSets != null && scriptRuleSets.Any())
-                {
-                    ruleSets.AddRange(scriptRuleSets);
-                }
-            }
-
-            return ruleSets;
-        }
-
         private async Task<IDocument> GetDocumentAsync(object documentId)
         {
             string content = await this.documentsDataService.GetDocumentContentAsync(documentId).ConfigureAwait(false);
             var document = this.documentFactory.Create(content);
-
-            var normalized = await this.documentSchemaNormalizer.NormalizeToDocumentSchemaAsync(document).ConfigureAwait(false);
-            if (normalized == null)
-            {
-                return null;
-            }
-
             return document;
         }
     }
