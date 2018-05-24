@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.IndexActionName)" class="navbar-brand">PTWD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="@(ActionNames.Index)">
+                        <span class="fa fa-home"></span>
+                        <span class="sr-only">(home)</span>
+                    </a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @await Html.PartialAsync("Navbars/Main/_LayoutPartial")
+                    @await Html.PartialAsync("Navbars/Main/_DocumentsPartial")
+                }
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="helpNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
+                    <ul class="dropdown-menu" aria-labelledby="helpNavbarDropdown">
+                        <li><a class="dropdown-item" asp-action="@(ActionNames.Help)" target="_blank">Help</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a class="dropdown-item" asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.ContactActionName)">Contact</a></li>
+                        <li><a class="dropdown-item" asp-area="" asp-controller="@(HomeController.ControllerName)" asp-action="@(HomeController.AboutActionName)">About</a></li>
+                        </ul>
+                    </li>
+            </ul>
+            @await Html.PartialAsync("Navbars/Main/_LoginPartial")
+        </div>
+    </div>
+</nav>

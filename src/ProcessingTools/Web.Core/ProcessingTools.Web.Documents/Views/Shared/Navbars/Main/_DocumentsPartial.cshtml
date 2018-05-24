@@ -1,0 +1,8 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="journalsNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Documents</a>
+    <ul class="dropdown-menu" aria-labelledby="journalsNavbarDropdown">
+        <li><a class="dropdown-item" asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.PublishersController.IndexActionName)">Publishers</a></li>
+        <li><a class="dropdown-item" asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.JournalsController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.JournalsController.IndexActionName)">Journals</a></li>
+        <li><a class="dropdown-item" asp-area="@(AreaNames.Documents)" asp-controller="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.ArticlesController.ControllerName)" asp-action="@(ProcessingTools.Web.Documents.Areas.Documents.Controllers.ArticlesController.IndexActionName)">Articles</a></li>
+    </ul>
+</li>

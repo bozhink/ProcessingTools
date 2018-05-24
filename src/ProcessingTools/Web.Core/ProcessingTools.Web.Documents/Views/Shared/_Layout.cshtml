@@ -21,19 +21,22 @@
               asp-fallback-test-class="fa-stack-1x"
               asp-fallback-test-property="position"
               asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/build/dist/css/site.css" asp-append-version="true" />
     </environment>
     @RenderSection("Styles", required: false)
 </head>
 <body>
-    @await Html.PartialAsync("_MainMenu")
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
+    @await Html.PartialAsync("Navbars/Main/_MainPartial")
+    <main role="main">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
             <p>&copy; @(DateTime.Now.Year) - ProcessingTools.Web.Documents</p>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <environment include="Development">
         <script src="~/node_modules/jquery/dist/jquery.js"></script>
