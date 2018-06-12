@@ -31,12 +31,10 @@
     "devDependencies": {
         "@types/jquery": "^3.3.2",
         "@types/toastr": "^2.1.35",
-        "browserify": "^16.2.2",
         "chai": "^4.1.2",
         "del": "^3.0.0",
         "eslint": "^4.19.1",
         "gulp": "^3.9.1",
-        "gulp-browserify": "^0.5.1",
         "gulp-concat": "^2.6.1",
         "gulp-cssmin": "^0.2.0",
         "gulp-htmlmin": "^4.0.0",
