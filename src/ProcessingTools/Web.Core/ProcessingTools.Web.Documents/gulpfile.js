@@ -18,6 +18,7 @@ const
     };
 
 var gulp = require("gulp"),
+    gulpUtil = require("gulp-util"),
     concat = require("gulp-concat"),
     less = require("gulp-less"),
     browserify = require("gulp-browserify"),
@@ -26,12 +27,14 @@ var gulp = require("gulp"),
     uglify = require("gulp-uglify"),
     merge = require("merge-stream"),
     del = require("del"),
-    plumber = require("gulp-plumber"),
     mocha = require("gulp-mocha"),
     ts = require("gulp-typescript"),
     tsProject = ts.createProject("./tsconfig.json"),
     bundleconfig = require("./bundleconfig.json"),
-    path = require("path");
+    path = require("path"),
+    webpackStream = require("webpack-stream"),
+    webpack = require("webpack"),
+    WebpackDevServer = require("webpack-dev-server");
 
 var regex = {
     css: /\.css$/,
@@ -173,6 +176,45 @@ gulp.task("compile-less", function () {
         .pipe(gulp.dest(path.join(distPath, paths.css)));
 });
 
+gulp.task("webpack", function (callback) {
+    webpack({
+        // configuration
+    }, function (error, stats) {
+        if (error) {
+            throw new gulpUtil.PluginError("webpack", error);
+        }
+
+        gulpUtil.log("[webpack]", stats.toString({
+            // output options
+        }));
+
+        if (callback && typeof callback === "function") {
+            callback();
+        }
+    });
+});
+
+gulp.task("webpack-dev-server", function (callback){
+    var compiler = webpack({
+        // configuration
+    });
+
+    new WebpackDevServer(compiler, {
+        // server and middleware options
+    }).listen(9090, "localhost", function (error){
+        if (error) {
+            throw new gulpUtil.PluginError("webpack-dev-server", error);
+        }
+
+        gulpUtil.log("[webpack-dev-server]", "http://localhost:9090/webpack-dev-server/index.html");
+
+        // keep the server alive or continue?
+        // if (callback && typeof callback === "function") {
+        //     callback();
+        // }
+    })
+})
+
 /**
  * Compile apps
  */
@@ -181,7 +223,7 @@ gulp.task("build-bio-data-app", function () {
         .src([
             path.join(srcPath, paths.apps, "bio-data-app.js")
         ])
-        .pipe(browserify())
+        .pipe(webpackStream())
         .pipe(concat("bio-data-app.min.js"))
         //.pipe(uglify())
         .pipe(gulp.dest(path.join(distPath, paths.apps)));
@@ -191,7 +233,7 @@ gulp.task("build-document-edit", function () {
     return gulp.src([
             path.join(srcPath, paths.apps, "document-edit.js")
         ])
-        .pipe(browserify())
+        .pipe(webpackStream())
         .pipe(concat("document-edit.min.js"))
         //.pipe(uglify())
         .pipe(gulp.dest(path.join(distPath, paths.apps)));
@@ -201,7 +243,7 @@ gulp.task("build-document-preview", function () {
     return gulp.src([
             path.join(srcPath, paths.apps, "document-preview.js")
         ])
-        .pipe(browserify())
+        .pipe(webpackStream())
         .pipe(concat("document-preview.min.js"))
         //.pipe(uglify())
         .pipe(gulp.dest(path.join(distPath, paths.apps)));
@@ -211,7 +253,7 @@ gulp.task("build-files-index", function () {
     return gulp.src([
             path.join(srcPath, paths.apps, "files-index.js")
         ])
-        .pipe(browserify())
+        .pipe(webpackStream())
         .pipe(concat("files-index.min.js"))
         .pipe(uglify())
         .pipe(gulp.dest(path.join(distPath, paths.apps)));
