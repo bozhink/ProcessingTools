@@ -1,5 +1,5 @@
-import { IDataSet } from "../code/ts/contracts/models/data.common.models";
-import { DataSet } from "../code/ts/models/data.common.models";
+import { IDataSet } from "../../../code/ts/contracts/models/data.common.models";
+import { DataSet } from "../../../code/ts/models/data.common.models";
 import { expect } from "chai";
 import * as sinon from "sinon";
 
