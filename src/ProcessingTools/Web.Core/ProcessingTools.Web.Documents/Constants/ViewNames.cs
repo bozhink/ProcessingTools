@@ -22,7 +22,7 @@ namespace ProcessingTools.Web.Documents.Constants
         /// <summary>
         /// Navigation foot partial view name.
         /// </summary>
-        public const string NavigationFootPartialViewName = "~/Views/Shared/_NavigationFoot.cshtml";
+        public const string NavigationFootPartial = "~/Views/Shared/_NavigationFoot.cshtml";
 
         /// <summary>
         /// Pagination scripts partial view name.
