@@ -27,6 +27,6 @@ namespace ProcessingTools.Web.Documents.Constants
         /// <summary>
         /// Pagination scripts partial view name.
         /// </summary>
-        public const string PaginationScriptsPartialViewName = "~/Views/Shared/_PaginationScriptsPartial.cshtml";
+        public const string PaginationScriptsPartial = "~/Views/Shared/_PaginationScriptsPartial.cshtml";
     }
 }
