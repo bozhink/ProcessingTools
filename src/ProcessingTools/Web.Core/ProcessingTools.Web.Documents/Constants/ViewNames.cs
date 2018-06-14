@@ -10,12 +10,12 @@ namespace ProcessingTools.Web.Documents.Constants
     public static class ViewNames
     {
         /// <summary>
-        /// Default layout view.
+        /// Default layout view name.
         /// </summary>
         public const string Layout = "_Layout";
 
         /// <summary>
-        /// Validation scripts partial view.
+        /// Validation scripts partial view name.
         /// </summary>
         public const string ValidationScriptsPartial = "_ValidationScriptsPartial";
 
