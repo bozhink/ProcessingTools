@@ -5,8 +5,10 @@
 namespace ProcessingTools.Web.Documents
 {
     using System;
+    using System.IO;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
     using NLog.Web;
 
@@ -40,8 +42,18 @@ namespace ProcessingTools.Web.Documents
             }
         }
 
-        private static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        private static IWebHost BuildWebHost(string[] args)
+        {
+            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .AddCommandLine(args);
+
+            IConfiguration configuration = configurationBuilder.Build();
+
+            return WebHost.CreateDefaultBuilder(args)
+                //.UseConfiguration()
                 .UseStartup<Startup>()
                 .ConfigureLogging(logging =>
                 {
@@ -50,5 +62,6 @@ namespace ProcessingTools.Web.Documents
                 })
                 .UseNLog() // NLog: setup NLog for Dependency injection
                 .Build();
+        }
     }
 }
