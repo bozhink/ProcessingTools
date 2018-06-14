@@ -185,11 +185,6 @@ namespace ProcessingTools.Web.Documents
             {
                 this.ServeStaticFiles(app, env, "node_modules", "/node_modules");
                 this.ServeStaticFiles(app, env, "node_modules", "/lib");
-                this.ServeStaticFiles(app, env, "node_modules/jquery/dist", "/lib/jquery/dist");
-                this.ServeStaticFiles(app, env, "node_modules/jquery-validation/dist", "/lib/jquery-validation/dist");
-                this.ServeStaticFiles(app, env, "node_modules/jquery-validation-unobtrusive", "/lib/jquery-validation-unobtrusive");
-                this.ServeStaticFiles(app, env, "node_modules/bootstrap", "/lib/bootstrap");
-                this.ServeStaticFiles(app, env, "node_modules/davidshimjs-qrcodejs", "/lib/qrcodejs");
             }
 
             app.UseAuthentication();
