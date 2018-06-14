@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect,
     sinon = require('sinon'),
-    DataSet = require('../src/js/data/data-set.js');
+    DataSet = require('../code/js/data/data-set.js');
 
 describe('DataSet tests', function () {
     describe('Initialization', function () {
