@@ -33,7 +33,7 @@ var merge = require("merge-stream");
 var del = require("del");
 var mocha = require("gulp-mocha");
 var ts = require("gulp-typescript");
-var tsconfig = ts.createProject("./tsconfig.json");
+var tsProject = ts.createProject("./tsconfig.json");
 var bundleconfig = require("./bundleconfig.json");
 var path = require("path");
 var webpackStream = require("webpack-stream");
@@ -139,7 +139,7 @@ gulp.task("clean:build", function () {
         CSS_DIST_PATH,
         LESS_DIST_PATH,
         SASS_DIST_PATH,
-        tsconfig.config.compilerOptions.outDir.toString()
+        tsProject.config.compilerOptions.outDir.toString()
     ]);
 });
 
@@ -243,9 +243,9 @@ gulp.task("build-files-index", jsAppFactory.createBuild("files-index.js", "files
  */
 
 gulp.task("build-typescript", function () {
-    return tsconfig.src()
-        .pipe(tsconfig())
-        .js.pipe(gulp.dest(tsconfig.config.compilerOptions.outDir.toString()));
+    return tsProject.src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest(tsProject.config.compilerOptions.outDir.toString()));
 });
 
 /**
