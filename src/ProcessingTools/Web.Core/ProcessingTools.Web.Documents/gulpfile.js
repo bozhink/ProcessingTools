@@ -3,10 +3,10 @@
 // See https://docs.microsoft.com/en-us/aspnet/core/client-side/bundling-and-minification?tabs=netcore-cli%2Caspnetcore2x
 
 const
-    srcPath = "wwwroot/src",
+    srcPath = "ClientApp/src",
     distPath = "wwwroot/build/dist",
     compilePath = "wwwroot/build/compiled",
-    testsPath = "wwwroot/tests",
+    testsPath = "ClientApp/tests",
     paths = {
         templates: "templates",
         less: "less",
