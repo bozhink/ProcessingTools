@@ -1,57 +1,57 @@
 ﻿/* globals describe it */
 
-var expect = require('chai').expect,
-    sinon = require('sinon'),
-    DataSet = require('../code/js/data/data-set.js');
+var expect = require("chai").expect,
+    sinon = require("sinon"),
+    DataSet = require("../code/js/data/data-set.js");
 
-describe('DataSet tests', function () {
-    describe('Initialization', function () {
-        it('Expect default initialization to not throw', function () {
+describe("JS DataSet tests", function () {
+    describe("Initialization", function () {
+        it("Expect default initialization to not throw", function () {
             expect(function () {
                 new DataSet();
             }).to.not.throw();
         });
 
-        it('Expect default initialization to return DataSet object with empty data array', function () {
+        it("Expect default initialization to return DataSet object with empty data array", function () {
             var dataSet = new DataSet();
-            expect(dataSet).to.have.property('data');
+            expect(dataSet).to.have.property("data");
             expect(Array.isArray(dataSet.data)).to.be.equal(true);
             expect(dataSet.data.length).to.be.equal(0);
         });
 
-        it('Expect default initialization to return DataSet object with add function', function () {
+        it("Expect default initialization to return DataSet object with add function", function () {
             var dataSet = new DataSet();
-            expect(dataSet).to.have.property('add');
-            expect(dataSet.add).to.be.a('function');
+            expect(dataSet).to.have.property("add");
+            expect(dataSet.add).to.be.a("function");
         });
 
-        it('Expect default initialization to return DataSet object with addMulti function', function () {
+        it("Expect default initialization to return DataSet object with addMulti function", function () {
             var dataSet = new DataSet();
-            expect(dataSet).to.have.property('addMulti');
-            expect(dataSet.addMulti).to.be.a('function');
+            expect(dataSet).to.have.property("addMulti");
+            expect(dataSet.addMulti).to.be.a("function");
         });
 
-        it('Expect default initialization to return DataSet object with remove function', function () {
+        it("Expect default initialization to return DataSet object with remove function", function () {
             var dataSet = new DataSet();
-            expect(dataSet).to.have.property('remove');
-            expect(dataSet.remove).to.be.a('function');
+            expect(dataSet).to.have.property("remove");
+            expect(dataSet.remove).to.be.a("function");
         });
 
-        it('Expect default initialization to return DataSet object with removeAll function', function () {
+        it("Expect default initialization to return DataSet object with removeAll function", function () {
             var dataSet = new DataSet();
-            expect(dataSet).to.have.property('removeAll');
-            expect(dataSet.removeAll).to.be.a('function');
+            expect(dataSet).to.have.property("removeAll");
+            expect(dataSet.removeAll).to.be.a("function");
         });
     });
 
-    describe('Add items to DataSet', function () {
-        it('Expect addition of single valid item to DataSet to add it correctly with valid id', function () {
+    describe("Add items to DataSet", function () {
+        it("Expect addition of single valid item to DataSet to add it correctly with valid id", function () {
             var item = {
                 a: 1,
                 getHash: () => 1
             };
 
-            var spy = sinon.spy(item, 'getHash');
+            var spy = sinon.spy(item, "getHash");
 
             var dataSet = new DataSet();
 
@@ -66,10 +66,10 @@ describe('DataSet tests', function () {
             var addedItem = dataSet.data[0];
             expect(addedItem.a).to.equal(item.a);
 
-            expect(addedItem).to.have.property('id');
+            expect(addedItem).to.have.property("id");
         });
 
-        it('Expect addition of two valid items with different hash to DataSet to add them correctly with valid id', function () {
+        it("Expect addition of two valid items with different hash to DataSet to add them correctly with valid id", function () {
             var item1 = {
                     a: 1,
                     getHash: () => 1
@@ -79,8 +79,8 @@ describe('DataSet tests', function () {
                     getHash: () => 2
                 };
 
-            var spy1 = sinon.spy(item1, 'getHash'),
-                spy2 = sinon.spy(item2, 'getHash');
+            var spy1 = sinon.spy(item1, "getHash"),
+                spy2 = sinon.spy(item2, "getHash");
 
             var dataSet = new DataSet();
 
@@ -103,13 +103,13 @@ describe('DataSet tests', function () {
             var addedItem2 = dataSet.data[1];
             expect(addedItem2.a).to.equal(item2.a);
 
-            expect(addedItem1).to.have.property('id');
-            expect(addedItem2).to.have.property('id');
+            expect(addedItem1).to.have.property("id");
+            expect(addedItem2).to.have.property("id");
 
             expect(addedItem1.id).not.to.be.equal(addedItem2.id);
         });
 
-        it('Expect addition of three valid items with different hash to DataSet to add them correctly with valid id', function () {
+        it("Expect addition of three valid items with different hash to DataSet to add them correctly with valid id", function () {
             var item1 = {
                     a: 1,
                     getHash: () => 1
@@ -123,9 +123,9 @@ describe('DataSet tests', function () {
                     getHash: () => 3
                 };
 
-            var spy1 = sinon.spy(item1, 'getHash'),
-                spy2 = sinon.spy(item2, 'getHash'),
-                spy3 = sinon.spy(item3, 'getHash');
+            var spy1 = sinon.spy(item1, "getHash"),
+                spy2 = sinon.spy(item2, "getHash"),
+                spy3 = sinon.spy(item3, "getHash");
 
             var dataSet = new DataSet();
 
@@ -156,15 +156,15 @@ describe('DataSet tests', function () {
             var addedItem3 = dataSet.data[2];
             expect(addedItem3.a).to.equal(item3.a);
 
-            expect(addedItem1).to.have.property('id');
-            expect(addedItem2).to.have.property('id');
-            expect(addedItem3).to.have.property('id');
+            expect(addedItem1).to.have.property("id");
+            expect(addedItem2).to.have.property("id");
+            expect(addedItem3).to.have.property("id");
 
             expect(addedItem1.id).not.to.be.equal(addedItem2.id);
             expect(addedItem1.id).not.to.be.equal(addedItem3.id);
         });
 
-        it('Expect addition of two valid items with equal hash to DataSet to add only the first one', function () {
+        it("Expect addition of two valid items with equal hash to DataSet to add only the first one", function () {
             var item1 = {
                     a: 1,
                     getHash: () => 1
@@ -174,8 +174,8 @@ describe('DataSet tests', function () {
                     getHash: () => 1
                 };
 
-            var spy1 = sinon.spy(item1, 'getHash'),
-                spy2 = sinon.spy(item2, 'getHash');
+            var spy1 = sinon.spy(item1, "getHash"),
+                spy2 = sinon.spy(item2, "getHash");
 
             var dataSet = new DataSet();
 
@@ -195,10 +195,10 @@ describe('DataSet tests', function () {
             var addedItem = dataSet.data[0];
             expect(addedItem.a).to.equal(item1.a);
 
-            expect(addedItem).to.have.property('id');
+            expect(addedItem).to.have.property("id");
         });
 
-        it('Expect addition of single item with no getHash() to DataSet to throw and not to add it', function () {
+        it("Expect addition of single item with no getHash() to DataSet to throw and not to add it", function () {
             var item = {
                 a: 1
             };
@@ -207,12 +207,12 @@ describe('DataSet tests', function () {
 
             expect(function () {
                 dataSet.add(item);
-            }).to.throw('Item to add should have function "getHash"');
+            }).to.throw(`Item to add should have function "getHash"`);
 
             expect(dataSet.data.length).to.equal(0);
         });
 
-        it('Expect addition of one valid item and one item with no getHash() to DataSet to throw and to add only the first one', function () {
+        it("Expect addition of one valid item and one item with no getHash() to DataSet to throw and to add only the first one", function () {
             var item1 = {
                     a: 1,
                     getHash: () => 1
@@ -221,7 +221,7 @@ describe('DataSet tests', function () {
                     a: 2
                 };
 
-            var spy1 = sinon.spy(item1, 'getHash');
+            var spy1 = sinon.spy(item1, "getHash");
 
             var dataSet = new DataSet();
 
@@ -231,7 +231,7 @@ describe('DataSet tests', function () {
 
             expect(function () {
                 dataSet.add(item2);
-            }).to.throw('Item to add should have function "getHash"');
+            }).to.throw(`Item to add should have function "getHash"`);
 
             expect(spy1.callCount).to.be.equal(0);
 
@@ -240,10 +240,10 @@ describe('DataSet tests', function () {
             var addedItem = dataSet.data[0];
             expect(addedItem.a).to.equal(item1.a);
 
-            expect(addedItem).to.have.property('id');
+            expect(addedItem).to.have.property("id");
         });
 
-        it('Expect addition of one item with no getHash() and one valid item to DataSet to throw and to add only the second one', function () {
+        it("Expect addition of one item with no getHash() and one valid item to DataSet to throw and to add only the second one", function () {
             var item1 = {
                     a: 1
                 },
@@ -252,13 +252,13 @@ describe('DataSet tests', function () {
                     getHash: () => 2
                 };
 
-            var spy2 = sinon.spy(item2, 'getHash');
+            var spy2 = sinon.spy(item2, "getHash");
 
             var dataSet = new DataSet();
 
             expect(function () {
                 dataSet.add(item1);
-            }).to.throw('Item to add should have function "getHash"');
+            }).to.throw(`Item to add should have function "getHash"`);
 
             expect(function () {
                 dataSet.add(item2);
@@ -271,10 +271,10 @@ describe('DataSet tests', function () {
             var addedItem = dataSet.data[0];
             expect(addedItem.a).to.equal(item2.a);
 
-            expect(addedItem).to.have.property('id');
+            expect(addedItem).to.have.property("id");
         });
 
-        it('Expect addition of two items with no getHash() to DataSet to throw and not to add them', function () {
+        it("Expect addition of two items with no getHash() to DataSet to throw and not to add them", function () {
             var item1 = {
                     a: 1
                 },
@@ -286,16 +286,16 @@ describe('DataSet tests', function () {
 
             expect(function () {
                 dataSet.add(item1);
-            }).to.throw('Item to add should have function "getHash"');
+            }).to.throw(`Item to add should have function "getHash"`);
 
             expect(function () {
                 dataSet.add(item2);
-            }).to.throw('Item to add should have function "getHash"');
+            }).to.throw(`Item to add should have function "getHash"`);
 
             expect(dataSet.data.length).to.equal(0);
         });
 
-        it('Expect addition of null item to DataSet to not throw and to not add id', function () {
+        it("Expect addition of null item to DataSet to not throw and to not add id", function () {
             var item = null;
 
             var dataSet = new DataSet();
@@ -307,7 +307,7 @@ describe('DataSet tests', function () {
             expect(dataSet.data.length).to.equal(0);
         });
 
-        it('Expect addition of undefined item to DataSet to not throw and to not add id', function () {
+        it("Expect addition of undefined item to DataSet to not throw and to not add id", function () {
             var item = undefined;
 
             var dataSet = new DataSet();
@@ -319,7 +319,7 @@ describe('DataSet tests', function () {
             expect(dataSet.data.length).to.equal(0);
         });
 
-        it('Expect add() with no parameters to empty DataSet to not throw and to not change data.length', function () {
+        it("Expect add() with no parameters to empty DataSet to not throw and to not change data.length", function () {
             var dataSet = new DataSet();
 
             expect(function () {
@@ -329,7 +329,7 @@ describe('DataSet tests', function () {
             expect(dataSet.data.length).to.equal(0);
         });
 
-        it('Expect add() with no parameters to not throw and to not change data.length', function () {
+        it("Expect add() with no parameters to not throw and to not change data.length", function () {
             var dataSet = new DataSet();
 
             // First add some items

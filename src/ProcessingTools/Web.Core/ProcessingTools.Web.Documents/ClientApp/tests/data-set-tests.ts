@@ -4,7 +4,7 @@ import { expect } from "chai";
 import * as sinon from "sinon";
 
 // tslint:disable-next-line:max-line-length
-describe("DataSet tests", function (): void {
+describe("TS DataSet tests", function (): void {
 
     // tslint:disable-next-line:max-line-length
     describe("Initialization", function (): void {

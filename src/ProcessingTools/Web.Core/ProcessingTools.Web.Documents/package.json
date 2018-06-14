@@ -4,14 +4,13 @@
     "description": "Document management system",
     "main": "index.js",
     "scripts": {
-        "clean": "./node_modules/.bin/gulp clean",
-        "test": "./node_modules/.bin/mocha ClientApp/tests/",
-        "test-kitten": "./node_modules/.bin/mocha -R nyan ClientApp/tests/",
-        "test-ts": "./node_modules/.bin/mocha -r mocha -r ts-node/register ClientApp/tests/**/*.ts",
-        "watch-tests": "./node_modules/.bin/gulp watch-tests",
-        "build": "./node_modules/.bin/gulp build",
-        "min": "./node_modules/.bin/gulp min",
-        "watch": "./node_modules/.bin/gulp watch"
+        "clean": "gulp clean",
+        "test": "mocha ClientApp/tests/**/*.js && mocha -r ts-node/register ClientApp/tests/**/*.ts",
+        "test-kitten": "mocha -R nyan ClientApp/tests/**/*.js",
+        "watch-tests": "gulp watch-tests",
+        "build": "gulp build",
+        "min": "gulp min",
+        "watch": "gulp watch"
     },
     "repository": {
         "type": "git",
