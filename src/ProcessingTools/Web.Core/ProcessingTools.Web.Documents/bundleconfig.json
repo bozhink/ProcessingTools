@@ -1,18 +1,35 @@
 ﻿[
   {
-    "outputFileName": "wwwroot/css/site.min.css",
+    "outputFileName": "wwwroot/build/dist/css/site.min.css",
     "inputFiles": [
-      "wwwroot/css/site.css"
+      "ClientApp/styles/css/site.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/js/site.min.js",
+    "outputFileName": "wwwroot/build/dist/css/site.css",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "ClientApp/styles/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/build/dist/js/site.min.js",
+    "inputFiles": [
+      "ClientApp/code/js/site.js"
     ],
     "minify": {
       "enabled": true,
       "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/build/dist/js/site.js",
+    "inputFiles": [
+      "ClientApp/code/js/site.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
     },
     "sourceMap": false
   }
