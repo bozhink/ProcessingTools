@@ -30,6 +30,7 @@
     "homepage": "https://github.com/bozhink/ProcessingTools#readme",
     "devDependencies": {
         "@types/chai": "^4.1.4",
+        "@types/crypto-js": "^3.1.40",
         "@types/jquery": "^3.3.2",
         "@types/mocha": "^5.2.2",
         "@types/sinon": "^5.0.1",

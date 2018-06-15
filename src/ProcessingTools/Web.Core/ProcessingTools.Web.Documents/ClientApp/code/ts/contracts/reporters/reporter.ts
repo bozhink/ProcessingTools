@@ -7,5 +7,4 @@ export enum ReportType {
 
 export interface IReporter {
     report: (type: (string | ReportType), message: string) => object;
-
 }

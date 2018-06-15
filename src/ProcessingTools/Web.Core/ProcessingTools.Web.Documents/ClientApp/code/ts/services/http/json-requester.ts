@@ -8,7 +8,7 @@ export class JsonRequester implements IJsonRequester<any> {
         this.jQuery = jQuery;
     }
 
-    public send(method: (string | HttpMethod), url: string, options: IRequestModel): Promise<any> {
+    public send(method: (string | HttpMethod), url: string, options?: IRequestModel): Promise<any> {
         var headers: any, data: any;
 
         if (!url) {
@@ -33,27 +33,27 @@ export class JsonRequester implements IJsonRequester<any> {
         });
     }
 
-    public delete(url: string, options: IRequestModel): Promise<any> {
+    public delete(url: string, options?: IRequestModel): Promise<any> {
         return this.send(HttpMethod.DELETE, url, options);
     }
 
-    public get(url: string, options: IRequestModel): Promise<any> {
+    public get(url: string, options?: IRequestModel): Promise<any> {
         return this.send(HttpMethod.GET, url, options);
     }
 
-    public head(url: string, options: IRequestModel): Promise<any> {
+    public head(url: string, options?: IRequestModel): Promise<any> {
         return this.send(HttpMethod.HEAD, url, options);
     }
 
-    public patch(url: string, options: IRequestModel): Promise<any> {
+    public patch(url: string, options?: IRequestModel): Promise<any> {
         return this.send(HttpMethod.PATCH, url, options);
     }
 
-    public post(url: string, options: IRequestModel): Promise<any> {
+    public post(url: string, options?: IRequestModel): Promise<any> {
         return this.send(HttpMethod.POST, url, options);
     }
 
-    public put(url: string, options: IRequestModel): Promise<any> {
+    public put(url: string, options?: IRequestModel): Promise<any> {
         return this.send(HttpMethod.PUT, url, options);
     }
 }

@@ -11,6 +11,10 @@
         "moduleResolution": "node",
         "module": "commonjs",
         "target": "es5",
+        "lib": [
+            "dom",
+            "es2015"
+        ],
         "sourceRoot": "ClientApp/code/ts",
         "outDir": "wwwroot/build/out/ts"
     },
