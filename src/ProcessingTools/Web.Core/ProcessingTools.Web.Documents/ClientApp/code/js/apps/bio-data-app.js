@@ -2,7 +2,7 @@
 
 var Reporter = require('../services/message-reporter'),
     DataSet = require('../data/data-set'),
-    NgJsonRequester = require('../services/ng-json-requester'),
+    NgJsonRequester = require('../services/http/ng-json-requester'),
     SearchStringService = require('../services/search-string-service'),
     Router = require('../routers/bio-data-router'),
     NavigationTabsDirective = require('../directives/navigation-tabs').navigationTabs,
