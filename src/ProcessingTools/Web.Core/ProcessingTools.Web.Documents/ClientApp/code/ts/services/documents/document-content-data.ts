@@ -8,13 +8,29 @@ export class DocumentContentData {
 
     private storage: Storage;
     private keys: IStorageKeys;
-    private jsonRequester: IRequesterBase<any>;
+    private requester: IRequesterBase<any>;
     private sha1: (x: any) => any;
 
-    public constructor(storage: Storage, keys: IStorageKeys, jsonRequester: IRequesterBase<any>, sha1: (x: any) => any) {
+    public constructor(storage: Storage, keys: IStorageKeys, requester: IRequesterBase<any>, sha1: (x: any) => any) {
+        if (!storage) {
+            throw `Storage is null`;
+        }
+
+        if (!keys) {
+            throw `Storage keys are null`;
+        }
+
+        if (!requester) {
+            throw `Requester is null`;
+        }
+
+        if (!sha1) {
+            throw `SHA1 is null`;
+        }
+
         this.storage = storage;
         this.keys = keys;
-        this.jsonRequester = jsonRequester;
+        this.requester = requester;
         this.sha1 = sha1;
     }
 
@@ -54,13 +70,17 @@ export class DocumentContentData {
     }
 
     public get(url: string): Promise<any> {
+        if (!url) {
+            throw `URL is null`;
+        }
+
         let self: DocumentContentData = this;
 
         return new Promise(function (resolve: (x: string) => void, reject: (x: IMessageResponse) => void): void {
             let lastGetTime: string = self.storage.getItem(self.keys.lastGetTimeKey);
 
             if (!lastGetTime || self.getTimeToNextPossibleGet(lastGetTime) < 0) {
-                self.jsonRequester.post(url)
+                self.requester.post(url)
                     .then(function (data: any): void {
                         let content: string = data.content || data.Content;
                         self.storage.setItem(self.keys.lastGetTimeKey, new Date().toString());
@@ -78,6 +98,10 @@ export class DocumentContentData {
     }
 
     public save(url: string, content: string): Promise<any> {
+        if (!url) {
+            throw `URL is null`;
+        }
+
         let self: DocumentContentData = this;
 
         return new Promise(function (resolve: (x: IMessageResponse) => void, reject: (x: IMessageResponse) => void): void {
@@ -89,7 +113,7 @@ export class DocumentContentData {
                 let contentHash: string = self.sha1(content).toString();
 
                 if (contentHash !== lastSavedHash) {
-                    self.jsonRequester.put(url, {
+                    self.requester.put(url, {
                         data: {
                             content: content
                         }
