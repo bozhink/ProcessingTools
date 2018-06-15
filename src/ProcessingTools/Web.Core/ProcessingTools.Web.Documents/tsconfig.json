@@ -11,7 +11,8 @@
         "moduleResolution": "node",
         "module": "commonjs",
         "target": "es5",
-        "outDir": "wwwroot/build/ts"
+        "sourceRoot": "ClientApp/code/ts",
+        "outDir": "wwwroot/build/out/ts"
     },
     "exclude": [
         "node_modules",
