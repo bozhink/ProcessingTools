@@ -21,7 +21,7 @@ var $ = window.jQuery,
     sha1 = window.CryptoJS.SHA1,
     jsonRequester = require('../services/http/json-requester')($),
     dataService = require('../services/documents/document-content-data')(storage, keys, jsonRequester, sha1),
-    reporter = require('../services/toastr-reporter')(toastr),
+    reporter = require('../services/reporters/toastr-reporter')(toastr),
     documentController = require('../controllers/documents/document-controller')(dataService, reporter),
     monacoEditorConfig = require('../configurations/monaco-editor-config')(window, window.require),
     eventHandlerFactory = require('../event-handlers/event-handler-factory')(window),
@@ -44,10 +44,7 @@ loadContentAction = documentController.createGetAction(getUrl, false, function (
         storage.setItem(keys.contentHashKey, contentHash);
     }
 }, function () {
-    reporter.raiseMessage({
-        type: 'success',
-        message: 'Content is retrieved'
-    });
+    reporter.raiseMessage('success', 'Content is retrieved');
 });
 
 saveContentAction = documentController.createSaveAction(saveUrl, false, function () {

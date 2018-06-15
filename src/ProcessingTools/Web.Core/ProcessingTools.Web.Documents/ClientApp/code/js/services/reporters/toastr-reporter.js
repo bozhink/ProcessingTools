@@ -5,26 +5,26 @@ module.exports = function ToastrReporter(toastr) {
         throw 'Toastr is required';
     }
 
-    function raiseMessage(res) {
-        switch (res.type) {
+    function report(type, message) {
+        switch (type) {
             case 'success':
-                toastr.success(res.message);
+                toastr.success(message);
                 break;
 
             case 'info':
-                toastr.info(res.message);
+                toastr.info(message);
                 break;
 
             case 'warning':
-                toastr.warning(res.message);
+                toastr.warning(message);
                 break;
 
             default:
-                toastr.error(res.message);
+                toastr.error(message);
         }
     }
 
     return {
-        raiseMessage: raiseMessage
+        report: report
     };
 };

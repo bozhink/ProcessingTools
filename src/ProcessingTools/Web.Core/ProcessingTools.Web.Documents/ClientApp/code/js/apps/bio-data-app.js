@@ -1,6 +1,6 @@
 /* globals angular */
 
-var Reporter = require('../services/message-reporter'),
+var Reporter = require('../services/reporters/message-reporter'),
     DataSet = require('../data/data-set'),
     NgJsonRequester = require('../services/http/ng-json-requester'),
     SearchStringService = require('../services/search-string-service'),

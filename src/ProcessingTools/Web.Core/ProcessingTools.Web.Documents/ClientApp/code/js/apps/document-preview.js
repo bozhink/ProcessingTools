@@ -20,7 +20,7 @@ var $ = window.jQuery,
     interactConfig = require('../configurations/interact-config')(window, window.interact),
     jsonRequester = require('../services/http/json-requester')($),
     dataService = require('../services/documents/document-content-data')(storage, keys, jsonRequester, sha1),
-    reporter = require('../services/toastr-reporter')(toastr),
+    reporter = require('../services/reporters/toastr-reporter')(toastr),
     documentController = require('../controllers/documents/document-controller')(dataService, reporter),
     templatesProvider = require('../services/templates-provider')($, window.handlebars || window.Handlebars, '../../../build/dist/templates'),
     coordinatesToolboxes = require('../components/coordinates-toolboxes')(window, $, window.L, templatesProvider),
@@ -44,10 +44,7 @@ loadContentAction = documentController.createGetAction(getUrl, false, function (
         storage.setItem(keys.contentHashKey, contentHash);
     }
 }, function () {
-    reporter.raiseMessage({
-        type: 'success',
-        message: 'Content is retrieved'
-    });
+    reporter.report('success', 'Content is retrieved');
 });
 
 saveContentAction = documentController.createSaveAction(saveUrl, false, function () {
