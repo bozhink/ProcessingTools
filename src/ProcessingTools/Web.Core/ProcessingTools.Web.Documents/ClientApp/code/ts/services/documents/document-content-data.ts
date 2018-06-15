@@ -3,8 +3,9 @@ const MINIMAL_TIME_SPAN_BETWEEN_SEQUENTIAL_GETS_MILLISECONDS: number = 5000;
 
 import { IStorageKeys, IMessageResponse, MessageType } from "../../contracts/models/services.models";
 import { IRequesterBase } from "../../contracts/http/requester-base";
+import { IDocumentContentData } from "../../contracts/documents/document-content-data";
 
-export class DocumentContentData {
+export class DocumentContentData implements IDocumentContentData {
 
     private storage: Storage;
     private keys: IStorageKeys;
