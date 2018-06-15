@@ -15,3 +15,7 @@ export interface IMessageResponse {
     type: (string | MessageType);
     message: string;
 }
+
+export interface ISearchString {
+    searchString: string;
+}
