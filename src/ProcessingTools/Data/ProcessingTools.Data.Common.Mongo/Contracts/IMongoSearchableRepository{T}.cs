@@ -1,5 +1,5 @@
 ﻿// <copyright file="IMongoSearchableRepository{T}.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Data.Common.Mongo.Contracts

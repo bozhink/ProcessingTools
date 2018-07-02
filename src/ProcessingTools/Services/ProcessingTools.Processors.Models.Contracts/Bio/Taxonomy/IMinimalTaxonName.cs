@@ -1,5 +1,5 @@
 ﻿// <copyright file="IMinimalTaxonName.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy

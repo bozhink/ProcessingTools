@@ -1,5 +1,5 @@
 ﻿// <copyright file="CompressionExtensions.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
 // See https://stackoverflow.com/questions/7343465/compression-decompression-string-with-c-sharp

@@ -1,5 +1,5 @@
 ﻿// <copyright file="ReferenceInsertTagStyleModel.cs" company="ProcessingTools">
-// Copyright (c) 2017 ProcessingTools. All rights reserved.
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Services.Models.Layout.Styles.References
