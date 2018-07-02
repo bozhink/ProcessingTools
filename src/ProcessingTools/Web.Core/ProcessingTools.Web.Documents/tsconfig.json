@@ -1,26 +1,26 @@
 {
-    "compilerOptions": {
-        "alwaysStrict": true,
-        "declaration": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noEmitOnError": true,
-        "removeComments": true,
-        "sourceMap": false,
-        "moduleResolution": "node",
-        "module": "commonjs",
-        "target": "es5",
-        "lib": [
-            "dom",
-            "es2015"
-        ],
-        "sourceRoot": "ClientApp/code/ts",
-        "outDir": "wwwroot/build/out/ts"
-    },
-    "exclude": [
-        "node_modules",
-        "wwwroot"
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noEmitOnError": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es2015"
     ],
-    "compileOnSave": true
+    "sourceRoot": "ClientApp/code/ts",
+    "outDir": "wwwroot/build/out/ts"
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ],
+  "compileOnSave": true
 }
