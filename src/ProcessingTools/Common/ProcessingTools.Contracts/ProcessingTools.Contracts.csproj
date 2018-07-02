@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <Company>ProcessingTools</Company>
     <Version>0.1.0</Version>
-    <Copyright>Copyright © 2017 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2018 ProcessingTools</Copyright>
     <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

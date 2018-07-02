@@ -5,7 +5,7 @@
     <Version>0.1.0</Version>
     <Company>ProcessingTools</Company>
     <Description>Compile-time and run-time constants</Description>
-    <Copyright>Copyright © 2017 ProcessingTools</Copyright>
+    <Copyright>Copyright © 2018 ProcessingTools</Copyright>
     <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
