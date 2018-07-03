@@ -8,7 +8,6 @@ export class HandlebarsTemplatesProvider implements ITemplatesProvider {
     private readonly extension: string;
     private readonly cache: { [name: string]: string } = {};
 
-
     public constructor($: JQueryStatic, handlebars: { compile: (x: string) => string }, baseAddress: string, extension: string) {
         if (!$) {
             throw `JQuery is null`;
@@ -32,23 +31,27 @@ export class HandlebarsTemplatesProvider implements ITemplatesProvider {
         this.extension = extension || "handlebars";
     }
 
-    public async get(name: string): Promise<string> {
+    public get(name: string): Promise<string> {
         let self: HandlebarsTemplatesProvider = this;
-        if (self.cache[name]) {
-            return self.cache[name];
-        }
+        let promise: Promise<string> = new Promise(function (resolve: (value?: string) => void, reject: (reason?: any) => void): void {
+            let url: string = `${self.baseAddress}/${name}.${self.extension}`;
 
-        let url: string = `${self.baseAddress}/${name}.${self.extension}`;
+            try {
+                if (self.cache[name]) {
+                    resolve(self.cache[name]);
+                    return;
+                }
 
-        try {
-            let html: string = await self.$.get(url);
-            let template: string = self.handlebars.compile(html);
-            self.cache[name] = template;
+                self.$.get(url, function (html: string): void {
+                    let template: string = self.handlebars.compile(html);
+                    self.cache[name] = template;
+                    resolve(template);
+                });
+            } catch (e) {
+                reject(e);
+            }
+        });
 
-            return template;
-
-        } catch (e) {
-            return "";
-        }
+        return promise;
     }
 }
