@@ -1,7 +1,7 @@
 /* globals angular */
 
 var Reporter = require('../services/reporters/message-reporter'),
-    DataSet = require('../data/data-set'),
+    DataSet = require('../models/data.common.models.js'),
     NgJsonRequester = require('../services/http/ng-json-requester'),
     SearchStringService = require('../services/search-string-service'),
     Router = require('../routers/bio-data-router'),
