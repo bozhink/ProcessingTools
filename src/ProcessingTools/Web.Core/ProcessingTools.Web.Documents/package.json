@@ -9,6 +9,7 @@
         "test-kitten": "mocha -R nyan ClientApp/tests/**/*.js",
         "watch-tests": "gulp watch-tests",
         "build": "gulp build",
+        "rebuild": "gulp clean && gulp build",
         "min": "gulp min",
         "watch": "gulp watch"
     },

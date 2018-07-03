@@ -12,6 +12,13 @@ export interface IRequestModel {
     data: any;
 }
 
+export interface INgRequestModel {
+    method: string;
+    url: string;
+    headers?: any;
+    data?: any;
+}
+
 export interface IRequesterBase<T> {
     send : (method: (string | HttpMethod), url: string, options?: IRequestModel) => Promise<T>;
     delete : (url: string, options?: IRequestModel) => Promise<T>;
