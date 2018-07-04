@@ -3,5 +3,5 @@ export interface ISearchStringService {
 }
 
 export interface ITemplatesProvider {
-    get(name: string): Promise<string>;
+    get(name: string): Promise<(vm: any) => string>;
 }
