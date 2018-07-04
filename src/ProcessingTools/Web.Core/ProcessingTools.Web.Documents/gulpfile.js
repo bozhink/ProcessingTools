@@ -71,13 +71,13 @@ function getBundles(regexPattern) {
 }
 
 function JsAppFactory() {
-    this.createBuild = function (srcFileName, distFileName, uglify) {
+    this.createBuild = function (srcFileName, distFileName, runUglify) {
         return function () {
             var stream = gulp.src(path.join(JS_OUT_PATH, APPS_RELATIVE_PATH, srcFileName))
                 .pipe(webpackStream())
                 .pipe(concat(distFileName));
 
-            if (uglify) {
+            if (runUglify) {
                 stream = stream.pipe(uglify());
             }
 
@@ -390,10 +390,10 @@ gulp.task("link:code:apps", [
     "link:code:app:index:page"
 ]);
 
-gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", false));
-gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", false));
-gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", false));
-gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", false));
+gulp.task("link:code:app:bio:data", ["compile:code", "copy:code"], jsAppFactory.createBuild("bio-data-app.js", "bio-data-app.min.js", true));
+gulp.task("link:code:app:documents:edit", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-edit.js", "document-edit.min.js", true));
+gulp.task("link:code:app:documents:preview", ["compile:code", "copy:code"], jsAppFactory.createBuild("document-preview.js", "document-preview.min.js", true));
+gulp.task("link:code:app:index:page", ["compile:code", "copy:code"], jsAppFactory.createBuild("files-index.js", "files-index.min.js", true));
 
 /**
  * Build all code.
