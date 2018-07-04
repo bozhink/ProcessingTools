@@ -6,6 +6,8 @@ export enum MessageType {
 }
 
 export interface IStorageKeys {
+    mode?: string;
+    theme?: string;
     lastSavedTimeKey?: string;
     contentHashKey?: string;
     lastGetTimeKey?: string;
