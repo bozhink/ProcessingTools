@@ -27,91 +27,91 @@
     }
     else
     {
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             @Html.AntiForgeryToken()
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ArticleId" />
             <input type="hidden" asp-for="FileId" />
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="Description" class="control-label"></label>
+                    <label asp-for="Description"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="Description" class="form-control" />
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="File.FileName" class="control-label"></label>
+                    <label asp-for="File.FileName"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="File.FileName" class="form-control" />
                     <span asp-validation-for="File.FileName" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="File.ContentType" class="control-label"></label>
+                    <label asp-for="File.ContentType"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="File.ContentType" class="form-control" />
                     <span asp-validation-for="File.ContentType" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label class="control-label">@Html.DisplayNameFor(m => m.File.ContentLength)</label>
+                    <label>@Html.DisplayNameFor(m => m.File.ContentLength)</label>
                 </div>
                 <div class="col-md-10">
                     <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.File.ContentLength)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label class="control-label">@Html.DisplayNameFor(m => m.IsFinal)</label>
+                    <label>@Html.DisplayNameFor(m => m.IsFinal)</label>
                 </div>
                 <div class="col-md-10">
                     <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.IsFinal)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label class="control-label">@Html.DisplayNameFor(m => m.CreatedBy)</label>
+                    <label>@Html.DisplayNameFor(m => m.CreatedBy)</label>
                 </div>
                 <div class="col-md-10">
                     <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.CreatedBy)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label class="control-label">@Html.DisplayNameFor(m => m.CreatedOn)</label>
+                    <label>@Html.DisplayNameFor(m => m.CreatedOn)</label>
                 </div>
                 <div class="col-md-10">
                     <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.CreatedOn)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label class="control-label">@Html.DisplayNameFor(m => m.ModifiedBy)</label>
+                    <label>@Html.DisplayNameFor(m => m.ModifiedBy)</label>
                 </div>
                 <div class="col-md-10">
                     <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.ModifiedBy)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label class="control-label">@Html.DisplayNameFor(m => m.ModifiedOn)</label>
+                    <label>@Html.DisplayNameFor(m => m.ModifiedOn)</label>
                 </div>
                 <div class="col-md-10">
                     <span class="form-control disabled" disabled="disabled">@Html.DisplayFor(m => m.ModifiedOn)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="submit" class="btn btn-default" value="Save" />
-                    <input type="reset" class="btn btn-default" value="Reset" />
-                    <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <input type="submit" class="btn btn-outline-primary" value="Save" />
+                    <input type="reset" class="btn btn-outline-secondary" value="Reset" />
+                    <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </div>
         </form>

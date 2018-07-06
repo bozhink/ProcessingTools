@@ -26,38 +26,38 @@
     }
     else
     {
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="Title" class="control-label"></label>
+                    <label asp-for="Title"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="Title" class="form-control" />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="SubTitle" class="control-label"></label>
+                    <label asp-for="SubTitle"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="SubTitle" class="form-control" />
                     <span asp-validation-for="SubTitle" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="Doi" class="control-label"></label>
+                    <label asp-for="Doi"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="Doi" class="form-control" />
                     <span asp-validation-for="Doi" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="JournalId" class="control-label"></label>
+                    <label asp-for="JournalId"></label>
                 </div>
                 <div class="col-md-10">
                     <select asp-for="JournalId" class="form-control">
@@ -72,159 +72,159 @@
                     <span asp-validation-for="JournalId" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="PublishedOn" class="control-label"></label>
+                    <label asp-for="PublishedOn"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="datetime" asp-for="PublishedOn" class="form-control" />
                     <span asp-validation-for="PublishedOn" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="AcceptedOn" class="control-label"></label>
+                    <label asp-for="AcceptedOn"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="datetime" asp-for="AcceptedOn" class="form-control" />
                     <span asp-validation-for="AcceptedOn" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="ReceivedOn" class="control-label"></label>
+                    <label asp-for="ReceivedOn"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="datetime" asp-for="ReceivedOn" class="form-control" />
                     <span asp-validation-for="AcceptedOn" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="VolumeSeries" class="control-label"></label>
+                    <label asp-for="VolumeSeries"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="VolumeSeries" class="form-control" />
                     <span asp-validation-for="VolumeSeries" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="Volume" class="control-label"></label>
+                    <label asp-for="Volume"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="Volume" class="form-control" />
                     <span asp-validation-for="Volume" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="Issue" class="control-label"></label>
+                    <label asp-for="Issue"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="Issue" class="form-control" />
                     <span asp-validation-for="Issue" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="IssuePart" class="control-label"></label>
+                    <label asp-for="IssuePart"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="IssuePart" class="form-control" />
                     <span asp-validation-for="IssuePart" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="ELocationId" class="control-label"></label>
+                    <label asp-for="ELocationId"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="ELocationId" class="form-control" />
                     <span asp-validation-for="ELocationId" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="FirstPage" class="control-label"></label>
+                    <label asp-for="FirstPage"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="FirstPage" class="form-control" />
                     <span asp-validation-for="FirstPage" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="LastPage" class="control-label"></label>
+                    <label asp-for="LastPage"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="LastPage" class="form-control" />
                     <span asp-validation-for="LastPage" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="NumberOfPages" class="control-label"></label>
+                    <label asp-for="NumberOfPages"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="NumberOfPages" class="form-control" />
                     <span asp-validation-for="NumberOfPages" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="IsFinalized" class="control-label"></label>
+                    <label asp-for="IsFinalized"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="datetime" asp-for="IsFinalized" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="IsDeployed" class="control-label"></label>
+                    <label asp-for="IsDeployed"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="datetime" asp-for="IsDeployed" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="CreatedBy" class="control-label"></label>
+                    <label asp-for="CreatedBy"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="CreatedOn" class="control-label"></label>
+                    <label asp-for="CreatedOn"></label>
                 </div>
                 <div class="col-md-10">
 
                     <input type="datetime" asp-for="CreatedOn" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="ModifiedBy" class="control-label"></label>
+                    <label asp-for="ModifiedBy"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="ModifiedBy" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="ModifiedOn" class="control-label"></label>
+                    <label asp-for="ModifiedOn"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="datetime" asp-for="ModifiedOn" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="submit" class="btn btn-default" value="Save" />
-                    <input type="reset" class="btn btn-default" value="Reset" />
-                    <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <input type="submit" class="btn btn-outline-primary" value="Save" />
+                    <input type="reset" class="btn btn-outline-secondary" value="Reset" />
+                    <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </div>
         </form>

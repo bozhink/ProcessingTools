@@ -245,7 +245,7 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
                                 return this.Redirect(model.ReturnUrl);
                             }
 
-                            return this.RedirectToAction(IndexActionName);
+                            return this.RedirectToAction(EditActionName, new { model.Id });
                         }
 
                         this.ModelState.AddModelError(string.Empty, "Journal Style is not updated.");

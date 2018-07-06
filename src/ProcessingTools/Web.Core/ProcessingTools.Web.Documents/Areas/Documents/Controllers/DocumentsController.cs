@@ -408,7 +408,7 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
                                 return this.Redirect(model.ReturnUrl);
                             }
 
-                            return this.RedirectToAction(IndexActionName);
+                            return this.RedirectToAction(EditActionName, new { model.Id, model.ArticleId });
                         }
 
                         this.ModelState.AddModelError(string.Empty, "Document is not updated.");

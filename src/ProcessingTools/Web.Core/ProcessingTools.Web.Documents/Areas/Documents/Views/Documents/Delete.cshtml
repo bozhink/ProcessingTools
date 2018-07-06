@@ -27,41 +27,41 @@
     }
     else
     {
-        <dl class="dl-horizontal">
-            <dt>@Html.DisplayNameFor(m => m.Description)</dt>
-            <dd>@Html.DisplayFor(m => m.Description)</dd>
+        <dl class="row">
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.Description)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.File.FileName)</dt>
-            <dd>@Html.DisplayFor(m => m.File.FileName)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.File.FileName)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.File.FileName)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.File.ContentType)</dt>
-            <dd>@Html.DisplayFor(m => m.File.ContentType)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.File.ContentType)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.File.ContentType)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.File.ContentLength)</dt>
-            <dd>@Html.DisplayFor(m => m.File.ContentLength)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.File.ContentLength)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.File.ContentLength)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.IsFinal)</dt>
-            <dd>@Html.DisplayFor(m => m.IsFinal)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IsFinal)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.IsFinal)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
-            <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedBy)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.CreatedOn)</dt>
-            <dd>@Html.DisplayFor(m => m.CreatedOn)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedOn)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
-            <dd>@Html.DisplayFor(m => m.ModifiedBy)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedBy)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
-            <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedOn)</dd>
         </dl>
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ArticleId" />
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-danger" value="Delete" />
-                    <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <a asp-controller="@(ArticlesController.ControllerName)" asp-action="@(ArticlesController.DocumentsActionName)" asp-route-id="@(Model.ArticleId)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </div>
         </form>

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="col-md-4">
         <div class="contols">
-            <div class="form-group">
+            <div class="form-group row">
                 <fieldset>
                     <legend>Add taxa</legend>
                     <form ng-submit="taxaList.addItem()" class="form-horizontal">
@@ -10,7 +10,7 @@
                     </form>
                 </fieldset>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <fieldset>
                     <legend>Search taxa</legend>
                     <form ng-submit="taxaList.search('taxaRanksSearchUrl')" class="form-horizontal">
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group" ng-if="taxaList.items.length">
+        <div class="form-group row" ng-if="taxaList.items.length">
             <fieldset>
                 <legend>Taxa list</legend>
                 <ul class="view-list">
@@ -34,9 +34,9 @@
                         <span ng-click="taxaList.removeItem(taxon.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
                     </li>
                 </ul>
-                <div class="form-group">
-                    <span ng-click="taxaList.clearList()" class="btn btn-default">Clear List</span>
-                    <span ng-click="taxaList.submitItems('taxaRanksSubmitUrl')" class="btn btn-default">Submit</span>
+                <div class="form-group row">
+                    <span ng-click="taxaList.clearList()" class="btn btn-outline-secondary">Clear List</span>
+                    <span ng-click="taxaList.submitItems('taxaRanksSubmitUrl')" class="btn btn-outline-primary">Submit</span>
                 </div>
             </fieldset>
         </div>

@@ -26,73 +26,73 @@
     }
     else
     {
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="Name" class="control-label"></label>
+                    <label asp-for="Name"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="AbbreviatedName" class="control-label"></label>
+                    <label asp-for="AbbreviatedName"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="AbbreviatedName" class="form-control" />
                     <span asp-validation-for="AbbreviatedName" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="Address" class="control-label"></label>
+                    <label asp-for="Address"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="Address" class="form-control" />
                     <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="CreatedBy" class="control-label"></label>
+                    <label asp-for="CreatedBy"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="CreatedBy" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="CreatedOn" class="control-label"></label>
+                    <label asp-for="CreatedOn"></label>
                 </div>
                 <div class="col-md-10">
                     
                     <input type="datetime" asp-for="CreatedOn" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="ModifiedBy" class="control-label"></label>
+                    <label asp-for="ModifiedBy"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="text" asp-for="ModifiedBy" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-2">
-                    <label asp-for="ModifiedOn" class="control-label"></label>
+                    <label asp-for="ModifiedOn"></label>
                 </div>
                 <div class="col-md-10">
                     <input type="datetime" asp-for="ModifiedOn" class="form-control disabled" disabled="disabled" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="submit" class="btn btn-default" value="Save" />
-                    <input type="reset" class="btn btn-default" value="Reset" />
-                    <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+                    <input type="submit" class="btn btn-outline-primary" value="Save" />
+                    <input type="reset" class="btn btn-outline-secondary" value="Reset" />
+                    <a asp-action="@(PublishersController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </div>
         </form>

@@ -31,99 +31,99 @@
         <fieldset>
             <legend>Common data</legend>
 
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Title)</dt>
-                <dd>@Html.DisplayFor(m => m.Title)</dd>
+            <dl class="row">
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Title)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Title)</dd>
 
                 @if (!string.IsNullOrWhiteSpace(Model.SubTitle))
                 {
-                <dt>@Html.DisplayNameFor(m => m.SubTitle)</dt>
-                <dd>@Html.DisplayFor(m => m.SubTitle)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.SubTitle)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.SubTitle)</dd>
                 }
 
-                <dt>@Html.DisplayNameFor(m => m.Doi)</dt>
-                <dd>@Html.DisplayFor(m => m.Doi)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Doi)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Doi)</dd>
 
                 @if (!string.IsNullOrWhiteSpace(Model.Journal?.Name))
                 {
-                <dt>@Html.DisplayNameFor(m => m.Journal.Name)</dt>
-                <dd>@Html.DisplayFor(m => m.Journal.Name)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Journal.Name)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Journal.Name)</dd>
                 }
 
-                <dt>@Html.DisplayNameFor(m => m.PublishedOn)</dt>
-                <dd>@Html.DisplayFor(m => m.PublishedOn)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.PublishedOn)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.PublishedOn)</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.AcceptedOn)</dt>
-                <dd>@Html.DisplayFor(m => m.AcceptedOn)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.AcceptedOn)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.AcceptedOn)</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.ReceivedOn)</dt>
-                <dd>@Html.DisplayFor(m => m.ReceivedOn)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ReceivedOn)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.ReceivedOn)</dd>
 
                 @if (!string.IsNullOrWhiteSpace(Model.VolumeSeries))
                 {
-                <dt>@Html.DisplayNameFor(m => m.VolumeSeries)</dt>
-                <dd>@Html.DisplayFor(m => m.VolumeSeries)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.VolumeSeries)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.VolumeSeries)</dd>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(Model.Volume))
                 {
-                <dt>@Html.DisplayNameFor(m => m.Volume)</dt>
-                <dd>@Html.DisplayFor(m => m.Volume)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Volume)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Volume)</dd>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(Model.Issue))
                 {
-                <dt>@Html.DisplayNameFor(m => m.Issue)</dt>
-                <dd>@Html.DisplayFor(m => m.Issue)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Issue)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.Issue)</dd>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(Model.IssuePart))
                 {
-                <dt>@Html.DisplayNameFor(m => m.IssuePart)</dt>
-                <dd>@Html.DisplayFor(m => m.IssuePart)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IssuePart)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.IssuePart)</dd>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(Model.ELocationId))
                 {
-                <dt>@Html.DisplayNameFor(m => m.ELocationId)</dt>
-                <dd>@Html.DisplayFor(m => m.ELocationId)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ELocationId)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.ELocationId)</dd>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(Model.FirstPage))
                 {
-                <dt>@Html.DisplayNameFor(m => m.FirstPage)</dt>
-                <dd>@Html.DisplayFor(m => m.FirstPage)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.FirstPage)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.FirstPage)</dd>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(Model.LastPage))
                 {
-                <dt>@Html.DisplayNameFor(m => m.LastPage)</dt>
-                <dd>@Html.DisplayFor(m => m.LastPage)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.LastPage)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.LastPage)</dd>
                 }
 
                 @if (Model.NumberOfPages > 0)
                 {
-                <dt>@Html.DisplayNameFor(m => m.NumberOfPages)</dt>
-                <dd>@Html.DisplayFor(m => m.NumberOfPages)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.NumberOfPages)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.NumberOfPages)</dd>
                 }
 
-                <dt>@Html.DisplayNameFor(m => m.IsFinalized)</dt>
-                <dd>@Html.DisplayFor(m => m.IsFinalized)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IsFinalized)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.IsFinalized)</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.IsDeployed)</dt>
-                <dd>@Html.DisplayFor(m => m.IsDeployed)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.IsDeployed)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.IsDeployed)</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.CreatedBy)</dt>
-                <dd>@Html.DisplayFor(m => m.CreatedBy)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedBy)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedBy)</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.CreatedOn)</dt>
-                <dd>@Html.DisplayFor(m => m.CreatedOn)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.CreatedOn)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.CreatedOn)</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
-                <dd>@Html.DisplayFor(m => m.ModifiedBy)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedBy)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedBy)</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
-                <dd>@Html.DisplayFor(m => m.ModifiedOn)</dd>
+                <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
+                <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedOn)</dd>
             </dl>
         </fieldset>
 
@@ -187,8 +187,8 @@
         </fieldset>
 
         <div>
-            <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a> |
-            <a asp-action="@(ArticlesController.FinalizeActionName)" asp-route-id="@(Model.Id)" asp-route-returnUrl="@(Context.Request.GetDisplayUrl())" class="btn btn-default">Finalize</a>
+            <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a> |
+            <a asp-action="@(ArticlesController.FinalizeActionName)" asp-route-id="@(Model.Id)" asp-route-returnUrl="@(Context.Request.GetDisplayUrl())" class="btn btn-outline-secondary">Finalize</a>
         </div>
     }
     <footer class="page-navigation">

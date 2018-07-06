@@ -27,12 +27,12 @@
     }
     else
     {
-        <dl class="dl-horizontal">
-            <dt>@Html.DisplayNameFor(m => m.NumberOfDatabases)</dt>
-            <dd>@Html.DisplayFor(m => m.NumberOfDatabases)</dd>
+        <dl class="row">
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.NumberOfDatabases)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.NumberOfDatabases)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.Success)</dt>
-            <dd>@Html.DisplayFor(m => m.Success)</dd>
+            <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.Success)</dt>
+            <dd class="col-md-10">@Html.DisplayFor(m => m.Success)</dd>
         </dl>
 
         @if (Model.Exceptions.Any())
@@ -64,6 +64,6 @@
             </section>
         }
 
-        <a asp-action="@(DatabasesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-default">Cancel</a>
+        <a asp-action="@(DatabasesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
     }
 </section>

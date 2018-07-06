@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="col-md-4">
         <div class="contols">
-            <div class="form-group">
+            <div class="form-group row">
                 <fieldset>
                     <legend>Add black-list items</legend>
                     <form ng-submit="blackList.addItem()" class="form-horizontal">
@@ -10,7 +10,7 @@
                     </form>
                 </fieldset>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <fieldset>
                     <legend>Search black-list item</legend>
                     <form ng-submit="blackList.search('blackListSearchUrl')" class="form-horizontal">
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group" ng-if="blackList.items.length">
+        <div class="form-group row" ng-if="blackList.items.length">
             <fieldset>
                 <legend>Black-list items</legend>
                 <ul class="view-list">
@@ -33,9 +33,9 @@
                         <span ng-click="blackList.removeItem(item.id)" class="glyphicon glyphicon-remove remove-button" title="Remove"></span>
                     </li>
                 </ul>
-                <div class="form-group">
-                    <span ng-click="blackList.clearList()" class="btn btn-default">Clear List</span>
-                    <span ng-click="blackList.submitItems('blackListSubmitUrl')" class="btn btn-default">Submit</span>
+                <div class="form-group row">
+                    <span ng-click="blackList.clearList()" class="btn btn-outline-secondary">Clear List</span>
+                    <span ng-click="blackList.submitItems('blackListSubmitUrl')" class="btn btn-outline-primary">Submit</span>
                 </div>
             </fieldset>
         </div>
