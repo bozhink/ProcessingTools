@@ -15,6 +15,7 @@ namespace ProcessingTools.Web.Documents.Controllers
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.AccountViewModels;
@@ -33,11 +34,113 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// </summary>
         public const string ControllerName = "Account";
 
+        /// <summary>
+        /// Index Action Name
+        /// </summary>
+        public const string IndexActionName = ActionNames.Index;
+
+        /// <summary>
+        /// Login action name.
+        /// </summary>
+        public const string LoginActionName = nameof(Login);
+
+        /// <summary>
+        /// LoginWith2fa Action Name
+        /// </summary>
+        public const string LoginWith2faActionName = nameof(LoginWith2fa);
+
+        /// <summary>
+        /// LoginWithRecoveryCode Action Name
+        /// </summary>
+        public const string LoginWithRecoveryCodeActionName = nameof(LoginWithRecoveryCode);
+
+        /// <summary>
+        /// Lockout Action Name
+        /// </summary>
+        public const string LockoutActionName = nameof(Lockout);
+
+        /// <summary>
+        /// Register Action Name
+        /// </summary>
+        public const string RegisterActionName = nameof(Register);
+
+        /// <summary>
+        /// Logout Action Name
+        /// </summary>
+        public const string LogoutActionName = nameof(Logout);
+
+        /// <summary>
+        /// ExternalLogin Action Name
+        /// </summary>
+        public const string ExternalLoginActionName = nameof(ExternalLogin);
+
+        /// <summary>
+        /// ExternalLoginCallback Action Name
+        /// </summary>
+        public const string ExternalLoginCallbackActionName = nameof(ExternalLoginCallback);
+
+        /// <summary>
+        /// ExternalLoginConfirmation Action Name
+        /// </summary>
+        public const string ExternalLoginConfirmationActionName = nameof(ExternalLoginConfirmation);
+
+        /// <summary>
+        /// ConfirmEmail Action Name
+        /// </summary>
+        public const string ConfirmEmailActionName = nameof(ConfirmEmail);
+
+        /// <summary>
+        /// ForgotPassword Action Name
+        /// </summary>
+        public const string ForgotPasswordActionName = nameof(ForgotPassword);
+
+        /// <summary>
+        /// ForgotPasswordConfirmation Action Name
+        /// </summary>
+        public const string ForgotPasswordConfirmationActionName = nameof(ForgotPasswordConfirmation);
+
+        /// <summary>
+        /// ResetPassword Action Name
+        /// </summary>
+        public const string ResetPasswordActionName = nameof(ResetPassword);
+
+        /// <summary>
+        /// ResetPasswordConfirmation Action Name
+        /// </summary>
+        public const string ResetPasswordConfirmationActionName = nameof(ResetPasswordConfirmation);
+
+        /// <summary>
+        /// AccessDenied Action Name
+        /// </summary>
+        public const string AccessDeniedActionName = nameof(AccessDenied);
+
+        /// <summary>
+        /// ExternalLogin View Name
+        /// </summary>
+        public const string ExternalLoginViewName = nameof(ExternalLogin);
+
+        /// <summary>
+        /// ConfirmEmail View Name
+        /// </summary>
+        public const string ConfirmEmailViewName = nameof(ConfirmEmail);
+
+        /// <summary>
+        /// Error View Name
+        /// </summary>
+        public const string ErrorViewName = "Error";
+
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IEmailSender emailSender;
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// </summary>
+        /// <param name="userManager">User manager,</param>
+        /// <param name="signInManager">Sign In manager.</param>
+        /// <param name="emailSender">E-Mail sender.</param>
+        /// <param name="logger">Logger.</param>
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -50,9 +153,18 @@ namespace ProcessingTools.Web.Documents.Controllers
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
         [TempData]
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// /Account
+        /// </summary>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(IndexActionName)]
         public IActionResult Index(string returnUrl = null)
         {
             if (!string.IsNullOrWhiteSpace(returnUrl))
@@ -63,8 +175,14 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName, null);
         }
 
+        /// <summary>
+        /// GET /Account/Login
+        /// </summary>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(LoginActionName)]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
@@ -74,9 +192,16 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.View();
         }
 
+        /// <summary>
+        /// POST /Account/Login
+        /// </summary>
+        /// <param name="model">Login request model.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(LoginActionName)]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
@@ -93,13 +218,13 @@ namespace ProcessingTools.Web.Documents.Controllers
 
                 if (result.RequiresTwoFactor)
                 {
-                    return this.RedirectToAction(nameof(this.LoginWith2fa), new { returnUrl, model.RememberMe });
+                    return this.RedirectToAction(LoginWith2faActionName, new { returnUrl, model.RememberMe });
                 }
 
                 if (result.IsLockedOut)
                 {
                     this.logger.LogWarning("User account locked out.");
-                    return this.RedirectToAction(nameof(this.Lockout));
+                    return this.RedirectToAction(LockoutActionName);
                 }
                 else
                 {
@@ -112,16 +237,23 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// GET /Account/LoginWith2fa
+        /// </summary>
+        /// <param name="rememberMe">Remember login.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(LoginWith2faActionName)]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            var user = await signInManager.GetTwoFactorAuthenticationUserAsync();
+            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
 
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new UserNotFoundException($"Unable to load two-factor authentication user.");
             }
 
             var model = new LoginWith2faViewModel { RememberMe = rememberMe };
@@ -130,9 +262,17 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// POST /Account/LoginWith2fa
+        /// </summary>
+        /// <param name="model">Login with 2FA request model.</param>
+        /// <param name="rememberMe">Remember login.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(LoginWith2faActionName)]
         public async Task<IActionResult> LoginWith2fa(LoginWith2faViewModel model, bool rememberMe, string returnUrl = null)
         {
             if (!this.ModelState.IsValid)
@@ -141,9 +281,10 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.userManager.GetUserId(User)}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
             }
 
             var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
@@ -158,7 +299,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             else if (result.IsLockedOut)
             {
                 this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                return this.RedirectToAction(nameof(this.Lockout));
+                return this.RedirectToAction(LockoutActionName);
             }
             else
             {
@@ -168,15 +309,22 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
         }
 
+        /// <summary>
+        /// GET /Account/LoginWithRecoveryCode
+        /// </summary>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(LoginWithRecoveryCodeActionName)]
         public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
             var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new UserNotFoundException($"Unable to load two-factor authentication user.");
             }
 
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
@@ -184,9 +332,16 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.View();
         }
 
+        /// <summary>
+        /// POST /Account/LoginWithRecoveryCode
+        /// </summary>
+        /// <param name="model">Login with recovery code request model.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(LoginWithRecoveryCodeActionName)]
         public async Task<IActionResult> LoginWithRecoveryCode(LoginWithRecoveryCodeViewModel model, string returnUrl = null)
         {
             if (!this.ModelState.IsValid)
@@ -195,9 +350,10 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new UserNotFoundException($"Unable to load two-factor authentication user.");
             }
 
             var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
@@ -213,7 +369,7 @@ namespace ProcessingTools.Web.Documents.Controllers
             if (result.IsLockedOut)
             {
                 this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                return this.RedirectToAction(nameof(this.Lockout));
+                return this.RedirectToAction(LockoutActionName);
             }
             else
             {
@@ -223,24 +379,42 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
         }
 
+        /// <summary>
+        /// GET /Account/Lockout
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(LockoutActionName)]
         public IActionResult Lockout()
         {
             return this.View();
         }
 
+        /// <summary>
+        /// GET /Account/Register
+        /// </summary>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(RegisterActionName)]
         public IActionResult Register(string returnUrl = null)
         {
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
             return this.View();
         }
 
+        /// <summary>
+        /// POST /Account/Register
+        /// </summary>
+        /// <param name="model">Register request model.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(RegisterActionName)]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
@@ -268,8 +442,13 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// POST /Account/Logout
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ActionName(LogoutActionName)]
         public async Task<IActionResult> Logout()
         {
             await this.signInManager.SignOutAsync();
@@ -277,32 +456,46 @@ namespace ProcessingTools.Web.Documents.Controllers
             return this.RedirectToAction(HomeController.IndexActionName, HomeController.ControllerName);
         }
 
+        /// <summary>
+        /// POST /Account/ExternalLogin
+        /// </summary>
+        /// <param name="provider">Provider string.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(ExternalLoginActionName)]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
-            var redirectUrl = this.Url.Action(nameof(this.ExternalLoginCallback), "Account", new { returnUrl });
+            var redirectUrl = this.Url.Action(ExternalLoginCallbackActionName, ControllerName, new { returnUrl });
             var properties = this.signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
             return this.Challenge(properties, provider);
         }
 
+        /// <summary>
+        /// GET /Account/ExternalLoginCallback
+        /// </summary>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <param name="remoteError">Remote error.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(ExternalLoginCallbackActionName)]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
             if (remoteError != null)
             {
                 this.ErrorMessage = $"Error from external provider: {remoteError}";
-                return this.RedirectToAction(nameof(this.Login));
+                return this.RedirectToAction(LoginActionName);
             }
 
             var info = await this.signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return this.RedirectToAction(nameof(this.Login));
+                return this.RedirectToAction(LoginActionName);
             }
 
             // Sign in the user with this external login provider if the user already has a login.
@@ -315,7 +508,7 @@ namespace ProcessingTools.Web.Documents.Controllers
 
             if (result.IsLockedOut)
             {
-                return this.RedirectToAction(nameof(this.Lockout));
+                return this.RedirectToAction(LockoutActionName);
             }
             else
             {
@@ -323,26 +516,40 @@ namespace ProcessingTools.Web.Documents.Controllers
                 this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
                 this.ViewData[ContextKeys.LoginProvider] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return this.View("ExternalLogin", new ExternalLoginViewModel { Email = email });
+                return this.View(ExternalLoginViewName, new ExternalLoginViewModel { Email = email });
             }
         }
 
+        /// <summary>
+        /// POST /Account/ExternalLoginConfirmation
+        /// </summary>
+        /// <param name="model">External model request model.</param>
+        /// <param name="returnUrl">Return URL.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(ExternalLoginConfirmationActionName)]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginViewModel model, string returnUrl = null)
         {
             if (this.ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
                 var info = await this.signInManager.GetExternalLoginInfoAsync();
+
                 if (info == null)
                 {
-                    throw new ApplicationException("Error loading external login information during confirmation.");
+                    throw new InformationNotFoundException("Error loading external login information during confirmation.");
                 }
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
                 var result = await this.userManager.CreateAsync(user);
+
                 if (result.Succeeded)
                 {
                     result = await this.userManager.AddLoginAsync(user, info);
@@ -359,11 +566,18 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             this.ViewData[ContextKeys.ReturnUrl] = returnUrl;
-            return this.View(nameof(this.ExternalLogin), model);
+            return this.View(ExternalLoginViewName, model);
         }
 
+        /// <summary>
+        /// GET /Account/ConfirmEmail
+        /// </summary>
+        /// <param name="userId">User ID.</param>
+        /// <param name="code">Code.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(ConfirmEmailActionName)]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -372,25 +586,37 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.userManager.FindByIdAsync(userId);
+
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{userId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{userId}'.");
             }
 
             var result = await this.userManager.ConfirmEmailAsync(user, code);
-            return this.View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return this.View(result.Succeeded ? ConfirmEmailViewName : ErrorViewName);
         }
 
+        /// <summary>
+        /// GET /Account/ForgotPassword
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(ForgotPasswordActionName)]
         public IActionResult ForgotPassword()
         {
             return this.View();
         }
 
+        /// <summary>
+        /// POST /Account/ForgotPassword
+        /// </summary>
+        /// <param name="model">Forgot password request model.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(ForgotPasswordActionName)]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (this.ModelState.IsValid)
@@ -399,7 +625,7 @@ namespace ProcessingTools.Web.Documents.Controllers
                 if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return this.RedirectToAction(nameof(this.ForgotPasswordConfirmation));
+                    return this.RedirectToAction(ForgotPasswordConfirmationActionName);
                 }
 
                 // For more information on how to enable account confirmation and password reset please
@@ -409,66 +635,95 @@ namespace ProcessingTools.Web.Documents.Controllers
 
                 await this.emailSender.SendEmailAsync(model.Email, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
 
-                return this.RedirectToAction(nameof(this.ForgotPasswordConfirmation));
+                return this.RedirectToAction(ForgotPasswordConfirmationActionName);
             }
 
             // If we got this far, something failed, redisplay form
             return this.View(model);
         }
 
+        /// <summary>
+        /// GET /Account/ForgotPasswordConfirmation
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(ForgotPasswordConfirmationActionName)]
         public IActionResult ForgotPasswordConfirmation()
         {
             return this.View();
         }
 
+        /// <summary>
+        /// GET /Account/ResetPassword
+        /// </summary>
+        /// <param name="code">Code.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(ResetPasswordActionName)]
         public IActionResult ResetPassword(string code = null)
         {
             if (code == null)
             {
-                throw new ApplicationException("A code must be supplied for password reset.");
+                throw new InvalidCodeException("A code must be supplied for password reset.");
             }
+
             var model = new ResetPasswordViewModel { Code = code };
             return this.View(model);
         }
 
+        /// <summary>
+        /// POST /Account/ResetPassword
+        /// </summary>
+        /// <param name="model">Reset password request model.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ActionName(ResetPasswordActionName)]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
+
             var user = await this.userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return this.RedirectToAction(nameof(this.ResetPasswordConfirmation));
+                return this.RedirectToAction(ResetPasswordConfirmationActionName);
             }
 
             var result = await this.userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return this.RedirectToAction(nameof(this.ResetPasswordConfirmation));
+                return this.RedirectToAction(ResetPasswordConfirmationActionName);
             }
 
             this.AddErrors(result);
             return this.View();
         }
 
+        /// <summary>
+        /// GET /Account/ResetPasswordConfirmation
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [AllowAnonymous]
+        [ActionName(ResetPasswordConfirmationActionName)]
         public IActionResult ResetPasswordConfirmation()
         {
             return this.View();
         }
 
+        /// <summary>
+        /// GET /Account/AccessDenied
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
+        [ActionName(AccessDeniedActionName)]
         public IActionResult AccessDenied()
         {
             return this.View();
