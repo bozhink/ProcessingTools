@@ -4,12 +4,12 @@
 
 namespace ProcessingTools.Commands.Tagger
 {
+    using System;
+    using System.Threading.Tasks;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Special;
-    using System;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Test command.

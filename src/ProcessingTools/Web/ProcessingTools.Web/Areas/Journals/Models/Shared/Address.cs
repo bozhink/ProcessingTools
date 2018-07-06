@@ -3,9 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Constants.Data.Journals;
+    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;
-    using ProcessingTools.Enumerations;
     using Strings = ProcessingTools.Web.Resources.Areas.Journals.ViewModels.Shared.Strings;
 
     public class Address : IAddress, IServiceModel
