@@ -120,8 +120,10 @@
             <dt class="col-md-2 bold">@Html.DisplayNameFor(m => m.ModifiedOn)</dt>
             <dd class="col-md-10">@Html.DisplayFor(m => m.ModifiedOn)</dd>
         </dl>
-        <div>
-            <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
+        <div class="row">
+            <div class="col-md-12">
+                <a asp-action="@(ArticlesController.IndexActionName)" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary">Cancel</a>
+            </div>
         </div>
     }
     <footer class="page-navigation">
