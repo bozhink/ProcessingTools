@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using ProcessingTools.Exceptions;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Models.ManageViewModels;
@@ -56,7 +57,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var model = new IndexViewModel
@@ -83,7 +84,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var email = user.Email;
@@ -122,7 +123,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -140,7 +141,7 @@
             var user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var hasPassword = await this.userManager.HasPasswordAsync(user);
@@ -165,7 +166,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var changePasswordResult = await this.userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
@@ -188,7 +189,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var hasPassword = await this.userManager.HasPasswordAsync(user);
@@ -214,7 +215,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var addPasswordResult = await this.userManager.AddPasswordAsync(user, model.NewPassword);
@@ -236,7 +237,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var model = new ExternalLoginsViewModel { CurrentLogins = await this.userManager.GetLoginsAsync(user) };
@@ -268,7 +269,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var info = await this.signInManager.GetExternalLoginInfoAsync(user.Id);
@@ -297,7 +298,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var result = await this.userManager.RemoveLoginAsync(user, model.LoginProvider, model.ProviderKey);
@@ -317,7 +318,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var model = new TwoFactorAuthenticationViewModel
@@ -336,7 +337,7 @@
             var user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             if (!user.TwoFactorEnabled)
@@ -354,7 +355,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var disable2faResult = await this.userManager.SetTwoFactorEnabledAsync(user, false);
@@ -373,7 +374,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             var unformattedKey = await this.userManager.GetAuthenticatorKeyAsync(user);
@@ -404,7 +405,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             // Strip spaces and hypens
@@ -436,7 +437,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             await this.userManager.SetTwoFactorEnabledAsync(user, false);
@@ -452,7 +453,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{this.UserId}'.");
+                throw new UserNotFoundException($"Unable to load user with ID '{this.UserId}'.");
             }
 
             if (!user.TwoFactorEnabled)

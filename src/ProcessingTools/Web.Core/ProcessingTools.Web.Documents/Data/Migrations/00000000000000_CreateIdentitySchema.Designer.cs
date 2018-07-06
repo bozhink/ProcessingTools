@@ -10,6 +10,7 @@ namespace ProcessingTools.Web.Documents.Data.Migrations
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
+        /// <inheritdoc/>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder

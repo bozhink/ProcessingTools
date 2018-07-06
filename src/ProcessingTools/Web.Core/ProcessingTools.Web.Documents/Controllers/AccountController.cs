@@ -250,7 +250,6 @@ namespace ProcessingTools.Web.Documents.Controllers
         {
             // Ensure the user has gone through the username & password screen first
             var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
-
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load two-factor authentication user.");
@@ -281,7 +280,6 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
-
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
@@ -321,7 +319,6 @@ namespace ProcessingTools.Web.Documents.Controllers
         {
             // Ensure the user has gone through the username & password screen first
             var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
-
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load two-factor authentication user.");
@@ -350,7 +347,6 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
-
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load two-factor authentication user.");
@@ -536,7 +532,6 @@ namespace ProcessingTools.Web.Documents.Controllers
             {
                 // Get the information about the user from the external login provider
                 var info = await this.signInManager.GetExternalLoginInfoAsync();
-
                 if (info == null)
                 {
                     throw new InformationNotFoundException("Error loading external login information during confirmation.");
@@ -549,7 +544,6 @@ namespace ProcessingTools.Web.Documents.Controllers
                 };
 
                 var result = await this.userManager.CreateAsync(user);
-
                 if (result.Succeeded)
                 {
                     result = await this.userManager.AddLoginAsync(user, info);
@@ -586,7 +580,6 @@ namespace ProcessingTools.Web.Documents.Controllers
             }
 
             var user = await this.userManager.FindByIdAsync(userId);
-
             if (user == null)
             {
                 throw new UserNotFoundException($"Unable to load user with ID '{userId}'.");
