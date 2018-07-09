@@ -16,15 +16,15 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
     /// </summary>
     internal class ExpressionParser
     {
+        private const string KeywordIif = "iif";
+
+        private const string KeywordIt = "it";
+
+        private const string KeywordNew = "new";
+
+        private const string KeywordOuterIt = "outerIt";
+
         private static readonly Expression FalseLiteral = Expression.Constant(false);
-
-        private static readonly string KeywordIif = "iif";
-
-        private static readonly string KeywordIt = "it";
-
-        private static readonly string KeywordNew = "new";
-
-        private static readonly string KeywordOuterIt = "outerIt";
 
         private static readonly Expression NullLiteral = Expression.Constant(null);
 
