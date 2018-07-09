@@ -14,7 +14,7 @@ export class EventHandlerFactory {
         let self: EventHandlerFactory = this;
 
         return function (event: Event): any {
-            var e: Event = event || self.window.event;
+            let e: Event = event || self.window.event;
             e.stopPropagation();
             e.preventDefault();
             return callback(e) || false;

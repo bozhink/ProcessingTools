@@ -9,7 +9,7 @@ export class JsonRequester implements IJsonRequester<any>, IRequesterBase<any> {
     }
 
     public send(method: (string | HttpMethod), url: string, options?: IRequestModel): Promise<any> {
-        var headers: any, data: any, promise: Promise<any>, $: JQueryStatic = this.jQuery;
+        let headers: any, data: any, promise: Promise<any>, $: JQueryStatic = this.jQuery;
 
         if (!url) {
             throw "URL is required";

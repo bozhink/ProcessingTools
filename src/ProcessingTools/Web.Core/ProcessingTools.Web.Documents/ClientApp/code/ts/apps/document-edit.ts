@@ -17,10 +17,10 @@ import { IConfiguredEditor, IMonacoEditorConfig, MonacoEditorConfig } from "../c
 import { EventHandlerFactory } from "../configurations/event.handlers.configuration";
 import { ToastrConfiguration } from "../configurations/toastr-config";
 
-declare var window: Window;
-declare var document: Document;
-declare var $: JQueryStatic;
-declare var toastr: Toastr;
+declare let window: Window;
+declare let document: Document;
+declare let $: JQueryStatic;
+declare let toastr: Toastr;
 
 enum HtmlElementIds {
     EDITOR_CONTAINER_ID = "editor-container",

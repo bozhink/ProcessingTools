@@ -4,7 +4,7 @@
     }
 
     public clearTagsInSelection(): void {
-        var selection: Range = this.window.getSelection().getRangeAt(0),
+        let selection: Range = this.window.getSelection().getRangeAt(0),
             selectedText: DocumentFragment = selection.extractContents(),
             span: HTMLElement = this.document.createElement("span");
         span.appendChild(selectedText);
@@ -64,7 +64,7 @@
             "xmlns:xlink": "http://www.w3.org/1999/xlink",
             "ext-link-type": "uri"
         }, function (tagElement: HTMLElement): void {
-            var href: string = tagElement.innerText.trim();
+            let href: string = tagElement.innerText.trim();
             tagElement.setAttribute("href", href);
             tagElement.setAttribute("xlink:href", href);
         });
@@ -79,7 +79,7 @@
     }
 
     public tagInXref(rid: string, refType: string): void {
-        var elemName: string = "xref",
+        let elemName: string = "xref",
             className: string = elemName + " " + refType,
             attributes: { [name: string]: string } = {
                 "rid": rid,

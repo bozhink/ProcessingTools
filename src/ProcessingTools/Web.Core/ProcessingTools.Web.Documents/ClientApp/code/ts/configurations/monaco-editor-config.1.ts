@@ -100,7 +100,7 @@ export class MonacoEditorConfig implements IMonacoEditorConfig {
         let self: MonacoEditorConfig = this;
 
         return new Promise(function (resolve: (value?: IConfiguredEditor) => void, reject: (reason?: any) => void): void {
-            var editor: monaco.editor.IStandaloneCodeEditor;
+            let editor: monaco.editor.IStandaloneCodeEditor;
 
             try {
                 RequireConfig(self.require, pathToNodeModules);

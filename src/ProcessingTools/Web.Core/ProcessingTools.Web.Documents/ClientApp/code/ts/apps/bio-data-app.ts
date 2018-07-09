@@ -7,7 +7,7 @@ import { NavigationTabsDirective, TaxaRanksDirective, BlackListDirective } from 
 import { NavigationController } from "../controllers/nav-controller";
 import { BlackListController, TaxaRanksController } from "../controllers/data.bio.controllers";
 
-declare var angular: ng.IAngularStatic;
+declare let angular: ng.IAngularStatic;
 
 angular.module("bioDataApp", ["ng", "ngRoute"])
     .config(["$httpProvider", "UrlMap", function ($httpProvider: ng.IHttpProvider, UrlMap: { [name: string]: string }): void {

@@ -4,7 +4,7 @@ const DEFAULT_THEME: string = "vs";
 import { RequireConfig } from "./require-config";
 import { IEditorMode, IEditorTheme } from "../contracts/models/configuration.models";
 
-declare var monaco: any;
+declare let monaco: any;
 
 export interface IConfiguredEditor {
     editor: any;
@@ -101,7 +101,7 @@ export class MonacoEditorConfig implements IMonacoEditorConfig {
         let self: MonacoEditorConfig = this;
 
         return new Promise(function (resolve: (value?: IConfiguredEditor) => void, reject: (reason?: any) => void): void {
-            var editor: any;
+            let editor: any;
 
             try {
                 RequireConfig(self.require, pathToNodeModules);

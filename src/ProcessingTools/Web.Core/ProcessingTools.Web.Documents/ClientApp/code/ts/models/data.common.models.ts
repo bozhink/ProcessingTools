@@ -16,7 +16,7 @@ export class DataSet<T extends IDataModel> implements IDataSet<T> {
     }
 
     public add(item: T): void {
-        var i: number, len: number, currentItem: T, hash: string;
+        let i: number, len: number, currentItem: T, hash: string;
 
         if (!item) {
             return;
@@ -42,7 +42,7 @@ export class DataSet<T extends IDataModel> implements IDataSet<T> {
     }
 
     public addMulti(items: Array<T>, map: any): void {
-        var i: number, len: number, item: T;
+        let i: number, len: number, item: T;
         if (!items) {
             return;
         }
@@ -69,7 +69,7 @@ export class DataSet<T extends IDataModel> implements IDataSet<T> {
     }
 
     public remove(id: string): void {
-        var i: number, len: number;
+        let i: number, len: number;
         if (id) {
             len = this.data.length;
             for (i = 0; i < len; i += 1) {

@@ -21,11 +21,11 @@ import { HandlebarsTemplatesProvider } from "../services/handlebars-templates-pr
 import { CoordinatesToolboxesControl, ICoordinatesToolboxesComponent } from "../components/coordinates-toolboxes";
 import { HtmlSelectionTagger } from "../components/html-selection-tagger";
 
-declare var window: Window;
-declare var document: Document;
-declare var $: JQueryStatic;
-declare var interact: Interact.InteractStatic;
-declare var toastr: Toastr;
+declare let window: Window;
+declare let document: Document;
+declare let $: JQueryStatic;
+declare let interact: Interact.InteractStatic;
+declare let toastr: Toastr;
 
 enum HtmlElementIds {
     GET_LINK_ID = "get-link",
@@ -66,7 +66,7 @@ ToastrConfiguration.configure(toastr);
 InteractJSConfiguration.registerDragabbleBehavior(interact, ".draggable");
 
 let loadContentAction: () => void = documentController.createGetAction(getUrl, false, function (content: string): void {
-    var contentHash: string,
+    let contentHash: string,
         articleElement: HTMLElement = document.getElementById(HtmlElementIds.CONTENT_ELEMENT_ID);
     if (content) {
         articleElement.innerHTML = content;
@@ -90,7 +90,7 @@ loadContentAction();
 
 // event handlers
 function keyDownEventHandler(event: KeyboardEvent): any {
-    var e: KeyboardEvent = event || window.event as KeyboardEvent;
+    let e: KeyboardEvent = event || window.event as KeyboardEvent;
 
     if (e.ctrlKey) {
 

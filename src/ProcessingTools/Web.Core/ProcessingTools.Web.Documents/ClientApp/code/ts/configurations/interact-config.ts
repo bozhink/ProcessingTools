@@ -1,7 +1,7 @@
 ﻿export class InteractJSConfiguration {
 
     private static resizeMoveEventHandler(event: Event): any {
-        var e: any = event || window.event,
+        let e: any = event || window.event,
             target: HTMLElement = e.target as HTMLElement,
             x: number = (parseFloat(target.getAttribute("data-x")) || 0),
             y: number = (parseFloat(target.getAttribute("data-y")) || 0);
@@ -23,7 +23,7 @@
     }
 
     private static dragEndEventHandler(event: Event): any {
-        // var textEl = event.target.querySelector("p");
+        // let textEl = event.target.querySelector("p");
 
         // textEl && (textEl.textContent =
         //   "moved a distance of "
@@ -32,7 +32,7 @@
     }
 
     private static dragMoveEventHandler(event: Event): any {
-        var e: any = event || window.event,
+        let e: any = event || window.event,
             target: HTMLElement = e.target as HTMLElement,
 
             // keep the dragged position in the data-x/data-y attributes

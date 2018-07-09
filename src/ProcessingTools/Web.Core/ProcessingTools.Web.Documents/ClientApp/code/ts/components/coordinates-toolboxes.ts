@@ -25,7 +25,7 @@ export function CoordinatesToolboxesControl(
 ): ICoordinatesToolboxesComponent {
 
     function clickMinimizeButtonEventHandler(event: Event): any {
-        var e: Event = event || window.event,
+        let e: Event = event || window.event,
             target: HTMLElement = e.target as HTMLElement,
             toolbox: HTMLElement,
             body: HTMLElement;
@@ -51,7 +51,7 @@ export function CoordinatesToolboxesControl(
     }
 
     function clickMaximizeButtonEventHandler(event: Event): any {
-        var e: Event = event || window.event,
+        let e: Event = event || window.event,
             target: HTMLElement = e.target as HTMLElement,
             toolbox: HTMLElement,
             body: HTMLElement;
@@ -77,7 +77,7 @@ export function CoordinatesToolboxesControl(
     }
 
     function clickCloseButtonEventHandler(event: Event): any {
-        var e: Event = event || window.event,
+        let e: Event = event || window.event,
             target: HTMLElement = e.target as HTMLElement,
             toolbox: HTMLElement;
 
@@ -99,7 +99,7 @@ export function CoordinatesToolboxesControl(
 
     function listAnchorClickEventHandler(event: Event): any {
         const TEXT_TO_SCROLL_CLASS_NAME: string = "selected-text-to-scroll";
-        var e: Event = event || window.event,
+        let e: Event = event || window.event,
             target: HTMLElement = e.target as HTMLElement,
             href: string,
             $target: JQuery;
@@ -130,9 +130,9 @@ export function CoordinatesToolboxesControl(
     }
 
     function getCoordinates(): Array<ICoordinate> {
-        var result: Array<ICoordinate> = [];
+        let result: Array<ICoordinate> = [];
         $(".named-content.geo-json").each(function (i: number, element: HTMLElement): void {
-            var $this: JQuery = $(element),
+            let $this: JQuery = $(element),
                 id: string = $this.attr("id"),
                 coordinates: Array<number> = JSON.parse($this.attr("specific-use")).coordinates;
 
@@ -148,7 +148,7 @@ export function CoordinatesToolboxesControl(
     }
 
     function generateCoordinatesListToolbox(selector: string): void {
-        var toolboxSelector: string = "#coordinates-list-toolbox",
+        let toolboxSelector: string = "#coordinates-list-toolbox",
             $aside: JQuery = $(selector),
             toolbox: ICoordinatesToolboxViewModel = {
                 title: "Coordinates",
@@ -174,7 +174,7 @@ export function CoordinatesToolboxesControl(
     }
 
     function generateCoordinatesMapToolbox(selector: string): void {
-        var toolboxSelector: string = "#coordinates-map-toolbox",
+        let toolboxSelector: string = "#coordinates-map-toolbox",
             $aside: JQuery = $(selector),
             toolbox: ICoordinatesToolboxViewModel = {
                 title: "Map",
