@@ -28,9 +28,9 @@ namespace ProcessingTools.Tasks.Models.Contracts.Tasks
         ScheduleType Type { get; }
 
         /// <summary>
-        /// Gets configuration data of the task schedule.
+        /// Gets or sets configuration data of the task schedule.
         /// </summary>
-        string Data { get; }
+        string Data { get; set; }
 
         /// <summary>
         /// Gets optional parameters of the task schedule.

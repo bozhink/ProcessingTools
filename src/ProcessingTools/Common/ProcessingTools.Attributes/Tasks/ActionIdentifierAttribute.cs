@@ -11,7 +11,7 @@ namespace ProcessingTools.Attributes.Tasks
     /// Action identifier.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
-    internal sealed class ActionIdentifierAttribute : Attribute
+    public sealed class ActionIdentifierAttribute : Attribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ActionIdentifierAttribute"/> class.

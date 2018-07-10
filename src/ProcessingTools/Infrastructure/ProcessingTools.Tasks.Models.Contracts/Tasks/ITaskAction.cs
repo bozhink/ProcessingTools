@@ -32,9 +32,9 @@ namespace ProcessingTools.Tasks.Models.Contracts.Tasks
         ActionType Type { get; }
 
         /// <summary>
-        /// Gets configuration data of the task action.
+        /// Gets or sets configuration data of the task action.
         /// </summary>
-        string Data { get; }
+        string Data { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the task action is active.

@@ -11,7 +11,7 @@ namespace ProcessingTools.Attributes.Tasks
     /// Action identifier.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    internal sealed class ScheduleIdentifierAttribute : Attribute
+    public sealed class ScheduleIdentifierAttribute : Attribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ScheduleIdentifierAttribute"/> class.
