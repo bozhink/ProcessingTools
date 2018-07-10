@@ -4,6 +4,8 @@
 
 namespace ProcessingTools.Tasks.Models.Contracts.Tasks
 {
+    using ProcessingTools.Enumerations.Tasks;
+
     /// <summary>
     /// Task action.
     /// </summary>
@@ -20,17 +22,17 @@ namespace ProcessingTools.Tasks.Models.Contracts.Tasks
         string TaskId { get; }
 
         /// <summary>
-        /// Gets the order parameter for the task action.
+        /// Gets order parameter for the task action.
         /// </summary>
         int Order { get; }
 
         /// <summary>
-        /// Gets the type of the task action.
+        /// Gets type of the task action.
         /// </summary>
-        int Type { get; }
+        ActionType Type { get; }
 
         /// <summary>
-        /// Gets the configuration data of the task action.
+        /// Gets configuration data of the task action.
         /// </summary>
         string Data { get; }
 
