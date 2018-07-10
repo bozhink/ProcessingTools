@@ -323,6 +323,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Commands.Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Security", "Common\ProcessingTools.Security\ProcessingTools.Security.csproj", "{7EAEE6B6-74A5-4E79-BFAE-8DA481254B7D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks", "Infrastructure\ProcessingTools.Tasks\ProcessingTools.Tasks.csproj", "{DA89759D-D334-40A2-BDEC-45C554D0C083}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Contracts", "Infrastructure\ProcessingTools.Tasks.Contracts\ProcessingTools.Tasks.Contracts.csproj", "{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Models", "Infrastructure\ProcessingTools.Tasks.Models\ProcessingTools.Tasks.Models.csproj", "{5024521E-CA0B-417E-92A1-446F1124579B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Models.Contracts", "Infrastructure\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Tasks.Models.Contracts.csproj", "{E9589748-749C-4C72-ADD5-F074F49BCFF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1355,6 +1363,38 @@ Global
 		{7EAEE6B6-74A5-4E79-BFAE-8DA481254B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7EAEE6B6-74A5-4E79-BFAE-8DA481254B7D}.Release|x64.ActiveCfg = Release|Any CPU
 		{7EAEE6B6-74A5-4E79-BFAE-8DA481254B7D}.Release|x64.Build.0 = Release|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Debug|x64.Build.0 = Debug|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Release|x64.ActiveCfg = Release|Any CPU
+		{DA89759D-D334-40A2-BDEC-45C554D0C083}.Release|x64.Build.0 = Release|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Debug|x64.Build.0 = Debug|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Release|x64.ActiveCfg = Release|Any CPU
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E}.Release|x64.Build.0 = Release|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Debug|x64.Build.0 = Debug|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Release|x64.ActiveCfg = Release|Any CPU
+		{5024521E-CA0B-417E-92A1-446F1124579B}.Release|x64.Build.0 = Release|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Debug|x64.Build.0 = Debug|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Release|x64.ActiveCfg = Release|Any CPU
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1507,9 +1547,13 @@ Global
 		{50171E07-3148-4F27-AE06-BF8EE2912322} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{A88D9D6F-8842-48B5-A847-5AD192E0814D} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{7EAEE6B6-74A5-4E79-BFAE-8DA481254B7D} = {789C4203-7CD8-45FC-A182-D4C395F76530}
+		{DA89759D-D334-40A2-BDEC-45C554D0C083} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{76E5F4A1-EB44-47BB-A47B-66F93CC0759E} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{5024521E-CA0B-417E-92A1-446F1124579B} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
+		{E9589748-749C-4C72-ADD5-F074F49BCFF4} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
