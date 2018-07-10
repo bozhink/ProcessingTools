@@ -65,7 +65,7 @@
 
             var ranks = new TaxonRankXmlModel
             {
-                Values = new string[]
+                Values = new[]
                 {
                     ClassTaxonRank
                 }
@@ -80,7 +80,7 @@
             var taxon = new TaxonXmlModel
             {
                 IsWhiteListed = true,
-                Parts = new TaxonPartXmlModel[]
+                Parts = new[]
                 {
                     taxonPart
                 }
@@ -88,7 +88,7 @@
 
             var list = new RankListXmlModel
             {
-                Taxa = new TaxonXmlModel[]
+                Taxa = new[]
                 {
                     taxon
                 }
@@ -180,7 +180,7 @@
 
             var ranks = new TaxonRankXmlModel
             {
-                Values = new string[]
+                Values = new[]
                 {
                     ClassTaxonRank1,
                     ClassTaxonRank2
@@ -196,7 +196,7 @@
             var taxon = new TaxonXmlModel
             {
                 IsWhiteListed = true,
-                Parts = new TaxonPartXmlModel[]
+                Parts = new[]
                 {
                     taxonPart
                 }
@@ -204,7 +204,7 @@
 
             var list = new RankListXmlModel
             {
-                Taxa = new TaxonXmlModel[]
+                Taxa = new[]
                 {
                     taxon
                 }
@@ -303,7 +303,7 @@
 
             var ranks = new TaxonRankXmlModel
             {
-                Values = new string[]
+                Values = new[]
                 {
                     ClassTaxonRank
                 }
@@ -317,7 +317,7 @@
 
             var taxon = new TaxonXmlModel
             {
-                Parts = new TaxonPartXmlModel[]
+                Parts = new[]
                 {
                     taxonPart
                 }
@@ -325,7 +325,7 @@
 
             var list = new RankListXmlModel
             {
-                Taxa = new TaxonXmlModel[]
+                Taxa = new[]
                 {
                     taxon
                 }
