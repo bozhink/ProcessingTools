@@ -17,7 +17,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         /// <summary>
         /// Gets species parts ranks.
         /// </summary>
-        public static readonly IDictionary<string, SpeciesPartType> SpeciesPartsRanks = new Dictionary<string, SpeciesPartType>
+        public static readonly IImmutableDictionary<string, SpeciesPartType> SpeciesPartsRanks = new Dictionary<string, SpeciesPartType>
         {
                 { "?", SpeciesPartType.Species },
                 { "a", SpeciesPartType.Aberration },

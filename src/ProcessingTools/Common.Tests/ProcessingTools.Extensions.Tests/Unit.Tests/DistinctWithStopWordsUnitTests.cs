@@ -23,10 +23,9 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests
         {
             // Arrange
             var stopWordsMock = new Mock<IEnumerable<string>>();
-            IEnumerable<string> words = null;
 
             // Act
-            var result = words.DistinctWithStopWords(stopWordsMock.Object);
+            var result = StringExtensions.DistinctWithStopWords(null, stopWordsMock.Object);
 
             // Assert
             Assert.IsNotNull(result);
@@ -43,7 +42,7 @@ namespace ProcessingTools.Extensions.Tests.Unit.Tests
             var wordsMock = new Mock<IEnumerable<string>>();
 
             // Act
-            var result = wordsMock.Object.DistinctWithStopWords(null);
+            var result = StringExtensions.DistinctWithStopWords(wordsMock.Object, null);
 
             // Assert
             Assert.IsNotNull(result);

@@ -951,6 +951,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                     case TypeCode.Int32:
                     case TypeCode.Int64:
                         return true;
+
+                    default:
+                        break;
                 }
             }
 
@@ -967,6 +970,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -985,6 +991,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -999,6 +1008,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -1015,6 +1027,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -1028,6 +1043,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -1042,6 +1060,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -1054,6 +1075,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -1066,6 +1090,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Double:
                         case TypeCode.Decimal:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -1076,6 +1103,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                         case TypeCode.Single:
                         case TypeCode.Double:
                             return true;
+
+                        default:
+                            break;
                     }
 
                     break;
@@ -1915,6 +1945,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                     case TokenId.Amphersand:
                         left = this.GenerateStringConcat(left, right);
                         break;
+
+                    default:
+                        break;
                 }
             }
 
@@ -2100,6 +2133,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
 
                     case TokenId.LessThanEqual:
                         left = this.GenerateLessThanEqual(left, right);
+                        break;
+
+                    default:
                         break;
                 }
             }
@@ -2426,6 +2462,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
                     case TokenId.Percent:
                     case TokenId.Identifier:
                         left = Expression.Modulo(left, right);
+                        break;
+
+                    default:
                         break;
                 }
             }
@@ -2779,6 +2818,9 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
 
                             case TypeCode.String:
                                 value = ParseEnum(t, target);
+                                break;
+
+                            default:
                                 break;
                         }
 
