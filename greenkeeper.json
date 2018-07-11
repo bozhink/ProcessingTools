@@ -1,0 +1,12 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "src/ProcessingTools/Web/ProcessingTools.Web.Api/package.json",
+        "src/ProcessingTools/Web/ProcessingTools.Web.Documents/package.json",
+        "src/ProcessingTools/Web/ProcessingTools.Web/package.json",
+        "src/WordNetClient/WordNetMongoDbSeeder/package.json"
+      ]
+    }
+  }
+}
