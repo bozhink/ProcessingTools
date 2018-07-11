@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
-    "declaration": false,
+    "declaration": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noEmitOnError": true,
     "removeComments": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "moduleResolution": "node",
     "module": "commonjs",
     "target": "es5",

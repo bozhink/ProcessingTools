@@ -93,7 +93,7 @@
                 var setEmailResult = await this.userManager.SetEmailAsync(user, model.Email);
                 if (!setEmailResult.Succeeded)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
+                    throw new OperationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
                 }
             }
 
@@ -103,7 +103,7 @@
                 var setPhoneResult = await this.userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+                    throw new OperationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
             }
 
@@ -275,13 +275,13 @@
             var info = await this.signInManager.GetExternalLoginInfoAsync(user.Id);
             if (info == null)
             {
-                throw new ApplicationException($"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");
+                throw new InformationNotFoundException($"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");
             }
 
             var result = await this.userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                throw new ApplicationException($"Unexpected error occurred adding external login for user with ID '{user.Id}'.");
+                throw new OperationException($"Unexpected error occurred adding external login for user with ID '{user.Id}'.");
             }
 
             // Clear the existing external cookie to ensure a clean login process
@@ -304,7 +304,7 @@
             var result = await this.userManager.RemoveLoginAsync(user, model.LoginProvider, model.ProviderKey);
             if (!result.Succeeded)
             {
-                throw new ApplicationException($"Unexpected error occurred removing external login for user with ID '{user.Id}'.");
+                throw new OperationException($"Unexpected error occurred removing external login for user with ID '{user.Id}'.");
             }
 
             await this.signInManager.SignInAsync(user, isPersistent: false);
@@ -342,7 +342,7 @@
 
             if (!user.TwoFactorEnabled)
             {
-                throw new ApplicationException($"Unexpected error occurred disabling 2FA for user with ID '{user.Id}'.");
+                throw new InvalidOperationException($"Unexpected error occurred disabling 2FA for user with ID '{user.Id}'.");
             }
 
             return this.View(nameof(this.Disable2fa));
@@ -361,7 +361,7 @@
             var disable2faResult = await this.userManager.SetTwoFactorEnabledAsync(user, false);
             if (!disable2faResult.Succeeded)
             {
-                throw new ApplicationException($"Unexpected error occurred disabling 2FA for user with ID '{user.Id}'.");
+                throw new OperationException($"Unexpected error occurred disabling 2FA for user with ID '{user.Id}'.");
             }
 
             this.logger.LogInformation("User with ID {UserId} has disabled 2fa.", user.Id);
@@ -458,7 +458,7 @@
 
             if (!user.TwoFactorEnabled)
             {
-                throw new ApplicationException($"Cannot generate recovery codes for user with ID '{user.Id}' as they do not have 2FA enabled.");
+                throw new InvalidOperationException($"Cannot generate recovery codes for user with ID '{user.Id}' as they do not have 2FA enabled.");
             }
 
             var recoveryCodes = await this.userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
