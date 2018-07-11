@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Data.Common.Mongo.Tests.IntegrtionTests
 {
-    using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using ProcessingTools.Data.Common.Mongo.Repositories;
@@ -11,6 +10,11 @@
     public class MongoGenericRepositoryTests
     {
         private const string DatabaseName = "MongoGenericRepository_Integration_Tests_F92F80C9";
+
+        /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
 
         [TestMethod]
         [Timeout(5000)]
@@ -23,7 +27,7 @@
 
             var author = new Author("Patrick", "Rothfuss");
             var book = new Book("How Old Holly Came To Be", "978-0-9847136-3-9", author);
-            Console.WriteLine(book);
+            this.TestContext.WriteLine(book.ToString());
 
             repository.AddAsync(book).Wait();
 
@@ -33,8 +37,8 @@
 
             var bookFromDb = books.FirstOrDefault();
             Assert.IsNotNull(bookFromDb, "First book in db should not be null.");
-            Console.WriteLine(bookFromDb);
-            Console.WriteLine(bookFromDb.Id);
+            this.TestContext.WriteLine(bookFromDb.ToString());
+            this.TestContext.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
             Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");
@@ -58,7 +62,7 @@
 
             var author = new Author("Patrick", "Rothfuss");
             var book = new Book("How Old Holly Came To Be", "978-0-9847136-3-9", author);
-            Console.WriteLine(book);
+            this.TestContext.WriteLine(book.ToString());
 
             repository.AddAsync(book).Wait();
 
@@ -68,8 +72,8 @@
 
             var bookFromDb = books.FirstOrDefault();
             Assert.IsNotNull(bookFromDb, "First book in db should not be null.");
-            Console.WriteLine(bookFromDb);
-            Console.WriteLine(bookFromDb.Id);
+            this.TestContext.WriteLine(bookFromDb.ToString());
+            this.TestContext.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
             Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");
@@ -93,7 +97,7 @@
 
             var author = new Author("Patrick", "Rothfuss");
             var book = new Book("How Old Holly Came To Be", "978-0-9847136-3-9", author);
-            Console.WriteLine(book);
+            this.TestContext.WriteLine(book.ToString());
 
             repository.AddAsync(book).Wait();
 
@@ -103,8 +107,8 @@
 
             var bookFromDb = books.FirstOrDefault();
             Assert.IsNotNull(bookFromDb, "First book in db should not be null.");
-            Console.WriteLine(bookFromDb);
-            Console.WriteLine(bookFromDb.Id);
+            this.TestContext.WriteLine(bookFromDb.ToString());
+            this.TestContext.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
             Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");
@@ -121,8 +125,8 @@
 
             bookFromDb = books.FirstOrDefault();
             Assert.IsNotNull(bookFromDb, "First book in db should not be null.");
-            Console.WriteLine(bookFromDb);
-            Console.WriteLine(bookFromDb.Id);
+            this.TestContext.WriteLine(bookFromDb.ToString());
+            this.TestContext.WriteLine(bookFromDb.Id);
 
             Assert.AreEqual(book.Title, bookFromDb.Title, "Title should match.");
             Assert.AreEqual(book.Isbn, bookFromDb.Isbn, "ISBN should match.");

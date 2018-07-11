@@ -1,6 +1,5 @@
 ﻿namespace ProcessingTools.Harvesters.Tests.Integration.Tests
 {
-    using System;
     using System.IO;
     using System.Linq;
     using System.Xml;
@@ -18,6 +17,11 @@
     [TestClass]
     public class ExternalLinksHarvesterIntegrationTests
     {
+        /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
         [Timeout(5000)]
         public void ExternalLinksHarvester_WithSampleXmlFile_ShouldExtractCorrectlyExternalLinks()
@@ -57,7 +61,7 @@
 
             // Assert
             Assert.IsNotNull(externalLinks);
-            externalLinks?.ForEach(i => Console.WriteLine("{0} | {1} | {2}", i.BaseAddress, i.Uri, i.Value));
+            externalLinks?.ForEach(i => this.TestContext.WriteLine("{0} | {1} | {2}", i.BaseAddress, i.Uri, i.Value));
 
             Assert.AreEqual(ExpectedNumberOfExternalLinks, externalLinks?.Count);
 

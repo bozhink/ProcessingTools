@@ -4,7 +4,6 @@
 
 namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
@@ -20,6 +19,11 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
     [TestClass]
     public class YamlDotNetSerializationTests
     {
+        /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
         /// <summary>
         /// De-serialization of simple list of objects should work.
         /// </summary>
@@ -49,10 +53,10 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 
             foreach (var item in result)
             {
-                Console.WriteLine("Item:");
+                this.TestContext.WriteLine("Item:");
                 foreach (DictionaryEntry entry in item)
                 {
-                    Console.WriteLine("- {0} = {1}", entry.Key, entry.Value);
+                    this.TestContext.WriteLine("- {0} = {1}", entry.Key, entry.Value);
                 }
             }
         }
@@ -82,11 +86,11 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 
             foreach (var item in result)
             {
-                Console.WriteLine("Item:");
-                Console.WriteLine($"- id = {item.Id}");
-                Console.WriteLine($"- layer = {item.Layer}");
-                Console.WriteLine($"- label = {item.Label}");
-                Console.WriteLine($"- ref = {item.Ref}");
+                this.TestContext.WriteLine("Item:");
+                this.TestContext.WriteLine($"- id = {item.Id}");
+                this.TestContext.WriteLine($"- layer = {item.Layer}");
+                this.TestContext.WriteLine($"- label = {item.Label}");
+                this.TestContext.WriteLine($"- ref = {item.Ref}");
             }
         }
 
@@ -117,11 +121,11 @@ namespace ProcessingTools.Services.Tests.Integration.Tests.Serialization.Yaml
 
             foreach (var item in result)
             {
-                Console.WriteLine("Item:");
-                Console.WriteLine($"- id = {item.Id}");
-                Console.WriteLine($"- layer = {item.Layer}");
-                Console.WriteLine($"- label = {item.Label}");
-                Console.WriteLine($"- ref = {item.Ref}");
+                this.TestContext.WriteLine("Item:");
+                this.TestContext.WriteLine($"- id = {item.Id}");
+                this.TestContext.WriteLine($"- layer = {item.Layer}");
+                this.TestContext.WriteLine($"- label = {item.Label}");
+                this.TestContext.WriteLine($"- ref = {item.Ref}");
             }
         }
 
@@ -152,13 +156,13 @@ Rules:
             Assert.IsNotNull(result.Rules, "result.Rules");
             Assert.AreEqual(2, result.Rules.Count(), "result.Rules.Count");
 
-            Console.WriteLine($"xpath: {result.XPath}");
-            Console.WriteLine();
+            this.TestContext.WriteLine($"xpath: {result.XPath}");
+            this.TestContext.WriteLine(string.Empty);
             foreach (var rule in result.Rules)
             {
-                Console.WriteLine($"- pattern: {rule.Pattern}");
-                Console.WriteLine($"- replacement: {rule.Replacement}");
-                Console.WriteLine();
+                this.TestContext.WriteLine($"- pattern: {rule.Pattern}");
+                this.TestContext.WriteLine($"- replacement: {rule.Replacement}");
+                this.TestContext.WriteLine(string.Empty);
             }
         }
 
@@ -195,16 +199,16 @@ Rules:
 
             foreach (var item in result)
             {
-                Console.WriteLine($"xpath: {item.XPath}");
-                Console.WriteLine();
+                this.TestContext.WriteLine($"xpath: {item.XPath}");
+                this.TestContext.WriteLine(string.Empty);
                 foreach (var rule in item.Rules)
                 {
-                    Console.WriteLine($"- pattern: {rule.Pattern}");
-                    Console.WriteLine($"- replacement: {rule.Replacement}");
-                    Console.WriteLine();
+                    this.TestContext.WriteLine($"- pattern: {rule.Pattern}");
+                    this.TestContext.WriteLine($"- replacement: {rule.Replacement}");
+                    this.TestContext.WriteLine(string.Empty);
                 }
 
-                Console.WriteLine();
+                this.TestContext.WriteLine(string.Empty);
             }
         }
 
@@ -242,16 +246,16 @@ Rules:
 
             foreach (var item in result)
             {
-                Console.WriteLine($"xpath: {item.XPath}");
-                Console.WriteLine();
+                this.TestContext.WriteLine($"xpath: {item.XPath}");
+                this.TestContext.WriteLine(string.Empty);
                 foreach (var rule in item.Rules)
                 {
-                    Console.WriteLine($"- pattern: {rule.Pattern}");
-                    Console.WriteLine($"- replacement: {rule.Replacement}");
-                    Console.WriteLine();
+                    this.TestContext.WriteLine($"- pattern: {rule.Pattern}");
+                    this.TestContext.WriteLine($"- replacement: {rule.Replacement}");
+                    this.TestContext.WriteLine(string.Empty);
                 }
 
-                Console.WriteLine();
+                this.TestContext.WriteLine(string.Empty);
             }
         }
     }

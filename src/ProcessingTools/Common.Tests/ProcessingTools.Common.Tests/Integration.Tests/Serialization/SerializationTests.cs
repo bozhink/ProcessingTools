@@ -18,6 +18,11 @@ namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization
     public class SerializationTests
     {
         /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
+        /// <summary>
         /// Serialize <see cref="ExternalLinkSerializableModel"/> should work.
         /// </summary>
         [TestMethod]
@@ -44,7 +49,7 @@ namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization
                 var xml = new XmlDocument();
                 xml.LoadXml(result);
 
-                System.Console.WriteLine(xml.DocumentElement.OuterXml);
+                this.TestContext.WriteLine(xml.DocumentElement.OuterXml);
             }
         }
 
@@ -74,7 +79,7 @@ namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization
                 var xml = new XmlDocument();
                 xml.LoadXml(result);
 
-                System.Console.WriteLine(xml.DocumentElement.OuterXml);
+                this.TestContext.WriteLine(xml.DocumentElement.OuterXml);
             }
         }
     }

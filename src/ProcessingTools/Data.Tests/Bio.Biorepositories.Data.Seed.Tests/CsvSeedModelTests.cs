@@ -11,6 +11,11 @@
     [TestClass]
     public class CsvSeedModelTests
     {
+        /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
         public void CsvSeedFiles_Deserialization_ShouldWork()
         {
@@ -25,7 +30,7 @@
 
             foreach (var modelType in modelTypes)
             {
-                Console.WriteLine(modelType.FullName);
+                this.TestContext.WriteLine(modelType.FullName);
 
                 var fileNameAttribute = modelType.GetCustomAttributes(typeof(FileNameAttribute), false).FirstOrDefault() as FileNameAttribute;
 

@@ -118,10 +118,10 @@
                     // object may be present here. check for null to prevent potential NRE.
                     if (outputItem != null)
                     {
-                        // TODO: do something with the output item
-                        // outputItem.BaseOBject
-                        Console.WriteLine(outputItem.BaseObject.GetType().FullName);
-                        Console.WriteLine(outputItem.BaseObject.ToString() + "\n");
+                        ////// TODO: do something with the output item
+                        ////// outputItem.BaseOBject
+                        ////Console.WriteLine(outputItem.BaseObject.GetType().FullName);
+                        ////Console.WriteLine(outputItem.BaseObject.ToString() + "\n");
                     }
                 }
             }
@@ -141,13 +141,13 @@
                 // this could be sleep/wait, or perhaps some other work
                 while (!result.IsCompleted)
                 {
-                    Console.WriteLine("Waiting for pipeline to finish...");
+                    ////Console.WriteLine("Waiting for pipeline to finish...");
                     Thread.Sleep(1000);
 
                     // might want to place a timeout here...
                 }
 
-                Console.WriteLine("Finished!");
+                ////Console.WriteLine("Finished!");
             }
         }
 
@@ -181,18 +181,18 @@
                 // this could be sleep/wait, or perhaps some other work
                 while (!result.IsCompleted)
                 {
-                    Console.WriteLine("Waiting for pipeline to finish...");
+                    ////Console.WriteLine("Waiting for pipeline to finish...");
                     Thread.Sleep(1000);
 
                     // might want to place a timeout here...
                 }
 
-                Console.WriteLine("Execution has stopped. The pipeline state: " + powerShellInstance.InvocationStateInfo.State);
+                ////Console.WriteLine("Execution has stopped. The pipeline state: " + powerShellInstance.InvocationStateInfo.State);
 
                 foreach (PSObject outputItem in outputCollection)
                 {
-                    // TODO: handle/process the output items if required
-                    Console.WriteLine(outputItem.BaseObject.ToString());
+                    ////// TODO: handle/process the output items if required
+                    ////Console.WriteLine(outputItem.BaseObject.ToString());
                 }
             }
         }
@@ -204,8 +204,8 @@
         /// <param name="e">Contains the index ID of the added collection item and the ID of the PowerShell instance this event belongs to.</param>
         private void OutputCollection_DataAdded(object sender, DataAddedEventArgs e)
         {
-            // do something when an object is written to the output stream
-            Console.WriteLine("Object added to output.");
+            ////// do something when an object is written to the output stream
+            ////Console.WriteLine("Object added to output.");
         }
 
         /// <summary>
@@ -215,8 +215,8 @@
         /// <param name="e">Contains the index ID of the added collection item and the ID of the PowerShell instance this event belongs to.</param>
         private void Error_DataAdded(object sender, DataAddedEventArgs e)
         {
-            // do something when an error is written to the error stream
-            Console.WriteLine("An error was written to the Error stream!");
+            ////// do something when an error is written to the error stream
+            ////Console.WriteLine("An error was written to the Error stream!");
         }
     }
 }

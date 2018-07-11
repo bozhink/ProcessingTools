@@ -4,7 +4,6 @@
 
 namespace ProcessingTools.Extensions.Tests.Integration.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,6 +16,11 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
     public class RegexExtensionsTests
     {
         /// <summary>
+        /// Gets or sets the <see cref="TestContext"/>.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
+        /// <summary>
         /// MatchWordsInString.AsEnumerable should return <see cref="IEnumerable{T}"/> of word strings.
         /// </summary>
         [TestMethod]
@@ -27,7 +31,7 @@ namespace ProcessingTools.Extensions.Tests.Integration.Tests
             Regex matchWord = new Regex(@"[^\W\d]+");
             foreach (var word in matchWord.Match(Text).AsEnumerable())
             {
-                Console.WriteLine(word);
+                this.TestContext.WriteLine(word);
             }
         }
     }
