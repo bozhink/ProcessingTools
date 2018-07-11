@@ -156,7 +156,7 @@
 
             Assert.AreEqual("Set", command.UpdateVerb, @"UpdateVerb of the IUpdateCommand should be ""Set"".");
             Assert.AreEqual("DatePosted", command.FieldName, @"FieldName of the IUpdateCommand should be ""DatePosted"".");
-            Assert.AreEqual(value.ToString(), command.Value.ToString(), @"Value of the IUpdateCommand should be """ + value.ToString() + @""".");
+            Assert.AreEqual(value, command.Value, $@"Value of the IUpdateCommand should be ""{value}"".");
         }
 
         [Test(Description = @"UpdateExpression<ITweet>.Set valid expression for Faves field and valid value should register single Set command in UpdateCommands", Author = "Bozhin Karaivanov", TestOf = typeof(UpdateExpression<ITweet>))]
