@@ -260,7 +260,7 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
             ApiDescription apiDescription,
             HttpConfiguration config)
         {
-            HelpPageApiModel apiModel = new HelpPageApiModel()
+            HelpPageApiModel apiModel = new HelpPageApiModel
             {
                 ApiDescription = apiDescription,
             };
@@ -372,13 +372,13 @@ namespace ProcessingTools.Web.Api.Areas.HelpPage
 
                         if (!parameterDescriptor.IsOptional)
                         {
-                            uriParameter.Annotations.Add(new ParameterAnnotation() { Documentation = "Required" });
+                            uriParameter.Annotations.Add(new ParameterAnnotation { Documentation = "Required" });
                         }
 
                         object defaultValue = parameterDescriptor.DefaultValue;
                         if (defaultValue != null)
                         {
-                            uriParameter.Annotations.Add(new ParameterAnnotation() { Documentation = "Default value is " + Convert.ToString(defaultValue, CultureInfo.InvariantCulture) });
+                            uriParameter.Annotations.Add(new ParameterAnnotation { Documentation = "Default value is " + Convert.ToString(defaultValue, CultureInfo.InvariantCulture) });
                         }
                     }
                     else

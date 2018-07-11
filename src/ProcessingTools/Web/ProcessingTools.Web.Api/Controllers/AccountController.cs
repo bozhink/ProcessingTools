@@ -344,7 +344,7 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var user = new User()
+            var user = new User
             {
                 UserName = model.Email,
                 Email = model.Email
@@ -377,7 +377,7 @@
                 return this.InternalServerError();
             }
 
-            var user = new User()
+            var user = new User
             {
                 UserName = model.Email,
                 Email = model.Email

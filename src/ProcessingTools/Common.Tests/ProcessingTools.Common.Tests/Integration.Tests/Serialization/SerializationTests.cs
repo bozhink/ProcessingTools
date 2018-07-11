@@ -28,7 +28,7 @@ namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization
         [TestMethod]
         public void SerializeExternalLinkModel_ShouldWork()
         {
-            var link = new ExternalLinkSerializableModel()
+            var link = new ExternalLinkSerializableModel
             {
                 Value = "http://example.com",
                 ExtLinkType = "uri",
@@ -59,7 +59,7 @@ namespace ProcessingTools.Common.Tests.Integration.Tests.Serialization
         [TestMethod]
         public void SerializeExternalLinkModel_WithoutHref_ShouldWork()
         {
-            var link = new ExternalLinkSerializableModel()
+            var link = new ExternalLinkSerializableModel
             {
                 Value = "http://example.com",
                 ExtLinkType = "uri"

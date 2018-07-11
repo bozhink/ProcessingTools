@@ -186,7 +186,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
         private async Task<IEnumerable<string>> ExtractPotentialSpecimenCodes(IDocument document, string codePattern)
         {
-            XmlDocument cleanedXmlDocument = new XmlDocument()
+            XmlDocument cleanedXmlDocument = new XmlDocument
             {
                 PreserveWhitespace = true
             };
