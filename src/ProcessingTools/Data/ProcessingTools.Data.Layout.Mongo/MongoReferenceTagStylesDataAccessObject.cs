@@ -125,7 +125,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IReferenceTagStyleDataModel[] { };
+                return Array.Empty<IReferenceTagStyleDataModel>();
             }
 
             return tagStyles.ToArray<IReferenceTagStyleDataModel>();
@@ -143,7 +143,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IReferenceDetailsTagStyleDataModel[] { };
+                return Array.Empty<IReferenceDetailsTagStyleDataModel>();
             }
 
             return tagStyles.ToArray<IReferenceDetailsTagStyleDataModel>();

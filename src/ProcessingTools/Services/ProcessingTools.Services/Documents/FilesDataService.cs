@@ -159,7 +159,7 @@ namespace ProcessingTools.Services.Documents
 
             if (files == null || !files.Any())
             {
-                return new IFileModel[] { };
+                return Array.Empty<IFileModel>();
             }
 
             var items = files.Select(this.mapper.Map<IFileDataModel, FileModel>).ToArray();
@@ -182,7 +182,7 @@ namespace ProcessingTools.Services.Documents
             var files = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (files == null || !files.Any())
             {
-                return new IFileDetailsModel[] { };
+                return Array.Empty<IFileDetailsModel>();
             }
 
             var items = files.Select(this.mapper.Map<IFileDetailsDataModel, FileDetailsModel>).ToArray();

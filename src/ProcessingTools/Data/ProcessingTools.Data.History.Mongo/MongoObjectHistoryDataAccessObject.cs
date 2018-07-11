@@ -73,7 +73,7 @@ namespace ProcessingTools.Data.History.Mongo
         {
             if (objectId == null)
             {
-                return new IObjectHistory[] { };
+                return Array.Empty<IObjectHistory>();
             }
 
             var data = await this.Collection
@@ -84,7 +84,7 @@ namespace ProcessingTools.Data.History.Mongo
 
             if (data == null)
             {
-                return new IObjectHistory[] { };
+                return Array.Empty<IObjectHistory>();
             }
 
             return data.ToArray<IObjectHistory>();
@@ -95,7 +95,7 @@ namespace ProcessingTools.Data.History.Mongo
         {
             if (objectId == null)
             {
-                return new IObjectHistory[] { };
+                return Array.Empty<IObjectHistory>();
             }
 
             var data = await this.Collection
@@ -108,7 +108,7 @@ namespace ProcessingTools.Data.History.Mongo
 
             if (data == null)
             {
-                return new IObjectHistory[] { };
+                return Array.Empty<IObjectHistory>();
             }
 
             return data.ToArray<IObjectHistory>();

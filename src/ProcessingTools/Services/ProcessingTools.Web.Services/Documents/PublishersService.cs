@@ -170,7 +170,7 @@ namespace ProcessingTools.Web.Services.Documents
             var data = await this.publishersDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.publishersDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var publishers = data?.Select(this.mapper.Map<IPublisherModel, PublisherIndexViewModel>).ToArray() ?? new PublisherIndexViewModel[] { };
+            var publishers = data?.Select(this.mapper.Map<IPublisherModel, PublisherIndexViewModel>).ToArray() ?? Array.Empty<PublisherIndexViewModel>();
 
             return new PublishersIndexViewModel(userContext, count, take, skip / take, publishers);
         }

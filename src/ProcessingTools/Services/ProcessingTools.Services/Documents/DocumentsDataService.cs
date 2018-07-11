@@ -155,7 +155,7 @@ namespace ProcessingTools.Services.Documents
 
             if (documents == null || !documents.Any())
             {
-                return new IDocumentModel[] { };
+                return Array.Empty<IDocumentModel>();
             }
 
             var model = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
@@ -212,7 +212,7 @@ namespace ProcessingTools.Services.Documents
 
             if (documents == null || !documents.Any())
             {
-                return new IDocumentModel[] { };
+                return Array.Empty<IDocumentModel>();
             }
 
             var items = documents.Select(this.mapper.Map<IDocumentDataModel, DocumentModel>).ToArray();
@@ -235,7 +235,7 @@ namespace ProcessingTools.Services.Documents
             var documents = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (documents == null || !documents.Any())
             {
-                return new IDocumentDetailsModel[] { };
+                return Array.Empty<IDocumentDetailsModel>();
             }
 
             var items = documents.Select(this.mapper.Map<IDocumentDetailsDataModel, DocumentDetailsModel>).ToArray();

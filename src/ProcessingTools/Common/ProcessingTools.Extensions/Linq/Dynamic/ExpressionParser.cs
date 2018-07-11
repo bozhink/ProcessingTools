@@ -1306,7 +1306,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
 
         private void CheckAndPromoteOperand(Type signatures, string opName, ref Expression expr, int errorPos)
         {
-            Expression[] args = new Expression[] { expr };
+            Expression[] args = new[] { expr };
             if (this.FindMethod(signatures, "F", false, args, out MethodBase method) != 1)
             {
                 throw this.ParseError(errorPos, Resources.IncompatibleOperand, opName, GetTypeName(args[0].Type));
@@ -1317,7 +1317,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
 
         private void CheckAndPromoteOperands(Type signatures, string opName, ref Expression left, ref Expression right, int errorPos)
         {
-            Expression[] args = new Expression[] { left, right };
+            Expression[] args = new[] { left, right };
             if (this.FindMethod(signatures, "F", false, args, out MethodBase method) != 1)
             {
                 throw this.IncompatibleOperandsError(opName, left, right, errorPos);
@@ -1969,26 +1969,26 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
             Type[] typeArgs;
             if (signature.Name == "Min" || signature.Name == "Max")
             {
-                typeArgs = new Type[] { elementType, args[0].Type };
+                typeArgs = new[] { elementType, args[0].Type };
             }
             else
             {
-                typeArgs = new Type[] { elementType };
+                typeArgs = new[] { elementType };
             }
 
             if (args.Length == 0)
             {
-                args = new Expression[] { instance };
+                args = new[] { instance };
             }
             else
             {
                 if (signature.Name == "Contains")
                 {
-                    args = new Expression[] { instance, args[0] };
+                    args = new[] { instance, args[0] };
                 }
                 else
                 {
-                    args = new Expression[] { instance, Expression.Lambda(args[0], innerIt) };
+                    args = new[] { instance, Expression.Lambda(args[0], innerIt) };
                 }
             }
 

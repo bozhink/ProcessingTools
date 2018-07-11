@@ -40,7 +40,7 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            var tasks = new Task[]
+            var tasks = new[]
             {
                 this.SeedGeoNamesAsync(AppSettings.GeoNamesSeedFileName),
                 this.SeedGeoEpithetsAsync(AppSettings.GeoEpithetsSeedFileName),

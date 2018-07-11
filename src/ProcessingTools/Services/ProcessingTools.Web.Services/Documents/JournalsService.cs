@@ -175,7 +175,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { }, new JournalStyleViewModel[] { });
+            return new JournalEditViewModel(userContext, Array.Empty<JournalPublisherViewModel>(), Array.Empty<JournalStyleViewModel>());
         }
 
         /// <inheritdoc/>
@@ -186,7 +186,7 @@ namespace ProcessingTools.Web.Services.Documents
             var data = await this.journalsService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             var count = await this.journalsService.SelectCountAsync().ConfigureAwait(false);
 
-            var journals = data?.Select(this.mapper.Map<IJournalDetailsModel, JournalIndexViewModel>).ToArray() ?? new JournalIndexViewModel[] { };
+            var journals = data?.Select(this.mapper.Map<IJournalDetailsModel, JournalIndexViewModel>).ToArray() ?? Array.Empty<JournalIndexViewModel>();
 
             return new JournalsIndexViewModel(userContext, count, take, skip / take, journals);
         }
@@ -235,7 +235,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new JournalEditViewModel(userContext, new JournalPublisherViewModel[] { }, new JournalStyleViewModel[] { });
+            return new JournalEditViewModel(userContext, Array.Empty<JournalPublisherViewModel>(), Array.Empty<JournalStyleViewModel>());
         }
 
         /// <inheritdoc/>
@@ -264,7 +264,7 @@ namespace ProcessingTools.Web.Services.Documents
         private async Task<JournalPublisherViewModel[]> GetJournalPublishersViewModelsAsync()
         {
             var publishers = await this.journalsService.GetJournalPublishersForSelectAsync().ConfigureAwait(false);
-            return publishers?.Select(this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>).ToArray() ?? new JournalPublisherViewModel[] { };
+            return publishers?.Select(this.mapper.Map<IJournalPublisherModel, JournalPublisherViewModel>).ToArray() ?? Array.Empty<JournalPublisherViewModel>();
         }
 
         private async Task<JournalStyleViewModel> GetJournalStyleViewModelAsync(string id)
@@ -282,7 +282,7 @@ namespace ProcessingTools.Web.Services.Documents
         {
             var styles = await this.journalsService.GetJournalStylesForSelectAsync().ConfigureAwait(false);
 
-            return styles?.Select(this.mapper.Map<IIdentifiedStyleModel, JournalStyleViewModel>).ToArray() ?? new JournalStyleViewModel[] { };
+            return styles?.Select(this.mapper.Map<IIdentifiedStyleModel, JournalStyleViewModel>).ToArray() ?? Array.Empty<JournalStyleViewModel>();
         }
     }
 }

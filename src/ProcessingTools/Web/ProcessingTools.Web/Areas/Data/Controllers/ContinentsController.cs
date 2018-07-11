@@ -415,7 +415,7 @@
                 ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.Encoding,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                Data = new SynonymResponseModel[] { }
+                Data = Array.Empty<SynonymResponseModel>()
             };
 
             var data = await this.service.SelectSynonymsAsync(id, null).ConfigureAwait(false);

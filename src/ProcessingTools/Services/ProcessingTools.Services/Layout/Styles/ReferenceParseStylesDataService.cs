@@ -165,7 +165,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return new IReferenceParseStyleModel[] { };
+                return Array.Empty<IReferenceParseStyleModel>();
             }
 
             var items = parseStyles.Select(this.mapper.Map<IReferenceParseStyleDataModel, ReferenceParseStyleModel>).ToArray();
@@ -189,7 +189,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return new IReferenceDetailsParseStyleModel[] { };
+                return Array.Empty<IReferenceDetailsParseStyleModel>();
             }
 
             var items = parseStyles.Select(this.mapper.Map<IReferenceDetailsParseStyleDataModel, ReferenceDetailsParseStyleModel>).ToArray();

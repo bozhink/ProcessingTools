@@ -79,7 +79,7 @@ namespace ProcessingTools.Extensions
         {
             if (node == null)
             {
-                return new string[] { };
+                return Array.Empty<string>();
             }
 
             var taxaNames = node.SelectNodes(".//tn[@type='higher'][not(tn-part)]")

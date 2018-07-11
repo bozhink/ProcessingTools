@@ -137,7 +137,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 .AsParallel()
                 .ForAll(this.TagInfrarankTaxaSync);
 
-            var xpaths = new string[]
+            var xpaths = new[]
             {
                 SequentialStructureXPath,
                 ".//value[.//tn[@type='lower']]"
@@ -388,7 +388,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         private string GetSystemTaxonNameString(XmlNode node)
         {
             const string SpeciesFormatString = " {0}";
-            var specificTaxonNamePartsRanks = new string[]
+            var specificTaxonNamePartsRanks = new[]
             {
                 "species",
                 "subspecies",

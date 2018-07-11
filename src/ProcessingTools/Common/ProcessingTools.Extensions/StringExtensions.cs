@@ -72,7 +72,7 @@ namespace ProcessingTools.Extensions
         {
             if (words == null)
             {
-                return new string[] { };
+                return Array.Empty<string>();
             }
 
             if (stopWords == null)
@@ -100,13 +100,13 @@ namespace ProcessingTools.Extensions
         {
             if (words == null || seed == null)
             {
-                return new string[] { };
+                return Array.Empty<string>();
             }
 
             var compareSet = new HashSet<string>(seed.Select(w => w.ToUpperInvariant()));
             if (compareSet.Count < 1)
             {
-                return new string[] { };
+                return Array.Empty<string>();
             }
 
             var result = new HashSet<string>(words.Where(w => compareSet.Contains(w.ToUpperInvariant())));

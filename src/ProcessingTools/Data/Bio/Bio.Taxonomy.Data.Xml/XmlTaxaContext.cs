@@ -31,7 +31,7 @@
         private Func<ITaxonRankEntity, TaxonXmlModel> MapTaxonRankEntityToTaxonXmlModel => t => new TaxonXmlModel
         {
             IsWhiteListed = !this.matchHigherTaxa.IsMatch(t.Name),
-            Parts = new TaxonPartXmlModel[]
+            Parts = new[]
             {
                 new TaxonPartXmlModel
                 {

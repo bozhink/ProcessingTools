@@ -35,7 +35,7 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            var tasks = new Task[]
+            var tasks = new[]
             {
                 this.SeedProductsAsync(AppSettings.ProductsSeedFileName),
                 this.SeedInstitutionsAsync(AppSettings.InstitutionsSeedFileName)

@@ -159,7 +159,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (journals == null || !journals.Any())
             {
-                return new IJournalDataModel[] { };
+                return Array.Empty<IJournalDataModel>();
             }
 
             return journals.ToArray<IJournalDataModel>();
@@ -177,7 +177,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (journals == null || !journals.Any())
             {
-                return new IJournalDetailsDataModel[] { };
+                return Array.Empty<IJournalDetailsDataModel>();
             }
 
             var publishers = await this.GetJournalPublishersAsync().ConfigureAwait(false);

@@ -59,6 +59,6 @@
         public virtual Article Article { get; set; }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => new string[] { };
+        public IEnumerable<string> PreJoinFieldNames => Array.Empty<string>();
     }
 }

@@ -170,7 +170,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (articles == null || !articles.Any())
             {
-                return new IArticleDataModel[] { };
+                return Array.Empty<IArticleDataModel>();
             }
 
             return articles.ToArray<IArticleDataModel>();
@@ -188,7 +188,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (articles == null || !articles.Any())
             {
-                return new IArticleDetailsDataModel[] { };
+                return Array.Empty<IArticleDetailsDataModel>();
             }
 
             var journals = await this.GetArticleJournalsAsync().ConfigureAwait(false);

@@ -33,7 +33,7 @@ namespace ProcessingTools.Data.Miners.Dates
         /// <inheritdoc/>
         public async Task<string[]> MineAsync(string context)
         {
-            var patterns = new string[]
+            var patterns = new[]
             {
                 // DD [month in Arabic] YYYY
                 @"(?i)" + DaySubpattern + @"\W{0,4}" + MonthArabicSubpattern + @"\W{0,4}" + YearSubpattern,

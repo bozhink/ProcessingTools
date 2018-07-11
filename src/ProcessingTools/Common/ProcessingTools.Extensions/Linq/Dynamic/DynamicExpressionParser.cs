@@ -50,7 +50,7 @@ namespace ProcessingTools.Extensions.Linq.Dynamic
         /// <returns>Parsed lambda.</returns>
         public static LambdaExpression ParseLambda(Type itType, Type resultType, string expression, params object[] values)
         {
-            return ParseLambda(new ParameterExpression[] { Expression.Parameter(itType, string.Empty) }, resultType, expression, values);
+            return ParseLambda(new[] { Expression.Parameter(itType, string.Empty) }, resultType, expression, values);
         }
 
         /// <summary>

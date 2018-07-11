@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Data.Miners.Bio.Taxonomy
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -26,7 +27,7 @@ namespace ProcessingTools.Data.Miners.Bio.Taxonomy
             {
                 if (string.IsNullOrWhiteSpace(context))
                 {
-                    return new string[] { };
+                return Array.Empty<string>();
                 }
 
                 var words = context.ExtractWordsFromText()

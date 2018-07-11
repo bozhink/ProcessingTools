@@ -163,7 +163,7 @@ namespace ProcessingTools.Services.Documents
 
             if (articles == null || !articles.Any())
             {
-                return new IArticleModel[] { };
+                return Array.Empty<IArticleModel>();
             }
 
             var items = articles.Select(this.mapper.Map<IArticleDataModel, ArticleModel>).ToArray();
@@ -186,7 +186,7 @@ namespace ProcessingTools.Services.Documents
             var articles = await this.dataAccessObject.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             if (articles == null || !articles.Any())
             {
-                return new IArticleDetailsModel[] { };
+                return Array.Empty<IArticleDetailsModel>();
             }
 
             var items = articles.Select(this.mapper.Map<IArticleDetailsDataModel, ArticleDetailsModel>).ToArray();
@@ -202,7 +202,7 @@ namespace ProcessingTools.Services.Documents
             var journals = await this.dataAccessObject.GetArticleJournalsAsync().ConfigureAwait(false);
             if (journals == null || !journals.Any())
             {
-                return new IArticleJournalModel[] { };
+                return Array.Empty<IArticleJournalModel>();
             }
 
             return journals.Select(this.mapper.Map<IArticleJournalDataModel, ArticleJournalModel>).ToArray();

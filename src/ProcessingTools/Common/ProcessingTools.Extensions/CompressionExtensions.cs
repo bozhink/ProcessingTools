@@ -31,7 +31,7 @@ namespace ProcessingTools.Extensions
 
             if (source == null)
             {
-                return new byte[] { };
+                return Array.Empty<byte>();
             }
 
             var bytes = encoding.GetBytes(source);
@@ -72,7 +72,7 @@ namespace ProcessingTools.Extensions
 
             if (source == null)
             {
-                return new byte[] { };
+                return Array.Empty<byte>();
             }
 
             var bytes = encoding.GetBytes(source);

@@ -169,7 +169,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.referenceTagStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.referenceTagStylesDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IReferenceTagStyleModel, ReferenceTagStyleIndexViewModel>).ToArray() ?? new ReferenceTagStyleIndexViewModel[] { };
+            var styles = data?.Select(this.mapper.Map<IReferenceTagStyleModel, ReferenceTagStyleIndexViewModel>).ToArray() ?? Array.Empty<ReferenceTagStyleIndexViewModel>();
 
             return new ReferenceTagStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }

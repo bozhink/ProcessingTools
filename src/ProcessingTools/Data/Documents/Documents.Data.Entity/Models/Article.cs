@@ -76,7 +76,7 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => new string[]
+        public IEnumerable<string> PreJoinFieldNames => new[]
         {
             nameof(this.Authors),
             nameof(this.Documents)

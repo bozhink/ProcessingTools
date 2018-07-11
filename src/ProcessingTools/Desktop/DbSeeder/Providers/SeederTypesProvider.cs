@@ -33,7 +33,7 @@
 
                         if (types == null || types.Length < 1)
                         {
-                            this.types = new Type[] { };
+                            this.types = Array.Empty<Type>();
                         }
                         else
                         {

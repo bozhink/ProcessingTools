@@ -210,7 +210,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.journalStylesService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.journalStylesService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IJournalStyleModel, JournalStyleIndexViewModel>).ToArray() ?? new JournalStyleIndexViewModel[] { };
+            var styles = data?.Select(this.mapper.Map<IJournalStyleModel, JournalStyleIndexViewModel>).ToArray() ?? Array.Empty<JournalStyleIndexViewModel>();
 
             return new JournalStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }

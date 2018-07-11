@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Processors.Models.Bio.Taxonomy
 {
+    using System;
     using System.Collections.Generic;
     using ProcessingTools.Processors.Models.Contracts.Bio.Taxonomy;
 
@@ -13,7 +14,7 @@ namespace ProcessingTools.Processors.Models.Bio.Taxonomy
     public class MinimalTaxonName : IMinimalTaxonName
     {
         /// <inheritdoc/>
-        public IEnumerable<IMinimalTaxonNamePart> Parts { get; set; } = new IMinimalTaxonNamePart[] { };
+        public IEnumerable<IMinimalTaxonNamePart> Parts { get; set; } = Array.Empty<IMinimalTaxonNamePart>();
 
         /// <inheritdoc/>
         public override string ToString()

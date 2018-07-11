@@ -20,7 +20,7 @@
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
-                return Task.FromResult(new string[] { });
+                return Task.FromResult(Array.Empty<string>());
             }
 
             return this.repositoryProvider.ExecuteAsync((repository) =>

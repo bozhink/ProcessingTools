@@ -2,11 +2,11 @@
 {
     using System;
     using System.Linq;
-    using Models;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Common.Data.Expressions;
     using ProcessingTools.Contracts.Data.Expressions;
+    using ProcessingTools.Data.Common.Tests.Models;
 
     [TestFixture]
     public class UpdaterTests
@@ -109,7 +109,7 @@
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             updateExpressionMock
                 .SetupGet(e => e.UpdateCommands)
-                .Returns(new IUpdateCommand[]
+                .Returns(new[]
                 {
                     updateContentCommandMock.Object
                 });
@@ -183,7 +183,7 @@
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             updateExpressionMock
                 .SetupGet(e => e.UpdateCommands)
-                .Returns(new IUpdateCommand[]
+                .Returns(new[]
                 {
                     updateContentCommandMock.Object,
                     updateFavesCommandMock.Object
@@ -281,7 +281,7 @@
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             updateExpressionMock
                 .SetupGet(e => e.UpdateCommands)
-                .Returns(new IUpdateCommand[]
+                .Returns(new[]
                 {
                     updateContentCommandMock.Object,
                     updateFavesCommandMock.Object,
@@ -360,7 +360,7 @@
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             updateExpressionMock
                 .SetupGet(e => e.UpdateCommands)
-                .Returns(new IUpdateCommand[]
+                .Returns(new[]
                 {
                     updateUserNameCommandMock.Object
                 });
@@ -425,7 +425,7 @@
             var updateExpressionMock = new Mock<IUpdateExpression<ITweet>>();
             updateExpressionMock
                 .SetupGet(e => e.UpdateCommands)
-                .Returns(new IUpdateCommand[]
+                .Returns(new[]
                 {
                     updateIdCommandMock.Object
                 });

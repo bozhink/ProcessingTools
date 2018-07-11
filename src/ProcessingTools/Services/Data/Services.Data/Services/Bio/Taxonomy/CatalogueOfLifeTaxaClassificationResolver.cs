@@ -39,7 +39,7 @@
                 // Linq queries failed. There are no matching response items.
             }
 
-            return new ITaxonClassification[] { };
+            return Array.Empty<ITaxonClassification>();
         }
 
         private ITaxonClassification MapResultToClassification(Result result)

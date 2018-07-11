@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Common.Strings
 {
+    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
@@ -51,7 +52,7 @@ namespace ProcessingTools.Common.Strings
         {
             if (string.IsNullOrWhiteSpace(text))
             {
-                return new string[] { };
+                return Array.Empty<string>();
             }
 
             string matchWordsPattern = @"\w+";

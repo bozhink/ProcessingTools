@@ -124,7 +124,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (files == null || !files.Any())
             {
-                return new IFileDataModel[] { };
+                return Array.Empty<IFileDataModel>();
             }
 
             return files.ToArray<IFileDataModel>();
@@ -142,7 +142,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (files == null || !files.Any())
             {
-                return new IFileDetailsDataModel[] { };
+                return Array.Empty<IFileDetailsDataModel>();
             }
 
             return files.ToArray<IFileDetailsDataModel>();

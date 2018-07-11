@@ -38,7 +38,7 @@
         [TestMethod]
         public void BlackListXmlModel_Serialize_ShouldWork()
         {
-            string[] items = new string[]
+            string[] items = new[]
             {
                 "Abdominal",
                 "Abbreviations"

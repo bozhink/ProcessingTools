@@ -141,7 +141,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return new IJournalStyleDataModel[] { };
+                return Array.Empty<IJournalStyleDataModel>();
             }
 
             return journalStyles.ToArray<IJournalStyleDataModel>();
@@ -159,7 +159,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return new IJournalDetailsStyleDataModel[] { };
+                return Array.Empty<IJournalDetailsStyleDataModel>();
             }
 
             return journalStyles.ToArray<IJournalDetailsStyleDataModel>();

@@ -169,7 +169,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.referenceParseStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.referenceParseStylesDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IReferenceParseStyleModel, ReferenceParseStyleIndexViewModel>).ToArray() ?? new ReferenceParseStyleIndexViewModel[] { };
+            var styles = data?.Select(this.mapper.Map<IReferenceParseStyleModel, ReferenceParseStyleIndexViewModel>).ToArray() ?? Array.Empty<ReferenceParseStyleIndexViewModel>();
 
             return new ReferenceParseStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }

@@ -206,7 +206,7 @@ namespace ProcessingTools.Web.Services.Documents
 
                     var documents = await this.articlesService.GetArticleDocumentsAsync(article.Id).ConfigureAwait(false);
 
-                    var documentsViewModel = documents?.Select(this.mapper.Map<IDocumentModel, ArticleDocumentViewModel>).ToArray() ?? new ArticleDocumentViewModel[] { };
+                    var documentsViewModel = documents?.Select(this.mapper.Map<IDocumentModel, ArticleDocumentViewModel>).ToArray() ?? Array.Empty<ArticleDocumentViewModel>();
 
                     var viewModel = new ArticleDocumentsViewModel(userContext, journal, documentsViewModel);
                     this.mapper.Map(article, viewModel);
@@ -215,7 +215,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new ArticleDocumentsViewModel(userContext, new ArticleJournalViewModel(), new ArticleDocumentViewModel[] { });
+            return new ArticleDocumentsViewModel(userContext, new ArticleJournalViewModel(), Array.Empty<ArticleDocumentViewModel>());
         }
 
         /// <inheritdoc/>
@@ -237,7 +237,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new ArticleEditViewModel(userContext, new ArticleJournalViewModel[] { });
+            return new ArticleEditViewModel(userContext, Array.Empty<ArticleJournalViewModel>());
         }
 
         /// <inheritdoc/>
@@ -248,7 +248,7 @@ namespace ProcessingTools.Web.Services.Documents
             var data = await this.articlesService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             var count = await this.articlesService.SelectCountAsync().ConfigureAwait(false);
 
-            var articles = data?.Select(this.mapper.Map<IArticleDetailsModel, ArticleIndexViewModel>).ToArray() ?? new ArticleIndexViewModel[] { };
+            var articles = data?.Select(this.mapper.Map<IArticleDetailsModel, ArticleIndexViewModel>).ToArray() ?? Array.Empty<ArticleIndexViewModel>();
 
             return new ArticlesIndexViewModel(userContext, count, take, skip / take, articles);
         }
@@ -295,7 +295,7 @@ namespace ProcessingTools.Web.Services.Documents
                 }
             }
 
-            return new ArticleEditViewModel(userContext, new ArticleJournalViewModel[] { });
+            return new ArticleEditViewModel(userContext, Array.Empty<ArticleJournalViewModel>());
         }
 
         /// <inheritdoc/>
@@ -324,7 +324,7 @@ namespace ProcessingTools.Web.Services.Documents
         {
             var articleJournals = await this.articlesService.GetArticleJournalsAsync().ConfigureAwait(false);
 
-            return articleJournals?.Select(this.mapper.Map<IArticleJournalModel, ArticleJournalViewModel>).ToArray() ?? new ArticleJournalViewModel[] { };
+            return articleJournals?.Select(this.mapper.Map<IArticleJournalModel, ArticleJournalViewModel>).ToArray() ?? Array.Empty<ArticleJournalViewModel>();
         }
     }
 }

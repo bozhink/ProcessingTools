@@ -150,7 +150,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (documents == null || !documents.Any())
             {
-                return new IDocumentDataModel[] { };
+                return Array.Empty<IDocumentDataModel>();
             }
 
             return documents.ToArray<IDocumentDataModel>();
@@ -168,7 +168,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (documents == null || !documents.Any())
             {
-                return new IDocumentDetailsDataModel[] { };
+                return Array.Empty<IDocumentDetailsDataModel>();
             }
 
             return documents.ToArray<IDocumentDetailsDataModel>();
@@ -244,7 +244,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         {
             if (string.IsNullOrWhiteSpace(articleId))
             {
-                return new IDocumentDataModel[] { };
+                return Array.Empty<IDocumentDataModel>();
             }
 
             var result = await this.Collection

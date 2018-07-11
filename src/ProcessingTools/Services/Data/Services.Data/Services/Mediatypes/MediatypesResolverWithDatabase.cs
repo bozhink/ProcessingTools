@@ -48,7 +48,7 @@
 
         private IMediatype[] GetStaticResult(string mimetype, string mimesubtype)
         {
-            return new IMediatype[]
+            return new[]
             {
                 new Mediatype(mimetype, mimesubtype)
             };

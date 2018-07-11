@@ -187,7 +187,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return new IJournalStyleModel[] { };
+                return Array.Empty<IJournalStyleModel>();
             }
 
             var items = journalStyles.Select(this.mapper.Map<IJournalStyleDataModel, JournalStyleModel>).ToArray();
@@ -211,7 +211,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (journalStyles == null || !journalStyles.Any())
             {
-                return new IJournalDetailsStyleModel[] { };
+                return Array.Empty<IJournalDetailsStyleModel>();
             }
 
             var items = journalStyles.Select(this.mapper.Map<IJournalDetailsStyleDataModel, JournalDetailsStyleModel>).ToArray();

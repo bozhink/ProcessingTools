@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Data.Miners.Bio.SpecimenCodes
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -62,7 +63,7 @@ namespace ProcessingTools.Data.Miners.Bio.SpecimenCodes
         {
             if (string.IsNullOrWhiteSpace(context))
             {
-                return Task.FromResult(new ISpecimenCode[] { });
+                return Task.FromResult(Array.Empty<ISpecimenCode>());
             }
 
             var data = this.patterns.AsParallel()

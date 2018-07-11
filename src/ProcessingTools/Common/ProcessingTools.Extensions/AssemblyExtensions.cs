@@ -23,7 +23,7 @@ namespace ProcessingTools.Extensions
         {
             if (assemblies == null || !assemblies.Any())
             {
-                return new Assembly[] { };
+                return Array.Empty<Assembly>();
             }
 
             return assemblies.Select(a => Assembly.Load(a));
@@ -38,7 +38,7 @@ namespace ProcessingTools.Extensions
         {
             if (assemblies == null || !assemblies.Any())
             {
-                return new Type[] { };
+                return Array.Empty<Type>();
             }
 
             var types = new List<Type>();

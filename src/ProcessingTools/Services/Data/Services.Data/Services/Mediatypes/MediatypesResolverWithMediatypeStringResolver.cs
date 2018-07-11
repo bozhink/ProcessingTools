@@ -25,7 +25,7 @@
 
             string mediatype = await this.mediatypeStringResolver.ResolveAsync($".{extension.ToLowerInvariant()}").ConfigureAwait(false);
 
-            return new IMediatype[]
+            return new[]
             {
                 new Mediatype(mediatype)
             };

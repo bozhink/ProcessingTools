@@ -43,7 +43,7 @@ namespace ProcessingTools.Harvesters.ExternalLinks
             var transformer = this.transformerFactory.GetExternalLinksTransformer();
             var items = await this.serializer.DeserializeAsync<ExternalLinksModel>(transformer, document.OuterXml).ConfigureAwait(false);
 
-            return items?.ExternalLinks ?? new IExternalLinkModel[] { };
+            return items?.ExternalLinks ?? Array.Empty<IExternalLinkModel>();
         }
     }
 }

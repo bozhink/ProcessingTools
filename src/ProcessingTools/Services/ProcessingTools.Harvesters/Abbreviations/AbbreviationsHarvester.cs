@@ -43,7 +43,7 @@ namespace ProcessingTools.Harvesters.Abbreviations
             var transformer = this.transformerFactory.GetAbbreviationsTransformer();
             var model = await this.serializer.DeserializeAsync<AbbreviationsXmlModel>(transformer, document.DocumentElement).ConfigureAwait(false);
 
-            return model?.Abbreviations ?? new IAbbreviationModel[] { };
+            return model?.Abbreviations ?? Array.Empty<IAbbreviationModel>();
         }
     }
 }

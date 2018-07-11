@@ -92,7 +92,7 @@
     <menuitem id="menu-item-refresh" label="Refresh"></menuitem>
     <menu id="menu-item-bibliography" label="Bibliography">
         @{
-            var tags = new string[] { "article-title", "annotation", "chapter-title", "comment", "collab", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "given-names", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "person-group", "publisher-loc", "publisher-name", "page-range", "part-title", "patent", "prefix", "pub-id", "role", "source", "season", "series", "size", "std", "string-name", "sub", "sup", "suffix", "supplement", "surname", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
+            var tags = new[] { "article-title", "annotation", "chapter-title", "comment", "collab", "conf-date", "conf-loc", "conf-name", "conf-sponsor", "date", "date-in-citation", "day", "edition", "elocation-id", "email", "etal", "ext-link", "fpage", "given-names", "gov", "institution", "isbn", "issn", "issue", "issue-id", "issue-part", "issue-title", "lpage", "milestone-end", "milestone-start", "month", "name", "object-id", "person-group", "publisher-loc", "publisher-name", "page-range", "part-title", "patent", "prefix", "pub-id", "role", "source", "season", "series", "size", "std", "string-name", "sub", "sup", "suffix", "supplement", "surname", "trans-source", "trans-title", "uri", "volume", "volume-id", "volume-series", "year" };
             foreach (var tag in tags)
             {
                 <menuitem id="menu-item-@tag" label="@tag"></menuitem>

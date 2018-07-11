@@ -88,7 +88,7 @@ namespace ProcessingTools.Services.History
             var data = await this.dataAccessObject.GetAsync(objectId).ConfigureAwait(false);
             if (data == null || !data.Any())
             {
-                return new object[] { };
+                return Array.Empty<object>();
             }
 
             var items = data.Select(this.MapObjectHistoryToObject(objectType)).ToArray();
@@ -122,7 +122,7 @@ namespace ProcessingTools.Services.History
             var data = await this.dataAccessObject.GetAsync(objectId, skip, take).ConfigureAwait(false);
             if (data == null || !data.Any())
             {
-                return new object[] { };
+                return Array.Empty<object>();
             }
 
             var items = data.Select(this.MapObjectHistoryToObject(objectType)).ToArray();
@@ -141,7 +141,7 @@ namespace ProcessingTools.Services.History
             var data = await this.dataAccessObject.GetAsync(objectId).ConfigureAwait(false);
             if (data == null || !data.Any())
             {
-                return new IObjectHistory[] { };
+                return Array.Empty<IObjectHistory>();
             }
 
             var items = data.Select(this.ReMapObjectHistory()).ToArray();
@@ -170,7 +170,7 @@ namespace ProcessingTools.Services.History
             var data = await this.dataAccessObject.GetAsync(objectId, skip, take).ConfigureAwait(false);
             if (data == null || !data.Any())
             {
-                return new IObjectHistory[] { };
+                return Array.Empty<IObjectHistory>();
             }
 
             var items = data.Select(this.ReMapObjectHistory()).ToArray();

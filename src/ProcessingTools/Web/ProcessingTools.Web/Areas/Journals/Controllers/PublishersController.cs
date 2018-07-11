@@ -279,7 +279,7 @@
                 ContentType = ContentTypes.Json,
                 ContentEncoding = Defaults.Encoding,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                Data = new Address[] { }
+                Data = Array.Empty<Address>()
             };
 
             var model = await this.service.GetDetailsAsync(this.UserId, id).ConfigureAwait(false);

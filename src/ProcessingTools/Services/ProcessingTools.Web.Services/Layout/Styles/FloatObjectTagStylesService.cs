@@ -169,7 +169,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.floatObjectTagStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.floatObjectTagStylesDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IFloatObjectTagStyleModel, FloatObjectTagStyleIndexViewModel>).ToArray() ?? new FloatObjectTagStyleIndexViewModel[] { };
+            var styles = data?.Select(this.mapper.Map<IFloatObjectTagStyleModel, FloatObjectTagStyleIndexViewModel>).ToArray() ?? Array.Empty<FloatObjectTagStyleIndexViewModel>();
 
             return new FloatObjectTagStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }

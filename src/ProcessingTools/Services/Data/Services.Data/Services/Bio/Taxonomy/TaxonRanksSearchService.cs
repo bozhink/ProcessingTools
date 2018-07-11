@@ -23,7 +23,7 @@
         {
             if (string.IsNullOrWhiteSpace(filter))
             {
-                return Task.FromResult(new ITaxonRank[] { });
+                return Task.FromResult(Array.Empty<ITaxonRank>());
             }
 
             return this.repositoryProvider.ExecuteAsync<ITaxonRank[]>(async (repository) =>

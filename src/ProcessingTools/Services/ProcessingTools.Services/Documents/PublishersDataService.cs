@@ -159,7 +159,7 @@ namespace ProcessingTools.Services.Documents
 
             if (publishers == null || !publishers.Any())
             {
-                return new IPublisherModel[] { };
+                return Array.Empty<IPublisherModel>();
             }
 
             var items = publishers.Select(this.mapper.Map<IPublisherDataModel, PublisherModel>).ToArray();
@@ -183,7 +183,7 @@ namespace ProcessingTools.Services.Documents
 
             if (publishers == null || !publishers.Any())
             {
-                return new IPublisherDetailsModel[] { };
+                return Array.Empty<IPublisherDetailsModel>();
             }
 
             var items = publishers.Select(this.mapper.Map<IPublisherDetailsDataModel, PublisherDetailsModel>).ToArray();

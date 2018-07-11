@@ -125,7 +125,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IFloatObjectTagStyleDataModel[] { };
+                return Array.Empty<IFloatObjectTagStyleDataModel>();
             }
 
             return tagStyles.ToArray<IFloatObjectTagStyleDataModel>();
@@ -143,7 +143,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IFloatObjectDetailsTagStyleDataModel[] { };
+                return Array.Empty<IFloatObjectDetailsTagStyleDataModel>();
             }
 
             return tagStyles.ToArray<IFloatObjectDetailsTagStyleDataModel>();

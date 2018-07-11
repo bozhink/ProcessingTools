@@ -125,7 +125,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return new IReferenceParseStyleDataModel[] { };
+                return Array.Empty<IReferenceParseStyleDataModel>();
             }
 
             return parseStyles.ToArray<IReferenceParseStyleDataModel>();
@@ -143,7 +143,7 @@ namespace ProcessingTools.Data.Layout.Mongo
 
             if (parseStyles == null || !parseStyles.Any())
             {
-                return new IReferenceDetailsParseStyleDataModel[] { };
+                return Array.Empty<IReferenceDetailsParseStyleDataModel>();
             }
 
             return parseStyles.ToArray<IReferenceDetailsParseStyleDataModel>();

@@ -34,7 +34,7 @@
         {
             this.exceptions = new ConcurrentQueue<Exception>();
 
-            var tasks = new Task[]
+            var tasks = new[]
             {
                 this.SeedMorphologicalEpithets(AppSettings.MorphologicalEpithetsFileName),
                 this.SeedTypeStatuses(AppSettings.TypeStatusesFileName)

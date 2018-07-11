@@ -64,7 +64,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
             var stopWords = await this.GetStopWords(context.XmlDocument.DocumentElement);
             var seed = await this.whitelist.GetItemsAsync();
 
-            var data = await this.miner.MineAsync(textContent, seed, stopWords).ConfigureAwait(false) ?? new string[] { };
+            var data = await this.miner.MineAsync(textContent, seed, stopWords).ConfigureAwait(false) ?? Array.Empty<string>();
 
             var taxaNames = new HashSet<string>(data.Where(s => s != null && s.Length > 0 && s[0] == s.ToUpperInvariant()[0]));
 

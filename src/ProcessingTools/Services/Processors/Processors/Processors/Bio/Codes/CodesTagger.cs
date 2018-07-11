@@ -69,7 +69,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
         private readonly IContentTagger contentTagger;
         private readonly ILogger logger;
 
-        private readonly string[] codePrefixes = new string[]
+        private readonly string[] codePrefixes = new[]
         {
             @"ALP",
             @"AMNH",

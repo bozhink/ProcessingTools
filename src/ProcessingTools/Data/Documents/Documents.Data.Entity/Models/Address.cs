@@ -91,6 +91,6 @@
         }
 
         [NotMapped]
-        public IEnumerable<string> PreJoinFieldNames => new string[] { };
+        public IEnumerable<string> PreJoinFieldNames => Array.Empty<string>();
     }
 }

@@ -165,7 +165,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IFloatObjectTagStyleModel[] { };
+                return Array.Empty<IFloatObjectTagStyleModel>();
             }
 
             var items = tagStyles.Select(this.mapper.Map<IFloatObjectTagStyleDataModel, FloatObjectTagStyleModel>).ToArray();
@@ -189,7 +189,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IFloatObjectDetailsTagStyleModel[] { };
+                return Array.Empty<IFloatObjectDetailsTagStyleModel>();
             }
 
             var items = tagStyles.Select(this.mapper.Map<IFloatObjectDetailsTagStyleDataModel, FloatObjectDetailsTagStyleModel>).ToArray();

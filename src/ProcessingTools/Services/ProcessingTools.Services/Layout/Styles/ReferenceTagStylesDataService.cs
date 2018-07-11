@@ -165,7 +165,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IReferenceTagStyleModel[] { };
+                return Array.Empty<IReferenceTagStyleModel>();
             }
 
             var items = tagStyles.Select(this.mapper.Map<IReferenceTagStyleDataModel, ReferenceTagStyleModel>).ToArray();
@@ -189,7 +189,7 @@ namespace ProcessingTools.Services.Layout.Styles
 
             if (tagStyles == null || !tagStyles.Any())
             {
-                return new IReferenceDetailsTagStyleModel[] { };
+                return Array.Empty<IReferenceDetailsTagStyleModel>();
             }
 
             var items = tagStyles.Select(this.mapper.Map<IReferenceDetailsTagStyleDataModel, ReferenceDetailsTagStyleModel>).ToArray();

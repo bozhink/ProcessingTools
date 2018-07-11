@@ -137,7 +137,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (publishers == null || !publishers.Any())
             {
-                return new IPublisherDataModel[] { };
+                return Array.Empty<IPublisherDataModel>();
             }
 
             return publishers.ToArray<IPublisherDataModel>();
@@ -155,7 +155,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (publishers == null || !publishers.Any())
             {
-                return new IPublisherDetailsDataModel[] { };
+                return Array.Empty<IPublisherDetailsDataModel>();
             }
 
             var journals = this.GetCollection<Journal>().AsQueryable()

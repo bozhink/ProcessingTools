@@ -169,7 +169,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             var data = await this.floatObjectParseStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.floatObjectParseStylesDataService.SelectCountAsync().ConfigureAwait(false);
 
-            var styles = data?.Select(this.mapper.Map<IFloatObjectParseStyleModel, FloatObjectParseStyleIndexViewModel>).ToArray() ?? new FloatObjectParseStyleIndexViewModel[] { };
+            var styles = data?.Select(this.mapper.Map<IFloatObjectParseStyleModel, FloatObjectParseStyleIndexViewModel>).ToArray() ?? Array.Empty<FloatObjectParseStyleIndexViewModel>();
 
             return new FloatObjectParseStylesIndexViewModel(userContext, count, take, skip / take, styles);
         }
