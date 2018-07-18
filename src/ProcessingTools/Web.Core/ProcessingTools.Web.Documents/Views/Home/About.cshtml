@@ -1,4 +1,5 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment
+@{
     ViewData[ContextKeys.Title] = "About";
 }
 <h2>@ViewData[ContextKeys.Title]</h2>
@@ -11,3 +12,10 @@
     </a><br />
     <strong>Issues:</strong> <a href="https://github.com/bozhink/ProcessingTools/issues" target="_blank">Issues in GitHub</a>
 </address>
+
+@if (hostingEnvironment.EnvironmentName != "Production")
+{
+    <hr />
+    <p><strong>APPLICATION_NAME:</strong> @hostingEnvironment.ApplicationName</p>
+    <p><strong>ASPNETCORE_ENVIRONMENT:</strong> @hostingEnvironment.EnvironmentName</p>
+}

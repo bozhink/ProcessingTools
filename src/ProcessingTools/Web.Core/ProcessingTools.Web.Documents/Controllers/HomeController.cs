@@ -4,10 +4,8 @@
 
 namespace ProcessingTools.Web.Documents.Controllers
 {
-    using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Web.Documents.Constants;
-    using ProcessingTools.Web.Documents.Models;
 
     /// <summary>
     /// Home
@@ -33,11 +31,6 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// Contact Action Name
         /// </summary>
         public const string ContactActionName = nameof(Contact);
-
-        /// <summary>
-        /// Error Action Name
-        /// </summary>
-        public const string ErrorActionName = nameof(Error);
 
         /// <summary>
         /// Index
@@ -71,16 +64,6 @@ namespace ProcessingTools.Web.Documents.Controllers
             this.ViewData[ContextKeys.Message] = "Your contact page.";
 
             return this.View();
-        }
-
-        /// <summary>
-        /// Error
-        /// </summary>
-        /// <returns><see cref="IActionResult"/></returns>
-        [ActionName(ErrorActionName)]
-        public IActionResult Error()
-        {
-            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
 
         /// <summary>

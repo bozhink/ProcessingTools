@@ -177,8 +177,10 @@ namespace ProcessingTools.Web.Documents
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
             }
+
+            app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
 
             app.UseStaticFiles();
             if (env.IsDevelopment() || env.IsStaging())
