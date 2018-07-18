@@ -57,6 +57,7 @@ var pump = require("pump");
 var webpackStream = require("webpack-stream");
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
+var webpackConfig = require("./webpack.config");
 
 function renameForMinify(path) {
     //path.dirname += "/ciao";
@@ -74,7 +75,7 @@ function JsAppFactory() {
     this.createBuild = function (srcFileName, distFileName, runUglify) {
         return function () {
             var stream = gulp.src(path.join(JS_OUT_PATH, APPS_RELATIVE_PATH, srcFileName))
-                .pipe(webpackStream())
+                .pipe(webpackStream(webpackConfig))
                 .pipe(concat(distFileName));
 
             if (runUglify) {

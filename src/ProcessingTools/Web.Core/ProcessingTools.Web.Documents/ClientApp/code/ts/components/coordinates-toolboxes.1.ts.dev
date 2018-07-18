@@ -1,6 +1,5 @@
+﻿import * as leaflet from "leaflet";
 import { ITemplatesProvider } from "../contracts/services";
-
-declare let leaflet: any;
 
 interface ICoordinate {
     id?: string;
@@ -194,7 +193,7 @@ export function CoordinatesToolboxesControl(
                     title: toolbox.title
                 })).appendTo($aside);
 
-                let map: any = leaflet.map("coordinates-map", {
+                let map: leaflet.Map = leaflet.map("coordinates-map", {
                     center: [0.0, 0.0],
                     zoom: 0,
                     worldCopyJump: true
@@ -206,7 +205,7 @@ export function CoordinatesToolboxesControl(
 
                 let len: number = coordinates.length;
                 for (let i: number = 0; i < len; i += 1) {
-                    let coordinate: any = new leaflet.LatLng(coordinates[i].latitude, coordinates[i].longitude);
+                    let coordinate: leaflet.LatLng = new leaflet.LatLng(coordinates[i].latitude, coordinates[i].longitude);
                     leaflet.marker(coordinate)
                         .bindPopup(`<a class="coordinate-item" href="#${coordinates[i].id}">${JSON.stringify(coordinate)}</a>`)
                         .addTo(map);

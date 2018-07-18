@@ -10,8 +10,6 @@ import { DocumentContentData } from "../services/documents/document-content-data
 import { DocumentController } from "../controllers/documents.controllers";
 import { SHA1 } from "crypto-js";
 
-import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
-
 import { IEditorMode, IEditorTheme } from "../contracts/models/configuration.models";
 import { IConfiguredEditor, IMonacoEditorConfig, MonacoEditorConfig } from "../configurations/monaco-editor-config";
 import { EventHandlerFactory } from "../configurations/event.handlers.configuration";
@@ -41,7 +39,7 @@ const keys: IStorageKeys = {
     contentHashKey: "CONTENT_HASH_KEY_EDIT"
 };
 
-let requirejs: Require = (window as any).require as Require;
+let requirejs: any = (window as any).require;
 
 let eventHandlerFactory: EventHandlerFactory = new EventHandlerFactory(window);
 let monacoEditorConfig: IMonacoEditorConfig = new MonacoEditorConfig(window, requirejs);
@@ -52,7 +50,7 @@ let dataService: IDocumentContentData = new DocumentContentData(storage, keys, j
 let reporter: IReporter = new ToastrReporter(toastr);
 let documentController: DocumentController = new DocumentController(dataService, reporter);
 
-let editor: monaco.editor.ICodeEditor;
+let editor: any; // monaco.editor.ICodeEditor;
 
 ToastrConfiguration.configure(toastr);
 

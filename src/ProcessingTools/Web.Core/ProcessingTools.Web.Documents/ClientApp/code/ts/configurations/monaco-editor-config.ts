@@ -39,7 +39,7 @@ export class MonacoEditorConfig implements IMonacoEditorConfig {
     }];
 
 
-    public constructor(private readonly window: Window, private readonly require: Require) {
+    public constructor(private readonly window: Window, private readonly require: any) {
     }
 
     // tslint:disable-next-line:max-line-length
