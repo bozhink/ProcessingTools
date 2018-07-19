@@ -8,25 +8,17 @@
     <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>Tests for processors.</Description>
+    <Description>Tests for geography tools.</Description>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Processors.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Geo.Tests.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S3237</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Files\Coordinates\sample-coordinates.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Files\Coordinates\sample-coordinates.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,8 +37,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo.Contracts\ProcessingTools.Geo.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo\ProcessingTools.Geo.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
-    <ProjectReference Include="..\..\Services\ProcessingTools.Processors\ProcessingTools.Processors.csproj" />
   </ItemGroup>
-
 </Project>
