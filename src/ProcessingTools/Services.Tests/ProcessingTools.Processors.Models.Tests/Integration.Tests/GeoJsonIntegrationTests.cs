@@ -1,15 +1,22 @@
-﻿namespace ProcessingTools.Geo.Tests
+﻿// <copyright file="GeoJsonIntegrationTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Models.Tests.Integration.Tests
 {
-    using System.Configuration;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using ProcessingTools.Processors.Models.Geo.GeoJson;
 
+    /// <summary>
+    /// GeoJson Integration Tests.
+    /// </summary>
     [TestClass]
-    public class GeoJsonTests
+    public class GeoJsonIntegrationTests
     {
         private const string JsonGeometryPointStringSample = @"{
                 ""type"": ""Feature"",
@@ -17,6 +24,9 @@
                 ""properties"": { ""name"": ""Dinagat Islands"" }
             }";
 
+        /// <summary>
+        /// GeoJson De-serialization of sample geometry point should work.
+        /// </summary>
         [TestMethod]
         public void GeoJson_DeserializationOfSampleGeometryPoint_ShouldWork()
         {
@@ -30,7 +40,7 @@
             Assert.AreEqual(
                 GeoJsonType.Point.ToString(),
                 point.Geometry.Type,
-                "point.Geometry.Type schold be 'Point'.");
+                "point.Geometry.Type should be 'Point'.");
 
             double?[] coordinates = point
                 .Geometry
@@ -45,6 +55,9 @@
             Assert.AreEqual(10.1, coordinates[1], "coordinates[1] should be equal to 10.1.");
         }
 
+        /// <summary>
+        /// GeoJson serialization of sample geometry point should work.
+        /// </summary>
         [TestMethod]
         public void GeoJson_SerializationOfSampleGeometryPoint_ShouldWork()
         {
@@ -68,10 +81,13 @@
             Assert.IsTrue(JToken.DeepEquals(thisJToken, smpleJToken));
         }
 
+        /// <summary>
+        /// GeoJson de-serialization of CartoDB sample should work.
+        /// </summary>
         [TestMethod]
         public void GeoJson_DeserializationOfCartoDbSample_ShouldWork()
         {
-            string cartoDbSampleFileName = ConfigurationManager.AppSettings["CartoDbSampleGeoJson"];
+            string cartoDbSampleFileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Files", "GeoJson", "cartodb.json");
 
             string cartoDbSampleJsonText = File.ReadAllText(cartoDbSampleFileName);
 

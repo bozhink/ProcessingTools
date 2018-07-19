@@ -86,21 +86,11 @@
   <ItemGroup>
     <Compile Include="Integration.Tests\Coordinate2DParserIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GeoJsonTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Geo.Tests.ruleset" />
     <None Include="packages.config" />
-    <None Include="Samples\cartodb.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Samples\feature-collection.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Samples\geometry-point.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo.Contracts\ProcessingTools.Geo.Contracts.csproj">
