@@ -1,15 +1,29 @@
-﻿namespace ProcessingTools.Geo.Tests.Integration.Tests
+﻿// <copyright file="Coordinate2DParserIntegrationTests.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Processors.Tests.Integration.Tests
 {
     using System;
     using NUnit.Framework;
+    using ProcessingTools.Geo;
     using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Processors.Models.Geo.Coordinates;
 
+    /// <summary>
+    /// <see cref="Coordinate2DParser"/> Integration Tests
+    /// </summary>
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(Coordinate2DParser))]
     public class Coordinate2DParserIntegrationTests
     {
         private Func<Coordinate2DParser> Coordinate2DParserFactory => () => new Coordinate2DParser(new UtmCoordinatesTransformer(new UtmCoordinatesConverter()));
 
+        /// <summary>
+        /// <see cref="Coordinate2DParser"/> with spherical coordinate pair should work.
+        /// </summary>
+        /// <param name="decimalCoordinateString">Decimal coordinate string.</param>
+        /// <param name="latitudeValue">Expected value for latitude.</param>
+        /// <param name="longitudeValue">Expected value for longitude.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(Coordinate2DParser), Description = "Coordinate2DParser with spherical coordinate pair should work.")]
         [TestCase(@"S13°07'247"", E30°19'345""", "-13.120783", "30.322417")]
         [TestCase(@"29.63527EN, 82.37111EW", "29.635270", "-82.371110")]
@@ -56,6 +70,12 @@
             Assert.AreEqual(longitudeValue, longitude.Value, "Longitude should match");
         }
 
+        /// <summary>
+        /// <see cref="Coordinate2DParser"/> wit UTM coordinate should work.
+        /// </summary>
+        /// <param name="utmCoordinateString">UTM coordinate string.</param>
+        /// <param name="latitudeValue">Expected value for latitude.</param>
+        /// <param name="longitudeValue">Expected value for longitude.</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(Coordinate2DParser), Description = "Coordinate2DParser with UTM coordinate should work.")]
         [TestCase(@"33T 455.4683", "42.297928", "14.454084")]
         [TestCase(@"UTM WGS84: 33T 455.4683", "42.297928", "14.454084")]
