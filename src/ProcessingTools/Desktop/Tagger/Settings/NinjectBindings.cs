@@ -37,13 +37,6 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind(b =>
-            {
-                b.From(ProcessingTools.Geo.Assembly.Assembly.GetType().Assembly)
-                    .SelectAllClasses()
-                    .BindDefaultInterface();
-            });
-
             this.Bind<ICoordinateFactory>()
                 .ToFactory()
                 .InSingletonScope();

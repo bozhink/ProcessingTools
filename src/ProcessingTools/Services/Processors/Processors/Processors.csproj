@@ -82,10 +82,6 @@
       <Project>{A9D115CF-CF42-4685-A4DE-F6B1AB0C753F}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\Geo\Geo.csproj">
-      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
-      <Name>Geo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Services.Data\Services.Data.csproj">
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
