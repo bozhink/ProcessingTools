@@ -115,10 +115,18 @@ monacoEditorConfig.initEditor(document.getElementById(HtmlElementIds.EDITOR_CONT
 
                     if (index > 0) {
                         // not default theme
-                        $(".navbar-fixed-bottom").removeClass("navbar-default").addClass("navbar-inverse");
+                        $(".navbar.fixed-bottom")
+                            .removeClass("navbar-dark")
+                            .removeClass("bg-dark")
+                            .addClass("navbar-light")
+                            .addClass("bg-light");
                     } else {
                         // default theme
-                        $(".navbar-fixed-bottom").removeClass("navbar-inverse").addClass("navbar-default");
+                        $(".navbar.fixed-bottom")
+                            .removeClass("navbar-light")
+                            .removeClass("bg-dark")
+                            .addClass("bg-light")
+                            .addClass("navbar-dark");
                     }
 
                     if ($monacoEditor) {

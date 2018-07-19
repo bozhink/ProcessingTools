@@ -1,5 +1,6 @@
 import { IDocumentContentData } from "../contracts/documents/document-content-data";
 import { ReportType, IReporter } from "../contracts/reporters/reporter";
+import { IMessageResponse } from "../contracts/models/services.models";
 
 export class DocumentController {
 
@@ -26,9 +27,7 @@ export class DocumentController {
                 }
             })
             .catch(function (error: any): void {
-                if (!quietMode) {
-                    self.reporter.report(ReportType.ERROR, error);
-                }
+                self.reportError(self.reporter, quietMode, error);
             });
     }
 
@@ -51,9 +50,7 @@ export class DocumentController {
                 }
             })
             .catch(function (error: any): void {
-                if (!quietMode) {
-                    self.reporter.report(ReportType.ERROR, error);
-                }
+                self.reportError(self.reporter, quietMode, error);
             });
     }
 
@@ -71,5 +68,19 @@ export class DocumentController {
         return function (): void {
             self.get(url, quietMode, setContentCallback, done);
         };
+    }
+
+    private reportError(reporter: IReporter, quietMode: boolean, error: any): void {
+        if (!quietMode && error != null && reporter != null) {
+            let reportType: (string | ReportType) = ReportType.ERROR;
+            let message: string = JSON.stringify(error);
+
+            if (typeof error.type !== "undefined" && typeof error.message !== "undefined") {
+                reportType = (error as IMessageResponse).type.toUpperCase();
+                message = (error as IMessageResponse).message;
+            }
+
+            reporter.report(reportType, message);
+        }
     }
 }
