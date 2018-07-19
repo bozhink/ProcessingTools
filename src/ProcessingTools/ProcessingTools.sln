@@ -331,9 +331,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Model
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Tasks.Models.Contracts", "Infrastructure\ProcessingTools.Tasks.Models.Contracts\ProcessingTools.Tasks.Models.Contracts.csproj", "{E9589748-749C-4C72-ADD5-F074F49BCFF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Processors.Imaging", "Services\ProcessingTools.Processors.Imaging\ProcessingTools.Processors.Imaging.csproj", "{2E619388-E9E9-4DB0-90B2-C44B4233B329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Imaging", "Services\ProcessingTools.Processors.Imaging\ProcessingTools.Processors.Imaging.csproj", "{2E619388-E9E9-4DB0-90B2-C44B4233B329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Processors.Imaging.Contracts", "Services\ProcessingTools.Processors.Imaging.Contracts\ProcessingTools.Processors.Imaging.Contracts.csproj", "{443D087C-17D0-459C-B7E8-6EBEC3722C5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.Imaging.Contracts", "Services\ProcessingTools.Processors.Imaging.Contracts\ProcessingTools.Processors.Imaging.Contracts.csproj", "{443D087C-17D0-459C-B7E8-6EBEC3722C5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Geo", "Infrastructure\ProcessingTools.Geo\ProcessingTools.Geo.csproj", "{77D50F64-2936-41E9-B971-7571BF4A4A69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1415,6 +1417,14 @@ Global
 		{443D087C-17D0-459C-B7E8-6EBEC3722C5F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{443D087C-17D0-459C-B7E8-6EBEC3722C5F}.Release|x64.ActiveCfg = Release|Any CPU
 		{443D087C-17D0-459C-B7E8-6EBEC3722C5F}.Release|x64.Build.0 = Release|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Debug|x64.Build.0 = Debug|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Release|x64.ActiveCfg = Release|Any CPU
+		{77D50F64-2936-41E9-B971-7571BF4A4A69}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1573,9 +1583,10 @@ Global
 		{E9589748-749C-4C72-ADD5-F074F49BCFF4} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 		{2E619388-E9E9-4DB0-90B2-C44B4233B329} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
 		{443D087C-17D0-459C-B7E8-6EBEC3722C5F} = {21C98DC0-B35C-414E-BC02-D90AF3494DDC}
+		{77D50F64-2936-41E9-B971-7571BF4A4A69} = {247DAE24-DD89-4C2C-AF49-E3F862485B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
