@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Enumerations;
-    using ProcessingTools.Processors.Contracts.Imaging;
+    using ProcessingTools.Processors.Imaging.Contracts;
 
     /// <summary>
     /// Default <see cref="IBarcodeEncoder"/> implementation.

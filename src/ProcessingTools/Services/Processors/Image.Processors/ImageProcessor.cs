@@ -8,7 +8,7 @@
     using global::ImageProcessor.Imaging;
     using global::ImageProcessor.Imaging.Formats;
     using ProcessingTools.Constants;
-    using ProcessingTools.Processors.Contracts.Imaging;
+    using ProcessingTools.Processors.Imaging.Contracts;
 
     public class ImageProcessor : IImageProcessor
     {

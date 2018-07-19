@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ProcessingTools.Constants;
-    using ProcessingTools.Processors.Contracts.Imaging;
+    using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Web.Documents.Areas.Data.Models.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Areas.Data.ViewModels.QRCodeGenerator;
     using ProcessingTools.Web.Documents.Extensions;
@@ -47,7 +47,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    viewModel.Image = await this.encoder.EncodeBase64(model.Content, viewModel.PixelPerModule).ConfigureAwait(false);
+                    viewModel.Image = await this.encoder.EncodeBase64Async(model.Content, viewModel.PixelPerModule).ConfigureAwait(false);
                 }
                 else
                 {

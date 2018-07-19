@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Processors.Contracts.Imaging
+namespace ProcessingTools.Processors.Imaging.Contracts
 {
     using System.IO;
     using System.Threading.Tasks;

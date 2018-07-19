@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Processors.Contracts.Imaging
+namespace ProcessingTools.Processors.Imaging.Contracts
 {
     using System.Threading.Tasks;
 
@@ -17,7 +17,7 @@ namespace ProcessingTools.Processors.Contracts.Imaging
         /// <param name="content">Content to be encoded.</param>
         /// <param name="pixelPerModule">Size of the image square.</param>
         /// <returns>QR-code image as byte array.</returns>
-        Task<byte[]> Encode(string content, int pixelPerModule);
+        Task<byte[]> EncodeAsync(string content, int pixelPerModule);
 
         /// <summary>
         /// Encodes string content to qr-code image with specified dimensions as Base64 encoded string.
@@ -25,6 +25,6 @@ namespace ProcessingTools.Processors.Contracts.Imaging
         /// <param name="content">Content to be encoded.</param>
         /// <param name="pixelPerModule">Size of the image square.</param>
         /// <returns>QR-code image as Base64 string.</returns>
-        Task<string> EncodeBase64(string content, int pixelPerModule);
+        Task<string> EncodeBase64Async(string content, int pixelPerModule);
     }
 }

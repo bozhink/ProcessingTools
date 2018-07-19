@@ -669,6 +669,14 @@
       <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>
       <Name>ProcessingTools.Processors.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Imaging.Contracts\ProcessingTools.Processors.Imaging.Contracts.csproj">
+      <Project>{443D087C-17D0-459C-B7E8-6EBEC3722C5F}</Project>
+      <Name>ProcessingTools.Processors.Imaging.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Imaging\ProcessingTools.Processors.Imaging.csproj">
+      <Project>{2E619388-E9E9-4DB0-90B2-C44B4233B329}</Project>
+      <Name>ProcessingTools.Processors.Imaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj">
       <Project>{6BFB5B07-C3B0-4046-94C1-FEC2444C1781}</Project>
       <Name>ProcessingTools.Processors.Models.Contracts</Name>
