@@ -2,14 +2,13 @@
 {
     using System;
     using NUnit.Framework;
-    using ProcessingTools.Geo.Transformers;
     using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Processors.Models.Geo.Coordinates;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(Coordinate2DParser))]
     public class Coordinate2DParserIntegrationTests
     {
-        private Func<Coordinate2DParser> Coordinate2DParserFactory => () => new Coordinate2DParser(new UtmCoordinatesTransformer());
+        private Func<Coordinate2DParser> Coordinate2DParserFactory => () => new Coordinate2DParser(new UtmCoordinatesTransformer(new UtmCoordinatesConverter()));
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(Coordinate2DParser), Description = "Coordinate2DParser with spherical coordinate pair should work.")]
         [TestCase(@"S13°07'247"", E30°19'345""", "-13.120783", "30.322417")]
@@ -41,7 +40,7 @@
         [TestCase(@"N38.50 W 120.22", "38.500000", "-120.220000")]
         [TestCase(@"18.592277, -70.492133", "18.592277", "-70.492133")]
         [TestCase(@"17°54'10.7""N, 71°14'13.7""W", "17.902972", "-71.237139")]
-        public void Coordinate2DParser_WithSphericalCoordinatePair_ShouldWork(string coordinateString, string latitudeValue, string longitudeValue)
+        public void Coordinate2DParser_WithSphericalCoordinatePair_ShouldWork(string decimalCoordinateString, string latitudeValue, string longitudeValue)
         {
             // Arrange
             var latitude = new CoordinatePart();
@@ -50,7 +49,7 @@
             var parser = this.Coordinate2DParserFactory.Invoke();
 
             // Act
-            parser.ParseCoordinateString(coordinateString, coordinateType, latitude, longitude);
+            parser.ParseCoordinateString(decimalCoordinateString, coordinateType, latitude, longitude);
 
             // Assert
             Assert.AreEqual(latitudeValue, latitude.Value, "Latitude should match");
@@ -68,7 +67,7 @@
         [TestCase(@"UTM ED50: 33T 674582E; 4498003N", "40.614422", "17.063799")]
         [TestCase(@"55G 595500 5371700", "-41.800816", "148.149549")]
         [TestCase(@" UTM XYZ123 55G 5955 53717", "-41.800816", "148.149549")]
-        public void Coordinate2DParser_WitUTMCoordinate_ShouldWork(string coordinateString, string latitudeValue, string longitudeValue)
+        public void Coordinate2DParser_WitUTMCoordinate_ShouldWork(string utmCoordinateString, string latitudeValue, string longitudeValue)
         {
             // Arrange
             var latitude = new CoordinatePart();
@@ -77,7 +76,7 @@
             var parser = this.Coordinate2DParserFactory.Invoke();
 
             // Act
-            parser.ParseCoordinateString(coordinateString, coordinateType, latitude, longitude);
+            parser.ParseCoordinateString(utmCoordinateString, coordinateType, latitude, longitude);
 
             // Assert
             Assert.AreEqual(latitudeValue, latitude.Value, "Latitude should match");

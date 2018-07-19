@@ -8,13 +8,14 @@ namespace ProcessingTools.Geo
     using System.Linq;
     using GeoAPI.CoordinateSystems;
     using GeoAPI.CoordinateSystems.Transformations;
+    using ProcessingTools.Geo.Contracts;
     using ProjNet.CoordinateSystems;
     using ProjNet.CoordinateSystems.Transformations;
 
     /// <summary>
     /// See http://blogs.u2u.be/diederik/post/2010/01/01/Converting-Spatial-Coordinates-with-ProjNET.aspx
     /// </summary>
-    public class UtmCoordinatesConverter
+    public class UtmCoordinatesConverter : IUtmCoordinatesConverter
     {
         private readonly ICoordinateSystem gcsWGS84;
         private readonly ICoordinateTransformationFactory coordinateTransformationFactory;

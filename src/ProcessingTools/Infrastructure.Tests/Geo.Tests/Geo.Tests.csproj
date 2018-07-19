@@ -103,9 +103,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Geo\Geo.csproj">
-      <Project>{aef34763-8dc4-4519-a8fc-f76d6c9c1006}</Project>
-      <Name>Geo</Name>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo.Contracts\ProcessingTools.Geo.Contracts.csproj">
+      <Project>{3015F487-CC0C-4645-B835-094B7BE11DAA}</Project>
+      <Name>ProcessingTools.Geo.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Geo\ProcessingTools.Geo.csproj">
+      <Project>{77d50f64-2936-41e9-b971-7571bf4a4a69}</Project>
+      <Name>ProcessingTools.Geo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj">
       <Project>{5201CF47-75B8-445A-A12B-C4D9C1FE7DF3}</Project>
