@@ -20,6 +20,7 @@ namespace ProcessingTools.Web.Documents
     using Newtonsoft.Json.Serialization;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Web.Documents.Controllers;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Web.Documents.Formatters;
@@ -199,8 +200,18 @@ namespace ProcessingTools.Web.Documents
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapRoute(
-                    name: "default",
+                    name: "areaUnknownActionRoute",
+                    template: "{area:exists}/{controller}/{*params}",
+                    defaults: new { area = string.Empty, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
+
+                routes.MapRoute(
+                    name: "defaultRoute",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "defaultUnknownActionRoute",
+                    template: "{controller}/{*params}",
+                    defaults: new { area = string.Empty, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
             });
 #pragma warning restore S1075 // URIs should not be hardcoded
         }

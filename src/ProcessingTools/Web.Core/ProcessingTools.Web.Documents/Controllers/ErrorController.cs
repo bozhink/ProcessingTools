@@ -30,6 +30,11 @@ namespace ProcessingTools.Web.Documents.Controllers
         public const string CodeActionName = nameof(Code);
 
         /// <summary>
+        /// Handle Unknown Action Action Name
+        /// </summary>
+        public const string HandleUnknownActionActionName = nameof(HandleUnknownAction);
+
+        /// <summary>
         /// /Error
         /// </summary>
         /// <returns><see cref="IActionResult"/></returns>
@@ -44,9 +49,20 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// </summary>
         /// <param name="id">Status code.</param>
         /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(CodeActionName)]
         public IActionResult Code(string id)
         {
             return this.View(model: id);
+        }
+
+        /// <summary>
+        /// /Error/HandleUnknownAction
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(HandleUnknownActionActionName)]
+        public IActionResult HandleUnknownAction()
+        {
+            return this.View();
         }
     }
 }
