@@ -20,6 +20,7 @@ namespace ProcessingTools.Web.Documents
     using Newtonsoft.Json.Serialization;
     using ProcessingTools.Constants;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Controllers;
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
@@ -95,7 +96,8 @@ namespace ProcessingTools.Web.Documents
                     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 });
 
-            services.AddMvcCore()
+            services
+                .AddMvcCore()
                 .AddApiExplorer()
                 .AddAuthorization()
                 .AddFormatterMappings()
@@ -108,7 +110,12 @@ namespace ProcessingTools.Web.Documents
                 .AddDataAnnotations()
                 .AddCors();
 
-            services.AddMvc(o => o.InputFormatters.Insert(0, new RawRequestBodyFormatter()))
+            services
+                .AddMvc(o =>
+                {
+                    o.InputFormatters.Insert(0, new RawRequestBodyFormatter());
+                    o.MaxModelValidationErrors = 50;
+                })
                 .AddJsonOptions(o => o.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
                 .AddXmlDataContractSerializerFormatters()
                 .AddXmlSerializerFormatters();
@@ -202,7 +209,7 @@ namespace ProcessingTools.Web.Documents
                 routes.MapRoute(
                     name: "areaUnknownActionRoute",
                     template: "{area:exists}/{controller}/{*params}",
-                    defaults: new { area = string.Empty, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
+                    defaults: new { area = AreaNames.Default, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
 
                 routes.MapRoute(
                     name: "defaultRoute",
@@ -211,7 +218,7 @@ namespace ProcessingTools.Web.Documents
                 routes.MapRoute(
                     name: "defaultUnknownActionRoute",
                     template: "{controller}/{*params}",
-                    defaults: new { area = string.Empty, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
+                    defaults: new { area = AreaNames.Default, controller = ErrorController.ControllerName, action = ErrorController.HandleUnknownActionActionName });
             });
 #pragma warning restore S1075 // URIs should not be hardcoded
         }

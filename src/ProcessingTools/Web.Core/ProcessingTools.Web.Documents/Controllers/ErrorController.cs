@@ -5,8 +5,8 @@
 namespace ProcessingTools.Web.Documents.Controllers
 {
     using System.Diagnostics;
-    using System.Net;
     using Microsoft.AspNetCore.Mvc;
+    using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Documents.Models;
 
     /// <summary>
@@ -61,6 +61,16 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// <returns><see cref="IActionResult"/></returns>
         [ActionName(HandleUnknownActionActionName)]
         public IActionResult HandleUnknownAction()
+        {
+            return this.View();
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
         {
             return this.View();
         }

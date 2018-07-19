@@ -311,7 +311,6 @@
     <Compile Include="Areas\Articles\ViewModels\Tagger\FileViewModel.cs" />
     <Compile Include="Areas\Data\Controllers\BarcodeGeneratorController.cs" />
     <Compile Include="Areas\Data\Controllers\CoordinatesCalculatorController.cs" />
-    <Compile Include="Areas\Data\Controllers\QRCodeGeneratorController.cs" />
     <Compile Include="Areas\Data\Models\BarcodeGenerator\IndexRequestModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\BlackListItemResponseModel.cs" />
     <Compile Include="Areas\Data\Models\BioTaxonomyBlackList\Contracts\IBlackListItemResponseModel.cs" />
@@ -328,13 +327,11 @@
     <Compile Include="Areas\Data\Controllers\BioTaxonomyTaxaRanksDataController.cs" />
     <Compile Include="Areas\Data\DataAreaRegistration.cs" />
     <Compile Include="Areas\Data\Models\CoordinatesCalculator\CoordinatesRequestModel.cs" />
-    <Compile Include="Areas\Data\Models\QRCodeGenerator\IndexRequestModel.cs" />
     <Compile Include="Areas\Data\ViewModels\BarcodeGenerator\IndexViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinateViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\CoordinatesResponseViewModel.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\ICoordinate.cs" />
     <Compile Include="Areas\Data\ViewModels\CoordinatesCalculator\ICoordinates.cs" />
-    <Compile Include="Areas\Data\ViewModels\QRCodeGenerator\IndexViewModel.cs" />
     <Compile Include="Areas\Files\Controllers\MetadataController.cs" />
     <Compile Include="Areas\Files\Controllers\UploadController.cs" />
     <Compile Include="Areas\Files\FilesAreaRegistration.cs" />
@@ -518,8 +515,6 @@
     <Content Include="Areas\Data\Views\CoordinatesCalculator\Help.cshtml" />
     <Content Include="Areas\Data\Views\CoordinatesCalculator\Index.cshtml" />
     <Content Include="Areas\Data\Views\CoordinatesCalculator\Calculate.cshtml" />
-    <Content Include="Areas\Data\Views\QRCodeGenerator\Index.cshtml" />
-    <Content Include="Areas\Data\Views\QRCodeGenerator\Help.cshtml" />
     <Content Include="Areas\Data\Views\BarcodeGenerator\Help.cshtml" />
     <Content Include="Areas\Data\Views\BarcodeGenerator\Index.cshtml" />
     <Content Include="ProcessingTools.Web.Documents.ruleset" />

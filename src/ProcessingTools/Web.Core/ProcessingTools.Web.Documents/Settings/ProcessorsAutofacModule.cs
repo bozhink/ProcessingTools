@@ -10,6 +10,8 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Contracts.Rules;
+    using ProcessingTools.Processors.Imaging;
+    using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Processors.Layout;
     using ProcessingTools.Processors.References;
     using ProcessingTools.Processors.Rules;
@@ -30,6 +32,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<XmlContextRulesProcessor>().As<IXmlContextRulesProcessor>().InstancePerDependency();
             builder.RegisterType<ReferencesParser>().As<IReferencesParser>().InstancePerDependency();
             builder.RegisterType<ReferencesTagger>().As<IReferencesTagger>().InstancePerDependency();
+
+            builder.RegisterType<QRCodeEncoder>().As<IQRCodeEncoder>().InstancePerLifetimeScope();
         }
     }
 }

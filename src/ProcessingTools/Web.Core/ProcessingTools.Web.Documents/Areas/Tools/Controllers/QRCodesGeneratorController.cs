@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
     using ProcessingTools.Web.Documents.Constants;
 
     /// <summary>
-    /// QRCodesGenerator
+    /// QRCodes Generator
     /// </summary>
     [Area(AreaNames.Tools)]
     public class QRCodesGeneratorController : Controller

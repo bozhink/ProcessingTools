@@ -56,6 +56,8 @@
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters.Models\ProcessingTools.Harvesters.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Harvesters\ProcessingTools.Harvesters.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Contracts\ProcessingTools.Processors.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Imaging.Contracts\ProcessingTools.Processors.Imaging.Contracts.csproj" />
+    <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Imaging\ProcessingTools.Processors.Imaging.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models.Contracts\ProcessingTools.Processors.Models.Contracts.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors.Models\ProcessingTools.Processors.Models.csproj" />
     <ProjectReference Include="..\..\Services\ProcessingTools.Processors\ProcessingTools.Processors.csproj" />
