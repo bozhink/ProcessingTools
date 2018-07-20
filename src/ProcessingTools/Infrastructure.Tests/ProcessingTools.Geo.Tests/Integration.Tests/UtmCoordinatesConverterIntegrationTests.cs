@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Geo.Tests.Integration.Tests
 {
+    using System;
     using NUnit.Framework;
     using ProcessingTools.Geo;
 
@@ -23,13 +24,13 @@ namespace ProcessingTools.Geo.Tests.Integration.Tests
         /// <param name="longitude">Expected value for longitude</param>
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(UtmCoordinatesConverter), Description = "UtmCoordinatesConverter.TransformUtm2Decimal should work.")]
         [TestCase("33T", 455000, 4683000, 42.297928, 14.454084)]
-        [TestCase("33T", 449800, 6745820, 40.614422, 17.063799)]
         [TestCase("33T", 674582, 4498003, 40.614422, 17.063799)]
         [TestCase("33T", 674582, 4498003, 40.614422, 17.063799)]
         [TestCase("55G", 595500, 5371700, -41.800816, 148.149549)]
         public void UtmCoordinatesConverter_TransformUtm2Decimal_ShouldWork(string utmZone, double utmEasting, double utmNorthing, double latitude, double longitude)
         {
             // Arrange
+            double epsilon = 1e-6;
             UtmCoordinatesConverter converter = new UtmCoordinatesConverter();
 
             // Act
@@ -37,8 +38,8 @@ namespace ProcessingTools.Geo.Tests.Integration.Tests
 
             // Assert
             Assert.AreEqual(2, coordinates.Length, "Coordinate pair should contain two elements.");
-            Assert.AreEqual(latitude, coordinates[0], "Latitude should match");
-            Assert.AreEqual(longitude, coordinates[1], "Longitude should match");
+            Assert.AreEqual(latitude, coordinates[0], epsilon, "Latitude should match");
+            Assert.AreEqual(longitude, coordinates[1], epsilon, "Longitude should match");
         }
     }
 }
