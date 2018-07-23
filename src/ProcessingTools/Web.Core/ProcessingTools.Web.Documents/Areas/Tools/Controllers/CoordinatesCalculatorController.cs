@@ -1,43 +1,66 @@
-﻿namespace ProcessingTools.Web.Documents.Areas.Data.Controllers
+﻿// <copyright file="CoordinatesCalculatorController.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
-    using System.Web.Mvc;
-    using ProcessingTools.Constants.Web;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
-    using ProcessingTools.Web.Documents.Areas.Data.Models.CoordinatesCalculator;
-    using ProcessingTools.Web.Documents.Areas.Data.ViewModels.CoordinatesCalculator;
+    using ProcessingTools.Web.Documents.Constants;
+    using ProcessingTools.Web.Models.Tools.Coordinates;
 
+    /// <summary>
+    /// CoordinatesCalculator
+    /// </summary>
     [Authorize]
+    [Area(AreaNames.Tools)]
     public class CoordinatesCalculatorController : Controller
     {
-        private const string CoordinatesRequestModelValidationBindings = nameof(CoordinatesRequestModel.Coordinates);
+        /// <summary>
+        /// Controller name.
+        /// </summary>
+        public const string ControllerName = "CoordinatesCalculator";
+
+        /// <summary>
+        /// Index action name.
+        /// </summary>
+        public const string IndexActionName = nameof(Index);
 
         private readonly ICoordinateParser coordinateParser;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CoordinatesCalculatorController"/> class.
+        /// </summary>
+        /// <param name="coordinateParser">Instance of <see cref="ICoordinateParser"/>.</param>
         public CoordinatesCalculatorController(ICoordinateParser coordinateParser)
         {
             this.coordinateParser = coordinateParser ?? throw new ArgumentNullException(nameof(coordinateParser));
         }
 
-        // GET: Data/CoordinatesCalculator
+        /// <summary>
+        /// GET CoordinatesCalculator
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
-        public ActionResult Index()
+        [ActionName(IndexActionName)]
+        public IActionResult Index()
         {
             return this.View();
         }
 
-        // GET: Data/CoordinatesCalculator/Help
-        [HttpGet]
-        public ActionResult Help()
-        {
-            return this.View();
-        }
-
-        [HttpPost, ActionName(ActionNames.DeafultCalculateActionName)]
+        /// <summary>
+        /// POST CoordinatesCalculator
+        /// </summary>
+        /// <param name="model">Request model.</param>
+        /// <returns><see cref="IActionResult"/></returns>
         [ValidateAntiForgeryToken]
-        public ActionResult Calculate([Bind(Include = CoordinatesRequestModelValidationBindings)]CoordinatesRequestModel model)
+        [HttpPost]
+        [ActionName(IndexActionName)]
+        public IActionResult Index([Bind(nameof(CoordinatesRequestModel.Coordinates))]CoordinatesRequestModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -75,8 +98,17 @@
                 return this.View(viewModel);
             }
 
-            this.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return this.Redirect(nameof(this.Index));
+            return this.View();
+        }
+
+        /// <summary>
+        /// Help
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(ActionNames.Help)]
+        public IActionResult Help()
+        {
+            return this.View();
         }
     }
 }
