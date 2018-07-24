@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Web.Documents.Settings
 {
+    using System;
     using Autofac;
     using ProcessingTools.Common;
     using ProcessingTools.Contracts;
@@ -43,8 +44,31 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<Coordinate2DParser>().As<ICoordinate2DParser>().InstancePerLifetimeScope();
             builder.RegisterType<UtmCoordinatesTransformer>().As<IUtmCoordinatesTransformer>().InstancePerLifetimeScope();
             builder.RegisterType<UtmCoordinatesConverter>().As<IUtmCoordinatesConverter>().InstancePerLifetimeScope();
-            builder.RegisterType<ProcessingTools.Processors.Models.Geo.Coordinates.Coordinate>().As<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinate>().InstancePerDependency();
-            builder.RegisterType<ProcessingTools.Processors.Models.Geo.Coordinates.CoordinatePart>().As<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinatePart>().InstancePerDependency();
+            builder
+                .RegisterType<ProcessingTools.Processors.Models.Geo.Coordinates.Coordinate>()
+                .As<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinate>()
+                .InstancePerDependency();
+            builder
+                .Register<Func<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinate>>(ctx =>
+                {
+                    var context = ctx.Resolve<IComponentContext>();
+                    return () => context.Resolve<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinate>();
+                })
+                .As<Func<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinate>>()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<ProcessingTools.Processors.Models.Geo.Coordinates.CoordinatePart>()
+                .As<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinatePart>()
+                .InstancePerDependency();
+            builder
+                .Register<Func<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinatePart>>(ctx =>
+                {
+                    var context = ctx.Resolve<IComponentContext>();
+                    return () => context.Resolve<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinatePart>();
+                })
+                .As<Func<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinatePart>>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<CoordinateFactory>().As<ICoordinateFactory>().InstancePerLifetimeScope();
         }
     }
 }
