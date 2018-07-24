@@ -5,13 +5,13 @@
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Documents.Constants;
     using ProcessingTools.Web.Models.Tools.Coordinates;
+    using ProcessingTools.Web.Services.Contracts.Geo.Coordinates;
 
     /// <summary>
     /// CoordinatesCalculator
@@ -30,75 +30,76 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string IndexActionName = nameof(Index);
 
-        private readonly ICoordinateParser coordinateParser;
+        private readonly ICoordinatesCalculatorPresenter presenter;
+        private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinatesCalculatorController"/> class.
         /// </summary>
-        /// <param name="coordinateParser">Instance of <see cref="ICoordinateParser"/>.</param>
-        public CoordinatesCalculatorController(ICoordinateParser coordinateParser)
+        /// <param name="presenter">Instance of <see cref="ICoordinatesCalculatorPresenter"/>.</param>
+        /// <param name="logger">Logger.</param>
+        public CoordinatesCalculatorController(ICoordinatesCalculatorPresenter presenter, ILogger<CoordinatesCalculatorController> logger)
         {
-            this.coordinateParser = coordinateParser ?? throw new ArgumentNullException(nameof(coordinateParser));
+            this.presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
         /// GET CoordinatesCalculator
         /// </summary>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [HttpGet]
         [ActionName(IndexActionName)]
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string returnUrl)
         {
-            return this.View();
+            const string LogMessage = "GET Coordinates Calculator Parse Coordinates";
+
+            this.logger.LogTrace(LogMessage);
+
+            var viewModel = await this.presenter.GetCoordinatesViewModelAsync().ConfigureAwait(false);
+            viewModel.ReturnUrl = returnUrl;
+
+            return this.View(model: viewModel);
         }
 
         /// <summary>
         /// POST CoordinatesCalculator
         /// </summary>
         /// <param name="model">Request model.</param>
+        /// <param name="returnUrl">Return URL</param>
         /// <returns><see cref="IActionResult"/></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName(IndexActionName)]
-        public IActionResult Index([Bind(nameof(CoordinatesRequestModel.Coordinates))]CoordinatesRequestModel model)
+        public async Task<IActionResult> Index([Bind(nameof(CoordinatesRequestModel.Coordinates))]CoordinatesRequestModel model, string returnUrl)
         {
+            const string LogMessage = "POST Coordinates Calculator Parse Coordinates";
+
+            this.logger.LogTrace(LogMessage);
+
+            CoordinatesViewModel viewModel;
+
             if (this.ModelState.IsValid)
             {
-                var coordinateStrings = model.Coordinates.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(c => c.Trim())
-                    .Where(c => c.Length > 1)
-                    .Distinct()
-                    .ToArray();
-
-                var viewModel = new CoordinatesResponseViewModel();
-                foreach (var coordinateString in coordinateStrings)
+                try
                 {
-                    try
-                    {
-                        var coordinate = this.coordinateParser.ParseCoordinateString(coordinateString);
+                    viewModel = await this.presenter.ParseCoordinatesAsync(model).ConfigureAwait(false);
+                    viewModel.ReturnUrl = returnUrl;
 
-                        viewModel.Coordinates.Add(new CoordinateViewModel
-                        {
-                            Coordinate = coordinateString,
-                            Latitude = coordinate.Latitude,
-                            Longitude = coordinate.Longitude
-                        });
-                    }
-                    catch
-                    {
-                        viewModel.Coordinates.Add(new CoordinateViewModel
-                        {
-                            Coordinate = coordinateString,
-                            Latitude = "Error",
-                            Longitude = "Error"
-                        });
-                    }
+                    return this.View(model: viewModel);
                 }
-
-                return this.View(viewModel);
+                catch (Exception ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    this.logger.LogError(ex, LogMessage);
+                }
             }
 
-            return this.View();
+            viewModel = await this.presenter.GetCoordinatesViewModelAsync().ConfigureAwait(false);
+            viewModel.ReturnUrl = returnUrl;
+
+            return this.View(model: viewModel);
         }
 
         /// <summary>

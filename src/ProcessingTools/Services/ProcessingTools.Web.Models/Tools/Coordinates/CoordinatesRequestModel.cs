@@ -9,7 +9,7 @@ namespace ProcessingTools.Web.Models.Tools.Coordinates
     /// <summary>
     /// Coordinates request model.
     /// </summary>
-    public class CoordinatesRequestModel
+    public class CoordinatesRequestModel : ProcessingTools.Models.Contracts.IWebModel
     {
         /// <summary>
         /// Gets or sets the coordinates text: each coordinate is supposed to be on separate row.
@@ -18,5 +18,8 @@ namespace ProcessingTools.Web.Models.Tools.Coordinates
         [MinLength(2)]
         [MaxLength(2000)]
         public string Coordinates { get; set; }
+
+        /// <inheritdoc/>
+        public string ReturnUrl { get; set; }
     }
 }

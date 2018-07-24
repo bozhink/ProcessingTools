@@ -8,8 +8,10 @@ namespace ProcessingTools.Web.Documents.Settings
     using ProcessingTools.Web.Services.Admin;
     using ProcessingTools.Web.Services.Contracts.Admin;
     using ProcessingTools.Web.Services.Contracts.Documents;
+    using ProcessingTools.Web.Services.Contracts.Geo.Coordinates;
     using ProcessingTools.Web.Services.Contracts.Layout.Styles;
     using ProcessingTools.Web.Services.Documents;
+    using ProcessingTools.Web.Services.Geo.Coordinates;
     using ProcessingTools.Web.Services.Layout.Styles;
 
     /// <summary>
@@ -30,6 +32,8 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ReferenceTagStylesService>().As<IReferenceTagStylesService>().InstancePerDependency();
             builder.RegisterType<ReferenceParseStylesService>().As<IReferenceParseStylesService>().InstancePerDependency();
             builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().InstancePerDependency();
+
+            builder.RegisterType<CoordinatesCalculatorPresenter>().As<ICoordinatesCalculatorPresenter>().InstancePerDependency();
 
             builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerDependency();
         }
