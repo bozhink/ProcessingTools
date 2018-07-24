@@ -7,9 +7,13 @@ namespace ProcessingTools.Web.Documents.Settings
     using Autofac;
     using ProcessingTools.Common;
     using ProcessingTools.Contracts;
+    using ProcessingTools.Geo;
+    using ProcessingTools.Geo.Contracts;
+    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Processors.Contracts.Layout;
     using ProcessingTools.Processors.Contracts.References;
     using ProcessingTools.Processors.Contracts.Rules;
+    using ProcessingTools.Processors.Geo.Coordinates;
     using ProcessingTools.Processors.Imaging;
     using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Processors.Layout;
@@ -34,6 +38,13 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ReferencesTagger>().As<IReferencesTagger>().InstancePerDependency();
 
             builder.RegisterType<QRCodeEncoder>().As<IQRCodeEncoder>().InstancePerLifetimeScope();
+
+            builder.RegisterType<CoordinateParser>().As<ICoordinateParser>().InstancePerLifetimeScope();
+            builder.RegisterType<Coordinate2DParser>().As<ICoordinate2DParser>().InstancePerLifetimeScope();
+            builder.RegisterType<UtmCoordinatesTransformer>().As<IUtmCoordinatesTransformer>().InstancePerLifetimeScope();
+            builder.RegisterType<UtmCoordinatesConverter>().As<IUtmCoordinatesConverter>().InstancePerLifetimeScope();
+            builder.RegisterType<ProcessingTools.Processors.Models.Geo.Coordinates.Coordinate>().As<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinate>().InstancePerDependency();
+            builder.RegisterType<ProcessingTools.Processors.Models.Geo.Coordinates.CoordinatePart>().As<ProcessingTools.Processors.Models.Contracts.Geo.Coordinates.ICoordinatePart>().InstancePerDependency();
         }
     }
 }
