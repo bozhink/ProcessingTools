@@ -21,7 +21,7 @@
     <PackageReference Include="Ninject.Extensions.Factory" Version="3.3.2" />
     <PackageReference Include="Ninject.Extensions.Interception" Version="3.3.3" />
     <PackageReference Include="Ninject.Extensions.Interception.DynamicProxy" Version="3.3.3" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.7.1.4347" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
     <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
