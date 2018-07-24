@@ -4,6 +4,8 @@
 
 namespace ProcessingTools.Services.Models.Contracts.Geo.Coordinates
 {
+    using System;
+
     /// <summary>
     /// Coordinate string model.
     /// </summary>
@@ -23,5 +25,10 @@ namespace ProcessingTools.Services.Models.Contracts.Geo.Coordinates
         /// Gets the longitude as string.
         /// </summary>
         string Longitude { get; }
+
+        /// <summary>
+        /// Gets the exception raised during parsing process.
+        /// </summary>
+        Exception ParseException { get; }
     }
 }

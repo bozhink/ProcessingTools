@@ -5,6 +5,8 @@
 namespace ProcessingTools.Services.Geo.Coordinates
 {
     using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
@@ -29,40 +31,60 @@ namespace ProcessingTools.Services.Geo.Coordinates
         }
 
         /// <inheritdoc/>
-        public Task<ICoordinateStringModel[]> ParseCoordinatesStringAsync(string coordinates)
+        public async Task<ICoordinateStringModel[]> ParseCoordinatesStringAsync(string coordinates)
+        {
+            if (string.IsNullOrWhiteSpace(coordinates))
+            {
+                return Array.Empty<ICoordinateStringModel>();
+            }
+
+            var query = coordinates.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(c => c.Trim())
+                .Where(c => c.Length > 1);
+
+            var coordinatesCollection = new HashSet<string>(query);
+
+            return await this.ParseCoordinateStringsAsync(coordinatesCollection).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
+        public Task<ICoordinateStringModel[]> ParseCoordinateStringsAsync(IEnumerable<string> coordinates)
         {
             return Task.Run(() =>
             {
-                if (string.IsNullOrWhiteSpace(coordinates))
+                if (coordinates == null || !coordinates.Any())
                 {
                     return Array.Empty<ICoordinateStringModel>();
                 }
 
-                return coordinates.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(c => c.Trim())
-                    .Where(c => c.Length > 1)
-                    .Distinct()
-                    .Select(c =>
+                var resultDictionary = new ConcurrentDictionary<string, ICoordinateStringModel>();
+
+                foreach (var coordinateString in coordinates)
+                {
+                    resultDictionary.GetOrAdd(coordinateString, key =>
                     {
                         try
                         {
-                            var coordinate = this.coordinateParser.ParseCoordinateString(c);
+                            var coordinate = this.coordinateParser.ParseCoordinateString(key);
                             return new CoordinateStringModel
                             {
-                                Coordinate = c,
+                                Coordinate = key,
                                 Latitude = coordinate?.Latitude,
                                 Longitude = coordinate?.Longitude,
                             };
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             return new CoordinateStringModel
                             {
-                                Coordinate = c
+                                Coordinate = key,
+                                ParseException = ex
                             };
                         }
-                    })
-                    .ToArray();
+                    });
+                }
+
+                return resultDictionary.Values.ToArray();
             });
         }
     }

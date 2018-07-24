@@ -4,6 +4,7 @@
 
 namespace ProcessingTools.Services.Models.Geo.Coordinates
 {
+    using System;
     using ProcessingTools.Services.Models.Contracts.Geo.Coordinates;
 
     /// <summary>
@@ -19,5 +20,8 @@ namespace ProcessingTools.Services.Models.Geo.Coordinates
 
         /// <inheritdoc/>
         public string Longitude { get; set; }
+
+        /// <inheritdoc/>
+        public Exception ParseException { get; set; }
     }
 }
