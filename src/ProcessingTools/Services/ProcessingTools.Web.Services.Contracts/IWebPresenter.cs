@@ -1,4 +1,4 @@
-﻿// <copyright file="IPresenter.cs" company="ProcessingTools">
+﻿// <copyright file="IWebPresenter.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Services.Contracts
     /// <summary>
     /// Presenter.
     /// </summary>
-    public interface IPresenter
+    public interface IWebPresenter
     {
         /// <summary>
         /// Gets the user context.

@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Services.Contracts.Geo.Coordinates
     /// <summary>
     /// Coordinates calculator web presenter.
     /// </summary>
-    public interface ICoordinatesCalculatorWebPresenter : IPresenter
+    public interface ICoordinatesCalculatorWebPresenter : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="CoordinatesViewModel"/>.
