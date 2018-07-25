@@ -1,4 +1,4 @@
-﻿// <copyright file="CoordinatesCalculatorPresenter.cs" company="ProcessingTools">
+﻿// <copyright file="CoordinatesCalculatorWebPresenter.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -16,20 +16,20 @@ namespace ProcessingTools.Web.Services.Geo.Coordinates
     using ProcessingTools.Web.Services.Contracts.Geo.Coordinates;
 
     /// <summary>
-    /// Coordinates calculator presenter.
+    /// Coordinates calculator web presenter.
     /// </summary>
-    public class CoordinatesCalculatorPresenter : ICoordinatesCalculatorPresenter
+    public class CoordinatesCalculatorWebPresenter : ICoordinatesCalculatorWebPresenter
     {
         private readonly ICoordinatesParseService coordinatesParseService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CoordinatesCalculatorPresenter"/> class.
+        /// Initializes a new instance of the <see cref="CoordinatesCalculatorWebPresenter"/> class.
         /// </summary>
         /// <param name="coordinatesParseService">Instance of <see cref="ICoordinatesParseService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public CoordinatesCalculatorPresenter(ICoordinatesParseService coordinatesParseService, IUserContext userContext)
+        public CoordinatesCalculatorWebPresenter(ICoordinatesParseService coordinatesParseService, IUserContext userContext)
         {
             if (userContext == null)
             {

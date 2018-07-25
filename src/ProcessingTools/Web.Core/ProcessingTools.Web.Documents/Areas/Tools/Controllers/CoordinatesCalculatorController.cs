@@ -30,15 +30,15 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string IndexActionName = nameof(Index);
 
-        private readonly ICoordinatesCalculatorPresenter presenter;
+        private readonly ICoordinatesCalculatorWebPresenter presenter;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinatesCalculatorController"/> class.
         /// </summary>
-        /// <param name="presenter">Instance of <see cref="ICoordinatesCalculatorPresenter"/>.</param>
+        /// <param name="presenter">Instance of <see cref="ICoordinatesCalculatorWebPresenter"/>.</param>
         /// <param name="logger">Logger.</param>
-        public CoordinatesCalculatorController(ICoordinatesCalculatorPresenter presenter, ILogger<CoordinatesCalculatorController> logger)
+        public CoordinatesCalculatorController(ICoordinatesCalculatorWebPresenter presenter, ILogger<CoordinatesCalculatorController> logger)
         {
             this.presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
