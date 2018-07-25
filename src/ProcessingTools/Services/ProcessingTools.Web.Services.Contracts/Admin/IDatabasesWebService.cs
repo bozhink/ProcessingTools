@@ -8,7 +8,7 @@ namespace ProcessingTools.Web.Services.Contracts.Admin
     using ProcessingTools.Web.Models.Admin.Databases;
 
     /// <summary>
-    /// Databases service.
+    /// Databases web service.
     /// </summary>
     public interface IDatabasesWebService : IWebPresenter
     {

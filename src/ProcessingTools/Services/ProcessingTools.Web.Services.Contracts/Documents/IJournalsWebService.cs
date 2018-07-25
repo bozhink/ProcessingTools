@@ -1,4 +1,4 @@
-﻿// <copyright file="IJournalsService.cs" company="ProcessingTools">
+﻿// <copyright file="IJournalsWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
     using ProcessingTools.Web.Models.Documents.Journals;
 
     /// <summary>
-    /// Journals service.
+    /// Journals web service.
     /// </summary>
-    public interface IJournalsService
+    public interface IJournalsWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="JournalsIndexViewModel"/>.

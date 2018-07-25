@@ -1,4 +1,4 @@
-﻿// <copyright file="IDocumentsService.cs" company="ProcessingTools">
+﻿// <copyright file="IDocumentsWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,9 +10,9 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
     using ProcessingTools.Web.Models.Shared;
 
     /// <summary>
-    /// Documents service.
+    /// Documents web service.
     /// </summary>
-    public interface IDocumentsService
+    public interface IDocumentsWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="DocumentUploadViewModel"/>.

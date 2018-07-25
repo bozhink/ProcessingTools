@@ -95,15 +95,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         public const string XmlActionName = nameof(Xml);
 
-        private readonly IDocumentsService service;
+        private readonly IDocumentsWebService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentsController"/> class.
         /// </summary>
-        /// <param name="service">Instance of <see cref="IDocumentsService"/>.</param>
+        /// <param name="service">Instance of <see cref="IDocumentsWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public DocumentsController(IDocumentsService service, ILogger<DocumentsController> logger)
+        public DocumentsController(IDocumentsWebService service, ILogger<DocumentsController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

@@ -22,10 +22,10 @@ namespace ProcessingTools.Web.Documents.Settings
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<PublishersService>().As<IPublishersService>().InstancePerDependency();
-            builder.RegisterType<JournalsService>().As<IJournalsService>().InstancePerDependency();
-            builder.RegisterType<ArticlesService>().As<IArticlesService>().InstancePerDependency();
-            builder.RegisterType<DocumentsService>().As<IDocumentsService>().InstancePerDependency();
+            builder.RegisterType<PublishersWebService>().As<IPublishersWebService>().InstancePerDependency();
+            builder.RegisterType<JournalsWebService>().As<IJournalsWebService>().InstancePerDependency();
+            builder.RegisterType<ArticlesWebService>().As<IArticlesWebService>().InstancePerDependency();
+            builder.RegisterType<DocumentsWebService>().As<IDocumentsWebService>().InstancePerDependency();
 
             builder.RegisterType<FloatObjectTagStylesService>().As<IFloatObjectTagStylesService>().InstancePerDependency();
             builder.RegisterType<FloatObjectParseStylesService>().As<IFloatObjectParseStylesService>().InstancePerDependency();

@@ -1,4 +1,4 @@
-﻿// <copyright file="PublishersService.cs" company="ProcessingTools">
+﻿// <copyright file="PublishersWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -16,20 +16,20 @@ namespace ProcessingTools.Web.Services.Documents
     using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
-    /// Publishers service.
+    /// Publishers web service.
     /// </summary>
-    public class PublishersService : IPublishersService
+    public class PublishersWebService : IPublishersWebService
     {
         private readonly IPublishersDataService publishersDataService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PublishersService"/> class.
+        /// Initializes a new instance of the <see cref="PublishersWebService"/> class.
         /// </summary>
         /// <param name="publishersDataService">Instance of <see cref="IPublishersDataService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public PublishersService(IPublishersDataService publishersDataService, IUserContext userContext)
+        public PublishersWebService(IPublishersDataService publishersDataService, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -57,6 +57,9 @@ namespace ProcessingTools.Web.Services.Documents
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
 
         /// <inheritdoc/>
         public async Task<bool> CreatePublisherAsync(PublisherCreateRequestModel model)
@@ -97,7 +100,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublisherCreateViewModel> GetPublisherCreateViewModelAsync()
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             return new PublisherCreateViewModel(userContext);
         }
@@ -105,7 +108,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublisherDeleteViewModel> GetPublisherDeleteViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -125,7 +128,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublisherDetailsViewModel> GetPublisherDetailsViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -145,7 +148,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublisherEditViewModel> GetPublisherEditViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -165,7 +168,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublishersIndexViewModel> GetPublishersIndexViewModelAsync(int skip, int take)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var data = await this.publishersDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.publishersDataService.SelectCountAsync().ConfigureAwait(false);
@@ -178,7 +181,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublisherCreateViewModel> MapToViewModelAsync(PublisherCreateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null)
             {
@@ -194,7 +197,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublisherEditViewModel> MapToViewModelAsync(PublisherUpdateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
@@ -219,7 +222,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<PublisherDeleteViewModel> MapToViewModelAsync(PublisherDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {

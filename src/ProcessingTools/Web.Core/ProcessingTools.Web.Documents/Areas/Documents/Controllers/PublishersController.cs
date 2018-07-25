@@ -51,15 +51,15 @@ namespace ProcessingTools.Web.Documents.Areas.Documents.Controllers
         /// </summary>
         public const string DetailsActionName = nameof(Details);
 
-        private readonly IPublishersService service;
+        private readonly IPublishersWebService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishersController"/> class.
         /// </summary>
-        /// <param name="service">Instance of <see cref="IPublishersService"/>.</param>
+        /// <param name="service">Instance of <see cref="IPublishersWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public PublishersController(IPublishersService service, ILogger<PublishersController> logger)
+        public PublishersController(IPublishersWebService service, ILogger<PublishersController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

@@ -15,7 +15,7 @@ namespace ProcessingTools.Web.Services.Admin
     using ProcessingTools.Web.Services.Contracts.Admin;
 
     /// <summary>
-    /// Databases service.
+    /// Databases web service.
     /// </summary>
     public class DatabasesWebService : IDatabasesWebService
     {

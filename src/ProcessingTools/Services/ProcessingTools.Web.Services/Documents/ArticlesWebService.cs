@@ -1,4 +1,4 @@
-﻿// <copyright file="ArticlesService.cs" company="ProcessingTools">
+﻿// <copyright file="ArticlesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -14,22 +14,23 @@ namespace ProcessingTools.Web.Services.Documents
     using ProcessingTools.Services.Models.Contracts.Documents.Documents;
     using ProcessingTools.Web.Models.Documents.Articles;
     using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
-    /// Articles service.
+    /// Articles web service.
     /// </summary>
-    public class ArticlesService : ProcessingTools.Web.Services.Contracts.Documents.IArticlesService
+    public class ArticlesWebService : IArticlesWebService
     {
         private readonly IArticlesService articlesService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArticlesService"/> class.
+        /// Initializes a new instance of the <see cref="ArticlesWebService"/> class.
         /// </summary>
         /// <param name="articlesService">Instance of <see cref="IArticlesService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public ArticlesService(IArticlesService articlesService, IUserContext userContext)
+        public ArticlesWebService(IArticlesService articlesService, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -66,6 +67,9 @@ namespace ProcessingTools.Web.Services.Documents
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
 
         /// <inheritdoc/>
         public async Task<bool> CreateArticleAsync(ArticleCreateRequestModel model)
@@ -131,7 +135,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleCreateViewModel> GetArticleCreateViewModelAsync()
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var journals = await this.GetArticleJournalsViewModelsAsync().ConfigureAwait(false);
 
@@ -141,7 +145,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleCreateFromFileViewModel> GetArticleCreateFromFileViewModelAsync()
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var journals = await this.GetArticleJournalsViewModelsAsync().ConfigureAwait(false);
 
@@ -151,7 +155,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleDeleteViewModel> GetArticleDeleteViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -173,7 +177,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleDetailsViewModel> GetArticleDetailsViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -195,7 +199,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleDocumentsViewModel> GetArticleDocumentsViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -221,7 +225,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleEditViewModel> GetArticleEditViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -243,7 +247,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticlesIndexViewModel> GetArticlesIndexViewModelAsync(int skip, int take)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var data = await this.articlesService.SelectDetailsAsync(skip, take).ConfigureAwait(false);
             var count = await this.articlesService.SelectCountAsync().ConfigureAwait(false);
@@ -256,7 +260,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleCreateViewModel> MapToViewModelAsync(ArticleCreateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
             var journals = await this.GetArticleJournalsViewModelsAsync().ConfigureAwait(false);
 
             var viewModel = new ArticleCreateViewModel(userContext, journals);
@@ -272,7 +276,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleEditViewModel> MapToViewModelAsync(ArticleUpdateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
@@ -301,7 +305,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<ArticleDeleteViewModel> MapToViewModelAsync(ArticleDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {

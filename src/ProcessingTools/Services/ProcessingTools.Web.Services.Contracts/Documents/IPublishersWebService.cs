@@ -1,4 +1,4 @@
-﻿// <copyright file="IPublishersService.cs" company="ProcessingTools">
+﻿// <copyright file="IPublishersWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
     using ProcessingTools.Web.Models.Documents.Publishers;
 
     /// <summary>
-    /// Publishers service.
+    /// Publishers web service.
     /// </summary>
-    public interface IPublishersService
+    public interface IPublishersWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="PublishersIndexViewModel"/>.

@@ -1,4 +1,4 @@
-﻿// <copyright file="IArticlesService.cs" company="ProcessingTools">
+﻿// <copyright file="IArticlesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Services.Contracts.Documents
     using ProcessingTools.Web.Models.Documents.Articles;
 
     /// <summary>
-    /// Articles service.
+    /// Articles web service.
     /// </summary>
-    public interface IArticlesService
+    public interface IArticlesWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="ArticlesIndexViewModel"/>.

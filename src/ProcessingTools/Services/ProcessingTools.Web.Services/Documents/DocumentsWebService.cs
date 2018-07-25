@@ -1,4 +1,4 @@
-﻿// <copyright file="DocumentsService.cs" company="ProcessingTools">
+﻿// <copyright file="DocumentsWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -15,22 +15,23 @@ namespace ProcessingTools.Web.Services.Documents
     using ProcessingTools.Services.Models.Contracts.Documents.Documents;
     using ProcessingTools.Web.Models.Documents.Documents;
     using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services.Contracts.Documents;
 
     /// <summary>
-    /// Documents service.
+    /// Documents web service.
     /// </summary>
-    public class DocumentsService : ProcessingTools.Web.Services.Contracts.Documents.IDocumentsService
+    public class DocumentsWebService : IDocumentsWebService
     {
         private readonly IDocumentsService documentsService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DocumentsService"/> class.
+        /// Initializes a new instance of the <see cref="DocumentsWebService"/> class.
         /// </summary>
         /// <param name="documentsService">Instance of <see cref="IDocumentsService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public DocumentsService(IDocumentsService documentsService, IUserContext userContext)
+        public DocumentsWebService(IDocumentsService documentsService, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -63,9 +64,12 @@ namespace ProcessingTools.Web.Services.Documents
         }
 
         /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
+
+        /// <inheritdoc/>
         public async Task<DocumentUploadViewModel> GetDocumentUploadViewModelAsync(string articleId)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(articleId))
             {
@@ -84,7 +88,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<DocumentEditViewModel> GetDocumentEditViewModelAsync(string id, string articleId)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(articleId))
             {
@@ -113,7 +117,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<DocumentDeleteViewModel> GetDocumentDeleteViewModelAsync(string id, string articleId)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(articleId))
             {
@@ -142,7 +146,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<DocumentDetailsViewModel> GetDocumentDetailsViewModelAsync(string id, string articleId)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(articleId))
             {
@@ -171,7 +175,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<DocumentHtmlViewModel> GetDocumentHtmlViewModelAsync(string id, string articleId)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(articleId))
             {
@@ -191,7 +195,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<DocumentXmlViewModel> GetDocumentXmlViewModelAsync(string id, string articleId)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(articleId))
             {
@@ -383,7 +387,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<DocumentEditViewModel> MapToViewModelAsync(DocumentUpdateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id) && !string.IsNullOrWhiteSpace(model.ArticleId))
             {
@@ -416,7 +420,7 @@ namespace ProcessingTools.Web.Services.Documents
         /// <inheritdoc/>
         public async Task<DocumentDeleteViewModel> MapToViewModelAsync(DocumentDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id) && !string.IsNullOrWhiteSpace(model.ArticleId))
             {
