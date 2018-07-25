@@ -9,7 +9,7 @@ namespace ProcessingTools.Processors.Abbreviations
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
-    using ProcessingTools.Contracts;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts.Xml;
     using ProcessingTools.Extensions;
     using ProcessingTools.Harvesters.Contracts.Abbreviations;
@@ -34,7 +34,7 @@ namespace ProcessingTools.Processors.Abbreviations
         /// <param name="harvester">Abbreviations harvester.</param>
         /// <param name="contextWrapper">Context wrapper.</param>
         /// <param name="logger">Logger</param>
-        public AbbreviationsTagger(IAbbreviationsHarvester harvester, IXmlContextWrapper contextWrapper, ILogger logger)
+        public AbbreviationsTagger(IAbbreviationsHarvester harvester, IXmlContextWrapper contextWrapper, ILogger<AbbreviationsTagger> logger)
         {
             this.harvester = harvester ?? throw new ArgumentNullException(nameof(harvester));
             this.contextWrapper = contextWrapper ?? throw new ArgumentNullException(nameof(contextWrapper));
@@ -158,9 +158,9 @@ namespace ProcessingTools.Processors.Abbreviations
                                 {
                                     node.ReplaceWholeXmlNodeByRegexPattern(abbreviation.SearchPattern, abbreviation.ReplacePattern);
                                 }
-                                catch (XmlException)
+                                catch (XmlException ex)
                                 {
-                                    this.logger?.Log("Exception in abbreviation {0}", abbreviation.Content);
+                                    this.logger.LogError(ex, "Exception in abbreviation {0}", abbreviation.Content);
                                 }
                             }
                         }

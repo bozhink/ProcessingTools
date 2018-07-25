@@ -6,7 +6,7 @@
     using System.Web.Http;
     using System.Web.Http.Cors;
     using AutoMapper;
-    using ProcessingTools.Contracts;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
@@ -20,7 +20,7 @@
         protected AbstractTaxaClassificationResolverController(ITaxaClassificationResolver resolver, ILogger logger)
         {
             this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -46,7 +46,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: string.Empty);
+                this.logger.LogError(ex, string.Empty);
                 return this.InternalServerError();
             }
         }

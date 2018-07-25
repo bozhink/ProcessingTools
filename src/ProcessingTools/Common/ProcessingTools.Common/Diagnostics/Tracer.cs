@@ -1,11 +1,22 @@
-﻿namespace ProcessingTools.Loggers.Diagnostics
+﻿// <copyright file="Tracer.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Common.Diagnostics
 {
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
     using System.Text;
 
+    /// <summary>
+    /// Tracer.
+    /// </summary>
     public static class Tracer
     {
+        /// <summary>
+        /// Gets the current caller method.
+        /// </summary>
+        /// <returns>Name of the method.</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetCurrentMethod()
         {
@@ -24,6 +35,11 @@
             return stackPath.ToString();
         }
 
+        /// <summary>
+        /// Gets the caller method at specified stack position.
+        /// </summary>
+        /// <param name="stackPosition">Stack position.</param>
+        /// <returns>Name of the method.</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetCurrentMethod(int stackPosition)
         {

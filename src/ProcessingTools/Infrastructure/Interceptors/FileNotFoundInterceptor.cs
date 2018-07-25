@@ -2,15 +2,14 @@
 {
     using System;
     using System.IO;
+    using Microsoft.Extensions.Logging;
     using Ninject.Extensions.Interception;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
 
     public class FileNotFoundInterceptor : IInterceptor
     {
         private readonly ILogger logger;
 
-        public FileNotFoundInterceptor(ILogger logger)
+        public FileNotFoundInterceptor(ILogger<FileNotFoundInterceptor> logger)
         {
             this.logger = logger;
         }
@@ -26,7 +25,7 @@
             if (!File.Exists(fileName))
             {
                 string message = $"File '{fileName}' does not exist.";
-                this.logger?.Log(type: LogType.Error, message: message);
+                this.logger?.LogError(message);
                 throw new FileNotFoundException(message: message, fileName: fileName);
             }
 

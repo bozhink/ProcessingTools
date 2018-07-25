@@ -12,9 +12,8 @@ namespace ProcessingTools.Processors.Processors.Floats
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Enumerations.Nlm;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Floats;
@@ -43,7 +42,7 @@ namespace ProcessingTools.Processors.Processors.Floats
         /// Initializes a new instance of the <see cref="FloatsTagger"/> class.
         /// </summary>
         /// <param name="logger">Logger</param>
-        public FloatsTagger(ILogger logger)
+        public FloatsTagger(ILogger<FloatsTagger> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.InitFloats();
@@ -202,7 +201,7 @@ namespace ProcessingTools.Processors.Processors.Floats
                                 }
                                 else
                                 {
-                                    this.logger?.Log(LogType.Warning, "Invalid rid: {0} in {1}", thisXrefRid, xrefGroup);
+                                    this.logger.LogWarning("Invalid rid: {0} in {1}", thisXrefRid, xrefGroup);
                                 }
                             }
 
@@ -229,7 +228,7 @@ namespace ProcessingTools.Processors.Processors.Floats
                                 }
                                 else
                                 {
-                                    this.logger?.Log(LogType.Warning, "Invalid rid: {0} in {1}", thisXrefRid, xrefGroup);
+                                    this.logger.LogWarning("Invalid rid: {0} in {1}", thisXrefRid, xrefGroup);
                                 }
                             }
 
@@ -244,7 +243,7 @@ namespace ProcessingTools.Processors.Processors.Floats
             }
             catch (Exception e)
             {
-                this.logger?.Log(exception: e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
             }
         }
 
@@ -266,7 +265,7 @@ namespace ProcessingTools.Processors.Processors.Floats
                         }
                         catch (Exception e)
                         {
-                            this.logger?.Log(exception: e, message: "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
+                            this.logger.LogError(e, "There is no 'table-wrap/@id' or 'table-wrap/table' or 'table-wrap/table/@id'");
                         }
 
                         break;
@@ -323,7 +322,7 @@ namespace ProcessingTools.Processors.Processors.Floats
             }
             catch (Exception e)
             {
-                this.logger?.Log(exception: e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
             }
 
             this.floatIdByLabelKeys = this.floatIdByLabel.Keys;
@@ -382,14 +381,13 @@ namespace ProcessingTools.Processors.Processors.Floats
             {
                 Regex matchNumber = new Regex(@"\d+");
 
-                this.logger?.Log();
                 this.floatIdByLabelKeys
                     .Cast<string>()
                     .OrderBy(s => int.Parse(matchNumber.Match(s).Value ?? "1"))
                     .ToList()
                     .ForEach(id =>
                     {
-                        this.logger?.Log(
+                        this.logger.LogDebug(
                             "{2}\t#{0}\tis in float\t#{1}",
                             id,
                             this.floatIdByLabel[id],
@@ -398,7 +396,7 @@ namespace ProcessingTools.Processors.Processors.Floats
             }
             catch (Exception e)
             {
-                this.logger?.Log(exception: e, message: "Cannot print the table of floats.");
+                this.logger.LogError(e, "Cannot print the table of floats.");
             }
         }
 

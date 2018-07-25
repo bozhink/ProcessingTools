@@ -8,6 +8,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
@@ -35,7 +36,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         /// </summary>
         /// <param name="service">Taxa classification data service.</param>
         /// <param name="logger">Logger.</param>
-        public TreatmentMetaParserWithDataService(TService service, ILogger logger)
+        public TreatmentMetaParserWithDataService(TService service, ILogger<TreatmentMetaParserWithDataService<TService>> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -60,7 +61,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
             foreach (string genus in genusList)
             {
-                this.logger?.Log("\n{0}\n", genus);
+                this.logger.LogDebug("\n{0}\n", genus);
 
                 try
                 {
@@ -72,7 +73,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e);
+                    this.logger.LogError(e, string.Empty);
                 }
             }
 
@@ -95,14 +96,14 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
             switch (higherTaxaCount)
             {
                 case 0:
-                    this.logger?.Log(LogType.Warning, "Zero matches for rank {0}.", rank);
+                    this.logger.LogWarning("Zero matches for rank {0}.", rank);
                     break;
 
                 case 1:
                     {
                         string taxonName = matchingHigherTaxa.Single();
 
-                        this.logger?.Log("{0}: {1}\t--\t{2}", genus, rank, taxonName);
+                        this.logger.LogDebug("{0}: {1}\t--\t{2}", genus, rank, taxonName);
 
                         string xpath = string.Format(TreatmentMetaReplaceXPathTemplate, genus, rank.MapTaxonRankTypeToTaxonRankString());
                         document.SelectNodes(xpath)
@@ -117,13 +118,11 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
                 default:
                     {
-                        this.logger?.Log(LogType.Warning, "Multiple matches for rank {0}:", rank);
+                        this.logger.LogWarning("Multiple matches for rank {0}:", rank);
                         foreach (string taxonName in matchingHigherTaxa)
                         {
-                            this.logger?.Log("{0}: {1}\t--\t{2}", genus, rank, taxonName);
+                            this.logger.LogDebug("{0}: {1}\t--\t{2}", genus, rank, taxonName);
                         }
-
-                        this.logger?.Log();
                     }
 
                     break;

@@ -3,14 +3,11 @@
     using System;
     using Ninject;
     using Ninject.Extensions.Conventions;
-    using Ninject.Extensions.Factory;
     using Ninject.Extensions.Interception.Infrastructure.Language;
     using Ninject.Modules;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Constants.Configuration;
     using ProcessingTools.Interceptors;
-    using ProcessingTools.Loggers.Loggers;
-    using ProcessingTools.Processors.Contracts.Geo.Coordinates;
     using ProcessingTools.Services.IO;
 
     /// <summary>
@@ -37,24 +34,7 @@
                     .BindDefaultInterface();
             });
 
-            this.Bind<ICoordinateFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
-            //this.Bind<ICoordinate2DParser>()
-            //    .To<Coordinate2DParser>()
-            //    .WhenInjectedInto<CoordinateParser>()
-            //    .Intercept()
-            //    .With<LogParsedCoordinatesInterceptor>();
-
             // Custom hard-coded bindings
-            this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ConsoleLogger>()
-                .InSingletonScope();
-
-            this.Bind<ProcessingTools.Contracts.IReporter>()
-                .To<Reporters.LogReporter>();
-
             this.Bind<ProcessingTools.Contracts.IDocumentFactory>()
                 .To<ProcessingTools.Common.TaxPubDocumentFactory>()
                 .InSingletonScope();

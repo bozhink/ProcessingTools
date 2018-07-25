@@ -69,13 +69,6 @@
                 .ToFactory()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.IReporter>()
-                .To<ProcessingTools.Reporters.LogReporter>();
-
-            this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
-                .InSingletonScope();
-
             this.Bind<Func<Type, ProcessingTools.Contracts.Strategies.Bio.Taxonomy.IParseLowerTaxaStrategy>>()
                 .ToMethod(context =>
                 {

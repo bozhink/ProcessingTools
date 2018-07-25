@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using AutoMapper;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Models.Contracts.Bio;
     using ProcessingTools.Services.Contracts.Bio.Environments;
     using ProcessingTools.Web.Models.Bio.EnvoTerms;
@@ -17,10 +17,10 @@
         private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        public EnvoTermsController(IEnvoTermsDataService service, ILogger logger)
+        public EnvoTermsController(IEnvoTermsDataService service, ILogger<EnvoTermsController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             MapperConfiguration mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -45,7 +45,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: string.Empty);
+                this.logger.LogError(ex, string.Empty);
                 return this.InternalServerError();
             }
         }

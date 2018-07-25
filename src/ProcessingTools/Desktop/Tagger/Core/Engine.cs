@@ -2,9 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Configuration;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Tagger.Contracts;
 
     public class Engine : IEngine
@@ -12,10 +11,10 @@
         private readonly IFileProcessor fileProcessor;
         private readonly ILogger logger;
 
-        public Engine(IFileProcessor fileProcessor, ILogger logger)
+        public Engine(IFileProcessor fileProcessor, ILogger<Engine> logger)
         {
             this.fileProcessor = fileProcessor ?? throw new ArgumentNullException(nameof(fileProcessor));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public void Run(string[] args)
@@ -30,7 +29,7 @@
             var succeeded = this.RunAsync(args).Wait(ts);
             if (!succeeded)
             {
-                this.logger.Log(LogType.Error, message: "The timeout interval elapsed.");
+                this.logger.LogError("The timeout interval elapsed.");
             }
         }
 
@@ -45,7 +44,7 @@
             }
             catch (Exception e)
             {
-                this.logger.Log(e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
             }
         }
     }

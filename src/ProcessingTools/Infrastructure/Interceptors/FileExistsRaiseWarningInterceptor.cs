@@ -2,9 +2,8 @@
 {
     using System;
     using System.IO;
+    using Microsoft.Extensions.Logging;
     using Ninject.Extensions.Interception;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
 
     /// <summary>
     /// Logs warning that a given file already exists.
@@ -14,7 +13,7 @@
     {
         private readonly ILogger logger;
 
-        public FileExistsRaiseWarningInterceptor(ILogger logger)
+        public FileExistsRaiseWarningInterceptor(ILogger<FileExistsRaiseWarningInterceptor> logger)
         {
             this.logger = logger;
         }
@@ -29,7 +28,7 @@
             var fullName = (string)invocation.Request.Arguments[0];
             if (File.Exists(fullName))
             {
-                this.logger?.Log(LogType.Warning, "Output file '{0}' already exists.", fullName);
+                this.logger.LogWarning("Output file '{0}' already exists.", fullName);
             }
 
             invocation.Proceed();

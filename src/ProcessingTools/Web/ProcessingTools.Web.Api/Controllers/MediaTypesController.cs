@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using AutoMapper;
-    using ProcessingTools.Contracts;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Models.Contracts.Mediatypes;
     using ProcessingTools.Services.Contracts.Mediatypes;
     using ProcessingTools.Web.Models.Resources.MediaTypes;
@@ -16,10 +16,10 @@
         private readonly IMapper mapper;
         private readonly ILogger logger;
 
-        public MediaTypesController(IMediatypesResolver mediatypesResolver, ILogger logger)
+        public MediaTypesController(IMediatypesResolver mediatypesResolver, ILogger<MediaTypesController> logger)
         {
             this.mediatypesResolver = mediatypesResolver ?? throw new ArgumentNullException(nameof(mediatypesResolver));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -44,7 +44,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: string.Empty);
+                this.logger.LogError(ex, string.Empty);
                 return this.InternalServerError();
             }
         }

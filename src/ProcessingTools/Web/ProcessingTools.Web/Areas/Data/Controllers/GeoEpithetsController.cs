@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Web.Services.Geo;
     using ProcessingTools.Web.Abstractions.Controllers;
     using ProcessingTools.Web.Constants;
@@ -23,13 +23,14 @@
         private readonly IGeoEpithetsWebService service;
         private readonly ILogger logger;
 
-        public GeoEpithetsController(IGeoEpithetsWebService service, ILogger logger)
+        public GeoEpithetsController(IGeoEpithetsWebService service, ILogger<GeoEpithetsController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger;
         }
 
-        [HttpGet, ActionName(IndexActionName)]
+        [HttpGet]
+        [ActionName(IndexActionName)]
         public async Task<ActionResult> Index(int? p, int? n)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -46,8 +47,9 @@
             return this.View(IndexActionName, viewModel);
         }
 
-        [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(CreateActionName)]
         public async Task<ActionResult> Create([Bind(Include = nameof(GeoEpithetsRequestModel.Names))] GeoEpithetsRequestModel model)
         {
             try
@@ -65,14 +67,15 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: ControllerName);
+                this.logger.LogError(ex, ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);
         }
 
-        [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(EditActionName)]
         public async Task<ActionResult> Edit([Bind(Include = nameof(GeoEpithetRequestModel.Id) + "," + nameof(GeoEpithetRequestModel.Name))] GeoEpithetRequestModel model)
         {
             try
@@ -90,14 +93,15 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: ControllerName);
+                this.logger.LogError(ex, ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);
         }
 
-        [HttpPost, ActionName(DeleteActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(DeleteActionName)]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             try
@@ -112,7 +116,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: ControllerName);
+                this.logger.LogError(ex, ControllerName);
             }
 
             return this.RedirectToAction(IndexActionName);

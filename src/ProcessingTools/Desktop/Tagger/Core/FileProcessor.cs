@@ -6,12 +6,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Contracts.Xml;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Documents;
     using ProcessingTools.Services.Contracts.IO;
     using ProcessingTools.Tagger.Contracts;
@@ -32,13 +32,13 @@
             IDocumentWrapper documentWrapper,
             IDocumentManager documentManager,
             Func<Type, ITaggerCommand> commandFactory,
-            ILogger logger)
+            ILogger<FileProcessor> logger)
         {
             this.fileNameGenerator = fileNameGenerator ?? throw new ArgumentNullException(nameof(fileNameGenerator));
             this.documentWrapper = documentWrapper ?? throw new ArgumentNullException(nameof(documentWrapper));
             this.documentManager = documentManager ?? throw new ArgumentNullException(nameof(documentManager));
             this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             this.tasks = new ConcurrentQueue<Task>();
         }
@@ -62,7 +62,7 @@
                 }
                 catch
                 {
-                    this.logger?.Log(LogType.Error, message: "One or more input files cannot be read.");
+                    this.logger.LogError("One or more input files cannot be read.");
                     return;
                 }
 
@@ -77,7 +77,7 @@
             }
             catch (Exception e)
             {
-                this.logger?.Log(e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
                 throw;
             }
         }
@@ -121,7 +121,7 @@
                 outputFileNameMessage = outputFileName;
             }
 
-            this.logger?.Log(
+            this.logger?.LogDebug(
                 Messages.InputOutputFileNamesMessageFormat,
                 inputFileNameMessage,
                 outputFileNameMessage);
@@ -331,8 +331,6 @@
             {
                 await this.InvokeProcessor<IParseTreatmentMetaWithCatalogueOfLifeCommand>(context).ConfigureAwait(false);
             }
-
-            return;
         }
 
         private Task WriteOutputFile(IDocument document) => InvokeProcessor(

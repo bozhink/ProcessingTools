@@ -10,6 +10,7 @@ namespace ProcessingTools.Processors
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts;
@@ -26,7 +27,7 @@ namespace ProcessingTools.Processors
         /// Initializes a new instance of the <see cref="ContentTagger"/> class.
         /// </summary>
         /// <param name="logger">Logger</param>
-        public ContentTagger(ILogger logger)
+        public ContentTagger(ILogger<ContentTagger> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -67,7 +68,7 @@ namespace ProcessingTools.Processors
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e, "Item: {0}.", textToTag);
+                    this.logger.LogError(e, "Item: {0}.", textToTag);
                 }
             }
         }
@@ -162,7 +163,7 @@ namespace ProcessingTools.Processors
                         replace = textToTagPatternRegex.Replace(replace, replacement);
                     }
 
-                    await node.SafeReplaceInnerXml(replace, this.logger).ConfigureAwait(false);
+                    await node.SafeReplaceInnerXmlAsync(replace).ConfigureAwait(false);
                 }
             }
         }

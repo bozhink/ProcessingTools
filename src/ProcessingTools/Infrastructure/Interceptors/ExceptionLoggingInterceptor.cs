@@ -5,14 +5,14 @@ namespace ProcessingTools.Interceptors
 {
     using System;
     using System.Text;
+    using Microsoft.Extensions.Logging;
     using Ninject.Extensions.Interception;
-    using ProcessingTools.Contracts;
 
     public class ExceptionLoggingInterceptor : IInterceptor
     {
         private readonly ILogger logger;
 
-        public ExceptionLoggingInterceptor(ILogger logger)
+        public ExceptionLoggingInterceptor(ILogger<ExceptionLoggingInterceptor> logger)
         {
             this.logger = logger;
         }
@@ -45,7 +45,7 @@ namespace ProcessingTools.Interceptors
                     e.GetType().Name,
                     e.Message);
 
-                this.logger?.Log(e, message: sb.ToString());
+                this.logger?.LogError(e, sb.ToString());
                 throw;
             }
         }

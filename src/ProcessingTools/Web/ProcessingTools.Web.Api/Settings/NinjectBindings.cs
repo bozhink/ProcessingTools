@@ -18,10 +18,6 @@
                 .BindDefaultInterface();
             });
 
-            this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ProcessingTools.Loggers.Loggers.Log4NetLogger>()
-                .InTransientScope();
-
             this.Bind<ProcessingTools.Geo.Data.Entity.Contracts.IGeoDbContext>()
                 .To<ProcessingTools.Geo.Data.Entity.GeoDbContext>()
                 .WhenInjectedInto(typeof(ProcessingTools.Geo.Data.Entity.Repositories.GeoRepository<>))

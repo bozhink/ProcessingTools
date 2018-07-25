@@ -7,6 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
@@ -36,7 +37,7 @@
             IXmlFileContentDataService fileManager,
             IArticleMetaHarvester articleMetaHarvester,
             IModelFactory modelFactory,
-            ILogger logger)
+            ILogger<FileProcessor> logger)
         {
             this.FileName = fileName;
             this.journalMeta = journalMeta ?? throw new ArgumentNullException(nameof(journalMeta));
@@ -44,7 +45,7 @@
             this.fileManager = fileManager ?? throw new ArgumentNullException(nameof(fileManager));
             this.articleMetaHarvester = articleMetaHarvester ?? throw new ArgumentNullException(nameof(articleMetaHarvester));
             this.modelFactory = modelFactory ?? throw new ArgumentNullException(nameof(modelFactory));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         private string FileName
@@ -82,7 +83,7 @@
             string fileNameReplacementPrefix = await this.ComposeFileNameReplacementPrefixAsync(document).ConfigureAwait(false);
             var outputFileName = $"{fileNameReplacementPrefix}.{FileConstants.XmlFileExtension}";
 
-            this.logger?.Log("{0} / {1} / {2}", this.FileName, fileNameReplacementPrefix, outputFileName);
+            this.logger.LogTrace("{0} / {1} / {2}", this.FileName, fileNameReplacementPrefix, outputFileName);
 
             this.ProcessReferencedFiles(document, this.fileNameWithoutExtension, fileNameReplacementPrefix);
             this.MoveNonXmlFile(fileNameReplacementPrefix);
@@ -99,7 +100,7 @@
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e);
+                    this.logger.LogError(e, string.Empty);
                 }
             }
         }
@@ -142,13 +143,13 @@
                         }
                         catch (Exception e)
                         {
-                            this.logger?.Log(e);
+                            this.logger.LogError(e, string.Empty);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    this.logger?.Log(ex);
+                    this.logger.LogError(ex, string.Empty);
                 }
             }
         }
@@ -176,7 +177,7 @@
                 }
                 catch (Exception ex)
                 {
-                    this.logger?.Log(ex);
+                    this.logger.LogError(ex, string.Empty);
                 }
             }
         }

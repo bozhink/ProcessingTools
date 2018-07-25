@@ -2,7 +2,7 @@
 {
     using System;
     using System.Web.Mvc;
-    using ProcessingTools.Contracts;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Web.Constants;
 
     public class ErrorController : Controller
@@ -14,9 +14,9 @@
 
         private readonly ILogger logger;
 
-        public ErrorController(ILogger logger)
+        public ErrorController(ILogger<ErrorController> logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet, ActionName(IndexActionName)]
@@ -30,7 +30,7 @@
 
             if (ex != null)
             {
-                this.logger?.Log(exception: ex, message: ControllerName);
+                this.logger.LogError(ex, string.Empty);
             }
 
             return this.View(model: ex);

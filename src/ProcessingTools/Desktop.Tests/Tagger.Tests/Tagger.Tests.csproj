@@ -121,10 +121,6 @@
       <Project>{CCBBBB18-D57A-45AD-A676-E5585880081D}</Project>
       <Name>Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
-      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
-      <Name>Loggers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\ProcessingTools.Commands.Models.Contracts\ProcessingTools.Commands.Models.Contracts.csproj">
       <Project>{d7a7689b-5972-4357-b2a2-54ff6adeacdc}</Project>
       <Name>ProcessingTools.Commands.Models.Contracts</Name>

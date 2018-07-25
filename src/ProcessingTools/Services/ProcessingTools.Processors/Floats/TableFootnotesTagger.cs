@@ -8,8 +8,8 @@ namespace ProcessingTools.Processors.Processors.Floats
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Processors.Contracts.Floats;
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace ProcessingTools.Processors.Processors.Floats
         /// Initializes a new instance of the <see cref="TableFootnotesTagger"/> class.
         /// </summary>
         /// <param name="logger">Logger</param>
-        public TableFootnotesTagger(ILogger logger)
+        public TableFootnotesTagger(ILogger<TableFootnotesTagger> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -43,12 +43,12 @@ namespace ProcessingTools.Processors.Processors.Floats
 
             if (tableWrapList.Count < 1)
             {
-                this.logger?.Log(message: "There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
+                this.logger.LogWarning("There are no table-wrap nodes with correctly formatted footnotes: table-wrap-foot/fn[@id][label]");
 
                 return false;
             }
 
-            this.logger?.Log("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
+            this.logger.LogDebug("Number of correctly formatted table-wrap-s: {0}", tableWrapList.Count);
 
             foreach (XmlNode tableWrap in tableWrapList)
             {

@@ -7,9 +7,9 @@ namespace ProcessingTools.Processors.Bio.ZooBank
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
         /// Initializes a new instance of the <see cref="ZooBankXmlCloner"/> class.
         /// </summary>
         /// <param name="logger">Logger.</param>
-        public ZooBankXmlCloner(ILogger logger)
+        public ZooBankXmlCloner(ILogger<ZooBankXmlCloner> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -53,7 +53,7 @@ namespace ProcessingTools.Processors.Bio.ZooBank
 
         private void CloneArticleLsid(IDocument target, IDocument source)
         {
-            this.logger?.Log(message: "Reference:");
+            this.logger.LogDebug("Reference:");
             try
             {
                 var sourceArticleSelfUriList = source.SelectNodes(XPathStrings.ArticleZooBankSelfUri);
@@ -71,25 +71,23 @@ namespace ProcessingTools.Processors.Bio.ZooBank
 
                         targetSelfUriNode.InnerText = sourceSelfUriNode.InnerText.Trim();
 
-                        this.logger?.Log(message: targetSelfUriNode.InnerText);
+                        this.logger.LogDebug(targetSelfUriNode.InnerText);
                     }
-
-                    this.logger?.Log();
                 }
                 else
                 {
-                    this.logger?.Log(type: LogType.Warning, message: "Number of ZooBank self-uri tags in these files does not match.");
+                    this.logger.LogWarning("Number of ZooBank self-uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
             {
-                this.logger?.Log(exception: e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
             }
         }
 
         private void CloneAuthorsLsid(IDocument target, IDocument source)
         {
-            this.logger?.Log(message: "Author(s):");
+            this.logger.LogDebug("Author(s):");
             try
             {
                 var sourceContributorUriList = source.SelectNodes(XPathStrings.ContributorZooBankUri);
@@ -107,25 +105,23 @@ namespace ProcessingTools.Processors.Bio.ZooBank
 
                         targetContributorUriNode.InnerText = sourceContributorUriNode.InnerText.Trim();
 
-                        this.logger?.Log(message: targetContributorUriNode.InnerText);
+                        this.logger.LogDebug(targetContributorUriNode.InnerText);
                     }
-
-                    this.logger?.Log();
                 }
                 else
                 {
-                    this.logger?.Log(type: LogType.Warning, message: "Number of ZooBank uri tags in these files does not match.");
+                    this.logger.LogWarning("Number of ZooBank uri tags in these files does not match.");
                 }
             }
             catch (Exception e)
             {
-                this.logger?.Log(exception: e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
             }
         }
 
         private void CloneTaxonomicActsLsid(IDocument target, IDocument source)
         {
-            this.logger?.Log(message: "Taxonomic acts:");
+            this.logger.LogDebug("Taxonomic acts:");
             try
             {
                 var sourceNomenclaturesList = source.SelectNodes(XPathStrings.TaxonTreatmentNomenclature);
@@ -156,26 +152,24 @@ namespace ProcessingTools.Processors.Bio.ZooBank
                                 {
                                     targetObjecIdList[j].InnerText = sourceObjecIdList[j].InnerText.Trim();
 
-                                    this.logger?.Log(message: targetObjecIdList[j].InnerXml);
+                                    this.logger.LogDebug(targetObjecIdList[j].InnerXml);
                                 }
                             }
                             else
                             {
-                                this.logger?.Log(type: LogType.Warning, message: "Number of ZooBank object-id tags does not match.");
+                                this.logger.LogWarning("Number of ZooBank object-id tags does not match.");
                             }
                         }
                     }
-
-                    this.logger?.Log();
                 }
                 else
                 {
-                    this.logger?.Log(type: LogType.Warning, message: "Number of nomenclatures tags in these files does not match.");
+                    this.logger?.LogWarning("Number of nomenclatures tags in these files does not match.");
                 }
             }
             catch (Exception e)
             {
-                this.logger?.Log(exception: e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
             }
         }
     }

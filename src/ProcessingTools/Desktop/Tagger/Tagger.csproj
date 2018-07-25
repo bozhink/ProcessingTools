@@ -88,6 +88,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Logging.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -154,7 +157,6 @@
     <Compile Include="Contracts\IEngine.cs" />
     <Compile Include="Contracts\IProgramSettings.cs" />
     <Compile Include="Core\ProgramSettings.cs" />
-    <Compile Include="Interceptors\LogParsedCoordinatesInterceptor.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -296,14 +298,6 @@
     <ProjectReference Include="..\..\Infrastructure\ProcessingTools.Net\ProcessingTools.Net.csproj">
       <Project>{f67fd0c3-b2c5-43f4-8722-ff77cfa42ae9}</Project>
       <Name>ProcessingTools.Net</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Reporters\Reporters.csproj">
-      <Project>{7351B164-F80A-4FA2-A3E3-9B3DBB2FDAAD}</Project>
-      <Name>Reporters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Loggers\Loggers.csproj">
-      <Project>{b6e6489b-65df-4e51-b0f2-86cd7feca313}</Project>
-      <Name>Loggers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Xml\Xml.csproj">
       <Project>{15C673AF-40BD-43E9-AEE9-1A819AC6145C}</Project>

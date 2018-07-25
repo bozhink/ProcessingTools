@@ -10,7 +10,6 @@
     using ProcessingTools.Data.Contracts.Documents;
     using ProcessingTools.Data.Documents.Mongo;
     using ProcessingTools.Interceptors;
-    using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
     using ProcessingTools.NlmArchiveConsoleManager.Core;
     using ProcessingTools.Services.IO;
@@ -35,10 +34,6 @@
                 .To<ProcessingTools.Common.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Contracts.ILogger>()
-                .To<ConsoleLogger>()
-                .InSingletonScope();
-
             this.Bind<ProcessingTools.Services.Contracts.IO.IXmlReadService>()
                 .To<ProcessingTools.Services.IO.XmlReadService>()
                 .WhenInjectedInto<XmlFileContentDataService>();
@@ -59,10 +54,6 @@
 
             this.Bind<IModelFactory>()
                 .ToFactory()
-                .InSingletonScope();
-
-            this.Bind<ProcessingTools.Contracts.IReporter>()
-                .To<ProcessingTools.Reporters.LogReporter>()
                 .InSingletonScope();
 
             this.Bind<ProcessingTools.Services.Contracts.Meta.IJournalMetaDataService>()

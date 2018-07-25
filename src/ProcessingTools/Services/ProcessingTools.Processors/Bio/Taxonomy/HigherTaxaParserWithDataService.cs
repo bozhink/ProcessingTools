@@ -9,9 +9,8 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Exceptions;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
@@ -36,7 +35,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         /// </summary>
         /// <param name="service">Taxon rank data service.</param>
         /// <param name="logger">Logger.</param>
-        public HigherTaxaParserWithDataService(TService service, ILogger logger)
+        public HigherTaxaParserWithDataService(TService service, ILogger<HigherTaxaParserWithDataService<TService, T>> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -109,13 +108,11 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
         private void ProcessMultipleRanksCase(string scientificName, IEnumerable<string> ranks)
         {
-            this.logger?.Log(LogType.Warning, "{0} --> Multiple matches.", scientificName);
+            this.logger.LogWarning("{0} --> Multiple matches.", scientificName);
             foreach (var rank in ranks)
             {
-                this.logger?.Log("{0} --> {1}", scientificName, rank);
+                this.logger.LogDebug("{0} --> {1}", scientificName, rank);
             }
-
-            this.logger?.Log();
         }
 
         private void ProcessSingleRankCase(string scientificName, IEnumerable<string> ranks, XmlNode context)
@@ -138,7 +135,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
         private void ProcessZeroRanksCase(string scientificName)
         {
-            this.logger?.Log(LogType.Warning, "{0} --> No match or error.\n", scientificName);
+            this.logger.LogWarning("{0} --> No match or error.\n", scientificName);
         }
     }
 }

@@ -8,9 +8,8 @@ namespace ProcessingTools.Processors.Geo.Coordinates
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Geo.Coordinates;
 
@@ -29,7 +28,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
         /// </summary>
         /// <param name="coordinateParser">Single coordinate parser.</param>
         /// <param name="logger">Logger.</param>
-        public CoordinatesParser(ICoordinateParser coordinateParser, ILogger logger)
+        public CoordinatesParser(ICoordinateParser coordinateParser, ILogger<CoordinatesParser> logger)
         {
             this.coordinateParser = coordinateParser ?? throw new ArgumentNullException(nameof(coordinateParser));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -53,7 +52,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
                 }
                 catch (Exception e)
                 {
-                    this.logger.Log(type: LogType.Warning, exception: e, message: CurrentCoordinateWillNotBeProcessedErrorMessage);
+                    this.logger.LogError(e, CurrentCoordinateWillNotBeProcessedErrorMessage);
                 }
             }
 
@@ -81,7 +80,7 @@ namespace ProcessingTools.Processors.Geo.Coordinates
 
         private void ParseSingleCoordinateXmlNode(XmlNode coordinateNode)
         {
-            this.logger.Log("\n{0}", coordinateNode.OuterXml);
+            this.logger.LogDebug("\n{0}", coordinateNode.OuterXml);
 
             coordinateNode.InnerXml = Regex.Replace(coordinateNode.InnerXml, "(º|˚|<sup>o</sup>)", "°");
 

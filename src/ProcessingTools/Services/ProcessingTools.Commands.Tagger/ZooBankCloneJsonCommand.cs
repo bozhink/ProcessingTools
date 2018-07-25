@@ -9,11 +9,11 @@ namespace ProcessingTools.Commands.Tagger
     using System.IO;
     using System.Runtime.Serialization.Json;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.ZooBank.Json;
     using ProcessingTools.Commands.Models.Contracts;
     using ProcessingTools.Commands.Tagger.Contracts;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts.Bio.ZooBank;
 
     /// <summary>
@@ -30,7 +30,7 @@ namespace ProcessingTools.Commands.Tagger
         /// </summary>
         /// <param name="cloner">Instance of <see cref="IZooBankJsonCloner"/>.</param>
         /// <param name="logger">Instance of <see cref="ILogger"/>.</param>
-        public ZooBankCloneJsonCommand(IZooBankJsonCloner cloner, ILogger logger)
+        public ZooBankCloneJsonCommand(IZooBankJsonCloner cloner, ILogger<ZooBankCloneJsonCommand> logger)
         {
             this.cloner = cloner ?? throw new ArgumentNullException(nameof(cloner));
             this.logger = logger;
@@ -91,7 +91,7 @@ namespace ProcessingTools.Commands.Tagger
             {
                 if (zoobankRegistrationList.Count > 1)
                 {
-                    this.logger?.Log(type: LogType.Warning, message: "More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
+                    this.logger.LogWarning("More than one ZooBank registration records in JSON File.\n\tIt will be used only the first one.");
                 }
 
                 zoobankRegistration = zoobankRegistrationList[0];

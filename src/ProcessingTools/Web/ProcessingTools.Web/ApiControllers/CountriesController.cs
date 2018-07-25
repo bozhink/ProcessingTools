@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using System.Web.Http;
-    using ProcessingTools.Contracts;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts.Web.Services.Geo;
 
     [Authorize]
@@ -12,10 +12,10 @@
         private readonly ICountriesApiService service;
         private readonly ILogger logger;
 
-        public CountriesController(ICountriesApiService service, ILogger logger)
+        public CountriesController(ICountriesApiService service, ILogger<CountriesController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         // GET: api/Countries
@@ -28,7 +28,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: nameof(this.Get));
+                this.logger.LogError(ex, nameof(this.Get));
                 return this.InternalServerError();
             }
         }

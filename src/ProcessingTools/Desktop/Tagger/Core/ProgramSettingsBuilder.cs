@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Commands.Tagger;
     using ProcessingTools.Commands.Tagger.Contracts;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
 
     public class ProgramSettingsBuilder
@@ -16,7 +16,7 @@
 
         public ProgramSettingsBuilder(ILogger logger, string[] args)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             this.commandInfoProvider = new CommandInfoProvider();
             this.commandInfoProvider.ProcessInformation();
@@ -286,18 +286,18 @@
 
             foreach (var commandName in commandNames)
             {
-                string commandNameLowerCase = commandName.ToLowerInvariant();
+                string commandNameLowerCase = commandName.ToUpperInvariant();
 
                 var matchingCommands = this.commandInfoProvider
                     .CommandsInformation
-                    .Where(i => i.Value.Name.ToLowerInvariant().StartsWith(commandNameLowerCase))
+                    .Where(i => i.Value.Name.ToUpperInvariant().StartsWith(commandNameLowerCase))
                     .ToArray();
 
                 switch (matchingCommands.Length)
                 {
                     case 0:
                         {
-                            this.logger?.Log(LogType.Warning, "No matching command '{0}'.", commandName);
+                            this.logger.LogWarning("No matching command '{0}'.", commandName);
                         }
 
                         break;
@@ -320,8 +320,7 @@
                             }
                             else
                             {
-                                this.logger?.Log(
-                                    LogType.Warning,
+                                this.logger.LogWarning(
                                     "Multiple commands match input name '{0}': {1}",
                                     commandName,
                                     string.Join("\n\t", matchingCommands.Select(c => c.Key.ToString())));
@@ -335,13 +334,13 @@
 
         private void PrintHelp()
         {
-            this.logger?.Log(message: Messages.HelpMessage);
+            this.logger.LogInformation(Messages.HelpMessage);
 
             // Print commands’ information
             foreach (var commandType in this.commandInfoProvider.CommandsInformation.Keys.OrderBy(k => k.Name))
             {
                 var commandInfo = this.commandInfoProvider.CommandsInformation[commandType];
-                this.logger?.Log("    +{0}\t=\t{1}", commandInfo.Name, commandInfo.Description);
+                this.logger.LogInformation("    +{0}\t=\t{1}", commandInfo.Name, commandInfo.Description);
             }
 
             Environment.Exit(1);

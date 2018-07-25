@@ -12,8 +12,8 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Processors.Contracts.Bio.Taxonomy;
@@ -37,7 +37,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
         /// Initializes a new instance of the <see cref="Expander"/> class.
         /// </summary>
         /// <param name="logger">Logger.</param>
-        public Expander(ILogger logger)
+        public Expander(ILogger<Expander> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -190,17 +190,17 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
             foreach (string species in speciesGenusPairs.Keys)
             {
-                this.logger?.Log(message: species);
+                this.logger.LogDebug(species);
 
                 switch (speciesGenusPairs[species].Length)
                 {
                     case 0:
-                        this.logger?.Log(type: LogType.Warning, message: "No matches.");
+                        this.logger.LogWarning("No matches.");
                         break;
 
                     case 1:
                         string genus = speciesGenusPairs[species].FirstOrDefault();
-                        this.logger?.Log(message: genus);
+                        this.logger.LogDebug(genus);
 
                         context.SelectNodes($"{XPathStrings.LowerTaxonNames}[normalize-space({XPathStrings.TaxonNamePartOfTypeSpecies})='{species}'][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus})=''][normalize-space({XPathStrings.TaxonNamePartOfTypeGenus}/@full-name)='']/{XPathStrings.TaxonNamePartOfTypeGenus}")
                             .Cast<XmlElement>()
@@ -221,12 +221,10 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                         break;
 
                     default:
-                        this.logger?.Log(type: LogType.Warning, message: "Multiple matches:");
-                        speciesGenusPairs[species].ToList().ForEach(g => this.logger?.Log("--> {0}", g));
+                        this.logger.LogWarning("Multiple matches:");
+                        speciesGenusPairs[species].ToList().ForEach(g => this.logger.LogDebug("--> {0}", g));
                         break;
                 }
-
-                this.logger?.Log();
             }
         }
 
@@ -342,7 +340,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
             }
             catch (Exception e)
             {
-                this.logger?.Log(exception: e, message: string.Empty);
+                this.logger.LogError(e, string.Empty);
             }
 
             this.RemoveIdAndPositionAttributesToTaxonNameElements(context);
@@ -352,14 +350,10 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
         private void PrintContextVectorModel(IQueryable<ITaxonName> taxonNames)
         {
-            this.logger?.Log();
-
             foreach (var taxonName in taxonNames.OrderBy(t => t.Position))
             {
-                this.logger?.Log(taxonName);
+                this.logger.LogDebug($"{taxonName}");
             }
-
-            this.logger?.Log();
         }
 
         private void RemoveIdAndPositionAttributesToTaxonNameElements(XmlNode context)
@@ -446,7 +440,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
                 messageBag.AppendLine();
             }
 
-            this.logger?.Log(message: messageBag?.ToString());
+            this.logger.LogDebug(messageBag?.ToString());
         }
 
         private void StableExpand(IQueryable<ITaxonName> taxonNames)
@@ -537,7 +531,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
             foreach (var message in messages)
             {
-                this.logger?.Log(message: message);
+                this.logger.LogDebug(message);
             }
         }
 
@@ -575,7 +569,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
 
             foreach (var message in messages)
             {
-                this.logger?.Log(message: message);
+                this.logger.LogDebug(message);
             }
         }
     }

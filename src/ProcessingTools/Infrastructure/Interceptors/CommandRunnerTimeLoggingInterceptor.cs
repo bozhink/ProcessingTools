@@ -4,16 +4,15 @@
     using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using Ninject.Extensions.Interception;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Processors.Contracts;
 
     public class CommandRunnerTimeLoggingInterceptor : IInterceptor
     {
         private readonly ILogger logger;
 
-        public CommandRunnerTimeLoggingInterceptor(ILogger logger)
+        public CommandRunnerTimeLoggingInterceptor(ILogger<CommandRunnerTimeLoggingInterceptor> logger)
         {
             this.logger = logger;
         }
@@ -43,19 +42,18 @@
                 {
                     foreach (var i in e.InnerExceptions)
                     {
-                        this.logger?.Log(i, "\nInvocation: {0}\n", invocationMessage);
+                        this.logger?.LogError(i, "\nInvocation: {0}\n", invocationMessage);
                     }
 
                     invocation.ReturnValue = Task.FromResult<object>(false);
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(e, "\nInvocation: {0}\n", invocationMessage);
+                    this.logger?.LogError(e, "\nInvocation: {0}\n", invocationMessage);
                     invocation.ReturnValue = Task.FromResult<object>(false);
                 }
 
-                this.logger?.Log(
-                    LogType.Info,
+                this.logger?.LogDebug(
                     "Elapsed time for execution of {0}: {1}.",
                     invocationMessage,
                     timer.Elapsed);

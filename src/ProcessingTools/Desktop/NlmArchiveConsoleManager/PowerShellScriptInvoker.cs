@@ -4,8 +4,7 @@
     using System.Collections.ObjectModel;
     using System.Management.Automation;
     using System.Threading;
-    using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
+    using Microsoft.Extensions.Logging;
 
     public class PowerShellScriptInvoker
     {
@@ -16,7 +15,7 @@
         {
         }
 
-        public PowerShellScriptInvoker(ILogger logger)
+        public PowerShellScriptInvoker(ILogger<PowerShellScriptInvoker> logger)
         {
             this.logger = logger;
         }
@@ -42,8 +41,8 @@
                 {
                     if (outputItem != null)
                     {
-                        this.logger?.Log(message: outputItem.BaseObject.GetType().FullName);
-                        this.logger?.Log(message: outputItem.BaseObject.ToString() + "\n");
+                        this.logger?.LogDebug(outputItem.BaseObject.GetType().FullName);
+                        this.logger?.LogDebug(outputItem.BaseObject.ToString() + "\n");
                     }
                 }
 
@@ -51,13 +50,14 @@
                 {
                     foreach (var record in powerShellInstance.Streams.Debug)
                     {
-                        this.logger?.Log(message: record.Message);
-                        this.logger?.Log(message: record.InvocationInfo);
-                        this.logger?.Log(message: record.PipelineIterationInfo);
+                        this.logger?.LogDebug(record.Message);
+                        this.logger?.LogDebug(record.InvocationInfo.ToString());
+                        this.logger?.LogDebug(record.PipelineIterationInfo.ToString());
                     }
                 }
 
 #if Win10
+
                 // TODO: Powershell in Win10
                 if (powerShellInstance.Streams.Information.Count > 0)
                 {
@@ -72,7 +72,7 @@
                 {
                     foreach (var record in powerShellInstance.Streams.Warning)
                     {
-                        this.logger?.Log(type: LogType.Warning, message: record.Message);
+                        this.logger?.LogWarning(record.Message);
                     }
                 }
 
@@ -80,7 +80,7 @@
                 {
                     foreach (var record in powerShellInstance.Streams.Error)
                     {
-                        this.logger?.Log(type: LogType.Error, message: record.ErrorDetails.Message);
+                        this.logger?.LogError(record.ErrorDetails.Message);
                     }
                 }
             }

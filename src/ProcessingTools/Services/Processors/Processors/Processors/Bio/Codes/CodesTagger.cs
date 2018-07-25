@@ -12,6 +12,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Xml;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Constants.Schema;
     using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
@@ -129,12 +130,12 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
             ICodesTransformerFactory transformerFactory,
             ITextContentHarvester contentHarvester,
             IContentTagger contentTagger,
-            ILogger logger)
+            ILogger<CodesTagger> logger)
         {
             this.transformerFactory = transformerFactory ?? throw new ArgumentNullException(nameof(transformerFactory));
             this.contentHarvester = contentHarvester ?? throw new ArgumentNullException(nameof(contentHarvester));
             this.contentTagger = contentTagger ?? throw new ArgumentNullException(nameof(contentTagger));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task TagKnownSpecimenCodesAsync(IDocument document)
@@ -168,13 +169,13 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
 
             var potentialSpecimenCodes = await this.ExtractPotentialSpecimenCodes(document, CodePattern).ConfigureAwait(false);
 
-            this.logger?.Log(message: "\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
+            this.logger.LogDebug("\n\n" + potentialSpecimenCodes.Count() + " code words in article\n");
             foreach (string word in potentialSpecimenCodes)
             {
-                this.logger?.Log(message: word);
+                this.logger.LogDebug(message: word);
             }
 
-            this.logger?.Log(message: "\n\nPlausible specimen codes\n\n");
+            this.logger.LogDebug(message: "\n\nPlausible specimen codes\n\n");
 
             var plausibleSpecimenCodes = this.GetPlausibleSpecimenCodesBasedOnInstitutionalCodes(document, potentialSpecimenCodes);
 
@@ -320,7 +321,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                     nodeInnerXml = guessNextCode.Replace(nodeInnerXml, replacement);
                 }
 
-                await node.SafeReplaceInnerXml(nodeInnerXml, this.logger).ConfigureAwait(false);
+                await node.SafeReplaceInnerXmlAsync(nodeInnerXml).ConfigureAwait(false);
 
                 if (xpathToSelectSpecimenCodeTags != null && xpathToSelectSpecimenCodeTags.Length > 0)
                 {
@@ -391,14 +392,14 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                 string nestedSpecimenCodesXpath = string.Format(".//{0}[{0}]", tagModel.Name);
                 foreach (XmlNode nestedSpecimenCodesNode in document.SelectNodes(nestedSpecimenCodesXpath))
                 {
-                    this.logger?.Log(type: LogType.Warning, message: "WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
+                    this.logger.LogWarning("WARNING: Nested specimen codes: " + nestedSpecimenCodesNode.InnerXml);
                 }
             }
         }
 
         private void SetAttributesOfSequentalSpecimenCodes(XmlNode node, string tagName)
         {
-            this.logger?.Log("\n{0}", node.OuterXml);
+            this.logger.LogDebug("\n{0}", node.OuterXml);
 
             if (node.NextSibling != null)
             {
@@ -436,7 +437,7 @@ namespace ProcessingTools.Processors.Processors.Bio.Codes
                             next.Attributes.Append(attr);
                         }
 
-                        this.logger?.Log(message: next.OuterXml);
+                        this.logger.LogDebug(next.OuterXml);
                     }
                 }
             }

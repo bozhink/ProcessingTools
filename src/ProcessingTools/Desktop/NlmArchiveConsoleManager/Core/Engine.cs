@@ -4,8 +4,8 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Documents;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Core;
     using ProcessingTools.NlmArchiveConsoleManager.Contracts.Factories;
@@ -22,12 +22,12 @@
             IProcessorFactory processorFactory,
             IJournalsMetaDataService journalsMetaService,
             IHelpProvider helpProvider,
-            ILogger logger)
+            ILogger<Engine> logger)
         {
             this.processorFactory = processorFactory ?? throw new ArgumentNullException(nameof(processorFactory));
             this.journalsMetaService = journalsMetaService ?? throw new ArgumentNullException(nameof(journalsMetaService));
             this.helpProvider = helpProvider ?? throw new ArgumentNullException(nameof(helpProvider));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         private Func<string, bool> FilterDoubleDashedOption => a => a.IndexOf("--") == 0;
@@ -50,7 +50,7 @@
                 }
                 else
                 {
-                    this.logger?.Log(LogType.Error, "'{0}' is not a valid path.", x);
+                    this.logger.LogError("'{0}' is not a valid path.", x);
                 }
 
                 return null;
@@ -73,7 +73,7 @@
 
             if (journalMeta == null)
             {
-                this.logger?.Log(type: LogType.Error, message: "Journal not found");
+                this.logger.LogError("Journal not found");
                 return;
             }
 
@@ -89,7 +89,7 @@
 
             foreach (var directoryName in directories)
             {
-                this.logger?.Log(message: directoryName);
+                this.logger.LogInformation(directoryName);
 
                 var direcoryProcessor = this.processorFactory.CreateDirectoryProcessor(directoryName, journalMeta);
 

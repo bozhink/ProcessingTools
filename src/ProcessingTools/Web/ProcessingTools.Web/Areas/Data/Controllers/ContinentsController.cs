@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using AutoMapper;
+    using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Geo;
     using ProcessingTools.Services.Contracts.Geo;
@@ -36,11 +36,11 @@
         private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        public ContinentsController(IContinentsDataService service, ICountriesDataService countriesService, ILoggerFactory loggerFactory)
+        public ContinentsController(IContinentsDataService service, ICountriesDataService countriesService, ILogger<ContinentsController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.countriesService = countriesService ?? throw new ArgumentNullException(nameof(countriesService));
-            this.logger = loggerFactory?.Create(this.GetType());
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             var mapperConfiguration = new MapperConfiguration(c =>
             {
@@ -93,7 +93,8 @@
         }
 
         // GET: Data/Continents
-        [HttpGet, ActionName(IndexActionName)]
+        [HttpGet]
+        [ActionName(IndexActionName)]
         public async Task<ActionResult> Index(int? p, int? n)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -124,19 +125,20 @@
         }
 
         // GET: Data/Continents/Details/5
-        [HttpGet, ActionName(DetailsActionName)]
+        [HttpGet]
+        [ActionName(DetailsActionName)]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
-                this.logger?.Log(LogType.Info, id);
+                this.logger.LogError($"{HttpStatusCode.BadRequest} {id}");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
             if (model == null)
             {
-                this.logger?.Log(LogType.Error, id);
+                this.logger.LogError($"{HttpStatusCode.NotFound} {id}");
                 return this.HttpNotFound();
             }
 
@@ -163,7 +165,8 @@
         }
 
         // GET: Data/Continents/Create
-        [HttpGet, ActionName(CreateActionName)]
+        [HttpGet]
+        [ActionName(CreateActionName)]
         public ActionResult Create()
         {
             var viewModel = new ContinentPageViewModel
@@ -181,8 +184,9 @@
         }
 
         // POST: Data/Continents/Create
-        [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(CreateActionName)]
         public async Task<ActionResult> Create([Bind(Include = nameof(ContinentRequestModel.Name) + "," + nameof(ContinentRequestModel.AbbreviatedName))] ContinentRequestModel model, string synonyms, bool exit = false, bool createNew = false, bool cancel = false)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -222,7 +226,7 @@
                         }
                     }
 
-                    return this.RedirectToAction(EditActionName, routeValues: new { id = id, ReturnUrl = returnUrl });
+                    return this.RedirectToAction(EditActionName, routeValues: new { id, returnUrl });
                 }
                 else
                 {
@@ -231,7 +235,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: ControllerName);
+                this.logger.LogError(ex, ControllerName);
                 this.AddErrors(ex.Message);
             }
 
@@ -251,19 +255,20 @@
         }
 
         // GET: Data/Continents/Edit/5
-        [HttpGet, ActionName(EditActionName)]
+        [HttpGet]
+        [ActionName(EditActionName)]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
-                this.logger?.Log(LogType.Info, id);
+                this.logger.LogError($"{HttpStatusCode.BadRequest} {id}");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
             if (model == null)
             {
-                this.logger?.Log(LogType.Error, id);
+                this.logger.LogError($"{HttpStatusCode.NotFound} {id}");
                 return this.HttpNotFound();
             }
 
@@ -282,8 +287,9 @@
         }
 
         // POST: Data/Continents/Edit/5
-        [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(EditActionName)]
         public async Task<ActionResult> Edit([Bind(Include = nameof(ContinentRequestModel.Id) + "," + nameof(ContinentRequestModel.Name) + "," + nameof(ContinentRequestModel.AbbreviatedName))] ContinentRequestModel model, string synonyms, bool exit = false, bool createNew = false, bool cancel = false)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -333,7 +339,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: ControllerName);
+                this.logger.LogError(ex, ControllerName);
                 this.AddErrors(ex.Message);
             }
 
@@ -352,19 +358,20 @@
         }
 
         // GET: Data/Continents/Delete/5
-        [HttpGet, ActionName(DeleteActionName)]
+        [HttpGet]
+        [ActionName(DeleteActionName)]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
-                this.logger?.Log(LogType.Info, id);
+                this.logger.LogError($"{HttpStatusCode.BadRequest} {id}");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var model = await this.service.GetByIdAsync(id).ConfigureAwait(false);
             if (model == null)
             {
-                this.logger?.Log(LogType.Error, id);
+                this.logger.LogError($"{HttpStatusCode.NotFound} {id}");
                 return this.HttpNotFound();
             }
 
@@ -383,8 +390,9 @@
         }
 
         // POST: Data/Continents/Delete/5
-        [HttpPost, ActionName(DeleteActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(DeleteActionName)]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             try
@@ -399,7 +407,7 @@
             }
             catch (Exception ex)
             {
-                this.logger?.Log(exception: ex, message: ControllerName);
+                this.logger.LogError(ex, ControllerName);
                 this.AddErrors(ex.Message);
             }
 
@@ -407,7 +415,8 @@
         }
 
         // GET: Data/Continents/Synonyms/5
-        [HttpGet, ActionName(SynonymsActionName)]
+        [HttpGet]
+        [ActionName(SynonymsActionName)]
         public async Task<JsonResult> Synonyms(int id)
         {
             var result = new JsonResult
@@ -442,7 +451,7 @@
                 }
                 catch (Exception ex)
                 {
-                    this.logger?.Log(exception: ex, message: ControllerName);
+                    this.logger.LogError(ex, ControllerName);
                     inserted = false;
                 }
             }
@@ -466,7 +475,7 @@
                 }
                 catch (Exception ex)
                 {
-                    this.logger?.Log(exception: ex, message: ControllerName);
+                    this.logger.LogError(ex, ControllerName);
                 }
             }
         }
@@ -502,7 +511,7 @@
                 }
                 catch (Exception ex)
                 {
-                    this.logger?.Log(exception: ex, message: ControllerName);
+                    this.logger.LogError(ex, ControllerName);
                 }
             }
         }

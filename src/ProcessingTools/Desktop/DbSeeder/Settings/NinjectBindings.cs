@@ -15,9 +15,7 @@
     using ProcessingTools.DbSeeder.Core;
     using ProcessingTools.DbSeeder.Providers;
     using ProcessingTools.Interceptors;
-    using ProcessingTools.Loggers.Loggers;
     using ProcessingTools.Processors.Contracts;
-    using ProcessingTools.Reporters;
 
     /// <summary>
     /// NinjectModule to bind seeder objects.
@@ -42,14 +40,6 @@
 
             this.Bind<Func<Type, IDbSeeder>>()
                 .ToMethod(context => t => (IDbSeeder)context.Kernel.Get(t))
-                .InSingletonScope();
-
-            this.Bind<ILogger>()
-                .To<ConsoleLogger>()
-                .InSingletonScope();
-
-            this.Bind<IReporter>()
-                .To<LogReporter>()
                 .InSingletonScope();
 
             this.Bind<IHelpProvider>()

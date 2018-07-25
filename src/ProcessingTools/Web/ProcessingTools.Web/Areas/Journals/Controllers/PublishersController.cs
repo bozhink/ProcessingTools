@@ -6,9 +6,9 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using ProcessingTools.Constants;
-    using ProcessingTools.Contracts;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions.Linq;
     using ProcessingTools.Models.Contracts.Services.Data.Journals;
@@ -26,19 +26,19 @@
     {
         public const string ControllerName = "Publishers";
         public const string IndexActionName = RouteValues.IndexActionName;
-        public const string CreateActionName = nameof(PublishersController.Create);
-        public const string DeleteActionName = nameof(PublishersController.Delete);
-        public const string DetailsActionName = nameof(PublishersController.Details);
-        public const string EditActionName = nameof(PublishersController.Edit);
-        public const string AddressesActionName = nameof(PublishersController.Addresses);
+        public const string CreateActionName = nameof(Create);
+        public const string DeleteActionName = nameof(Delete);
+        public const string DetailsActionName = nameof(Details);
+        public const string EditActionName = nameof(Edit);
+        public const string AddressesActionName = nameof(Addresses);
 
         private readonly IPublishersDataService service;
         private readonly ILogger logger;
 
-        public PublishersController(IPublishersDataService service, ILogger logger)
+        public PublishersController(IPublishersDataService service, ILogger<PublishersController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.service.SaveToHistory = true;
         }
 
@@ -78,7 +78,8 @@
         };
 
         // GET: Journals/Publishers
-        [HttpGet, ActionName(IndexActionName)]
+        [HttpGet]
+        [ActionName(IndexActionName)]
         public async Task<ActionResult> Index(int p = 0, int n = 10)
         {
             string returnUrl = this.Request[ContextKeys.ReturnUrl];
@@ -96,7 +97,8 @@
         }
 
         // GET: Journals/Publishers/Details/5
-        [HttpGet, ActionName(DetailsActionName)]
+        [HttpGet]
+        [ActionName(DetailsActionName)]
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
@@ -117,7 +119,8 @@
         }
 
         // GET: Journals/Publishers/Create
-        [HttpGet, ActionName(CreateActionName)]
+        [HttpGet]
+        [ActionName(CreateActionName)]
         public ActionResult Create()
         {
             var viewModel = new PublisherViewModel();
@@ -129,8 +132,9 @@
         }
 
         // POST: Journals/Publishers/Create
-        [HttpPost, ActionName(CreateActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(CreateActionName)]
         public async Task<ActionResult> Create([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model, string addresses)
         {
             try
@@ -161,7 +165,8 @@
         }
 
         // GET: Journals/Publishers/Edit/5
-        [HttpGet, ActionName(EditActionName)]
+        [HttpGet]
+        [ActionName(EditActionName)]
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
@@ -184,8 +189,9 @@
         }
 
         // POST: Journals/Publishers/Edit/5
-        [HttpPost, ActionName(EditActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(EditActionName)]
         public async Task<ActionResult> Edit([Bind(Include = "Id,AbbreviatedName,Name")] Publisher model, string addresses, bool exit, bool createNew, bool cancel)
         {
             if (cancel)
@@ -231,7 +237,8 @@
         }
 
         // GET: Journals/Publishers/Delete/5
-        [HttpGet, ActionName(DeleteActionName)]
+        [HttpGet]
+        [ActionName(DeleteActionName)]
         public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
@@ -252,8 +259,9 @@
         }
 
         // POST: Journals/Publishers/Delete/5
-        [HttpPost, ActionName(DeleteActionName)]
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(DeleteActionName)]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
             if (id == null)
@@ -266,7 +274,8 @@
             return this.RedirectToAction(IndexActionName);
         }
 
-        [HttpGet, ActionName(AddressesActionName)]
+        [HttpGet]
+        [ActionName(AddressesActionName)]
         public async Task<JsonResult> Addresses(string id)
         {
             if (id == null)
@@ -291,7 +300,8 @@
             return result;
         }
 
-        [HttpPost, ActionName(AddressesActionName)]
+        [HttpPost]
+        [ActionName(AddressesActionName)]
         public async Task<JsonResult> Addresses(string id, Address[] addresses)
         {
             if (id == null)
@@ -315,7 +325,7 @@
                 }
                 catch (Exception ex)
                 {
-                    this.logger?.Log(exception: ex, message: ControllerName);
+                    this.logger.LogError(ex, ControllerName);
                 }
             }
         }
@@ -348,7 +358,7 @@
                     }
                     catch (Exception ex)
                     {
-                        this.logger?.Log(exception: ex, message: ControllerName);
+                        this.logger.LogError(ex, ControllerName);
                     }
                 }
             }

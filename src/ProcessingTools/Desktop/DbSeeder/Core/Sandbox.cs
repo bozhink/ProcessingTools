@@ -2,15 +2,16 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
     using ProcessingTools.Contracts;
 
     internal class Sandbox : ISandbox
     {
         private readonly ILogger logger;
 
-        public Sandbox(ILogger logger)
+        public Sandbox(ILogger<Sandbox> logger)
         {
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task RunAsync(Action action)
@@ -30,12 +31,12 @@
                 {
                     foreach (var i in e.InnerExceptions)
                     {
-                        this.logger?.Log(exception: i, message: "\n");
+                        this.logger.LogError(exception: i, message: "\n");
                     }
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(exception: e, message: string.Empty);
+                    this.logger.LogError(exception: e, message: string.Empty);
                 }
             })
             .ConfigureAwait(false);
@@ -58,12 +59,12 @@
                 {
                     foreach (var i in e.InnerExceptions)
                     {
-                        this.logger?.Log(exception: i, message: "\n");
+                        this.logger.LogError(exception: i, message: "\n");
                     }
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(exception: e, message: string.Empty);
+                    this.logger.LogError(exception: e, message: string.Empty);
                 }
             })
             .ConfigureAwait(false);
@@ -86,14 +87,14 @@
                 {
                     foreach (var i in e.InnerExceptions)
                     {
-                        this.logger?.Log(exception: i, message: "\n");
+                        this.logger.LogError(exception: i, message: "\n");
                     }
 
                     throw;
                 }
                 catch (Exception e)
                 {
-                    this.logger?.Log(exception: e, message: string.Empty);
+                    this.logger.LogError(exception: e, message: string.Empty);
                     throw;
                 }
             })
