@@ -51,15 +51,15 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// </summary>
         public const string DetailsActionName = nameof(Details);
 
-        private readonly IReferenceTagStylesService service;
+        private readonly IReferenceTagStylesWebService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceTagStylesController"/> class.
         /// </summary>
-        /// <param name="service">Instance of <see cref="IReferenceTagStylesService"/>.</param>
+        /// <param name="service">Instance of <see cref="IReferenceTagStylesWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public ReferenceTagStylesController(IReferenceTagStylesService service, ILogger<ReferenceTagStylesController> logger)
+        public ReferenceTagStylesController(IReferenceTagStylesWebService service, ILogger<ReferenceTagStylesController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

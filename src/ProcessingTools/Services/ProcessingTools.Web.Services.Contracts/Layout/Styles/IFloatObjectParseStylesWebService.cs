@@ -1,4 +1,4 @@
-﻿// <copyright file="IFloatObjectParseStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="IFloatObjectParseStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Services.Contracts.Layout.Styles
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
 
     /// <summary>
-    /// Float object parse styles service.
+    /// Float object parse styles web service.
     /// </summary>
-    public interface IFloatObjectParseStylesService
+    public interface IFloatObjectParseStylesWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="FloatObjectParseStylesIndexViewModel"/>.

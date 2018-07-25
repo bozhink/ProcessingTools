@@ -1,4 +1,4 @@
-﻿// <copyright file="FloatObjectTagStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="FloatObjectTagStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -13,22 +13,23 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
     using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
-    /// Float object tag styles service.
+    /// Float object tag styles web service.
     /// </summary>
-    public class FloatObjectTagStylesService : ProcessingTools.Web.Services.Contracts.Layout.Styles.IFloatObjectTagStylesService
+    public class FloatObjectTagStylesWebService : IFloatObjectTagStylesWebService
     {
         private readonly IFloatObjectTagStylesDataService floatObjectTagStylesDataService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FloatObjectTagStylesService"/> class.
+        /// Initializes a new instance of the <see cref="FloatObjectTagStylesWebService"/> class.
         /// </summary>
         /// <param name="floatObjectTagStylesDataService">Instance of <see cref="IFloatObjectTagStylesDataService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public FloatObjectTagStylesService(IFloatObjectTagStylesDataService floatObjectTagStylesDataService, IUserContext userContext)
+        public FloatObjectTagStylesWebService(IFloatObjectTagStylesDataService floatObjectTagStylesDataService, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -56,6 +57,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
 
         /// <inheritdoc/>
         public async Task<bool> CreateFloatObjectTagStyleAsync(FloatObjectTagStyleCreateRequestModel model)
@@ -96,7 +100,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStyleCreateViewModel> GetFloatObjectTagStyleCreateViewModelAsync()
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             return new FloatObjectTagStyleCreateViewModel(userContext);
         }
@@ -104,7 +108,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStyleDeleteViewModel> GetFloatObjectTagStyleDeleteViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -124,7 +128,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStyleDetailsViewModel> GetFloatObjectTagStyleDetailsViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -144,7 +148,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStyleEditViewModel> GetFloatObjectTagStyleEditViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -164,7 +168,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStylesIndexViewModel> GetFloatObjectTagStylesIndexViewModelAsync(int skip, int take)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var data = await this.floatObjectTagStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.floatObjectTagStylesDataService.SelectCountAsync().ConfigureAwait(false);
@@ -177,7 +181,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStyleCreateViewModel> MapToViewModelAsync(FloatObjectTagStyleCreateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null)
             {
@@ -193,7 +197,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStyleEditViewModel> MapToViewModelAsync(FloatObjectTagStyleUpdateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
@@ -218,7 +222,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<FloatObjectTagStyleDeleteViewModel> MapToViewModelAsync(FloatObjectTagStyleDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {

@@ -1,4 +1,4 @@
-﻿// <copyright file="ReferenceParseStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="ReferenceParseStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -13,22 +13,23 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Web.Models.Layout.Styles.References;
     using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
-    /// Reference parse styles service.
+    /// Reference parse styles web service.
     /// </summary>
-    public class ReferenceParseStylesService : ProcessingTools.Web.Services.Contracts.Layout.Styles.IReferenceParseStylesService
+    public class ReferenceParseStylesWebService : IReferenceParseStylesWebService
     {
         private readonly IReferenceParseStylesDataService referenceParseStylesDataService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReferenceParseStylesService"/> class.
+        /// Initializes a new instance of the <see cref="ReferenceParseStylesWebService"/> class.
         /// </summary>
         /// <param name="referenceParseStylesDataService">Instance of <see cref="IReferenceParseStylesDataService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public ReferenceParseStylesService(IReferenceParseStylesDataService referenceParseStylesDataService, IUserContext userContext)
+        public ReferenceParseStylesWebService(IReferenceParseStylesDataService referenceParseStylesDataService, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -56,6 +57,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
 
         /// <inheritdoc/>
         public async Task<bool> CreateReferenceParseStyleAsync(ReferenceParseStyleCreateRequestModel model)
@@ -96,7 +100,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStyleCreateViewModel> GetReferenceParseStyleCreateViewModelAsync()
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             return new ReferenceParseStyleCreateViewModel(userContext);
         }
@@ -104,7 +108,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStyleDeleteViewModel> GetReferenceParseStyleDeleteViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -124,7 +128,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStyleDetailsViewModel> GetReferenceParseStyleDetailsViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -144,7 +148,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStyleEditViewModel> GetReferenceParseStyleEditViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -164,7 +168,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStylesIndexViewModel> GetReferenceParseStylesIndexViewModelAsync(int skip, int take)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var data = await this.referenceParseStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.referenceParseStylesDataService.SelectCountAsync().ConfigureAwait(false);
@@ -177,7 +181,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStyleCreateViewModel> MapToViewModelAsync(ReferenceParseStyleCreateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null)
             {
@@ -193,7 +197,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStyleEditViewModel> MapToViewModelAsync(ReferenceParseStyleUpdateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
@@ -218,7 +222,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceParseStyleDeleteViewModel> MapToViewModelAsync(ReferenceParseStyleDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {

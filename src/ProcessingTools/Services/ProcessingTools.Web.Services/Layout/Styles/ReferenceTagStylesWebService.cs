@@ -1,4 +1,4 @@
-﻿// <copyright file="ReferenceTagStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="ReferenceTagStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -13,22 +13,23 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.References;
     using ProcessingTools.Web.Models.Layout.Styles.References;
     using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
-    /// Reference tag styles service.
+    /// Reference tag styles web service.
     /// </summary>
-    public class ReferenceTagStylesService : ProcessingTools.Web.Services.Contracts.Layout.Styles.IReferenceTagStylesService
+    public class ReferenceTagStylesWebService : IReferenceTagStylesWebService
     {
         private readonly IReferenceTagStylesDataService referenceTagStylesDataService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReferenceTagStylesService"/> class.
+        /// Initializes a new instance of the <see cref="ReferenceTagStylesWebService"/> class.
         /// </summary>
         /// <param name="referenceTagStylesDataService">Instance of <see cref="IReferenceTagStylesDataService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public ReferenceTagStylesService(IReferenceTagStylesDataService referenceTagStylesDataService, IUserContext userContext)
+        public ReferenceTagStylesWebService(IReferenceTagStylesDataService referenceTagStylesDataService, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -56,6 +57,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
             });
             this.mapper = mapperConfiguration.CreateMapper();
         }
+
+        /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
 
         /// <inheritdoc/>
         public async Task<bool> CreateReferenceTagStyleAsync(ReferenceTagStyleCreateRequestModel model)
@@ -96,7 +100,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStyleCreateViewModel> GetReferenceTagStyleCreateViewModelAsync()
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             return new ReferenceTagStyleCreateViewModel(userContext);
         }
@@ -104,7 +108,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStyleDeleteViewModel> GetReferenceTagStyleDeleteViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -124,7 +128,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStyleDetailsViewModel> GetReferenceTagStyleDetailsViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -144,7 +148,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStyleEditViewModel> GetReferenceTagStyleEditViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -164,7 +168,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStylesIndexViewModel> GetReferenceTagStylesIndexViewModelAsync(int skip, int take)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var data = await this.referenceTagStylesDataService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.referenceTagStylesDataService.SelectCountAsync().ConfigureAwait(false);
@@ -177,7 +181,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStyleCreateViewModel> MapToViewModelAsync(ReferenceTagStyleCreateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null)
             {
@@ -193,7 +197,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStyleEditViewModel> MapToViewModelAsync(ReferenceTagStyleUpdateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
@@ -218,7 +222,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<ReferenceTagStyleDeleteViewModel> MapToViewModelAsync(ReferenceTagStyleDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {

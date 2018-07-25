@@ -51,15 +51,15 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// </summary>
         public const string DetailsActionName = nameof(Details);
 
-        private readonly IReferenceParseStylesService service;
+        private readonly IReferenceParseStylesWebService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceParseStylesController"/> class.
         /// </summary>
-        /// <param name="service">Instance of <see cref="IReferenceParseStylesService"/>.</param>
+        /// <param name="service">Instance of <see cref="IReferenceParseStylesWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public ReferenceParseStylesController(IReferenceParseStylesService service, ILogger<ReferenceParseStylesController> logger)
+        public ReferenceParseStylesController(IReferenceParseStylesWebService service, ILogger<ReferenceParseStylesController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

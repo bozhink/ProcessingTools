@@ -1,4 +1,4 @@
-﻿// <copyright file="IReferenceTagStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="IReferenceTagStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Services.Contracts.Layout.Styles
     using ProcessingTools.Web.Models.Layout.Styles.References;
 
     /// <summary>
-    /// Reference tag styles service.
+    /// Reference tag styles web service.
     /// </summary>
-    public interface IReferenceTagStylesService
+    public interface IReferenceTagStylesWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="ReferenceTagStylesIndexViewModel"/>.

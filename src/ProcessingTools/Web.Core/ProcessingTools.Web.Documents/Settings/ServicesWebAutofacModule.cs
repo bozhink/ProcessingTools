@@ -27,11 +27,11 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ArticlesWebService>().As<IArticlesWebService>().InstancePerDependency();
             builder.RegisterType<DocumentsWebService>().As<IDocumentsWebService>().InstancePerDependency();
 
-            builder.RegisterType<FloatObjectTagStylesService>().As<IFloatObjectTagStylesService>().InstancePerDependency();
-            builder.RegisterType<FloatObjectParseStylesService>().As<IFloatObjectParseStylesService>().InstancePerDependency();
-            builder.RegisterType<ReferenceTagStylesService>().As<IReferenceTagStylesService>().InstancePerDependency();
-            builder.RegisterType<ReferenceParseStylesService>().As<IReferenceParseStylesService>().InstancePerDependency();
-            builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().InstancePerDependency();
+            builder.RegisterType<FloatObjectTagStylesWebService>().As<IFloatObjectTagStylesWebService>().InstancePerDependency();
+            builder.RegisterType<FloatObjectParseStylesWebService>().As<IFloatObjectParseStylesWebService>().InstancePerDependency();
+            builder.RegisterType<ReferenceTagStylesWebService>().As<IReferenceTagStylesWebService>().InstancePerDependency();
+            builder.RegisterType<ReferenceParseStylesWebService>().As<IReferenceParseStylesWebService>().InstancePerDependency();
+            builder.RegisterType<JournalStylesWebService>().As<IJournalStylesWebService>().InstancePerDependency();
 
             builder.RegisterType<CoordinatesCalculatorWebService>().As<ICoordinatesCalculatorWebService>().InstancePerDependency();
 

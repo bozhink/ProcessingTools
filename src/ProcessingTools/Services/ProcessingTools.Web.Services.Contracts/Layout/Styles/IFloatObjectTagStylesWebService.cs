@@ -1,4 +1,4 @@
-﻿// <copyright file="IFloatObjectTagStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="IFloatObjectTagStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Services.Contracts.Layout.Styles
     using ProcessingTools.Web.Models.Layout.Styles.Floats;
 
     /// <summary>
-    /// Float object tag styles service.
+    /// Float object tag styles web service.
     /// </summary>
-    public interface IFloatObjectTagStylesService
+    public interface IFloatObjectTagStylesWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="FloatObjectTagStylesIndexViewModel"/>.

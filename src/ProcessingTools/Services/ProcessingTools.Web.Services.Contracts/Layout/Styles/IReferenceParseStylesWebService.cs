@@ -1,4 +1,4 @@
-﻿// <copyright file="IReferenceParseStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="IReferenceParseStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ namespace ProcessingTools.Web.Services.Contracts.Layout.Styles
     using ProcessingTools.Web.Models.Layout.Styles.References;
 
     /// <summary>
-    /// Reference parse styles service.
+    /// Reference parse styles web service.
     /// </summary>
-    public interface IReferenceParseStylesService
+    public interface IReferenceParseStylesWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="ReferenceParseStylesIndexViewModel"/>.

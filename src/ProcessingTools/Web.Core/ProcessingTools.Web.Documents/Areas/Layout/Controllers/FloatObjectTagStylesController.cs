@@ -51,15 +51,15 @@ namespace ProcessingTools.Web.Documents.Areas.Layout.Controllers
         /// </summary>
         public const string DetailsActionName = nameof(Details);
 
-        private readonly IFloatObjectTagStylesService service;
+        private readonly IFloatObjectTagStylesWebService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectTagStylesController"/> class.
         /// </summary>
-        /// <param name="service">Instance of <see cref="IFloatObjectTagStylesService"/>.</param>
+        /// <param name="service">Instance of <see cref="IFloatObjectTagStylesWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public FloatObjectTagStylesController(IFloatObjectTagStylesService service, ILogger<FloatObjectTagStylesController> logger)
+        public FloatObjectTagStylesController(IFloatObjectTagStylesWebService service, ILogger<FloatObjectTagStylesController> logger)
         {
             this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

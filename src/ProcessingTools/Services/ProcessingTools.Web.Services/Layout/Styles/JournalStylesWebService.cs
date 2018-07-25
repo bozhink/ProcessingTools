@@ -1,4 +1,4 @@
-﻿// <copyright file="JournalStylesService.cs" company="ProcessingTools">
+﻿// <copyright file="JournalStylesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -17,22 +17,23 @@ namespace ProcessingTools.Web.Services.Layout.Styles
     using ProcessingTools.Services.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Web.Models.Layout.Styles.Journals;
     using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services.Contracts.Layout.Styles;
 
     /// <summary>
-    /// Journal styles service.
+    /// Journal styles web service.
     /// </summary>
-    public class JournalStylesService : ProcessingTools.Web.Services.Contracts.Layout.Styles.IJournalStylesService
+    public class JournalStylesWebService : IJournalStylesWebService
     {
         private readonly IJournalStylesService journalStylesService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="JournalStylesService"/> class.
+        /// Initializes a new instance of the <see cref="JournalStylesWebService"/> class.
         /// </summary>
         /// <param name="journalStylesService">Instance of <see cref="IJournalStylesService"/>.</param>
         /// <param name="userContext">User context.</param>
-        public JournalStylesService(IJournalStylesService journalStylesService, IUserContext userContext)
+        public JournalStylesWebService(IJournalStylesService journalStylesService, IUserContext userContext)
         {
             if (userContext == null)
             {
@@ -76,6 +77,9 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         }
 
         /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
+
+        /// <inheritdoc/>
         public async Task<bool> CreateJournalStyleAsync(JournalStyleCreateRequestModel model)
         {
             if (model == null)
@@ -114,7 +118,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStyleCreateViewModel> GetJournalStyleCreateViewModelAsync()
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var floatObjectParseStyles = await this.journalStylesService.GetFloatObjectParseStylesForSelectAsync().ConfigureAwait(false);
             var floatObjectTagStyles = await this.journalStylesService.GetFloatObjectTagStylesForSelectAsync().ConfigureAwait(false);
@@ -135,7 +139,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStyleDeleteViewModel> GetJournalStyleDeleteViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -155,7 +159,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStyleDetailsViewModel> GetJournalStyleDetailsViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(id))
             {
@@ -175,7 +179,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStyleEditViewModel> GetJournalStyleEditViewModelAsync(string id)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var floatObjectParseStyles = await this.journalStylesService.GetFloatObjectParseStylesForSelectAsync().ConfigureAwait(false);
             var floatObjectTagStyles = await this.journalStylesService.GetFloatObjectTagStylesForSelectAsync().ConfigureAwait(false);
@@ -205,7 +209,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStylesIndexViewModel> GetJournalStylesIndexViewModelAsync(int skip, int take)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var data = await this.journalStylesService.SelectAsync(skip, take).ConfigureAwait(false);
             var count = await this.journalStylesService.SelectCountAsync().ConfigureAwait(false);
@@ -218,7 +222,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStyleCreateViewModel> MapToViewModelAsync(JournalStyleCreateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var floatObjectParseStyles = await this.journalStylesService.GetFloatObjectParseStylesForSelectAsync().ConfigureAwait(false);
             var floatObjectTagStyles = await this.journalStylesService.GetFloatObjectTagStylesForSelectAsync().ConfigureAwait(false);
@@ -244,7 +248,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStyleEditViewModel> MapToViewModelAsync(JournalStyleUpdateRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             var floatObjectParseStyles = await this.journalStylesService.GetFloatObjectParseStylesForSelectAsync().ConfigureAwait(false);
             var floatObjectTagStyles = await this.journalStylesService.GetFloatObjectTagStylesForSelectAsync().ConfigureAwait(false);
@@ -279,7 +283,7 @@ namespace ProcessingTools.Web.Services.Layout.Styles
         /// <inheritdoc/>
         public async Task<JournalStyleDeleteViewModel> MapToViewModelAsync(JournalStyleDeleteRequestModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null && !string.IsNullOrWhiteSpace(model.Id))
             {
