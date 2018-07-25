@@ -30,17 +30,17 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string IndexActionName = nameof(Index);
 
-        private readonly ICoordinatesCalculatorWebPresenter presenter;
+        private readonly ICoordinatesCalculatorWebService service;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinatesCalculatorController"/> class.
         /// </summary>
-        /// <param name="presenter">Instance of <see cref="ICoordinatesCalculatorWebPresenter"/>.</param>
+        /// <param name="service">Instance of <see cref="ICoordinatesCalculatorWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public CoordinatesCalculatorController(ICoordinatesCalculatorWebPresenter presenter, ILogger<CoordinatesCalculatorController> logger)
+        public CoordinatesCalculatorController(ICoordinatesCalculatorWebService service, ILogger<CoordinatesCalculatorController> logger)
         {
-            this.presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            this.service = service ?? throw new ArgumentNullException(nameof(service));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -57,7 +57,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            var viewModel = await this.presenter.GetCoordinatesViewModelAsync().ConfigureAwait(false);
+            var viewModel = await this.service.GetCoordinatesViewModelAsync().ConfigureAwait(false);
             viewModel.ReturnUrl = returnUrl;
 
             return this.View(model: viewModel);
@@ -84,7 +84,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
             {
                 try
                 {
-                    viewModel = await this.presenter.ParseCoordinatesAsync(model).ConfigureAwait(false);
+                    viewModel = await this.service.ParseCoordinatesAsync(model).ConfigureAwait(false);
                     viewModel.ReturnUrl = returnUrl;
 
                     return this.View(model: viewModel);
@@ -96,7 +96,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 }
             }
 
-            viewModel = await this.presenter.GetCoordinatesViewModelAsync().ConfigureAwait(false);
+            viewModel = await this.service.GetCoordinatesViewModelAsync().ConfigureAwait(false);
             viewModel.ReturnUrl = returnUrl;
 
             return this.View(model: viewModel);

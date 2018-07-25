@@ -1,4 +1,4 @@
-﻿// <copyright file="ICoordinatesCalculatorWebPresenter.cs" company="ProcessingTools">
+﻿// <copyright file="ICoordinatesCalculatorWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Services.Contracts.Geo.Coordinates
     /// <summary>
     /// Coordinates calculator web presenter.
     /// </summary>
-    public interface ICoordinatesCalculatorWebPresenter : IWebPresenter
+    public interface ICoordinatesCalculatorWebService : IWebPresenter
     {
         /// <summary>
         /// Get <see cref="CoordinatesViewModel"/>.

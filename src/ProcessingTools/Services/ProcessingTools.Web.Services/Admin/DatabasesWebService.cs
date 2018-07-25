@@ -1,4 +1,4 @@
-﻿// <copyright file="DatabasesService.cs" company="ProcessingTools">
+﻿// <copyright file="DatabasesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -12,22 +12,23 @@ namespace ProcessingTools.Web.Services.Admin
     using ProcessingTools.Services.Models.Contracts.Admin.Databases;
     using ProcessingTools.Web.Models.Admin.Databases;
     using ProcessingTools.Web.Models.Shared;
+    using ProcessingTools.Web.Services.Contracts.Admin;
 
     /// <summary>
     /// Databases service.
     /// </summary>
-    public class DatabasesService : ProcessingTools.Web.Services.Contracts.Admin.IDatabasesService
+    public class DatabasesWebService : IDatabasesWebService
     {
         private readonly IDatabasesService databasesService;
         private readonly Func<Task<UserContext>> userContextFactory;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DatabasesService"/> class.
+        /// Initializes a new instance of the <see cref="DatabasesWebService"/> class.
         /// </summary>
         /// <param name="databasesService">Databases service.</param>
         /// <param name="userContext">User context.</param>
-        public DatabasesService(IDatabasesService databasesService, IUserContext userContext)
+        public DatabasesWebService(IDatabasesService databasesService, IUserContext userContext)
         {
             this.databasesService = databasesService ?? throw new ArgumentNullException(nameof(databasesService));
 
@@ -47,6 +48,9 @@ namespace ProcessingTools.Web.Services.Admin
         }
 
         /// <inheritdoc/>
+        public Task<UserContext> GetUserContextAsync() => this.userContextFactory.Invoke();
+
+        /// <inheritdoc/>
         public async Task<InitializeResponseModel> InitializeAllAsync()
         {
             var result = await this.databasesService.InitializeAllAsync().ConfigureAwait(false);
@@ -59,7 +63,7 @@ namespace ProcessingTools.Web.Services.Admin
         /// <inheritdoc/>
         public async Task<InitializeViewModel> MapToViewModelAsync(InitializeResponseModel model)
         {
-            var userContext = await this.userContextFactory.Invoke().ConfigureAwait(false);
+            var userContext = await this.GetUserContextAsync().ConfigureAwait(false);
 
             if (model != null)
             {

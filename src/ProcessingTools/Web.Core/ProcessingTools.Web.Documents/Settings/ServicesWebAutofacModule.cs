@@ -33,9 +33,9 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<ReferenceParseStylesService>().As<IReferenceParseStylesService>().InstancePerDependency();
             builder.RegisterType<JournalStylesService>().As<IJournalStylesService>().InstancePerDependency();
 
-            builder.RegisterType<CoordinatesCalculatorWebPresenter>().As<ICoordinatesCalculatorWebPresenter>().InstancePerDependency();
+            builder.RegisterType<CoordinatesCalculatorWebService>().As<ICoordinatesCalculatorWebService>().InstancePerDependency();
 
-            builder.RegisterType<DatabasesService>().As<IDatabasesService>().InstancePerDependency();
+            builder.RegisterType<DatabasesWebService>().As<IDatabasesWebService>().InstancePerDependency();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="IDatabasesService.cs" company="ProcessingTools">
+﻿// <copyright file="IDatabasesWebService.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,7 @@ namespace ProcessingTools.Web.Services.Contracts.Admin
     /// <summary>
     /// Databases service.
     /// </summary>
-    public interface IDatabasesService
+    public interface IDatabasesWebService : IWebPresenter
     {
         /// <summary>
         /// Initialize all databases.

@@ -35,15 +35,15 @@ namespace ProcessingTools.Web.Documents.Areas.Admin.Controllers
         /// </summary>
         public const string InitializeAllActionName = nameof(InitializeAll);
 
-        private readonly IDatabasesService databasesService;
+        private readonly IDatabasesWebService databasesService;
         private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabasesController"/> class.
         /// </summary>
-        /// <param name="databasesService">Instance of <see cref="IDatabasesService"/>.</param>
+        /// <param name="databasesService">Instance of <see cref="IDatabasesWebService"/>.</param>
         /// <param name="logger">Logger.</param>
-        public DatabasesController(IDatabasesService databasesService, ILogger<DatabasesController> logger)
+        public DatabasesController(IDatabasesWebService databasesService, ILogger<DatabasesController> logger)
         {
             this.databasesService = databasesService ?? throw new ArgumentNullException(nameof(databasesService));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
