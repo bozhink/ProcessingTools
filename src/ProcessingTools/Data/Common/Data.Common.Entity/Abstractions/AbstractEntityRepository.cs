@@ -134,7 +134,7 @@
             var model = this.repository.Get(id);
             if (model == null)
             {
-                return null;
+                return Task.FromResult<object>(null);
             }
 
             // TODO : Updater

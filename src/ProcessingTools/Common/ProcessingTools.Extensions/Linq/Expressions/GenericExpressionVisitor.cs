@@ -74,7 +74,7 @@ namespace ProcessingTools.Extensions.Linq.Expressions
         /// <inheritdoc/>
         protected override Expression VisitMember(MemberExpression node)
         {
-            var memberExpression = (MemberExpression)node;
+            var memberExpression = node;
             var member = memberExpression.Member;
             var name = member.Name;
 

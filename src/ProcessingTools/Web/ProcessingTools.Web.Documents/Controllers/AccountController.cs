@@ -109,7 +109,6 @@
                 case SignInStatus.RequiresVerification:
                     return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
 
-                case SignInStatus.Failure:
                 default:
                     this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return this.View(model);
@@ -165,7 +164,6 @@
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
 
-                case SignInStatus.Failure:
                 default:
                     this.ModelState.AddModelError(string.Empty, "Invalid code.");
                     return this.View(model);
@@ -403,7 +401,6 @@
                 case SignInStatus.RequiresVerification:
                     return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
 
-                case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     this.ViewBag.ReturnUrl = returnUrl;

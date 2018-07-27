@@ -65,10 +65,6 @@
 
                 return this.TransformAsync(document.DocumentElement);
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 if (closeReader && reader?.ReadState != ReadState.Closed)

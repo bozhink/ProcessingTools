@@ -71,7 +71,7 @@ namespace ProcessingTools.Services.Cache
             var data = this.repository.GetAll(key);
             if (data == null)
             {
-                return null;
+                return Task.FromResult<IValidationCacheModel>(null);
             }
 
             var entity = data.OrderByDescending(e => e.LastUpdate).FirstOrDefault();

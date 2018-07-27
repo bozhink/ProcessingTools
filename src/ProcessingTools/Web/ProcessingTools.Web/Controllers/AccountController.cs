@@ -124,7 +124,6 @@
 
                     return this.RedirectToAction(SendCodeActionName, routeValues: routeValues);
 
-                case SignInStatus.Failure:
                 default:
                     this.AddErrors(Strings.InvalidLoginAttemptModelError);
                     return this.View(model);
@@ -175,7 +174,6 @@
                 case SignInStatus.LockedOut:
                     return this.View(ViewNames.Lockout);
 
-                case SignInStatus.Failure:
                 default:
                     this.AddErrors(Strings.InvalidCodeModelError);
                     return this.View(model);
@@ -460,7 +458,6 @@
 
                     return this.RedirectToAction(SendCodeActionName, routeValues: routeValues);
 
-                case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     this.ViewBag.ReturnUrl = returnUrl;
