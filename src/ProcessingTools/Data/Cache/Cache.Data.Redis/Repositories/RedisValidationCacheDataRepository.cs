@@ -2,13 +2,13 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ProcessingTools.Cache.Data.Redis.Contracts.Repositories;
     using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Data.Common.Redis.Contracts;
     using ProcessingTools.Data.Common.Redis.Repositories;
+    using ProcessingTools.Data.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
 
-    public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheModel>, IRedisValidationCacheDataRepository
+    public class RedisValidationCacheDataRepository : RedisKeyCollectionValuePairsRepository<IValidationCacheModel>, IValidationCacheDataRepository
     {
         public RedisValidationCacheDataRepository(IRedisClientProvider provider)
             : base(provider)
