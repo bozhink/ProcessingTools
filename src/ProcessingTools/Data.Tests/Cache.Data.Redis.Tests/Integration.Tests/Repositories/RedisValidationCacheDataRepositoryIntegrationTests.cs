@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
     using NUnit.Framework;
-    using ProcessingTools.Cache.Data.Redis.Models;
     using ProcessingTools.Cache.Data.Redis.Repositories;
     using ProcessingTools.Cache.Data.Redis.Tests.Common;
+    using ProcessingTools.Data.Models.Cache.Redis;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Tests.Library;

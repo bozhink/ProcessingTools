@@ -17,6 +17,10 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ServiceStack.Common" Version="5.1.0" />
+    <PackageReference Include="ServiceStack.Interfaces" Version="5.1.0" />
+    <PackageReference Include="ServiceStack.Redis" Version="5.1.0" />
+    <PackageReference Include="ServiceStack.Text" Version="5.1.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>

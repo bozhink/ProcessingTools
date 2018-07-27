@@ -17,7 +17,14 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.7.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Enumerations\ProcessingTools.Enumerations.csproj" />
+    <ProjectReference Include="..\..\Common\ProcessingTools.Models.Contracts\ProcessingTools.Models.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
   </ItemGroup>
 </Project>

@@ -5,10 +5,10 @@
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using MongoDB.Driver.Linq;
-    using ProcessingTools.Cache.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Cache;
+    using ProcessingTools.Data.Models.Cache.Mongo;
     using ProcessingTools.Models.Contracts.Cache;
 
     public class MongoValidationCacheDataRepository : IValidationCacheDataRepository
