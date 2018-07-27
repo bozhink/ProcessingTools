@@ -5,6 +5,7 @@
 namespace ProcessingTools.Data.Contracts.Cache
 {
     using System.Threading.Tasks;
+    using ProcessingTools.Data.Models.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>
@@ -25,13 +26,13 @@ namespace ProcessingTools.Data.Contracts.Cache
         /// </summary>
         /// <param name="key">Cache key.</param>
         /// <returns>The last cache item registered for the specified key</returns>
-        Task<IValidationCacheModel> GetLastForKeyAsync(string key);
+        Task<IValidationCacheDataModel> GetLastForKeyAsync(string key);
 
         /// <summary>
         /// Gets all the cache items registered for specified key.
         /// </summary>
         /// <param name="key">Cache key.</param>
         /// <returns>All the cache items registered for specified key.</returns>
-        Task<IValidationCacheModel[]> GetAllForKeyAsync(string key);
+        Task<IValidationCacheDataModel[]> GetAllForKeyAsync(string key);
     }
 }
