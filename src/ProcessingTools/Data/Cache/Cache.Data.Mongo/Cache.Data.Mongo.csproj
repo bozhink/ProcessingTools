@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly.cs" />
-    <Compile Include="Contracts\Repositories\IMongoValidationCacheDataRepository.cs" />
     <Compile Include="Models\ValidatedObject.cs" />
     <Compile Include="Models\ValidationCacheEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

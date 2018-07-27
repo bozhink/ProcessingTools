@@ -5,13 +5,13 @@
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using MongoDB.Driver.Linq;
-    using ProcessingTools.Cache.Data.Mongo.Contracts.Repositories;
     using ProcessingTools.Cache.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
+    using ProcessingTools.Data.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
 
-    public class MongoValidationCacheDataRepository : IMongoValidationCacheDataRepository
+    public class MongoValidationCacheDataRepository : IValidationCacheDataRepository
     {
         private readonly IMongoCollection<ValidatedObject> collection;
 
