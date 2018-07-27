@@ -5,7 +5,6 @@
 namespace ProcessingTools.Services.Cache
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
     using ProcessingTools.Contracts;
@@ -19,18 +18,18 @@ namespace ProcessingTools.Services.Cache
     /// </summary>
     public class ValidationCacheService : IValidationCacheService
     {
-        private readonly IValidationCacheDataRepository repository;
+        private readonly IValidationCacheDataAccessObject dataAccessObject;
         private readonly IApplicationContext applicationContext;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidationCacheService"/> class.
         /// </summary>
-        /// <param name="repository">Data repository.</param>
+        /// <param name="dataAccessObject">Data access object.</param>
         /// <param name="applicationContext">The application context.</param>
-        public ValidationCacheService(IValidationCacheDataRepository repository, IApplicationContext applicationContext)
+        public ValidationCacheService(IValidationCacheDataAccessObject dataAccessObject, IApplicationContext applicationContext)
         {
-            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.dataAccessObject = dataAccessObject ?? throw new ArgumentNullException(nameof(dataAccessObject));
             this.applicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
 
             var mapperConfiguration = new MapperConfiguration(c =>
@@ -42,7 +41,7 @@ namespace ProcessingTools.Services.Cache
         }
 
         /// <inheritdoc/>
-        public Task<object> AddAsync(string key, IValidationCacheModel value)
+        public async Task<object> AddAsync(string key, IValidationCacheModel value)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -57,26 +56,20 @@ namespace ProcessingTools.Services.Cache
             var entity = this.mapper.Map<IValidationCacheModel, ValidationCacheServiceModel>(value);
             entity.LastUpdate = this.applicationContext.DateTimeProvider.Invoke();
 
-            return this.repository.AddAsync(key, entity);
+            var result = await this.dataAccessObject.AddAsync(key, entity).ConfigureAwait(false);
+            return result;
         }
 
         /// <inheritdoc/>
-        public Task<IValidationCacheModel> GetAsync(string key)
+        public async Task<IValidationCacheModel> GetAsync(string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentNullException(nameof(key));
             }
 
-            var data = this.repository.GetAll(key);
-            if (data == null)
-            {
-                return Task.FromResult<IValidationCacheModel>(null);
-            }
-
-            var entity = data.OrderByDescending(e => e.LastUpdate).FirstOrDefault();
-
-            return Task.FromResult(entity);
+            var item = await this.dataAccessObject.GetLastForKeyAsync(key).ConfigureAwait(false);
+            return item;
         }
     }
 }

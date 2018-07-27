@@ -1,12 +1,12 @@
 ﻿namespace ProcessingTools.Services.Cache.Tests.Unit.Tests.Validation
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Moq;
     using NUnit.Framework;
     using ProcessingTools.Contracts;
     using ProcessingTools.Data.Contracts.Cache;
+    using ProcessingTools.Data.Models.Contracts.Cache;
     using ProcessingTools.Models.Contracts.Cache;
     using ProcessingTools.Services.Cache.Tests.Common;
     using ProcessingTools.Tests.Library;
@@ -22,22 +22,22 @@
             string key = "some key";
             var valueMock = new Mock<IValidationCacheModel>();
 
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            repositoryMock
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
+            daoMock
                 .Setup(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()))
                 .Returns(Task.FromResult<object>(true));
 
             var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.AddAsync(key, valueMock.Object).ConfigureAwait(false);
+            var result = await sut.AddAsync(key, valueMock.Object).ConfigureAwait(false);
 
             // Asset
             Assert.That(result, Is.EqualTo(true));
 
-            repositoryMock.Verify(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()), Times.Once);
+            daoMock.Verify(r => r.AddAsync(key, It.IsAny<IValidationCacheModel>()), Times.Once);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Once);
         }
 
@@ -49,17 +49,17 @@
         public void ValidationCacheService_AddWithInvalidKeyAndNullValue_ShouldThrowArgumentNullException(string key)
         {
             // Arrange
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
             var applicationContextMock = new Mock<IApplicationContext>();
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.AddAsync(key, null);
+                return sut.AddAsync(key, null);
             });
 
-            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
+            daoMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
@@ -72,19 +72,19 @@
         {
             // Arrange
             var valueMock = new Mock<IValidationCacheModel>();
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
             var applicationContextMock = new Mock<IApplicationContext>();
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.AddAsync(key, valueMock.Object);
+                return sut.AddAsync(key, valueMock.Object);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
+            daoMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
@@ -94,19 +94,19 @@
         {
             // Arrange
             string key = "some key";
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
             var applicationContextMock = new Mock<IApplicationContext>();
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.AddAsync(key, null);
+                return sut.AddAsync(key, null);
             });
 
             Assert.AreEqual(Constants.ValueParamName, exception.ParamName);
 
-            repositoryMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
+            daoMock.Verify(p => p.AddAsync(It.IsAny<string>(), It.IsAny<IValidationCacheModel>()), Times.Never);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
@@ -117,22 +117,22 @@
             // Arrange
             string key = "some key";
 
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            repositoryMock
-                .Setup(r => r.GetAll(key))
-                .Returns(value: null);
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
+            daoMock
+                .Setup(r => r.GetLastForKeyAsync(key))
+                .Returns(value: Task.FromResult<IValidationCacheDataModel>(null));
 
             var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.GetAsync(key).ConfigureAwait(false);
+            var result = await sut.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNull(result);
 
-            repositoryMock.Verify(r => r.GetAll(key), Times.Once);
+            daoMock.Verify(r => r.GetLastForKeyAsync(key), Times.Once);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
@@ -143,24 +143,24 @@
             // Arrange
             string key = "some key";
 
-            var list = new List<IValidationCacheModel>();
+            var valueMock = new Mock<IValidationCacheDataModel>();
 
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            repositoryMock
-                .Setup(r => r.GetAll(key))
-                .Returns(list);
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
+            daoMock
+                .Setup(r => r.GetLastForKeyAsync(key))
+                .Returns(Task.FromResult(valueMock.Object));
 
             var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.GetAsync(key).ConfigureAwait(false);
+            var result = await sut.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNull(result);
 
-            repositoryMock.Verify(r => r.GetAll(key), Times.Once);
+            daoMock.Verify(r => r.GetLastForKeyAsync(key), Times.Once);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
@@ -172,19 +172,19 @@
         public void ValidationCacheService_GetAllWithInvalidKey_ShouldThrowArgumentNullExceptionWithCorrectParamName(string key)
         {
             // Arrange
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
             var applicationContextMock = new Mock<IApplicationContext>();
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act + Assert
             var exception = Assert.ThrowsAsync<ArgumentNullException>(() =>
             {
-                return service.GetAsync(key);
+                return sut.GetAsync(key);
             });
 
             Assert.AreEqual(Constants.KeyParamName, exception.ParamName);
 
-            repositoryMock.Verify(r => r.GetAll(key), Times.Never);
+            daoMock.Verify(r => r.GetLastForKeyAsync(key), Times.Never);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
@@ -194,84 +194,35 @@
         {
             // Arrange
             string key = "some key";
-            var valueMock = new Mock<IValidationCacheModel>();
-            var value = valueMock.Object;
-            var list = new[] { value };
+            var valueMock = new Mock<IValidationCacheDataModel>();
 
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            repositoryMock
-                .Setup(r => r.GetAll(key))
-                .Returns(list);
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
+            daoMock
+                .Setup(r => r.GetLastForKeyAsync(key))
+                .Returns(Task.FromResult(valueMock.Object));
 
             var applicationContextMock = new Mock<IApplicationContext>();
 
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
+            var sut = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Act
-            var result = await service.GetAsync(key).ConfigureAwait(false);
+            var result = await sut.GetAsync(key).ConfigureAwait(false);
 
             // Asset
             Assert.IsNotNull(result);
-            Assert.AreNotSame(value, result);
+            Assert.AreNotSame(valueMock.Object, result);
 
-            Assert.AreEqual(value.Content, result.Content);
-            Assert.AreEqual(value.LastUpdate, result.LastUpdate);
-            Assert.AreEqual(value.Status, result.Status);
+            Assert.AreEqual(valueMock.Object.Content, result.Content, "Content");
+            Assert.AreEqual(valueMock.Object.LastUpdate, result.LastUpdate, "LastUpdate");
+            Assert.AreEqual(valueMock.Object.Status, result.Status, "Status");
 
-            repositoryMock.Verify(r => r.GetAll(key), Times.Once);
+            daoMock.Verify(r => r.GetLastForKeyAsync(key), Times.Once);
             applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService Get valid key with list with two values should return a new copy of the last updated one.")]
-        [Timeout(1000)]
-        public async Task ValidationCacheService_GetValidKeyWithListWithTwoValues_ShouldReturnANewCopyOfTheLastUpdatedOne()
-        {
-            // Arrange
-            string key = "some key";
-            var now = DateTime.Now;
-
-            var value1Mock = new Mock<IValidationCacheModel>();
-            value1Mock
-                .SetupGet(v => v.LastUpdate)
-                .Returns(now);
-
-            var value2Mock = new Mock<IValidationCacheModel>();
-            value2Mock
-                .SetupGet(v => v.LastUpdate)
-                .Returns(now + TimeSpan.FromHours(1));
-
-            var expectedValue = value2Mock.Object;
-
-            var list = new[] { value1Mock.Object, value2Mock.Object };
-
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            repositoryMock
-                .Setup(r => r.GetAll(key))
-                .Returns(list);
-
-            var applicationContextMock = new Mock<IApplicationContext>();
-
-            var service = new ValidationCacheService(repositoryMock.Object, applicationContextMock.Object);
-
-            // Act
-            var result = await service.GetAsync(key).ConfigureAwait(false);
-
-            // Asset
-            Assert.IsNotNull(result);
-            Assert.AreNotSame(value1Mock.Object, result);
-            Assert.AreNotSame(value2Mock.Object, result);
-
-            Assert.AreEqual(expectedValue.Content, result.Content);
-            Assert.AreEqual(expectedValue.LastUpdate, result.LastUpdate);
-            Assert.AreEqual(expectedValue.Status, result.Status);
-
-            repositoryMock.Verify(r => r.GetAll(key), Times.Once);
-            applicationContextMock.VerifyGet(e => e.DateTimeProvider.Invoke(), Times.Never);
-        }
-
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null repository and null applicationContext in constructor should throw ArgumentNullException.")]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null DAO and null applicationContext in constructor should throw ArgumentNullException.")]
         [Timeout(300)]
-        public void ValidationCacheService_WithNullRepositoryAndNullApplicationContextInConstructor_ShouldThrowArgumentNullException()
+        public void ValidationCacheService_WithNullDataAccessObjectAndNullApplicationContextInConstructor_ShouldThrowArgumentNullException()
         {
             // Act + Assert
             Assert.Throws<ArgumentNullException>(() =>
@@ -280,9 +231,9 @@
             });
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null repository and valid applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with null DAO and valid applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
         [Timeout(300)]
-        public void ValidationCacheService_WithNullRepositoryAndValidApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void ValidationCacheService_WithNullDataAccessObjectAndValidApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
             var applicationContextMock = new Mock<IApplicationContext>();
@@ -293,7 +244,7 @@
                 new ValidationCacheService(null, applicationContextMock.Object);
             });
 
-            Assert.AreEqual(Constants.RepositoryParamName, exception.ParamName);
+            Assert.AreEqual(Constants.DataAccessObjectParamName, exception.ParamName);
         }
 
         [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid parameters in constructor should be initialized correctly.")]
@@ -301,36 +252,34 @@
         public void ValidationCacheService_WithValidParametersInConstructor_ShouldBeInitializedCorrectly()
         {
             // Arrange
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
-            var repository = repositoryMock.Object;
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
 
             var applicationContextMock = new Mock<IApplicationContext>();
-            var applicationContext = applicationContextMock.Object;
 
             // Act
-            var service = new ValidationCacheService(repository, applicationContext);
+            var service = new ValidationCacheService(daoMock.Object, applicationContextMock.Object);
 
             // Assert
             Assert.IsNotNull(service);
 
-            var repositoryFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.RepositoryParamName);
-            Assert.AreSame(repository, repositoryFieldValue, "Repository field should be set correctly.");
+            var daoFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.DataAccessObjectParamName);
+            Assert.AreSame(daoMock.Object, daoFieldValue, "DAO field should be set correctly.");
 
             var applicationContextFieldValue = PrivateField.GetInstanceField<ValidationCacheService>(service, Constants.ApplicationContextParamName);
-            Assert.AreEqual(applicationContext, applicationContextFieldValue, "ApplicationContext field should be set correctly.");
+            Assert.AreEqual(applicationContextMock.Object, applicationContextFieldValue, "ApplicationContext field should be set correctly.");
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid repository and null applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(ValidationCacheService), Description = "ValidationCacheService with valid DAO and null applicationContext in constructor should throw ArgumentNullException with correct ParamName.")]
         [Timeout(300)]
-        public void ValidationCacheService_WithValidRepositoryAndNullApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
+        public void ValidationCacheService_WithValidDataAccessObjectAndNullApplicationContextInConstructor_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var repositoryMock = new Mock<IValidationCacheDataRepository>();
+            var daoMock = new Mock<IValidationCacheDataAccessObject>();
 
             // Act + Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
             {
-                new ValidationCacheService(repositoryMock.Object, null);
+                new ValidationCacheService(daoMock.Object, null);
             });
 
             Assert.AreEqual(Constants.ApplicationContextParamName, exception.ParamName);

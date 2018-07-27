@@ -119,6 +119,10 @@
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
       <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj">
+      <Project>{B1F85B84-36FD-48FC-A18D-3B82B3268DAE}</Project>
+      <Name>ProcessingTools.Data.Models.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\Tests.Library\Tests.Library.csproj">
       <Project>{695ac2b9-464d-4034-8c28-8674c4e39ef8}</Project>
       <Name>Tests.Library</Name>
