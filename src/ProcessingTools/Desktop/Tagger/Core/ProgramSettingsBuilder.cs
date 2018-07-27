@@ -286,11 +286,11 @@
 
             foreach (var commandName in commandNames)
             {
-                string commandNameLowerCase = commandName.ToUpperInvariant();
+                string commandNameUpperCase = commandName.ToUpperInvariant();
 
                 var matchingCommands = this.commandInfoProvider
                     .CommandsInformation
-                    .Where(i => i.Value.Name.ToUpperInvariant().StartsWith(commandNameLowerCase))
+                    .Where(i => i.Value.Name.ToUpperInvariant().StartsWith(commandNameUpperCase, true, System.Globalization.CultureInfo.InvariantCulture))
                     .ToArray();
 
                 switch (matchingCommands.Length)
@@ -313,7 +313,7 @@
                     default:
                         {
                             // Get direct full-name match from a list of ‘like’-matches
-                            var commandInfo = matchingCommands.Select(c => c.Value).FirstOrDefault(c => c.Name.ToLowerInvariant() == commandNameLowerCase);
+                            var commandInfo = matchingCommands.Select(c => c.Value).FirstOrDefault(c => c.Name.ToUpperInvariant() == commandNameUpperCase);
                             if (commandInfo != null)
                             {
                                 this.Settings.CalledCommands.Add(commandInfo.CommandType);

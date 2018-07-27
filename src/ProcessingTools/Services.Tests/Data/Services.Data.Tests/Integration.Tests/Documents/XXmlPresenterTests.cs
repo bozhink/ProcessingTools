@@ -13,8 +13,6 @@
     using ProcessingTools.Services.IO;
     using ProcessingTools.Services.Models.Data.Documents;
     using ProcessingTools.Services.Xml;
-    using ProcessingTools.Xml.Cache;
-    using ProcessingTools.Xml.Transformers;
 
     [TestFixture(Category = "Integration tests", Author = "Bozhin Karaivanov", TestOf = typeof(XXmlPresenter))]
     public class XXmlPresenterTests

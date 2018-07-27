@@ -10,13 +10,12 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Enumerations.Nlm;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Float object parse style.
     /// </summary>
     [CollectionName("floatObjectParseStyles")]
-    public class FloatObjectParseStyle : IFloatObjectParseStyleDataModel, IFloatObjectDetailsParseStyleDataModel, ICreated, IModified
+    public class FloatObjectParseStyle : IFloatObjectDetailsParseStyleDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectParseStyle"/> class.

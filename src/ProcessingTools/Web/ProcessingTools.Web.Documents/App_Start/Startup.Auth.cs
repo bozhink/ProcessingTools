@@ -1,21 +1,17 @@
 ﻿namespace ProcessingTools.Web.Documents
 {
     using System;
-    using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
     using Owin;
-    using ProcessingTools.Contracts.Web.Security;
     using ProcessingTools.Users.Data.Entity;
     using ProcessingTools.Users.Data.Entity.Models;
     using ProcessingTools.Web.Services;
 
     public partial class Startup
     {
-        private readonly ICertificateValidatorFactory certificateValidatorFactory = DependencyResolver.Current.GetService<ICertificateValidatorFactory>();
-
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {

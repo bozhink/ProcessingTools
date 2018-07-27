@@ -9,13 +9,12 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Reference parse style.
     /// </summary>
     [CollectionName("referenceParseStyles")]
-    public class ReferenceParseStyle : IReferenceParseStyleDataModel, IReferenceDetailsParseStyleDataModel, ICreated, IModified
+    public class ReferenceParseStyle : IReferenceDetailsParseStyleDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceParseStyle"/> class.

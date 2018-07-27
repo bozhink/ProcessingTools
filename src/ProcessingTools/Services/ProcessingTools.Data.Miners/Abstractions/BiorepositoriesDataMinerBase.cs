@@ -18,6 +18,13 @@ namespace ProcessingTools.Data.Miners.Abstractions
     public abstract class BiorepositoriesDataMinerBase<T>
         where T : class
     {
+        /// <summary>
+        /// Gets matches.
+        /// </summary>
+        /// <param name="service">Biorepositories data service.</param>
+        /// <param name="matches">Collection of matches to be populated.</param>
+        /// <param name="filter">Filter for match.</param>
+        /// <returns>Task.</returns>
         protected async Task GetMatches(IBiorepositoriesDataService<T> service, ICollection<T> matches, Func<T, bool> filter)
         {
             int n = PaginationConstants.MaximalItemsPerPageAllowed;

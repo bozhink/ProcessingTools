@@ -61,7 +61,7 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
-            long numberOfArticles = await this.GetCollection<Article>().CountAsync(a => a.JournalId == id.ToString()).ConfigureAwait(false);
+            long numberOfArticles = await this.GetCollection<Article>().CountDocumentsAsync(a => a.JournalId == id.ToString()).ConfigureAwait(false);
             if (numberOfArticles > 0L)
             {
                 throw new DeleteUnsuccessfulException("Journal will not be deleted because it contains related articles.");
@@ -112,7 +112,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
                 journal.Publisher = await this.GetJournalPublishersQuery(p => p.ObjectId == publisherId).FirstOrDefaultAsync().ConfigureAwait(false);
 
-                journal.NumberOfArticles = await this.GetCollection<Article>().CountAsync(a => a.JournalId == journal.ObjectId.ToString()).ConfigureAwait(false);
+                journal.NumberOfArticles = await this.GetCollection<Article>().CountDocumentsAsync(a => a.JournalId == journal.ObjectId.ToString()).ConfigureAwait(false);
             }
 
             return journal;
@@ -209,7 +209,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(j => true);
+            return this.Collection.CountDocumentsAsync(j => true);
         }
 
         /// <inheritdoc/>

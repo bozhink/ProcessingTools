@@ -9,13 +9,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Publishers;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Publisher
     /// </summary>
     [CollectionName("publishers")]
-    public class Publisher : IPublisherDataModel, IPublisherDetailsDataModel, ICreated, IModified
+    public class Publisher : IPublisherDetailsDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Publisher"/> class.

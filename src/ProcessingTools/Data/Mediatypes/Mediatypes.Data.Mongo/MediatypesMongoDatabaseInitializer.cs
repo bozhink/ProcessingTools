@@ -35,8 +35,8 @@
             var collection = this.db.GetCollection<Mediatype>(collectionName);
 
             var result = await collection.Indexes
-                .CreateOneAsync(
-                    Builders<Mediatype>.IndexKeys.Ascending(t => t.FileExtension))
+                .CreateOneAsync(new CreateIndexModel<Mediatype>(
+                    Builders<Mediatype>.IndexKeys.Ascending(t => t.FileExtension)))
                 .ConfigureAwait(false);
 
             return result;

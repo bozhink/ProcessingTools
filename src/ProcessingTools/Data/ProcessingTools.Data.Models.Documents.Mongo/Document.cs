@@ -9,14 +9,13 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Documents;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// Document
     /// </summary>
     [CollectionName("documents")]
-    public class Document : IDocumentDataModel, IDocumentDetailsDataModel, ICreated, IModified
+    public class Document : IDocumentDetailsDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Document"/> class.

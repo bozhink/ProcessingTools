@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Tasks.Models.Schedules
+﻿// <copyright file="DailySchedule.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Tasks.Models.Schedules
 {
     using System;
     using Newtonsoft.Json;

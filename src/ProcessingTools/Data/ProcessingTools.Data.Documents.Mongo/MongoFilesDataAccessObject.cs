@@ -151,7 +151,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(Builders<File>.Filter.Empty);
+            return this.Collection.CountDocumentsAsync(Builders<File>.Filter.Empty);
         }
 
         /// <inheritdoc/>

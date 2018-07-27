@@ -123,7 +123,7 @@ namespace ProcessingTools.Processors.References
                                         @"<xref ref-type=""bibr"" rid=""" + id + @""">" + Regex.Escape(l.Value) + "</xref>");
                                 }
                             }
-                            catch (Exception e)
+                            catch
                             {
                                 // skip
                             }
@@ -163,7 +163,7 @@ namespace ProcessingTools.Processors.References
                                         @"<xref ref-type=""bibr"" rid=""" + id + @""">" + l.Value + "</xref>");
                                 }
                             }
-                            catch (Exception e)
+                            catch
                             {
                                 // skip
                             }

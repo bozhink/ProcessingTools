@@ -10,7 +10,6 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Journals;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Models.Contracts.Layout.Styles.Journals;
     using ProcessingTools.Models.Contracts.Layout.Styles.References;
@@ -19,7 +18,7 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     /// Journal style.
     /// </summary>
     [CollectionName("journalStyles")]
-    public class JournalStyle : IJournalStyleDataModel, IJournalDetailsStyleDataModel, ICreated, IModified
+    public class JournalStyle : IJournalDetailsStyleDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalStyle"/> class.

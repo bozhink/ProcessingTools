@@ -64,7 +64,7 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
-            long numberOfDocuments = await this.GetCollection<Document>().CountAsync(j => j.ArticleId == id.ToString()).ConfigureAwait(false);
+            long numberOfDocuments = await this.GetCollection<Document>().CountDocumentsAsync(j => j.ArticleId == id.ToString()).ConfigureAwait(false);
             if (numberOfDocuments > 0L)
             {
                 throw new DeleteUnsuccessfulException("Article will not be deleted because it contains documents.");
@@ -215,7 +215,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(a => true);
+            return this.Collection.CountDocumentsAsync(a => true);
         }
 
         /// <inheritdoc/>

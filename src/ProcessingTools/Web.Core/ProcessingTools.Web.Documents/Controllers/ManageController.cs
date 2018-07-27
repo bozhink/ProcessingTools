@@ -108,7 +108,9 @@ namespace ProcessingTools.Web.Documents.Controllers
         /// </summary>
         public const string GenerateRecoveryCodesActionName = nameof(GenerateRecoveryCodes);
 
+#pragma warning disable S1075 // URIs should not be hardcoded
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
+#pragma warning restore S1075 // URIs should not be hardcoded
 
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;

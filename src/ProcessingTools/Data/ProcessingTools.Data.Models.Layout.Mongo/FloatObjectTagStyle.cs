@@ -10,13 +10,12 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.Floats;
     using ProcessingTools.Enumerations.Nlm;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Float object tag style.
     /// </summary>
     [CollectionName("floatObjectTagStyles")]
-    public class FloatObjectTagStyle : IFloatObjectTagStyleDataModel, IFloatObjectDetailsTagStyleDataModel, ICreated, IModified
+    public class FloatObjectTagStyle : IFloatObjectDetailsTagStyleDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FloatObjectTagStyle"/> class.

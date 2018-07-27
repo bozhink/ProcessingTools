@@ -150,7 +150,7 @@
             var entity = this.Repository.Get(id);
             if (entity == null)
             {
-                return null;
+                return Task.FromResult<object>(null);
             }
 
             entity.Addresses

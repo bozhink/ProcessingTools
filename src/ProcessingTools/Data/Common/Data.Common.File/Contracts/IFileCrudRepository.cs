@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Data.Contracts;
 
-    public interface IFileCrudRepository<T> : ICrudRepository<T>, IFileSearchableRepository<T>, IFileRepository<T>
+    public interface IFileCrudRepository<T> : ICrudRepository<T>, IFileSearchableRepository<T>
         where T : class
     {
     }

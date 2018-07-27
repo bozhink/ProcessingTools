@@ -9,13 +9,12 @@ namespace ProcessingTools.Data.Models.Layout.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Layout.Styles.References;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Reference tag style.
     /// </summary>
     [CollectionName("referenceTagStyles")]
-    public class ReferenceTagStyle : IReferenceTagStyleDataModel, IReferenceDetailsTagStyleDataModel, ICreated, IModified
+    public class ReferenceTagStyle : IReferenceDetailsTagStyleDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceTagStyle"/> class.

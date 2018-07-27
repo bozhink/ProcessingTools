@@ -37,9 +37,18 @@
 
             var collection = this.db.GetCollection<MongoTaxonRankEntity>(collectionName);
 
+            var indexOptions = new CreateIndexOptions
+            {
+                Background = false,
+                Unique = false,
+                Sparse = false
+            };
+
             var result = await collection.Indexes
-                .CreateOneAsync(
-                    Builders<MongoTaxonRankEntity>.IndexKeys.Ascending(t => t.Name))
+                .CreateOneAsync(new CreateIndexModel<MongoTaxonRankEntity>(
+                    Builders<MongoTaxonRankEntity>.IndexKeys
+                        .Ascending(t => t.Name),
+                    indexOptions))
                 .ConfigureAwait(false);
 
             return result;
@@ -53,20 +62,21 @@
 
             var indexOptions = new CreateIndexOptions
             {
+                Background = false,
                 Unique = true,
                 Sparse = false
             };
 
             await collection.Indexes
-                .CreateOneAsync(
+                .CreateOneAsync(new CreateIndexModel<MongoTaxonRankTypeEntity>(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.RankType),
-                    indexOptions)
+                    indexOptions))
                 .ConfigureAwait(false);
 
             var result = await collection.Indexes
-                .CreateOneAsync(
+                .CreateOneAsync(new CreateIndexModel<MongoTaxonRankTypeEntity>(
                     Builders<MongoTaxonRankTypeEntity>.IndexKeys.Ascending(t => t.Name),
-                    indexOptions)
+                    indexOptions))
                 .ConfigureAwait(false);
 
             return result;
@@ -80,14 +90,15 @@
 
             var indexOptions = new CreateIndexOptions
             {
+                Background = false,
                 Unique = true,
                 Sparse = false
             };
 
             var result = await collection.Indexes
-                .CreateOneAsync(
+                .CreateOneAsync(new CreateIndexModel<MongoBlackListEntity>(
                     Builders<MongoBlackListEntity>.IndexKeys.Ascending(t => t.Content),
-                    indexOptions)
+                    indexOptions))
                 .ConfigureAwait(false);
 
             return result;

@@ -152,7 +152,7 @@ namespace ProcessingTools.Data.Layout.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(Builders<ReferenceParseStyle>.Filter.Empty);
+            return this.Collection.CountDocumentsAsync(Builders<ReferenceParseStyle>.Filter.Empty);
         }
 
         /// <inheritdoc/>

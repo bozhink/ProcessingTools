@@ -70,7 +70,7 @@ namespace ProcessingTools.Data.Documents.Mongo
 
             if (publisher != null)
             {
-                var numberOfJournals = await this.GetCollection<Journal>().CountAsync(j => j.PublisherId == publisher.ObjectId.ToString()).ConfigureAwait(false);
+                var numberOfJournals = await this.GetCollection<Journal>().CountDocumentsAsync(j => j.PublisherId == publisher.ObjectId.ToString()).ConfigureAwait(false);
 
                 publisher.NumberOfJournals = numberOfJournals;
             }
@@ -86,7 +86,7 @@ namespace ProcessingTools.Data.Documents.Mongo
                 return null;
             }
 
-            long numberOfJournals = await this.GetCollection<Journal>().CountAsync(j => j.PublisherId == id.ToString()).ConfigureAwait(false);
+            long numberOfJournals = await this.GetCollection<Journal>().CountDocumentsAsync(j => j.PublisherId == id.ToString()).ConfigureAwait(false);
             if (numberOfJournals > 0L)
             {
                 throw new DeleteUnsuccessfulException("Publisher will not be deleted because it contains related journals.");
@@ -177,7 +177,7 @@ namespace ProcessingTools.Data.Documents.Mongo
         /// <inheritdoc/>
         public Task<long> SelectCountAsync()
         {
-            return this.Collection.CountAsync(Builders<Publisher>.Filter.Empty);
+            return this.Collection.CountDocumentsAsync(Builders<Publisher>.Filter.Empty);
         }
 
         /// <inheritdoc/>

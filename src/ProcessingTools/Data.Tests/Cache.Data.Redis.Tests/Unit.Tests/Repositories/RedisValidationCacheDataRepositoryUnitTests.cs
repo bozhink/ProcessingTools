@@ -126,6 +126,7 @@
         public void RedisValidationCacheDataRepository_GetAllValidKeyAndEmptyList_ShouldReturnEmptyIEnumerable()
         {
             // Arrange
+#pragma warning disable S4158 // Empty collections should not be accessed or iterated
             string key = "some key";
 
             var list = new List<string> { };
@@ -145,6 +146,7 @@
                 .Returns(clientMock.Object);
 
             var repository = new RedisValidationCacheDataRepository(clientProviderMock.Object);
+#pragma warning restore S4158 // Empty collections should not be accessed or iterated
 
             // Act
             var result = repository.GetAll(key);

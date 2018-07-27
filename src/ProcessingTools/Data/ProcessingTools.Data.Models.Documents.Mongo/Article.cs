@@ -9,13 +9,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Articles;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Article
     /// </summary>
     [CollectionName("articles")]
-    public class Article : IArticleDataModel, IArticleDetailsDataModel, ICreated, IModified
+    public class Article : IArticleDetailsDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Article"/> class.

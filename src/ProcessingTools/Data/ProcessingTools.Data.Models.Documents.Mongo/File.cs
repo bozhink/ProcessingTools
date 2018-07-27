@@ -9,14 +9,13 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Files;
-    using ProcessingTools.Models.Contracts;
     using ProcessingTools.Models.Contracts.Documents.Documents;
 
     /// <summary>
     /// File
     /// </summary>
     [CollectionName("files")]
-    public class File : IFileDataModel, IFileDetailsDataModel, ICreated, IModified, IDocumentFileModel
+    public class File : IFileDetailsDataModel, IDocumentFileModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="File"/> class.

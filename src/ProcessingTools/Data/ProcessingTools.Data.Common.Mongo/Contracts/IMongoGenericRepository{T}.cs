@@ -4,13 +4,11 @@
 
 namespace ProcessingTools.Data.Common.Mongo.Contracts
 {
-    using ProcessingTools.Data.Contracts;
-
     /// <summary>
     /// Generic MongoDB repository.
     /// </summary>
     /// <typeparam name="T">Type of model.</typeparam>
-    public interface IMongoGenericRepository<T> : ICrudRepository<T>, IMongoSearchableRepository<T>, IMongoCrudRepository<T>, IMongoRepository<T>
+    public interface IMongoGenericRepository<T> : IMongoSearchableRepository<T>, IMongoCrudRepository<T>
         where T : class
     {
     }

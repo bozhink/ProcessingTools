@@ -9,13 +9,12 @@ namespace ProcessingTools.Data.Models.Documents.Mongo
     using MongoDB.Bson.Serialization.Attributes;
     using ProcessingTools.Attributes;
     using ProcessingTools.Data.Models.Contracts.Documents.Journals;
-    using ProcessingTools.Models.Contracts;
 
     /// <summary>
     /// Journal
     /// </summary>
     [CollectionName("journals")]
-    public class Journal : IJournalDataModel, IJournalDetailsDataModel, ICreated, IModified
+    public class Journal : IJournalDetailsDataModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Journal"/> class.
