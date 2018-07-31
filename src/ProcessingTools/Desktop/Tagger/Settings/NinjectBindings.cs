@@ -39,20 +39,6 @@
                 .To<ProcessingTools.Common.TaxPubDocumentFactory>()
                 .InSingletonScope();
 
-            this.Bind<ProcessingTools.Data.Contracts.Cache.IValidationCacheDataRepository>()
-                ////.To<ProcessingTools.Cache.Data.Redis.Repositories.RedisValidationCacheDataRepository>();
-                .To<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>();
-            this.Bind<ProcessingTools.Data.Common.Mongo.Contracts.IMongoDatabaseProvider>()
-                .To<ProcessingTools.Data.Common.Mongo.MongoDatabaseProvider>()
-                .WhenInjectedInto<ProcessingTools.Cache.Data.Mongo.Repositories.MongoValidationCacheDataRepository>()
-                .InSingletonScope()
-                .WithConstructorArgument(
-                    ParameterNames.ConnectionString,
-                    AppSettings.CacheMongoConnection)
-                .WithConstructorArgument(
-                    ParameterNames.DatabaseName,
-                    AppSettings.CacheMongoDatabaseName);
-
             this.Bind<Func<Type, ITaggerCommand>>()
                 .ToMethod(context => t => (ITaggerCommand)context.Kernel.Get(t))
                 .InSingletonScope();

@@ -159,8 +159,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Data.Tests", "Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatypes.Data.Mongo", "Data\Mediatypes\Mediatypes.Data.Mongo\Mediatypes.Data.Mongo.csproj", "{326F9B92-08F1-46C4-9B66-F8AE39170674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache.Data.Mongo", "Data\Cache\Cache.Data.Mongo\Cache.Data.Mongo.csproj", "{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processors.Tests", "Services.Tests\Processors\Processors.Tests\Processors.Tests.csproj", "{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagger.Commands.Tests", "Infrastructure.Tests\Tagger.Commands.Tests\Tagger.Commands.Tests.csproj", "{2ED11DE3-DA3D-47A9-9556-94DB495F0FC2}"
@@ -337,13 +335,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Processors.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Geo.Tests", "Infrastructure.Tests\ProcessingTools.Geo.Tests\ProcessingTools.Geo.Tests.csproj", "{1DFBA379-42B5-4B22-BC85-397286303631}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Cache.Mongo", "Data\ProcessingTools.Data.Cache.Mongo\ProcessingTools.Data.Cache.Mongo.csproj", "{8D4F9F16-ED7D-4186-BE93-D5EF9B05275C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Cache.Mongo", "Data\ProcessingTools.Data.Cache.Mongo\ProcessingTools.Data.Cache.Mongo.csproj", "{8D4F9F16-ED7D-4186-BE93-D5EF9B05275C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Models.Cache.Mongo", "Data\ProcessingTools.Data.Models.Cache.Mongo\ProcessingTools.Data.Models.Cache.Mongo.csproj", "{9FC1D0BF-E98D-4F75-88FC-93D8400457BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.Cache.Mongo", "Data\ProcessingTools.Data.Models.Cache.Mongo\ProcessingTools.Data.Models.Cache.Mongo.csproj", "{9FC1D0BF-E98D-4F75-88FC-93D8400457BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Cache.Redis", "Data\ProcessingTools.Data.Cache.Redis\ProcessingTools.Data.Cache.Redis.csproj", "{76E98177-8D03-4582-9A30-2D841BC1EADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Cache.Redis", "Data\ProcessingTools.Data.Cache.Redis\ProcessingTools.Data.Cache.Redis.csproj", "{76E98177-8D03-4582-9A30-2D841BC1EADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Models.Cache.Redis", "Data\ProcessingTools.Data.Models.Cache.Redis\ProcessingTools.Data.Models.Cache.Redis.csproj", "{280F9CF0-564C-45BF-9F3A-1191FBECA801}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.Cache.Redis", "Data\ProcessingTools.Data.Models.Cache.Redis\ProcessingTools.Data.Models.Cache.Redis.csproj", "{280F9CF0-564C-45BF-9F3A-1191FBECA801}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -769,14 +767,6 @@ Global
 		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Release|Any CPU.Build.0 = Release|Any CPU
 		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Release|x64.ActiveCfg = Release|Any CPU
 		{326F9B92-08F1-46C4-9B66-F8AE39170674}.Release|x64.Build.0 = Release|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Debug|x64.Build.0 = Debug|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Release|x64.ActiveCfg = Release|Any CPU
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA}.Release|x64.Build.0 = Release|Any CPU
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -1538,7 +1528,6 @@ Global
 		{E3A530BD-D7FD-4E2B-A1BB-10CBECB3207C} = {FB9B4337-2799-4D5D-8497-BD6D6C8AF08F}
 		{8F8E65C8-BA68-473C-B154-CC7080DF237E} = {1939D374-F0BC-47AE-9F2D-F5C736A40E50}
 		{326F9B92-08F1-46C4-9B66-F8AE39170674} = {1EE1058C-9F30-4EA7-A371-8778B7752109}
-		{BFFCB739-3DFF-414C-A214-4B2B1651E1FA} = {30FB9601-360D-4FCD-A2A4-83651F86587A}
 		{40A00CD8-2399-4BEE-B2C4-9007E64B4E20} = {CF0F1E82-0745-4398-924F-0316CD406FC7}
 		{2ED11DE3-DA3D-47A9-9556-94DB495F0FC2} = {58B7BB3E-0FE6-4215-9FAA-70E810DDE888}
 		{0564FB47-4545-4251-90FD-061C8A07C712} = {2D2121DC-B3BC-4E9B-AAC0-36C7B5BFC6C8}
@@ -1630,7 +1619,7 @@ Global
 		{280F9CF0-564C-45BF-9F3A-1191FBECA801} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal

@@ -14,6 +14,9 @@ namespace ProcessingTools.Data.Models.Cache.Redis
     public class ValidationCacheEntity : IValidationCacheDataModel
     {
         /// <inheritdoc/>
+        public string Key { get; set; }
+
+        /// <inheritdoc/>
         public string Content { get; set; }
 
         /// <inheritdoc/>
