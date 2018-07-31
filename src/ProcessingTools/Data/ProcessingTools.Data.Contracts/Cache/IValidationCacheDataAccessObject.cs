@@ -56,21 +56,5 @@ namespace ProcessingTools.Data.Contracts.Cache
         /// <param name="key">Cache key.</param>
         /// <returns>All the cache items registered for specified key.</returns>
         Task<IValidationCacheDataModel[]> GetAllForKeyAsync(string key);
-
-        /// <summary>
-        /// Select all items with specified criteria.
-        /// </summary>
-        /// <param name="filter">Filter value for content.</param>
-        /// <param name="sortOrder">Sort order.</param>
-        /// <param name="skip">Number of items to skip.</param>
-        /// <param name="take">Number of items to take.</param>
-        /// <returns>All the cache items matching specified criteria.</returns>
-        Task<IValidationCacheDataModel[]> SelectAsync(string filter, SortOrder sortOrder, int skip, int take);
-
-        /// <summary>
-        /// Gets the count of all items in the cache.
-        /// </summary>
-        /// <returns>The count of all items in the cache</returns>
-        Task<long> CountAsync();
     }
 }

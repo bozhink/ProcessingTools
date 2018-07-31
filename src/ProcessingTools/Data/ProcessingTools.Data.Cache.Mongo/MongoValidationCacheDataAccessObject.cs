@@ -8,12 +8,9 @@ namespace ProcessingTools.Data.Cache.Mongo
     using System.Linq;
     using System.Threading.Tasks;
     using MongoDB.Driver;
-    using ProcessingTools.Data.Common.Mongo;
-    using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts.Cache;
     using ProcessingTools.Data.Models.Cache.Mongo;
     using ProcessingTools.Data.Models.Contracts.Cache;
-    using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Cache;
 
     /// <summary>
@@ -26,21 +23,10 @@ namespace ProcessingTools.Data.Cache.Mongo
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoValidationCacheDataAccessObject"/> class.
         /// </summary>
-        /// <param name="databaseProvider">Instance of <see cref="IMongoDatabaseProvider"/>.</param>
-        public MongoValidationCacheDataAccessObject(IMongoDatabaseProvider databaseProvider)
+        /// <param name="collection">Collection in the MongoDB database. It is supposed that this collection is with WriteConcern.Unacknowledged.</param>
+        public MongoValidationCacheDataAccessObject(IMongoCollection<ValidatedObject> collection)
         {
-            if (databaseProvider == null)
-            {
-                throw new ArgumentNullException(nameof(databaseProvider));
-            }
-
-            string collectionName = MongoCollectionNameFactory.Create<ValidatedObject>();
-            var settings = new MongoCollectionSettings
-            {
-                WriteConcern = WriteConcern.Unacknowledged
-            };
-
-            this.collection = databaseProvider.Create().GetCollection<ValidatedObject>(collectionName, settings);
+            this.collection = collection ?? throw new ArgumentNullException(nameof(collection));
         }
 
         /// <inheritdoc/>
@@ -162,43 +148,5 @@ namespace ProcessingTools.Data.Cache.Mongo
 
             return result;
         }
-
-        /// <inheritdoc/>
-        public async Task<IValidationCacheDataModel[]> SelectAsync(string filter, SortOrder sortOrder, int skip, int take)
-        {
-            var query = this.collection.Aggregate(new AggregateOptions { AllowDiskUse = true })
-                .Project(o => new ValidatedObjectProjectAggregation { Key = o.Id, Values = o.Values })
-                .Unwind(o => o.Values)
-                .As<ValidatedObjectUnwindAggregation>();
-
-            if (!string.IsNullOrEmpty(filter))
-            {
-                query = query.Match(o => o.Values.Content.Contains(filter));
-            }
-
-            switch (sortOrder)
-            {
-                case SortOrder.Descending:
-                    query = query.SortByDescending(o => o.Values.Content).ThenByDescending(o => o.Values.LastUpdate);
-                    break;
-                default:
-                    query = query.SortBy(o => o.Values.Content).ThenBy(o => o.Values.LastUpdate);
-                    break;
-            }
-
-            query = query.Skip(skip).Limit(take);
-
-            var data = await query.ToListAsync().ConfigureAwait(false);
-
-            foreach (var item in data)
-            {
-                item.Values.Key = item.Key;
-            }
-
-            return data.Select(i => i.Values).ToArray<IValidationCacheDataModel>();
-        }
-
-        /// <inheritdoc/>
-        public Task<long> CountAsync() => this.collection.CountDocumentsAsync(Builders<ValidatedObject>.Filter.Empty);
     }
 }
