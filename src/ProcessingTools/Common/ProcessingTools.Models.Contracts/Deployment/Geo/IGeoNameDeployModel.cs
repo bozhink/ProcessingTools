@@ -1,13 +1,13 @@
-﻿// <copyright file="IGeoNameDeployDataModel.cs" company="ProcessingTools">
+﻿// <copyright file="IGeoNameDeployModel.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Data.Models.Contracts.Deployment.Geo
+namespace ProcessingTools.Models.Contracts.Deployment.Geo
 {
     /// <summary>
-    /// Geo name deploy data model.
+    /// Geo-name deploy model.
     /// </summary>
-    public interface IGeoNameDeployDataModel : IDeployDataModel
+    public interface IGeoNameDeployModel : IDeployModel
     {
         /// <summary>
         /// Gets the value of the geo-name as text.

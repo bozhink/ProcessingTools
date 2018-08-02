@@ -1,4 +1,4 @@
-﻿// <copyright file="IDeployDataAccessObject.cs" company="ProcessingTools">
+﻿// <copyright file="IDeployDataAccessObject{TI}.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 

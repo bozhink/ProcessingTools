@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Data.Contracts.Deployment.Geo
 {
+    using ProcessingTools.Models.Contracts.Deployment.Geo;
+
     /// <summary>
     /// Geo names deploy data access object.
     /// </summary>
-    public interface IGeoNamesDeployDataAccessObject
+    public interface IGeoNamesDeployDataAccessObject : IDeployDataAccessObject<IGeoNameDeployModel>
     {
     }
 }
