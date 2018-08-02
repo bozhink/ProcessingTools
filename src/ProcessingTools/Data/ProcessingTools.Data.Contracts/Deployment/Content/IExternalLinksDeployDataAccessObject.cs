@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Data.Contracts.Deployment.Content
 {
+    using ProcessingTools.Models.Contracts.Deployment.Content;
+
     /// <summary>
     /// External links deploy data access object.
     /// </summary>
-    public interface IExternalLinksDeployDataAccessObject
+    public interface IExternalLinksDeployDataAccessObject : IDeployDataAccessObject<IExternalLinkDeployModel>
     {
     }
 }

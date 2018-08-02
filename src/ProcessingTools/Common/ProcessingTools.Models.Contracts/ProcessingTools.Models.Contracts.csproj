@@ -25,7 +25,6 @@
   <ItemGroup>
     <Folder Include="Deployment\Bibliography\" />
     <Folder Include="Deployment\Bio\" />
-    <Folder Include="Deployment\Content\" />
     <Folder Include="Deployment\Documents\" />
     <Folder Include="Services\Data\Geo\" />
     <Folder Include="Services\Data\Resources\" />
