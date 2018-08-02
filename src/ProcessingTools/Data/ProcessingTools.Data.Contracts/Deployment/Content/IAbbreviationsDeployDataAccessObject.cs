@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Data.Contracts.Deployment.Content
 {
+    using ProcessingTools.Models.Contracts.Deployment.Content;
+
     /// <summary>
     /// Abbreviations deploy data access object.
     /// </summary>
-    public interface IAbbreviationsDeployDataAccessObject
+    public interface IAbbreviationsDeployDataAccessObject : IDeployDataAccessObject<IAbbreviationDeployModel>
     {
     }
 }
