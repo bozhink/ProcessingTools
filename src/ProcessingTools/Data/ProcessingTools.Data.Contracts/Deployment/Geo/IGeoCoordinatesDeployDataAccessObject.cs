@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Data.Contracts.Deployment.Geo
 {
+    using ProcessingTools.Models.Contracts.Deployment.Geo;
+
     /// <summary>
     /// Geo coordinates deploy data access object.
     /// </summary>
-    public interface IGeoCoordinatesDeployDataAccessObject
+    public interface IGeoCoordinatesDeployDataAccessObject : IDeployDataAccessObject<IGeoCoordinateDeployModel>
     {
     }
 }
