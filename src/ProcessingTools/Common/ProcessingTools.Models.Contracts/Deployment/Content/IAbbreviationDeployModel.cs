@@ -10,6 +10,11 @@ namespace ProcessingTools.Models.Contracts.Deployment.Content
     public interface IAbbreviationDeployModel : IDeployModel
     {
         /// <summary>
+        /// Gets the value of the content type.
+        /// </summary>
+        string ContentType { get; }
+
+        /// <summary>
         /// Gets the value of the abbreviation as text.
         /// </summary>
         string AbbreviationText { get; }
