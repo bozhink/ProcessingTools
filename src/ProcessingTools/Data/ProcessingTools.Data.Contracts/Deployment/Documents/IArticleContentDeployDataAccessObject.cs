@@ -4,10 +4,12 @@
 
 namespace ProcessingTools.Data.Contracts.Deployment.Documents
 {
+    using ProcessingTools.Models.Contracts.Deployment.Documents;
+
     /// <summary>
     /// Article content deploy data access object.
     /// </summary>
-    public interface IArticleContentDeployDataAccessObject
+    public interface IArticleContentDeployDataAccessObject : IDeployDataAccessObject<IArticleContentDeployModel>
     {
     }
 }
