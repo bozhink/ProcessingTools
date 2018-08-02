@@ -23,4 +23,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProcessingTools.Contracts\ProcessingTools.Contracts.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Deployment\Bibliography\" />
+    <Folder Include="Deployment\Bio\" />
+    <Folder Include="Deployment\Content\" />
+    <Folder Include="Deployment\Documents\" />
+  </ItemGroup>
 </Project>
