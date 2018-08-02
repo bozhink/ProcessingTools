@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Bio
     /// <summary>
     /// Bio materials deploy service.
     /// </summary>
-    public interface IBioMaterialsDeployService
+    public interface IBioMaterialsDeployService : IDeployService
     {
     }
 }

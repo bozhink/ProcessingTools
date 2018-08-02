@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Bibliography
     /// <summary>
     /// Bibliographic references deploy service.
     /// </summary>
-    public interface IBibliographicReferencesDeployService
+    public interface IBibliographicReferencesDeployService : IDeployService
     {
     }
 }

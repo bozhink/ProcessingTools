@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Content
     /// <summary>
     /// External links deploy service.
     /// </summary>
-    public interface IExternalLinksDeployService
+    public interface IExternalLinksDeployService : IDeployService
     {
     }
 }

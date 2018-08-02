@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Geo
     /// <summary>
     /// Geo coordinates deploy service.
     /// </summary>
-    public interface IGeoCoordinatesDeployService
+    public interface IGeoCoordinatesDeployService : IDeployService
     {
     }
 }

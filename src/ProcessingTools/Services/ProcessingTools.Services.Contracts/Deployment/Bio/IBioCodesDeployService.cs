@@ -8,7 +8,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Bio
     /// Bio-codes deploy service.
     /// Specimen codes, collection codes, institutional codes, etc.
     /// </summary>
-    public interface IBioCodesDeployService
+    public interface IBioCodesDeployService : IDeployService
     {
     }
 }

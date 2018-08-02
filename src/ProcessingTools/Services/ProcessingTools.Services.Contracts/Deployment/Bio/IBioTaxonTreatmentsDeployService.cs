@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Bio
     /// <summary>
     /// Bio taxon treatments deploy service.
     /// </summary>
-    public interface IBioTaxonTreatmentsDeployService
+    public interface IBioTaxonTreatmentsDeployService : IDeployService
     {
     }
 }

@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Documents
     /// <summary>
     /// Article content deploy service.
     /// </summary>
-    public interface IArticleContentDeployService
+    public interface IArticleContentDeployService : IDeployService
     {
     }
 }

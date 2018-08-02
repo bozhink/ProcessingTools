@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Deployment.Documents
     /// <summary>
     /// Abbreviations deploy service.
     /// </summary>
-    public interface IAbbreviationsDeployService
+    public interface IAbbreviationsDeployService : IDeployService
     {
     }
 }
