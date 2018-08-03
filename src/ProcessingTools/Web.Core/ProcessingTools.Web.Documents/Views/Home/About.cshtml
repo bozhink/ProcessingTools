@@ -2,20 +2,27 @@
 @{
     ViewData[ContextKeys.Title] = "About";
 }
-<h2>@ViewData[ContextKeys.Title]</h2>
-<h3>Tools for layout editing and bio-semantic tagging</h3>
 
-<address>
-    <strong>Home page:</strong> <a href="https://github.com/bozhink/ProcessingTools" target="_blank">ProcessingTools in GitHub</a><br />
-    <strong>Documentation:</strong> <a href="https://github.com/bozhink/ProcessingTools/wiki" target="_blank">
-        Wiki
-    </a><br />
-    <strong>Issues:</strong> <a href="https://github.com/bozhink/ProcessingTools/issues" target="_blank">Issues in GitHub</a>
-</address>
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+        <h3>Tools for layout editing and bio-semantic tagging</h3>
+    </header>
 
-@if (hostingEnvironment.EnvironmentName != "Production")
-{
-    <hr />
-    <p><strong>APPLICATION_NAME:</strong> @hostingEnvironment.ApplicationName</p>
-    <p><strong>ASPNETCORE_ENVIRONMENT:</strong> @hostingEnvironment.EnvironmentName</p>
-}
+    <address>
+        <strong>Home page:</strong> <a href="https://github.com/bozhink/ProcessingTools" target="_blank">ProcessingTools in GitHub</a><br />
+        <strong>Documentation:</strong> <a href="https://github.com/bozhink/ProcessingTools/wiki" target="_blank">
+            Wiki
+        </a><br />
+        <strong>Issues:</strong> <a href="https://github.com/bozhink/ProcessingTools/issues" target="_blank">Issues in GitHub</a>
+    </address>
+
+    @if (hostingEnvironment.EnvironmentName != "Production")
+    {
+        <hr />
+        <footer>
+            <p><strong>APPLICATION_NAME:</strong> @hostingEnvironment.ApplicationName</p>
+            <p><strong>ASPNETCORE_ENVIRONMENT:</strong> @hostingEnvironment.EnvironmentName</p>
+        </footer>
+    }
+</section>
