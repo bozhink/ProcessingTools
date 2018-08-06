@@ -8,29 +8,20 @@
 
 @if (showBanner)
 {
-    <nav id="cookieConsent" class="navbar navbar-expand-md navbar-dark fixed-top bg-danger" role="alert">
-        <div class="container">
-            <span class="navbar-brand"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></span>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cookieConsent" aria-controls="navbarCookieConsent" aria-label="Toggle cookie consent banner">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarCookieConsent">
-                <span class="navbar-text mr-auto">Privacy and cookie use policy...</span>
-                <div class="form-inline my-2 my-lg-0">
-                    <a asp-area="@AreaNames.Default" asp-controller="@HomeController.ControllerName" asp-action="@HomeController.PrivacyActionName" class="btn btn-info mx-1">Learn More</a>
-                    <button type="button" class="btn btn-success mx-1" data-cookie-string="@cookieString">Accept</button>
+    <div id="cookieConsent" class="cookieConsent alert alert-warning" role="alert">
+        <div class="container mx-auto">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="float-left">Privacy and cookie use policy...</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="float-sm-left float-md-right">
+                        <a asp-area="@AreaNames.Default" asp-controller="@HomeController.ControllerName" asp-action="@HomeController.PrivacyActionName" class="btn btn-info mr-1">Learn More</a>
+                        <button type="button" class="btn btn-success" data-cookie-string="@cookieString">Accept</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
-    <script>
-        (function () {
-            document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
-                document.cookie = el.target.dataset.cookieString;
-                document.getElementById("cookieConsent").classList.add("hidden");
-            }, false);
-        })();
-    </script>
+    </div>
+    <script src="~/build/dist/js/cookie-consent.js"></script>
 }
