@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData[ContextKeys.Title] = "Chat";
 }
 
@@ -9,10 +8,18 @@
     </header>
 
     <div id="chat">
-        <form id="frm-send-message" action="#">
-            <label for="message">Message:</label>
-            <input type="text" id="message" />
-            <input type="submit" id="send" value="Send" />
+        <form id="frm-send-message" action="#" class="container">
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label for="message">Message:</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="message" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" id="send" value="Send" class="form-control" />
+                </div>
+            </div>
         </form>
         <div class="clear"></div>
         <ul id="messages"></ul>
@@ -33,10 +40,11 @@
         });
 
         document.getElementById("frm-send-message").addEventListener("submit", event => {
-            let message = document.getElementById("message").value;
-            document.getElementById("message").value = "";
-
-            connection.invoke("Send", "@User.Identity.Name", message);
+            var message = document.getElementById("message").value;
+            if (message != null && message.toString().trim() !== "") {
+                document.getElementById("message").value = "";
+                connection.invoke("Send", "@User.Identity.Name", message);
+            }
             event.preventDefault();
         });
 
@@ -54,8 +62,11 @@
             li.appendChild(nameElement);
             li.appendChild(msgElement);
 
-            $('#messages').append(li);
+            document.getElementById("messages").appendChild(li);
         };
 
+        window.onload = () => {
+            document.getElementById("message").focus();
+        };
     </script>
 }
