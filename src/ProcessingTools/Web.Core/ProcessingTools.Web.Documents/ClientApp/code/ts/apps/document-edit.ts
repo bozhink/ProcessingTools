@@ -107,8 +107,8 @@ monacoEditorConfig.initEditor(document.getElementById(HtmlElementIds.EDITOR_CONT
                         .appendTo($themePicker);
                 }
 
-                $themePicker.change(function (): void {
-                    let index: number = (this as HTMLSelectElement).selectedIndex;
+                let onThemeChange: () => void = function (): void {
+                    let index: number = ($themePicker[0] as HTMLSelectElement).selectedIndex;
                     theme = themes[index].themeId;
                     storage.setItem(keys.theme, theme);
                     monacoEditorConfig.changeTheme(editor, theme);
@@ -116,17 +116,17 @@ monacoEditorConfig.initEditor(document.getElementById(HtmlElementIds.EDITOR_CONT
                     if (index > 0) {
                         // not default theme
                         $(".navbar.fixed-bottom")
+                            .removeClass("navbar-light")
+                            .removeClass("bg-light")
+                            .addClass("bg-dark")
+                            .addClass("navbar-dark");
+                    } else {
+                        // default theme
+                        $(".navbar.fixed-bottom")
                             .removeClass("navbar-dark")
                             .removeClass("bg-dark")
                             .addClass("navbar-light")
                             .addClass("bg-light");
-                    } else {
-                        // default theme
-                        $(".navbar.fixed-bottom")
-                            .removeClass("navbar-light")
-                            .removeClass("bg-dark")
-                            .addClass("bg-light")
-                            .addClass("navbar-dark");
                     }
 
                     if ($monacoEditor) {
@@ -135,8 +135,10 @@ monacoEditorConfig.initEditor(document.getElementById(HtmlElementIds.EDITOR_CONT
                             "background-color": $monacoEditor.css("background-color")
                         });
                     }
-                });
+                };
 
+                $themePicker.ready(onThemeChange);
+                $themePicker.change(onThemeChange);
             }
         }
 
