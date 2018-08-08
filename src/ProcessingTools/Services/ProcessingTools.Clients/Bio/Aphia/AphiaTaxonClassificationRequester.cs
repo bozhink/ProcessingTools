@@ -8,7 +8,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using ProcessingTools.Clients.Bio.Aphia.ServiceReference;
+    using ProcessingTools.Clients.ConnectedServices.Bio.Aphia;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Clients.Models.Bio.Taxonomy.Aphia;
     using ProcessingTools.Enumerations;
@@ -28,7 +28,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
                 throw new ArgumentNullException(nameof(scientificName));
             }
 
-            var aphiaRecords = await this.GetAphiaRecords(scientificName);
+            var aphiaRecords = await this.GetAphiaRecordsAsync(scientificName);
 
             var result = new HashSet<ITaxonClassification>();
 
@@ -47,7 +47,7 @@ namespace ProcessingTools.Clients.Bio.Aphia
             return result.ToArray();
         }
 
-        private async Task<getAphiaRecordsResponse> GetAphiaRecords(string scientificName)
+        private async Task<getAphiaRecordsResponse> GetAphiaRecordsAsync(string scientificName)
         {
             var client = new AphiaNameServicePortTypeClient();
 

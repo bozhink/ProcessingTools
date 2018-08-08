@@ -1,12 +1,12 @@
 ﻿{
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
-  "Version": "15.0.20119.1312",
+  "Version": "15.0.20406.879",
   "GettingStartedDocument": {
     "Uri": "https://go.microsoft.com/fwlink/?linkid=858517"
   },
   "ExtendedData": {
-    "Uri": "D:\\Source\\Repos\\ProcessingTools\\src\\ProcessingTools\\Services\\ProcessingTools.Clients.ConnectedServices\\Bio\\aphia.wsdl",
-    "Namespace": "ProcessingTools.Clients.Bio.Aphia.ServiceReference",
+    "Uri": "C:\\Source\\Repos\\ProcessingTools\\src\\ProcessingTools\\Services\\ProcessingTools.Clients.ConnectedServices\\Bio\\aphia.wsdl",
+    "Namespace": "ProcessingTools.Clients.ConnectedServices.Bio.Aphia",
     "SelectedAccessLevelForGeneratedClass": "Public",
     "GenerateMessageContract": true,
     "ReuseTypesinReferencedAssemblies": true,
@@ -21,7 +21,7 @@
     },
     "CheckedReferencedAssemblies": [],
     "InstanceId": null,
-    "Name": "ProcessingTools.Clients.Bio.Aphia.ServiceReference",
+    "Name": "ProcessingTools.Clients.ConnectedServices.Bio.Aphia",
     "Metadata": {}
   }
 }
