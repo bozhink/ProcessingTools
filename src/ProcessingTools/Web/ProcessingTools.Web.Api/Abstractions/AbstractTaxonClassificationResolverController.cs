@@ -11,13 +11,13 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Models.Bio.Taxonomy;
 
-    public abstract class AbstractTaxaClassificationResolverController : ApiController
+    public abstract class AbstractTaxonClassificationResolverController : ApiController
     {
-        private readonly ITaxaClassificationResolver resolver;
+        private readonly ITaxonClassificationResolver resolver;
         private readonly ILogger logger;
         private readonly IMapper mapper;
 
-        protected AbstractTaxaClassificationResolverController(ITaxaClassificationResolver resolver, ILogger logger)
+        protected AbstractTaxonClassificationResolverController(ITaxonClassificationResolver resolver, ILogger logger)
         {
             this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));

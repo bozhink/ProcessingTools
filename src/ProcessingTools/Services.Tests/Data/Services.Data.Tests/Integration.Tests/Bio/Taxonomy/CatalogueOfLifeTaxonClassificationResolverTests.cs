@@ -7,27 +7,27 @@
     using ProcessingTools.Net;
     using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
 
-    [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(CatalogueOfLifeTaxaClassificationResolver))]
-    public class CatalogueOfLifeTaxaClassificationResolverTests
+    [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(CatalogueOfLifeTaxonClassificationResolver))]
+    public class CatalogueOfLifeTaxonClassificationResolverTests
     {
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(CatalogueOfLifeTaxaClassificationResolver))]
-        public void CatalogueOfLifeTaxaClassificationResolver_DefaultConstructor_ShouldWork()
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(CatalogueOfLifeTaxonClassificationResolver))]
+        public void CatalogueOfLifeTaxonClassificationResolver_DefaultConstructor_ShouldWork()
         {
             var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
-            var service = new CatalogueOfLifeTaxaClassificationResolver(requester);
+            var service = new CatalogueOfLifeTaxonClassificationResolver(requester);
             Assert.IsNotNull(service, "Service should not be null");
         }
 
-        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(CatalogueOfLifeTaxaClassificationResolver))]
+        [Test(Author = "Bozhin Karaivanov", TestOf = typeof(CatalogueOfLifeTaxonClassificationResolver))]
         [Timeout(10000)]
         [Ignore(reason: "Integration test")]
-        public void CatalogueOfLifeTaxaClassificationDataService_Resolve_ShouldWork()
+        public void CatalogueOfLifeTaxonClassificationResolver_Resolve_ShouldWork()
         {
             const string ScientificName = "Coleoptera";
             const TaxonRankType Rank = TaxonRankType.Order;
 
             var requester = new CatalogueOfLifeDataRequester(new NetConnectorFactory());
-            var service = new CatalogueOfLifeTaxaClassificationResolver(requester);
+            var service = new CatalogueOfLifeTaxonClassificationResolver(requester);
             var response = service.ResolveAsync(ScientificName).Result;
 
             Assert.IsNotNull(response, "Response should not be null.");

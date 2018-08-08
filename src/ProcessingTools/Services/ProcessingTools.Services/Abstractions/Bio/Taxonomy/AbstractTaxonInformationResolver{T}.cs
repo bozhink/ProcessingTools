@@ -1,4 +1,4 @@
-﻿// <copyright file="AbstractTaxaInformationResolver.cs" company="ProcessingTools">
+﻿// <copyright file="AbstractTaxonInformationResolver{T}.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -14,7 +14,7 @@ namespace ProcessingTools.Services.Abstractions.Bio.Taxonomy
     /// Abstract taxa information resolver.
     /// </summary>
     /// <typeparam name="T">Type of result object.</typeparam>
-    public abstract class AbstractTaxaInformationResolver<T> : ITaxaInformationResolver<T>
+    public abstract class AbstractTaxonInformationResolver<T> : ITaxonInformationResolver<T>
     {
         /// <inheritdoc/>
         public async Task<T[]> ResolveAsync(params string[] scientificNames)

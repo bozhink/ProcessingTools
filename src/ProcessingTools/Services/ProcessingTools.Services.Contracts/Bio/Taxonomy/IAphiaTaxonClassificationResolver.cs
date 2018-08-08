@@ -1,4 +1,4 @@
-﻿// <copyright file="IAphiaTaxaClassificationResolver.cs" company="ProcessingTools">
+﻿// <copyright file="IAphiaTaxonClassificationResolver.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace ProcessingTools.Services.Contracts.Bio.Taxonomy
     /// <summary>
     /// Taxon classification resolver with Aphia web service.
     /// </summary>
-    public interface IAphiaTaxaClassificationResolver : ITaxaClassificationResolver
+    public interface IAphiaTaxonClassificationResolver : ITaxonClassificationResolver
     {
     }
 }

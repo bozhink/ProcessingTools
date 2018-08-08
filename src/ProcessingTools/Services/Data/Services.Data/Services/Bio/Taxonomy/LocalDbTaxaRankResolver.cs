@@ -10,11 +10,11 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
-    public class LocalDbTaxaRankResolver : ILocalDbTaxaRankResolver
+    public class LocalDbTaxonRankResolver : ILocalDbTaxonRankResolver
     {
         private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
-        public LocalDbTaxaRankResolver(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
+        public LocalDbTaxonRankResolver(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }

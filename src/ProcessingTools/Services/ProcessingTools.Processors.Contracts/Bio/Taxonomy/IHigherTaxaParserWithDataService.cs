@@ -13,7 +13,7 @@ namespace ProcessingTools.Processors.Contracts.Bio.Taxonomy
     /// <typeparam name="TService">Type of data service.</typeparam>
     /// <typeparam name="T">Type of model.</typeparam>
     public interface IHigherTaxaParserWithDataService<TService, T> : IXmlContextParser<long>
-        where TService : ITaxaRankResolver
+        where TService : ITaxonRankResolver
         where T : ITaxonRank
     {
     }

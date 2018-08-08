@@ -4,9 +4,9 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Api.Abstractions;
 
-    public class CoLController : AbstractTaxaClassificationResolverController
+    public class CoLController : AbstractTaxonClassificationResolverController
     {
-        protected CoLController(ICatalogueOfLifeTaxaClassificationResolver resolver, ILogger<CoLController> logger)
+        protected CoLController(ICatalogueOfLifeTaxonClassificationResolver resolver, ILogger<CoLController> logger)
             : base(resolver, logger)
         {
         }

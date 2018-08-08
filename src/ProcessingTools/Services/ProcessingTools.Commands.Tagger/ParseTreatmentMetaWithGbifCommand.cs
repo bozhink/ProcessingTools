@@ -13,13 +13,13 @@ namespace ProcessingTools.Commands.Tagger
     /// Parse treatment meta with GBIF command.
     /// </summary>
     [System.ComponentModel.Description("Parse treatment meta with GBIF.")]
-    public class ParseTreatmentMetaWithGbifCommand : DocumentParserCommand<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>, IParseTreatmentMetaWithGbifCommand
+    public class ParseTreatmentMetaWithGbifCommand : DocumentParserCommand<ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver>>, IParseTreatmentMetaWithGbifCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseTreatmentMetaWithGbifCommand"/> class.
         /// </summary>
         /// <param name="parser">Instance of <see cref="ITreatmentMetaParserWithDataService{IGbifTaxaClassificationResolver}"/>.</param>
-        public ParseTreatmentMetaWithGbifCommand(ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver> parser)
+        public ParseTreatmentMetaWithGbifCommand(ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver> parser)
             : base(parser)
         {
         }

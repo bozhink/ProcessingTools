@@ -9,11 +9,11 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
-    public class SuffixHigherTaxaRankResolver : ISuffixHigherTaxaRankResolver
+    public class SuffixHigherTaxonRankResolver : ISuffixHigherTaxonRankResolver
     {
         private readonly IDictionary<string, TaxonRankType> rankPerSuffix;
 
-        public SuffixHigherTaxaRankResolver()
+        public SuffixHigherTaxonRankResolver()
         {
             this.rankPerSuffix = new Dictionary<string, TaxonRankType>()
             {

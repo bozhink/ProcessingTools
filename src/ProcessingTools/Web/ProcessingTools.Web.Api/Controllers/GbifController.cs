@@ -4,9 +4,9 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Api.Abstractions;
 
-    public class GbifController : AbstractTaxaClassificationResolverController
+    public class GbifController : AbstractTaxonClassificationResolverController
     {
-        protected GbifController(IGbifTaxaClassificationResolver resolver, ILogger<GbifController> logger)
+        protected GbifController(IGbifTaxonClassificationResolver resolver, ILogger<GbifController> logger)
             : base(resolver, logger)
         {
         }

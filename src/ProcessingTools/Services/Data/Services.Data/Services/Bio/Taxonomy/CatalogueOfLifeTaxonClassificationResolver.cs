@@ -12,11 +12,11 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
-    public class CatalogueOfLifeTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxaClassificationResolver
+    public class CatalogueOfLifeTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxonClassificationResolver
     {
         private readonly ICatalogueOfLifeDataRequester requester;
 
-        public CatalogueOfLifeTaxaClassificationResolver(ICatalogueOfLifeDataRequester requester)
+        public CatalogueOfLifeTaxonClassificationResolver(ICatalogueOfLifeDataRequester requester)
         {
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }

@@ -1,4 +1,4 @@
-﻿// <copyright file="AbstractTaxaRankResolverOverTaxaClassificationResolver.cs" company="ProcessingTools">
+﻿// <copyright file="AbstractTaxonRankResolverOverTaxaClassificationResolver.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -12,15 +12,15 @@ namespace ProcessingTools.Services.Abstractions.Bio.Taxonomy
     /// <summary>
     /// Abstract taxa rank resolver over taxa classification resolver.
     /// </summary>
-    public abstract class AbstractTaxaRankResolverOverTaxaClassificationResolver : ITaxaRankResolver
+    public abstract class AbstractTaxonRankResolverOverTaxaClassificationResolver : ITaxonRankResolver
     {
-        private readonly ITaxaClassificationResolver classificationResolver;
+        private readonly ITaxonClassificationResolver classificationResolver;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbstractTaxaRankResolverOverTaxaClassificationResolver"/> class.
+        /// Initializes a new instance of the <see cref="AbstractTaxonRankResolverOverTaxaClassificationResolver"/> class.
         /// </summary>
         /// <param name="classificationResolver">classification resolver.</param>
-        protected AbstractTaxaRankResolverOverTaxaClassificationResolver(ITaxaClassificationResolver classificationResolver)
+        protected AbstractTaxonRankResolverOverTaxaClassificationResolver(ITaxonClassificationResolver classificationResolver)
         {
             this.classificationResolver = classificationResolver ?? throw new ArgumentNullException(nameof(classificationResolver));
         }

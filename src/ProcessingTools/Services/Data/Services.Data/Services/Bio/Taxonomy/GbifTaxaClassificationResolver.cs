@@ -13,11 +13,11 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
-    public class GbifTaxaClassificationResolver : AbstractTaxaInformationResolver<ITaxonClassification>, IGbifTaxaClassificationResolver
+    public class GbifTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, IGbifTaxonClassificationResolver
     {
         private readonly IGbifApiV09DataRequester requester;
 
-        public GbifTaxaClassificationResolver(IGbifApiV09DataRequester requester)
+        public GbifTaxonClassificationResolver(IGbifApiV09DataRequester requester)
         {
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }

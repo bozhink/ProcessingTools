@@ -1,4 +1,4 @@
-﻿// <copyright file="AboveGenusTaxaRankResolver.cs" company="ProcessingTools">
+﻿// <copyright file="AboveGenusTaxonRankResolver.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -15,7 +15,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     /// <summary>
     /// Taxon rank resolver with above-genus rank.
     /// </summary>
-    public class AboveGenusTaxaRankResolver : IAboveGenusTaxaRankResolver
+    public class AboveGenusTaxonRankResolver : IAboveGenusTaxonRankResolver
     {
         /// <inheritdoc/>
         public Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)

@@ -3,9 +3,9 @@
     using ProcessingTools.Services.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
-    public class GbifTaxaRankResolver : AbstractTaxaRankResolverOverTaxaClassificationResolver, IGbifTaxaRankResolver
+    public class GbifTaxonRankResolver : AbstractTaxonRankResolverOverTaxaClassificationResolver, IGbifTaxonRankResolver
     {
-        public GbifTaxaRankResolver(IGbifTaxaClassificationResolver classificationResolver)
+        public GbifTaxonRankResolver(IGbifTaxonClassificationResolver classificationResolver)
             : base(classificationResolver)
         {
         }

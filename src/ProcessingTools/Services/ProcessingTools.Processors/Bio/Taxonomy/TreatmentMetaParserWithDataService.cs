@@ -22,7 +22,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     /// </summary>
     /// <typeparam name="TService">Type of data service.</typeparam>
     public class TreatmentMetaParserWithDataService<TService> : ITreatmentMetaParserWithDataService<TService>
-        where TService : class, ITaxaClassificationResolver
+        where TService : class, ITaxonClassificationResolver
     {
         private const string SelectTreatmentGeneraXPathString = ".//tp:taxon-treatment[string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='order'])='ORDO' or string(tp:treatment-meta/kwd-group/kwd/named-content[@content-type='family'])='FAMILIA']/tp:nomenclature/tn/tn-part[@type='genus']";
 

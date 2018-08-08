@@ -88,8 +88,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integration.Tests\Bio\Taxonomy\CatalogueOfLifeTaxaClassificationResolverTests.cs" />
-    <Compile Include="Integration.Tests\Bio\Taxonomy\GbifTaxaClassificationResolverTests.cs" />
+    <Compile Include="Integration.Tests\Bio\Taxonomy\CatalogueOfLifeTaxonClassificationResolverTests.cs" />
+    <Compile Include="Integration.Tests\Bio\Taxonomy\GbifTaxonClassificationResolverTests.cs" />
     <Compile Include="Integration.Tests\Documents\XXmlPresenterTests.cs" />
     <Compile Include="NUnitSetUpClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -284,7 +284,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\AbstractTaxaClassificationResolverController.cs" />
+    <Compile Include="Abstractions\AbstractTaxonClassificationResolverController.cs" />
     <Compile Include="Abstractions\GenericDataServiceController.cs" />
     <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />

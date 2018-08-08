@@ -21,7 +21,7 @@ namespace ProcessingTools.Commands.Tagger.Abstractions
     /// </summary>
     /// <typeparam name="TService">Type of service.</typeparam>
     public class ParseHigherTaxaCommand<TService> : ITaggerCommand
-        where TService : ITaxaRankResolver
+        where TService : ITaxonRankResolver
     {
         private readonly IHigherTaxaParserWithDataService<TService, ITaxonRank> parser;
         private readonly IReporter reporter;
