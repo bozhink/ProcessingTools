@@ -64,7 +64,6 @@
     <Compile Include="Services\Bio\Biorepositories\BiorepositoriesPersonalCollectionsDataService.cs" />
     <Compile Include="Services\Bio\Environments\EnvoTermsDataService.cs" />
     <Compile Include="Services\Bio\MorphologicalEpithetsDataService.cs" />
-    <Compile Include="Services\Bio\Taxonomy\AboveGenusTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaClassificationResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\AphiaTaxaRankResolver.cs" />
     <Compile Include="Services\Bio\Taxonomy\BlackListDataService.cs" />
