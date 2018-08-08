@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="CatalogueOfLifeTaxonClassificationResolver.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Linq;
@@ -12,15 +16,23 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxon classification resolver with Catalogue of Life.
+    /// </summary>
     public class CatalogueOfLifeTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, ICatalogueOfLifeTaxonClassificationResolver
     {
         private readonly ICatalogueOfLifeDataRequester requester;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogueOfLifeTaxonClassificationResolver"/> class.
+        /// </summary>
+        /// <param name="requester">Data requester.</param>
         public CatalogueOfLifeTaxonClassificationResolver(ICatalogueOfLifeDataRequester requester)
         {
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
+        /// <inheritdoc/>
         protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
         {
             var response = await this.requester.RequestDataAsync(scientificName).ConfigureAwait(false);

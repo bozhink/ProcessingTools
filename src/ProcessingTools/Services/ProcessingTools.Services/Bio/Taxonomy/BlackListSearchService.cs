@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="BlackListSearchService.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Linq;
@@ -7,15 +11,23 @@
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxonomic black list search service.
+    /// </summary>
     public class BlackListSearchService : IBlackListSearchService
     {
         private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlackListSearchService"/> class.
+        /// </summary>
+        /// <param name="repositoryProvider">Repository provider.</param>
         public BlackListSearchService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
+        /// <inheritdoc/>
         public Task<string[]> SearchAsync(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))

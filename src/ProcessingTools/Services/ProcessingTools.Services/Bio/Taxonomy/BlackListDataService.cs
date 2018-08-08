@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="BlackListDataService.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
@@ -9,15 +13,23 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxonomic black list data service.
+    /// </summary>
     public class BlackListDataService : IBlackListDataService
     {
         private readonly IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlackListDataService"/> class.
+        /// </summary>
+        /// <param name="repositoryProvider">Repository provider.</param>
         public BlackListDataService(IGenericRepositoryProvider<IBiotaxonomicBlackListRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
+        /// <inheritdoc/>
         public Task<object> AddAsync(params string[] models)
         {
             var validItems = this.ValidateInputItems(models);
@@ -36,6 +48,7 @@
             });
         }
 
+        /// <inheritdoc/>
         public Task<object> DeleteAsync(params string[] models)
         {
             var validItems = this.ValidateInputItems(models);

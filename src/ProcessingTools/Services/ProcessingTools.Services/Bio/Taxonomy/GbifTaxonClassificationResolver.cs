@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="GbifTaxonClassificationResolver.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Generic;
@@ -13,15 +17,23 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxon rank resolver with GBIF.
+    /// </summary>
     public class GbifTaxonClassificationResolver : AbstractTaxonInformationResolver<ITaxonClassification>, IGbifTaxonClassificationResolver
     {
         private readonly IGbifApiV09DataRequester requester;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GbifTaxonClassificationResolver"/> class.
+        /// </summary>
+        /// <param name="requester">Data requester.</param>
         public GbifTaxonClassificationResolver(IGbifApiV09DataRequester requester)
         {
             this.requester = requester ?? throw new ArgumentNullException(nameof(requester));
         }
 
+        /// <inheritdoc/>
         protected override async Task<ITaxonClassification[]> ResolveScientificNameAsync(string scientificName)
         {
             var result = new HashSet<ITaxonClassification>();

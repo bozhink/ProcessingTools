@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="SuffixHigherTaxonRankResolver.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -9,10 +13,16 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxon rank resolver by suffix.
+    /// </summary>
     public class SuffixHigherTaxonRankResolver : ISuffixHigherTaxonRankResolver
     {
         private readonly IDictionary<string, TaxonRankType> rankPerSuffix;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SuffixHigherTaxonRankResolver"/> class.
+        /// </summary>
         public SuffixHigherTaxonRankResolver()
         {
             this.rankPerSuffix = new Dictionary<string, TaxonRankType>()
@@ -34,27 +44,31 @@
             };
         }
 
+        /// <inheritdoc/>
         public Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
-            var result = new HashSet<ITaxonRank>();
-
-            foreach (var scientificName in scientificNames)
+            return Task.Run(() =>
             {
-                var ranks = this.rankPerSuffix.Keys
-                    .Where(s => Regex.IsMatch(scientificName, $"\\A[A-Z](?:(?i)[a-z]*{s})\\Z"))
-                    .Select(k => this.rankPerSuffix[k]);
+                var result = new HashSet<ITaxonRank>();
 
-                foreach (var rank in ranks)
+                foreach (var scientificName in scientificNames)
                 {
-                    result.Add(new TaxonRank
-                    {
-                        ScientificName = scientificName,
-                        Rank = rank
-                    });
-                }
-            }
+                    var ranks = this.rankPerSuffix.Keys
+                        .Where(suffix => Regex.IsMatch(scientificName, $"\\A[A-Z](?:(?i)[a-z]*{suffix})\\Z"))
+                        .Select(k => this.rankPerSuffix[k]);
 
-            return Task.FromResult(result.ToArray());
+                    foreach (var rank in ranks)
+                    {
+                        result.Add(new TaxonRank
+                        {
+                            ScientificName = scientificName,
+                            Rank = rank
+                        });
+                    }
+                }
+
+                return result.ToArray();
+            });
         }
     }
 }

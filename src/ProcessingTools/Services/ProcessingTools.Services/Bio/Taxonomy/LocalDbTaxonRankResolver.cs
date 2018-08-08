@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="LocalDbTaxonRankResolver.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Collections.Concurrent;
@@ -10,15 +14,23 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxon rank resolver with local DB.
+    /// </summary>
     public class LocalDbTaxonRankResolver : ILocalDbTaxonRankResolver
     {
         private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LocalDbTaxonRankResolver"/> class.
+        /// </summary>
+        /// <param name="repositoryProvider">Repository provider.</param>
         public LocalDbTaxonRankResolver(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
+        /// <inheritdoc/>
         public async Task<ITaxonRank[]> ResolveAsync(params string[] scientificNames)
         {
             var result = new ConcurrentQueue<ITaxonRank>();

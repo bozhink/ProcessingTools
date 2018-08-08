@@ -1,4 +1,8 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="TaxonRanksSearchService.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Linq;
@@ -10,15 +14,23 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
+    /// <summary>
+    /// Taxon ranks search service.
+    /// </summary>
     public class TaxonRanksSearchService : ITaxonRanksSearchService
     {
         private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxonRanksSearchService"/> class.
+        /// </summary>
+        /// <param name="repositoryProvider">Repository provider.</param>
         public TaxonRanksSearchService(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
+        /// <inheritdoc/>
         public Task<ITaxonRank[]> SearchAsync(string filter)
         {
             if (string.IsNullOrWhiteSpace(filter))

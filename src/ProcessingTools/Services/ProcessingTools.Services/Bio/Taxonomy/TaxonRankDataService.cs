@@ -1,21 +1,32 @@
-﻿namespace ProcessingTools.Services.Data.Services.Bio.Taxonomy
+﻿// <copyright file="TaxonRankDataService.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
-    using System;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using ProcessingTools.Constants;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
+    using System;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
+    /// <summary>
+    /// Taxon rank data service.
+    /// </summary>
     public class TaxonRankDataService : ITaxonRankDataService
     {
         private readonly IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider;
         private readonly Regex matchNonWhiteListedHigherTaxon = new Regex(TaxaRegexPatterns.HigherTaxaMatchPattern);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxonRankDataService"/> class.
+        /// </summary>
+        /// <param name="repositoryProvider">Repository provider.</param>
         public TaxonRankDataService(IGenericRepositoryProvider<ITaxonRanksRepository> repositoryProvider)
         {
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
@@ -34,6 +45,7 @@
             return taxon;
         };
 
+        /// <inheritdoc/>
         public virtual Task<object> AddAsync(params ITaxonRank[] models)
         {
             var validTaxa = this.ValidateTaxa(models);
@@ -46,6 +58,7 @@
             });
         }
 
+        /// <inheritdoc/>
         public virtual Task<object> DeleteAsync(params ITaxonRank[] models)
         {
             var validTaxa = this.ValidateTaxa(models);

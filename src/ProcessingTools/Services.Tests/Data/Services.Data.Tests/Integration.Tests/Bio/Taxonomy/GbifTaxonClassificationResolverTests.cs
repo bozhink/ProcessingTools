@@ -5,7 +5,7 @@
     using ProcessingTools.Clients.Bio.Taxonomy.Gbif;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Net;
-    using ProcessingTools.Services.Data.Services.Bio.Taxonomy;
+    using ProcessingTools.Services.Bio.Taxonomy;
 
     [TestFixture(Author = "Bozhin Karaivanov", Category = "Integration", TestOf = typeof(GbifTaxonClassificationResolver))]
     public class GbifTaxonClassificationResolverTests
