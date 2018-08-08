@@ -8,7 +8,6 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using System.Threading.Tasks;
     using ProcessingTools.Clients.Contracts.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
 
     /// <summary>

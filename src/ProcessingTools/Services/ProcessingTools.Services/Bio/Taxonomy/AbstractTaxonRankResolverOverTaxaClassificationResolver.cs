@@ -2,7 +2,7 @@
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Services.Abstractions.Bio.Taxonomy
+namespace ProcessingTools.Services.Bio.Taxonomy
 {
     using System;
     using System.Threading.Tasks;

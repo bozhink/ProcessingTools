@@ -13,7 +13,6 @@ namespace ProcessingTools.Services.Bio.Taxonomy
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
-    using ProcessingTools.Services.Abstractions.Bio.Taxonomy;
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Services.Models.Data.Bio.Taxonomy;
 
