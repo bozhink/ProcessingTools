@@ -10,7 +10,7 @@
     <Description>Documents data objects for MongoDB implementation</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\docs\ProcessingTools.Data.Documents.Mongo.xml</DocumentationFile>
+    <DocumentationFile>bin\docs\ProcessingTools.Data.Bio.Taxonomy.Mongo.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;S1075;S4456;S4457</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -27,10 +27,8 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\ProcessingTools.Extensions\ProcessingTools.Extensions.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Data.Common.Mongo\ProcessingTools.Data.Common.Mongo.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Contracts\ProcessingTools.Data.Contracts.csproj" />
+    <ProjectReference Include="..\ProcessingTools.Data.Models.Bio.Taxonomy.Mongo\ProcessingTools.Data.Models.Bio.Taxonomy.Mongo.csproj" />
     <ProjectReference Include="..\ProcessingTools.Data.Models.Contracts\ProcessingTools.Data.Models.Contracts.csproj" />
-    <ProjectReference Include="..\ProcessingTools.Data.Models.Documents.Mongo\ProcessingTools.Data.Models.Documents.Mongo.csproj" />
   </ItemGroup>
 </Project>

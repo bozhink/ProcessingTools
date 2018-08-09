@@ -343,6 +343,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Cache.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessingTools.Data.Models.Cache.Redis", "Data\ProcessingTools.Data.Models.Cache.Redis\ProcessingTools.Data.Models.Cache.Redis.csproj", "{280F9CF0-564C-45BF-9F3A-1191FBECA801}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Bio.Taxonomy.Mongo", "Data\ProcessingTools.Data.Bio.Taxonomy.Mongo\ProcessingTools.Data.Bio.Taxonomy.Mongo.csproj", "{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessingTools.Data.Models.Bio.Taxonomy.Mongo", "Data\ProcessingTools.Data.Models.Bio.Taxonomy.Mongo\ProcessingTools.Data.Models.Bio.Taxonomy.Mongo.csproj", "{E1EB2EFC-81FD-486F-A4B9-17838578B633}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1455,6 +1459,22 @@ Global
 		{280F9CF0-564C-45BF-9F3A-1191FBECA801}.Release|Any CPU.Build.0 = Release|Any CPU
 		{280F9CF0-564C-45BF-9F3A-1191FBECA801}.Release|x64.ActiveCfg = Release|Any CPU
 		{280F9CF0-564C-45BF-9F3A-1191FBECA801}.Release|x64.Build.0 = Release|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Debug|x64.Build.0 = Debug|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Release|x64.ActiveCfg = Release|Any CPU
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148}.Release|x64.Build.0 = Release|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Debug|x64.Build.0 = Debug|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Release|x64.ActiveCfg = Release|Any CPU
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1617,9 +1637,11 @@ Global
 		{9FC1D0BF-E98D-4F75-88FC-93D8400457BB} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{76E98177-8D03-4582-9A30-2D841BC1EADE} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 		{280F9CF0-564C-45BF-9F3A-1191FBECA801} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{4ECE987D-3ED7-4189-8F47-4A9BEE2E5148} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
+		{E1EB2EFC-81FD-486F-A4B9-17838578B633} = {F44B7FBC-A422-4966-837D-D52DF317F82E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2653317A-3D7C-4608-88D3-8A032C9F6A7F}
 	EndGlobalSection
 EndGlobal
