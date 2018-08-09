@@ -26,7 +26,7 @@ namespace ProcessingTools.Data.Bio.Taxonomy.Mongo
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoStringListDataAccessObject{T}"/> class.
         /// </summary>
-        /// <param name="collection">MongoDB collection of the black list items.</param>
+        /// <param name="collection">MongoDB collection of the string list items.</param>
         public MongoStringListDataAccessObject(IMongoCollection<T> collection)
         {
             this.collection = collection ?? throw new ArgumentNullException(nameof(collection));
