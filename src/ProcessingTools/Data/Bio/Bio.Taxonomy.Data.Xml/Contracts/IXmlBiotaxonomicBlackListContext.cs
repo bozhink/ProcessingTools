@@ -3,7 +3,7 @@
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public interface IXmlBiotaxonomicBlackListContext : IFileDbContext<IBlackListEntity>
+    public interface IXmlBiotaxonomicBlackListContext : IFileDbContext<IBlackListItem>
     {
     }
 }

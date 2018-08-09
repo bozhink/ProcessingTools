@@ -20,14 +20,14 @@
 
         public XmlBiotaxonomicBlackListContext()
         {
-            this.Items = new ConcurrentQueue<IBlackListEntity>();
+            this.Items = new ConcurrentQueue<IBlackListItem>();
         }
 
-        public IQueryable<IBlackListEntity> DataSet => new HashSet<IBlackListEntity>(this.Items).AsQueryable();
+        public IQueryable<IBlackListItem> DataSet => new HashSet<IBlackListItem>(this.Items).AsQueryable();
 
-        private ConcurrentQueue<IBlackListEntity> Items { get; set; }
+        private ConcurrentQueue<IBlackListItem> Items { get; set; }
 
-        public async Task<object> Add(IBlackListEntity entity)
+        public async Task<object> AddAsync(IBlackListItem entity)
         {
             if (entity == null)
             {
@@ -42,7 +42,7 @@
             return await Task.FromResult(entity).ConfigureAwait(false);
         }
 
-        public Task<object> Delete(object id)
+        public Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
@@ -57,7 +57,7 @@
             return this.Delete(entity);
         }
 
-        public Task<IBlackListEntity> Get(object id)
+        public Task<IBlackListItem> GetAsync(object id)
         {
             if (id == null)
             {
@@ -67,7 +67,7 @@
             return Task.Run(() => this.DataSet.FirstOrDefault(e => e.Content == id.ToString()));
         }
 
-        public async Task<long> LoadFromFile(string fileName)
+        public async Task<long> LoadFromFileAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -98,16 +98,16 @@
             .ConfigureAwait(false);
         }
 
-        public Task<object> Update(IBlackListEntity entity) => this.Add(entity);
+        public Task<object> UpdateAsync(IBlackListItem entity) => this.AddAsync(entity);
 
-        public async Task<long> WriteToFile(string fileName)
+        public async Task<long> WriteToFileAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName));
             }
 
-            await this.LoadFromFile(fileName).ConfigureAwait(false);
+            await this.LoadFromFileAsync(fileName).ConfigureAwait(false);
 
             var comparer = new BlackListEntityEqualityComparer();
 
@@ -123,7 +123,7 @@
             return (long)items.Length;
         }
 
-        private Task<object> Delete(IBlackListEntity entity)
+        private Task<object> Delete(IBlackListItem entity)
         {
             if (entity == null)
             {
@@ -134,7 +134,7 @@
             {
                 var items = this.DataSet.ToList();
                 items.Remove(entity);
-                this.Items = new ConcurrentQueue<IBlackListEntity>(items);
+                this.Items = new ConcurrentQueue<IBlackListItem>(items);
 
                 return entity;
             });

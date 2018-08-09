@@ -1,6 +1,8 @@
 ﻿namespace ProcessingTools.Data.Common.File.Contracts
 {
-    public interface IFileGenericRepository<T> : IFileCrudRepository<T>
+    using ProcessingTools.Data.Contracts;
+
+    public interface IFileGenericRepository<T> : ICrudRepository<T>, IIterableRepository<T>
         where T : class
     {
     }

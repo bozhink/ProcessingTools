@@ -1,13 +1,13 @@
-﻿// <copyright file="IBlackListEntity.cs" company="ProcessingTools">
+﻿// <copyright file="IBlackListItem.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
 namespace ProcessingTools.Models.Contracts.Bio.Taxonomy
 {
     /// <summary>
-    /// Black list entity.
+    /// Black list item.
     /// </summary>
-    public interface IBlackListEntity
+    public interface IBlackListItem
     {
         /// <summary>
         /// Gets content.

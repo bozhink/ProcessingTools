@@ -82,26 +82,27 @@
             return result;
         }
 
-        private async Task<object> CreateIndicesToBlackListCollection()
+        private Task<object> CreateIndicesToBlackListCollection()
         {
-            string collectionName = MongoCollectionNameFactory.Create<MongoBlackListEntity>();
+            ////string collectionName = MongoCollectionNameFactory.Create<MongoBlackListEntity>();
 
-            var collection = this.db.GetCollection<MongoBlackListEntity>(collectionName);
+            ////var collection = this.db.GetCollection<MongoBlackListEntity>(collectionName);
 
-            var indexOptions = new CreateIndexOptions
-            {
-                Background = false,
-                Unique = true,
-                Sparse = false
-            };
+            ////var indexOptions = new CreateIndexOptions
+            ////{
+            ////    Background = false,
+            ////    Unique = true,
+            ////    Sparse = false
+            ////};
 
-            var result = await collection.Indexes
-                .CreateOneAsync(new CreateIndexModel<MongoBlackListEntity>(
-                    Builders<MongoBlackListEntity>.IndexKeys.Ascending(t => t.Content),
-                    indexOptions))
-                .ConfigureAwait(false);
+            ////var result = await collection.Indexes
+            ////    .CreateOneAsync(new CreateIndexModel<MongoBlackListEntity>(
+            ////        Builders<MongoBlackListEntity>.IndexKeys.Ascending(t => t.Content),
+            ////        indexOptions))
+            ////    .ConfigureAwait(false);
 
-            return result;
+            ////return result;
+            return Task.FromResult<object>(false);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Contracts.Bio.Taxonomy
     /// <summary>
     /// Taxon ranks repository.
     /// </summary>
-    public interface ITaxonRanksRepository : ICrudRepository<ITaxonRankEntity>
+    public interface ITaxonRanksRepository : ICrudRepository<ITaxonRankItem>
     {
     }
 }

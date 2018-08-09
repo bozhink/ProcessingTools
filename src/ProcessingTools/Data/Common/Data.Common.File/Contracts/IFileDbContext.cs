@@ -7,16 +7,16 @@
     {
         IQueryable<T> DataSet { get; }
 
-        Task<object> Add(T entity);
+        Task<object> AddAsync(T entity);
 
-        Task<object> Delete(object id);
+        Task<object> DeleteAsync(object id);
 
-        Task<T> Get(object id);
+        Task<T> GetAsync(object id);
 
-        Task<long> LoadFromFile(string fileName);
+        Task<long> LoadFromFileAsync(string fileName);
 
-        Task<object> Update(T entity);
+        Task<object> UpdateAsync(T entity);
 
-        Task<long> WriteToFile(string fileName);
+        Task<long> WriteToFileAsync(string fileName);
     }
 }

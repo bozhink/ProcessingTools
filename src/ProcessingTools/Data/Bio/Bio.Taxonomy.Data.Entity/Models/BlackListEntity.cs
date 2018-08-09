@@ -4,7 +4,7 @@
     using ProcessingTools.Constants.Data.Bio.Taxonomy;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class BlackListEntity : IBlackListEntity
+    public class BlackListEntity : IBlackListItem
     {
         [Key]
         public int Id { get; set; }

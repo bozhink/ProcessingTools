@@ -10,7 +10,7 @@ namespace ProcessingTools.Data.Contracts
     /// <summary>
     /// String list data access object.
     /// </summary>
-    public interface IStringListDataAccessObject
+    public interface IStringListDataAccessObject : IDataAccessObject
     {
         /// <summary>
         /// Inserts one string item to the data list.

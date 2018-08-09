@@ -21,14 +21,14 @@
 
         public XmlTaxaContext()
         {
-            this.Taxa = new ConcurrentDictionary<string, ITaxonRankEntity>();
+            this.Taxa = new ConcurrentDictionary<string, ITaxonRankItem>();
         }
 
-        public IQueryable<ITaxonRankEntity> DataSet => new HashSet<ITaxonRankEntity>(this.Taxa.Values).AsQueryable();
+        public IQueryable<ITaxonRankItem> DataSet => new HashSet<ITaxonRankItem>(this.Taxa.Values).AsQueryable();
 
-        protected ConcurrentDictionary<string, ITaxonRankEntity> Taxa { get; private set; }
+        protected ConcurrentDictionary<string, ITaxonRankItem> Taxa { get; private set; }
 
-        private Func<ITaxonRankEntity, TaxonXmlModel> MapTaxonRankEntityToTaxonXmlModel => t => new TaxonXmlModel
+        private Func<ITaxonRankItem, TaxonXmlModel> MapTaxonRankEntityToTaxonXmlModel => t => new TaxonXmlModel
         {
             IsWhiteListed = !this.matchHigherTaxa.IsMatch(t.Name),
             Parts = new[]
@@ -44,31 +44,31 @@
             }
         };
 
-        public Task<object> Add(ITaxonRankEntity entity) => Task.Run<object>(() => this.Upsert(entity));
+        public Task<object> AddAsync(ITaxonRankItem entity) => Task.Run<object>(() => this.Upsert(entity));
 
-        public Task<object> Delete(object id)
+        public Task<object> DeleteAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            this.Taxa.TryRemove(id.ToString(), out ITaxonRankEntity taxon);
+            this.Taxa.TryRemove(id.ToString(), out ITaxonRankItem taxon);
             return Task.FromResult<object>(taxon);
         }
 
-        public Task<ITaxonRankEntity> Get(object id)
+        public Task<ITaxonRankItem> GetAsync(object id)
         {
             if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            this.Taxa.TryGetValue(id.ToString(), out ITaxonRankEntity taxon);
+            this.Taxa.TryGetValue(id.ToString(), out ITaxonRankItem taxon);
             return Task.FromResult(taxon);
         }
 
-        public async Task<long> LoadFromFile(string fileName)
+        public async Task<long> LoadFromFileAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -77,7 +77,7 @@
 
             return await Task.Run(() =>
             {
-                IEnumerable<ITaxonRankEntity> taxa;
+                IEnumerable<ITaxonRankItem> taxa;
                 using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     var serializer = new XmlSerializer(typeof(RankListXmlModel));
@@ -93,9 +93,9 @@
             .ConfigureAwait(false);
         }
 
-        public Task<object> Update(ITaxonRankEntity entity) => Task.Run<object>(() => this.Upsert(entity));
+        public Task<object> UpdateAsync(ITaxonRankItem entity) => Task.Run<object>(() => this.Upsert(entity));
 
-        public async Task<long> WriteToFile(string fileName)
+        public async Task<long> WriteToFileAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -119,14 +119,14 @@
             return rankList.Taxa.Length;
         }
 
-        private ITaxonRankEntity Upsert(ITaxonRankEntity taxon)
+        private ITaxonRankItem Upsert(ITaxonRankItem taxon)
         {
             if (taxon == null)
             {
                 throw new ArgumentNullException(nameof(taxon));
             }
 
-            ITaxonRankEntity update(string k, ITaxonRankEntity t)
+            ITaxonRankItem update(string k, ITaxonRankItem t)
             {
                 var ranks = taxon.Ranks.Concat(t.Ranks);
 
@@ -143,7 +143,7 @@
             return this.Taxa.AddOrUpdate(taxon.Name, taxon, update);
         }
 
-        private ITaxonRankEntity MapTaxonXmlModelToTaxonRankEntity(TaxonXmlModel taxon)
+        private ITaxonRankItem MapTaxonXmlModelToTaxonRankEntity(TaxonXmlModel taxon)
         {
             var firstPart = taxon.Parts.FirstOrDefault();
 

@@ -9,14 +9,14 @@
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
     [CollectionName("taxa")]
-    public class MongoTaxonRankEntity : ITaxonRankEntity
+    public class MongoTaxonRankEntity : ITaxonRankItem
     {
         public MongoTaxonRankEntity()
         {
             this.Ranks = new HashSet<TaxonRankType>();
         }
 
-        public MongoTaxonRankEntity(ITaxonRankEntity entity)
+        public MongoTaxonRankEntity(ITaxonRankItem entity)
         {
             if (entity == null)
             {

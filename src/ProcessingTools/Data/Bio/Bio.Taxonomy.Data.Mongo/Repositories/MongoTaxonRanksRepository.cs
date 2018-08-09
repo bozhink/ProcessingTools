@@ -9,7 +9,7 @@
     using ProcessingTools.Data.Common.Mongo.Repositories;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class MongoTaxonRanksRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankEntity>, IMongoTaxonRankRepository
+    public class MongoTaxonRanksRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankItem>, IMongoTaxonRankRepository
     {
         private readonly UpdateOptions updateOptions;
 
@@ -23,12 +23,12 @@
             };
         }
 
-        public override Task<object> AddAsync(ITaxonRankEntity entity)
+        public override Task<object> AddAsync(ITaxonRankItem entity)
         {
             return this.UpdateAsync(entity);
         }
 
-        public override async Task<object> UpdateAsync(ITaxonRankEntity entity)
+        public override async Task<object> UpdateAsync(ITaxonRankItem entity)
         {
             if (entity == null)
             {

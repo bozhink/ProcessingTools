@@ -2,7 +2,7 @@
 {
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class BlackListEntity : IBlackListEntity
+    public class BlackListEntity : IBlackListItem
     {
         public string Content { get; set; }
     }

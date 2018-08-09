@@ -32,7 +32,7 @@ namespace ProcessingTools.Services.Bio.Taxonomy
             this.repositoryProvider = repositoryProvider ?? throw new ArgumentNullException(nameof(repositoryProvider));
         }
 
-        private Func<ITaxonRank, ITaxonRankEntity> MapServiceModelToDbModel => t =>
+        private Func<ITaxonRank, ITaxonRankItem> MapServiceModelToDbModel => t =>
         {
             var taxon = new TaxonRankEntity
             {

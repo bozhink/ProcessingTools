@@ -1,4 +1,4 @@
-﻿// <copyright file="ITaxonRankEntity.cs" company="ProcessingTools">
+﻿// <copyright file="ITaxonRankItem.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
@@ -9,9 +9,9 @@ namespace ProcessingTools.Models.Contracts.Bio.Taxonomy
     using ProcessingTools.Models.Contracts;
 
     /// <summary>
-    /// Taxon rank entity.
+    /// Taxon rank item.
     /// </summary>
-    public interface ITaxonRankEntity : INamed
+    public interface ITaxonRankItem : INamed
     {
         /// <summary>
         /// Gets a value indicating whether entity is included in the white list.
