@@ -7,11 +7,7 @@ namespace ProcessingTools.Data.Models.Contracts.Bio.Taxonomy
     /// <summary>
     /// Taxonomic black list item.
     /// </summary>
-    public interface IBlackListItem
+    public interface IBlackListItem : IStringListItem
     {
-        /// <summary>
-        /// Gets content.
-        /// </summary>
-        string Content { get; }
     }
 }

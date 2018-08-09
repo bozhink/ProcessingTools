@@ -7,11 +7,7 @@ namespace ProcessingTools.Data.Models.Contracts.Bio.Taxonomy
     /// <summary>
     /// Taxonomic white list item.
     /// </summary>
-    public interface IWhiteListItem
+    public interface IWhiteListItem : IStringListItem
     {
-        /// <summary>
-        /// Gets content.
-        /// </summary>
-        string Content { get; }
     }
 }
