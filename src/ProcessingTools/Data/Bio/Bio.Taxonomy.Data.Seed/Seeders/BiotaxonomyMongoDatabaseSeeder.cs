@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Bio.Taxonomy.Data.Seed.Contracts;
     using ProcessingTools.Data.Common.Mongo;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Contracts;
     using ProcessingTools.Data.Contracts.Bio.Taxonomy;
+    using ProcessingTools.Data.Models.Bio.Taxonomy.Mongo;
     using ProcessingTools.Enumerations;
     using ProcessingTools.Extensions;
 
@@ -70,11 +70,11 @@
 
         private async Task SeedTaxonRankTypeCollectionAsync()
         {
-            string collectionName = MongoCollectionNameFactory.Create<MongoTaxonRankTypeEntity>();
-            var collection = this.db.GetCollection<MongoTaxonRankTypeEntity>(collectionName);
+            string collectionName = MongoCollectionNameFactory.Create<TaxonRankTypeItem>();
+            var collection = this.db.GetCollection<TaxonRankTypeItem>(collectionName);
 
             var entities = Enum.GetValues(typeof(TaxonRankType)).Cast<TaxonRankType>()
-                .Select(rank => new MongoTaxonRankTypeEntity
+                .Select(rank => new TaxonRankTypeItem
                 {
                     RankType = rank
                 })

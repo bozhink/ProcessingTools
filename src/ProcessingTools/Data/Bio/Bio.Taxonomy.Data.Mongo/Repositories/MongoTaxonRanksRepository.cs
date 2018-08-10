@@ -4,12 +4,12 @@
     using System.Threading.Tasks;
     using MongoDB.Driver;
     using ProcessingTools.Bio.Taxonomy.Data.Mongo.Contracts.Repositories;
-    using ProcessingTools.Bio.Taxonomy.Data.Mongo.Models;
     using ProcessingTools.Data.Common.Mongo.Contracts;
     using ProcessingTools.Data.Common.Mongo.Repositories;
+    using ProcessingTools.Data.Models.Bio.Taxonomy.Mongo;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class MongoTaxonRanksRepository : MongoCrudRepository<MongoTaxonRankEntity, ITaxonRankItem>, IMongoTaxonRankRepository
+    public class MongoTaxonRanksRepository : MongoCrudRepository<TaxonRankItem, ITaxonRankItem>, IMongoTaxonRankRepository
     {
         private readonly UpdateOptions updateOptions;
 
@@ -36,9 +36,9 @@
             }
 
             var result = await this.Collection.UpdateOneAsync(
-                Builders<MongoTaxonRankEntity>.Filter
+                Builders<TaxonRankItem>.Filter
                     .Eq(t => t.Name, entity.Name),
-                Builders<MongoTaxonRankEntity>.Update
+                Builders<TaxonRankItem>.Update
                     .Set(t => t.IsWhiteListed, entity.IsWhiteListed)
                     .AddToSetEach(t => t.Ranks, entity.Ranks),
                 this.updateOptions)

@@ -98,6 +98,10 @@
       <Project>{20DF2BBE-DB57-4970-A4DA-99C0DB94C40F}</Project>
       <Name>ProcessingTools.Data.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ProcessingTools.Data.Models.Bio.Taxonomy.Mongo\ProcessingTools.Data.Models.Bio.Taxonomy.Mongo.csproj">
+      <Project>{E1EB2EFC-81FD-486F-A4B9-17838578B633}</Project>
+      <Name>ProcessingTools.Data.Models.Bio.Taxonomy.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bio.Taxonomy.Data.Entity\Bio.Taxonomy.Data.Entity.csproj">
       <Project>{6ea0b244-b449-442a-8f88-262ffb0b5b00}</Project>
       <Name>Bio.Taxonomy.Data.Entity</Name>
