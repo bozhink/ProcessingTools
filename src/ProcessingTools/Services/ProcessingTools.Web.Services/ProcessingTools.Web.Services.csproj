@@ -24,6 +24,7 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ProcessingTools.Common\ProcessingTools.Common.csproj" />
     <ProjectReference Include="..\ProcessingTools.Services.Contracts\ProcessingTools.Services.Contracts.csproj" />
     <ProjectReference Include="..\ProcessingTools.Web.Models\ProcessingTools.Web.Models.csproj" />
     <ProjectReference Include="..\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj" />
