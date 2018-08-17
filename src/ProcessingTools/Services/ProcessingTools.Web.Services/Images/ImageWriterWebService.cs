@@ -60,9 +60,16 @@ namespace ProcessingTools.Web.Services.Images
             string fileName;
             try
             {
-                var extension = Path.GetExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
                 fileName = Guid.NewGuid().ToString() + extension;
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                string directory = Path.GetDirectoryName(path);
+
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
 
                 using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
                 {

@@ -13,6 +13,8 @@ namespace ProcessingTools.Web.Core.Api
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json.Serialization;
+    using ProcessingTools.Web.Services.Contracts.Images;
+    using ProcessingTools.Web.Services.Images;
 
     /// <summary>
     /// Start-up of the application.
@@ -72,6 +74,8 @@ namespace ProcessingTools.Web.Core.Api
 
             // Add bindings
             builder.Populate(services);
+
+            builder.RegisterType<ImageWriterWebService>().As<IImageWriterWebService>().InstancePerLifetimeScope();
 
             var container = builder.Build();
 
