@@ -20,44 +20,6 @@ namespace ProcessingTools.Security
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <summary>
-        /// Gets hash of specified string source.
-        /// </summary>
-        /// <param name="source">String source object to be hashed.</param>
-        /// <param name="hashAlgorithm">Hash algorithm to be applied.</param>
-        /// <returns>Hash of the source.</returns>
-        public byte[] GetHash(string source, HashAlgorithm hashAlgorithm)
-        {
-            if (hashAlgorithm == null)
-            {
-                throw new ArgumentNullException(nameof(hashAlgorithm));
-            }
-
-            if (string.IsNullOrEmpty(source))
-            {
-                return Array.Empty<byte>();
-            }
-
-            byte[] data = this.Encoding.GetBytes(source);
-            byte[] hash = hashAlgorithm.ComputeHash(data);
-            return hash;
-        }
-
-        /// <summary>
-        /// Gets hash of specified string source.
-        /// </summary>
-        /// <typeparam name="T">Type of the hash algorithm.</typeparam>
-        /// <param name="source">String source object to be hashed.</param>
-        /// <returns>Hash of the source.</returns>
-        public byte[] GetHash<T>(string source)
-            where T : HashAlgorithm, new()
-        {
-            using (HashAlgorithm hashAlgorithm = new T())
-            {
-                return this.GetHash(source, hashAlgorithm);
-            }
-        }
-
-        /// <summary>
         /// Gets personal <see cref="X509Certificate2"/> by certificate subject.
         /// </summary>
         /// <param name="certificateSubject">Certificate subject.</param>
@@ -114,7 +76,7 @@ namespace ProcessingTools.Security
 
             using (var cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PrivateKey)
             {
-                byte[] hash = this.GetHash<SHA256Managed>(text);
+                byte[] hash = Utils.GetHash<SHA256Managed>(text, this.Encoding);
                 return cryptoServiceProvider.SignHash(hash, CryptoConfig.MapNameToOID("SHA256"));
             }
         }
@@ -141,7 +103,7 @@ namespace ProcessingTools.Security
             // Get its associated CSP (Crypto Service Provider) and public key
             using (var cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PublicKey.Key)
             {
-                byte[] hash = this.GetHash<SHA256Managed>(text);
+                byte[] hash = Utils.GetHash<SHA256Managed>(text, this.Encoding);
 
                 return cryptoServiceProvider.VerifyHash(hash, CryptoConfig.MapNameToOID("SHA256"), signature);
             }
