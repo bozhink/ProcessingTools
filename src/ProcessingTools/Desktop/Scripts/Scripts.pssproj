@@ -27,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CreateSelfSignedCertificate.ps1" />
     <Compile Include="get-coordinates.ps1" />
     <Compile Include="get-taxa.ps1" />
     <Compile Include="parse-xml.ps1" />

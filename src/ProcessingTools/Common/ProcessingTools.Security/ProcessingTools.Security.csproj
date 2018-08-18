@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>ProcessingTools</Company>
@@ -17,10 +17,22 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+    <PackageReference Include="System.Security.Cryptography.Cng" Version="4.5.0" />
+    <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Hashing.Algorithms.Analyzers" Version="1.1.0" />
+    <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="4.5.0" />
+    <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
     <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
 </Project>

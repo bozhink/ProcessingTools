@@ -3,7 +3,7 @@
     using ProcessingTools.Data.Common.File.Contracts;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public interface IXmlTaxaContext : IFileDbContext<ITaxonRankEntity>
+    public interface IXmlTaxaContext : IFileDbContext<ITaxonRankItem>
     {
     }
 }

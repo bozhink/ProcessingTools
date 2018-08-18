@@ -97,7 +97,6 @@
     <Compile Include="Providers\HelpProvider.cs" />
     <Compile Include="Providers\SeederTypesProvider.cs" />
     <Compile Include="Seeders\MediatypesMongoDbSeeder.cs" />
-    <Compile Include="Settings\NinjectBiotaxonomyDataBindings.cs" />
     <Compile Include="Settings\NinjectConfig.cs" />
     <Compile Include="Contracts\Seeders\IBioDbSeeder.cs" />
     <Compile Include="Contracts\Seeders\IBioEnvironmentsDbSeeder.cs" />

@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Company>ProcessingTools</Company>
+    <Version>0.1.0</Version>
+    <Copyright>Copyright © 2018 ProcessingTools</Copyright>
+    <PackageLicenseUrl>https://www.tldrlegal.com/l/gpl-3.0</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bozhink/ProcessingTools</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Web API</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\docs\ProcessingTools.Web.Core.Api.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;S4456;S4457</NoWarn>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.4.0" />
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Castle.Core" Version="4.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="NLog" Version="4.5.8" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Services\ProcessingTools.Web.Services.Contracts\ProcessingTools.Web.Services.Contracts.csproj" />
+    <ProjectReference Include="..\Services\ProcessingTools.Web.Services\ProcessingTools.Web.Services.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -4,9 +4,9 @@
     using ProcessingTools.Services.Contracts.Bio.Taxonomy;
     using ProcessingTools.Web.Api.Abstractions;
 
-    public class AphiaController : AbstractTaxaClassificationResolverController
+    public class AphiaController : AbstractTaxonClassificationResolverController
     {
-        protected AphiaController(IAphiaTaxaClassificationResolver resolver, ILogger<AphiaController> logger)
+        protected AphiaController(IAphiaTaxonClassificationResolver resolver, ILogger<AphiaController> logger)
             : base(resolver, logger)
         {
         }

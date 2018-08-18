@@ -35,7 +35,7 @@
         public void ParseTreatmentMetaWithAphiaCommand_WithValidParser_ShouldCorrectlyInitializeObject()
         {
             // Arrange + Act
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
 
             // Assert
@@ -59,7 +59,7 @@
         public void ParseTreatmentMetaWithAphiaCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
 
             // Act + Assert
@@ -76,7 +76,7 @@
         public void ParseTreatmentMetaWithAphiaCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
             var settingsMock = new Mock<ICommandSettings>();
 
@@ -96,7 +96,7 @@
         public void ParseTreatmentMetaWithAphiaCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
             var documentMock = new Mock<IDocument>();
 
@@ -116,7 +116,7 @@
         public async Task ParseTreatmentMetaWithAphiaCommand_RunWithValidDocumentAndValidProgramSettings_ShouldCallParserWithCorrectParameter()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IAphiaTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithAphiaCommand(parserMock.Object);
             var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();

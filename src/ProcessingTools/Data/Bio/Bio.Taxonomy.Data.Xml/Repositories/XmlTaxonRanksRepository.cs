@@ -8,7 +8,7 @@
     using ProcessingTools.Data.Common.File.Repositories;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class XmlTaxonRanksRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankEntity>, IXmlTaxonRankRepository
+    public class XmlTaxonRanksRepository : FileGenericRepository<IXmlTaxaContext, ITaxonRankItem>, IXmlTaxonRankRepository
     {
         private readonly string dataFileName;
 
@@ -22,11 +22,11 @@
 
             this.dataFileName = dataFileName;
 
-            this.Context.LoadFromFile(this.dataFileName).Wait();
+            this.Context.LoadFromFileAsync(this.dataFileName).Wait();
         }
 
-        public override object SaveChanges() => this.Context.WriteToFile(this.dataFileName).Result;
+        public override object SaveChanges() => this.Context.WriteToFileAsync(this.dataFileName).Result;
 
-        public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFile(this.dataFileName).ConfigureAwait(false);
+        public override async Task<object> SaveChangesAsync() => await this.Context.WriteToFileAsync(this.dataFileName).ConfigureAwait(false);
     }
 }

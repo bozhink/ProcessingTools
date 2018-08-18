@@ -11,7 +11,9 @@ namespace ProcessingTools.Web.Documents
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Razor;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -25,6 +27,7 @@ namespace ProcessingTools.Web.Documents
     using ProcessingTools.Web.Documents.Data;
     using ProcessingTools.Web.Documents.Extensions;
     using ProcessingTools.Web.Documents.Formatters;
+    using ProcessingTools.Web.Documents.Hubs;
     using ProcessingTools.Web.Documents.Models;
     using ProcessingTools.Web.Documents.Settings;
     using ProcessingTools.Web.Models.Shared;
@@ -54,6 +57,9 @@ namespace ProcessingTools.Web.Documents
         /// <returns>Service provider.</returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
+            services.AddSignalR();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(this.configuration.GetConnectionString(ConfigurationConstants.DefaultConnectionConnectionStringName)));
 
@@ -82,6 +88,14 @@ namespace ProcessingTools.Web.Documents
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.Configure<CookiePolicyOptions>(
+                options =>
+                {
+                    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
 
             services.ConfigureApplicationCookie(
                 options =>
@@ -118,9 +132,17 @@ namespace ProcessingTools.Web.Documents
                 })
                 .AddJsonOptions(o => o.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
                 .AddXmlDataContractSerializerFormatters()
-                .AddXmlSerializerFormatters();
+                .AddXmlSerializerFormatters()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddCors();
+            services.AddCors(
+                options =>
+                {
+                    options.AddPolicy("CorsPolicy", policy =>
+                    {
+                        policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("*");
+                    });
+                });
 
             // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims
             // See https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles
@@ -186,6 +208,7 @@ namespace ProcessingTools.Web.Documents
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseStatusCodePagesWithRedirects("/Error/Code/{0}");
@@ -197,6 +220,15 @@ namespace ProcessingTools.Web.Documents
                 this.ServeStaticFiles(app, env, "node_modules", "/lib");
             }
 
+            app.UseCors("CorsPolicy");
+            app.UseWebSockets();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/r/chat");
+            });
+
+            app.UseHttpsRedirection();
+            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseApplicationContext();
 

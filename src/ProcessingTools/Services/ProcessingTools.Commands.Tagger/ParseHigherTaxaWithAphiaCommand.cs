@@ -15,14 +15,14 @@ namespace ProcessingTools.Commands.Tagger
     /// Parse higher taxa with Aphia command.
     /// </summary>
     [System.ComponentModel.Description("Parse higher taxa using Aphia.")]
-    public class ParseHigherTaxaWithAphiaCommand : ParseHigherTaxaCommand<IAphiaTaxaRankResolver>, IParseHigherTaxaWithAphiaCommand
+    public class ParseHigherTaxaWithAphiaCommand : ParseHigherTaxaCommand<IAphiaTaxonRankResolver>, IParseHigherTaxaWithAphiaCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ParseHigherTaxaWithAphiaCommand"/> class.
         /// </summary>
         /// <param name="parser">Instance of <see cref="IHigherTaxaParserWithDataService{IAphiaTaxaRankResolver,ITaxonRank}"/></param>
         /// <param name="reporter">Instance of <see cref="IReporter"/>.</param>
-        public ParseHigherTaxaWithAphiaCommand(IHigherTaxaParserWithDataService<IAphiaTaxaRankResolver, ITaxonRank> parser, IReporter reporter)
+        public ParseHigherTaxaWithAphiaCommand(IHigherTaxaParserWithDataService<IAphiaTaxonRankResolver, ITaxonRank> parser, IReporter reporter)
             : base(parser, reporter)
         {
         }

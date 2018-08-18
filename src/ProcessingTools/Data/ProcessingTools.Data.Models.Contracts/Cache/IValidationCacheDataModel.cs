@@ -11,5 +11,9 @@ namespace ProcessingTools.Data.Models.Contracts.Cache
     /// </summary>
     public interface IValidationCacheDataModel : IValidationCacheModel
     {
+        /// <summary>
+        /// Gets the cache key.
+        /// </summary>
+        string Key { get; }
     }
 }

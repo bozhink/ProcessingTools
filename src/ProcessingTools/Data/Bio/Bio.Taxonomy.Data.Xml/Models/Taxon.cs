@@ -4,7 +4,7 @@
     using ProcessingTools.Enumerations;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class Taxon : ITaxonRankEntity
+    public class Taxon : ITaxonRankItem
     {
         private ICollection<TaxonRankType> ranks;
 

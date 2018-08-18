@@ -9,7 +9,7 @@ namespace ProcessingTools.Data.Contracts.Bio.Taxonomy
     /// <summary>
     /// Biotaxonomic black-list repository.
     /// </summary>
-    public interface IBiotaxonomicBlackListRepository : ICrudRepository<IBlackListEntity>, IIterableRepository<IBlackListEntity>
+    public interface IBiotaxonomicBlackListRepository : ICrudRepository<IBlackListItem>, IIterableRepository<IBlackListItem>
     {
     }
 }

@@ -1,0 +1,72 @@
+﻿@{
+    ViewData[ContextKeys.Title] = "Chat";
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+
+    <div id="chat">
+        <form id="frm-send-message" action="#" class="container">
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label for="message">Message:</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="message" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" id="send" value="Send" class="form-control" />
+                </div>
+            </div>
+        </form>
+        <div class="clear"></div>
+        <ul id="messages"></ul>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/node_modules/@@aspnet/signalr/dist/browser/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/r/chat")
+            .build();
+
+        connection.start().catch(err => console.error(err.toString()));
+
+        connection.on("Send", (now, name, message) => {
+            appendLine(now, name, message);
+        });
+
+        document.getElementById("frm-send-message").addEventListener("submit", event => {
+            var message = document.getElementById("message").value;
+            if (message != null && message.toString().trim() !== "") {
+                document.getElementById("message").value = "";
+                connection.invoke("Send", "@User.Identity.Name", message);
+            }
+            event.preventDefault();
+        });
+
+        function appendLine(now, name, message, color) {
+            var dateElement = document.createElement("span"),
+                nameElement = document.createElement("strong"),
+                msgElement = document.createElement("span"),
+                li = document.createElement("li");
+
+            dateElement.innerText = `${now} - `;
+            nameElement.innerText = `${name}: `;
+            msgElement.innerText = `${message}`;
+
+            li.appendChild(dateElement);
+            li.appendChild(nameElement);
+            li.appendChild(msgElement);
+
+            document.getElementById("messages").appendChild(li);
+        };
+
+        window.onload = () => {
+            document.getElementById("message").focus();
+        };
+    </script>
+}

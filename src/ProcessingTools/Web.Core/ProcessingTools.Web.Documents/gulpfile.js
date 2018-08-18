@@ -374,7 +374,7 @@ gulp.task("copy:code", ["compile:code"], function () {
 gulp.task("copy:code:min", ["compile:code"], function () {
     return pump([
         //gulp.src(path.join(JS_OUT_PATH, "**/*.js")),
-        gulp.src(path.join(JS_OUT_PATH, "**/site.js")),
+        gulp.src([path.join(JS_OUT_PATH, "**/site.js"), path.join(JS_OUT_PATH, "**/cookie-consent.js")]),
         uglify(),
         rename(renameForMinify),
         gulp.dest(JS_DIST_PATH)

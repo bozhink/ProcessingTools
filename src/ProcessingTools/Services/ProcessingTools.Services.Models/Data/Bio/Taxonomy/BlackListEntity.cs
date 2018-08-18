@@ -9,7 +9,7 @@ namespace ProcessingTools.Services.Models.Data.Bio.Taxonomy
     /// <summary>
     /// Black list entity.
     /// </summary>
-    public class BlackListEntity : IBlackListEntity
+    public class BlackListEntity : IBlackListItem
     {
         /// <inheritdoc/>
         public string Content { get; set; }

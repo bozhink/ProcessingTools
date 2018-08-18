@@ -107,8 +107,8 @@ monacoEditorConfig.initEditor(document.getElementById(HtmlElementIds.EDITOR_CONT
                         .appendTo($themePicker);
                 }
 
-                $themePicker.change(function (): void {
-                    let index: number = (this as HTMLSelectElement).selectedIndex;
+                let onThemeChange: () => void = function (): void {
+                    let index: number = ($themePicker[0] as HTMLSelectElement).selectedIndex;
                     theme = themes[index].themeId;
                     storage.setItem(keys.theme, theme);
                     monacoEditorConfig.changeTheme(editor, theme);
@@ -135,8 +135,10 @@ monacoEditorConfig.initEditor(document.getElementById(HtmlElementIds.EDITOR_CONT
                             "background-color": $monacoEditor.css("background-color")
                         });
                     }
-                });
+                };
 
+                $themePicker.ready(onThemeChange);
+                $themePicker.change(onThemeChange);
             }
         }
 

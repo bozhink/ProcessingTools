@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !(consentFeature?.CanTrack ?? false);
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+    <div id="cookieConsent" class="cookieConsent alert alert-warning" role="alert">
+        <div class="container mx-auto">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="float-left">Privacy and cookie use policy...</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="float-sm-left float-md-right">
+                        <a asp-area="@AreaNames.Default" asp-controller="@HomeController.ControllerName" asp-action="@HomeController.PrivacyActionName" class="btn btn-info mr-1">Learn More</a>
+                        <button type="button" class="btn btn-success" data-cookie-string="@cookieString">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/build/dist/js/cookie-consent.js"></script>
+}

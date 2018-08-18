@@ -23,6 +23,8 @@
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Deployment\Bibliography\" />
+    <Folder Include="Deployment\Bio\" />
     <Folder Include="Services\Data\Geo\" />
     <Folder Include="Services\Data\Resources\" />
   </ItemGroup>

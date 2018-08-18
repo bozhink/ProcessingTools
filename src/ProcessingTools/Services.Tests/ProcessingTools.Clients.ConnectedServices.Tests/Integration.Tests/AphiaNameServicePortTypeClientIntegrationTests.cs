@@ -4,8 +4,9 @@
 
 namespace ProcessingTools.Clients.ConnectedServices.Tests.Integration.Tests
 {
+    using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ProcessingTools.Clients.Bio.Aphia.ServiceReference;
+    using ProcessingTools.Clients.ConnectedServices.Bio.Aphia;
 
     /// <summary>
     /// <see cref="AphiaNameServicePortTypeClient"/> integration tests.
@@ -19,11 +20,23 @@ namespace ProcessingTools.Clients.ConnectedServices.Tests.Integration.Tests
         [TestMethod]
         [Timeout(20000)]
         [Ignore(message: "Net dependent integration test")] // Net dependent integration test
-        public void AphiaNameServicePortTypeClient_GetAphiaRecordsWithValidParameters_ShouldWork()
+        public async Task AphiaNameServicePortTypeClient_GetAphiaRecordsWithValidParameters_ShouldWork()
         {
+            // Arrange
+            var request = new getAphiaRecordsRequest("Anodontiglanis", true, true, false, 0);
             var client = new AphiaNameServicePortTypeClient();
-            var records = client.getAphiaRecordsAsync(new getAphiaRecordsRequest("Anodontiglanis", true, true, false, 0)).Result.@return;
 
+            // Act
+
+            await client.OpenAsync().ConfigureAwait(false);
+
+            var task = client.getAphiaRecordsAsync(request);
+            var result = await task.ConfigureAwait(false);
+            var records = result.@return;
+
+            await client.CloseAsync().ConfigureAwait(false);
+
+            // Assert
             Assert.IsTrue(records?.Length > 0, "Number of records should be greater than 0.");
             if (records != null)
             {

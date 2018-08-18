@@ -24,7 +24,7 @@ namespace ProcessingTools.Processors.Bio.Taxonomy
     /// <typeparam name="TService">Type of the data service.</typeparam>
     /// <typeparam name="T">Type of the data service model.</typeparam>
     public class HigherTaxaParserWithDataService<TService, T> : IHigherTaxaParserWithDataService<TService, T>
-        where TService : class, ITaxaRankResolver
+        where TService : class, ITaxonRankResolver
         where T : ITaxonRank
     {
         private readonly TService service;

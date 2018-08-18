@@ -39,9 +39,9 @@ export class DocumentController {
         }
 
         self.dataService.save(url, getContentCallback())
-            .then(function (response: string): void {
-                if (!quietMode) {
-                    self.reporter.report(ReportType.SUCCESS, response);
+            .then(function (response: IMessageResponse): void {
+                if (!quietMode && response != null) {
+                    self.reporter.report(response.type.toUpperCase(), response.message);
                 }
             })
             .then(function (): void {

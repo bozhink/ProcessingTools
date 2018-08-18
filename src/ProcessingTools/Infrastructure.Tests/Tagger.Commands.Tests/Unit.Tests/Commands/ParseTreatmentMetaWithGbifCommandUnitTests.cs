@@ -35,7 +35,7 @@
         public void ParseTreatmentMetaWithGbifCommand_WithValidParser_ShouldCorrectlyInitializeObject()
         {
             // Arrange + Act
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithGbifCommand(parserMock.Object);
 
             // Assert
@@ -59,7 +59,7 @@
         public void ParseTreatmentMetaWithGbifCommand_RunWithNullDocumentAndNullProgramSettings_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithGbifCommand(parserMock.Object);
 
             // Act + Assert
@@ -76,7 +76,7 @@
         public void ParseTreatmentMetaWithGbifCommand_RunWithNullDocumentAndValidProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithGbifCommand(parserMock.Object);
             var settingsMock = new Mock<ICommandSettings>();
 
@@ -96,7 +96,7 @@
         public void ParseTreatmentMetaWithGbifCommand_RunWithValidDocumentAndNullProgramSettings_ShouldThrowArgumentNullExceptionWithCorrectParamName()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithGbifCommand(parserMock.Object);
             var documentMock = new Mock<IDocument>();
 
@@ -116,7 +116,7 @@
         public async Task ParseTreatmentMetaWithGbifCommand_RunWithValidDocumentAndValidProgramSettings_ShouldCallParserWithCorrectParameter()
         {
             // Arrange
-            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxaClassificationResolver>>();
+            var parserMock = new Mock<ITreatmentMetaParserWithDataService<IGbifTaxonClassificationResolver>>();
             var command = new ParseTreatmentMetaWithGbifCommand(parserMock.Object);
             var settingsMock = new Mock<ICommandSettings>();
             var documentMock = new Mock<IDocument>();

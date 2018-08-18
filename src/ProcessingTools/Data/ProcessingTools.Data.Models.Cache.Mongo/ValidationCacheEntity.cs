@@ -39,6 +39,10 @@ namespace ProcessingTools.Data.Models.Cache.Mongo
         }
 
         /// <inheritdoc/>
+        [BsonIgnore]
+        public string Key { get; set; }
+
+        /// <inheritdoc/>
         [BsonIgnoreIfDefault]
         public string Content { get; set; }
 

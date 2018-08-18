@@ -11,7 +11,7 @@ namespace ProcessingTools.Services.Models.Data.Bio.Taxonomy
     /// <summary>
     /// Taxon rank entity.
     /// </summary>
-    public class TaxonRankEntity : ITaxonRankEntity
+    public class TaxonRankEntity : ITaxonRankItem
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxonRankEntity"/> class.

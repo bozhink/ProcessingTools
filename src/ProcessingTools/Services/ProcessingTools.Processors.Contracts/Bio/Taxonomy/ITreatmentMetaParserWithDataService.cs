@@ -11,7 +11,7 @@ namespace ProcessingTools.Processors.Contracts.Bio.Taxonomy
     /// </summary>
     /// <typeparam name="TService">Type of data service.</typeparam>
     public interface ITreatmentMetaParserWithDataService<TService> : ITreatmentMetaParser
-        where TService : ITaxaClassificationResolver
+        where TService : ITaxonClassificationResolver
     {
     }
 }

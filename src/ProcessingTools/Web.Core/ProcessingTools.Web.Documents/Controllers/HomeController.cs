@@ -13,24 +13,29 @@ namespace ProcessingTools.Web.Documents.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// Controller Name
+        /// Controller name.
         /// </summary>
         public const string ControllerName = "Home";
 
         /// <summary>
-        /// Index Action Name
+        /// Index action name.
         /// </summary>
         public const string IndexActionName = nameof(Index);
 
         /// <summary>
-        /// About Action Name
+        /// About action name.
         /// </summary>
         public const string AboutActionName = nameof(About);
 
         /// <summary>
-        /// Contact Action Name
+        /// Contact action name.
         /// </summary>
         public const string ContactActionName = nameof(Contact);
+
+        /// <summary>
+        /// Privacy action name.
+        /// </summary>
+        public const string PrivacyActionName = nameof(Privacy);
 
         /// <summary>
         /// Index
@@ -49,8 +54,6 @@ namespace ProcessingTools.Web.Documents.Controllers
         [ActionName(AboutActionName)]
         public IActionResult About()
         {
-            this.ViewData[ContextKeys.Message] = "Your application description page.";
-
             return this.View();
         }
 
@@ -61,8 +64,16 @@ namespace ProcessingTools.Web.Documents.Controllers
         [ActionName(ContactActionName)]
         public IActionResult Contact()
         {
-            this.ViewData[ContextKeys.Message] = "Your contact page.";
+            return this.View();
+        }
 
+        /// <summary>
+        /// Privacy
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ActionName(PrivacyActionName)]
+        public IActionResult Privacy()
+        {
             return this.View();
         }
 

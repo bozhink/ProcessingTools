@@ -3,10 +3,10 @@
     using System.Collections.Generic;
     using ProcessingTools.Models.Contracts.Bio.Taxonomy;
 
-    public class BlackListEntityEqualityComparer : EqualityComparer<IBlackListEntity>
+    public class BlackListEntityEqualityComparer : EqualityComparer<IBlackListItem>
     {
-        public override bool Equals(IBlackListEntity x, IBlackListEntity y) => (x?.Content ?? string.Empty) == (y?.Content ?? string.Empty);
+        public override bool Equals(IBlackListItem x, IBlackListItem y) => (x?.Content ?? string.Empty) == (y?.Content ?? string.Empty);
 
-        public override int GetHashCode(IBlackListEntity obj) => obj?.Content.GetHashCode() ?? -1;
+        public override int GetHashCode(IBlackListItem obj) => obj?.Content.GetHashCode() ?? -1;
     }
 }
