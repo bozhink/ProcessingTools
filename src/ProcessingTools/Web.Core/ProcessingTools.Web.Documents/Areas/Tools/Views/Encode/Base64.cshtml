@@ -1,0 +1,46 @@
+@{
+    ViewData[ContextKeys.Title] = "Encode To Base64 String";
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Content</legend>
+                <form method="post" class="container">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <textarea type="text" asp-for="Content" cols="30" rows="4" placeholder="Text to encode" class="form-control"></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn btn-outline-secondary" />
+                            <input type="reset" value="Reset" class="btn btn-outline-secondary" />
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+        @if (Model != null && !string.IsNullOrEmpty(Model.Base64EncodedString))
+        {
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>Base64 Encoded String</legend>
+                    <code>@Model.Base64EncodedString</code>
+                </fieldset>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
+}
+
