@@ -82,6 +82,6 @@
 </section>
 
 @section Scripts {
-    @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
-    @await Html.PartialAsync("_EditScripts")
+    <partial name="@ViewNames.ValidationScriptsPartial" />
+    <partial name="_EditScripts" />
 }

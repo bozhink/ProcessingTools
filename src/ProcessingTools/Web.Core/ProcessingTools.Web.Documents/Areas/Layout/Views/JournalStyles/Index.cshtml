@@ -61,13 +61,13 @@
             </table>
 
             <footer>
-                @await Html.PartialAsync(ViewNames.NavigationFootPartial)
+                <partial name="@ViewNames.NavigationFootPartial" />
             </footer>
         }
     }
 </section>
 
 @section Scripts {
-    @await Html.PartialAsync(ViewNames.PaginationScriptsPartial)
+    <partial name="@ViewNames.PaginationScriptsPartial" />
 }
 
