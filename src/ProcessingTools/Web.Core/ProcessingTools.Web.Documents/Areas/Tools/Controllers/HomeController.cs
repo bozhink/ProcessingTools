@@ -1,21 +1,12 @@
+// <copyright file="HomeController.cs" company="ProcessingTools">
+// Copyright (c) 2018 ProcessingTools. All rights reserved.
+// </copyright>
+
 namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
-    using System;
-    using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using ProcessingTools.Web.Models.Tools.Encode;
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Web.Documents.Constants;
-    using ProcessingTools.Web.Models.Tools.QRCode;
 
     /// <summary>
     /// Home controller.

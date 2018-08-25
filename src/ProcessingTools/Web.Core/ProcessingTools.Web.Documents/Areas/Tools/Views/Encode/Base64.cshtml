@@ -1,4 +1,3 @@
-
 @model ProcessingTools.Web.Models.Tools.Encode.Base64ViewModel
 
 @{
@@ -38,7 +37,7 @@
                 <fieldset>
                     <legend>Base64 Encoded String</legend>
                     <div>
-                    <code class="hard-word-wrap">@Model.Base64EncodedString</code>
+                        <code class="hard-word-wrap">@Model.Base64EncodedString</code>
                     </div>
                 </fieldset>
             </div>
@@ -47,6 +46,5 @@
 </section>
 
 @section Scripts {
-    @await Html.PartialAsync(ViewNames.ValidationScriptsPartial)
+    <partial name="@ViewNames.ValidationScriptsPartial" />
 }
-

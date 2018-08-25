@@ -6,21 +6,12 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 {
     using System;
     using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using ProcessingTools.Web.Models.Tools.Encode;
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using ProcessingTools.Constants;
-    using ProcessingTools.Processors.Imaging.Contracts;
     using ProcessingTools.Web.Documents.Constants;
-    using ProcessingTools.Web.Models.Tools.QRCode;
-    
+    using ProcessingTools.Web.Models.Tools.Encode;
+
     /// <summary>
     /// Encode controller.
     /// </summary>
@@ -45,6 +36,10 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 
         private readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EncodeController"/> class.
+        /// </summary>
+        /// <param name="logger">Logger</param>
         public EncodeController(ILogger<EncodeController> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -62,7 +57,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
 
             this.logger.LogTrace(LogMessage);
 
-            return this.View();
+            return this.RedirectToAction(ActionNames.Index, ControllerNames.Home);
         }
 
         /// <summary>
@@ -102,7 +97,7 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                 try
                 {
                     viewModel.Content = model.Content;
-                    
+
                     byte[] bytes = Encoding.UTF8.GetBytes(model.Content);
                     viewModel.Base64EncodedString = Convert.ToBase64String(bytes);
                 }
@@ -125,6 +120,5 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         {
             return this.View();
         }
-        
     }
 }
