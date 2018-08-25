@@ -19,7 +19,7 @@
             return Task.Run(() =>
             {
                 var image = this.EncodeImage(type, content, width, height);
-                return this.ImageToByteArray(image, ImageFormat.Bmp);
+                return this.ImageToByteArray(image, System.Drawing.Imaging.ImageFormat.Bmp);
             });
         }
 
@@ -28,7 +28,7 @@
             return Task.Run(() =>
             {
                 var image = this.EncodeImage(type, content, width, height);
-                return this.ImageToBase64String(image, ImageFormat.Bmp);
+                return this.ImageToBase64String(image, System.Drawing.Imaging.ImageFormat.Bmp);
             });
         }
 
@@ -67,7 +67,7 @@
         /// <remarks>
         /// See http://stackoverflow.com/questions/7350679/convert-a-bitmap-into-a-byte-array
         /// </remarks>
-        private string ImageToBase64String(Image image, ImageFormat format)
+        private string ImageToBase64String(Image image, System.Drawing.Imaging.ImageFormat format)
         {
             using (var stream = new MemoryStream())
             {
@@ -85,7 +85,7 @@
         /// <remarks>
         /// See http://stackoverflow.com/questions/10889764/how-to-convert-bitmap-to-a-base64-string
         /// </remarks>
-        private byte[] ImageToByteArray(Image image, ImageFormat format)
+        private byte[] ImageToByteArray(Image image, System.Drawing.Imaging.ImageFormat format)
         {
             using (var stream = new MemoryStream())
             {
