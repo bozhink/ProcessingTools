@@ -1,0 +1,23 @@
+@{
+    ViewData[ContextKeys.Title] = "Tools";
+}
+
+<section role="main">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+    <fieldset>
+        <legend>Coordinates</legend>
+        <ul>
+            <li><a asp-area="@(AreaNames.Tools)" asp-controller="@(CoordinatesCalculatorController.ControllerName)" asp-action="@(CoordinatesCalculatorController.IndexActionName)">Coordinates calculator</a></li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>Encoders &amp; Decoders</legend>
+        <ul>
+            <li><a asp-area="@(AreaNames.Tools)" asp-controller="@(QRCodeController.ControllerName)" asp-action="@(QRCodeController.IndexActionName)">QR code encoder (server-side)</a></li>
+            <li><a asp-area="@(AreaNames.Tools)" asp-controller="@(QRCodesGeneratorController.ControllerName)" asp-action="@(QRCodesGeneratorController.IndexActionName)">QR code encoder (client-side)</a></li>
+            <li><a asp-area="@(AreaNames.Tools)" asp-controller="@(EncodeController.ControllerName)" asp-action="@(EncodeController.Base64ActionName)">Base64 string encoder</a></li>
+        </ul>
+    </fieldset>
+</section>

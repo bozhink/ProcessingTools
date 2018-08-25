@@ -26,6 +26,7 @@
                         <div class="col-md-12">
                             <input type="submit" value="Submit" class="btn btn-outline-secondary" />
                             <input type="reset" value="Reset" class="btn btn-outline-secondary" />
+                            <a asp-area="@(AreaNames.Tools)" asp-controller="@(EncodeController.ControllerName)" asp-action="@(EncodeController.Base64ActionName)" class="btn btn-outline-secondary">Clear</a>
                         </div>
                     </div>
                 </form>
@@ -36,7 +37,9 @@
             <div class="col-md-6">
                 <fieldset>
                     <legend>Base64 Encoded String</legend>
-                    <code>@Model.Base64EncodedString</code>
+                    <div>
+                    <code class="hard-word-wrap">@Model.Base64EncodedString</code>
+                    </div>
                 </fieldset>
             </div>
         }
