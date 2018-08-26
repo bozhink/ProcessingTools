@@ -1,0 +1,83 @@
+﻿@model ProcessingTools.Web.Models.Tools.Hashes.HashesViewModel
+
+@{
+    ViewData[ContextKeys.Title] = "Evaluate Hashes";
+}
+
+<section role="main">
+    <header>
+        <h2>@ViewData[ContextKeys.Title]</h2>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Content</legend>
+                <form method="post" class="container">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <textarea type="text" asp-for="Content" cols="30" rows="4" placeholder="Text to encode" class="form-control"></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn btn-outline-secondary" />
+                            <input type="reset" value="Reset" class="btn btn-outline-secondary" />
+                            <a asp-area="@(AreaNames.Tools)" asp-controller="@(EncodeController.ControllerName)" asp-action="@(EncodeController.Base64ActionName)" class="btn btn-outline-secondary">Clear</a>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+        @if (Model != null && !string.IsNullOrEmpty(Model.Content))
+        {
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>Base64 Encoded String</legend>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Hash as binary string</th>
+                                <th>Hash as Base64 string</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="col">MD5</th>
+                                <td>@Model.MD5String</td>
+                                <td>@Model.MD5Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">SHA1</th>
+                                <td>@Model.SHA1String</td>
+                                <td>@Model.SHA1Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">SHA256</th>
+                                <td>@Model.SHA256String</td>
+                                <td>@Model.SHA256Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">SHA384</th>
+                                <td>@Model.SHA384String</td>
+                                <td>@Model.SHA384Base64String</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">SHA512</th>
+                                <td>@Model.SHA512String</td>
+                                <td>@Model.SHA512Base64String</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="@ViewNames.ValidationScriptsPartial" />
+}

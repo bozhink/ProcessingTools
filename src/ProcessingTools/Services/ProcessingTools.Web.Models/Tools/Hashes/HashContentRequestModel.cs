@@ -1,26 +1,21 @@
-// <copyright file="Base64ViewModel.cs" company="ProcessingTools">
+﻿// <copyright file="HashContentRequestModel.cs" company="ProcessingTools">
 // Copyright (c) 2018 ProcessingTools. All rights reserved.
 // </copyright>
 
-namespace ProcessingTools.Web.Models.Tools.Encode
+namespace ProcessingTools.Web.Models.Tools.Hashes
 {
     using System.ComponentModel.DataAnnotations;
     using ProcessingTools.Models.Contracts;
 
     /// <summary>
-    /// Encode Base64 view model.
+    /// Hash content request model.
     /// </summary>
-    public class Base64ViewModel : IContent
+    public class HashContentRequestModel : IContent
     {
         /// <summary>
         /// Gets or sets the text content to be encoded.
         /// </summary>
         [Required(AllowEmptyStrings = false)]
         public string Content { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Base64 encoded resultant string.
-        /// </summary>
-        public string Base64EncodedString { get; set; }
     }
 }
