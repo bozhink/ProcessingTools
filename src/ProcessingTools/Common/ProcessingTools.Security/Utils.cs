@@ -333,6 +333,27 @@ namespace ProcessingTools.Security
         public static string GetSHA256HashAsString(string source) => GetSHA256HashAsString(source, DefaultEncoding);
 
         /// <summary>
+        /// Gets SHA384 hash as string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <param name="encoding">Encoding of the source.</param>
+        /// <returns>Evaluated SHA384 hash as string.</returns>
+        public static string GetSHA384HashAsString(string source, Encoding encoding)
+        {
+            using (var hashAlgorithm = SHA384.Create())
+            {
+                return GetHashAsString(source, encoding, hashAlgorithm);
+            }
+        }
+
+        /// <summary>
+        /// Gets SHA384 hash as string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <returns>Evaluated SHA384 hash as string.</returns>
+        public static string GetSHA384HashAsString(string source) => GetSHA384HashAsString(source, DefaultEncoding);
+
+        /// <summary>
         /// Gets SHA512 hash as string.
         /// </summary>
         /// <param name="source">Source string to be evaluated.</param>
@@ -374,5 +395,114 @@ namespace ProcessingTools.Security
         /// <param name="hashAlgorithm">Hash algorithm.</param>
         /// <returns>Evaluated hash as Base 64 string.</returns>
         public static string GetHashAsBase64String(string source, HashAlgorithm hashAlgorithm) => GetHashAsBase64String(source, DefaultEncoding, hashAlgorithm);
+
+        /// <summary>
+        /// Gets MD5 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <param name="encoding">Encoding of the source.</param>
+        /// <returns>Evaluated MD5 hash as Base 64 string.</returns>
+        public static string GetMD5HashAsBase64String(string source, Encoding encoding)
+        {
+#pragma warning disable CA5351 // Do not use insecure cryptographic algorithm MD5.
+            using (var hashAlgorithm = MD5.Create())
+            {
+                return GetHashAsBase64String(source, encoding, hashAlgorithm);
+            }
+#pragma warning restore CA5351 // Do not use insecure cryptographic algorithm MD5.
+        }
+
+        /// <summary>
+        /// Gets MD5 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <returns>Evaluated MD5 hash as Base 64 string.</returns>
+        public static string GetMD5HashAsBase64String(string source) => GetMD5HashAsBase64String(source, DefaultEncoding);
+
+        /// <summary>
+        /// Calculates SHA1 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <param name="encoding">Encoding of the source.</param>
+        /// <returns>Evaluated SHA1 hash as Base 64 string.</returns>
+        public static string GetSHA1HashAsBase64String(string source, Encoding encoding)
+        {
+#pragma warning disable CA5350 // Do not use insecure cryptographic algorithm SHA1.
+            using (var hashAlgorithm = SHA1.Create())
+            {
+                return GetHashAsBase64String(source, encoding, hashAlgorithm);
+            }
+#pragma warning restore CA5350 // Do not use insecure cryptographic algorithm SHA1.
+        }
+
+        /// <summary>
+        /// Gets SHA1 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <returns>Evaluated SHA1 hash as Base 64 string.</returns>
+        public static string GetSHA1HashAsBase64String(string source) => GetSHA1HashAsBase64String(source, DefaultEncoding);
+
+        /// <summary>
+        /// Gets SHA256 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <param name="encoding">Encoding of the source.</param>
+        /// <returns>Evaluated SHA256 hash as Base 64 string.</returns>
+        public static string GetSHA256HashAsBase64String(string source, Encoding encoding)
+        {
+            using (var hashAlgorithm = SHA256.Create())
+            {
+                return GetHashAsBase64String(source, encoding, hashAlgorithm);
+            }
+        }
+
+        /// <summary>
+        /// Gets SHA256 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <returns>Evaluated SHA256 hash as Base 64 string.</returns>
+        public static string GetSHA256HashAsBase64String(string source) => GetSHA256HashAsBase64String(source, DefaultEncoding);
+
+        /// <summary>
+        /// Gets SHA384 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <param name="encoding">Encoding of the source.</param>
+        /// <returns>Evaluated SHA384 hash as Base 64 string.</returns>
+        public static string GetSHA384HashAsBase64String(string source, Encoding encoding)
+        {
+            using (var hashAlgorithm = SHA384.Create())
+            {
+                return GetHashAsBase64String(source, encoding, hashAlgorithm);
+            }
+        }
+
+        /// <summary>
+        /// Gets SHA384 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <returns>Evaluated SHA384 hash as Base 64 string.</returns>
+        public static string GetSHA384HashAsBase64String(string source) => GetSHA384HashAsBase64String(source, DefaultEncoding);
+
+        /// <summary>
+        /// Gets SHA512 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <param name="encoding">Encoding of the source.</param>
+        /// <returns>Evaluated SHA512 hash as Base 64 string.</returns>
+        public static string GetSHA512HashAsBase64String(string source, Encoding encoding)
+        {
+            using (var hashAlgorithm = SHA512.Create())
+            {
+                return GetHashAsBase64String(source, encoding, hashAlgorithm);
+            }
+        }
+
+        /// <summary>
+        /// Gets SHA512 hash as Base 64 string.
+        /// </summary>
+        /// <param name="source">Source string to be evaluated.</param>
+        /// <returns>Evaluated SHA512 hash as Base 64 string.</returns>
+        public static string GetSHA512HashAsBase64String(string source) => GetSHA512HashAsBase64String(source, DefaultEncoding);
     }
 }
