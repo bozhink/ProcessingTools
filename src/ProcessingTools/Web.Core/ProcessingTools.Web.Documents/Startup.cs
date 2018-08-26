@@ -172,6 +172,8 @@ namespace ProcessingTools.Web.Documents
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().InstancePerDependency();
 
+            builder.RegisterInstance(ProcessingTools.Constants.Defaults.Encoding).As<System.Text.Encoding>().InstancePerDependency();
+
             builder.RegisterModule(new XmlTransformersAutofacModule
             {
                 Configuration = this.configuration
