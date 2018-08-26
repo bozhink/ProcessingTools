@@ -34,6 +34,11 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
         /// </summary>
         public const string Base64ActionName = nameof(Base64);
 
+        /// <summary>
+        /// Base64Url action name.
+        /// </summary>
+        public const string Base64UrlActionName = nameof(Base64Url);
+
         private readonly Encoding encoding;
         private readonly ILogger logger;
 
@@ -102,6 +107,57 @@ namespace ProcessingTools.Web.Documents.Areas.Tools.Controllers
                     viewModel.Content = model.Content;
 
                     byte[] bytes = Convert.FromBase64String(model.Content);
+                    viewModel.Base64DecodedString = this.encoding.GetString(bytes);
+                }
+                catch (Exception ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    this.logger.LogError(ex, LogMessage);
+                }
+            }
+
+            return this.View(model: viewModel);
+        }
+
+        /// <summary>
+        /// GET Decode/Base64Url
+        /// </summary>
+        /// <returns><see cref="IActionResult"/></returns>
+        [HttpGet]
+        [ActionName(Base64UrlActionName)]
+        public IActionResult Base64Url()
+        {
+            const string LogMessage = "GET Decode/Base64Url";
+
+            this.logger.LogTrace(LogMessage);
+
+            Base64ViewModel viewModel = new Base64ViewModel();
+            return this.View(model: viewModel);
+        }
+
+        /// <summary>
+        /// POST Decode/Base64Url
+        /// </summary>
+        /// <param name="model">Request model.</param>
+        /// <returns><see cref="IActionResult"/></returns>
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ActionName(Base64UrlActionName)]
+        public IActionResult Base64Url([Bind(nameof(Base64RequestModel.Content))]Base64RequestModel model)
+        {
+            const string LogMessage = "POST Decode/Base64Url";
+
+            this.logger.LogTrace(LogMessage);
+
+            Base64ViewModel viewModel = new Base64ViewModel();
+
+            if (this.ModelState.IsValid)
+            {
+                try
+                {
+                    viewModel.Content = model.Content;
+
+                    byte[] bytes = ProcessingTools.Security.Utils.FromBase64Url(model.Content);
                     viewModel.Base64DecodedString = this.encoding.GetString(bytes);
                 }
                 catch (Exception ex)
