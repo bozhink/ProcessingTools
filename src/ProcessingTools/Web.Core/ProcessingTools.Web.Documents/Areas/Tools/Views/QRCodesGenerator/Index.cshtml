@@ -2,27 +2,29 @@
     ViewData[ContextKeys.Title] = "QR codes generator";
 }
 
-<h2>@(ViewData[ContextKeys.Title])</h2>
-
-<textarea id="text-content"></textarea>
-<button id="btn-generate">Generate</button>
-
-<div id="qrCode"></div>
+<section role="main">
+    <header>
+        <h2>@(ViewData[ContextKeys.Title])</h2>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <textarea id="text-content" placeholder="Your text here" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <button id="btn-generate" class="btn btn-outline-secondary">Generate</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="qrCode"></div>
+        </div>
+    </div>
+    <footer class="page-navigation">
+        <p><a asp-action="@(ActionNames.Index)" asp-controller="@(ControllerNames.Home)">Back to List of Tools</a></p>
+    </footer>
+</section>
 
 @section Scripts {
     <script type="text/javascript" src="~/node_modules/davidshimjs-qrcodejs/qrcode.js"></script>
-    <script type="text/javascript">
-        $("#btn-generate").on("click", function () {
-            var element = document.getElementById("qrCode");
-            if (element) {
-                element.innerHTML = "";
-                new QRCode(element,
-                    {
-                        text: $("#text-content").val(),
-                        width: 300,
-                        height: 300
-                    });
-            }
-        });
-    </script>
+    <script src="~/build/dist/js/apps/qr-code-generator.js"></script>
 }

@@ -42,7 +42,7 @@
             </form>
         </div>
         <div class="col-md-4">
-            <div  role="img" class="qr-code">
+            <div role="img" class="qr-code">
                 <div class="thumbnail">
                     @if (Model?.Image != null)
                     {
@@ -56,6 +56,9 @@
             </div>
         </div>
     </div>
+    <footer class="page-navigation">
+        <p><a asp-action="@(ActionNames.Index)" asp-controller="@(ControllerNames.Home)">Back to List of Tools</a></p>
+    </footer>
 </section>
 
 @section Scripts {
