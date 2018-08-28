@@ -62,6 +62,7 @@ namespace ProcessingTools.Web.Documents.Settings
             builder.RegisterType<CoordinatesParseService>().As<ICoordinatesParseService>().InstancePerDependency();
 
             builder.RegisterType<DecodeService>().As<IDecodeService>().InstancePerDependency();
+            builder.RegisterType<EncodeService>().As<IEncodeService>().InstancePerDependency();
         }
     }
 }
