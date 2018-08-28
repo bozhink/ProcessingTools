@@ -32,7 +32,7 @@ namespace ProcessingTools.Services.Tools
 
             if (!string.IsNullOrEmpty(source))
             {
-                byte[] bytes = Convert.FromBase64String(source);
+                byte[] bytes = Convert.FromBase64String(source.Trim(new[] { ' ', '\t', '\r', '\n' }));
                 result = this.encoding.GetString(bytes);
             }
 
@@ -46,7 +46,7 @@ namespace ProcessingTools.Services.Tools
 
             if (!string.IsNullOrEmpty(source))
             {
-                byte[] bytes = ProcessingTools.Security.Utils.FromBase64Url(source);
+                byte[] bytes = ProcessingTools.Security.Utils.FromBase64Url(source.Trim(new[] { ' ', '\t', '\r', '\n' }));
                 result = this.encoding.GetString(bytes);
             }
 
